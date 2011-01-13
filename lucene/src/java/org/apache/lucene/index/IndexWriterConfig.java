@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Holds all the configuration of {@link IndexWriter}. This object is only used  * while constructing a new IndexWriter. Those settings cannot be changed  * afterwards, except instantiating a new IndexWriter.  *<p>  * All setter methods return {@link IndexWriterConfig} to allow chaining  * settings conveniently. Thus someone can do:  *   *<pre>  * IndexWriterConfig conf = new IndexWriterConfig(analyzer);  * conf.setter1().setter2();  *</pre>  *   * @since 3.1  */
+comment|/**  * Holds all the configuration of {@link IndexWriter}. This object is only used  * while constructing a new IndexWriter. Those settings cannot be changed  * afterwards, except instantiating a new IndexWriter.  *<p>  * All setter methods return {@link IndexWriterConfig} to allow chaining  * settings conveniently. Thus someone can do:  *  *<pre>  * IndexWriterConfig conf = new IndexWriterConfig(analyzer);  * conf.setter1().setter2();  *</pre>  *  * @since 3.1  */
 end_comment
 
 begin_class
@@ -197,7 +197,7 @@ name|DEFAULT_RAM_BUFFER_SIZE_MB
 init|=
 literal|16.0
 decl_stmt|;
-comment|/**    * Default value for the write lock timeout (1,000 ms).    *     * @see #setDefaultWriteLockTimeout(long)    */
+comment|/**    * Default value for the write lock timeout (1,000 ms).    *    * @see #setDefaultWriteLockTimeout(long)    */
 DECL|field|WRITE_LOCK_TIMEOUT
 specifier|public
 specifier|static
@@ -254,7 +254,7 @@ operator|=
 name|writeLockTimeout
 expr_stmt|;
 block|}
-comment|/**    * Returns the default write lock timeout for newly instantiated    * IndexWriterConfigs.    *     * @see #setDefaultWriteLockTimeout(long)    */
+comment|/**    * Returns the default write lock timeout for newly instantiated    * IndexWriterConfigs.    *    * @see #setDefaultWriteLockTimeout(long)    */
 DECL|method|getDefaultWriteLockTimeout
 specifier|public
 specifier|static
@@ -353,7 +353,7 @@ name|readerPooling
 decl_stmt|;
 DECL|field|indexerThreadPool
 specifier|private
-name|DocumentsWriterThreadPool
+name|DocumentsWriterPerThreadPool
 name|indexerThreadPool
 decl_stmt|;
 DECL|field|readerTermsIndexDivisor
@@ -620,7 +620,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Returns the maximum number of terms that will be indexed for a single field    * in a document.    *     * @see #setMaxFieldLength(int)    */
+comment|/**    * Returns the maximum number of terms that will be indexed for a single field    * in a document.    *    * @see #setMaxFieldLength(int)    */
 DECL|method|getMaxFieldLength
 specifier|public
 name|int
@@ -662,7 +662,7 @@ return|return
 name|commit
 return|;
 block|}
-comment|/**    * Expert: set the {@link Similarity} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity cannot be null. If<code>null</code> is passed,    * the similarity will be set to the default.    *     * @see Similarity#setDefault(Similarity)    */
+comment|/**    * Expert: set the {@link Similarity} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity cannot be null. If<code>null</code> is passed,    * the similarity will be set to the default.    *    * @see Similarity#setDefault(Similarity)    */
 DECL|method|setSimilarity
 specifier|public
 name|IndexWriterConfig
@@ -702,7 +702,7 @@ return|return
 name|similarity
 return|;
 block|}
-comment|/**    * Expert: set the interval between indexed terms. Large values cause less    * memory to be used by IndexReader, but slow random-access to terms. Small    * values cause more memory to be used by an IndexReader, and speed    * random-access to terms.    *<p>    * This parameter determines the amount of computation required per query    * term, regardless of the number of documents that contain that term. In    * particular, it is the maximum number of other terms that must be scanned    * before a term is located and its frequency and position information may be    * processed. In a large index with user-entered query terms, query processing    * time is likely to be dominated not by term lookup but rather by the    * processing of frequency and positional data. In a small index or when many    * uncommon query terms are generated (e.g., by wildcard queries) term lookup    * may become a dominant cost.    *<p>    * In particular,<code>numUniqueTerms/interval</code> terms are read into    * memory by an IndexReader, and, on average,<code>interval/2</code> terms    * must be scanned for each random term access.    *     * @see #DEFAULT_TERM_INDEX_INTERVAL    */
+comment|/**    * Expert: set the interval between indexed terms. Large values cause less    * memory to be used by IndexReader, but slow random-access to terms. Small    * values cause more memory to be used by an IndexReader, and speed    * random-access to terms.    *<p>    * This parameter determines the amount of computation required per query    * term, regardless of the number of documents that contain that term. In    * particular, it is the maximum number of other terms that must be scanned    * before a term is located and its frequency and position information may be    * processed. In a large index with user-entered query terms, query processing    * time is likely to be dominated not by term lookup but rather by the    * processing of frequency and positional data. In a small index or when many    * uncommon query terms are generated (e.g., by wildcard queries) term lookup    * may become a dominant cost.    *<p>    * In particular,<code>numUniqueTerms/interval</code> terms are read into    * memory by an IndexReader, and, on average,<code>interval/2</code> terms    * must be scanned for each random term access.    *    * @see #DEFAULT_TERM_INDEX_INTERVAL    */
 DECL|method|setTermIndexInterval
 specifier|public
 name|IndexWriterConfig
@@ -722,7 +722,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Returns the interval between indexed terms.    *     * @see #setTermIndexInterval(int)    */
+comment|/**    * Returns the interval between indexed terms.    *    * @see #setTermIndexInterval(int)    */
 DECL|method|getTermIndexInterval
 specifier|public
 name|int
@@ -792,7 +792,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Returns allowed timeout when acquiring the write lock.    *     * @see #setWriteLockTimeout(long)    */
+comment|/**    * Returns allowed timeout when acquiring the write lock.    *    * @see #setWriteLockTimeout(long)    */
 DECL|method|getWriteLockTimeout
 specifier|public
 name|long
@@ -803,7 +803,7 @@ return|return
 name|writeLockTimeout
 return|;
 block|}
-comment|/**    * Determines the minimal number of delete terms required before the buffered    * in-memory delete terms are applied and flushed. If there are documents    * buffered in memory at the time, they are merged and a new segment is    * created.     *<p>Disabled by default (writer flushes by RAM usage).    *     * @throws IllegalArgumentException if maxBufferedDeleteTerms    * is enabled but smaller than 1    * @see #setRAMBufferSizeMB    */
+comment|/**    * Determines the minimal number of delete terms required before the buffered    * in-memory delete terms are applied and flushed. If there are documents    * buffered in memory at the time, they are merged and a new segment is    * created.     *<p>Disabled by default (writer flushes by RAM usage).    *    * @throws IllegalArgumentException if maxBufferedDeleteTerms    * is enabled but smaller than 1    * @see #setRAMBufferSizeMB    */
 DECL|method|setMaxBufferedDeleteTerms
 specifier|public
 name|IndexWriterConfig
@@ -840,7 +840,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Returns the number of buffered deleted terms that will trigger a flush if    * enabled.    *     * @see #setMaxBufferedDeleteTerms(int)    */
+comment|/**    * Returns the number of buffered deleted terms that will trigger a flush if    * enabled.    *    * @see #setMaxBufferedDeleteTerms(int)    */
 DECL|method|getMaxBufferedDeleteTerms
 specifier|public
 name|int
@@ -851,7 +851,7 @@ return|return
 name|maxBufferedDeleteTerms
 return|;
 block|}
-comment|/**    * Determines the amount of RAM that may be used for buffering added documents    * and deletions before they are flushed to the Directory. Generally for    * faster indexing performance it's best to flush by RAM usage instead of    * document count and use as large a RAM buffer as you can.    *     *<p>    * When this is set, the writer will flush whenever buffered documents and    * deletions use this much RAM. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage. Note that if flushing by document    * count is also enabled, then the flush will be triggered by whichever comes    * first.    *     *<p>    *<b>NOTE</b>: the account of RAM usage for pending deletions is only    * approximate. Specifically, if you delete by Query, Lucene currently has no    * way to measure the RAM usage of individual Queries so the accounting will    * under-estimate and you should compensate by either calling commit()    * periodically yourself, or by using {@link #setMaxBufferedDeleteTerms(int)}    * to flush by count instead of RAM usage (each buffered delete Query counts     * as one).    *     *<p>    *<b>NOTE</b>: because IndexWriter uses<code>int</code>s when managing its    * internal storage, the absolute maximum value for this setting is somewhat    * less than 2048 MB. The precise limit depends on various factors, such as    * how large your documents are, how many fields have norms, etc., so it's    * best to set this value comfortably under 2048.    *     *<p>    * The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.    *     * @throws IllegalArgumentException    *           if ramBufferSize is enabled but non-positive, or it disables    *           ramBufferSize when maxBufferedDocs is already disabled    */
+comment|/**    * Determines the amount of RAM that may be used for buffering added documents    * and deletions before they are flushed to the Directory. Generally for    * faster indexing performance it's best to flush by RAM usage instead of    * document count and use as large a RAM buffer as you can.    *    *<p>    * When this is set, the writer will flush whenever buffered documents and    * deletions use this much RAM. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage. Note that if flushing by document    * count is also enabled, then the flush will be triggered by whichever comes    * first.    *    *<p>    *<b>NOTE</b>: the account of RAM usage for pending deletions is only    * approximate. Specifically, if you delete by Query, Lucene currently has no    * way to measure the RAM usage of individual Queries so the accounting will    * under-estimate and you should compensate by either calling commit()    * periodically yourself, or by using {@link #setMaxBufferedDeleteTerms(int)}    * to flush by count instead of RAM usage (each buffered delete Query counts    * as one).    *    *<p>    *<b>NOTE</b>: because IndexWriter uses<code>int</code>s when managing its    * internal storage, the absolute maximum value for this setting is somewhat    * less than 2048 MB. The precise limit depends on various factors, such as    * how large your documents are, how many fields have norms, etc., so it's    * best to set this value comfortably under 2048.    *    *<p>    * The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.    *    * @throws IllegalArgumentException    *           if ramBufferSize is enabled but non-positive, or it disables    *           ramBufferSize when maxBufferedDocs is already disabled    */
 DECL|method|setRAMBufferSizeMB
 specifier|public
 name|IndexWriterConfig
@@ -935,7 +935,7 @@ return|return
 name|ramBufferSizeMB
 return|;
 block|}
-comment|/**    * Determines the minimal number of documents required before the buffered    * in-memory documents are flushed as a new Segment. Large values generally    * give faster indexing.    *     *<p>    * When this is set, the writer will flush every maxBufferedDocs added    * documents. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent triggering a    * flush due to number of buffered documents. Note that if flushing by RAM    * usage is also enabled, then the flush will be triggered by whichever comes    * first.    *     *<p>    * Disabled by default (writer flushes by RAM usage).    *     * @see #setRAMBufferSizeMB(double)    *     * @throws IllegalArgumentException    *           if maxBufferedDocs is enabled but smaller than 2, or it disables    *           maxBufferedDocs when ramBufferSize is already disabled    */
+comment|/**    * Determines the minimal number of documents required before the buffered    * in-memory documents are flushed as a new Segment. Large values generally    * give faster indexing.    *    *<p>    * When this is set, the writer will flush every maxBufferedDocs added    * documents. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent triggering a    * flush due to number of buffered documents. Note that if flushing by RAM    * usage is also enabled, then the flush will be triggered by whichever comes    * first.    *    *<p>    * Disabled by default (writer flushes by RAM usage).    *    * @see #setRAMBufferSizeMB(double)    *    * @throws IllegalArgumentException    *           if maxBufferedDocs is enabled but smaller than 2, or it disables    *           maxBufferedDocs when ramBufferSize is already disabled    */
 DECL|method|setMaxBufferedDocs
 specifier|public
 name|IndexWriterConfig
@@ -989,7 +989,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Returns the number of buffered added documents that will trigger a flush if    * enabled.    *     * @see #setMaxBufferedDocs(int)    */
+comment|/**    * Returns the number of buffered added documents that will trigger a flush if    * enabled.    *    * @see #setMaxBufferedDocs(int)    */
 DECL|method|getMaxBufferedDocs
 specifier|public
 name|int
@@ -1090,7 +1090,7 @@ return|return
 name|codecProvider
 return|;
 block|}
-comment|/**    * Returns the current MergePolicy in use by this writer.    *     * @see #setMergePolicy(MergePolicy)    */
+comment|/**    * Returns the current MergePolicy in use by this writer.    *    * @see #setMergePolicy(MergePolicy)    */
 DECL|method|getMergePolicy
 specifier|public
 name|MergePolicy
@@ -1107,7 +1107,7 @@ specifier|public
 name|IndexWriterConfig
 name|setIndexerThreadPool
 parameter_list|(
-name|DocumentsWriterThreadPool
+name|DocumentsWriterPerThreadPool
 name|threadPool
 parameter_list|)
 block|{
@@ -1123,7 +1123,7 @@ return|;
 block|}
 DECL|method|getIndexerThreadPool
 specifier|public
-name|DocumentsWriterThreadPool
+name|DocumentsWriterPerThreadPool
 name|getIndexerThreadPool
 parameter_list|()
 block|{
