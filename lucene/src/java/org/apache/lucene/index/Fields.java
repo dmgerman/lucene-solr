@@ -47,7 +47,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get the {@link Terms} for this field.  This may return    *  null if the field does not exist. */
+comment|/** Get the {@link Terms} for this field.  This will return    *  null if the field does not exist. */
 DECL|method|terms
 specifier|public
 specifier|abstract

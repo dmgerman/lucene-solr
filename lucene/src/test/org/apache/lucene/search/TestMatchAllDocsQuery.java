@@ -481,7 +481,15 @@ literal|0
 argument_list|,
 literal|"key"
 argument_list|,
+name|Similarity
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|encodeNormValue
+argument_list|(
 literal|400f
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|normsQuery

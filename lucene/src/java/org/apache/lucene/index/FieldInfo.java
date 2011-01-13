@@ -195,7 +195,7 @@ name|this
 operator|.
 name|omitNorms
 operator|=
-literal|true
+literal|false
 expr_stmt|;
 name|this
 operator|.
@@ -366,9 +366,9 @@ name|this
 operator|.
 name|omitNorms
 operator|=
-literal|false
+literal|true
 expr_stmt|;
-comment|// once norms are stored, always store
+comment|// if one require omitNorms at least once, it remains off for life
 block|}
 if|if
 condition|(

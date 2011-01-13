@@ -30,20 +30,6 @@ name|ArrayUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Similarity
-import|;
-end_import
-
 begin_comment
 comment|/** Taps into DocInverter, as an InvertedDocEndConsumer,  *  which is called at the end of inverting each field.  We  *  just look at the length for the field (docState.length)  *  and record the norm. */
 end_comment
