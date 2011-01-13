@@ -1889,9 +1889,12 @@ name|scorer
 argument_list|(
 name|readerContext
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|Weight
+operator|.
+name|ScorerContext
+operator|.
+name|def
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if

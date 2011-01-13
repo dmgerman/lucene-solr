@@ -370,11 +370,8 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|,
-name|boolean
-name|scoreDocsInOrder
-parameter_list|,
-name|boolean
-name|topScorer
+name|ScorerContext
+name|scorerContext
 parameter_list|)
 throws|throws
 name|IOException

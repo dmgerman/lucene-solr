@@ -319,11 +319,8 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|,
-name|boolean
-name|scoreDocsInOrder
-parameter_list|,
-name|boolean
-name|topScorer
+name|ScorerContext
+name|scorerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -581,9 +578,10 @@ name|scorer
 argument_list|(
 name|context
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|ScorerContext
+operator|.
+name|def
+argument_list|()
 argument_list|)
 operator|)
 operator|.

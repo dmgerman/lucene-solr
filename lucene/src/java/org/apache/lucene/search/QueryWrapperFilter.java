@@ -42,6 +42,22 @@ name|AtomicReaderContext
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Weight
+operator|.
+name|ScorerContext
+import|;
+end_import
+
 begin_comment
 comment|/**   * Constrains search results to only match those which also match a provided  * query.    *  *<p> This could be used, for example, with a {@link TermRangeQuery} on a suitably  * formatted date field to implement date filtering.  One could re-use a single  * QueryFilter that matches, e.g., only documents modified within the last  * week.  The QueryFilter and TermRangeQuery would only need to be reconstructed  * once per day.  */
 end_comment
@@ -163,9 +179,10 @@ name|scorer
 argument_list|(
 name|privateContext
 argument_list|,
-literal|true
-argument_list|,
-literal|false
+name|ScorerContext
+operator|.
+name|def
+argument_list|()
 argument_list|)
 return|;
 block|}
