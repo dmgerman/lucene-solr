@@ -57,6 +57,10 @@ DECL|field|offset
 name|int
 name|offset
 decl_stmt|;
+DECL|field|maxTermFrequency
+name|int
+name|maxTermFrequency
+decl_stmt|;
 DECL|field|boost
 name|float
 name|boost
@@ -143,6 +147,10 @@ operator|=
 literal|0
 expr_stmt|;
 name|offset
+operator|=
+literal|0
+expr_stmt|;
+name|maxTermFrequency
 operator|=
 literal|0
 expr_stmt|;
@@ -257,6 +265,17 @@ name|boost
 operator|=
 name|boost
 expr_stmt|;
+block|}
+comment|/**    * Get the maximum term-frequency encountered for any term in the field.  A    * field containing "the quick brown fox jumps over the lazy dog" would have    * a value of 2, because "the" appears twice.    */
+DECL|method|getMaxTermFrequency
+specifier|public
+name|int
+name|getMaxTermFrequency
+parameter_list|()
+block|{
+return|return
+name|maxTermFrequency
+return|;
 block|}
 DECL|method|getAttributeSource
 specifier|public
