@@ -150,6 +150,33 @@ name|utf8ToString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+operator|(
+literal|"TermStats: term="
+operator|+
+name|termtext
+operator|.
+name|utf8ToString
+argument_list|()
+operator|+
+literal|" docFreq="
+operator|+
+name|docFreq
+operator|+
+literal|" totalTermFreq="
+operator|+
+name|totalTermFreq
+operator|)
+return|;
+block|}
 block|}
 end_class
 

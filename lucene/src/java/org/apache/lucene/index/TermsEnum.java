@@ -247,6 +247,14 @@ name|int
 name|docFreq
 parameter_list|()
 function_decl|;
+comment|/** Returns the total number of occurrences of this term    *  across all documents (the sum of the freq() for each    *  doc that has this term).  This will be -1 if the    *  codec doesn't support this measure.  Note that, like    *  other term measures, this measure does not take    *  deleted documents into account. */
+DECL|method|totalTermFreq
+specifier|public
+specifier|abstract
+name|long
+name|totalTermFreq
+parameter_list|()
+function_decl|;
 comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this before calling {@link #next} or {@link    *  #seek} for the first time.  This method will not    *  return null.    *      * @param skipDocs set bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
 DECL|method|docs
 specifier|public
@@ -400,6 +408,21 @@ name|Override
 specifier|public
 name|int
 name|docFreq
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"this method should never be called"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|totalTermFreq
 parameter_list|()
 block|{
 throw|throw

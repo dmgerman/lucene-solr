@@ -70,6 +70,12 @@ name|long
 name|filePointer
 decl_stmt|;
 comment|// fp into the terms dict primary file (_X.tis)
+DECL|field|totalTermFreq
+specifier|public
+name|long
+name|totalTermFreq
+decl_stmt|;
+comment|// total number of occurrences of this term
 annotation|@
 name|Override
 DECL|method|copyFrom
@@ -123,6 +129,12 @@ name|other
 operator|.
 name|docFreq
 expr_stmt|;
+name|totalTermFreq
+operator|=
+name|other
+operator|.
+name|totalTermFreq
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -145,6 +157,14 @@ operator|+
 literal|", tis.filePointer="
 operator|+
 name|filePointer
+operator|+
+literal|", docFreq="
+operator|+
+name|docFreq
+operator|+
+literal|", totalTermFreq="
+operator|+
+name|totalTermFreq
 operator|+
 literal|"]"
 return|;

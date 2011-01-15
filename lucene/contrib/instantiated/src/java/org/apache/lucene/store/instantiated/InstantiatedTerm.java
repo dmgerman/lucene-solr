@@ -173,6 +173,11 @@ specifier|private
 name|Term
 name|term
 decl_stmt|;
+DECL|field|totalTermFreq
+specifier|private
+name|long
+name|totalTermFreq
+decl_stmt|;
 comment|/**    * index of term in InstantiatedIndex    * @see org.apache.lucene.store.instantiated.InstantiatedIndex#getOrderedTerms() */
 DECL|field|termIndex
 specifier|private
@@ -254,6 +259,29 @@ name|associatedDocuments
 operator|=
 name|associatedDocuments
 expr_stmt|;
+block|}
+DECL|method|addPositionsCount
+name|void
+name|addPositionsCount
+parameter_list|(
+name|long
+name|count
+parameter_list|)
+block|{
+name|totalTermFreq
+operator|+=
+name|count
+expr_stmt|;
+block|}
+DECL|method|getTotalTermFreq
+specifier|public
+name|long
+name|getTotalTermFreq
+parameter_list|()
+block|{
+return|return
+name|totalTermFreq
+return|;
 block|}
 comment|/**    * Finds index to the first beyond the current whose document number is    * greater than or equal to<i>target</i>, -1 if there is no such element.    *    * @param target the document number to match    * @return -1 if there is no such element    */
 DECL|method|seekCeilingDocumentInformationIndex

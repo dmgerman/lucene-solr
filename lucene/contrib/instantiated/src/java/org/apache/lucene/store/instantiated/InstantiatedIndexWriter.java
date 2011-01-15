@@ -1925,6 +1925,15 @@ argument_list|(
 name|associatedDocuments
 argument_list|)
 expr_stmt|;
+name|term
+operator|.
+name|addPositionsCount
+argument_list|(
+name|positions
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
 comment|// todo optimize, only if term vector?
 name|informationByTermOfCurrentDocument
 operator|.

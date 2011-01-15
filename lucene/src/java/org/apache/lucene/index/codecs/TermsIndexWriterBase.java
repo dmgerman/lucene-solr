@@ -106,8 +106,8 @@ parameter_list|(
 name|BytesRef
 name|text
 parameter_list|,
-name|int
-name|docFreq
+name|TermStats
+name|stats
 parameter_list|)
 throws|throws
 name|IOException

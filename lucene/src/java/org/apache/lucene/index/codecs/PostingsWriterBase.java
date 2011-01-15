@@ -109,8 +109,8 @@ specifier|abstract
 name|void
 name|finishTerm
 parameter_list|(
-name|int
-name|numDocs
+name|TermStats
+name|stats
 parameter_list|,
 name|boolean
 name|isIndexTerm
