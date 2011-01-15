@@ -285,6 +285,13 @@ operator|.
 name|VERSION_START
 argument_list|)
 expr_stmt|;
+name|maxPositions
+operator|=
+name|termsIn
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
 name|wrappedPostingsReader
 operator|.
 name|init
@@ -608,15 +615,27 @@ name|pendingIndexTerm
 operator||=
 name|isIndexTerm
 expr_stmt|;
-comment|// TODO: wasteful to use whole byte for this (need just a 1 bit);
+comment|// total TF, but in the omitTFAP case its computed based on docFreq.
+name|long
+name|count
+init|=
+name|fieldInfo
+operator|.
+name|omitTermFreqAndPositions
+condition|?
+name|termState
+operator|.
+name|docFreq
+else|:
+name|termState
+operator|.
+name|totalTermFreq
+decl_stmt|;
 if|if
 condition|(
-name|termsIn
-operator|.
-name|readByte
-argument_list|()
-operator|==
-literal|1
+name|count
+operator|<=
+name|maxPositions
 condition|)
 block|{
 comment|// Inlined into terms dict -- just read the byte[] blob in,
