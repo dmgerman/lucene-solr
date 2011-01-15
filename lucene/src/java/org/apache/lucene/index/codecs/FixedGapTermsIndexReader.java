@@ -688,16 +688,6 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
-DECL|field|nextTerm
-specifier|private
-specifier|final
-name|BytesRef
-name|nextTerm
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 DECL|field|ord
 specifier|private
 name|long
@@ -1074,7 +1064,7 @@ name|termBytesReader
 operator|.
 name|fillSlice
 argument_list|(
-name|nextTerm
+name|term
 argument_list|,
 name|fieldIndex
 operator|.
