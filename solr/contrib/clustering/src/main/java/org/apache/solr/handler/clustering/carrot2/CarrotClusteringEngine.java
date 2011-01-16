@@ -883,9 +883,9 @@ name|put
 argument_list|(
 literal|"PreprocessingPipeline.languageModelFactory"
 argument_list|,
-operator|new
 name|LuceneLanguageModelFactory
-argument_list|()
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|this
