@@ -598,6 +598,15 @@ argument_list|(
 literal|"TermVectorsTermsWriter.finishDocument start"
 argument_list|)
 assert|;
+if|if
+condition|(
+name|numVectorFields
+operator|==
+literal|0
+condition|)
+block|{
+return|return;
+block|}
 name|initTermVectorsWriter
 argument_list|()
 expr_stmt|;
