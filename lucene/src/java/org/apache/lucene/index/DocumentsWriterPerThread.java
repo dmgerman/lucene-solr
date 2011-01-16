@@ -314,7 +314,6 @@ block|}
 decl_stmt|;
 comment|// Deletes for our still-in-RAM (to be flushed next) segment
 DECL|field|pendingDeletes
-specifier|private
 name|SegmentDeletes
 name|pendingDeletes
 init|=
@@ -677,6 +676,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|writer
+operator|.
+name|testPoint
+argument_list|(
+literal|"DocumentsWriterPerThread addDocument start"
+argument_list|)
+assert|;
 name|docState
 operator|.
 name|doc
@@ -791,135 +798,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|pushDeletes
-name|void
-name|pushDeletes
-parameter_list|(
-name|SegmentInfo
-name|newSegment
-parameter_list|,
-name|SegmentInfos
-name|segmentInfos
-parameter_list|)
-block|{
-comment|// Lock order: DW -> BD
-if|if
-condition|(
-name|pendingDeletes
-operator|.
-name|any
-argument_list|()
-condition|)
-block|{
-if|if
-condition|(
-name|newSegment
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"flush: push buffered deletes to newSegment"
-argument_list|)
-expr_stmt|;
-block|}
-name|parent
-operator|.
-name|bufferedDeletes
-operator|.
-name|pushDeletes
-argument_list|(
-name|pendingDeletes
-argument_list|,
-name|newSegment
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"flush: push buffered deletes to previously flushed segment "
-operator|+
-name|segmentInfos
-operator|.
-name|lastElement
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-name|parent
-operator|.
-name|bufferedDeletes
-operator|.
-name|pushDeletes
-argument_list|(
-name|pendingDeletes
-argument_list|,
-name|segmentInfos
-operator|.
-name|lastElement
-argument_list|()
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"flush: drop buffered deletes: no segments"
-argument_list|)
-expr_stmt|;
-block|}
-comment|// We can safely discard these deletes: since
-comment|// there are no segments, the deletions cannot
-comment|// affect anything.
-block|}
-name|pendingDeletes
-operator|=
-operator|new
-name|SegmentDeletes
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 comment|// Buffer a specific docID for deletion.  Currently only
 comment|// used when we hit a exception when adding a document
 DECL|method|deleteDocID
-specifier|synchronized
 name|void
 name|deleteDocID
 parameter_list|(
@@ -945,7 +826,6 @@ comment|// which is risky (likely would hit some other
 comment|// confounding exception).
 block|}
 DECL|method|deleteQueries
-specifier|synchronized
 name|void
 name|deleteQueries
 parameter_list|(
@@ -974,7 +854,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|deleteQuery
-specifier|synchronized
 name|void
 name|deleteQuery
 parameter_list|(
@@ -1022,7 +901,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|deleteTerm
-specifier|synchronized
 name|void
 name|deleteTerm
 parameter_list|(
