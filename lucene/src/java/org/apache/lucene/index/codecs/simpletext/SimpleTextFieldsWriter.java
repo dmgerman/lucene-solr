@@ -106,6 +106,22 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|codecs
+operator|.
+name|TermStats
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|FieldInfo
 import|;
 end_import
@@ -517,8 +533,8 @@ parameter_list|(
 name|BytesRef
 name|term
 parameter_list|,
-name|int
-name|numDocs
+name|TermStats
+name|stats
 parameter_list|)
 throws|throws
 name|IOException
@@ -529,7 +545,10 @@ DECL|method|finish
 specifier|public
 name|void
 name|finish
-parameter_list|()
+parameter_list|(
+name|long
+name|sumTotalTermFreq
+parameter_list|)
 throws|throws
 name|IOException
 block|{     }

@@ -347,6 +347,21 @@ name|docFreq
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|totalTermFreq
+specifier|public
+name|long
+name|totalTermFreq
+parameter_list|()
+block|{
+return|return
+name|tenum
+operator|.
+name|totalTermFreq
+argument_list|()
+return|;
+block|}
 comment|/** This enum does not support seeking!    * @throws UnsupportedOperationException    */
 annotation|@
 name|Override
