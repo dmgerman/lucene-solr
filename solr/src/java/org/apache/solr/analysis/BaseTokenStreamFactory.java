@@ -348,6 +348,32 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|warnDeprecated
+specifier|protected
+specifier|final
+name|void
+name|warnDeprecated
+parameter_list|(
+name|String
+name|message
+parameter_list|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|" is deprecated. "
+operator|+
+name|message
+argument_list|)
+expr_stmt|;
+block|}
 comment|// TODO: move these somewhere that tokenizers and others
 comment|// can also use them...
 DECL|method|getInt
