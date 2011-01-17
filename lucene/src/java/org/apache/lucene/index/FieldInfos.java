@@ -533,7 +533,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Add fields that are indexed. Whether they have termvectors has to be specified.    *     * @param names The names of the fields    * @param storeTermVectors Whether the fields store term vectors or not    * @param storePositionWithTermVector true if positions should be stored.    * @param storeOffsetWithTermVector true if offsets should be stored    */
+comment|/**    * Add fields that are indexed. Whether they have termvectors has to be specified.    *    * @param names The names of the fields    * @param storeTermVectors Whether the fields store term vectors or not    * @param storePositionWithTermVector true if positions should be stored.    * @param storeOffsetWithTermVector true if offsets should be stored    */
 DECL|method|addIndexed
 specifier|synchronized
 specifier|public
@@ -579,7 +579,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Assumes the fields are not storing term vectors.    *     * @param names The names of the fields    * @param isIndexed Whether the fields are indexed or not    *     * @see #add(String, boolean)    */
+comment|/**    * Assumes the fields are not storing term vectors.    *    * @param names The names of the fields    * @param isIndexed Whether the fields are indexed or not    *    * @see #add(String, boolean)    */
 DECL|method|add
 specifier|synchronized
 specifier|public
@@ -613,7 +613,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Calls 5 parameter add with false for all TermVector parameters.    *     * @param name The name of the Fieldable    * @param isIndexed true if the field is indexed    * @see #add(String, boolean, boolean, boolean, boolean)    */
+comment|/**    * Calls 5 parameter add with false for all TermVector parameters.    *    * @param name The name of the Fieldable    * @param isIndexed true if the field is indexed    * @see #add(String, boolean, boolean, boolean, boolean)    */
 DECL|method|add
 specifier|synchronized
 specifier|public
@@ -643,7 +643,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Calls 5 parameter add with false for term vector positions and offsets.    *     * @param name The name of the field    * @param isIndexed  true if the field is indexed    * @param storeTermVector true if the term vector should be stored    */
+comment|/**    * Calls 5 parameter add with false for term vector positions and offsets.    *    * @param name The name of the field    * @param isIndexed  true if the field is indexed    * @param storeTermVector true if the term vector should be stored    */
 DECL|method|add
 specifier|synchronized
 specifier|public
@@ -676,7 +676,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** If the field is not yet known, adds it. If it is known, checks to make    *  sure that the isIndexed flag is the same as was given previously for this    *  field. If not - marks it as being indexed.  Same goes for the TermVector    * parameters.    *     * @param name The name of the field    * @param isIndexed true if the field is indexed    * @param storeTermVector true if the term vector should be stored    * @param storePositionWithTermVector true if the term vector with positions should be stored    * @param storeOffsetWithTermVector true if the term vector with offsets should be stored    */
+comment|/** If the field is not yet known, adds it. If it is known, checks to make    *  sure that the isIndexed flag is the same as was given previously for this    *  field. If not - marks it as being indexed.  Same goes for the TermVector    * parameters.    *    * @param name The name of the field    * @param isIndexed true if the field is indexed    * @param storeTermVector true if the term vector should be stored    * @param storePositionWithTermVector true if the term vector with positions should be stored    * @param storeOffsetWithTermVector true if the term vector with offsets should be stored    */
 DECL|method|add
 specifier|synchronized
 specifier|public
@@ -902,6 +902,51 @@ name|omitTermFreqAndPositions
 argument_list|)
 return|;
 block|}
+DECL|method|update
+specifier|synchronized
+specifier|public
+name|void
+name|update
+parameter_list|(
+name|FieldInfos
+name|otherInfos
+parameter_list|)
+block|{
+name|int
+name|numFields
+init|=
+name|otherInfos
+operator|.
+name|size
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|numFields
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|add
+argument_list|(
+name|otherInfos
+operator|.
+name|fieldInfo
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 DECL|method|addInternal
 specifier|private
 name|FieldInfo
@@ -1039,7 +1084,7 @@ name|fieldName
 argument_list|)
 return|;
 block|}
-comment|/**    * Return the fieldName identified by its number.    *     * @param fieldNumber    * @return the fieldName or an empty string when the field    * with the given number doesn't exist.    */
+comment|/**    * Return the fieldName identified by its number.    *    * @param fieldNumber    * @return the fieldName or an empty string when the field    * with the given number doesn't exist.    */
 DECL|method|fieldName
 specifier|public
 name|String
