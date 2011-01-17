@@ -1198,9 +1198,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|notifyAll
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|infoStream
@@ -1457,7 +1454,6 @@ literal|false
 return|;
 block|}
 DECL|method|close
-specifier|synchronized
 name|void
 name|close
 parameter_list|()
@@ -1465,9 +1461,6 @@ block|{
 name|closed
 operator|=
 literal|true
-expr_stmt|;
-name|notifyAll
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|updateDocument

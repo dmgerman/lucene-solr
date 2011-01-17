@@ -525,7 +525,6 @@ name|DocumentsWriter
 name|docWriter
 decl_stmt|;
 DECL|field|deleter
-specifier|private
 specifier|final
 name|IndexFileDeleter
 name|deleter
