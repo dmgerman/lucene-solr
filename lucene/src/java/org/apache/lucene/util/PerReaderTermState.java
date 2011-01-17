@@ -596,7 +596,7 @@ name|ord
 index|]
 return|;
 block|}
-comment|/**    *  Returns the accumulated document frequency of all {@link TermState}    *         instances passed to {@link #register(TermState, int)}.    * @return the accumulated document frequency of all {@link TermState}    *         instances passed to {@link #register(TermState, int)}.    */
+comment|/**    *  Returns the accumulated document frequency of all {@link TermState}    *         instances passed to {@link #register(TermState, int, int)}.    * @return the accumulated document frequency of all {@link TermState}    *         instances passed to {@link #register(TermState, int, int)}.    */
 DECL|method|docFreq
 specifier|public
 name|int
