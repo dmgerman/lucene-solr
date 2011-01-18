@@ -59,7 +59,7 @@ name|int
 name|j
 parameter_list|)
 function_decl|;
-comment|/** Compares slots {@code i} and {@code j} of you data.    * Should be implemented like<code><em>valueOf(j)</em>.compareTo(<em>valueOf(i)</em>)</code> */
+comment|/** Compares slots {@code i} and {@code j} of you data.    * Should be implemented like<code><em>valueOf(i)</em>.compareTo(<em>valueOf(j)</em>)</code> */
 DECL|method|compare
 specifier|protected
 specifier|abstract
@@ -84,7 +84,7 @@ name|int
 name|i
 parameter_list|)
 function_decl|;
-comment|/** Implements the compare function for the previously stored pivot value.    * Should be implemented like<code>pivot.compareTo(<em>valueOf(i)</em>)</code> */
+comment|/** Implements the compare function for the previously stored pivot value.    * Should be implemented like<code>pivot.compareTo(<em>valueOf(j)</em>)</code> */
 DECL|method|comparePivot
 specifier|protected
 specifier|abstract
