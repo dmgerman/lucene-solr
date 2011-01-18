@@ -10631,7 +10631,7 @@ block|{
 comment|// NOTE: the callers of this method should in theory
 comment|// be able to do simply wait(), but, as a defense
 comment|// against thread timing hazards where notifyAll()
-comment|// falls to be called, we wait for at most 1 second
+comment|// fails to be called, we wait for at most 1 second
 comment|// and then return so caller can check if wait
 comment|// conditions are satisfied:
 try|try
