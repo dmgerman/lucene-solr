@@ -1982,6 +1982,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|long
+name|startTime
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 comment|// We change writer's segmentInfos:
 assert|assert
 name|Thread
@@ -2514,6 +2523,30 @@ argument_list|,
 name|segmentInfos
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"flush time "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|startTime
+operator|)
+operator|+
+literal|" msec"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|newSegment
 return|;
