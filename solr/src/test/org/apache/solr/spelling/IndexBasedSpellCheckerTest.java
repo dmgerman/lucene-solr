@@ -2205,13 +2205,6 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|)
-operator|.
-name|setMaxFieldLength
-argument_list|(
-name|IndexWriterConfig
-operator|.
-name|UNLIMITED_FIELD_LENGTH
-argument_list|)
 argument_list|)
 decl_stmt|;
 for|for

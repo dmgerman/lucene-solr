@@ -159,17 +159,6 @@ name|IndexWriterConfig
 operator|.
 name|DEFAULT_MAX_BUFFERED_DOCS
 decl_stmt|;
-DECL|field|DEFAULT_MAX_FIELD_LENGTH
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|DEFAULT_MAX_FIELD_LENGTH
-init|=
-name|IndexWriterConfig
-operator|.
-name|UNLIMITED_FIELD_LENGTH
-decl_stmt|;
 DECL|field|DEFAULT_MERGE_PFACTOR
 specifier|public
 specifier|static

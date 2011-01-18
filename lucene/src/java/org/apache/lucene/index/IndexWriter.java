@@ -1836,7 +1836,7 @@ DECL|field|codecs
 name|CodecProvider
 name|codecs
 decl_stmt|;
-comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is cloned and thus making    * changes to it after IndexWriter has been instantiated will not affect    * IndexWriter. Additionally, calling {@link #getConfig()} and changing the    * parameters does not affect that IndexWriter instance.    *<p>    *<b>NOTE:</b> by default, {@link IndexWriterConfig#getMaxFieldLength()}    * returns {@link IndexWriterConfig#UNLIMITED_FIELD_LENGTH}. Pay attention to    * whether this setting fits your application.    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initalized.    * @throws CorruptIndexException    *           if the index is corrupt    * @throws LockObtainFailedException    *           if another writer has this index open (<code>write.lock</code>    *           could not be obtained)    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
+comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is cloned and thus making    * changes to it after IndexWriter has been instantiated will not affect    * IndexWriter. Additionally, calling {@link #getConfig()} and changing the    * parameters does not affect that IndexWriter instance.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initalized.    * @throws CorruptIndexException    *           if the index is corrupt    * @throws LockObtainFailedException    *           if another writer has this index open (<code>write.lock</code>    *           could not be obtained)    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1878,13 +1878,6 @@ expr_stmt|;
 name|infoStream
 operator|=
 name|defaultInfoStream
-expr_stmt|;
-name|maxFieldLength
-operator|=
-name|conf
-operator|.
-name|getMaxFieldLength
-argument_list|()
 expr_stmt|;
 name|termIndexInterval
 operator|=
@@ -2241,13 +2234,6 @@ operator|.
 name|setInfoStream
 argument_list|(
 name|infoStream
-argument_list|)
-expr_stmt|;
-name|docWriter
-operator|.
-name|setMaxFieldLength
-argument_list|(
-name|maxFieldLength
 argument_list|)
 expr_stmt|;
 comment|// Default deleter (for backwards compatibility) is
@@ -2933,6 +2919,8 @@ literal|null
 return|;
 block|}
 comment|/**    * Commits all changes to an index and closes all    * associated files.  Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit()} for    * caveats about write caching done by some IO devices.    *    *<p> If an Exception is hit during close, eg due to disk    * full or some other reason, then both the on-disk index    * and the internal state of the IndexWriter instance will    * be consistent.  However, the close will not be complete    * even though part of it (flushing buffered documents)    * may have succeeded, so the write lock will still be    * held.</p>    *     *<p> If you can correct the underlying cause (eg free up    * some disk space) then you can call close() again.    * Failing that, if you want to force the write lock to be    * released (dangerous, because you may then lose buffered    * docs in the IndexWriter instance) then you can do    * something like this:</p>    *    *<pre>    * try {    *   writer.close();    * } finally {    *   if (IndexWriter.isLocked(directory)) {    *     IndexWriter.unlock(directory);    *   }    * }    *</pre>    *    * after which, you must be certain not to use the writer    * instance anymore.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer, again.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -3499,13 +3487,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accommodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.    *    * @see MaxFieldLength    */
-DECL|field|maxFieldLength
-specifier|private
-name|int
-name|maxFieldLength
-decl_stmt|;
-comment|/**    * Adds a document to this index.  If the document contains more than    * {@link IndexWriterConfig#setMaxFieldLength(int)} terms for a given field,     * the remainder are discarded.    *    *<p> Note that if an Exception is hit (for example disk full)    * then the index will be consistent, but this document    * may not have been added.  Furthermore, it's possible    * the index will have one segment in non-compound format    * even when using compound files (when a merge has    * partially succeeded).</p>    *    *<p> This method periodically flushes pending documents    * to the Directory (see<a href="#flush">above</a>), and    * also periodically triggers segment merges in the index    * according to the {@link MergePolicy} in use.</p>    *    *<p>Merges temporarily consume space in the    * directory. The amount of space required is up to 1X the    * size of all segments being merged, when no    * readers/searchers are open against the index, and up to    * 2X the size of all segments being merged when    * readers/searchers are open against the index (see    * {@link #optimize()} for details). The sequence of    * primitive merge operations performed is governed by the    * merge policy.    *    *<p>Note that each term in the document can be no longer    * than 16383 characters, otherwise an    * IllegalArgumentException will be thrown.</p>    *    *<p>Note that it's possible to create an invalid Unicode    * string in java if a UTF16 surrogate pair is malformed.    * In this case, the invalid characters are silently    * replaced with the Unicode replacement character    * U+FFFD.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Adds a document to this index.    *    *<p> Note that if an Exception is hit (for example disk full)    * then the index will be consistent, but this document    * may not have been added.  Furthermore, it's possible    * the index will have one segment in non-compound format    * even when using compound files (when a merge has    * partially succeeded).</p>    *    *<p> This method periodically flushes pending documents    * to the Directory (see<a href="#flush">above</a>), and    * also periodically triggers segment merges in the index    * according to the {@link MergePolicy} in use.</p>    *    *<p>Merges temporarily consume space in the    * directory. The amount of space required is up to 1X the    * size of all segments being merged, when no    * readers/searchers are open against the index, and up to    * 2X the size of all segments being merged when    * readers/searchers are open against the index (see    * {@link #optimize()} for details). The sequence of    * primitive merge operations performed is governed by the    * merge policy.    *    *<p>Note that each term in the document can be no longer    * than 16383 characters, otherwise an    * IllegalArgumentException will be thrown.</p>    *    *<p>Note that it's possible to create an invalid Unicode    * string in java if a UTF16 surrogate pair is malformed.    * In this case, the invalid characters are silently    * replaced with the Unicode replacement character    * U+FFFD.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -3527,7 +3509,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.  If the document contains more than    * {@link IndexWriterConfig#setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    *    *<p>See {@link #addDocument(Document)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.    *    *<p>See {@link #addDocument(Document)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public
 name|void
