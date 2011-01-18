@@ -990,10 +990,10 @@ name|getFilePointer
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|copyReferences
+DECL|method|copyFrom
 specifier|protected
 name|void
-name|copyReferences
+name|copyFrom
 parameter_list|(
 name|DocValuesEnum
 name|valuesEnum

@@ -102,7 +102,7 @@ specifier|public
 class|class
 name|Ints
 block|{
-comment|//TODO - add bulk copy where possible
+comment|// TODO - add bulk copy where possible
 DECL|method|Ints
 specifier|private
 name|Ints

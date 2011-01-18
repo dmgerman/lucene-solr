@@ -60,6 +60,22 @@ name|index
 operator|.
 name|values
 operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|values
+operator|.
 name|PerDocFieldValues
 import|;
 end_import
@@ -304,12 +320,14 @@ name|boolean
 name|omitTermFreqAndPositions
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the {@link PerDocFieldValues}    */
 DECL|method|getDocValues
 specifier|public
 name|PerDocFieldValues
 name|getDocValues
 parameter_list|()
 function_decl|;
+comment|/**    * Sets the {@link PerDocFieldValues} for this field. If    * {@link PerDocFieldValues} is set this field will store per-document values    *     * @see DocValues    */
 DECL|method|setDocValues
 specifier|public
 name|void
@@ -319,12 +337,14 @@ name|PerDocFieldValues
 name|docValues
 parameter_list|)
 function_decl|;
+comment|/**    * Returns<code>true</code> iff {@link PerDocFieldValues} are set on this    * field.    */
 DECL|method|hasDocValues
 specifier|public
 name|boolean
 name|hasDocValues
 parameter_list|()
 function_decl|;
+comment|/**    * Returns the {@link Type} of the set {@link PerDocFieldValues} or    *<code>null</code> if not set.    */
 DECL|method|docValuesType
 specifier|public
 name|Type

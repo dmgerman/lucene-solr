@@ -154,7 +154,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|ValuesField
+name|DocValuesField
 import|;
 end_import
 
@@ -618,7 +618,7 @@ name|TestDocValuesIndexing
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/*    * TODO: Roadmap to land on trunk    *     * - Add documentation for:     *  - Source and ValuesEnum     *  - DocValues     *  - ValuesField    *  - Values     * - Add @lucene.experimental to all necessary classes     * - add test for unoptimized case with deletes    * - run RAT    * - add tests for FieldComparator FloatIndexValuesComparator vs. FloatValuesComparator etc.    *     */
+comment|/*    * TODO: Roadmap to land on trunk    *     * - Add documentation for:     *  - DocValues     * - Add @lucene.experimental to all necessary classes     * - add test for unoptimized case with deletes    * - run RAT    * - add tests for FieldComparator FloatIndexValuesComparator vs. FloatValuesComparator etc.    *     */
 DECL|field|docValuesCodec
 specifier|private
 name|DocValuesCodec
@@ -749,11 +749,11 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-name|ValuesField
+name|DocValuesField
 name|valuesField
 init|=
 operator|new
-name|ValuesField
+name|DocValuesField
 argument_list|(
 literal|"docId"
 argument_list|)
@@ -3719,7 +3719,7 @@ name|nextBoolean
 argument_list|()
 condition|?
 operator|new
-name|ValuesField
+name|DocValuesField
 argument_list|(
 name|value
 operator|.
@@ -3767,11 +3767,11 @@ argument_list|(
 name|field
 argument_list|)
 expr_stmt|;
-name|ValuesField
+name|DocValuesField
 name|valField
 init|=
 operator|new
-name|ValuesField
+name|DocValuesField
 argument_list|(
 literal|"prototype"
 argument_list|)
@@ -3929,6 +3929,13 @@ name|upto
 operator|++
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|bytesRef
+operator|!=
+literal|null
+condition|)
+block|{
 name|valField
 operator|.
 name|setBytes
@@ -3938,6 +3945,7 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|doc
 operator|.

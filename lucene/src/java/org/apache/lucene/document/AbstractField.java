@@ -254,6 +254,11 @@ specifier|protected
 name|int
 name|binaryOffset
 decl_stmt|;
+DECL|field|docValues
+specifier|protected
+name|PerDocFieldValues
+name|docValues
+decl_stmt|;
 DECL|method|AbstractField
 specifier|protected
 name|AbstractField
@@ -976,11 +981,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|field|docValues
-specifier|protected
-name|PerDocFieldValues
-name|docValues
-decl_stmt|;
 DECL|method|getDocValues
 specifier|public
 name|PerDocFieldValues
