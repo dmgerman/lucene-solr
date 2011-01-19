@@ -169,12 +169,10 @@ specifier|final
 name|Similarity
 name|similarity
 init|=
-name|query
+name|searcher
 operator|.
 name|getSimilarity
-argument_list|(
-name|searcher
-argument_list|)
+argument_list|()
 decl_stmt|;
 return|return
 operator|new

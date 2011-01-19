@@ -2253,10 +2253,10 @@ return|return
 operator|new
 name|SpatialScorer
 argument_list|(
-name|getSimilarity
-argument_list|(
 name|searcher
-argument_list|)
+operator|.
+name|getSimilarity
+argument_list|()
 argument_list|,
 name|context
 argument_list|,

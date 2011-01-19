@@ -225,10 +225,10 @@ name|this
 operator|.
 name|similarity
 operator|=
-name|getSimilarity
-argument_list|(
 name|searcher
-argument_list|)
+operator|.
+name|getSimilarity
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
