@@ -237,7 +237,7 @@ name|TOKEN_TYPE_LOWER_PREC
 init|=
 literal|"lowerPrecNumeric"
 decl_stmt|;
-comment|/**<b>Expert:</b> Use this attribute to get the details of the currently generated token    * @lucene.experimental    * @since 4.0    */
+comment|/**<b>Expert:</b> Use this attribute to get the details of the currently generated token.    * @lucene.experimental    * @since 4.0    */
 DECL|interface|NumericTermAttribute
 specifier|public
 interface|interface
@@ -251,7 +251,7 @@ name|int
 name|getShift
 parameter_list|()
 function_decl|;
-comment|/** Returns {@link NumericTokenStream}'s raw value as {@code long} */
+comment|/** Returns current token's raw value as {@code long} with all {@link #getShift} applied, undefined before first token */
 DECL|method|getRawValue
 name|long
 name|getRawValue
@@ -263,22 +263,25 @@ name|int
 name|getValueSize
 parameter_list|()
 function_decl|;
-comment|/** @lucene.internal Don't call this method! */
+comment|/**<em>Don't call this method!</em>       * @lucene.internal */
 DECL|method|init
 name|void
 name|init
 parameter_list|(
 name|long
-name|rawValue
+name|value
 parameter_list|,
 name|int
 name|valSize
 parameter_list|,
 name|int
 name|precisionStep
+parameter_list|,
+name|int
+name|shift
 parameter_list|)
 function_decl|;
-comment|/** @lucene.internal Don't call this method! */
+comment|/**<em>Don't call this method!</em>       * @lucene.internal */
 DECL|method|setShift
 name|void
 name|setShift
@@ -287,7 +290,7 @@ name|int
 name|shift
 parameter_list|)
 function_decl|;
-comment|/** @lucene.internal Don't call this method! */
+comment|/**<em>Don't call this method!</em>       * @lucene.internal */
 DECL|method|incShift
 name|int
 name|incShift
@@ -368,6 +371,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/** Implementatation of {@link NumericTermAttribute}.    * @lucene.internal    * @since 4.0    */
 DECL|class|NumericTermAttributeImpl
 specifier|public
 specifier|static
@@ -381,10 +385,10 @@ name|NumericTermAttribute
 implements|,
 name|TermToBytesRefAttribute
 block|{
-DECL|field|rawValue
+DECL|field|value
 specifier|private
 name|long
-name|rawValue
+name|value
 init|=
 literal|0L
 decl_stmt|;
@@ -436,7 +440,7 @@ name|NumericUtils
 operator|.
 name|longToPrefixCoded
 argument_list|(
-name|rawValue
+name|value
 argument_list|,
 name|shift
 argument_list|,
@@ -450,7 +454,7 @@ argument_list|(
 operator|(
 name|int
 operator|)
-name|rawValue
+name|value
 argument_list|,
 name|shift
 argument_list|,
@@ -523,7 +527,18 @@ name|getRawValue
 parameter_list|()
 block|{
 return|return
-name|rawValue
+name|value
+operator|&
+operator|~
+operator|(
+operator|(
+literal|1L
+operator|<<
+name|shift
+operator|)
+operator|-
+literal|1L
+operator|)
 return|;
 block|}
 DECL|method|getValueSize
@@ -542,20 +557,23 @@ name|void
 name|init
 parameter_list|(
 name|long
-name|rawValue
+name|value
 parameter_list|,
 name|int
 name|valueSize
 parameter_list|,
 name|int
 name|precisionStep
+parameter_list|,
+name|int
+name|shift
 parameter_list|)
 block|{
 name|this
 operator|.
-name|rawValue
+name|value
 operator|=
-name|rawValue
+name|value
 expr_stmt|;
 name|this
 operator|.
@@ -568,6 +586,12 @@ operator|.
 name|precisionStep
 operator|=
 name|precisionStep
+expr_stmt|;
+name|this
+operator|.
+name|shift
+operator|=
+name|shift
 expr_stmt|;
 block|}
 annotation|@
@@ -641,7 +665,8 @@ name|class
 argument_list|,
 literal|"rawValue"
 argument_list|,
-name|rawValue
+name|getRawValue
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|reflector
@@ -655,19 +680,6 @@ argument_list|,
 literal|"valueSize"
 argument_list|,
 name|valueSize
-argument_list|)
-expr_stmt|;
-name|reflector
-operator|.
-name|reflect
-argument_list|(
-name|NumericTermAttribute
-operator|.
-name|class
-argument_list|,
-literal|"precisionStep"
-argument_list|,
-name|precisionStep
 argument_list|)
 expr_stmt|;
 block|}
@@ -695,17 +707,12 @@ name|a
 operator|.
 name|init
 argument_list|(
-name|rawValue
+name|value
 argument_list|,
 name|valueSize
 argument_list|,
 name|precisionStep
-argument_list|)
-expr_stmt|;
-name|a
-operator|.
-name|setShift
-argument_list|(
+argument_list|,
 name|shift
 argument_list|)
 expr_stmt|;
@@ -821,12 +828,7 @@ operator|=
 literal|64
 argument_list|,
 name|precisionStep
-argument_list|)
-expr_stmt|;
-name|numericAtt
-operator|.
-name|setShift
-argument_list|(
+argument_list|,
 operator|-
 name|precisionStep
 argument_list|)
@@ -857,12 +859,7 @@ operator|=
 literal|32
 argument_list|,
 name|precisionStep
-argument_list|)
-expr_stmt|;
-name|numericAtt
-operator|.
-name|setShift
-argument_list|(
+argument_list|,
 operator|-
 name|precisionStep
 argument_list|)
@@ -898,12 +895,7 @@ operator|=
 literal|64
 argument_list|,
 name|precisionStep
-argument_list|)
-expr_stmt|;
-name|numericAtt
-operator|.
-name|setShift
-argument_list|(
+argument_list|,
 operator|-
 name|precisionStep
 argument_list|)
@@ -939,12 +931,7 @@ operator|=
 literal|32
 argument_list|,
 name|precisionStep
-argument_list|)
-expr_stmt|;
-name|numericAtt
-operator|.
-name|setShift
-argument_list|(
+argument_list|,
 operator|-
 name|precisionStep
 argument_list|)
