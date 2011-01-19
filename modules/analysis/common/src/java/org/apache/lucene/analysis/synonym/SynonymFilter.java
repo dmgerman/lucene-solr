@@ -223,6 +223,19 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|map
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"map is required"
+argument_list|)
+throw|;
 name|this
 operator|.
 name|map
