@@ -187,10 +187,10 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Expert: Seeks a specific position by {@link TermState} previously obtained    * from {@link #termState()}. Callers should maintain the {@link TermState} to    * use this method. Low-level implementations may position the TermsEnum    * without re-seeking the term dictionary.    *<p>    * Seeking by {@link TermState} should only be used iff the enu the state was    * obtained from and the enum the state is used for seeking are obtained from    * the same {@link IndexReader}, otherwise a {@link #seek(BytesRef, TermState)} call can    * leave the enum in undefined state.    *<p>    * NOTE: Using this method with an incompatible {@link TermState} might leave    * this {@link TermsEnum} in undefined state. On a segment level    * {@link TermState} instances are compatible only iff the source and the    * target {@link TermsEnum} operate on the same field. If operating on segment    * level, TermState instances must not be used across segments.    *<p>    * NOTE: A seek by {@link TermState} might not restore the    * {@link AttributeSource}'s state. {@link AttributeSource} states must be    * maintained separately if this method is used.    * @param term the term the TermState corresponds to    * @param state the {@link TermState}    * */
+comment|/**    * Expert: Seeks a specific position by {@link TermState} previously obtained    * from {@link #termState()}. Callers should maintain the {@link TermState} to    * use this method. Low-level implementations may position the TermsEnum    * without re-seeking the term dictionary.    *<p>    * Seeking by {@link TermState} should only be used iff the enum the state was    * obtained from and the enum the state is used for seeking are obtained from    * the same {@link IndexReader}, otherwise a {@link #seek(BytesRef, TermState)} call can    * leave the enum in undefined state.    *<p>    * NOTE: Using this method with an incompatible {@link TermState} might leave    * this {@link TermsEnum} in undefined state. On a segment level    * {@link TermState} instances are compatible only iff the source and the    * target {@link TermsEnum} operate on the same field. If operating on segment    * level, TermState instances must not be used across segments.    *<p>    * NOTE: A seek by {@link TermState} might not restore the    * {@link AttributeSource}'s state. {@link AttributeSource} states must be    * maintained separately if this method is used.    * @param term the term the TermState corresponds to    * @param state the {@link TermState}    * */
 DECL|method|seek
 specifier|public
-name|SeekStatus
+name|void
 name|seek
 parameter_list|(
 name|BytesRef
@@ -202,12 +202,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
 name|seek
 argument_list|(
 name|term
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 comment|/** Increments the enumeration to the next element.    *  Returns the resulting term, or null if the end was    *  hit.  The returned BytesRef may be re-used across calls    *  to next. */
 DECL|method|next
@@ -246,6 +245,8 @@ specifier|abstract
 name|int
 name|docFreq
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Returns the total number of occurrences of this term    *  across all documents (the sum of the freq() for each    *  doc that has this term).  This will be -1 if the    *  codec doesn't support this measure.  Note that, like    *  other term measures, this measure does not take    *  deleted documents into account. */
 DECL|method|totalTermFreq
@@ -254,6 +255,8 @@ specifier|abstract
 name|long
 name|totalTermFreq
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this before calling {@link #next} or {@link    *  #seek} for the first time.  This method will not    *  return null.    *      * @param skipDocs set bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
 DECL|method|docs
@@ -537,7 +540,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|SeekStatus
+name|void
 name|seek
 parameter_list|(
 name|BytesRef

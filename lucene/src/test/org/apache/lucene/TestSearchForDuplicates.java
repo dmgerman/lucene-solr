@@ -596,6 +596,23 @@ name|PRIORITY_FIELD
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: search query="
+operator|+
+name|query
+argument_list|)
+expr_stmt|;
+block|}
 name|ScoreDoc
 index|[]
 name|hits

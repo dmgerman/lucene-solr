@@ -777,9 +777,6 @@ name|indexStart
 operator|=
 name|indexStart
 expr_stmt|;
-comment|// We still create the indexReader when indexDivisor
-comment|// is -1, so that PrefixCodedTermsReader can call
-comment|// isIndexTerm for each field:
 if|if
 condition|(
 name|indexDivisor

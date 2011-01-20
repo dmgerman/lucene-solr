@@ -24,7 +24,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|Closeable
 import|;
 end_import
 
@@ -34,7 +34,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Closeable
+name|IOException
 import|;
 end_import
 
@@ -45,6 +45,16 @@ operator|.
 name|util
 operator|.
 name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
 import|;
 end_import
 
@@ -70,11 +80,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Comparator
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocsAndPositionsEnum
 import|;
 end_import
 
@@ -89,20 +103,6 @@ operator|.
 name|index
 operator|.
 name|DocsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocsAndPositionsEnum
 import|;
 end_import
 
@@ -226,6 +226,42 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|standard
+operator|.
+name|StandardPostingsReader
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|ByteArrayDataInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -256,7 +292,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
+name|ArrayUtil
 import|;
 end_import
 
@@ -270,7 +306,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|DoubleBarrelLRUCache
+name|Bits
 import|;
 end_import
 
@@ -310,29 +346,21 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|codecs
-operator|.
-name|standard
-operator|.
-name|StandardPostingsReader
+name|DoubleBarrelLRUCache
 import|;
 end_import
 
 begin_comment
-comment|// javadocs
-end_comment
-
-begin_comment
-comment|/** Handles a terms dict, but decouples all details of  *  doc/freqs/positions reading to an instance of {@link  *  StandardPostingsReader}.  This class is reusable for  *  codecs that use a different format for  *  docs/freqs/positions (though codecs are also free to  *  make their own terms dict impl).  *  *<p>This class also interacts with an instance of {@link  * TermsIndexReaderBase}, to abstract away the specific  * implementation of the terms dict index.   * @lucene.experimental */
+comment|/** Handles a terms dict, but decouples all details of  *  doc/freqs/positions reading to an instance of {@link  *  PostingsReaderBase}.  This class is reusable for  *  codecs that use a different format for  *  docs/freqs/positions (though codecs are also free to  *  make their own terms dict impl).  *  *<p>This class also interacts with an instance of {@link  * TermsIndexReaderBase}, to abstract away the specific  * implementation of the terms dict index.   * @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|PrefixCodedTermsReader
+DECL|class|BlockTermsReader
 specifier|public
 class|class
-name|PrefixCodedTermsReader
+name|BlockTermsReader
 extends|extends
 name|FieldsProducer
 block|{
@@ -389,7 +417,7 @@ name|DoubleBarrelLRUCache
 argument_list|<
 name|FieldAndTerm
 argument_list|,
-name|PrefixCodedTermState
+name|BlockTermState
 argument_list|>
 name|termsCache
 decl_stmt|;
@@ -529,9 +557,14 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|PrefixCodedTermsReader
+DECL|field|segment
+specifier|private
+name|String
+name|segment
+decl_stmt|;
+DECL|method|BlockTermsReader
 specifier|public
-name|PrefixCodedTermsReader
+name|BlockTermsReader
 parameter_list|(
 name|TermsIndexReaderBase
 name|indexReader
@@ -579,7 +612,7 @@ name|DoubleBarrelLRUCache
 argument_list|<
 name|FieldAndTerm
 argument_list|,
-name|PrefixCodedTermState
+name|BlockTermState
 argument_list|>
 argument_list|(
 name|termsCacheSize
@@ -590,6 +623,12 @@ operator|.
 name|termComp
 operator|=
 name|termComp
+expr_stmt|;
+name|this
+operator|.
+name|segment
+operator|=
+name|segment
 expr_stmt|;
 name|in
 operator|=
@@ -605,7 +644,7 @@ name|segment
 argument_list|,
 name|codecId
 argument_list|,
-name|PrefixCodedTermsWriter
+name|BlockTermsWriter
 operator|.
 name|TERMS_EXTENSION
 argument_list|)
@@ -801,15 +840,15 @@ name|checkHeader
 argument_list|(
 name|in
 argument_list|,
-name|PrefixCodedTermsWriter
+name|BlockTermsWriter
 operator|.
 name|CODEC_NAME
 argument_list|,
-name|PrefixCodedTermsWriter
+name|BlockTermsWriter
 operator|.
 name|VERSION_START
 argument_list|,
-name|PrefixCodedTermsWriter
+name|BlockTermsWriter
 operator|.
 name|VERSION_CURRENT
 argument_list|)
@@ -993,7 +1032,7 @@ name|name
 argument_list|,
 name|id
 argument_list|,
-name|PrefixCodedTermsWriter
+name|BlockTermsWriter
 operator|.
 name|TERMS_EXTENSION
 argument_list|)
@@ -1017,7 +1056,7 @@ name|extensions
 operator|.
 name|add
 argument_list|(
-name|PrefixCodedTermsWriter
+name|BlockTermsWriter
 operator|.
 name|TERMS_EXTENSION
 argument_list|)
@@ -1298,7 +1337,7 @@ return|return
 name|sumTotalTermFreq
 return|;
 block|}
-comment|// Iterates through terms in this field, not supporting ord()
+comment|// Iterates through terms in this field
 DECL|class|SegmentTermsEnum
 specifier|private
 specifier|final
@@ -1313,22 +1352,17 @@ specifier|final
 name|IndexInput
 name|in
 decl_stmt|;
-DECL|field|bytesReader
-specifier|private
-specifier|final
-name|DeltaBytesReader
-name|bytesReader
-decl_stmt|;
 DECL|field|state
 specifier|private
 specifier|final
-name|PrefixCodedTermState
+name|BlockTermState
 name|state
 decl_stmt|;
-DECL|field|seekPending
+DECL|field|doOrd
 specifier|private
+specifier|final
 name|boolean
-name|seekPending
+name|doOrd
 decl_stmt|;
 DECL|field|fieldTerm
 specifier|private
@@ -1348,33 +1382,94 @@ operator|.
 name|FieldIndexEnum
 name|indexEnum
 decl_stmt|;
-DECL|field|positioned
+DECL|field|term
+specifier|private
+specifier|final
+name|BytesRef
+name|term
+init|=
+operator|new
+name|BytesRef
+argument_list|()
+decl_stmt|;
+comment|/* This is true if indexEnum is "still" seek'd to the index term          for the current term. We set it to true on seeking, and then it          remains valid until next() is called enough times to load another          terms block: */
+DECL|field|indexIsCurrent
 specifier|private
 name|boolean
-name|positioned
+name|indexIsCurrent
 decl_stmt|;
+comment|/* True if we've already called .next() on the indexEnum, to "bracket"          the current block of terms: */
 DECL|field|didIndexNext
 specifier|private
 name|boolean
 name|didIndexNext
 decl_stmt|;
+comment|/* Next index term, bracketing the current block of terms; this is          only valid if didIndexNext is true: */
 DECL|field|nextIndexTerm
 specifier|private
 name|BytesRef
 name|nextIndexTerm
 decl_stmt|;
-DECL|field|isIndexTerm
+comment|/* True after seek(TermState), do defer seeking.  If the app then          calls next() (which is not "typical"), then we'll do the real seek */
+DECL|field|seekPending
 specifier|private
 name|boolean
-name|isIndexTerm
+name|seekPending
 decl_stmt|;
-DECL|field|doOrd
+comment|/* How many blocks we've read since last seek.  Once this          is>= indexEnum.getDivisor() we set indexIsCurrent to false (since          the index can no long bracket seek-within-block). */
+DECL|field|blocksSinceSeek
+specifier|private
+name|int
+name|blocksSinceSeek
+decl_stmt|;
+DECL|field|termSuffixes
+specifier|private
+name|byte
+index|[]
+name|termSuffixes
+decl_stmt|;
+DECL|field|termSuffixesReader
+specifier|private
+name|ByteArrayDataInput
+name|termSuffixesReader
+init|=
+operator|new
+name|ByteArrayDataInput
+argument_list|(
+literal|null
+argument_list|)
+decl_stmt|;
+comment|/* Common prefix used for all terms in this block. */
+DECL|field|termBlockPrefix
+specifier|private
+name|int
+name|termBlockPrefix
+decl_stmt|;
+DECL|field|docFreqBytes
+specifier|private
+name|byte
+index|[]
+name|docFreqBytes
+decl_stmt|;
+DECL|field|freqReader
 specifier|private
 specifier|final
-name|boolean
-name|doOrd
+name|ByteArrayDataInput
+name|freqReader
+init|=
+operator|new
+name|ByteArrayDataInput
+argument_list|(
+literal|null
+argument_list|)
+decl_stmt|;
+DECL|field|metaDataUpto
+specifier|private
+name|int
+name|metaDataUpto
 decl_stmt|;
 DECL|method|SegmentTermsEnum
+specifier|public
 name|SegmentTermsEnum
 parameter_list|()
 throws|throws
@@ -1385,7 +1480,7 @@ operator|=
 operator|(
 name|IndexInput
 operator|)
-name|PrefixCodedTermsReader
+name|BlockTermsReader
 operator|.
 name|this
 operator|.
@@ -1417,14 +1512,6 @@ operator|.
 name|supportsOrd
 argument_list|()
 expr_stmt|;
-name|bytesReader
-operator|=
-operator|new
-name|DeltaBytesReader
-argument_list|(
-name|in
-argument_list|)
-expr_stmt|;
 name|fieldTerm
 operator|.
 name|field
@@ -1454,6 +1541,23 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+name|termSuffixes
+operator|=
+operator|new
+name|byte
+index|[
+literal|128
+index|]
+expr_stmt|;
+name|docFreqBytes
+operator|=
+operator|new
+name|byte
+index|[
+literal|64
+index|]
+expr_stmt|;
+comment|//System.out.println("BTR.enum init this=" + this + " postingsReader=" + postingsReader);
 block|}
 annotation|@
 name|Override
@@ -1470,77 +1574,6 @@ return|return
 name|termComp
 return|;
 block|}
-comment|// called only from assert
-DECL|field|first
-specifier|private
-name|boolean
-name|first
-decl_stmt|;
-DECL|field|indexTermCount
-specifier|private
-name|int
-name|indexTermCount
-decl_stmt|;
-DECL|method|startSeek
-specifier|private
-name|boolean
-name|startSeek
-parameter_list|()
-block|{
-name|first
-operator|=
-literal|true
-expr_stmt|;
-name|indexTermCount
-operator|=
-literal|0
-expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-DECL|method|checkSeekScan
-specifier|private
-name|boolean
-name|checkSeekScan
-parameter_list|()
-block|{
-if|if
-condition|(
-operator|!
-name|first
-operator|&&
-name|isIndexTerm
-condition|)
-block|{
-name|indexTermCount
-operator|++
-expr_stmt|;
-if|if
-condition|(
-name|indexTermCount
-operator|>=
-name|indexReader
-operator|.
-name|getDivisor
-argument_list|()
-condition|)
-block|{
-comment|//System.out.println("now fail count=" + indexTermCount);
-return|return
-literal|false
-return|;
-block|}
-block|}
-name|first
-operator|=
-literal|false
-expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-comment|/** Seeks until the first term that's>= the provided        *  text; returns SeekStatus.FOUND if the exact term        *  is found, SeekStatus.NOT_FOUND if a different term        *  was found, SeekStatus.END if we hit EOF */
 annotation|@
 name|Override
 DECL|method|seek
@@ -1550,7 +1583,7 @@ name|seek
 parameter_list|(
 specifier|final
 name|BytesRef
-name|term
+name|target
 parameter_list|,
 specifier|final
 name|boolean
@@ -1574,31 +1607,35 @@ literal|"terms index was not loaded"
 argument_list|)
 throw|;
 block|}
-comment|//System.out.println("te.seek term=" + fieldInfo.name + ":" + term.utf8ToString() + " current=" + term().utf8ToString() + " useCache=" + useCache + " this="  + this);
+comment|//System.out.println("BTR.seek seg=" + segment + " target=" + fieldInfo.name + ":" + target.utf8ToString() + " " + target + " current=" + term().utf8ToString() + " " + term() + " useCache=" + useCache + " indexIsCurrent=" + indexIsCurrent + " didIndexNext=" + didIndexNext + " seekPending=" + seekPending + " divisor=" + indexReader.getDivisor() + " this="  + this);
+comment|/*         if (didIndexNext) {           if (nextIndexTerm == null) {             //System.out.println("  nextIndexTerm=null");           } else {             //System.out.println("  nextIndexTerm=" + nextIndexTerm.utf8ToString());           }         }         */
 comment|// Check cache
-name|fieldTerm
-operator|.
-name|term
-operator|=
-name|term
-expr_stmt|;
-name|TermState
-name|cachedState
-decl_stmt|;
 if|if
 condition|(
 name|useCache
 condition|)
 block|{
-name|cachedState
+name|fieldTerm
+operator|.
+name|term
 operator|=
+name|target
+expr_stmt|;
+comment|// TODO: should we differentiate "frozen"
+comment|// TermState (ie one that was cloned and
+comment|// cached/returned by termState()) from the
+comment|// malleable (primary) one?
+specifier|final
+name|TermState
+name|cachedState
+init|=
 name|termsCache
 operator|.
 name|get
 argument_list|(
 name|fieldTerm
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|cachedState
@@ -1606,25 +1643,19 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|state
-operator|.
-name|copyFrom
+name|seekPending
+operator|=
+literal|true
+expr_stmt|;
+comment|//System.out.println("  cached!");
+name|seek
 argument_list|(
+name|target
+argument_list|,
 name|cachedState
 argument_list|)
 expr_stmt|;
-name|setTermState
-argument_list|(
-name|term
-argument_list|,
-name|state
-argument_list|)
-expr_stmt|;
-name|positioned
-operator|=
-literal|false
-expr_stmt|;
-comment|//System.out.println("  cached!");
+comment|//System.out.println("  term=" + term.utf8ToString());
 return|return
 name|SeekStatus
 operator|.
@@ -1632,21 +1663,16 @@ name|FOUND
 return|;
 block|}
 block|}
-else|else
-block|{
-name|cachedState
-operator|=
-literal|null
-expr_stmt|;
-block|}
 name|boolean
 name|doSeek
 init|=
 literal|true
 decl_stmt|;
+comment|// See if we can avoid seeking, because target term
+comment|// is after current term but before next index term:
 if|if
 condition|(
-name|positioned
+name|indexIsCurrent
 condition|)
 block|{
 specifier|final
@@ -1657,11 +1683,9 @@ name|termComp
 operator|.
 name|compare
 argument_list|(
-name|bytesReader
-operator|.
 name|term
 argument_list|,
-name|term
+name|target
 argument_list|)
 decl_stmt|;
 if|if
@@ -1671,7 +1695,7 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// already at the requested term
+comment|// Already at the requested term
 return|return
 name|SeekStatus
 operator|.
@@ -1686,38 +1710,6 @@ operator|<
 literal|0
 condition|)
 block|{
-if|if
-condition|(
-name|seekPending
-condition|)
-block|{
-name|seekPending
-operator|=
-literal|false
-expr_stmt|;
-name|in
-operator|.
-name|seek
-argument_list|(
-name|state
-operator|.
-name|filePointer
-argument_list|)
-expr_stmt|;
-name|indexEnum
-operator|.
-name|seek
-argument_list|(
-name|bytesReader
-operator|.
-name|term
-argument_list|)
-expr_stmt|;
-name|didIndexNext
-operator|=
-literal|false
-expr_stmt|;
-block|}
 comment|// Target term is after current term
 if|if
 condition|(
@@ -1767,7 +1759,7 @@ name|termComp
 operator|.
 name|compare
 argument_list|(
-name|term
+name|target
 argument_list|,
 name|nextIndexTerm
 argument_list|)
@@ -1776,13 +1768,13 @@ literal|0
 condition|)
 block|{
 comment|// Optimization: requested term is within the
-comment|// same index block we are now in; skip seeking
+comment|// same term block we are now in; skip seeking
 comment|// (but do scanning):
 name|doSeek
 operator|=
 literal|false
 expr_stmt|;
-comment|//System.out.println("  skip seek: nextIndexTerm=" + nextIndexTerm);
+comment|//System.out.println("  skip seek: nextIndexTerm=" + (nextIndexTerm == null ? "null" : nextIndexTerm.utf8ToString()));
 block|}
 block|}
 block|}
@@ -1791,12 +1783,9 @@ condition|(
 name|doSeek
 condition|)
 block|{
-name|positioned
-operator|=
-literal|true
-expr_stmt|;
-comment|// Ask terms index to find biggest index term that's<=
-comment|// our text:
+comment|//System.out.println("  seek");
+comment|// Ask terms index to find biggest indexed term (=
+comment|// first term in a block) that's<= our text:
 name|in
 operator|.
 name|seek
@@ -1805,13 +1794,32 @@ name|indexEnum
 operator|.
 name|seek
 argument_list|(
-name|term
+name|target
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|boolean
+name|result
+init|=
+name|nextBlock
+argument_list|()
+decl_stmt|;
+comment|// Block must exist since, at least, the indexed term
+comment|// is in the block:
+assert|assert
+name|result
+assert|;
+name|indexIsCurrent
+operator|=
+literal|true
 expr_stmt|;
 name|didIndexNext
 operator|=
 literal|false
+expr_stmt|;
+name|blocksSinceSeek
+operator|=
+literal|0
 expr_stmt|;
 if|if
 condition|(
@@ -1830,19 +1838,15 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-name|seekPending
-operator|=
-literal|false
-expr_stmt|;
-comment|// NOTE: the first next() after an index seek is
-comment|// wasteful, since it redundantly reads the same
-comment|// bytes into the buffer.  We could avoid storing
+comment|// NOTE: the first _next() after an index seek is
+comment|// a bit wasteful, since it redundantly reads some
+comment|// suffix bytes into the buffer.  We could avoid storing
 comment|// those bytes in the primary file, but then when
-comment|// scanning over an index term we'd have to
+comment|// next()ing over an index term we'd have to
 comment|// special case it:
-name|bytesReader
+name|term
 operator|.
-name|reset
+name|copy
 argument_list|(
 name|indexEnum
 operator|.
@@ -1850,20 +1854,20 @@ name|term
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("  doSeek term=" + indexEnum.term().utf8ToString() + " vs target=" + term.utf8ToString());
+comment|//System.out.println("  seek: term=" + term.utf8ToString());
 block|}
 else|else
 block|{
-comment|//System.out.println("  skip seek");
+comment|////System.out.println("  skip seek");
 block|}
-assert|assert
-name|startSeek
-argument_list|()
-assert|;
+name|seekPending
+operator|=
+literal|false
+expr_stmt|;
 comment|// Now scan:
 while|while
 condition|(
-name|next
+name|_next
 argument_list|()
 operator|!=
 literal|null
@@ -1877,11 +1881,9 @@ name|termComp
 operator|.
 name|compare
 argument_list|(
-name|bytesReader
-operator|.
 name|term
 argument_list|,
-name|term
+name|target
 argument_list|)
 decl_stmt|;
 if|if
@@ -1891,18 +1893,37 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// Done!
+comment|// Match!
 if|if
 condition|(
 name|useCache
 condition|)
 block|{
-name|cacheTerm
+comment|// Store in cache
+name|decodeMetaData
+argument_list|()
+expr_stmt|;
+name|termsCache
+operator|.
+name|put
+argument_list|(
+operator|new
+name|FieldAndTerm
 argument_list|(
 name|fieldTerm
 argument_list|)
+argument_list|,
+operator|(
+name|BlockTermState
+operator|)
+name|state
+operator|.
+name|clone
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
+comment|//System.out.println("  FOUND");
 return|return
 name|SeekStatus
 operator|.
@@ -1917,6 +1938,7 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|//System.out.println("  NOT_FOUND term=" + term.utf8ToString());
 return|return
 name|SeekStatus
 operator|.
@@ -1929,129 +1951,18 @@ comment|// term we are looking for.  So, we should never
 comment|// cross another index term (besides the first
 comment|// one) while we are scanning:
 assert|assert
-name|checkSeekScan
-argument_list|()
+name|indexIsCurrent
 assert|;
 block|}
-name|positioned
+name|indexIsCurrent
 operator|=
 literal|false
 expr_stmt|;
+comment|//System.out.println("  END");
 return|return
 name|SeekStatus
 operator|.
 name|END
-return|;
-block|}
-DECL|method|setTermState
-specifier|private
-specifier|final
-name|void
-name|setTermState
-parameter_list|(
-name|BytesRef
-name|term
-parameter_list|,
-specifier|final
-name|TermState
-name|termState
-parameter_list|)
-block|{
-assert|assert
-name|termState
-operator|!=
-literal|null
-operator|&&
-name|termState
-operator|instanceof
-name|PrefixCodedTermState
-assert|;
-name|state
-operator|.
-name|copyFrom
-argument_list|(
-name|termState
-argument_list|)
-expr_stmt|;
-name|seekPending
-operator|=
-literal|true
-expr_stmt|;
-name|bytesReader
-operator|.
-name|term
-operator|.
-name|copy
-argument_list|(
-name|term
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|cacheTerm
-specifier|private
-specifier|final
-name|void
-name|cacheTerm
-parameter_list|(
-name|FieldAndTerm
-name|other
-parameter_list|)
-block|{
-comment|// Store in cache
-specifier|final
-name|FieldAndTerm
-name|entryKey
-init|=
-operator|new
-name|FieldAndTerm
-argument_list|(
-name|other
-argument_list|)
-decl_stmt|;
-specifier|final
-name|PrefixCodedTermState
-name|cachedState
-init|=
-operator|(
-name|PrefixCodedTermState
-operator|)
-name|state
-operator|.
-name|clone
-argument_list|()
-decl_stmt|;
-comment|// this is fp after current term
-name|cachedState
-operator|.
-name|filePointer
-operator|=
-name|in
-operator|.
-name|getFilePointer
-argument_list|()
-expr_stmt|;
-name|termsCache
-operator|.
-name|put
-argument_list|(
-name|entryKey
-argument_list|,
-name|cachedState
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|term
-specifier|public
-name|BytesRef
-name|term
-parameter_list|()
-block|{
-return|return
-name|bytesReader
-operator|.
-name|term
 return|;
 block|}
 annotation|@
@@ -2064,49 +1975,125 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("BTR.next() seekPending=" + seekPending + " pendingSeekCount=" + state.termCount);
+comment|// If seek was previously called and the term was cached,
+comment|// usually caller is just going to pull a D/&PEnum or get
+comment|// docFreq, etc.  But, if they then call next(),
+comment|// this method catches up all internal state so next()
+comment|// works properly:
 if|if
 condition|(
 name|seekPending
 condition|)
 block|{
-name|seekPending
-operator|=
-literal|false
-expr_stmt|;
+assert|assert
+operator|!
+name|indexIsCurrent
+assert|;
 name|in
 operator|.
 name|seek
 argument_list|(
 name|state
 operator|.
-name|filePointer
+name|blockFilePointer
 argument_list|)
 expr_stmt|;
-name|indexEnum
+specifier|final
+name|int
+name|pendingSeekCount
+init|=
+name|state
 operator|.
-name|seek
-argument_list|(
-name|bytesReader
+name|termCount
+decl_stmt|;
+name|boolean
+name|result
+init|=
+name|nextBlock
+argument_list|()
+decl_stmt|;
+specifier|final
+name|long
+name|savOrd
+init|=
+name|state
 operator|.
-name|term
-argument_list|)
-expr_stmt|;
-name|didIndexNext
+name|ord
+decl_stmt|;
+comment|// Block must exist since seek(TermState) was called w/ a
+comment|// TermState previously returned by this enum when positioned
+comment|// on a real term:
+assert|assert
+name|result
+assert|;
+while|while
+condition|(
+name|state
+operator|.
+name|termCount
+operator|<
+name|pendingSeekCount
+condition|)
+block|{
+name|BytesRef
+name|nextResult
+init|=
+name|_next
+argument_list|()
+decl_stmt|;
+assert|assert
+name|nextResult
+operator|!=
+literal|null
+assert|;
+block|}
+name|seekPending
 operator|=
 literal|false
 expr_stmt|;
+name|state
+operator|.
+name|ord
+operator|=
+name|savOrd
+expr_stmt|;
 block|}
+return|return
+name|_next
+argument_list|()
+return|;
+block|}
+comment|/* Decodes only the term bytes of the next term.  If caller then asks for          metadata, ie docFreq, totalTermFreq or pulls a D/&PEnum, we then (lazily)          decode all metadata up to the current term. */
+DECL|method|_next
+specifier|private
+name|BytesRef
+name|_next
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|//System.out.println("BTR._next this=" + this + " termCount=" + state.termCount + " (vs " + state.blockTermCount + ")");
+if|if
+condition|(
+name|state
+operator|.
+name|termCount
+operator|==
+name|state
+operator|.
+name|blockTermCount
+condition|)
+block|{
 if|if
 condition|(
 operator|!
-name|bytesReader
-operator|.
-name|read
+name|nextBlock
 argument_list|()
 condition|)
 block|{
-comment|//System.out.println("te.next end!");
-name|positioned
+comment|//System.out.println("  eof");
+name|indexIsCurrent
 operator|=
 literal|false
 expr_stmt|;
@@ -2114,122 +2101,87 @@ return|return
 literal|null
 return|;
 block|}
-specifier|final
-name|byte
-name|b
-init|=
-name|in
-operator|.
-name|readByte
-argument_list|()
-decl_stmt|;
-name|isIndexTerm
-operator|=
-operator|(
-name|b
-operator|&
-literal|0x80
-operator|)
-operator|!=
-literal|0
-expr_stmt|;
-if|if
-condition|(
-operator|(
-name|b
-operator|&
-literal|0x40
-operator|)
-operator|==
-literal|0
-condition|)
-block|{
-comment|// Fast case -- docFreq fits in 6 bits
-name|state
-operator|.
-name|docFreq
-operator|=
-name|b
-operator|&
-literal|0x3F
-expr_stmt|;
 block|}
-else|else
-block|{
-name|state
-operator|.
-name|docFreq
-operator|=
-operator|(
-name|in
+comment|// TODO: cutover to something better for these ints!  simple64?
+specifier|final
+name|int
+name|suffix
+init|=
+name|termSuffixesReader
 operator|.
 name|readVInt
 argument_list|()
-operator|<<
-literal|6
-operator|)
-operator||
-operator|(
-name|b
-operator|&
-literal|0x3F
-operator|)
+decl_stmt|;
+comment|//System.out.println("  suffix=" + suffix);
+name|term
+operator|.
+name|length
+operator|=
+name|termBlockPrefix
+operator|+
+name|suffix
 expr_stmt|;
-block|}
 if|if
 condition|(
-operator|!
-name|fieldInfo
+name|term
 operator|.
-name|omitTermFreqAndPositions
+name|bytes
+operator|.
+name|length
+operator|<
+name|term
+operator|.
+name|length
 condition|)
 block|{
-name|state
+name|term
 operator|.
-name|totalTermFreq
-operator|=
-name|state
-operator|.
-name|docFreq
-operator|+
-name|in
-operator|.
-name|readVLong
-argument_list|()
-expr_stmt|;
-block|}
-name|postingsReader
-operator|.
-name|readTerm
+name|grow
 argument_list|(
-name|in
-argument_list|,
-name|fieldInfo
-argument_list|,
-name|state
-argument_list|,
-name|isIndexTerm
+name|term
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|doOrd
-condition|)
-block|{
+block|}
+name|termSuffixesReader
+operator|.
+name|readBytes
+argument_list|(
+name|term
+operator|.
+name|bytes
+argument_list|,
+name|termBlockPrefix
+argument_list|,
+name|suffix
+argument_list|)
+expr_stmt|;
+name|state
+operator|.
+name|termCount
+operator|++
+expr_stmt|;
+comment|// NOTE: meaningless in the non-ord case
 name|state
 operator|.
 name|ord
 operator|++
 expr_stmt|;
-block|}
-name|positioned
-operator|=
-literal|true
-expr_stmt|;
-comment|//System.out.println("te.next term=" + bytesReader.term.utf8ToString());
+comment|//System.out.println("  return term=" + fieldInfo.name + ":" + term.utf8ToString() + " " + term);
 return|return
-name|bytesReader
-operator|.
+name|term
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|term
+specifier|public
+name|BytesRef
+name|term
+parameter_list|()
+block|{
+return|return
 name|term
 return|;
 block|}
@@ -2240,7 +2192,14 @@ specifier|public
 name|int
 name|docFreq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
+comment|//System.out.println("BTR.docFreq");
+name|decodeMetaData
+argument_list|()
+expr_stmt|;
+comment|//System.out.println("  return " + state.docFreq);
 return|return
 name|state
 operator|.
@@ -2254,7 +2213,12 @@ specifier|public
 name|long
 name|totalTermFreq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
+name|decodeMetaData
+argument_list|()
+expr_stmt|;
 return|return
 name|state
 operator|.
@@ -2277,6 +2241,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("BTR.docs this=" + this);
+name|decodeMetaData
+argument_list|()
+expr_stmt|;
+comment|//System.out.println("  state.docFreq=" + state.docFreq);
 specifier|final
 name|DocsEnum
 name|docsEnum
@@ -2319,6 +2288,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("BTR.d&p this=" + this);
+name|decodeMetaData
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|fieldInfo
@@ -2332,7 +2305,9 @@ return|;
 block|}
 else|else
 block|{
-return|return
+name|DocsAndPositionsEnum
+name|dpe
+init|=
 name|postingsReader
 operator|.
 name|docsAndPositions
@@ -2345,6 +2320,10 @@ name|skipDocs
 argument_list|,
 name|reuse
 argument_list|)
+decl_stmt|;
+comment|//System.out.println("  return d&pe=" + dpe);
+return|return
+name|dpe
 return|;
 block|}
 block|}
@@ -2352,11 +2331,11 @@ annotation|@
 name|Override
 DECL|method|seek
 specifier|public
-name|SeekStatus
+name|void
 name|seek
 parameter_list|(
 name|BytesRef
-name|term
+name|target
 parameter_list|,
 name|TermState
 name|otherState
@@ -2364,6 +2343,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("BTR.seek termState target=" + target.utf8ToString() + " " + target + " this=" + this);
 assert|assert
 name|otherState
 operator|!=
@@ -2371,32 +2351,15 @@ literal|null
 operator|&&
 name|otherState
 operator|instanceof
-name|PrefixCodedTermState
+name|BlockTermState
 assert|;
 assert|assert
-name|otherState
-operator|.
-name|getClass
-argument_list|()
-operator|==
-name|this
-operator|.
-name|state
-operator|.
-name|getClass
-argument_list|()
-operator|:
-literal|"Illegal TermState type "
-operator|+
-name|otherState
-operator|.
-name|getClass
-argument_list|()
-assert|;
-assert|assert
+operator|!
+name|doOrd
+operator|||
 operator|(
 operator|(
-name|PrefixCodedTermState
+name|BlockTermState
 operator|)
 name|otherState
 operator|)
@@ -2405,22 +2368,28 @@ name|ord
 operator|<
 name|numTerms
 assert|;
-name|setTermState
+name|state
+operator|.
+name|copyFrom
 argument_list|(
-name|term
-argument_list|,
 name|otherState
 argument_list|)
 expr_stmt|;
-name|positioned
+name|seekPending
+operator|=
+literal|true
+expr_stmt|;
+name|indexIsCurrent
 operator|=
 literal|false
 expr_stmt|;
-return|return
-name|SeekStatus
+name|term
 operator|.
-name|FOUND
-return|;
+name|copy
+argument_list|(
+name|target
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -2432,29 +2401,24 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-specifier|final
-name|PrefixCodedTermState
-name|newTermState
+comment|//System.out.println("BTR.termState this=" + this);
+name|decodeMetaData
+argument_list|()
+expr_stmt|;
+name|TermState
+name|ts
 init|=
 operator|(
-name|PrefixCodedTermState
+name|TermState
 operator|)
 name|state
 operator|.
 name|clone
 argument_list|()
 decl_stmt|;
-name|newTermState
-operator|.
-name|filePointer
-operator|=
-name|in
-operator|.
-name|getFilePointer
-argument_list|()
-expr_stmt|;
+comment|//System.out.println("  return ts=" + ts);
 return|return
-name|newTermState
+name|ts
 return|;
 block|}
 annotation|@
@@ -2470,6 +2434,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("BTR.seek by ord ord=" + ord);
 if|if
 condition|(
 name|indexEnum
@@ -2506,6 +2471,9 @@ operator|.
 name|END
 return|;
 block|}
+comment|// TODO: if ord is in same terms block and
+comment|// after current ord, we should avoid this seek just
+comment|// like we do in the seek(BytesRef) case
 name|in
 operator|.
 name|seek
@@ -2518,26 +2486,31 @@ name|ord
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|seekPending
-operator|=
-literal|false
-expr_stmt|;
-name|positioned
+name|boolean
+name|result
+init|=
+name|nextBlock
+argument_list|()
+decl_stmt|;
+comment|// Block must exist since ord< numTerms:
+assert|assert
+name|result
+assert|;
+name|indexIsCurrent
 operator|=
 literal|true
 expr_stmt|;
-comment|// NOTE: the first next() after an index seek is
-comment|// wasteful, since it redundantly reads the same
-comment|// bytes into the buffer
-name|bytesReader
-operator|.
-name|reset
-argument_list|(
-name|indexEnum
-operator|.
-name|term
-argument_list|()
-argument_list|)
+name|didIndexNext
+operator|=
+literal|false
+expr_stmt|;
+name|blocksSinceSeek
+operator|=
+literal|0
+expr_stmt|;
+name|seekPending
+operator|=
+literal|false
 expr_stmt|;
 name|state
 operator|.
@@ -2564,6 +2537,16 @@ name|state
 operator|.
 name|ord
 assert|;
+name|term
+operator|.
+name|copy
+argument_list|(
+name|indexEnum
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Now, scan:
 name|int
 name|left
@@ -2590,7 +2573,7 @@ specifier|final
 name|BytesRef
 name|term
 init|=
-name|next
+name|_next
 argument_list|()
 decl_stmt|;
 assert|assert
@@ -2601,6 +2584,9 @@ assert|;
 name|left
 operator|--
 expr_stmt|;
+assert|assert
+name|indexIsCurrent
+assert|;
 block|}
 comment|// always found
 return|return
@@ -2632,6 +2618,308 @@ name|state
 operator|.
 name|ord
 return|;
+block|}
+DECL|method|doPendingSeek
+specifier|private
+name|void
+name|doPendingSeek
+parameter_list|()
+block|{       }
+comment|/* Does initial decode of next block of terms; this          doesn't actually decode the docFreq, totalTermFreq,          postings details (frq/prx offset, etc.) metadata;          it just loads them as byte[] blobs which are then                decoded on-demand if the metadata is ever requested          for any term in this block.  This enables terms-only          intensive consumes (eg certain MTQs, respelling) to          not pay the price of decoding metadata they won't          use. */
+DECL|method|nextBlock
+specifier|private
+name|boolean
+name|nextBlock
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// TODO: we still lazy-decode the byte[] for each
+comment|// term (the suffix), but, if we decoded
+comment|// all N terms up front then seeking could do a fast
+comment|// bsearch w/in the block...
+comment|//System.out.println("BTR.nextBlock() fp=" + in.getFilePointer() + " this=" + this);
+name|state
+operator|.
+name|blockFilePointer
+operator|=
+name|in
+operator|.
+name|getFilePointer
+argument_list|()
+expr_stmt|;
+name|state
+operator|.
+name|blockTermCount
+operator|=
+name|in
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
+comment|//System.out.println("  blockTermCount=" + state.blockTermCount);
+if|if
+condition|(
+name|state
+operator|.
+name|blockTermCount
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+name|termBlockPrefix
+operator|=
+name|in
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
+comment|// term suffixes:
+name|int
+name|len
+init|=
+name|in
+operator|.
+name|readVInt
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|termSuffixes
+operator|.
+name|length
+operator|<
+name|len
+condition|)
+block|{
+name|termSuffixes
+operator|=
+operator|new
+name|byte
+index|[
+name|ArrayUtil
+operator|.
+name|oversize
+argument_list|(
+name|len
+argument_list|,
+literal|1
+argument_list|)
+index|]
+expr_stmt|;
+block|}
+comment|//System.out.println("  termSuffixes len=" + len);
+name|in
+operator|.
+name|readBytes
+argument_list|(
+name|termSuffixes
+argument_list|,
+literal|0
+argument_list|,
+name|len
+argument_list|)
+expr_stmt|;
+name|termSuffixesReader
+operator|.
+name|reset
+argument_list|(
+name|termSuffixes
+argument_list|)
+expr_stmt|;
+comment|// docFreq, totalTermFreq
+name|len
+operator|=
+name|in
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|docFreqBytes
+operator|.
+name|length
+operator|<
+name|len
+condition|)
+block|{
+name|docFreqBytes
+operator|=
+operator|new
+name|byte
+index|[
+name|ArrayUtil
+operator|.
+name|oversize
+argument_list|(
+name|len
+argument_list|,
+literal|1
+argument_list|)
+index|]
+expr_stmt|;
+block|}
+comment|//System.out.println("  freq bytes len=" + len);
+name|in
+operator|.
+name|readBytes
+argument_list|(
+name|docFreqBytes
+argument_list|,
+literal|0
+argument_list|,
+name|len
+argument_list|)
+expr_stmt|;
+name|freqReader
+operator|.
+name|reset
+argument_list|(
+name|docFreqBytes
+argument_list|)
+expr_stmt|;
+name|metaDataUpto
+operator|=
+literal|0
+expr_stmt|;
+name|state
+operator|.
+name|termCount
+operator|=
+literal|0
+expr_stmt|;
+name|postingsReader
+operator|.
+name|readTermsBlock
+argument_list|(
+name|in
+argument_list|,
+name|fieldInfo
+argument_list|,
+name|state
+argument_list|)
+expr_stmt|;
+name|blocksSinceSeek
+operator|++
+expr_stmt|;
+name|indexIsCurrent
+operator|&=
+operator|(
+name|blocksSinceSeek
+operator|<
+name|indexReader
+operator|.
+name|getDivisor
+argument_list|()
+operator|)
+expr_stmt|;
+comment|//System.out.println("  indexIsCurrent=" + indexIsCurrent);
+return|return
+literal|true
+return|;
+block|}
+DECL|method|decodeMetaData
+specifier|private
+name|void
+name|decodeMetaData
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|//System.out.println("BTR.decodeMetadata mdUpto=" + metaDataUpto + " vs termCount=" + state.termCount + " state=" + state);
+if|if
+condition|(
+operator|!
+name|seekPending
+condition|)
+block|{
+comment|// lazily catch up on metadata decode:
+specifier|final
+name|int
+name|limit
+init|=
+name|state
+operator|.
+name|termCount
+decl_stmt|;
+name|state
+operator|.
+name|termCount
+operator|=
+name|metaDataUpto
+expr_stmt|;
+while|while
+condition|(
+name|metaDataUpto
+operator|<
+name|limit
+condition|)
+block|{
+comment|//System.out.println("  decode");
+comment|// TODO: we could make "tiers" of metadata, ie,
+comment|// decode docFreq/totalTF but don't decode postings
+comment|// metadata; this way caller could get
+comment|// docFreq/totalTF w/o paying decode cost for
+comment|// postings
+name|state
+operator|.
+name|docFreq
+operator|=
+name|freqReader
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|fieldInfo
+operator|.
+name|omitTermFreqAndPositions
+condition|)
+block|{
+name|state
+operator|.
+name|totalTermFreq
+operator|=
+name|state
+operator|.
+name|docFreq
+operator|+
+name|freqReader
+operator|.
+name|readVLong
+argument_list|()
+expr_stmt|;
+block|}
+name|postingsReader
+operator|.
+name|nextTerm
+argument_list|(
+name|fieldInfo
+argument_list|,
+name|state
+argument_list|)
+expr_stmt|;
+name|metaDataUpto
+operator|++
+expr_stmt|;
+name|state
+operator|.
+name|termCount
+operator|++
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+comment|//System.out.println("  skip! seekPending");
+block|}
 block|}
 block|}
 block|}

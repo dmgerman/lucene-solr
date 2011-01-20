@@ -374,8 +374,6 @@ init|=
 name|getThreadTermsEnum
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
 name|termsEnum
 operator|.
 name|seek
@@ -384,14 +382,7 @@ name|term
 argument_list|,
 name|termState
 argument_list|)
-operator|==
-name|TermsEnum
-operator|.
-name|SeekStatus
-operator|.
-name|FOUND
-condition|)
-block|{
+expr_stmt|;
 return|return
 name|termsEnum
 operator|.
@@ -402,13 +393,6 @@ argument_list|,
 name|reuse
 argument_list|)
 return|;
-block|}
-else|else
-block|{
-return|return
-literal|null
-return|;
-block|}
 block|}
 comment|/**    * Get {@link DocsEnum} for the specified {@link TermState}. This    * method will may return<code>null</code> if the term does not exists, or positions were    * not indexed.    *     * @see TermsEnum#termState()    * @see TermsEnum#seek(BytesRef, TermState) */
 DECL|method|docsAndPositions
@@ -438,8 +422,6 @@ init|=
 name|getThreadTermsEnum
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
 name|termsEnum
 operator|.
 name|seek
@@ -448,14 +430,7 @@ name|term
 argument_list|,
 name|termState
 argument_list|)
-operator|==
-name|TermsEnum
-operator|.
-name|SeekStatus
-operator|.
-name|FOUND
-condition|)
-block|{
+expr_stmt|;
 return|return
 name|termsEnum
 operator|.
@@ -466,13 +441,6 @@ argument_list|,
 name|reuse
 argument_list|)
 return|;
-block|}
-else|else
-block|{
-return|return
-literal|null
-return|;
-block|}
 block|}
 DECL|method|getUniqueTermCount
 specifier|public

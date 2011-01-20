@@ -150,6 +150,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|RAMOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -326,10 +340,9 @@ DECL|field|omitTF
 name|boolean
 name|omitTF
 decl_stmt|;
-comment|// Starts a new term
-DECL|field|lastSkipStart
+DECL|field|lastSkipFP
 name|long
-name|lastSkipStart
+name|lastSkipFP
 decl_stmt|;
 DECL|field|fieldInfo
 name|FieldInfo
@@ -359,10 +372,21 @@ DECL|field|df
 name|int
 name|df
 decl_stmt|;
-DECL|field|firstDoc
+DECL|field|pendingTermCount
 specifier|private
-name|boolean
-name|firstDoc
+name|int
+name|pendingTermCount
+decl_stmt|;
+comment|// Holds pending byte[] blob for the current terms block
+DECL|field|indexBytesWriter
+specifier|private
+specifier|final
+name|RAMOutputStream
+name|indexBytesWriter
+init|=
+operator|new
+name|RAMOutputStream
+argument_list|()
 decl_stmt|;
 DECL|method|SepPostingsWriterImpl
 specifier|public
@@ -730,10 +754,6 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-name|firstDoc
-operator|=
-literal|true
-expr_stmt|;
 name|skipListWriter
 operator|.
 name|resetSkip
@@ -746,8 +766,6 @@ name|posIndex
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: -- should we NOT reuse across fields?  would
-comment|// be cleaner
 comment|// Currently, this instance is re-used across fields, so
 comment|// our parent calls setField whenever the field changes
 annotation|@
@@ -807,62 +825,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|firstDoc
-condition|)
-block|{
-comment|// TODO: we are writing absolute file pointers below,
-comment|// which is wasteful.  It'd be better compression to
-comment|// write the "baseline" into each indexed term, then
-comment|// write only the delta here.
-if|if
-condition|(
-operator|!
-name|omitTF
-condition|)
-block|{
-name|freqIndex
-operator|.
-name|write
-argument_list|(
-name|docOut
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-name|posIndex
-operator|.
-name|write
-argument_list|(
-name|docOut
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-name|docOut
-operator|.
-name|writeVLong
-argument_list|(
-name|payloadStart
-argument_list|)
-expr_stmt|;
-block|}
-name|docOut
-operator|.
-name|writeVLong
-argument_list|(
-name|skipOut
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|firstDoc
-operator|=
-literal|false
-expr_stmt|;
-block|}
 specifier|final
 name|int
 name|delta
@@ -871,6 +833,7 @@ name|docID
 operator|-
 name|lastDocID
 decl_stmt|;
+comment|//System.out.println("SepW startDoc: write doc=" + docID + " delta=" + delta);
 if|if
 condition|(
 name|docID
@@ -918,6 +881,7 @@ condition|)
 block|{
 comment|// TODO: -- awkward we have to make these two
 comment|// separate calls to skipper
+comment|//System.out.println("    buffer skip lastDocID=" + lastDocID);
 name|skipListWriter
 operator|.
 name|setSkipData
@@ -954,6 +918,7 @@ operator|!
 name|omitTF
 condition|)
 block|{
+comment|//System.out.println("    sepw startDoc: write freq=" + termDocFreq);
 name|freqOut
 operator|.
 name|write
@@ -962,6 +927,47 @@ name|termDocFreq
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|flushTermsBlock
+specifier|public
+name|void
+name|flushTermsBlock
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|//System.out.println("SepW.flushTermsBlock: pendingTermCount=" + pendingTermCount + " bytesUsed=" + indexBytesWriter.getFilePointer());
+name|termsOut
+operator|.
+name|writeVLong
+argument_list|(
+operator|(
+name|int
+operator|)
+name|indexBytesWriter
+operator|.
+name|getFilePointer
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|indexBytesWriter
+operator|.
+name|writeTo
+argument_list|(
+name|termsOut
+argument_list|)
+expr_stmt|;
+name|indexBytesWriter
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|pendingTermCount
+operator|=
+literal|0
+expr_stmt|;
 block|}
 comment|/** Add a new position& payload */
 annotation|@
@@ -1142,9 +1148,6 @@ name|finishTerm
 parameter_list|(
 name|TermStats
 name|stats
-parameter_list|,
-name|boolean
-name|isIndexTerm
 parameter_list|)
 throws|throws
 name|IOException
@@ -1164,15 +1167,88 @@ name|docFreq
 operator|==
 name|df
 assert|;
+specifier|final
+name|boolean
+name|isFirstTerm
+init|=
+name|pendingTermCount
+operator|==
+literal|0
+decl_stmt|;
+comment|//System.out.println("SepW.finishTerm: isFirstTerm=" + isFirstTerm);
 name|docIndex
 operator|.
 name|write
 argument_list|(
-name|termsOut
+name|indexBytesWriter
 argument_list|,
-name|isIndexTerm
+name|isFirstTerm
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("  docIndex=" + docIndex);
+if|if
+condition|(
+operator|!
+name|omitTF
+condition|)
+block|{
+name|freqIndex
+operator|.
+name|write
+argument_list|(
+name|indexBytesWriter
+argument_list|,
+name|isFirstTerm
+argument_list|)
+expr_stmt|;
+comment|//System.out.println("  freqIndex=" + freqIndex);
+name|posIndex
+operator|.
+name|write
+argument_list|(
+name|indexBytesWriter
+argument_list|,
+name|isFirstTerm
+argument_list|)
+expr_stmt|;
+comment|//System.out.println("  posIndex=" + posIndex);
+if|if
+condition|(
+name|storePayloads
+condition|)
+block|{
+if|if
+condition|(
+name|isFirstTerm
+condition|)
+block|{
+name|indexBytesWriter
+operator|.
+name|writeVLong
+argument_list|(
+name|payloadStart
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|indexBytesWriter
+operator|.
+name|writeVLong
+argument_list|(
+name|payloadStart
+operator|-
+name|lastPayloadStart
+argument_list|)
+expr_stmt|;
+block|}
+name|lastPayloadStart
+operator|=
+name|payloadStart
+expr_stmt|;
+comment|//System.out.println("  payloadFP=" + payloadStart);
+block|}
+block|}
 if|if
 condition|(
 name|df
@@ -1180,12 +1256,82 @@ operator|>=
 name|skipInterval
 condition|)
 block|{
+comment|//System.out.println("  skipFP=" + skipStart);
+specifier|final
+name|long
+name|skipFP
+init|=
+name|skipOut
+operator|.
+name|getFilePointer
+argument_list|()
+decl_stmt|;
 name|skipListWriter
 operator|.
 name|writeSkip
 argument_list|(
 name|skipOut
 argument_list|)
+expr_stmt|;
+comment|//System.out.println("   writeSkip @ " + indexBytesWriter.getFilePointer());
+if|if
+condition|(
+name|isFirstTerm
+condition|)
+block|{
+name|indexBytesWriter
+operator|.
+name|writeVLong
+argument_list|(
+name|skipFP
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|indexBytesWriter
+operator|.
+name|writeVLong
+argument_list|(
+name|skipFP
+operator|-
+name|lastSkipFP
+argument_list|)
+expr_stmt|;
+block|}
+name|lastSkipFP
+operator|=
+name|skipFP
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|isFirstTerm
+condition|)
+block|{
+comment|// TODO: this is somewhat wasteful; eg if no terms in
+comment|// this block will use skip data, we don't need to
+comment|// write this:
+specifier|final
+name|long
+name|skipFP
+init|=
+name|skipOut
+operator|.
+name|getFilePointer
+argument_list|()
+decl_stmt|;
+name|indexBytesWriter
+operator|.
+name|writeVLong
+argument_list|(
+name|skipFP
+argument_list|)
+expr_stmt|;
+name|lastSkipFP
+operator|=
+name|skipFP
 expr_stmt|;
 block|}
 name|lastDocID
@@ -1195,6 +1341,9 @@ expr_stmt|;
 name|df
 operator|=
 literal|0
+expr_stmt|;
+name|pendingTermCount
+operator|++
 expr_stmt|;
 block|}
 annotation|@

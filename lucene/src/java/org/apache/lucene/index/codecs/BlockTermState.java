@@ -28,24 +28,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|OrdTermState
 import|;
 end_import
@@ -69,10 +51,10 @@ comment|/**  * Holds all state required for {@link PostingsReaderBase}  * to pro
 end_comment
 
 begin_class
-DECL|class|PrefixCodedTermState
+DECL|class|BlockTermState
 specifier|public
 class|class
-name|PrefixCodedTermState
+name|BlockTermState
 extends|extends
 name|OrdTermState
 block|{
@@ -82,18 +64,30 @@ name|int
 name|docFreq
 decl_stmt|;
 comment|// how many docs have this term
-DECL|field|filePointer
-specifier|public
-name|long
-name|filePointer
-decl_stmt|;
-comment|// fp into the terms dict primary file (_X.tis)
 DECL|field|totalTermFreq
 specifier|public
 name|long
 name|totalTermFreq
 decl_stmt|;
 comment|// total number of occurrences of this term
+DECL|field|termCount
+specifier|public
+name|int
+name|termCount
+decl_stmt|;
+comment|// term ord are in the current block
+DECL|field|blockFilePointer
+specifier|public
+name|long
+name|blockFilePointer
+decl_stmt|;
+comment|// fp into the terms dict primary file (_X.tib) that holds this term
+DECL|field|blockTermCount
+specifier|public
+name|int
+name|blockTermCount
+decl_stmt|;
+comment|// how many terms in current block
 annotation|@
 name|Override
 DECL|method|copyFrom
@@ -108,7 +102,7 @@ block|{
 assert|assert
 name|_other
 operator|instanceof
-name|PrefixCodedTermState
+name|BlockTermState
 operator|:
 literal|"can not copy from "
 operator|+
@@ -120,11 +114,11 @@ operator|.
 name|getName
 argument_list|()
 assert|;
-name|PrefixCodedTermState
+name|BlockTermState
 name|other
 init|=
 operator|(
-name|PrefixCodedTermState
+name|BlockTermState
 operator|)
 name|_other
 decl_stmt|;
@@ -135,12 +129,6 @@ argument_list|(
 name|_other
 argument_list|)
 expr_stmt|;
-name|filePointer
-operator|=
-name|other
-operator|.
-name|filePointer
-expr_stmt|;
 name|docFreq
 operator|=
 name|other
@@ -153,6 +141,21 @@ name|other
 operator|.
 name|totalTermFreq
 expr_stmt|;
+name|termCount
+operator|=
+name|other
+operator|.
+name|termCount
+expr_stmt|;
+name|blockFilePointer
+operator|=
+name|other
+operator|.
+name|blockFilePointer
+expr_stmt|;
+comment|// NOTE: don't copy blockTermCount;
+comment|// it's "transient": used only by the "primary"
+comment|// termState, and regenerated on seek by TermState
 block|}
 annotation|@
 name|Override
@@ -168,23 +171,25 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"[ord="
+literal|"ord="
 operator|+
 name|ord
 operator|+
-literal|", tis.filePointer="
-operator|+
-name|filePointer
-operator|+
-literal|", docFreq="
+literal|" docFreq="
 operator|+
 name|docFreq
 operator|+
-literal|", totalTermFreq="
+literal|" totalTermFreq="
 operator|+
 name|totalTermFreq
 operator|+
-literal|"]"
+literal|" termCount="
+operator|+
+name|termCount
+operator|+
+literal|" blockFP="
+operator|+
+name|blockFilePointer
 return|;
 block|}
 block|}

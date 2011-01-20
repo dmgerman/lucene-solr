@@ -398,6 +398,19 @@ name|CREATE
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|writer
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 comment|// add 100 documents
 name|addDocs
 argument_list|(

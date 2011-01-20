@@ -3412,7 +3412,7 @@ init|=
 operator|~
 name|BYTE_BLOCK_MASK
 decl_stmt|;
-comment|/* if you increase this, you must fix field cache impl for    * getTerms/getTermsIndex requires<= 32768.  Also fix    * DeltaBytesWriter's TERM_EOF if necessary. */
+comment|/* if you increase this, you must fix field cache impl for    * getTerms/getTermsIndex requires<= 32768. */
 DECL|field|MAX_TERM_LENGTH_UTF8
 specifier|final
 specifier|static

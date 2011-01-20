@@ -339,6 +339,8 @@ specifier|public
 name|int
 name|docFreq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|tenum
@@ -354,6 +356,8 @@ specifier|public
 name|long
 name|totalTermFreq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|tenum
@@ -497,7 +501,7 @@ annotation|@
 name|Override
 DECL|method|seek
 specifier|public
-name|SeekStatus
+name|void
 name|seek
 parameter_list|(
 name|BytesRef
