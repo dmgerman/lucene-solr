@@ -82,6 +82,12 @@ name|float
 name|freq
 decl_stmt|;
 comment|//phrase frequency in current doc as computed by phraseFreq().
+DECL|field|similarity
+specifier|protected
+specifier|final
+name|Similarity
+name|similarity
+decl_stmt|;
 DECL|method|PhraseScorer
 name|PhraseScorer
 parameter_list|(
@@ -104,10 +110,14 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|similarity
-argument_list|,
 name|weight
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|similarity
+operator|=
+name|similarity
 expr_stmt|;
 name|this
 operator|.
@@ -383,8 +393,7 @@ comment|//System.out.println("scoring " + first.doc);
 name|float
 name|raw
 init|=
-name|getSimilarity
-argument_list|()
+name|similarity
 operator|.
 name|tf
 argument_list|(
@@ -403,8 +412,7 @@ name|raw
 else|:
 name|raw
 operator|*
-name|getSimilarity
-argument_list|()
+name|similarity
 operator|.
 name|decodeNormValue
 argument_list|(

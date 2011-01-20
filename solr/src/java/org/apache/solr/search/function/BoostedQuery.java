@@ -454,11 +454,6 @@ name|BoostedQuery
 operator|.
 name|CustomScorer
 argument_list|(
-name|searcher
-operator|.
-name|getSimilarity
-argument_list|()
-argument_list|,
 name|context
 argument_list|,
 name|this
@@ -624,9 +619,6 @@ DECL|method|CustomScorer
 specifier|private
 name|CustomScorer
 parameter_list|(
-name|Similarity
-name|similarity
-parameter_list|,
 name|AtomicReaderContext
 name|readerContext
 parameter_list|,
@@ -646,7 +638,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|similarity
+name|w
 argument_list|)
 expr_stmt|;
 name|this

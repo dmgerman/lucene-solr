@@ -55,72 +55,27 @@ name|Scorer
 extends|extends
 name|DocIdSetIterator
 block|{
-DECL|field|similarity
-specifier|private
-specifier|final
-name|Similarity
-name|similarity
-decl_stmt|;
 DECL|field|weight
 specifier|protected
 specifier|final
 name|Weight
 name|weight
 decl_stmt|;
-comment|/** Constructs a Scorer.    * @param similarity The<code>Similarity</code> implementation used by this scorer.    */
+comment|/**    * Constructs a Scorer    * @param weight The scorers<code>Weight</code>.    */
 DECL|method|Scorer
 specifier|protected
 name|Scorer
 parameter_list|(
-name|Similarity
-name|similarity
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|similarity
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Constructs a Scorer    * @param similarity The<code>Similarity</code> implementation used by this scorer.    * @param weight The scorers<code>Weight</code>    */
-DECL|method|Scorer
-specifier|protected
-name|Scorer
-parameter_list|(
-name|Similarity
-name|similarity
-parameter_list|,
 name|Weight
 name|weight
 parameter_list|)
 block|{
 name|this
 operator|.
-name|similarity
-operator|=
-name|similarity
-expr_stmt|;
-name|this
-operator|.
 name|weight
 operator|=
 name|weight
 expr_stmt|;
-block|}
-comment|/** Returns the Similarity implementation used by this scorer. */
-DECL|method|getSimilarity
-specifier|public
-name|Similarity
-name|getSimilarity
-parameter_list|()
-block|{
-return|return
-name|this
-operator|.
-name|similarity
-return|;
 block|}
 comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed.    */
 DECL|method|score
@@ -350,7 +305,7 @@ name|visitor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * {@link Scorer} subclasses should implement this method if the subclass    * itself contains multiple scorers to support gathering details for    * sub-scorers via {@link ScorerVisitor}    *<p>    * Note: this method will throw {@link UnsupportedOperationException} if no    * associated {@link Weight} instance is provided to    * {@link #Scorer(Similarity, Weight)}    *</p>    *     * @lucene.experimental    */
+comment|/**    * {@link Scorer} subclasses should implement this method if the subclass    * itself contains multiple scorers to support gathering details for    * sub-scorers via {@link ScorerVisitor}    *<p>    * Note: this method will throw {@link UnsupportedOperationException} if no    * associated {@link Weight} instance is provided to    * {@link #Scorer(Weight)}    *</p>    *     * @lucene.experimental    */
 DECL|method|visitSubScorers
 specifier|protected
 name|void

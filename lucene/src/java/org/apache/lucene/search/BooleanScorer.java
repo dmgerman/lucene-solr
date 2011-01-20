@@ -364,11 +364,14 @@ decl_stmt|;
 DECL|method|BucketScorer
 specifier|public
 name|BucketScorer
-parameter_list|()
+parameter_list|(
+name|Weight
+name|weight
+parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|null
+name|weight
 argument_list|)
 expr_stmt|;
 block|}
@@ -748,12 +751,9 @@ name|IOException
 block|{
 name|super
 argument_list|(
-literal|null
-argument_list|,
 name|weight
 argument_list|)
 expr_stmt|;
-comment|// Similarity not used
 name|this
 operator|.
 name|minNrShouldMatch
@@ -969,7 +969,9 @@ name|bs
 init|=
 operator|new
 name|BucketScorer
-argument_list|()
+argument_list|(
+name|weight
+argument_list|)
 decl_stmt|;
 comment|// The internal loop will set the score and doc before calling collect.
 name|collector

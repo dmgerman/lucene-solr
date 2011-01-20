@@ -118,11 +118,14 @@ name|Float
 operator|.
 name|NaN
 decl_stmt|;
-comment|/** Construct a<code>DisjunctionScorer</code>.    * @param subScorers A collection of at least two subscorers.    * @param minimumNrMatchers The positive minimum number of subscorers that should    * match to match this query.    *<br>When<code>minimumNrMatchers</code> is bigger than    * the number of<code>subScorers</code>,    * no matches will be produced.    *<br>When minimumNrMatchers equals the number of subScorers,    * it more efficient to use<code>ConjunctionScorer</code>.    */
+comment|/** Construct a<code>DisjunctionScorer</code>.    * @param weight The weight to be used.    * @param subScorers A collection of at least two subscorers.    * @param minimumNrMatchers The positive minimum number of subscorers that should    * match to match this query.    *<br>When<code>minimumNrMatchers</code> is bigger than    * the number of<code>subScorers</code>,    * no matches will be produced.    *<br>When minimumNrMatchers equals the number of subScorers,    * it more efficient to use<code>ConjunctionScorer</code>.    */
 DECL|method|DisjunctionSumScorer
 specifier|public
 name|DisjunctionSumScorer
 parameter_list|(
+name|Weight
+name|weight
+parameter_list|,
 name|List
 argument_list|<
 name|Scorer
@@ -137,7 +140,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-literal|null
+name|weight
 argument_list|)
 expr_stmt|;
 name|nrScorers
@@ -198,6 +201,9 @@ DECL|method|DisjunctionSumScorer
 specifier|public
 name|DisjunctionSumScorer
 parameter_list|(
+name|Weight
+name|weight
+parameter_list|,
 name|List
 argument_list|<
 name|Scorer
@@ -209,6 +215,8 @@ name|IOException
 block|{
 name|this
 argument_list|(
+name|weight
+argument_list|,
 name|subScorers
 argument_list|,
 literal|1

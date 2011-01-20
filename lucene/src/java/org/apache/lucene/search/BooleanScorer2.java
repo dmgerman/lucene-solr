@@ -242,7 +242,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**    * Creates a {@link Scorer} with the given similarity and lists of required,    * prohibited and optional scorers. In no required scorers are added, at least    * one of the optional scorers will have to match during the search.    *     * @param similarity    *          The similarity to be used.    * @param minNrShouldMatch    *          The minimum number of optional added scorers that should match    *          during the search. In case no required scorers are added, at least    *          one of the optional scorers will have to match during the search.    * @param required    *          the list of required scorers.    * @param prohibited    *          the list of prohibited scorers.    * @param optional    *          the list of optional scorers.    */
+comment|/**    * Creates a {@link Scorer} with the given similarity and lists of required,    * prohibited and optional scorers. In no required scorers are added, at least    * one of the optional scorers will have to match during the search.    *     * @param weight    *          The BooleanWeight to be used.    * @param disableCoord    *          If this parameter is true, coordination level matching     *          ({@link Similarity#coord(int, int)}) is not used.    * @param minNrShouldMatch    *          The minimum number of optional added scorers that should match    *          during the search. In case no required scorers are added, at least    *          one of the optional scorers will have to match during the search.    * @param required    *          the list of required scorers.    * @param prohibited    *          the list of prohibited scorers.    * @param optional    *          the list of optional scorers.    */
 DECL|method|BooleanScorer2
 specifier|public
 name|BooleanScorer2
@@ -282,12 +282,9 @@ name|IOException
 block|{
 name|super
 argument_list|(
-literal|null
-argument_list|,
 name|weight
 argument_list|)
 expr_stmt|;
-comment|// Similarity not used
 if|if
 condition|(
 name|minNrShouldMatch
@@ -389,10 +386,11 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|null
+name|scorer
+operator|.
+name|weight
 argument_list|)
 expr_stmt|;
-comment|// No similarity used.
 name|this
 operator|.
 name|scorer
@@ -530,6 +528,8 @@ return|return
 operator|new
 name|DisjunctionSumScorer
 argument_list|(
+name|weight
+argument_list|,
 name|scorers
 argument_list|,
 name|minNrShouldMatch
@@ -640,6 +640,8 @@ return|return
 operator|new
 name|ConjunctionScorer
 argument_list|(
+name|weight
+argument_list|,
 name|disableCoord
 condition|?
 literal|1.0f
@@ -765,6 +767,8 @@ return|return
 operator|new
 name|ConjunctionScorer
 argument_list|(
+name|weight
+argument_list|,
 name|disableCoord
 condition|?
 literal|1.0f
@@ -1124,6 +1128,8 @@ else|:
 operator|new
 name|DisjunctionSumScorer
 argument_list|(
+name|weight
+argument_list|,
 name|prohibitedScorers
 argument_list|)
 operator|)

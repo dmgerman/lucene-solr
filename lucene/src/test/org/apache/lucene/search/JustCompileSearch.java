@@ -740,13 +740,13 @@ DECL|method|JustCompileScorer
 specifier|protected
 name|JustCompileScorer
 parameter_list|(
-name|Similarity
-name|similarity
+name|Weight
+name|weight
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|similarity
+name|weight
 argument_list|)
 expr_stmt|;
 block|}
