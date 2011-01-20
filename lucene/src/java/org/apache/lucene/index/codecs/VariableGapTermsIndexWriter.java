@@ -373,7 +373,7 @@ condition|)
 block|{
 name|count
 operator|=
-literal|0
+literal|1
 expr_stmt|;
 return|return
 literal|true
@@ -470,7 +470,7 @@ condition|)
 block|{
 name|count
 operator|=
-literal|0
+literal|1
 expr_stmt|;
 return|return
 literal|true
