@@ -62,6 +62,22 @@ name|Occur
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|BooleanQuery
+operator|.
+name|BooleanWeight
+import|;
+end_import
+
 begin_comment
 comment|/* See the description in BooleanScorer.java, comparing  * BooleanScorer& BooleanScorer2 */
 end_comment
@@ -132,9 +148,6 @@ DECL|method|init
 name|void
 name|init
 parameter_list|(
-name|Similarity
-name|sim
-parameter_list|,
 name|boolean
 name|disableCoord
 parameter_list|)
@@ -184,7 +197,12 @@ name|disableCoord
 condition|?
 literal|1.0f
 else|:
-name|sim
+operator|(
+operator|(
+name|BooleanWeight
+operator|)
+name|weight
+operator|)
 operator|.
 name|coord
 argument_list|(
@@ -224,19 +242,16 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**    * Creates a {@link Scorer} with the given similarity and lists of required,    * prohibited and optional scorers. In no required scorers are added, at least    * one of the optional scorers will have to match during the search.    *     * @param similarity    *          The similarity to be used.    * @param minNrShouldMatch    *          The minimum number of optional added scorers that should match    *          during the search. In case no required scorers are added, at least    *          one of the optional scorers will have to match during the search.    * @param required    *          the list of required scorers.    * @param prohibited    *          the list of prohibited scorers.    * @param optional    *          the list of optional scorers.    */
+comment|/**    * Creates a {@link Scorer} with the given similarity and lists of required,    * prohibited and optional scorers. In no required scorers are added, at least    * one of the optional scorers will have to match during the search.    *     * @param weight    *          The BooleanWeight to be used.    * @param disableCoord    *          If this parameter is true, coordination level matching     *          ({@link Similarity#coord(int, int)}) is not used.    * @param minNrShouldMatch    *          The minimum number of optional added scorers that should match    *          during the search. In case no required scorers are added, at least    *          one of the optional scorers will have to match during the search.    * @param required    *          the list of required scorers.    * @param prohibited    *          the list of prohibited scorers.    * @param optional    *          the list of optional scorers.    */
 DECL|method|BooleanScorer2
 specifier|public
 name|BooleanScorer2
 parameter_list|(
-name|Weight
+name|BooleanWeight
 name|weight
 parameter_list|,
 name|boolean
 name|disableCoord
-parameter_list|,
-name|Similarity
-name|similarity
 parameter_list|,
 name|int
 name|minNrShouldMatch
@@ -267,12 +282,9 @@ name|IOException
 block|{
 name|super
 argument_list|(
-literal|null
-argument_list|,
 name|weight
 argument_list|)
 expr_stmt|;
-comment|// Similarity not used
 if|if
 condition|(
 name|minNrShouldMatch
@@ -322,8 +334,6 @@ name|coordinator
 operator|.
 name|init
 argument_list|(
-name|similarity
-argument_list|,
 name|disableCoord
 argument_list|)
 expr_stmt|;
@@ -332,8 +342,6 @@ operator|=
 name|makeCountingSumScorer
 argument_list|(
 name|disableCoord
-argument_list|,
-name|similarity
 argument_list|)
 expr_stmt|;
 block|}
@@ -378,10 +386,11 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|null
+name|scorer
+operator|.
+name|weight
 argument_list|)
 expr_stmt|;
-comment|// No similarity used.
 name|this
 operator|.
 name|scorer
@@ -519,6 +528,8 @@ return|return
 operator|new
 name|DisjunctionSumScorer
 argument_list|(
+name|weight
+argument_list|,
 name|scorers
 argument_list|,
 name|minNrShouldMatch
@@ -606,9 +617,6 @@ parameter_list|(
 name|boolean
 name|disableCoord
 parameter_list|,
-name|Similarity
-name|similarity
-parameter_list|,
 name|List
 argument_list|<
 name|Scorer
@@ -632,11 +640,18 @@ return|return
 operator|new
 name|ConjunctionScorer
 argument_list|(
+name|weight
+argument_list|,
 name|disableCoord
 condition|?
 literal|1.0f
 else|:
-name|similarity
+operator|(
+operator|(
+name|BooleanWeight
+operator|)
+name|weight
+operator|)
 operator|.
 name|coord
 argument_list|(
@@ -738,9 +753,6 @@ parameter_list|(
 name|boolean
 name|disableCoord
 parameter_list|,
-name|Similarity
-name|similarity
-parameter_list|,
 name|Scorer
 name|req1
 parameter_list|,
@@ -755,11 +767,18 @@ return|return
 operator|new
 name|ConjunctionScorer
 argument_list|(
+name|weight
+argument_list|,
 name|disableCoord
 condition|?
 literal|1.0f
 else|:
-name|similarity
+operator|(
+operator|(
+name|BooleanWeight
+operator|)
+name|weight
+operator|)
 operator|.
 name|coord
 argument_list|(
@@ -786,9 +805,6 @@ name|makeCountingSumScorer
 parameter_list|(
 name|boolean
 name|disableCoord
-parameter_list|,
-name|Similarity
-name|similarity
 parameter_list|)
 throws|throws
 name|IOException
@@ -807,15 +823,11 @@ condition|?
 name|makeCountingSumScorerNoReq
 argument_list|(
 name|disableCoord
-argument_list|,
-name|similarity
 argument_list|)
 else|:
 name|makeCountingSumScorerSomeReq
 argument_list|(
 name|disableCoord
-argument_list|,
-name|similarity
 argument_list|)
 return|;
 block|}
@@ -826,9 +838,6 @@ name|makeCountingSumScorerNoReq
 parameter_list|(
 name|boolean
 name|disableCoord
-parameter_list|,
-name|Similarity
-name|similarity
 parameter_list|)
 throws|throws
 name|IOException
@@ -900,8 +909,6 @@ name|countingConjunctionSumScorer
 argument_list|(
 name|disableCoord
 argument_list|,
-name|similarity
-argument_list|,
 name|optionalScorers
 argument_list|)
 expr_stmt|;
@@ -920,9 +927,6 @@ name|makeCountingSumScorerSomeReq
 parameter_list|(
 name|boolean
 name|disableCoord
-parameter_list|,
-name|Similarity
-name|similarity
 parameter_list|)
 throws|throws
 name|IOException
@@ -968,8 +972,6 @@ name|countingConjunctionSumScorer
 argument_list|(
 name|disableCoord
 argument_list|,
-name|similarity
-argument_list|,
 name|allReq
 argument_list|)
 argument_list|)
@@ -1003,8 +1005,6 @@ name|countingConjunctionSumScorer
 argument_list|(
 name|disableCoord
 argument_list|,
-name|similarity
-argument_list|,
 name|requiredScorers
 argument_list|)
 decl_stmt|;
@@ -1023,8 +1023,6 @@ name|dualConjunctionSumScorer
 argument_list|(
 comment|// non counting
 name|disableCoord
-argument_list|,
-name|similarity
 argument_list|,
 name|requiredCountingSumScorer
 argument_list|,
@@ -1130,6 +1128,8 @@ else|:
 operator|new
 name|DisjunctionSumScorer
 argument_list|(
+name|weight
+argument_list|,
 name|prohibitedScorers
 argument_list|)
 operator|)

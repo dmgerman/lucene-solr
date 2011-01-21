@@ -524,11 +524,6 @@ name|LUCENE_CURRENT
 argument_list|)
 argument_list|)
 operator|.
-name|setMaxFieldLength
-argument_list|(
-literal|1000000
-argument_list|)
-operator|.
 name|setOpenMode
 argument_list|(
 name|create

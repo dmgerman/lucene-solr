@@ -205,10 +205,10 @@ decl_stmt|;
 name|float
 name|norm
 init|=
-name|getSimilarity
-argument_list|(
 name|searcher
-argument_list|)
+operator|.
+name|getSimilarity
+argument_list|()
 operator|.
 name|queryNorm
 argument_list|(
@@ -281,23 +281,6 @@ operator|new
 name|UnsupportedOperationException
 argument_list|()
 throw|;
-block|}
-comment|/** Expert: Returns the Similarity implementation to be used for this query.    * Subclasses may override this method to specify their own Similarity    * implementation, perhaps one that delegates through that of the Searcher.    * By default the Searcher's Similarity implementation is returned.*/
-DECL|method|getSimilarity
-specifier|public
-name|Similarity
-name|getSimilarity
-parameter_list|(
-name|IndexSearcher
-name|searcher
-parameter_list|)
-block|{
-return|return
-name|searcher
-operator|.
-name|getSimilarity
-argument_list|()
-return|;
 block|}
 comment|/** Returns a clone of this query. */
 annotation|@

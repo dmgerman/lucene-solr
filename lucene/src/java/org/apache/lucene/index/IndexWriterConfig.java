@@ -119,17 +119,6 @@ name|IndexWriterConfig
 implements|implements
 name|Cloneable
 block|{
-DECL|field|UNLIMITED_FIELD_LENGTH
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|UNLIMITED_FIELD_LENGTH
-init|=
-name|Integer
-operator|.
-name|MAX_VALUE
-decl_stmt|;
 comment|/**    * Specifies the open mode for {@link IndexWriter}:    *<ul>    * {@link #CREATE} - creates a new index or overwrites an existing one.    * {@link #CREATE_OR_APPEND} - creates a new index if one does not exist,    * otherwise it opens the index and documents will be appended.    * {@link #APPEND} - opens an existing index.    *</ul>    */
 DECL|enum|OpenMode
 DECL|enum constant|CREATE
@@ -287,11 +276,6 @@ specifier|private
 name|OpenMode
 name|openMode
 decl_stmt|;
-DECL|field|maxFieldLength
-specifier|private
-name|int
-name|maxFieldLength
-decl_stmt|;
 DECL|field|similarity
 specifier|private
 name|Similarity
@@ -408,10 +392,6 @@ operator|=
 name|OpenMode
 operator|.
 name|CREATE_OR_APPEND
-expr_stmt|;
-name|maxFieldLength
-operator|=
-name|UNLIMITED_FIELD_LENGTH
 expr_stmt|;
 name|similarity
 operator|=
@@ -601,37 +581,6 @@ parameter_list|()
 block|{
 return|return
 name|delPolicy
-return|;
-block|}
-comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document. This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory. This setting refers to the number of running terms,    * not to the number of different terms.    *<p>    *<b>NOTE:</b> this silently truncates large documents, excluding from the    * index all terms that occur further in the document. If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size. If you set it to {@link #UNLIMITED_FIELD_LENGTH}, then    * the only limit is your memory, but you should anticipate an    * OutOfMemoryError.    *<p>    * By default it is set to {@link #UNLIMITED_FIELD_LENGTH}.    */
-DECL|method|setMaxFieldLength
-specifier|public
-name|IndexWriterConfig
-name|setMaxFieldLength
-parameter_list|(
-name|int
-name|maxFieldLength
-parameter_list|)
-block|{
-name|this
-operator|.
-name|maxFieldLength
-operator|=
-name|maxFieldLength
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-comment|/**    * Returns the maximum number of terms that will be indexed for a single field    * in a document.    *    * @see #setMaxFieldLength(int)    */
-DECL|method|getMaxFieldLength
-specifier|public
-name|int
-name|getMaxFieldLength
-parameter_list|()
-block|{
-return|return
-name|maxFieldLength
 return|;
 block|}
 comment|/**    * Expert: allows to open a certain commit point. The default is null which    * opens the latest commit point.    */
@@ -1385,23 +1334,6 @@ operator|.
 name|append
 argument_list|(
 name|openMode
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"\n"
-argument_list|)
-expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"maxFieldLength="
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|maxFieldLength
 argument_list|)
 operator|.
 name|append

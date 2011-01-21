@@ -22,29 +22,11 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|IndexInput
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IntsRef
+name|Closeable
 import|;
 end_import
 
@@ -60,11 +42,29 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|Closeable
+name|lucene
+operator|.
+name|store
+operator|.
+name|DataInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IntsRef
 import|;
 end_import
 
@@ -122,7 +122,7 @@ specifier|abstract
 name|void
 name|read
 parameter_list|(
-name|IndexInput
+name|DataInput
 name|indexIn
 parameter_list|,
 name|boolean

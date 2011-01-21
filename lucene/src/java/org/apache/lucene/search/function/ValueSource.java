@@ -62,22 +62,6 @@ name|index
 operator|.
 name|IndexReader
 operator|.
-name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-operator|.
 name|ReaderContext
 import|;
 end_import
@@ -144,7 +128,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Return the DocValues used by the function query.    * @deprecated (4.0) This method is temporary, to ease the migration to segment-based    * searching. Please change your code to not pass {@link CompositeReaderContext} to these    * APIs. Use {@link #getValues(AtomicReaderContext)} instead    */
+comment|/**    * Return the DocValues used by the function query.    * @deprecated (4.0) This method is temporary, to ease the migration to segment-based    * searching. Please change your code to not pass {@link CompositeReaderContext} to these    * APIs. Use {@link #getValues(IndexReader.AtomicReaderContext)} instead    */
 annotation|@
 name|Deprecated
 DECL|method|getValues

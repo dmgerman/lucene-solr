@@ -335,10 +335,6 @@ DECL|field|analyzer
 name|Analyzer
 name|analyzer
 decl_stmt|;
-DECL|field|maxFieldLength
-name|int
-name|maxFieldLength
-decl_stmt|;
 DECL|field|infoStream
 name|PrintStream
 name|infoStream
@@ -622,16 +618,6 @@ argument_list|()
 operator|.
 name|getSimilarity
 argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|docState
-operator|.
-name|maxFieldLength
-operator|=
-name|IndexWriterConfig
-operator|.
-name|UNLIMITED_FIELD_LENGTH
 expr_stmt|;
 name|consumer
 operator|=

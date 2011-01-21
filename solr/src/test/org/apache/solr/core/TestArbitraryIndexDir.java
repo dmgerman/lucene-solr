@@ -591,11 +591,6 @@ operator|.
 name|LUCENE_40
 argument_list|)
 argument_list|)
-operator|.
-name|setMaxFieldLength
-argument_list|(
-literal|1000
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|Document

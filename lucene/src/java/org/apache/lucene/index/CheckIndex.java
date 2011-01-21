@@ -3688,19 +3688,9 @@ parameter_list|)
 block|{
 name|msg
 argument_list|(
-literal|"ERROR ["
+literal|"ERROR: "
 operator|+
-name|String
-operator|.
-name|valueOf
-argument_list|(
 name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-operator|+
-literal|"]"
 argument_list|)
 expr_stmt|;
 name|status

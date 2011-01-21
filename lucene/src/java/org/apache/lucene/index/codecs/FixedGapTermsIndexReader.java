@@ -443,6 +443,7 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+comment|//System.out.println("FGR: init seg=" + segment + " div=" + indexDivisor + " nF=" + numFields);
 for|for
 control|(
 name|int
@@ -1327,9 +1328,6 @@ name|numIndexTerms
 operator|=
 name|numIndexTerms
 expr_stmt|;
-comment|// We still create the indexReader when indexDivisor
-comment|// is -1, so that PrefixCodedTermsReader can call
-comment|// isIndexTerm for each field:
 if|if
 condition|(
 name|indexDivisor

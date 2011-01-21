@@ -114,7 +114,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|PrefixCodedTermState
+name|BlockTermState
 import|;
 end_import
 
@@ -306,7 +306,7 @@ specifier|static
 class|class
 name|PulsingTermState
 extends|extends
-name|PrefixCodedTermState
+name|BlockTermState
 block|{
 DECL|field|postings
 specifier|private
@@ -322,13 +322,18 @@ decl_stmt|;
 comment|// -1 if this term was not inlined
 DECL|field|wrappedTermState
 specifier|private
-name|PrefixCodedTermState
+name|BlockTermState
 name|wrappedTermState
 decl_stmt|;
-DECL|field|pendingIndexTerm
+DECL|field|inlinedBytesReader
+name|ByteArrayDataInput
+name|inlinedBytesReader
+decl_stmt|;
+DECL|field|inlinedBytes
 specifier|private
-name|boolean
-name|pendingIndexTerm
+name|byte
+index|[]
+name|inlinedBytes
 decl_stmt|;
 annotation|@
 name|Override
@@ -399,7 +404,7 @@ operator|.
 name|wrappedTermState
 operator|=
 operator|(
-name|PrefixCodedTermState
+name|BlockTermState
 operator|)
 name|wrappedTermState
 operator|.
@@ -518,6 +523,10 @@ name|wrappedTermState
 argument_list|)
 expr_stmt|;
 block|}
+comment|// NOTE: we do not copy the
+comment|// inlinedBytes/inlinedBytesReader; these are only
+comment|// stored on the "primary" TermState.  They are
+comment|// "transient" to cloned term states.
 block|}
 annotation|@
 name|Override
@@ -536,7 +545,9 @@ literal|1
 condition|)
 block|{
 return|return
-literal|"PulsingTermState: not inlined"
+literal|"PulsingTermState: not inlined: wrapped="
+operator|+
+name|wrappedTermState
 return|;
 block|}
 else|else
@@ -545,15 +556,163 @@ return|return
 literal|"PulsingTermState: inlined size="
 operator|+
 name|postingsSize
+operator|+
+literal|" "
+operator|+
+name|super
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 block|}
 block|}
 annotation|@
 name|Override
+DECL|method|readTermsBlock
+specifier|public
+name|void
+name|readTermsBlock
+parameter_list|(
+name|IndexInput
+name|termsIn
+parameter_list|,
+name|FieldInfo
+name|fieldInfo
+parameter_list|,
+name|BlockTermState
+name|_termState
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+specifier|final
+name|PulsingTermState
+name|termState
+init|=
+operator|(
+name|PulsingTermState
+operator|)
+name|_termState
+decl_stmt|;
+if|if
+condition|(
+name|termState
+operator|.
+name|inlinedBytes
+operator|==
+literal|null
+condition|)
+block|{
+name|termState
+operator|.
+name|inlinedBytes
+operator|=
+operator|new
+name|byte
+index|[
+literal|128
+index|]
+expr_stmt|;
+name|termState
+operator|.
+name|inlinedBytesReader
+operator|=
+operator|new
+name|ByteArrayDataInput
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+name|int
+name|len
+init|=
+name|termsIn
+operator|.
+name|readVInt
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|termState
+operator|.
+name|inlinedBytes
+operator|.
+name|length
+operator|<
+name|len
+condition|)
+block|{
+name|termState
+operator|.
+name|inlinedBytes
+operator|=
+operator|new
+name|byte
+index|[
+name|ArrayUtil
+operator|.
+name|oversize
+argument_list|(
+name|len
+argument_list|,
+literal|1
+argument_list|)
+index|]
+expr_stmt|;
+block|}
+name|termsIn
+operator|.
+name|readBytes
+argument_list|(
+name|termState
+operator|.
+name|inlinedBytes
+argument_list|,
+literal|0
+argument_list|,
+name|len
+argument_list|)
+expr_stmt|;
+name|termState
+operator|.
+name|inlinedBytesReader
+operator|.
+name|reset
+argument_list|(
+name|termState
+operator|.
+name|inlinedBytes
+argument_list|)
+expr_stmt|;
+name|termState
+operator|.
+name|wrappedTermState
+operator|.
+name|termCount
+operator|=
+literal|0
+expr_stmt|;
+name|wrappedPostingsReader
+operator|.
+name|readTermsBlock
+argument_list|(
+name|termsIn
+argument_list|,
+name|fieldInfo
+argument_list|,
+name|termState
+operator|.
+name|wrappedTermState
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
 DECL|method|newTermState
 specifier|public
-name|PrefixCodedTermState
+name|BlockTermState
 name|newTermState
 parameter_list|()
 throws|throws
@@ -581,26 +740,21 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|readTerm
+DECL|method|nextTerm
 specifier|public
 name|void
-name|readTerm
+name|nextTerm
 parameter_list|(
-name|IndexInput
-name|termsIn
-parameter_list|,
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|PrefixCodedTermState
+name|BlockTermState
 name|_termState
-parameter_list|,
-name|boolean
-name|isIndexTerm
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("PR nextTerm");
 name|PulsingTermState
 name|termState
 init|=
@@ -609,12 +763,6 @@ name|PulsingTermState
 operator|)
 name|_termState
 decl_stmt|;
-name|termState
-operator|.
-name|pendingIndexTerm
-operator||=
-name|isIndexTerm
-expr_stmt|;
 comment|// total TF, but in the omitTFAP case its computed based on docFreq.
 name|long
 name|count
@@ -631,6 +779,7 @@ name|termState
 operator|.
 name|totalTermFreq
 decl_stmt|;
+comment|//System.out.println("  count=" + count + " threshold=" + maxPositions);
 if|if
 condition|(
 name|count
@@ -638,6 +787,7 @@ operator|<=
 name|maxPositions
 condition|)
 block|{
+comment|//System.out.println("  inlined");
 comment|// Inlined into terms dict -- just read the byte[] blob in,
 comment|// but don't decode it now (we only decode when a DocsEnum
 comment|// or D&PEnum is pulled):
@@ -645,7 +795,9 @@ name|termState
 operator|.
 name|postingsSize
 operator|=
-name|termsIn
+name|termState
+operator|.
+name|inlinedBytesReader
 operator|.
 name|readVInt
 argument_list|()
@@ -689,7 +841,13 @@ argument_list|)
 index|]
 expr_stmt|;
 block|}
-name|termsIn
+comment|// TODO: sort of silly to copy from one big byte[]
+comment|// (the blob holding all inlined terms' blobs for
+comment|// current term block) into another byte[] (just the
+comment|// blob for this term)...
+name|termState
+operator|.
+name|inlinedBytesReader
 operator|.
 name|readBytes
 argument_list|(
@@ -707,6 +865,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//System.out.println("  not inlined");
 name|termState
 operator|.
 name|postingsSize
@@ -714,6 +873,7 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+comment|// TODO: should we do full copyFrom?  much heavier...?
 name|termState
 operator|.
 name|wrappedTermState
@@ -724,28 +884,33 @@ name|termState
 operator|.
 name|docFreq
 expr_stmt|;
+name|termState
+operator|.
+name|wrappedTermState
+operator|.
+name|totalTermFreq
+operator|=
+name|termState
+operator|.
+name|totalTermFreq
+expr_stmt|;
 name|wrappedPostingsReader
 operator|.
-name|readTerm
+name|nextTerm
 argument_list|(
-name|termsIn
-argument_list|,
 name|fieldInfo
 argument_list|,
 name|termState
 operator|.
 name|wrappedTermState
-argument_list|,
-name|termState
-operator|.
-name|pendingIndexTerm
 argument_list|)
 expr_stmt|;
 name|termState
 operator|.
-name|pendingIndexTerm
-operator|=
-literal|false
+name|wrappedTermState
+operator|.
+name|termCount
+operator|++
 expr_stmt|;
 block|}
 block|}
@@ -761,7 +926,7 @@ parameter_list|(
 name|FieldInfo
 name|field
 parameter_list|,
-name|PrefixCodedTermState
+name|BlockTermState
 name|_termState
 parameter_list|,
 name|Bits
@@ -910,7 +1075,7 @@ parameter_list|(
 name|FieldInfo
 name|field
 parameter_list|,
-name|PrefixCodedTermState
+name|BlockTermState
 name|_termState
 parameter_list|,
 name|Bits

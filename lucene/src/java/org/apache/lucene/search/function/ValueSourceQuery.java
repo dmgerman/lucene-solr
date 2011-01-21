@@ -197,10 +197,6 @@ name|ValueSourceWeight
 extends|extends
 name|Weight
 block|{
-DECL|field|similarity
-name|Similarity
-name|similarity
-decl_stmt|;
 DECL|field|queryNorm
 name|float
 name|queryNorm
@@ -216,17 +212,7 @@ parameter_list|(
 name|IndexSearcher
 name|searcher
 parameter_list|)
-block|{
-name|this
-operator|.
-name|similarity
-operator|=
-name|getSimilarity
-argument_list|(
-name|searcher
-argument_list|)
-expr_stmt|;
-block|}
+block|{     }
 comment|/*(non-Javadoc) @see org.apache.lucene.search.Weight#getQuery() */
 annotation|@
 name|Override
@@ -322,8 +308,6 @@ return|return
 operator|new
 name|ValueSourceScorer
 argument_list|(
-name|similarity
-argument_list|,
 name|context
 argument_list|,
 name|this
@@ -478,9 +462,6 @@ DECL|method|ValueSourceScorer
 specifier|private
 name|ValueSourceScorer
 parameter_list|(
-name|Similarity
-name|similarity
-parameter_list|,
 name|AtomicReaderContext
 name|context
 parameter_list|,
@@ -492,8 +473,6 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|similarity
-argument_list|,
 name|w
 argument_list|)
 expr_stmt|;

@@ -141,6 +141,14 @@ operator|+
 literal|"Please process your documents as Unicode instead."
 argument_list|)
 throw|;
+name|assureMatchVersion
+argument_list|()
+expr_stmt|;
+name|warnDeprecated
+argument_list|(
+literal|"Use StandardTokenizerFactory instead."
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|create
 specifier|public
@@ -151,9 +159,6 @@ name|Reader
 name|in
 parameter_list|)
 block|{
-name|assureMatchVersion
-argument_list|()
-expr_stmt|;
 return|return
 operator|new
 name|RussianLetterTokenizer

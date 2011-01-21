@@ -624,6 +624,23 @@ literal|"*:*"
 argument_list|,
 literal|"sort"
 argument_list|,
+literal|"{!func}add("
+operator|+
+name|i1
+operator|+
+literal|",5)"
+operator|+
+literal|" desc"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
 name|i1
 operator|+
 literal|" asc"

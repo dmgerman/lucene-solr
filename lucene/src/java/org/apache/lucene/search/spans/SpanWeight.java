@@ -180,12 +180,10 @@ name|this
 operator|.
 name|similarity
 operator|=
-name|query
+name|searcher
 operator|.
 name|getSimilarity
-argument_list|(
-name|searcher
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|this
 operator|.

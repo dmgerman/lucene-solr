@@ -2428,7 +2428,7 @@ name|FieldsConsumer
 name|ret
 init|=
 operator|new
-name|PrefixCodedTermsWriter
+name|BlockTermsWriter
 argument_list|(
 name|indexWriter
 argument_list|,
@@ -2591,7 +2591,7 @@ name|FieldsProducer
 name|ret
 init|=
 operator|new
-name|PrefixCodedTermsReader
+name|BlockTermsReader
 argument_list|(
 name|indexReader
 argument_list|,
@@ -2699,7 +2699,7 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-name|PrefixCodedTermsReader
+name|BlockTermsReader
 operator|.
 name|files
 argument_list|(
@@ -2832,6 +2832,19 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|w
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 name|Document
 name|doc
 init|=

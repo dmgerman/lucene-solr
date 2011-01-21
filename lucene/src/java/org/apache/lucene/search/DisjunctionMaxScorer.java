@@ -76,16 +76,16 @@ specifier|private
 name|float
 name|scoreMax
 decl_stmt|;
-comment|/**    * Creates a new instance of DisjunctionMaxScorer    *     * @param tieBreakerMultiplier    *          Multiplier applied to non-maximum-scoring subqueries for a    *          document as they are summed into the result.    * @param similarity    *          -- not used since our definition involves neither coord nor terms    *          directly    * @param subScorers    *          The sub scorers this Scorer should iterate on    * @param numScorers    *          The actual number of scorers to iterate on. Note that the array's    *          length may be larger than the actual number of scorers.    */
+comment|/**    * Creates a new instance of DisjunctionMaxScorer    *     * @param weight    *          The Weight to be used.    * @param tieBreakerMultiplier    *          Multiplier applied to non-maximum-scoring subqueries for a    *          document as they are summed into the result.    * @param subScorers    *          The sub scorers this Scorer should iterate on    * @param numScorers    *          The actual number of scorers to iterate on. Note that the array's    *          length may be larger than the actual number of scorers.    */
 DECL|method|DisjunctionMaxScorer
 specifier|public
 name|DisjunctionMaxScorer
 parameter_list|(
+name|Weight
+name|weight
+parameter_list|,
 name|float
 name|tieBreakerMultiplier
-parameter_list|,
-name|Similarity
-name|similarity
 parameter_list|,
 name|Scorer
 index|[]
@@ -99,7 +99,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|similarity
+name|weight
 argument_list|)
 expr_stmt|;
 name|this

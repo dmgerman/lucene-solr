@@ -450,6 +450,24 @@ operator|=
 name|fp
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"fp="
+operator|+
+name|fp
+operator|+
+literal|" upto="
+operator|+
+name|upto
+return|;
+block|}
 block|}
 annotation|@
 name|Override

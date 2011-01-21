@@ -1284,6 +1284,8 @@ specifier|public
 name|int
 name|docFreq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|int
 name|sum
@@ -1329,6 +1331,8 @@ specifier|public
 name|long
 name|totalTermFreq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|long
 name|sum

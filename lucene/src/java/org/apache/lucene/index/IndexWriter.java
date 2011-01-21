@@ -1879,13 +1879,6 @@ name|infoStream
 operator|=
 name|defaultInfoStream
 expr_stmt|;
-name|maxFieldLength
-operator|=
-name|conf
-operator|.
-name|getMaxFieldLength
-argument_list|()
-expr_stmt|;
 name|termIndexInterval
 operator|=
 name|conf
@@ -2241,13 +2234,6 @@ operator|.
 name|setInfoStream
 argument_list|(
 name|infoStream
-argument_list|)
-expr_stmt|;
-name|docWriter
-operator|.
-name|setMaxFieldLength
-argument_list|(
-name|maxFieldLength
 argument_list|)
 expr_stmt|;
 comment|// Default deleter (for backwards compatibility) is
@@ -3499,12 +3485,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accommodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.    *    * @see MaxFieldLength    */
-DECL|field|maxFieldLength
-specifier|private
-name|int
-name|maxFieldLength
-decl_stmt|;
 comment|/**    * Adds a document to this index.  If the document contains more than    * {@link IndexWriterConfig#setMaxFieldLength(int)} terms for a given field,    * the remainder are discarded.    *    *<p> Note that if an Exception is hit (for example disk full)    * then the index will be consistent, but this document    * may not have been added.  Furthermore, it's possible    * the index will have one segment in non-compound format    * even when using compound files (when a merge has    * partially succeeded).</p>    *    *<p> This method periodically flushes pending documents    * to the Directory (see<a href="#flush">above</a>), and    * also periodically triggers segment merges in the index    * according to the {@link MergePolicy} in use.</p>    *    *<p>Merges temporarily consume space in the    * directory. The amount of space required is up to 1X the    * size of all segments being merged, when no    * readers/searchers are open against the index, and up to    * 2X the size of all segments being merged when    * readers/searchers are open against the index (see    * {@link #optimize()} for details). The sequence of    * primitive merge operations performed is governed by the    * merge policy.    *    *<p>Note that each term in the document can be no longer    * than 16383 characters, otherwise an    * IllegalArgumentException will be thrown.</p>    *    *<p>Note that it's possible to create an invalid Unicode    * string in java if a UTF16 surrogate pair is malformed.    * In this case, the invalid characters are silently    * replaced with the Unicode replacement character    * U+FFFD.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public

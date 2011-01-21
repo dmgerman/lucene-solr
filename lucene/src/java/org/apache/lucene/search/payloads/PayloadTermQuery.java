@@ -513,12 +513,6 @@ name|payloadsSeen
 operator|=
 literal|0
 expr_stmt|;
-name|Similarity
-name|similarity1
-init|=
-name|getSimilarity
-argument_list|()
-decl_stmt|;
 while|while
 condition|(
 name|more
@@ -546,7 +540,7 @@ argument_list|()
 decl_stmt|;
 name|freq
 operator|+=
-name|similarity1
+name|similarity
 operator|.
 name|sloppyFreq
 argument_list|(
@@ -555,7 +549,7 @@ argument_list|)
 expr_stmt|;
 name|processPayload
 argument_list|(
-name|similarity1
+name|similarity
 argument_list|)
 expr_stmt|;
 name|more

@@ -873,9 +873,14 @@ name|groupBy
 argument_list|,
 name|context
 argument_list|,
+name|searcher
+operator|.
+name|weightSort
+argument_list|(
 name|normalizeSort
 argument_list|(
 name|sort
+argument_list|)
 argument_list|)
 argument_list|,
 name|maxGroupToFind
@@ -959,7 +964,12 @@ name|groupBy
 argument_list|,
 name|context
 argument_list|,
+name|searcher
+operator|.
+name|weightSort
+argument_list|(
 name|groupSort
+argument_list|)
 argument_list|,
 name|docsToCollect
 argument_list|,
@@ -982,7 +992,12 @@ name|groupBy
 argument_list|,
 name|context
 argument_list|,
+name|searcher
+operator|.
+name|weightSort
+argument_list|(
 name|groupSort
+argument_list|)
 argument_list|,
 name|docsToCollect
 argument_list|,
@@ -1610,7 +1625,6 @@ name|v
 return|;
 block|}
 DECL|method|newCollector
-specifier|static
 name|TopDocsCollector
 name|newCollector
 parameter_list|(
@@ -1658,7 +1672,12 @@ name|TopFieldCollector
 operator|.
 name|create
 argument_list|(
+name|searcher
+operator|.
+name|weightSort
+argument_list|(
 name|sort
+argument_list|)
 argument_list|,
 name|numHits
 argument_list|,
@@ -2585,7 +2604,7 @@ name|Map
 name|vsContext
 parameter_list|,
 name|Sort
-name|sort
+name|weightedSort
 parameter_list|,
 name|int
 name|nGroups
@@ -2625,7 +2644,7 @@ name|SortField
 index|[]
 name|sortFields
 init|=
-name|sort
+name|weightedSort
 operator|.
 name|getSort
 argument_list|()
@@ -3698,7 +3717,7 @@ name|Map
 name|vsContext
 parameter_list|,
 name|Sort
-name|sort
+name|weightedSort
 parameter_list|,
 name|int
 name|docsPerGroup
@@ -3787,7 +3806,7 @@ name|groupValue
 expr_stmt|;
 if|if
 condition|(
-name|sort
+name|weightedSort
 operator|==
 literal|null
 condition|)
@@ -3813,7 +3832,7 @@ name|TopFieldCollector
 operator|.
 name|create
 argument_list|(
-name|sort
+name|weightedSort
 argument_list|,
 name|docsPerGroup
 argument_list|,
@@ -4094,7 +4113,7 @@ name|Map
 name|vsContext
 parameter_list|,
 name|Sort
-name|sort
+name|weightedSort
 parameter_list|,
 name|int
 name|docsPerGroup
@@ -4116,7 +4135,7 @@ name|groupByVS
 argument_list|,
 name|vsContext
 argument_list|,
-name|sort
+name|weightedSort
 argument_list|,
 name|docsPerGroup
 argument_list|,

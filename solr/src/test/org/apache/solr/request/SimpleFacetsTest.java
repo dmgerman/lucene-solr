@@ -572,6 +572,34 @@ argument_list|,
 literal|"//lst[@name='trait_s']/int[@name='Pig'][.='1']"
 argument_list|)
 expr_stmt|;
+comment|// test excluding main query
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!tag=main}id:43"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.query"
+argument_list|,
+literal|"{!key=foo}id:42"
+argument_list|,
+literal|"facet.query"
+argument_list|,
+literal|"{!ex=main key=bar}id:42"
+comment|// only matches when we exclude main query
+argument_list|)
+argument_list|,
+literal|"//lst[@name='facet_queries']/int[@name='foo'][.='0']"
+argument_list|,
+literal|"//lst[@name='facet_queries']/int[@name='bar'][.='1']"
+argument_list|)
+expr_stmt|;
 name|assertQ
 argument_list|(
 literal|"check counts for applied facet queries using filtering (fq)"

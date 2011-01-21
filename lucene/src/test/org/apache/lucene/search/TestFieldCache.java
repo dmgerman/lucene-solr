@@ -316,6 +316,36 @@ index|[
 name|NUM_DOCS
 index|]
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: setUp"
+argument_list|)
+expr_stmt|;
+block|}
+name|writer
+operator|.
+name|w
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -1017,6 +1047,10 @@ name|MAX_VALUE
 operator|-
 name|i
 operator|)
+operator|+
+literal|" i="
+operator|+
+name|i
 argument_list|,
 name|longs
 index|[

@@ -133,11 +133,11 @@ import|;
 end_import
 
 begin_comment
-comment|// TODO: we pulse based on total TF of the term,
+comment|// TODO: we now inline based on total TF of the term,
 end_comment
 
 begin_comment
-comment|// it might be better to eg pulse by "net bytes used"
+comment|// but it might be better to inline by "net bytes used"
 end_comment
 
 begin_comment
@@ -254,8 +254,9 @@ name|docID
 decl_stmt|;
 block|}
 comment|// TODO: -- lazy init this?  ie, if every single term
-comment|// was pulsed then we never need to use this fallback?
-comment|// Fallback writer for non-pulsed terms:
+comment|// was inlined (eg for a "primary key" field) then we
+comment|// never need to use this fallback?  Fallback writer for
+comment|// non-inlined terms:
 DECL|field|wrappedPostingsWriter
 specifier|final
 name|PostingsWriterBase
@@ -696,16 +697,21 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|field|pendingIsIndexTerm
-specifier|private
-name|boolean
-name|pendingIsIndexTerm
-decl_stmt|;
 DECL|field|buffer
 specifier|private
 specifier|final
 name|RAMOutputStream
 name|buffer
+init|=
+operator|new
+name|RAMOutputStream
+argument_list|()
+decl_stmt|;
+DECL|field|buffer2
+specifier|private
+specifier|final
+name|RAMOutputStream
+name|buffer2
 init|=
 operator|new
 name|RAMOutputStream
@@ -721,14 +727,11 @@ name|finishTerm
 parameter_list|(
 name|TermStats
 name|stats
-parameter_list|,
-name|boolean
-name|isIndexTerm
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PW   finishTerm docCount=" + docCount);
+comment|//System.out.println("PW   finishTerm docCount=" + stats.docFreq);
 assert|assert
 name|pendingCount
 operator|>
@@ -739,10 +742,6 @@ operator|==
 operator|-
 literal|1
 assert|;
-name|pendingIsIndexTerm
-operator||=
-name|isIndexTerm
-expr_stmt|;
 if|if
 condition|(
 name|pendingCount
@@ -756,13 +755,7 @@ operator|.
 name|finishTerm
 argument_list|(
 name|stats
-argument_list|,
-name|pendingIsIndexTerm
 argument_list|)
-expr_stmt|;
-name|pendingIsIndexTerm
-operator|=
-literal|false
 expr_stmt|;
 block|}
 else|else
@@ -1091,7 +1084,7 @@ expr_stmt|;
 block|}
 block|}
 comment|//System.out.println("  bytes=" + buffer.getFilePointer());
-name|termsOut
+name|buffer2
 operator|.
 name|writeVInt
 argument_list|(
@@ -1108,7 +1101,7 @@ name|buffer
 operator|.
 name|writeTo
 argument_list|(
-name|termsOut
+name|buffer2
 argument_list|)
 expr_stmt|;
 name|buffer
@@ -1135,6 +1128,50 @@ block|{
 name|wrappedPostingsWriter
 operator|.
 name|close
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|flushTermsBlock
+specifier|public
+name|void
+name|flushTermsBlock
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|termsOut
+operator|.
+name|writeVInt
+argument_list|(
+operator|(
+name|int
+operator|)
+name|buffer2
+operator|.
+name|getFilePointer
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|buffer2
+operator|.
+name|writeTo
+argument_list|(
+name|termsOut
+argument_list|)
+expr_stmt|;
+name|buffer2
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+comment|// TODO: can we avoid calling this if all terms
+comment|// were inlined...?  Eg for a "primary key" field, the
+comment|// wrapped codec is never invoked...
+name|wrappedPostingsWriter
+operator|.
+name|flushTermsBlock
 argument_list|()
 expr_stmt|;
 block|}

@@ -274,11 +274,6 @@ name|FieldInfos
 name|fieldInfos
 decl_stmt|;
 comment|// unread
-DECL|field|termsOut
-specifier|private
-name|IndexOutput
-name|termsOut
-decl_stmt|;
 DECL|field|policy
 specifier|private
 specifier|final
@@ -306,6 +301,16 @@ name|term
 parameter_list|,
 name|TermStats
 name|stats
+parameter_list|)
+function_decl|;
+DECL|method|newField
+specifier|public
+specifier|abstract
+name|void
+name|newField
+parameter_list|(
+name|FieldInfo
+name|fieldInfo
 parameter_list|)
 function_decl|;
 block|}
@@ -373,7 +378,7 @@ condition|)
 block|{
 name|count
 operator|=
-literal|0
+literal|1
 expr_stmt|;
 return|return
 literal|true
@@ -388,6 +393,22 @@ return|return
 literal|false
 return|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|newField
+specifier|public
+name|void
+name|newField
+parameter_list|(
+name|FieldInfo
+name|fieldInfo
+parameter_list|)
+block|{
+name|count
+operator|=
+name|interval
+expr_stmt|;
 block|}
 block|}
 comment|/** Sets an index term when docFreq>= docFreqThresh, or    *  every interval terms.  This should reduce seek time    *  to high docFreq terms.  */
@@ -440,6 +461,11 @@ name|docFreqThresh
 operator|=
 name|docFreqThresh
 expr_stmt|;
+comment|// First term is first indexed term:
+name|count
+operator|=
+name|interval
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -470,7 +496,7 @@ condition|)
 block|{
 name|count
 operator|=
-literal|0
+literal|1
 expr_stmt|;
 return|return
 literal|true
@@ -485,6 +511,22 @@ return|return
 literal|false
 return|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|newField
+specifier|public
+name|void
+name|newField
+parameter_list|(
+name|FieldInfo
+name|fieldInfo
+parameter_list|)
+block|{
+name|count
+operator|=
+name|interval
+expr_stmt|;
 block|}
 block|}
 comment|// TODO: it'd be nice to let the FST builder prune based
@@ -613,24 +655,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|setTermsOutput
-specifier|public
-name|void
-name|setTermsOutput
-parameter_list|(
-name|IndexOutput
-name|termsOut
-parameter_list|)
-block|{
-name|this
-operator|.
-name|termsOut
-operator|=
-name|termsOut
-expr_stmt|;
-block|}
-annotation|@
-name|Override
 DECL|method|addField
 specifier|public
 name|FieldWriter
@@ -638,11 +662,21 @@ name|addField
 parameter_list|(
 name|FieldInfo
 name|field
+parameter_list|,
+name|long
+name|termsFilePointer
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("VGW: field=" + field.name);
+comment|////System.out.println("VGW: field=" + field.name);
+name|policy
+operator|.
+name|newField
+argument_list|(
+name|field
+argument_list|)
+expr_stmt|;
 name|FSTFieldWriter
 name|writer
 init|=
@@ -650,6 +684,8 @@ operator|new
 name|FSTFieldWriter
 argument_list|(
 name|field
+argument_list|,
+name|termsFilePointer
 argument_list|)
 decl_stmt|;
 name|fields
@@ -840,6 +876,9 @@ name|FSTFieldWriter
 parameter_list|(
 name|FieldInfo
 name|fieldInfo
+parameter_list|,
+name|long
+name|termsFilePointer
 parameter_list|)
 throws|throws
 name|IOException
@@ -889,7 +928,7 @@ operator|.
 name|getFilePointer
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("VGW: field=" + fieldInfo.name);
+comment|////System.out.println("VGW: field=" + fieldInfo.name);
 comment|// Always put empty string in
 name|fstBuilder
 operator|.
@@ -903,10 +942,7 @@ name|fstOutputs
 operator|.
 name|get
 argument_list|(
-name|termsOut
-operator|.
-name|getFilePointer
-argument_list|()
+name|termsFilePointer
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -927,6 +963,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("VGW: index term=" + text.utf8ToString());
+comment|// NOTE: we must force the first term per field to be
+comment|// indexed, in case policy doesn't:
 if|if
 condition|(
 name|policy
@@ -945,7 +984,44 @@ name|first
 operator|=
 literal|false
 expr_stmt|;
-comment|//System.out.println("VGW: index term=" + text.utf8ToString() + " fp=" + termsOut.getFilePointer());
+comment|//System.out.println("  YES");
+return|return
+literal|true
+return|;
+block|}
+else|else
+block|{
+name|lastTerm
+operator|.
+name|copy
+argument_list|(
+name|text
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+block|}
+annotation|@
+name|Override
+DECL|method|add
+specifier|public
+name|void
+name|add
+parameter_list|(
+name|BytesRef
+name|text
+parameter_list|,
+name|TermStats
+name|stats
+parameter_list|,
+name|long
+name|termsFilePointer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 specifier|final
 name|int
 name|lengthSave
@@ -977,10 +1053,7 @@ name|fstOutputs
 operator|.
 name|get
 argument_list|(
-name|termsOut
-operator|.
-name|getFilePointer
-argument_list|()
+name|termsFilePointer
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1001,24 +1074,6 @@ argument_list|(
 name|text
 argument_list|)
 expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-else|else
-block|{
-comment|//System.out.println("VGW: not index term=" + text.utf8ToString() + " fp=" + termsOut.getFilePointer());
-name|lastTerm
-operator|.
-name|copy
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -1026,7 +1081,10 @@ DECL|method|finish
 specifier|public
 name|void
 name|finish
-parameter_list|()
+parameter_list|(
+name|long
+name|termsFilePointer
+parameter_list|)
 throws|throws
 name|IOException
 block|{

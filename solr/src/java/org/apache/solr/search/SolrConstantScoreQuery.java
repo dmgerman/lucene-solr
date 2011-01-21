@@ -225,10 +225,10 @@ name|this
 operator|.
 name|similarity
 operator|=
-name|getSimilarity
-argument_list|(
 name|searcher
-argument_list|)
+operator|.
+name|getSimilarity
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -353,8 +353,6 @@ return|return
 operator|new
 name|ConstantScorer
 argument_list|(
-name|similarity
-argument_list|,
 name|context
 argument_list|,
 name|this
@@ -383,8 +381,6 @@ init|=
 operator|new
 name|ConstantScorer
 argument_list|(
-name|similarity
-argument_list|,
 name|context
 argument_list|,
 name|this
@@ -536,9 +532,6 @@ DECL|method|ConstantScorer
 specifier|public
 name|ConstantScorer
 parameter_list|(
-name|Similarity
-name|similarity
-parameter_list|,
 name|AtomicReaderContext
 name|context
 parameter_list|,
@@ -550,7 +543,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|similarity
+name|w
 argument_list|)
 expr_stmt|;
 name|theScore
