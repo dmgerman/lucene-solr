@@ -301,6 +301,9 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|// NOTE: we track per-segment version as a String with the "X.Y" format, e.g.
+comment|// "4.0", "3.1", "3.0". Therefore when we change this constant, we should keep
+comment|// the format.
 DECL|field|LUCENE_MAIN_VERSION
 specifier|public
 specifier|static

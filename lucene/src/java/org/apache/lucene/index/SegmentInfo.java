@@ -66,6 +66,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|codecs
@@ -342,6 +356,16 @@ name|String
 argument_list|>
 name|diagnostics
 decl_stmt|;
+comment|// Tracks the Lucene version this segment was created with, since 3.1. Null
+comment|// indicates an older than 3.0 index, and it's used to detect a too old index.
+comment|// The format expected is "x.y" - "2.x" for pre-3.0 indexes (or null), and
+comment|// specific versions afterwards ("3.0", "3.1" etc.).
+comment|// see Constants.LUCENE_MAIN_VERSION.
+DECL|field|version
+specifier|private
+name|String
+name|version
+decl_stmt|;
 DECL|method|SegmentInfo
 specifier|public
 name|SegmentInfo
@@ -425,6 +449,12 @@ name|delCount
 operator|=
 literal|0
 expr_stmt|;
+name|version
+operator|=
+name|Constants
+operator|.
+name|LUCENE_MAIN_VERSION
+expr_stmt|;
 block|}
 comment|/**    * Copy everything from src SegmentInfo into our instance.    */
 DECL|method|reset
@@ -437,6 +467,12 @@ parameter_list|)
 block|{
 name|clearFiles
 argument_list|()
+expr_stmt|;
+name|version
+operator|=
+name|src
+operator|.
+name|version
 expr_stmt|;
 name|name
 operator|=
@@ -616,6 +652,23 @@ name|dir
 operator|=
 name|dir
 expr_stmt|;
+if|if
+condition|(
+name|format
+operator|<=
+name|DefaultSegmentInfosWriter
+operator|.
+name|FORMAT_3_1
+condition|)
+block|{
+name|version
+operator|=
+name|input
+operator|.
+name|readString
+argument_list|()
+expr_stmt|;
+block|}
 name|name
 operator|=
 name|input
@@ -1303,6 +1356,12 @@ name|hasVectors
 operator|=
 name|hasVectors
 expr_stmt|;
+name|si
+operator|.
+name|version
+operator|=
+name|version
+expr_stmt|;
 return|return
 name|si
 return|;
@@ -1737,6 +1796,14 @@ literal|" segment="
 operator|+
 name|name
 assert|;
+comment|// Write the Lucene version that created this segment, since 3.1
+name|output
+operator|.
+name|writeString
+argument_list|(
+name|version
+argument_list|)
+expr_stmt|;
 name|output
 operator|.
 name|writeString
@@ -2533,7 +2600,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/** Used for debugging.  Format may suddenly change.    *     *<p>Current format looks like    *<code>_a:c45/4->_1</code>, which means the segment's    *  name is<code>_a</code>; it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions); it's using the    *  shared doc stores named<code>_1</code> (this part is    *  left off if doc stores are private).</p>    */
+comment|/** Used for debugging.  Format may suddenly change.    *     *<p>Current format looks like    *<code>_a(3.1):c45/4->_1</code>, which means the segment's    *  name is<code>_a</code>; it was created with Lucene 3.1 (or    *  '?' if it's unkown); it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions); it's using the    *  shared doc stores named<code>_1</code> (this part is    *  left off if doc stores are private).</p>    */
 DECL|method|toString
 specifier|public
 name|String
@@ -2558,6 +2625,27 @@ operator|.
 name|append
 argument_list|(
 name|name
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|'('
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|version
+operator|==
+literal|null
+condition|?
+literal|"?"
+else|:
+name|version
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|')'
 argument_list|)
 operator|.
 name|append
@@ -2789,6 +2877,34 @@ name|name
 operator|.
 name|hashCode
 argument_list|()
+return|;
+block|}
+comment|/**    * Used by DefaultSegmentInfosReader to upgrade a 3.0 segment to record its    * version is "3.0". This method can be removed when we're not required to    * support 3x indexes anymore, e.g. in 5.0.    *<p>    *<b>NOTE:</b> this method is used for internal purposes only - you should    * not modify the version of a SegmentInfo, or it may result in unexpected    * exceptions thrown when you attempt to open the index.    *     * @lucene.internal    */
+DECL|method|setVersion
+specifier|public
+name|void
+name|setVersion
+parameter_list|(
+name|String
+name|version
+parameter_list|)
+block|{
+name|this
+operator|.
+name|version
+operator|=
+name|version
+expr_stmt|;
+block|}
+comment|/** Returns the version of the code which wrote the segment. */
+DECL|method|getVersion
+specifier|public
+name|String
+name|getVersion
+parameter_list|()
+block|{
+return|return
+name|version
 return|;
 block|}
 block|}

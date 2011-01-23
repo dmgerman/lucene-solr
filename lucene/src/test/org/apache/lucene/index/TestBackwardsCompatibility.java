@@ -822,41 +822,8 @@ operator|new
 name|MockAnalyzer
 argument_list|()
 argument_list|)
-operator|.
-name|setMergeScheduler
-argument_list|(
-operator|new
-name|SerialMergeScheduler
-argument_list|()
-argument_list|)
-comment|// no threads!
 argument_list|)
 expr_stmt|;
-comment|// TODO: Make IndexWriter fail on open!
-if|if
-condition|(
-name|random
-operator|.
-name|nextBoolean
-argument_list|()
-condition|)
-block|{
-name|writer
-operator|.
-name|optimize
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
-name|reader
-operator|=
-name|writer
-operator|.
-name|getReader
-argument_list|()
-expr_stmt|;
-block|}
 name|fail
 argument_list|(
 literal|"IndexWriter creation should not pass for "
@@ -902,21 +869,11 @@ block|}
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|reader
-operator|!=
-literal|null
-condition|)
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|reader
-operator|=
-literal|null
-expr_stmt|;
+comment|// we should fail to open IW, and so it should be null when we get here.
+comment|// However, if the test fails (i.e., IW did not fail on open), we need
+comment|// to close IW. However, if merges are run, IW may throw
+comment|// IndexFormatTooOldException, and we don't want to mask the fail()
+comment|// above, so close without waiting for merges.
 if|if
 condition|(
 name|writer
@@ -924,23 +881,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-try|try
-block|{
-name|writer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IndexFormatTooOldException
-name|e
-parameter_list|)
-block|{
-comment|// OK -- since IW gives merge scheduler a chance
-comment|// to merge at close, it's possible and fine to
-comment|// hit this exc here
 name|writer
 operator|.
 name|close
@@ -948,7 +888,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|writer
 operator|=

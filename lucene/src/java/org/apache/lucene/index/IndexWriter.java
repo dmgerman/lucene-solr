@@ -2034,11 +2034,8 @@ name|success
 init|=
 literal|false
 decl_stmt|;
-comment|// TODO: we should check whether this index is too old,
-comment|// and throw an IndexFormatTooOldExc up front, here,
-comment|// instead of later when merge, applyDeletes, getReader
-comment|// is attempted.  I think to do this we should store the
-comment|// oldest segment's version in segments_N.
+comment|// If index is too old, reading the segments will throw
+comment|// IndexFormatTooOldException.
 name|segmentInfos
 operator|=
 operator|new
@@ -2919,6 +2916,8 @@ literal|null
 return|;
 block|}
 comment|/**    * Commits all changes to an index and closes all    * associated files.  Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit()} for    * caveats about write caching done by some IO devices.    *    *<p> If an Exception is hit during close, eg due to disk    * full or some other reason, then both the on-disk index    * and the internal state of the IndexWriter instance will    * be consistent.  However, the close will not be complete    * even though part of it (flushing buffered documents)    * may have succeeded, so the write lock will still be    * held.</p>    *     *<p> If you can correct the underlying cause (eg free up    * some disk space) then you can call close() again.    * Failing that, if you want to force the write lock to be    * released (dangerous, because you may then lose buffered    * docs in the IndexWriter instance) then you can do    * something like this:</p>    *    *<pre>    * try {    *   writer.close();    * } finally {    *   if (IndexWriter.isLocked(directory)) {    *     IndexWriter.unlock(directory);    *   }    * }    *</pre>    *    * after which, you must be certain not to use the writer    * instance anymore.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer, again.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
