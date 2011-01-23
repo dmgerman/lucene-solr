@@ -429,6 +429,12 @@ literal|1
 expr_stmt|;
 name|this
 operator|.
+name|docStoreSegment
+operator|=
+name|name
+expr_stmt|;
+name|this
+operator|.
 name|hasProx
 operator|=
 name|hasProx
@@ -503,6 +509,12 @@ operator|=
 name|src
 operator|.
 name|docStoreOffset
+expr_stmt|;
+name|docStoreSegment
+operator|=
+name|src
+operator|.
+name|docStoreSegment
 expr_stmt|;
 name|docStoreIsCompoundFile
 operator|=
