@@ -99,6 +99,13 @@ name|spans
 operator|.
 name|end
 argument_list|()
+operator|:
+literal|"start equals end: "
+operator|+
+name|spans
+operator|.
+name|start
+argument_list|()
 assert|;
 if|if
 condition|(

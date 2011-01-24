@@ -2030,6 +2030,22 @@ argument_list|)
 operator|/
 name|norm
 expr_stmt|;
+name|message
+argument_list|(
+literal|"seg "
+operator|+
+name|info
+operator|.
+name|name
+operator|+
+literal|" level="
+operator|+
+name|levels
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
 block|}
 specifier|final
 name|float

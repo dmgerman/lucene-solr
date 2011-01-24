@@ -78,7 +78,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|RandomIndexWriter
+name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -92,7 +94,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowMultiReaderWrapper
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -165,6 +167,20 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ReaderUtil
 import|;
 end_import
 
@@ -269,6 +285,12 @@ name|document
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
+name|int
+name|number
+init|=
+literal|10
+decl_stmt|;
 name|IndexReader
 name|reader
 init|=
@@ -282,6 +304,33 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|AtomicReaderContext
+index|[]
+name|leaves
+init|=
+name|ReaderUtil
+operator|.
+name|leaves
+argument_list|(
+name|reader
+operator|.
+name|getTopReaderContext
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|int
+name|subIndex
+init|=
+name|ReaderUtil
+operator|.
+name|subIndex
+argument_list|(
+name|number
+argument_list|,
+name|leaves
+argument_list|)
+decl_stmt|;
+comment|// find the reader with this document in it
 name|SpanTermQuery
 name|query
 init|=
@@ -297,7 +346,7 @@ name|English
 operator|.
 name|intToEnglish
 argument_list|(
-literal|10
+name|number
 argument_list|)
 operator|.
 name|trim
@@ -321,11 +370,10 @@ name|filter
 operator|.
 name|bitSpans
 argument_list|(
-operator|new
-name|SlowMultiReaderWrapper
-argument_list|(
-name|reader
-argument_list|)
+name|leaves
+index|[
+name|subIndex
+index|]
 argument_list|)
 decl_stmt|;
 name|DocIdSet
@@ -351,7 +399,7 @@ literal|"docIdSet doesn't contain docId 10"
 argument_list|,
 name|docIdSet
 argument_list|,
-literal|10
+name|number
 argument_list|)
 expr_stmt|;
 name|List

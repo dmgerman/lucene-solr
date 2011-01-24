@@ -970,11 +970,11 @@ argument_list|)
 decl_stmt|;
 name|out
 operator|.
-name|setSimilarity
+name|setSimilarityProvider
 argument_list|(
 name|s
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
 argument_list|)
 expr_stmt|;

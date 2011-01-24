@@ -142,7 +142,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Similarity
+name|IndexSearcher
 import|;
 end_import
 
@@ -302,16 +302,17 @@ name|getOpenMode
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// we don't need to assert this, it should be unspecified
 name|assertTrue
 argument_list|(
-name|Similarity
+name|IndexSearcher
 operator|.
-name|getDefault
+name|getDefaultSimilarityProvider
 argument_list|()
 operator|==
 name|conf
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -536,7 +537,7 @@ name|getters
 operator|.
 name|add
 argument_list|(
-literal|"getSimilarity"
+literal|"getSimilarityProvider"
 argument_list|)
 expr_stmt|;
 name|getters
@@ -1213,23 +1214,24 @@ name|getClass
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Test Similarity
+comment|// Test Similarity:
+comment|// we shouldnt assert what the default is, just that its not null.
 name|assertTrue
 argument_list|(
-name|Similarity
+name|IndexSearcher
 operator|.
-name|getDefault
+name|getDefaultSimilarityProvider
 argument_list|()
 operator|==
 name|conf
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
 argument_list|)
 expr_stmt|;
 name|conf
 operator|.
-name|setSimilarity
+name|setSimilarityProvider
 argument_list|(
 operator|new
 name|MySimilarity
@@ -1244,7 +1246,7 @@ name|class
 argument_list|,
 name|conf
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
 operator|.
 name|getClass
@@ -1253,21 +1255,21 @@ argument_list|)
 expr_stmt|;
 name|conf
 operator|.
-name|setSimilarity
+name|setSimilarityProvider
 argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|Similarity
+name|IndexSearcher
 operator|.
-name|getDefault
+name|getDefaultSimilarityProvider
 argument_list|()
 operator|==
 name|conf
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
 argument_list|)
 expr_stmt|;

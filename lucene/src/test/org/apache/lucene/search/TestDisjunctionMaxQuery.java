@@ -312,7 +312,7 @@ block|}
 block|}
 DECL|field|sim
 specifier|public
-name|Similarity
+name|SimilarityProvider
 name|sim
 init|=
 operator|new
@@ -373,7 +373,7 @@ name|MockAnalyzer
 argument_list|()
 argument_list|)
 operator|.
-name|setSimilarity
+name|setSimilarityProvider
 argument_list|(
 name|sim
 argument_list|)
@@ -832,7 +832,7 @@ argument_list|)
 expr_stmt|;
 name|s
 operator|.
-name|setSimilarity
+name|setSimilarityProvider
 argument_list|(
 name|sim
 argument_list|)

@@ -150,7 +150,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Similarity
+name|SimilarityProvider
 import|;
 end_import
 
@@ -1616,10 +1616,7 @@ argument_list|,
 literal|false
 argument_list|)
 argument_list|,
-name|Similarity
-operator|.
-name|getDefault
-argument_list|()
+literal|null
 argument_list|,
 name|doc
 argument_list|)
@@ -1638,7 +1635,7 @@ parameter_list|,
 name|Analyzer
 name|analyzer
 parameter_list|,
-name|Similarity
+name|SimilarityProvider
 name|similarity
 parameter_list|,
 name|Document
@@ -1663,7 +1660,7 @@ argument_list|,
 name|analyzer
 argument_list|)
 operator|.
-name|setSimilarity
+name|setSimilarityProvider
 argument_list|(
 name|similarity
 argument_list|)

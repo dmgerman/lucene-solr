@@ -211,8 +211,13 @@ name|sim
 init|=
 name|searcher
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|field
+argument_list|)
 decl_stmt|;
 comment|// todo: we need docFreq that takes a BytesRef
 name|String

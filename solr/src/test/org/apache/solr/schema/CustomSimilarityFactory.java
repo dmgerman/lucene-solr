@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Similarity
+name|SimilarityProvider
 import|;
 end_import
 
@@ -38,10 +38,10 @@ name|CustomSimilarityFactory
 extends|extends
 name|SimilarityFactory
 block|{
-DECL|method|getSimilarity
+DECL|method|getSimilarityProvider
 specifier|public
-name|Similarity
-name|getSimilarity
+name|SimilarityProvider
+name|getSimilarityProvider
 parameter_list|()
 block|{
 return|return

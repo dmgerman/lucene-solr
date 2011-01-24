@@ -910,7 +910,18 @@ name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
+comment|//System.out.println("  dF=" + termState.docFreq);
 comment|//System.out.println("  freqFP=" + termState.freqOffset);
+assert|assert
+name|termState
+operator|.
+name|freqOffset
+operator|<
+name|freqIn
+operator|.
+name|length
+argument_list|()
+assert|;
 if|if
 condition|(
 name|termState
@@ -931,7 +942,21 @@ operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("  skipOffset=" + termState.skipOffset);
+comment|//System.out.println("  skipOffset=" + termState.skipOffset + " vs freqIn.length=" + freqIn.length());
+assert|assert
+name|termState
+operator|.
+name|freqOffset
+operator|+
+name|termState
+operator|.
+name|skipOffset
+operator|<
+name|freqIn
+operator|.
+name|length
+argument_list|()
+assert|;
 block|}
 else|else
 block|{
@@ -1773,9 +1798,9 @@ comment|// TODO: jump right to next() if target is< X away
 comment|// from where we are now?
 if|if
 condition|(
-name|skipOffset
-operator|>
-literal|0
+name|limit
+operator|>=
+name|skipInterval
 condition|)
 block|{
 comment|// There are enough docs in the posting to have
@@ -2281,9 +2306,9 @@ comment|// TODO: jump right to next() if target is< X away
 comment|// from where we are now?
 if|if
 condition|(
-name|skipOffset
-operator|>
-literal|0
+name|limit
+operator|>=
+name|skipInterval
 condition|)
 block|{
 comment|// There are enough docs in the posting to have
@@ -2801,7 +2826,7 @@ name|termState
 operator|.
 name|skipOffset
 expr_stmt|;
-comment|//System.out.println("StandardR.D&PE reset seg=" + segment + " limit=" + limit + " freqFP=" + freqOffset + " proxFP=" + proxOffset);
+comment|//System.out.println("StandardR.D&PE reset seg=" + segment + " limit=" + limit + " freqFP=" + freqOffset + " proxFP=" + proxOffset + " this=" + this);
 return|return
 name|this
 return|;
@@ -2952,13 +2977,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("StandardR.D&PE advance seg=" + segment + " target=" + target + " this=" + this);
 comment|// TODO: jump right to next() if target is< X away
 comment|// from where we are now?
 if|if
 condition|(
-name|skipOffset
-operator|>
-literal|0
+name|limit
+operator|>=
+name|skipInterval
 condition|)
 block|{
 comment|// There are enough docs in the posting to have
@@ -2999,6 +3025,7 @@ block|{
 comment|// This is the first time this posting has
 comment|// skipped, since reset() was called, so now we
 comment|// load the skip data for this posting
+comment|//System.out.println("  init skipper freqOffset=" + freqOffset + " skipOffset=" + skipOffset + " vs len=" + freqIn.length());
 name|skipper
 operator|.
 name|init

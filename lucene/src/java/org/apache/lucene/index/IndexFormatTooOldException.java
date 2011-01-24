@@ -35,6 +35,45 @@ parameter_list|(
 name|String
 name|filename
 parameter_list|,
+name|String
+name|version
+parameter_list|)
+block|{
+name|super
+argument_list|(
+literal|"Format version is not supported"
+operator|+
+operator|(
+name|filename
+operator|!=
+literal|null
+condition|?
+operator|(
+literal|" in file '"
+operator|+
+name|filename
+operator|+
+literal|"'"
+operator|)
+else|:
+literal|""
+operator|)
+operator|+
+literal|": "
+operator|+
+name|version
+operator|+
+literal|". This version of Lucene only supports indexes created with release 3.0 and later."
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|IndexFormatTooOldException
+specifier|public
+name|IndexFormatTooOldException
+parameter_list|(
+name|String
+name|filename
+parameter_list|,
 name|int
 name|version
 parameter_list|,

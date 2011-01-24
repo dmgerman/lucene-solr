@@ -320,8 +320,16 @@ name|similarity
 operator|=
 name|searcher
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|term
+operator|.
+name|field
+argument_list|()
+argument_list|)
 expr_stmt|;
 if|if
 condition|(

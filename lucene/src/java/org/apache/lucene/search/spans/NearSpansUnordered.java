@@ -29,6 +29,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -584,8 +586,8 @@ parameter_list|(
 name|SpanNearQuery
 name|query
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -664,7 +666,7 @@ index|]
 operator|.
 name|getSpans
 argument_list|(
-name|reader
+name|context
 argument_list|)
 argument_list|,
 name|i

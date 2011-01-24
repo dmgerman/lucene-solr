@@ -182,8 +182,16 @@ name|similarity
 operator|=
 name|searcher
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|query
+operator|.
+name|getField
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -332,8 +340,6 @@ operator|.
 name|getSpans
 argument_list|(
 name|context
-operator|.
-name|reader
 argument_list|)
 argument_list|,
 name|this

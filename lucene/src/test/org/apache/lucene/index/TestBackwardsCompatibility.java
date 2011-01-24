@@ -256,6 +256,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|DefaultSimilarity
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|DocIdSetIterator
 import|;
 end_import
@@ -326,7 +340,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Similarity
+name|SimilarityProvider
 import|;
 end_import
 
@@ -822,41 +836,8 @@ operator|new
 name|MockAnalyzer
 argument_list|()
 argument_list|)
-operator|.
-name|setMergeScheduler
-argument_list|(
-operator|new
-name|SerialMergeScheduler
-argument_list|()
-argument_list|)
-comment|// no threads!
 argument_list|)
 expr_stmt|;
-comment|// TODO: Make IndexWriter fail on open!
-if|if
-condition|(
-name|random
-operator|.
-name|nextBoolean
-argument_list|()
-condition|)
-block|{
-name|writer
-operator|.
-name|optimize
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
-name|reader
-operator|=
-name|writer
-operator|.
-name|getReader
-argument_list|()
-expr_stmt|;
-block|}
 name|fail
 argument_list|(
 literal|"IndexWriter creation should not pass for "
@@ -902,21 +883,11 @@ block|}
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|reader
-operator|!=
-literal|null
-condition|)
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|reader
-operator|=
-literal|null
-expr_stmt|;
+comment|// we should fail to open IW, and so it should be null when we get here.
+comment|// However, if the test fails (i.e., IW did not fail on open), we need
+comment|// to close IW. However, if merges are run, IW may throw
+comment|// IndexFormatTooOldException, and we don't want to mask the fail()
+comment|// above, so close without waiting for merges.
 if|if
 condition|(
 name|writer
@@ -924,23 +895,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-try|try
-block|{
-name|writer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IndexFormatTooOldException
-name|e
-parameter_list|)
-block|{
-comment|// OK -- since IW gives merge scheduler a chance
-comment|// to merge at close, it's possible and fine to
-comment|// hit this exc here
 name|writer
 operator|.
 name|close
@@ -948,7 +902,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|writer
 operator|=
@@ -2555,10 +2508,15 @@ name|doc
 argument_list|,
 literal|"content"
 argument_list|,
-name|Similarity
+name|searcher
 operator|.
-name|getDefault
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|"content"
+argument_list|)
 operator|.
 name|encodeNormValue
 argument_list|(
@@ -2968,10 +2926,15 @@ literal|22
 argument_list|,
 literal|"content"
 argument_list|,
-name|Similarity
+name|searcher
 operator|.
-name|getDefault
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|"content"
+argument_list|)
 operator|.
 name|encodeNormValue
 argument_list|(
@@ -3439,10 +3402,15 @@ literal|21
 argument_list|,
 literal|"content"
 argument_list|,
-name|Similarity
+name|conf
 operator|.
-name|getDefault
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|"content"
+argument_list|)
 operator|.
 name|encodeNormValue
 argument_list|(
@@ -3628,6 +3596,13 @@ name|delCount
 argument_list|)
 expr_stmt|;
 comment|// Set one norm so we get a .s0 file:
+name|SimilarityProvider
+name|sim
+init|=
+operator|new
+name|DefaultSimilarity
+argument_list|()
+decl_stmt|;
 name|reader
 operator|.
 name|setNorm
@@ -3636,10 +3611,12 @@ literal|21
 argument_list|,
 literal|"content"
 argument_list|,
-name|Similarity
+name|sim
 operator|.
-name|getDefault
-argument_list|()
+name|get
+argument_list|(
+literal|"content"
+argument_list|)
 operator|.
 name|encodeNormValue
 argument_list|(

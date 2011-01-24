@@ -78,7 +78,7 @@ argument_list|()
 expr_stmt|;
 name|searcher
 operator|.
-name|setSimilarity
+name|setSimilarityProvider
 argument_list|(
 name|createQnorm1Similarity
 argument_list|()

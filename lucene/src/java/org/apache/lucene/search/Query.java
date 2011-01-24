@@ -207,7 +207,7 @@ name|norm
 init|=
 name|searcher
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
 operator|.
 name|queryNorm

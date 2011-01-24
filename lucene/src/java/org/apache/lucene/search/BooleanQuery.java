@@ -233,7 +233,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/** Constructs an empty boolean query.    *    * {@link Similarity#coord(int,int)} may be disabled in scoring, as    * appropriate. For example, this score factor does not make sense for most    * automatically generated queries, like {@link WildcardQuery} and {@link    * FuzzyQuery}.    *    * @param disableCoord disables {@link Similarity#coord(int,int)} in scoring.    */
+comment|/** Constructs an empty boolean query.    *    * {@link SimilarityProvider#coord(int,int)} may be disabled in scoring, as    * appropriate. For example, this score factor does not make sense for most    * automatically generated queries, like {@link WildcardQuery} and {@link    * FuzzyQuery}.    *    * @param disableCoord disables {@link SimilarityProvider#coord(int,int)} in scoring.    */
 DECL|method|BooleanQuery
 specifier|public
 name|BooleanQuery
@@ -249,7 +249,7 @@ operator|=
 name|disableCoord
 expr_stmt|;
 block|}
-comment|/** Returns true iff {@link Similarity#coord(int,int)} is disabled in    * scoring for this query instance.    * @see #BooleanQuery(boolean)    */
+comment|/** Returns true iff {@link SimilarityProvider#coord(int,int)} is disabled in    * scoring for this query instance.    * @see #BooleanQuery(boolean)    */
 DECL|method|isCoordDisabled
 specifier|public
 name|boolean
@@ -420,10 +420,10 @@ extends|extends
 name|Weight
 block|{
 comment|/** The Similarity implementation. */
-DECL|field|similarity
+DECL|field|similarityProvider
 specifier|protected
-name|Similarity
-name|similarity
+name|SimilarityProvider
+name|similarityProvider
 decl_stmt|;
 DECL|field|weights
 specifier|protected
@@ -460,11 +460,11 @@ name|IOException
 block|{
 name|this
 operator|.
-name|similarity
+name|similarityProvider
 operator|=
 name|searcher
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
 expr_stmt|;
 name|this
@@ -663,7 +663,7 @@ name|maxOverlap
 parameter_list|)
 block|{
 return|return
-name|similarity
+name|similarityProvider
 operator|.
 name|coord
 argument_list|(

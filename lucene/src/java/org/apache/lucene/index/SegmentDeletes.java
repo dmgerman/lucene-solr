@@ -673,6 +673,9 @@ name|int
 name|docIDUpto
 parameter_list|)
 block|{
+name|Integer
+name|current
+init|=
 name|queries
 operator|.
 name|put
@@ -681,7 +684,15 @@ name|query
 argument_list|,
 name|docIDUpto
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+comment|// increment bytes used only if the query wasn't added so far.
+if|if
+condition|(
+name|current
+operator|==
+literal|null
+condition|)
+block|{
 name|bytesUsed
 operator|.
 name|addAndGet
@@ -689,6 +700,7 @@ argument_list|(
 name|BYTES_PER_DEL_QUERY
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|addDocID
 specifier|public

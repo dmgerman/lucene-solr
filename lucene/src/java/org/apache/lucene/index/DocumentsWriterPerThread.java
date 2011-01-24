@@ -144,7 +144,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Similarity
+name|SimilarityProvider
 import|;
 end_import
 
@@ -339,9 +339,9 @@ DECL|field|infoStream
 name|PrintStream
 name|infoStream
 decl_stmt|;
-DECL|field|similarity
-name|Similarity
-name|similarity
+DECL|field|similarityProvider
+name|SimilarityProvider
+name|similarityProvider
 decl_stmt|;
 DECL|field|docID
 name|int
@@ -607,7 +607,7 @@ name|this
 operator|.
 name|docState
 operator|.
-name|similarity
+name|similarityProvider
 operator|=
 name|parent
 operator|.
@@ -616,7 +616,7 @@ operator|.
 name|getConfig
 argument_list|()
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
 expr_stmt|;
 name|consumer

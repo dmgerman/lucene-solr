@@ -102,6 +102,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|SimilarityProvider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -214,7 +228,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-name|Similarity
+name|SimilarityProvider
 name|s
 init|=
 literal|null
@@ -259,7 +273,7 @@ argument_list|)
 operator|.
 name|asSubclass
 argument_list|(
-name|Similarity
+name|SimilarityProvider
 operator|.
 name|class
 argument_list|)
@@ -415,7 +429,7 @@ name|dir
 decl_stmt|;
 DECL|field|sim
 specifier|private
-name|Similarity
+name|SimilarityProvider
 name|sim
 decl_stmt|;
 comment|/**    * Constructor for code that wishes to use this class programmatically    * If Similarity is null, kill the field norms.    *    * @param d the Directory to modify    * @param s the Similarity to use (can be null)    */
@@ -426,7 +440,7 @@ parameter_list|(
 name|Directory
 name|d
 parameter_list|,
-name|Similarity
+name|SimilarityProvider
 name|s
 parameter_list|)
 block|{
@@ -457,6 +471,16 @@ init|=
 name|StringHelper
 operator|.
 name|intern
+argument_list|(
+name|field
+argument_list|)
+decl_stmt|;
+name|Similarity
+name|fieldSim
+init|=
+name|sim
+operator|.
+name|get
 argument_list|(
 name|field
 argument_list|)
@@ -704,11 +728,11 @@ name|d
 argument_list|,
 name|fieldName
 argument_list|,
-name|sim
+name|fieldSim
 operator|.
 name|encodeNormValue
 argument_list|(
-name|sim
+name|fieldSim
 operator|.
 name|computeNorm
 argument_list|(
