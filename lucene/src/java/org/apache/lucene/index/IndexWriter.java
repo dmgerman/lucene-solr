@@ -3081,11 +3081,15 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+block|{
 name|message
 argument_list|(
-literal|"now flush at close"
+literal|"now flush at close waitForMerges="
+operator|+
+name|waitForMerges
 argument_list|)
 expr_stmt|;
+block|}
 name|docWriter
 operator|.
 name|close
@@ -5675,6 +5679,19 @@ name|void
 name|waitForMerges
 parameter_list|()
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"waitForMerges"
+argument_list|)
+expr_stmt|;
+block|}
 while|while
 condition|(
 name|pendingMerges
@@ -5705,6 +5722,19 @@ operator|.
 name|size
 argument_list|()
 assert|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"waitForMerges done"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Called whenever the SegmentInfos has been updated and    * the index files referenced exist (correctly) in the    * index directory.    */
 DECL|method|checkpoint
