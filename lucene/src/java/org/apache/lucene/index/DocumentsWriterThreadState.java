@@ -101,11 +101,11 @@ name|infoStream
 expr_stmt|;
 name|docState
 operator|.
-name|similarity
+name|similarityProvider
 operator|=
 name|docWriter
 operator|.
-name|similarity
+name|similarityProvider
 expr_stmt|;
 name|docState
 operator|.

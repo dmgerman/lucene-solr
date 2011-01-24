@@ -68,7 +68,21 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Similarity
+name|IndexSearcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|SimilarityProvider
 import|;
 end_import
 
@@ -870,16 +884,16 @@ name|SimilarityFactory
 name|similarityFactory
 decl_stmt|;
 comment|/**    * Returns the Similarity used for this index    */
-DECL|method|getSimilarity
+DECL|method|getSimilarityProvider
 specifier|public
-name|Similarity
-name|getSimilarity
+name|SimilarityProvider
+name|getSimilarityProvider
 parameter_list|()
 block|{
 return|return
 name|similarityFactory
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
 return|;
 block|}
@@ -2401,14 +2415,14 @@ name|SimilarityFactory
 argument_list|()
 block|{
 specifier|public
-name|Similarity
-name|getSimilarity
+name|SimilarityProvider
+name|getSimilarityProvider
 parameter_list|()
 block|{
 return|return
-name|Similarity
+name|IndexSearcher
 operator|.
-name|getDefault
+name|getDefaultSimilarityProvider
 argument_list|()
 return|;
 block|}
@@ -2485,7 +2499,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// just like always, assume it's a Similarlity and get a ClassCastException - reasonable error handling
+comment|// just like always, assume it's a SimilarityProvider and get a ClassCastException - reasonable error handling
 name|similarityFactory
 operator|=
 operator|new
@@ -2493,13 +2507,13 @@ name|SimilarityFactory
 argument_list|()
 block|{
 specifier|public
-name|Similarity
-name|getSimilarity
+name|SimilarityProvider
+name|getSimilarityProvider
 parameter_list|()
 block|{
 return|return
 operator|(
-name|Similarity
+name|SimilarityProvider
 operator|)
 name|obj
 return|;

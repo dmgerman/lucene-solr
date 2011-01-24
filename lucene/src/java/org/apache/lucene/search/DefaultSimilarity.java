@@ -41,6 +41,8 @@ class|class
 name|DefaultSimilarity
 extends|extends
 name|Similarity
+implements|implements
+name|SimilarityProvider
 block|{
 comment|/** Implemented as    *<code>state.getBoost()*lengthNorm(numTerms)</code>, where    *<code>numTerms</code> is {@link FieldInvertState#getLength()} if {@link    *  #setDiscountOverlaps} is false, else it's {@link    *  FieldInvertState#getLength()} - {@link    *  FieldInvertState#getNumOverlap()}.    *    *  @lucene.experimental */
 annotation|@
@@ -109,8 +111,6 @@ operator|)
 return|;
 block|}
 comment|/** Implemented as<code>1/sqrt(sumOfSquaredWeights)</code>. */
-annotation|@
-name|Override
 DECL|method|queryNorm
 specifier|public
 name|float
@@ -223,8 +223,6 @@ argument_list|)
 return|;
 block|}
 comment|/** Implemented as<code>overlap / maxOverlap</code>. */
-annotation|@
-name|Override
 DECL|method|coord
 specifier|public
 name|float
@@ -278,6 +276,20 @@ parameter_list|()
 block|{
 return|return
 name|discountOverlaps
+return|;
+block|}
+comment|/**     * Returns this default implementation for all fields.    * Override this method to customize scoring on a per-field basis.    */
+DECL|method|get
+specifier|public
+name|Similarity
+name|get
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+return|return
+name|this
 return|;
 block|}
 block|}

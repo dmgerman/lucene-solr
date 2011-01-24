@@ -374,16 +374,37 @@ name|IndexSearcher
 index|[]
 name|subSearchers
 decl_stmt|;
-comment|/** The Similarity implementation used by this searcher. */
-DECL|field|similarity
+comment|// the default SimilarityProvider
+DECL|field|defaultProvider
 specifier|private
-name|Similarity
-name|similarity
+specifier|static
+specifier|final
+name|SimilarityProvider
+name|defaultProvider
 init|=
-name|Similarity
-operator|.
-name|getDefault
+operator|new
+name|DefaultSimilarity
 argument_list|()
+decl_stmt|;
+comment|/**    * Expert: returns a default SimilarityProvider instance.    * In general, this method is only called to initialize searchers and writers.    * User code and query implementations should respect    * {@link IndexSearcher#getSimilarityProvider()}.    * @lucene.internal    */
+DECL|method|getDefaultSimilarityProvider
+specifier|public
+specifier|static
+name|SimilarityProvider
+name|getDefaultSimilarityProvider
+parameter_list|()
+block|{
+return|return
+name|defaultProvider
+return|;
+block|}
+comment|/** The SimilarityProvider implementation used by this searcher. */
+DECL|field|similarityProvider
+specifier|private
+name|SimilarityProvider
+name|similarityProvider
+init|=
+name|defaultProvider
 decl_stmt|;
 comment|/** Creates a searcher searching the index in the named    *  directory, with readOnly=true    * @param path directory where IndexReader will be opened    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|IndexSearcher
@@ -1001,31 +1022,31 @@ name|fieldSelector
 argument_list|)
 return|;
 block|}
-comment|/** Expert: Set the Similarity implementation used by this Searcher.    *    * @see Similarity#setDefault(Similarity)    */
-DECL|method|setSimilarity
+comment|/** Expert: Set the SimilarityProvider implementation used by this Searcher.    *    */
+DECL|method|setSimilarityProvider
 specifier|public
 name|void
-name|setSimilarity
+name|setSimilarityProvider
 parameter_list|(
-name|Similarity
-name|similarity
+name|SimilarityProvider
+name|similarityProvider
 parameter_list|)
 block|{
 name|this
 operator|.
-name|similarity
+name|similarityProvider
 operator|=
-name|similarity
+name|similarityProvider
 expr_stmt|;
 block|}
-DECL|method|getSimilarity
+DECL|method|getSimilarityProvider
 specifier|public
-name|Similarity
-name|getSimilarity
+name|SimilarityProvider
+name|getSimilarityProvider
 parameter_list|()
 block|{
 return|return
-name|similarity
+name|similarityProvider
 return|;
 block|}
 comment|/**    * Note that the underlying IndexReader is not closed, if    * IndexSearcher was constructed with IndexSearcher(IndexReader r).    * If the IndexReader was supplied implicitly by specifying a directory, then    * the IndexReader is closed.    */

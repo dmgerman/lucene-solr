@@ -1868,7 +1868,7 @@ argument_list|)
 decl_stmt|;
 name|searcher
 operator|.
-name|setSimilarity
+name|setSimilarityProvider
 argument_list|(
 operator|new
 name|DefaultSimilarity

@@ -236,8 +236,13 @@ literal|"searcher"
 argument_list|)
 operator|)
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|field
+argument_list|)
 decl_stmt|;
 return|return
 operator|new

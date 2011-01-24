@@ -625,8 +625,13 @@ name|similarity
 operator|=
 name|searcher
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|field
+argument_list|)
 expr_stmt|;
 comment|// compute idf
 name|ArrayList

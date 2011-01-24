@@ -609,7 +609,7 @@ expr_stmt|;
 comment|// set a similarity that does not normalize our boost away
 name|searcher
 operator|.
-name|setSimilarity
+name|setSimilarityProvider
 argument_list|(
 operator|new
 name|DefaultSimilarity

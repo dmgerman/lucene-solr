@@ -191,11 +191,6 @@ name|ConstantWeight
 extends|extends
 name|Weight
 block|{
-DECL|field|similarity
-specifier|private
-name|Similarity
-name|similarity
-decl_stmt|;
 DECL|field|queryNorm
 specifier|private
 name|float
@@ -221,15 +216,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|this
-operator|.
-name|similarity
-operator|=
-name|searcher
-operator|.
-name|getSimilarity
-argument_list|()
-expr_stmt|;
 name|this
 operator|.
 name|context

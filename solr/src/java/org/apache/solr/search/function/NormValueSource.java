@@ -200,8 +200,13 @@ name|similarity
 init|=
 name|searcher
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|field
+argument_list|)
 decl_stmt|;
 specifier|final
 name|byte
