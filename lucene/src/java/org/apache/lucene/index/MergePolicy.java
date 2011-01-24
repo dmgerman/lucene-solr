@@ -270,6 +270,7 @@ name|aborted
 return|;
 block|}
 DECL|method|checkAborted
+specifier|public
 specifier|synchronized
 name|void
 name|checkAborted
