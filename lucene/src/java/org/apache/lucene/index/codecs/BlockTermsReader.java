@@ -2073,7 +2073,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("BTR._next this=" + this + " termCount=" + state.termCount + " (vs " + state.blockTermCount + ")");
+comment|//System.out.println("BTR._next seg=" + segment + " this=" + this + " termCount=" + state.termCount + " (vs " + state.blockTermCount + ")");
 if|if
 condition|(
 name|state
