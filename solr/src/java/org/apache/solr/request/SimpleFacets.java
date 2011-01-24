@@ -5918,7 +5918,7 @@ argument_list|>
 name|counts
 init|=
 operator|new
-name|SimpleOrderedMap
+name|NamedList
 argument_list|<
 name|Integer
 argument_list|>
