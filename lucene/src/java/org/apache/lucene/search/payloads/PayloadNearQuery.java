@@ -851,8 +851,6 @@ operator|.
 name|getSpans
 argument_list|(
 name|context
-operator|.
-name|reader
 argument_list|)
 argument_list|,
 name|this

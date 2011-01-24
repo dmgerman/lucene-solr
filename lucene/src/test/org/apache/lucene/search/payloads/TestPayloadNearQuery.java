@@ -2312,7 +2312,7 @@ comment|//we know it is size 4 here, so ignore the offset/length
 return|return
 name|payload
 index|[
-literal|0
+name|offset
 index|]
 return|;
 block|}
