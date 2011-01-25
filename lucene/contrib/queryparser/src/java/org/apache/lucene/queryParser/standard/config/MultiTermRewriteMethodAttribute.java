@@ -116,7 +116,7 @@ DECL|field|TAG_ID
 specifier|public
 specifier|static
 specifier|final
-name|CharSequence
+name|String
 name|TAG_ID
 init|=
 literal|"MultiTermRewriteMethodAttribute"

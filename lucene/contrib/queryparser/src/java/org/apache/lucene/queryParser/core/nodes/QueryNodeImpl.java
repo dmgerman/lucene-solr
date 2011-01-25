@@ -102,6 +102,24 @@ name|QueryParserMessages
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryParser
+operator|.
+name|core
+operator|.
+name|util
+operator|.
+name|StringUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link QueryNodeImpl} is the default implementation of the interface  * {@link QueryNode}  */
 end_comment
@@ -148,7 +166,7 @@ DECL|field|tags
 specifier|private
 name|Hashtable
 argument_list|<
-name|CharSequence
+name|String
 argument_list|,
 name|Object
 argument_list|>
@@ -157,7 +175,7 @@ init|=
 operator|new
 name|Hashtable
 argument_list|<
-name|CharSequence
+name|String
 argument_list|,
 name|Object
 argument_list|>
@@ -474,7 +492,7 @@ operator|=
 operator|new
 name|Hashtable
 argument_list|<
-name|CharSequence
+name|String
 argument_list|,
 name|Object
 argument_list|>
@@ -604,7 +622,7 @@ specifier|public
 name|void
 name|setTag
 parameter_list|(
-name|CharSequence
+name|String
 name|tagName
 parameter_list|,
 name|Object
@@ -619,9 +637,6 @@ name|put
 argument_list|(
 name|tagName
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|toLowerCase
 argument_list|()
 argument_list|,
@@ -634,7 +649,7 @@ specifier|public
 name|void
 name|unsetTag
 parameter_list|(
-name|CharSequence
+name|String
 name|tagName
 parameter_list|)
 block|{
@@ -646,20 +661,18 @@ name|remove
 argument_list|(
 name|tagName
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|toLowerCase
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** verify if a node contains a tag */
 DECL|method|containsTag
 specifier|public
 name|boolean
 name|containsTag
 parameter_list|(
-name|CharSequence
+name|String
 name|tagName
 parameter_list|)
 block|{
@@ -671,12 +684,6 @@ operator|.
 name|containsKey
 argument_list|(
 name|tagName
-operator|.
-name|toString
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|()
 argument_list|)
 return|;
 block|}
@@ -685,7 +692,7 @@ specifier|public
 name|Object
 name|getTag
 parameter_list|(
-name|CharSequence
+name|String
 name|tagName
 parameter_list|)
 block|{
@@ -762,7 +769,12 @@ name|toQueryStringIgnoreFields
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * This method is use toQueryString to detect if fld is the default field    *     * @param fld    *          - field name    * @return true if fld is the default field    */
+comment|/**    * This method is use toQueryString to detect if fld is the default field    *     * @param fld - field name    * @return true if fld is the default field    */
+comment|// TODO: remove this method, it's commonly used by {@link
+comment|// #toQueryString(org.apache.lucene.queryParser.core.parser.EscapeQuerySyntax)}
+comment|// to figure out what is the default field, however, {@link
+comment|// #toQueryString(org.apache.lucene.queryParser.core.parser.EscapeQuerySyntax)}
+comment|// should receive the default field value directly by parameter
 DECL|method|isDefaultField
 specifier|protected
 name|boolean
@@ -798,10 +810,12 @@ name|PLAINTEXT_FIELD_NAME
 operator|.
 name|equals
 argument_list|(
-name|fld
+name|StringUtils
 operator|.
 name|toString
-argument_list|()
+argument_list|(
+name|fld
+argument_list|)
 argument_list|)
 condition|)
 return|return
@@ -827,30 +841,28 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * @see org.apache.lucene.queryParser.core.nodes.QueryNode#getTag(CharSequence)    * @return a Map with all tags for this QueryNode    */
+comment|/**    * Returns a map containing all tags attached to this query node.    *     * @return a map containing all tags attached to this query node    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
-block|{
 literal|"unchecked"
-block|}
 argument_list|)
-DECL|method|getTags
+DECL|method|getTagMap
 specifier|public
 name|Map
 argument_list|<
-name|CharSequence
+name|String
 argument_list|,
 name|Object
 argument_list|>
-name|getTags
+name|getTagMap
 parameter_list|()
 block|{
 return|return
 operator|(
 name|Map
 argument_list|<
-name|CharSequence
+name|String
 argument_list|,
 name|Object
 argument_list|>

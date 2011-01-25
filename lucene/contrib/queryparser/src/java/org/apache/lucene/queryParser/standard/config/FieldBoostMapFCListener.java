@@ -179,7 +179,7 @@ name|get
 argument_list|(
 name|fieldConfig
 operator|.
-name|getFieldName
+name|getField
 argument_list|()
 argument_list|)
 decl_stmt|;
