@@ -310,6 +310,10 @@ operator|.
 name|getInstance
 argument_list|(
 name|GMT
+argument_list|,
+name|Locale
+operator|.
+name|US
 argument_list|)
 decl_stmt|;
 block|}
