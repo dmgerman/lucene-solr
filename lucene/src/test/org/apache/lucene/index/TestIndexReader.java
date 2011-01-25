@@ -2998,7 +2998,7 @@ name|assertEquals
 argument_list|(
 literal|"deleted docFreq"
 argument_list|,
-literal|100
+literal|0
 argument_list|,
 name|reader
 operator|.
@@ -4958,20 +4958,6 @@ name|reader
 operator|.
 name|docFreq
 argument_list|(
-name|searchTerm
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"deleted docFreq"
-argument_list|,
-literal|100
-argument_list|,
-name|reader
-operator|.
-name|docFreq
-argument_list|(
 name|searchTerm2
 argument_list|)
 argument_list|)
@@ -5943,13 +5929,6 @@ argument_list|)
 expr_stmt|;
 name|reader
 operator|.
-name|deleteDocument
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
-name|reader
-operator|.
 name|close
 argument_list|()
 expr_stmt|;
@@ -6055,13 +6034,6 @@ operator|.
 name|deleteDocument
 argument_list|(
 literal|0
-argument_list|)
-expr_stmt|;
-name|reader
-operator|.
-name|deleteDocument
-argument_list|(
-literal|1
 argument_list|)
 expr_stmt|;
 name|reader
@@ -8429,48 +8401,6 @@ argument_list|(
 name|dir
 argument_list|,
 literal|false
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"reopened 2"
-argument_list|,
-literal|100
-argument_list|,
-name|reader2
-operator|.
-name|docFreq
-argument_list|(
-name|searchTerm1
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"reopened 2"
-argument_list|,
-literal|100
-argument_list|,
-name|reader2
-operator|.
-name|docFreq
-argument_list|(
-name|searchTerm2
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"reopened 2"
-argument_list|,
-literal|100
-argument_list|,
-name|reader2
-operator|.
-name|docFreq
-argument_list|(
-name|searchTerm3
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertTermDocsCount

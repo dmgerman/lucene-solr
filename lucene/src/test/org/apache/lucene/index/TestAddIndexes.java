@@ -2542,7 +2542,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1060
+literal|1020
 argument_list|,
 name|writer
 operator|.
@@ -2829,7 +2829,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1060
+literal|1040
 argument_list|,
 name|writer
 operator|.

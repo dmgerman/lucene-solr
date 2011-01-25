@@ -3513,6 +3513,12 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+comment|// Remove segments that contain only 100% deleted docs:
+name|segmentInfos
+operator|.
+name|pruneDeletedSegments
+argument_list|()
+expr_stmt|;
 comment|// Sync all files we just wrote
 name|directory
 operator|.

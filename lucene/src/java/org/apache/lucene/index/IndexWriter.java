@@ -10731,6 +10731,22 @@ argument_list|)
 throw|;
 block|}
 block|}
+DECL|field|keepFullyDeletedSegments
+specifier|private
+name|boolean
+name|keepFullyDeletedSegments
+decl_stmt|;
+comment|/** Only for testing.    *    * @lucene.internal */
+DECL|method|keepFullyDeletedSegments
+name|void
+name|keepFullyDeletedSegments
+parameter_list|()
+block|{
+name|keepFullyDeletedSegments
+operator|=
+literal|true
+expr_stmt|;
+block|}
 comment|// called only from assert
 DECL|method|filesExist
 specifier|private
@@ -10937,6 +10953,18 @@ operator|.
 name|clone
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|keepFullyDeletedSegments
+condition|)
+block|{
+name|toSync
+operator|.
+name|pruneDeletedSegments
+argument_list|()
+expr_stmt|;
+block|}
 assert|assert
 name|filesExist
 argument_list|(

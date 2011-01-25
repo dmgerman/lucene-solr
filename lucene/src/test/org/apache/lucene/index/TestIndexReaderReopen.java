@@ -6869,16 +6869,6 @@ name|numDocs
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|4
-argument_list|,
-name|r
-operator|.
-name|maxDoc
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Collection
 argument_list|<
 name|IndexCommit
