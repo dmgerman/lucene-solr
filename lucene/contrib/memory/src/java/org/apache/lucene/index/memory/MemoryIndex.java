@@ -104,6 +104,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
 import|;
 end_import
@@ -3312,6 +3322,20 @@ name|super
 argument_list|()
 expr_stmt|;
 comment|// avoid as much superclass baggage as possible
+name|readerFinishedListeners
+operator|=
+name|Collections
+operator|.
+name|synchronizedSet
+argument_list|(
+operator|new
+name|HashSet
+argument_list|<
+name|ReaderFinishedListener
+argument_list|>
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|getInfo
 specifier|private

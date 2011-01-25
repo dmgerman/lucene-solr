@@ -260,24 +260,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|FieldCache
-import|;
-end_import
-
-begin_comment
-comment|// not great (circular); used only to purge FieldCache entry on close
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -835,11 +817,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Force FieldCache to evict our entries at this
-comment|// point.  If the exception occurred while
-comment|// initializing the core readers, then
-comment|// origInstance will be null, and we don't want
-comment|// to call FieldCache.purge (it leads to NPE):
+comment|// Now, notify any ReaderFinished listeners:
 if|if
 condition|(
 name|origInstance
@@ -847,14 +825,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purge
-argument_list|(
 name|origInstance
-argument_list|)
+operator|.
+name|notifyReaderFinishedListeners
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -2785,6 +2759,12 @@ operator|.
 name|pendingDeleteCount
 operator|=
 name|pendingDeleteCount
+expr_stmt|;
+name|clone
+operator|.
+name|readerFinishedListeners
+operator|=
+name|readerFinishedListeners
 expr_stmt|;
 if|if
 condition|(
@@ -5261,6 +5241,21 @@ name|core
 operator|.
 name|termsIndexDivisor
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|readerFinished
+specifier|protected
+name|void
+name|readerFinished
+parameter_list|()
+block|{
+comment|// Do nothing here -- we have more careful control on
+comment|// when to notify that a SegmentReader has finished,
+comment|// because a given core is shared across many cloned
+comment|// SegmentReaders.  We only notify once that core is no
+comment|// longer used (all SegmentReaders sharing it have been
+comment|// closed).
 block|}
 block|}
 end_class

@@ -230,24 +230,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|FieldCache
-import|;
-end_import
-
-begin_comment
-comment|// not great (circular); used only to purge FieldCache entry on close
-end_comment
-
 begin_comment
 comment|/**   * An IndexReader which reads indexes with multiple segments.  */
 end_comment
@@ -569,6 +551,20 @@ operator|=
 name|codecs
 expr_stmt|;
 block|}
+name|readerFinishedListeners
+operator|=
+name|Collections
+operator|.
+name|synchronizedSet
+argument_list|(
+operator|new
+name|HashSet
+argument_list|<
+name|ReaderFinishedListener
+argument_list|>
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// To reduce the chance of hitting FileNotFound
 comment|// (and having to retry), we open segments in
 comment|// reverse because IndexWriter merges& deletes
@@ -633,6 +629,15 @@ argument_list|)
 argument_list|,
 name|termInfosIndexDivisor
 argument_list|)
+expr_stmt|;
+name|readers
+index|[
+name|i
+index|]
+operator|.
+name|readerFinishedListeners
+operator|=
+name|readerFinishedListeners
 expr_stmt|;
 name|success
 operator|=
@@ -770,6 +775,13 @@ operator|=
 name|codecs
 expr_stmt|;
 block|}
+name|readerFinishedListeners
+operator|=
+name|writer
+operator|.
+name|getReaderFinishedListeners
+argument_list|()
+expr_stmt|;
 comment|// IndexWriter synchronizes externally before calling
 comment|// us, which ensures infos will not change; so there's
 comment|// no need to process segments in reverse order
@@ -858,6 +870,15 @@ literal|true
 argument_list|,
 name|termInfosIndexDivisor
 argument_list|)
+expr_stmt|;
+name|readers
+index|[
+name|i
+index|]
+operator|.
+name|readerFinishedListeners
+operator|=
+name|readerFinishedListeners
 expr_stmt|;
 name|success
 operator|=
@@ -950,6 +971,12 @@ name|termInfosIndexDivisor
 parameter_list|,
 name|CodecProvider
 name|codecs
+parameter_list|,
+name|Collection
+argument_list|<
+name|ReaderFinishedListener
+argument_list|>
+name|readerFinishedListeners
 parameter_list|)
 throws|throws
 name|IOException
@@ -977,6 +1004,12 @@ operator|.
 name|termInfosIndexDivisor
 operator|=
 name|termInfosIndexDivisor
+expr_stmt|;
+name|this
+operator|.
+name|readerFinishedListeners
+operator|=
+name|readerFinishedListeners
 expr_stmt|;
 if|if
 condition|(
@@ -1234,6 +1267,12 @@ argument_list|,
 name|termInfosIndexDivisor
 argument_list|)
 expr_stmt|;
+name|newReader
+operator|.
+name|readerFinishedListeners
+operator|=
+name|readerFinishedListeners
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -1258,6 +1297,13 @@ argument_list|,
 name|readOnly
 argument_list|)
 expr_stmt|;
+assert|assert
+name|newReader
+operator|.
+name|readerFinishedListeners
+operator|==
+name|readerFinishedListeners
+assert|;
 block|}
 if|if
 condition|(
@@ -1884,6 +1930,13 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+assert|assert
+name|newReader
+operator|.
+name|readerFinishedListeners
+operator|!=
+literal|null
+assert|;
 return|return
 name|newReader
 return|;
@@ -2014,11 +2067,22 @@ block|}
 comment|// TODO: right now we *always* make a new reader; in
 comment|// the future we could have write make some effort to
 comment|// detect that no changes have occurred
-return|return
+name|IndexReader
+name|reader
+init|=
 name|writer
 operator|.
 name|getReader
 argument_list|()
+decl_stmt|;
+name|reader
+operator|.
+name|readerFinishedListeners
+operator|=
+name|readerFinishedListeners
+expr_stmt|;
+return|return
+name|reader
 return|;
 block|}
 DECL|method|doReopen
@@ -2345,6 +2409,8 @@ argument_list|,
 name|termInfosIndexDivisor
 argument_list|,
 name|codecs
+argument_list|,
+name|readerFinishedListeners
 argument_list|)
 expr_stmt|;
 return|return
@@ -3852,18 +3918,6 @@ name|e
 expr_stmt|;
 block|}
 block|}
-comment|// NOTE: only needed in case someone had asked for
-comment|// FieldCache for top-level reader (which is generally
-comment|// not a good idea):
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purge
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|writer

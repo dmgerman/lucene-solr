@@ -54,6 +54,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -287,6 +297,20 @@ operator|.
 name|index
 operator|=
 name|index
+expr_stmt|;
+name|readerFinishedListeners
+operator|=
+name|Collections
+operator|.
+name|synchronizedSet
+argument_list|(
+operator|new
+name|HashSet
+argument_list|<
+name|ReaderFinishedListener
+argument_list|>
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @return always true.    */
