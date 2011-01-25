@@ -4824,6 +4824,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|isMaster
@@ -4852,7 +4853,6 @@ argument_list|,
 name|slave
 argument_list|)
 expr_stmt|;
-block|}
 name|NamedList
 name|snapshotStats
 init|=
