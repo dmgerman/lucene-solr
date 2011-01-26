@@ -230,16 +230,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 import|;
 end_import
@@ -351,21 +341,12 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// Clone the set so that we don't have to sync on
-comment|// readerFinishedListeners while invoking them:
 for|for
 control|(
 name|ReaderFinishedListener
 name|listener
 range|:
-operator|new
-name|HashSet
-argument_list|<
-name|ReaderFinishedListener
-argument_list|>
-argument_list|(
 name|readerFinishedListeners
-argument_list|)
 control|)
 block|{
 name|listener

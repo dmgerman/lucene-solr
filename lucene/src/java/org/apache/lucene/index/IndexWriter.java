@@ -152,7 +152,11 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicInteger
 import|;
 end_import
 
@@ -164,9 +168,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|atomic
-operator|.
-name|AtomicInteger
+name|ConcurrentHashMap
 import|;
 end_import
 
@@ -385,6 +387,20 @@ operator|.
 name|util
 operator|.
 name|ThreadInterruptedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|MapBackedSet
 import|;
 end_import
 
@@ -875,16 +891,22 @@ name|ReaderFinishedListener
 argument_list|>
 name|readerFinishedListeners
 init|=
-name|Collections
-operator|.
-name|synchronizedSet
-argument_list|(
 operator|new
-name|HashSet
+name|MapBackedSet
 argument_list|<
 name|IndexReader
 operator|.
 name|ReaderFinishedListener
+argument_list|>
+argument_list|(
+operator|new
+name|ConcurrentHashMap
+argument_list|<
+name|IndexReader
+operator|.
+name|ReaderFinishedListener
+argument_list|,
+name|Boolean
 argument_list|>
 argument_list|()
 argument_list|)
