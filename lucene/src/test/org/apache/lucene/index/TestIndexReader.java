@@ -6770,28 +6770,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Whether we succeeded or failed, check that all
-comment|// un-referenced files were in fact deleted (ie,
-comment|// we did not create garbage).  Just create a
-comment|// new IndexFileDeleter, have it delete
-comment|// unreferenced files, then verify that in fact
-comment|// no files were deleted:
-name|IndexWriter
-operator|.
-name|unlock
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
-name|TestIndexWriter
-operator|.
-name|assertNoUnreferencedFiles
-argument_list|(
-name|dir
-argument_list|,
-literal|"reader.close() failed to delete unreferenced files"
-argument_list|)
-expr_stmt|;
 comment|// Finally, verify index is not corrupt, and, if
 comment|// we succeeded, we see all docs changed, and if
 comment|// we failed, we see either all docs or no docs
