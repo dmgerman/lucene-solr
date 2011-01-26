@@ -544,6 +544,9 @@ literal|1
 argument_list|)
 return|;
 block|}
+name|numRead
+operator|++
+expr_stmt|;
 name|int
 name|ch
 init|=
