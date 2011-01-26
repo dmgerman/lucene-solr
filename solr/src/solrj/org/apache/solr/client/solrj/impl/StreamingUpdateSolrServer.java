@@ -959,11 +959,40 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|// remove it from the list of running things...
+comment|// remove it from the list of running things unless we are the last runner and the queue is full...
+comment|// in which case, the next queue.put() would block and there would be no runners to handle it.
 synchronized|synchronized
 init|(
 name|runners
 init|)
+block|{
+if|if
+condition|(
+name|runners
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|1
+operator|&&
+name|queue
+operator|.
+name|remainingCapacity
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|// keep this runner alive
+name|scheduler
+operator|.
+name|execute
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+else|else
 block|{
 name|runners
 operator|.
@@ -972,6 +1001,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|log
 operator|.
