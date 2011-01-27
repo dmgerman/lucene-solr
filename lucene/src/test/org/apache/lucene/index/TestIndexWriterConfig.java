@@ -1438,6 +1438,63 @@ parameter_list|)
 block|{
 comment|// this is expected
 block|}
+comment|// Test setReaderTermsIndexDivisor
+try|try
+block|{
+name|conf
+operator|.
+name|setReaderTermsIndexDivisor
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"should not have succeeded to set termsIndexDivisor to 0"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+comment|// this is expected
+block|}
+comment|// Setting to -1 is ok
+name|conf
+operator|.
+name|setReaderTermsIndexDivisor
+argument_list|(
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|conf
+operator|.
+name|setReaderTermsIndexDivisor
+argument_list|(
+operator|-
+literal|2
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"should not have succeeded to set termsIndexDivisor to< -1"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+comment|// this is expected
+block|}
 name|assertEquals
 argument_list|(
 name|IndexWriterConfig

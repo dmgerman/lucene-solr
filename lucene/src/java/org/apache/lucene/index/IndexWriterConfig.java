@@ -1170,7 +1170,7 @@ return|return
 name|indexingChain
 return|;
 block|}
-comment|/** Sets the termsIndexDivisor passed to any readers that    *  IndexWriter opens, for example when applying deletes    *  or creating a near-real-time reader in {@link    *  IndexWriter#getReader}. */
+comment|/** Sets the termsIndexDivisor passed to any readers that    *  IndexWriter opens, for example when applying deletes    *  or creating a near-real-time reader in {@link    *  IndexWriter#getReader}. If you pass -1, the terms index     *  won't be loaded by the readers. This is only useful in     *  advanced situations when you will only .next() through     *  all terms; attempts to seek will hit an exception. */
 DECL|method|setReaderTermsIndexDivisor
 specifier|public
 name|IndexWriterConfig
@@ -1185,13 +1185,18 @@ condition|(
 name|divisor
 operator|<=
 literal|0
+operator|&&
+name|divisor
+operator|!=
+operator|-
+literal|1
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"divisor must be>= 1 (got "
+literal|"divisor must be>= 1, or -1 (got "
 operator|+
 name|divisor
 operator|+
