@@ -8806,27 +8806,6 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-comment|// Lock order: IW -> BD
-if|if
-condition|(
-name|bufferedDeletes
-operator|.
-name|applyDeletes
-argument_list|(
-name|readerPool
-argument_list|,
-name|segmentInfos
-argument_list|,
-name|merge
-operator|.
-name|segments
-argument_list|)
-condition|)
-block|{
-name|checkpoint
-argument_list|()
-expr_stmt|;
-block|}
 name|_mergeInit
 argument_list|(
 name|merge
@@ -8934,6 +8913,27 @@ name|isAborted
 argument_list|()
 condition|)
 return|return;
+comment|// Lock order: IW -> BD
+if|if
+condition|(
+name|bufferedDeletes
+operator|.
+name|applyDeletes
+argument_list|(
+name|readerPool
+argument_list|,
+name|segmentInfos
+argument_list|,
+name|merge
+operator|.
+name|segments
+argument_list|)
+condition|)
+block|{
+name|checkpoint
+argument_list|()
+expr_stmt|;
+block|}
 comment|// Bind a new segment name here so even with
 comment|// ConcurrentMergePolicy we keep deterministic segment
 comment|// names.
