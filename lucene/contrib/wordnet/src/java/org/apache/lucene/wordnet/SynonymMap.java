@@ -505,8 +505,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|isValid
-specifier|private
-specifier|static
+specifier|protected
 name|boolean
 name|isValid
 parameter_list|(
