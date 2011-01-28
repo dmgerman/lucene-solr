@@ -661,7 +661,43 @@ argument_list|,
 literal|"//result/doc[1]/int[@name='id'][.='45']"
 argument_list|)
 expr_stmt|;
+comment|// test MoreLikeThis debug
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"morelike this - harrison ford"
+argument_list|,
+name|mltreq
+argument_list|,
+literal|"//lst[@name='debug']/lst[@name='moreLikeThis']/lst[@name='44']/str[@name='rawMLTQuery']"
+argument_list|,
+literal|"//lst[@name='debug']/lst[@name='moreLikeThis']/lst[@name='44']/str[@name='boostedMLTQuery']"
+argument_list|,
+literal|"//lst[@name='debug']/lst[@name='moreLikeThis']/lst[@name='44']/str[@name='realMLTQuery']"
+argument_list|,
+literal|"//lst[@name='debug']/lst[@name='moreLikeThis']/lst[@name='44']/lst[@name='explain']/str[@name='45']"
+argument_list|)
+expr_stmt|;
 comment|// test that qparser plugins work
+name|params
+operator|.
+name|remove
+argument_list|(
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
+argument_list|)
+expr_stmt|;
 name|params
 operator|.
 name|set
@@ -743,7 +779,7 @@ argument_list|,
 literal|"//result/doc[1]/int[@name='id'][.='45']"
 argument_list|)
 expr_stmt|;
-comment|// test that debugging works
+comment|// test that debugging works (test for MoreLikeThis*Handler*)
 name|params
 operator|.
 name|set
@@ -759,7 +795,9 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"debugQuery"
+name|CommonParams
+operator|.
+name|DEBUG_QUERY
 argument_list|,
 literal|"true"
 argument_list|)
