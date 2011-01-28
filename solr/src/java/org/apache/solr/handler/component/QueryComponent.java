@@ -772,13 +772,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|rb
-operator|.
-name|setFilters
-argument_list|(
-name|filters
-argument_list|)
-expr_stmt|;
 block|}
 for|for
 control|(
@@ -830,6 +823,26 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|// only set the filters if they are not empty otherwise
+comment|// fq=&someotherParam= will trigger all docs filter for every request
+comment|// if filter cache is disabled
+if|if
+condition|(
+operator|!
+name|filters
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|rb
+operator|.
+name|setFilters
+argument_list|(
+name|filters
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
