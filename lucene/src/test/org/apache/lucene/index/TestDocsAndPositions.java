@@ -713,10 +713,10 @@ return|;
 block|}
 block|}
 comment|/**    * this test indexes random numbers within a range into a field and checks    * their occurrences by searching for a number from that range selected at    * random. All positions for that number are saved up front and compared to    * the enums positions.    */
-DECL|method|testRandomPositons
+DECL|method|testRandomPositions
 specifier|public
 name|void
-name|testRandomPositons
+name|testRandomPositions
 parameter_list|()
 throws|throws
 name|IOException
