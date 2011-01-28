@@ -198,22 +198,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|CodecProvider
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|TermQuery
@@ -6268,7 +6252,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// Some Codecs don't honor the ReaderTermsIndexDiviso, so skip the test if
+comment|// Some Codecs don't honor the ReaderTermsIndexDivisor, so skip the test if
 comment|// they're picked.
 name|HashSet
 argument_list|<
@@ -6288,13 +6272,6 @@ operator|.
 name|add
 argument_list|(
 literal|"PreFlex"
-argument_list|)
-expr_stmt|;
-name|illegalCodecs
-operator|.
-name|add
-argument_list|(
-literal|"MockRandom"
 argument_list|)
 expr_stmt|;
 name|illegalCodecs
