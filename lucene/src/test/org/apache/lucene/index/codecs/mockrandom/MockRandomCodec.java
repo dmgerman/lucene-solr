@@ -1910,6 +1910,16 @@ literal|")"
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|state
+operator|.
+name|termsIndexDivisor
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
 name|state
 operator|.
 name|termsIndexDivisor
@@ -1925,6 +1935,7 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
+block|}
 name|indexReader
 operator|=
 operator|new
