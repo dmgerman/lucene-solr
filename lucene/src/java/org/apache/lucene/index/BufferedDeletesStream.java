@@ -578,8 +578,7 @@ name|SegmentInfo
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|// @Override -- not until Java 1.6
 specifier|public
 name|int
 name|compare
