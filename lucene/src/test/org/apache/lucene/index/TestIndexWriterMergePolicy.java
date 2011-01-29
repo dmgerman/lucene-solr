@@ -513,7 +513,7 @@ argument_list|)
 operator|.
 name|setMergePolicy
 argument_list|(
-name|newLogMergePolicy
+name|newInOrderLogMergePolicy
 argument_list|()
 argument_list|)
 argument_list|)

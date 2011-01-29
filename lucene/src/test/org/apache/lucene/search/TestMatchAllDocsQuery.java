@@ -220,6 +220,12 @@ name|setMaxBufferedDocs
 argument_list|(
 literal|2
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|addDoc

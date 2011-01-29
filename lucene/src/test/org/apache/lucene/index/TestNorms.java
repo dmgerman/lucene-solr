@@ -761,6 +761,12 @@ name|setSimilarityProvider
 argument_list|(
 name|similarityOne
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|LogMergePolicy
@@ -1186,6 +1192,12 @@ operator|.
 name|setSimilarityProvider
 argument_list|(
 name|similarityOne
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

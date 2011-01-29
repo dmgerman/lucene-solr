@@ -217,6 +217,12 @@ name|OpenMode
 operator|.
 name|APPEND
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|addDocument

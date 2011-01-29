@@ -369,6 +369,13 @@ specifier|private
 name|String
 name|version
 decl_stmt|;
+comment|// NOTE: only used in-RAM by IW to track buffered deletes;
+comment|// this is never written to/read from the Directory
+DECL|field|bufferedDeletesGen
+specifier|private
+name|long
+name|bufferedDeletesGen
+decl_stmt|;
 DECL|method|SegmentInfo
 specifier|public
 name|SegmentInfo
@@ -2936,6 +2943,28 @@ block|{
 return|return
 name|version
 return|;
+block|}
+DECL|method|getBufferedDeletesGen
+name|long
+name|getBufferedDeletesGen
+parameter_list|()
+block|{
+return|return
+name|bufferedDeletesGen
+return|;
+block|}
+DECL|method|setBufferedDeletesGen
+name|void
+name|setBufferedDeletesGen
+parameter_list|(
+name|long
+name|v
+parameter_list|)
+block|{
+name|bufferedDeletesGen
+operator|=
+name|v
+expr_stmt|;
 block|}
 block|}
 end_class

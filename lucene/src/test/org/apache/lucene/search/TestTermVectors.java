@@ -251,6 +251,10 @@ name|random
 argument_list|,
 name|directory
 argument_list|,
+name|newIndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
@@ -259,6 +263,13 @@ operator|.
 name|SIMPLE
 argument_list|,
 literal|true
+argument_list|)
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1858,6 +1869,12 @@ argument_list|(
 name|OpenMode
 operator|.
 name|CREATE
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

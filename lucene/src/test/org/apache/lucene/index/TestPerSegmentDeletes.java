@@ -310,6 +310,19 @@ argument_list|,
 name|iwc
 argument_list|)
 decl_stmt|;
+name|writer
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -486,7 +499,7 @@ name|assertTrue
 argument_list|(
 name|writer
 operator|.
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|any
 argument_list|()
@@ -506,7 +519,7 @@ name|assertFalse
 argument_list|(
 name|writer
 operator|.
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|any
 argument_list|()

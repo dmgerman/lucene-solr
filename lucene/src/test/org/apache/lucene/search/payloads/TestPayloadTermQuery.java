@@ -739,6 +739,12 @@ name|setSimilarityProvider
 argument_list|(
 name|similarity
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|//writer.infoStream = System.out;
