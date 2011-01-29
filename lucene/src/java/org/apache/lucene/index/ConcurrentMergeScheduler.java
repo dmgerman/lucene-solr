@@ -1063,63 +1063,11 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|// TODO: we could be careful about which merges to do in
-comment|// the BG (eg maybe the "biggest" ones) vs FG, which
-comment|// merges to do first (the easiest ones?), etc.
-name|MergePolicy
-operator|.
-name|OneMerge
-name|merge
-init|=
-name|writer
-operator|.
-name|getNextMerge
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|merge
-operator|==
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|verbose
-argument_list|()
-condition|)
-name|message
-argument_list|(
-literal|"  no more merges pending; now return"
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-comment|// We do this w/ the primary thread to keep
-comment|// deterministic assignment of segment names
-name|writer
-operator|.
-name|mergeInit
-argument_list|(
-name|merge
-argument_list|)
-expr_stmt|;
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
 synchronized|synchronized
 init|(
 name|this
 init|)
 block|{
-specifier|final
-name|MergeThread
-name|merger
-decl_stmt|;
 name|long
 name|startStallTime
 init|=
@@ -1130,6 +1078,8 @@ condition|(
 name|mergeThreadCount
 argument_list|()
 operator|>=
+literal|1
+operator|+
 name|maxMergeCount
 condition|)
 block|{
@@ -1203,6 +1153,61 @@ literal|" msec"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+comment|// TODO: we could be careful about which merges to do in
+comment|// the BG (eg maybe the "biggest" ones) vs FG, which
+comment|// merges to do first (the easiest ones?), etc.
+name|MergePolicy
+operator|.
+name|OneMerge
+name|merge
+init|=
+name|writer
+operator|.
+name|getNextMerge
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|merge
+operator|==
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+name|message
+argument_list|(
+literal|"  no more merges pending; now return"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+comment|// We do this w/ the primary thread to keep
+comment|// deterministic assignment of segment names
+name|writer
+operator|.
+name|mergeInit
+argument_list|(
+name|merge
+argument_list|)
+expr_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|message
 argument_list|(
 literal|"  consider merge "
@@ -1215,24 +1220,19 @@ name|dir
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-assert|assert
-name|mergeThreadCount
-argument_list|()
-operator|<
-name|maxMergeCount
-assert|;
 comment|// OK to spawn a new merge thread to handle this
 comment|// merge:
+specifier|final
+name|MergeThread
 name|merger
-operator|=
+init|=
 name|getMergeThread
 argument_list|(
 name|writer
 argument_list|,
 name|merge
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|mergeThreads
 operator|.
 name|add

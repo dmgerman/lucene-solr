@@ -277,6 +277,7 @@ name|isCompoundFile
 decl_stmt|;
 DECL|field|files
 specifier|private
+specifier|volatile
 name|List
 argument_list|<
 name|String
@@ -287,6 +288,7 @@ comment|// cached list of files that this segment uses
 comment|// in the Directory
 DECL|field|sizeInBytesNoStore
 specifier|private
+specifier|volatile
 name|long
 name|sizeInBytesNoStore
 init|=
@@ -296,6 +298,7 @@ decl_stmt|;
 comment|// total byte size of all but the store files (computed on demand)
 DECL|field|sizeInBytesWithStore
 specifier|private
+specifier|volatile
 name|long
 name|sizeInBytesWithStore
 init|=
@@ -1083,13 +1086,16 @@ operator|!=
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 name|sizeInBytesWithStore
 return|;
-name|sizeInBytesWithStore
-operator|=
+block|}
+name|long
+name|sum
+init|=
 literal|0
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -1100,7 +1106,8 @@ name|files
 argument_list|()
 control|)
 block|{
-comment|// We don't count bytes used by a shared doc store against this segment
+comment|// We don't count bytes used by a shared doc store
+comment|// against this segment
 if|if
 condition|(
 name|docStoreOffset
@@ -1117,7 +1124,7 @@ name|fileName
 argument_list|)
 condition|)
 block|{
-name|sizeInBytesWithStore
+name|sum
 operator|+=
 name|dir
 operator|.
@@ -1128,6 +1135,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|sizeInBytesWithStore
+operator|=
+name|sum
+expr_stmt|;
 return|return
 name|sizeInBytesWithStore
 return|;
@@ -1141,13 +1152,16 @@ operator|!=
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 name|sizeInBytesNoStore
 return|;
-name|sizeInBytesNoStore
-operator|=
+block|}
+name|long
+name|sum
+init|=
 literal|0
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -1170,7 +1184,7 @@ condition|)
 block|{
 continue|continue;
 block|}
-name|sizeInBytesNoStore
+name|sum
 operator|+=
 name|dir
 operator|.
@@ -1180,6 +1194,10 @@ name|fileName
 argument_list|)
 expr_stmt|;
 block|}
+name|sizeInBytesNoStore
+operator|=
+name|sum
+expr_stmt|;
 return|return
 name|sizeInBytesNoStore
 return|;
