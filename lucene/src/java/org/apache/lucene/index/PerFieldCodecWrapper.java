@@ -1057,7 +1057,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// ignore codecid sicne segmentCodec will assign it per codec
+comment|// ignore codecid since segmentCodec will assign it per codec
 name|segmentCodecs
 operator|.
 name|files

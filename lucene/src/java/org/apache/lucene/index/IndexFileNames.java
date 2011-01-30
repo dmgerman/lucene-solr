@@ -615,7 +615,7 @@ name|segmentName
 return|;
 block|}
 block|}
-comment|/**    * Returns true if the given filename ends with the given extension. One    * should provide a<i>pure</i> extension, withouth '.'.    */
+comment|/**    * Returns true if the given filename ends with the given extension. One    * should provide a<i>pure</i> extension, without '.'.    */
 DECL|method|matchesExtension
 specifier|public
 specifier|static

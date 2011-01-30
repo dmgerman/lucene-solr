@@ -480,7 +480,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Called whenever the running merges have changed, to pause& unpause    * threads. This method sorts the merge threads by their merge size in    * descending order and then pauses/unpauses threads from first to lsat --    * that way, smaller merges are guaranteed to run before larger ones.    */
+comment|/**    * Called whenever the running merges have changed, to pause& unpause    * threads. This method sorts the merge threads by their merge size in    * descending order and then pauses/unpauses threads from first to last --    * that way, smaller merges are guaranteed to run before larger ones.    */
 DECL|method|updateMergeThreads
 specifier|protected
 specifier|synchronized

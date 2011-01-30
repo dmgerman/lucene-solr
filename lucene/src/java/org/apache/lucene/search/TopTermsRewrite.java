@@ -421,7 +421,7 @@ operator|.
 name|getBoost
 argument_list|()
 decl_stmt|;
-comment|// ignore uncompetetive hits
+comment|// ignore uncompetitive hits
 if|if
 condition|(
 name|stQueue

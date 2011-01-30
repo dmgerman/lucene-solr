@@ -3077,7 +3077,7 @@ argument_list|>
 name|iterator
 parameter_list|()
 block|{
-comment|// use the shortcut here - this is only used in a privat context
+comment|// use the shortcut here - this is only used in a private context
 return|return
 name|this
 return|;

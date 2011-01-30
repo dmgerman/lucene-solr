@@ -371,7 +371,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Implementatation of {@link NumericTermAttribute}.    * @lucene.internal    * @since 4.0    */
+comment|/** Implementation of {@link NumericTermAttribute}.    * @lucene.internal    * @since 4.0    */
 DECL|class|NumericTermAttributeImpl
 specifier|public
 specifier|static

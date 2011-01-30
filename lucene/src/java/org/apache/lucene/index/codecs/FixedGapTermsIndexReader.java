@@ -228,7 +228,7 @@ comment|// the indexDivisor at search time.  But, we use this in a
 comment|// number of places to multiply out the actual ord, and we
 comment|// will overflow int during those multiplies.  So to avoid
 comment|// having to upgrade each multiple to long in multiple
-comment|// places (error proned), we use long here:
+comment|// places (error prone), we use long here:
 DECL|field|totalIndexInterval
 specifier|private
 name|long

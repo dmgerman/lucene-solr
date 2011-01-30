@@ -48,7 +48,7 @@ name|SimpleFSLockFactory
 extends|extends
 name|FSLockFactory
 block|{
-comment|/**    * Create a SimpleFSLockFactory instance, with null (unset)    * lock directory. When you pass this factory to a {@link FSDirectory}    * subclass, the lock directory is automatically set to the    * directory itsself. Be sure to create one instance for each directory    * your create!    */
+comment|/**    * Create a SimpleFSLockFactory instance, with null (unset)    * lock directory. When you pass this factory to a {@link FSDirectory}    * subclass, the lock directory is automatically set to the    * directory itself. Be sure to create one instance for each directory    * your create!    */
 DECL|method|SimpleFSLockFactory
 specifier|public
 name|SimpleFSLockFactory

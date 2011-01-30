@@ -172,7 +172,7 @@ name|FORMAT_CURRENT
 init|=
 name|FORMAT_VERSION_UTF8_LENGTH_IN_BYTES
 decl_stmt|;
-comment|// when removing support for old versions, levae the last supported version here
+comment|// when removing support for old versions, leave the last supported version here
 DECL|field|FORMAT_MINIMUM
 specifier|public
 specifier|static

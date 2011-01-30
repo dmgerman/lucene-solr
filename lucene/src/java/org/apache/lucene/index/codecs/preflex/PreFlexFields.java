@@ -2463,7 +2463,7 @@ comment|// after E.  Three different seek points (1, 2, 3).
 comment|// We can easily detect S in UTF8: if a byte has
 comment|// prefix 11110 (0xf0), then that byte and the
 comment|// following 3 bytes encode a single unicode codepoint
-comment|// in S.  Similary,we can detect E: if a byte has
+comment|// in S.  Similarly, we can detect E: if a byte has
 comment|// prefix 1110111 (0xee), then that byte and the
 comment|// following 2 bytes encode a single unicode codepoint
 comment|// in E.

@@ -1963,7 +1963,7 @@ DECL|field|codecs
 name|CodecProvider
 name|codecs
 decl_stmt|;
-comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is cloned and thus making    * changes to it after IndexWriter has been instantiated will not affect    * IndexWriter. Additionally, calling {@link #getConfig()} and changing the    * parameters does not affect that IndexWriter instance.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initalized.    * @throws CorruptIndexException    *           if the index is corrupt    * @throws LockObtainFailedException    *           if another writer has this index open (<code>write.lock</code>    *           could not be obtained)    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
+comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is cloned and thus making    * changes to it after IndexWriter has been instantiated will not affect    * IndexWriter. Additionally, calling {@link #getConfig()} and changing the    * parameters does not affect that IndexWriter instance.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws CorruptIndexException    *           if the index is corrupt    * @throws LockObtainFailedException    *           if another writer has this index open (<code>write.lock</code>    *           could not be obtained)    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -6980,7 +6980,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Flush all in-memory buffered udpates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param applyAllDeletes whether pending deletes should also    */
+comment|/**    * Flush all in-memory buffered updates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param applyAllDeletes whether pending deletes should also    */
 DECL|method|flush
 specifier|protected
 specifier|final

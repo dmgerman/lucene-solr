@@ -222,7 +222,7 @@ init|=
 literal|false
 decl_stmt|;
 comment|// if true, valueSource part of query does not take part in weights normalization.
-comment|/**    * Create a CustomScoreQuery over input subQuery.    * @param subQuery the sub query whose scored is being customed. Must not be null.     */
+comment|/**    * Create a CustomScoreQuery over input subQuery.    * @param subQuery the sub query whose scored is being customized. Must not be null.     */
 DECL|method|CustomScoreQuery
 specifier|public
 name|CustomScoreQuery
