@@ -156,6 +156,8 @@ operator|=
 name|field
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -170,6 +172,8 @@ operator|+
 literal|')'
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|DocValues
@@ -239,6 +243,8 @@ return|return
 name|readableValue
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -261,6 +267,8 @@ name|off
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -280,6 +288,8 @@ name|off
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|longVal
@@ -302,6 +312,8 @@ name|off
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|double
 name|doubleVal
@@ -324,6 +336,8 @@ name|off
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|ordVal
@@ -343,6 +357,8 @@ name|off
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|numOrd
@@ -355,6 +371,8 @@ name|numOrd
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -380,6 +398,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -470,6 +490,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -520,6 +542,8 @@ operator|.
 name|hashCode
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

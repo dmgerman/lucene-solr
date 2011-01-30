@@ -4172,6 +4172,8 @@ name|int
 name|termNum
 decl_stmt|;
 comment|// term number starting at 0 (used in bit arrays)
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

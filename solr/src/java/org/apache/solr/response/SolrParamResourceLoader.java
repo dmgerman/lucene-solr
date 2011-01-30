@@ -262,6 +262,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -271,6 +273,8 @@ name|ExtendedProperties
 name|extendedProperties
 parameter_list|)
 block|{   }
+annotation|@
+name|Override
 DECL|method|getResourceStream
 specifier|public
 name|InputStream
@@ -309,6 +313,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isSourceModified
 specifier|public
 name|boolean
@@ -322,6 +328,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getLastModified
 specifier|public
 name|long

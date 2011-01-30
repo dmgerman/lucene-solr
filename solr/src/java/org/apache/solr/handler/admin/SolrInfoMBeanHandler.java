@@ -227,6 +227,8 @@ return|return
 name|r
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|handleRequestBody
 specifier|public
 name|void
@@ -621,6 +623,8 @@ argument_list|)
 expr_stmt|;
 comment|// never cache, no matter what init config looks like
 block|}
+annotation|@
+name|Override
 DECL|method|getDescription
 specifier|public
 name|String
@@ -631,6 +635,8 @@ return|return
 literal|"Get Info (and statistics) about all registered SolrInfoMBeans"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSourceId
 specifier|public
 name|String
@@ -641,6 +647,8 @@ return|return
 literal|"$Id$"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSource
 specifier|public
 name|String
@@ -651,6 +659,8 @@ return|return
 literal|"$URL$"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|String

@@ -719,6 +719,8 @@ throw|;
 block|}
 block|}
 comment|/** Returns hex encoded bytes, eg [0x6c 0x75 0x63 0x65 0x6e 0x65] */
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

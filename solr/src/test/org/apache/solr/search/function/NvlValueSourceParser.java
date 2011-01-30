@@ -96,6 +96,8 @@ name|nvlFloatValue
 init|=
 literal|0.0f
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|parse
 specifier|public
 name|ValueSource
@@ -131,6 +133,8 @@ argument_list|(
 name|source
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|name
@@ -140,6 +144,8 @@ return|return
 literal|"nvl"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|float
 name|func
@@ -182,6 +188,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

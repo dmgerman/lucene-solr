@@ -1073,6 +1073,8 @@ operator|new
 name|RequestHandlerBase
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDescription
@@ -1082,6 +1084,8 @@ return|return
 name|tmp
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getSourceId
@@ -1091,6 +1095,8 @@ return|return
 name|tmp
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getSource
@@ -1100,6 +1106,8 @@ return|return
 name|tmp
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getVersion
@@ -1109,6 +1117,8 @@ return|return
 name|tmp
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|handleRequestBody

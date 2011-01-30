@@ -2776,6 +2776,8 @@ specifier|public
 name|String
 name|xml
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -3396,6 +3398,8 @@ name|int
 name|order
 decl_stmt|;
 comment|// the order this document was added to the index
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -3749,6 +3753,8 @@ name|Comparable
 argument_list|>
 name|vals
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

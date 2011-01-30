@@ -993,6 +993,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|fieldsProducer
 specifier|public
 name|FieldsProducer

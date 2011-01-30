@@ -38,6 +38,8 @@ name|TestBadConfig
 extends|extends
 name|AbstractSolrTestCase
 block|{
+annotation|@
+name|Override
 DECL|method|getSchemaFile
 specifier|public
 name|String
@@ -48,6 +50,8 @@ return|return
 literal|"schema.xml"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSolrConfigFile
 specifier|public
 name|String
@@ -58,6 +62,8 @@ return|return
 literal|"bad_solrconfig.xml"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

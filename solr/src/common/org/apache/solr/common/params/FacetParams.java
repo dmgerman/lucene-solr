@@ -484,6 +484,8 @@ name|ALL
 block|,
 name|NONE
 block|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -571,6 +573,8 @@ name|ALL
 block|,
 name|NONE
 block|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -656,6 +660,8 @@ name|EDGE
 block|,
 name|OUTER
 block|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

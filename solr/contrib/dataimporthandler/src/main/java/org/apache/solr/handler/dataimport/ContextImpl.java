@@ -247,6 +247,8 @@ operator|=
 name|parentContext
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getEntityAttribute
 specifier|public
 name|String
@@ -273,6 +275,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getResolvedEntityAttribute
 specifier|public
 name|String
@@ -304,6 +308,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getAllEntityFields
 specifier|public
 name|List
@@ -332,6 +338,8 @@ operator|.
 name|allFieldsList
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getVariableResolver
 specifier|public
 name|VariableResolver
@@ -342,6 +350,8 @@ return|return
 name|resolver
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDataSource
 specifier|public
 name|DataSource
@@ -446,6 +456,8 @@ operator|.
 name|dataSrc
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDataSource
 specifier|public
 name|DataSource
@@ -468,6 +480,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isRootEntity
 specifier|public
 name|boolean
@@ -480,6 +494,8 @@ operator|.
 name|isDocRoot
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|currentProcess
 specifier|public
 name|String
@@ -490,6 +506,8 @@ return|return
 name|currProcess
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getRequestParameters
 specifier|public
 name|Map
@@ -505,6 +523,8 @@ return|return
 name|requestParams
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getEntityProcessor
 specifier|public
 name|EntityProcessor
@@ -523,6 +543,8 @@ operator|.
 name|processor
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setSessionAttribute
 specifier|public
 name|void
@@ -724,6 +746,8 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSessionAttribute
 specifier|public
 name|Object
@@ -865,6 +889,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getParentContext
 specifier|public
 name|Context
@@ -944,6 +970,8 @@ operator|=
 name|docWrapper
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSolrCore
 specifier|public
 name|SolrCore
@@ -963,6 +991,8 @@ name|getCore
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getStats
 specifier|public
 name|Map
@@ -997,6 +1027,8 @@ name|emptyMap
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getScript
 specifier|public
 name|String
@@ -1038,6 +1070,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getScriptLanguage
 specifier|public
 name|String
@@ -1079,6 +1113,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|deleteDoc
 specifier|public
 name|void
@@ -1106,6 +1142,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|deleteDocByQuery
 specifier|public
 name|void
@@ -1142,6 +1180,8 @@ return|return
 name|docBuilder
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|resolve
 specifier|public
 name|Object
@@ -1160,6 +1200,8 @@ name|var
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|replaceTokens
 specifier|public
 name|String

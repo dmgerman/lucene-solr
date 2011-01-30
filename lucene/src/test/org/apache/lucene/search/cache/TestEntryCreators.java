@@ -347,6 +347,8 @@ name|NUM_DOCS
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

@@ -158,6 +158,8 @@ name|BinaryRequestWriter
 extends|extends
 name|RequestWriter
 block|{
+annotation|@
+name|Override
 DECL|method|getContentStreams
 specifier|public
 name|Collection
@@ -267,6 +269,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getUpdateContentType
 specifier|public
 name|String
@@ -277,6 +281,8 @@ return|return
 literal|"application/octet-stream"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getContentStream
 specifier|public
 name|ContentStream
@@ -400,6 +406,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void
@@ -462,6 +470,8 @@ name|buf
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getPath
 specifier|public
 name|String

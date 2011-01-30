@@ -910,6 +910,8 @@ init|=
 literal|false
 decl_stmt|;
 annotation|@
+name|Override
+annotation|@
 name|Deprecated
 DECL|method|initalize
 specifier|public
@@ -1810,6 +1812,8 @@ name|solrFb
 return|;
 block|}
 comment|/**    * Generates a list of Highlighted query fragments for each item in a list    * of documents, or returns null if highlighting is disabled.    *    * @param docs query results    * @param query the query    * @param req the current request    * @param defaultFields default list of fields to summarize    *    * @return NamedList containing a NamedList for each document, which in     * turns contains sets (field, summary) pairs.    */
+annotation|@
+name|Override
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3657,6 +3661,8 @@ operator|=
 name|length
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean

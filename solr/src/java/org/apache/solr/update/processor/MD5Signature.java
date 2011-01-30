@@ -108,6 +108,8 @@ name|MessageDigest
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|MessageDigest
 name|initialValue
@@ -164,6 +166,8 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|add
 specifier|public
 name|void
@@ -213,6 +217,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getSignature
 specifier|public
 name|byte

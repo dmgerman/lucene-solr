@@ -162,6 +162,8 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|FieldsEnum
@@ -181,6 +183,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|terms
 specifier|public
 name|Terms
@@ -227,6 +231,8 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|TermsEnum
@@ -268,6 +274,8 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|terms
 specifier|public
 name|TermsEnum

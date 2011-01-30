@@ -461,6 +461,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * {@inheritDoc}    */
+annotation|@
+name|Override
 DECL|method|doAnalysis
 specifier|protected
 name|NamedList

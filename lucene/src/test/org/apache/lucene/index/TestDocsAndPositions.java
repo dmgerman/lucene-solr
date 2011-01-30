@@ -222,6 +222,8 @@ specifier|private
 name|boolean
 name|usePayload
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

@@ -95,6 +95,8 @@ name|BufferedReader
 name|reader
 decl_stmt|;
 comment|/**    * Parses each of the entity attributes.    */
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -201,6 +203,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Reads lines from the url till it finds a lines that matches the    * optional acceptLineRegex and does not match the optional skipLineRegex.    *    * @return A row containing a minimum of one field "rawLine" or null to signal    * end of file. The rawLine is the as line as returned by readLine()    * from the url. However transformers can be used to create as     * many other fields as required.    */
+annotation|@
+name|Override
 DECL|method|nextRow
 specifier|public
 name|Map

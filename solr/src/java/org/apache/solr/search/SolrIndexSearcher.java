@@ -1233,6 +1233,8 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -1319,6 +1321,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Free's resources associated with this searcher.    *    * In particular, the underlying reader and any cache's in use are closed.    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -2065,6 +2069,8 @@ return|;
 block|}
 block|}
 comment|/**    * Retrieve the {@link Document} instance corresponding to the document id.    */
+annotation|@
+name|Override
 DECL|method|doc
 specifier|public
 name|Document
@@ -2092,6 +2098,8 @@ argument_list|)
 return|;
 block|}
 comment|/** Retrieve a {@link Document} using a {@link org.apache.lucene.document.FieldSelector}    * This method does not currently use the Solr document cache.    *     * @see IndexReader#document(int, FieldSelector) */
+annotation|@
+name|Override
 DECL|method|doc
 specifier|public
 name|Document
@@ -5792,6 +5800,8 @@ operator|new
 name|Collector
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -5802,6 +5812,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{           }
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -5819,6 +5831,8 @@ index|]
 operator|++
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -5829,6 +5843,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{           }
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -5852,6 +5868,8 @@ block|{
 name|Scorer
 name|scorer
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -5869,6 +5887,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -5910,6 +5930,8 @@ operator|=
 name|score
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -5920,6 +5942,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{           }
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -6550,6 +6574,8 @@ block|{
 name|Scorer
 name|scorer
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -6567,6 +6593,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -6602,6 +6630,8 @@ operator|=
 name|score
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -6612,6 +6642,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{            }
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder

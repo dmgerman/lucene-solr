@@ -912,6 +912,8 @@ return|return
 name|other
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyFrom
 specifier|public
 name|void

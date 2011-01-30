@@ -961,6 +961,8 @@ operator|=
 name|typeName
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -1723,6 +1725,8 @@ operator|=
 name|maxChars
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getStream
 specifier|public
 name|TokenStreamInfo

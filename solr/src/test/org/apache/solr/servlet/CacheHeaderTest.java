@@ -484,6 +484,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|doLastModified
 specifier|protected
 name|void
@@ -780,6 +782,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// test ETag
+annotation|@
+name|Override
 DECL|method|doETag
 specifier|protected
 name|void
@@ -1165,6 +1169,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doCacheControl
 specifier|protected
 name|void

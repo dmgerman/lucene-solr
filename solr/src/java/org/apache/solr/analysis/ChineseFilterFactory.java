@@ -70,6 +70,8 @@ name|ChineseFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
 block|{
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

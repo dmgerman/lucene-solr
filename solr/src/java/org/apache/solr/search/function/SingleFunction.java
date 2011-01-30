@@ -93,6 +93,8 @@ name|String
 name|name
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -113,6 +115,8 @@ operator|+
 literal|')'
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -132,6 +136,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

@@ -79,6 +79,8 @@ specifier|abstract
 class|class
 name|CloneableKey
 block|{
+annotation|@
+name|Override
 DECL|method|clone
 specifier|abstract
 specifier|public

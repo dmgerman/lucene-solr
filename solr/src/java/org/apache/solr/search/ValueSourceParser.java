@@ -467,6 +467,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -504,6 +506,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -536,6 +540,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -573,6 +579,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -607,6 +615,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -664,6 +674,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -711,6 +723,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -778,6 +792,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -835,6 +851,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -882,6 +900,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -966,6 +986,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -991,6 +1013,8 @@ argument_list|(
 name|source
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|name
@@ -1000,6 +1024,8 @@ return|return
 literal|"abs"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|float
 name|func
@@ -1039,6 +1065,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1098,6 +1126,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1157,6 +1187,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1192,6 +1224,8 @@ argument_list|,
 name|b
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|name
@@ -1201,6 +1235,8 @@ return|return
 literal|"sub"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|float
 name|func
@@ -1245,6 +1281,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1278,6 +1316,8 @@ name|ValueSourceParser
 argument_list|()
 block|{
 comment|// boost(query($q),rating)
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1338,6 +1378,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1396,6 +1438,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1452,6 +1496,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1672,6 +1718,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1729,6 +1777,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1776,6 +1826,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -1937,6 +1989,8 @@ argument_list|(
 literal|"rad"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -1972,6 +2026,8 @@ argument_list|(
 literal|"deg"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2007,6 +2063,8 @@ argument_list|(
 literal|"sqrt"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2043,6 +2101,8 @@ argument_list|(
 literal|"cbrt"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2079,6 +2139,8 @@ argument_list|(
 literal|"log"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2115,6 +2177,8 @@ argument_list|(
 literal|"ln"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2151,6 +2215,8 @@ argument_list|(
 literal|"exp"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2187,6 +2253,8 @@ argument_list|(
 literal|"sin"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2223,6 +2291,8 @@ argument_list|(
 literal|"cos"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2259,6 +2329,8 @@ argument_list|(
 literal|"tan"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2295,6 +2367,8 @@ argument_list|(
 literal|"asin"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2331,6 +2405,8 @@ argument_list|(
 literal|"acos"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2367,6 +2443,8 @@ argument_list|(
 literal|"atan"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2403,6 +2481,8 @@ argument_list|(
 literal|"sinh"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2439,6 +2519,8 @@ argument_list|(
 literal|"cosh"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2475,6 +2557,8 @@ argument_list|(
 literal|"tanh"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2511,6 +2595,8 @@ argument_list|(
 literal|"ceil"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2547,6 +2633,8 @@ argument_list|(
 literal|"floor"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2583,6 +2671,8 @@ argument_list|(
 literal|"rint"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2619,6 +2709,8 @@ argument_list|(
 literal|"pow"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2665,6 +2757,8 @@ argument_list|(
 literal|"hypot"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2711,6 +2805,8 @@ argument_list|(
 literal|"atan2"
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|double
 name|func
@@ -2757,6 +2853,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -2811,6 +2909,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -2884,6 +2984,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -2915,6 +3017,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -2946,6 +3050,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -2997,6 +3103,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -3048,6 +3156,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -3099,6 +3209,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -3150,6 +3262,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -3187,6 +3301,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -3214,6 +3330,8 @@ operator|new
 name|ValueSourceParser
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ValueSource
 name|parse
@@ -3842,6 +3960,8 @@ operator|new
 name|TrieDateField
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -4003,6 +4123,8 @@ name|fp
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|parse
 specifier|public
 name|ValueSource
@@ -4198,6 +4320,8 @@ argument_list|,
 name|v2
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|name
@@ -4207,6 +4331,8 @@ return|return
 literal|"ms"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|float
 name|func
@@ -4258,6 +4384,8 @@ name|ms2
 argument_list|)
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|name
@@ -4267,6 +4395,8 @@ return|return
 literal|"ms"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|float
 name|func
@@ -4314,6 +4444,8 @@ argument_list|,
 name|v2
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|name
@@ -4323,6 +4455,8 @@ return|return
 literal|"ms"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|float
 name|func
@@ -4416,6 +4550,8 @@ operator|=
 name|constant
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -4430,6 +4566,8 @@ operator|+
 literal|")"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|DocValues
@@ -4449,6 +4587,8 @@ operator|new
 name|DocValues
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -4461,6 +4601,8 @@ return|return
 name|fv
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -4476,6 +4618,8 @@ operator|)
 name|constant
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|longVal
@@ -4488,6 +4632,8 @@ return|return
 name|constant
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|double
 name|doubleVal
@@ -4500,6 +4646,8 @@ return|return
 name|dv
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -4517,6 +4665,8 @@ name|constant
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -4533,6 +4683,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -4555,6 +4707,8 @@ literal|32
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -4739,6 +4893,8 @@ name|DocValues
 name|vals
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 DECL|method|parse
 specifier|public
 name|ValueSource
@@ -4781,6 +4937,8 @@ name|source
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|name
 specifier|public
 name|String
@@ -4830,6 +4988,8 @@ operator|new
 name|DocValues
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -4848,6 +5008,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -4866,6 +5028,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|longVal
@@ -4884,6 +5048,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|double
 name|doubleVal
@@ -4901,6 +5067,8 @@ name|vals
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -4921,6 +5089,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -4990,6 +5160,8 @@ name|DocValues
 name|b
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 DECL|method|parse
 specifier|public
 name|ValueSource
@@ -5060,6 +5232,8 @@ operator|=
 name|b
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -5087,6 +5261,8 @@ operator|+
 literal|")"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|DocValues
@@ -5132,6 +5308,8 @@ operator|new
 name|DocValues
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -5150,6 +5328,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -5168,6 +5348,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|longVal
@@ -5186,6 +5368,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|double
 name|doubleVal
@@ -5205,6 +5389,8 @@ name|bVals
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -5225,6 +5411,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -5277,6 +5465,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{     }
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -5338,6 +5528,8 @@ return|return
 name|h
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

@@ -3128,6 +3128,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Delegates to the super class unless the field has been specified      * as an alias -- in which case we recurse on each of      * the aliased fields, and the results are composed into a      * DisjunctionMaxQuery.  (so yes: aliases which point at other      * aliases should work)      */
+annotation|@
+name|Override
 DECL|method|getFieldQuery
 specifier|protected
 name|Query

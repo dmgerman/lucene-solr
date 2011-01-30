@@ -554,6 +554,8 @@ name|byte
 index|[]
 name|bytes
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
@@ -578,6 +580,8 @@ return|return
 name|other
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyFrom
 specifier|public
 name|void
@@ -625,6 +629,8 @@ comment|// very heavy, ie drags around the entire block's
 comment|// byte[]).  On seek back, if next() is in fact used
 comment|// (rare!), they will be re-read from disk.
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -2458,6 +2464,8 @@ return|return
 name|doc
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextPosition
 specifier|public
 name|int
@@ -2550,6 +2558,8 @@ name|position
 return|;
 block|}
 comment|/** Returns the payload at this position, or null if no      *  payload was indexed. */
+annotation|@
+name|Override
 DECL|method|getPayload
 specifier|public
 name|BytesRef
@@ -2566,6 +2576,8 @@ literal|"No payloads exist for this field!"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasPayload
 specifier|public
 name|boolean
@@ -3152,6 +3164,8 @@ return|return
 name|doc
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextPosition
 specifier|public
 name|int
@@ -3373,6 +3387,8 @@ name|position
 return|;
 block|}
 comment|/** Returns the payload at this position, or null if no      *  payload was indexed. */
+annotation|@
+name|Override
 DECL|method|getPayload
 specifier|public
 name|BytesRef
@@ -3452,6 +3468,8 @@ return|return
 name|payload
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasPayload
 specifier|public
 name|boolean

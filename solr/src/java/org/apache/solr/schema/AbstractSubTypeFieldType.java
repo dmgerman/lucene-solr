@@ -459,6 +459,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Throws UnsupportedOperationException()    */
+annotation|@
+name|Override
 DECL|method|getFieldQuery
 specifier|public
 name|Query

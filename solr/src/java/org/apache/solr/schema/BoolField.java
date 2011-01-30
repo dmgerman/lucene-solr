@@ -230,6 +230,8 @@ name|BoolField
 extends|extends
 name|FieldType
 block|{
+annotation|@
+name|Override
 DECL|method|init
 specifier|protected
 name|void
@@ -247,6 +249,8 @@ argument_list|>
 name|args
 parameter_list|)
 block|{   }
+annotation|@
+name|Override
 DECL|method|getSortField
 specifier|public
 name|SortField
@@ -331,6 +335,8 @@ operator|new
 name|SolrAnalyzer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|TokenStreamInfo
 name|getStream
@@ -479,6 +485,8 @@ return|;
 block|}
 block|}
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getAnalyzer
 specifier|public
 name|Analyzer
@@ -489,6 +497,8 @@ return|return
 name|boolAnalyzer
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getQueryAnalyzer
 specifier|public
 name|Analyzer
@@ -499,6 +509,8 @@ return|return
 name|boolAnalyzer
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toInternal
 specifier|public
 name|String
@@ -553,6 +565,8 @@ else|:
 literal|"F"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toExternal
 specifier|public
 name|String
@@ -620,6 +634,8 @@ operator|==
 literal|'T'
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|indexedToReadable
 specifier|public
 name|String
@@ -702,6 +718,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void

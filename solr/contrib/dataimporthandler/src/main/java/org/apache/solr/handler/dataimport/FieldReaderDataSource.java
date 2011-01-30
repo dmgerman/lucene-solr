@@ -175,6 +175,8 @@ specifier|private
 name|EntityProcessorWrapper
 name|entityProcessor
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -217,6 +219,8 @@ argument_list|()
 expr_stmt|;
 comment|/*no op*/
 block|}
+annotation|@
+name|Override
 DECL|method|getData
 specifier|public
 name|Reader
@@ -468,6 +472,8 @@ operator|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

@@ -205,6 +205,8 @@ operator|=
 name|missingValueProxy
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newComparator
 specifier|public
 name|FieldComparator

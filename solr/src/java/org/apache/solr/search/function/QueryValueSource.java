@@ -192,6 +192,8 @@ return|return
 name|defVal
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -240,6 +242,8 @@ name|fcontext
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -255,6 +259,8 @@ operator|*
 literal|29
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -554,6 +560,8 @@ operator|=
 name|w
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|floatVal
 specifier|public
 name|float
@@ -672,6 +680,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|intVal
 specifier|public
 name|int
@@ -691,6 +701,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|longVal
 specifier|public
 name|long
@@ -710,6 +722,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|doubleVal
 specifier|public
 name|double
@@ -729,6 +743,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|strVal
 specifier|public
 name|String
@@ -750,6 +766,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

@@ -1639,6 +1639,8 @@ block|}
 block|}
 comment|// NOTE: copied from ZooKeeper 3.2
 comment|/**    * Parse config from a Properties.    * @param zkProp Properties to parse from.    * @throws java.io.IOException    * @throws ConfigException    */
+annotation|@
+name|Override
 DECL|method|parseProperties
 specifier|public
 name|void

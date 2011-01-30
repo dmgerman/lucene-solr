@@ -52,6 +52,8 @@ specifier|public
 name|Lookup3Signature
 parameter_list|()
 block|{   }
+annotation|@
+name|Override
 DECL|method|add
 specifier|public
 name|void
@@ -80,6 +82,8 @@ name|hash
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSignature
 specifier|public
 name|byte

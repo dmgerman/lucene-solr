@@ -173,6 +173,8 @@ name|Index
 name|other
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 specifier|abstract

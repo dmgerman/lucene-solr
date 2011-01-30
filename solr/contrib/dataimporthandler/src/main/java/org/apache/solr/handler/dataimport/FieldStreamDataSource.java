@@ -166,6 +166,8 @@ specifier|private
 name|EntityProcessorWrapper
 name|wrapper
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -199,6 +201,8 @@ argument_list|()
 expr_stmt|;
 comment|/*no op*/
 block|}
+annotation|@
+name|Override
 DECL|method|getData
 specifier|public
 name|InputStream
@@ -381,6 +385,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

@@ -326,6 +326,8 @@ name|T1
 extends|extends
 name|Transformer
 block|{
+annotation|@
+name|Override
 DECL|method|transformRow
 specifier|public
 name|Object
@@ -364,6 +366,8 @@ name|T2
 extends|extends
 name|Transformer
 block|{
+annotation|@
+name|Override
 DECL|method|transformRow
 specifier|public
 name|Object

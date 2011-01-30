@@ -386,6 +386,8 @@ specifier|protected
 name|QParser
 name|altQParser
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|parse
 specifier|public
 name|Query
@@ -1404,6 +1406,8 @@ else|:
 name|parsedUserQuery
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|addDebugInfo
 specifier|public
 name|void

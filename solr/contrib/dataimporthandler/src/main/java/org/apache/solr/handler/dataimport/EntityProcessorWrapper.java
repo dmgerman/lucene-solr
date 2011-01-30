@@ -244,6 +244,8 @@ operator|=
 name|docBuilder
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -380,6 +382,8 @@ name|Transformer
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|add
@@ -700,6 +704,8 @@ name|newInstance
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|transformRow
 specifier|public
 name|Object
@@ -1254,6 +1260,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextRow
 specifier|public
 name|Map
@@ -1386,6 +1394,8 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|nextModifiedRowKey
 specifier|public
 name|Map
@@ -1425,6 +1435,8 @@ return|return
 name|row
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextDeletedRowKey
 specifier|public
 name|Map
@@ -1464,6 +1476,8 @@ return|return
 name|row
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextModifiedParentRowKey
 specifier|public
 name|Map
@@ -1482,6 +1496,8 @@ name|nextModifiedParentRowKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|destroy
 specifier|public
 name|void

@@ -144,6 +144,8 @@ name|onError
 init|=
 name|ABORT
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -311,6 +313,8 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|nextModifiedRowKey
 specifier|public
 name|Map
@@ -326,6 +330,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextDeletedRowKey
 specifier|public
 name|Map
@@ -341,6 +347,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextModifiedParentRowKey
 specifier|public
 name|Map
@@ -357,6 +365,8 @@ literal|null
 return|;
 block|}
 comment|/**    * For a simple implementation, this is the only method that the sub-class should implement. This is intended to    * stream rows one-by-one. Return null to signal end of rows    *    * @return a row where the key is the name of the field and value can be any Object or a Collection of objects. Return    *         null to signal end of rows    */
+annotation|@
+name|Override
 DECL|method|nextRow
 specifier|public
 name|Map
@@ -373,6 +383,8 @@ literal|null
 return|;
 comment|// do not do anything
 block|}
+annotation|@
+name|Override
 DECL|method|destroy
 specifier|public
 name|void

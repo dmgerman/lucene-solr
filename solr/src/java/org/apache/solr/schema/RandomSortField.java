@@ -388,6 +388,8 @@ operator|new
 name|FieldComparatorSource
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|FieldComparator
 name|newComparator
@@ -432,6 +434,8 @@ decl_stmt|;
 name|int
 name|bottomVal
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare
@@ -456,6 +460,8 @@ index|]
 return|;
 comment|// values will be positive... no overflow possible.
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setBottom
@@ -472,6 +478,8 @@ name|slot
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareBottom
@@ -493,6 +501,8 @@ name|seed
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copy
@@ -519,6 +529,8 @@ name|seed
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|FieldComparator
 name|setNextReader
@@ -542,6 +554,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Comparable
 name|value

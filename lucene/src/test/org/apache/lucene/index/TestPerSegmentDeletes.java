@@ -1105,6 +1105,8 @@ name|void
 name|close
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|findMerges
 specifier|public
 name|MergeSpecification

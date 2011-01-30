@@ -1266,6 +1266,8 @@ name|getAnalyzer
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 name|TokenStream
@@ -2414,6 +2416,8 @@ operator|new
 name|SimilarityFactory
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|SimilarityProvider
 name|getSimilarityProvider
@@ -2506,6 +2510,8 @@ operator|new
 name|SimilarityFactory
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|SimilarityProvider
 name|getSimilarityProvider
@@ -4990,6 +4996,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

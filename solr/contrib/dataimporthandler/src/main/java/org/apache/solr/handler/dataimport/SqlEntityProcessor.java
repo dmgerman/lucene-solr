@@ -127,6 +127,8 @@ argument_list|>
 name|dataSource
 decl_stmt|;
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -234,6 +236,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|nextRow
 specifier|public
 name|Map
@@ -274,6 +278,8 @@ name|getNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextModifiedRowKey
 specifier|public
 name|Map
@@ -327,6 +333,8 @@ name|getNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextDeletedRowKey
 specifier|public
 name|Map
@@ -380,6 +388,8 @@ name|getNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextModifiedParentRowKey
 specifier|public
 name|Map

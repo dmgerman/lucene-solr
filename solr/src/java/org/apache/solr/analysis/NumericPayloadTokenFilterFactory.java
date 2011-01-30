@@ -78,6 +78,8 @@ specifier|private
 name|String
 name|typeMatch
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

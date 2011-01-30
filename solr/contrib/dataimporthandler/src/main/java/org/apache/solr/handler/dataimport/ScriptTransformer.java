@@ -115,6 +115,8 @@ specifier|private
 name|String
 name|functionName
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|transformRow
 specifier|public
 name|Object
