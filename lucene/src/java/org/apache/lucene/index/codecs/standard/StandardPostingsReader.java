@@ -1794,17 +1794,23 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: jump right to next() if target is< X away
-comment|// from where we are now?
 if|if
 condition|(
+operator|(
+name|target
+operator|-
+name|skipInterval
+operator|)
+operator|>=
+name|doc
+operator|&&
 name|limit
 operator|>=
 name|skipInterval
 condition|)
 block|{
 comment|// There are enough docs in the posting to have
-comment|// skip data
+comment|// skip data, and it isn't too close.
 if|if
 condition|(
 name|skipper
@@ -2302,17 +2308,23 @@ throws|throws
 name|IOException
 block|{
 comment|//System.out.println("StandardR.D&PE advance target=" + target);
-comment|// TODO: jump right to next() if target is< X away
-comment|// from where we are now?
 if|if
 condition|(
+operator|(
+name|target
+operator|-
+name|skipInterval
+operator|)
+operator|>=
+name|doc
+operator|&&
 name|limit
 operator|>=
 name|skipInterval
 condition|)
 block|{
 comment|// There are enough docs in the posting to have
-comment|// skip data
+comment|// skip data, and it isn't too close
 if|if
 condition|(
 name|skipper
@@ -2978,17 +2990,23 @@ throws|throws
 name|IOException
 block|{
 comment|//System.out.println("StandardR.D&PE advance seg=" + segment + " target=" + target + " this=" + this);
-comment|// TODO: jump right to next() if target is< X away
-comment|// from where we are now?
 if|if
 condition|(
+operator|(
+name|target
+operator|-
+name|skipInterval
+operator|)
+operator|>=
+name|doc
+operator|&&
 name|limit
 operator|>=
 name|skipInterval
 condition|)
 block|{
 comment|// There are enough docs in the posting to have
-comment|// skip data
+comment|// skip data, and it isn't too close
 if|if
 condition|(
 name|skipper
