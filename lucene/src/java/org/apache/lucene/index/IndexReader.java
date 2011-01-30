@@ -931,7 +931,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * Open a near real time IndexReader from the {@link org.apache.lucene.index.IndexWriter}.    *    *    * @param writer The IndexWriter to open from    * @return The new IndexReader    * @throws CorruptIndexException    * @throws IOException if there is a low-level IO error    *    * @see #reopen(IndexWriter)    *    * @lucene.experimental    */
+comment|/**    * Open a near real time IndexReader from the {@link org.apache.lucene.index.IndexWriter}.    *    * @param writer The IndexWriter to open from    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    * @return The new IndexReader    * @throws CorruptIndexException    * @throws IOException if there is a low-level IO error    *    * @see #reopen(IndexWriter,boolean)    *    * @lucene.experimental    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -941,6 +941,9 @@ parameter_list|(
 specifier|final
 name|IndexWriter
 name|writer
+parameter_list|,
+name|boolean
+name|applyAllDeletes
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -951,7 +954,9 @@ return|return
 name|writer
 operator|.
 name|getReader
-argument_list|()
+argument_list|(
+name|applyAllDeletes
+argument_list|)
 return|;
 block|}
 comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit}.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the reader.    * @param commit the commit point to open    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
@@ -1388,7 +1393,7 @@ literal|"This reader does not support reopen(IndexCommit)."
 argument_list|)
 throw|;
 block|}
-comment|/**    * Expert: returns a readonly reader, covering all    * committed as well as un-committed changes to the index.    * This provides "near real-time" searching, in that    * changes made during an IndexWriter session can be    * quickly made available for searching without closing    * the writer nor calling {@link #commit}.    *    *<p>Note that this is functionally equivalent to calling    * {#flush} (an internal IndexWriter operation) and then using {@link IndexReader#open} to    * open a new reader.  But the turnaround time of this    * method should be faster since it avoids the potentially    * costly {@link #commit}.</p>    *    *<p>You must close the {@link IndexReader} returned by    * this method once you are done using it.</p>    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader supports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link IndexWriterConfig#setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @lucene.experimental    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @throws IOException    */
+comment|/**    * Expert: returns a readonly reader, covering all    * committed as well as un-committed changes to the index.    * This provides "near real-time" searching, in that    * changes made during an IndexWriter session can be    * quickly made available for searching without closing    * the writer nor calling {@link #commit}.    *    *<p>Note that this is functionally equivalent to calling    * {#flush} (an internal IndexWriter operation) and then using {@link IndexReader#open} to    * open a new reader.  But the turnaround time of this    * method should be faster since it avoids the potentially    * costly {@link #commit}.</p>    *    *<p>You must close the {@link IndexReader} returned by    * this method once you are done using it.</p>    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader supports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link IndexWriterConfig#setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @param writer The IndexWriter to open from    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    *    * @throws IOException    *    * @lucene.experimental    */
 DECL|method|reopen
 specifier|public
 name|IndexReader
@@ -1396,6 +1401,9 @@ name|reopen
 parameter_list|(
 name|IndexWriter
 name|writer
+parameter_list|,
+name|boolean
+name|applyAllDeletes
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -1406,7 +1414,9 @@ return|return
 name|writer
 operator|.
 name|getReader
-argument_list|()
+argument_list|(
+name|applyAllDeletes
+argument_list|)
 return|;
 block|}
 comment|/**    * Efficiently clones the IndexReader (sharing most    * internal state).    *<p>    * On cloning a reader with pending changes (deletions,    * norms), the original reader transfers its write lock to    * the cloned reader.  This means only the cloned reader    * may make further changes to the index, and commit the    * changes to the index on close, but the old reader still    * reflects all changes made up until it was cloned.    *<p>    * Like {@link #reopen()}, it's safe to make changes to    * either the original or the cloned reader: all shared    * mutable state obeys "copy on write" semantics to ensure    * the changes are not seen by other readers.    *<p>    */

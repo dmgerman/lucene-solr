@@ -982,6 +982,8 @@ argument_list|(
 name|writer
 operator|.
 name|w
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|IndexSearcher

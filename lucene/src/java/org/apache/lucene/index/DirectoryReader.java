@@ -368,6 +368,12 @@ specifier|private
 name|long
 name|maxIndexVersion
 decl_stmt|;
+DECL|field|applyAllDeletes
+specifier|private
+specifier|final
+name|boolean
+name|applyAllDeletes
+decl_stmt|;
 comment|//  static IndexReader open(final Directory directory, final IndexDeletionPolicy deletionPolicy, final IndexCommit commit, final boolean readOnly,
 comment|//      final int termInfosIndexDivisor) throws CorruptIndexException, IOException {
 comment|//    return open(directory, deletionPolicy, commit, readOnly, termInfosIndexDivisor, null);
@@ -595,6 +601,10 @@ argument_list|>
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|applyAllDeletes
+operator|=
+literal|false
+expr_stmt|;
 comment|// To reduce the chance of hitting FileNotFound
 comment|// (and having to retry), we open segments in
 comment|// reverse because IndexWriter merges& deletes
@@ -743,6 +753,9 @@ name|termInfosIndexDivisor
 parameter_list|,
 name|CodecProvider
 name|codecs
+parameter_list|,
+name|boolean
+name|applyAllDeletes
 parameter_list|)
 throws|throws
 name|IOException
@@ -762,6 +775,13 @@ name|readOnly
 operator|=
 literal|true
 expr_stmt|;
+name|this
+operator|.
+name|applyAllDeletes
+operator|=
+name|applyAllDeletes
+expr_stmt|;
+comment|// saved for reopen
 name|segmentInfos
 operator|=
 operator|(
@@ -1040,6 +1060,10 @@ operator|.
 name|readerFinishedListeners
 operator|=
 name|readerFinishedListeners
+expr_stmt|;
+name|applyAllDeletes
+operator|=
+literal|false
 expr_stmt|;
 if|if
 condition|(
@@ -2103,7 +2127,9 @@ init|=
 name|writer
 operator|.
 name|getReader
-argument_list|()
+argument_list|(
+name|applyAllDeletes
+argument_list|)
 decl_stmt|;
 name|reader
 operator|.
