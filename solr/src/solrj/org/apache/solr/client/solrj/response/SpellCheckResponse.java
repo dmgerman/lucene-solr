@@ -634,7 +634,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    *<p>    *  Return the first collated query string.  For convenience and backwards-compatibility.  Use getCollatedResults() for full data.    *</p>    * @return    */
+comment|/**    *<p>    *  Return the first collated query string.  For convenience and backwards-compatibility.  Use getCollatedResults() for full data.    *</p>    * @return first collated query string    */
 DECL|method|getCollatedResult
 specifier|public
 name|String
@@ -665,7 +665,7 @@ operator|.
 name|collationQueryString
 return|;
 block|}
-comment|/**    *<p>    *  Return all collations.      *  Will include # of hits and misspelling-to-correction details if "spellcheck.collateExtendedResults was true.    *</p>    * @return    */
+comment|/**    *<p>    *  Return all collations.      *  Will include # of hits and misspelling-to-correction details if "spellcheck.collateExtendedResults was true.    *</p>    * @return all collations    */
 DECL|method|getCollatedResults
 specifier|public
 name|List

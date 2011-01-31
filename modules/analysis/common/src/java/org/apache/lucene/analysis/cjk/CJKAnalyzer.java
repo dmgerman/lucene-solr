@@ -215,7 +215,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Builds an analyzer which removes words in {@link #STOP_WORDS}.    */
+comment|/**    * Builds an analyzer which removes words in {@link #getDefaultStopSet()}.    */
 DECL|method|CJKAnalyzer
 specifier|public
 name|CJKAnalyzer

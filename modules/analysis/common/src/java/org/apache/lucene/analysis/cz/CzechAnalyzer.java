@@ -357,7 +357,7 @@ name|?
 argument_list|>
 name|stemExclusionTable
 decl_stmt|;
-comment|/**    * Builds an analyzer with the default stop words ({@link #CZECH_STOP_WORDS}).    *    * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    */
+comment|/**    * Builds an analyzer with the default stop words ({@link #getDefaultStopSet()}).    *    * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer

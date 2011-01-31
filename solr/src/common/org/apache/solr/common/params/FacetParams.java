@@ -438,7 +438,7 @@ name|FACET_RANGE
 operator|+
 literal|".hardend"
 decl_stmt|;
-comment|/**    * String indicating what "other" ranges should be computed for a    * numerical range facet (multi-value).    * Can be overriden on a per field basis.    * @see FacetNumberOther    */
+comment|/**    * String indicating what "other" ranges should be computed for a    * numerical range facet (multi-value).    * Can be overriden on a per field basis.    */
 DECL|field|FACET_RANGE_OTHER
 specifier|public
 specifier|static

@@ -464,7 +464,7 @@ specifier|final
 name|Version
 name|matchVersion
 decl_stmt|;
-comment|/**    * Builds an analyzer with the default stop words ({@link #DUTCH_STOP_WORDS})     * and a few default entries for the stem exclusion table.    *     */
+comment|/**    * Builds an analyzer with the default stop words ({@link #getDefaultStopSet()})     * and a few default entries for the stem exclusion table.    *     */
 DECL|method|DutchAnalyzer
 specifier|public
 name|DutchAnalyzer

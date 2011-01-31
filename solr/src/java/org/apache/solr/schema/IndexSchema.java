@@ -676,7 +676,7 @@ name|Integer
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Constructs a schema using the specified resource name and stream.    * If the is stream is null, the resource loader will load the schema resource by name.    * @see SolrResourceLoader#openSchema    * By default, this follows the normal config path directory searching rules.    * @see Config#openResource    */
+comment|/**    * Constructs a schema using the specified resource name and stream.    * If the is stream is null, the resource loader will load the schema resource by name.    * @see SolrResourceLoader#openSchema    * By default, this follows the normal config path directory searching rules.    * @see SolrResourceLoader#openResource    */
 DECL|method|IndexSchema
 specifier|public
 name|IndexSchema

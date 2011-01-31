@@ -1993,7 +1993,7 @@ comment|//
 comment|//      return super.search(newQuery[0], newFilter[0], sort);
 comment|//    }
 comment|//  }
-comment|/**    * @return the indexDir on which this searcher is opened    * @see org.apache.solr.search.SolrIndexSearcher#SolrIndexSearcher(org.apache.solr.core.SolrCore, org.apache.solr.schema.IndexSchema, String, String, boolean)    */
+comment|/**    * @return the indexDir on which this searcher is opened    * @see #SolrIndexSearcher(SolrCore, IndexSchema, String, Directory, boolean)    */
 DECL|method|getIndexDir
 specifier|public
 name|String

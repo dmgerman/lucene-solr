@@ -590,7 +590,7 @@ return|return
 name|numDeadServersToTry
 return|;
 block|}
-comment|/** @return The number of dead servers to try if there are no live servers left.      * Defaults to the number of servers in this request. */
+comment|/** @param numDeadServersToTry The number of dead servers to try if there are no live servers left.      * Defaults to the number of servers in this request. */
 DECL|method|setNumDeadServersToTry
 specifier|public
 name|void
