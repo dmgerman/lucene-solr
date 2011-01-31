@@ -6150,12 +6150,20 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|Directory
+name|MockDirectoryWrapper
 name|dir
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+name|dir
+operator|.
+name|setCheckIndexOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// we are corrupting it!
 name|IndexWriter
 name|writer
 init|=
@@ -6388,12 +6396,20 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|Directory
+name|MockDirectoryWrapper
 name|dir
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+name|dir
+operator|.
+name|setCheckIndexOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// we are corrupting it!
 name|IndexWriter
 name|writer
 init|=

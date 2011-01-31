@@ -292,11 +292,6 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|merged
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|assertFalse
 argument_list|(
 literal|"The merged index is invalid"

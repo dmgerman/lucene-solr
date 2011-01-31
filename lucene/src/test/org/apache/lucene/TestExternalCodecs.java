@@ -2791,12 +2791,20 @@ name|NUM_DOCS
 init|=
 literal|173
 decl_stmt|;
-name|Directory
+name|MockDirectoryWrapper
 name|dir
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+name|dir
+operator|.
+name|setCheckIndexOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// we use a custom codec provider
 name|IndexWriter
 name|w
 init|=
