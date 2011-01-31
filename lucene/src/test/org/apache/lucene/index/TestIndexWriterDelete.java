@@ -1095,11 +1095,6 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|modifier
-operator|.
-name|commit
-argument_list|()
-expr_stmt|;
 name|IndexReader
 name|reader
 init|=

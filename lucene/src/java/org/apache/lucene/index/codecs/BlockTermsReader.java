@@ -557,11 +557,7 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|field|segment
-specifier|private
-name|String
-name|segment
-decl_stmt|;
+comment|//private String segment;
 DECL|method|BlockTermsReader
 specifier|public
 name|BlockTermsReader
@@ -624,12 +620,7 @@ name|termComp
 operator|=
 name|termComp
 expr_stmt|;
-name|this
-operator|.
-name|segment
-operator|=
-name|segment
-expr_stmt|;
+comment|//this.segment = segment;
 name|in
 operator|=
 name|dir

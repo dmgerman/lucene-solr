@@ -2877,6 +2877,11 @@ name|append
 argument_list|(
 name|useCompoundFile
 argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|", "
+argument_list|)
 expr_stmt|;
 name|sb
 operator|.

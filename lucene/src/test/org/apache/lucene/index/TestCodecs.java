@@ -4215,6 +4215,8 @@ argument_list|,
 name|termIndexInterval
 argument_list|,
 name|codecInfo
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 specifier|final
