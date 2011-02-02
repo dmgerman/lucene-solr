@@ -164,8 +164,7 @@ decl_stmt|;
 name|IndexSearcher
 name|search
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -1091,6 +1090,11 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+name|search
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -1110,8 +1114,7 @@ decl_stmt|;
 name|IndexSearcher
 name|search
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -1735,6 +1738,11 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+name|search
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// byte-ranges cannot be tested, because all ranges are too big for bytes, need an extra range for that
 annotation|@
@@ -1755,8 +1763,7 @@ decl_stmt|;
 name|IndexSearcher
 name|search
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -2828,6 +2835,11 @@ name|result
 operator|.
 name|length
 argument_list|)
+expr_stmt|;
+name|search
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2848,8 +2860,7 @@ decl_stmt|;
 name|IndexSearcher
 name|search
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -3912,6 +3923,11 @@ name|result
 operator|.
 name|length
 argument_list|)
+expr_stmt|;
+name|search
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -3932,8 +3948,7 @@ decl_stmt|;
 name|IndexSearcher
 name|search
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -4996,6 +5011,11 @@ name|result
 operator|.
 name|length
 argument_list|)
+expr_stmt|;
+name|search
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|// float and double tests are a bit minimalistic, but its complicated, because missing precision
@@ -5017,8 +5037,7 @@ decl_stmt|;
 name|IndexSearcher
 name|search
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -5339,6 +5358,11 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+name|search
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -5358,8 +5382,7 @@ decl_stmt|;
 name|IndexSearcher
 name|search
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -5680,6 +5703,11 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+name|search
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// test using a sparse index (with deleted docs).
 annotation|@
@@ -5838,8 +5866,7 @@ decl_stmt|;
 name|IndexSearcher
 name|search
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -6149,6 +6176,11 @@ name|result
 operator|.
 name|length
 argument_list|)
+expr_stmt|;
+name|search
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 name|reader
 operator|.

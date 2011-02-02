@@ -275,8 +275,7 @@ decl_stmt|;
 name|IndexSearcher
 name|is
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|ir
 argument_list|)
@@ -732,10 +731,7 @@ name|length
 argument_list|)
 expr_stmt|;
 comment|// delete a document:
-name|is
-operator|.
-name|getIndexReader
-argument_list|()
+name|ir
 operator|.
 name|deleteDocument
 argument_list|(

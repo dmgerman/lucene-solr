@@ -276,8 +276,7 @@ expr_stmt|;
 comment|// re-open the searcher since we added more docs
 name|searcher2
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader2
 argument_list|)

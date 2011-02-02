@@ -457,6 +457,9 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|IndexSearcher
+name|s
+init|=
 name|QueryUtils
 operator|.
 name|wrapUnderlyingReader
@@ -467,6 +470,8 @@ name|searcher
 argument_list|,
 name|i
 argument_list|)
+decl_stmt|;
+name|s
 operator|.
 name|search
 argument_list|(
@@ -496,6 +501,11 @@ name|correct
 argument_list|,
 name|actual
 argument_list|)
+expr_stmt|;
+name|s
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

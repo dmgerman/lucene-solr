@@ -369,8 +369,7 @@ index|[
 literal|4
 index|]
 decl_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)

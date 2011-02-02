@@ -7669,8 +7669,7 @@ decl_stmt|;
 name|IndexSearcher
 name|s
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -7715,6 +7714,11 @@ argument_list|)
 operator|.
 name|totalHits
 argument_list|)
+expr_stmt|;
+name|s
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 name|r
 operator|.

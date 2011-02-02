@@ -380,8 +380,7 @@ expr_stmt|;
 name|IndexSearcher
 name|indexSearcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|ir
 argument_list|)
@@ -413,6 +412,11 @@ name|hits
 operator|.
 name|length
 argument_list|)
+expr_stmt|;
+name|indexSearcher
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 name|ir
 operator|.
@@ -475,8 +479,7 @@ expr_stmt|;
 name|IndexSearcher
 name|searcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|ir
 argument_list|)

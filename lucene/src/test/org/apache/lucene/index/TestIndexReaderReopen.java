@@ -4376,8 +4376,7 @@ decl_stmt|;
 name|IndexSearcher
 name|searcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|refreshed
 argument_list|)
@@ -4441,6 +4440,11 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|refreshed

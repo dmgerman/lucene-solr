@@ -343,8 +343,7 @@ expr_stmt|;
 block|}
 name|s
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|w
 operator|.

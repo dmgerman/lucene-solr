@@ -6337,8 +6337,7 @@ decl_stmt|;
 name|IndexSearcher
 name|searcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -6390,6 +6389,11 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|r
 operator|.
 name|close
@@ -6836,8 +6840,7 @@ comment|/*           int result = newReader.docFreq(searchTerm);           if (s
 name|IndexSearcher
 name|searcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|newReader
 argument_list|)

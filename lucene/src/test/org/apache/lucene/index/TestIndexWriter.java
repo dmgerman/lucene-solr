@@ -18487,8 +18487,7 @@ decl_stmt|;
 name|IndexSearcher
 name|s
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -18652,6 +18651,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|s
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|r
 operator|.
 name|close

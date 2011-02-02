@@ -860,8 +860,7 @@ specifier|final
 name|IndexSearcher
 name|indexSearcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|indexReader
 argument_list|)
@@ -1139,8 +1138,7 @@ specifier|final
 name|IndexSearcher
 name|indexSearcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|indexReader
 argument_list|)
