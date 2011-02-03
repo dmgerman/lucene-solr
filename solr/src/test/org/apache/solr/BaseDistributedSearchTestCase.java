@@ -710,23 +710,23 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"n_ti"
+literal|"n_ti1"
 block|,
-literal|"n_f"
+literal|"n_f1"
 block|,
-literal|"n_tf"
+literal|"n_tf1"
 block|,
-literal|"n_d"
+literal|"n_d1"
 block|,
-literal|"n_td"
+literal|"n_td1"
 block|,
-literal|"n_l"
+literal|"n_l1"
 block|,
-literal|"n_tl"
+literal|"n_tl1"
 block|,
-literal|"n_dt"
+literal|"n_dt1"
 block|,
-literal|"n_tdt"
+literal|"n_tdt1"
 block|}
 decl_stmt|;
 DECL|field|randVals
@@ -3710,9 +3710,12 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|log
+comment|//log.info("Mismatched responses:\n" + a + "\n" + b);
+name|System
 operator|.
-name|info
+name|err
+operator|.
+name|println
 argument_list|(
 literal|"Mismatched responses:\n"
 operator|+
@@ -3723,6 +3726,7 @@ operator|+
 name|b
 argument_list|)
 expr_stmt|;
+comment|// :nocommit:
 name|TestCase
 operator|.
 name|fail

@@ -128,6 +128,33 @@ name|TestGroupingSearch
 extends|extends
 name|SolrTestCaseJ4
 block|{
+DECL|field|FOO_STRING_FIELD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FOO_STRING_FIELD
+init|=
+literal|"foo_s1"
+decl_stmt|;
+DECL|field|SMALL_STRING_FIELD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SMALL_STRING_FIELD
+init|=
+literal|"small_s1"
+decl_stmt|;
+DECL|field|SMALL_INT_FIELD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SMALL_INT_FIELD
+init|=
+literal|"small_i"
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeTests
@@ -2356,7 +2383,7 @@ argument_list|(
 operator|new
 name|FldType
 argument_list|(
-literal|"foo_s"
+name|FOO_STRING_FIELD
 argument_list|,
 name|ZERO_ONE
 argument_list|,
@@ -2381,7 +2408,7 @@ argument_list|(
 operator|new
 name|FldType
 argument_list|(
-literal|"small_s"
+name|SMALL_STRING_FIELD
 argument_list|,
 name|ZERO_ONE
 argument_list|,
@@ -2415,7 +2442,7 @@ argument_list|(
 operator|new
 name|FldType
 argument_list|(
-literal|"small_i"
+name|SMALL_INT_FIELD
 argument_list|,
 name|ZERO_ONE
 argument_list|,
@@ -2480,7 +2507,7 @@ name|d1
 operator|.
 name|getValues
 argument_list|(
-literal|"small_s"
+name|SMALL_STRING_FIELD
 argument_list|)
 operator|.
 name|set
@@ -2494,7 +2521,7 @@ name|d1
 operator|.
 name|getValues
 argument_list|(
-literal|"small_i"
+name|SMALL_INT_FIELD
 argument_list|)
 operator|.
 name|set
@@ -2547,7 +2574,7 @@ name|d1
 operator|.
 name|getValues
 argument_list|(
-literal|"small_s"
+name|SMALL_STRING_FIELD
 argument_list|)
 operator|.
 name|set
@@ -2561,7 +2588,7 @@ name|d1
 operator|.
 name|getValues
 argument_list|(
-literal|"small_i"
+name|SMALL_INT_FIELD
 argument_list|)
 operator|.
 name|set
@@ -2614,7 +2641,7 @@ name|d1
 operator|.
 name|getValues
 argument_list|(
-literal|"small_s"
+name|SMALL_STRING_FIELD
 argument_list|)
 operator|.
 name|set
@@ -2628,7 +2655,7 @@ name|d1
 operator|.
 name|getValues
 argument_list|(
-literal|"small_i"
+name|SMALL_INT_FIELD
 argument_list|)
 operator|.
 name|set
@@ -2681,7 +2708,7 @@ name|d1
 operator|.
 name|getValues
 argument_list|(
-literal|"small_s"
+name|SMALL_STRING_FIELD
 argument_list|)
 operator|.
 name|set
@@ -2695,7 +2722,7 @@ name|d1
 operator|.
 name|getValues
 argument_list|(
-literal|"small_i"
+name|SMALL_INT_FIELD
 argument_list|)
 operator|.
 name|set
@@ -2748,7 +2775,7 @@ name|d1
 operator|.
 name|getValues
 argument_list|(
-literal|"small_s"
+name|SMALL_STRING_FIELD
 argument_list|)
 operator|.
 name|set
@@ -2762,7 +2789,7 @@ name|d1
 operator|.
 name|getValues
 argument_list|(
-literal|"small_i"
+name|SMALL_INT_FIELD
 argument_list|)
 operator|.
 name|set
@@ -3071,7 +3098,7 @@ condition|)
 block|{
 name|groupField
 operator|=
-literal|"small_i"
+name|SMALL_INT_FIELD
 expr_stmt|;
 name|sortComparator
 operator|=
@@ -3083,7 +3110,7 @@ name|asList
 argument_list|(
 name|createComparator
 argument_list|(
-literal|"small_s"
+name|SMALL_STRING_FIELD
 argument_list|,
 literal|true
 argument_list|,
@@ -3098,7 +3125,9 @@ argument_list|)
 expr_stmt|;
 name|sortStr
 operator|=
-literal|"small_s asc"
+name|SMALL_STRING_FIELD
+operator|+
+literal|" asc"
 expr_stmt|;
 name|groupComparator
 operator|=
@@ -3110,7 +3139,7 @@ name|asList
 argument_list|(
 name|createComparator
 argument_list|(
-literal|"small_s"
+name|SMALL_STRING_FIELD
 argument_list|,
 literal|true
 argument_list|,
@@ -3125,7 +3154,9 @@ argument_list|)
 expr_stmt|;
 name|groupSortStr
 operator|=
-literal|"small_s asc"
+name|SMALL_STRING_FIELD
+operator|+
+literal|" asc"
 expr_stmt|;
 name|rows
 operator|=

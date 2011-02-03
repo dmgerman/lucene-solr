@@ -1817,33 +1817,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"sort param fiedl can't be found: "
-operator|+
-name|field
-argument_list|)
-throw|;
-block|}
-comment|// TODO: remove this - it should be up to the FieldType
-if|if
-condition|(
-operator|!
-name|sf
-operator|.
-name|indexed
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
-literal|"can not sort on unindexed field: "
+literal|"sort param field can't be found: "
 operator|+
 name|field
 argument_list|)
@@ -1855,13 +1829,8 @@ name|add
 argument_list|(
 name|sf
 operator|.
-name|getType
-argument_list|()
-operator|.
 name|getSortField
 argument_list|(
-name|sf
-argument_list|,
 name|top
 argument_list|)
 argument_list|)

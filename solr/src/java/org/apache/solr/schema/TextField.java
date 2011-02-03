@@ -437,6 +437,7 @@ name|boolean
 name|reverse
 parameter_list|)
 block|{
+comment|/* :TODO: maybe warn if isTokenized(), but doesn't use LimitTokenCountFilter in it's chain? */
 return|return
 name|getStringSort
 argument_list|(

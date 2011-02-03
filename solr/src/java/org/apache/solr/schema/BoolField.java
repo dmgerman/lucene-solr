@@ -263,6 +263,11 @@ name|boolean
 name|reverse
 parameter_list|)
 block|{
+name|field
+operator|.
+name|checkSortability
+argument_list|()
+expr_stmt|;
 return|return
 name|getStringSort
 argument_list|(

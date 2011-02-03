@@ -100,7 +100,7 @@ DECL|field|tlong
 name|String
 name|tlong
 init|=
-literal|"n_tl"
+literal|"other_tl1"
 decl_stmt|;
 DECL|field|ndate
 name|String
@@ -671,9 +671,7 @@ literal|"*:*"
 argument_list|,
 literal|"sort"
 argument_list|,
-name|tlong
-operator|+
-literal|" asc"
+literal|"n_tl1 asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -689,9 +687,7 @@ literal|"*:*"
 argument_list|,
 literal|"sort"
 argument_list|,
-name|tlong
-operator|+
-literal|" desc"
+literal|"n_tl1 desc"
 argument_list|)
 expr_stmt|;
 name|handle
