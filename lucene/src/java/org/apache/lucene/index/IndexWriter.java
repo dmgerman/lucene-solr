@@ -5142,6 +5142,21 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Expert: to be used by a {@link MergePolicy} to avoid    *  selecting merges for segments already being merged.    *  The returned collection is not cloned, and thus is    *  only safe to access if you hold IndexWriter's lock    *  (which you do when IndexWriter invokes the    *  MergePolicy).    *    *<p>Do not alter the returned collection! */
+DECL|method|getMergingSegments
+specifier|public
+specifier|synchronized
+name|Collection
+argument_list|<
+name|SegmentInfo
+argument_list|>
+name|getMergingSegments
+parameter_list|()
+block|{
+return|return
+name|mergingSegments
+return|;
+block|}
 comment|/** Expert: the {@link MergeScheduler} calls this method    *  to retrieve the next merge requested by the    *  MergePolicy */
 DECL|method|getNextMerge
 specifier|synchronized
