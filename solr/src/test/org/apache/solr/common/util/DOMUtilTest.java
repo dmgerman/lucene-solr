@@ -24,7 +24,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
+name|StringReader
 import|;
 end_import
 
@@ -109,6 +109,18 @@ operator|.
 name|dom
 operator|.
 name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|InputSource
 import|;
 end_import
 
@@ -640,12 +652,13 @@ operator|.
 name|parse
 argument_list|(
 operator|new
-name|ByteArrayInputStream
+name|InputSource
+argument_list|(
+operator|new
+name|StringReader
 argument_list|(
 name|xml
-operator|.
-name|getBytes
-argument_list|()
+argument_list|)
 argument_list|)
 argument_list|)
 return|;

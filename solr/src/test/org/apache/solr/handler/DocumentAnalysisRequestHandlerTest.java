@@ -856,7 +856,7 @@ argument_list|(
 literal|"ISO-8859-1"
 argument_list|)
 decl_stmt|;
-comment|// we declare a content stream without charset:
+comment|// we declare a content stream with charset:
 specifier|final
 name|ContentStream
 name|cs

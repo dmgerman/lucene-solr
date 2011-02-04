@@ -1098,6 +1098,8 @@ operator|.
 name|toString
 argument_list|(
 name|input
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 return|;
 block|}
