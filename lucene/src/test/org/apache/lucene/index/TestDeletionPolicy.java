@@ -3355,6 +3355,12 @@ name|setIndexDeletionPolicy
 argument_list|(
 name|policy
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 decl_stmt|;
 name|MergePolicy
 name|mp
