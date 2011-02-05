@@ -46,7 +46,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileInputStream
+name|IOException
 import|;
 end_import
 
@@ -56,7 +56,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|InputStream
 import|;
 end_import
 
@@ -142,13 +142,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|zip
+name|lucene
 operator|.
-name|GZIPInputStream
+name|benchmark
+operator|.
+name|byTask
+operator|.
+name|feeds
+operator|.
+name|TrecDocParser
+operator|.
+name|ParsePathType
 import|;
 end_import
 
@@ -203,7 +211,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements a {@link ContentSource} over the TREC collection.  *<p>  * Supports the following configuration parameters (on top of  * {@link ContentSource}):  *<ul>  *<li><b>work.dir</b> - specifies the working directory. Required if "docs.dir"  * denotes a relative path (<b>default=work</b>).  *<li><b>docs.dir</b> - specifies the directory where the TREC files reside.  * Can be set to a relative path if "work.dir" is also specified  * (<b>default=trec</b>).  *<li><b>html.parser</b> - specifies the {@link HTMLParser} class to use for  * parsing the TREC documents content (<b>default=DemoHTMLParser</b>).  *<li><b>content.source.encoding</b> - if not specified, ISO-8859-1 is used.  *<li><b>content.source.excludeIteration</b> - if true, do not append iteration number to docname  *</ul>  */
+comment|/**  * Implements a {@link ContentSource} over the TREC collection.  *<p>  * Supports the following configuration parameters (on top of  * {@link ContentSource}):  *<ul>  *<li><b>work.dir</b> - specifies the working directory. Required if "docs.dir"  * denotes a relative path (<b>default=work</b>).  *<li><b>docs.dir</b> - specifies the directory where the TREC files reside.  * Can be set to a relative path if "work.dir" is also specified  * (<b>default=trec</b>).  *<li><b>trec.doc.parser</b> - specifies the {@link TrecDocParser} class to use for  * parsing the TREC documents content (<b>default=TrecGov2Parser</b>).  *<li><b>html.parser</b> - specifies the {@link HTMLParser} class to use for  * parsing the HTML parts of the TREC documents content (<b>default=DemoHTMLParser</b>).  *<li><b>content.source.encoding</b> - if not specified, ISO-8859-1 is used.  *<li><b>content.source.excludeIteration</b> - if true, do not append iteration number to docname  *</ul>  */
 end_comment
 
 begin_class
@@ -231,35 +239,8 @@ name|ParsePosition
 name|pos
 decl_stmt|;
 block|}
-DECL|field|DATE
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|DATE
-init|=
-literal|"Date: "
-decl_stmt|;
-DECL|field|DOCHDR
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|DOCHDR
-init|=
-literal|"<DOCHDR>"
-decl_stmt|;
-DECL|field|TERMINATING_DOCHDR
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|TERMINATING_DOCHDR
-init|=
-literal|"</DOCHDR>"
-decl_stmt|;
 DECL|field|DOCNO
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -268,7 +249,7 @@ init|=
 literal|"<DOCNO>"
 decl_stmt|;
 DECL|field|TERMINATING_DOCNO
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -277,7 +258,7 @@ init|=
 literal|"</DOCNO>"
 decl_stmt|;
 DECL|field|DOC
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -286,7 +267,7 @@ init|=
 literal|"<DOC>"
 decl_stmt|;
 DECL|field|TERMINATING_DOC
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -294,8 +275,9 @@ name|TERMINATING_DOC
 init|=
 literal|"</DOC>"
 decl_stmt|;
+comment|/** separator between lines in the byffer */
 DECL|field|NEW_LINE
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -332,6 +314,18 @@ comment|// Tue, 09 Dec 2003 22:39:08 GMT
 literal|"EEE MMM dd kk:mm:ss yyyy"
 block|,
 comment|// Tue Dec 09 16:45:08 2003
+literal|"dd MMM yyyy"
+block|,
+comment|// 1 March 1994
+literal|"MMM dd, yyyy"
+block|,
+comment|// February 3, 1994
+literal|"yyMMdd"
+block|,
+comment|// 910513
+literal|"hhmm z.z.z. MMM dd, yyyy"
+block|,
+comment|// 0901 u.t.c. April 28, 1994
 block|}
 decl_stmt|;
 DECL|field|dateFormats
@@ -412,6 +406,8 @@ DECL|field|rawDocSize
 specifier|private
 name|int
 name|rawDocSize
+init|=
+literal|0
 decl_stmt|;
 comment|// Use to synchronize threads on reading from the TREC documents.
 DECL|field|lock
@@ -443,6 +439,21 @@ specifier|private
 name|boolean
 name|excludeDocnameIteration
 decl_stmt|;
+DECL|field|trecDocParser
+specifier|private
+name|TrecDocParser
+name|trecDocParser
+init|=
+operator|new
+name|TrecGov2Parser
+argument_list|()
+decl_stmt|;
+comment|// default
+DECL|field|currPathType
+name|ParsePathType
+name|currPathType
+decl_stmt|;
+comment|// not private for tests
 DECL|method|getDateFormatInfo
 specifier|private
 name|DateFormatInfo
@@ -596,7 +607,6 @@ name|sb
 return|;
 block|}
 DECL|method|getTrecDocReader
-specifier|private
 name|Reader
 name|getTrecDocReader
 parameter_list|(
@@ -649,7 +659,16 @@ return|return
 name|r
 return|;
 block|}
-comment|// read until finding a line that starts with the specified prefix, or a terminating tag has been found.
+DECL|method|getHtmlParser
+name|HTMLParser
+name|getHtmlParser
+parameter_list|()
+block|{
+return|return
+name|htmlParser
+return|;
+block|}
+comment|/**    * Read until a line starting with the specified<code>lineStart</code>.    * @param buf buffer for collecting the data if so specified/     * @param lineStart line start to look for, must not be null.    * @param collectMatchLine whether to collect the matching line into<code>buffer</code>.    * @param collectAll whether to collect all lines into<code>buffer</code>.    * @throws IOException    * @throws NoMoreDataException    */
 DECL|method|read
 specifier|private
 name|void
@@ -659,16 +678,13 @@ name|StringBuilder
 name|buf
 parameter_list|,
 name|String
-name|prefix
+name|lineStart
 parameter_list|,
 name|boolean
 name|collectMatchLine
 parameter_list|,
 name|boolean
 name|collectAll
-parameter_list|,
-name|String
-name|terminatingTag
 parameter_list|)
 throws|throws
 name|IOException
@@ -714,11 +730,15 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+name|lineStart
+operator|!=
+literal|null
+operator|&&
 name|line
 operator|.
 name|startsWith
 argument_list|(
-name|prefix
+name|lineStart
 argument_list|)
 condition|)
 block|{
@@ -744,33 +764,7 @@ operator|=
 name|NEW_LINE
 expr_stmt|;
 block|}
-break|break;
-block|}
-if|if
-condition|(
-name|terminatingTag
-operator|!=
-literal|null
-operator|&&
-name|line
-operator|.
-name|startsWith
-argument_list|(
-name|terminatingTag
-argument_list|)
-condition|)
-block|{
-comment|// didn't find the prefix that was asked, but the terminating
-comment|// tag was found. set the length to 0 to signal no match was
-comment|// found.
-name|buf
-operator|.
-name|setLength
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-break|break;
+return|return;
 block|}
 if|if
 condition|(
@@ -808,11 +802,10 @@ block|{
 name|close
 argument_list|()
 expr_stmt|;
-name|int
-name|retries
-init|=
-literal|0
-decl_stmt|;
+name|currPathType
+operator|=
+literal|null
+expr_stmt|;
 while|while
 condition|(
 literal|true
@@ -886,21 +879,15 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|GZIPInputStream
-name|zis
+name|InputStream
+name|inputStream
 init|=
-operator|new
-name|GZIPInputStream
-argument_list|(
-operator|new
-name|FileInputStream
+name|getInputStream
 argument_list|(
 name|f
 argument_list|)
-argument_list|,
-name|BUFFER_SIZE
-argument_list|)
 decl_stmt|;
+comment|// support either gzip, bzip2, or regular text file, by extension
 name|reader
 operator|=
 operator|new
@@ -909,12 +896,21 @@ argument_list|(
 operator|new
 name|InputStreamReader
 argument_list|(
-name|zis
+name|inputStream
 argument_list|,
 name|encoding
 argument_list|)
 argument_list|,
 name|BUFFER_SIZE
+argument_list|)
+expr_stmt|;
+name|currPathType
+operator|=
+name|TrecDocParser
+operator|.
+name|pathType
+argument_list|(
+name|f
 argument_list|)
 expr_stmt|;
 return|return;
@@ -925,15 +921,8 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|retries
-operator|++
-expr_stmt|;
 if|if
 condition|(
-name|retries
-operator|<
-literal|20
-operator|&&
 name|verbose
 condition|)
 block|{
@@ -950,9 +939,12 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 operator|+
-literal|"  #retries="
+literal|" due to "
 operator|+
-name|retries
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 continue|continue;
@@ -966,6 +958,7 @@ block|}
 block|}
 block|}
 DECL|method|parseDate
+specifier|public
 name|Date
 name|parseDate
 parameter_list|(
@@ -1162,22 +1155,21 @@ throws|,
 name|IOException
 block|{
 name|String
-name|dateStr
-init|=
-literal|null
-decl_stmt|,
 name|name
 init|=
 literal|null
 decl_stmt|;
-name|Reader
-name|r
+name|StringBuilder
+name|docBuf
 init|=
-literal|null
+name|getDocBuffer
+argument_list|()
+decl_stmt|;
+name|ParsePathType
+name|parsedPathType
 decl_stmt|;
 comment|// protect reading from the TREC files by multiple threads. The rest of the
-comment|// method, i.e., parsing the content and returning the DocData can run
-comment|// unprotected.
+comment|// method, i.e., parsing the content and returning the DocData can run unprotected.
 synchronized|synchronized
 init|(
 name|lock
@@ -1194,13 +1186,7 @@ name|openNextFile
 argument_list|()
 expr_stmt|;
 block|}
-name|StringBuilder
-name|docBuf
-init|=
-name|getDocBuffer
-argument_list|()
-decl_stmt|;
-comment|// 1. skip until doc start
+comment|// 1. skip until doc start - required for all TREC formats
 name|docBuf
 operator|.
 name|setLength
@@ -1217,11 +1203,15 @@ argument_list|,
 literal|false
 argument_list|,
 literal|false
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
-comment|// 2. name
+comment|// save parsedFile for passing trecDataParser after the sync block, in
+comment|// case another thread will open another file in between.
+name|parsedPathType
+operator|=
+name|currPathType
+expr_stmt|;
+comment|// 2. name - required for all TREC formats
 name|docBuf
 operator|.
 name|setLength
@@ -1238,8 +1228,6 @@ argument_list|,
 literal|true
 argument_list|,
 literal|false
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 name|name
@@ -1265,12 +1253,16 @@ name|length
 argument_list|()
 argument_list|)
 argument_list|)
+operator|.
+name|trim
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
 operator|!
 name|excludeDocnameIteration
 condition|)
+block|{
 name|name
 operator|=
 name|name
@@ -1279,109 +1271,8 @@ literal|"_"
 operator|+
 name|iteration
 expr_stmt|;
-comment|// 3. skip until doc header
-name|docBuf
-operator|.
-name|setLength
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|read
-argument_list|(
-name|docBuf
-argument_list|,
-name|DOCHDR
-argument_list|,
-literal|false
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|boolean
-name|findTerminatingDocHdr
-init|=
-literal|false
-decl_stmt|;
-comment|// 4. date - look for the date only until /DOCHDR
-name|docBuf
-operator|.
-name|setLength
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|read
-argument_list|(
-name|docBuf
-argument_list|,
-name|DATE
-argument_list|,
-literal|true
-argument_list|,
-literal|false
-argument_list|,
-name|TERMINATING_DOCHDR
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|docBuf
-operator|.
-name|length
-argument_list|()
-operator|!=
-literal|0
-condition|)
-block|{
-comment|// Date found.
-name|dateStr
-operator|=
-name|docBuf
-operator|.
-name|substring
-argument_list|(
-name|DATE
-operator|.
-name|length
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|findTerminatingDocHdr
-operator|=
-literal|true
-expr_stmt|;
 block|}
-comment|// 5. skip until end of doc header
-if|if
-condition|(
-name|findTerminatingDocHdr
-condition|)
-block|{
-name|docBuf
-operator|.
-name|setLength
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|read
-argument_list|(
-name|docBuf
-argument_list|,
-name|TERMINATING_DOCHDR
-argument_list|,
-literal|false
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-comment|// 6. collect until end of doc
+comment|// 3. read all until end of doc
 name|docBuf
 operator|.
 name|setLength
@@ -1398,26 +1289,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|true
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
-comment|// 7. Set up a Reader over the read content
-name|r
-operator|=
-name|getTrecDocReader
-argument_list|(
-name|docBuf
-argument_list|)
-expr_stmt|;
-comment|// Resetting the thread's reader means it will reuse the instance
-comment|// allocated as well as re-read from docBuf.
-name|r
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-comment|// count char length of parsed html text (larger than the plain doc body text).
+block|}
+comment|// count char length of text to be parsed (may be larger than the resulted plain doc body text).
 name|addBytes
 argument_list|(
 name|docBuf
@@ -1426,28 +1301,13 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 comment|// This code segment relies on HtmlParser being thread safe. When we get
 comment|// here, everything else is already private to that thread, so we're safe.
-name|Date
-name|date
-init|=
-name|dateStr
-operator|!=
-literal|null
-condition|?
-name|parseDate
-argument_list|(
-name|dateStr
-argument_list|)
-else|:
-literal|null
-decl_stmt|;
 try|try
 block|{
 name|docData
 operator|=
-name|htmlParser
+name|trecDocParser
 operator|.
 name|parse
 argument_list|(
@@ -1455,11 +1315,11 @@ name|docData
 argument_list|,
 name|name
 argument_list|,
-name|date
+name|this
 argument_list|,
-name|r
+name|docBuf
 argument_list|,
-literal|null
+name|parsedPathType
 argument_list|)
 expr_stmt|;
 name|addDoc
@@ -1535,6 +1395,7 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
+comment|// dirs
 name|File
 name|workDir
 init|=
@@ -1591,6 +1452,7 @@ name|d
 argument_list|)
 expr_stmt|;
 block|}
+comment|// files
 name|collectFiles
 argument_list|(
 name|dataDir
@@ -1618,10 +1480,61 @@ name|dataDir
 argument_list|)
 throw|;
 block|}
+comment|// trec doc parser
 try|try
 block|{
 name|String
-name|parserClassName
+name|trecDocParserClassName
+init|=
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"trec.doc.parser"
+argument_list|,
+literal|"org.apache.lucene.benchmark.byTask.feeds.TrecGov2Parser"
+argument_list|)
+decl_stmt|;
+name|trecDocParser
+operator|=
+name|Class
+operator|.
+name|forName
+argument_list|(
+name|trecDocParserClassName
+argument_list|)
+operator|.
+name|asSubclass
+argument_list|(
+name|TrecDocParser
+operator|.
+name|class
+argument_list|)
+operator|.
+name|newInstance
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// Should not get here. Throw runtime exception.
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+comment|// html parser
+try|try
+block|{
+name|String
+name|htmlParserClassName
 init|=
 name|config
 operator|.
@@ -1638,7 +1551,7 @@ name|Class
 operator|.
 name|forName
 argument_list|(
-name|parserClassName
+name|htmlParserClassName
 argument_list|)
 operator|.
 name|asSubclass
@@ -1667,6 +1580,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+comment|// encoding
 if|if
 condition|(
 name|encoding
@@ -1679,6 +1593,7 @@ operator|=
 literal|"ISO-8859-1"
 expr_stmt|;
 block|}
+comment|// iteration exclusion in doc name
 name|excludeDocnameIteration
 operator|=
 name|config
