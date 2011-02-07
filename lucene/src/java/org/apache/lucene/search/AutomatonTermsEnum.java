@@ -460,31 +460,24 @@ operator|==
 literal|null
 condition|)
 block|{
+assert|assert
 name|seekBytesRef
 operator|.
-name|copy
-argument_list|(
-literal|""
-argument_list|)
-expr_stmt|;
+name|length
+operator|==
+literal|0
+assert|;
 comment|// return the empty term, as its valid
 if|if
 condition|(
 name|runAutomaton
 operator|.
-name|run
+name|isAccept
 argument_list|(
-name|seekBytesRef
+name|runAutomaton
 operator|.
-name|bytes
-argument_list|,
-name|seekBytesRef
-operator|.
-name|offset
-argument_list|,
-name|seekBytesRef
-operator|.
-name|length
+name|getInitialState
+argument_list|()
 argument_list|)
 condition|)
 block|{
@@ -510,32 +503,20 @@ name|nextString
 argument_list|()
 condition|)
 block|{
-comment|// reposition
-if|if
-condition|(
-name|linear
-condition|)
-name|setLinear
-argument_list|(
-name|infinitePosition
-argument_list|)
-expr_stmt|;
 return|return
 name|seekBytesRef
 return|;
+comment|// reposition
 block|}
-comment|// no more possible strings can match
+else|else
+block|{
 return|return
 literal|null
 return|;
+comment|// no more possible strings can match
 block|}
-comment|// this instance prevents unicode conversion during backtracking,
-comment|// we can just call setLinear once at the end.
-DECL|field|infinitePosition
-name|int
-name|infinitePosition
-decl_stmt|;
-comment|/**    * Sets the enum to operate in linear fashion, as we have found    * a looping transition at position    */
+block|}
+comment|/**    * Sets the enum to operate in linear fashion, as we have found    * a looping transition at position: we set an upper bound and     * act like a TermRangeQuery for this portion of the term space.    */
 DECL|method|setLinear
 specifier|private
 name|void
@@ -545,6 +526,11 @@ name|int
 name|position
 parameter_list|)
 block|{
+assert|assert
+name|linear
+operator|==
+literal|false
+assert|;
 name|int
 name|state
 init|=
@@ -752,6 +738,10 @@ name|length
 operator|=
 name|length
 expr_stmt|;
+name|linear
+operator|=
+literal|true
+expr_stmt|;
 block|}
 DECL|field|savedStates
 specifier|private
@@ -902,13 +892,10 @@ operator|==
 name|curGen
 condition|)
 block|{
-name|linear
-operator|=
-literal|true
-expr_stmt|;
-name|infinitePosition
-operator|=
+name|setLinear
+argument_list|(
 name|pos
+argument_list|)
 expr_stmt|;
 block|}
 name|state
@@ -1223,34 +1210,6 @@ operator|.
 name|getNumber
 argument_list|()
 expr_stmt|;
-comment|// we found a loop, record it for faster enumeration
-if|if
-condition|(
-operator|!
-name|finite
-operator|&&
-operator|!
-name|linear
-operator|&&
-name|visited
-index|[
-name|state
-index|]
-operator|==
-name|curGen
-condition|)
-block|{
-name|linear
-operator|=
-literal|true
-expr_stmt|;
-name|infinitePosition
-operator|=
-name|seekBytesRef
-operator|.
-name|length
-expr_stmt|;
-block|}
 comment|// append the minimum transition
 name|seekBytesRef
 operator|.
@@ -1287,6 +1246,33 @@ operator|.
 name|getMin
 argument_list|()
 expr_stmt|;
+comment|// we found a loop, record it for faster enumeration
+if|if
+condition|(
+operator|!
+name|finite
+operator|&&
+operator|!
+name|linear
+operator|&&
+name|visited
+index|[
+name|state
+index|]
+operator|==
+name|curGen
+condition|)
+block|{
+name|setLinear
+argument_list|(
+name|seekBytesRef
+operator|.
+name|length
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 return|return
 literal|true
