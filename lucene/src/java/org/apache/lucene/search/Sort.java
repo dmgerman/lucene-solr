@@ -20,16 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Arrays
@@ -45,8 +35,6 @@ DECL|class|Sort
 specifier|public
 class|class
 name|Sort
-implements|implements
-name|Serializable
 block|{
 comment|/**    * Represents sorting by computed relevance. Using this sort criteria returns    * the same results as calling    * {@link IndexSearcher#search(Query,int) IndexSearcher#search()}without a sort criteria,    * only with slightly more overhead.    */
 DECL|field|RELEVANCE

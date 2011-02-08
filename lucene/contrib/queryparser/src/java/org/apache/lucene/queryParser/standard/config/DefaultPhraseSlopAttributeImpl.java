@@ -84,16 +84,6 @@ name|AttributeImpl
 implements|implements
 name|DefaultPhraseSlopAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|2104763012527049527L
-decl_stmt|;
 DECL|field|defaultPhraseSlop
 specifier|private
 name|int

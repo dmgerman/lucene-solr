@@ -94,16 +94,6 @@ name|AttributeImpl
 implements|implements
 name|LowercaseExpandedTermsAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|2804760312723049527L
-decl_stmt|;
 DECL|field|lowercaseExpandedTerms
 specifier|private
 name|boolean

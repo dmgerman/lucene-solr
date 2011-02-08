@@ -84,15 +84,6 @@ name|TextableQueryNode
 implements|,
 name|FieldableNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|3634521145130758265L
-decl_stmt|;
 comment|/**    * The term's field    */
 DECL|field|field
 specifier|protected

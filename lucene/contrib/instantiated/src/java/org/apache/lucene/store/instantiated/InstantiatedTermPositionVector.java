@@ -46,16 +46,6 @@ name|TermVectorOffsetInfo
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Extended vector space view of a document in an {@link InstantiatedIndexReader}.  *  * @see org.apache.lucene.index.TermPositionVector  */
 end_comment
@@ -69,18 +59,7 @@ extends|extends
 name|InstantiatedTermFreqVector
 implements|implements
 name|TermPositionVector
-implements|,
-name|Serializable
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|1l
-decl_stmt|;
 DECL|method|InstantiatedTermPositionVector
 specifier|public
 name|InstantiatedTermPositionVector

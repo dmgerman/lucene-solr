@@ -68,15 +68,6 @@ name|WildcardQueryNode
 extends|extends
 name|FieldQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|0L
-decl_stmt|;
 comment|/**    * @param field    *          - field name    * @param text    *          - value that contains one or more wild card characters (? or *)    * @param begin    *          - position in the query string    * @param end    *          - position in the query string    */
 DECL|method|WildcardQueryNode
 specifier|public

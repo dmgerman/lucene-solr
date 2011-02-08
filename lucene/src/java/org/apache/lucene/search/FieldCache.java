@@ -188,16 +188,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|PrintStream
 import|;
 end_import
@@ -249,8 +239,6 @@ DECL|interface|Parser
 specifier|public
 interface|interface
 name|Parser
-extends|extends
-name|Serializable
 block|{   }
 comment|/** Interface to parse bytes from document fields.    * @see FieldCache#getBytes(IndexReader, String, FieldCache.ByteParser)    */
 DECL|interface|ByteParser

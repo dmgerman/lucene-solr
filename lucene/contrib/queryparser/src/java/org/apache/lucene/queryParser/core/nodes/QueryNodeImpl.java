@@ -135,15 +135,6 @@ name|QueryNode
 implements|,
 name|Cloneable
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|5569870883474845989L
-decl_stmt|;
 comment|/* index default field */
 comment|// TODO remove PLAINTEXT_FIELD_NAME replacing it with configuration APIs
 DECL|field|PLAINTEXT_FIELD_NAME

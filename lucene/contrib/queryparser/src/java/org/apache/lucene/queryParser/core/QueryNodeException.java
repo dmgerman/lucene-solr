@@ -134,16 +134,6 @@ name|Exception
 implements|implements
 name|NLSException
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|5962648855261624214L
-decl_stmt|;
 DECL|field|message
 specifier|protected
 name|Message

@@ -106,15 +106,6 @@ name|StandardBooleanQueryNode
 extends|extends
 name|BooleanQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|1938287817191138787L
-decl_stmt|;
 DECL|field|disableCoord
 specifier|private
 name|boolean

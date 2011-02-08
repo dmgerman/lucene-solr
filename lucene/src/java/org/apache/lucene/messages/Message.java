@@ -20,16 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Locale
@@ -45,8 +35,6 @@ DECL|interface|Message
 specifier|public
 interface|interface
 name|Message
-extends|extends
-name|Serializable
 block|{
 DECL|method|getKey
 specifier|public

@@ -112,15 +112,6 @@ name|QueryNodeParseException
 extends|extends
 name|QueryNodeException
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|8197535103538766773L
-decl_stmt|;
 DECL|field|query
 specifier|private
 name|CharSequence

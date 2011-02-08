@@ -94,16 +94,6 @@ name|AttributeImpl
 implements|implements
 name|MultiFieldAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|6809760312720049526L
-decl_stmt|;
 DECL|field|fields
 specifier|private
 name|CharSequence

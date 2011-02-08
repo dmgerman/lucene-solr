@@ -84,16 +84,6 @@ name|AttributeImpl
 implements|implements
 name|PositionIncrementsAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|2804763012793049527L
-decl_stmt|;
 DECL|field|positionIncrementsEnabled
 specifier|private
 name|boolean

@@ -62,16 +62,6 @@ name|QueryNodeImpl
 implements|implements
 name|FieldableNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|7185108320787917541L
-decl_stmt|;
 DECL|method|TokenizedPhraseQueryNode
 specifier|public
 name|TokenizedPhraseQueryNode

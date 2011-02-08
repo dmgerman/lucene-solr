@@ -114,16 +114,6 @@ name|AttributeImpl
 implements|implements
 name|MultiTermRewriteMethodAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|2104763012723049527L
-decl_stmt|;
 DECL|field|multiTermRewriteMethod
 specifier|private
 name|MultiTermQuery

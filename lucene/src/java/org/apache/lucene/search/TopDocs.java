@@ -25,12 +25,6 @@ DECL|class|TopDocs
 specifier|public
 class|class
 name|TopDocs
-implements|implements
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
 block|{
 comment|/** The total number of hits for the query.   */
 DECL|field|totalHits

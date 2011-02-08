@@ -32,15 +32,6 @@ name|MatchNoDocsQueryNode
 extends|extends
 name|DeletedQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|8081805751679581497L
-decl_stmt|;
 DECL|method|MatchNoDocsQueryNode
 specifier|public
 name|MatchNoDocsQueryNode

@@ -100,16 +100,6 @@ name|FieldDateResolutionFCListener
 implements|implements
 name|FieldConfigListener
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|5929802948798314067L
-decl_stmt|;
 DECL|field|config
 specifier|private
 name|QueryConfigHandler

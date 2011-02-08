@@ -50,16 +50,6 @@ name|ParametricQueryNode
 extends|extends
 name|FieldQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|5770038129741218116L
-decl_stmt|;
 DECL|field|operator
 specifier|private
 name|CompareOperator

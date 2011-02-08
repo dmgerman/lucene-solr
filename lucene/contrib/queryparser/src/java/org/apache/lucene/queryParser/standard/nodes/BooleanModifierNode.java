@@ -86,16 +86,6 @@ name|BooleanModifierNode
 extends|extends
 name|ModifierQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|557816496416587068L
-decl_stmt|;
 DECL|method|BooleanModifierNode
 specifier|public
 name|BooleanModifierNode

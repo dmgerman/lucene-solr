@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|nio
 operator|.
 name|CharBuffer
@@ -139,8 +129,6 @@ implements|,
 name|TermToBytesRefAttribute
 implements|,
 name|Cloneable
-implements|,
-name|Serializable
 block|{
 DECL|field|MIN_BUFFER_SIZE
 specifier|private

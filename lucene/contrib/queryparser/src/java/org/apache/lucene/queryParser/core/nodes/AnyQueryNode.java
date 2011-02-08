@@ -60,15 +60,6 @@ name|AnyQueryNode
 extends|extends
 name|AndQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|1000791433562954187L
-decl_stmt|;
 DECL|field|field
 specifier|private
 name|CharSequence

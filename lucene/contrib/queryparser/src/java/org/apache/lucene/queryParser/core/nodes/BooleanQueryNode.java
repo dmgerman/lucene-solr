@@ -60,16 +60,6 @@ name|BooleanQueryNode
 extends|extends
 name|QueryNodeImpl
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|2206623652088638072L
-decl_stmt|;
 comment|/**    * @param clauses    *          - the query nodes to be and'ed    */
 DECL|method|BooleanQueryNode
 specifier|public
