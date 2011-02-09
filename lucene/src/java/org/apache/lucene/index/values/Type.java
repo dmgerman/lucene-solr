@@ -28,6 +28,38 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|codecs
+operator|.
+name|Codec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|FieldsConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|values
 operator|.
 name|DocValues
@@ -37,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Type} specifies the type of the {@link DocValues} for a certain field.  * A {@link Type} can specify the actual data type for a field, used compression  * schemes and high-level data-structures.  *   * @lucene.experimental  */
+comment|/**  * {@link Type} specifies the type of the {@link DocValues} for a certain field.  * A {@link Type} only defines the data type for a field while the actual  * implemenation used to encode and decode the values depends on the field's  * {@link Codec}. It is up to the {@link Codec} implementing  * {@link FieldsConsumer#addValuesField(org.apache.lucene.index.FieldInfo)} and  * using a different low-level implemenations to write the stored values for a  * field.  *   * @lucene.experimental  */
 end_comment
 
 begin_enum
@@ -46,17 +78,18 @@ specifier|public
 enum|enum
 name|Type
 block|{
-comment|/**    * Integral value is stored as packed ints. The bit precision is fixed across    * the segment, and determined by the min/max values in the field.    */
-DECL|enum constant|PACKED_INTS
-name|PACKED_INTS
+comment|/*    * TODO: Add INT_32 INT_64 INT_16& INT_8?!    */
+comment|/**    * Integer values.    */
+DECL|enum constant|INTS
+name|INTS
 block|,
-comment|/**    * 32 bit floating point value stored without modification or compression.    */
-DECL|enum constant|SIMPLE_FLOAT_4BYTE
-name|SIMPLE_FLOAT_4BYTE
+comment|/**    * 32 bit floating point values.    */
+DECL|enum constant|FLOAT_32
+name|FLOAT_32
 block|,
-comment|/**    * 64 bit floating point value stored without modification or compression.    */
-DECL|enum constant|SIMPLE_FLOAT_8BYTE
-name|SIMPLE_FLOAT_8BYTE
+comment|/**    * 64 bit floating point values.    */
+DECL|enum constant|FLOAT_64
+name|FLOAT_64
 block|,
 comment|// TODO(simonw): -- shouldn't lucene decide/detect straight vs
 comment|// deref, as well fixed vs var?

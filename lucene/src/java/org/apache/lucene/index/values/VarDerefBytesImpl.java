@@ -588,6 +588,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/*    * TODO: if impls like this are merged we are bound to the amount of memory we    * can store into a BytesRefHash and therefore how much memory a ByteBlockPool    * can address. This is currently limited to 2GB. While we could extend that    * and use 64bit for addressing this still limits us to the existing main    * memory as all distinct bytes will be loaded up into main memory. We could    * move the byte[] writing to #finish(int) and store the bytes in sorted    * order and merge them in a streamed fashion.     */
 DECL|class|Writer
 specifier|static
 class|class

@@ -363,8 +363,6 @@ name|this
 operator|.
 name|name
 operator|=
-literal|"docvalues_"
-operator|+
 name|other
 operator|.
 name|name

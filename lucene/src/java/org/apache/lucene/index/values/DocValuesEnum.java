@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link DocValuesEnum} is a {@link DocIdSetIterator} iterating<tt>byte[]</tt>  * ,<tt>long</tt> and<tt>double</tt> stored per document. Depending on the  * enum's {@link Type} ({@link #type()}) the enum might skip over documents that  * have no value stored. Types like {@link Type#BYTES_VAR_STRAIGHT} might not  * skip over documents even if there is no value associated with a document. The  * value for document without values again depends on the types implementation  * although a reference for a {@link Type} returned from a accessor method  * {@link #getFloat()}, {@link #getInt()} or {@link #bytes()} will never be  *<code>null</code> even if a document has no value.  *<p>  * Note: Only the reference for the enum's type are initialized to non  *<code>null</code> ie. {@link #getInt()} will always return<code>null</code>  * if the enum's Type is {@link Type#SIMPLE_FLOAT_4BYTE}.  *   * @lucene.experimental  */
+comment|/**  * {@link DocValuesEnum} is a {@link DocIdSetIterator} iterating<tt>byte[]</tt>  * ,<tt>long</tt> and<tt>double</tt> stored per document. Depending on the  * enum's {@link Type} ({@link #type()}) the enum might skip over documents that  * have no value stored. Types like {@link Type#BYTES_VAR_STRAIGHT} might not  * skip over documents even if there is no value associated with a document. The  * value for document without values again depends on the types implementation  * although a reference for a {@link Type} returned from a accessor method  * {@link #getFloat()}, {@link #getInt()} or {@link #bytes()} will never be  *<code>null</code> even if a document has no value.  *<p>  * Note: Only the reference for the enum's type are initialized to non  *<code>null</code> ie. {@link #getInt()} will always return<code>null</code>  * if the enum's Type is {@link Type#FLOAT_32}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -209,7 +209,7 @@ argument_list|()
 expr_stmt|;
 break|break;
 case|case
-name|PACKED_INTS
+name|INTS
 case|:
 name|intsRef
 operator|=
@@ -221,10 +221,10 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|SIMPLE_FLOAT_4BYTE
+name|FLOAT_32
 case|:
 case|case
-name|SIMPLE_FLOAT_8BYTE
+name|FLOAT_64
 case|:
 name|floatsRef
 operator|=

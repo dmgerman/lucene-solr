@@ -1914,7 +1914,7 @@ return|return
 operator|new
 name|FieldComparator
 operator|.
-name|IntIndexValuesComparator
+name|IntDocValuesComparator
 argument_list|(
 name|numHits
 argument_list|,
@@ -1958,7 +1958,7 @@ return|return
 operator|new
 name|FieldComparator
 operator|.
-name|FloatIndexValuesComparator
+name|FloatDocValuesComparator
 argument_list|(
 name|numHits
 argument_list|,

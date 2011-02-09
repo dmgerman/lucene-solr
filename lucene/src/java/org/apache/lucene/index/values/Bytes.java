@@ -275,7 +275,7 @@ specifier|final
 class|class
 name|Bytes
 block|{
-comment|//TODO - add bulk copy where possible
+comment|// TODO - add bulk copy where possible
 DECL|method|Bytes
 specifier|private
 name|Bytes
@@ -283,7 +283,7 @@ parameter_list|()
 block|{
 comment|/* don't instantiate! */
 block|}
-comment|/**    * Defines the {@link Writer}s store mode. The writer will either store the    * bytes sequentially ({@link #STRAIGHT}, dereferenced ({@link #DEREF}) or    * sorted ({@link #SORTED})    *     */
+comment|/**    * Defines the {@link Writer}s store mode. The writer will either store the    * bytes sequentially ({@link #STRAIGHT}, dereferenced ({@link #DEREF}) or    * sorted ({@link #SORTED})    *     * @lucene.experimental    */
 DECL|enum|Mode
 specifier|public
 specifier|static
@@ -708,6 +708,12 @@ name|BytesBaseSource
 extends|extends
 name|Source
 block|{
+DECL|field|pagedBytes
+specifier|private
+specifier|final
+name|PagedBytes
+name|pagedBytes
+decl_stmt|;
 DECL|field|datIn
 specifier|protected
 specifier|final
@@ -728,12 +734,6 @@ name|int
 name|PAGED_BYTES_BITS
 init|=
 literal|15
-decl_stmt|;
-DECL|field|pagedBytes
-specifier|private
-specifier|final
-name|PagedBytes
-name|pagedBytes
 decl_stmt|;
 DECL|field|data
 specifier|protected
@@ -866,11 +866,13 @@ name|datIn
 operator|!=
 literal|null
 condition|)
+block|{
 name|datIn
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -880,12 +882,14 @@ name|idxIn
 operator|!=
 literal|null
 condition|)
+block|{
 comment|// if straight - no index needed
 name|idxIn
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1205,10 +1209,10 @@ name|bytesRef
 argument_list|)
 return|;
 block|}
-DECL|method|close
-specifier|public
+DECL|method|closeIndexInput
+specifier|protected
 name|void
-name|close
+name|closeIndexInput
 parameter_list|()
 throws|throws
 name|IOException
@@ -1221,11 +1225,13 @@ name|datIn
 operator|!=
 literal|null
 condition|)
+block|{
 name|datIn
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -1235,6 +1241,7 @@ name|idxIn
 operator|!=
 literal|null
 condition|)
+block|{
 comment|// if straight
 name|idxIn
 operator|.
@@ -1243,6 +1250,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|/**      * Returns the largest doc id + 1 in this doc values source      */
 DECL|method|maxDoc
 specifier|protected
 specifier|abstract
@@ -1250,6 +1259,7 @@ name|int
 name|maxDoc
 parameter_list|()
 function_decl|;
+comment|/**      * Copies the value for the given ord to the given {@link BytesRef} and      * returns it.      */
 DECL|method|deref
 specifier|protected
 specifier|abstract
@@ -1622,16 +1632,20 @@ if|if
 condition|(
 name|initData
 condition|)
+block|{
 name|initDataOut
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|initIndex
 condition|)
+block|{
 name|initIndexOut
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|initDataOut
 specifier|private
@@ -1708,19 +1722,6 @@ argument_list|,
 name|version
 argument_list|)
 expr_stmt|;
-block|}
-DECL|method|ramBytesUsed
-specifier|public
-name|long
-name|ramBytesUsed
-parameter_list|()
-block|{
-return|return
-name|bytesUsed
-operator|.
-name|get
-argument_list|()
-return|;
 block|}
 comment|/**      * Must be called only with increasing docIDs. It's OK for some docIDs to be      * skipped; they will be filled with 0 bytes.      */
 annotation|@
@@ -2106,6 +2107,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+comment|/**      * clones and returns the data {@link IndexInput}      */
 DECL|method|cloneData
 specifier|protected
 specifier|final
@@ -2128,6 +2130,7 @@ name|clone
 argument_list|()
 return|;
 block|}
+comment|/**      * clones and returns the indexing {@link IndexInput}      */
 DECL|method|cloneIndex
 specifier|protected
 specifier|final

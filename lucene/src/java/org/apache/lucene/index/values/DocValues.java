@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TODO  * @see FieldsEnum#docValues()  * @see Fields#docValues(String)  * @lucene.experimental  */
+comment|/**  * TODO  *   * @see FieldsEnum#docValues()  * @see Fields#docValues(String)  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -131,6 +131,7 @@ name|DocValues
 implements|implements
 name|Closeable
 block|{
+comment|/*    * TODO: it might be useful to add another Random Access enum for some    * implementations like packed ints and only return such a random access enum    * if the impl supports random access. For super large segments it might be    * useful or even required in certain environements to have disc based random    * access    */
 DECL|field|EMPTY_ARRAY
 specifier|public
 specifier|static
@@ -285,7 +286,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the {@link SourceCache} used by this {@link DocValues} instance. This    * method should be called before {@link #load()} or    * {@link #loadSorted(Comparator)} is called. All {@link Source} or    * {@link SortedSource} instances in the currently used cache will be closed    * before the new cache is installed.    *<p>    * Note: All instances previously obtained from {@link #load()} or    * {@link #loadSorted(Comparator)} will be closed.    * @throws IllegalArgumentException if the given cache is<code>null</code>    *     */
+comment|/**    * Sets the {@link SourceCache} used by this {@link DocValues} instance. This    * method should be called before {@link #load()} or    * {@link #loadSorted(Comparator)} is called. All {@link Source} or    * {@link SortedSource} instances in the currently used cache will be closed    * before the new cache is installed.    *<p>    * Note: All instances previously obtained from {@link #load()} or    * {@link #loadSorted(Comparator)} will be closed.    *     * @throws IllegalArgumentException    *           if the given cache is<code>null</code>    *     */
 DECL|method|setCache
 specifier|public
 name|void
@@ -340,6 +341,7 @@ specifier|abstract
 class|class
 name|Source
 block|{
+comment|// TODO we might need a close method here to null out the internal used arrays?!
 DECL|field|missingValue
 specifier|protected
 specifier|final

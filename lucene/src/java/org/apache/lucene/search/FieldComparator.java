@@ -1304,12 +1304,12 @@ return|;
 block|}
 block|}
 comment|/** Uses float index values to sort by ascending value */
-DECL|class|FloatIndexValuesComparator
+DECL|class|FloatDocValuesComparator
 specifier|public
 specifier|static
 specifier|final
 class|class
-name|FloatIndexValuesComparator
+name|FloatDocValuesComparator
 extends|extends
 name|FieldComparator
 block|{
@@ -1336,8 +1336,8 @@ specifier|private
 name|double
 name|bottom
 decl_stmt|;
-DECL|method|FloatIndexValuesComparator
-name|FloatIndexValuesComparator
+DECL|method|FloatDocValuesComparator
+name|FloatDocValuesComparator
 parameter_list|(
 name|int
 name|numHits
@@ -2618,12 +2618,12 @@ return|;
 block|}
 block|}
 comment|/** Loads int index values and sorts by ascending value. */
-DECL|class|IntIndexValuesComparator
+DECL|class|IntDocValuesComparator
 specifier|public
 specifier|static
 specifier|final
 class|class
-name|IntIndexValuesComparator
+name|IntDocValuesComparator
 extends|extends
 name|FieldComparator
 block|{
@@ -2650,8 +2650,8 @@ specifier|private
 name|long
 name|bottom
 decl_stmt|;
-DECL|method|IntIndexValuesComparator
-name|IntIndexValuesComparator
+DECL|method|IntDocValuesComparator
+name|IntDocValuesComparator
 parameter_list|(
 name|int
 name|numHits
