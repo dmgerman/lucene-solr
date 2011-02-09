@@ -71,6 +71,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -200,6 +202,8 @@ name|TestSort
 extends|extends
 name|AbstractSolrTestCase
 block|{
+annotation|@
+name|Override
 DECL|method|getSchemaFile
 specifier|public
 name|String
@@ -210,6 +214,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSolrConfigFile
 specifier|public
 name|String
@@ -279,6 +285,8 @@ DECL|field|val2
 name|String
 name|val2
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -405,13 +413,6 @@ operator|.
 name|OpenMode
 operator|.
 name|CREATE
-argument_list|)
-operator|.
-name|setMaxFieldLength
-argument_list|(
-name|IndexWriterConfig
-operator|.
-name|UNLIMITED_FIELD_LENGTH
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -659,8 +660,8 @@ specifier|public
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -668,6 +669,8 @@ block|{
 return|return
 name|randSet
 argument_list|(
+name|context
+operator|.
 name|reader
 operator|.
 name|maxDoc
@@ -1071,11 +1074,8 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -1084,15 +1084,13 @@ name|topCollector
 operator|.
 name|setNextReader
 argument_list|(
-name|reader
-argument_list|,
-name|docBase
+name|context
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
 name|docBase
 operator|=
+name|context
+operator|.
 name|docBase
 expr_stmt|;
 block|}

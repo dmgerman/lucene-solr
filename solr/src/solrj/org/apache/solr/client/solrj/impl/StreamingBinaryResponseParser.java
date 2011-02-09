@@ -214,6 +214,8 @@ operator|new
 name|JavaBinCodec
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|SolrDocument
 name|readSolrDocument
@@ -245,6 +247,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|SolrDocumentList
 name|readSolrDocumentList

@@ -258,6 +258,8 @@ name|TestArbitraryIndexDir
 extends|extends
 name|AbstractSolrTestCase
 block|{
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -357,6 +359,8 @@ literal|"2.2"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void
@@ -590,11 +594,6 @@ name|Version
 operator|.
 name|LUCENE_40
 argument_list|)
-argument_list|)
-operator|.
-name|setMaxFieldLength
-argument_list|(
-literal|1000
 argument_list|)
 argument_list|)
 decl_stmt|;

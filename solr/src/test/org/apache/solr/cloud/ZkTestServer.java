@@ -1179,7 +1179,9 @@ argument_list|(
 name|cmd
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"US-ASCII"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|outstream

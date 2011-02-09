@@ -29,6 +29,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -173,8 +175,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -198,14 +200,21 @@ name|similarity
 init|=
 name|searcher
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|field
+argument_list|)
 decl_stmt|;
 specifier|final
 name|byte
 index|[]
 name|norms
 init|=
+name|readerContext
+operator|.
 name|reader
 operator|.
 name|norms

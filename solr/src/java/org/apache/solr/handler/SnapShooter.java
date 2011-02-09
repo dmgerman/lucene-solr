@@ -407,6 +407,8 @@ operator|new
 name|Thread
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -439,10 +441,16 @@ name|replicationHandler
 parameter_list|)
 block|{
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 name|details
 init|=
 operator|new
 name|NamedList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|details

@@ -120,6 +120,8 @@ comment|// EntryCreator is stored in in the FieldCache.
 comment|// When the FieldCache is replaced with a simpler map LUCENE-2665
 comment|// This can be removed
 comment|//------------------------------------------------------------------------
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

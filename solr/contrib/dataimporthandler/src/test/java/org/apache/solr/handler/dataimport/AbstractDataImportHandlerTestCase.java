@@ -1185,6 +1185,8 @@ operator|=
 name|root
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getEntityAttribute
 specifier|public
 name|String
@@ -1214,6 +1216,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getResolvedEntityAttribute
 specifier|public
 name|String
@@ -1251,6 +1255,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getAllEntityFields
 specifier|public
 name|List
@@ -1278,6 +1284,8 @@ else|:
 name|entityFields
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getVariableResolver
 specifier|public
 name|VariableResolver
@@ -1291,6 +1299,8 @@ name|getVariableResolver
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDataSource
 specifier|public
 name|DataSource
@@ -1304,6 +1314,8 @@ name|getDataSource
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isRootEntity
 specifier|public
 name|boolean
@@ -1314,6 +1326,8 @@ return|return
 name|root
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|currentProcess
 specifier|public
 name|String
@@ -1327,6 +1341,8 @@ name|currentProcess
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getRequestParameters
 specifier|public
 name|Map
@@ -1345,6 +1361,8 @@ name|getRequestParameters
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getEntityProcessor
 specifier|public
 name|EntityProcessor
@@ -1355,6 +1373,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setSessionAttribute
 specifier|public
 name|void
@@ -1382,6 +1402,8 @@ name|scope
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSessionAttribute
 specifier|public
 name|Object
@@ -1405,6 +1427,8 @@ name|scope
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getParentContext
 specifier|public
 name|Context
@@ -1418,6 +1442,8 @@ name|getParentContext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDataSource
 specifier|public
 name|DataSource
@@ -1436,6 +1462,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSolrCore
 specifier|public
 name|SolrCore
@@ -1449,6 +1477,8 @@ name|getSolrCore
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getStats
 specifier|public
 name|Map
@@ -1467,6 +1497,8 @@ name|getStats
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getScript
 specifier|public
 name|String
@@ -1486,6 +1518,8 @@ else|:
 name|script
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getScriptLanguage
 specifier|public
 name|String
@@ -1505,6 +1539,8 @@ else|:
 name|scriptlang
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|deleteDoc
 specifier|public
 name|void
@@ -1514,6 +1550,8 @@ name|String
 name|id
 parameter_list|)
 block|{      }
+annotation|@
+name|Override
 DECL|method|deleteDocByQuery
 specifier|public
 name|void
@@ -1523,6 +1561,8 @@ name|String
 name|query
 parameter_list|)
 block|{      }
+annotation|@
+name|Override
 DECL|method|resolve
 specifier|public
 name|Object
@@ -1541,6 +1581,8 @@ name|var
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|replaceTokens
 specifier|public
 name|String
@@ -1699,6 +1741,8 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|finish
 specifier|public
 name|void
@@ -1717,6 +1761,8 @@ name|finish
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|processAdd
 specifier|public
 name|void
@@ -1740,6 +1786,8 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|processCommit
 specifier|public
 name|void
@@ -1763,6 +1811,8 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|processDelete
 specifier|public
 name|void
@@ -1786,6 +1836,8 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|processMergeIndexes
 specifier|public
 name|void
@@ -1809,6 +1861,8 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|processRollback
 specifier|public
 name|void

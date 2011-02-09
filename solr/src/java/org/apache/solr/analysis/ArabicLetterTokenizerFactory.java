@@ -42,6 +42,16 @@ name|Reader
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link ArabicLetterTokenizer}  * @deprecated (3.1) Use StandardTokenizerFactory instead.  **/
 end_comment
@@ -56,6 +66,38 @@ name|ArabicLetterTokenizerFactory
 extends|extends
 name|BaseTokenizerFactory
 block|{
+annotation|@
+name|Override
+DECL|method|init
+specifier|public
+name|void
+name|init
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|args
+parameter_list|)
+block|{
+name|super
+operator|.
+name|init
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+name|assureMatchVersion
+argument_list|()
+expr_stmt|;
+name|warnDeprecated
+argument_list|(
+literal|"Use StandardTokenizerFactory instead."
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|create
 specifier|public
 name|ArabicLetterTokenizer
@@ -65,9 +107,6 @@ name|Reader
 name|input
 parameter_list|)
 block|{
-name|assureMatchVersion
-argument_list|()
-expr_stmt|;
 return|return
 operator|new
 name|ArabicLetterTokenizer

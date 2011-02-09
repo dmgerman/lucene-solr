@@ -42,9 +42,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|index
 operator|.
-name|IndexOutput
+name|CorruptIndexException
 import|;
 end_import
 
@@ -72,20 +72,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentWriteState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexFileNames
 import|;
 end_import
@@ -100,7 +86,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CorruptIndexException
+name|SegmentWriteState
 import|;
 end_import
 
@@ -117,6 +103,50 @@ operator|.
 name|codecs
 operator|.
 name|PostingsWriterBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|TermStats
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IndexOutput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|RAMOutputStream
 import|;
 end_import
 
@@ -257,6 +287,21 @@ DECL|field|lastPosition
 name|int
 name|lastPosition
 decl_stmt|;
+DECL|field|pendingCount
+specifier|private
+name|int
+name|pendingCount
+decl_stmt|;
+comment|//private String segment;
+DECL|field|bytesWriter
+specifier|private
+name|RAMOutputStream
+name|bytesWriter
+init|=
+operator|new
+name|RAMOutputStream
+argument_list|()
+decl_stmt|;
 DECL|method|StandardPostingsWriter
 specifier|public
 name|StandardPostingsWriter
@@ -270,6 +315,7 @@ block|{
 name|super
 argument_list|()
 expr_stmt|;
+comment|//this.segment = state.segmentName;
 name|String
 name|fileName
 init|=
@@ -448,6 +494,7 @@ name|void
 name|startTerm
 parameter_list|()
 block|{
+comment|//System.out.println("StandardW: startTerm seg=" + segment + " pendingCount=" + pendingCount);
 name|freqStart
 operator|=
 name|freqOut
@@ -495,6 +542,7 @@ name|FieldInfo
 name|fieldInfo
 parameter_list|)
 block|{
+comment|//System.out.println("SPW: setField");
 name|this
 operator|.
 name|fieldInfo
@@ -513,6 +561,8 @@ name|fieldInfo
 operator|.
 name|storePayloads
 expr_stmt|;
+comment|//System.out.println("  set init blockFreqStart=" + freqStart);
+comment|//System.out.println("  set init blockProxStart=" + proxStart);
 block|}
 DECL|field|lastDocID
 name|int
@@ -539,6 +589,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("StandardW:   startDoc seg=" + segment + " docID=" + docID + " tf=" + termDocFreq);
 specifier|final
 name|int
 name|delta
@@ -704,6 +755,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("StandardW:     addPos pos=" + position + " payload=" + (payload == null ? "null" : (payload.length + " bytes")) + " proxFP=" + proxOut.getFilePointer());
 assert|assert
 operator|!
 name|omitTermFreqAndPositions
@@ -859,34 +911,45 @@ specifier|public
 name|void
 name|finishTerm
 parameter_list|(
-name|int
-name|docCount
-parameter_list|,
-name|boolean
-name|isIndexTerm
+name|TermStats
+name|stats
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("StandardW.finishTerm seg=" + segment);
 assert|assert
-name|docCount
+name|stats
+operator|.
+name|docFreq
 operator|>
 literal|0
 assert|;
 comment|// TODO: wasteful we are counting this (counting # docs
 comment|// for this term) in two places?
 assert|assert
-name|docCount
+name|stats
+operator|.
+name|docFreq
 operator|==
 name|df
 assert|;
+specifier|final
+name|boolean
+name|isFirstTerm
+init|=
+name|pendingCount
+operator|==
+literal|0
+decl_stmt|;
+comment|//System.out.println("  isFirstTerm=" + isFirstTerm);
+comment|//System.out.println("  freqFP=" + freqStart);
 if|if
 condition|(
-name|isIndexTerm
+name|isFirstTerm
 condition|)
 block|{
-comment|// Write absolute at seek points
-name|termsOut
+name|bytesWriter
 operator|.
 name|writeVLong
 argument_list|(
@@ -896,8 +959,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Write delta between seek points
-name|termsOut
+name|bytesWriter
 operator|.
 name|writeVLong
 argument_list|(
@@ -918,7 +980,7 @@ operator|>=
 name|skipInterval
 condition|)
 block|{
-name|termsOut
+name|bytesWriter
 operator|.
 name|writeVInt
 argument_list|(
@@ -944,13 +1006,13 @@ operator|!
 name|omitTermFreqAndPositions
 condition|)
 block|{
+comment|//System.out.println("  proxFP=" + proxStart);
 if|if
 condition|(
-name|isIndexTerm
+name|isFirstTerm
 condition|)
 block|{
-comment|// Write absolute at seek points
-name|termsOut
+name|bytesWriter
 operator|.
 name|writeVLong
 argument_list|(
@@ -960,8 +1022,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Write delta between seek points
-name|termsOut
+name|bytesWriter
 operator|.
 name|writeVLong
 argument_list|(
@@ -981,6 +1042,50 @@ operator|=
 literal|0
 expr_stmt|;
 name|df
+operator|=
+literal|0
+expr_stmt|;
+name|pendingCount
+operator|++
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|flushTermsBlock
+specifier|public
+name|void
+name|flushTermsBlock
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|//System.out.println("SPW.flushBlock pendingCount=" + pendingCount);
+name|termsOut
+operator|.
+name|writeVInt
+argument_list|(
+operator|(
+name|int
+operator|)
+name|bytesWriter
+operator|.
+name|getFilePointer
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|bytesWriter
+operator|.
+name|writeTo
+argument_list|(
+name|termsOut
+argument_list|)
+expr_stmt|;
+name|bytesWriter
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|pendingCount
 operator|=
 literal|0
 expr_stmt|;

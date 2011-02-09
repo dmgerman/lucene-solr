@@ -27,6 +27,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -53,15 +55,15 @@ name|SpanFilter
 extends|extends
 name|Filter
 block|{
-comment|/** Returns a SpanFilterResult with true for documents which should be permitted in     search results, and false for those that should not and Spans for where the true docs match.    * @param reader The {@link org.apache.lucene.index.IndexReader} to load position and DocIdSet information from    * @return A {@link SpanFilterResult}    * @throws java.io.IOException if there was an issue accessing the necessary information    * */
+comment|/** Returns a SpanFilterResult with true for documents which should be permitted in     search results, and false for those that should not and Spans for where the true docs match.    * @param context The {@link AtomicReaderContext} to load position and DocIdSet information from    * @return A {@link SpanFilterResult}    * @throws java.io.IOException if there was an issue accessing the necessary information    * */
 DECL|method|bitSpans
 specifier|public
 specifier|abstract
 name|SpanFilterResult
 name|bitSpans
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException

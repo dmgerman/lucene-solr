@@ -220,6 +220,12 @@ name|setMaxBufferedDocs
 argument_list|(
 literal|2
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|addDoc
@@ -269,8 +275,7 @@ decl_stmt|;
 name|IndexSearcher
 name|is
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|ir
 argument_list|)
@@ -481,7 +486,20 @@ literal|0
 argument_list|,
 literal|"key"
 argument_list|,
+name|is
+operator|.
+name|getSimilarityProvider
+argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|"key"
+argument_list|)
+operator|.
+name|encodeNormValue
+argument_list|(
 literal|400f
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|normsQuery
@@ -713,10 +731,7 @@ name|length
 argument_list|)
 expr_stmt|;
 comment|// delete a document:
-name|is
-operator|.
-name|getIndexReader
-argument_list|()
+name|ir
 operator|.
 name|deleteDocument
 argument_list|(

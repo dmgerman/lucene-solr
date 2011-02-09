@@ -29,6 +29,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -831,14 +833,11 @@ specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|,
-name|boolean
-name|scoreDocsInOrder
-parameter_list|,
-name|boolean
-name|topScorer
+name|ScorerContext
+name|scorerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -851,13 +850,15 @@ name|query
 operator|.
 name|getSpans
 argument_list|(
-name|reader
+name|context
 argument_list|)
 argument_list|,
 name|this
 argument_list|,
 name|similarity
 argument_list|,
+name|context
+operator|.
 name|reader
 operator|.
 name|norms
@@ -891,13 +892,6 @@ DECL|field|payloadsSeen
 specifier|private
 name|int
 name|payloadsSeen
-decl_stmt|;
-DECL|field|similarity
-name|Similarity
-name|similarity
-init|=
-name|getSimilarity
-argument_list|()
 decl_stmt|;
 DECL|method|PayloadNearSpanScorer
 specifier|protected
@@ -1260,8 +1254,7 @@ argument_list|()
 decl_stmt|;
 name|freq
 operator|+=
-name|getSimilarity
-argument_list|()
+name|similarity
 operator|.
 name|sloppyFreq
 argument_list|(
@@ -1316,6 +1309,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|score
 specifier|public
 name|float

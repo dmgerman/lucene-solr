@@ -191,6 +191,8 @@ name|NamedList
 name|args
 parameter_list|)
 block|{   }
+annotation|@
+name|Override
 DECL|method|createParser
 specifier|public
 name|QParser
@@ -231,6 +233,8 @@ decl_stmt|;
 name|String
 name|b
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|Query
 name|parse
@@ -338,6 +342,8 @@ name|vs
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 index|[]
@@ -351,6 +357,8 @@ name|getDefaultHighlightFields
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Query
 name|getHighlightQuery
@@ -365,6 +373,8 @@ name|getHighlightQuery
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addDebugInfo

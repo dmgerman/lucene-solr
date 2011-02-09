@@ -132,6 +132,12 @@ operator|.
 name|BulkReadResult
 name|bulkResult
 decl_stmt|;
+DECL|field|similarity
+specifier|private
+specifier|final
+name|Similarity
+name|similarity
+decl_stmt|;
 comment|/**    * Construct a<code>TermScorer</code>.    *     * @param weight    *          The weight of the<code>Term</code> in the query.    * @param td    *          An iterator over the documents matching the<code>Term</code>.    * @param similarity    *          The</code>Similarity</code> implementation to be used for score    *          computations.    * @param norms    *          The field norms of the document fields for the<code>Term</code>.    */
 DECL|method|TermScorer
 name|TermScorer
@@ -152,10 +158,14 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|similarity
-argument_list|,
 name|weight
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|similarity
+operator|=
+name|similarity
 expr_stmt|;
 name|this
 operator|.
@@ -204,8 +214,7 @@ index|[
 name|i
 index|]
 operator|=
-name|getSimilarity
-argument_list|()
+name|similarity
 operator|.
 name|tf
 argument_list|(
@@ -279,7 +288,7 @@ comment|// firstDocID is ignored since nextDoc() sets 'doc'
 annotation|@
 name|Override
 DECL|method|score
-specifier|protected
+specifier|public
 name|boolean
 name|score
 parameter_list|(
@@ -492,8 +501,7 @@ name|freq
 index|]
 comment|// cache hit
 else|:
-name|getSimilarity
-argument_list|()
+name|similarity
 operator|.
 name|tf
 argument_list|(
@@ -512,8 +520,7 @@ name|raw
 else|:
 name|raw
 operator|*
-name|getSimilarity
-argument_list|()
+name|similarity
 operator|.
 name|decodeNormValue
 argument_list|(

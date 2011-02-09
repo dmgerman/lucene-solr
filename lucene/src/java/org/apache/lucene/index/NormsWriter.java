@@ -100,20 +100,6 @@ name|IndexOutput
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Similarity
-import|;
-end_import
-
 begin_comment
 comment|// TODO FI: norms could actually be stored as doc store
 end_comment
@@ -130,23 +116,6 @@ name|NormsWriter
 extends|extends
 name|InvertedDocEndConsumer
 block|{
-DECL|field|defaultNorm
-specifier|private
-specifier|static
-specifier|final
-name|byte
-name|defaultNorm
-init|=
-name|Similarity
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|encodeNormValue
-argument_list|(
-literal|1.0f
-argument_list|)
-decl_stmt|;
 DECL|field|fieldInfos
 specifier|private
 name|FieldInfos
@@ -259,6 +228,17 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|fieldInfos
+operator|.
+name|hasNorms
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 comment|// Typically, each thread will have encountered the same
 comment|// field.  So first we collate by field, ie, all
 comment|// per-thread field instances that correspond to the
@@ -713,7 +693,10 @@ name|normsOut
 operator|.
 name|writeByte
 argument_list|(
-name|defaultNorm
+operator|(
+name|byte
+operator|)
+literal|0
 argument_list|)
 expr_stmt|;
 name|normsOut
@@ -824,7 +807,10 @@ name|normsOut
 operator|.
 name|writeByte
 argument_list|(
-name|defaultNorm
+operator|(
+name|byte
+operator|)
+literal|0
 argument_list|)
 expr_stmt|;
 block|}
@@ -861,7 +847,10 @@ name|normsOut
 operator|.
 name|writeByte
 argument_list|(
-name|defaultNorm
+operator|(
+name|byte
+operator|)
+literal|0
 argument_list|)
 expr_stmt|;
 block|}

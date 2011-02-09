@@ -39,6 +39,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -408,11 +410,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -421,6 +420,8 @@ comment|// each reader in a segmented base
 comment|// has an offset based on the maxDocs of previous readers
 name|offset
 operator|=
+name|context
+operator|.
 name|docBase
 expr_stmt|;
 return|return

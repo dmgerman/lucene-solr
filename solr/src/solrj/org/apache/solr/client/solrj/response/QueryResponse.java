@@ -223,7 +223,10 @@ DECL|field|_spellInfo
 specifier|private
 name|NamedList
 argument_list|<
+name|NamedList
+argument_list|<
 name|Object
+argument_list|>
 argument_list|>
 name|_spellInfo
 init|=
@@ -243,7 +246,10 @@ DECL|field|_termsInfo
 specifier|private
 name|NamedList
 argument_list|<
-name|Object
+name|NamedList
+argument_list|<
+name|Number
+argument_list|>
 argument_list|>
 name|_termsInfo
 init|=
@@ -580,11 +586,8 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
-name|extractFacetInfo
-argument_list|(
-name|_facetInfo
-argument_list|)
-expr_stmt|;
+comment|// extractFacetInfo inspects _results, so defer calling it
+comment|// in case it hasn't been populated yet.
 block|}
 elseif|else
 if|if
@@ -666,7 +669,10 @@ operator|=
 operator|(
 name|NamedList
 argument_list|<
+name|NamedList
+argument_list|<
 name|Object
+argument_list|>
 argument_list|>
 operator|)
 name|res
@@ -730,7 +736,10 @@ operator|=
 operator|(
 name|NamedList
 argument_list|<
-name|Object
+name|NamedList
+argument_list|<
+name|Number
+argument_list|>
 argument_list|>
 operator|)
 name|res
@@ -747,6 +756,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|_facetInfo
+operator|!=
+literal|null
+condition|)
+name|extractFacetInfo
+argument_list|(
+name|_facetInfo
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|extractSpellCheckInfo
 specifier|private
@@ -755,7 +775,10 @@ name|extractSpellCheckInfo
 parameter_list|(
 name|NamedList
 argument_list|<
+name|NamedList
+argument_list|<
 name|Object
+argument_list|>
 argument_list|>
 name|spellInfo
 parameter_list|)
@@ -776,7 +799,10 @@ name|extractTermsInfo
 parameter_list|(
 name|NamedList
 argument_list|<
-name|Object
+name|NamedList
+argument_list|<
+name|Number
+argument_list|>
 argument_list|>
 name|termsInfo
 parameter_list|)

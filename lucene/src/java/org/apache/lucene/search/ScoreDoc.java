@@ -38,7 +38,7 @@ specifier|public
 name|float
 name|score
 decl_stmt|;
-comment|/** Expert: A hit document's number.    * @see Searcher#doc(int)    */
+comment|/** Expert: A hit document's number.    * @see IndexSearcher#doc(int)    */
 DECL|field|doc
 specifier|public
 name|int

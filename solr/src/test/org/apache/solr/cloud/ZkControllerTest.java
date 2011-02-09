@@ -364,6 +364,16 @@ argument_list|()
 expr_stmt|;
 name|AbstractZkTestCase
 operator|.
+name|tryCleanSolrZkNode
+argument_list|(
+name|server
+operator|.
+name|getZkHost
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|AbstractZkTestCase
+operator|.
 name|makeSolrZkNode
 argument_list|(
 name|server
@@ -1166,6 +1176,8 @@ name|PERSISTENT
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void

@@ -291,6 +291,8 @@ operator|=
 name|t
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -321,6 +323,8 @@ name|term
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -334,6 +338,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object

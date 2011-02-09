@@ -250,6 +250,8 @@ operator|=
 name|h
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -260,6 +262,8 @@ return|return
 name|hc
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

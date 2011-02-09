@@ -223,6 +223,21 @@ argument_list|(
 name|random
 argument_list|,
 name|directory
+argument_list|,
+name|newIndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+operator|new
+name|MockAnalyzer
+argument_list|()
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|//Add series of docs with misspelt names
@@ -294,8 +309,7 @@ argument_list|()
 expr_stmt|;
 name|searcher
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)

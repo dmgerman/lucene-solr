@@ -27,6 +27,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -134,6 +136,8 @@ name|field
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -148,6 +152,8 @@ operator|+
 literal|')'
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|DocValues
@@ -156,8 +162,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -168,11 +174,13 @@ name|StringIndexDocValues
 argument_list|(
 name|this
 argument_list|,
-name|reader
+name|readerContext
 argument_list|,
 name|field
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|toTerm
@@ -185,6 +193,8 @@ return|return
 name|readableValue
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -203,6 +213,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -225,6 +237,8 @@ return|return
 name|ord
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|longVal
@@ -243,6 +257,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|double
 name|doubleVal
@@ -261,6 +277,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|ordVal
@@ -278,6 +296,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|numOrd
@@ -290,6 +310,8 @@ name|numOrd
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -338,6 +360,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -361,6 +385,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -396,6 +422,8 @@ operator|.
 name|hashCode
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

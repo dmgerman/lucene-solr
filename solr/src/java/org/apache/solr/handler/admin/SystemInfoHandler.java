@@ -994,6 +994,7 @@ name|getInputStream
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// use default charset from locale here, because the command invoked also uses the default locale:
 return|return
 name|IOUtils
 operator|.

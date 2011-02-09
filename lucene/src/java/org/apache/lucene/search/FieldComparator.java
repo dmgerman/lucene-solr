@@ -57,6 +57,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -439,7 +441,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: a FieldComparator compares hits so as to determine their  * sort order when collecting the top results with {@link  * TopFieldCollector}.  The concrete public FieldComparator  * classes here correspond to the SortField types.  *  *<p>This API is designed to achieve high performance  * sorting, by exposing a tight interaction with {@link  * FieldValueHitQueue} as it visits hits.  Whenever a hit is  * competitive, it's enrolled into a virtual slot, which is  * an int ranging from 0 to numHits-1.  The {@link  * FieldComparator} is made aware of segment transitions  * during searching in case any internal state it's tracking  * needs to be recomputed during these transitions.</p>  *  *<p>A comparator must define these functions:</p>  *  *<ul>  *  *<li> {@link #compare} Compare a hit at 'slot a'  *       with hit 'slot b'.  *  *<li> {@link #setBottom} This method is called by  *       {@link FieldValueHitQueue} to notify the  *       FieldComparator of the current weakest ("bottom")  *       slot.  Note that this slot may not hold the weakest  *       value according to your comparator, in cases where  *       your comparator is not the primary one (ie, is only  *       used to break ties from the comparators before it).  *  *<li> {@link #compareBottom} Compare a new hit (docID)  *       against the "weakest" (bottom) entry in the queue.  *  *<li> {@link #copy} Installs a new hit into the  *       priority queue.  The {@link FieldValueHitQueue}  *       calls this method when a new hit is competitive.  *  *<li> {@link #setNextReader} Invoked  *       when the search is switching to the next segment.  *       You may need to update internal state of the  *       comparator, for example retrieving new values from  *       the {@link FieldCache}.  *  *<li> {@link #value} Return the sort value stored in  *       the specified slot.  This is only called at the end  *       of the search, in order to populate {@link  *       FieldDoc#fields} when returning the top results.  *</ul>  *  * @lucene.experimental  */
+comment|/**  * Expert: a FieldComparator compares hits so as to determine their  * sort order when collecting the top results with {@link  * TopFieldCollector}.  The concrete public FieldComparator  * classes here correspond to the SortField types.  *  *<p>This API is designed to achieve high performance  * sorting, by exposing a tight interaction with {@link  * FieldValueHitQueue} as it visits hits.  Whenever a hit is  * competitive, it's enrolled into a virtual slot, which is  * an int ranging from 0 to numHits-1.  The {@link  * FieldComparator} is made aware of segment transitions  * during searching in case any internal state it's tracking  * needs to be recomputed during these transitions.</p>  *  *<p>A comparator must define these functions:</p>  *  *<ul>  *  *<li> {@link #compare} Compare a hit at 'slot a'  *       with hit 'slot b'.  *  *<li> {@link #setBottom} This method is called by  *       {@link FieldValueHitQueue} to notify the  *       FieldComparator of the current weakest ("bottom")  *       slot.  Note that this slot may not hold the weakest  *       value according to your comparator, in cases where  *       your comparator is not the primary one (ie, is only  *       used to break ties from the comparators before it).  *  *<li> {@link #compareBottom} Compare a new hit (docID)  *       against the "weakest" (bottom) entry in the queue.  *  *<li> {@link #copy} Installs a new hit into the  *       priority queue.  The {@link FieldValueHitQueue}  *       calls this method when a new hit is competitive.  *  *<li> {@link #setNextReader(IndexReader.AtomicReaderContext)} Invoked  *       when the search is switching to the next segment.  *       You may need to update internal state of the  *       comparator, for example retrieving new values from  *       the {@link FieldCache}.  *  *<li> {@link #value} Return the sort value stored in  *       the specified slot.  This is only called at the end  *       of the search, in order to populate {@link  *       FieldDoc#fields} when returning the top results.  *</ul>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -504,18 +506,15 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Set a new Reader. All subsequent docIDs are relative to    * the current reader (you must add docBase if you need to    * map it to a top-level docID).    *     * @param reader current reader    * @param docBase docBase of this reader     * @return the comparator to use for this segment; most    *   comparators can just return "this" to reuse the same    *   comparator across segments    * @throws IOException    */
+comment|/**    * Set a new {@link AtomicReaderContext}. All subsequent docIDs are relative to    * the current reader (you must add docBase if you need to    * map it to a top-level docID).    *     * @param context current reader context    * @return the comparator to use for this segment; most    *   comparators can just return "this" to reuse the same    *   comparator across segments    * @throws IOException    */
 DECL|method|setNextReader
 specifier|public
 specifier|abstract
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -856,11 +855,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -873,6 +869,8 @@ name|DEFAULT
 operator|.
 name|getBytes
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|creator
@@ -1217,11 +1215,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -1234,6 +1229,8 @@ name|DEFAULT
 operator|.
 name|getDoubles
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|creator
@@ -1511,17 +1508,16 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|currentReaderValues
 operator|=
+name|context
+operator|.
 name|reader
 operator|.
 name|docValues
@@ -1863,11 +1859,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -1880,6 +1873,8 @@ name|DEFAULT
 operator|.
 name|getFloats
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|creator
@@ -2162,11 +2157,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -2179,6 +2171,8 @@ name|DEFAULT
 operator|.
 name|getShorts
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|creator
@@ -2531,11 +2525,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -2548,6 +2539,8 @@ name|DEFAULT
 operator|.
 name|getInts
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|creator
@@ -2829,17 +2822,16 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|currentReaderValues
 operator|=
+name|context
+operator|.
 name|reader
 operator|.
 name|docValues
@@ -3182,11 +3174,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -3199,6 +3188,8 @@ name|DEFAULT
 operator|.
 name|getLongs
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|creator
@@ -3436,11 +3427,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 block|{
 return|return
@@ -3643,11 +3631,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 block|{
 comment|// TODO: can we "map" our docIDs to the current
@@ -3657,6 +3642,8 @@ name|this
 operator|.
 name|docBase
 operator|=
+name|context
+operator|.
 name|docBase
 expr_stmt|;
 return|return
@@ -4011,11 +3998,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -4028,6 +4012,8 @@ name|DEFAULT
 operator|.
 name|getTerms
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|field
@@ -4384,11 +4370,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -4400,9 +4383,7 @@ name|this
 operator|.
 name|setNextReader
 argument_list|(
-name|reader
-argument_list|,
-name|docBase
+name|context
 argument_list|)
 return|;
 block|}
@@ -5634,15 +5615,20 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|int
+name|docBase
+init|=
+name|context
+operator|.
+name|docBase
+decl_stmt|;
 name|termsIndex
 operator|=
 name|FieldCache
@@ -5651,6 +5637,8 @@ name|DEFAULT
 operator|.
 name|getTermsIndex
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|field
@@ -6222,11 +6210,8 @@ specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -6239,6 +6224,8 @@ name|DEFAULT
 operator|.
 name|getTerms
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|field

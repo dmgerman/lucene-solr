@@ -27,6 +27,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -972,7 +974,7 @@ try|try
 block|{
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 operator|.
 name|deleteDocument
@@ -1034,19 +1036,16 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|arg0
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|this
-operator|.
 name|docBase
 operator|=
+name|context
+operator|.
 name|docBase
 expr_stmt|;
 block|}

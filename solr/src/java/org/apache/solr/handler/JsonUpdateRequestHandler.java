@@ -128,6 +128,8 @@ name|args
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newLoader
 specifier|protected
 name|ContentStreamLoader

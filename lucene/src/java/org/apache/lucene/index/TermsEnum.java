@@ -187,6 +187,27 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Expert: Seeks a specific position by {@link TermState} previously obtained    * from {@link #termState()}. Callers should maintain the {@link TermState} to    * use this method. Low-level implementations may position the TermsEnum    * without re-seeking the term dictionary.    *<p>    * Seeking by {@link TermState} should only be used iff the enum the state was    * obtained from and the enum the state is used for seeking are obtained from    * the same {@link IndexReader}, otherwise a {@link #seek(BytesRef, TermState)} call can    * leave the enum in undefined state.    *<p>    * NOTE: Using this method with an incompatible {@link TermState} might leave    * this {@link TermsEnum} in undefined state. On a segment level    * {@link TermState} instances are compatible only iff the source and the    * target {@link TermsEnum} operate on the same field. If operating on segment    * level, TermState instances must not be used across segments.    *<p>    * NOTE: A seek by {@link TermState} might not restore the    * {@link AttributeSource}'s state. {@link AttributeSource} states must be    * maintained separately if this method is used.    * @param term the term the TermState corresponds to    * @param state the {@link TermState}    * */
+DECL|method|seek
+specifier|public
+name|void
+name|seek
+parameter_list|(
+name|BytesRef
+name|term
+parameter_list|,
+name|TermState
+name|state
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|seek
+argument_list|(
+name|term
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Increments the enumeration to the next element.    *  Returns the resulting term, or null if the end was    *  hit.  The returned BytesRef may be re-used across calls    *  to next. */
 DECL|method|next
 specifier|public
@@ -224,6 +245,18 @@ specifier|abstract
 name|int
 name|docFreq
 parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns the total number of occurrences of this term    *  across all documents (the sum of the freq() for each    *  doc that has this term).  This will be -1 if the    *  codec doesn't support this measure.  Note that, like    *  other term measures, this measure does not take    *  deleted documents into account. */
+DECL|method|totalTermFreq
+specifier|public
+specifier|abstract
+name|long
+name|totalTermFreq
+parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this before calling {@link #next} or {@link    *  #seek} for the first time.  This method will not    *  return null.    *      * @param skipDocs set bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
 DECL|method|docs
@@ -257,6 +290,33 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Expert: Returns the TermsEnums internal state to position the TermsEnum    * without re-seeking the term dictionary.    *<p>    * NOTE: A seek by {@link TermState} might not capture the    * {@link AttributeSource}'s state. Callers must maintain the    * {@link AttributeSource} states separately    *     * @see TermState    * @see #seek(BytesRef, TermState)    */
+DECL|method|termState
+specifier|public
+name|TermState
+name|termState
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+operator|new
+name|TermState
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|copyFrom
+parameter_list|(
+name|TermState
+name|other
+parameter_list|)
+block|{       }
+block|}
+return|;
+block|}
 comment|/** Return the {@link BytesRef} Comparator used to sort    *  terms provided by the iterator.  This may return    *  null if there are no terms.  Callers may invoke this    *  method many times, so it's best to cache a single    *  instance& reuse it. */
 DECL|method|getComparator
 specifier|public
@@ -266,16 +326,6 @@ argument_list|<
 name|BytesRef
 argument_list|>
 name|getComparator
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Optional optimization hint: informs the codec that the    *  current term is likely to be re-seek'd-to soon.  */
-DECL|method|cacheCurrentTerm
-specifier|public
-specifier|abstract
-name|void
-name|cacheCurrentTerm
 parameter_list|()
 throws|throws
 name|IOException
@@ -330,13 +380,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|void
-name|cacheCurrentTerm
-parameter_list|()
-block|{}
-annotation|@
-name|Override
-specifier|public
 name|BytesRef
 name|term
 parameter_list|()
@@ -368,6 +411,21 @@ name|Override
 specifier|public
 name|int
 name|docFreq
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"this method should never be called"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|totalTermFreq
 parameter_list|()
 block|{
 throw|throw
@@ -461,6 +519,46 @@ operator|.
 name|attributes
 argument_list|()
 return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|TermState
+name|termState
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"this method should never be called"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|seek
+parameter_list|(
+name|BytesRef
+name|term
+parameter_list|,
+name|TermState
+name|state
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"this method should never be called"
+argument_list|)
+throw|;
 block|}
 block|}
 decl_stmt|;

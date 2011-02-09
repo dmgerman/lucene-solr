@@ -1215,6 +1215,8 @@ operator|new
 name|Analyzer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|TokenStream
 name|tokenStream
@@ -1425,6 +1427,8 @@ operator|new
 name|Analyzer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|TokenStream
 name|tokenStream
@@ -1690,6 +1694,8 @@ operator|new
 name|Analyzer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|TokenStream
 name|tokenStream

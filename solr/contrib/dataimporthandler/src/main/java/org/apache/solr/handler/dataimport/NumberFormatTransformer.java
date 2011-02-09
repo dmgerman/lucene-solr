@@ -139,6 +139,8 @@ literal|"^([a-z]{2})-([A-Z]{2})$"
 argument_list|)
 decl_stmt|;
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"

@@ -189,6 +189,8 @@ specifier|protected
 name|IndexReader
 name|reader
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|String
@@ -297,6 +299,8 @@ throw|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|build
 specifier|public
 name|void
@@ -328,7 +332,7 @@ name|reader
 operator|=
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 expr_stmt|;
 block|}

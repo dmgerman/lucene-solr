@@ -399,6 +399,11 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 name|NamedList
 argument_list|<
 name|Object
@@ -470,6 +475,11 @@ argument_list|,
 name|vals
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 name|NamedList
 argument_list|<
 name|NamedList
@@ -568,6 +578,8 @@ throw|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

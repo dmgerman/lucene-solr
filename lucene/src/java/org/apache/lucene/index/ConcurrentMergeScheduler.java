@@ -480,7 +480,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** Called whenever the running merges have changed, to    *  pause& unpause threads. */
+comment|/**    * Called whenever the running merges have changed, to pause& unpause    * threads. This method sorts the merge threads by their merge size in    * descending order and then pauses/unpauses threads from first to last --    * that way, smaller merges are guaranteed to run before larger ones.    */
 DECL|method|updateMergeThreads
 specifier|protected
 specifier|synchronized
@@ -571,6 +571,7 @@ name|threadIdx
 operator|++
 expr_stmt|;
 block|}
+comment|// Sort the merge threads in descending order.
 name|CollectionUtil
 operator|.
 name|mergeSort
@@ -639,31 +640,17 @@ condition|)
 block|{
 continue|continue;
 block|}
+comment|// pause the thread if maxThreadCount is smaller than the number of merge threads.
 specifier|final
 name|boolean
 name|doPause
-decl_stmt|;
-if|if
-condition|(
+init|=
 name|threadIdx
 operator|<
 name|activeMergeCount
 operator|-
 name|maxThreadCount
-condition|)
-block|{
-name|doPause
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
-block|{
-name|doPause
-operator|=
-literal|false
-expr_stmt|;
-block|}
+decl_stmt|;
 if|if
 condition|(
 name|verbose
@@ -781,8 +768,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**    * Returns true if verbosing is enabled. This method is usually used in    * conjunction with {@link #message(String)}, like that:    *     *<pre>    * if (verbose()) {    *   message(&quot;your message&quot;);    * }    *</pre>    */
 DECL|method|verbose
-specifier|private
+specifier|protected
 name|boolean
 name|verbose
 parameter_list|()
@@ -798,8 +786,9 @@ name|verbose
 argument_list|()
 return|;
 block|}
+comment|/**    * Outputs the given message - this method assumes {@link #verbose()} was    * called and returned true.    */
 DECL|method|message
-specifier|private
+specifier|protected
 name|void
 name|message
 parameter_list|(
@@ -807,11 +796,6 @@ name|String
 name|message
 parameter_list|)
 block|{
-if|if
-condition|(
-name|verbose
-argument_list|()
-condition|)
 name|writer
 operator|.
 name|message
@@ -961,8 +945,9 @@ break|break;
 block|}
 block|}
 block|}
+comment|/**    * Returns the number of merge threads that are alive. Note that this number    * is&le; {@link #mergeThreads} size.    */
 DECL|method|mergeThreadCount
-specifier|private
+specifier|protected
 specifier|synchronized
 name|int
 name|mergeThreadCount
@@ -973,49 +958,22 @@ name|count
 init|=
 literal|0
 decl_stmt|;
-specifier|final
-name|int
-name|numThreads
-init|=
-name|mergeThreads
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|numThreads
-condition|;
-name|i
-operator|++
+name|MergeThread
+name|mt
+range|:
+name|mergeThreads
 control|)
 block|{
-specifier|final
-name|MergeThread
-name|t
-init|=
-name|mergeThreads
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
-name|t
+name|mt
 operator|.
 name|isAlive
 argument_list|()
 operator|&&
-name|t
+name|mt
 operator|.
 name|getCurrentMerge
 argument_list|()
@@ -1043,8 +1001,6 @@ name|IndexWriter
 name|writer
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 assert|assert
@@ -1107,63 +1063,11 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|// TODO: we could be careful about which merges to do in
-comment|// the BG (eg maybe the "biggest" ones) vs FG, which
-comment|// merges to do first (the easiest ones?), etc.
-name|MergePolicy
-operator|.
-name|OneMerge
-name|merge
-init|=
-name|writer
-operator|.
-name|getNextMerge
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|merge
-operator|==
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|verbose
-argument_list|()
-condition|)
-name|message
-argument_list|(
-literal|"  no more merges pending; now return"
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-comment|// We do this w/ the primary thread to keep
-comment|// deterministic assignment of segment names
-name|writer
-operator|.
-name|mergeInit
-argument_list|(
-name|merge
-argument_list|)
-expr_stmt|;
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
 synchronized|synchronized
 init|(
 name|this
 init|)
 block|{
-specifier|final
-name|MergeThread
-name|merger
-decl_stmt|;
 name|long
 name|startStallTime
 init|=
@@ -1174,6 +1078,8 @@ condition|(
 name|mergeThreadCount
 argument_list|()
 operator|>=
+literal|1
+operator|+
 name|maxMergeCount
 condition|)
 block|{
@@ -1247,6 +1153,61 @@ literal|" msec"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+comment|// TODO: we could be careful about which merges to do in
+comment|// the BG (eg maybe the "biggest" ones) vs FG, which
+comment|// merges to do first (the easiest ones?), etc.
+name|MergePolicy
+operator|.
+name|OneMerge
+name|merge
+init|=
+name|writer
+operator|.
+name|getNextMerge
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|merge
+operator|==
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+name|message
+argument_list|(
+literal|"  no more merges pending; now return"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+comment|// We do this w/ the primary thread to keep
+comment|// deterministic assignment of segment names
+name|writer
+operator|.
+name|mergeInit
+argument_list|(
+name|merge
+argument_list|)
+expr_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|message
 argument_list|(
 literal|"  consider merge "
@@ -1259,24 +1220,19 @@ name|dir
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-assert|assert
-name|mergeThreadCount
-argument_list|()
-operator|<
-name|maxMergeCount
-assert|;
 comment|// OK to spawn a new merge thread to handle this
 comment|// merge:
+specifier|final
+name|MergeThread
 name|merger
-operator|=
+init|=
 name|getMergeThread
 argument_list|(
 name|writer
 argument_list|,
 name|merge
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|mergeThreads
 operator|.
 name|add

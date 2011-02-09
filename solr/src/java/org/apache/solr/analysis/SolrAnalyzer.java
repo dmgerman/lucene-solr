@@ -83,6 +83,8 @@ operator|=
 name|gap
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getPositionIncrementGap
 specifier|public
 name|int

@@ -26,6 +26,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|FieldInvertState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|DefaultSimilarity
@@ -2097,6 +2111,27 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+name|FieldInvertState
+name|state
+init|=
+operator|new
+name|FieldInvertState
+argument_list|()
+decl_stmt|;
+name|state
+operator|.
+name|setBoost
+argument_list|(
+literal|1.0f
+argument_list|)
+expr_stmt|;
+name|state
+operator|.
+name|setLength
+argument_list|(
+literal|4
+argument_list|)
+expr_stmt|;
 name|assertQ
 argument_list|(
 name|req
@@ -2118,11 +2153,11 @@ literal|"//float[@name='score']='"
 operator|+
 name|similarity
 operator|.
-name|lengthNorm
+name|computeNorm
 argument_list|(
 literal|"a_t"
 argument_list|,
-literal|4
+name|state
 argument_list|)
 operator|+
 literal|"'"
@@ -2405,14 +2440,28 @@ literal|"batman superman"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// in a segment by itself
+comment|// in a smaller segment
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"121"
+argument_list|,
+literal|"text"
+argument_list|,
+literal|"superman"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|assertU
 argument_list|(
 name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// batman and superman have the same idf in single-doc segment, but very different in the complete index.
+comment|// superman has a higher df (thus lower idf) in one segment, but reversed in the complete index
 name|String
 name|q
 init|=
@@ -2479,6 +2528,10 @@ argument_list|(
 literal|"fl"
 argument_list|,
 literal|"*,score"
+argument_list|,
+literal|"fq"
+argument_list|,
+name|fq
 argument_list|,
 literal|"q"
 argument_list|,
@@ -2636,6 +2689,37 @@ parameter_list|)
 block|{
 comment|// OK
 block|}
+comment|// test that sorting by function weights correctly.  superman should sort higher than batman due to idf of the whole index
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:120 OR id:121"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"{!func v=$sortfunc} desc"
+argument_list|,
+literal|"sortfunc"
+argument_list|,
+literal|"query($qq)"
+argument_list|,
+literal|"qq"
+argument_list|,
+literal|"text:(batman OR superman)"
+argument_list|)
+argument_list|,
+literal|"*//doc[1]/float[.='120.0']"
+argument_list|,
+literal|"*//doc[2]/float[.='121.0']"
+argument_list|)
+expr_stmt|;
 name|purgeFieldCache
 argument_list|(
 name|FieldCache

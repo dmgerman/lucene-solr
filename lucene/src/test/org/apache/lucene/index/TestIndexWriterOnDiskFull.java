@@ -921,8 +921,7 @@ expr_stmt|;
 name|IndexSearcher
 name|searcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -1187,6 +1186,12 @@ argument_list|(
 name|OpenMode
 operator|.
 name|APPEND
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1794,8 +1799,7 @@ block|}
 block|}
 name|searcher
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -2008,9 +2012,19 @@ operator|-
 name|startDiskUsage
 operator|)
 operator|+
-literal|" bytes; "
+literal|" bytes vs limit="
 operator|+
-literal|"starting disk usage = "
+operator|(
+literal|2
+operator|*
+operator|(
+name|startDiskUsage
+operator|+
+name|inputDiskUsage
+operator|)
+operator|)
+operator|+
+literal|"; starting disk usage = "
 operator|+
 name|startDiskUsage
 operator|+

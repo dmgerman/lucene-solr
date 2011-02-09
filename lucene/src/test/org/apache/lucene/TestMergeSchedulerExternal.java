@@ -504,6 +504,12 @@ name|IndexWriterConfig
 operator|.
 name|DISABLE_AUTO_FLUSH
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|LogMergePolicy

@@ -168,6 +168,8 @@ name|IntField
 extends|extends
 name|FieldType
 block|{
+annotation|@
+name|Override
 DECL|method|init
 specifier|protected
 name|void
@@ -193,6 +195,8 @@ name|SORT_MISSING_LAST
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSortField
 specifier|public
 name|SortField
@@ -205,6 +209,11 @@ name|boolean
 name|reverse
 parameter_list|)
 block|{
+name|field
+operator|.
+name|checkSortability
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|SortField
@@ -255,6 +264,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void

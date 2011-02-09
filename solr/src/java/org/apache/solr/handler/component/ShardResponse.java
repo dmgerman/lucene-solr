@@ -86,6 +86,8 @@ specifier|private
 name|SolrResponse
 name|rsp
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

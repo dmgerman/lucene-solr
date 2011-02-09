@@ -199,10 +199,7 @@ name|get
 argument_list|(
 name|fieldConfig
 operator|.
-name|getFieldName
-argument_list|()
-operator|.
-name|toString
+name|getField
 argument_list|()
 argument_list|)
 expr_stmt|;

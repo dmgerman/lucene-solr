@@ -150,6 +150,26 @@ name|Version
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple abstract implementation that handles init arg processing, is not really  * a factory as it implements no interface, but removes code duplication  * in its subclasses.  *   * @version $Id$  */
 end_comment
@@ -178,6 +198,22 @@ name|Version
 name|luceneMatchVersion
 init|=
 literal|null
+decl_stmt|;
+DECL|field|log
+specifier|public
+specifier|static
+specifier|final
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|BaseTokenStreamFactory
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 DECL|method|init
 specifier|public
@@ -277,6 +313,66 @@ literal|"' needs a 'luceneMatchVersion' parameter"
 argument_list|)
 throw|;
 block|}
+elseif|else
+if|if
+condition|(
+operator|!
+name|luceneMatchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_40
+argument_list|)
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|" is using deprecated "
+operator|+
+name|luceneMatchVersion
+operator|+
+literal|" emulation. You should at some point declare and reindex to at least 4.0, because "
+operator|+
+literal|"3.x emulation is deprecated and will be removed in 5.0"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|warnDeprecated
+specifier|protected
+specifier|final
+name|void
+name|warnDeprecated
+parameter_list|(
+name|String
+name|message
+parameter_list|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|" is deprecated. "
+operator|+
+name|message
+argument_list|)
+expr_stmt|;
 block|}
 comment|// TODO: move these somewhere that tokenizers and others
 comment|// can also use them...

@@ -397,6 +397,8 @@ operator|=
 name|solrServer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -588,7 +590,7 @@ return|return
 name|numDeadServersToTry
 return|;
 block|}
-comment|/** @return The number of dead servers to try if there are no live servers left.      * Defaults to the number of servers in this request. */
+comment|/** @param numDeadServersToTry The number of dead servers to try if there are no live servers left.      * Defaults to the number of servers in this request. */
 DECL|method|setNumDeadServersToTry
 specifier|public
 name|void
@@ -1497,6 +1499,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Tries to query a live server. A SolrServerException is thrown if all servers are dead.    * If the request failed due to IOException then the live server is moved to dead pool and the request is    * retried on another live server.  After live servers are exhausted, any servers previously marked as dead    * will be tried before failing the request.    *    * @param request the SolrRequest.    *    * @return response    *    * @throws SolrServerException    * @throws IOException    */
+annotation|@
+name|Override
 DECL|method|request
 specifier|public
 name|NamedList
@@ -2215,6 +2219,8 @@ return|return
 name|httpClient
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|finalize
 specifier|protected
 name|void

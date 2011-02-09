@@ -29,6 +29,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -114,8 +116,8 @@ specifier|public
 name|DocValues
 name|getValues
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -132,6 +134,8 @@ name|DEFAULT
 operator|.
 name|getTermsIndex
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|field
@@ -270,6 +274,24 @@ name|Object
 name|o
 parameter_list|)
 block|{
+if|if
+condition|(
+name|o
+operator|==
+name|this
+condition|)
+return|return
+literal|true
+return|;
+if|if
+condition|(
+name|o
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
 if|if
 condition|(
 name|o

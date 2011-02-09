@@ -88,7 +88,21 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Similarity
+name|IndexSearcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|SimilarityProvider
 import|;
 end_import
 
@@ -119,17 +133,6 @@ name|IndexWriterConfig
 implements|implements
 name|Cloneable
 block|{
-DECL|field|UNLIMITED_FIELD_LENGTH
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|UNLIMITED_FIELD_LENGTH
-init|=
-name|Integer
-operator|.
-name|MAX_VALUE
-decl_stmt|;
 comment|/**    * Specifies the open mode for {@link IndexWriter}:    *<ul>    * {@link #CREATE} - creates a new index or overwrites an existing one.    * {@link #CREATE_OR_APPEND} - creates a new index if one does not exist,    * otherwise it opens the index and documents will be appended.    * {@link #APPEND} - opens an existing index.    *</ul>    */
 DECL|enum|OpenMode
 DECL|enum constant|CREATE
@@ -287,15 +290,10 @@ specifier|private
 name|OpenMode
 name|openMode
 decl_stmt|;
-DECL|field|maxFieldLength
+DECL|field|similarityProvider
 specifier|private
-name|int
-name|maxFieldLength
-decl_stmt|;
-DECL|field|similarity
-specifier|private
-name|Similarity
-name|similarity
+name|SimilarityProvider
+name|similarityProvider
 decl_stmt|;
 DECL|field|termIndexInterval
 specifier|private
@@ -409,15 +407,11 @@ name|OpenMode
 operator|.
 name|CREATE_OR_APPEND
 expr_stmt|;
-name|maxFieldLength
+name|similarityProvider
 operator|=
-name|UNLIMITED_FIELD_LENGTH
-expr_stmt|;
-name|similarity
-operator|=
-name|Similarity
+name|IndexSearcher
 operator|.
-name|getDefault
+name|getDefaultSimilarityProvider
 argument_list|()
 expr_stmt|;
 name|termIndexInterval
@@ -599,37 +593,6 @@ return|return
 name|delPolicy
 return|;
 block|}
-comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document. This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory. This setting refers to the number of running terms,    * not to the number of different terms.    *<p>    *<b>NOTE:</b> this silently truncates large documents, excluding from the    * index all terms that occur further in the document. If you know your source    * documents are large, be sure to set this value high enough to accomodate    * the expected size. If you set it to {@link #UNLIMITED_FIELD_LENGTH}, then    * the only limit is your memory, but you should anticipate an    * OutOfMemoryError.    *<p>    * By default it is set to {@link #UNLIMITED_FIELD_LENGTH}.    */
-DECL|method|setMaxFieldLength
-specifier|public
-name|IndexWriterConfig
-name|setMaxFieldLength
-parameter_list|(
-name|int
-name|maxFieldLength
-parameter_list|)
-block|{
-name|this
-operator|.
-name|maxFieldLength
-operator|=
-name|maxFieldLength
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-comment|/**    * Returns the maximum number of terms that will be indexed for a single field    * in a document.    *     * @see #setMaxFieldLength(int)    */
-DECL|method|getMaxFieldLength
-specifier|public
-name|int
-name|getMaxFieldLength
-parameter_list|()
-block|{
-return|return
-name|maxFieldLength
-return|;
-block|}
 comment|/**    * Expert: allows to open a certain commit point. The default is null which    * opens the latest commit point.    */
 DECL|method|setIndexCommit
 specifier|public
@@ -661,44 +624,44 @@ return|return
 name|commit
 return|;
 block|}
-comment|/**    * Expert: set the {@link Similarity} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity cannot be null. If<code>null</code> is passed,    * the similarity will be set to the default.    *     * @see Similarity#setDefault(Similarity)    */
-DECL|method|setSimilarity
+comment|/**    * Expert: set the {@link SimilarityProvider} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity provider cannot be null. If<code>null</code> is passed,    * the similarity provider will be set to the default implementation (unspecified).    */
+DECL|method|setSimilarityProvider
 specifier|public
 name|IndexWriterConfig
-name|setSimilarity
+name|setSimilarityProvider
 parameter_list|(
-name|Similarity
-name|similarity
+name|SimilarityProvider
+name|similarityProvider
 parameter_list|)
 block|{
 name|this
 operator|.
-name|similarity
+name|similarityProvider
 operator|=
-name|similarity
+name|similarityProvider
 operator|==
 literal|null
 condition|?
-name|Similarity
+name|IndexSearcher
 operator|.
-name|getDefault
+name|getDefaultSimilarityProvider
 argument_list|()
 else|:
-name|similarity
+name|similarityProvider
 expr_stmt|;
 return|return
 name|this
 return|;
 block|}
-comment|/**    * Expert: returns the {@link Similarity} implementation used by this    * IndexWriter. This defaults to the current value of    * {@link Similarity#getDefault()}.    */
-DECL|method|getSimilarity
+comment|/**    * Expert: returns the {@link SimilarityProvider} implementation used by this    * IndexWriter.    */
+DECL|method|getSimilarityProvider
 specifier|public
-name|Similarity
-name|getSimilarity
+name|SimilarityProvider
+name|getSimilarityProvider
 parameter_list|()
 block|{
 return|return
-name|similarity
+name|similarityProvider
 return|;
 block|}
 comment|/**    * Expert: set the interval between indexed terms. Large values cause less    * memory to be used by IndexReader, but slow random-access to terms. Small    * values cause more memory to be used by an IndexReader, and speed    * random-access to terms.    *<p>    * This parameter determines the amount of computation required per query    * term, regardless of the number of documents that contain that term. In    * particular, it is the maximum number of other terms that must be scanned    * before a term is located and its frequency and position information may be    * processed. In a large index with user-entered query terms, query processing    * time is likely to be dominated not by term lookup but rather by the    * processing of frequency and positional data. In a small index or when many    * uncommon query terms are generated (e.g., by wildcard queries) term lookup    * may become a dominant cost.    *<p>    * In particular,<code>numUniqueTerms/interval</code> terms are read into    * memory by an IndexReader, and, on average,<code>interval/2</code> terms    * must be scanned for each random term access.    *     * @see #DEFAULT_TERM_INDEX_INTERVAL    */
@@ -1207,7 +1170,7 @@ return|return
 name|indexingChain
 return|;
 block|}
-comment|/** Sets the termsIndexDivisor passed to any readers that    *  IndexWriter opens, for example when applying deletes    *  or creating a near-real-time reader in {@link    *  IndexWriter#getReader}. */
+comment|/** Sets the termsIndexDivisor passed to any readers that    *  IndexWriter opens, for example when applying deletes    *  or creating a near-real-time reader in {@link    *  IndexWriter#getReader}. If you pass -1, the terms index     *  won't be loaded by the readers. This is only useful in     *  advanced situations when you will only .next() through     *  all terms; attempts to seek will hit an exception. */
 DECL|method|setReaderTermsIndexDivisor
 specifier|public
 name|IndexWriterConfig
@@ -1222,13 +1185,18 @@ condition|(
 name|divisor
 operator|<=
 literal|0
+operator|&&
+name|divisor
+operator|!=
+operator|-
+literal|1
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"divisor must be>= 1 (got "
+literal|"divisor must be>= 1, or -1 (got "
 operator|+
 name|divisor
 operator|+
@@ -1383,29 +1351,12 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"maxFieldLength="
+literal|"similarityProvider="
 argument_list|)
 operator|.
 name|append
 argument_list|(
-name|maxFieldLength
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"\n"
-argument_list|)
-expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"similarity="
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|similarity
+name|similarityProvider
 operator|.
 name|getClass
 argument_list|()

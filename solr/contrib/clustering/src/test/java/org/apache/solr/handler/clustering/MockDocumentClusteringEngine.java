@@ -76,6 +76,8 @@ name|MockDocumentClusteringEngine
 extends|extends
 name|DocumentClusteringEngine
 block|{
+annotation|@
+name|Override
 DECL|method|cluster
 specifier|public
 name|NamedList
@@ -99,6 +101,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|cluster
 specifier|public
 name|NamedList

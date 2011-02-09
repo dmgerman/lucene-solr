@@ -1225,6 +1225,8 @@ name|Int2Int
 extends|extends
 name|Converter
 block|{
+annotation|@
+name|Override
 DECL|method|toInternal
 specifier|public
 name|String
@@ -1248,6 +1250,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toExternal
 specifier|public
 name|String
@@ -1281,6 +1285,8 @@ name|SortInt
 extends|extends
 name|Converter
 block|{
+annotation|@
+name|Override
 DECL|method|toInternal
 specifier|public
 name|String
@@ -1299,6 +1305,8 @@ name|val
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toExternal
 specifier|public
 name|String
@@ -1327,6 +1335,8 @@ name|SortLong
 extends|extends
 name|Converter
 block|{
+annotation|@
+name|Override
 DECL|method|toInternal
 specifier|public
 name|String
@@ -1345,6 +1355,8 @@ name|val
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toExternal
 specifier|public
 name|String
@@ -1373,6 +1385,8 @@ name|Float2Float
 extends|extends
 name|Converter
 block|{
+annotation|@
+name|Override
 DECL|method|toInternal
 specifier|public
 name|String
@@ -1396,6 +1410,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toExternal
 specifier|public
 name|String
@@ -1429,6 +1445,8 @@ name|SortFloat
 extends|extends
 name|Converter
 block|{
+annotation|@
+name|Override
 DECL|method|toInternal
 specifier|public
 name|String
@@ -1447,6 +1465,8 @@ name|val
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toExternal
 specifier|public
 name|String
@@ -1475,6 +1495,8 @@ name|SortDouble
 extends|extends
 name|Converter
 block|{
+annotation|@
+name|Override
 DECL|method|toInternal
 specifier|public
 name|String
@@ -1493,6 +1515,8 @@ name|val
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toExternal
 specifier|public
 name|String
@@ -1521,6 +1545,8 @@ name|Base100S
 extends|extends
 name|Converter
 block|{
+annotation|@
+name|Override
 DECL|method|toInternal
 specifier|public
 name|String
@@ -1539,6 +1565,8 @@ name|val
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toExternal
 specifier|public
 name|String
@@ -1567,6 +1595,8 @@ name|Base10kS
 extends|extends
 name|Converter
 block|{
+annotation|@
+name|Override
 DECL|method|toInternal
 specifier|public
 name|String
@@ -1585,6 +1615,8 @@ name|val
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toExternal
 specifier|public
 name|String

@@ -853,6 +853,8 @@ operator|new
 name|Object
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -5625,8 +5627,6 @@ operator|*
 literal|60
 operator|)
 operator|)
-operator|%
-literal|60
 operator|+
 literal|":"
 operator|+

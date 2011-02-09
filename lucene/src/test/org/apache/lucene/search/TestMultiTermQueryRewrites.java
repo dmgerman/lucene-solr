@@ -478,8 +478,7 @@ argument_list|)
 expr_stmt|;
 name|searcher
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -517,8 +516,7 @@ argument_list|)
 expr_stmt|;
 name|multiSearcher
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|multiReader
 argument_list|)
@@ -556,8 +554,7 @@ argument_list|)
 expr_stmt|;
 name|multiSearcherDupls
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|multiReaderDupls
 argument_list|)

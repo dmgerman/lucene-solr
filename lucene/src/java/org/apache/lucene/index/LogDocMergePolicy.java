@@ -57,9 +57,15 @@ name|minMergeSize
 operator|=
 name|DEFAULT_MIN_MERGE_DOCS
 expr_stmt|;
-comment|// maxMergeSize is never used by LogDocMergePolicy; set
+comment|// maxMergeSize(ForOptimize) are never used by LogDocMergePolicy; set
 comment|// it to Long.MAX_VALUE to disable it
 name|maxMergeSize
+operator|=
+name|Long
+operator|.
+name|MAX_VALUE
+expr_stmt|;
+name|maxMergeSizeForOptimize
 operator|=
 name|Long
 operator|.

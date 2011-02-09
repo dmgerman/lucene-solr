@@ -124,7 +124,7 @@ name|SortField
 implements|implements
 name|Serializable
 block|{
-comment|/** Sort by document score (relevancy).  Sort values are Float and higher    * values are at the front. */
+comment|/** Sort by document score (relevance).  Sort values are Float and higher    * values are at the front. */
 DECL|field|SCORE
 specifier|public
 specifier|static
@@ -245,7 +245,7 @@ name|BYTES
 init|=
 literal|12
 decl_stmt|;
-comment|/** Represents sorting by document score (relevancy). */
+comment|/** Represents sorting by document score (relevance). */
 DECL|field|FIELD_SCORE
 specifier|public
 specifier|static

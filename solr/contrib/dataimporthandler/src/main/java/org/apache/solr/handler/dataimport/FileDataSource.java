@@ -148,6 +148,8 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -195,6 +197,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    *<p>    * Returns a reader for the given file.    *</p>    *<p>    * If the given file is not absolute, we try to construct an absolute path    * using basePath configuration. If that fails, then the relative path is    * tried. If file is not found a RuntimeException is thrown.    *</p>    *<p>    *<b>It is the responsibility of the calling method to properly close the    * returned Reader</b>    *</p>    */
+annotation|@
+name|Override
 DECL|method|getData
 specifier|public
 name|Reader
@@ -434,6 +438,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

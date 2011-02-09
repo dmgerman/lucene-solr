@@ -562,6 +562,8 @@ name|String
 name|idFieldName
 decl_stmt|;
 annotation|@
+name|Override
+annotation|@
 name|Deprecated
 DECL|method|cluster
 specifier|public
@@ -663,6 +665,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|cluster
 specifier|public
 name|Object
@@ -883,9 +887,9 @@ name|put
 argument_list|(
 literal|"PreprocessingPipeline.languageModelFactory"
 argument_list|,
-operator|new
 name|LuceneLanguageModelFactory
-argument_list|()
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|this

@@ -968,6 +968,41 @@ name|value
 return|;
 block|}
 block|}
+DECL|field|purgeReader
+specifier|final
+specifier|static
+name|IndexReader
+operator|.
+name|ReaderFinishedListener
+name|purgeReader
+init|=
+operator|new
+name|IndexReader
+operator|.
+name|ReaderFinishedListener
+argument_list|()
+block|{
+comment|// @Override -- not until Java 1.6
+specifier|public
+name|void
+name|finished
+parameter_list|(
+name|IndexReader
+name|reader
+parameter_list|)
+block|{
+name|FieldCache
+operator|.
+name|DEFAULT
+operator|.
+name|purge
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+decl_stmt|;
 comment|/** Expert: Internal cache. */
 DECL|class|Cache
 specifier|final
@@ -1166,6 +1201,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// First time this reader is using FieldCache
 name|innerCache
 operator|=
 operator|new
@@ -1187,6 +1223,13 @@ argument_list|(
 name|readerKey
 argument_list|,
 name|innerCache
+argument_list|)
+expr_stmt|;
+name|reader
+operator|.
+name|addReaderFinishedListener
+argument_list|(
+name|purgeReader
 argument_list|)
 expr_stmt|;
 name|value

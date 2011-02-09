@@ -34,9 +34,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|analysis
 operator|.
-name|LuceneTestCase
+name|MockAnalyzer
 import|;
 end_import
 
@@ -51,6 +51,22 @@ operator|.
 name|document
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -110,6 +126,20 @@ name|Directory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_comment
 comment|/** Document boost unit test.  *  *  * @version $Revision$  */
 end_comment
@@ -145,6 +175,21 @@ argument_list|(
 name|random
 argument_list|,
 name|store
+argument_list|,
+name|newIndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+operator|new
+name|MockAnalyzer
+argument_list|()
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|Fieldable
@@ -324,8 +369,7 @@ index|[
 literal|4
 index|]
 decl_stmt|;
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
@@ -409,15 +453,14 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 block|{
 name|base
 operator|=
+name|context
+operator|.
 name|docBase
 expr_stmt|;
 block|}

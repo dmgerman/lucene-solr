@@ -131,6 +131,8 @@ operator|.
 name|US
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void

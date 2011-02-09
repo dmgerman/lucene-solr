@@ -48,37 +48,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
-name|SegmentInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInfo
+name|DocsAndPositionsEnum
 import|;
 end_import
 
@@ -106,7 +78,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsAndPositionsEnum
+name|FieldInfo
 import|;
 end_import
 
@@ -134,9 +106,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|codecs
+name|SegmentInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|PostingsReaderBase
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|TermState
 import|;
 end_import
 
@@ -152,7 +136,51 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|TermState
+name|BlockTermState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|PostingsReaderBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|ByteArrayDataInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|Directory
 import|;
 end_import
 
@@ -167,6 +195,20 @@ operator|.
 name|store
 operator|.
 name|IndexInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ArrayUtil
 import|;
 end_import
 
@@ -244,6 +286,7 @@ DECL|field|maxSkipLevels
 name|int
 name|maxSkipLevels
 decl_stmt|;
+comment|//private String segment;
 DECL|method|StandardPostingsReader
 specifier|public
 name|StandardPostingsReader
@@ -287,6 +330,7 @@ argument_list|,
 name|readBufferSize
 argument_list|)
 expr_stmt|;
+comment|//this.segment = segmentInfo.name;
 if|if
 condition|(
 name|segmentInfo
@@ -478,14 +522,14 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Must keep final because we do non-standard clone
-DECL|class|DocTermState
+DECL|class|StandardTermState
 specifier|private
 specifier|final
 specifier|static
 class|class
-name|DocTermState
+name|StandardTermState
 extends|extends
-name|TermState
+name|BlockTermState
 block|{
 DECL|field|freqOffset
 name|long
@@ -499,22 +543,35 @@ DECL|field|skipOffset
 name|int
 name|skipOffset
 decl_stmt|;
+comment|// Only used by the "primary" TermState -- clones don't
+comment|// copy this (basically they are "transient"):
+DECL|field|bytesReader
+name|ByteArrayDataInput
+name|bytesReader
+decl_stmt|;
+DECL|field|bytes
+name|byte
+index|[]
+name|bytes
+decl_stmt|;
+annotation|@
+name|Override
 DECL|method|clone
 specifier|public
 name|Object
 name|clone
 parameter_list|()
 block|{
-name|DocTermState
+name|StandardTermState
 name|other
 init|=
 operator|new
-name|DocTermState
+name|StandardTermState
 argument_list|()
 decl_stmt|;
 name|other
 operator|.
-name|copy
+name|copyFrom
 argument_list|(
 name|this
 argument_list|)
@@ -523,10 +580,12 @@ return|return
 name|other
 return|;
 block|}
-DECL|method|copy
+annotation|@
+name|Override
+DECL|method|copyFrom
 specifier|public
 name|void
-name|copy
+name|copyFrom
 parameter_list|(
 name|TermState
 name|_other
@@ -534,16 +593,16 @@ parameter_list|)
 block|{
 name|super
 operator|.
-name|copy
+name|copyFrom
 argument_list|(
 name|_other
 argument_list|)
 expr_stmt|;
-name|DocTermState
+name|StandardTermState
 name|other
 init|=
 operator|(
-name|DocTermState
+name|StandardTermState
 operator|)
 name|_other
 decl_stmt|;
@@ -565,7 +624,13 @@ name|other
 operator|.
 name|skipOffset
 expr_stmt|;
+comment|// Do not copy bytes, bytesReader (else TermState is
+comment|// very heavy, ie drags around the entire block's
+comment|// byte[]).  On seek back, if next() is in fact used
+comment|// (rare!), they will be re-read from disk.
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -596,13 +661,13 @@ annotation|@
 name|Override
 DECL|method|newTermState
 specifier|public
-name|TermState
+name|BlockTermState
 name|newTermState
 parameter_list|()
 block|{
 return|return
 operator|new
-name|DocTermState
+name|StandardTermState
 argument_list|()
 return|;
 block|}
@@ -649,12 +714,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/* Reads but does not decode the byte[] blob holding      metadata for the current terms block */
 annotation|@
 name|Override
-DECL|method|readTerm
+DECL|method|readTermsBlock
 specifier|public
 name|void
-name|readTerm
+name|readTermsBlock
 parameter_list|(
 name|IndexInput
 name|termsIn
@@ -662,34 +728,175 @@ parameter_list|,
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|TermState
-name|termState
-parameter_list|,
-name|boolean
-name|isIndexTerm
+name|BlockTermState
+name|_termState
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 specifier|final
-name|DocTermState
-name|docTermState
+name|StandardTermState
+name|termState
 init|=
 operator|(
-name|DocTermState
+name|StandardTermState
 operator|)
+name|_termState
+decl_stmt|;
+specifier|final
+name|int
+name|len
+init|=
+name|termsIn
+operator|.
+name|readVInt
+argument_list|()
+decl_stmt|;
+comment|//System.out.println("SPR.readTermsBlock termsIn.fp=" + termsIn.getFilePointer());
+if|if
+condition|(
 name|termState
+operator|.
+name|bytes
+operator|==
+literal|null
+condition|)
+block|{
+name|termState
+operator|.
+name|bytes
+operator|=
+operator|new
+name|byte
+index|[
+name|ArrayUtil
+operator|.
+name|oversize
+argument_list|(
+name|len
+argument_list|,
+literal|1
+argument_list|)
+index|]
+expr_stmt|;
+name|termState
+operator|.
+name|bytesReader
+operator|=
+operator|new
+name|ByteArrayDataInput
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|termState
+operator|.
+name|bytes
+operator|.
+name|length
+operator|<
+name|len
+condition|)
+block|{
+name|termState
+operator|.
+name|bytes
+operator|=
+operator|new
+name|byte
+index|[
+name|ArrayUtil
+operator|.
+name|oversize
+argument_list|(
+name|len
+argument_list|,
+literal|1
+argument_list|)
+index|]
+expr_stmt|;
+block|}
+name|termsIn
+operator|.
+name|readBytes
+argument_list|(
+name|termState
+operator|.
+name|bytes
+argument_list|,
+literal|0
+argument_list|,
+name|len
+argument_list|)
+expr_stmt|;
+name|termState
+operator|.
+name|bytesReader
+operator|.
+name|reset
+argument_list|(
+name|termState
+operator|.
+name|bytes
+argument_list|,
+literal|0
+argument_list|,
+name|len
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|nextTerm
+specifier|public
+name|void
+name|nextTerm
+parameter_list|(
+name|FieldInfo
+name|fieldInfo
+parameter_list|,
+name|BlockTermState
+name|_termState
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+specifier|final
+name|StandardTermState
+name|termState
+init|=
+operator|(
+name|StandardTermState
+operator|)
+name|_termState
+decl_stmt|;
+comment|//System.out.println("StandardR.nextTerm seg=" + segment);
+specifier|final
+name|boolean
+name|isFirstTerm
+init|=
+name|termState
+operator|.
+name|termCount
+operator|==
+literal|0
 decl_stmt|;
 if|if
 condition|(
-name|isIndexTerm
+name|isFirstTerm
 condition|)
 block|{
-name|docTermState
+name|termState
 operator|.
 name|freqOffset
 operator|=
-name|termsIn
+name|termState
+operator|.
+name|bytesReader
 operator|.
 name|readVLong
 argument_list|()
@@ -697,43 +904,69 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|docTermState
+name|termState
 operator|.
 name|freqOffset
 operator|+=
-name|termsIn
+name|termState
+operator|.
+name|bytesReader
 operator|.
 name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
+comment|//System.out.println("  dF=" + termState.docFreq);
+comment|//System.out.println("  freqFP=" + termState.freqOffset);
+assert|assert
+name|termState
+operator|.
+name|freqOffset
+operator|<
+name|freqIn
+operator|.
+name|length
+argument_list|()
+assert|;
 if|if
 condition|(
-name|docTermState
+name|termState
 operator|.
 name|docFreq
 operator|>=
 name|skipInterval
 condition|)
 block|{
-name|docTermState
+name|termState
 operator|.
 name|skipOffset
 operator|=
-name|termsIn
+name|termState
+operator|.
+name|bytesReader
 operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
+comment|//System.out.println("  skipOffset=" + termState.skipOffset + " vs freqIn.length=" + freqIn.length());
+assert|assert
+name|termState
+operator|.
+name|freqOffset
+operator|+
+name|termState
+operator|.
+name|skipOffset
+operator|<
+name|freqIn
+operator|.
+name|length
+argument_list|()
+assert|;
 block|}
 else|else
 block|{
-name|docTermState
-operator|.
-name|skipOffset
-operator|=
-literal|0
-expr_stmt|;
+comment|// undefined
 block|}
 if|if
 condition|(
@@ -745,14 +978,16 @@ condition|)
 block|{
 if|if
 condition|(
-name|isIndexTerm
+name|isFirstTerm
 condition|)
 block|{
-name|docTermState
+name|termState
 operator|.
 name|proxOffset
 operator|=
-name|termsIn
+name|termState
+operator|.
+name|bytesReader
 operator|.
 name|readVLong
 argument_list|()
@@ -760,16 +995,19 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|docTermState
+name|termState
 operator|.
 name|proxOffset
 operator|+=
-name|termsIn
+name|termState
+operator|.
+name|bytesReader
 operator|.
 name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
+comment|//System.out.println("  proxFP=" + termState.proxOffset);
 block|}
 block|}
 annotation|@
@@ -782,7 +1020,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|TermState
+name|BlockTermState
 name|termState
 parameter_list|,
 name|Bits
@@ -859,7 +1097,7 @@ argument_list|(
 name|fieldInfo
 argument_list|,
 operator|(
-name|DocTermState
+name|StandardTermState
 operator|)
 name|termState
 argument_list|,
@@ -877,7 +1115,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|TermState
+name|BlockTermState
 name|termState
 parameter_list|,
 name|Bits
@@ -977,7 +1215,7 @@ argument_list|(
 name|fieldInfo
 argument_list|,
 operator|(
-name|DocTermState
+name|StandardTermState
 operator|)
 name|termState
 argument_list|,
@@ -1056,7 +1294,7 @@ argument_list|(
 name|fieldInfo
 argument_list|,
 operator|(
-name|DocTermState
+name|StandardTermState
 operator|)
 name|termState
 argument_list|,
@@ -1168,7 +1406,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|DocTermState
+name|StandardTermState
 name|termState
 parameter_list|,
 name|Bits
@@ -1235,6 +1473,11 @@ name|termState
 operator|.
 name|docFreq
 expr_stmt|;
+assert|assert
+name|limit
+operator|>
+literal|0
+assert|;
 name|ord
 operator|=
 literal|0
@@ -1243,6 +1486,7 @@ name|doc
 operator|=
 literal|0
 expr_stmt|;
+comment|//System.out.println("  sde limit=" + limit + " freqFP=" + freqOffset);
 name|skipped
 operator|=
 literal|false
@@ -1556,17 +1800,23 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: jump right to next() if target is< X away
-comment|// from where we are now?
 if|if
 condition|(
-name|skipOffset
-operator|>
-literal|0
+operator|(
+name|target
+operator|-
+name|skipInterval
+operator|)
+operator|>=
+name|doc
+operator|&&
+name|limit
+operator|>=
+name|skipInterval
 condition|)
 block|{
 comment|// There are enough docs in the posting to have
-comment|// skip data
+comment|// skip data, and it isn't too close.
 if|if
 condition|(
 name|skipper
@@ -1818,7 +2068,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|DocTermState
+name|StandardTermState
 name|termState
 parameter_list|,
 name|Bits
@@ -1869,6 +2119,11 @@ name|termState
 operator|.
 name|docFreq
 expr_stmt|;
+assert|assert
+name|limit
+operator|>
+literal|0
+assert|;
 name|ord
 operator|=
 literal|0
@@ -1907,6 +2162,7 @@ name|termState
 operator|.
 name|skipOffset
 expr_stmt|;
+comment|//System.out.println("StandardR.D&PE reset seg=" + segment + " limit=" + limit + " freqFP=" + freqOffset + " proxFP=" + proxOffset);
 return|return
 name|this
 return|;
@@ -1933,6 +2189,7 @@ operator|==
 name|limit
 condition|)
 block|{
+comment|//System.out.println("StandardR.D&PE seg=" + segment + " nextDoc return doc=END");
 return|return
 name|doc
 operator|=
@@ -2014,6 +2271,7 @@ name|position
 operator|=
 literal|0
 expr_stmt|;
+comment|//System.out.println("StandardR.D&PE nextDoc seg=" + segment + " return doc=" + doc);
 return|return
 name|doc
 return|;
@@ -2055,17 +2313,24 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: jump right to next() if target is< X away
-comment|// from where we are now?
+comment|//System.out.println("StandardR.D&PE advance target=" + target);
 if|if
 condition|(
-name|skipOffset
-operator|>
-literal|0
+operator|(
+name|target
+operator|-
+name|skipInterval
+operator|)
+operator|>=
+name|doc
+operator|&&
+name|limit
+operator|>=
+name|skipInterval
 condition|)
 block|{
 comment|// There are enough docs in the posting to have
-comment|// skip data
+comment|// skip data, and it isn't too close
 if|if
 condition|(
 name|skipper
@@ -2199,6 +2464,8 @@ return|return
 name|doc
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextPosition
 specifier|public
 name|int
@@ -2291,6 +2558,8 @@ name|position
 return|;
 block|}
 comment|/** Returns the payload at this position, or null if no      *  payload was indexed. */
+annotation|@
+name|Override
 DECL|method|getPayload
 specifier|public
 name|BytesRef
@@ -2307,6 +2576,8 @@ literal|"No payloads exist for this field!"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasPayload
 specifier|public
 name|boolean
@@ -2463,7 +2734,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|DocTermState
+name|StandardTermState
 name|termState
 parameter_list|,
 name|Bits
@@ -2579,6 +2850,7 @@ name|termState
 operator|.
 name|skipOffset
 expr_stmt|;
+comment|//System.out.println("StandardR.D&PE reset seg=" + segment + " limit=" + limit + " freqFP=" + freqOffset + " proxFP=" + proxOffset + " this=" + this);
 return|return
 name|this
 return|;
@@ -2605,6 +2877,7 @@ operator|==
 name|limit
 condition|)
 block|{
+comment|//System.out.println("StandardR.D&PE seg=" + segment + " nextDoc return doc=END");
 return|return
 name|doc
 operator|=
@@ -2686,6 +2959,7 @@ name|position
 operator|=
 literal|0
 expr_stmt|;
+comment|//System.out.println("StandardR.D&PE nextDoc seg=" + segment + " return doc=" + doc);
 return|return
 name|doc
 return|;
@@ -2727,17 +3001,24 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: jump right to next() if target is< X away
-comment|// from where we are now?
+comment|//System.out.println("StandardR.D&PE advance seg=" + segment + " target=" + target + " this=" + this);
 if|if
 condition|(
-name|skipOffset
-operator|>
-literal|0
+operator|(
+name|target
+operator|-
+name|skipInterval
+operator|)
+operator|>=
+name|doc
+operator|&&
+name|limit
+operator|>=
+name|skipInterval
 condition|)
 block|{
 comment|// There are enough docs in the posting to have
-comment|// skip data
+comment|// skip data, and it isn't too close
 if|if
 condition|(
 name|skipper
@@ -2774,6 +3055,7 @@ block|{
 comment|// This is the first time this posting has
 comment|// skipped, since reset() was called, so now we
 comment|// load the skip data for this posting
+comment|//System.out.println("  init skipper freqOffset=" + freqOffset + " skipOffset=" + skipOffset + " vs len=" + freqIn.length());
 name|skipper
 operator|.
 name|init
@@ -2882,6 +3164,8 @@ return|return
 name|doc
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextPosition
 specifier|public
 name|int
@@ -3009,6 +3293,7 @@ name|payloadPending
 operator|=
 literal|false
 expr_stmt|;
+comment|//System.out.println("StandardR.D&PE skipPos");
 block|}
 comment|// read next position
 if|if
@@ -3096,11 +3381,14 @@ literal|"nextPosition() was called too many times (more than freq() times) posPe
 operator|+
 name|posPendingCount
 assert|;
+comment|//System.out.println("StandardR.D&PE nextPos   return pos=" + position);
 return|return
 name|position
 return|;
 block|}
 comment|/** Returns the payload at this position, or null if no      *  payload was indexed. */
+annotation|@
+name|Override
 DECL|method|getPayload
 specifier|public
 name|BytesRef
@@ -3180,6 +3468,8 @@ return|return
 name|payload
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasPayload
 specifier|public
 name|boolean

@@ -82,7 +82,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|BeforeClass
+name|Before
 import|;
 end_import
 
@@ -135,16 +135,22 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 annotation|@
-name|BeforeClass
-DECL|method|beforeClass
+name|Override
+annotation|@
+name|Before
+DECL|method|setUp
 specifier|public
-specifier|static
 name|void
-name|beforeClass
+name|setUp
 parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|suggestions
 operator|.
 name|clear

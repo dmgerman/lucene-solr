@@ -52,6 +52,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -63,32 +73,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|PostingsConsumer
 import|;
 end_import
 
@@ -120,7 +104,53 @@ name|index
 operator|.
 name|codecs
 operator|.
+name|PostingsConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|TermStats
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
 name|TermsConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BitVector
 import|;
 end_import
 
@@ -473,6 +503,10 @@ comment|// If this field has postings then add them to the
 comment|// segment
 name|appendPostings
 argument_list|(
+name|fieldName
+argument_list|,
+name|state
+argument_list|,
 name|fields
 argument_list|,
 name|consumer
@@ -598,6 +632,12 @@ DECL|method|appendPostings
 name|void
 name|appendPostings
 parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
+name|SegmentWriteState
+name|state
+parameter_list|,
 name|FreqProxTermsWriterPerField
 index|[]
 name|fields
@@ -725,6 +765,16 @@ assert|assert
 name|result
 assert|;
 block|}
+specifier|final
+name|Term
+name|protoTerm
+init|=
+operator|new
+name|Term
+argument_list|(
+name|fieldName
+argument_list|)
+decl_stmt|;
 name|FreqProxFieldMergeState
 index|[]
 name|termStates
@@ -749,11 +799,61 @@ operator|.
 name|omitTermFreqAndPositions
 decl_stmt|;
 comment|//System.out.println("flush terms field=" + fields[0].fieldInfo.name);
+specifier|final
+name|Map
+argument_list|<
+name|Term
+argument_list|,
+name|Integer
+argument_list|>
+name|segDeletes
+decl_stmt|;
+if|if
+condition|(
+name|state
+operator|.
+name|segDeletes
+operator|!=
+literal|null
+operator|&&
+name|state
+operator|.
+name|segDeletes
+operator|.
+name|terms
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|segDeletes
+operator|=
+name|state
+operator|.
+name|segDeletes
+operator|.
+name|terms
+expr_stmt|;
+block|}
+else|else
+block|{
+name|segDeletes
+operator|=
+literal|null
+expr_stmt|;
+block|}
 comment|// TODO: really TermsHashPerField should take over most
 comment|// of this loop, including merge sort of terms from
 comment|// multiple threads and interacting with the
 comment|// TermsConsumer, only calling out to us (passing us the
 comment|// DocsConsumer) to handle delivery of docs/positions
+name|long
+name|sumTotalTermFreq
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 name|numFields
@@ -913,11 +1013,70 @@ argument_list|(
 name|text
 argument_list|)
 decl_stmt|;
+specifier|final
+name|int
+name|delDocLimit
+decl_stmt|;
+if|if
+condition|(
+name|segDeletes
+operator|!=
+literal|null
+condition|)
+block|{
+specifier|final
+name|Integer
+name|docIDUpto
+init|=
+name|segDeletes
+operator|.
+name|get
+argument_list|(
+name|protoTerm
+operator|.
+name|createTerm
+argument_list|(
+name|text
+argument_list|)
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|docIDUpto
+operator|!=
+literal|null
+condition|)
+block|{
+name|delDocLimit
+operator|=
+name|docIDUpto
+expr_stmt|;
+block|}
+else|else
+block|{
+name|delDocLimit
+operator|=
+literal|0
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|delDocLimit
+operator|=
+literal|0
+expr_stmt|;
+block|}
 comment|// Now termStates has numToMerge FieldMergeStates
 comment|// which all share the same term.  Now we must
 comment|// interleave the docID streams.
 name|int
 name|numDocs
+init|=
+literal|0
+decl_stmt|;
+name|long
+name|totTF
 init|=
 literal|0
 decl_stmt|;
@@ -1002,6 +1161,17 @@ literal|" maxDoc="
 operator|+
 name|flushedDocCount
 assert|;
+comment|// NOTE: we could check here if the docID was
+comment|// deleted, and skip it.  However, this is somewhat
+comment|// dangerous because it can yield non-deterministic
+comment|// behavior since we may see the docID before we see
+comment|// the term that caused it to be deleted.  This
+comment|// would mean some (but not all) of its postings may
+comment|// make it into the index, which'd alter the docFreq
+comment|// for those terms.  We could fix this by doing two
+comment|// passes, ie first sweep marks all del docs, and
+comment|// 2nd sweep does the real flush, but I suspect
+comment|// that'd add too much time to flush.
 name|postingsConsumer
 operator|.
 name|startDoc
@@ -1013,6 +1183,52 @@ argument_list|,
 name|termDocFreq
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|minState
+operator|.
+name|docID
+operator|<
+name|delDocLimit
+condition|)
+block|{
+comment|// Mark it deleted.  TODO: we could also skip
+comment|// writing its postings; this would be
+comment|// deterministic (just for this Term's docs).
+if|if
+condition|(
+name|state
+operator|.
+name|deletedDocs
+operator|==
+literal|null
+condition|)
+block|{
+name|state
+operator|.
+name|deletedDocs
+operator|=
+operator|new
+name|BitVector
+argument_list|(
+name|state
+operator|.
+name|numDocs
+argument_list|)
+expr_stmt|;
+block|}
+name|state
+operator|.
+name|deletedDocs
+operator|.
+name|set
+argument_list|(
+name|minState
+operator|.
+name|docID
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|ByteSliceReader
 name|prox
@@ -1037,6 +1253,10 @@ name|position
 init|=
 literal|0
 decl_stmt|;
+name|totTF
+operator|+=
+name|termDocFreq
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -1326,14 +1546,26 @@ name|finishTerm
 argument_list|(
 name|text
 argument_list|,
+operator|new
+name|TermStats
+argument_list|(
 name|numDocs
+argument_list|,
+name|totTF
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|sumTotalTermFreq
+operator|+=
+name|totTF
 expr_stmt|;
 block|}
 name|termsConsumer
 operator|.
 name|finish
-argument_list|()
+argument_list|(
+name|sumTotalTermFreq
+argument_list|)
 expr_stmt|;
 block|}
 block|}

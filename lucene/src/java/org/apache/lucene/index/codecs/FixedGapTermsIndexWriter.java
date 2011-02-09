@@ -256,11 +256,6 @@ name|FieldInfos
 name|fieldInfos
 decl_stmt|;
 comment|// unread
-DECL|field|termsOut
-specifier|private
-name|IndexOutput
-name|termsOut
-decl_stmt|;
 DECL|method|FixedGapTermsIndexWriter
 specifier|public
 name|FixedGapTermsIndexWriter
@@ -359,24 +354,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|setTermsOutput
-specifier|public
-name|void
-name|setTermsOutput
-parameter_list|(
-name|IndexOutput
-name|termsOut
-parameter_list|)
-block|{
-name|this
-operator|.
-name|termsOut
-operator|=
-name|termsOut
-expr_stmt|;
-block|}
-annotation|@
-name|Override
 DECL|method|addField
 specifier|public
 name|FieldWriter
@@ -384,8 +361,12 @@ name|addField
 parameter_list|(
 name|FieldInfo
 name|field
+parameter_list|,
+name|long
+name|termsFilePointer
 parameter_list|)
 block|{
+comment|//System.out.println("FGW: addFfield=" + field.name);
 name|SimpleFieldWriter
 name|writer
 init|=
@@ -393,6 +374,8 @@ operator|new
 name|SimpleFieldWriter
 argument_list|(
 name|field
+argument_list|,
+name|termsFilePointer
 argument_list|)
 decl_stmt|;
 name|fields
@@ -596,6 +579,9 @@ name|SimpleFieldWriter
 parameter_list|(
 name|FieldInfo
 name|fieldInfo
+parameter_list|,
+name|long
+name|termsFilePointer
 parameter_list|)
 block|{
 name|this
@@ -615,10 +601,7 @@ name|termsStart
 operator|=
 name|lastTermsPointer
 operator|=
-name|termsOut
-operator|.
-name|getFilePointer
-argument_list|()
+name|termsFilePointer
 expr_stmt|;
 name|termLengths
 operator|=
@@ -647,13 +630,14 @@ parameter_list|(
 name|BytesRef
 name|text
 parameter_list|,
-name|int
-name|docFreq
+name|TermStats
+name|stats
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 comment|// First term is first indexed term:
+comment|//System.out.println("FGW: checkIndexTerm text=" + text.utf8ToString());
 if|if
 condition|(
 literal|0
@@ -666,6 +650,55 @@ name|termIndexInterval
 operator|)
 condition|)
 block|{
+return|return
+literal|true
+return|;
+block|}
+else|else
+block|{
+if|if
+condition|(
+literal|0
+operator|==
+name|numTerms
+operator|%
+name|termIndexInterval
+condition|)
+block|{
+comment|// save last term just before next index term so we
+comment|// can compute wasted suffix
+name|lastTerm
+operator|.
+name|copy
+argument_list|(
+name|text
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+block|}
+annotation|@
+name|Override
+DECL|method|add
+specifier|public
+name|void
+name|add
+parameter_list|(
+name|BytesRef
+name|text
+parameter_list|,
+name|TermStats
+name|stats
+parameter_list|,
+name|long
+name|termsFilePointer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 specifier|final
 name|int
 name|indexedTermLength
@@ -677,6 +710,7 @@ argument_list|,
 name|text
 argument_list|)
 decl_stmt|;
+comment|//System.out.println("FGW: add text=" + text.utf8ToString() + " " + text + " fp=" + termsFilePointer);
 comment|// write only the min prefix that shows the diff
 comment|// against prior term
 name|out
@@ -733,15 +767,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// save delta terms pointer
-specifier|final
-name|long
-name|fp
-init|=
-name|termsOut
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
 name|termsPointerDeltas
 index|[
 name|numIndexTerms
@@ -751,14 +776,14 @@ call|(
 name|int
 call|)
 argument_list|(
-name|fp
+name|termsFilePointer
 operator|-
 name|lastTermsPointer
 argument_list|)
 expr_stmt|;
 name|lastTermsPointer
 operator|=
-name|fp
+name|termsFilePointer
 expr_stmt|;
 comment|// save term length (in bytes)
 assert|assert
@@ -792,35 +817,6 @@ expr_stmt|;
 name|numIndexTerms
 operator|++
 expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-literal|0
-operator|==
-name|numTerms
-operator|%
-name|termIndexInterval
-condition|)
-block|{
-comment|// save last term just before next index term so we
-comment|// can compute wasted suffix
-name|lastTerm
-operator|.
-name|copy
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-literal|false
-return|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -828,7 +824,10 @@ DECL|method|finish
 specifier|public
 name|void
 name|finish
-parameter_list|()
+parameter_list|(
+name|long
+name|termsFilePointer
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -840,15 +839,6 @@ operator|.
 name|getFilePointer
 argument_list|()
 expr_stmt|;
-specifier|final
-name|long
-name|maxValue
-init|=
-name|termsOut
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
 name|PackedInts
 operator|.
 name|Writer
@@ -866,7 +856,7 @@ name|PackedInts
 operator|.
 name|bitsRequired
 argument_list|(
-name|maxValue
+name|termsFilePointer
 argument_list|)
 argument_list|)
 decl_stmt|;

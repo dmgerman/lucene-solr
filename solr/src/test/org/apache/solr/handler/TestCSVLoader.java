@@ -194,6 +194,8 @@ name|filename
 argument_list|)
 decl_stmt|;
 annotation|@
+name|Override
+annotation|@
 name|Before
 DECL|method|setUp
 specifier|public
@@ -214,6 +216,8 @@ name|cleanup
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 annotation|@
 name|After
 DECL|method|tearDown
@@ -327,7 +331,7 @@ name|assertU
 argument_list|(
 name|delQ
 argument_list|(
-literal|"id:[100 TO 110]"
+literal|"*:*"
 argument_list|)
 argument_list|)
 expr_stmt|;

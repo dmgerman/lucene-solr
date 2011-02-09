@@ -112,6 +112,8 @@ specifier|private
 name|Reader
 name|reader
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -134,6 +136,8 @@ operator|)
 name|context
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getData
 specifier|public
 name|Reader
@@ -200,6 +204,8 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

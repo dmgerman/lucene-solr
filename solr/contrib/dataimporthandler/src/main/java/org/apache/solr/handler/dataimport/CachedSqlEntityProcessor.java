@@ -66,6 +66,8 @@ name|boolean
 name|isFirst
 decl_stmt|;
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -96,6 +98,8 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextRow
 specifier|public
 name|Map
@@ -168,6 +172,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getAllNonCachedRows
 specifier|protected
 name|List

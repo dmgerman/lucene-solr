@@ -48,15 +48,15 @@ name|AttributeSource
 block|{
 DECL|field|fieldName
 specifier|private
-name|CharSequence
+name|String
 name|fieldName
 decl_stmt|;
-comment|/**    * Constructs a {@link FieldConfig}    *     * @param fieldName    *          the field name, it cannot be null    * @throws IllegalArgumentException    *           if the field name is null    */
+comment|/**    * Constructs a {@link FieldConfig}    *     * @param fieldName the field name, it cannot be null    * @throws IllegalArgumentException if the field name is null    */
 DECL|method|FieldConfig
 specifier|public
 name|FieldConfig
 parameter_list|(
-name|CharSequence
+name|String
 name|fieldName
 parameter_list|)
 block|{
@@ -83,10 +83,10 @@ name|fieldName
 expr_stmt|;
 block|}
 comment|/**    * Returns the field name this configuration represents.    *     * @return the field name    */
-DECL|method|getFieldName
+DECL|method|getField
 specifier|public
-name|CharSequence
-name|getFieldName
+name|String
+name|getField
 parameter_list|()
 block|{
 return|return

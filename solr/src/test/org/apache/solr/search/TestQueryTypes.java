@@ -54,6 +54,8 @@ name|TestQueryTypes
 extends|extends
 name|AbstractSolrTestCase
 block|{
+annotation|@
+name|Override
 DECL|method|getSchemaFile
 specifier|public
 name|String
@@ -64,6 +66,8 @@ return|return
 literal|"schema11.xml"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSolrConfigFile
 specifier|public
 name|String
@@ -84,6 +88,8 @@ return|return
 literal|"basic"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -100,6 +106,8 @@ name|setUp
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void

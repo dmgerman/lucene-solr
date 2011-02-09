@@ -75,6 +75,10 @@ name|min
 decl_stmt|,
 name|max
 decl_stmt|;
+DECL|field|enablePositionIncrements
+name|boolean
+name|enablePositionIncrements
+decl_stmt|;
 DECL|field|MIN_KEY
 specifier|public
 specifier|static
@@ -144,6 +148,15 @@ name|MAX_KEY
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|enablePositionIncrements
+operator|=
+name|getBoolean
+argument_list|(
+literal|"enablePositionIncrements"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|create
 specifier|public
@@ -158,6 +171,8 @@ return|return
 operator|new
 name|LengthFilter
 argument_list|(
+name|enablePositionIncrements
+argument_list|,
 name|input
 argument_list|,
 name|min

@@ -1340,6 +1340,8 @@ name|writeArrayCloser
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeNamedList
 specifier|public
 name|void
@@ -1866,6 +1868,8 @@ name|writeMapCloser
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeSolrDocument
 specifier|public
 name|void
@@ -2069,6 +2073,8 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|writeDoc
 specifier|public
 name|void
@@ -2134,6 +2140,8 @@ name|other
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeDocList
 specifier|public
 name|void
@@ -2847,6 +2855,8 @@ literal|']'
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeStr
 specifier|public
 name|void
@@ -3129,6 +3139,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|writeMap
 specifier|public
 name|void
@@ -3286,6 +3298,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|writeArray
 specifier|public
 name|void
@@ -3368,6 +3382,8 @@ block|}
 comment|//
 comment|// Primitive types
 comment|//
+annotation|@
+name|Override
 DECL|method|writeNull
 specifier|public
 name|void
@@ -3387,6 +3403,8 @@ literal|"null"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeInt
 specifier|public
 name|void
@@ -3409,6 +3427,8 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeLong
 specifier|public
 name|void
@@ -3431,6 +3451,8 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeBool
 specifier|public
 name|void
@@ -3453,6 +3475,8 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeFloat
 specifier|public
 name|void
@@ -3475,6 +3499,8 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeDouble
 specifier|public
 name|void
@@ -3497,6 +3523,8 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|writeDate
 specifier|public
 name|void

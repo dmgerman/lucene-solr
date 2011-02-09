@@ -1112,7 +1112,7 @@ name|reader
 init|=
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|int
@@ -2407,6 +2407,9 @@ block|}
 DECL|method|getCounts
 specifier|public
 name|NamedList
+argument_list|<
+name|Integer
+argument_list|>
 name|getCounts
 parameter_list|(
 name|SolrIndexSearcher
@@ -2455,10 +2458,16 @@ name|field
 argument_list|)
 decl_stmt|;
 name|NamedList
+argument_list|<
+name|Integer
+argument_list|>
 name|res
 init|=
 operator|new
 name|NamedList
+argument_list|<
+name|Integer
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// order is important
@@ -2537,7 +2546,7 @@ name|getEnumerator
 argument_list|(
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3796,7 +3805,7 @@ name|getTermsIndex
 argument_list|(
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|,
 name|f
@@ -3872,7 +3881,7 @@ name|getEnumerator
 argument_list|(
 name|searcher
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4760,6 +4769,8 @@ name|termNum
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -4835,6 +4846,11 @@ throws|throws
 name|IOException
 block|{
 name|SolrCache
+argument_list|<
+name|String
+argument_list|,
+name|UnInvertedField
+argument_list|>
 name|cache
 init|=
 name|searcher
@@ -4862,9 +4878,6 @@ block|}
 name|UnInvertedField
 name|uif
 init|=
-operator|(
-name|UnInvertedField
-operator|)
 name|cache
 operator|.
 name|get
@@ -4886,9 +4899,6 @@ init|)
 block|{
 name|uif
 operator|=
-operator|(
-name|UnInvertedField
-operator|)
 name|cache
 operator|.
 name|get
@@ -5243,6 +5253,8 @@ specifier|public
 name|int
 name|docFreq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|tenum
@@ -5253,17 +5265,20 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|cacheCurrentTerm
+DECL|method|totalTermFreq
 specifier|public
-name|void
-name|cacheCurrentTerm
+name|long
+name|totalTermFreq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
+return|return
+name|tenum
+operator|.
+name|totalTermFreq
 argument_list|()
-throw|;
+return|;
 block|}
 DECL|method|skipTo
 specifier|public
@@ -5946,6 +5961,8 @@ decl_stmt|;
 name|PagedBytes
 name|bytes
 decl_stmt|;
+annotation|@
+name|Override
 specifier|protected
 name|BytesRef
 name|setTerm
@@ -6035,6 +6052,8 @@ return|return
 name|br
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|BytesRef
 name|skipTo
@@ -6051,6 +6070,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close

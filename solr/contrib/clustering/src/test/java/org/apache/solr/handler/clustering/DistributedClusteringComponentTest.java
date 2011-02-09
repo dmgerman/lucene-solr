@@ -46,22 +46,7 @@ name|CommonParams
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
 begin_class
-annotation|@
-name|Ignore
-argument_list|(
-literal|"FIXME: test fails on hudson"
-argument_list|)
 DECL|class|DistributedClusteringComponentTest
 specifier|public
 class|class
@@ -69,6 +54,25 @@ name|DistributedClusteringComponentTest
 extends|extends
 name|BaseDistributedSearchTestCase
 block|{
+annotation|@
+name|Override
+DECL|method|getSolrHome
+specifier|public
+name|String
+name|getSolrHome
+parameter_list|()
+block|{
+comment|// TODO: this should work with just "solr-clustering"...
+return|return
+name|getFile
+argument_list|(
+literal|"solr-clustering"
+argument_list|)
+operator|.
+name|getAbsolutePath
+argument_list|()
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|doTest

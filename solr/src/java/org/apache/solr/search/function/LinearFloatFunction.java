@@ -29,6 +29,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -129,6 +131,8 @@ operator|=
 name|intercept
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -150,6 +154,8 @@ operator|+
 name|intercept
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|DocValues
@@ -158,8 +164,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -174,7 +180,7 @@ name|getValues
 argument_list|(
 name|context
 argument_list|,
-name|reader
+name|readerContext
 argument_list|)
 decl_stmt|;
 return|return
@@ -182,6 +188,8 @@ operator|new
 name|DocValues
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -203,6 +211,8 @@ operator|+
 name|intercept
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -221,6 +231,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|longVal
@@ -239,6 +251,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|double
 name|doubleVal
@@ -257,6 +271,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -277,6 +293,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -331,6 +349,8 @@ name|searcher
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -393,6 +413,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

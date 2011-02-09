@@ -228,7 +228,7 @@ comment|// the indexDivisor at search time.  But, we use this in a
 comment|// number of places to multiply out the actual ord, and we
 comment|// will overflow int during those multiplies.  So to avoid
 comment|// having to upgrade each multiple to long in multiple
-comment|// places (error proned), we use long here:
+comment|// places (error prone), we use long here:
 DECL|field|totalIndexInterval
 specifier|private
 name|long
@@ -443,6 +443,7 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+comment|//System.out.println("FGR: init seg=" + segment + " div=" + indexDivisor + " nF=" + numFields);
 for|for
 control|(
 name|int
@@ -683,16 +684,6 @@ specifier|private
 specifier|final
 name|BytesRef
 name|term
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
-DECL|field|nextTerm
-specifier|private
-specifier|final
-name|BytesRef
-name|nextTerm
 init|=
 operator|new
 name|BytesRef
@@ -1074,7 +1065,7 @@ name|termBytesReader
 operator|.
 name|fillSlice
 argument_list|(
-name|nextTerm
+name|term
 argument_list|,
 name|fieldIndex
 operator|.
@@ -1337,9 +1328,6 @@ name|numIndexTerms
 operator|=
 name|numIndexTerms
 expr_stmt|;
-comment|// We still create the indexReader when indexDivisor
-comment|// is -1, so that PrefixCodedTermsReader can call
-comment|// isIndexTerm for each field:
 if|if
 condition|(
 name|indexDivisor

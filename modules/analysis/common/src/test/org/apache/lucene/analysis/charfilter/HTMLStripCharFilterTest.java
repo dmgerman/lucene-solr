@@ -1172,7 +1172,7 @@ name|testBuilder
 operator|.
 name|append
 argument_list|(
-literal|"ah<?> "
+literal|"ah<?> ??????"
 argument_list|)
 expr_stmt|;
 name|appendChars

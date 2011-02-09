@@ -14,6 +14,10 @@ name|function
 package|;
 end_package
 
+begin_comment
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|org
@@ -25,6 +29,22 @@ operator|.
 name|index
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -177,22 +197,21 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// use MultiFields, just in case someone did a top() function
 name|Fields
 name|fields
 init|=
-name|MultiFields
+name|readerContext
 operator|.
-name|getFields
-argument_list|(
 name|reader
-argument_list|)
+operator|.
+name|fields
+argument_list|()
 decl_stmt|;
 specifier|final
 name|Terms
@@ -221,8 +240,13 @@ literal|"searcher"
 argument_list|)
 operator|)
 operator|.
-name|getSimilarity
+name|getSimilarityProvider
 argument_list|()
+operator|.
+name|get
+argument_list|(
+name|field
+argument_list|)
 decl_stmt|;
 return|return
 operator|new

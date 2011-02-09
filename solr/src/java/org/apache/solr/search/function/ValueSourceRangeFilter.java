@@ -71,6 +71,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -209,6 +211,8 @@ operator|&&
 name|includeUpper
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDocIdSet
 specifier|public
 name|DocIdSet
@@ -219,8 +223,8 @@ name|Map
 name|context
 parameter_list|,
 specifier|final
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -230,6 +234,8 @@ operator|new
 name|DocIdSet
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSetIterator
 name|iterator
@@ -244,11 +250,13 @@ name|getValues
 argument_list|(
 name|context
 argument_list|,
-name|reader
+name|readerContext
 argument_list|)
 operator|.
 name|getRangeScorer
 argument_list|(
+name|readerContext
+operator|.
 name|reader
 argument_list|,
 name|lowerVal
@@ -290,6 +298,8 @@ name|searcher
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -386,6 +396,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -521,6 +533,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

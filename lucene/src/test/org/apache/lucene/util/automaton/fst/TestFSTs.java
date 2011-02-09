@@ -475,6 +475,8 @@ specifier|private
 name|MockDirectoryWrapper
 name|dir
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -496,6 +498,8 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void
@@ -6655,7 +6659,7 @@ init|=
 operator|new
 name|LineFileDocs
 argument_list|(
-literal|false
+name|random
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -6808,6 +6812,8 @@ operator|.
 name|open
 argument_list|(
 name|writer
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|writer
@@ -6925,6 +6931,23 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: got termsEnum="
+operator|+
+name|termsEnum
+argument_list|)
+expr_stmt|;
+block|}
 name|BytesRef
 name|term
 decl_stmt|;
@@ -6968,6 +6991,21 @@ name|UnsupportedOperationException
 name|uoe
 parameter_list|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: codec doesn't support ord; FST stores docFreq"
+argument_list|)
+expr_stmt|;
+block|}
 name|storeOrd
 operator|=
 literal|false
@@ -7278,6 +7316,26 @@ argument_list|(
 literal|"TEST: next"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|storeOrd
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  ord="
+operator|+
+name|termsEnum
+operator|.
+name|ord
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

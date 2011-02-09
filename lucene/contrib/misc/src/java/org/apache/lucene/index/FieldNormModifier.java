@@ -102,6 +102,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|SimilarityProvider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -165,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Given a directory and a list of fields, updates the fieldNorms in place for every document.  *   * If Similarity class is specified, uses its lengthNorm method to set norms.  * If -n command line argument is used, removed field norms, as if   * {@link org.apache.lucene.document.Field.Index}.NO_NORMS was used.  *  *<p>  * NOTE: This will overwrite any length normalization or field/document boosts.  *</p>  *  */
+comment|/**  * Given a directory and a list of fields, updates the fieldNorms in place for every document.  *   * If Similarity class is specified, uses its computeNorm method to set norms.  * If -n command line argument is used, removed field norms, as if   * {@link org.apache.lucene.document.Field.Index}.NO_NORMS was used.  *  *<p>  * NOTE: This will overwrite any length normalization or field/document boosts.  *</p>  *  */
 end_comment
 
 begin_class
@@ -214,7 +228,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-name|Similarity
+name|SimilarityProvider
 name|s
 init|=
 literal|null
@@ -259,7 +273,7 @@ argument_list|)
 operator|.
 name|asSubclass
 argument_list|(
-name|Similarity
+name|SimilarityProvider
 operator|.
 name|class
 argument_list|)
@@ -415,7 +429,7 @@ name|dir
 decl_stmt|;
 DECL|field|sim
 specifier|private
-name|Similarity
+name|SimilarityProvider
 name|sim
 decl_stmt|;
 comment|/**    * Constructor for code that wishes to use this class programmatically    * If Similarity is null, kill the field norms.    *    * @param d the Directory to modify    * @param s the Similarity to use (can be null)    */
@@ -426,7 +440,7 @@ parameter_list|(
 name|Directory
 name|d
 parameter_list|,
-name|Similarity
+name|SimilarityProvider
 name|s
 parameter_list|)
 block|{
@@ -457,6 +471,16 @@ init|=
 name|StringHelper
 operator|.
 name|intern
+argument_list|(
+name|field
+argument_list|)
+decl_stmt|;
+name|Similarity
+name|fieldSim
+init|=
+name|sim
+operator|.
+name|get
 argument_list|(
 name|field
 argument_list|)
@@ -502,6 +526,14 @@ argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
+specifier|final
+name|FieldInvertState
+name|invertState
+init|=
+operator|new
+name|FieldInvertState
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|IndexReader
@@ -639,6 +671,13 @@ block|}
 block|}
 block|}
 block|}
+name|invertState
+operator|.
+name|setBoost
+argument_list|(
+literal|1.0f
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -671,6 +710,16 @@ name|d
 argument_list|)
 condition|)
 block|{
+name|invertState
+operator|.
+name|setLength
+argument_list|(
+name|termCounts
+index|[
+name|d
+index|]
+argument_list|)
+expr_stmt|;
 name|subReader
 operator|.
 name|setNorm
@@ -679,20 +728,17 @@ name|d
 argument_list|,
 name|fieldName
 argument_list|,
-name|sim
+name|fieldSim
 operator|.
 name|encodeNormValue
 argument_list|(
-name|sim
+name|fieldSim
 operator|.
-name|lengthNorm
+name|computeNorm
 argument_list|(
 name|fieldName
 argument_list|,
-name|termCounts
-index|[
-name|d
-index|]
+name|invertState
 argument_list|)
 argument_list|)
 argument_list|)

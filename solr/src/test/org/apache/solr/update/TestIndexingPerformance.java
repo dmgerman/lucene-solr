@@ -184,6 +184,8 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getSchemaFile
 specifier|public
 name|String
@@ -194,6 +196,8 @@ return|return
 literal|"schema12.xml"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSolrConfigFile
 specifier|public
 name|String

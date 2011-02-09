@@ -108,6 +108,8 @@ name|ClobTransformer
 extends|extends
 name|Transformer
 block|{
+annotation|@
+name|Override
 DECL|method|transformRow
 specifier|public
 name|Object

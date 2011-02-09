@@ -447,6 +447,12 @@ operator|.
 name|length
 argument_list|()
 expr_stmt|;
+name|next
+operator|=
+name|mark
+operator|=
+literal|0
+expr_stmt|;
 block|}
 block|}
 annotation|@

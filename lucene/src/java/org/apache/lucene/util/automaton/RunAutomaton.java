@@ -84,11 +84,6 @@ index|[]
 name|classmap
 decl_stmt|;
 comment|// map from char number to class class
-DECL|field|automaton
-specifier|final
-name|Automaton
-name|automaton
-decl_stmt|;
 comment|/**    * Returns a string representation of this automaton.    */
 annotation|@
 name|Override
@@ -392,17 +387,6 @@ name|points
 argument_list|)
 return|;
 block|}
-comment|/**    * @return the automaton    */
-DECL|method|getAutomaton
-specifier|public
-name|Automaton
-name|getAutomaton
-parameter_list|()
-block|{
-return|return
-name|automaton
-return|;
-block|}
 comment|/**    * Constructs a new<code>RunAutomaton</code> from a deterministic    *<code>Automaton</code>.    *     * @param a an automaton    */
 DECL|method|RunAutomaton
 specifier|public
@@ -657,12 +641,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|this
-operator|.
-name|automaton
-operator|=
-name|a
-expr_stmt|;
 block|}
 comment|/**    * Returns the state obtained by reading the given char from the given state.    * Returns -1 if not obtaining any such state. (If the original    *<code>Automaton</code> had no dead states, -1 is returned here if and only    * if a dead state is entered in an equivalent automaton with a total    * transition function.)    */
 DECL|method|step

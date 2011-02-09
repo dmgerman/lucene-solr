@@ -331,6 +331,81 @@ name|optimize
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// make sure this component is initialized correctly for each test
+name|QueryElevationComponent
+name|comp
+init|=
+operator|(
+name|QueryElevationComponent
+operator|)
+name|h
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getSearchComponent
+argument_list|(
+literal|"elevate"
+argument_list|)
+decl_stmt|;
+name|NamedList
+argument_list|<
+name|String
+argument_list|>
+name|args
+init|=
+operator|new
+name|NamedList
+argument_list|<
+name|String
+argument_list|>
+argument_list|()
+decl_stmt|;
+name|args
+operator|.
+name|add
+argument_list|(
+name|QueryElevationComponent
+operator|.
+name|CONFIG_FILE
+argument_list|,
+literal|"elevate.xml"
+argument_list|)
+expr_stmt|;
+name|args
+operator|.
+name|add
+argument_list|(
+name|QueryElevationComponent
+operator|.
+name|FIELD_TYPE
+argument_list|,
+literal|"string"
+argument_list|)
+expr_stmt|;
+name|comp
+operator|.
+name|init
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+name|comp
+operator|.
+name|inform
+argument_list|(
+name|h
+operator|.
+name|getCore
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|comp
+operator|.
+name|forceElevation
+operator|=
+literal|false
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -420,7 +495,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|Map
@@ -772,7 +847,7 @@ literal|"title"
 argument_list|,
 literal|"ipod"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"a"
 argument_list|)
@@ -790,7 +865,7 @@ literal|"title"
 argument_list|,
 literal|"ipod ipod"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"b"
 argument_list|)
@@ -808,7 +883,7 @@ literal|"title"
 argument_list|,
 literal|"ipod ipod ipod"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"c"
 argument_list|)
@@ -826,7 +901,7 @@ literal|"title"
 argument_list|,
 literal|"boosted"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"x"
 argument_list|)
@@ -844,7 +919,7 @@ literal|"title"
 argument_list|,
 literal|"boosted boosted"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"y"
 argument_list|)
@@ -862,7 +937,7 @@ literal|"title"
 argument_list|,
 literal|"boosted boosted boosted"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"z"
 argument_list|)
@@ -965,7 +1040,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|QueryElevationComponent
@@ -1143,7 +1218,7 @@ name|CommonParams
 operator|.
 name|SORT
 argument_list|,
-literal|"str_s asc"
+literal|"str_s1 asc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1530,7 +1605,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|Map
@@ -1628,7 +1703,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 expr_stmt|;
 name|map

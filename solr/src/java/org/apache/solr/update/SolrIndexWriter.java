@@ -601,6 +601,8 @@ name|isClosed
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -755,6 +757,8 @@ block|}
 comment|// We might ideally want to override print(String) as well, but
 comment|// looking through the code that writes to infoStream, it appears
 comment|// that all the classes except CheckIndex just use println.
+annotation|@
+name|Override
 DECL|method|println
 specifier|public
 name|void

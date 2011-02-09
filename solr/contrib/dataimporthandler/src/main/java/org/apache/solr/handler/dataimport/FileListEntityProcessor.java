@@ -158,6 +158,8 @@ name|fileNamePattern
 decl_stmt|,
 name|excludesPattern
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -635,6 +637,8 @@ name|sizeStr
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextRow
 specifier|public
 name|Map

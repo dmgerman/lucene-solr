@@ -603,6 +603,11 @@ name|boolean
 name|top
 parameter_list|)
 block|{
+name|field
+operator|.
+name|checkSortability
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|SortField

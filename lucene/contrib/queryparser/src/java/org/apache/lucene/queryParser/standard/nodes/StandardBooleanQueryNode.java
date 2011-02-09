@@ -90,12 +90,12 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Similarity
+name|SimilarityProvider
 import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link StandardBooleanQueryNode} has the same behavior as  * {@link BooleanQueryNode}. It only indicates if the coord should be enabled or  * not for this boolean query.<br/>  *   * @see Similarity#coord(int, int)  * @see BooleanQuery  */
+comment|/**  * A {@link StandardBooleanQueryNode} has the same behavior as  * {@link BooleanQueryNode}. It only indicates if the coord should be enabled or  * not for this boolean query.<br/>  *   * @see SimilarityProvider#coord(int, int)  * @see BooleanQuery  */
 end_comment
 
 begin_class

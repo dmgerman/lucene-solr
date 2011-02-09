@@ -162,6 +162,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentHashMap
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -378,6 +390,20 @@ name|ThreadInterruptedException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|MapBackedSet
+import|;
+end_import
+
 begin_comment
 comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The<code>create</code> argument to the {@link   #IndexWriter(Directory, IndexWriterConfig) constructor} determines    whether a new index is created, or whether an existing index is   opened.  Note that you can open an index with<code>create=true</code>   even while readers are using the index.  The old readers will    continue to search the "point in time" snapshot they had opened,    and won't see the newly created index until they re-open.  There are   also {@link #IndexWriter(Directory, IndexWriterConfig) constructors}   with no<code>create</code> argument which will create a new index   if there is not already an index at the provided path and otherwise    open the existing index.</p><p>In either case, documents are added with {@link #addDocument(Document)   addDocument} and removed with {@link #deleteDocuments(Term)} or {@link   #deleteDocuments(Query)}. A document can be updated with {@link   #updateDocument(Term, Document) updateDocument} (which just deletes   and then adds the entire document). When finished adding, deleting    and updating documents, {@link #close() close} should be called.</p><a name="flush"></a><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls).  A flush is triggered when there are enough   buffered deletes (see {@link IndexWriterConfig#setMaxBufferedDeleteTerms})   or enough added documents since the last flush, whichever   is sooner.  For the added documents, flushing is triggered   either by RAM usage of the documents (see {@link   IndexWriterConfig#setRAMBufferSizeMB}) or the number of added documents.   The default is to flush when RAM usage hits 16 MB.  For   best indexing speed you should flush by RAM usage with a   large RAM buffer.  Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit()} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><p>If an index will not have more documents added for a while and optimal search   performance is desired, then either the full {@link #optimize() optimize}   method or partial {@link #optimize(int)} method should be   called before the index is closed.</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.  It   also selects merges to do for optimize().  (The default is   {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p><a name="OOME"></a><p><b>NOTE</b>: if you hit an   OutOfMemoryError then IndexWriter will quietly record this   fact and block all future segment commits.  This is a   defensive measure in case any internal state (buffered   documents and deletions) were corrupted.  Any subsequent   calls to {@link #commit()} will throw an   IllegalStateException.  The only course of action is to   call {@link #close()}, which internally will call {@link   #rollback()}, to undo any changes to the index since the   last commit.  You can also just call {@link #rollback()}   directly.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link   IndexWriter} instances are completely thread   safe, meaning multiple threads can call any of its   methods, concurrently.  If your application requires   external synchronization, you should<b>not</b>   synchronize on the<code>IndexWriter</code> instance as   this may cause deadlock; use your own (non-Lucene) objects   instead.</p><p><b>NOTE</b>: If you call<code>Thread.interrupt()</code> on a thread that's within   IndexWriter, IndexWriter will try to catch this (eg, if   it's in a wait() or Thread.sleep()), and will then throw   the unchecked exception {@link ThreadInterruptedException}   and<b>clear</b> the interrupt status on the thread.</p> */
 end_comment
@@ -492,16 +518,6 @@ name|SegmentInfos
 name|rollbackSegmentInfos
 decl_stmt|;
 comment|// segmentInfos we will fallback to if the commit fails
-DECL|field|rollbackSegments
-specifier|private
-name|HashMap
-argument_list|<
-name|SegmentInfo
-argument_list|,
-name|Integer
-argument_list|>
-name|rollbackSegments
-decl_stmt|;
 DECL|field|pendingCommit
 specifier|volatile
 name|SegmentInfos
@@ -695,10 +711,10 @@ operator|new
 name|ReaderPool
 argument_list|()
 decl_stmt|;
-DECL|field|bufferedDeletes
+DECL|field|bufferedDeletesStream
 specifier|final
-name|BufferedDeletes
-name|bufferedDeletes
+name|BufferedDeletesStream
+name|bufferedDeletesStream
 decl_stmt|;
 comment|// This is a "write once" variable (like the organic dye
 comment|// on a DVD-R that may or may not be heated by a laser and
@@ -729,7 +745,11 @@ specifier|private
 name|PayloadProcessorProvider
 name|payloadProcessorProvider
 decl_stmt|;
-comment|/**    * Expert: returns a readonly reader, covering all    * committed as well as un-committed changes to the index.    * This provides "near real-time" searching, in that    * changes made during an IndexWriter session can be    * quickly made available for searching without closing    * the writer nor calling {@link #commit}.    *    *<p>Note that this is functionally equivalent to calling    * {#flush} and then using {@link IndexReader#open} to    * open a new reader.  But the turnaround time of this    * method should be faster since it avoids the potentially    * costly {@link #commit}.</p>    *    *<p>You must close the {@link IndexReader} returned by    * this method once you are done using it.</p>    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader supports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link #setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @lucene.experimental    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @throws IOException    */
+comment|// for testing
+DECL|field|anyNonBulkMerges
+name|boolean
+name|anyNonBulkMerges
+decl_stmt|;
 DECL|method|getReader
 name|IndexReader
 name|getReader
@@ -737,9 +757,36 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+return|return
+name|getReader
+argument_list|(
+literal|true
+argument_list|)
+return|;
+block|}
+comment|/**    * Expert: returns a readonly reader, covering all    * committed as well as un-committed changes to the index.    * This provides "near real-time" searching, in that    * changes made during an IndexWriter session can be    * quickly made available for searching without closing    * the writer nor calling {@link #commit}.    *    *<p>Note that this is functionally equivalent to calling    * {#flush} and then using {@link IndexReader#open} to    * open a new reader.  But the turnaround time of this    * method should be faster since it avoids the potentially    * costly {@link #commit}.</p>    *    *<p>You must close the {@link IndexReader} returned by    * this method once you are done using it.</p>    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader supports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link #setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @lucene.experimental    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @throws IOException    */
+DECL|method|getReader
+name|IndexReader
+name|getReader
+parameter_list|(
+name|boolean
+name|applyAllDeletes
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+specifier|final
+name|long
+name|tStart
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|infoStream
@@ -775,7 +822,7 @@ name|flush
 argument_list|(
 literal|false
 argument_list|,
-literal|true
+name|applyAllDeletes
 argument_list|)
 expr_stmt|;
 name|r
@@ -793,6 +840,8 @@ name|getReaderTermsIndexDivisor
 argument_list|()
 argument_list|,
 name|codecs
+argument_list|,
+name|applyAllDeletes
 argument_list|)
 expr_stmt|;
 if|if
@@ -821,8 +870,80 @@ block|}
 name|maybeMerge
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"getReader took "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|tStart
+operator|)
+operator|+
+literal|" msec"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|r
+return|;
+block|}
+comment|// Used for all SegmentReaders we open
+DECL|field|readerFinishedListeners
+specifier|private
+specifier|final
+name|Collection
+argument_list|<
+name|IndexReader
+operator|.
+name|ReaderFinishedListener
+argument_list|>
+name|readerFinishedListeners
+init|=
+operator|new
+name|MapBackedSet
+argument_list|<
+name|IndexReader
+operator|.
+name|ReaderFinishedListener
+argument_list|>
+argument_list|(
+operator|new
+name|ConcurrentHashMap
+argument_list|<
+name|IndexReader
+operator|.
+name|ReaderFinishedListener
+argument_list|,
+name|Boolean
+argument_list|>
+argument_list|()
+argument_list|)
+decl_stmt|;
+DECL|method|getReaderFinishedListeners
+name|Collection
+argument_list|<
+name|IndexReader
+operator|.
+name|ReaderFinishedListener
+argument_list|>
+name|getReaderFinishedListeners
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|readerFinishedListeners
 return|;
 block|}
 comment|/** Holds shared SegmentReader instances. IndexWriter uses    *  SegmentReaders for 1) applying deletes, 2) doing    *  merges, 3) handing out a real-time reader.  This pool    *  reuses instances of the SegmentReaders in all these    *  places if it is in "near real-time mode" (getReader()    *  has been called on this instance). */
@@ -1552,6 +1673,12 @@ argument_list|,
 name|termsIndexDivisor
 argument_list|)
 expr_stmt|;
+name|sr
+operator|.
+name|readerFinishedListeners
+operator|=
+name|readerFinishedListeners
+expr_stmt|;
 if|if
 condition|(
 name|info
@@ -1836,7 +1963,7 @@ DECL|field|codecs
 name|CodecProvider
 name|codecs
 decl_stmt|;
-comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is cloned and thus making    * changes to it after IndexWriter has been instantiated will not affect    * IndexWriter. Additionally, calling {@link #getConfig()} and changing the    * parameters does not affect that IndexWriter instance.    *<p>    *<b>NOTE:</b> by default, {@link IndexWriterConfig#getMaxFieldLength()}    * returns {@link IndexWriterConfig#UNLIMITED_FIELD_LENGTH}. Pay attention to    * whether this setting fits your application.    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initalized.    * @throws CorruptIndexException    *           if the index is corrupt    * @throws LockObtainFailedException    *           if another writer has this index open (<code>write.lock</code>    *           could not be obtained)    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
+comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is cloned and thus making    * changes to it after IndexWriter has been instantiated will not affect    * IndexWriter. Additionally, calling {@link #getConfig()} and changing the    * parameters does not affect that IndexWriter instance.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws CorruptIndexException    *           if the index is corrupt    * @throws LockObtainFailedException    *           if another writer has this index open (<code>write.lock</code>    *           could not be obtained)    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1878,13 +2005,6 @@ expr_stmt|;
 name|infoStream
 operator|=
 name|defaultInfoStream
-expr_stmt|;
-name|maxFieldLength
-operator|=
-name|conf
-operator|.
-name|getMaxFieldLength
-argument_list|()
 expr_stmt|;
 name|termIndexInterval
 operator|=
@@ -1928,15 +2048,15 @@ operator|.
 name|getCodecProvider
 argument_list|()
 expr_stmt|;
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|=
 operator|new
-name|BufferedDeletes
+name|BufferedDeletesStream
 argument_list|(
 name|messageID
 argument_list|)
 expr_stmt|;
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|setInfoStream
 argument_list|(
@@ -2041,11 +2161,8 @@ name|success
 init|=
 literal|false
 decl_stmt|;
-comment|// TODO: we should check whether this index is too old,
-comment|// and throw an IndexFormatTooOldExc up front, here,
-comment|// instead of later when merge, applyDeletes, getReader
-comment|// is attempted.  I think to do this we should store the
-comment|// oldest segment's version in segments_N.
+comment|// If index is too old, reading the segments will throw
+comment|// IndexFormatTooOldException.
 name|segmentInfos
 operator|=
 operator|new
@@ -2233,7 +2350,7 @@ argument_list|,
 name|getCurrentFieldInfos
 argument_list|()
 argument_list|,
-name|bufferedDeletes
+name|bufferedDeletesStream
 argument_list|)
 expr_stmt|;
 name|docWriter
@@ -2241,13 +2358,6 @@ operator|.
 name|setInfoStream
 argument_list|(
 name|infoStream
-argument_list|)
-expr_stmt|;
-name|docWriter
-operator|.
-name|setMaxFieldLength
-argument_list|(
-name|maxFieldLength
 argument_list|)
 expr_stmt|;
 comment|// Default deleter (for backwards compatibility) is
@@ -2637,59 +2747,6 @@ operator|.
 name|clone
 argument_list|()
 expr_stmt|;
-name|rollbackSegments
-operator|=
-operator|new
-name|HashMap
-argument_list|<
-name|SegmentInfo
-argument_list|,
-name|Integer
-argument_list|>
-argument_list|()
-expr_stmt|;
-specifier|final
-name|int
-name|size
-init|=
-name|rollbackSegmentInfos
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|size
-condition|;
-name|i
-operator|++
-control|)
-name|rollbackSegments
-operator|.
-name|put
-argument_list|(
-name|rollbackSegmentInfos
-operator|.
-name|info
-argument_list|(
-name|i
-argument_list|)
-argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
-name|i
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Returns the {@link IndexWriterConfig} that was passed to    * {@link #IndexWriter(Directory, IndexWriterConfig)}. This allows querying    * IndexWriter's settings.    *<p>    *<b>NOTE:</b> setting any parameter on the returned instance has not effect    * on the IndexWriter instance. If you need to change those settings after    * IndexWriter has been created, you need to instantiate a new IndexWriter.    */
 DECL|method|getConfig
@@ -2852,7 +2909,7 @@ argument_list|(
 name|infoStream
 argument_list|)
 expr_stmt|;
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|setInfoStream
 argument_list|(
@@ -3060,11 +3117,15 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+block|{
 name|message
 argument_list|(
-literal|"now flush at close"
+literal|"now flush at close waitForMerges="
+operator|+
+name|waitForMerges
 argument_list|)
 expr_stmt|;
+block|}
 name|docWriter
 operator|.
 name|close
@@ -3441,7 +3502,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|any
 argument_list|()
@@ -3499,13 +3560,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * The maximum number of terms that will be indexed for a single field in a    * document.  This limits the amount of memory required for indexing, so that    * collections with very large files will not crash the indexing process by    * running out of memory.<p/>    * Note that this effectively truncates large documents, excluding from the    * index terms that occur further in the document.  If you know your source    * documents are large, be sure to set this value high enough to accommodate    * the expected size.  If you set it to Integer.MAX_VALUE, then the only limit    * is your memory, but you should anticipate an OutOfMemoryError.<p/>    * By default, no more than 10,000 terms will be indexed for a field.    *    * @see MaxFieldLength    */
-DECL|field|maxFieldLength
-specifier|private
-name|int
-name|maxFieldLength
-decl_stmt|;
-comment|/**    * Adds a document to this index.  If the document contains more than    * {@link IndexWriterConfig#setMaxFieldLength(int)} terms for a given field,     * the remainder are discarded.    *    *<p> Note that if an Exception is hit (for example disk full)    * then the index will be consistent, but this document    * may not have been added.  Furthermore, it's possible    * the index will have one segment in non-compound format    * even when using compound files (when a merge has    * partially succeeded).</p>    *    *<p> This method periodically flushes pending documents    * to the Directory (see<a href="#flush">above</a>), and    * also periodically triggers segment merges in the index    * according to the {@link MergePolicy} in use.</p>    *    *<p>Merges temporarily consume space in the    * directory. The amount of space required is up to 1X the    * size of all segments being merged, when no    * readers/searchers are open against the index, and up to    * 2X the size of all segments being merged when    * readers/searchers are open against the index (see    * {@link #optimize()} for details). The sequence of    * primitive merge operations performed is governed by the    * merge policy.    *    *<p>Note that each term in the document can be no longer    * than 16383 characters, otherwise an    * IllegalArgumentException will be thrown.</p>    *    *<p>Note that it's possible to create an invalid Unicode    * string in java if a UTF16 surrogate pair is malformed.    * In this case, the invalid characters are silently    * replaced with the Unicode replacement character    * U+FFFD.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Adds a document to this index.    *    *<p> Note that if an Exception is hit (for example disk full)    * then the index will be consistent, but this document    * may not have been added.  Furthermore, it's possible    * the index will have one segment in non-compound format    * even when using compound files (when a merge has    * partially succeeded).</p>    *    *<p> This method periodically flushes pending documents    * to the Directory (see<a href="#flush">above</a>), and    * also periodically triggers segment merges in the index    * according to the {@link MergePolicy} in use.</p>    *    *<p>Merges temporarily consume space in the    * directory. The amount of space required is up to 1X the    * size of all segments being merged, when no    * readers/searchers are open against the index, and up to    * 2X the size of all segments being merged when    * readers/searchers are open against the index (see    * {@link #optimize()} for details). The sequence of    * primitive merge operations performed is governed by the    * merge policy.    *    *<p>Note that each term in the document can be no longer    * than 16383 characters, otherwise an    * IllegalArgumentException will be thrown.</p>    *    *<p>Note that it's possible to create an invalid Unicode    * string in java if a UTF16 surrogate pair is malformed.    * In this case, the invalid characters are silently    * replaced with the Unicode replacement character    * U+FFFD.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -3527,7 +3582,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.  If the document contains more than    * {@link IndexWriterConfig#setMaxFieldLength(int)} terms for a given field, the remainder are    * discarded.    *    *<p>See {@link #addDocument(Document)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Adds a document to this index, using the provided analyzer instead of the    * value of {@link #getAnalyzer()}.    *    *<p>See {@link #addDocument(Document)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -4134,7 +4189,7 @@ name|defaultInfoStream
 init|=
 literal|null
 decl_stmt|;
-comment|/**    * Requests an "optimize" operation on an index, priming the index    * for the fastest available search. Traditionally this has meant    * merging all segments into a single segment as is done in the    * default merge policy, but individual merge policies may implement    * optimize in different ways.    *    *<p> Optimize is a fairly costly operation, so you    * should only do it if your search performance really    * requires it.  Many search applications do fine never    * calling optimize.</p>    *    *<p>Note that optimize requires 2X the index size free    * space in your Directory (3X if you're using compound    * file format).  For example, if your index size is 10 MB    * then you need 20 MB free for optimize to complete (30    * MB if you're using compound file format).  Also,    * it's best to call {@link #commit()} after the optimize    * completes to allow IndexWriter to free up disk space.</p>    *    *<p>If some but not all readers re-open while an    * optimize is underway, this will cause> 2X temporary    * space to be consumed as those new readers will then    * hold open the partially optimized segments at that    * time.  It is best not to re-open readers while optimize    * is running.</p>    *    *<p>The actual temporary usage could be much less than    * these figures (it depends on many factors).</p>    *    *<p>In general, once the optimize completes, the total size of the    * index will be less than the size of the starting index.    * It could be quite a bit smaller (if there were many    * pending deletes) or just slightly smaller.</p>    *    *<p>If an Exception is hit during optimize(), for example    * due to disk full, the index will not be corrupt and no    * documents will have been lost.  However, it may have    * been partially optimized (some segments were merged but    * not all), and it's possible that one of the segments in    * the index will be in non-compound format even when    * using compound file format.  This will occur when the    * Exception is hit during conversion of the segment into    * compound format.</p>    *    *<p>This call will optimize those segments present in    * the index when the call started.  If other threads are    * still adding documents and flushing segments, those    * newly created segments will not be optimized unless you    * call optimize again.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @see MergePolicy#findMergesForOptimize   */
+comment|/**    * Requests an "optimize" operation on an index, priming the index    * for the fastest available search. Traditionally this has meant    * merging all segments into a single segment as is done in the    * default merge policy, but individual merge policies may implement    * optimize in different ways.    *    *<p> Optimize is a fairly costly operation, so you    * should only do it if your search performance really    * requires it.  Many search applications do fine never    * calling optimize.</p>    *    *<p>Note that optimize requires 2X the index size free    * space in your Directory (3X if you're using compound    * file format).  For example, if your index size is 10 MB    * then you need 20 MB free for optimize to complete (30    * MB if you're using compound file format).  Also,    * it's best to call {@link #commit()} after the optimize    * completes to allow IndexWriter to free up disk space.</p>    *    *<p>If some but not all readers re-open while an    * optimize is underway, this will cause> 2X temporary    * space to be consumed as those new readers will then    * hold open the partially optimized segments at that    * time.  It is best not to re-open readers while optimize    * is running.</p>    *    *<p>The actual temporary usage could be much less than    * these figures (it depends on many factors).</p>    *    *<p>In general, once the optimize completes, the total size of the    * index will be less than the size of the starting index.    * It could be quite a bit smaller (if there were many    * pending deletes) or just slightly smaller.</p>    *    *<p>If an Exception is hit during optimize(), for example    * due to disk full, the index will not be corrupt and no    * documents will have been lost.  However, it may have    * been partially optimized (some segments were merged but    * not all), and it's possible that one of the segments in    * the index will be in non-compound format even when    * using compound file format.  This will occur when the    * Exception is hit during conversion of the segment into    * compound format.</p>    *    *<p>This call will optimize those segments present in    * the index when the call started.  If other threads are    * still adding documents and flushing segments, those    * newly created segments will not be optimized unless you    * call optimize again.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    *<p><b>NOTE</b>: if you call {@link #close(boolean)}    * with<tt>false</tt>, which aborts all running merges,    * then any thread still running this method might hit a    * {@link MergePolicy.MergeAbortedException}.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @see MergePolicy#findMergesForOptimize   */
 DECL|method|optimize
 specifier|public
 name|void
@@ -4545,7 +4600,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** Just like {@link #expungeDeletes()}, except you can    *  specify whether the call should block until the    *  operation completes.  This is only meaningful with a    *  {@link MergeScheduler} that is able to run merges in    *  background threads.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    */
+comment|/** Just like {@link #expungeDeletes()}, except you can    *  specify whether the call should block until the    *  operation completes.  This is only meaningful with a    *  {@link MergeScheduler} that is able to run merges in    *  background threads.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    *<p><b>NOTE</b>: if you call {@link #close(boolean)}    * with<tt>false</tt>, which aborts all running merges,    * then any thread still running this method might hit a    * {@link MergePolicy.MergeAbortedException}.    */
 DECL|method|expungeDeletes
 specifier|public
 name|void
@@ -5087,6 +5142,21 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Expert: to be used by a {@link MergePolicy} to avoid    *  selecting merges for segments already being merged.    *  The returned collection is not cloned, and thus is    *  only safe to access if you hold IndexWriter's lock    *  (which you do when IndexWriter invokes the    *  MergePolicy).    *    *<p>Do not alter the returned collection! */
+DECL|method|getMergingSegments
+specifier|public
+specifier|synchronized
+name|Collection
+argument_list|<
+name|SegmentInfo
+argument_list|>
+name|getMergingSegments
+parameter_list|()
+block|{
+return|return
+name|mergingSegments
+return|;
+block|}
 comment|/** Expert: the {@link MergeScheduler} calls this method    *  to retrieve the next merge requested by the    *  MergePolicy */
 DECL|method|getNextMerge
 specifier|synchronized
@@ -5224,7 +5294,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|clear
 argument_list|()
@@ -5379,7 +5449,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Delete all documents in the index.    *    *<p>This method will drop all buffered documents and will     *    remove all segments from the index. This change will not be    *    visible until a {@link #commit()} has been called. This method    *    can be rolled back using {@link #rollback()}.</p>    *    *<p>NOTE: this method is much faster than using deleteDocuments( new MatchAllDocsQuery() ).</p>    *    *<p>NOTE: this method will forcefully abort all merges    *    in progress.  If other threads are running {@link    *    #optimize()} or any of the addIndexes methods, they    *    will receive {@link MergePolicy.MergeAbortedException}s.    */
+comment|/**    * Delete all documents in the index.    *    *<p>This method will drop all buffered documents and will     *    remove all segments from the index. This change will not be    *    visible until a {@link #commit()} has been called. This method    *    can be rolled back using {@link #rollback()}.</p>    *    *<p>NOTE: this method is much faster than using deleteDocuments( new MatchAllDocsQuery() ).</p>    *    *<p>NOTE: this method will forcefully abort all merges    *    in progress.  If other threads are running {@link    *    #optimize()}, {@link #addIndexes(IndexReader[])} or    *    {@link #expungeDeletes} methods, they may receive    *    {@link MergePolicy.MergeAbortedException}s.    */
 DECL|method|deleteAll
 specifier|public
 specifier|synchronized
@@ -5660,6 +5730,19 @@ name|void
 name|waitForMerges
 parameter_list|()
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"waitForMerges"
+argument_list|)
+expr_stmt|;
+block|}
 while|while
 condition|(
 name|pendingMerges
@@ -5690,6 +5773,19 @@ operator|.
 name|size
 argument_list|()
 assert|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"waitForMerges done"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Called whenever the SegmentInfos has been updated and    * the index files referenced exist (correctly) in the    * index directory.    */
 DECL|method|checkpoint
@@ -6281,7 +6377,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Merges the provided indexes into this index.    *<p>After this completes, the index is optimized.</p>    *<p>The provided IndexReaders are not closed.</p>    *    *<p><b>NOTE:</b> while this is running, any attempts to    * add or delete documents (with another thread) will be    * paused until this method completes.    *    *<p>See {@link #addIndexes} for details on transactional     * semantics, temporary free space required in the Directory,     * and non-CFS segments on an Exception.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Merges the provided indexes into this index.    *<p>After this completes, the index is optimized.</p>    *<p>The provided IndexReaders are not closed.</p>    *    *<p><b>NOTE:</b> while this is running, any attempts to    * add or delete documents (with another thread) will be    * paused until this method completes.    *    *<p>See {@link #addIndexes} for details on transactional     * semantics, temporary free space required in the Directory,     * and non-CFS segments on an Exception.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    *<p><b>NOTE</b>: if you call {@link #close(boolean)}    * with<tt>false</tt>, which aborts all running merges,    * then any thread still running this method might hit a    * {@link MergePolicy.MergeAbortedException}.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addIndexes
 specifier|public
 name|void
@@ -6899,7 +6995,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Flush all in-memory buffered udpates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param flushDeletes whether pending deletes should also    */
+comment|/**    * Flush all in-memory buffered updates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param applyAllDeletes whether pending deletes should also    */
 DECL|method|flush
 specifier|protected
 specifier|final
@@ -6910,7 +7006,7 @@ name|boolean
 name|triggerMerge
 parameter_list|,
 name|boolean
-name|flushDeletes
+name|applyAllDeletes
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -6933,7 +7029,7 @@ if|if
 condition|(
 name|doFlush
 argument_list|(
-name|flushDeletes
+name|applyAllDeletes
 argument_list|)
 operator|&&
 name|triggerMerge
@@ -7095,7 +7191,7 @@ name|IndexWriterConfig
 operator|.
 name|DISABLE_AUTO_FLUSH
 operator|&&
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|bytesUsed
 argument_list|()
@@ -7130,7 +7226,7 @@ name|message
 argument_list|(
 literal|"force apply deletes bytesUsed="
 operator|+
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|bytesUsed
 argument_list|()
@@ -7175,24 +7271,46 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|bufferedDeletes
+specifier|final
+name|BufferedDeletesStream
+operator|.
+name|ApplyDeletesResult
+name|result
+init|=
+name|bufferedDeletesStream
 operator|.
 name|applyDeletes
 argument_list|(
 name|readerPool
 argument_list|,
 name|segmentInfos
-argument_list|,
-name|segmentInfos
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|result
+operator|.
+name|anyDeletes
 condition|)
 block|{
 name|checkpoint
 argument_list|()
 expr_stmt|;
 block|}
+name|bufferedDeletesStream
+operator|.
+name|prune
+argument_list|(
+name|segmentInfos
+argument_list|)
+expr_stmt|;
+assert|assert
+operator|!
+name|bufferedDeletesStream
+operator|.
+name|any
+argument_list|()
+assert|;
 name|flushControl
 operator|.
 name|clearDeletes
@@ -7211,14 +7329,14 @@ name|message
 argument_list|(
 literal|"don't apply deletes now delTermCount="
 operator|+
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|numTerms
 argument_list|()
 operator|+
 literal|" bytesUsed="
 operator|+
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|bytesUsed
 argument_list|()
@@ -7301,7 +7419,7 @@ operator|.
 name|bytesUsed
 argument_list|()
 operator|+
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|bytesUsed
 argument_list|()
@@ -7326,10 +7444,10 @@ name|getNumDocs
 argument_list|()
 return|;
 block|}
-DECL|method|ensureContiguousMerge
+DECL|method|ensureValidMerge
 specifier|private
-name|int
-name|ensureContiguousMerge
+name|void
+name|ensureValidMerge
 parameter_list|(
 name|MergePolicy
 operator|.
@@ -7337,128 +7455,15 @@ name|OneMerge
 name|merge
 parameter_list|)
 block|{
-name|int
-name|first
-init|=
-name|segmentInfos
-operator|.
-name|indexOf
-argument_list|(
-name|merge
-operator|.
-name|segments
-operator|.
-name|info
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|first
-operator|==
-operator|-
-literal|1
-condition|)
-throw|throw
-operator|new
-name|MergePolicy
-operator|.
-name|MergeException
-argument_list|(
-literal|"could not find segment "
-operator|+
-name|merge
-operator|.
-name|segments
-operator|.
-name|info
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|name
-operator|+
-literal|" in current index "
-operator|+
-name|segString
-argument_list|()
-argument_list|,
-name|directory
-argument_list|)
-throw|;
-specifier|final
-name|int
-name|numSegments
-init|=
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
-specifier|final
-name|int
-name|numSegmentsToMerge
-init|=
-name|merge
-operator|.
-name|segments
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|numSegmentsToMerge
-condition|;
-name|i
-operator|++
-control|)
-block|{
-specifier|final
 name|SegmentInfo
 name|info
-init|=
+range|:
 name|merge
 operator|.
 name|segments
-operator|.
-name|info
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|first
-operator|+
-name|i
-operator|>=
-name|numSegments
-operator|||
-operator|!
-name|segmentInfos
-operator|.
-name|info
-argument_list|(
-name|first
-operator|+
-name|i
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-name|info
-argument_list|)
-condition|)
+control|)
 block|{
 if|if
 condition|(
@@ -7472,6 +7477,7 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
 name|MergePolicy
@@ -7492,37 +7498,8 @@ argument_list|,
 name|directory
 argument_list|)
 throw|;
-else|else
-throw|throw
-operator|new
-name|MergePolicy
-operator|.
-name|MergeException
-argument_list|(
-literal|"MergePolicy selected non-contiguous segments to merge ("
-operator|+
-name|merge
-operator|.
-name|segString
-argument_list|(
-name|directory
-argument_list|)
-operator|+
-literal|" vs "
-operator|+
-name|segString
-argument_list|()
-operator|+
-literal|"), which IndexWriter (currently) cannot handle"
-argument_list|,
-name|directory
-argument_list|)
-throw|;
 block|}
 block|}
-return|return
-name|first
-return|;
 block|}
 comment|/** Carefully merges deletes for the segments we just    *  merged.  This is tricky because, although merging will    *  clear all deletes (compacts the documents), new    *  deletes may have been flushed to the segments since    *  the merge was started.  This method "carries over"    *  such new deletes onto the newly merged segment, and    *  saves the resulting deletes file (incrementing the    *  delete generation for merge.info).  If no deletes were    *  flushed, no new deletes file is saved. */
 DECL|method|commitMergedDeletes
@@ -7586,6 +7563,13 @@ name|delCount
 init|=
 literal|0
 decl_stmt|;
+name|long
+name|minGen
+init|=
+name|Long
+operator|.
+name|MAX_VALUE
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -7614,6 +7598,20 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+name|minGen
+operator|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|info
+operator|.
+name|getBufferedDeletesGen
+argument_list|()
+argument_list|,
+name|minGen
+argument_list|)
+expr_stmt|;
 name|int
 name|docCount
 init|=
@@ -7840,8 +7838,38 @@ name|delCount
 operator|>
 literal|0
 expr_stmt|;
+comment|// If new deletes were applied while we were merging
+comment|// (which happens if eg commit() or getReader() is
+comment|// called during our merge), then it better be the case
+comment|// that the delGen has increased for all our merged
+comment|// segments:
+assert|assert
+operator|!
+name|mergedReader
+operator|.
+name|hasChanges
+operator|||
+name|minGen
+operator|>
+name|mergedReader
+operator|.
+name|getSegmentInfo
+argument_list|()
+operator|.
+name|getBufferedDeletesGen
+argument_list|()
+assert|;
+name|mergedReader
+operator|.
+name|getSegmentInfo
+argument_list|()
+operator|.
+name|setBufferedDeletesGen
+argument_list|(
+name|minGen
+argument_list|)
+expr_stmt|;
 block|}
-comment|/* FIXME if we want to support non-contiguous segment merges */
 DECL|method|commitMerge
 specifier|synchronized
 specifier|private
@@ -7944,15 +7972,11 @@ return|return
 literal|false
 return|;
 block|}
-specifier|final
-name|int
-name|start
-init|=
-name|ensureContiguousMerge
+name|ensureValidMerge
 argument_list|(
 name|merge
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|commitMergedDeletes
 argument_list|(
 name|merge
@@ -7969,25 +7993,6 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
-name|segmentInfos
-operator|.
-name|subList
-argument_list|(
-name|start
-argument_list|,
-name|start
-operator|+
-name|merge
-operator|.
-name|segments
-operator|.
-name|size
-argument_list|()
-argument_list|)
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 assert|assert
 operator|!
 name|segmentInfos
@@ -7999,17 +8004,161 @@ operator|.
 name|info
 argument_list|)
 assert|;
+specifier|final
+name|Set
+name|mergedAway
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|SegmentInfo
+argument_list|>
+argument_list|(
+name|merge
+operator|.
+name|segments
+argument_list|)
+decl_stmt|;
+name|int
+name|segIdx
+init|=
+literal|0
+decl_stmt|;
+name|int
+name|newSegIdx
+init|=
+literal|0
+decl_stmt|;
+name|boolean
+name|inserted
+init|=
+literal|false
+decl_stmt|;
+specifier|final
+name|int
+name|curSegCount
+init|=
 name|segmentInfos
 operator|.
-name|add
+name|size
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+name|segIdx
+operator|<
+name|curSegCount
+condition|)
+block|{
+specifier|final
+name|SegmentInfo
+name|info
+init|=
+name|segmentInfos
+operator|.
+name|info
 argument_list|(
-name|start
+name|segIdx
+operator|++
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|mergedAway
+operator|.
+name|contains
+argument_list|(
+name|info
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|inserted
+condition|)
+block|{
+name|segmentInfos
+operator|.
+name|set
+argument_list|(
+name|segIdx
+operator|-
+literal|1
 argument_list|,
 name|merge
 operator|.
 name|info
 argument_list|)
 expr_stmt|;
+name|inserted
+operator|=
+literal|true
+expr_stmt|;
+name|newSegIdx
+operator|++
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|segmentInfos
+operator|.
+name|set
+argument_list|(
+name|newSegIdx
+operator|++
+argument_list|,
+name|info
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+assert|assert
+name|newSegIdx
+operator|==
+name|curSegCount
+operator|-
+name|merge
+operator|.
+name|segments
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|1
+assert|;
+name|segmentInfos
+operator|.
+name|subList
+argument_list|(
+name|newSegIdx
+argument_list|,
+name|segmentInfos
+operator|.
+name|size
+argument_list|()
+argument_list|)
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"after commit: "
+operator|+
+name|segString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|closeMergeReaders
 argument_list|(
 name|merge
@@ -8032,17 +8181,6 @@ argument_list|(
 name|merge
 operator|.
 name|segments
-argument_list|)
-expr_stmt|;
-comment|// remove pending deletes of the segments
-comment|// that were merged, moving them onto the segment just
-comment|// before the merged segment
-comment|// Lock order: IW -> BD
-name|bufferedDeletes
-operator|.
-name|commitMerge
-argument_list|(
-name|merge
 argument_list|)
 expr_stmt|;
 if|if
@@ -8628,7 +8766,7 @@ name|optimizeMaxNumSegments
 expr_stmt|;
 block|}
 block|}
-name|ensureContiguousMerge
+name|ensureValidMerge
 argument_list|(
 name|merge
 argument_list|)
@@ -8744,27 +8882,6 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-comment|// Lock order: IW -> BD
-if|if
-condition|(
-name|bufferedDeletes
-operator|.
-name|applyDeletes
-argument_list|(
-name|readerPool
-argument_list|,
-name|segmentInfos
-argument_list|,
-name|merge
-operator|.
-name|segments
-argument_list|)
-condition|)
-block|{
-name|checkpoint
-argument_list|()
-expr_stmt|;
-block|}
 name|_mergeInit
 argument_list|(
 name|merge
@@ -8854,6 +8971,8 @@ literal|"this writer hit an OutOfMemoryError; cannot merge"
 argument_list|)
 throw|;
 block|}
+comment|// TODO: is there any perf benefit to sorting
+comment|// merged segments?  eg biggest to smallest?
 if|if
 condition|(
 name|merge
@@ -8896,6 +9015,54 @@ argument_list|,
 literal|null
 argument_list|,
 literal|false
+argument_list|)
+expr_stmt|;
+comment|// Lock order: IW -> BD
+specifier|final
+name|BufferedDeletesStream
+operator|.
+name|ApplyDeletesResult
+name|result
+init|=
+name|bufferedDeletesStream
+operator|.
+name|applyDeletes
+argument_list|(
+name|readerPool
+argument_list|,
+name|merge
+operator|.
+name|segments
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|result
+operator|.
+name|anyDeletes
+condition|)
+block|{
+name|checkpoint
+argument_list|()
+expr_stmt|;
+block|}
+name|merge
+operator|.
+name|info
+operator|.
+name|setBufferedDeletesGen
+argument_list|(
+name|result
+operator|.
+name|gen
+argument_list|)
+expr_stmt|;
+comment|// Lock order: IW -> BD
+name|bufferedDeletesStream
+operator|.
+name|prune
+argument_list|(
+name|segmentInfos
 argument_list|)
 expr_stmt|;
 name|Map
@@ -9986,6 +10153,15 @@ name|numSegments
 argument_list|)
 expr_stmt|;
 block|}
+name|anyNonBulkMerges
+operator||=
+name|merger
+operator|.
+name|getMatchedSubReaderCount
+argument_list|()
+operator|!=
+name|numSegments
+expr_stmt|;
 assert|assert
 name|mergedDocCount
 operator|==
@@ -10651,7 +10827,7 @@ block|{
 comment|// NOTE: the callers of this method should in theory
 comment|// be able to do simply wait(), but, as a defense
 comment|// against thread timing hazards where notifyAll()
-comment|// falls to be called, we wait for at most 1 second
+comment|// fails to be called, we wait for at most 1 second
 comment|// and then return so caller can check if wait
 comment|// conditions are satisfied:
 try|try
@@ -10676,6 +10852,22 @@ name|ie
 argument_list|)
 throw|;
 block|}
+block|}
+DECL|field|keepFullyDeletedSegments
+specifier|private
+name|boolean
+name|keepFullyDeletedSegments
+decl_stmt|;
+comment|/** Only for testing.    *    * @lucene.internal */
+DECL|method|keepFullyDeletedSegments
+name|void
+name|keepFullyDeletedSegments
+parameter_list|()
+block|{
+name|keepFullyDeletedSegments
+operator|=
+literal|true
+expr_stmt|;
 block|}
 comment|// called only from assert
 DECL|method|filesExist
@@ -10883,6 +11075,18 @@ operator|.
 name|clone
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|keepFullyDeletedSegments
+condition|)
+block|{
+name|toSync
+operator|.
+name|pruneDeletedSegments
+argument_list|()
+expr_stmt|;
+block|}
 assert|assert
 name|filesExist
 argument_list|(
@@ -11235,7 +11439,7 @@ name|anyChanges
 argument_list|()
 operator|&&
 operator|!
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|any
 argument_list|()
@@ -11722,7 +11926,7 @@ decl_stmt|;
 name|long
 name|used
 init|=
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|bytesUsed
 argument_list|()
@@ -11749,7 +11953,7 @@ argument_list|()
 expr_stmt|;
 name|used
 operator|=
-name|bufferedDeletes
+name|bufferedDeletesStream
 operator|.
 name|bytesUsed
 argument_list|()

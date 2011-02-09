@@ -721,6 +721,35 @@ name|docCount
 operator|=
 name|df
 expr_stmt|;
+assert|assert
+name|skipPointer
+operator|>=
+literal|0
+operator|&&
+name|skipPointer
+operator|<=
+name|skipStream
+index|[
+literal|0
+index|]
+operator|.
+name|length
+argument_list|()
+operator|:
+literal|"invalid skip pointer: "
+operator|+
+name|skipPointer
+operator|+
+literal|", length="
+operator|+
+name|skipStream
+index|[
+literal|0
+index|]
+operator|.
+name|length
+argument_list|()
+assert|;
 name|Arrays
 operator|.
 name|fill

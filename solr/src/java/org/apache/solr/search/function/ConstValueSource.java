@@ -29,6 +29,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -96,6 +98,8 @@ operator|=
 name|constant
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -110,6 +114,8 @@ operator|+
 literal|")"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|DocValues
@@ -118,8 +124,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -129,6 +135,8 @@ operator|new
 name|DocValues
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -141,6 +149,8 @@ return|return
 name|constant
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -156,6 +166,8 @@ operator|)
 name|constant
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|longVal
@@ -171,6 +183,8 @@ operator|)
 name|constant
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|double
 name|doubleVal
@@ -183,6 +197,8 @@ return|return
 name|dv
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -200,6 +216,8 @@ name|constant
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -216,6 +234,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int
@@ -233,6 +253,8 @@ operator|*
 literal|31
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

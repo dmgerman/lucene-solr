@@ -187,6 +187,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -253,10 +255,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  */
+comment|/**  * @version $Id$  *   * @deprecated use {@link IntField} or {@link TrieIntField} - will be removed in 5.x  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|SortableIntField
 specifier|public
 class|class
@@ -264,6 +268,8 @@ name|SortableIntField
 extends|extends
 name|FieldType
 block|{
+annotation|@
+name|Override
 DECL|method|init
 specifier|protected
 name|void
@@ -281,6 +287,8 @@ argument_list|>
 name|args
 parameter_list|)
 block|{   }
+annotation|@
+name|Override
 DECL|method|getSortField
 specifier|public
 name|SortField
@@ -326,6 +334,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toInternal
 specifier|public
 name|String
@@ -347,6 +357,8 @@ name|val
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toExternal
 specifier|public
 name|String
@@ -366,6 +378,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|indexedToReadable
 specifier|public
 name|String
@@ -442,6 +456,8 @@ literal|3
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void
@@ -543,6 +559,8 @@ operator|=
 name|defVal
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -557,6 +575,8 @@ operator|+
 literal|')'
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|DocValues
@@ -565,8 +585,8 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -583,7 +603,7 @@ name|StringIndexDocValues
 argument_list|(
 name|this
 argument_list|,
-name|reader
+name|readerContext
 argument_list|,
 name|field
 argument_list|)
@@ -597,6 +617,8 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|toTerm
@@ -614,6 +636,8 @@ name|readableValue
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -632,6 +656,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -676,6 +702,8 @@ literal|3
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|longVal
@@ -694,6 +722,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|double
 name|doubleVal
@@ -712,6 +742,8 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -732,6 +764,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -862,6 +896,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -908,6 +944,8 @@ operator|.
 name|hashCode
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

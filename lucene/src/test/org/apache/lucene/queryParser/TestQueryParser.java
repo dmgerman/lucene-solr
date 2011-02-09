@@ -7481,6 +7481,8 @@ operator|.
 name|open
 argument_list|(
 name|w
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|w
@@ -7491,8 +7493,7 @@ expr_stmt|;
 name|IndexSearcher
 name|s
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)
@@ -7535,6 +7536,11 @@ argument_list|)
 operator|.
 name|totalHits
 argument_list|)
+expr_stmt|;
+name|s
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 name|r
 operator|.

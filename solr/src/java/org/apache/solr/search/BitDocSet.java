@@ -240,6 +240,8 @@ block|}
 return|;
 block|}
 comment|/**    *    * @return the<b>internal</b> OpenBitSet that should<b>not</b> be modified.    */
+annotation|@
+name|Override
 DECL|method|getBits
 specifier|public
 name|OpenBitSet
@@ -250,6 +252,8 @@ return|return
 name|bits
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add
 specifier|public
 name|void
@@ -273,6 +277,8 @@ literal|1
 expr_stmt|;
 comment|// invalidate size
 block|}
+annotation|@
+name|Override
 DECL|method|addUnique
 specifier|public
 name|void

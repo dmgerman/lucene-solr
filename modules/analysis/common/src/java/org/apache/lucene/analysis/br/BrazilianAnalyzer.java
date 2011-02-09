@@ -380,7 +380,7 @@ operator|.
 name|emptySet
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Builds an analyzer with the default stop words ({@link #BRAZILIAN_STOP_WORDS}). 	 */
+comment|/** 	 * Builds an analyzer with the default stop words ({@link #getDefaultStopSet()}). 	 */
 DECL|method|BrazilianAnalyzer
 specifier|public
 name|BrazilianAnalyzer

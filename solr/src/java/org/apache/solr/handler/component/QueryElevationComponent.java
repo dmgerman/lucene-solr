@@ -290,6 +290,22 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexReader
+operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Term
 import|;
 end_import
@@ -1432,7 +1448,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|getElevationMap
@@ -2324,7 +2340,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getReader
+name|getIndexReader
 argument_list|()
 decl_stmt|;
 name|ElevationObj
@@ -2980,6 +2996,8 @@ operator|=
 name|boosts
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newComparator
 specifier|public
 name|FieldComparator
@@ -3036,6 +3054,8 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare
@@ -3060,6 +3080,8 @@ index|]
 return|;
 comment|// values will be small enough that there is no overflow concern
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setBottom
@@ -3121,6 +3143,8 @@ name|intValue
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareBottom
@@ -3140,6 +3164,8 @@ operator|-
 name|bottomVal
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copy
@@ -3164,15 +3190,14 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|FieldComparator
 name|setNextReader
 parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|docBase
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -3185,6 +3210,8 @@ name|DEFAULT
 operator|.
 name|getTermsIndex
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|fieldname
@@ -3194,6 +3221,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Comparable
 name|value
