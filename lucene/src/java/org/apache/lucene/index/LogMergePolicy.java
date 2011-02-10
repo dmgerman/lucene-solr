@@ -2295,10 +2295,10 @@ operator|=
 literal|1
 expr_stmt|;
 block|}
-name|levels
-operator|.
-name|add
-argument_list|(
+specifier|final
+name|SegmentInfoAndLevel
+name|infoLevel
+init|=
 operator|new
 name|SegmentInfoAndLevel
 argument_list|(
@@ -2318,6 +2318,12 @@ name|norm
 argument_list|,
 name|i
 argument_list|)
+decl_stmt|;
+name|levels
+operator|.
+name|add
+argument_list|(
+name|infoLevel
 argument_list|)
 expr_stmt|;
 if|if
@@ -2336,12 +2342,7 @@ name|name
 operator|+
 literal|" level="
 operator|+
-name|levels
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
+name|infoLevel
 operator|.
 name|level
 operator|+
