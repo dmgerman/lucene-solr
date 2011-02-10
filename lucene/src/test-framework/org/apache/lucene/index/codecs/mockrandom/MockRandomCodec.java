@@ -1251,7 +1251,7 @@ name|stats
 parameter_list|)
 block|{
 return|return
-name|random
+name|rand
 operator|.
 name|nextInt
 argument_list|(
