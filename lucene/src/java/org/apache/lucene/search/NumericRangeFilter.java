@@ -616,6 +616,20 @@ name|getMax
 argument_list|()
 return|;
 block|}
+comment|/** Returns the precision step. */
+DECL|method|getPrecisionStep
+specifier|public
+name|int
+name|getPrecisionStep
+parameter_list|()
+block|{
+return|return
+name|query
+operator|.
+name|getPrecisionStep
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

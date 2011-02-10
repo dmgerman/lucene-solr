@@ -1042,6 +1042,17 @@ name|valSize
 operator|)
 return|;
 block|}
+comment|/** Returns the precision step. */
+DECL|method|getPrecisionStep
+specifier|public
+name|int
+name|getPrecisionStep
+parameter_list|()
+block|{
+return|return
+name|precisionStep
+return|;
+block|}
 comment|// members
 DECL|field|numericAtt
 specifier|private
