@@ -777,6 +777,23 @@ argument_list|,
 name|baseDir
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|base
+operator|!=
+literal|null
+operator|&&
+name|base
+operator|.
+name|canRead
+argument_list|()
+operator|&&
+name|base
+operator|.
+name|isDirectory
+argument_list|()
+condition|)
+block|{
 name|this
 operator|.
 name|classLoader
@@ -790,6 +807,19 @@ argument_list|,
 name|filter
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Can't find (or read) file to add to classloader: "
+operator|+
+name|base
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Adds the specific file/dir specified to the ClassLoader used by this    * ResourceLoader.  This method<b>MUST</b>    * only be called prior to using this ResourceLoader to get any resources, otherwise    * it's behavior will be non-deterministic.    *    * @param path A jar file (or directory of classes) to be added to the classpath,    *             will be resolved relative the instance dir.    */
 DECL|method|addToClassLoader
