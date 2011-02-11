@@ -5530,8 +5530,6 @@ name|fieldSim
 operator|.
 name|computeNorm
 argument_list|(
-name|fieldName
-argument_list|,
 name|invertState
 argument_list|)
 decl_stmt|;

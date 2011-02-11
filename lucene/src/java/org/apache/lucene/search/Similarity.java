@@ -182,44 +182,17 @@ index|]
 return|;
 comment|//& 0xFF maps negative bytes to positive above 127
 block|}
-comment|/**    * Computes the normalization value for a field, given the accumulated    * state of term processing for this field (see {@link FieldInvertState}).    *     *<p>Implementations should calculate a float value based on the field    * state and then return that value.    *    *<p>Matches in longer fields are less precise, so implementations of this    * method usually return smaller values when<code>state.getLength()</code> is large,    * and larger values when<code>state.getLength()</code> is small.    *     *<p>Note that the return values are computed under     * {@link org.apache.lucene.index.IndexWriter#addDocument(org.apache.lucene.document.Document)}     * and then stored using    * {@link #encodeNormValue(float)}.      * Thus they have limited precision, and documents    * must be re-indexed if this method is altered.    *    *<p>For backward compatibility this method by default calls    * {@link #lengthNorm(String, int)} passing    * {@link FieldInvertState#getLength()} as the second argument, and    * then multiplies this value by {@link FieldInvertState#getBoost()}.</p>    *     * @lucene.experimental    *     * @param field field name    * @param state current processing state for this field    * @return the calculated float norm    */
+comment|/**    * Computes the normalization value for a field, given the accumulated    * state of term processing for this field (see {@link FieldInvertState}).    *     *<p>Implementations should calculate a float value based on the field    * state and then return that value.    *    *<p>Matches in longer fields are less precise, so implementations of this    * method usually return smaller values when<code>state.getLength()</code> is large,    * and larger values when<code>state.getLength()</code> is small.    *     *<p>Note that the return values are computed under     * {@link org.apache.lucene.index.IndexWriter#addDocument(org.apache.lucene.document.Document)}     * and then stored using    * {@link #encodeNormValue(float)}.      * Thus they have limited precision, and documents    * must be re-indexed if this method is altered.    *    * @lucene.experimental    *     * @param state current processing state for this field    * @return the calculated float norm    */
 DECL|method|computeNorm
 specifier|public
 specifier|abstract
 name|float
 name|computeNorm
 parameter_list|(
-name|String
-name|field
-parameter_list|,
 name|FieldInvertState
 name|state
 parameter_list|)
 function_decl|;
-comment|/** Computes the normalization value for a field given the total number of    * terms contained in a field.  These values, together with field boosts, are    * stored in an index and multipled into scores for hits on each field by the    * search code.    *    *<p>Matches in longer fields are less precise, so implementations of this    * method usually return smaller values when<code>numTokens</code> is large,    * and larger values when<code>numTokens</code> is small.    *     *<p>Note that the return values are computed under     * {@link org.apache.lucene.index.IndexWriter#addDocument(org.apache.lucene.document.Document)}     * and then stored using    * {@link #encodeNormValue(float)}.      * Thus they have limited precision, and documents    * must be re-indexed if this method is altered.    *    * @param fieldName the name of the field    * @param numTokens the total number of tokens contained in fields named    *<i>fieldName</i> of<i>doc</i>.    * @return a normalization factor for hits on this field of this document    *    * @see org.apache.lucene.document.Field#setBoost(float)    *    * @deprecated Please override computeNorm instead    */
-annotation|@
-name|Deprecated
-DECL|method|lengthNorm
-specifier|public
-specifier|final
-name|float
-name|lengthNorm
-parameter_list|(
-name|String
-name|fieldName
-parameter_list|,
-name|int
-name|numTokens
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"please use computeNorm instead"
-argument_list|)
-throw|;
-block|}
 comment|/** Encodes a normalization factor for storage in an index.    *    *<p>The encoding uses a three-bit mantissa, a five-bit exponent, and    * the zero-exponent point at 15, thus    * representing values from around 7x10^9 to 2x10^-9 with about one    * significant decimal digit of accuracy.  Zero is also represented.    * Negative numbers are rounded up to zero.  Values too large to represent    * are rounded down to the largest representable value.  Positive values too    * small to represent are rounded up to the smallest positive representable    * value.    * @see org.apache.lucene.document.Field#setBoost(float)    * @see org.apache.lucene.util.SmallFloat    */
 DECL|method|encodeNormValue
 specifier|public
@@ -552,7 +525,7 @@ name|int
 name|numDocs
 parameter_list|)
 function_decl|;
-comment|/**    * Calculate a scoring factor based on the data in the payload.  Overriding implementations    * are responsible for interpreting what is in the payload.  Lucene makes no assumptions about    * what is in the byte array.    *<p>    * The default implementation returns 1.    *    * @param docId The docId currently being scored.  If this value is {@link #NO_DOC_ID_PROVIDED}, then it should be assumed that the PayloadQuery implementation does not provide document information    * @param fieldName The fieldName of the term this payload belongs to    * @param start The start position of the payload    * @param end The end position of the payload    * @param payload The payload byte array to be scored    * @param offset The offset into the payload array    * @param length The length in the array    * @return An implementation dependent float to be used as a scoring factor    *    */
+comment|/**    * Calculate a scoring factor based on the data in the payload.  Overriding implementations    * are responsible for interpreting what is in the payload.  Lucene makes no assumptions about    * what is in the byte array.    *<p>    * The default implementation returns 1.    *    * @param docId The docId currently being scored.  If this value is {@link #NO_DOC_ID_PROVIDED}, then it should be assumed that the PayloadQuery implementation does not provide document information    * @param start The start position of the payload    * @param end The end position of the payload    * @param payload The payload byte array to be scored    * @param offset The offset into the payload array    * @param length The length in the array    * @return An implementation dependent float to be used as a scoring factor    *    */
 comment|// TODO: maybe switch this API to BytesRef?
 DECL|method|scorePayload
 specifier|public
@@ -561,9 +534,6 @@ name|scorePayload
 parameter_list|(
 name|int
 name|docId
-parameter_list|,
-name|String
-name|fieldName
 parameter_list|,
 name|int
 name|start

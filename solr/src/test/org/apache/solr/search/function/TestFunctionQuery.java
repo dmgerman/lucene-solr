@@ -2155,8 +2155,6 @@ name|similarity
 operator|.
 name|computeNorm
 argument_list|(
-literal|"a_t"
-argument_list|,
 name|state
 argument_list|)
 operator|+
