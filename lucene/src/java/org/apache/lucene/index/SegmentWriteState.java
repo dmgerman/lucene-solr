@@ -134,24 +134,6 @@ name|int
 name|termIndexInterval
 decl_stmt|;
 comment|// TODO: this should be private to the codec, not settable here or in IWC
-comment|/** Expert: The fraction of TermDocs entries stored in skip tables,    * used to accelerate {@link DocsEnum#advance(int)}.  Larger values result in    * smaller indexes, greater acceleration, but fewer accelerable cases, while    * smaller values result in bigger indexes, less acceleration and more    * accelerable cases. More detailed experiments would be useful here. */
-DECL|field|skipInterval
-specifier|public
-specifier|final
-name|int
-name|skipInterval
-init|=
-literal|16
-decl_stmt|;
-comment|/** Expert: The maximum number of skip levels. Smaller values result in     * slightly smaller indexes, but slower skipping in big posting lists.    */
-DECL|field|maxSkipLevels
-specifier|public
-specifier|final
-name|int
-name|maxSkipLevels
-init|=
-literal|10
-decl_stmt|;
 DECL|method|SegmentWriteState
 specifier|public
 name|SegmentWriteState
