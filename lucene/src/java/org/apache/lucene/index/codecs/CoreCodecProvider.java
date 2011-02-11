@@ -96,6 +96,7 @@ end_comment
 
 begin_class
 DECL|class|CoreCodecProvider
+specifier|public
 class|class
 name|CoreCodecProvider
 extends|extends
