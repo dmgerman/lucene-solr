@@ -2019,6 +2019,12 @@ name|setTermIndexInterval
 argument_list|(
 name|termIndexInterval
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|writer
