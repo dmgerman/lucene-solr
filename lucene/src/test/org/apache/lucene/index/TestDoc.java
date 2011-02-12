@@ -304,6 +304,21 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: setUp"
+argument_list|)
+expr_stmt|;
+block|}
 name|workDir
 operator|=
 operator|new
