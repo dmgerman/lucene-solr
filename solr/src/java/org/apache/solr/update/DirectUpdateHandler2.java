@@ -623,12 +623,16 @@ argument_list|(
 name|core
 argument_list|)
 expr_stmt|;
+comment|// Pass fairness=true so commit request is not starved
+comment|// when add/updates are running hot (SOLR-2342):
 name|ReadWriteLock
 name|rwl
 init|=
 operator|new
 name|ReentrantReadWriteLock
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|iwAccess
 operator|=
