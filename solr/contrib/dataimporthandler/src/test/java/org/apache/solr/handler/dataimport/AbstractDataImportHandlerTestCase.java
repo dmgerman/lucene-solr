@@ -319,7 +319,13 @@ name|config
 argument_list|,
 name|schema
 argument_list|,
+name|getFile
+argument_list|(
 literal|"solr-dih"
+argument_list|)
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

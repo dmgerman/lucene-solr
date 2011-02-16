@@ -57,7 +57,13 @@ literal|"dataimport-solrconfig.xml"
 argument_list|,
 literal|"dataimport-schema-no-unique-key.xml"
 argument_list|,
+name|getFile
+argument_list|(
 literal|"solr-dihextras"
+argument_list|)
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
