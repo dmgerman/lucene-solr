@@ -128,6 +128,11 @@ argument_list|,
 literal|"dataimport-schema.xml"
 argument_list|)
 expr_stmt|;
+name|ignoreException
+argument_list|(
+literal|"Unexpected close tag"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Before

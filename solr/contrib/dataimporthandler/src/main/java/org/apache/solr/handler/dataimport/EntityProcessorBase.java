@@ -19,6 +19,20 @@ package|;
 end_package
 
 begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -278,10 +292,12 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|log
+name|SolrException
 operator|.
-name|error
+name|log
 argument_list|(
+name|log
+argument_list|,
 literal|"getNext() failed for query '"
 operator|+
 name|query
