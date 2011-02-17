@@ -245,7 +245,13 @@ name|QParser
 name|qparser
 parameter_list|)
 block|{
-comment|// fieldCache doesn't support double
+name|field
+operator|.
+name|checkFieldCacheSource
+argument_list|(
+name|qparser
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|DoubleFieldSource
