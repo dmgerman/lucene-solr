@@ -73,6 +73,18 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"TermState"
+return|;
+block|}
 block|}
 end_class
 

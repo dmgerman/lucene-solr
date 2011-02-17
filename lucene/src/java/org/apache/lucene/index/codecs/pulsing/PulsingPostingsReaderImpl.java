@@ -787,7 +787,7 @@ operator|<=
 name|maxPositions
 condition|)
 block|{
-comment|//System.out.println("  inlined");
+comment|//System.out.println("  inlined pos=" + termState.inlinedBytesReader.getPosition());
 comment|// Inlined into terms dict -- just read the byte[] blob in,
 comment|// but don't decode it now (we only decode when a DocsEnum
 comment|// or D&PEnum is pulled):

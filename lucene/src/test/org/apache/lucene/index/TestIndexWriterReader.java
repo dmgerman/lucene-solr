@@ -888,6 +888,21 @@ name|COMPOUND_FILES
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: make index"
+argument_list|)
+expr_stmt|;
+block|}
 name|IndexWriter
 name|writer
 init|=
@@ -899,6 +914,19 @@ argument_list|,
 name|iwc
 argument_list|)
 decl_stmt|;
+name|writer
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 comment|// create the index
 name|createIndexNoClose
 argument_list|(
@@ -1045,6 +1073,21 @@ name|r2
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: verify id"
+argument_list|)
+expr_stmt|;
+block|}
 name|assertEquals
 argument_list|(
 literal|1
