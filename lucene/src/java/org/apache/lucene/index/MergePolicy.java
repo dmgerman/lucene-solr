@@ -155,15 +155,19 @@ name|maxNumSegmentsOptimize
 decl_stmt|;
 comment|// used by IndexWriter
 DECL|field|readers
+name|List
+argument_list|<
 name|SegmentReader
-index|[]
+argument_list|>
 name|readers
 decl_stmt|;
 comment|// used by IndexWriter
-DECL|field|readersClone
+DECL|field|readerClones
+name|List
+argument_list|<
 name|SegmentReader
-index|[]
-name|readersClone
+argument_list|>
+name|readerClones
 decl_stmt|;
 comment|// used by IndexWriter
 DECL|field|segments

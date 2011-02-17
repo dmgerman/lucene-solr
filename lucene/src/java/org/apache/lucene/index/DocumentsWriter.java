@@ -2511,6 +2511,25 @@ operator|.
 name|getDelFileName
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"flush: write "
+operator|+
+name|delCount
+operator|+
+literal|" deletes to "
+operator|+
+name|delFileName
+argument_list|)
+expr_stmt|;
+block|}
 name|boolean
 name|success2
 init|=
@@ -2518,6 +2537,11 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+comment|// TODO: in the NRT case it'd be better to hand
+comment|// this del vector over to the
+comment|// shortly-to-be-opened SegmentReader and let it
+comment|// carry the changes; there's no reason to use
+comment|// filesystem as intermediary here.
 name|flushState
 operator|.
 name|deletedDocs

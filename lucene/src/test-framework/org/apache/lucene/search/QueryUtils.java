@@ -34,18 +34,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Method
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -93,6 +81,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -107,8 +97,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-operator|.
-name|AtomicReaderContext
 import|;
 end_import
 
@@ -237,6 +225,20 @@ operator|.
 name|util
 operator|.
 name|ReaderUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
 import|;
 end_import
 
@@ -1073,52 +1075,13 @@ name|MatchAllDocsQuery
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-comment|// Carefully invoke what is a package-private (test
-comment|// only, internal) method on IndexWriter:
-name|Method
-name|m
-init|=
-name|IndexWriter
+name|_TestUtil
 operator|.
-name|class
-operator|.
-name|getDeclaredMethod
-argument_list|(
-literal|"keepFullyDeletedSegments"
-argument_list|)
-decl_stmt|;
-name|m
-operator|.
-name|setAccessible
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|m
-operator|.
-name|invoke
+name|keepFullyDeletedSegments
 argument_list|(
 name|w
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-comment|// Should not happen?
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
 name|w
 operator|.
 name|commit
