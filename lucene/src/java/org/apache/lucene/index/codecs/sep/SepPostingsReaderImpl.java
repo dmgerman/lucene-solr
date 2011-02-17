@@ -1435,12 +1435,7 @@ name|termState
 operator|.
 name|skipFP
 operator|=
-name|termState
-operator|.
-name|bytesReader
-operator|.
-name|readVLong
-argument_list|()
+literal|0
 expr_stmt|;
 block|}
 block|}

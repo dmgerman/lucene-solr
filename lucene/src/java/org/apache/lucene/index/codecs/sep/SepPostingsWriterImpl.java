@@ -1329,28 +1329,10 @@ condition|(
 name|isFirstTerm
 condition|)
 block|{
-comment|// TODO: this is somewhat wasteful; eg if no terms in
-comment|// this block will use skip data, we don't need to
-comment|// write this:
-specifier|final
-name|long
-name|skipFP
-init|=
-name|skipOut
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
-name|indexBytesWriter
-operator|.
-name|writeVLong
-argument_list|(
-name|skipFP
-argument_list|)
-expr_stmt|;
+comment|// lazily write an absolute delta if a term in this block requires skip data.
 name|lastSkipFP
 operator|=
-name|skipFP
+literal|0
 expr_stmt|;
 block|}
 name|lastDocID
