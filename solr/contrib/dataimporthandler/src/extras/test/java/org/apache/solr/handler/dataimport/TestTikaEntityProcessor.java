@@ -28,6 +28,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_comment
 comment|/**Testcase for TikaEntityProcessor  * @version $Id$  * @since solr 1.5   */
 end_comment
@@ -67,6 +77,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 DECL|method|testIndexingWithTikaEntityProcessor
 specifier|public
 name|void
@@ -98,7 +110,7 @@ literal|"\">"
 operator|+
 literal|"<field column=\"Author\" meta=\"true\" name=\"author\"/>"
 operator|+
-literal|"<field column=\"title\" meta=\"true\" name=\"docTitle\"/>"
+literal|"<field column=\"title\" meta=\"true\" name=\"title\"/>"
 operator|+
 literal|"<field column=\"text\"/>"
 operator|+
@@ -121,6 +133,12 @@ literal|"*:*"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
+argument_list|,
+literal|"//str[@name='author'][.='Grant Ingersoll']"
+argument_list|,
+literal|"//str[@name='title'][.='solr-word']"
+argument_list|,
+literal|"//str[@name='text']"
 argument_list|)
 expr_stmt|;
 block|}
