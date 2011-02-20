@@ -161,15 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|// Minimal port of contrib/benchmark's LneDocSource +
-end_comment
-
-begin_comment
-comment|// DocMaker, so tests can enum docs from a line file created
-end_comment
-
-begin_comment
-comment|// by contrib/benchmark's WriteLineDoc task
+comment|/** Minimal port of contrib/benchmark's LneDocSource +  * DocMaker, so tests can enum docs from a line file created  * by contrib/benchmark's WriteLineDoc task */
 end_comment
 
 begin_class
@@ -213,8 +205,7 @@ specifier|final
 name|String
 name|path
 decl_stmt|;
-comment|// If forever is true, we rewind the file at EOF (repeat
-comment|// the docs over and over)
+comment|/** If forever is true, we rewind the file at EOF (repeat    * the docs over and over) */
 DECL|method|LineFileDocs
 specifier|public
 name|LineFileDocs
@@ -777,7 +768,7 @@ name|DocState
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// Document instance is re-used per-thread
+comment|/** Note: Document instance is re-used per-thread */
 DECL|method|nextDoc
 specifier|public
 name|Document

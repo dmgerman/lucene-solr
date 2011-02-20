@@ -336,6 +336,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Deletes a directory and everything underneath it.    */
 DECL|method|rmDir
 specifier|public
 specifier|static
@@ -861,6 +862,7 @@ literal|20
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a random string up to a certain length.    */
 DECL|method|randomUnicodeString
 specifier|public
 specifier|static
@@ -2157,8 +2159,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|// just tries to configure things to keep the open file
-comment|// count lowish
+comment|/** just tries to configure things to keep the open file    * count lowish */
 DECL|method|reduceOpenFiles
 specifier|public
 specifier|static

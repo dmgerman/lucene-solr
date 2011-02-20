@@ -3990,7 +3990,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Convinience method for logging an iterator.    *    * @param label  String logged before/after the items in the iterator    * @param iter   Each next() is toString()ed and logged on it's own line. If iter is null this is logged differnetly then an empty iterator.    * @param stream Stream to log messages to.    */
+comment|/**    * Convenience method for logging an iterator.    *    * @param label  String logged before/after the items in the iterator    * @param iter   Each next() is toString()ed and logged on it's own line. If iter is null this is logged differnetly then an empty iterator.    * @param stream Stream to log messages to.    */
 DECL|method|dumpIterator
 specifier|public
 specifier|static
@@ -4073,7 +4073,7 @@ literal|" ***"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Convinience method for logging an array.  Wraps the array in an iterator and delegates    *    * @see #dumpIterator(String,Iterator,PrintStream)    */
+comment|/**    * Convenience method for logging an array.  Wraps the array in an iterator and delegates    *    * @see #dumpIterator(String,Iterator,PrintStream)    */
 DECL|method|dumpArray
 specifier|public
 specifier|static
@@ -4150,6 +4150,7 @@ name|a
 argument_list|)
 return|;
 block|}
+comment|/** create a new index writer config with random defaults using the specified random */
 DECL|method|newIndexWriterConfig
 specifier|public
 specifier|static
@@ -4623,6 +4624,7 @@ name|random
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a new Directory instance, using the specified random.    * See {@link #newDirectory()} for more information.    */
 DECL|method|newDirectory
 specifier|public
 specifier|static
@@ -4926,6 +4928,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * Returns a new Directory instance, using the specified random    * with contents copied from the provided directory. See     * {@link #newDirectory()} for more information.    */
 DECL|method|newDirectory
 specifier|public
 specifier|static
@@ -5004,6 +5007,7 @@ return|return
 name|dir
 return|;
 block|}
+comment|/** Returns a new field instance.     * See {@link #newField(String, String, Store, Index, TermVector)} for more information */
 DECL|method|newField
 specifier|public
 specifier|static
@@ -5033,6 +5037,7 @@ name|index
 argument_list|)
 return|;
 block|}
+comment|/** Returns a new field instance.     * See {@link #newField(String, String, Store, Index, TermVector)} for more information */
 DECL|method|newField
 specifier|public
 specifier|static
@@ -5067,6 +5072,7 @@ name|index
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a new Field instance. Use this when the test does not    * care about some specific field settings (most tests)    *<ul>    *<li>If the store value is set to Store.NO, sometimes the field will be randomly stored.    *<li>More term vector data than you ask for might be indexed, for example if you choose YES    *      it might index term vectors with offsets too.    *</ul>    */
 DECL|method|newField
 specifier|public
 specifier|static
@@ -5106,6 +5112,7 @@ name|tv
 argument_list|)
 return|;
 block|}
+comment|/** Returns a new field instance, using the specified random.     * See {@link #newField(String, String, Store, Index, TermVector)} for more information */
 DECL|method|newField
 specifier|public
 specifier|static
@@ -5142,6 +5149,7 @@ name|index
 argument_list|)
 return|;
 block|}
+comment|/** Returns a new field instance, using the specified random.     * See {@link #newField(String, String, Store, Index, TermVector)} for more information */
 DECL|method|newField
 specifier|public
 specifier|static
@@ -5183,6 +5191,7 @@ name|NO
 argument_list|)
 return|;
 block|}
+comment|/** Returns a new field instance, using the specified random.     * See {@link #newField(String, String, Store, Index, TermVector)} for more information */
 DECL|method|newField
 specifier|public
 specifier|static
@@ -5901,7 +5910,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** create a new searcher over the reader */
+comment|/** create a new searcher over the reader.    * This searcher might randomly use threads. */
 DECL|method|newSearcher
 specifier|public
 specifier|static
