@@ -46,7 +46,7 @@ name|T
 index|[]
 name|heap
 decl_stmt|;
-comment|/** Determines the ordering of objects in this priority queue.  Subclasses     must define this one method. */
+comment|/** Determines the ordering of objects in this priority queue.  Subclasses    *  must define this one method.    *  @return<code>true</code> iff parameter<tt>a</tt> is less than parameter<tt>b</tt>.    */
 DECL|method|lessThan
 specifier|protected
 specifier|abstract
