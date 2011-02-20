@@ -288,7 +288,7 @@ block|{
 name|String
 name|usage
 init|=
-literal|"java org.apache.lucene.demo.IndexFiles<root_directory>"
+literal|"java org.apache.lucene.demo.IndexFiles"
 operator|+
 literal|" [-index INDEX_PATH] [-docs DOCS_PATH] [-update]\n\n"
 comment|// TODO: Change the link with every release (or: fill in some less error-prone alternative here...)

@@ -1217,6 +1217,10 @@ if|if
 condition|(
 operator|!
 name|interactive
+operator|||
+name|end
+operator|==
+literal|0
 condition|)
 block|{
 break|break;
