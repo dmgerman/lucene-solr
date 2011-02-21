@@ -1454,6 +1454,40 @@ parameter_list|)
 throws|throws
 name|ParseException
 block|{
+return|return
+name|newFieldQuery
+argument_list|(
+name|analyzer
+argument_list|,
+name|field
+argument_list|,
+name|queryText
+argument_list|,
+name|quoted
+argument_list|)
+return|;
+block|}
+comment|/**    * @exception org.apache.lucene.queryParser.ParseException throw in overridden method to disallow    */
+DECL|method|newFieldQuery
+specifier|protected
+name|Query
+name|newFieldQuery
+parameter_list|(
+name|Analyzer
+name|analyzer
+parameter_list|,
+name|String
+name|field
+parameter_list|,
+name|String
+name|queryText
+parameter_list|,
+name|boolean
+name|quoted
+parameter_list|)
+throws|throws
+name|ParseException
+block|{
 comment|// Use the analyzer to get all the tokens, and then build a TermQuery,
 comment|// PhraseQuery, or nothing based on the term count
 name|TokenStream

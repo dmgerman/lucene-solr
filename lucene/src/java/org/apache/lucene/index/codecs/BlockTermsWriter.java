@@ -300,21 +300,7 @@ name|TermsWriter
 argument_list|>
 argument_list|()
 decl_stmt|;
-DECL|field|termComp
-specifier|private
-specifier|final
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|termComp
-decl_stmt|;
-DECL|field|segment
-specifier|private
-specifier|final
-name|String
-name|segment
-decl_stmt|;
+comment|//private final String segment;
 DECL|method|BlockTermsWriter
 specifier|public
 name|BlockTermsWriter
@@ -327,12 +313,6 @@ name|state
 parameter_list|,
 name|PostingsWriterBase
 name|postingsWriter
-parameter_list|,
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|termComp
 parameter_list|)
 throws|throws
 name|IOException
@@ -361,12 +341,6 @@ operator|.
 name|termsIndexWriter
 operator|=
 name|termsIndexWriter
-expr_stmt|;
-name|this
-operator|.
-name|termComp
-operator|=
-name|termComp
 expr_stmt|;
 name|out
 operator|=
@@ -400,12 +374,7 @@ name|postingsWriter
 operator|=
 name|postingsWriter
 expr_stmt|;
-name|segment
-operator|=
-name|state
-operator|.
-name|segmentName
-expr_stmt|;
+comment|//segment = state.segmentName;
 comment|//System.out.println("BTW.init seg=" + state.segmentName);
 name|postingsWriter
 operator|.
@@ -780,16 +749,6 @@ DECL|field|sumTotalTermFreq
 name|long
 name|sumTotalTermFreq
 decl_stmt|;
-DECL|field|lastTerm
-specifier|private
-specifier|final
-name|BytesRef
-name|lastTerm
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 DECL|field|pendingTerms
 specifier|private
 name|TermEntry
@@ -896,7 +855,10 @@ name|getComparator
 parameter_list|()
 block|{
 return|return
-name|termComp
+name|BytesRef
+operator|.
+name|getUTF8SortedAsUnicodeComparator
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -912,7 +874,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("BTW.startTerm seg=" + segment + " term=" + fieldInfo.name + ":" + text.utf8ToString() + " " + text);
+comment|//System.out.println("BTW.startTerm term=" + fieldInfo.name + ":" + text.utf8ToString() + " " + text + " seg=" + segment);
 name|postingsWriter
 operator|.
 name|startTerm
@@ -955,7 +917,7 @@ name|docFreq
 operator|>
 literal|0
 assert|;
-comment|//System.out.println("BTW.finishTerm seg=" + segment + " term=" + fieldInfo.name + ":" + text.utf8ToString() + " " + text + " df=" + stats.docFreq);
+comment|//System.out.println("BTW.finishTerm term=" + fieldInfo.name + ":" + text.utf8ToString() + " " + text + " seg=" + segment + " df=" + stats.docFreq);
 specifier|final
 name|boolean
 name|isIndexTerm
@@ -1002,6 +964,7 @@ name|getFilePointer
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("  index term!");
 block|}
 if|if
 condition|(
@@ -1280,7 +1243,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("BTW.flushBlock pendingCount=" + pendingCount);
+comment|//System.out.println("BTW.flushBlock seg=" + segment + " pendingCount=" + pendingCount + " fp=" + out.getFilePointer());
 comment|// First pass: compute common prefix for all terms
 comment|// in the block, against term before first term in
 comment|// this block:

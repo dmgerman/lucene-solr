@@ -289,6 +289,24 @@ name|HIRAGANA
 init|=
 literal|11
 decl_stmt|;
+DECL|field|KATAKANA
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|KATAKANA
+init|=
+literal|12
+decl_stmt|;
+DECL|field|HANGUL
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|HANGUL
+init|=
+literal|13
+decl_stmt|;
 comment|/** String token types that correspond to token type int constants */
 DECL|field|TOKEN_TYPES
 specifier|public
@@ -325,6 +343,10 @@ block|,
 literal|"<IDEOGRAPHIC>"
 block|,
 literal|"<HIRAGANA>"
+block|,
+literal|"<KATAKANA>"
+block|,
+literal|"<HANGUL>"
 block|}
 decl_stmt|;
 DECL|field|maxTokenLength

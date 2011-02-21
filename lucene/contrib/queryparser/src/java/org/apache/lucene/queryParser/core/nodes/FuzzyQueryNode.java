@@ -50,16 +50,6 @@ name|FuzzyQueryNode
 extends|extends
 name|FieldQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|1794537213032589441L
-decl_stmt|;
 DECL|field|similarity
 specifier|private
 name|float

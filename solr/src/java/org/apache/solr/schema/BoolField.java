@@ -291,6 +291,13 @@ name|QParser
 name|qparser
 parameter_list|)
 block|{
+name|field
+operator|.
+name|checkFieldCacheSource
+argument_list|(
+name|qparser
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|OrdFieldSource

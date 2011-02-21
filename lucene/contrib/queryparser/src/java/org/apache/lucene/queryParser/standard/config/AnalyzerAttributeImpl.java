@@ -98,16 +98,6 @@ name|AttributeImpl
 implements|implements
 name|AnalyzerAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|6804760312723049526L
-decl_stmt|;
 DECL|field|analyzer
 specifier|private
 name|Analyzer

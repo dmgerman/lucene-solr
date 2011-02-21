@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -174,8 +164,6 @@ specifier|static
 specifier|abstract
 class|class
 name|RewriteMethod
-implements|implements
-name|Serializable
 block|{
 DECL|method|rewrite
 specifier|public
@@ -246,16 +234,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|result
-return|;
-block|}
-comment|// Make sure we are still a singleton even after deserializing
-specifier|protected
-name|Object
-name|readResolve
-parameter_list|()
-block|{
-return|return
-name|CONSTANT_SCORE_FILTER_REWRITE
 return|;
 block|}
 block|}
@@ -584,16 +562,6 @@ argument_list|(
 literal|"Please create a private instance"
 argument_list|)
 throw|;
-block|}
-comment|// Make sure we are still a singleton even after deserializing
-specifier|protected
-name|Object
-name|readResolve
-parameter_list|()
-block|{
-return|return
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
-return|;
 block|}
 block|}
 decl_stmt|;

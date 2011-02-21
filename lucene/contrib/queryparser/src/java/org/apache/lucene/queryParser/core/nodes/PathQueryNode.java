@@ -100,16 +100,6 @@ name|PathQueryNode
 extends|extends
 name|QueryNodeImpl
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|8325921322405804789L
-decl_stmt|;
 DECL|class|QueryText
 specifier|public
 specifier|static

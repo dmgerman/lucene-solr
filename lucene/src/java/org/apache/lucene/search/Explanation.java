@@ -20,16 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -45,12 +35,6 @@ DECL|class|Explanation
 specifier|public
 class|class
 name|Explanation
-implements|implements
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
 block|{
 DECL|field|value
 specifier|private
@@ -498,8 +482,6 @@ specifier|static
 specifier|abstract
 class|class
 name|IDFExplanation
-implements|implements
-name|Serializable
 block|{
 comment|/**      * @return the idf factor      */
 DECL|method|getIdf

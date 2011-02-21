@@ -50,16 +50,6 @@ name|MatchAllDocsQueryNode
 extends|extends
 name|QueryNodeImpl
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|7050381275423477809L
-decl_stmt|;
 DECL|method|MatchAllDocsQueryNode
 specifier|public
 name|MatchAllDocsQueryNode

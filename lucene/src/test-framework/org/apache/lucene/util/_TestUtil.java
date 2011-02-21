@@ -100,6 +100,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Method
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Enumeration
@@ -324,6 +336,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Deletes a directory and everything underneath it.    */
 DECL|method|rmDir
 specifier|public
 specifier|static
@@ -849,6 +862,7 @@ literal|20
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a random string up to a certain length.    */
 DECL|method|randomUnicodeString
 specifier|public
 specifier|static
@@ -2426,8 +2440,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|// just tries to configure things to keep the open file
-comment|// count lowish
+comment|/** just tries to configure things to keep the open file    * count lowish */
 DECL|method|reduceOpenFiles
 specifier|public
 specifier|static
@@ -2613,6 +2626,63 @@ argument_list|,
 name|map
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|keepFullyDeletedSegments
+specifier|public
+specifier|static
+name|void
+name|keepFullyDeletedSegments
+parameter_list|(
+name|IndexWriter
+name|w
+parameter_list|)
+block|{
+try|try
+block|{
+comment|// Carefully invoke what is a package-private (test
+comment|// only, internal) method on IndexWriter:
+name|Method
+name|m
+init|=
+name|IndexWriter
+operator|.
+name|class
+operator|.
+name|getDeclaredMethod
+argument_list|(
+literal|"keepFullyDeletedSegments"
+argument_list|)
+decl_stmt|;
+name|m
+operator|.
+name|setAccessible
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|m
+operator|.
+name|invoke
+argument_list|(
+name|w
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// Should not happen?
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 end_class

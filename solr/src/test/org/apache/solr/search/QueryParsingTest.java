@@ -782,7 +782,7 @@ name|QueryParsing
 operator|.
 name|parseSort
 argument_list|(
-literal|"sum(product(r_f,sum(d_f,t_f,1)),a_f) asc"
+literal|"sum(product(r_f1,sum(d_f1,t_f1,1)),a_f1) asc"
 argument_list|,
 name|req
 argument_list|)
@@ -819,7 +819,7 @@ operator|.
 name|getField
 argument_list|()
 argument_list|,
-literal|"sum(product(float(r_f),sum(float(d_f),float(t_f),const(1.0))),float(a_f))"
+literal|"sum(product(float(r_f1),sum(float(d_f1),float(t_f1),const(1.0))),float(a_f1))"
 argument_list|)
 expr_stmt|;
 name|sort
@@ -1028,7 +1028,7 @@ name|QueryParsing
 operator|.
 name|parseSort
 argument_list|(
-literal|"strdist(foo_s, \"junk\", jw) desc"
+literal|"strdist(foo_s1, \"junk\", jw) desc"
 argument_list|,
 name|req
 argument_list|)
@@ -1066,7 +1066,7 @@ operator|.
 name|getField
 argument_list|()
 argument_list|,
-literal|"strdist(str(foo_s),literal(junk), dist=org.apache.lucene.search.spell.JaroWinklerDistance)"
+literal|"strdist(str(foo_s1),literal(junk), dist=org.apache.lucene.search.spell.JaroWinklerDistance)"
 argument_list|)
 expr_stmt|;
 name|sort

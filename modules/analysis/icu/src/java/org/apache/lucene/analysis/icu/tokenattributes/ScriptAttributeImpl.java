@@ -22,16 +22,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -87,8 +77,6 @@ implements|implements
 name|ScriptAttribute
 implements|,
 name|Cloneable
-implements|,
-name|Serializable
 block|{
 DECL|field|code
 specifier|private

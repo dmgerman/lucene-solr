@@ -50,15 +50,6 @@ name|PrefixWildcardQueryNode
 extends|extends
 name|WildcardQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|6851557641826407515L
-decl_stmt|;
 comment|/**    * @param field    *          - field name    * @param text    *          - value including the wildcard    * @param begin    *          - position in the query string    * @param end    *          - position in the query string    */
 DECL|method|PrefixWildcardQueryNode
 specifier|public

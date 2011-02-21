@@ -16,16 +16,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -51,8 +41,6 @@ DECL|interface|RegexCapabilities
 specifier|public
 interface|interface
 name|RegexCapabilities
-extends|extends
-name|Serializable
 block|{
 comment|/**    * Called by the constructor of {@link RegexTermsEnum} allowing    * implementations to cache a compiled version of the regular    * expression pattern.    *    * @param pattern regular expression pattern    */
 DECL|method|compile

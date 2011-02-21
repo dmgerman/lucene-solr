@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Comparator
@@ -48,8 +38,6 @@ specifier|public
 class|class
 name|Transition
 implements|implements
-name|Serializable
-implements|,
 name|Cloneable
 block|{
 comment|/*    * CLASS INVARIANT: min<=max    */

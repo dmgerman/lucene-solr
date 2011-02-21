@@ -904,6 +904,17 @@ return|return
 name|max
 return|;
 block|}
+comment|/** Returns the precision step. */
+DECL|method|getPrecisionStep
+specifier|public
+name|int
+name|getPrecisionStep
+parameter_list|()
+block|{
+return|return
+name|precisionStep
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString

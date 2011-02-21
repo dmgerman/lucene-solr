@@ -70,16 +70,6 @@ name|OrQueryNode
 extends|extends
 name|BooleanQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|3692323307688017852L
-decl_stmt|;
 comment|/**    * @param clauses    *          - the query nodes to be or'ed    */
 DECL|method|OrQueryNode
 specifier|public

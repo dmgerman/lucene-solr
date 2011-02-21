@@ -98,16 +98,6 @@ name|AttributeImpl
 implements|implements
 name|FieldDateResolutionMapAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|2104763012523049527L
-decl_stmt|;
 DECL|field|dateRes
 specifier|private
 name|Map

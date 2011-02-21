@@ -151,6 +151,13 @@ name|COMPOUND_FILES
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|_TestUtil
+operator|.
+name|keepFullyDeletedSegments
+argument_list|(
+name|w
+argument_list|)
+expr_stmt|;
 name|Map
 argument_list|<
 name|BytesRef

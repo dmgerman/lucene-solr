@@ -594,9 +594,7 @@ name|end
 argument_list|)
 return|;
 block|}
-comment|// picks a random int code point, avoiding surrogates;
-comment|// throws IllegalArgumentException if this transition only
-comment|// accepts surrogates
+comment|/** picks a random int code point, avoiding surrogates;    * throws IllegalArgumentException if this transition only    * accepts surrogates */
 DECL|method|getRandomCodePoint
 specifier|private
 specifier|static

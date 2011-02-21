@@ -488,6 +488,23 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: run aq="
+operator|+
+name|query
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|searcher
 operator|.

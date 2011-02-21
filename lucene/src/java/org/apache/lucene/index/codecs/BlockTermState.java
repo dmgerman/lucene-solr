@@ -184,11 +184,6 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|super
-operator|.
-name|toString
-argument_list|()
-operator|+
 literal|"ord="
 operator|+
 name|ord

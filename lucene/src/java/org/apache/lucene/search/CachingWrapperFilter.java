@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -167,8 +157,6 @@ name|FilterCache
 parameter_list|<
 name|T
 parameter_list|>
-implements|implements
-name|Serializable
 block|{
 comment|/**      * A transient Filter cache (package private because of test)      */
 comment|// NOTE: not final so that we can dynamically re-init

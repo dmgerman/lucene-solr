@@ -38,16 +38,6 @@ name|MessageImpl
 implements|implements
 name|Message
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|3077643314630884523L
-decl_stmt|;
 DECL|field|key
 specifier|private
 name|String

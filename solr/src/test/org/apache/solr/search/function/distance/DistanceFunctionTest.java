@@ -156,7 +156,7 @@ literal|"y_td"
 argument_list|,
 literal|"0"
 argument_list|,
-literal|"gh_s"
+literal|"gh_s1"
 argument_list|,
 name|GeoHashUtils
 operator|.
@@ -195,7 +195,7 @@ operator|/
 literal|2
 argument_list|)
 argument_list|,
-literal|"gh_s"
+literal|"gh_s1"
 argument_list|,
 name|GeoHashUtils
 operator|.
@@ -243,7 +243,7 @@ operator|/
 literal|2
 argument_list|)
 argument_list|,
-literal|"gh_s"
+literal|"gh_s1"
 argument_list|,
 name|GeoHashUtils
 operator|.
@@ -291,7 +291,7 @@ operator|/
 literal|4
 argument_list|)
 argument_list|,
-literal|"gh_s"
+literal|"gh_s1"
 argument_list|,
 name|GeoHashUtils
 operator|.
@@ -321,7 +321,7 @@ literal|"y_td"
 argument_list|,
 literal|"45.0"
 argument_list|,
-literal|"gh_s"
+literal|"gh_s1"
 argument_list|,
 name|GeoHashUtils
 operator|.
@@ -543,7 +543,7 @@ name|DistanceUtils
 operator|.
 name|EARTH_MEAN_RADIUS_KM
 operator|+
-literal|", gh_s, \""
+literal|", gh_s1, \""
 operator|+
 name|GeoHashUtils
 operator|.
@@ -620,7 +620,7 @@ name|DistanceUtils
 operator|.
 name|EARTH_MEAN_RADIUS_KM
 operator|+
-literal|", gh_s, geohash(32, -79))"
+literal|", gh_s1, geohash(32, -79))"
 argument_list|,
 literal|"fq"
 argument_list|,

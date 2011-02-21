@@ -18,16 +18,6 @@ name|automaton
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Finite-state automaton with fast run operation.  *   * @lucene.experimental  */
 end_comment
@@ -38,8 +28,6 @@ specifier|public
 specifier|abstract
 class|class
 name|RunAutomaton
-implements|implements
-name|Serializable
 block|{
 DECL|field|maxInterval
 specifier|final

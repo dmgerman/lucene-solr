@@ -118,16 +118,6 @@ name|GroupQueryNode
 extends|extends
 name|QueryNodeImpl
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|9204673493869114999L
-decl_stmt|;
 comment|/**    * This QueryNode is used to identify parenthesis on the original query string    */
 DECL|method|GroupQueryNode
 specifier|public

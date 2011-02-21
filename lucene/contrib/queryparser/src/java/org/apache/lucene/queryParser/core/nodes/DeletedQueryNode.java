@@ -68,16 +68,6 @@ name|DeletedQueryNode
 extends|extends
 name|QueryNodeImpl
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|9151675506000425293L
-decl_stmt|;
 DECL|method|DeletedQueryNode
 specifier|public
 name|DeletedQueryNode

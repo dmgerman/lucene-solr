@@ -935,8 +935,17 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// don't skip if the target is close (within skipInterval docs away)
 if|if
 condition|(
+operator|(
+name|target
+operator|-
+name|skipInterval
+operator|)
+operator|>=
+name|doc
+operator|&&
 name|df
 operator|>=
 name|skipInterval

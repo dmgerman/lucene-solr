@@ -146,6 +146,7 @@ specifier|private
 name|int
 name|positionIncrementGap
 decl_stmt|;
+comment|/**    * Calls {@link #MockAnalyzer(CharacterRunAutomaton, boolean, CharacterRunAutomaton, boolean, boolean)     * MockAnalyzer(runAutomaton, lowerCase, filter, enablePositionIncrements, true}).    */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer
@@ -177,7 +178,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new MockAnalyzer.    *     * @param runAutomaton DFA describing how tokenization should happen (e.g. [a-zA-Z]+)    * @param lowerCase true if the tokenizer should lowercase terms    * @param filter DFA describing how terms should be filtered (set of stopwords, etc)    * @param enablePositionIncrements true if position increments should reflect filtered terms.    * @param payload if payloads should be added    */
+comment|/**    * Creates a new MockAnalyzer.    *     * @param runAutomaton DFA describing how tokenization should happen (e.g. [a-zA-Z]+)    * @param lowerCase true if the tokenizer should lowercase terms    * @param filter DFA describing how terms should be filtered (set of stopwords, etc)    * @param enablePositionIncrements true if position increments should reflect filtered terms.    * @param payload if payloads should be added containing the positions (for testing)    */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer
@@ -229,7 +230,7 @@ operator|=
 name|payload
 expr_stmt|;
 block|}
-comment|/**    * Creates a new MockAnalyzer, with no filtering.    *     * @param runAutomaton DFA describing how tokenization should happen (e.g. [a-zA-Z]+)    * @param lowerCase true if the tokenizer should lowercase terms    */
+comment|/**    * Calls {@link #MockAnalyzer(CharacterRunAutomaton, boolean, CharacterRunAutomaton, boolean, boolean)     * MockAnalyzer(runAutomaton, lowerCase, MockTokenFilter.EMPTY_STOPSET, false, true}).    */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer
@@ -257,6 +258,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Calls {@link #MockAnalyzer(CharacterRunAutomaton, boolean, CharacterRunAutomaton, boolean, boolean)     * MockAnalyzer(runAutomaton, lowerCase, MockTokenFilter.EMPTY_STOPSET, false, payload}).    */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer
@@ -287,7 +289,7 @@ name|payload
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Create a Whitespace-lowercasing analyzer with no stopwords removal     */
+comment|/**     * Create a Whitespace-lowercasing analyzer with no stopwords removal.    *<p>    * Calls {@link #MockAnalyzer(CharacterRunAutomaton, boolean, CharacterRunAutomaton, boolean, boolean)     * MockAnalyzer(MockTokenizer.WHITESPACE, true, MockTokenFilter.EMPTY_STOPSET, false, true}).    */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer

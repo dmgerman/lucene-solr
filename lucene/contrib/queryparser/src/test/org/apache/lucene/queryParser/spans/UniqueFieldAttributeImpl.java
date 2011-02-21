@@ -64,15 +64,6 @@ name|AttributeImpl
 implements|implements
 name|UniqueFieldAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|8553318595851064232L
-decl_stmt|;
 DECL|field|uniqueField
 specifier|private
 name|CharSequence

@@ -24,16 +24,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List
@@ -77,8 +67,6 @@ DECL|interface|QueryNode
 specifier|public
 interface|interface
 name|QueryNode
-extends|extends
-name|Serializable
 block|{
 comment|/** convert to a query string understood by the query parser */
 comment|// TODO: this interface might be changed in the future

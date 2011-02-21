@@ -19,6 +19,20 @@ package|;
 end_package
 
 begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -1337,10 +1351,12 @@ block|}
 else|else
 block|{
 comment|//SKIP is not really possible. If this calls the nextRow() again the Entityprocessor would be in an inconisttent state
-name|log
+name|SolrException
 operator|.
-name|error
+name|log
 argument_list|(
+name|log
+argument_list|,
 literal|"Exception in entity : "
 operator|+
 name|entityName

@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -57,8 +47,6 @@ DECL|class|Shape
 specifier|public
 class|class
 name|Shape
-implements|implements
-name|Serializable
 block|{
 DECL|field|area
 specifier|private

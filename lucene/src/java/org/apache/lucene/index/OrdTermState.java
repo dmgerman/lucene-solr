@@ -73,6 +73,20 @@ operator|.
 name|ord
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"OrdTermState ord="
+operator|+
+name|ord
+return|;
+block|}
 block|}
 end_class
 

@@ -96,6 +96,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|search
+operator|.
+name|QParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|response
 operator|.
 name|TextResponseWriter
@@ -670,7 +684,7 @@ name|top
 argument_list|)
 return|;
 block|}
-comment|/**     * Sanity checks that the properties of this field type are plausible     * for a field that may be used in sorting, throwing an appropraite     * exception (including hte field name) if it is not.  FieldType subclasses     * can choose to call this method in their getSortField implementation    * @see FieldType#getSortField    */
+comment|/**     * Sanity checks that the properties of this field type are plausible     * for a field that may be used in sorting, throwing an appropriate     * exception (including the field name) if it is not.  FieldType subclasses     * can choose to call this method in their getSortField implementation    * @see FieldType#getSortField    */
 DECL|method|checkSortability
 specifier|public
 name|void
@@ -720,6 +734,66 @@ operator|.
 name|BAD_REQUEST
 argument_list|,
 literal|"can not sort on multivalued field: "
+operator|+
+name|getName
+argument_list|()
+argument_list|)
+throw|;
+block|}
+block|}
+comment|/**     * Sanity checks that the properties of this field type are plausible     * for a field that may be used to get a FieldCacheSource, throwing     * an appropriate exception (including the field name) if it is not.      * FieldType subclasses can choose to call this method in their     * getValueSource implementation     * @see FieldType#getValueSource    */
+DECL|method|checkFieldCacheSource
+specifier|public
+name|void
+name|checkFieldCacheSource
+parameter_list|(
+name|QParser
+name|parser
+parameter_list|)
+throws|throws
+name|SolrException
+block|{
+if|if
+condition|(
+operator|!
+name|indexed
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"can not use FieldCache on unindexed field: "
+operator|+
+name|getName
+argument_list|()
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|multiValued
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"can not use FieldCache on multivalued field: "
 operator|+
 name|getName
 argument_list|()

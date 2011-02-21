@@ -82,15 +82,6 @@ name|QueryNodeImpl
 implements|implements
 name|FieldableNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|7120958816535573935L
-decl_stmt|;
 DECL|method|ParametricRangeQueryNode
 specifier|public
 name|ParametricRangeQueryNode
