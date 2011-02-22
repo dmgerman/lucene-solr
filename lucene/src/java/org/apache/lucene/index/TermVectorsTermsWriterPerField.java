@@ -312,6 +312,12 @@ condition|(
 name|doVectors
 condition|)
 block|{
+name|termsWriter
+operator|.
+name|hasVectors
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|termsWriter

@@ -464,10 +464,6 @@ comment|// If we hit an exception while init'ing the term
 comment|// vector output files, we must abort this segment
 comment|// because those files will be in an unknown
 comment|// state:
-name|hasVectors
-operator|=
-literal|true
-expr_stmt|;
 name|tvx
 operator|=
 name|docWriter
@@ -600,9 +596,8 @@ argument_list|)
 assert|;
 if|if
 condition|(
-name|numVectorFields
-operator|==
-literal|0
+operator|!
+name|hasVectors
 condition|)
 block|{
 return|return;
@@ -1060,14 +1055,6 @@ assert|assert
 name|clearLastVectorFieldName
 argument_list|()
 assert|;
-name|perFields
-operator|=
-operator|new
-name|TermVectorsTermsWriterPerField
-index|[
-literal|1
-index|]
-expr_stmt|;
 name|reset
 argument_list|()
 expr_stmt|;
