@@ -353,7 +353,7 @@ name|zkClientConnectTimeout
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param zkServerAddress    * @param zkClientTimeout    * @param strat    * @param onReconnect    * @param clientConnectTimeout    * @throws InterruptedException    * @throws TimeoutException    * @throws IOException    */
+comment|/**    * @param zkServerAddress    * @param zkClientTimeout    * @param strat    * @param onReconnect    * @throws InterruptedException    * @throws TimeoutException    * @throws IOException    */
 DECL|method|SolrZkClient
 specifier|public
 name|SolrZkClient
@@ -622,7 +622,7 @@ name|watcher
 argument_list|)
 return|;
 block|}
-comment|/**    * @param path    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * @param path    * @return true if path exists    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|exists
 specifier|public
 name|boolean
@@ -650,7 +650,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/**    * @param path    * @param data    * @param acl    * @param createMode    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * @param path    * @param data    * @param acl    * @param createMode    * @return path of created node    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|create
 specifier|public
 name|String
@@ -693,7 +693,7 @@ name|createMode
 argument_list|)
 return|;
 block|}
-comment|/**    * @param path    * @param watcher    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * @param path    * @param watcher    * @return children of the node at the path    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|getChildren
 specifier|public
 name|List
@@ -725,7 +725,7 @@ name|watcher
 argument_list|)
 return|;
 block|}
-comment|/**    * @param path    * @param watcher    * @param stat    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * @param path    * @param watcher    * @param stat    * @return node's data    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|getData
 specifier|public
 name|byte
@@ -760,7 +760,7 @@ name|stat
 argument_list|)
 return|;
 block|}
-comment|/**    * @param path    * @param data    * @param version    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * @param path    * @param data    * @param version    * @return node's state    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|setData
 specifier|public
 name|Stat
@@ -795,7 +795,7 @@ name|version
 argument_list|)
 return|;
 block|}
-comment|/**    *     * @param path    * @param data    * @param watcher    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    *     * @param path    * @param data    * @param createMode    * @return path of created node    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|create
 specifier|public
 name|String

@@ -243,6 +243,8 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 specifier|abstract
@@ -253,6 +255,8 @@ name|Object
 name|o
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 specifier|abstract
@@ -268,6 +272,8 @@ name|String
 name|description
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -328,7 +334,7 @@ block|}
 comment|//
 comment|// Sorting by function
 comment|//
-comment|/**    * EXPERIMENTAL: This method is subject to change.    *<br>WARNING: Sorted function queries are not currently weighted.    *<p>    * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, AtomicReaderContext)}    * to populate the SortField.    *    * @param reverse true if this is a reverse sort.    * @return The {@link org.apache.lucene.search.SortField} for the ValueSource    * @throws IOException if there was a problem reading the values.    */
+comment|/**    * EXPERIMENTAL: This method is subject to change.    *<p>    * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, IndexReader.AtomicReaderContext)}    * to populate the SortField.    *    * @param reverse true if this is a reverse sort.    * @return The {@link org.apache.lucene.search.SortField} for the ValueSource    * @throws IOException if there was a problem reading the values.    */
 DECL|method|getSortField
 specifier|public
 name|SortField
@@ -498,6 +504,8 @@ operator|=
 name|context
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newComparator
 specifier|public
 name|FieldComparator
@@ -583,6 +591,8 @@ name|numHits
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|compare
 specifier|public
 name|int
@@ -644,6 +654,8 @@ literal|0
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|compareBottom
 specifier|public
 name|int
@@ -695,6 +707,8 @@ literal|0
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|copy
 specifier|public
 name|void
@@ -720,6 +734,8 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|FieldComparator
@@ -744,6 +760,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setBottom
 specifier|public
 name|void
@@ -764,6 +782,8 @@ name|bottom
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|value
 specifier|public
 name|Comparable

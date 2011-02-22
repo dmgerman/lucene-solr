@@ -161,6 +161,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -173,6 +175,8 @@ name|Properties
 name|initProps
 parameter_list|)
 block|{   }
+annotation|@
+name|Override
 DECL|method|getData
 specifier|public
 name|Iterator
@@ -199,6 +203,8 @@ name|query
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

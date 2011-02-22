@@ -246,9 +246,6 @@ specifier|public
 name|float
 name|computeNorm
 parameter_list|(
-name|String
-name|fieldName
-parameter_list|,
 name|FieldInvertState
 name|state
 parameter_list|)
@@ -761,6 +758,12 @@ name|setSimilarityProvider
 argument_list|(
 name|similarityOne
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|LogMergePolicy
@@ -1187,6 +1190,12 @@ name|setSimilarityProvider
 argument_list|(
 name|similarityOne
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|LogMergePolicy
@@ -1492,9 +1501,6 @@ specifier|public
 name|float
 name|computeNorm
 parameter_list|(
-name|String
-name|field
-parameter_list|,
 name|FieldInvertState
 name|state
 parameter_list|)

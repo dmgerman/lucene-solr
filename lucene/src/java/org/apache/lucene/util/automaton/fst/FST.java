@@ -2283,7 +2283,7 @@ return|return
 name|arc
 return|;
 block|}
-comment|/** Follow the follow arc and read the first arc of its    *  target; this changes the provide arc (2nd arg) in-place    *  and returns it. */
+comment|/**    * Follow the<code>follow</code> arc and read the first arc of its target;    * this changes the provided<code>arc</code> (2nd arg) in-place and returns    * it.    *     * @returns Returns the second argument (<code>arc</code>).    */
 DECL|method|readFirstTargetArc
 specifier|public
 name|Arc
@@ -2385,7 +2385,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|// Not private beacaus NodeHash needs access:
+comment|// Not private because NodeHash needs access:
 DECL|method|readFirstRealArc
 name|Arc
 argument_list|<

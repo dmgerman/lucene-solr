@@ -67,6 +67,8 @@ extends|extends
 name|IndexReaderFactory
 block|{
 comment|/* (non-Javadoc)    * @see org.apache.solr.core.IndexReaderFactory#newReader(org.apache.lucene.store.Directory, boolean)    */
+annotation|@
+name|Override
 DECL|method|newReader
 specifier|public
 name|IndexReader

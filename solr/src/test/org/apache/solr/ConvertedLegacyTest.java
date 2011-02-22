@@ -389,17 +389,17 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"val_s\">apple</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"val_s\">apple</field><field name=\"val_s1\">apple</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"val_s\">banana</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"val_s\">banana</field><field name=\"val_s1\">banana</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"val_s\">pear</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"val_s\">pear</field><field name=\"val_s1\">pear</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -1020,7 +1020,7 @@ operator|.
 name|getCore
 argument_list|()
 argument_list|,
-literal|"val_s:[a TO z];val_s asc"
+literal|"val_s:[a TO z];val_s1 asc"
 argument_list|,
 literal|"standard"
 argument_list|,
@@ -1079,7 +1079,7 @@ operator|.
 name|getCore
 argument_list|()
 argument_list|,
-literal|"val_s:[a TO z];val_s desc"
+literal|"val_s:[a TO z];val_s1 desc"
 argument_list|,
 literal|"standard"
 argument_list|,
@@ -1888,52 +1888,52 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">1234567890</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i1\">1234567890</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">10</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i1\">10</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i1\">1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">2</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i1\">2</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">15</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i1\">15</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i1\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">-987654321</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i1\">-987654321</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">2147483647</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i1\">2147483647</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">-2147483648</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i1\">-2147483648</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_i1\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -1955,7 +1955,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_i:2147483647"
+literal|"num_i1:2147483647"
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -1967,7 +1967,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_i:\"-2147483648\""
+literal|"num_i1:\"-2147483648\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1'] "
@@ -1979,7 +1979,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_i asc;"
+literal|"id:44;num_i1 asc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/int[.='-2147483648'] "
@@ -1991,7 +1991,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_i desc;"
+literal|"id:44;num_i1 desc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/int[.='2147483647'] "
@@ -2003,7 +2003,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_i:[0 TO 9]"
+literal|"num_i1:[0 TO 9]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
@@ -2013,7 +2013,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_i:[-2147483648 TO 2147483647]"
+literal|"num_i1:[-2147483648 TO 2147483647]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=10]"
@@ -2023,7 +2023,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_i:[-10 TO -1]"
+literal|"num_i1:[-10 TO -1]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
@@ -2037,52 +2037,52 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">1234567890</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l1\">1234567890</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">10</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l1\">10</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l1\">1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">2</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l1\">2</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">15</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l1\">15</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l1\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">-987654321</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l1\">-987654321</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">9223372036854775807</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l1\">9223372036854775807</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">-9223372036854775808</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l1\">-9223372036854775808</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_l1\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2104,7 +2104,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_l:9223372036854775807"
+literal|"num_l1:9223372036854775807"
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1'] "
@@ -2116,7 +2116,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_l:\"-9223372036854775808\""
+literal|"num_l1:\"-9223372036854775808\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1'] "
@@ -2128,7 +2128,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_l asc;"
+literal|"id:44;num_l1 asc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/long[.='-9223372036854775808'] "
@@ -2140,7 +2140,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_l desc;"
+literal|"id:44;num_l1 desc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/long[.='9223372036854775807'] "
@@ -2152,7 +2152,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_l:[-1 TO 9]"
+literal|"num_l1:[-1 TO 9]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=4]"
@@ -2162,7 +2162,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_l:[-9223372036854775808 TO 9223372036854775807]"
+literal|"num_l1:[-9223372036854775808 TO 9223372036854775807]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=10]"
@@ -2172,7 +2172,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_l:[-10 TO -1]"
+literal|"num_l1:[-10 TO -1]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
@@ -2186,52 +2186,52 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">1.4142135</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf1\">1.4142135</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">Infinity</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf1\">Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-Infinity</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf1\">-Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">NaN</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf1\">NaN</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">2</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf1\">2</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf1\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-987654321</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf1\">-987654321</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-999999.99</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf1\">-999999.99</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">-1e20</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf1\">-1e20</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sf1\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2253,7 +2253,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sf:Infinity"
+literal|"num_sf1:Infinity"
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2265,7 +2265,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sf:\"-Infinity\""
+literal|"num_sf1:\"-Infinity\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2277,7 +2277,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sf:\"NaN\""
+literal|"num_sf1:\"NaN\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2289,7 +2289,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sf:\"-1e20\""
+literal|"num_sf1:\"-1e20\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']"
@@ -2299,7 +2299,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_sf asc;"
+literal|"id:44;num_sf1 asc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/float[.='-Infinity'] "
@@ -2311,7 +2311,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_sf desc;"
+literal|"id:44;num_sf1 desc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/float[.='NaN'] "
@@ -2323,7 +2323,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sf:[-1 TO 2]"
+literal|"num_sf1:[-1 TO 2]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=4]"
@@ -2333,7 +2333,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sf:[-Infinity TO Infinity]"
+literal|"num_sf1:[-Infinity TO Infinity]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=9]"
@@ -2347,52 +2347,52 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">1.4142135</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd1\">1.4142135</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">Infinity</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd1\">Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-Infinity</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd1\">-Infinity</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">NaN</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd1\">NaN</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">2</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd1\">2</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd1\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">1e-100</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd1\">1e-100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-999999.99</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd1\">-999999.99</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">-1e100</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd1\">-1e100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"num_sd1\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2414,7 +2414,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sd:Infinity"
+literal|"num_sd1:Infinity"
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2426,7 +2426,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sd:\"-Infinity\""
+literal|"num_sd1:\"-Infinity\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2438,7 +2438,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sd:\"NaN\""
+literal|"num_sd1:\"NaN\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']  "
@@ -2450,7 +2450,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sd:\"-1e100\""
+literal|"num_sd1:\"-1e100\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']"
@@ -2460,7 +2460,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sd:\"1e-100\""
+literal|"num_sd1:\"1e-100\""
 argument_list|)
 argument_list|,
 literal|"//@numFound[.='1']"
@@ -2470,7 +2470,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_sd asc;"
+literal|"id:44;num_sd1 asc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/double[.='-Infinity'] "
@@ -2482,7 +2482,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;num_sd desc;"
+literal|"id:44;num_sd1 desc;"
 argument_list|)
 argument_list|,
 literal|"//doc[1]/double[.='NaN'] "
@@ -2494,7 +2494,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sd:[-1 TO 2]"
+literal|"num_sd1:[-1 TO 2]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=5]"
@@ -2504,7 +2504,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"num_sd:[-Infinity TO Infinity]"
+literal|"num_sd1:[-Infinity TO Infinity]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=9]"
@@ -2518,32 +2518,32 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">10</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i1\">10</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">1</field><field name=\"b_i\">100</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i1\">1</field><field name=\"b_i1\">100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i1\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">15</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i1\">15</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">1</field><field name=\"b_i\">50</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i1\">1</field><field name=\"b_i1\">50</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id\">44</field><field name=\"a_i1\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2565,7 +2565,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44; a_i asc,b_i desc"
+literal|"id:44; a_i1 asc,b_i1 desc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=6] "
@@ -2579,7 +2579,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;a_i asc  , b_i asc;"
+literal|"id:44;a_i1 asc  , b_i1 asc;"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=6] "
@@ -2593,7 +2593,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;a_i asc;"
+literal|"id:44;a_i1 asc;"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=6] "
@@ -2607,7 +2607,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44;a_i asc , score top;"
+literal|"id:44;a_i1 asc , score top;"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=6] "
@@ -2621,7 +2621,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id:44; score top , a_i top, b_i bottom ;"
+literal|"id:44; score top , a_i1 top, b_i1 bottom ;"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=6] "
@@ -2643,37 +2643,37 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1000</field><field name=\"a_i\">1</field><field name=\"nullfirst\">Z</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1000</field><field name=\"a_i1\">1</field><field name=\"nullfirst\">Z</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1001</field><field name=\"a_i\">10</field><field name=\"nullfirst\">A</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1001</field><field name=\"a_i1\">10</field><field name=\"nullfirst\">A</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1002</field><field name=\"a_i\">1</field><field name=\"b_si\">100</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1002</field><field name=\"a_i1\">1</field><field name=\"b_si\">100</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1003</field><field name=\"a_i\">-1</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1003</field><field name=\"a_i1\">-1</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1004</field><field name=\"a_i\">15</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1004</field><field name=\"a_i1\">15</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1005</field><field name=\"a_i\">1</field><field name=\"b_si\">50</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1005</field><field name=\"a_i1\">1</field><field name=\"b_si\">50</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1006</field><field name=\"a_i\">0</field></doc></add>"
+literal|"<add overwrite=\"false\"><doc><field name=\"id_i\">1006</field><field name=\"a_i1\">0</field></doc></add>"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -2723,7 +2723,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id_i:[1000 TO 1010]; a_i asc,b_si desc"
+literal|"id_i:[1000 TO 1010]; a_i1 asc,b_si desc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "
@@ -2739,7 +2739,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"id_i:[1000 TO 1010]; a_i asc,b_si asc"
+literal|"id_i:[1000 TO 1010]; a_i1 asc,b_si asc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "

@@ -235,6 +235,8 @@ name|collection
 expr_stmt|;
 block|}
 comment|/**    * Opens any resource by its name. By default, this will look in multiple    * locations to load the resource: $configDir/$resource from ZooKeeper.    * It will look for it in any jar    * accessible through the class loader if it cannot be found in ZooKeeper.     * Override this method to customize loading resources.    *     * @return the stream for the named resource    */
+annotation|@
+name|Override
 DECL|method|openResource
 specifier|public
 name|InputStream
@@ -384,6 +386,8 @@ return|return
 name|is
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getConfigDir
 specifier|public
 name|String
@@ -402,6 +406,8 @@ literal|"ZkSolrResourceLoader does not support getConfigDir() - likely, what you
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|listConfigDir
 specifier|public
 name|String

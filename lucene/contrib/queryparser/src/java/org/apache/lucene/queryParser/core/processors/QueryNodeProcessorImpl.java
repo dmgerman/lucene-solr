@@ -472,16 +472,6 @@ argument_list|<
 name|QueryNode
 argument_list|>
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|2613518456949297135L
-decl_stmt|;
 DECL|field|beingUsed
 name|boolean
 name|beingUsed

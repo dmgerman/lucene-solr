@@ -563,7 +563,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// insertionSorts:
-comment|/**    * Sorts the given random access {@link List} using the {@link Comparator}.    * The list must implement {@link RandomAccess}. This method uses the insertion sort    * algorithm. It is only recommened to use this algorithm for partially sorted small lists!    * @throws IllegalArgumentException if list is e.g. a linked list without random access.    */
+comment|/**    * Sorts the given random access {@link List} using the {@link Comparator}.    * The list must implement {@link RandomAccess}. This method uses the insertion sort    * algorithm. It is only recommended to use this algorithm for partially sorted small lists!    * @throws IllegalArgumentException if list is e.g. a linked list without random access.    */
 DECL|method|insertionSort
 specifier|public
 specifier|static
@@ -608,7 +608,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sorts the given random access {@link List} in natural order.    * The list must implement {@link RandomAccess}. This method uses the insertion sort    * algorithm. It is only recommened to use this algorithm for partially sorted small lists!    * @throws IllegalArgumentException if list is e.g. a linked list without random access.    */
+comment|/**    * Sorts the given random access {@link List} in natural order.    * The list must implement {@link RandomAccess}. This method uses the insertion sort    * algorithm. It is only recommended to use this algorithm for partially sorted small lists!    * @throws IllegalArgumentException if list is e.g. a linked list without random access.    */
 DECL|method|insertionSort
 specifier|public
 specifier|static

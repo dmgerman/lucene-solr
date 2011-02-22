@@ -110,7 +110,7 @@ specifier|public
 name|FieldConfig
 name|getFieldConfig
 parameter_list|(
-name|CharSequence
+name|String
 name|fieldName
 parameter_list|)
 block|{

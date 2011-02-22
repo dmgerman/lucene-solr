@@ -184,6 +184,8 @@ name|DebugInfo
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DebugInfo
 name|pop
@@ -996,6 +998,8 @@ operator|new
 name|DataSource
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|init
@@ -1017,6 +1021,8 @@ name|initProps
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -1028,6 +1034,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getData
@@ -1174,6 +1182,8 @@ operator|new
 name|Transformer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|transformRow

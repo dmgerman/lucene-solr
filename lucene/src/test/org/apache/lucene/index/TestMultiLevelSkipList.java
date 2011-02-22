@@ -310,6 +310,8 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|openInput
 specifier|public
 name|IndexInput
@@ -353,6 +355,8 @@ name|in
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 annotation|@
 name|Before
 DECL|method|setUp
@@ -417,6 +421,12 @@ name|alwaysCodec
 argument_list|(
 literal|"Standard"
 argument_list|)
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

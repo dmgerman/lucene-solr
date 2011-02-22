@@ -80,6 +80,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|MockAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|Document
@@ -139,6 +153,8 @@ operator|.
 name|search
 operator|.
 name|FieldCache
+operator|.
+name|*
 import|;
 end_import
 
@@ -153,8 +169,6 @@ operator|.
 name|search
 operator|.
 name|FieldCache
-operator|.
-name|*
 import|;
 end_import
 
@@ -333,6 +347,8 @@ name|NUM_DOCS
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String
@@ -379,6 +395,21 @@ argument_list|(
 name|random
 argument_list|,
 name|directory
+argument_list|,
+name|newIndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+operator|new
+name|MockAnalyzer
+argument_list|()
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|typeTests

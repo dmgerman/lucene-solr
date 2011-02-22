@@ -19,6 +19,20 @@ package|;
 end_package
 
 begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -244,6 +258,8 @@ operator|=
 name|docBuilder
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -380,6 +396,8 @@ name|Transformer
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|add
@@ -700,6 +718,8 @@ name|newInstance
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|transformRow
 specifier|public
 name|Object
@@ -1254,6 +1274,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextRow
 specifier|public
 name|Map
@@ -1329,10 +1351,12 @@ block|}
 else|else
 block|{
 comment|//SKIP is not really possible. If this calls the nextRow() again the Entityprocessor would be in an inconisttent state
-name|log
+name|SolrException
 operator|.
-name|error
+name|log
 argument_list|(
+name|log
+argument_list|,
 literal|"Exception in entity : "
 operator|+
 name|entityName
@@ -1386,6 +1410,8 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|nextModifiedRowKey
 specifier|public
 name|Map
@@ -1425,6 +1451,8 @@ return|return
 name|row
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextDeletedRowKey
 specifier|public
 name|Map
@@ -1464,6 +1492,8 @@ return|return
 name|row
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextModifiedParentRowKey
 specifier|public
 name|Map
@@ -1482,6 +1512,8 @@ name|nextModifiedParentRowKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|destroy
 specifier|public
 name|void

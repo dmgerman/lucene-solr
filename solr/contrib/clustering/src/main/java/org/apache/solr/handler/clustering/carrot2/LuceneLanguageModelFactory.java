@@ -553,6 +553,8 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|/** 	 * Provide an {@link IStemmer} implementation for a given language. 	 */
+annotation|@
+name|Override
 DECL|method|createStemmer
 specifier|protected
 name|IStemmer

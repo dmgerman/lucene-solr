@@ -25,12 +25,6 @@ DECL|class|BooleanClause
 specifier|public
 class|class
 name|BooleanClause
-implements|implements
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
 block|{
 comment|/** Specifies how clauses are to occur in matching documents. */
 DECL|enum|Occur

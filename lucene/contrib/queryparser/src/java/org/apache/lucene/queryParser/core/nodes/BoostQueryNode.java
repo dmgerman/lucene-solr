@@ -124,16 +124,6 @@ name|BoostQueryNode
 extends|extends
 name|QueryNodeImpl
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|3929082630855807593L
-decl_stmt|;
 DECL|field|value
 specifier|private
 name|float

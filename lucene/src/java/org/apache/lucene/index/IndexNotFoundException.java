@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Signals that no index was found in the Directory. Possibly because the  * directory is empty, however can slso indicate an index corruption.  */
+comment|/**  * Signals that no index was found in the Directory. Possibly because the  * directory is empty, however can also indicate an index corruption.  */
 end_comment
 
 begin_class

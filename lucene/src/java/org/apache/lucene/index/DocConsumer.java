@@ -36,7 +36,10 @@ DECL|method|processDocument
 specifier|abstract
 name|void
 name|processDocument
-parameter_list|()
+parameter_list|(
+name|FieldInfos
+name|fieldInfos
+parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
@@ -70,6 +73,12 @@ DECL|method|freeRAM
 specifier|abstract
 name|boolean
 name|freeRAM
+parameter_list|()
+function_decl|;
+DECL|method|doAfterFlush
+specifier|abstract
+name|void
+name|doAfterFlush
 parameter_list|()
 function_decl|;
 block|}

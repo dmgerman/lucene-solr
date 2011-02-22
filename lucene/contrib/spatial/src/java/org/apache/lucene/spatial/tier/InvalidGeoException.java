@@ -30,16 +30,6 @@ name|InvalidGeoException
 extends|extends
 name|Exception
 block|{
-comment|/**    *     */
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|1L
-decl_stmt|;
 DECL|method|InvalidGeoException
 specifier|public
 name|InvalidGeoException

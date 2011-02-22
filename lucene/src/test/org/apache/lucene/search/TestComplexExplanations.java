@@ -85,6 +85,27 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|tearDown
+specifier|public
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|searcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
+block|}
 comment|// must be static for weight serialization tests
 DECL|method|createQnorm1Similarity
 specifier|private

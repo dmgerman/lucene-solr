@@ -84,16 +84,6 @@ name|AttributeImpl
 implements|implements
 name|BoostAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|2104763012523049527L
-decl_stmt|;
 DECL|field|boost
 specifier|private
 name|float

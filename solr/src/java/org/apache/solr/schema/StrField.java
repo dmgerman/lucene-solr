@@ -148,6 +148,8 @@ name|StrField
 extends|extends
 name|FieldType
 block|{
+annotation|@
+name|Override
 DECL|method|init
 specifier|protected
 name|void
@@ -175,6 +177,8 @@ name|args
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSortField
 specifier|public
 name|SortField
@@ -196,6 +200,8 @@ name|reverse
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void
@@ -228,6 +234,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValueSource
 specifier|public
 name|ValueSource
@@ -240,6 +248,13 @@ name|QParser
 name|parser
 parameter_list|)
 block|{
+name|field
+operator|.
+name|checkFieldCacheSource
+argument_list|(
+name|parser
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|StrFieldSource

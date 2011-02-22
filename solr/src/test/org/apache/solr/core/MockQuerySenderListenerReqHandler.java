@@ -120,6 +120,8 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -142,6 +144,8 @@ name|args
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|handleRequestBody
 specifier|public
 name|void
@@ -169,6 +173,8 @@ operator|=
 name|rsp
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getDescription
 specifier|public
 name|String
@@ -184,6 +190,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSourceId
 specifier|public
 name|String
@@ -199,6 +207,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSource
 specifier|public
 name|String
@@ -214,6 +224,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|String
@@ -229,6 +241,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getStatistics
 specifier|public
 name|NamedList

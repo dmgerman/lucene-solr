@@ -39,7 +39,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for encoding and decoding geohashes. Based on  * http://en.wikipedia.org/wiki/Geohash.  */
+comment|/**  * Utilities for encoding and decoding geohashes. Based on  *<a href="http://en.wikipedia.org/wiki/Geohash">http://en.wikipedia.org/wiki/Geohash</a>.  */
 end_comment
 
 begin_class

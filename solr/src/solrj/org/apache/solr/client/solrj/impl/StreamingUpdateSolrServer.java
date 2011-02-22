@@ -959,11 +959,42 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|// remove it from the list of running things...
+comment|// remove it from the list of running things unless we are the last runner and the queue is full...
+comment|// in which case, the next queue.put() would block and there would be no runners to handle it.
+comment|// This case has been further handled by using offer instead of put, and using a retry loop
+comment|// to avoid blocking forever (see request()).
 synchronized|synchronized
 init|(
 name|runners
 init|)
+block|{
+if|if
+condition|(
+name|runners
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|1
+operator|&&
+name|queue
+operator|.
+name|remainingCapacity
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|// keep this runner alive
+name|scheduler
+operator|.
+name|execute
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+else|else
 block|{
 name|runners
 operator|.
@@ -972,6 +1003,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|log
 operator|.
@@ -1138,13 +1170,22 @@ name|await
 argument_list|()
 expr_stmt|;
 block|}
+name|boolean
+name|success
+init|=
 name|queue
 operator|.
-name|put
+name|offer
 argument_list|(
 name|req
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+for|for
+control|(
+init|;
+condition|;
+control|)
+block|{
 synchronized|synchronized
 init|(
 name|runners
@@ -1167,6 +1208,7 @@ name|queue
 operator|.
 name|size
 argument_list|()
+comment|// queue is half full and we can add more runners
 operator|&&
 name|runners
 operator|.
@@ -1177,6 +1219,7 @@ name|threadCount
 operator|)
 condition|)
 block|{
+comment|// We need more runners, so start a new one.
 name|Runner
 name|r
 init|=
@@ -1184,6 +1227,13 @@ operator|new
 name|Runner
 argument_list|()
 decl_stmt|;
+name|runners
+operator|.
+name|add
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
 name|scheduler
 operator|.
 name|execute
@@ -1191,11 +1241,45 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
-name|runners
+block|}
+else|else
+block|{
+comment|// break out of the retry loop if we added the element to the queue successfully, *and*
+comment|// while we are still holding the runners lock to prevent race conditions.
+comment|// race conditions.
+if|if
+condition|(
+name|success
+condition|)
+break|break;
+block|}
+block|}
+comment|// Retry to add to the queue w/o the runners lock held (else we risk temporary deadlock)
+comment|// This retry could also fail because
+comment|// 1) existing runners were not able to take off any new elements in the queue
+comment|// 2) the queue was filled back up since our last try
+comment|// If we succeed, the queue may have been completely emptied, and all runners stopped.
+comment|// In all cases, we should loop back to the top to see if we need to start more runners.
+comment|//
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|success
+operator|=
+name|queue
 operator|.
-name|add
+name|offer
 argument_list|(
-name|r
+name|req
+argument_list|,
+literal|100
+argument_list|,
+name|TimeUnit
+operator|.
+name|MILLISECONDS
 argument_list|)
 expr_stmt|;
 block|}

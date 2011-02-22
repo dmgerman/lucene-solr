@@ -161,6 +161,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    */
+annotation|@
+name|Override
 DECL|method|reset
 specifier|public
 name|void
@@ -184,6 +186,8 @@ literal|null
 expr_stmt|;
 block|}
 comment|/**    * Output bigrams whenever possible to optimize queries. Only output unigrams    * when they are not a member of a bigram. Example:    *<ul>    *<li>input: "the rain in spain falls mainly"    *<li>output:"the-rain", "rain-in" ,"in-spain", "falls", "mainly"    *</ul>    */
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean

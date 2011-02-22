@@ -352,6 +352,8 @@ name|PATTERN
 argument_list|)
 decl_stmt|;
 comment|/**    * Converts the original query string to a collection of Lucene Tokens.    * @param original the original query string    * @return a Collection of Lucene Tokens    */
+annotation|@
+name|Override
 DECL|method|convert
 specifier|public
 name|Collection

@@ -70,7 +70,7 @@ specifier|public
 interface|interface
 name|HTMLParser
 block|{
-comment|/**    * Parse the input Reader and return DocData.     * A provided name or date is used for the result, otherwise an attempt is     * made to set them from the parsed data.    * @param dateFormat date formatter to use for extracting the date.       * @param name name of the result doc data. If null, attempt to set by parsed data.    * @param date date of the result doc data. If null, attempt to set by parsed data.    * @param reader of html text to parse.    * @return Parsed doc data.    * @throws IOException    * @throws InterruptedException    */
+comment|/**    * Parse the input Reader and return DocData.     * The provided name,title,date are used for the result, unless when they're null,     * in which case an attempt is made to set them from the parsed data.    * @param docData result reused    * @param name name of the result doc data.    * @param date date of the result doc data. If null, attempt to set by parsed data.    * @param title title of the result doc data. If null, attempt to set by parsed data.    * @param reader reader of html text to parse.    * @param dateFormat date formatter to use for extracting the date.       * @return Parsed doc data.    * @throws IOException    * @throws InterruptedException    */
 DECL|method|parse
 specifier|public
 name|DocData
@@ -84,6 +84,9 @@ name|name
 parameter_list|,
 name|Date
 name|date
+parameter_list|,
+name|String
+name|title
 parameter_list|,
 name|Reader
 name|reader

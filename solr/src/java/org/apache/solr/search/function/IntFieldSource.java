@@ -173,6 +173,8 @@ name|creator
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|description
 specifier|public
 name|String
@@ -187,6 +189,8 @@ operator|+
 literal|')'
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValues
 specifier|public
 name|DocValues
@@ -248,6 +252,8 @@ operator|new
 name|MutableValueInt
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|float
 name|floatVal
@@ -266,6 +272,8 @@ name|doc
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|intVal
@@ -281,6 +289,8 @@ name|doc
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|longVal
@@ -299,6 +309,8 @@ name|doc
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|double
 name|doubleVal
@@ -317,6 +329,8 @@ name|doc
 index|]
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|strVal
@@ -337,6 +351,8 @@ index|]
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

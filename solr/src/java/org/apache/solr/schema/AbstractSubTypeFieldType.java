@@ -381,6 +381,15 @@ argument_list|,
 literal|"false"
 argument_list|)
 expr_stmt|;
+name|props
+operator|.
+name|put
+argument_list|(
+literal|"multiValued"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 name|int
 name|p
 init|=
@@ -459,6 +468,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Throws UnsupportedOperationException()    */
+annotation|@
+name|Override
 DECL|method|getFieldQuery
 specifier|public
 name|Query

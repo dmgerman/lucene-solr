@@ -586,11 +586,8 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
-name|extractFacetInfo
-argument_list|(
-name|_facetInfo
-argument_list|)
-expr_stmt|;
+comment|// extractFacetInfo inspects _results, so defer calling it
+comment|// in case it hasn't been populated yet.
 block|}
 elseif|else
 if|if
@@ -759,6 +756,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|_facetInfo
+operator|!=
+literal|null
+condition|)
+name|extractFacetInfo
+argument_list|(
+name|_facetInfo
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|extractSpellCheckInfo
 specifier|private

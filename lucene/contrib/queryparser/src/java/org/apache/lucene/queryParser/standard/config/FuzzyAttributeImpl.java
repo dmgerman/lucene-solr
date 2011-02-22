@@ -98,16 +98,6 @@ name|AttributeImpl
 implements|implements
 name|FuzzyAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|2104763012527049527L
-decl_stmt|;
 DECL|field|prefixLength
 specifier|private
 name|int

@@ -20,16 +20,6 @@ name|hyphenation
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
 begin_comment
 comment|/**  * This class implements a simple byte vector with access to the underlying  * array.  * This class has been taken from the Apache FOP project (http://xmlgraphics.apache.org/fop/). They have been slightly modified.   */
 end_comment
@@ -39,8 +29,6 @@ DECL|class|ByteVector
 specifier|public
 class|class
 name|ByteVector
-implements|implements
-name|Serializable
 block|{
 comment|/**    * Capacity increment size    */
 DECL|field|DEFAULT_BLOCK_SIZE

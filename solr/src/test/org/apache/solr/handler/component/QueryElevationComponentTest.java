@@ -847,7 +847,7 @@ literal|"title"
 argument_list|,
 literal|"ipod"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"a"
 argument_list|)
@@ -865,7 +865,7 @@ literal|"title"
 argument_list|,
 literal|"ipod ipod"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"b"
 argument_list|)
@@ -883,7 +883,7 @@ literal|"title"
 argument_list|,
 literal|"ipod ipod ipod"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"c"
 argument_list|)
@@ -901,7 +901,7 @@ literal|"title"
 argument_list|,
 literal|"boosted"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"x"
 argument_list|)
@@ -919,7 +919,7 @@ literal|"title"
 argument_list|,
 literal|"boosted boosted"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"y"
 argument_list|)
@@ -937,7 +937,7 @@ literal|"title"
 argument_list|,
 literal|"boosted boosted boosted"
 argument_list|,
-literal|"str_s"
+literal|"str_s1"
 argument_list|,
 literal|"z"
 argument_list|)
@@ -1218,7 +1218,7 @@ name|CommonParams
 operator|.
 name|SORT
 argument_list|,
-literal|"str_s asc"
+literal|"str_s1 asc"
 argument_list|)
 expr_stmt|;
 name|assertQ

@@ -448,7 +448,9 @@ argument_list|(
 literal|"<root/>"
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"UTF-8"
+argument_list|)
 argument_list|)
 argument_list|,
 literal|""
@@ -1835,10 +1837,10 @@ block|}
 else|else
 block|{
 comment|// Now write it out
-name|response
-operator|.
-name|setContentType
-argument_list|(
+specifier|final
+name|String
+name|ct
+init|=
 name|responseWriter
 operator|.
 name|getContentType
@@ -1847,6 +1849,19 @@ name|solrReq
 argument_list|,
 name|solrRsp
 argument_list|)
+decl_stmt|;
+comment|// don't call setContentType on null
+if|if
+condition|(
+literal|null
+operator|!=
+name|ct
+condition|)
+name|response
+operator|.
+name|setContentType
+argument_list|(
+name|ct
 argument_list|)
 expr_stmt|;
 if|if

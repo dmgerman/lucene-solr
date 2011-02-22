@@ -168,6 +168,8 @@ name|ByteField
 extends|extends
 name|FieldType
 block|{
+annotation|@
+name|Override
 DECL|method|init
 specifier|protected
 name|void
@@ -194,6 +196,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/////////////////////////////////////////////////////////////
+annotation|@
+name|Override
 DECL|method|getSortField
 specifier|public
 name|SortField
@@ -206,6 +210,11 @@ name|boolean
 name|reverse
 parameter_list|)
 block|{
+name|field
+operator|.
+name|checkSortability
+argument_list|()
+expr_stmt|;
 return|return
 operator|new
 name|SortField
@@ -236,6 +245,13 @@ name|QParser
 name|qparser
 parameter_list|)
 block|{
+name|field
+operator|.
+name|checkFieldCacheSource
+argument_list|(
+name|qparser
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|ByteFieldSource
@@ -256,6 +272,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|write
 specifier|public
 name|void

@@ -254,6 +254,8 @@ name|folder
 parameter_list|)
 function_decl|;
 block|}
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -566,6 +568,8 @@ name|logConfig
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextRow
 specifier|public
 name|Map

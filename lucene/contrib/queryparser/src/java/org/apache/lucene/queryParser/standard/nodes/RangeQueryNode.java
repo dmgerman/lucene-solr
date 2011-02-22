@@ -114,15 +114,6 @@ name|RangeQueryNode
 extends|extends
 name|ParametricRangeQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|7400866652044314657L
-decl_stmt|;
 DECL|field|collator
 specifier|private
 name|Collator

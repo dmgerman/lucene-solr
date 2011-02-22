@@ -555,6 +555,8 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean
@@ -689,6 +691,8 @@ extends|extends
 name|Analyzer
 block|{
 comment|/** Filters MockTokenizer with StopFilter. */
+annotation|@
+name|Override
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -726,6 +730,8 @@ specifier|private
 name|int
 name|originalMaxClauses
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setUp
 specifier|public
 name|void
@@ -3790,6 +3796,38 @@ block|{
 comment|// too many boolean clauses, so ParseException is expected
 block|}
 block|}
+comment|// LUCENE-792
+DECL|method|testNOT
+specifier|public
+name|void
+name|testNOT
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Analyzer
+name|a
+init|=
+operator|new
+name|MockAnalyzer
+argument_list|(
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"NOT foo AND bar"
+argument_list|,
+name|a
+argument_list|,
+literal|"-foo +bar"
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * This test differs from the original QueryParser, showing how the precedence    * issue has been corrected.    */
 DECL|method|testPrecedence
 specifier|public
@@ -4146,6 +4184,8 @@ name|query2
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void

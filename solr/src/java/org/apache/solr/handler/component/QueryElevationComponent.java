@@ -2996,6 +2996,8 @@ operator|=
 name|boosts
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newComparator
 specifier|public
 name|FieldComparator
@@ -3052,6 +3054,8 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare
@@ -3076,6 +3080,8 @@ index|]
 return|;
 comment|// values will be small enough that there is no overflow concern
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setBottom
@@ -3137,6 +3143,8 @@ name|intValue
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareBottom
@@ -3156,6 +3164,8 @@ operator|-
 name|bottomVal
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copy
@@ -3180,6 +3190,8 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|FieldComparator
 name|setNextReader
@@ -3209,6 +3221,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Comparable
 name|value

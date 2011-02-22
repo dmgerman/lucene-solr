@@ -419,7 +419,15 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Invalid version or the data in not in 'javabin' format"
+literal|"Invalid version (expected "
+operator|+
+name|VERSION
+operator|+
+literal|", but "
+operator|+
+name|version
+operator|+
+literal|") or the data in not in 'javabin' format"
 argument_list|)
 throw|;
 block|}

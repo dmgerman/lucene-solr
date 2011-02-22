@@ -408,6 +408,8 @@ operator|.
 name|open
 argument_list|(
 name|writer
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|writer
@@ -418,8 +420,7 @@ expr_stmt|;
 name|IndexSearcher
 name|searcher
 init|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|r
 argument_list|)

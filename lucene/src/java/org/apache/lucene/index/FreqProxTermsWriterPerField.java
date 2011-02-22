@@ -38,6 +38,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -127,6 +137,20 @@ operator|.
 name|codecs
 operator|.
 name|TermsConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BitVector
 import|;
 end_import
 
@@ -1136,6 +1160,8 @@ name|size
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyTo
 name|void
 name|copyTo
@@ -1273,6 +1299,9 @@ DECL|method|flush
 name|void
 name|flush
 parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
 name|FieldsConsumer
 name|consumer
 parameter_list|,
@@ -1309,6 +1338,16 @@ name|getComparator
 argument_list|()
 decl_stmt|;
 specifier|final
+name|Term
+name|protoTerm
+init|=
+operator|new
+name|Term
+argument_list|(
+name|fieldName
+argument_list|)
+decl_stmt|;
+specifier|final
 name|boolean
 name|currentFieldOmitTermFreqAndPositions
 init|=
@@ -1316,6 +1355,51 @@ name|fieldInfo
 operator|.
 name|omitTermFreqAndPositions
 decl_stmt|;
+specifier|final
+name|Map
+argument_list|<
+name|Term
+argument_list|,
+name|Integer
+argument_list|>
+name|segDeletes
+decl_stmt|;
+if|if
+condition|(
+name|state
+operator|.
+name|segDeletes
+operator|!=
+literal|null
+operator|&&
+name|state
+operator|.
+name|segDeletes
+operator|.
+name|terms
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|segDeletes
+operator|=
+name|state
+operator|.
+name|segDeletes
+operator|.
+name|terms
+expr_stmt|;
+block|}
+else|else
+block|{
+name|segDeletes
+operator|=
+literal|null
+expr_stmt|;
+block|}
 specifier|final
 name|int
 index|[]
@@ -1473,6 +1557,60 @@ argument_list|(
 name|text
 argument_list|)
 decl_stmt|;
+specifier|final
+name|int
+name|delDocLimit
+decl_stmt|;
+if|if
+condition|(
+name|segDeletes
+operator|!=
+literal|null
+condition|)
+block|{
+specifier|final
+name|Integer
+name|docIDUpto
+init|=
+name|segDeletes
+operator|.
+name|get
+argument_list|(
+name|protoTerm
+operator|.
+name|createTerm
+argument_list|(
+name|text
+argument_list|)
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|docIDUpto
+operator|!=
+literal|null
+condition|)
+block|{
+name|delDocLimit
+operator|=
+name|docIDUpto
+expr_stmt|;
+block|}
+else|else
+block|{
+name|delDocLimit
+operator|=
+literal|0
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|delDocLimit
+operator|=
+literal|0
+expr_stmt|;
+block|}
 comment|// Now termStates has numToMerge FieldMergeStates
 comment|// which all share the same term.  Now we must
 comment|// interleave the docID streams.
@@ -1658,6 +1796,17 @@ name|termDocFreq
 init|=
 name|termFreq
 decl_stmt|;
+comment|// NOTE: we could check here if the docID was
+comment|// deleted, and skip it.  However, this is somewhat
+comment|// dangerous because it can yield non-deterministic
+comment|// behavior since we may see the docID before we see
+comment|// the term that caused it to be deleted.  This
+comment|// would mean some (but not all) of its postings may
+comment|// make it into the index, which'd alter the docFreq
+comment|// for those terms.  We could fix this by doing two
+comment|// passes, ie first sweep marks all del docs, and
+comment|// 2nd sweep does the real flush, but I suspect
+comment|// that'd add too much time to flush.
 name|postingsConsumer
 operator|.
 name|startDoc
@@ -1667,6 +1816,48 @@ argument_list|,
 name|termDocFreq
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|docID
+operator|<
+name|delDocLimit
+condition|)
+block|{
+comment|// Mark it deleted.  TODO: we could also skip
+comment|// writing its postings; this would be
+comment|// deterministic (just for this Term's docs).
+if|if
+condition|(
+name|state
+operator|.
+name|deletedDocs
+operator|==
+literal|null
+condition|)
+block|{
+name|state
+operator|.
+name|deletedDocs
+operator|=
+operator|new
+name|BitVector
+argument_list|(
+name|state
+operator|.
+name|numDocs
+argument_list|)
+expr_stmt|;
+block|}
+name|state
+operator|.
+name|deletedDocs
+operator|.
+name|set
+argument_list|(
+name|docID
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Carefully copy over the prox + payload info,
 comment|// changing the format to match Lucene's segment
 comment|// format.

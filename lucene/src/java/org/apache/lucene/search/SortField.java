@@ -30,16 +30,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Locale
@@ -85,10 +75,8 @@ DECL|class|SortField
 specifier|public
 class|class
 name|SortField
-implements|implements
-name|Serializable
 block|{
-comment|/** Sort by document score (relevancy).  Sort values are Float and higher    * values are at the front. */
+comment|/** Sort by document score (relevance).  Sort values are Float and higher    * values are at the front. */
 DECL|field|SCORE
 specifier|public
 specifier|static
@@ -199,7 +187,7 @@ name|STRING_VAL
 init|=
 literal|11
 decl_stmt|;
-comment|/** Represents sorting by document score (relevancy). */
+comment|/** Represents sorting by document score (relevance). */
 DECL|field|FIELD_SCORE
 specifier|public
 specifier|static
@@ -1664,49 +1652,6 @@ expr_stmt|;
 return|return
 name|hash
 return|;
-block|}
-comment|// field must be interned after reading from stream
-DECL|method|readObject
-specifier|private
-name|void
-name|readObject
-parameter_list|(
-name|java
-operator|.
-name|io
-operator|.
-name|ObjectInputStream
-name|in
-parameter_list|)
-throws|throws
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-throws|,
-name|ClassNotFoundException
-block|{
-name|in
-operator|.
-name|defaultReadObject
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|field
-operator|!=
-literal|null
-condition|)
-name|field
-operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
-name|field
-argument_list|)
-expr_stmt|;
 block|}
 comment|/** Returns the {@link FieldComparator} to use for    * sorting.    *    * @lucene.experimental    *    * @param numHits number of top hits the queue will store    * @param sortPos position of this SortField within {@link    *   Sort}.  The comparator is primary if sortPos==0,    *   secondary if sortPos==1, etc.  Some comparators can    *   optimize themselves when they are the primary sort.    * @return {@link FieldComparator} to use when sorting    */
 DECL|method|getComparator

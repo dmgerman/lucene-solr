@@ -317,6 +317,8 @@ return|return
 name|current_page_number
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

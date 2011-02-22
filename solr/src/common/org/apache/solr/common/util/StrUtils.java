@@ -1208,7 +1208,7 @@ name|s
 argument_list|)
 throw|;
 block|}
-comment|/**    * {@link NullPointerException} and {@link SolrException} free version of {@link #parseBool(String)}    * @param s    * @param def    * @return    */
+comment|/**    * {@link NullPointerException} and {@link SolrException} free version of {@link #parseBool(String)}    * @param s    * @param def    * @return parsed boolean value (or def, if s is null or invalid)    */
 DECL|method|parseBool
 specifier|public
 specifier|static

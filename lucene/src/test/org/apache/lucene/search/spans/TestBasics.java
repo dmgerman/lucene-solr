@@ -464,6 +464,12 @@ argument_list|,
 literal|1000
 argument_list|)
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|//writer.infoStream = System.out;
@@ -535,8 +541,7 @@ argument_list|()
 expr_stmt|;
 name|searcher
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)

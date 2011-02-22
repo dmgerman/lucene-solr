@@ -66,6 +66,8 @@ name|ArabicLetterTokenizerFactory
 extends|extends
 name|BaseTokenizerFactory
 block|{
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

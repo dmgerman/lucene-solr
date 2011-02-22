@@ -90,6 +90,8 @@ name|UIMAUpdateRequestProcessorFactory
 extends|extends
 name|UpdateRequestProcessorFactory
 block|{
+annotation|@
+name|Override
 DECL|method|getInstance
 specifier|public
 name|UpdateRequestProcessor

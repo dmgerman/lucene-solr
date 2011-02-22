@@ -96,16 +96,6 @@ name|Reader
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Synonymous with {@link Field}.  *  *<p><bold>WARNING</bold>: This interface may change within minor versions, despite Lucene's backward compatibility requirements.  * This means new methods may be added from version to version.  This change only affects the Fieldable API; other backwards  * compatibility promises remain intact. For example, Lucene can still  * read and write indices created within the same major version.  *</p>  *  **/
 end_comment
@@ -115,10 +105,8 @@ DECL|interface|Fieldable
 specifier|public
 interface|interface
 name|Fieldable
-extends|extends
-name|Serializable
 block|{
-comment|/** Sets the boost factor hits on this field.  This value will be    * multiplied into the score of all hits on this this field of this    * document.    *    *<p>The boost is multiplied by {@link org.apache.lucene.document.Document#getBoost()} of the document    * containing this field.  If a document has multiple fields with the same    * name, all such values are multiplied together.  This product is then    * used to compute the norm factor for the field.  By    * default, in the {@link    * org.apache.lucene.search.Similarity#computeNorm(String,    * FieldInvertState)} method, the boost value is multiplied    * by the {@link    * org.apache.lucene.search.Similarity#lengthNorm(String,    * int)} and then rounded by {@link org.apache.lucene.search.Similarity#encodeNormValue(float)} before it is stored in the    * index.  One should attempt to ensure that this product does not overflow    * the range of that encoding.    *    * @see org.apache.lucene.document.Document#setBoost(float)    * @see org.apache.lucene.search.Similarity#computeNorm(String, FieldInvertState)    * @see org.apache.lucene.search.Similarity#encodeNormValue(float)    */
+comment|/** Sets the boost factor hits on this field.  This value will be    * multiplied into the score of all hits on this this field of this    * document.    *    *<p>The boost is multiplied by {@link org.apache.lucene.document.Document#getBoost()} of the document    * containing this field.  If a document has multiple fields with the same    * name, all such values are multiplied together.  This product is then    * used to compute the norm factor for the field.  By    * default, in the {@link    * org.apache.lucene.search.Similarity#computeNorm(FieldInvertState)} method, the boost value is multiplied    * by the length normalization factor    * and then rounded by {@link org.apache.lucene.search.Similarity#encodeNormValue(float)} before it is stored in the    * index.  One should attempt to ensure that this product does not overflow    * the range of that encoding.    *    * @see org.apache.lucene.document.Document#setBoost(float)    * @see org.apache.lucene.search.Similarity#computeNorm(FieldInvertState)    * @see org.apache.lucene.search.Similarity#encodeNormValue(float)    */
 DECL|method|setBoost
 name|void
 name|setBoost

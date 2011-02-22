@@ -240,6 +240,12 @@ argument_list|,
 literal|true
 argument_list|)
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 decl_stmt|;
 name|config
 operator|.
@@ -621,9 +627,6 @@ specifier|public
 name|float
 name|computeNorm
 parameter_list|(
-name|String
-name|field
-parameter_list|,
 name|FieldInvertState
 name|state
 parameter_list|)

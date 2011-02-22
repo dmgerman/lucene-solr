@@ -179,6 +179,8 @@ specifier|public
 name|BinURLDataSource
 parameter_list|()
 block|{ }
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -299,6 +301,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getData
 specifier|public
 name|InputStream
@@ -419,6 +423,8 @@ return|;
 comment|//unreachable
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

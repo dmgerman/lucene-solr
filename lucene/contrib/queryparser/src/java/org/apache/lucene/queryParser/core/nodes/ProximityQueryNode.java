@@ -108,15 +108,6 @@ name|ProximityQueryNode
 extends|extends
 name|BooleanQueryNode
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|9018220596680832916L
-decl_stmt|;
 DECL|enum|Type
 specifier|public
 enum|enum

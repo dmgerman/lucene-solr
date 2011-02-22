@@ -126,16 +126,6 @@ name|LatLongDistanceFilter
 extends|extends
 name|DistanceFilter
 block|{
-comment|/**    *     */
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|1L
-decl_stmt|;
 DECL|field|lat
 name|double
 name|lat

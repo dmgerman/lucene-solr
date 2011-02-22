@@ -848,7 +848,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * @param collection    * @param fileName    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * @param collection    * @param fileName    * @return true if config file exists    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|configFileExists
 specifier|public
 name|boolean
@@ -905,7 +905,7 @@ name|getCloudState
 argument_list|()
 return|;
 block|}
-comment|/**    * @param zkConfigName    * @param fileName    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * @param zkConfigName    * @param fileName    * @return config file data (in bytes)    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|getConfigFileData
 specifier|public
 name|byte
@@ -1087,7 +1087,7 @@ return|return
 name|zkClient
 return|;
 block|}
-comment|/**    * @return    */
+comment|/**    * @return zookeeper server address    */
 DECL|method|getZkServerAddress
 specifier|public
 name|String
@@ -1756,7 +1756,7 @@ operator|+
 name|localHostContext
 return|;
 block|}
-comment|/**    * @param path    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * @param path    * @return true if the path exists    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|pathExists
 specifier|public
 name|boolean
@@ -1779,7 +1779,7 @@ name|path
 argument_list|)
 return|;
 block|}
-comment|/**    * @param collection    * @return    * @throws KeeperException    * @throws InterruptedException    * @throws IOException     */
+comment|/**    * @param collection    * @return config value    * @throws KeeperException    * @throws InterruptedException    * @throws IOException     */
 DECL|method|readConfigName
 specifier|public
 name|String

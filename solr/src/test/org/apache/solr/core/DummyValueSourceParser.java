@@ -139,6 +139,8 @@ specifier|private
 name|NamedList
 name|args
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -155,6 +157,8 @@ operator|=
 name|args
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|parse
 specifier|public
 name|ValueSource
@@ -183,6 +187,8 @@ argument_list|(
 name|source
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|name
@@ -192,6 +198,8 @@ return|return
 literal|"foo"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|float
 name|func

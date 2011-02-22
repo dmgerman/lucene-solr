@@ -426,6 +426,8 @@ argument_list|,
 literal|true
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|boolean
 name|removeEldestEntry
@@ -1314,6 +1316,8 @@ return|return
 name|lst
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 name|String

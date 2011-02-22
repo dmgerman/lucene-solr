@@ -290,6 +290,10 @@ name|fieldWriter
 operator|.
 name|flush
 argument_list|(
+name|fieldInfo
+operator|.
+name|name
+argument_list|,
 name|consumer
 argument_list|,
 name|state

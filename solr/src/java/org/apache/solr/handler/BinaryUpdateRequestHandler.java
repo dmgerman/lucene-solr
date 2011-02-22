@@ -258,6 +258,8 @@ name|BinaryUpdateRequestHandler
 extends|extends
 name|ContentStreamHandlerBase
 block|{
+annotation|@
+name|Override
 DECL|method|newLoader
 specifier|protected
 name|ContentStreamLoader
@@ -276,6 +278,8 @@ operator|new
 name|ContentStreamLoader
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|load
@@ -640,6 +644,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getDescription
 specifier|public
 name|String
@@ -650,6 +656,8 @@ return|return
 literal|"Add/Update multiple documents with javabin format"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSourceId
 specifier|public
 name|String
@@ -660,6 +668,8 @@ return|return
 literal|"$Id$"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getSource
 specifier|public
 name|String
@@ -670,6 +680,8 @@ return|return
 literal|"$URL$"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getVersion
 specifier|public
 name|String

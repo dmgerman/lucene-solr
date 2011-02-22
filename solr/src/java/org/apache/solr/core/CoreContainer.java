@@ -728,6 +728,18 @@ literal|null
 condition|)
 return|return;
 comment|// not in zk mode
+comment|// zookeeper in quorum mode currently causes a failure when trying to
+comment|// register log4j mbeans.  See SOLR-2369
+comment|// TODO: remove after updating to an slf4j based zookeeper
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"zookeeper.jmx.log4j.disable"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
 name|zkServer
 operator|=
 operator|new
@@ -1239,7 +1251,9 @@ argument_list|(
 name|DEF_SOLR_XML
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"UTF-8"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -141,6 +141,8 @@ name|LogLevelSelection
 extends|extends
 name|HttpServlet
 block|{
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void
@@ -150,6 +152,8 @@ throws|throws
 name|ServletException
 block|{   }
 comment|/**    * Processes an HTTP GET request and changes the logging level as    * specified.    */
+annotation|@
+name|Override
 DECL|method|doGet
 specifier|public
 name|void
@@ -725,6 +729,8 @@ literal|"</body></html>\n"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|doPost
 specifier|public
 name|void
@@ -1350,6 +1356,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean
@@ -1437,6 +1445,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 name|int

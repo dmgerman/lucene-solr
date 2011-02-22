@@ -147,6 +147,8 @@ name|NamedList
 name|args
 parameter_list|)
 block|{   }
+annotation|@
+name|Override
 DECL|method|createParser
 specifier|public
 name|QParser
@@ -178,6 +180,8 @@ argument_list|,
 name|req
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Query
 name|parse

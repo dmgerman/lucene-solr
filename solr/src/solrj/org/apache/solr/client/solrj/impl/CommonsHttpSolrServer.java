@@ -54,16 +54,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
 name|MalformedURLException
@@ -623,7 +613,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * The {@link CommonsHttpSolrServer} uses the Apache Commons HTTP Client to connect to solr.   *<pre class="prettyprint">SolrServer server = new CommonsHttpSolrServer( url );</pre>  *   * @version $Id$  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -1643,12 +1633,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Reader
-name|reader
+name|InputStream
+name|in
 init|=
 name|c
 operator|.
-name|getReader
+name|getStream
 argument_list|()
 decl_stmt|;
 try|try
@@ -1657,7 +1647,7 @@ name|IOUtils
 operator|.
 name|copy
 argument_list|(
-name|reader
+name|in
 argument_list|,
 name|out
 argument_list|)
@@ -1665,7 +1655,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|reader
+name|in
 operator|.
 name|close
 argument_list|()

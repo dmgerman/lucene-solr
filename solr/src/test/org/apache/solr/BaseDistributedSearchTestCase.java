@@ -10,6 +10,10 @@ name|solr
 package|;
 end_package
 
+begin_comment
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|java
@@ -581,6 +585,8 @@ operator|new
 name|RandVal
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|val
@@ -605,6 +611,8 @@ operator|new
 name|RandVal
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|val
@@ -629,6 +637,8 @@ operator|new
 name|RandVal
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|val
@@ -653,6 +663,8 @@ operator|new
 name|RandVal
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|val
@@ -698,23 +710,23 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"n_ti"
+literal|"n_ti1"
 block|,
-literal|"n_f"
+literal|"n_f1"
 block|,
-literal|"n_tf"
+literal|"n_tf1"
 block|,
-literal|"n_d"
+literal|"n_d1"
 block|,
-literal|"n_td"
+literal|"n_td1"
 block|,
-literal|"n_l"
+literal|"n_l1"
 block|,
-literal|"n_tl"
+literal|"n_tl1"
 block|,
-literal|"n_dt"
+literal|"n_dt1"
 block|,
-literal|"n_tdt"
+literal|"n_tdt1"
 block|}
 decl_stmt|;
 DECL|field|randVals
@@ -2035,6 +2047,8 @@ operator|new
 name|Thread
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -3958,6 +3972,8 @@ operator|new
 name|TrieDateField
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|val
 specifier|public
 name|Object

@@ -385,6 +385,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Inserts bigrams for common words into a token stream. For each input token,    * output the token. If the token and/or the following token are in the list    * of common words also output a bigram with position increment 0 and    * type="gram"    *    * TODO:Consider adding an option to not emit unigram stopwords    * as in CDL XTF BigramStopFilter, CommonGramsQueryFilter would need to be    * changed to work with this.    *    * TODO: Consider optimizing for the case of three    * commongrams i.e "man of the year" normally produces 3 bigrams: "man-of",    * "of-the", "the-year" but with proper management of positions we could    * eliminate the middle bigram "of-the"and save a disk seek and a whole set of    * position lookups.    */
+annotation|@
+name|Override
 DECL|method|incrementToken
 specifier|public
 name|boolean

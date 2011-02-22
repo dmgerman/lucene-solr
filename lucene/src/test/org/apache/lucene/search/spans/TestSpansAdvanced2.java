@@ -217,6 +217,12 @@ name|OpenMode
 operator|.
 name|APPEND
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newInOrderLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|addDocument
@@ -270,8 +276,7 @@ expr_stmt|;
 comment|// re-open the searcher since we added more docs
 name|searcher2
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader2
 argument_list|)

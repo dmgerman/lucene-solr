@@ -544,6 +544,9 @@ literal|1
 argument_list|)
 return|;
 block|}
+name|numRead
+operator|++
+expr_stmt|;
 name|int
 name|ch
 init|=
@@ -2747,6 +2750,8 @@ return|return
 name|MISMATCH
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -2986,6 +2991,8 @@ return|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -3074,6 +3081,8 @@ return|return
 name|i
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

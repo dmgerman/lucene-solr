@@ -261,7 +261,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Document added, reader should be stale "
+literal|"One document added, reader should be current"
 argument_list|,
 name|reader
 operator|.

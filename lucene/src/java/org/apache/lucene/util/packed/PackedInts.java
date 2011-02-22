@@ -787,7 +787,7 @@ name|bitsPerValue
 argument_list|)
 return|;
 block|}
-comment|/** Returns how many bits are required to hold values up    *  to and including maxValue    * @param maxValue the maximum value tha should be representable.    * @return the amount of bits needed to represent values from 0 to maxValue.    * @lucene.internal    */
+comment|/** Returns how many bits are required to hold values up    *  to and including maxValue    * @param maxValue the maximum value that should be representable.    * @return the amount of bits needed to represent values from 0 to maxValue.    * @lucene.internal    */
 DECL|method|bitsRequired
 specifier|public
 specifier|static

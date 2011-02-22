@@ -347,6 +347,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.TextFragmenter#start(java.lang.String)    */
+annotation|@
+name|Override
 DECL|method|start
 specifier|public
 name|void
@@ -387,6 +389,8 @@ literal|0
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.TextFragmenter#isNewFragment(org.apache.lucene.analysis.Token)    */
+annotation|@
+name|Override
 DECL|method|isNewFragment
 specifier|public
 name|boolean

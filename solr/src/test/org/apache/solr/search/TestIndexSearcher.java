@@ -191,6 +191,8 @@ literal|"schema.xml"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|tearDown
 specifier|public
 name|void
@@ -381,7 +383,7 @@ literal|"v_t"
 argument_list|,
 literal|"Hello Dude"
 argument_list|,
-literal|"v_s"
+literal|"v_s1"
 argument_list|,
 literal|"string1"
 argument_list|)
@@ -399,7 +401,7 @@ literal|"v_t"
 argument_list|,
 literal|"Hello Yonik"
 argument_list|,
-literal|"v_s"
+literal|"v_s1"
 argument_list|,
 literal|"string2"
 argument_list|)
@@ -439,7 +441,7 @@ name|getStringVal
 argument_list|(
 name|sr1
 argument_list|,
-literal|"v_s"
+literal|"v_s1"
 argument_list|,
 literal|0
 argument_list|)
@@ -459,7 +461,7 @@ literal|"id"
 argument_list|,
 literal|"3"
 argument_list|,
-literal|"v_s"
+literal|"v_s1"
 argument_list|,
 literal|"{!literal}"
 argument_list|)
@@ -473,7 +475,7 @@ literal|"id"
 argument_list|,
 literal|"4"
 argument_list|,
-literal|"v_s"
+literal|"v_s1"
 argument_list|,
 literal|"other stuff"
 argument_list|)
@@ -561,7 +563,7 @@ literal|"v_f"
 argument_list|,
 literal|"8983"
 argument_list|,
-literal|"v_s"
+literal|"v_s1"
 argument_list|,
 literal|"string6"
 argument_list|)

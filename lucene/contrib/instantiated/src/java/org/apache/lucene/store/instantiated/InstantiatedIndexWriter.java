@@ -611,7 +611,7 @@ name|mergeFactor
 init|=
 literal|2500
 decl_stmt|;
-comment|/**    * The sweetspot for this implementation is somewhere around 2500 at 2K text large documents.    *<p/>    * Benchmark output:    *<pre>    *  ------------> Report sum by Prefix (MAddDocs) and Round (8 about 8 out of 160153)    *  Operation      round  mrg buf cmpnd   runCnt   recsPerRun        rec/s  elapsedSec    avgUsedMem    avgTotalMem    *  MAddDocs_20000     0   10  10  true        1        20000         81,4      245,68   200 325 152    268 156 928    *  MAddDocs_20000 -   1 1000  10  true -  -   1 -  -   20000 -  -   494,1 -  -  40,47 - 247 119 072 -  347 025 408    *  MAddDocs_20000     2   10 100  true        1        20000        104,8      190,81   233 895 552    363 720 704    *  MAddDocs_20000 -   3 2000 100  true -  -   1 -  -   20000 -  -   527,2 -  -  37,94 - 266 136 448 -  378 273 792    *  MAddDocs_20000     4   10  10 false        1        20000        103,2      193,75   222 089 792    378 273 792    *  MAddDocs_20000 -   5 3000  10 false -  -   1 -  -   20000 -  -   545,2 -  -  36,69 - 237 917 152 -  378 273 792    *  MAddDocs_20000     6   10 100 false        1        20000        102,7      194,67   237 018 976    378 273 792    *  MAddDocs_20000 -   7 4000 100 false -  -   1 -  -   20000 -  -   535,8 -  -  37,33 - 309 680 640 -  501 968 896    *</pre>    *    * @see org.apache.lucene.index.IndexWriter#setMergeFactor(int)    */
+comment|/**    * The sweetspot for this implementation is somewhere around 2500 at 2K text large documents.    *<p/>    * Benchmark output:    *<pre>    *  ------------> Report sum by Prefix (MAddDocs) and Round (8 about 8 out of 160153)    *  Operation      round  mrg buf cmpnd   runCnt   recsPerRun        rec/s  elapsedSec    avgUsedMem    avgTotalMem    *  MAddDocs_20000     0   10  10  true        1        20000         81,4      245,68   200 325 152    268 156 928    *  MAddDocs_20000 -   1 1000  10  true -  -   1 -  -   20000 -  -   494,1 -  -  40,47 - 247 119 072 -  347 025 408    *  MAddDocs_20000     2   10 100  true        1        20000        104,8      190,81   233 895 552    363 720 704    *  MAddDocs_20000 -   3 2000 100  true -  -   1 -  -   20000 -  -   527,2 -  -  37,94 - 266 136 448 -  378 273 792    *  MAddDocs_20000     4   10  10 false        1        20000        103,2      193,75   222 089 792    378 273 792    *  MAddDocs_20000 -   5 3000  10 false -  -   1 -  -   20000 -  -   545,2 -  -  36,69 - 237 917 152 -  378 273 792    *  MAddDocs_20000     6   10 100 false        1        20000        102,7      194,67   237 018 976    378 273 792    *  MAddDocs_20000 -   7 4000 100 false -  -   1 -  -   20000 -  -   535,8 -  -  37,33 - 309 680 640 -  501 968 896    *</pre>    *    * @see org.apache.lucene.index.LogMergePolicy#setMergeFactor(int)    */
 DECL|method|setMergeFactor
 specifier|public
 name|void
@@ -628,7 +628,7 @@ operator|=
 name|mergeFactor
 expr_stmt|;
 block|}
-comment|/**    * @see org.apache.lucene.index.IndexWriter#getMergeFactor()    */
+comment|/**    * @see org.apache.lucene.index.LogMergePolicy#getMergeFactor()    */
 DECL|method|getMergeFactor
 specifier|public
 name|int
@@ -1363,8 +1363,6 @@ argument_list|)
 operator|.
 name|computeNorm
 argument_list|(
-name|fieldName
-argument_list|,
 name|invertState
 argument_list|)
 decl_stmt|;

@@ -92,16 +92,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Expert: source of values for basic function queries.  *<P>At its default/simplest form, values - one per doc - are used as the score of that doc.  *<P>Values are instantiated as   * {@link org.apache.lucene.search.function.DocValues DocValues} for a particular reader.  *<P>ValueSource implementations differ in RAM requirements: it would always be a factor  * of the number of documents, but for each document the number of bytes can be 1, 2, 4, or 8.   *  * @lucene.experimental  *  *  */
 end_comment
@@ -112,8 +102,6 @@ specifier|public
 specifier|abstract
 class|class
 name|ValueSource
-implements|implements
-name|Serializable
 block|{
 comment|/**    * Return the DocValues used by the function query.    * @param context the IndexReader used to read these values.    * If any caching is involved, that caching would also be IndexReader based.      * @throws IOException for any error.    */
 DECL|method|getValues

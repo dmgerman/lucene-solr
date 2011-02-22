@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -65,8 +55,6 @@ name|EntryCreator
 parameter_list|<
 name|T
 parameter_list|>
-implements|implements
-name|Serializable
 block|{
 DECL|method|create
 specifier|public
@@ -120,6 +108,8 @@ comment|// EntryCreator is stored in in the FieldCache.
 comment|// When the FieldCache is replaced with a simpler map LUCENE-2665
 comment|// This can be removed
 comment|//------------------------------------------------------------------------
+annotation|@
+name|Override
 DECL|method|equals
 specifier|public
 name|boolean

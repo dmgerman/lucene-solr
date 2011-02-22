@@ -917,6 +917,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -940,6 +942,8 @@ name|iterator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|init
@@ -951,6 +955,8 @@ name|Properties
 name|initProps
 parameter_list|)
 block|{       }
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -967,6 +973,8 @@ name|T
 extends|extends
 name|Transformer
 block|{
+annotation|@
+name|Override
 DECL|method|transformRow
 specifier|public
 name|Object
@@ -1040,6 +1048,8 @@ name|T2
 extends|extends
 name|Transformer
 block|{
+annotation|@
+name|Override
 DECL|method|transformRow
 specifier|public
 name|Object

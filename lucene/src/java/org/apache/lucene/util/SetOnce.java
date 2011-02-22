@@ -95,7 +95,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instnace with the internal object set to the given object.    * Note that any calls to {@link #set(Object)} afterwards will result in    * {@link AlreadySetException}    *    * @throws AlreadySetException if called more than once    * @see #set(Object)    */
+comment|/**    * Creates a new instance with the internal object set to the given object.    * Note that any calls to {@link #set(Object)} afterwards will result in    * {@link AlreadySetException}    *    * @throws AlreadySetException if called more than once    * @see #set(Object)    */
 DECL|method|SetOnce
 specifier|public
 name|SetOnce

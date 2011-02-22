@@ -875,6 +875,11 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|currentFieldStoresPayloads
+condition|)
+block|{
 name|payloadPointer
 index|[
 name|level
@@ -885,6 +890,7 @@ operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 return|return
 name|delta

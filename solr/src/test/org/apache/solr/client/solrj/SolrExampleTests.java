@@ -3805,7 +3805,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"AAA"
+literal|"aaa"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -3830,7 +3830,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"AAA"
+literal|"aaa"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -3855,7 +3855,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"AAA"
+literal|"aaa"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -3880,7 +3880,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"AAA"
+literal|"aaa"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -3905,7 +3905,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"AAA"
+literal|"aaa"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -3930,7 +3930,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"BBB"
+literal|"bbb"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -3955,7 +3955,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"BBB"
+literal|"bbb"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -3980,7 +3980,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"BBB"
+literal|"bbb"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -4005,7 +4005,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"BBB"
+literal|"bbb"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -4030,7 +4030,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"BBB"
+literal|"bbb"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -4055,7 +4055,7 @@ operator|++
 argument_list|,
 literal|"features"
 argument_list|,
-literal|"BBB"
+literal|"bbb"
 argument_list|,
 literal|"cat"
 argument_list|,
@@ -4184,7 +4184,13 @@ comment|//        p.write(System.out, 0 );
 comment|//      }
 comment|//      System.out.println();
 comment|//    }
-comment|// Now make sure they have reasonable stuff
+comment|//  PIVOT: features,cat
+comment|//  features=bbb (6)
+comment|//    cat=b (4)
+comment|//    cat=a (2)
+comment|//  features=aaa (5)
+comment|//    cat=a (3)
+comment|//    cat=b (2)
 name|List
 argument_list|<
 name|PivotField
@@ -4356,6 +4362,13 @@ name|getCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//  PIVOT: cat,features
+comment|//  cat=b (6)
+comment|//    features=bbb (4)
+comment|//    features=aaa (2)
+comment|//  cat=a (5)
+comment|//    features=aaa (3)
+comment|//    features=bbb (2)
 name|ff
 operator|=
 name|pivot
@@ -4472,7 +4485,22 @@ name|getCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// 3 deep
+comment|// Three deep:
+comment|//  PIVOT: features,cat,inStock
+comment|//  features=bbb (6)
+comment|//    cat=b (4)
+comment|//      inStock=false (2)
+comment|//      inStock=true (2)
+comment|//    cat=a (2)
+comment|//      inStock=false (1)
+comment|//      inStock=true (1)
+comment|//  features=aaa (5)
+comment|//    cat=a (3)
+comment|//      inStock=true (2)
+comment|//      inStock=false (1)
+comment|//    cat=b (2)
+comment|//      inStock=false (1)
+comment|//      inStock=true (1)
 name|pivot
 operator|=
 name|pivots
@@ -4522,6 +4550,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// get(1) should be features=AAAA, then get(0) should be cat=a
 name|assertEquals
 argument_list|(
 literal|"cat"
@@ -4552,7 +4581,7 @@ expr_stmt|;
 comment|//  p.write(System.out, 5 );
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|counts
 operator|.
@@ -4560,6 +4589,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// 2 trues and 1 false under features=AAAA,cat=a
 name|assertEquals
 argument_list|(
 literal|"inStock"

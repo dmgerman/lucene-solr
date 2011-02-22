@@ -46,17 +46,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeMap
+name|Comparator
 import|;
 end_import
 
@@ -76,6 +66,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -86,7 +86,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
+name|TreeMap
 import|;
 end_import
 
@@ -100,7 +100,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|CompoundFileReader
 import|;
 end_import
 
@@ -115,6 +115,20 @@ operator|.
 name|index
 operator|.
 name|DocsAndPositionsEnum
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocsEnum
 import|;
 end_import
 
@@ -227,20 +241,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|CompoundFileReader
 import|;
 end_import
 
@@ -570,44 +570,17 @@ name|anyProx
 init|=
 literal|false
 decl_stmt|;
-specifier|final
-name|int
-name|numFields
-init|=
-name|fieldInfos
-operator|.
-name|size
-argument_list|()
-decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|numFields
-condition|;
-name|i
-operator|++
+name|FieldInfo
+name|fi
+range|:
+name|fieldInfos
 control|)
 block|{
-specifier|final
-name|FieldInfo
-name|fieldInfo
-init|=
-name|fieldInfos
-operator|.
-name|fieldInfo
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
-name|fieldInfo
+name|fi
 operator|.
 name|isIndexed
 condition|)
@@ -616,32 +589,32 @@ name|fields
 operator|.
 name|put
 argument_list|(
-name|fieldInfo
+name|fi
 operator|.
 name|name
 argument_list|,
-name|fieldInfo
+name|fi
 argument_list|)
 expr_stmt|;
 name|preTerms
 operator|.
 name|put
 argument_list|(
-name|fieldInfo
+name|fi
 operator|.
 name|name
 argument_list|,
 operator|new
 name|PreTerms
 argument_list|(
-name|fieldInfo
+name|fi
 argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
 operator|!
-name|fieldInfo
+name|fi
 operator|.
 name|omitTermFreqAndPositions
 condition|)
@@ -2463,7 +2436,7 @@ comment|// after E.  Three different seek points (1, 2, 3).
 comment|// We can easily detect S in UTF8: if a byte has
 comment|// prefix 11110 (0xf0), then that byte and the
 comment|// following 3 bytes encode a single unicode codepoint
-comment|// in S.  Similary,we can detect E: if a byte has
+comment|// in S.  Similarly, we can detect E: if a byte has
 comment|// prefix 1110111 (0xee), then that byte and the
 comment|// following 2 bytes encode a single unicode codepoint
 comment|// in E.
@@ -4644,6 +4617,14 @@ specifier|private
 name|SegmentTermDocs
 name|docs
 decl_stmt|;
+DECL|field|docID
+specifier|private
+name|int
+name|docID
+init|=
+operator|-
+literal|1
+decl_stmt|;
 DECL|method|PreDocsEnum
 name|PreDocsEnum
 parameter_list|()
@@ -4724,6 +4705,8 @@ argument_list|()
 condition|)
 block|{
 return|return
+name|docID
+operator|=
 name|docs
 operator|.
 name|doc
@@ -4733,6 +4716,8 @@ block|}
 else|else
 block|{
 return|return
+name|docID
+operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
@@ -4761,6 +4746,8 @@ argument_list|)
 condition|)
 block|{
 return|return
+name|docID
+operator|=
 name|docs
 operator|.
 name|doc
@@ -4770,6 +4757,8 @@ block|}
 else|else
 block|{
 return|return
+name|docID
+operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
@@ -4798,10 +4787,7 @@ name|docID
 parameter_list|()
 block|{
 return|return
-name|docs
-operator|.
-name|doc
-argument_list|()
+name|docID
 return|;
 block|}
 annotation|@
@@ -4885,6 +4871,14 @@ specifier|private
 name|SegmentTermPositions
 name|pos
 decl_stmt|;
+DECL|field|docID
+specifier|private
+name|int
+name|docID
+init|=
+operator|-
+literal|1
+decl_stmt|;
 DECL|method|PreDocsAndPositionsEnum
 name|PreDocsAndPositionsEnum
 parameter_list|()
@@ -4967,6 +4961,8 @@ argument_list|()
 condition|)
 block|{
 return|return
+name|docID
+operator|=
 name|pos
 operator|.
 name|doc
@@ -4976,6 +4972,8 @@ block|}
 else|else
 block|{
 return|return
+name|docID
+operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
@@ -5004,6 +5002,8 @@ argument_list|)
 condition|)
 block|{
 return|return
+name|docID
+operator|=
 name|pos
 operator|.
 name|doc
@@ -5013,6 +5013,8 @@ block|}
 else|else
 block|{
 return|return
+name|docID
+operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
@@ -5041,10 +5043,7 @@ name|docID
 parameter_list|()
 block|{
 return|return
-name|pos
-operator|.
-name|doc
-argument_list|()
+name|docID
 return|;
 block|}
 annotation|@
@@ -5057,6 +5056,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|docID
+operator|!=
+name|NO_MORE_DOCS
+assert|;
 return|return
 name|pos
 operator|.
@@ -5072,6 +5076,11 @@ name|boolean
 name|hasPayload
 parameter_list|()
 block|{
+assert|assert
+name|docID
+operator|!=
+name|NO_MORE_DOCS
+assert|;
 return|return
 name|pos
 operator|.

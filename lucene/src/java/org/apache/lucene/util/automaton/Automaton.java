@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Arrays
@@ -137,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Finite-state automaton with regular expression operations.  *<p>  * Class invariants:  *<ul>  *<li>An automaton is either represented explicitly (with {@link State} and  * {@link Transition} objects) or with a singleton string (see  * {@link #getSingleton()} and {@link #expandSingleton()}) in case the automaton  * is known to accept exactly one string. (Implicitly, all states and  * transitions of an automaton are reachable from its initial state.)  *<li>Automata are always reduced (see {@link #reduce()}) and have no  * transitions to dead states (see {@link #removeDeadTransitions()}).  *<li>If an automaton is nondeterministic, then {@link #isDeterministic()}  * returns false (but the converse is not required).  *<li>Automata provided as input to operations are generally assumed to be  * disjoint.  *</ul>  *<p>  * If the states or transitions are manipulated manually, the  * {@link #restoreInvariant()} and {@link #setDeterministic(boolean)} methods  * should be used afterwards to restore representation invariants that are  * assumed by the built-in automata operations.  *   *<p>  * @lucene.experimental  */
+comment|/**  * Finite-state automaton with regular expression operations.  *<p>  * Class invariants:  *<ul>  *<li>An automaton is either represented explicitly (with {@link State} and  * {@link Transition} objects) or with a singleton string (see  * {@link #getSingleton()} and {@link #expandSingleton()}) in case the automaton  * is known to accept exactly one string. (Implicitly, all states and  * transitions of an automaton are reachable from its initial state.)  *<li>Automata are always reduced (see {@link #reduce()}) and have no  * transitions to dead states (see {@link #removeDeadTransitions()}).  *<li>If an automaton is nondeterministic, then {@link #isDeterministic()}  * returns false (but the converse is not required).  *<li>Automata provided as input to operations are generally assumed to be  * disjoint.  *</ul>  *<p>  * If the states or transitions are manipulated manually, the  * {@link #restoreInvariant()} and {@link #setDeterministic(boolean)} methods  * should be used afterwards to restore representation invariants that are  * assumed by the built-in automata operations.  *   *<p>  *<p>  * Note: This class has internal mutable state and is not thread safe. It is   * the caller's responsibility to ensure any necessary synchronization if you  * wish to use the same Automaton from multiple threads. In general it is instead  * recommended to use a {@link RunAutomaton} for multithreaded matching: it is immutable,   * thread safe, and much faster.    *</p>  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -146,8 +136,6 @@ specifier|public
 class|class
 name|Automaton
 implements|implements
-name|Serializable
-implements|,
 name|Cloneable
 block|{
 comment|/**    * Minimize using Hopcroft's O(n log n) algorithm. This is regarded as one of    * the most generally efficient algorithms that exist.    *     * @see #setMinimization(int)    */

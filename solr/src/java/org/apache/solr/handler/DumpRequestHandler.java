@@ -32,7 +32,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStream
+name|Reader
 import|;
 end_import
 
@@ -279,12 +279,12 @@ name|getContentType
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|InputStream
-name|is
+name|Reader
+name|reader
 init|=
 name|content
 operator|.
-name|getStream
+name|getReader
 argument_list|()
 decl_stmt|;
 try|try
@@ -299,14 +299,14 @@ name|IOUtils
 operator|.
 name|toString
 argument_list|(
-name|is
+name|reader
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
 finally|finally
 block|{
-name|is
+name|reader
 operator|.
 name|close
 argument_list|()

@@ -2616,20 +2616,11 @@ name|DocIdSet
 name|getDocIdSet
 parameter_list|(
 name|AtomicReaderContext
-name|contextX
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|AtomicReaderContext
-name|context
-init|=
-operator|(
-name|AtomicReaderContext
-operator|)
-name|contextX
-decl_stmt|;
-comment|// TODO: remove after lucene migration
 name|IndexReader
 name|reader
 init|=
@@ -2792,6 +2783,8 @@ operator|new
 name|DocIdSet
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|DocIdSetIterator
 name|iterator

@@ -114,16 +114,6 @@ name|AttributeImpl
 implements|implements
 name|DateResolutionAttribute
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|6804360312723049526L
-decl_stmt|;
 DECL|field|dateResolution
 specifier|private
 name|DateTools

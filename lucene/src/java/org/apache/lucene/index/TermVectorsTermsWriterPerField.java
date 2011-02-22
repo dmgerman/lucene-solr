@@ -1192,6 +1192,8 @@ index|[]
 name|lastPositions
 decl_stmt|;
 comment|// Last position where this term occurred
+annotation|@
+name|Override
 DECL|method|newInstance
 name|ParallelPostingsArray
 name|newInstance

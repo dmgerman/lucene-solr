@@ -170,6 +170,8 @@ specifier|private
 name|boolean
 name|onlyLongestMatch
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|void

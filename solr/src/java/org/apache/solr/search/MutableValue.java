@@ -211,6 +211,8 @@ name|other
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hashCode
 specifier|public
 specifier|abstract

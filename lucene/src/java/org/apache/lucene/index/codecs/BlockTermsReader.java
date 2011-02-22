@@ -399,16 +399,6 @@ name|FieldReader
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// Comparator that orders our terms
-DECL|field|termComp
-specifier|private
-specifier|final
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|termComp
-decl_stmt|;
 comment|// Caches the most recently looked-up field + terms:
 DECL|field|termsCache
 specifier|private
@@ -557,11 +547,7 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|field|segment
-specifier|private
-name|String
-name|segment
-decl_stmt|;
+comment|//private String segment;
 DECL|method|BlockTermsReader
 specifier|public
 name|BlockTermsReader
@@ -583,12 +569,6 @@ name|postingsReader
 parameter_list|,
 name|int
 name|readBufferSize
-parameter_list|,
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|termComp
 parameter_list|,
 name|int
 name|termsCacheSize
@@ -618,18 +598,7 @@ argument_list|(
 name|termsCacheSize
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|termComp
-operator|=
-name|termComp
-expr_stmt|;
-name|this
-operator|.
-name|segment
-operator|=
-name|segment
-expr_stmt|;
+comment|//this.segment = segment;
 name|in
 operator|=
 name|dir
@@ -1280,7 +1249,10 @@ name|getComparator
 parameter_list|()
 block|{
 return|return
-name|termComp
+name|BytesRef
+operator|.
+name|getUTF8SortedAsUnicodeComparator
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -1571,9 +1543,18 @@ name|getComparator
 parameter_list|()
 block|{
 return|return
-name|termComp
+name|BytesRef
+operator|.
+name|getUTF8SortedAsUnicodeComparator
+argument_list|()
 return|;
 block|}
+comment|// TODO: we may want an alternate mode here which is
+comment|// "if you are about to return NOT_FOUND I won't use
+comment|// the terms data from that"; eg FuzzyTermsEnum will
+comment|// (usually) just immediately call seek again if we
+comment|// return NOT_FOUND so it's a waste for us to fill in
+comment|// the term that was actually NOT_FOUND
 annotation|@
 name|Override
 DECL|method|seek
@@ -1607,8 +1588,7 @@ literal|"terms index was not loaded"
 argument_list|)
 throw|;
 block|}
-comment|//System.out.println("BTR.seek seg=" + segment + " target=" + fieldInfo.name + ":" + target.utf8ToString() + " " + target + " current=" + term().utf8ToString() + " " + term() + " useCache=" + useCache + " indexIsCurrent=" + indexIsCurrent + " didIndexNext=" + didIndexNext + " seekPending=" + seekPending + " divisor=" + indexReader.getDivisor() + " this="  + this);
-comment|/*         if (didIndexNext) {           if (nextIndexTerm == null) {             //System.out.println("  nextIndexTerm=null");           } else {             //System.out.println("  nextIndexTerm=" + nextIndexTerm.utf8ToString());           }         }         */
+comment|/*         System.out.println("BTR.seek seg=" + segment + " target=" + fieldInfo.name + ":" + target.utf8ToString() + " " + target + " current=" + term().utf8ToString() + " " + term() + " useCache=" + useCache + " indexIsCurrent=" + indexIsCurrent + " didIndexNext=" + didIndexNext + " seekPending=" + seekPending + " divisor=" + indexReader.getDivisor() + " this="  + this);         if (didIndexNext) {           if (nextIndexTerm == null) {             System.out.println("  nextIndexTerm=null");           } else {             System.out.println("  nextIndexTerm=" + nextIndexTerm.utf8ToString());           }         }         */
 comment|// Check cache
 if|if
 condition|(
@@ -1679,7 +1659,10 @@ specifier|final
 name|int
 name|cmp
 init|=
-name|termComp
+name|BytesRef
+operator|.
+name|getUTF8SortedAsUnicodeComparator
+argument_list|()
 operator|.
 name|compare
 argument_list|(
@@ -1755,7 +1738,10 @@ name|nextIndexTerm
 operator|==
 literal|null
 operator|||
-name|termComp
+name|BytesRef
+operator|.
+name|getUTF8SortedAsUnicodeComparator
+argument_list|()
 operator|.
 name|compare
 argument_list|(
@@ -1838,12 +1824,6 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|// NOTE: the first _next() after an index seek is
-comment|// a bit wasteful, since it redundantly reads some
-comment|// suffix bytes into the buffer.  We could avoid storing
-comment|// those bytes in the primary file, but then when
-comment|// next()ing over an index term we'd have to
-comment|// special case it:
 name|term
 operator|.
 name|copy
@@ -1858,42 +1838,576 @@ comment|//System.out.println("  seek: term=" + term.utf8ToString());
 block|}
 else|else
 block|{
-comment|////System.out.println("  skip seek");
+comment|//System.out.println("  skip seek");
+if|if
+condition|(
+name|state
+operator|.
+name|termCount
+operator|==
+name|state
+operator|.
+name|blockTermCount
+operator|&&
+operator|!
+name|nextBlock
+argument_list|()
+condition|)
+block|{
+name|indexIsCurrent
+operator|=
+literal|false
+expr_stmt|;
+return|return
+name|SeekStatus
+operator|.
+name|END
+return|;
+block|}
 block|}
 name|seekPending
 operator|=
 literal|false
 expr_stmt|;
-comment|// Now scan:
+name|int
+name|common
+init|=
+literal|0
+decl_stmt|;
+comment|// Scan within block.  We could do this by calling
+comment|// _next() and testing the resulting term, but this
+comment|// is wasteful.  Instead, we first confirm the
+comment|// target matches the common prefix of this block,
+comment|// and then we scan the term bytes directly from the
+comment|// termSuffixesreader's byte[], saving a copy into
+comment|// the BytesRef term per term.  Only when we return
+comment|// do we then copy the bytes into the term.
 while|while
 condition|(
-name|_next
-argument_list|()
-operator|!=
-literal|null
+literal|true
+condition|)
+block|{
+comment|// First, see if target term matches common prefix
+comment|// in this block:
+if|if
+condition|(
+name|common
+operator|<
+name|termBlockPrefix
 condition|)
 block|{
 specifier|final
 name|int
 name|cmp
 init|=
-name|termComp
-operator|.
-name|compare
-argument_list|(
+operator|(
 name|term
-argument_list|,
+operator|.
+name|bytes
+index|[
+name|common
+index|]
+operator|&
+literal|0xFF
+operator|)
+operator|-
+operator|(
 name|target
-argument_list|)
+operator|.
+name|bytes
+index|[
+name|target
+operator|.
+name|offset
+operator|+
+name|common
+index|]
+operator|&
+literal|0xFF
+operator|)
 decl_stmt|;
 if|if
 condition|(
 name|cmp
-operator|==
+operator|<
 literal|0
 condition|)
 block|{
-comment|// Match!
+comment|// TODO: maybe we should store common prefix
+comment|// in block header?  (instead of relying on
+comment|// last term of previous block)
+comment|// Target's prefix is after the common block
+comment|// prefix, so term cannot be in this block
+comment|// but it could be in next block.  We
+comment|// must scan to end-of-block to set common
+comment|// prefix for next block:
+if|if
+condition|(
+name|state
+operator|.
+name|termCount
+operator|<
+name|state
+operator|.
+name|blockTermCount
+condition|)
+block|{
+while|while
+condition|(
+name|state
+operator|.
+name|termCount
+operator|<
+name|state
+operator|.
+name|blockTermCount
+operator|-
+literal|1
+condition|)
+block|{
+name|state
+operator|.
+name|termCount
+operator|++
+expr_stmt|;
+name|state
+operator|.
+name|ord
+operator|++
+expr_stmt|;
+name|termSuffixesReader
+operator|.
+name|skipBytes
+argument_list|(
+name|termSuffixesReader
+operator|.
+name|readVInt
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+specifier|final
+name|int
+name|suffix
+init|=
+name|termSuffixesReader
+operator|.
+name|readVInt
+argument_list|()
+decl_stmt|;
+name|term
+operator|.
+name|length
+operator|=
+name|termBlockPrefix
+operator|+
+name|suffix
+expr_stmt|;
+if|if
+condition|(
+name|term
+operator|.
+name|bytes
+operator|.
+name|length
+operator|<
+name|term
+operator|.
+name|length
+condition|)
+block|{
+name|term
+operator|.
+name|grow
+argument_list|(
+name|term
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
+name|termSuffixesReader
+operator|.
+name|readBytes
+argument_list|(
+name|term
+operator|.
+name|bytes
+argument_list|,
+name|termBlockPrefix
+argument_list|,
+name|suffix
+argument_list|)
+expr_stmt|;
+block|}
+name|state
+operator|.
+name|ord
+operator|++
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|nextBlock
+argument_list|()
+condition|)
+block|{
+name|indexIsCurrent
+operator|=
+literal|false
+expr_stmt|;
+return|return
+name|SeekStatus
+operator|.
+name|END
+return|;
+block|}
+name|common
+operator|=
+literal|0
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|cmp
+operator|>
+literal|0
+condition|)
+block|{
+comment|// Target's prefix is before the common prefix
+comment|// of this block, so we position to start of
+comment|// block and return NOT_FOUND:
+assert|assert
+name|state
+operator|.
+name|termCount
+operator|==
+literal|0
+assert|;
+specifier|final
+name|int
+name|suffix
+init|=
+name|termSuffixesReader
+operator|.
+name|readVInt
+argument_list|()
+decl_stmt|;
+name|term
+operator|.
+name|length
+operator|=
+name|termBlockPrefix
+operator|+
+name|suffix
+expr_stmt|;
+if|if
+condition|(
+name|term
+operator|.
+name|bytes
+operator|.
+name|length
+operator|<
+name|term
+operator|.
+name|length
+condition|)
+block|{
+name|term
+operator|.
+name|grow
+argument_list|(
+name|term
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
+name|termSuffixesReader
+operator|.
+name|readBytes
+argument_list|(
+name|term
+operator|.
+name|bytes
+argument_list|,
+name|termBlockPrefix
+argument_list|,
+name|suffix
+argument_list|)
+expr_stmt|;
+return|return
+name|SeekStatus
+operator|.
+name|NOT_FOUND
+return|;
+block|}
+else|else
+block|{
+name|common
+operator|++
+expr_stmt|;
+block|}
+continue|continue;
+block|}
+comment|// Test every term in this block
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+name|state
+operator|.
+name|termCount
+operator|++
+expr_stmt|;
+name|state
+operator|.
+name|ord
+operator|++
+expr_stmt|;
+specifier|final
+name|int
+name|suffix
+init|=
+name|termSuffixesReader
+operator|.
+name|readVInt
+argument_list|()
+decl_stmt|;
+comment|// We know the prefix matches, so just compare the new suffix:
+specifier|final
+name|int
+name|termLen
+init|=
+name|termBlockPrefix
+operator|+
+name|suffix
+decl_stmt|;
+name|int
+name|bytePos
+init|=
+name|termSuffixesReader
+operator|.
+name|getPosition
+argument_list|()
+decl_stmt|;
+name|boolean
+name|next
+init|=
+literal|false
+decl_stmt|;
+specifier|final
+name|int
+name|limit
+init|=
+name|target
+operator|.
+name|offset
+operator|+
+operator|(
+name|termLen
+operator|<
+name|target
+operator|.
+name|length
+condition|?
+name|termLen
+else|:
+name|target
+operator|.
+name|length
+operator|)
+decl_stmt|;
+name|int
+name|targetPos
+init|=
+name|target
+operator|.
+name|offset
+operator|+
+name|termBlockPrefix
+decl_stmt|;
+while|while
+condition|(
+name|targetPos
+operator|<
+name|limit
+condition|)
+block|{
+specifier|final
+name|int
+name|cmp
+init|=
+operator|(
+name|termSuffixes
+index|[
+name|bytePos
+operator|++
+index|]
+operator|&
+literal|0xFF
+operator|)
+operator|-
+operator|(
+name|target
+operator|.
+name|bytes
+index|[
+name|targetPos
+operator|++
+index|]
+operator|&
+literal|0xFF
+operator|)
+decl_stmt|;
+if|if
+condition|(
+name|cmp
+operator|<
+literal|0
+condition|)
+block|{
+comment|// Current term is still before the target;
+comment|// keep scanning
+name|next
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+block|}
+elseif|else
+if|if
+condition|(
+name|cmp
+operator|>
+literal|0
+condition|)
+block|{
+comment|// Done!  Current term is after target. Stop
+comment|// here, fill in real term, return NOT_FOUND.
+name|term
+operator|.
+name|length
+operator|=
+name|termBlockPrefix
+operator|+
+name|suffix
+expr_stmt|;
+if|if
+condition|(
+name|term
+operator|.
+name|bytes
+operator|.
+name|length
+operator|<
+name|term
+operator|.
+name|length
+condition|)
+block|{
+name|term
+operator|.
+name|grow
+argument_list|(
+name|term
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
+name|termSuffixesReader
+operator|.
+name|readBytes
+argument_list|(
+name|term
+operator|.
+name|bytes
+argument_list|,
+name|termBlockPrefix
+argument_list|,
+name|suffix
+argument_list|)
+expr_stmt|;
+comment|//System.out.println("  NOT_FOUND");
+return|return
+name|SeekStatus
+operator|.
+name|NOT_FOUND
+return|;
+block|}
+block|}
+if|if
+condition|(
+operator|!
+name|next
+operator|&&
+name|target
+operator|.
+name|length
+operator|<=
+name|termLen
+condition|)
+block|{
+name|term
+operator|.
+name|length
+operator|=
+name|termBlockPrefix
+operator|+
+name|suffix
+expr_stmt|;
+if|if
+condition|(
+name|term
+operator|.
+name|bytes
+operator|.
+name|length
+operator|<
+name|term
+operator|.
+name|length
+condition|)
+block|{
+name|term
+operator|.
+name|grow
+argument_list|(
+name|term
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
+name|termSuffixesReader
+operator|.
+name|readBytes
+argument_list|(
+name|term
+operator|.
+name|bytes
+argument_list|,
+name|termBlockPrefix
+argument_list|,
+name|suffix
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|target
+operator|.
+name|length
+operator|==
+name|termLen
+condition|)
+block|{
+comment|// Done!  Exact match.  Stop here, fill in
+comment|// real term, return FOUND.
+comment|//System.out.println("  FOUND");
 if|if
 condition|(
 name|useCache
@@ -1903,6 +2417,7 @@ comment|// Store in cache
 name|decodeMetaData
 argument_list|()
 expr_stmt|;
+comment|//System.out.println("  cache! state=" + state);
 name|termsCache
 operator|.
 name|put
@@ -1923,27 +2438,90 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//System.out.println("  FOUND");
 return|return
 name|SeekStatus
 operator|.
 name|FOUND
 return|;
 block|}
-elseif|else
-if|if
-condition|(
-name|cmp
-operator|>
-literal|0
-condition|)
+else|else
 block|{
-comment|//System.out.println("  NOT_FOUND term=" + term.utf8ToString());
+comment|//System.out.println("  NOT_FOUND");
 return|return
 name|SeekStatus
 operator|.
 name|NOT_FOUND
 return|;
+block|}
+block|}
+if|if
+condition|(
+name|state
+operator|.
+name|termCount
+operator|==
+name|state
+operator|.
+name|blockTermCount
+condition|)
+block|{
+comment|// Must pre-fill term for next block's common prefix
+name|term
+operator|.
+name|length
+operator|=
+name|termBlockPrefix
+operator|+
+name|suffix
+expr_stmt|;
+if|if
+condition|(
+name|term
+operator|.
+name|bytes
+operator|.
+name|length
+operator|<
+name|term
+operator|.
+name|length
+condition|)
+block|{
+name|term
+operator|.
+name|grow
+argument_list|(
+name|term
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
+name|termSuffixesReader
+operator|.
+name|readBytes
+argument_list|(
+name|term
+operator|.
+name|bytes
+argument_list|,
+name|termBlockPrefix
+argument_list|,
+name|suffix
+argument_list|)
+expr_stmt|;
+break|break;
+block|}
+else|else
+block|{
+name|termSuffixesReader
+operator|.
+name|skipBytes
+argument_list|(
+name|suffix
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|// The purpose of the terms dict index is to seek
 comment|// the enum to the closest index term before the
@@ -1953,17 +2531,29 @@ comment|// one) while we are scanning:
 assert|assert
 name|indexIsCurrent
 assert|;
-block|}
+if|if
+condition|(
+operator|!
+name|nextBlock
+argument_list|()
+condition|)
+block|{
+comment|//System.out.println("  END");
 name|indexIsCurrent
 operator|=
 literal|false
 expr_stmt|;
-comment|//System.out.println("  END");
 return|return
 name|SeekStatus
 operator|.
 name|END
 return|;
+block|}
+name|common
+operator|=
+literal|0
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -2083,10 +2673,7 @@ operator|==
 name|state
 operator|.
 name|blockTermCount
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 operator|!
 name|nextBlock
 argument_list|()
@@ -2100,7 +2687,6 @@ expr_stmt|;
 return|return
 literal|null
 return|;
-block|}
 block|}
 comment|// TODO: cutover to something better for these ints!  simple64?
 specifier|final
@@ -2595,6 +3181,8 @@ operator|.
 name|FOUND
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|ord
 specifier|public
 name|long
@@ -2729,6 +3317,10 @@ operator|.
 name|reset
 argument_list|(
 name|termSuffixes
+argument_list|,
+literal|0
+argument_list|,
+name|len
 argument_list|)
 expr_stmt|;
 comment|// docFreq, totalTermFreq
@@ -2781,6 +3373,10 @@ operator|.
 name|reset
 argument_list|(
 name|docFreqBytes
+argument_list|,
+literal|0
+argument_list|,
+name|len
 argument_list|)
 expr_stmt|;
 name|metaDataUpto
@@ -2847,12 +3443,15 @@ name|state
 operator|.
 name|termCount
 decl_stmt|;
+comment|// We must set/incr state.termCount because
+comment|// postings impl can look at this
 name|state
 operator|.
 name|termCount
 operator|=
 name|metaDataUpto
 expr_stmt|;
+comment|// TODO: better API would be "jump straight to term=N"???
 while|while
 condition|(
 name|metaDataUpto
@@ -2860,12 +3459,14 @@ operator|<
 name|limit
 condition|)
 block|{
-comment|//System.out.println("  decode");
+comment|//System.out.println("  decode mdUpto=" + metaDataUpto);
 comment|// TODO: we could make "tiers" of metadata, ie,
 comment|// decode docFreq/totalTF but don't decode postings
 comment|// metadata; this way caller could get
 comment|// docFreq/totalTF w/o paying decode cost for
 comment|// postings
+comment|// TODO: if docFreq were bulk decoded we could
+comment|// just skipN here:
 name|state
 operator|.
 name|docFreq
@@ -2875,6 +3476,7 @@ operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
+comment|//System.out.println("    dF=" + state.docFreq);
 if|if
 condition|(
 operator|!
@@ -2896,6 +3498,7 @@ operator|.
 name|readVLong
 argument_list|()
 expr_stmt|;
+comment|//System.out.println("    totTF=" + state.totalTermFreq);
 block|}
 name|postingsReader
 operator|.
@@ -2915,9 +3518,7 @@ name|termCount
 operator|++
 expr_stmt|;
 block|}
-block|}
-else|else
-block|{
+comment|//} else {
 comment|//System.out.println("  skip! seekPending");
 block|}
 block|}

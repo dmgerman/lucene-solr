@@ -165,6 +165,8 @@ name|RubyWriter
 extends|extends
 name|NaNFloatWriter
 block|{
+annotation|@
+name|Override
 DECL|method|getNaN
 specifier|protected
 name|String
@@ -175,6 +177,8 @@ return|return
 literal|"(0.0/0.0)"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getInf
 specifier|protected
 name|String

@@ -86,16 +86,6 @@ name|FieldBoostMapFCListener
 implements|implements
 name|FieldConfigListener
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|5929802948798314067L
-decl_stmt|;
 DECL|field|config
 specifier|private
 name|QueryConfigHandler
@@ -179,7 +169,7 @@ name|get
 argument_list|(
 name|fieldConfig
 operator|.
-name|getFieldName
+name|getField
 argument_list|()
 argument_list|)
 decl_stmt|;

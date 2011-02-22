@@ -118,16 +118,6 @@ name|ModifierQueryNode
 extends|extends
 name|QueryNodeImpl
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-operator|-
-literal|391209837953928169L
-decl_stmt|;
 DECL|enum|Modifier
 specifier|public
 enum|enum

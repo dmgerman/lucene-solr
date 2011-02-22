@@ -194,6 +194,8 @@ specifier|volatile
 name|Directory
 name|dir
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|open
 specifier|public
 name|Directory
@@ -253,6 +255,8 @@ name|newReaderCalled
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|newReader
 specifier|public
 name|IndexReader

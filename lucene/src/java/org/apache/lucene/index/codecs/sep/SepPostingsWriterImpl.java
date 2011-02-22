@@ -64,6 +64,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocsEnum
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|FieldInfo
 import|;
 end_import
@@ -317,15 +331,29 @@ specifier|final
 name|SepSkipListWriter
 name|skipListWriter
 decl_stmt|;
+comment|/** Expert: The fraction of TermDocs entries stored in skip tables,    * used to accelerate {@link DocsEnum#advance(int)}.  Larger values result in    * smaller indexes, greater acceleration, but fewer accelerable cases, while    * smaller values result in bigger indexes, less acceleration and more    * accelerable cases. More detailed experiments would be useful here. */
 DECL|field|skipInterval
 specifier|final
 name|int
 name|skipInterval
+init|=
+literal|16
 decl_stmt|;
+comment|/**    * Expert: minimum docFreq to write any skip data at all    */
+DECL|field|skipMinimum
+specifier|final
+name|int
+name|skipMinimum
+init|=
+name|skipInterval
+decl_stmt|;
+comment|/** Expert: The maximum number of skip levels. Smaller values result in     * slightly smaller indexes, but slower skipping in big posting lists.    */
 DECL|field|maxSkipLevels
 specifier|final
 name|int
 name|maxSkipLevels
+init|=
+literal|10
 decl_stmt|;
 DECL|field|totalNumDocs
 specifier|final
@@ -622,18 +650,13 @@ name|state
 operator|.
 name|numDocs
 expr_stmt|;
-comment|// TODO: -- abstraction violation
 name|skipListWriter
 operator|=
 operator|new
 name|SepSkipListWriter
 argument_list|(
-name|state
-operator|.
 name|skipInterval
 argument_list|,
-name|state
-operator|.
 name|maxSkipLevels
 argument_list|,
 name|state
@@ -648,18 +671,6 @@ name|posOut
 argument_list|,
 name|payloadOut
 argument_list|)
-expr_stmt|;
-name|skipInterval
-operator|=
-name|state
-operator|.
-name|skipInterval
-expr_stmt|;
-name|maxSkipLevels
-operator|=
-name|state
-operator|.
-name|maxSkipLevels
 expr_stmt|;
 block|}
 annotation|@
@@ -709,6 +720,14 @@ name|maxSkipLevels
 argument_list|)
 expr_stmt|;
 comment|// write maxSkipLevels
+name|termsOut
+operator|.
+name|writeInt
+argument_list|(
+name|skipMinimum
+argument_list|)
+expr_stmt|;
+comment|// write skipMinimum
 block|}
 annotation|@
 name|Override
@@ -1253,7 +1272,7 @@ if|if
 condition|(
 name|df
 operator|>=
-name|skipInterval
+name|skipMinimum
 condition|)
 block|{
 comment|//System.out.println("  skipFP=" + skipStart);
@@ -1310,28 +1329,10 @@ condition|(
 name|isFirstTerm
 condition|)
 block|{
-comment|// TODO: this is somewhat wasteful; eg if no terms in
-comment|// this block will use skip data, we don't need to
-comment|// write this:
-specifier|final
-name|long
-name|skipFP
-init|=
-name|skipOut
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
-name|indexBytesWriter
-operator|.
-name|writeVLong
-argument_list|(
-name|skipFP
-argument_list|)
-expr_stmt|;
+comment|// lazily write an absolute delta if a term in this block requires skip data.
 name|lastSkipFP
 operator|=
-name|skipFP
+literal|0
 expr_stmt|;
 block|}
 name|lastDocID

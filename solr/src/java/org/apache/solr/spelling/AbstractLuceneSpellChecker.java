@@ -584,6 +584,8 @@ specifier|protected
 name|StringDistance
 name|sd
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|init
 specifier|public
 name|String
@@ -1483,6 +1485,8 @@ return|return
 name|reader
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reload
 specifier|public
 name|void

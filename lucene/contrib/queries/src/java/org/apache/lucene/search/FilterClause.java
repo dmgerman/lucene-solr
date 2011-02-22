@@ -41,12 +41,6 @@ DECL|class|FilterClause
 specifier|public
 class|class
 name|FilterClause
-implements|implements
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
 block|{
 DECL|field|occur
 name|Occur

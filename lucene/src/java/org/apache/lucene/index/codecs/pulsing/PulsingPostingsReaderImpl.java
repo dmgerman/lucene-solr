@@ -787,7 +787,7 @@ operator|<=
 name|maxPositions
 condition|)
 block|{
-comment|//System.out.println("  inlined");
+comment|//System.out.println("  inlined pos=" + termState.inlinedBytesReader.getPosition());
 comment|// Inlined into terms dict -- just read the byte[] blob in,
 comment|// but don't decode it now (we only decode when a DocsEnum
 comment|// or D&PEnum is pulled):
@@ -1419,6 +1419,8 @@ condition|)
 block|{
 comment|//System.out.println("PR   END");
 return|return
+name|docID
+operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
@@ -1662,6 +1664,8 @@ name|doc
 return|;
 block|}
 return|return
+name|docID
+operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
@@ -1871,6 +1875,8 @@ condition|)
 block|{
 comment|//System.out.println("PR   END");
 return|return
+name|docID
+operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
@@ -2014,6 +2020,8 @@ return|;
 block|}
 block|}
 return|return
+name|docID
+operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
