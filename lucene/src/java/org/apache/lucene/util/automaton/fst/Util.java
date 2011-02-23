@@ -958,6 +958,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|String
+name|expandedNodeColor
+init|=
+literal|"blue"
+decl_stmt|;
 comment|// This is the start arc in the automaton (from the epsilon state to the first state
 comment|// with outgoing transitions.
 specifier|final
@@ -1137,6 +1143,15 @@ argument_list|)
 argument_list|,
 name|stateShape
 argument_list|,
+name|fst
+operator|.
+name|isExpandedTarget
+argument_list|(
+name|startArc
+argument_list|)
+condition|?
+name|expandedNodeColor
+else|:
 literal|null
 argument_list|,
 literal|""
@@ -1290,6 +1305,17 @@ name|target
 argument_list|)
 condition|)
 block|{
+specifier|final
+name|boolean
+name|isExpanded
+init|=
+name|fst
+operator|.
+name|isExpandedTarget
+argument_list|(
+name|arc
+argument_list|)
+decl_stmt|;
 name|emitDotState
 argument_list|(
 name|out
@@ -1305,6 +1331,10 @@ argument_list|)
 argument_list|,
 name|stateShape
 argument_list|,
+name|isExpanded
+condition|?
+name|expandedNodeColor
+else|:
 literal|null
 argument_list|,
 name|labelStates
@@ -1534,7 +1564,7 @@ name|out
 operator|.
 name|write
 argument_list|(
-literal|"  {rank=sink; -1 } "
+literal|"  {rank=sink; -1 }\n"
 argument_list|)
 expr_stmt|;
 name|out

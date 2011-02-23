@@ -114,6 +114,26 @@ name|CodecUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|fst
+operator|.
+name|Builder
+operator|.
+name|UnCompiledNode
+import|;
+end_import
+
 begin_comment
 comment|/** Represents an FST using a compact byte[] format.  *<p> The format is similar to what's used by Morfologik  *  (http://sourceforge.net/projects/morfologik).  * @lucene.experimental  */
 end_comment
@@ -229,16 +249,31 @@ literal|1
 operator|<<
 literal|6
 decl_stmt|;
-comment|// If the node has>= this number of arcs, the arcs are
-comment|// stored as a fixed array.  Fixed array consumes more RAM
-comment|// but enables binary search on the arcs (instead of
-comment|// linear scan) on lookup by arc label:
-DECL|field|NUM_ARCS_FIXED_ARRAY
-specifier|private
+comment|/**    * @see #shouldExpand(UnCompiledNode)    */
+DECL|field|FIXED_ARRAY_SHALLOW_DISTANCE
 specifier|final
 specifier|static
 name|int
-name|NUM_ARCS_FIXED_ARRAY
+name|FIXED_ARRAY_SHALLOW_DISTANCE
+init|=
+literal|3
+decl_stmt|;
+comment|// 0 => only root node.
+comment|/**    * @see #shouldExpand(UnCompiledNode)    */
+DECL|field|FIXED_ARRAY_NUM_ARCS_SHALLOW
+specifier|final
+specifier|static
+name|int
+name|FIXED_ARRAY_NUM_ARCS_SHALLOW
+init|=
+literal|5
+decl_stmt|;
+comment|/**    * @see #shouldExpand(UnCompiledNode)    */
+DECL|field|FIXED_ARRAY_NUM_ARCS_DEEP
+specifier|final
+specifier|static
+name|int
+name|FIXED_ARRAY_NUM_ARCS_DEEP
 init|=
 literal|10
 decl_stmt|;
@@ -1568,11 +1603,10 @@ specifier|final
 name|boolean
 name|doFixedArray
 init|=
+name|shouldExpand
+argument_list|(
 name|node
-operator|.
-name|numArcs
-operator|>=
-name|NUM_ARCS_FIXED_ARRAY
+argument_list|)
 decl_stmt|;
 specifier|final
 name|int
@@ -2506,6 +2540,65 @@ argument_list|(
 name|arc
 argument_list|)
 return|;
+block|}
+comment|/**    * Checks if<code>arc</code>'s target state is in expanded (or vector) format.     *     * @return Returns<code>true</code> if<code>arc</code> points to a state in an    * expanded array format.    */
+DECL|method|isExpandedTarget
+name|boolean
+name|isExpandedTarget
+parameter_list|(
+name|Arc
+argument_list|<
+name|T
+argument_list|>
+name|follow
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|follow
+operator|.
+name|isFinal
+argument_list|()
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+else|else
+block|{
+specifier|final
+name|BytesReader
+name|in
+init|=
+name|getBytesReader
+argument_list|(
+name|follow
+operator|.
+name|target
+argument_list|)
+decl_stmt|;
+specifier|final
+name|byte
+name|b
+init|=
+name|in
+operator|.
+name|readByte
+argument_list|()
+decl_stmt|;
+return|return
+operator|(
+name|b
+operator|&
+name|BIT_ARCS_AS_FIXED_ARRAY
+operator|)
+operator|!=
+literal|0
+return|;
+block|}
 block|}
 comment|/** In-place read; returns the arc. */
 DECL|method|readNextArc
@@ -3446,6 +3539,41 @@ parameter_list|()
 block|{
 return|return
 name|arcWithOutputCount
+return|;
+block|}
+comment|/**    * Nodes will be expanded if their depth (distance from the root node) is    *&lt;= this value and their number of arcs is&gt;=    * {@link #FIXED_ARRAY_NUM_ARCS_SHALLOW}.    *     *<p>    * Fixed array consumes more RAM but enables binary search on the arcs    * (instead of a linear scan) on lookup by arc label.    *     * @return<code>true</code> if<code>node</code> should be stored in an    *         expanded (array) form.    *     * @see #FIXED_ARRAY_NUM_ARCS_DEEP    * @see Builder.UnCompiledNode#depth    */
+DECL|method|shouldExpand
+specifier|private
+name|boolean
+name|shouldExpand
+parameter_list|(
+name|UnCompiledNode
+argument_list|<
+name|T
+argument_list|>
+name|node
+parameter_list|)
+block|{
+return|return
+operator|(
+name|node
+operator|.
+name|depth
+operator|<=
+name|FIXED_ARRAY_SHALLOW_DISTANCE
+operator|&&
+name|node
+operator|.
+name|numArcs
+operator|>=
+name|FIXED_ARRAY_NUM_ARCS_SHALLOW
+operator|)
+operator|||
+name|node
+operator|.
+name|numArcs
+operator|>=
+name|FIXED_ARRAY_NUM_ARCS_DEEP
 return|;
 block|}
 comment|// Non-static: writes to FST's byte[]
