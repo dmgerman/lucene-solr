@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Factory for {@link ThaiWordFilter} */
+comment|/**   * Factory for {@link ThaiWordFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_thai" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.NGramTokenizerFactory"/&gt;  *&lt;filter class="solr.ThaiWordFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  * @version $Id$   */
 end_comment
 
 begin_class

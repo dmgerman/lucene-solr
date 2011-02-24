@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Factory for {@link EnglishPossessiveFilter} */
+comment|/**  * Factory for {@link EnglishPossessiveFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_enpossessive" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.EnglishPossessiveFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   * @version $Id$  */
 end_comment
 
 begin_class
