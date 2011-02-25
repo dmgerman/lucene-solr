@@ -1319,7 +1319,7 @@ name|addField
 argument_list|(
 literal|"name"
 argument_list|,
-literal|"h\u1234llo"
+literal|"h\uD866\uDF05llo"
 argument_list|,
 literal|1.0f
 argument_list|)
@@ -1465,7 +1465,7 @@ name|query
 operator|.
 name|setQuery
 argument_list|(
-literal|"name:h\u1234llo"
+literal|"name:h\uD866\uDF05llo"
 argument_list|)
 expr_stmt|;
 name|rsp
