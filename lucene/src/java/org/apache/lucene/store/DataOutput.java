@@ -279,7 +279,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Writes an long in a variable-length format.  Writes between one and five    * bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported.    * @see DataInput#readVLong()    */
+comment|/** Writes an long in a variable-length format.  Writes between one and nine    * bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported.    * @see DataInput#readVLong()    */
 DECL|method|writeVLong
 specifier|public
 specifier|final
