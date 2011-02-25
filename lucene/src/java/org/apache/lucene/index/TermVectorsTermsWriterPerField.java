@@ -320,15 +320,6 @@ literal|true
 expr_stmt|;
 if|if
 condition|(
-name|termsWriter
-operator|.
-name|tvx
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
 name|termsHashPerField
 operator|.
 name|bytesHash
@@ -347,7 +338,6 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|// TODO: only if needed for performance
