@@ -233,7 +233,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A description of the PHP serialization format can be found here:  * http://www.hurring.com/scott/code/perl/serialize/  *  *<p>  * In order to support PHP Serialized strings with a proper byte count, This ResponseWriter  * must know if the Writers passed to it will result in an output of CESU-8 (UTF-8 w/o support  * for large code points outside of the BMP)  *<p>  * Currently Solr assumes that all Jetty servlet containers (detected using the "jetty.home"  * system property) use CESU-8 instead of UTF-8 (verified to the current release of 6.1.20).  *<p>  * In installations where Solr auto-detects incorrectly, the Solr Administrator should set the  * "solr.phps.cesu8" system property to either "true" or "false" accordingly.  */
+comment|/**  * A description of the PHP serialization format can be found here:  * http://www.hurring.com/scott/code/perl/serialize/  *  *<p>  * In order to support PHP Serialized strings with a proper byte count, This ResponseWriter  * must know if the Writers passed to it will result in an output of CESU-8 (UTF-8 w/o support  * for large code points outside of the BMP)  *<p>  * Solr versions before 3.1 assume that all Jetty servlet containers (detected using the "jetty.home"  * system property) use CESU-8 instead of UTF-8 (verified to the current release of 6.1.26).  * Solr 3.1 contains a patched version of Jetty that uses real UTF-8 (SOLR-2381)  *<p>  * In installations where Solr auto-detects incorrectly, the Solr Administrator should set the  * "solr.phps.cesu8" system property to either "true" or "false" accordingly.  */
 end_comment
 
 begin_class
@@ -268,49 +268,20 @@ name|NamedList
 name|n
 parameter_list|)
 block|{
-name|String
-name|cesu8Setting
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"solr.phps.cesu8"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|cesu8Setting
-operator|!=
-literal|null
-condition|)
-block|{
 name|CESU8
 operator|=
 literal|"true"
 operator|.
 name|equals
 argument_list|(
-name|cesu8Setting
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// guess at the setting.
-comment|// Jetty up until 6.1.20 at least (and probably versions after) uses CESU8
-name|CESU8
-operator|=
 name|System
 operator|.
 name|getProperty
 argument_list|(
-literal|"jetty.home"
+literal|"solr.phps.cesu8"
 argument_list|)
-operator|!=
-literal|null
+argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|write
 specifier|public
