@@ -125,7 +125,7 @@ name|EXPLAIN_SCORE_TOLERANCE_DELTA
 init|=
 literal|0.0002f
 decl_stmt|;
-comment|/**    * Tests that all documents up to maxDoc which are *not* in the    * expected result set, have an explanation which indicates no match    * (ie: Explanation value of 0.0f)    */
+comment|/**    * Tests that all documents up to maxDoc which are *not* in the    * expected result set, have an explanation which indicates that     * the document does not match    */
 DECL|method|checkNoMatchExplanations
 specifier|public
 specifier|static
@@ -273,7 +273,7 @@ argument_list|)
 expr_stmt|;
 name|Assert
 operator|.
-name|assertEquals
+name|assertFalse
 argument_list|(
 literal|"Explanation of [["
 operator|+
@@ -290,14 +290,10 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-literal|0.0f
-argument_list|,
 name|exp
 operator|.
-name|getValue
+name|isMatch
 argument_list|()
-argument_list|,
-literal|0.0f
 argument_list|)
 expr_stmt|;
 block|}
@@ -2533,6 +2529,31 @@ argument_list|,
 name|deep
 argument_list|,
 name|exp
+argument_list|)
+expr_stmt|;
+name|Assert
+operator|.
+name|assertTrue
+argument_list|(
+literal|"Explanation of [["
+operator|+
+name|d
+operator|+
+literal|"]] for #"
+operator|+
+name|doc
+operator|+
+literal|" does not indicate match: "
+operator|+
+name|exp
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|exp
+operator|.
+name|isMatch
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

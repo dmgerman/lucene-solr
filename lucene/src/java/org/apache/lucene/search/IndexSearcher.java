@@ -1523,7 +1523,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Just like {@link #search(Weight, Filter, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(Weight, Filter,    * Collector)}.</p>    */
+comment|/**    * Just like {@link #search(Weight, Filter, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(IndexReader.AtomicReaderContext[], Weight, Filter,    * Collector)}.</p>    */
 DECL|method|search
 specifier|protected
 name|TopFieldDocs
@@ -1781,7 +1781,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Just like {@link #search(Weight, Filter, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(Weight, Filter,    * Collector)}.</p>    */
+comment|/**    * Just like {@link #search(Weight, Filter, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(IndexReader.AtomicReaderContext[], Weight, Filter,    * Collector)}.</p>    */
 DECL|method|search
 specifier|protected
 name|TopFieldDocs
