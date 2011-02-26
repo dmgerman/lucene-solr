@@ -323,7 +323,7 @@ return|;
 block|}
 DECL|method|getTermCount
 specifier|public
-name|int
+name|long
 name|getTermCount
 parameter_list|()
 block|{
@@ -2100,7 +2100,7 @@ name|boolean
 name|isFinal
 decl_stmt|;
 DECL|field|inputCount
-name|int
+name|long
 name|inputCount
 decl_stmt|;
 comment|/** This node's depth, starting from the automaton root. */
