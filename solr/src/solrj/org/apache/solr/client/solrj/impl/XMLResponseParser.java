@@ -256,6 +256,22 @@ name|SimpleOrderedMap
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|XMLErrorLogger
+import|;
+end_import
+
 begin_comment
 comment|/**  *   * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -281,6 +297,19 @@ argument_list|(
 name|XMLResponseParser
 operator|.
 name|class
+argument_list|)
+decl_stmt|;
+DECL|field|xmllog
+specifier|private
+specifier|static
+specifier|final
+name|XMLErrorLogger
+name|xmllog
+init|=
+operator|new
+name|XMLErrorLogger
+argument_list|(
+name|log
 argument_list|)
 decl_stmt|;
 comment|// reuse the factory among all parser instances so things like string caches
@@ -338,6 +367,13 @@ name|factory
 argument_list|)
 expr_stmt|;
 block|}
+name|factory
+operator|.
+name|setXMLReporter
+argument_list|(
+name|xmllog
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|XMLResponseParser
 specifier|public

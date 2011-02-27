@@ -137,6 +137,22 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|XMLErrorLogger
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -389,6 +405,19 @@ argument_list|(
 name|DataImporter
 operator|.
 name|class
+argument_list|)
+decl_stmt|;
+DECL|field|XMLLOG
+specifier|private
+specifier|static
+specifier|final
+name|XMLErrorLogger
+name|XMLLOG
+init|=
+operator|new
+name|XMLErrorLogger
+argument_list|(
+name|LOG
 argument_list|)
 decl_stmt|;
 DECL|field|status
@@ -1125,6 +1154,13 @@ operator|.
 name|getResourceLoader
 argument_list|()
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|setErrorHandler
+argument_list|(
+name|XMLLOG
 argument_list|)
 expr_stmt|;
 name|Document
