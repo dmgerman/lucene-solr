@@ -608,6 +608,7 @@ block|}
 comment|/**    * returns the used AttributeFactory.    */
 DECL|method|getAttributeFactory
 specifier|public
+specifier|final
 name|AttributeFactory
 name|getAttributeFactory
 parameter_list|()
@@ -621,6 +622,7 @@ block|}
 comment|/** Returns a new iterator that iterates the attribute classes    * in the same order they were added in.    */
 DECL|method|getAttributeClassesIterator
 specifier|public
+specifier|final
 name|Iterator
 argument_list|<
 name|Class
@@ -651,6 +653,7 @@ block|}
 comment|/** Returns a new iterator that iterates all unique Attribute implementations.    * This iterator may contain less entries that {@link #getAttributeClassesIterator},    * if one instance implements more than one Attribute interface.    */
 DECL|method|getAttributeImplsIterator
 specifier|public
+specifier|final
 name|Iterator
 argument_list|<
 name|AttributeImpl
