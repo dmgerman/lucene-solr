@@ -98,6 +98,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|InputSource
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|servlet
@@ -443,6 +455,9 @@ argument_list|,
 literal|"solr"
 argument_list|,
 operator|new
+name|InputSource
+argument_list|(
+operator|new
 name|ByteArrayInputStream
 argument_list|(
 literal|"<root/>"
@@ -450,6 +465,7 @@ operator|.
 name|getBytes
 argument_list|(
 literal|"UTF-8"
+argument_list|)
 argument_list|)
 argument_list|)
 argument_list|,
