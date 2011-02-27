@@ -10685,6 +10685,10 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+name|loadDocStores
+operator|=
+literal|false
+expr_stmt|;
 block|}
 comment|// TODO: in the non-realtime case, we may want to only
 comment|// keep deletes (it's costly to open entire reader
