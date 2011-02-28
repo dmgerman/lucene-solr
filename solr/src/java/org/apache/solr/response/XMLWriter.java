@@ -286,7 +286,7 @@ name|char
 index|[]
 name|XML_STYLESHEET
 init|=
-literal|"<?xml-stylesheet type=\"text/xsl\" href=\"/admin/"
+literal|"<?xml-stylesheet type=\"text/xsl\" href=\""
 operator|.
 name|toCharArray
 argument_list|()
@@ -299,7 +299,7 @@ name|char
 index|[]
 name|XML_STYLESHEET_END
 init|=
-literal|".xsl\"?>\n"
+literal|"\"?>\n"
 operator|.
 name|toCharArray
 argument_list|()
@@ -511,11 +511,13 @@ argument_list|(
 name|XML_STYLESHEET
 argument_list|)
 expr_stmt|;
-name|writer
+name|XML
 operator|.
-name|write
+name|escapeAttributeValue
 argument_list|(
 name|stylesheet
+argument_list|,
+name|writer
 argument_list|)
 expr_stmt|;
 name|writer
