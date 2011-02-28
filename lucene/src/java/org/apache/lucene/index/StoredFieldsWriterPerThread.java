@@ -124,6 +124,10 @@ operator|(
 name|IndexOutput
 operator|)
 literal|null
+argument_list|,
+name|storedFieldsWriter
+operator|.
+name|fieldInfos
 argument_list|)
 expr_stmt|;
 block|}
