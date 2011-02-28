@@ -2123,8 +2123,9 @@ parameter_list|)
 block|{
 comment|// constant score mode is now enabled per default
 return|return
-operator|new
 name|TermRangeQuery
+operator|.
+name|newStringRange
 argument_list|(
 name|field
 operator|.

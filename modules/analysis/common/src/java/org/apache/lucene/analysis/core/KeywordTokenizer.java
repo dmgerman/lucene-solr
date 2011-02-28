@@ -111,8 +111,9 @@ name|KeywordTokenizer
 extends|extends
 name|Tokenizer
 block|{
+comment|/** Default read buffer size */
 DECL|field|DEFAULT_BUFFER_SIZE
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|int

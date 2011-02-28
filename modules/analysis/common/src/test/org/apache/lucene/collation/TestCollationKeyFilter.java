@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|text
@@ -90,7 +104,13 @@ name|Reader
 import|;
 end_import
 
+begin_comment
+comment|/**  * @deprecated remove when CollationKeyFilter is removed.  */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TestCollationKeyFilter
 specifier|public
 class|class
@@ -153,9 +173,12 @@ name|collator
 argument_list|)
 decl_stmt|;
 specifier|private
-name|String
+name|BytesRef
 name|firstRangeBeginning
 init|=
+operator|new
+name|BytesRef
+argument_list|(
 name|encodeCollationKey
 argument_list|(
 name|collator
@@ -168,11 +191,15 @@ operator|.
 name|toByteArray
 argument_list|()
 argument_list|)
+argument_list|)
 decl_stmt|;
 specifier|private
-name|String
+name|BytesRef
 name|firstRangeEnd
 init|=
+operator|new
+name|BytesRef
+argument_list|(
 name|encodeCollationKey
 argument_list|(
 name|collator
@@ -185,11 +212,15 @@ operator|.
 name|toByteArray
 argument_list|()
 argument_list|)
+argument_list|)
 decl_stmt|;
 specifier|private
-name|String
+name|BytesRef
 name|secondRangeBeginning
 init|=
+operator|new
+name|BytesRef
+argument_list|(
 name|encodeCollationKey
 argument_list|(
 name|collator
@@ -202,11 +233,15 @@ operator|.
 name|toByteArray
 argument_list|()
 argument_list|)
+argument_list|)
 decl_stmt|;
 specifier|private
-name|String
+name|BytesRef
 name|secondRangeEnd
 init|=
+operator|new
+name|BytesRef
+argument_list|(
 name|encodeCollationKey
 argument_list|(
 name|collator
@@ -218,6 +253,7 @@ argument_list|)
 operator|.
 name|toByteArray
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|public

@@ -776,8 +776,9 @@ comment|// that can be turned into SpanOr clause
 name|TermRangeQuery
 name|rangeQuery
 init|=
-operator|new
 name|TermRangeQuery
+operator|.
+name|newStringRange
 argument_list|(
 name|field
 argument_list|,
@@ -788,9 +789,6 @@ argument_list|,
 name|startInclusive
 argument_list|,
 name|endInclusive
-argument_list|,
-name|getRangeCollator
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|rangeQuery

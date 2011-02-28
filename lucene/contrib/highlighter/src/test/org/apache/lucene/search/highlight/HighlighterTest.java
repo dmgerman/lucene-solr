@@ -5383,8 +5383,9 @@ expr_stmt|;
 name|TermRangeFilter
 name|rf
 init|=
-operator|new
 name|TermRangeFilter
+operator|.
+name|newStringRange
 argument_list|(
 literal|"contents"
 argument_list|,
@@ -5525,8 +5526,9 @@ expr_stmt|;
 name|TermRangeFilter
 name|rf
 init|=
-operator|new
 name|TermRangeFilter
+operator|.
+name|newStringRange
 argument_list|(
 literal|"contents"
 argument_list|,
