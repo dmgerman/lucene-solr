@@ -2084,8 +2084,6 @@ name|int
 name|numTestPoints
 init|=
 literal|1000
-operator|*
-name|RANDOM_MULTIPLIER
 decl_stmt|;
 name|int
 name|numThreads
@@ -2096,9 +2094,9 @@ name|nextInt
 argument_list|(
 name|random
 argument_list|,
-literal|4
+literal|3
 argument_list|,
-literal|8
+literal|5
 argument_list|)
 decl_stmt|;
 specifier|final
