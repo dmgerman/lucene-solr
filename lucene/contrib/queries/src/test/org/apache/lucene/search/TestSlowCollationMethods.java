@@ -374,13 +374,9 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// TODO: we should be able to use newSearcher, but custom sorts are broken if IS has an executorservice
-comment|// see LUCENE-2941
-comment|//searcher = newSearcher(reader);
 name|searcher
 operator|=
-operator|new
-name|IndexSearcher
+name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
