@@ -250,6 +250,30 @@ specifier|public
 name|JaspellTernarySearchTrie
 parameter_list|()
 block|{   }
+comment|// for loading
+DECL|method|setRoot
+name|void
+name|setRoot
+parameter_list|(
+name|TSTNode
+name|newRoot
+parameter_list|)
+block|{
+name|rootNode
+operator|=
+name|newRoot
+expr_stmt|;
+block|}
+comment|// for saving
+DECL|method|getRoot
+name|TSTNode
+name|getRoot
+parameter_list|()
+block|{
+return|return
+name|rootNode
+return|;
+block|}
 comment|/**    * Constructs a Ternary Search Trie and loads data from a<code>File</code>    * into the Trie. The file is a normal text document, where each line is of    * the form word TAB float.    *     *@param file    *          The<code>File</code> with the data to load into the Trie.    *@exception IOException    *              A problem occured while reading the data.    */
 DECL|method|JaspellTernarySearchTrie
 specifier|public
