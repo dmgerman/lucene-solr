@@ -3737,6 +3737,11 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|ignoreException
+argument_list|(
+literal|"can not sort on multivalued field: sortabuse_t"
+argument_list|)
+expr_stmt|;
 name|assertQ
 argument_list|(
 literal|"sort on something that shouldn't work"
