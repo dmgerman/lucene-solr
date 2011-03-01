@@ -145,11 +145,19 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
+comment|// clone in case JRE doesnt properly sync,
+comment|// or to reduce contention in case they do
 name|this
 operator|.
 name|collator
 operator|=
+operator|(
+name|Collator
+operator|)
 name|collator
+operator|.
+name|clone
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@

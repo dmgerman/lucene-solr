@@ -85,11 +85,19 @@ name|Collator
 name|collator
 parameter_list|)
 block|{
+comment|// clone in case JRE doesnt properly sync,
+comment|// or to reduce contention in case they do
 name|this
 operator|.
 name|collator
 operator|=
+operator|(
+name|Collator
+operator|)
 name|collator
+operator|.
+name|clone
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
