@@ -3830,11 +3830,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"aaa"
-argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -4014,11 +4009,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"aaa"
-argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -4169,11 +4159,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"content"
-argument_list|)
 decl_stmt|;
 name|reader
 operator|.
@@ -4379,11 +4364,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"content"
-argument_list|)
 decl_stmt|;
 comment|//  now open reader& set norm for doc 0 (writes to
 comment|//  _0_1.s0)
@@ -6645,11 +6625,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"content"
-argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -7312,11 +7287,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"content"
-argument_list|)
 decl_stmt|;
 try|try
 block|{

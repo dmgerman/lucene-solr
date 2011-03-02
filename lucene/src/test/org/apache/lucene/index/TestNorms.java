@@ -924,13 +924,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"f"
-operator|+
-literal|1
-argument_list|)
 decl_stmt|;
 name|ir
 operator|.

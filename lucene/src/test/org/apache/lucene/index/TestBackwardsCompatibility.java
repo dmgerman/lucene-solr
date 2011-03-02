@@ -266,6 +266,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|Similarity
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|SimilarityProvider
 import|;
 end_import
@@ -3358,7 +3372,7 @@ name|delCount
 argument_list|)
 expr_stmt|;
 comment|// Set one norm so we get a .s0 file:
-name|SimilarityProvider
+name|Similarity
 name|sim
 init|=
 operator|new
@@ -3374,11 +3388,6 @@ argument_list|,
 literal|"content"
 argument_list|,
 name|sim
-operator|.
-name|get
-argument_list|(
-literal|"content"
-argument_list|)
 operator|.
 name|encodeNormValue
 argument_list|(
