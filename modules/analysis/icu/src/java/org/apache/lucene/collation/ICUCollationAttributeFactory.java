@@ -76,6 +76,24 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|collation
+operator|.
+name|CollationAttributeFactory
+import|;
+end_import
+
+begin_comment
+comment|// javadoc
+end_comment
+
+begin_import
+import|import
 name|com
 operator|.
 name|ibm
@@ -116,7 +134,7 @@ operator|.
 name|AttributeFactory
 name|delegate
 decl_stmt|;
-comment|/**    * Create an ICUCollationAttributeFactory, using     * {@link AttributeSource.AttributeFactory#DEFAULT_ATTRIBUTE_FACTORY} as the    * factory for all other attributes.    * @param collator CollationKey generator    */
+comment|/**    * Create an ICUCollationAttributeFactory, using     * {@link org.apache.lucene.util.AttributeSource.AttributeFactory#DEFAULT_ATTRIBUTE_FACTORY} as the    * factory for all other attributes.    * @param collator CollationKey generator    */
 DECL|method|ICUCollationAttributeFactory
 specifier|public
 name|ICUCollationAttributeFactory
