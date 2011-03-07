@@ -993,6 +993,60 @@ expr_stmt|;
 comment|// null fields are not added
 block|}
 block|}
+DECL|method|getID
+specifier|private
+specifier|static
+name|String
+name|getID
+parameter_list|(
+name|SolrInputDocument
+name|doc
+parameter_list|,
+name|IndexSchema
+name|schema
+parameter_list|)
+block|{
+name|String
+name|id
+init|=
+literal|""
+decl_stmt|;
+name|SchemaField
+name|sf
+init|=
+name|schema
+operator|.
+name|getUniqueKeyField
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|sf
+operator|!=
+literal|null
+condition|)
+block|{
+name|id
+operator|=
+literal|"[doc="
+operator|+
+name|doc
+operator|.
+name|getFieldValue
+argument_list|(
+name|sf
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+operator|+
+literal|"] "
+expr_stmt|;
+block|}
+return|return
+name|id
+return|;
+block|}
 comment|/**    * Convert a SolrInputDocument to a lucene Document.    *     * This function should go elsewhere.  This builds the Document without an    * extra Map<> checking for multiple values.  For more discussion, see:    * http://www.nabble.com/Re%3A-svn-commit%3A-r547493---in--lucene-solr-trunk%3A-.--src-java-org-apache-solr-common--src-java-org-apache-solr-schema--src-java-org-apache-solr-update--src-test-org-apache-solr-common--tf3931539.html    *     * TODO: /!\ NOTE /!\ This semantics of this function are still in flux.      * Something somewhere needs to be able to fill up a SolrDocument from    * a lucene document - this is one place that may happen.  It may also be    * moved to an independent function    *     * @since solr 1.3    */
 DECL|method|toDocument
 specifier|public
@@ -1085,43 +1139,6 @@ operator|>
 literal|1
 condition|)
 block|{
-name|String
-name|id
-init|=
-literal|""
-decl_stmt|;
-name|SchemaField
-name|sf
-init|=
-name|schema
-operator|.
-name|getUniqueKeyField
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|sf
-operator|!=
-literal|null
-condition|)
-block|{
-name|id
-operator|=
-literal|"["
-operator|+
-name|doc
-operator|.
-name|getFieldValue
-argument_list|(
-name|sf
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-operator|+
-literal|"] "
-expr_stmt|;
-block|}
 throw|throw
 operator|new
 name|SolrException
@@ -1134,7 +1151,12 @@ name|BAD_REQUEST
 argument_list|,
 literal|"ERROR: "
 operator|+
-name|id
+name|getID
+argument_list|(
+name|doc
+argument_list|,
+name|schema
+argument_list|)
 operator|+
 literal|"multiple values encountered for non multiValued field "
 operator|+
@@ -1158,6 +1180,8 @@ name|hasField
 init|=
 literal|false
 decl_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|Object
@@ -1402,7 +1426,16 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"ERROR: multiple values encountered for non multiValued copy field "
+literal|"ERROR: "
+operator|+
+name|getID
+argument_list|(
+name|doc
+argument_list|,
+name|schema
+argument_list|)
+operator|+
+literal|"multiple values encountered for non multiValued copy field "
 operator|+
 name|destinationField
 operator|.
@@ -1527,6 +1560,52 @@ operator|=
 literal|1.0f
 expr_stmt|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ex
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"ERROR: "
+operator|+
+name|getID
+argument_list|(
+name|doc
+argument_list|,
+name|schema
+argument_list|)
+operator|+
+literal|"Error adding field '"
+operator|+
+name|field
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'='"
+operator|+
+name|field
+operator|.
+name|getValue
+argument_list|()
+operator|+
+literal|"'"
+argument_list|,
+name|ex
+argument_list|)
+throw|;
+block|}
 comment|// make sure the field was used somehow...
 if|if
 condition|(
@@ -1546,7 +1625,16 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"ERROR:unknown field '"
+literal|"ERROR: "
+operator|+
+name|getID
+argument_list|(
+name|doc
+argument_list|,
+name|schema
+argument_list|)
+operator|+
+literal|"unknown field '"
 operator|+
 name|name
 operator|+
@@ -1611,23 +1699,16 @@ block|}
 else|else
 block|{
 name|String
-name|id
-init|=
-name|schema
-operator|.
-name|printableUniqueKey
-argument_list|(
-name|out
-argument_list|)
-decl_stmt|;
-name|String
 name|msg
 init|=
-literal|"Document ["
+name|getID
+argument_list|(
+name|doc
+argument_list|,
+name|schema
+argument_list|)
 operator|+
-name|id
-operator|+
-literal|"] missing required field: "
+literal|"missing required field: "
 operator|+
 name|field
 operator|.
