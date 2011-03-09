@@ -228,11 +228,13 @@ literal|false
 decl_stmt|;
 comment|// defaults to natural order
 DECL|field|creator
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|private
 name|CachedArrayCreator
-argument_list|<
-name|?
-argument_list|>
 name|creator
 decl_stmt|;
 DECL|field|missingValue
