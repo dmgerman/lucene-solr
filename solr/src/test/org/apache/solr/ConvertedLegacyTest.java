@@ -22,6 +22,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|*
@@ -126,9 +142,11 @@ name|args
 operator|.
 name|put
 argument_list|(
-literal|"version"
+name|CommonParams
+operator|.
+name|VERSION
 argument_list|,
-literal|"2.0"
+literal|"2.2"
 argument_list|)
 expr_stmt|;
 name|lrf
@@ -432,15 +450,6 @@ name|String
 argument_list|>
 argument_list|()
 expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
 name|req
 operator|=
 operator|new
@@ -486,15 +495,6 @@ name|String
 argument_list|>
 argument_list|()
 expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
 name|req
 operator|=
 operator|new
@@ -535,15 +535,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|req
 operator|=
@@ -586,15 +577,6 @@ name|String
 argument_list|>
 argument_list|()
 expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
 name|req
 operator|=
 operator|new
@@ -635,15 +617,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|req
 operator|=
@@ -688,15 +661,6 @@ name|String
 argument_list|>
 argument_list|()
 expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
 name|req
 operator|=
 operator|new
@@ -739,15 +703,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|req
 operator|=
@@ -792,15 +747,6 @@ name|String
 argument_list|>
 argument_list|()
 expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
 name|req
 operator|=
 operator|new
@@ -841,15 +787,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|req
 operator|=
@@ -892,15 +829,6 @@ name|String
 argument_list|>
 argument_list|()
 expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
 name|req
 operator|=
 operator|new
@@ -942,15 +870,6 @@ name|String
 argument_list|>
 argument_list|()
 expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
 name|req
 operator|=
 operator|new
@@ -991,15 +910,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|args
 operator|.
@@ -1050,15 +960,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|args
 operator|.
@@ -1820,9 +1721,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc/*)>=3]  "
 argument_list|,
-literal|"//int[@name='gack_i'][.='51778']  "
+literal|"//arr[@name='gack_i']/int[.='51778']  "
 argument_list|,
-literal|"//str[@name='t_name'][.='cats']"
+literal|"//arr[@name='t_name']/str[.='cats']"
 argument_list|)
 expr_stmt|;
 comment|// now test if we can query by a dynamic field (requires analyzer support)
@@ -1833,7 +1734,7 @@ argument_list|(
 literal|"t_name:cat"
 argument_list|)
 argument_list|,
-literal|"//str[@name='t_name' and .='cats']"
+literal|"//arr[@name='t_name' and .='cats']/str"
 argument_list|)
 expr_stmt|;
 comment|// check that deleteByQuery works for dynamic fields
@@ -1875,9 +1776,9 @@ argument_list|(
 literal|"id:44"
 argument_list|)
 argument_list|,
-literal|"//str[@name='xaa'][.='mystr']  "
+literal|"//arr[@name='xaa'][.='mystr']/str  "
 argument_list|,
-literal|"//int[@name='xaaa'][.='12321']"
+literal|"//arr[@name='xaaa'][.='12321']/int"
 argument_list|)
 expr_stmt|;
 comment|// test integer ranges and sorting
@@ -2728,11 +2629,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "
 argument_list|,
-literal|"//doc[3]/int[.='100'] "
+literal|"//doc[3]/int[@name='b_si' and .='100'] "
 argument_list|,
-literal|"//doc[4]/int[.='50']  "
+literal|"//doc[4]/int[@name='b_si' and .='50']  "
 argument_list|,
-literal|"//doc[5]/int[.='1000']"
+literal|"//doc[5]/arr[@name='id_i' and .='1000']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -2744,11 +2645,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=7] "
 argument_list|,
-literal|"//doc[3]/int[.='50'] "
+literal|"//doc[3]/int[@name='b_si' and .='50'] "
 argument_list|,
-literal|"//doc[4]/int[.='100']  "
+literal|"//doc[4]/int[@name='b_si' and .='100']  "
 argument_list|,
-literal|"//doc[5]/int[.='1000']"
+literal|"//doc[5]/arr[@name='id_i' and .='1000']"
 argument_list|)
 expr_stmt|;
 comment|// nullfirst tests
@@ -2761,11 +2662,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3] "
 argument_list|,
-literal|"//doc[1]/int[.='1002']"
+literal|"//doc[1]/arr[@name='id_i' and .='1002']"
 argument_list|,
-literal|"//doc[2]/int[.='1001']  "
+literal|"//doc[2]/arr[@name='id_i' and .='1001']  "
 argument_list|,
-literal|"//doc[3]/int[.='1000']"
+literal|"//doc[3]/arr[@name='id_i' and .='1000']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -2777,11 +2678,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3] "
 argument_list|,
-literal|"//doc[1]/int[.='1002']"
+literal|"//doc[1]/arr[@name='id_i' and .='1002']"
 argument_list|,
-literal|"//doc[2]/int[.='1000']  "
+literal|"//doc[2]/arr[@name='id_i' and .='1000']  "
 argument_list|,
-literal|"//doc[3]/int[.='1001']"
+literal|"//doc[3]/arr[@name='id_i' and .='1001']"
 argument_list|)
 expr_stmt|;
 name|ignoreException
@@ -3864,15 +3765,6 @@ name|args
 operator|.
 name|put
 argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
 literal|"fl"
 argument_list|,
 literal|"fname_s,arr_f  "
@@ -3918,15 +3810,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|args
 operator|.
@@ -3983,15 +3866,6 @@ name|args
 operator|.
 name|put
 argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
 literal|"fl"
 argument_list|,
 literal|"score "
@@ -4041,15 +3915,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|args
 operator|.
@@ -4109,15 +3974,6 @@ name|args
 operator|.
 name|put
 argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
 literal|"fl"
 argument_list|,
 literal|"* "
@@ -4171,15 +4027,6 @@ name|args
 operator|.
 name|put
 argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
 literal|"fl"
 argument_list|,
 literal|"score "
@@ -4223,15 +4070,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|args
 operator|.
@@ -4289,15 +4127,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|args
 operator|.
@@ -4360,15 +4189,6 @@ name|args
 operator|.
 name|put
 argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
 literal|"fl"
 argument_list|,
 literal|"score "
@@ -4421,15 +4241,6 @@ argument_list|,
 name|String
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|args
-operator|.
-name|put
-argument_list|(
-literal|"version"
-argument_list|,
-literal|"2.0"
-argument_list|)
 expr_stmt|;
 name|args
 operator|.
