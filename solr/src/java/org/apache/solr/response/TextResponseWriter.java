@@ -518,6 +518,7 @@ name|IOException
 function_decl|;
 DECL|method|writeVal
 specifier|public
+specifier|final
 name|void
 name|writeVal
 parameter_list|(
