@@ -1855,7 +1855,20 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"flush: push buffered deletes"
+literal|"flush: push buffered deletes startSize="
+operator|+
+name|pendingDeletes
+operator|.
+name|bytesUsed
+operator|.
+name|get
+argument_list|()
+operator|+
+literal|" frozenSize="
+operator|+
+name|packet
+operator|.
+name|bytesUsed
 argument_list|)
 expr_stmt|;
 block|}

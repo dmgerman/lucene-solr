@@ -16812,7 +16812,7 @@ argument_list|)
 operator|.
 name|setRAMBufferSizeMB
 argument_list|(
-literal|0.5
+literal|1.0
 argument_list|)
 operator|.
 name|setMaxBufferedDocs
@@ -17018,7 +17018,7 @@ name|count
 argument_list|,
 name|count
 operator|>
-literal|1500
+literal|3000
 argument_list|)
 expr_stmt|;
 block|}
