@@ -620,7 +620,7 @@ name|int
 name|size
 parameter_list|)
 block|{
-name|initialize
+name|super
 argument_list|(
 name|size
 argument_list|)

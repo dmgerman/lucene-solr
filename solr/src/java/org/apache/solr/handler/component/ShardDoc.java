@@ -280,6 +280,11 @@ name|int
 name|size
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|size
+argument_list|)
+expr_stmt|;
 specifier|final
 name|int
 name|n
@@ -474,11 +479,6 @@ expr_stmt|;
 block|}
 comment|//System.out.println("%%%%%%%%%%%%%%%%%% got "+fields[i].getType() +"   for "+ fieldname +"  fields[i].getReverse(): "+fields[i].getReverse());
 block|}
-name|initialize
-argument_list|(
-name|size
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override
