@@ -130,6 +130,16 @@ name|Watcher
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_class
 DECL|class|ZkSolrClientTest
 specifier|public
@@ -669,6 +679,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Ignore
+argument_list|(
+literal|"test case crashes modern jres"
+argument_list|)
 DECL|method|testWatchChildren
 specifier|public
 name|void
