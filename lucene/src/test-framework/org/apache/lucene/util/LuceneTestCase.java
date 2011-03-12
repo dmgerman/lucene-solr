@@ -3460,6 +3460,20 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|t
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"SyncThread"
+argument_list|)
+condition|)
+comment|// avoid zookeeper jre crash
 name|t
 operator|.
 name|interrupt
