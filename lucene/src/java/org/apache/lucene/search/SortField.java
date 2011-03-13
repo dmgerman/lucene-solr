@@ -227,16 +227,12 @@ init|=
 literal|false
 decl_stmt|;
 comment|// defaults to natural order
-comment|// This is not generified because of a javac bug in early JDK 1.5 (e.g. used by FreeBSD).
-comment|// With<?> as type param, getComparator() fails to compile because of cast problems.
 DECL|field|creator
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|private
 name|CachedArrayCreator
+argument_list|<
+name|?
+argument_list|>
 name|creator
 decl_stmt|;
 DECL|field|missingValue
