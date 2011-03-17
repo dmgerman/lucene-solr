@@ -1033,8 +1033,8 @@ parameter_list|(
 name|SchemaField
 name|field
 parameter_list|,
-name|String
-name|externalVal
+name|Object
+name|value
 parameter_list|,
 name|float
 name|boost
@@ -1084,7 +1084,10 @@ name|val
 operator|=
 name|toInternal
 argument_list|(
-name|externalVal
+name|value
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1110,7 +1113,7 @@ name|field
 operator|+
 literal|"' from value '"
 operator|+
-name|externalVal
+name|value
 operator|+
 literal|"'"
 argument_list|,
@@ -1253,7 +1256,7 @@ return|return
 name|f
 return|;
 block|}
-comment|/**    * Given a {@link org.apache.solr.schema.SchemaField}, create one or more {@link org.apache.lucene.document.Fieldable} instances    * @param field the {@link org.apache.solr.schema.SchemaField}    * @param externalVal The value to add to the field    * @param boost The boost to apply    * @return An array of {@link org.apache.lucene.document.Fieldable}    *    * @see #createField(SchemaField, String, float)    * @see #isPolyField()    */
+comment|/**    * Given a {@link org.apache.solr.schema.SchemaField}, create one or more {@link org.apache.lucene.document.Fieldable} instances    * @param field the {@link org.apache.solr.schema.SchemaField}    * @param externalVal The value to add to the field    * @param boost The boost to apply    * @return An array of {@link org.apache.lucene.document.Fieldable}    *    * @see #createField(SchemaField, Object, float)    * @see #isPolyField()    */
 DECL|method|createFields
 specifier|public
 name|Fieldable
@@ -1263,8 +1266,8 @@ parameter_list|(
 name|SchemaField
 name|field
 parameter_list|,
-name|String
-name|externalVal
+name|Object
+name|value
 parameter_list|,
 name|float
 name|boost
@@ -1277,7 +1280,7 @@ name|createField
 argument_list|(
 name|field
 argument_list|,
-name|externalVal
+name|value
 argument_list|,
 name|boost
 argument_list|)
