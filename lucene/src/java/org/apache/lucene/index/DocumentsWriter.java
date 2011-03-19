@@ -846,10 +846,7 @@ name|this
 operator|.
 name|similarityProvider
 operator|=
-name|writer
-operator|.
-name|getConfig
-argument_list|()
+name|config
 operator|.
 name|getSimilarityProvider
 argument_list|()
