@@ -185,6 +185,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * Execute this benchmark     */
 DECL|method|execute
 specifier|public
 specifier|synchronized
@@ -228,6 +229,24 @@ specifier|public
 specifier|static
 name|void
 name|main
+parameter_list|(
+name|String
+index|[]
+name|args
+parameter_list|)
+block|{
+name|exec
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Utility: execute benchmark from command line    * @param args single argument is expected: algorithm-file    */
+DECL|method|exec
+specifier|public
+specifier|static
+name|void
+name|exec
 parameter_list|(
 name|String
 index|[]
