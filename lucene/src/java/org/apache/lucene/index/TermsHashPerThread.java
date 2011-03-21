@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -105,18 +91,6 @@ name|DocumentsWriter
 operator|.
 name|DocState
 name|docState
-decl_stmt|;
-comment|// Used by perField to obtain terms from the analysis chain
-DECL|field|termBytesRef
-specifier|final
-name|BytesRef
-name|termBytesRef
-init|=
-operator|new
-name|BytesRef
-argument_list|(
-literal|10
-argument_list|)
 decl_stmt|;
 DECL|method|TermsHashPerThread
 specifier|public

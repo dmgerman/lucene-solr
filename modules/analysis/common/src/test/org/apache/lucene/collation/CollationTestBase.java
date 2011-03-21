@@ -2117,13 +2117,6 @@ name|BytesRef
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|BytesRef
-name|spare
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 comment|// create a map<String,SortKey> up front.
 comment|// then with multiple threads, generate sort keys for all the keys in the map
 comment|// and ensure they are the same as the ones we produced in serial fashion.
@@ -2165,7 +2158,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 name|TermToBytesRefAttribute
-name|bytes
+name|termAtt
 init|=
 name|ts
 operator|.
@@ -2175,6 +2168,14 @@ name|TermToBytesRefAttribute
 operator|.
 name|class
 argument_list|)
+decl_stmt|;
+name|BytesRef
+name|bytes
+init|=
+name|termAtt
+operator|.
+name|getBytesRef
+argument_list|()
 decl_stmt|;
 name|ts
 operator|.
@@ -2189,12 +2190,10 @@ name|incrementToken
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|bytes
+name|termAtt
 operator|.
-name|toBytesRef
-argument_list|(
-name|spare
-argument_list|)
+name|fillBytesRef
+argument_list|()
 expr_stmt|;
 comment|// ensure we make a copy of the actual bytes too
 name|map
@@ -2206,7 +2205,7 @@ argument_list|,
 operator|new
 name|BytesRef
 argument_list|(
-name|spare
+name|bytes
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2254,13 +2253,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|BytesRef
-name|spare
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|Map
@@ -2312,7 +2304,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 name|TermToBytesRefAttribute
-name|bytes
+name|termAtt
 init|=
 name|ts
 operator|.
@@ -2322,6 +2314,14 @@ name|TermToBytesRefAttribute
 operator|.
 name|class
 argument_list|)
+decl_stmt|;
+name|BytesRef
+name|bytes
+init|=
+name|termAtt
+operator|.
+name|getBytesRef
+argument_list|()
 decl_stmt|;
 name|ts
 operator|.
@@ -2336,18 +2336,16 @@ name|incrementToken
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|bytes
+name|termAtt
 operator|.
-name|toBytesRef
-argument_list|(
-name|spare
-argument_list|)
+name|fillBytesRef
+argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
 name|expected
 argument_list|,
-name|spare
+name|bytes
 argument_list|)
 expr_stmt|;
 block|}
