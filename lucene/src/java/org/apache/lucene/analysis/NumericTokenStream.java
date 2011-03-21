@@ -645,7 +645,11 @@ name|class
 argument_list|,
 literal|"bytes"
 argument_list|,
+operator|new
+name|BytesRef
+argument_list|(
 name|bytes
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|reflector
