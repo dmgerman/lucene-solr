@@ -6142,11 +6142,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// we should now see segments_X, segments.gen,_Y.cfs, _Z.fnx
 name|assertEquals
 argument_list|(
 literal|"Only one compound segment should exist"
 argument_list|,
-literal|3
+literal|4
 argument_list|,
 name|dir
 operator|.

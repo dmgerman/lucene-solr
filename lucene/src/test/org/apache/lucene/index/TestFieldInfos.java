@@ -38,6 +38,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|Document
@@ -149,11 +163,13 @@ operator|new
 name|FieldInfos
 argument_list|()
 decl_stmt|;
-name|fieldInfos
+name|_TestUtil
 operator|.
 name|add
 argument_list|(
 name|testDoc
+argument_list|,
+name|fieldInfos
 argument_list|)
 expr_stmt|;
 comment|//Since the complement is stored as well in the fields map

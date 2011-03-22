@@ -85,8 +85,6 @@ operator|.
 name|document
 operator|.
 name|Field
-operator|.
-name|Store
 import|;
 end_import
 
@@ -101,6 +99,8 @@ operator|.
 name|document
 operator|.
 name|Field
+operator|.
+name|Store
 import|;
 end_import
 
@@ -180,7 +180,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|TermsConsumer
+name|TermStats
 import|;
 end_import
 
@@ -196,7 +196,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|TermStats
+name|TermsConsumer
 import|;
 end_import
 
@@ -1600,6 +1600,17 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+name|FieldInfos
+name|clonedFieldInfos
+init|=
+operator|(
+name|FieldInfos
+operator|)
+name|fieldInfos
+operator|.
+name|clone
+argument_list|()
+decl_stmt|;
 name|this
 operator|.
 name|write
@@ -1634,7 +1645,7 @@ name|SegmentCodecs
 operator|.
 name|build
 argument_list|(
-name|fieldInfos
+name|clonedFieldInfos
 argument_list|,
 name|CodecProvider
 operator|.
@@ -1642,10 +1653,12 @@ name|getDefault
 argument_list|()
 argument_list|)
 argument_list|,
-name|fieldInfos
+name|clonedFieldInfos
 operator|.
 name|hasVectors
 argument_list|()
+argument_list|,
+name|clonedFieldInfos
 argument_list|)
 decl_stmt|;
 name|si
@@ -2008,6 +2021,17 @@ literal|"TEST: now write postings"
 argument_list|)
 expr_stmt|;
 block|}
+name|FieldInfos
+name|clonedFieldInfos
+init|=
+operator|(
+name|FieldInfos
+operator|)
+name|fieldInfos
+operator|.
+name|clone
+argument_list|()
+decl_stmt|;
 name|this
 operator|.
 name|write
@@ -2042,7 +2066,7 @@ name|SegmentCodecs
 operator|.
 name|build
 argument_list|(
-name|fieldInfos
+name|clonedFieldInfos
 argument_list|,
 name|CodecProvider
 operator|.
@@ -2050,10 +2074,12 @@ name|getDefault
 argument_list|()
 argument_list|)
 argument_list|,
-name|fieldInfos
+name|clonedFieldInfos
 operator|.
 name|hasVectors
 argument_list|()
+argument_list|,
+name|clonedFieldInfos
 argument_list|)
 decl_stmt|;
 if|if
@@ -3035,7 +3061,8 @@ name|field
 operator|.
 name|fieldInfo
 operator|.
-name|codecId
+name|getCodecId
+argument_list|()
 index|]
 operator|instanceof
 name|PreFlexCodec
@@ -4263,7 +4290,8 @@ name|field
 operator|.
 name|fieldInfo
 operator|.
-name|codecId
+name|getCodecId
+argument_list|()
 index|]
 operator|instanceof
 name|PreFlexCodec
