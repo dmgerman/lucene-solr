@@ -75,7 +75,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 name|runtimeParameters
 decl_stmt|;
@@ -110,7 +110,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 name|runtimeParameters
 parameter_list|)
@@ -203,7 +203,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 name|getRuntimeParameters
 parameter_list|()
