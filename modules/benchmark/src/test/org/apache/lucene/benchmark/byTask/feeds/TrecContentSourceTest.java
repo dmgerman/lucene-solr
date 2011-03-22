@@ -1573,7 +1573,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Wrong numbre of documents created by osurce!"
+literal|"Wrong number of documents created by osurce!"
 argument_list|,
 literal|5
 argument_list|,
