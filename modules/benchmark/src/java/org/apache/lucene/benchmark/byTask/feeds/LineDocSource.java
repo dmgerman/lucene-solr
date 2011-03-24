@@ -138,6 +138,24 @@ name|Config
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|benchmark
+operator|.
+name|byTask
+operator|.
+name|utils
+operator|.
+name|StreamUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link ContentSource} reading one line at a time as a  * {@link org.apache.lucene.document.Document} from a single file. This saves IO  * cost (over DirContentSource) of recursing through a directory and opening a  * new file for every document.<br>  * The expected format of each line is (arguments are separated by&lt;TAB&gt;):  *<i>title, date, body</i>. If a line is read in a different format, a  * {@link RuntimeException} will be thrown. In general, you should use this  * content source for files that were created with {@link WriteLineDocTask}.<br>  *<br>  * Config properties:  *<ul>  *<li>docs.file=&lt;path to the file&gt;  *<li>content.source.encoding - default to UTF-8.  *<li>line.parser - default to {@link HeaderLineParser} if a header line exists which differs   *     from {@link WriteLineDocTask#DEFAULT_FIELDS} and to {@link SimpleLineParser} otherwise.  *</ul>  */
 end_comment
@@ -908,7 +926,9 @@ block|}
 name|InputStream
 name|is
 init|=
-name|getInputStream
+name|StreamUtils
+operator|.
+name|inputStream
 argument_list|(
 name|file
 argument_list|)
@@ -926,6 +946,8 @@ argument_list|,
 name|encoding
 argument_list|)
 argument_list|,
+name|StreamUtils
+operator|.
 name|BUFFER_SIZE
 argument_list|)
 expr_stmt|;
