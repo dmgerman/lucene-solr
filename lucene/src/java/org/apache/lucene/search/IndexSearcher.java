@@ -384,7 +384,7 @@ name|SimilarityProvider
 name|defaultProvider
 init|=
 operator|new
-name|DefaultSimilarity
+name|DefaultSimilarityProvider
 argument_list|()
 decl_stmt|;
 comment|/**    * Expert: returns a default SimilarityProvider instance.    * In general, this method is only called to initialize searchers and writers.    * User code and query implementations should respect    * {@link IndexSearcher#getSimilarityProvider()}.    * @lucene.internal    */

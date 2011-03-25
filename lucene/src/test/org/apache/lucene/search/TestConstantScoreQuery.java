@@ -612,7 +612,7 @@ operator|.
 name|setSimilarityProvider
 argument_list|(
 operator|new
-name|DefaultSimilarity
+name|DefaultSimilarityProvider
 argument_list|()
 block|{
 annotation|@

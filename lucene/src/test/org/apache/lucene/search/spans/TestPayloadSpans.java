@@ -290,7 +290,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DefaultSimilarity
+name|DefaultSimilarityProvider
 import|;
 end_import
 
@@ -443,7 +443,7 @@ name|SimilarityProvider
 name|similarity
 init|=
 operator|new
-name|DefaultSimilarity
+name|DefaultSimilarityProvider
 argument_list|()
 decl_stmt|;
 DECL|field|indexReader
