@@ -644,6 +644,13 @@ operator|new
 name|LogDocMergePolicy
 argument_list|()
 argument_list|)
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// leftmost* segment has 1 doc
@@ -786,7 +793,7 @@ operator|.
 name|setMergeScheduler
 argument_list|(
 operator|new
-name|ConcurrentMergeScheduler
+name|SerialMergeScheduler
 argument_list|()
 argument_list|)
 argument_list|)
