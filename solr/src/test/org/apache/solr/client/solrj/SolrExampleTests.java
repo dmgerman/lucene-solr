@@ -2509,6 +2509,12 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|server
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+comment|// make sure this gets in first
 name|doc
 operator|=
 operator|new
@@ -2553,7 +2559,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-comment|// Add the documents
 name|server
 operator|.
 name|commit
@@ -2720,9 +2725,9 @@ argument_list|(
 literal|"_docid_"
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertTrue
 argument_list|(
-literal|"should be one bigger ["
+literal|"should be bigger ["
 operator|+
 name|id1
 operator|+
@@ -2732,11 +2737,9 @@ name|id2
 operator|+
 literal|"]"
 argument_list|,
-name|id1
-argument_list|,
 name|id2
-operator|-
-literal|1
+operator|>
+name|id1
 argument_list|)
 expr_stmt|;
 comment|// The score from explain should be the same as the score
