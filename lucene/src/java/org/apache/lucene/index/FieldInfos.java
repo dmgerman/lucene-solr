@@ -952,6 +952,7 @@ specifier|private
 name|int
 name|format
 decl_stmt|;
+comment|/**    * Creates a new {@link FieldInfos} instance with a private    * {@link FieldNumberBiMap}.    *<p>    * Note: this ctor should not be used during indexing use    * {@link FieldInfos#FieldInfos(FieldInfos)} or    * {@link FieldInfos#FieldInfos(FieldNumberBiMap)} instead.    */
 DECL|method|FieldInfos
 specifier|public
 name|FieldInfos
@@ -965,6 +966,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Creates a new {@link FieldInfo} instance from the given instance. If the given instance is    * read-only this instance will be read-only too.    *     * @see #isReadOnly()    */
 DECL|method|FieldInfos
 name|FieldInfos
 parameter_list|(
@@ -980,6 +982,7 @@ name|globalFieldNumbers
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Creates a new FieldInfos instance with the given {@link FieldNumberBiMap}.     * If the {@link FieldNumberBiMap} is<code>null</code> this instance will be read-only.    * @see #isReadOnly()    */
 DECL|method|FieldInfos
 name|FieldInfos
 parameter_list|(
@@ -994,7 +997,7 @@ operator|=
 name|globalFieldNumbers
 expr_stmt|;
 block|}
-comment|/**    * Construct a FieldInfos object using the directory and the name of the file    * IndexInput    * @param d The directory to open the IndexInput from    * @param name The name of the file to open the IndexInput from in the Directory    * @throws IOException    */
+comment|/**    * Construct a FieldInfos object using the directory and the name of the file    * IndexInput.     *<p>    * Note: The created instance will be read-only    *     * @param d The directory to open the IndexInput from    * @param name The name of the file to open the IndexInput from in the Directory    * @throws IOException    */
 DECL|method|FieldInfos
 specifier|public
 name|FieldInfos
@@ -1010,12 +1013,13 @@ name|IOException
 block|{
 name|this
 argument_list|(
-operator|new
+operator|(
 name|FieldNumberBiMap
-argument_list|()
+operator|)
+literal|null
 argument_list|)
 expr_stmt|;
-comment|/*      * TODO: in the read case we create a FNBM for each FIs which is a wast of resources.      * Yet, we must not seed this with a global map since due to addIndexes(Dir) we could      * have non-matching field numbers. we should use a null FNBM here and set the FIs       * to READ-ONLY once this ctor is done. Each modificator should check if we are readonly      * with an assert      */
+comment|// use null here to make this FIs Read-Only
 name|IndexInput
 name|input
 init|=
@@ -1078,6 +1082,10 @@ name|name
 argument_list|)
 assert|;
 assert|assert
+name|globalFieldNumbers
+operator|==
+literal|null
+operator|||
 name|globalFieldNumbers
 operator|.
 name|containsConsistent
@@ -1571,6 +1579,22 @@ name|boolean
 name|omitTermFreqAndPositions
 parameter_list|)
 block|{
+if|if
+condition|(
+name|globalFieldNumbers
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"FieldInfos are read-only, create a new instance with a global field map to make modifications to FieldInfos"
+argument_list|)
+throw|;
+block|}
+specifier|final
 name|FieldInfo
 name|fi
 init|=
@@ -1586,6 +1610,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|fieldNumber
 init|=
@@ -1697,6 +1722,7 @@ name|omitTermFreqAndPositions
 argument_list|)
 return|;
 block|}
+comment|/*    * NOTE: if you call this method from a public method make sure you check if we are modifiable and throw an exception otherwise    */
 DECL|method|addInternal
 specifier|private
 name|FieldInfo
@@ -1730,6 +1756,7 @@ name|boolean
 name|omitTermFreqAndPositions
 parameter_list|)
 block|{
+comment|// don't check modifiable here since we use that to initially build up FIs
 name|name
 operator|=
 name|StringHelper
@@ -1739,6 +1766,13 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|globalFieldNumbers
+operator|!=
+literal|null
+condition|)
+block|{
 name|globalFieldNumbers
 operator|.
 name|setIfNotSet
@@ -1748,6 +1782,8 @@ argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|FieldInfo
 name|fi
 init|=
@@ -1773,18 +1809,6 @@ argument_list|,
 name|omitTermFreqAndPositions
 argument_list|)
 decl_stmt|;
-assert|assert
-name|byNumber
-operator|.
-name|get
-argument_list|(
-name|fi
-operator|.
-name|number
-argument_list|)
-operator|==
-literal|null
-assert|;
 name|putInternal
 argument_list|(
 name|fi
@@ -2047,6 +2071,20 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+comment|/**    * Returns<code>true</code> iff this instance is not backed by a    * {@link FieldNumberBiMap}. Instances read from a directory via    * {@link FieldInfos#FieldInfos(Directory, String)} will always be read-only    * since no {@link FieldNumberBiMap} is supplied, otherwise<code>false</code>.    */
+DECL|method|isReadOnly
+specifier|public
+specifier|final
+name|boolean
+name|isReadOnly
+parameter_list|()
+block|{
+return|return
+name|globalFieldNumbers
+operator|==
+literal|null
+return|;
 block|}
 DECL|method|write
 specifier|public
