@@ -3819,6 +3819,30 @@ argument_list|()
 return|;
 block|}
 comment|// for test purpose
+DECL|method|getIndexFileNames
+specifier|final
+specifier|synchronized
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|getIndexFileNames
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|segmentInfos
+operator|.
+name|files
+argument_list|(
+name|directory
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
+comment|// for test purpose
 DECL|method|getDocCount
 specifier|final
 specifier|synchronized
