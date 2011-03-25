@@ -740,7 +740,7 @@ name|fi
 init|=
 name|fieldInfos
 operator|.
-name|add
+name|addOrUpdate
 argument_list|(
 name|fieldName
 argument_list|,
@@ -821,12 +821,17 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
+block|{
+name|fieldInfos
+operator|.
+name|addOrUpdate
+argument_list|(
 name|fp
 operator|.
 name|fieldInfo
 operator|.
-name|update
-argument_list|(
+name|name
+argument_list|,
 name|field
 operator|.
 name|isIndexed
@@ -860,6 +865,7 @@ name|getOmitTermFreqAndPositions
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|thisFieldGen

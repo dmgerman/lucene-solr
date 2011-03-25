@@ -953,14 +953,6 @@ operator|==
 name|YES
 expr_stmt|;
 comment|// System.out.println(Thread.currentThread().getName() + ": si.read hasProx=" + hasProx + " seg=" + name);
-name|segmentCodecs
-operator|=
-operator|new
-name|SegmentCodecs
-argument_list|(
-name|codecs
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|format
@@ -971,9 +963,12 @@ name|FORMAT_4_0
 condition|)
 block|{
 name|segmentCodecs
-operator|.
-name|read
+operator|=
+operator|new
+name|SegmentCodecs
 argument_list|(
+name|codecs
+argument_list|,
 name|input
 argument_list|)
 expr_stmt|;
@@ -983,9 +978,12 @@ block|{
 comment|// codec ID on FieldInfo is 0 so it will simply use the first codec available
 comment|// TODO what todo if preflex is not available in the provider? register it or fail?
 name|segmentCodecs
-operator|.
-name|codecs
 operator|=
+operator|new
+name|SegmentCodecs
+argument_list|(
+name|codecs
+argument_list|,
 operator|new
 name|Codec
 index|[]
@@ -997,6 +995,7 @@ argument_list|(
 literal|"PreFlex"
 argument_list|)
 block|}
+argument_list|)
 expr_stmt|;
 block|}
 name|diagnostics

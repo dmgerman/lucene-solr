@@ -674,7 +674,7 @@ control|)
 block|{
 name|fInfos
 operator|.
-name|add
+name|addOrUpdate
 argument_list|(
 name|field
 argument_list|,
@@ -1124,7 +1124,7 @@ argument_list|)
 expr_stmt|;
 name|fieldInfos
 operator|.
-name|add
+name|addOrUpdate
 argument_list|(
 name|reader
 operator|.
@@ -1144,15 +1144,11 @@ specifier|final
 name|SegmentCodecs
 name|codecInfo
 init|=
-name|SegmentCodecs
-operator|.
-name|build
-argument_list|(
 name|fieldInfos
-argument_list|,
-name|this
 operator|.
-name|codecs
+name|buildSegmentCodecs
+argument_list|(
+literal|false
 argument_list|)
 decl_stmt|;
 name|fieldInfos
