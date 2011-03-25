@@ -3163,7 +3163,7 @@ specifier|static
 name|int
 name|THREAD_STOP_GRACE_MSEC
 init|=
-literal|1000
+literal|50
 decl_stmt|;
 comment|// jvm-wide list of 'rogue threads' we found, so they only get reported once.
 DECL|field|rogueThreads
@@ -3479,28 +3479,6 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
-try|try
-block|{
-name|t
-operator|.
-name|join
-argument_list|(
-name|THREAD_STOP_GRACE_MSEC
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 block|}
 block|}
