@@ -42,42 +42,67 @@ name|solr
 operator|.
 name|search
 operator|.
+name|QParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
 name|function
 operator|.
-name|DocValues
+name|ValueSource
 import|;
 end_import
 
 begin_comment
-comment|/**  * Add values from a ValueSource (function query etc)  *  * @version $Id: JSONResponseWriter.java 1065304 2011-01-30 15:10:15Z rmuir $  * @since solr 4.0  */
+comment|/**  * Add values from a ValueSource (function query etc)  *   * NOT really sure how or if this could work...  *  * @version $Id: JSONResponseWriter.java 1065304 2011-01-30 15:10:15Z rmuir $  * @since solr 4.0  */
 end_comment
 
 begin_class
-DECL|class|DocValuesAugmenter
+DECL|class|ValueSourceAugmenter
 specifier|public
 class|class
-name|DocValuesAugmenter
+name|ValueSourceAugmenter
 extends|extends
 name|DocTransformer
 block|{
 DECL|field|name
+specifier|public
 specifier|final
 name|String
 name|name
 decl_stmt|;
-DECL|field|values
+DECL|field|qparser
+specifier|public
 specifier|final
-name|DocValues
+name|QParser
+name|qparser
+decl_stmt|;
+DECL|field|values
+specifier|public
+specifier|final
+name|ValueSource
 name|values
 decl_stmt|;
-DECL|method|DocValuesAugmenter
+DECL|method|ValueSourceAugmenter
 specifier|public
-name|DocValuesAugmenter
+name|ValueSourceAugmenter
 parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|DocValues
+name|QParser
+name|qparser
+parameter_list|,
+name|ValueSource
 name|values
 parameter_list|)
 block|{
@@ -86,6 +111,12 @@ operator|.
 name|name
 operator|=
 name|name
+expr_stmt|;
+name|this
+operator|.
+name|qparser
+operator|=
+name|qparser
 expr_stmt|;
 name|this
 operator|.
@@ -109,16 +140,13 @@ name|docid
 parameter_list|)
 block|{
 comment|// TODO, should know what the real type is -- not always string
+comment|// how do we get to docvalues?
 name|Object
 name|v
 init|=
-name|values
-operator|.
-name|strVal
-argument_list|(
-name|docid
-argument_list|)
+literal|"now what..."
 decl_stmt|;
+comment|//values.g.strVal( docid );
 name|doc
 operator|.
 name|setField

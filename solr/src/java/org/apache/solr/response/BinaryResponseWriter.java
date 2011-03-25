@@ -204,6 +204,20 @@ name|solr
 operator|.
 name|search
 operator|.
+name|ReturnFields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
 name|SolrIndexSearcher
 import|;
 end_import
@@ -593,7 +607,7 @@ condition|(
 operator|!
 name|returnFields
 operator|.
-name|contains
+name|wantsField
 argument_list|(
 name|fname
 argument_list|)
@@ -658,7 +672,7 @@ name|wantsScores
 operator|=
 name|returnFields
 operator|.
-name|getWantsScore
+name|wantsScore
 argument_list|()
 operator|&&
 name|ids
@@ -748,7 +762,7 @@ name|fnames
 init|=
 name|returnFields
 operator|.
-name|getFieldNames
+name|getLuceneFieldNames
 argument_list|()
 decl_stmt|;
 name|context
@@ -874,7 +888,7 @@ name|wantsScores
 init|=
 name|returnFields
 operator|.
-name|getWantsScore
+name|wantsScore
 argument_list|()
 operator|&&
 name|ctx
@@ -1006,7 +1020,7 @@ condition|(
 operator|!
 name|returnFields
 operator|.
-name|contains
+name|wantsField
 argument_list|(
 name|fieldName
 argument_list|)
