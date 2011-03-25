@@ -96,6 +96,22 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|NamedList
+import|;
+end_import
+
 begin_comment
 comment|/**  * A concrete representation of a document within a Solr index.  Unlike a lucene  * Document, a SolrDocument may have an Object value matching the type defined in  * schema.xml  *   * For indexing documents, use the SolrInputDocument that contains extra information  * for document and field boosting.  *   * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -259,6 +275,16 @@ condition|(
 name|value
 operator|instanceof
 name|Collection
+condition|)
+block|{
+comment|// nothing
+block|}
+elseif|else
+if|if
+condition|(
+name|value
+operator|instanceof
+name|NamedList
 condition|)
 block|{
 comment|// nothing
