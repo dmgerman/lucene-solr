@@ -670,7 +670,6 @@ operator|+
 name|transformer
 argument_list|)
 expr_stmt|;
-comment|// nocommit
 block|}
 DECL|method|ReturnFields
 specifier|public
@@ -713,7 +712,6 @@ operator|+
 name|transformer
 argument_list|)
 expr_stmt|;
-comment|// nocommit
 block|}
 DECL|method|parseFieldList
 specifier|private
