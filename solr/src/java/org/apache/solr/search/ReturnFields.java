@@ -363,7 +363,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class representing the return fields  *  * @version $Id: JSONResponseWriter.java 1065304 2011-01-30 15:10:15Z rmuir $  * @since solr 4.0  */
+comment|/**  * A class representing the return fields  *  * @version $Id$  * @since solr 4.0  */
 end_comment
 
 begin_class

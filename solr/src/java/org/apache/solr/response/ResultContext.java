@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class to hold the QueryResult and the Query  *   * @version $Id: JSONResponseWriter.java 1065304 2011-01-30 15:10:15Z rmuir $  */
+comment|/**  * A class to hold the QueryResult and the Query  *   * @version $Id$  */
 end_comment
 
 begin_class

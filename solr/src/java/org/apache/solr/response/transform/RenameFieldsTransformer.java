@@ -49,7 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Return a field with a name that is different that what is indexed  *  * @version $Id: JSONResponseWriter.java 1065304 2011-01-30 15:10:15Z rmuir $  * @since solr 4.0  */
+comment|/**  * Return a field with a name that is different that what is indexed  *  * @version $Id$  * @since solr 4.0  */
 end_comment
 
 begin_class
