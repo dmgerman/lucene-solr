@@ -3817,7 +3817,7 @@ name|put
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"  "
+literal|"fname_s,score"
 argument_list|)
 expr_stmt|;
 name|req
@@ -3845,9 +3845,9 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|,
-literal|"//str[.='Yonik']  "
+literal|"//str[.='Yonik']"
 argument_list|,
-literal|"//float[.='1.4142135']"
+literal|"//float[.='2.9459102']"
 argument_list|)
 expr_stmt|;
 comment|// test addition of score field

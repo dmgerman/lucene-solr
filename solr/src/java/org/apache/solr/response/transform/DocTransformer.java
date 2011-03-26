@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * New instance for each request  *   * @version $Id: JSONResponseWriter.java 1065304 2011-01-30 15:10:15Z rmuir $  */
+comment|/**  * New instance for each request  *  * @version $Id: JSONResponseWriter.java 1065304 2011-01-30 15:10:15Z rmuir $  */
 end_comment
 
 begin_class
@@ -53,6 +53,13 @@ specifier|abstract
 class|class
 name|DocTransformer
 block|{
+DECL|method|getName
+specifier|public
+specifier|abstract
+name|String
+name|getName
+parameter_list|()
+function_decl|;
 DECL|method|setContext
 specifier|public
 name|void
@@ -77,6 +84,19 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|getName
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
