@@ -6179,6 +6179,24 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+name|message
+argument_list|(
+literal|"flush at addIndexes(IndexReader...)"
+argument_list|)
+expr_stmt|;
+name|flush
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 name|String
 name|mergedName
 init|=
