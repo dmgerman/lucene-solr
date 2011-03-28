@@ -54,9 +54,6 @@ name|count
 parameter_list|)
 block|{
 name|super
-argument_list|()
-expr_stmt|;
-name|initialize
 argument_list|(
 name|count
 argument_list|)

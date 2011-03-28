@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Holds all the configuration of {@link IndexWriter}. This object is only used  * while constructing a new IndexWriter. Those settings cannot be changed  * afterwards, except instantiating a new IndexWriter.  *<p>  * All setter methods return {@link IndexWriterConfig} to allow chaining  * settings conveniently. Thus someone can do:  *   *<pre>  * IndexWriterConfig conf = new IndexWriterConfig(analyzer);  * conf.setter1().setter2();  *</pre>  *   * @since 3.1  */
+comment|/**  * Holds all the configuration of {@link IndexWriter}.  You  * should instantiate this class, call the setters to set  * your configuration, then pass it to {@link IndexWriter}.  * Note that {@link IndexWriter} makes a private clone; if  * you need to subsequently change settings use {@link  * IndexWriter#getConfig}.  *  *<p>  * All setter methods return {@link IndexWriterConfig} to allow chaining  * settings conveniently, for example:  *   *<pre>  * IndexWriterConfig conf = new IndexWriterConfig(analyzer);  * conf.setter1().setter2();  *</pre>  *   * @since 3.1  */
 end_comment
 
 begin_class
@@ -272,96 +272,113 @@ return|;
 block|}
 DECL|field|analyzer
 specifier|private
+specifier|final
 name|Analyzer
 name|analyzer
 decl_stmt|;
 DECL|field|delPolicy
 specifier|private
+specifier|volatile
 name|IndexDeletionPolicy
 name|delPolicy
 decl_stmt|;
 DECL|field|commit
 specifier|private
+specifier|volatile
 name|IndexCommit
 name|commit
 decl_stmt|;
 DECL|field|openMode
 specifier|private
+specifier|volatile
 name|OpenMode
 name|openMode
 decl_stmt|;
 DECL|field|similarityProvider
 specifier|private
+specifier|volatile
 name|SimilarityProvider
 name|similarityProvider
 decl_stmt|;
 DECL|field|termIndexInterval
 specifier|private
+specifier|volatile
 name|int
 name|termIndexInterval
 decl_stmt|;
 comment|// TODO: this should be private to the codec, not settable here
 DECL|field|mergeScheduler
 specifier|private
+specifier|volatile
 name|MergeScheduler
 name|mergeScheduler
 decl_stmt|;
 DECL|field|writeLockTimeout
 specifier|private
+specifier|volatile
 name|long
 name|writeLockTimeout
 decl_stmt|;
 DECL|field|maxBufferedDeleteTerms
 specifier|private
+specifier|volatile
 name|int
 name|maxBufferedDeleteTerms
 decl_stmt|;
 DECL|field|ramBufferSizeMB
 specifier|private
+specifier|volatile
 name|double
 name|ramBufferSizeMB
 decl_stmt|;
 DECL|field|maxBufferedDocs
 specifier|private
+specifier|volatile
 name|int
 name|maxBufferedDocs
 decl_stmt|;
 DECL|field|indexingChain
 specifier|private
+specifier|volatile
 name|IndexingChain
 name|indexingChain
 decl_stmt|;
 DECL|field|mergedSegmentWarmer
 specifier|private
+specifier|volatile
 name|IndexReaderWarmer
 name|mergedSegmentWarmer
 decl_stmt|;
 DECL|field|codecProvider
 specifier|private
+specifier|volatile
 name|CodecProvider
 name|codecProvider
 decl_stmt|;
 DECL|field|mergePolicy
 specifier|private
+specifier|volatile
 name|MergePolicy
 name|mergePolicy
 decl_stmt|;
 DECL|field|maxThreadStates
 specifier|private
+specifier|volatile
 name|int
 name|maxThreadStates
 decl_stmt|;
 DECL|field|readerPooling
 specifier|private
+specifier|volatile
 name|boolean
 name|readerPooling
 decl_stmt|;
 DECL|field|readerTermsIndexDivisor
 specifier|private
+specifier|volatile
 name|int
 name|readerTermsIndexDivisor
 decl_stmt|;
-comment|// required for clone
 DECL|field|matchVersion
 specifier|private
 name|Version
@@ -486,7 +503,7 @@ name|clone
 parameter_list|()
 block|{
 comment|// Shallow clone is the only thing that's possible, since parameters like
-comment|// analyzer, index commit etc. do not implemnt Cloneable.
+comment|// analyzer, index commit etc. do not implement Cloneable.
 try|try
 block|{
 return|return
@@ -523,7 +540,7 @@ return|return
 name|analyzer
 return|;
 block|}
-comment|/** Specifies {@link OpenMode} of that index. */
+comment|/** Specifies {@link OpenMode} of the index.    *     *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setOpenMode
 specifier|public
 name|IndexWriterConfig
@@ -554,7 +571,7 @@ return|return
 name|openMode
 return|;
 block|}
-comment|/**    * Expert: allows an optional {@link IndexDeletionPolicy} implementation to be    * specified. You can use this to control when prior commits are deleted from    * the index. The default policy is {@link KeepOnlyLastCommitDeletionPolicy}    * which removes all prior commits as soon as a new commit is done (this    * matches behavior before 2.2). Creating your own policy can allow you to    * explicitly keep previous "point in time" commits alive in the index for    * some time, to allow readers to refresh to the new commit without having the    * old commit deleted out from under them. This is necessary on filesystems    * like NFS that do not support "delete on last close" semantics, which    * Lucene's "point in time" search normally relies on.    *<p>    *<b>NOTE:</b> the deletion policy cannot be null. If<code>null</code> is    * passed, the deletion policy will be set to the default.    */
+comment|/**    * Expert: allows an optional {@link IndexDeletionPolicy} implementation to be    * specified. You can use this to control when prior commits are deleted from    * the index. The default policy is {@link KeepOnlyLastCommitDeletionPolicy}    * which removes all prior commits as soon as a new commit is done (this    * matches behavior before 2.2). Creating your own policy can allow you to    * explicitly keep previous "point in time" commits alive in the index for    * some time, to allow readers to refresh to the new commit without having the    * old commit deleted out from under them. This is necessary on filesystems    * like NFS that do not support "delete on last close" semantics, which    * Lucene's "point in time" search normally relies on.    *<p>    *<b>NOTE:</b> the deletion policy cannot be null. If<code>null</code> is    * passed, the deletion policy will be set to the default.    *    *<p>Only takes effect when IndexWriter is first created.     */
 DECL|method|setIndexDeletionPolicy
 specifier|public
 name|IndexWriterConfig
@@ -593,7 +610,7 @@ return|return
 name|delPolicy
 return|;
 block|}
-comment|/**    * Expert: allows to open a certain commit point. The default is null which    * opens the latest commit point.    */
+comment|/**    * Expert: allows to open a certain commit point. The default is null which    * opens the latest commit point.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setIndexCommit
 specifier|public
 name|IndexWriterConfig
@@ -624,7 +641,7 @@ return|return
 name|commit
 return|;
 block|}
-comment|/**    * Expert: set the {@link SimilarityProvider} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity provider cannot be null. If<code>null</code> is passed,    * the similarity provider will be set to the default implementation (unspecified).    */
+comment|/**    * Expert: set the {@link SimilarityProvider} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity provider cannot be null. If<code>null</code> is passed,    * the similarity provider will be set to the default implementation (unspecified).    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setSimilarityProvider
 specifier|public
 name|IndexWriterConfig
@@ -664,7 +681,7 @@ return|return
 name|similarityProvider
 return|;
 block|}
-comment|/**    * Expert: set the interval between indexed terms. Large values cause less    * memory to be used by IndexReader, but slow random-access to terms. Small    * values cause more memory to be used by an IndexReader, and speed    * random-access to terms.    *<p>    * This parameter determines the amount of computation required per query    * term, regardless of the number of documents that contain that term. In    * particular, it is the maximum number of other terms that must be scanned    * before a term is located and its frequency and position information may be    * processed. In a large index with user-entered query terms, query processing    * time is likely to be dominated not by term lookup but rather by the    * processing of frequency and positional data. In a small index or when many    * uncommon query terms are generated (e.g., by wildcard queries) term lookup    * may become a dominant cost.    *<p>    * In particular,<code>numUniqueTerms/interval</code> terms are read into    * memory by an IndexReader, and, on average,<code>interval/2</code> terms    * must be scanned for each random term access.    *     * @see #DEFAULT_TERM_INDEX_INTERVAL    */
+comment|/**    * Expert: set the interval between indexed terms. Large values cause less    * memory to be used by IndexReader, but slow random-access to terms. Small    * values cause more memory to be used by an IndexReader, and speed    * random-access to terms.    *<p>    * This parameter determines the amount of computation required per query    * term, regardless of the number of documents that contain that term. In    * particular, it is the maximum number of other terms that must be scanned    * before a term is located and its frequency and position information may be    * processed. In a large index with user-entered query terms, query processing    * time is likely to be dominated not by term lookup but rather by the    * processing of frequency and positional data. In a small index or when many    * uncommon query terms are generated (e.g., by wildcard queries) term lookup    * may become a dominant cost.    *<p>    * In particular,<code>numUniqueTerms/interval</code> terms are read into    * memory by an IndexReader, and, on average,<code>interval/2</code> terms    * must be scanned for each random term access.    *     * @see #DEFAULT_TERM_INDEX_INTERVAL    *    *<p>Takes effect immediately, but only applies to newly    *  flushed/merged segments. */
 DECL|method|setTermIndexInterval
 specifier|public
 name|IndexWriterConfig
@@ -697,7 +714,7 @@ return|return
 name|termIndexInterval
 return|;
 block|}
-comment|/**    * Expert: sets the merge scheduler used by this writer. The default is    * {@link ConcurrentMergeScheduler}.    *<p>    *<b>NOTE:</b> the merge scheduler cannot be null. If<code>null</code> is    * passed, the merge scheduler will be set to the default.    */
+comment|/**    * Expert: sets the merge scheduler used by this writer. The default is    * {@link ConcurrentMergeScheduler}.    *<p>    *<b>NOTE:</b> the merge scheduler cannot be null. If<code>null</code> is    * passed, the merge scheduler will be set to the default.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setMergeScheduler
 specifier|public
 name|IndexWriterConfig
@@ -736,7 +753,7 @@ return|return
 name|mergeScheduler
 return|;
 block|}
-comment|/**    * Sets the maximum time to wait for a write lock (in milliseconds) for this    * instance. You can change the default value for all instances by calling    * {@link #setDefaultWriteLockTimeout(long)}.    */
+comment|/**    * Sets the maximum time to wait for a write lock (in milliseconds) for this    * instance. You can change the default value for all instances by calling    * {@link #setDefaultWriteLockTimeout(long)}.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setWriteLockTimeout
 specifier|public
 name|IndexWriterConfig
@@ -767,7 +784,7 @@ return|return
 name|writeLockTimeout
 return|;
 block|}
-comment|/**    * Determines the minimal number of delete terms required before the buffered    * in-memory delete terms are applied and flushed. If there are documents    * buffered in memory at the time, they are merged and a new segment is    * created.     *<p>Disabled by default (writer flushes by RAM usage).    *     * @throws IllegalArgumentException if maxBufferedDeleteTerms    * is enabled but smaller than 1    * @see #setRAMBufferSizeMB    */
+comment|/**    * Determines the minimal number of delete terms required before the buffered    * in-memory delete terms are applied and flushed. If there are documents    * buffered in memory at the time, they are merged and a new segment is    * created.     *<p>Disabled by default (writer flushes by RAM usage).    *     * @throws IllegalArgumentException if maxBufferedDeleteTerms    * is enabled but smaller than 1    * @see #setRAMBufferSizeMB    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    */
 DECL|method|setMaxBufferedDeleteTerms
 specifier|public
 name|IndexWriterConfig
@@ -815,7 +832,7 @@ return|return
 name|maxBufferedDeleteTerms
 return|;
 block|}
-comment|/**    * Determines the amount of RAM that may be used for buffering added documents    * and deletions before they are flushed to the Directory. Generally for    * faster indexing performance it's best to flush by RAM usage instead of    * document count and use as large a RAM buffer as you can.    *     *<p>    * When this is set, the writer will flush whenever buffered documents and    * deletions use this much RAM. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage. Note that if flushing by document    * count is also enabled, then the flush will be triggered by whichever comes    * first.    *     *<p>    *<b>NOTE</b>: the account of RAM usage for pending deletions is only    * approximate. Specifically, if you delete by Query, Lucene currently has no    * way to measure the RAM usage of individual Queries so the accounting will    * under-estimate and you should compensate by either calling commit()    * periodically yourself, or by using {@link #setMaxBufferedDeleteTerms(int)}    * to flush by count instead of RAM usage (each buffered delete Query counts     * as one).    *     *<p>    *<b>NOTE</b>: because IndexWriter uses<code>int</code>s when managing its    * internal storage, the absolute maximum value for this setting is somewhat    * less than 2048 MB. The precise limit depends on various factors, such as    * how large your documents are, how many fields have norms, etc., so it's    * best to set this value comfortably under 2048.    *     *<p>    * The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.    *     * @throws IllegalArgumentException    *           if ramBufferSize is enabled but non-positive, or it disables    *           ramBufferSize when maxBufferedDocs is already disabled    */
+comment|/**    * Determines the amount of RAM that may be used for buffering added documents    * and deletions before they are flushed to the Directory. Generally for    * faster indexing performance it's best to flush by RAM usage instead of    * document count and use as large a RAM buffer as you can.    *     *<p>    * When this is set, the writer will flush whenever buffered documents and    * deletions use this much RAM. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage. Note that if flushing by document    * count is also enabled, then the flush will be triggered by whichever comes    * first.    *     *<p>    *<b>NOTE</b>: the account of RAM usage for pending deletions is only    * approximate. Specifically, if you delete by Query, Lucene currently has no    * way to measure the RAM usage of individual Queries so the accounting will    * under-estimate and you should compensate by either calling commit()    * periodically yourself, or by using {@link #setMaxBufferedDeleteTerms(int)}    * to flush by count instead of RAM usage (each buffered delete Query counts     * as one).    *     *<p>    *<b>NOTE</b>: because IndexWriter uses<code>int</code>s when managing its    * internal storage, the absolute maximum value for this setting is somewhat    * less than 2048 MB. The precise limit depends on various factors, such as    * how large your documents are, how many fields have norms, etc., so it's    * best to set this value comfortably under 2048.    *     *<p>    * The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.    *     *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    *    * @throws IllegalArgumentException    *           if ramBufferSize is enabled but non-positive, or it disables    *           ramBufferSize when maxBufferedDocs is already disabled    */
 DECL|method|setRAMBufferSizeMB
 specifier|public
 name|IndexWriterConfig
@@ -899,7 +916,7 @@ return|return
 name|ramBufferSizeMB
 return|;
 block|}
-comment|/**    * Determines the minimal number of documents required before the buffered    * in-memory documents are flushed as a new Segment. Large values generally    * give faster indexing.    *     *<p>    * When this is set, the writer will flush every maxBufferedDocs added    * documents. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent triggering a    * flush due to number of buffered documents. Note that if flushing by RAM    * usage is also enabled, then the flush will be triggered by whichever comes    * first.    *     *<p>    * Disabled by default (writer flushes by RAM usage).    *     * @see #setRAMBufferSizeMB(double)    *     * @throws IllegalArgumentException    *           if maxBufferedDocs is enabled but smaller than 2, or it disables    *           maxBufferedDocs when ramBufferSize is already disabled    */
+comment|/**    * Determines the minimal number of documents required before the buffered    * in-memory documents are flushed as a new Segment. Large values generally    * give faster indexing.    *     *<p>    * When this is set, the writer will flush every maxBufferedDocs added    * documents. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent triggering a    * flush due to number of buffered documents. Note that if flushing by RAM    * usage is also enabled, then the flush will be triggered by whichever comes    * first.    *     *<p>    * Disabled by default (writer flushes by RAM usage).    *     *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    *    * @see #setRAMBufferSizeMB(double)    *     * @throws IllegalArgumentException    *           if maxBufferedDocs is enabled but smaller than 2, or it disables    *           maxBufferedDocs when ramBufferSize is already disabled    */
 DECL|method|setMaxBufferedDocs
 specifier|public
 name|IndexWriterConfig
@@ -964,7 +981,7 @@ return|return
 name|maxBufferedDocs
 return|;
 block|}
-comment|/** Set the merged segment warmer. See {@link IndexReaderWarmer}. */
+comment|/** Set the merged segment warmer. See {@link IndexReaderWarmer}.    *    *<p>Takes effect on the next merge. */
 DECL|method|setMergedSegmentWarmer
 specifier|public
 name|IndexWriterConfig
@@ -995,7 +1012,7 @@ return|return
 name|mergedSegmentWarmer
 return|;
 block|}
-comment|/**    * Expert: {@link MergePolicy} is invoked whenever there are changes to the    * segments in the index. Its role is to select which merges to do, if any,    * and return a {@link MergePolicy.MergeSpecification} describing the merges.    * It also selects merges to do for optimize(). (The default is    * {@link LogByteSizeMergePolicy}.    */
+comment|/**    * Expert: {@link MergePolicy} is invoked whenever there are changes to the    * segments in the index. Its role is to select which merges to do, if any,    * and return a {@link MergePolicy.MergeSpecification} describing the merges.    * It also selects merges to do for optimize(). (The default is    * {@link LogByteSizeMergePolicy}.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setMergePolicy
 specifier|public
 name|IndexWriterConfig
@@ -1023,7 +1040,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Set the CodecProvider. See {@link CodecProvider}. */
+comment|/** Set the CodecProvider. See {@link CodecProvider}.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setCodecProvider
 specifier|public
 name|IndexWriterConfig
@@ -1065,7 +1082,7 @@ return|return
 name|mergePolicy
 return|;
 block|}
-comment|/**    * Sets the max number of simultaneous threads that may be indexing documents    * at once in IndexWriter. Values&lt; 1 are invalid and if passed    *<code>maxThreadStates</code> will be set to    * {@link #DEFAULT_MAX_THREAD_STATES}.    */
+comment|/**    * Sets the max number of simultaneous threads that may be indexing documents    * at once in IndexWriter. Values&lt; 1 are invalid and if passed    *<code>maxThreadStates</code> will be set to    * {@link #DEFAULT_MAX_THREAD_STATES}.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setMaxThreadStates
 specifier|public
 name|IndexWriterConfig
@@ -1102,7 +1119,7 @@ return|return
 name|maxThreadStates
 return|;
 block|}
-comment|/** By default, IndexWriter does not pool the    *  SegmentReaders it must open for deletions and    *  merging, unless a near-real-time reader has been    *  obtained by calling {@link IndexWriter#getReader}.    *  This method lets you enable pooling without getting a    *  near-real-time reader.  NOTE: if you set this to    *  false, IndexWriter will still pool readers once    *  {@link IndexWriter#getReader} is called. */
+comment|/** By default, IndexWriter does not pool the    *  SegmentReaders it must open for deletions and    *  merging, unless a near-real-time reader has been    *  obtained by calling {@link IndexWriter#getReader}.    *  This method lets you enable pooling without getting a    *  near-real-time reader.  NOTE: if you set this to    *  false, IndexWriter will still pool readers once    *  {@link IndexWriter#getReader} is called.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setReaderPooling
 specifier|public
 name|IndexWriterConfig
@@ -1133,7 +1150,7 @@ return|return
 name|readerPooling
 return|;
 block|}
-comment|/** Expert: sets the {@link DocConsumer} chain to be used to process documents. */
+comment|/** Expert: sets the {@link DocConsumer} chain to be used to process documents.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setIndexingChain
 name|IndexWriterConfig
 name|setIndexingChain
@@ -1170,7 +1187,7 @@ return|return
 name|indexingChain
 return|;
 block|}
-comment|/** Sets the termsIndexDivisor passed to any readers that    *  IndexWriter opens, for example when applying deletes    *  or creating a near-real-time reader in {@link    *  IndexWriter#getReader}. If you pass -1, the terms index     *  won't be loaded by the readers. This is only useful in     *  advanced situations when you will only .next() through     *  all terms; attempts to seek will hit an exception. */
+comment|/** Sets the termsIndexDivisor passed to any readers that    *  IndexWriter opens, for example when applying deletes    *  or creating a near-real-time reader in {@link    *  IndexWriter#getReader}. If you pass -1, the terms index     *  won't be loaded by the readers. This is only useful in     *  advanced situations when you will only .next() through     *  all terms; attempts to seek will hit an exception.    *    *<p>Takes effect immediately, but only applies to    * readers opened after this call */
 DECL|method|setReaderTermsIndexDivisor
 specifier|public
 name|IndexWriterConfig

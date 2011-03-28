@@ -303,6 +303,8 @@ name|T
 argument_list|>
 argument_list|(
 name|this
+argument_list|,
+name|idx
 argument_list|)
 expr_stmt|;
 block|}
@@ -321,7 +323,7 @@ return|;
 block|}
 DECL|method|getTermCount
 specifier|public
-name|int
+name|long
 name|getTermCount
 parameter_list|()
 block|{
@@ -826,6 +828,8 @@ name|T
 argument_list|>
 argument_list|(
 name|this
+argument_list|,
+name|idx
 argument_list|)
 expr_stmt|;
 block|}
@@ -1413,6 +1417,8 @@ name|T
 argument_list|>
 argument_list|(
 name|this
+argument_list|,
+name|idx
 argument_list|)
 expr_stmt|;
 block|}
@@ -2094,9 +2100,16 @@ name|boolean
 name|isFinal
 decl_stmt|;
 DECL|field|inputCount
-name|int
+name|long
 name|inputCount
 decl_stmt|;
+comment|/** This node's depth, starting from the automaton root. */
+DECL|field|depth
+specifier|final
+name|int
+name|depth
+decl_stmt|;
+comment|/**      * @param depth      *          The node's depth starting from the automaton root. Needed for      *          LUCENE-2934 (node expansion based on conditions other than the      *          fanout size).      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2111,6 +2124,9 @@ argument_list|<
 name|T
 argument_list|>
 name|owner
+parameter_list|,
+name|int
+name|depth
 parameter_list|)
 block|{
 name|this
@@ -2152,6 +2168,12 @@ name|owner
 operator|.
 name|NO_OUTPUT
 expr_stmt|;
+name|this
+operator|.
+name|depth
+operator|=
+name|depth
+expr_stmt|;
 block|}
 DECL|method|isCompiled
 specifier|public
@@ -2187,6 +2209,8 @@ name|inputCount
 operator|=
 literal|0
 expr_stmt|;
+comment|// We don't clear the depth here because it never changes
+comment|// for nodes on the frontier (even when reused).
 block|}
 DECL|method|getLastOutput
 specifier|public

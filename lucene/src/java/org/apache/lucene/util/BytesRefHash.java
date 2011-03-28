@@ -381,7 +381,7 @@ name|bytesStart
 operator|.
 name|length
 operator|:
-literal|"ord exceeeds byteStart len: "
+literal|"ord exceeds byteStart len: "
 operator|+
 name|bytesStart
 operator|.

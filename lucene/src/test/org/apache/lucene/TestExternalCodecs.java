@@ -2327,7 +2327,7 @@ parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
-name|String
+name|int
 name|codecId
 parameter_list|,
 name|Set

@@ -1106,7 +1106,8 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecId
+name|codecIdAsString
+argument_list|()
 argument_list|,
 name|SEED_EXT
 argument_list|)
@@ -1659,7 +1660,8 @@ name|name
 argument_list|,
 name|state
 operator|.
-name|codecId
+name|codecIdAsString
+argument_list|()
 argument_list|,
 name|SEED_EXT
 argument_list|)
@@ -2207,7 +2209,7 @@ parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
-name|String
+name|int
 name|codecId
 parameter_list|,
 name|Set
@@ -2221,6 +2223,14 @@ name|IOException
 block|{
 specifier|final
 name|String
+name|codecIdAsString
+init|=
+name|codecId
+operator|+
+literal|""
+decl_stmt|;
+specifier|final
+name|String
 name|seedFileName
 init|=
 name|IndexFileNames
@@ -2231,7 +2241,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|codecIdAsString
 argument_list|,
 name|SEED_EXT
 argument_list|)
@@ -2249,7 +2259,7 @@ name|files
 argument_list|(
 name|segmentInfo
 argument_list|,
-name|codecId
+name|codecIdAsString
 argument_list|,
 name|files
 argument_list|)
@@ -2262,7 +2272,7 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
-name|codecId
+name|codecIdAsString
 argument_list|,
 name|files
 argument_list|)
@@ -2275,7 +2285,7 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
-name|codecId
+name|codecIdAsString
 argument_list|,
 name|files
 argument_list|)
@@ -2288,7 +2298,7 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
-name|codecId
+name|codecIdAsString
 argument_list|,
 name|files
 argument_list|)
@@ -2301,7 +2311,7 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
-name|codecId
+name|codecIdAsString
 argument_list|,
 name|files
 argument_list|)

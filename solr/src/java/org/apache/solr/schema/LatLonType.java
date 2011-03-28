@@ -365,13 +365,21 @@ parameter_list|(
 name|SchemaField
 name|field
 parameter_list|,
-name|String
-name|externalVal
+name|Object
+name|value
 parameter_list|,
 name|float
 name|boost
 parameter_list|)
 block|{
+name|String
+name|externalVal
+init|=
+name|value
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
 comment|//we could have tileDiff + 3 fields (two for the lat/lon, one for storage)
 name|Fieldable
 index|[]
@@ -1875,8 +1883,8 @@ parameter_list|(
 name|SchemaField
 name|field
 parameter_list|,
-name|String
-name|externalVal
+name|Object
+name|value
 parameter_list|,
 name|float
 name|boost

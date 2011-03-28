@@ -3485,7 +3485,7 @@ operator|instanceof
 name|TextField
 condition|)
 block|{
-comment|// need to do analyisis on the term
+comment|// need to do analysis on the term
 name|String
 name|indexedVal
 init|=

@@ -56,6 +56,10 @@ name|LimitTokenCountFilter
 import|;
 end_import
 
+begin_comment
+comment|/**  * Factory for {@link LimitTokenCountFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lngthcnt" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LimitTokenCountFilterFactory" maxTokenCount="10"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   * @version $Id$  */
+end_comment
+
 begin_class
 DECL|class|LimitTokenCountFilterFactory
 specifier|public

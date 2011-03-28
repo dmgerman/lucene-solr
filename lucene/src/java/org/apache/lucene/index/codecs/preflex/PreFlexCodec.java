@@ -281,7 +281,7 @@ parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
-name|String
+name|int
 name|id
 parameter_list|,
 name|Set

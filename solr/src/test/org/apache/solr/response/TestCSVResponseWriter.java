@@ -94,9 +94,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|util
+name|search
 operator|.
-name|SolrPluginUtils
+name|ReturnFields
 import|;
 end_import
 
@@ -908,13 +908,17 @@ operator|new
 name|CSVResponseWriter
 argument_list|()
 decl_stmt|;
-name|SolrPluginUtils
+name|rsp
 operator|.
 name|setReturnFields
 argument_list|(
+operator|new
+name|ReturnFields
+argument_list|(
 literal|"id,foo_s"
 argument_list|,
-name|rsp
+name|req
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|StringWriter
@@ -946,13 +950,17 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// try scores
-name|SolrPluginUtils
+name|rsp
 operator|.
 name|setReturnFields
 argument_list|(
+operator|new
+name|ReturnFields
+argument_list|(
 literal|"id,score,foo_s"
 argument_list|,
-name|rsp
+name|req
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|buf
@@ -983,13 +991,17 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// get field values from docs... should be ordered and not include score unless requested
-name|SolrPluginUtils
+name|rsp
 operator|.
 name|setReturnFields
 argument_list|(
+operator|new
+name|ReturnFields
+argument_list|(
 literal|"*"
 argument_list|,
-name|rsp
+name|req
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|buf
@@ -1024,13 +1036,17 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// get field values and scores - just check that the scores are there... we don't guarantee where
-name|SolrPluginUtils
+name|rsp
 operator|.
 name|setReturnFields
 argument_list|(
+operator|new
+name|ReturnFields
+argument_list|(
 literal|"*,score"
 argument_list|,
-name|rsp
+name|req
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|buf

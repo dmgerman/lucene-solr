@@ -210,7 +210,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|FixedGapTermsIndexReader
+name|VariableGapTermsIndexReader
 import|;
 end_import
 
@@ -226,7 +226,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|FixedGapTermsIndexWriter
+name|VariableGapTermsIndexWriter
 import|;
 end_import
 
@@ -323,20 +323,6 @@ operator|.
 name|store
 operator|.
 name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
 import|;
 end_import
 
@@ -447,9 +433,19 @@ block|{
 name|indexWriter
 operator|=
 operator|new
-name|FixedGapTermsIndexWriter
+name|VariableGapTermsIndexWriter
 argument_list|(
 name|state
+argument_list|,
+operator|new
+name|VariableGapTermsIndexWriter
+operator|.
+name|EveryNTermSelector
+argument_list|(
+name|state
+operator|.
+name|termIndexInterval
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|success
@@ -588,7 +584,7 @@ block|{
 name|indexReader
 operator|=
 operator|new
-name|FixedGapTermsIndexReader
+name|VariableGapTermsIndexReader
 argument_list|(
 name|state
 operator|.
@@ -607,11 +603,6 @@ argument_list|,
 name|state
 operator|.
 name|termsIndexDivisor
-argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
-argument_list|()
 argument_list|,
 name|state
 operator|.
@@ -730,7 +721,7 @@ parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
-name|String
+name|int
 name|id
 parameter_list|,
 name|Set
@@ -742,6 +733,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|String
+name|codecId
+init|=
+literal|""
+operator|+
+name|id
+decl_stmt|;
 name|StandardPostingsReader
 operator|.
 name|files
@@ -750,7 +749,7 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
-name|id
+name|codecId
 argument_list|,
 name|files
 argument_list|)
@@ -763,12 +762,12 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
-name|id
+name|codecId
 argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-name|FixedGapTermsIndexReader
+name|VariableGapTermsIndexReader
 operator|.
 name|files
 argument_list|(
@@ -776,7 +775,7 @@ name|dir
 argument_list|,
 name|segmentInfo
 argument_list|,
-name|id
+name|codecId
 argument_list|,
 name|files
 argument_list|)

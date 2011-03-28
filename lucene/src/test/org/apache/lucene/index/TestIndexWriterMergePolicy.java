@@ -1289,6 +1289,29 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
+literal|"docCount="
+operator|+
+name|docCount
+operator|+
+literal|" lowerBound="
+operator|+
+name|lowerBound
+operator|+
+literal|" i="
+operator|+
+name|i
+operator|+
+literal|" segmentCount="
+operator|+
+name|segmentCount
+operator|+
+literal|" index="
+operator|+
+name|writer
+operator|.
+name|segString
+argument_list|()
+argument_list|,
 name|docCount
 operator|>
 name|lowerBound

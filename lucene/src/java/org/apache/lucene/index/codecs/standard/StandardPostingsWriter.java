@@ -357,7 +357,8 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecId
+name|codecIdAsString
+argument_list|()
 argument_list|,
 name|StandardCodec
 operator|.
@@ -399,7 +400,8 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecId
+name|codecIdAsString
+argument_list|()
 argument_list|,
 name|StandardCodec
 operator|.

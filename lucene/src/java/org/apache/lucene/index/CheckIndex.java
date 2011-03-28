@@ -1054,6 +1054,36 @@ name|format
 operator|==
 name|DefaultSegmentInfosWriter
 operator|.
+name|FORMAT_HAS_VECTORS
+condition|)
+block|{
+name|sFormat
+operator|=
+literal|"FORMAT_HAS_VECTORS [Lucene 3.1]"
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|format
+operator|==
+name|DefaultSegmentInfosWriter
+operator|.
+name|FORMAT_3_1
+condition|)
+block|{
+name|sFormat
+operator|=
+literal|"FORMAT_3_1 [Lucene 3.1]"
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|format
+operator|==
+name|DefaultSegmentInfosWriter
+operator|.
 name|FORMAT_4_0
 condition|)
 block|{
@@ -1061,6 +1091,24 @@ name|sFormat
 operator|=
 literal|"FORMAT_4_0 [Lucene 4.0]"
 expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|format
+operator|==
+name|DefaultSegmentInfosWriter
+operator|.
+name|FORMAT_CURRENT
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"BUG: You should update this tool!"
+argument_list|)
+throw|;
 block|}
 elseif|else
 if|if

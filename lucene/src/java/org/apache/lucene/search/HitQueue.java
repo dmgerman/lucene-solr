@@ -57,19 +57,14 @@ name|boolean
 name|prePopulate
 parameter_list|)
 block|{
-name|this
-operator|.
-name|prePopulate
-operator|=
-name|prePopulate
-expr_stmt|;
-name|initialize
+name|super
 argument_list|(
 name|size
+argument_list|,
+name|prePopulate
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Returns null if prePopulate is false.
 annotation|@
 name|Override
 DECL|method|getSentinelObject
@@ -82,11 +77,6 @@ comment|// Always set the doc Id to MAX_VALUE so that it won't be favored by
 comment|// lessThan. This generally should not happen since if score is not NEG_INF,
 comment|// TopScoreDocCollector will always add the object to the queue.
 return|return
-operator|!
-name|prePopulate
-condition|?
-literal|null
-else|:
 operator|new
 name|ScoreDoc
 argument_list|(

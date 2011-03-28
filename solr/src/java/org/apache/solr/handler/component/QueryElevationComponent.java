@@ -624,6 +624,18 @@ name|NodeList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|InputSource
+import|;
+end_import
+
 begin_comment
 comment|/**  * A component to elevate some documents to the top of the result set.  *   * @version $Id$  * @since solr 1.3  */
 end_comment
@@ -1632,7 +1644,11 @@ argument_list|()
 argument_list|,
 name|f
 argument_list|,
+operator|new
+name|InputSource
+argument_list|(
 name|is
+argument_list|)
 argument_list|,
 literal|null
 argument_list|)

@@ -311,7 +311,8 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecId
+name|codecIdAsString
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|out

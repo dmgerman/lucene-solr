@@ -1393,6 +1393,19 @@ else|:
 literal|""
 operator|)
 decl_stmt|;
+comment|// date faceting defaults to include both endpoints,
+comment|// range faceting defaults to including only lower
+comment|// doc exists with value @ 00:00:00.000 on July5
+specifier|final
+name|String
+name|jul4
+init|=
+name|rangeMode
+condition|?
+literal|"[.='1'  ]"
+else|:
+literal|"[.='2'  ]"
+decl_stmt|;
 name|assertQ
 argument_list|(
 literal|"check counts for month of facet by day"
@@ -1458,21 +1471,21 @@ literal|"]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-01T00:00:00Z'][.='0'  ]"
+literal|"/int[@name='1976-07-01T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-02T00:00:00Z'][.='0'  ]"
+literal|"/int[@name='1976-07-02T00:00:00Z'][.='0']"
 argument_list|,
 name|pre
 operator|+
 literal|"/int[@name='1976-07-03T00:00:00Z'][.='2'  ]"
-comment|// july4th = 2 because exists doc @ 00:00:00.000 on July5
-comment|// (date faceting is inclusive)
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-04T00:00:00Z'][.='2'  ]"
+literal|"/int[@name='1976-07-04T00:00:00Z']"
+operator|+
+name|jul4
 argument_list|,
 name|pre
 operator|+
@@ -1661,12 +1674,12 @@ argument_list|,
 name|pre
 operator|+
 literal|"/int[@name='1976-07-03T00:00:00Z'][.='2'  ]"
-comment|// july4th = 2 because exists doc @ 00:00:00.000 on July5
-comment|// (date faceting is inclusive)
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-04T00:00:00Z'][.='2'  ]"
+literal|"/int[@name='1976-07-04T00:00:00Z']"
+operator|+
+name|jul4
 argument_list|,
 name|pre
 operator|+
@@ -1769,7 +1782,7 @@ operator|+
 operator|(
 name|rangeMode
 condition|?
-literal|4
+literal|3
 else|:
 literal|7
 operator|)
@@ -1779,12 +1792,18 @@ argument_list|,
 name|pre
 operator|+
 literal|"/int[@name='1976-07-03T00:00:00Z'][.='2'  ]"
-comment|// july4th = 2 because exists doc @ 00:00:00.000 on July5
-comment|// (date faceting is inclusive)
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-04T00:00:00Z'][.='2'  ]"
+operator|(
+name|rangeMode
+condition|?
+literal|""
+else|:
+literal|"/int[@name='1976-07-04T00:00:00Z']"
+operator|+
+name|jul4
+operator|)
 argument_list|,
 name|pre
 operator|+
@@ -1876,7 +1895,7 @@ literal|"/int[@name='1976-07-05T00:00:00Z'][.='2'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-06T00:00:00Z'][.='0'  ]"
+literal|"/int[@name='1976-07-06T00:00:00Z'][.='0']"
 argument_list|,
 name|meta
 operator|+
@@ -1885,7 +1904,7 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
-literal|"check after is not inclusive of lower bound by default"
+literal|"check after is not inclusive of lower bound by default (for dates)"
 argument_list|,
 name|req
 argument_list|(
@@ -1952,11 +1971,23 @@ literal|"/int[@name='1976-07-03T00:00:00Z'][.='2'  ]"
 argument_list|,
 name|pre
 operator|+
-literal|"/int[@name='1976-07-04T00:00:00Z'][.='2'  ]"
+literal|"/int[@name='1976-07-04T00:00:00Z']"
+operator|+
+name|jul4
 argument_list|,
 name|meta
 operator|+
-literal|"/int[@name='after' ][.='8']"
+literal|"/int[@name='after' ][.='"
+operator|+
+operator|(
+name|rangeMode
+condition|?
+literal|9
+else|:
+literal|8
+operator|)
+operator|+
+literal|"']"
 argument_list|)
 expr_stmt|;
 name|assertQ

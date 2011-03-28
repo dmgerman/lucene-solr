@@ -610,8 +610,9 @@ comment|// dateFilter = DateFilter.Before("date", pastTheEnd);
 comment|// just treat dates as strings and select the whole range for now...
 name|dateFilter
 operator|=
-operator|new
 name|TermRangeFilter
+operator|.
+name|newStringRange
 argument_list|(
 literal|"date"
 argument_list|,

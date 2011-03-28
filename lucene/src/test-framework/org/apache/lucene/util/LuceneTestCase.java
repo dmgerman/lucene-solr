@@ -743,7 +743,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for all Lucene unit tests, Junit3 or Junit4 variant.  *<p>  *</p>  *<p>  * If you  * override either<code>setUp()</code> or  *<code>tearDown()</code> in your unit test, make sure you  * call<code>super.setUp()</code> and  *<code>super.tearDown()</code>  *</p>  *  * @After - replaces setup  * @Before - replaces teardown  * @Test - any public method with this annotation is a test case, regardless  * of its name  *<p>  *<p>  * See Junit4<a href="http://junit.org/junit/javadoc/4.7/">documentation</a> for a complete list of features.  *<p>  * Import from org.junit rather than junit.framework.  *<p>  * You should be able to use this class anywhere you used LuceneTestCase  * if you annotate your derived class correctly with the annotations above  * @see #assertSaneFieldCaches(String)  */
+comment|/**  * Base class for all Lucene unit tests, Junit3 or Junit4 variant.  *<p>  *</p>  *<p>  * If you  * override either<code>setUp()</code> or  *<code>tearDown()</code> in your unit test, make sure you  * call<code>super.setUp()</code> and  *<code>super.tearDown()</code>  *</p>  *  *<code>@After</code> - replaces setup  *<code>@Before</code> - replaces teardown  *<code>@Test</code> - any public method with this annotation is a test case, regardless  * of its name  *<p>  *<p>  * See Junit4<a href="http://junit.org/junit/javadoc/4.7/">documentation</a> for a complete list of features.  *<p>  * Import from org.junit rather than junit.framework.  *<p>  * You should be able to use this class anywhere you used LuceneTestCase  * if you annotate your derived class correctly with the annotations above  * @see #assertSaneFieldCaches(String)  */
 end_comment
 
 begin_class
@@ -1027,6 +1027,23 @@ argument_list|(
 literal|"tests.linedocsfile"
 argument_list|,
 literal|"europarl.lines.txt.gz"
+argument_list|)
+decl_stmt|;
+comment|/** whether or not to clean threads between test invocations: "false", "perMethod", "perClass" */
+DECL|field|TEST_CLEAN_THREADS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TEST_CLEAN_THREADS
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.cleanthreads"
+argument_list|,
+literal|"perClass"
 argument_list|)
 decl_stmt|;
 DECL|field|codecWithParam
@@ -2188,6 +2205,17 @@ name|void
 name|afterClassLuceneTestCaseJ4
 parameter_list|()
 block|{
+if|if
+condition|(
+operator|!
+literal|"false"
+operator|.
+name|equals
+argument_list|(
+name|TEST_CLEAN_THREADS
+argument_list|)
+condition|)
+block|{
 name|int
 name|rogueThreads
 init|=
@@ -2217,6 +2245,7 @@ operator|+
 literal|" thread(s) running"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|String
 name|codecDescription
@@ -2979,16 +3008,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|!
-name|getClass
-argument_list|()
+literal|"perMethod"
 operator|.
-name|getName
-argument_list|()
-operator|.
-name|startsWith
+name|equals
 argument_list|(
-literal|"org.apache.solr"
+name|TEST_CLEAN_THREADS
 argument_list|)
 condition|)
 block|{
@@ -3163,7 +3187,7 @@ specifier|static
 name|int
 name|THREAD_STOP_GRACE_MSEC
 init|=
-literal|1000
+literal|50
 decl_stmt|;
 comment|// jvm-wide list of 'rogue threads' we found, so they only get reported once.
 DECL|field|rogueThreads
@@ -3460,33 +3484,25 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|t
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"SyncThread"
+argument_list|)
+condition|)
+comment|// avoid zookeeper jre crash
 name|t
 operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
-try|try
-block|{
-name|t
-operator|.
-name|join
-argument_list|(
-name|THREAD_STOP_GRACE_MSEC
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -3494,7 +3510,7 @@ return|return
 name|rogueCount
 return|;
 block|}
-comment|/**    * Asserts that FieldCacheSanityChecker does not detect any    * problems with FieldCache.DEFAULT.    *<p>    * If any problems are found, they are logged to System.err    * (allong with the msg) when the Assertion is thrown.    *</p>    *<p>    * This method is called by tearDown after every test method,    * however IndexReaders scoped inside test methods may be garbage    * collected prior to this method being called, causing errors to    * be overlooked. Tests are encouraged to keep their IndexReaders    * scoped at the class level, or to explicitly call this method    * directly in the same scope as the IndexReader.    *</p>    *    * @see FieldCacheSanityChecker    */
+comment|/**    * Asserts that FieldCacheSanityChecker does not detect any    * problems with FieldCache.DEFAULT.    *<p>    * If any problems are found, they are logged to System.err    * (allong with the msg) when the Assertion is thrown.    *</p>    *<p>    * This method is called by tearDown after every test method,    * however IndexReaders scoped inside test methods may be garbage    * collected prior to this method being called, causing errors to    * be overlooked. Tests are encouraged to keep their IndexReaders    * scoped at the class level, or to explicitly call this method    * directly in the same scope as the IndexReader.    *</p>    *    * @see org.apache.lucene.util.FieldCacheSanityChecker    */
 DECL|method|assertSaneFieldCaches
 specifier|protected
 name|void
@@ -5007,7 +5023,7 @@ return|return
 name|dir
 return|;
 block|}
-comment|/** Returns a new field instance.     * See {@link #newField(String, String, Store, Index, TermVector)} for more information */
+comment|/** Returns a new field instance.     * See {@link #newField(String, String, Field.Store, Field.Index, Field.TermVector)} for more information */
 DECL|method|newField
 specifier|public
 specifier|static
@@ -5037,7 +5053,7 @@ name|index
 argument_list|)
 return|;
 block|}
-comment|/** Returns a new field instance.     * See {@link #newField(String, String, Store, Index, TermVector)} for more information */
+comment|/** Returns a new field instance.     * See {@link #newField(String, String, Field.Store, Field.Index, Field.TermVector)} for more information */
 DECL|method|newField
 specifier|public
 specifier|static
@@ -5112,7 +5128,7 @@ name|tv
 argument_list|)
 return|;
 block|}
-comment|/** Returns a new field instance, using the specified random.     * See {@link #newField(String, String, Store, Index, TermVector)} for more information */
+comment|/** Returns a new field instance, using the specified random.     * See {@link #newField(String, String, Field.Store, Field.Index, Field.TermVector)} for more information */
 DECL|method|newField
 specifier|public
 specifier|static
@@ -5149,7 +5165,7 @@ name|index
 argument_list|)
 return|;
 block|}
-comment|/** Returns a new field instance, using the specified random.     * See {@link #newField(String, String, Store, Index, TermVector)} for more information */
+comment|/** Returns a new field instance, using the specified random.     * See {@link #newField(String, String, Field.Store, Field.Index, Field.TermVector)} for more information */
 DECL|method|newField
 specifier|public
 specifier|static
@@ -5191,7 +5207,7 @@ name|NO
 argument_list|)
 return|;
 block|}
-comment|/** Returns a new field instance, using the specified random.     * See {@link #newField(String, String, Store, Index, TermVector)} for more information */
+comment|/** Returns a new field instance, using the specified random.     * See {@link #newField(String, String, Field.Store, Field.Index, Field.TermVector)} for more information */
 DECL|method|newField
 specifier|public
 specifier|static
