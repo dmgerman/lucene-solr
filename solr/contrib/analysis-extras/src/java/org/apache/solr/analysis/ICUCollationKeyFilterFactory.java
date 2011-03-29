@@ -171,10 +171,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link ICUCollationKeyFilter}.  *<p>  * This factory can be created in two ways:   *<ul>  *<li>Based upon a system collator associated with a Locale.  *<li>Based upon a tailored ruleset.  *</ul>  *<p>  * Using a System collator:  *<ul>  *<li>locale: RFC 3066 locale ID (mandatory)  *<li>strength: 'primary','secondary','tertiary', 'quaternary', or 'identical' (optional)  *<li>decomposition: 'no', or 'canonical' (optional)  *</ul>  *<p>  * Using a Tailored ruleset:  *<ul>  *<li>custom: UTF-8 text file containing rules supported by RuleBasedCollator (mandatory)  *<li>strength: 'primary','secondary','tertiary', 'quaternary', or 'identical' (optional)  *<li>decomposition: 'no' or 'canonical' (optional)  *</ul>  *  * @see Collator  * @see ULocale  * @see RuleBasedCollator  */
+comment|/**  * Factory for {@link ICUCollationKeyFilter}.  *<p>  * This factory can be created in two ways:   *<ul>  *<li>Based upon a system collator associated with a Locale.  *<li>Based upon a tailored ruleset.  *</ul>  *<p>  * Using a System collator:  *<ul>  *<li>locale: RFC 3066 locale ID (mandatory)  *<li>strength: 'primary','secondary','tertiary', 'quaternary', or 'identical' (optional)  *<li>decomposition: 'no', or 'canonical' (optional)  *</ul>  *<p>  * Using a Tailored ruleset:  *<ul>  *<li>custom: UTF-8 text file containing rules supported by RuleBasedCollator (mandatory)  *<li>strength: 'primary','secondary','tertiary', 'quaternary', or 'identical' (optional)  *<li>decomposition: 'no' or 'canonical' (optional)  *</ul>  *  * @see Collator  * @see ULocale  * @see RuleBasedCollator  * @deprecated use {@link org.apache.solr.schema.ICUCollationField} instead.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|ICUCollationKeyFilterFactory
 specifier|public
 class|class
