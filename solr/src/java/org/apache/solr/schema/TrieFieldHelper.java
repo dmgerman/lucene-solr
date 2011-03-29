@@ -4,15 +4,15 @@ comment|/**  * Copyright 2005 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.solr.schema
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|util
+name|schema
 package|;
 end_package
 
@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper class to make TrieFields compatible with ones written in solr  */
+comment|/**  * Helper class to make TrieFields compatible with ones written in solr  *   * TODO -- Something like this should be in in lucene  *  see: LUCENE-3001  */
 end_comment
 
 begin_class
