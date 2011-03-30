@@ -159,6 +159,7 @@ literal|10
 argument_list|)
 decl_stmt|;
 DECL|field|trackAllocations
+specifier|final
 name|boolean
 name|trackAllocations
 decl_stmt|;
@@ -173,6 +174,9 @@ parameter_list|,
 specifier|final
 name|TermsHashConsumer
 name|consumer
+parameter_list|,
+name|boolean
+name|trackAllocations
 parameter_list|,
 specifier|final
 name|TermsHash
@@ -198,6 +202,12 @@ operator|.
 name|consumer
 operator|=
 name|consumer
+expr_stmt|;
+name|this
+operator|.
+name|trackAllocations
+operator|=
+name|trackAllocations
 expr_stmt|;
 name|this
 operator|.

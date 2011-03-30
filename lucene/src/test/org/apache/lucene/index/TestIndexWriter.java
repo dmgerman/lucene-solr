@@ -5166,6 +5166,10 @@ condition|)
 block|{
 name|assertTrue
 argument_list|(
+literal|""
+operator|+
+name|j
+argument_list|,
 name|flushCount
 operator|>
 name|lastFlushCount

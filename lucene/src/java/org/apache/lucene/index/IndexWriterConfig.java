@@ -242,6 +242,16 @@ name|IndexReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
 decl_stmt|;
+comment|/** Default value is 1945. Change using {@link #setRAMPerThreadHardLimitMB(int)} */
+DECL|field|DEFAULT_RAM_PER_THREAD_HARD_LIMIT_MB
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_RAM_PER_THREAD_HARD_LIMIT_MB
+init|=
+literal|1945
+decl_stmt|;
 comment|/**    * Sets the default (for any instance) maximum time to wait for a write lock    * (in milliseconds).    */
 DECL|method|setDefaultWriteLockTimeout
 specifier|public
@@ -379,6 +389,18 @@ specifier|volatile
 name|int
 name|readerTermsIndexDivisor
 decl_stmt|;
+DECL|field|flushPolicy
+specifier|private
+specifier|volatile
+name|FlushPolicy
+name|flushPolicy
+decl_stmt|;
+DECL|field|perThreadHardLimitMB
+specifier|private
+specifier|volatile
+name|int
+name|perThreadHardLimitMB
+decl_stmt|;
 DECL|field|matchVersion
 specifier|private
 name|Version
@@ -496,6 +518,10 @@ expr_stmt|;
 name|readerTermsIndexDivisor
 operator|=
 name|DEFAULT_READER_TERMS_INDEX_DIVISOR
+expr_stmt|;
+name|perThreadHardLimitMB
+operator|=
+name|DEFAULT_RAM_PER_THREAD_HARD_LIMIT_MB
 expr_stmt|;
 block|}
 annotation|@
@@ -788,7 +814,7 @@ return|return
 name|writeLockTimeout
 return|;
 block|}
-comment|/**    * Determines the minimal number of delete terms required before the buffered    * in-memory delete terms are applied and flushed. If there are documents    * buffered in memory at the time, they are merged and a new segment is    * created.     *<p>Disabled by default (writer flushes by RAM usage).    *    * @throws IllegalArgumentException if maxBufferedDeleteTerms    * is enabled but smaller than 1    * @see #setRAMBufferSizeMB    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    */
+comment|/**    * Determines the minimal number of delete terms required before the buffered    * in-memory delete terms are applied and flushed. If there are documents    * buffered in memory at the time, they are merged and a new segment is    * created.     *<p>Disabled by default (writer flushes by RAM usage).    *    * @throws IllegalArgumentException if maxBufferedDeleteTerms    * is enabled but smaller than 1    * @see #setRAMBufferSizeMB    * @see #setFlushPolicy(FlushPolicy)    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    */
 DECL|method|setMaxBufferedDeleteTerms
 specifier|public
 name|IndexWriterConfig
@@ -836,7 +862,7 @@ return|return
 name|maxBufferedDeleteTerms
 return|;
 block|}
-comment|/**    * Determines the amount of RAM that may be used for buffering added documents    * and deletions before they are flushed to the Directory. Generally for    * faster indexing performance it's best to flush by RAM usage instead of    * document count and use as large a RAM buffer as you can.    *    *<p>    * When this is set, the writer will flush whenever buffered documents and    * deletions use this much RAM. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage. Note that if flushing by document    * count is also enabled, then the flush will be triggered by whichever comes    * first.    *    *<p>    *<b>NOTE</b>: the account of RAM usage for pending deletions is only    * approximate. Specifically, if you delete by Query, Lucene currently has no    * way to measure the RAM usage of individual Queries so the accounting will    * under-estimate and you should compensate by either calling commit()    * periodically yourself, or by using {@link #setMaxBufferedDeleteTerms(int)}    * to flush by count instead of RAM usage (each buffered delete Query counts    * as one).    *    *<p>    *<b>NOTE</b>: because IndexWriter uses<code>int</code>s when managing its    * internal storage, the absolute maximum value for this setting is somewhat    * less than 2048 MB. The precise limit depends on various factors, such as    * how large your documents are, how many fields have norms, etc., so it's    * best to set this value comfortably under 2048.    *    *<p>    * The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    *    * @throws IllegalArgumentException    *           if ramBufferSize is enabled but non-positive, or it disables    *           ramBufferSize when maxBufferedDocs is already disabled    */
+comment|/**    * Determines the amount of RAM that may be used for buffering added documents    * and deletions before they are flushed to the Directory. Generally for    * faster indexing performance it's best to flush by RAM usage instead of    * document count and use as large a RAM buffer as you can.    *<p>    * When this is set, the writer will flush whenever buffered documents and    * deletions use this much RAM. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage. Note that if flushing by document    * count is also enabled, then the flush will be triggered by whichever comes    * first.    *<p>    * The maximum RAM limit is inherently determined by the JVMs available memory.    * Yet, an {@link IndexWriter} session can consume a significantly larger amount    * of memory than the given RAM limit since this limit is just an indicator when    * to flush memory resident documents to the Directory. Flushes are likely happen    * concurrently while other threads adding documents to the writer. For application    * stability the available memory in the JVM should be significantly larger than    * the RAM buffer used for indexing.    *<p>    *<b>NOTE</b>: the account of RAM usage for pending deletions is only    * approximate. Specifically, if you delete by Query, Lucene currently has no    * way to measure the RAM usage of individual Queries so the accounting will    * under-estimate and you should compensate by either calling commit()    * periodically yourself, or by using {@link #setMaxBufferedDeleteTerms(int)}    * to flush by count instead of RAM usage (each buffered delete Query counts    * as one).    *<p>    *<b>NOTE</b>: It's not guaranteed that all memory resident documents are flushed     * once this limit is exceeded. Depending on the configured {@link FlushPolicy} only a    * subset of the buffered documents are flushed and therefore only parts of the RAM    * buffer is released.        *<p>    *     * The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.    * @see #setFlushPolicy(FlushPolicy)    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    *    * @throws IllegalArgumentException    *           if ramBufferSize is enabled but non-positive, or it disables    *           ramBufferSize when maxBufferedDocs is already disabled    *               */
 DECL|method|setRAMBufferSizeMB
 specifier|public
 name|IndexWriterConfig
@@ -846,25 +872,6 @@ name|double
 name|ramBufferSizeMB
 parameter_list|)
 block|{
-if|if
-condition|(
-name|ramBufferSizeMB
-operator|>
-literal|2048.0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"ramBufferSize "
-operator|+
-name|ramBufferSizeMB
-operator|+
-literal|" is too large; should be comfortably less than 2048"
-argument_list|)
-throw|;
-block|}
 if|if
 condition|(
 name|ramBufferSizeMB
@@ -920,7 +927,7 @@ return|return
 name|ramBufferSizeMB
 return|;
 block|}
-comment|/**    * Determines the minimal number of documents required before the buffered    * in-memory documents are flushed as a new Segment. Large values generally    * give faster indexing.    *    *<p>    * When this is set, the writer will flush every maxBufferedDocs added    * documents. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent triggering a    * flush due to number of buffered documents. Note that if flushing by RAM    * usage is also enabled, then the flush will be triggered by whichever comes    * first.    *    *<p>    * Disabled by default (writer flushes by RAM usage).    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    *    * @see #setRAMBufferSizeMB(double)    *    * @throws IllegalArgumentException    *           if maxBufferedDocs is enabled but smaller than 2, or it disables    *           maxBufferedDocs when ramBufferSize is already disabled    */
+comment|/**    * Determines the minimal number of documents required before the buffered    * in-memory documents are flushed as a new Segment. Large values generally    * give faster indexing.    *    *<p>    * When this is set, the writer will flush every maxBufferedDocs added    * documents. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent triggering a    * flush due to number of buffered documents. Note that if flushing by RAM    * usage is also enabled, then the flush will be triggered by whichever comes    * first.    *    *<p>    * Disabled by default (writer flushes by RAM usage).    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    *    * @see #setRAMBufferSizeMB(double)    * @see #setFlushPolicy(FlushPolicy)    * @throws IllegalArgumentException    *           if maxBufferedDocs is enabled but smaller than 2, or it disables    *           maxBufferedDocs when ramBufferSize is already disabled    */
 DECL|method|setMaxBufferedDocs
 specifier|public
 name|IndexWriterConfig
@@ -1251,6 +1258,87 @@ parameter_list|()
 block|{
 return|return
 name|readerTermsIndexDivisor
+return|;
+block|}
+comment|/**    * Expert: Controls when segments are flushed to disk during indexing.    * The {@link FlushPolicy} initialized during {@link IndexWriter} instantiation and once initialized    * the given instance is bound to this {@link IndexWriter} and should not be used with another writer.    * @see #setMaxBufferedDeleteTerms(int)    * @see #setMaxBufferedDocs(int)    * @see #setRAMBufferSizeMB(double)    */
+DECL|method|setFlushPolicy
+specifier|public
+name|IndexWriterConfig
+name|setFlushPolicy
+parameter_list|(
+name|FlushPolicy
+name|flushPolicy
+parameter_list|)
+block|{
+name|this
+operator|.
+name|flushPolicy
+operator|=
+name|flushPolicy
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**    * Expert: Sets the maximum memory consumption per thread triggering a forced    * flush if exceeded. A {@link DocumentsWriterPerThread} is forcefully flushed    * once it exceeds this limit even if the {@link #getRAMBufferSizeMB()} has    * not been exceeded. This is a safety limit to prevent a    * {@link DocumentsWriterPerThread} from address space exhaustion due to its    * internal 32 bit signed integer based memory addressing.    * The given value must be less that 2GB (2048MB)    *     * @see #DEFAULT_RAM_PER_THREAD_HARD_LIMIT_MB    */
+DECL|method|setRAMPerThreadHardLimitMB
+specifier|public
+name|IndexWriterConfig
+name|setRAMPerThreadHardLimitMB
+parameter_list|(
+name|int
+name|perThreadHardLimitMB
+parameter_list|)
+block|{
+if|if
+condition|(
+name|perThreadHardLimitMB
+operator|<=
+literal|0
+operator|||
+name|perThreadHardLimitMB
+operator|>=
+literal|2048
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"PerThreadHardLimit must be greater than 0 and less than 2048MB"
+argument_list|)
+throw|;
+block|}
+name|this
+operator|.
+name|perThreadHardLimitMB
+operator|=
+name|perThreadHardLimitMB
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**    * Returns the max amount of memory each {@link DocumentsWriterPerThread} can    * consume until forcefully flushed.    * @see #setRAMPerThreadHardLimitMB(int)     */
+DECL|method|getRAMPerThreadHardLimitMB
+specifier|public
+name|int
+name|getRAMPerThreadHardLimitMB
+parameter_list|()
+block|{
+return|return
+name|perThreadHardLimitMB
+return|;
+block|}
+comment|/**    * @see #setFlushPolicy(FlushPolicy)    */
+DECL|method|getFlushPolicy
+specifier|public
+name|FlushPolicy
+name|getFlushPolicy
+parameter_list|()
+block|{
+return|return
+name|flushPolicy
 return|;
 block|}
 annotation|@
@@ -1641,6 +1729,40 @@ operator|.
 name|append
 argument_list|(
 name|readerTermsIndexDivisor
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"\n"
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"flushPolicy="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|flushPolicy
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"\n"
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"perThreadHardLimitMB="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|perThreadHardLimitMB
 argument_list|)
 operator|.
 name|append

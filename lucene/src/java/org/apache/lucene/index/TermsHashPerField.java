@@ -1689,6 +1689,7 @@ operator|.
 name|addAndGet
 argument_list|(
 operator|-
+operator|(
 name|perField
 operator|.
 name|postingsArray
@@ -1701,6 +1702,7 @@ name|postingsArray
 operator|.
 name|bytesPerPosting
 argument_list|()
+operator|)
 argument_list|)
 expr_stmt|;
 name|perField
