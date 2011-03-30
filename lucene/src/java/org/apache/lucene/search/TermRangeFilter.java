@@ -12,22 +12,26 @@ name|search
 package|;
 end_package
 
-begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
-
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|text
+name|apache
 operator|.
-name|Collator
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
 begin_comment
-comment|/**  * A Filter that restricts search results to a range of term  * values in a given field.  *  *<p>This filter matches the documents looking for terms that fall into the  * supplied range according to {@link  * String#compareTo(String)}, unless a<code>Collator</code> is provided. It is not intended  * for numerical ranges; use {@link NumericRangeFilter} instead.  *  *<p>If you construct a large number of range filters with different ranges but on the   * same field, {@link FieldCacheRangeFilter} may have significantly better performance.   * @since 2.9  */
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
+begin_comment
+comment|/**  * A Filter that restricts search results to a range of term  * values in a given field.  *  *<p>This filter matches the documents looking for terms that fall into the  * supplied range according to {@link  * Byte#compareTo(Byte)},  It is not intended  * for numerical ranges; use {@link NumericRangeFilter} instead.  *  *<p>If you construct a large number of range filters with different ranges but on the   * same field, {@link FieldCacheRangeFilter} may have significantly better performance.   * @since 2.9  */
 end_comment
 
 begin_class
@@ -49,10 +53,10 @@ parameter_list|(
 name|String
 name|fieldName
 parameter_list|,
-name|String
+name|BytesRef
 name|lowerTerm
 parameter_list|,
-name|String
+name|BytesRef
 name|upperTerm
 parameter_list|,
 name|boolean
@@ -80,13 +84,15 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<strong>WARNING:</strong> Using this constructor and supplying a non-null    * value in the<code>collator</code> parameter will cause every single     * index Term in the Field referenced by lowerTerm and/or upperTerm to be    * examined.  Depending on the number of index Terms in this Field, the     * operation could be very slow.    *    * @param lowerTerm The lower bound on this range    * @param upperTerm The upper bound on this range    * @param includeLower Does this range include the lower bound?    * @param includeUpper Does this range include the upper bound?    * @param collator The collator to use when determining range inclusion; set    *  to null to use Unicode code point ordering instead of collation.    * @throws IllegalArgumentException if both terms are null or if    *  lowerTerm is null and includeLower is true (similar for upperTerm    *  and includeUpper)    */
-DECL|method|TermRangeFilter
+comment|/**    * Factory that creates a new TermRangeFilter using Strings for term text.    */
+DECL|method|newStringRange
 specifier|public
+specifier|static
 name|TermRangeFilter
+name|newStringRange
 parameter_list|(
 name|String
-name|fieldName
+name|field
 parameter_list|,
 name|String
 name|lowerTerm
@@ -99,30 +105,53 @@ name|includeLower
 parameter_list|,
 name|boolean
 name|includeUpper
-parameter_list|,
-name|Collator
-name|collator
 parameter_list|)
 block|{
-name|super
-argument_list|(
-operator|new
-name|TermRangeQuery
-argument_list|(
-name|fieldName
-argument_list|,
+name|BytesRef
+name|lower
+init|=
 name|lowerTerm
-argument_list|,
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+operator|new
+name|BytesRef
+argument_list|(
+name|lowerTerm
+argument_list|)
+decl_stmt|;
+name|BytesRef
+name|upper
+init|=
 name|upperTerm
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+operator|new
+name|BytesRef
+argument_list|(
+name|upperTerm
+argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|TermRangeFilter
+argument_list|(
+name|field
+argument_list|,
+name|lower
+argument_list|,
+name|upper
 argument_list|,
 name|includeLower
 argument_list|,
 name|includeUpper
-argument_list|,
-name|collator
 argument_list|)
-argument_list|)
-expr_stmt|;
+return|;
 block|}
 comment|/**    * Constructs a filter for field<code>fieldName</code> matching    * less than or equal to<code>upperTerm</code>.    */
 DECL|method|Less
@@ -134,7 +163,7 @@ parameter_list|(
 name|String
 name|fieldName
 parameter_list|,
-name|String
+name|BytesRef
 name|upperTerm
 parameter_list|)
 block|{
@@ -164,7 +193,7 @@ parameter_list|(
 name|String
 name|fieldName
 parameter_list|,
-name|String
+name|BytesRef
 name|lowerTerm
 parameter_list|)
 block|{
@@ -187,7 +216,7 @@ block|}
 comment|/** Returns the lower value of this range filter */
 DECL|method|getLowerTerm
 specifier|public
-name|String
+name|BytesRef
 name|getLowerTerm
 parameter_list|()
 block|{
@@ -201,7 +230,7 @@ block|}
 comment|/** Returns the upper value of this range filter */
 DECL|method|getUpperTerm
 specifier|public
-name|String
+name|BytesRef
 name|getUpperTerm
 parameter_list|()
 block|{
@@ -237,20 +266,6 @@ return|return
 name|query
 operator|.
 name|includesUpper
-argument_list|()
-return|;
-block|}
-comment|/** Returns the collator used to determine range inclusion, if any. */
-DECL|method|getCollator
-specifier|public
-name|Collator
-name|getCollator
-parameter_list|()
-block|{
-return|return
-name|query
-operator|.
-name|getCollator
 argument_list|()
 return|;
 block|}

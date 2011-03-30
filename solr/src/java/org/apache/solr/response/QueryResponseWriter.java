@@ -100,7 +100,7 @@ specifier|static
 name|String
 name|CONTENT_TYPE_XML_UTF8
 init|=
-literal|"text/xml; charset=UTF-8"
+literal|"application/xml; charset=UTF-8"
 decl_stmt|;
 DECL|field|CONTENT_TYPE_TEXT_UTF8
 specifier|public

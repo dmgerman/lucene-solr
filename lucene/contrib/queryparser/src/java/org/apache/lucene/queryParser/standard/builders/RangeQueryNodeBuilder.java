@@ -268,8 +268,9 @@ decl_stmt|;
 name|TermRangeQuery
 name|rangeQuery
 init|=
-operator|new
 name|TermRangeQuery
+operator|.
+name|newStringRange
 argument_list|(
 name|field
 argument_list|,
@@ -286,11 +287,6 @@ argument_list|,
 name|lowerInclusive
 argument_list|,
 name|upperInclusive
-argument_list|,
-name|rangeNode
-operator|.
-name|getCollator
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|MultiTermQuery

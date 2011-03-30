@@ -1402,11 +1402,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"field1"
-argument_list|)
 decl_stmt|;
 name|float
 name|norm1
@@ -1810,11 +1805,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"field1"
-argument_list|)
 decl_stmt|;
 name|origSegmentReader
 operator|.
@@ -2339,11 +2329,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"field1"
-argument_list|)
 decl_stmt|;
 name|orig
 operator|.

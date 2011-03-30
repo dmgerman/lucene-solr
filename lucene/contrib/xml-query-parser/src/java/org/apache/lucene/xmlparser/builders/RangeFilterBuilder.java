@@ -188,8 +188,9 @@ literal|true
 argument_list|)
 decl_stmt|;
 return|return
-operator|new
 name|TermRangeFilter
+operator|.
+name|newStringRange
 argument_list|(
 name|fieldName
 argument_list|,

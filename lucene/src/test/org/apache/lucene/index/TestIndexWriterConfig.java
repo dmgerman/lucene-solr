@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DefaultSimilarity
+name|DefaultSimilarityProvider
 import|;
 end_import
 
@@ -178,14 +178,14 @@ name|TestIndexWriterConfig
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|class|MySimilarity
+DECL|class|MySimilarityProvider
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|MySimilarity
+name|MySimilarityProvider
 extends|extends
-name|DefaultSimilarity
+name|DefaultSimilarityProvider
 block|{
 comment|// Does not implement anything - used only for type checking on IndexWriterConfig.
 block|}
@@ -1234,13 +1234,13 @@ operator|.
 name|setSimilarityProvider
 argument_list|(
 operator|new
-name|MySimilarity
+name|MySimilarityProvider
 argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|MySimilarity
+name|MySimilarityProvider
 operator|.
 name|class
 argument_list|,

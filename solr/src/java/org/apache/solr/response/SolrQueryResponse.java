@@ -50,6 +50,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|ReturnFields
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -100,13 +114,10 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
-DECL|field|defaultReturnFields
+DECL|field|returnFields
 specifier|protected
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|defaultReturnFields
+name|ReturnFields
+name|returnFields
 decl_stmt|;
 comment|// error if this is set...
 DECL|field|err
@@ -163,32 +174,39 @@ specifier|public
 name|void
 name|setReturnFields
 parameter_list|(
-name|Set
-argument_list|<
-name|String
-argument_list|>
+name|ReturnFields
 name|fields
 parameter_list|)
 block|{
-name|defaultReturnFields
+name|returnFields
 operator|=
 name|fields
 expr_stmt|;
 block|}
-comment|// TODO: should this be represented as a String[] such
-comment|// that order can be maintained if needed?
 comment|/**    * Gets the document field names of fields to return by default when    * returning DocLists    */
 DECL|method|getReturnFields
 specifier|public
-name|Set
-argument_list|<
-name|String
-argument_list|>
+name|ReturnFields
 name|getReturnFields
 parameter_list|()
 block|{
+if|if
+condition|(
+name|returnFields
+operator|==
+literal|null
+condition|)
+block|{
+name|returnFields
+operator|=
+operator|new
+name|ReturnFields
+argument_list|()
+expr_stmt|;
+comment|// by default return everything
+block|}
 return|return
-name|defaultReturnFields
+name|returnFields
 return|;
 block|}
 comment|/**    * Appends a named value to the list of named values to be returned.    * @param name  the name of the value - may be null if unnamed    * @param val   the value to add - also may be null since null is a legal value    * @see<a href="#returnable_data">Note on Returnable Data</a>    */

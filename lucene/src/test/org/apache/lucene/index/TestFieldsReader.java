@@ -338,11 +338,13 @@ argument_list|(
 name|testDoc
 argument_list|)
 expr_stmt|;
-name|fieldInfos
+name|_TestUtil
 operator|.
 name|add
 argument_list|(
 name|testDoc
+argument_list|,
+name|fieldInfos
 argument_list|)
 expr_stmt|;
 name|dir

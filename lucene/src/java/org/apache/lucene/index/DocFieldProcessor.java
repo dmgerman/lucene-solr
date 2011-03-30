@@ -312,25 +312,6 @@ operator|.
 name|FIELD_INFOS_EXTENSION
 argument_list|)
 decl_stmt|;
-comment|// If this segment only has docs that hit non-aborting exceptions,
-comment|// then no term vectors files will have been written; therefore we
-comment|// need to update the fieldInfos and clear the term vectors bits
-if|if
-condition|(
-operator|!
-name|state
-operator|.
-name|hasVectors
-condition|)
-block|{
-name|state
-operator|.
-name|fieldInfos
-operator|.
-name|clearVectors
-argument_list|()
-expr_stmt|;
-block|}
 name|state
 operator|.
 name|fieldInfos
@@ -837,7 +818,7 @@ name|fi
 init|=
 name|fieldInfos
 operator|.
-name|add
+name|addOrUpdate
 argument_list|(
 name|fieldName
 argument_list|,
@@ -919,12 +900,16 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|fieldInfos
+operator|.
+name|addOrUpdate
+argument_list|(
 name|fp
 operator|.
 name|fieldInfo
 operator|.
-name|update
-argument_list|(
+name|name
+argument_list|,
 name|field
 operator|.
 name|isIndexed

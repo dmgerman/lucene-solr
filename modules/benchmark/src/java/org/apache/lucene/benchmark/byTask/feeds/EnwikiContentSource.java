@@ -96,6 +96,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|benchmark
+operator|.
+name|byTask
+operator|.
+name|utils
+operator|.
+name|StreamUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|ThreadInterruptedException
@@ -911,7 +929,9 @@ block|{
 comment|// If file is not already re-opened then re-open it now
 name|is
 operator|=
-name|getInputStream
+name|StreamUtils
+operator|.
+name|inputStream
 argument_list|(
 name|file
 argument_list|)
@@ -1427,7 +1447,9 @@ argument_list|()
 expr_stmt|;
 name|is
 operator|=
-name|getInputStream
+name|StreamUtils
+operator|.
+name|inputStream
 argument_list|(
 name|file
 argument_list|)

@@ -110,13 +110,13 @@ comment|// must be static for weight serialization tests
 DECL|method|createQnorm1Similarity
 specifier|private
 specifier|static
-name|DefaultSimilarity
+name|DefaultSimilarityProvider
 name|createQnorm1Similarity
 parameter_list|()
 block|{
 return|return
 operator|new
-name|DefaultSimilarity
+name|DefaultSimilarityProvider
 argument_list|()
 block|{
 annotation|@

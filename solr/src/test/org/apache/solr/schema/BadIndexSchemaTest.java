@@ -74,6 +74,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|junit
@@ -108,7 +120,12 @@ name|Exception
 block|{
 name|ignoreException
 argument_list|(
+name|Pattern
+operator|.
+name|quote
+argument_list|(
 name|errString
+argument_list|)
 argument_list|)
 expr_stmt|;
 try|try
@@ -230,6 +247,24 @@ argument_list|(
 literal|"bad-schema-dup-fieldType.xml"
 argument_list|,
 literal|"ftAgain"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testSevereErrorsForUnexpectedAnalyzer
+specifier|public
+name|void
+name|testSevereErrorsForUnexpectedAnalyzer
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-nontext-analyzer.xml"
+argument_list|,
+literal|"StrField (bad_type)"
 argument_list|)
 expr_stmt|;
 block|}

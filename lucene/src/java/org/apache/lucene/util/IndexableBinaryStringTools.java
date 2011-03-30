@@ -36,11 +36,33 @@ name|ByteBuffer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|TermToBytesRefAttribute
+import|;
+end_import
+
 begin_comment
-comment|/**  * Provides support for converting byte sequences to Strings and back again.  * The resulting Strings preserve the original byte sequences' sort order.  *<p/>  * The Strings are constructed using a Base 8000h encoding of the original  * binary data - each char of an encoded String represents a 15-bit chunk  * from the byte sequence.  Base 8000h was chosen because it allows for all  * lower 15 bits of char to be used without restriction; the surrogate range   * [U+D8000-U+DFFF] does not represent valid chars, and would require  * complicated handling to avoid them and allow use of char's high bit.  *<p/>  * Although unset bits are used as padding in the final char, the original  * byte sequence could contain trailing bytes with no set bits (null bytes):  * padding is indistinguishable from valid information.  To overcome this  * problem, a char is appended, indicating the number of encoded bytes in the  * final content char.  *<p/>  *  * @lucene.experimental  */
+comment|// javadoc
+end_comment
+
+begin_comment
+comment|/**  * Provides support for converting byte sequences to Strings and back again.  * The resulting Strings preserve the original byte sequences' sort order.  *<p/>  * The Strings are constructed using a Base 8000h encoding of the original  * binary data - each char of an encoded String represents a 15-bit chunk  * from the byte sequence.  Base 8000h was chosen because it allows for all  * lower 15 bits of char to be used without restriction; the surrogate range   * [U+D8000-U+DFFF] does not represent valid chars, and would require  * complicated handling to avoid them and allow use of char's high bit.  *<p/>  * Although unset bits are used as padding in the final char, the original  * byte sequence could contain trailing bytes with no set bits (null bytes):  * padding is indistinguishable from valid information.  To overcome this  * problem, a char is appended, indicating the number of encoded bytes in the  * final content char.  *<p/>  *  * @lucene.experimental  * @deprecated Implement {@link TermToBytesRefAttribute} and store bytes directly  * instead. This class will be removed in Lucene 5.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|IndexableBinaryStringTools
 specifier|public
 specifier|final

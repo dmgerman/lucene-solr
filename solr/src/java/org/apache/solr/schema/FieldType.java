@@ -250,6 +250,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|SolrException
+operator|.
+name|ErrorCode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|response
 operator|.
 name|TextResponseWriter
@@ -403,7 +419,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**    * The default poly field separator.    *    * @see #createFields(SchemaField, String, float)    * @see #isPolyField()    */
+comment|/**    * The default poly field separator.    *    * @see #createFields(SchemaField, Object, float)    * @see #isPolyField()    */
 DECL|field|POLY_FIELD_SEPARATOR
 specifier|public
 specifier|static
@@ -480,7 +496,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/**    * A "polyField" is a FieldType that can produce more than one Fieldable instance for a single value, via the {@link #createFields(org.apache.solr.schema.SchemaField, String, float)} method.  This is useful    * when hiding the implementation details of a field from the Solr end user.  For instance, a spatial point may be represented by multiple different fields.    * @return true if the {@link #createFields(org.apache.solr.schema.SchemaField, String, float)} method may return more than one field    */
+comment|/**    * A "polyField" is a FieldType that can produce more than one Fieldable instance for a single value, via the {@link #createFields(org.apache.solr.schema.SchemaField, Object, float)} method.  This is useful    * when hiding the implementation details of a field from the Solr end user.  For instance, a spatial point may be represented by multiple different fields.    * @return true if the {@link #createFields(org.apache.solr.schema.SchemaField, Object, float)} method may return more than one field    */
 DECL|method|isPolyField
 specifier|public
 name|boolean
@@ -1017,8 +1033,8 @@ parameter_list|(
 name|SchemaField
 name|field
 parameter_list|,
-name|String
-name|externalVal
+name|Object
+name|value
 parameter_list|,
 name|float
 name|boost
@@ -1068,7 +1084,10 @@ name|val
 operator|=
 name|toInternal
 argument_list|(
-name|externalVal
+name|value
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1094,7 +1113,7 @@ name|field
 operator|+
 literal|"' from value '"
 operator|+
-name|externalVal
+name|value
 operator|+
 literal|"'"
 argument_list|,
@@ -1237,7 +1256,7 @@ return|return
 name|f
 return|;
 block|}
-comment|/**    * Given a {@link org.apache.solr.schema.SchemaField}, create one or more {@link org.apache.lucene.document.Fieldable} instances    * @param field the {@link org.apache.solr.schema.SchemaField}    * @param externalVal The value to add to the field    * @param boost The boost to apply    * @return An array of {@link org.apache.lucene.document.Fieldable}    *    * @see #createField(SchemaField, String, float)    * @see #isPolyField()    */
+comment|/**    * Given a {@link org.apache.solr.schema.SchemaField}, create one or more {@link org.apache.lucene.document.Fieldable} instances    * @param field the {@link org.apache.solr.schema.SchemaField}    * @param value The value to add to the field    * @param boost The boost to apply    * @return An array of {@link org.apache.lucene.document.Fieldable}    *    * @see #createField(SchemaField, Object, float)    * @see #isPolyField()    */
 DECL|method|createFields
 specifier|public
 name|Fieldable
@@ -1247,8 +1266,8 @@ parameter_list|(
 name|SchemaField
 name|field
 parameter_list|,
-name|String
-name|externalVal
+name|Object
+name|value
 parameter_list|,
 name|float
 name|boost
@@ -1261,7 +1280,7 @@ name|createField
 argument_list|(
 name|field
 argument_list|,
-name|externalVal
+name|value
 argument_list|,
 name|boost
 argument_list|)
@@ -1874,7 +1893,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Analyzer set by schema for text types to use when indexing fields    * of this type, subclasses can set analyzer themselves or override    * getAnalyzer()    * @see #getAnalyzer    */
+comment|/**    * Analyzer set by schema for text types to use when indexing fields    * of this type, subclasses can set analyzer themselves or override    * getAnalyzer()    * @see #getAnalyzer    * @see #setAnalyzer    */
 DECL|field|analyzer
 specifier|protected
 name|Analyzer
@@ -1886,7 +1905,7 @@ argument_list|(
 literal|256
 argument_list|)
 decl_stmt|;
-comment|/**    * Analyzer set by schema for text types to use when searching fields    * of this type, subclasses can set analyzer themselves or override    * getAnalyzer()    * @see #getQueryAnalyzer    */
+comment|/**    * Analyzer set by schema for text types to use when searching fields    * of this type, subclasses can set analyzer themselves or override    * getAnalyzer()    * @see #getQueryAnalyzer    * @see #setQueryAnalyzer    */
 DECL|field|queryAnalyzer
 specifier|protected
 name|Analyzer
@@ -1916,7 +1935,29 @@ return|return
 name|queryAnalyzer
 return|;
 block|}
-comment|/**    * Sets the Analyzer to be used when indexing fields of this type.    * @see #getAnalyzer    */
+DECL|field|analyzerError
+specifier|private
+specifier|final
+name|String
+name|analyzerError
+init|=
+literal|"FieldType: "
+operator|+
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|" ("
+operator|+
+name|typeName
+operator|+
+literal|") does not support specifying an analyzer"
+decl_stmt|;
+comment|/**    * Sets the Analyzer to be used when indexing fields of this type.    *    *<p>    * The default implementation throws a SolrException.      * Subclasses that override this method need to ensure the behavior     * of the analyzer is consistent with the implementation of toInternal.    *</p>    *     * @see #toInternal    * @see #setQueryAnalyzer    * @see #getAnalyzer    */
 DECL|method|setAnalyzer
 specifier|public
 name|void
@@ -1926,35 +1967,49 @@ name|Analyzer
 name|analyzer
 parameter_list|)
 block|{
-name|this
-operator|.
-name|analyzer
-operator|=
-name|analyzer
-expr_stmt|;
-name|log
-operator|.
-name|trace
+name|SolrException
+name|e
+init|=
+operator|new
+name|SolrException
 argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
 literal|"FieldType: "
 operator|+
-name|typeName
-operator|+
-literal|".setAnalyzer("
-operator|+
-name|analyzer
+name|this
 operator|.
 name|getClass
 argument_list|()
 operator|.
-name|getName
+name|getSimpleName
 argument_list|()
 operator|+
-literal|")"
+literal|" ("
+operator|+
+name|typeName
+operator|+
+literal|") does not support specifying an analyzer"
+argument_list|)
+decl_stmt|;
+name|SolrException
+operator|.
+name|logOnce
+argument_list|(
+name|log
+argument_list|,
+literal|null
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
+throw|throw
+name|e
+throw|;
 block|}
-comment|/**    * Sets the Analyzer to be used when querying fields of this type.    * @see #getQueryAnalyzer    */
+comment|/**    * Sets the Analyzer to be used when querying fields of this type.    *    *<p>    * The default implementation throws a SolrException.      * Subclasses that override this method need to ensure the behavior     * of the analyzer is consistent with the implementation of toInternal.    *</p>    *     * @see #toInternal    * @see #setAnalyzer    * @see #getQueryAnalyzer    */
 DECL|method|setQueryAnalyzer
 specifier|public
 name|void
@@ -1964,33 +2019,47 @@ name|Analyzer
 name|analyzer
 parameter_list|)
 block|{
-name|this
-operator|.
-name|queryAnalyzer
-operator|=
-name|analyzer
-expr_stmt|;
-name|log
-operator|.
-name|trace
+name|SolrException
+name|e
+init|=
+operator|new
+name|SolrException
 argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
 literal|"FieldType: "
 operator|+
-name|typeName
-operator|+
-literal|".setQueryAnalyzer("
-operator|+
-name|analyzer
+name|this
 operator|.
 name|getClass
 argument_list|()
 operator|.
-name|getName
+name|getSimpleName
 argument_list|()
 operator|+
-literal|")"
+literal|" ("
+operator|+
+name|typeName
+operator|+
+literal|") does not support specifying an analyzer"
+argument_list|)
+decl_stmt|;
+name|SolrException
+operator|.
+name|logOnce
+argument_list|(
+name|log
+argument_list|,
+literal|null
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
+throw|throw
+name|e
+throw|;
 block|}
 comment|/**    * calls back to TextResponseWriter to write the field value    */
 DECL|method|write
@@ -2123,8 +2192,9 @@ parameter_list|)
 block|{
 comment|// constant score mode is now enabled per default
 return|return
-operator|new
 name|TermRangeQuery
+operator|.
+name|newStringRange
 argument_list|(
 name|field
 operator|.

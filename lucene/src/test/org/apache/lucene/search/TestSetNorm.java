@@ -273,11 +273,6 @@ init|=
 operator|new
 name|DefaultSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"field"
-argument_list|)
 decl_stmt|;
 name|reader
 operator|.

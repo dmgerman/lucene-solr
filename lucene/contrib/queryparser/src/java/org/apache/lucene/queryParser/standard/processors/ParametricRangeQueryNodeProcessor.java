@@ -26,16 +26,6 @@ name|java
 operator|.
 name|text
 operator|.
-name|Collator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
 name|DateFormat
 import|;
 end_import
@@ -302,24 +292,6 @@ name|queryParser
 operator|.
 name|standard
 operator|.
-name|config
-operator|.
-name|RangeCollatorAttribute
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryParser
-operator|.
-name|standard
-operator|.
 name|nodes
 operator|.
 name|RangeQueryNode
@@ -327,7 +299,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor converts {@link ParametricRangeQueryNode} objects to  * {@link RangeQueryNode} objects. It reads the lower and upper bounds value  * from the {@link ParametricRangeQueryNode} object and try to parse their  * values using a {@link DateFormat}. If the values cannot be parsed to a date  * value, it will only create the {@link RangeQueryNode} using the non-parsed  * values.<br/>  *<br/>  * If a {@link LocaleAttribute} is defined in the {@link QueryConfigHandler} it  * will be used to parse the date, otherwise {@link Locale#getDefault()} will be  * used.<br/>  *<br/>  * If a {@link DateResolutionAttribute} is defined and the {@link Resolution} is  * not<code>null</code> it will also be used to parse the date value.<br/>  *<br/>  * This processor will also try to retrieve a {@link RangeCollatorAttribute}  * from the {@link QueryConfigHandler}. If a {@link RangeCollatorAttribute} is  * found and the {@link Collator} is not<code>null</code>, it's set on the  * {@link RangeQueryNode}.<br/>  *   * @see RangeCollatorAttribute  * @see DateResolutionAttribute  * @see LocaleAttribute  * @see RangeQueryNode  * @see ParametricRangeQueryNode  */
+comment|/**  * This processor converts {@link ParametricRangeQueryNode} objects to  * {@link RangeQueryNode} objects. It reads the lower and upper bounds value  * from the {@link ParametricRangeQueryNode} object and try to parse their  * values using a {@link DateFormat}. If the values cannot be parsed to a date  * value, it will only create the {@link RangeQueryNode} using the non-parsed  * values.<br/>  *<br/>  * If a {@link LocaleAttribute} is defined in the {@link QueryConfigHandler} it  * will be used to parse the date, otherwise {@link Locale#getDefault()} will be  * used.<br/>  *<br/>  * If a {@link DateResolutionAttribute} is defined and the {@link Resolution} is  * not<code>null</code> it will also be used to parse the date value.<br/>  *<br/>  *   * @see DateResolutionAttribute  * @see LocaleAttribute  * @see RangeQueryNode  * @see ParametricRangeQueryNode  */
 end_comment
 
 begin_class
@@ -397,11 +369,6 @@ operator|.
 name|getDefault
 argument_list|()
 decl_stmt|;
-name|Collator
-name|collator
-init|=
-literal|null
-decl_stmt|;
 name|DateTools
 operator|.
 name|Resolution
@@ -414,35 +381,6 @@ name|inclusive
 init|=
 literal|false
 decl_stmt|;
-if|if
-condition|(
-name|getQueryConfigHandler
-argument_list|()
-operator|.
-name|hasAttribute
-argument_list|(
-name|RangeCollatorAttribute
-operator|.
-name|class
-argument_list|)
-condition|)
-block|{
-name|collator
-operator|=
-name|getQueryConfigHandler
-argument_list|()
-operator|.
-name|getAttribute
-argument_list|(
-name|RangeCollatorAttribute
-operator|.
-name|class
-argument_list|)
-operator|.
-name|getRangeCollator
-argument_list|()
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|getQueryConfigHandler
@@ -769,8 +707,6 @@ argument_list|(
 name|lower
 argument_list|,
 name|upper
-argument_list|,
-name|collator
 argument_list|)
 return|;
 block|}

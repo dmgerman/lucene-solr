@@ -1966,7 +1966,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/** Returns the byte-encoded normalization factor for the named field of    * every document.  This is used by the search code to score documents.    *    * @see org.apache.lucene.document.Field#setBoost(float)    */
+comment|/** Returns the byte-encoded normalization factor for the named field of    *  every document.  This is used by the search code to score documents.    *  Returns null if norms were not indexed for this field.    *    * @see org.apache.lucene.document.Field#setBoost(float)    */
 DECL|method|norms
 specifier|public
 specifier|abstract

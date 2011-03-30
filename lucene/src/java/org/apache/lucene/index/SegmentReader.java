@@ -606,6 +606,16 @@ name|cfsDir
 operator|=
 name|dir0
 expr_stmt|;
+name|si
+operator|.
+name|loadFieldInfos
+argument_list|(
+name|cfsDir
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// prevent opening the CFS to load fieldInfos
 name|fieldInfos
 operator|=
 name|si
@@ -3046,6 +3056,7 @@ block|}
 block|}
 DECL|method|commitChanges
 specifier|private
+specifier|synchronized
 name|void
 name|commitChanges
 parameter_list|(
@@ -4122,7 +4133,6 @@ annotation|@
 name|Override
 DECL|method|hasNorms
 specifier|public
-specifier|synchronized
 name|boolean
 name|hasNorms
 parameter_list|(
@@ -4142,13 +4152,13 @@ name|field
 argument_list|)
 return|;
 block|}
-comment|// can return null if norms aren't stored
-DECL|method|getNorms
-specifier|protected
-specifier|synchronized
+annotation|@
+name|Override
+DECL|method|norms
+specifier|public
 name|byte
 index|[]
-name|getNorms
+name|norms
 parameter_list|(
 name|String
 name|field
@@ -4156,6 +4166,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+specifier|final
 name|Norm
 name|norm
 init|=
@@ -4172,47 +4186,17 @@ name|norm
 operator|==
 literal|null
 condition|)
+block|{
+comment|// not indexed, or norms not stored
 return|return
 literal|null
 return|;
-comment|// not indexed, or norms not stored
+block|}
 return|return
 name|norm
 operator|.
 name|bytes
 argument_list|()
-return|;
-block|}
-comment|// returns fake norms if norms aren't available
-annotation|@
-name|Override
-DECL|method|norms
-specifier|public
-specifier|synchronized
-name|byte
-index|[]
-name|norms
-parameter_list|(
-name|String
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|byte
-index|[]
-name|bytes
-init|=
-name|getNorms
-argument_list|(
-name|field
-argument_list|)
-decl_stmt|;
-return|return
-name|bytes
 return|;
 block|}
 annotation|@

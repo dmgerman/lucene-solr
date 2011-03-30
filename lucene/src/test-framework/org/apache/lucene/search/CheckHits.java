@@ -1546,7 +1546,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Asserts that the explanation value for every document matching a    * query corresponds with the true score.     *    * @see ExplanationAsserter    * @see #checkExplanations(Query, String, Searcher, boolean) for a    * "deep" testing of the explanation details.    *       * @param query the query to test    * @param searcher the searcher to test the query against    * @param defaultFieldName used for displaing the query in assertion messages    */
+comment|/**    * Asserts that the explanation value for every document matching a    * query corresponds with the true score.     *    * @see ExplanationAsserter    * @see #checkExplanations(Query, String, IndexSearcher, boolean) for a    * "deep" testing of the explanation details.    *       * @param query the query to test    * @param searcher the searcher to test the query against    * @param defaultFieldName used for displaing the query in assertion messages    */
 DECL|method|checkExplanations
 specifier|public
 specifier|static

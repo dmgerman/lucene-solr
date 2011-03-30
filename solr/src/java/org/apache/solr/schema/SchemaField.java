@@ -521,7 +521,7 @@ specifier|public
 name|Fieldable
 name|createField
 parameter_list|(
-name|String
+name|Object
 name|val
 parameter_list|,
 name|float
@@ -547,7 +547,7 @@ name|Fieldable
 index|[]
 name|createFields
 parameter_list|(
-name|String
+name|Object
 name|val
 parameter_list|,
 name|float
@@ -567,7 +567,7 @@ name|boost
 argument_list|)
 return|;
 block|}
-comment|/**    * If true, then use {@link #createFields(String, float)}, else use {@link #createField} to save an extra allocation    * @return true if this field is a poly field    */
+comment|/**    * If true, then use {@link #createFields(Object, float)}, else use {@link #createField} to save an extra allocation    * @return true if this field is a poly field    */
 DECL|method|isPolyField
 specifier|public
 name|boolean

@@ -366,7 +366,7 @@ name|FACET_DATE
 operator|+
 literal|".other"
 decl_stmt|;
-comment|/**    *<p>    * Multivalued string indicating what rules should be applied to determine     * when the the ranges generated for date faceting should be inclusive or     * exclusive of their end points.    *</p>    *<p>    * The default value if none are specified is: [lower,upper,edge]    *</p>    *<p>    * Can be overriden on a per field basis.    *</p>    * @see FacetRangeInclude    */
+comment|/**    *<p>    * Multivalued string indicating what rules should be applied to determine     * when the the ranges generated for date faceting should be inclusive or     * exclusive of their end points.    *</p>    *<p>    * The default value if none are specified is: [lower,upper,edge]<i>(NOTE: This is different then FACET_RANGE_INCLUDE)</i>    *</p>    *<p>    * Can be overriden on a per field basis.    *</p>    * @see FacetRangeInclude    * @see #FACET_RANGE_INCLUDE    */
 DECL|field|FACET_DATE_INCLUDE
 specifier|public
 specifier|static
@@ -450,8 +450,7 @@ name|FACET_RANGE
 operator|+
 literal|".other"
 decl_stmt|;
-comment|/**    * String indicating whether ranges for numerical range faceting     * should be exclusive or inclusive. By default both the start and    * end point are inclusive.    * Can be overriden on a per field basis.    * @see FacetNumberExclusive    */
-comment|/**    *<p>    * Multivalued string indicating what rules should be applied to determine     * when the the ranges generated for numeric faceting should be inclusive or     * exclusive of their end points.    *</p>    *<p>    * The default value if none are specified is: [lower,upper,edge]    *</p>    *<p>    * Can be overriden on a per field basis.    *</p>    * @see FacetRangeInclude    */
+comment|/**    *<p>    * Multivalued string indicating what rules should be applied to determine     * when the the ranges generated for numeric faceting should be inclusive or     * exclusive of their end points.    *</p>    *<p>    * The default value if none are specified is: lower    *</p>    *<p>    * Can be overriden on a per field basis.    *</p>    * @see FacetRangeInclude    */
 DECL|field|FACET_RANGE_INCLUDE
 specifier|public
 specifier|static
@@ -733,7 +732,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Convinience method for parsing the param value according to the       * correct semantics.      */
+comment|/**      * Convinience method for parsing the param value according to the       * correct semantics and applying the default of "LOWER"      */
 DECL|method|parseParam
 specifier|public
 specifier|static
@@ -768,10 +767,6 @@ operator|.
 name|of
 argument_list|(
 name|LOWER
-argument_list|,
-name|UPPER
-argument_list|,
-name|EDGE
 argument_list|)
 return|;
 comment|// build up set containing whatever is specified

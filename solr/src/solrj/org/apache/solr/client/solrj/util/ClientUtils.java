@@ -248,7 +248,7 @@ specifier|final
 name|String
 name|TEXT_XML
 init|=
-literal|"text/xml; charset=utf-8"
+literal|"application/xml; charset=UTF-8"
 decl_stmt|;
 comment|/**    * Take a string and make it an iterable ContentStream    */
 DECL|method|toContentStreams

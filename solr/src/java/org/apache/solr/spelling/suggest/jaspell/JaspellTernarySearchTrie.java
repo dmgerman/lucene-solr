@@ -16,6 +16,10 @@ name|jaspell
 package|;
 end_package
 
+begin_comment
+comment|/**   * Copyright (c) 2005 Bruno Martins  * All rights reserved.  *  * Redistribution and use in source and binary forms, with or without   * modification, are permitted provided that the following conditions   * are met:  * 1. Redistributions of source code must retain the above copyright   *    notice, this list of conditions and the following disclaimer.  * 2. Redistributions in binary form must reproduce the above copyright  *    notice, this list of conditions and the following disclaimer in the  *    documentation and/or other materials provided with the distribution.  * 3. Neither the name of the organization nor the names of its contributors  *    may be used to endorse or promote products derived from this software  *    without specific prior written permission.  *   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE  * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE  * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR  * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF  * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF  * THE POSSIBILITY OF SUCH DAMAGE.  */
+end_comment
+
 begin_import
 import|import
 name|java
@@ -250,6 +254,30 @@ specifier|public
 name|JaspellTernarySearchTrie
 parameter_list|()
 block|{   }
+comment|// for loading
+DECL|method|setRoot
+name|void
+name|setRoot
+parameter_list|(
+name|TSTNode
+name|newRoot
+parameter_list|)
+block|{
+name|rootNode
+operator|=
+name|newRoot
+expr_stmt|;
+block|}
+comment|// for saving
+DECL|method|getRoot
+name|TSTNode
+name|getRoot
+parameter_list|()
+block|{
+return|return
+name|rootNode
+return|;
+block|}
 comment|/**    * Constructs a Ternary Search Trie and loads data from a<code>File</code>    * into the Trie. The file is a normal text document, where each line is of    * the form word TAB float.    *     *@param file    *          The<code>File</code> with the data to load into the Trie.    *@exception IOException    *              A problem occured while reading the data.    */
 DECL|method|JaspellTernarySearchTrie
 specifier|public

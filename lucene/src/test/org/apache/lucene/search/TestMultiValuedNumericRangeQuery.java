@@ -463,8 +463,9 @@ block|}
 name|TermRangeQuery
 name|cq
 init|=
-operator|new
 name|TermRangeQuery
+operator|.
+name|newStringRange
 argument_list|(
 literal|"asc"
 argument_list|,

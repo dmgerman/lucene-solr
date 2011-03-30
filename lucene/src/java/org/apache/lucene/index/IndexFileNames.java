@@ -189,6 +189,16 @@ name|SEPARATE_NORMS_EXTENSION
 init|=
 literal|"s"
 decl_stmt|;
+comment|/** Extension of global field numbers */
+DECL|field|GLOBAL_FIELD_NUM_MAP_EXTENSION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GLOBAL_FIELD_NUM_MAP_EXTENSION
+init|=
+literal|"fnx"
+decl_stmt|;
 comment|/**    * This array contains all filename extensions used by    * Lucene's index files, with one exception, namely the    * extension made up from<code>.s</code> + a number.    * Also note that Lucene's<code>segments_N</code> files    * do not have any filename extension.    */
 DECL|field|INDEX_EXTENSIONS
 specifier|public
@@ -223,6 +233,8 @@ block|,
 name|NORMS_EXTENSION
 block|,
 name|COMPOUND_FILE_STORE_EXTENSION
+block|,
+name|GLOBAL_FIELD_NUM_MAP_EXTENSION
 block|,   }
 decl_stmt|;
 DECL|field|STORE_INDEX_EXTENSIONS
