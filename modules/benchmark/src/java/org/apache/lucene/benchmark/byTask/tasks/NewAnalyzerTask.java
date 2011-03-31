@@ -307,6 +307,23 @@ operator|=
 literal|"org.apache.lucene.analysis.standard.StandardAnalyzer"
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|className
+operator|.
+name|equals
+argument_list|(
+literal|"KeywordAnalyzer"
+argument_list|)
+condition|)
+block|{
+name|className
+operator|=
+literal|"org.apache.lucene.analysis.core.KeywordAnalyzer"
+expr_stmt|;
+block|}
+elseif|else
 if|if
 condition|(
 name|className
@@ -326,8 +343,8 @@ argument_list|(
 literal|"standard."
 argument_list|)
 condition|)
-comment|//there is no package name, assume o.a.l.analysis
 block|{
+comment|//there is no package name, assume o.a.l.analysis
 name|className
 operator|=
 literal|"org.apache.lucene.analysis."
