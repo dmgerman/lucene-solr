@@ -825,6 +825,7 @@ return|;
 block|}
 comment|// used by assert
 DECL|method|containsConsistent
+specifier|synchronized
 name|boolean
 name|containsConsistent
 parameter_list|(
