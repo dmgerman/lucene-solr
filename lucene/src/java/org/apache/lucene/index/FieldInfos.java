@@ -129,6 +129,24 @@ operator|.
 name|index
 operator|.
 name|SegmentCodecs
+import|;
+end_import
+
+begin_comment
+comment|// Required for Java 1.5 javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SegmentCodecs
 operator|.
 name|SegmentCodecsBuilder
 import|;
@@ -995,7 +1013,7 @@ specifier|private
 name|int
 name|format
 decl_stmt|;
-comment|/**    * Creates a new {@link FieldInfos} instance with a private    * {@link FieldNumberBiMap} and a default {@link SegmentCodecsBuilder}    * initialized with {@link CodecProvider#getDefault()}.    *<p>    * Note: this ctor should not be used during indexing use    * {@link FieldInfos#FieldInfos(FieldInfos)} or    * {@link FieldInfos#FieldInfos(FieldNumberBiMap)} instead.    */
+comment|/**    * Creates a new {@link FieldInfos} instance with a private    * {@link org.apache.lucene.index.FieldInfos.FieldNumberBiMap} and a default {@link SegmentCodecsBuilder}    * initialized with {@link CodecProvider#getDefault()}.    *<p>    * Note: this ctor should not be used during indexing use    * {@link FieldInfos#FieldInfos(FieldInfos)} or    * {@link FieldInfos#FieldInfos(FieldNumberBiMap,org.apache.lucene.index.SegmentCodecs.SegmentCodecsBuilder)}    * instead.    */
 DECL|method|FieldInfos
 specifier|public
 name|FieldInfos
@@ -2227,7 +2245,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns<code>true</code> iff this instance is not backed by a    * {@link FieldNumberBiMap}. Instances read from a directory via    * {@link FieldInfos#FieldInfos(Directory, String)} will always be read-only    * since no {@link FieldNumberBiMap} is supplied, otherwise<code>false</code>.    */
+comment|/**    * Returns<code>true</code> iff this instance is not backed by a    * {@link org.apache.lucene.index.FieldInfos.FieldNumberBiMap}. Instances read from a directory via    * {@link FieldInfos#FieldInfos(Directory, String)} will always be read-only    * since no {@link org.apache.lucene.index.FieldInfos.FieldNumberBiMap} is supplied, otherwise     *<code>false</code>.    */
 DECL|method|isReadOnly
 specifier|public
 specifier|final
