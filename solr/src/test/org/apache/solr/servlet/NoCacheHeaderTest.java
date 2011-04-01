@@ -116,6 +116,7 @@ block|{
 name|createJetty
 argument_list|(
 name|TEST_HOME
+argument_list|()
 argument_list|,
 literal|"solr/conf/solrconfig-nocache.xml"
 argument_list|,
