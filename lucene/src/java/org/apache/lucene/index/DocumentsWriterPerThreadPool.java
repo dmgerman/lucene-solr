@@ -532,12 +532,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-name|clearThreadBindings
-argument_list|(
-name|threadState
-argument_list|)
-expr_stmt|;
-comment|// TODO - do we need to clear ThreadBindings here  since we swap DWPT this is not necessary
 return|return
 name|dwpt
 return|;
