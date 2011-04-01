@@ -425,7 +425,7 @@ argument_list|(
 name|localId
 argument_list|)
 decl_stmt|;
-comment|// TODO: handle all types
+comment|// TODO: handle all types -- see: SOLR-2443
 name|doc
 operator|.
 name|setField
