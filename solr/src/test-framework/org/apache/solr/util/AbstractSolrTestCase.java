@@ -301,6 +301,7 @@ return|return
 name|SolrTestCaseJ4
 operator|.
 name|TEST_HOME
+argument_list|()
 return|;
 block|}
 comment|/**    * The directory used to story the index managed by the TestHarness h    */

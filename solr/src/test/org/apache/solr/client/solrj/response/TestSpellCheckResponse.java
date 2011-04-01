@@ -170,6 +170,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|ExternalPaths
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -222,10 +236,16 @@ block|{
 comment|// createJetty(EXAMPLE_HOME, null, null);
 name|initCore
 argument_list|(
+name|ExternalPaths
+operator|.
 name|EXAMPLE_CONFIG
 argument_list|,
+name|ExternalPaths
+operator|.
 name|EXAMPLE_SCHEMA
 argument_list|,
+name|ExternalPaths
+operator|.
 name|EXAMPLE_HOME
 argument_list|)
 expr_stmt|;
