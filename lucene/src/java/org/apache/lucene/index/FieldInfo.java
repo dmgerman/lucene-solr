@@ -39,18 +39,20 @@ literal|1
 decl_stmt|;
 DECL|field|name
 specifier|public
+specifier|final
 name|String
 name|name
+decl_stmt|;
+DECL|field|number
+specifier|public
+specifier|final
+name|int
+name|number
 decl_stmt|;
 DECL|field|isIndexed
 specifier|public
 name|boolean
 name|isIndexed
-decl_stmt|;
-DECL|field|number
-specifier|public
-name|int
-name|number
 decl_stmt|;
 comment|// true if term vector for this field should be stored
 DECL|field|storeTermVector
