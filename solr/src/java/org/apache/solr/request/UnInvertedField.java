@@ -648,40 +648,7 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  big term termNum="
-operator|+
-name|termNum
-operator|+
-literal|" term="
-operator|+
-name|topTerm
-operator|.
-name|term
-operator|.
-name|utf8ToString
-argument_list|()
-operator|+
-literal|" size="
-operator|+
-name|maxTermCounts
-index|[
-name|termNum
-index|]
-operator|+
-literal|" dF="
-operator|+
-name|te
-operator|.
-name|docFreq
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("  big term termNum=" + termNum + " term=" + topTerm.term.utf8ToString() + " size=" + maxTermCounts[termNum] + " dF=" + te.docFreq());
 block|}
 block|}
 annotation|@
