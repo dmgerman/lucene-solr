@@ -6319,6 +6319,12 @@ operator|new
 name|MockAnalyzer
 argument_list|()
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
+argument_list|)
 decl_stmt|;
 name|LogMergePolicy
 name|lmp
@@ -6331,6 +6337,13 @@ operator|.
 name|getMergePolicy
 argument_list|()
 decl_stmt|;
+name|lmp
+operator|.
+name|setUseCompoundFile
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|lmp
 operator|.
 name|setNoCFSRatio

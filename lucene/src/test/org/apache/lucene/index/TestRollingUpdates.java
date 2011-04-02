@@ -232,7 +232,7 @@ name|doc
 operator|.
 name|getField
 argument_list|(
-literal|"id"
+literal|"docid"
 argument_list|)
 operator|.
 name|setValue
@@ -247,7 +247,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-literal|"id"
+literal|"docid"
 argument_list|,
 name|myID
 argument_list|)

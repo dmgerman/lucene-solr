@@ -196,7 +196,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LogMergePolicy
+name|TieredMergePolicy
 import|;
 end_import
 
@@ -793,7 +793,7 @@ argument_list|)
 expr_stmt|;
 operator|(
 operator|(
-name|LogMergePolicy
+name|TieredMergePolicy
 operator|)
 name|cfg
 operator|.

@@ -52,16 +52,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Comparator
 import|;
 end_import
@@ -175,13 +165,6 @@ name|int
 name|maxMergeDocs
 init|=
 name|DEFAULT_MAX_MERGE_DOCS
-decl_stmt|;
-DECL|field|requireContiguousMerge
-specifier|protected
-name|boolean
-name|requireContiguousMerge
-init|=
-literal|false
 decl_stmt|;
 DECL|field|noCFSRatio
 specifier|protected
@@ -313,32 +296,6 @@ operator|+
 name|message
 argument_list|)
 expr_stmt|;
-block|}
-comment|/** If true, merges must be in-order slice of the    *  segments.  If false, then the merge policy is free to    *  pick any segments.  The default is false, which is    *  in general more efficient than true since it gives the    *  merge policy more freedom to pick closely sized    *  segments. */
-DECL|method|setRequireContiguousMerge
-specifier|public
-name|void
-name|setRequireContiguousMerge
-parameter_list|(
-name|boolean
-name|v
-parameter_list|)
-block|{
-name|requireContiguousMerge
-operator|=
-name|v
-expr_stmt|;
-block|}
-comment|/** See {@link #setRequireContiguousMerge}. */
-DECL|method|getRequireContiguousMerge
-specifier|public
-name|boolean
-name|getRequireContiguousMerge
-parameter_list|()
-block|{
-return|return
-name|requireContiguousMerge
-return|;
 block|}
 comment|/**<p>Returns the number of segments that are merged at    * once and also controls the total number of segments    * allowed to accumulate in the index.</p> */
 DECL|method|getMergeFactor
@@ -1491,7 +1448,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|// TODO: handle non-contiguous merge case differently?
 comment|// Find the newest (rightmost) segment that needs to
 comment|// be optimized (other segments may have been flushed
 comment|// since optimize started):
@@ -2085,51 +2041,6 @@ literal|0
 return|;
 block|}
 block|}
-DECL|class|SortByIndex
-specifier|private
-specifier|static
-class|class
-name|SortByIndex
-implements|implements
-name|Comparator
-argument_list|<
-name|SegmentInfoAndLevel
-argument_list|>
-block|{
-DECL|method|compare
-specifier|public
-name|int
-name|compare
-parameter_list|(
-name|SegmentInfoAndLevel
-name|o1
-parameter_list|,
-name|SegmentInfoAndLevel
-name|o2
-parameter_list|)
-block|{
-return|return
-name|o1
-operator|.
-name|index
-operator|-
-name|o2
-operator|.
-name|index
-return|;
-block|}
-block|}
-DECL|field|sortByIndex
-specifier|private
-specifier|static
-specifier|final
-name|SortByIndex
-name|sortByIndex
-init|=
-operator|new
-name|SortByIndex
-argument_list|()
-decl_stmt|;
 comment|/** Checks if any merges are now necessary and returns a    *  {@link MergePolicy.MergeSpecification} if so.  A merge    *  is necessary when there are more than {@link    *  #setMergeFactor} segments at a given level.  When    *  multiple levels have too many segments, this method    *  will return multiple merges, allowing the {@link    *  MergeScheduler} to use concurrency. */
 annotation|@
 name|Override
@@ -2246,42 +2157,6 @@ argument_list|(
 name|info
 argument_list|)
 decl_stmt|;
-comment|// When we require contiguous merge, we still add the
-comment|// segment to levels to avoid merging "across" a set
-comment|// of segment being merged:
-if|if
-condition|(
-operator|!
-name|requireContiguousMerge
-operator|&&
-name|mergingSegments
-operator|.
-name|contains
-argument_list|(
-name|info
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-name|verbose
-argument_list|()
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"seg "
-operator|+
-name|info
-operator|.
-name|name
-operator|+
-literal|" already being merged; skip"
-argument_list|)
-expr_stmt|;
-block|}
-continue|continue;
-block|}
 comment|// Floor tiny segments
 if|if
 condition|(
@@ -2332,13 +2207,54 @@ name|verbose
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|long
+name|segBytes
+init|=
+name|sizeBytes
+argument_list|(
+name|info
+argument_list|)
+decl_stmt|;
+name|String
+name|extra
+init|=
+name|mergingSegments
+operator|.
+name|contains
+argument_list|(
+name|info
+argument_list|)
+condition|?
+literal|" [merging]"
+else|:
+literal|""
+decl_stmt|;
+if|if
+condition|(
+name|size
+operator|>=
+name|maxMergeSize
+condition|)
+block|{
+name|extra
+operator|+=
+literal|" [skip: too large]"
+expr_stmt|;
+block|}
 name|message
 argument_list|(
-literal|"seg "
+literal|"seg="
 operator|+
-name|info
+name|writer
 operator|.
-name|name
+name|get
+argument_list|()
+operator|.
+name|segString
+argument_list|(
+name|info
+argument_list|)
 operator|+
 literal|" level="
 operator|+
@@ -2348,24 +2264,23 @@ name|level
 operator|+
 literal|" size="
 operator|+
-name|size
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-operator|!
-name|requireContiguousMerge
-condition|)
-block|{
-name|Collections
+name|String
 operator|.
-name|sort
+name|format
 argument_list|(
-name|levels
+literal|"%.3f MB"
+argument_list|,
+name|segBytes
+operator|/
+literal|1024
+operator|/
+literal|1024.
+argument_list|)
+operator|+
+name|extra
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|final
 name|float
@@ -2618,6 +2533,11 @@ name|anyTooLarge
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|anyMerging
+init|=
+literal|false
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -2664,7 +2584,31 @@ operator|>=
 name|maxMergeDocs
 operator|)
 expr_stmt|;
+if|if
+condition|(
+name|mergingSegments
+operator|.
+name|contains
+argument_list|(
+name|info
+argument_list|)
+condition|)
+block|{
+name|anyMerging
+operator|=
+literal|true
+expr_stmt|;
+break|break;
 block|}
+block|}
+if|if
+condition|(
+name|anyMerging
+condition|)
+block|{
+comment|// skip
+block|}
+elseif|else
 if|if
 condition|(
 operator|!
@@ -2682,42 +2626,6 @@ operator|=
 operator|new
 name|MergeSpecification
 argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|verbose
-argument_list|()
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"    "
-operator|+
-name|start
-operator|+
-literal|" to "
-operator|+
-name|end
-operator|+
-literal|": add this merge"
-argument_list|)
-expr_stmt|;
-block|}
-name|Collections
-operator|.
-name|sort
-argument_list|(
-name|levels
-operator|.
-name|subList
-argument_list|(
-name|start
-argument_list|,
-name|end
-argument_list|)
-argument_list|,
-name|sortByIndex
-argument_list|)
 expr_stmt|;
 specifier|final
 name|SegmentInfos
@@ -2771,6 +2679,36 @@ operator|.
 name|info
 argument_list|)
 assert|;
+block|}
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"  add merge="
+operator|+
+name|writer
+operator|.
+name|get
+argument_list|()
+operator|.
+name|segString
+argument_list|(
+name|mergeInfos
+argument_list|)
+operator|+
+literal|" start="
+operator|+
+name|start
+operator|+
+literal|" end="
+operator|+
+name|end
+argument_list|)
+expr_stmt|;
 block|}
 name|spec
 operator|.
@@ -3003,12 +2941,12 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"requireContiguousMerge="
+literal|"noCFSRatio="
 argument_list|)
 operator|.
 name|append
 argument_list|(
-name|requireContiguousMerge
+name|noCFSRatio
 argument_list|)
 expr_stmt|;
 name|sb

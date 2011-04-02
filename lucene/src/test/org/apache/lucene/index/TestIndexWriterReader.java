@@ -384,6 +384,14 @@ DECL|field|infoStream
 specifier|static
 name|PrintStream
 name|infoStream
+init|=
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
 decl_stmt|;
 DECL|method|count
 specifier|public
