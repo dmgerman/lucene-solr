@@ -449,7 +449,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|LogByteSizeMergePolicy
+name|TieredMergePolicy
 operator|.
 name|class
 argument_list|,
@@ -1656,7 +1656,7 @@ expr_stmt|;
 comment|// Test MergePolicy
 name|assertEquals
 argument_list|(
-name|LogByteSizeMergePolicy
+name|TieredMergePolicy
 operator|.
 name|class
 argument_list|,

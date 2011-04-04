@@ -179,10 +179,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link CollationKeyFilter}.  *<p>  * This factory can be created in two ways:   *<ul>  *<li>Based upon a system collator associated with a Locale.  *<li>Based upon a tailored ruleset.  *</ul>  *<p>  * Using a System collator:  *<ul>  *<li>language: ISO-639 language code (mandatory)  *<li>country: ISO-3166 country code (optional)  *<li>variant: vendor or browser-specific code (optional)  *<li>strength: 'primary','secondary','tertiary', or 'identical' (optional)  *<li>decomposition: 'no','canonical', or 'full' (optional)  *</ul>  *<p>  * Using a Tailored ruleset:  *<ul>  *<li>custom: UTF-8 text file containing rules supported by RuleBasedCollator (mandatory)  *<li>strength: 'primary','secondary','tertiary', or 'identical' (optional)  *<li>decomposition: 'no','canonical', or 'full' (optional)  *</ul>  *   *<pre class="prettyprint">  *&lt;fieldType name="text_clltnky" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory"/&gt;  *&lt;filter class="solr.CollationKeyFilterFactory" language="ja" country="JP"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   * @see Collator  * @see Locale  * @see RuleBasedCollator  * @since solr 3.1  */
+comment|/**  * Factory for {@link CollationKeyFilter}.  *<p>  * This factory can be created in two ways:   *<ul>  *<li>Based upon a system collator associated with a Locale.  *<li>Based upon a tailored ruleset.  *</ul>  *<p>  * Using a System collator:  *<ul>  *<li>language: ISO-639 language code (mandatory)  *<li>country: ISO-3166 country code (optional)  *<li>variant: vendor or browser-specific code (optional)  *<li>strength: 'primary','secondary','tertiary', or 'identical' (optional)  *<li>decomposition: 'no','canonical', or 'full' (optional)  *</ul>  *<p>  * Using a Tailored ruleset:  *<ul>  *<li>custom: UTF-8 text file containing rules supported by RuleBasedCollator (mandatory)  *<li>strength: 'primary','secondary','tertiary', or 'identical' (optional)  *<li>decomposition: 'no','canonical', or 'full' (optional)  *</ul>  *   *<pre class="prettyprint">  *&lt;fieldType name="text_clltnky" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory"/&gt;  *&lt;filter class="solr.CollationKeyFilterFactory" language="ja" country="JP"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   * @see Collator  * @see Locale  * @see RuleBasedCollator  * @since solr 3.1  * @deprecated use {@link org.apache.solr.schema.CollationField} instead.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|CollationKeyFilterFactory
 specifier|public
 class|class

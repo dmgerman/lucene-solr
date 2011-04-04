@@ -513,7 +513,7 @@ argument_list|)
 operator|.
 name|setMergePolicy
 argument_list|(
-name|newInOrderLogMergePolicy
+name|newLogMergePolicy
 argument_list|()
 argument_list|)
 argument_list|)
@@ -644,6 +644,13 @@ operator|new
 name|LogDocMergePolicy
 argument_list|()
 argument_list|)
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// leftmost* segment has 1 doc
@@ -728,6 +735,13 @@ operator|new
 name|LogDocMergePolicy
 argument_list|()
 argument_list|)
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -786,7 +800,7 @@ operator|.
 name|setMergeScheduler
 argument_list|(
 operator|new
-name|ConcurrentMergeScheduler
+name|SerialMergeScheduler
 argument_list|()
 argument_list|)
 argument_list|)
@@ -1297,6 +1311,10 @@ literal|" lowerBound="
 operator|+
 name|lowerBound
 operator|+
+literal|" upperBound="
+operator|+
+name|upperBound
+operator|+
 literal|" i="
 operator|+
 name|i
@@ -1310,6 +1328,13 @@ operator|+
 name|writer
 operator|.
 name|segString
+argument_list|()
+operator|+
+literal|" config="
+operator|+
+name|writer
+operator|.
+name|getConfig
 argument_list|()
 argument_list|,
 name|docCount
@@ -1362,6 +1387,13 @@ operator|+
 name|writer
 operator|.
 name|segString
+argument_list|()
+operator|+
+literal|" config="
+operator|+
+name|writer
+operator|.
+name|getConfig
 argument_list|()
 argument_list|,
 name|numSegments

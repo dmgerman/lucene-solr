@@ -232,7 +232,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LogMergePolicy
+name|TieredMergePolicy
 import|;
 end_import
 
@@ -1092,7 +1092,7 @@ argument_list|)
 decl_stmt|;
 operator|(
 operator|(
-name|LogMergePolicy
+name|TieredMergePolicy
 operator|)
 name|writer
 operator|.

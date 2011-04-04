@@ -39,7 +39,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple container class for modeling an ordered list of name/value pairs.  *  *<p>  * Unlike Maps:  *</p>  *<ul>  *<li>Names may be repeated</li>  *<li>Order of elements is maintained</li>  *<li>Elements may be accessed by numeric index</li>  *<li>Names and Values can both be null</li>  *</ul>  *  *<p>  * A NamedList provides fast access by element number, but not by name.  *</p>  *<p>  * When a NamedList is serialized, order is considered more important than access  * by key, so ResponseWriters that output to a format such as JSON will normally  * choose a data structure that allows order to be easily preserved in various  * clients (i.e. not a straight map).  * If access by key is more important, see {@link SimpleOrderedMap},  * or simply use a regular {@link Map}  *</p>  *  * @version $Id$  */
+comment|/**  * A simple container class for modeling an ordered list of name/value pairs.  *  *<p>  * Unlike Maps:  *</p>  *<ul>  *<li>Names may be repeated</li>  *<li>Order of elements is maintained</li>  *<li>Elements may be accessed by numeric index</li>  *<li>Names and Values can both be null</li>  *</ul>  *  *<p>  * A NamedList provides fast access by element number, but not by name.  *</p>  *<p>  * When a NamedList is serialized, order is considered more important than access  * by key, so ResponseWriters that output to a format such as JSON will normally  * choose a data structure that allows order to be easily preserved in various  * clients (i.e. not a straight map).  * If access by key is more important for serialization, see {@link SimpleOrderedMap},  * or simply use a regular {@link Map}  *</p>  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -527,7 +527,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Gets the value for the first instance of the specified name    * found.    *    * @return null if not found or if the value stored was null.    * @see #indexOf    * @see #get(String,int)    */
+comment|/**    * Gets the value for the first instance of the specified name    * found.    *<p>    * NOTE: this runs in linear time (it scans starting at the    * beginning of the list until it finds the first pair with    * the specified name).    * @return null if not found or if the value stored was null.    * @see #indexOf    * @see #get(String,int)    *     */
 DECL|method|get
 specifier|public
 name|T
@@ -546,7 +546,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * Gets the value for the first instance of the specified name    * found starting at the specified index.    *    * @return null if not found or if the value stored was null.    * @see #indexOf    */
+comment|/**    * Gets the value for the first instance of the specified name    * found starting at the specified index.    *<p>    * NOTE: this runs in linear time (it scans starting at the    * specified position until it finds the first pair with    * the specified name).    * @return null if not found or if the value stored was null.    * @see #indexOf    */
 DECL|method|get
 specifier|public
 name|T
@@ -1260,6 +1260,7 @@ return|return
 name|iter
 return|;
 block|}
+comment|/**     * NOTE: this runs in linear time (it scans starting at the    * beginning of the list until it finds the first pair with    * the specified name).    */
 DECL|method|remove
 specifier|public
 name|T

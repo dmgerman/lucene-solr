@@ -892,6 +892,14 @@ literal|1
 argument_list|,
 literal|10
 argument_list|)
+argument_list|,
+name|w
+operator|.
+name|getConfig
+argument_list|()
+operator|.
+name|getCodecProvider
+argument_list|()
 argument_list|)
 return|;
 block|}
