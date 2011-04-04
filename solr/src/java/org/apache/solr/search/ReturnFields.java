@@ -1000,7 +1000,7 @@ name|sp
 operator|.
 name|opt
 argument_list|(
-literal|'='
+literal|':'
 argument_list|)
 condition|)
 block|{
@@ -1075,7 +1075,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// we read "key = "
+comment|// we read "key : "
 name|field
 operator|=
 name|sp
