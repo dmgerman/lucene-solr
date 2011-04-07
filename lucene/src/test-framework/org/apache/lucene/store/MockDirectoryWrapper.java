@@ -2094,6 +2094,23 @@ condition|)
 block|{
 if|if
 condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nNOTE: MockDirectoryWrapper: now run CheckIndex"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|codecProvider
 operator|!=
 literal|null
