@@ -2103,10 +2103,32 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Try again with 5000 more bytes of free space:
+comment|// Try again with more free space:
 name|diskFree
 operator|+=
-literal|5000
+name|TEST_NIGHTLY
+condition|?
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|,
+literal|4000
+argument_list|,
+literal|8000
+argument_list|)
+else|:
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|,
+literal|40000
+argument_list|,
+literal|80000
+argument_list|)
 expr_stmt|;
 block|}
 block|}
