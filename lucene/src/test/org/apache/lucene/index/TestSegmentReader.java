@@ -190,6 +190,8 @@ name|DocHelper
 operator|.
 name|writeDoc
 argument_list|(
+name|random
+argument_list|,
 name|dir
 argument_list|,
 name|testDoc
@@ -430,6 +432,8 @@ name|DocHelper
 operator|.
 name|writeDoc
 argument_list|(
+name|random
+argument_list|,
 name|dir
 argument_list|,
 name|docToDelete

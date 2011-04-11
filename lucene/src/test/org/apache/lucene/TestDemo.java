@@ -247,7 +247,9 @@ name|analyzer
 init|=
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 comment|// Store the index in memory:
 name|Directory
@@ -267,6 +269,8 @@ argument_list|(
 name|random
 argument_list|,
 name|directory
+argument_list|,
+name|analyzer
 argument_list|)
 decl_stmt|;
 name|iwriter

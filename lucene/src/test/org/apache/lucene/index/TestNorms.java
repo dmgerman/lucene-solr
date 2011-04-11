@@ -373,7 +373,9 @@ name|anlzr
 operator|=
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Test that norms values are preserved as the index is maintained.    * Including separate norms.    * Including merging indexes with seprate norms.     * Including optimize.     */
@@ -1565,7 +1567,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|config
