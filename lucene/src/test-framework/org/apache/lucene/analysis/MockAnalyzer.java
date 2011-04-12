@@ -149,7 +149,7 @@ name|Integer
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Creates a new MockAnalyzer.    *     * @param random Random for payloads behavior    * @param runAutomaton DFA describing how tokenization should happen (e.g. [a-zA-Z]+)    * @param lowerCase true if the tokenizer should lowercase terms    * @param filter DFA describing how terms should be filtered (set of stopwords, etc)    * @param enablePositionIncrements true if position increments should reflect filtered terms.    * @param payload if payloads should be added containing the positions (for testing)    */
+comment|/**    * Creates a new MockAnalyzer.    *     * @param random Random for payloads behavior    * @param runAutomaton DFA describing how tokenization should happen (e.g. [a-zA-Z]+)    * @param lowerCase true if the tokenizer should lowercase terms    * @param filter DFA describing how terms should be filtered (set of stopwords, etc)    * @param enablePositionIncrements true if position increments should reflect filtered terms.    */
 DECL|method|MockAnalyzer
 specifier|public
 name|MockAnalyzer
