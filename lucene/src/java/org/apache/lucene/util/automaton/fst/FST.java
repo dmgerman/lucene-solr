@@ -107,6 +107,18 @@ import|;
 end_import
 
 begin_comment
+comment|// NOTE: while the FST is able to represent a non-final
+end_comment
+
+begin_comment
+comment|// dead-end state (NON_FINAL_END_NODE=0), the layres above
+end_comment
+
+begin_comment
+comment|// (FSTEnum, Util) have problems with this!!
+end_comment
+
+begin_comment
 comment|/** Represents an FST using a compact byte[] format.  *<p> The format is similar to what's used by Morfologik  *  (http://sourceforge.net/projects/morfologik).  * @lucene.experimental  */
 end_comment
 
@@ -916,6 +928,22 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|startNode
+operator|==
+name|FINAL_END_NODE
+operator|&&
+name|emptyOutput
+operator|!=
+literal|null
+condition|)
+block|{
+name|startNode
+operator|=
+literal|0
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|this
 operator|.
 name|startNode
@@ -1193,6 +1221,8 @@ argument_list|,
 name|VERSION_CURRENT
 argument_list|)
 expr_stmt|;
+comment|// TODO: really we should encode this as an arc, arriving
+comment|// to the root node, instead of special casing here:
 if|if
 condition|(
 name|emptyOutput
@@ -2259,7 +2289,19 @@ name|flags
 operator|=
 name|BIT_LAST_ARC
 expr_stmt|;
+name|arc
+operator|.
+name|nextFinalOutput
+operator|=
+name|NO_OUTPUT
+expr_stmt|;
 block|}
+name|arc
+operator|.
+name|output
+operator|=
+name|NO_OUTPUT
+expr_stmt|;
 comment|// If there are no nodes, ie, the FST only accepts the
 comment|// empty string, then startNode is 0, and then readFirstTargetArc
 name|arc
@@ -2770,10 +2812,11 @@ name|IOException
 block|{
 if|if
 condition|(
+operator|!
+name|targetHasArcs
+argument_list|(
 name|follow
-operator|.
-name|isFinal
-argument_list|()
+argument_list|)
 condition|)
 block|{
 return|return
@@ -3195,18 +3238,32 @@ name|BIT_STOP_NODE
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|arc
+operator|.
+name|flag
+argument_list|(
+name|BIT_FINAL_ARC
+argument_list|)
+condition|)
+block|{
 name|arc
 operator|.
 name|target
 operator|=
 name|FINAL_END_NODE
 expr_stmt|;
+block|}
+else|else
+block|{
 name|arc
 operator|.
-name|flags
-operator||=
-name|BIT_FINAL_ARC
+name|target
+operator|=
+name|NON_FINAL_END_NODE
 expr_stmt|;
+block|}
 name|arc
 operator|.
 name|nextArc
