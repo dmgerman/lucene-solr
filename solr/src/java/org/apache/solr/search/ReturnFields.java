@@ -585,25 +585,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|SolrCore
-operator|.
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"fields="
-operator|+
-name|fields
-operator|+
-literal|"\t globs="
-operator|+
-name|globs
-operator|+
-literal|"\t transformer="
-operator|+
-name|transformer
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|ReturnFields
 specifier|public
@@ -622,25 +603,6 @@ argument_list|(
 name|fl
 argument_list|,
 name|req
-argument_list|)
-expr_stmt|;
-name|SolrCore
-operator|.
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"fields="
-operator|+
-name|fields
-operator|+
-literal|"\t globs="
-operator|+
-name|globs
-operator|+
-literal|"\t transformer="
-operator|+
-name|transformer
 argument_list|)
 expr_stmt|;
 block|}
