@@ -246,20 +246,24 @@ name|DefaultSkipListWriter
 name|skipListWriter
 decl_stmt|;
 comment|/** Expert: The fraction of TermDocs entries stored in skip tables,    * used to accelerate {@link DocsEnum#advance(int)}.  Larger values result in    * smaller indexes, greater acceleration, but fewer accelerable cases, while    * smaller values result in bigger indexes, less acceleration and more    * accelerable cases. More detailed experiments would be useful here. */
+DECL|field|DEFAULT_SKIP_INTERVAL
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_SKIP_INTERVAL
+init|=
+literal|16
+decl_stmt|;
 DECL|field|skipInterval
 specifier|final
 name|int
 name|skipInterval
-init|=
-literal|16
 decl_stmt|;
 comment|/**    * Expert: minimum docFreq to write any skip data at all    */
 DECL|field|skipMinimum
 specifier|final
 name|int
 name|skipMinimum
-init|=
-name|skipInterval
 decl_stmt|;
 comment|/** Expert: The maximum number of skip levels. Smaller values result in     * slightly smaller indexes, but slower skipping in big posting lists.    */
 DECL|field|maxSkipLevels
@@ -340,9 +344,43 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|this
+argument_list|(
+name|state
+argument_list|,
+name|DEFAULT_SKIP_INTERVAL
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|StandardPostingsWriter
+specifier|public
+name|StandardPostingsWriter
+parameter_list|(
+name|SegmentWriteState
+name|state
+parameter_list|,
+name|int
+name|skipInterval
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 name|super
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
+name|skipInterval
+operator|=
+name|skipInterval
+expr_stmt|;
+name|this
+operator|.
+name|skipMinimum
+operator|=
+name|skipInterval
+expr_stmt|;
+comment|/* set to the same for now */
 comment|//this.segment = state.segmentName;
 name|String
 name|fileName
