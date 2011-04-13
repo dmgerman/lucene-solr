@@ -1246,38 +1246,6 @@ name|Document
 argument_list|>
 argument_list|()
 decl_stmt|;
-for|for
-control|(
-name|int
-name|iter
-init|=
-literal|0
-init|;
-name|iter
-operator|<
-literal|3
-condition|;
-name|iter
-operator|++
-control|)
-block|{
-if|if
-condition|(
-name|VERBOSE
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"TEST: iter="
-operator|+
-name|iter
-argument_list|)
-expr_stmt|;
-block|}
 name|IndexWriter
 name|w
 init|=
@@ -1537,7 +1505,6 @@ operator|.
 name|docs
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|//System.out.println("TEST: checkindex");

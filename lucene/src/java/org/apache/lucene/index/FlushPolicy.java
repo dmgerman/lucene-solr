@@ -102,7 +102,7 @@ specifier|protected
 name|IndexWriterConfig
 name|indexWriterConfig
 decl_stmt|;
-comment|/**    * Called for each delete term applied to the given {@link ThreadState}s    * {@link DocumentsWriterPerThread}.    *<p>    * Note: This method is synchronized by the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
+comment|/**    * Called for each delete term. If this is a delete triggered due to an update    * the given {@link ThreadState} is non-null.    *<p>    * Note: This method is synchronized by the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
 DECL|method|onDelete
 specifier|public
 specifier|abstract
