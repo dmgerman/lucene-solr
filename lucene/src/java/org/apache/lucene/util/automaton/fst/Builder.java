@@ -740,6 +740,11 @@ name|node
 operator|.
 name|output
 decl_stmt|;
+comment|// We "fake" the node as being final if it has no
+comment|// outgoing arcs; in theory we could leave it
+comment|// as non-final (the FST can represent this), but
+comment|// FSTEnum, Util, etc., have trouble w/ non-final
+comment|// dead-end states:
 specifier|final
 name|boolean
 name|isFinal
@@ -747,6 +752,12 @@ init|=
 name|node
 operator|.
 name|isFinal
+operator|||
+name|node
+operator|.
+name|numArcs
+operator|==
+literal|0
 decl_stmt|;
 if|if
 condition|(
@@ -937,7 +948,7 @@ name|output
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Sugar: adds the UTF32 chars from char[] slice.  FST    *  must be FST.INPUT_TYPE.BYTE4! */
+comment|/** Sugar: adds the UTF32 codepoints from char[] slice.  FST    *  must be FST.INPUT_TYPE.BYTE4! */
 DECL|method|add
 specifier|public
 name|void
@@ -1054,7 +1065,7 @@ name|output
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Sugar: adds the UTF32 chars from CharSequence.  FST    *  must be FST.INPUT_TYPE.BYTE4! */
+comment|/** Sugar: adds the UTF32 codepoints from CharSequence.  FST    *  must be FST.INPUT_TYPE.BYTE4! */
 DECL|method|add
 specifier|public
 name|void
@@ -1232,6 +1243,15 @@ index|]
 operator|.
 name|inputCount
 operator|++
+expr_stmt|;
+name|frontier
+index|[
+literal|0
+index|]
+operator|.
+name|isFinal
+operator|=
+literal|true
 expr_stmt|;
 name|fst
 operator|.
@@ -1976,6 +1996,27 @@ name|arc
 operator|.
 name|target
 decl_stmt|;
+if|if
+condition|(
+name|n
+operator|.
+name|numArcs
+operator|==
+literal|0
+condition|)
+block|{
+comment|//System.out.println("seg=" + segment + "        FORCE final arc=" + (char) arc.label);
+name|arc
+operator|.
+name|isFinal
+operator|=
+name|n
+operator|.
+name|isFinal
+operator|=
+literal|true
+expr_stmt|;
+block|}
 name|arc
 operator|.
 name|target

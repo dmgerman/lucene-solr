@@ -2333,13 +2333,7 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockTokenizer
-operator|.
-name|WHITESPACE
-argument_list|,
-literal|true
-argument_list|,
-literal|true
+name|random
 argument_list|)
 argument_list|)
 operator|.

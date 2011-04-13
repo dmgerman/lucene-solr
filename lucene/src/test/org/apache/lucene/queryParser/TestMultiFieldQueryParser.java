@@ -452,7 +452,9 @@ name|fields
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|Query
@@ -867,7 +869,9 @@ name|fields
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|,
 name|boosts
 argument_list|)
@@ -1016,7 +1020,9 @@ name|fields
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1053,7 +1059,9 @@ name|fields
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1090,7 +1098,9 @@ name|fields
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1127,7 +1137,9 @@ name|fields
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1164,7 +1176,9 @@ name|fields
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|fail
@@ -1317,7 +1331,9 @@ name|flags
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1346,7 +1362,9 @@ name|flags
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1391,7 +1409,9 @@ name|flags2
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|fail
@@ -1463,10 +1483,12 @@ name|flags
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//, fields, flags, new MockAnalyzer());
+comment|//, fields, flags, new MockAnalyzer(random));
 name|assertEquals
 argument_list|(
 literal|"+b:one -t:one"
@@ -1493,7 +1515,9 @@ name|flags
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1538,7 +1562,9 @@ name|flags2
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|fail
@@ -1629,7 +1655,9 @@ name|flags
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1674,7 +1702,9 @@ name|flags2
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|fail
@@ -1755,7 +1785,9 @@ name|flags
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1800,7 +1832,9 @@ name|flags2
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|fail
@@ -1946,7 +1980,9 @@ name|analyzer
 init|=
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 name|Directory
 name|ramDir
@@ -2115,7 +2151,9 @@ name|stdAnalyzer
 init|=
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 DECL|method|AnalyzerReturningNull
 specifier|public

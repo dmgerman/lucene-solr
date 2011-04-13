@@ -226,6 +226,8 @@ name|DocHelper
 operator|.
 name|writeDoc
 argument_list|(
+name|random
+argument_list|,
 name|dir
 argument_list|,
 name|doc1
@@ -235,6 +237,8 @@ name|DocHelper
 operator|.
 name|writeDoc
 argument_list|(
+name|random
+argument_list|,
 name|dir
 argument_list|,
 name|doc2
@@ -1229,7 +1233,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setOpenMode

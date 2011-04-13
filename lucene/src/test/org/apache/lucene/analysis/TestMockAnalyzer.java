@@ -128,7 +128,9 @@ name|a
 init|=
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
@@ -208,6 +210,8 @@ init|=
 operator|new
 name|MockAnalyzer
 argument_list|(
+name|random
+argument_list|,
 name|MockTokenizer
 operator|.
 name|SIMPLE
@@ -293,6 +297,8 @@ init|=
 operator|new
 name|MockAnalyzer
 argument_list|(
+name|random
+argument_list|,
 name|MockTokenizer
 operator|.
 name|KEYWORD
@@ -358,6 +364,8 @@ init|=
 operator|new
 name|MockAnalyzer
 argument_list|(
+name|random
+argument_list|,
 name|MockTokenizer
 operator|.
 name|SIMPLE
@@ -406,6 +414,8 @@ operator|=
 operator|new
 name|MockAnalyzer
 argument_list|(
+name|random
+argument_list|,
 name|MockTokenizer
 operator|.
 name|SIMPLE
@@ -500,6 +510,8 @@ init|=
 operator|new
 name|MockAnalyzer
 argument_list|(
+name|random
+argument_list|,
 name|MockTokenizer
 operator|.
 name|SIMPLE
@@ -576,6 +588,8 @@ init|=
 operator|new
 name|MockAnalyzer
 argument_list|(
+name|random
+argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
