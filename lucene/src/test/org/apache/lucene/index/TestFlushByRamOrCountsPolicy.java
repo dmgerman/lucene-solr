@@ -1779,7 +1779,7 @@ operator|new
 name|int
 index|[]
 block|{
-literal|3
+literal|4
 operator|+
 name|random
 operator|.
@@ -1848,7 +1848,7 @@ name|ThrottledIndexOutput
 operator|.
 name|mBitsToBytes
 argument_list|(
-literal|50
+literal|40
 operator|+
 name|random
 operator|.
@@ -2102,46 +2102,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|flushControl
-operator|.
-name|peakNetBytes
-operator|>
-call|(
-name|long
-call|)
-argument_list|(
-name|iwc
-operator|.
-name|getRAMBufferSizeMB
-argument_list|()
-operator|*
-literal|1024d
-operator|*
-literal|1024d
-operator|*
-literal|2d
-argument_list|)
-condition|)
-block|{
-name|assertTrue
-argument_list|(
-literal|"should be unhealthy here numThreads: "
-operator|+
-name|numThreads
-index|[
-name|i
-index|]
-argument_list|,
-name|docsWriter
-operator|.
-name|healthiness
-operator|.
-name|wasStalled
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
 name|numThreads
 index|[
 name|i
@@ -2150,8 +2110,17 @@ operator|==
 literal|1
 condition|)
 block|{
-comment|// single thread could be unhealthy is a single
-comment|// doc is very large?!
+name|assertFalse
+argument_list|(
+literal|"single thread must not stall"
+argument_list|,
+name|docsWriter
+operator|.
+name|healthiness
+operator|.
+name|wasStalled
+argument_list|)
+expr_stmt|;
 name|assertFalse
 argument_list|(
 literal|"single thread must not block numThreads: "
