@@ -108,6 +108,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -3852,6 +3862,11 @@ block|}
 comment|/**    * verify that both the field("...") value source parser as well as     * ExternalFileField work with esoteric field names    */
 annotation|@
 name|Test
+annotation|@
+name|Ignore
+argument_list|(
+literal|"fails on some platforms: see https://issues.apache.org/jira/browse/SOLR-2468"
+argument_list|)
 DECL|method|testExternalFieldValueSourceParser
 specifier|public
 name|void
