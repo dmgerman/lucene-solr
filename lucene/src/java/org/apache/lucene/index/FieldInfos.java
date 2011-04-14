@@ -2294,6 +2294,17 @@ range|:
 name|this
 control|)
 block|{
+assert|assert
+operator|!
+name|fi
+operator|.
+name|omitTermFreqAndPositions
+operator|||
+operator|!
+name|fi
+operator|.
+name|storePayloads
+assert|;
 name|byte
 name|bits
 init|=
@@ -2623,6 +2634,19 @@ operator|)
 operator|!=
 literal|0
 decl_stmt|;
+comment|// LUCENE-3027: past indices were able to write
+comment|// storePayloads=true when omitTFAP is also true,
+comment|// which is invalid.  We correct that, here:
+if|if
+condition|(
+name|omitTermFreqAndPositions
+condition|)
+block|{
+name|storePayloads
+operator|=
+literal|false
+expr_stmt|;
+block|}
 specifier|final
 name|FieldInfo
 name|addInternal
