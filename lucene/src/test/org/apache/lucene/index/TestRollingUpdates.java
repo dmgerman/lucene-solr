@@ -454,12 +454,6 @@ name|random
 argument_list|)
 argument_list|)
 operator|.
-name|setMergePolicy
-argument_list|(
-name|newLogMergePolicy
-argument_list|()
-argument_list|)
-operator|.
 name|setMaxBufferedDocs
 argument_list|(
 literal|2
@@ -693,7 +687,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|//        IndexReader open = IndexReader.open(writer, true);
+name|IndexReader
+name|open
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -748,17 +746,102 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
-comment|//          if (random.nextInt(10) == 0) {
-comment|//            IndexReader reader = open.reopen();
-comment|//            if (reader != open) {
-comment|//              open.close();
-comment|//              open = reader;
-comment|//            }
-comment|//            assertEquals("iter: " + i + " numDocs: "+ open.numDocs() + " del: " + open.numDeletedDocs() + " max: " + open.maxDoc(), 1, open.numDocs());
-comment|//
-comment|//          }
+if|if
+condition|(
+name|random
+operator|.
+name|nextInt
+argument_list|(
+literal|10
+argument_list|)
+operator|==
+literal|0
+condition|)
+block|{
+if|if
+condition|(
+name|open
+operator|==
+literal|null
+condition|)
+name|open
+operator|=
+name|IndexReader
+operator|.
+name|open
+argument_list|(
+name|writer
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|IndexReader
+name|reader
+init|=
+name|open
+operator|.
+name|reopen
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|reader
+operator|!=
+name|open
+condition|)
+block|{
+name|open
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|open
+operator|=
+name|reader
+expr_stmt|;
 block|}
-comment|//        open.close();
+name|assertEquals
+argument_list|(
+literal|"iter: "
+operator|+
+name|i
+operator|+
+literal|" numDocs: "
+operator|+
+name|open
+operator|.
+name|numDocs
+argument_list|()
+operator|+
+literal|" del: "
+operator|+
+name|open
+operator|.
+name|numDeletedDocs
+argument_list|()
+operator|+
+literal|" max: "
+operator|+
+name|open
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|,
+literal|1
+argument_list|,
+name|open
+operator|.
+name|numDocs
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|open
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
