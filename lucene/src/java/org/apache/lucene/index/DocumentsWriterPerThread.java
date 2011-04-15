@@ -1247,6 +1247,14 @@ argument_list|(
 name|deleteSlice
 argument_list|)
 decl_stmt|;
+comment|/* deleteSlice can possibly be null if we have hit non-aborting exceptions during indexing and never succeeded      adding a document. */
+if|if
+condition|(
+name|deleteSlice
+operator|!=
+literal|null
+condition|)
+block|{
 comment|// apply all deletes before we flush and release the delete slice
 name|deleteSlice
 operator|.
@@ -1261,6 +1269,7 @@ name|deleteSlice
 operator|=
 literal|null
 expr_stmt|;
+block|}
 return|return
 name|globalDeletes
 return|;
