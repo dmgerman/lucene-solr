@@ -2138,37 +2138,13 @@ name|hasBlocked
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|docsWriter
-operator|.
-name|healthiness
-operator|.
-name|wasStalled
-condition|)
-block|{
-comment|// TODO maybe this assumtion is too strickt
-name|assertTrue
-argument_list|(
-literal|" we should have blocked here numThreads: "
-operator|+
-name|numThreads
-index|[
-name|i
-index|]
-argument_list|,
-name|docsWriter
-operator|.
-name|healthiness
-operator|.
-name|hasBlocked
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// this assumption is too strict in this test
+comment|//      } else {
+comment|//        if (docsWriter.healthiness.wasStalled) {
+comment|//          // TODO maybe this assumtion is too strickt
+comment|//          assertTrue(" we should have blocked here numThreads: "
+comment|//              + numThreads[i], docsWriter.healthiness.hasBlocked());
+comment|//        }
 block|}
 name|assertActiveBytesAfter
 argument_list|(
