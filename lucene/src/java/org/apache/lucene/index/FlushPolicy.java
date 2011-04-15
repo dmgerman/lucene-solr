@@ -330,16 +330,6 @@ block|}
 block|}
 block|}
 assert|assert
-name|maxRamUsingThreadState
-operator|.
-name|perThread
-operator|.
-name|getNumDocsInRAM
-argument_list|()
-operator|>
-literal|0
-assert|;
-assert|assert
 name|writer
 operator|.
 name|get
