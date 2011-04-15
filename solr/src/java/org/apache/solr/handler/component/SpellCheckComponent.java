@@ -1200,7 +1200,12 @@ name|ErrorCode
 operator|.
 name|NOT_FOUND
 argument_list|,
-literal|"Specified dictionary does not exist."
+literal|"Specified dictionary does not exist: "
+operator|+
+name|getDictionaryName
+argument_list|(
+name|params
+argument_list|)
 argument_list|)
 throw|;
 block|}

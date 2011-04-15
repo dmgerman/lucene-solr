@@ -266,6 +266,7 @@ argument_list|)
 operator|.
 name|fieldInfo
 decl_stmt|;
+specifier|final
 name|FreqProxTermsWriterPerField
 name|fieldWriter
 init|=
@@ -276,6 +277,16 @@ argument_list|(
 name|fieldNumber
 argument_list|)
 decl_stmt|;
+comment|// Aggregate the storePayload as seen by the same
+comment|// field across multiple threads
+if|if
+condition|(
+operator|!
+name|fieldInfo
+operator|.
+name|omitTermFreqAndPositions
+condition|)
+block|{
 name|fieldInfo
 operator|.
 name|storePayloads
@@ -284,6 +295,7 @@ name|fieldWriter
 operator|.
 name|hasPayloads
 expr_stmt|;
+block|}
 comment|// If this field has postings then add them to the
 comment|// segment
 name|fieldWriter

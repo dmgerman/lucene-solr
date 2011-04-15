@@ -772,6 +772,13 @@ block|{
 name|int
 name|delta
 decl_stmt|;
+assert|assert
+operator|!
+name|omitTF
+operator|||
+operator|!
+name|currentFieldStoresPayloads
+assert|;
 if|if
 condition|(
 name|currentFieldStoresPayloads
