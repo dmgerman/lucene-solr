@@ -497,13 +497,7 @@ name|random
 operator|.
 name|nextInt
 argument_list|(
-name|Runtime
-operator|.
-name|getRuntime
-argument_list|()
-operator|.
-name|availableProcessors
-argument_list|()
+literal|12
 argument_list|)
 decl_stmt|;
 name|IndexingThread
