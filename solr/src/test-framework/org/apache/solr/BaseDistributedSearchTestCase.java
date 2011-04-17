@@ -1925,6 +1925,24 @@ operator|new
 name|ModifiableSolrParams
 argument_list|()
 decl_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"reqid"
+argument_list|,
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|random
+operator|.
+name|nextInt
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// just to help correlate top-level requests w/ sub requests
 for|for
 control|(
 name|int
@@ -1967,6 +1985,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"controlClient"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+comment|// just to enable easier sorting through log files
 specifier|final
 name|QueryResponse
 name|controlRsp
@@ -1978,6 +2006,13 @@ argument_list|(
 name|params
 argument_list|)
 decl_stmt|;
+name|params
+operator|.
+name|remove
+argument_list|(
+literal|"controlClient"
+argument_list|)
+expr_stmt|;
 name|setDistributedParams
 argument_list|(
 name|params
@@ -2478,6 +2513,8 @@ name|ordered
 condition|)
 block|{
 return|return
+name|err
+argument_list|(
 literal|"."
 operator|+
 name|namea
@@ -2487,6 +2524,7 @@ operator|+
 name|nameb
 operator|+
 literal|" (unordered or missing)"
+argument_list|)
 return|;
 block|}
 comment|// if unordered, continue until we find the right field.
@@ -2550,6 +2588,8 @@ name|bSkipped
 condition|)
 block|{
 return|return
+name|err
+argument_list|(
 literal|".size()=="
 operator|+
 name|a
@@ -2571,6 +2611,7 @@ operator|+
 literal|","
 operator|+
 name|bSkipped
+argument_list|)
 return|;
 block|}
 return|return
@@ -2658,11 +2699,14 @@ argument_list|)
 condition|)
 block|{
 return|return
+name|err
+argument_list|(
 literal|"["
 operator|+
 name|keya
 operator|+
 literal|"]==null"
+argument_list|)
 return|;
 block|}
 if|if
@@ -2937,7 +2981,10 @@ literal|null
 condition|)
 block|{
 return|return
+name|err
+argument_list|(
 literal|".maxScore missing"
+argument_list|)
 return|;
 block|}
 block|}
@@ -3279,6 +3326,8 @@ name|length
 condition|)
 block|{
 return|return
+name|err
+argument_list|(
 literal|".length:"
 operator|+
 name|a
@@ -3290,6 +3339,7 @@ operator|+
 name|b
 operator|.
 name|length
+argument_list|)
 return|;
 block|}
 for|for
@@ -3393,6 +3443,8 @@ operator|==
 literal|null
 condition|)
 return|return
+name|err
+argument_list|(
 literal|":"
 operator|+
 name|a
@@ -3400,6 +3452,7 @@ operator|+
 literal|"!="
 operator|+
 name|b
+argument_list|)
 return|;
 if|if
 condition|(
@@ -3590,6 +3643,8 @@ argument_list|)
 condition|)
 block|{
 return|return
+name|err
+argument_list|(
 literal|":"
 operator|+
 name|a
@@ -3597,6 +3652,7 @@ operator|+
 literal|"!="
 operator|+
 name|b
+argument_list|)
 return|;
 block|}
 return|return
@@ -3657,6 +3713,8 @@ operator|)
 condition|)
 block|{
 return|return
+name|err
+argument_list|(
 literal|":"
 operator|+
 name|a
@@ -3664,10 +3722,26 @@ operator|+
 literal|"!="
 operator|+
 name|b
+argument_list|)
 return|;
 block|}
 return|return
 literal|null
+return|;
+block|}
+comment|/** This method is called for root level comparison errors and can be helpful to set a    * breakpoint in to debug comparison failures.    */
+DECL|method|err
+specifier|public
+specifier|static
+name|String
+name|err
+parameter_list|(
+name|String
+name|msg
+parameter_list|)
+block|{
+return|return
+name|msg
 return|;
 block|}
 DECL|method|compareResponses
