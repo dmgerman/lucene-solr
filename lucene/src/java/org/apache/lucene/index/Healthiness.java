@@ -241,8 +241,6 @@ block|}
 DECL|field|sync
 specifier|private
 specifier|final
-name|Healthiness
-operator|.
 name|Sync
 name|sync
 init|=
@@ -258,9 +256,9 @@ init|=
 literal|false
 decl_stmt|;
 comment|// only with asserts
-DECL|method|isStalled
+DECL|method|anyStalledThreads
 name|boolean
-name|isStalled
+name|anyStalledThreads
 parameter_list|()
 block|{
 return|return

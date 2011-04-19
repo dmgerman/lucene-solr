@@ -208,7 +208,7 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-comment|// sort by field name
+comment|// Sort by field name
 name|CollectionUtil
 operator|.
 name|quickSort

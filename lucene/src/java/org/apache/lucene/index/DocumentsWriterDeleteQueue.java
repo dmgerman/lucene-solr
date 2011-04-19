@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link DocumentsWriterDeleteQueue} is a non-blocking linked pending deletes  * queue. In contrast to other queue implementation we only maintain only the  * tail of the queue. A delete queue is always used in a context of a set of  * DWPT and a global delete pool. Each of the DWPT and the global pool need to  * maintain their 'own' head of the queue. The difference between the DWPT and  * the global pool is that the DWPT starts maintaining a head once it has added  * its first document since for its segments private deletes only the deletes  * after that document are relevant. The global pool instead starts maintaining  * the head once this instance is created by taking the sentinel instance as its  * initial head.  *<p>  * Since each {@link DeleteSlice} maintains its own head and the list is only  * single linked the garbage collector takes care of pruning the list for us.  * All nodes in the list that are still relevant should be either directly or  * indirectly referenced by one of the DWPT's private {@link DeleteSlice} or by  * the global {@link BufferedDeletes} slice.  *<p>  * Each DWPT as well as the global delete pool maintain their private  * DeleteSlice instance. In the DWPT case updating a slice is equivalent to  * atomically finishing the document. The slice update guarantees a happens  * before relationship to all other updates in the same indexing session. When a  * DWPT updates a document it  *   *<ol>  *<li>consumes a document finishes its processing</li>  *<li>updates its private {@link DeleteSlice} either by calling  * {@link #updateSlice(DeleteSlice)} or {@link #add(Term, DeleteSlice)} (if the  * document has a delTerm)</li>  *<li>applies all deletes in the slice to its private {@link BufferedDeletes}  * and resets it</li>  *<li>increments its internal document id</li>  *</ol>  *   * The DWPT also doesn't apply its current documents delete term until it has  * updated its delete slice which ensures the consistency of the update. if the  * update fails before the DeleteSlice could have been updated the deleteTerm  * will also not be added to its private deletes neither to the global deletes.  *   */
+comment|/**  * {@link DocumentsWriterDeleteQueue} is a non-blocking linked pending deletes  * queue. In contrast to other queue implementation we only maintain the  * tail of the queue. A delete queue is always used in a context of a set of  * DWPTs and a global delete pool. Each of the DWPT and the global pool need to  * maintain their 'own' head of the queue (as a DeleteSlice instance per DWPT).  * The difference between the DWPT and the global pool is that the DWPT starts  * maintaining a head once it has added its first document since for its segments  * private deletes only the deletes after that document are relevant. The global  * pool instead starts maintaining the head once this instance is created by  * taking the sentinel instance as its initial head.  *<p>  * Since each {@link DeleteSlice} maintains its own head and the list is only  * single linked the garbage collector takes care of pruning the list for us.  * All nodes in the list that are still relevant should be either directly or  * indirectly referenced by one of the DWPT's private {@link DeleteSlice} or by  * the global {@link BufferedDeletes} slice.  *<p>  * Each DWPT as well as the global delete pool maintain their private  * DeleteSlice instance. In the DWPT case updating a slice is equivalent to  * atomically finishing the document. The slice update guarantees a "happens  * before" relationship to all other updates in the same indexing session. When a  * DWPT updates a document it:  *   *<ol>  *<li>consumes a document and finishes its processing</li>  *<li>updates its private {@link DeleteSlice} either by calling  * {@link #updateSlice(DeleteSlice)} or {@link #add(Term, DeleteSlice)} (if the  * document has a delTerm)</li>  *<li>applies all deletes in the slice to its private {@link BufferedDeletes}  * and resets it</li>  *<li>increments its internal document id</li>  *</ol>  *   * The DWPT also doesn't apply its current documents delete term until it has  * updated its delete slice which ensures the consistency of the update. If the  * update fails before the DeleteSlice could have been updated the deleteTerm  * will also not be added to its private deletes neither to the global deletes.  *   */
 end_comment
 
 begin_class
@@ -403,7 +403,7 @@ name|tryLock
 argument_list|()
 condition|)
 block|{
-comment|/*        * the global buffer must be locked but we don't need to upate them if        * there is an update going on right now. It is sufficient to apply the        * deletes that have been added after the current in-flight global slices        * tail the next time we can get the lock!        */
+comment|/*        * The global buffer must be locked but we don't need to upate them if        * there is an update going on right now. It is sufficient to apply the        * deletes that have been added after the current in-flight global slices        * tail the next time we can get the lock!        */
 try|try
 block|{
 if|if
@@ -450,7 +450,7 @@ operator|.
 name|lock
 argument_list|()
 expr_stmt|;
-comment|/*      * here we are freezing the global buffer so we need to lock it, apply all      * deletes in the queue and reset the global slice to let the GC prune the      * queue.      */
+comment|/*      * Here we freeze the global buffer so we need to lock it, apply all      * deletes in the queue and reset the global slice to let the GC prune the      * queue.      */
 specifier|final
 name|Node
 name|currentTail
@@ -458,7 +458,7 @@ init|=
 name|tail
 decl_stmt|;
 comment|// take the current tail make this local any
-comment|// changes after this call are applied later
+comment|// Changes after this call are applied later
 comment|// and not relevant here
 if|if
 condition|(
@@ -467,7 +467,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// update the callers slices so we are on the same page
+comment|// Update the callers slices so we are on the same page
 name|callerSlice
 operator|.
 name|sliceTail
@@ -564,7 +564,7 @@ operator|!=
 name|tail
 condition|)
 block|{
-comment|// if we are the same just
+comment|// If we are the same just
 name|slice
 operator|.
 name|sliceTail
@@ -584,7 +584,7 @@ specifier|static
 class|class
 name|DeleteSlice
 block|{
-comment|// no need to be volatile, slices are only access by one thread!
+comment|// No need to be volatile, slices are thread captive (only accessed by one thread)!
 DECL|field|sliceHead
 name|Node
 name|sliceHead
@@ -635,7 +635,7 @@ block|{
 comment|// 0 length slice
 return|return;
 block|}
-comment|/*        * when we apply a slice we take the head and get its next as our first        * item to apply and continue until we applied the tail. If the head and        * tail in this slice are not equal then there will be at least one more        * non-null node in the slice!        */
+comment|/*        * When we apply a slice we take the head and get its next as our first        * item to apply and continue until we applied the tail. If the head and        * tail in this slice are not equal then there will be at least one more        * non-null node in the slice!        */
 name|Node
 name|current
 init|=
@@ -682,7 +682,7 @@ name|void
 name|reset
 parameter_list|()
 block|{
-comment|// resetting to a 0 length slice
+comment|// Reset to a 0 length slice
 name|sliceHead
 operator|=
 name|sliceTail

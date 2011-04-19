@@ -138,9 +138,9 @@ init|=
 literal|false
 decl_stmt|;
 comment|// write access guarded by DocumentsWriterFlushControl
-DECL|field|perThreadBytes
+DECL|field|bytesUsed
 name|long
-name|perThreadBytes
+name|bytesUsed
 init|=
 literal|0
 decl_stmt|;
@@ -201,7 +201,7 @@ name|perThread
 expr_stmt|;
 name|this
 operator|.
-name|perThreadBytes
+name|bytesUsed
 operator|=
 literal|0
 expr_stmt|;
@@ -243,7 +243,7 @@ argument_list|()
 assert|;
 comment|// public for FlushPolicy
 return|return
-name|perThreadBytes
+name|bytesUsed
 return|;
 block|}
 comment|/**      * Returns this {@link ThreadState}s {@link DocumentsWriterPerThread}      */
@@ -593,23 +593,8 @@ name|Document
 name|doc
 parameter_list|)
 function_decl|;
-DECL|method|clearThreadBindings
-specifier|public
-specifier|abstract
-name|void
-name|clearThreadBindings
-parameter_list|(
-name|ThreadState
-name|perThread
-parameter_list|)
-function_decl|;
-DECL|method|clearAllThreadBindings
-specifier|public
-specifier|abstract
-name|void
-name|clearAllThreadBindings
-parameter_list|()
-function_decl|;
+comment|//public abstract void clearThreadBindings(ThreadState perThread);
+comment|// public abstract void clearAllThreadBindings();
 comment|/**    * Returns an iterator providing access to all {@link ThreadState}    * instances.     */
 DECL|method|getAllPerThreadsIterator
 specifier|public

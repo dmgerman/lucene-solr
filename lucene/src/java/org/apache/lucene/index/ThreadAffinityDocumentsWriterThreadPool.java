@@ -52,6 +52,14 @@ name|Document
 import|;
 end_import
 
+begin_comment
+comment|// nocommit jdoc
+end_comment
+
+begin_comment
+comment|// nocommit -- can/should apps set this via IWC
+end_comment
+
 begin_class
 DECL|class|ThreadAffinityDocumentsWriterThreadPool
 specifier|public
@@ -151,7 +159,9 @@ name|minThreadState
 init|=
 literal|null
 decl_stmt|;
-comment|// find the state that has minimum amount of threads waiting
+comment|// Find the state that has minimum number of threads waiting
+comment|// noocommit -- can't another thread lock the
+comment|// minThreadState we just got?
 name|minThreadState
 operator|=
 name|minContendedThreadState
@@ -228,37 +238,7 @@ return|return
 name|minThreadState
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|clearThreadBindings
-specifier|public
-name|void
-name|clearThreadBindings
-parameter_list|(
-name|ThreadState
-name|perThread
-parameter_list|)
-block|{
-name|threadBindings
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|clearAllThreadBindings
-specifier|public
-name|void
-name|clearAllThreadBindings
-parameter_list|()
-block|{
-name|threadBindings
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
+comment|/*   @Override   public void clearThreadBindings(ThreadState perThread) {     threadBindings.clear();   }    @Override   public void clearAllThreadBindings() {     threadBindings.clear();   }   */
 block|}
 end_class
 

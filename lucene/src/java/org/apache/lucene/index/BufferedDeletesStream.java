@@ -939,7 +939,7 @@ operator|.
 name|isSegmentPrivate
 condition|)
 block|{
-comment|/*            * only update the coalescededDeletes if we are NOT on a segment private del packet.             * the segment private del packet must only applied to segments with the same delGen.             * Yet, if a segment is already deleted from the SI since it had no more documents remaining             * after some del packets younger than it segPrivate packet (hihger delGen) have been applied            * the segPrivate packet has not been removed.            */
+comment|/*            * Only coalesce if we are NOT on a segment private del packet: the segment private del packet            * must only applied to segments with the same delGen.  Yet, if a segment is already deleted            * from the SI since it had no more documents remaining after some del packets younger than            * its segPrivate packet (higher delGen) have been applied, the segPrivate packet has not been            * removed.            */
 name|coalescedDeletes
 operator|.
 name|update
@@ -1172,7 +1172,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*          * since we are on a segment private del packet we must not          * update the coalescedDeletes here! We can simply advance to the           * next packet and seginfo.          */
+comment|/*          * Since we are on a segment private del packet we must not          * update the coalescedDeletes here! We can simply advance to the           * next packet and seginfo.          */
 name|delIDX
 operator|--
 expr_stmt|;

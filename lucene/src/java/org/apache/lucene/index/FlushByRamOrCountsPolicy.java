@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default {@link FlushPolicy} implementation that flushes based on RAM  * Consumption, document count and number of buffered deletes depending on the  * IndexWriters {@link IndexWriterConfig}. This {@link FlushPolicy} will only  * respect settings which are not disabled during initialization (  * {@link #init(DocumentsWriter)}). All enabled {@link IndexWriterConfig}  * settings are used to mark {@link DocumentsWriterPerThread} as flush pending  * during indexing with respect to thier live updates.  *<p>  * If {@link IndexWriterConfig#setRAMBufferSizeMB(double)} is enabled always the  * largest ram consuming {@link DocumentsWriterPerThread} will be marked as  * pending iff the global active RAM consumption is equals or higher the  * configured max RAM buffer.  */
+comment|/**  * Default {@link FlushPolicy} implementation that flushes based on RAM  * used, document count and number of buffered deletes depending on the  * IndexWriter's {@link IndexWriterConfig}. This {@link FlushPolicy} will only  * respect settings which are not disabled during initialization (  * {@link #init(DocumentsWriter)}) (nocommit what does that mean?). All enabled {@link IndexWriterConfig}  * settings are used to mark {@link DocumentsWriterPerThread} as flush pending  * during indexing with respect to their live updates.  *<p>  * If {@link IndexWriterConfig#setRAMBufferSizeMB(double)} is enabled, the  * largest ram consuming {@link DocumentsWriterPerThread} will be marked as  * pending iff the global active RAM consumption is>= the  * configured max RAM buffer.  */
 end_comment
 
 begin_class
@@ -64,6 +64,7 @@ name|flushOnDeleteTerms
 argument_list|()
 condition|)
 block|{
+comment|// Flush this state by num del terms
 specifier|final
 name|int
 name|maxBufferedDeleteTerms
@@ -85,7 +86,7 @@ condition|)
 block|{
 name|control
 operator|.
-name|setFlushDeletes
+name|setApplyAllDeletes
 argument_list|()
 expr_stmt|;
 block|}
@@ -123,6 +124,7 @@ name|getMaxBufferedDocs
 argument_list|()
 condition|)
 block|{
+comment|// Flush this state by num docs
 name|control
 operator|.
 name|setFlushPending
@@ -130,7 +132,6 @@ argument_list|(
 name|state
 argument_list|)
 expr_stmt|;
-comment|// flush by num docs
 block|}
 else|else
 block|{
@@ -142,13 +143,22 @@ argument_list|()
 condition|)
 block|{
 specifier|final
-name|double
-name|ramBufferSizeMB
+name|long
+name|limit
 init|=
+call|(
+name|long
+call|)
+argument_list|(
 name|indexWriterConfig
 operator|.
 name|getRAMBufferSizeMB
 argument_list|()
+operator|*
+literal|1024.d
+operator|*
+literal|1024.d
+argument_list|)
 decl_stmt|;
 specifier|final
 name|long
@@ -158,21 +168,6 @@ name|control
 operator|.
 name|activeBytes
 argument_list|()
-decl_stmt|;
-specifier|final
-name|long
-name|limit
-init|=
-call|(
-name|long
-call|)
-argument_list|(
-name|ramBufferSizeMB
-operator|*
-literal|1024.d
-operator|*
-literal|1024.d
-argument_list|)
 decl_stmt|;
 if|if
 condition|(

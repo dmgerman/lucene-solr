@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link FlushPolicy} controls when segments are flushed from a RAM resident  * internal data-structure to the {@link IndexWriter}s {@link Directory}.  *<p>  * Segments are traditionally flushed by:  *<ul>  *<li>RAM consumption - configured via  * {@link IndexWriterConfig#setRAMBufferSizeMB(double)}</li>  *<li>Number of RAM resident documents - configured via  * {@link IndexWriterConfig#setMaxBufferedDocs(int)}</li>  *<li>Number of buffered delete terms - configured via  * {@link IndexWriterConfig#setMaxBufferedDeleteTerms(int)}</li>  *</ul>  *   * The {@link IndexWriter} uses a provided {@link FlushPolicy} to control the  * flushing process during indexing. The policy is informed for each added or  * updated document as well as for each delete term. Based on the  * {@link FlushPolicy} the information provided via {@link ThreadState} and  * {@link DocumentsWriterFlushControl} the {@link FlushPolicy} can decide if a  * {@link DocumentsWriterPerThread} needs flushing and can mark it as  * flush-pending via  * {@link DocumentsWriterFlushControl#setFlushPending(ThreadState)}.  *   * @see ThreadState  * @see DocumentsWriterFlushControl  * @see DocumentsWriterPerThread  * @see IndexWriterConfig#setFlushPolicy(FlushPolicy)  */
+comment|/**  * {@link FlushPolicy} controls when segments are flushed from a RAM resident  * internal data-structure to the {@link IndexWriter}s {@link Directory}.  *<p>  * Segments are traditionally flushed by:  *<ul>  *<li>RAM consumption - configured via  * {@link IndexWriterConfig#setRAMBufferSizeMB(double)}</li>  *<li>Number of RAM resident documents - configured via  * {@link IndexWriterConfig#setMaxBufferedDocs(int)}</li>  *<li>Number of buffered delete terms/queries - configured via  * {@link IndexWriterConfig#setMaxBufferedDeleteTerms(int)}</li>  *</ul>  *   * The {@link IndexWriter} consults a provided {@link FlushPolicy} to control the  * flushing process. The policy is informed for each added or  * updated document as well as for each delete term. Based on the  * {@link FlushPolicy}, the information provided via {@link ThreadState} and  * {@link DocumentsWriterFlushControl}, the {@link FlushPolicy} decides if a  * {@link DocumentsWriterPerThread} needs flushing and mark it as  * flush-pending via  * {@link DocumentsWriterFlushControl#setFlushPending(ThreadState)}.  *   * @see ThreadState  * @see DocumentsWriterFlushControl  * @see DocumentsWriterPerThread  * @see IndexWriterConfig#setFlushPolicy(FlushPolicy)  */
 end_comment
 
 begin_class
@@ -102,7 +102,7 @@ specifier|protected
 name|IndexWriterConfig
 name|indexWriterConfig
 decl_stmt|;
-comment|/**    * Called for each delete term. If this is a delete triggered due to an update    * the given {@link ThreadState} is non-null.    *<p>    * Note: This method is synchronized by the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
+comment|/**    * Called for each delete term. If this is a delete triggered due to an update    * the given {@link ThreadState} is non-null.    *<p>    * nocommit: what does this note mean...?    * Note: This method is synchronized by the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
 DECL|method|onDelete
 specifier|public
 specifier|abstract
@@ -116,7 +116,7 @@ name|ThreadState
 name|state
 parameter_list|)
 function_decl|;
-comment|/**    * Called for each document update on the given {@link ThreadState}s    * {@link DocumentsWriterPerThread}.    *<p>    * Note: This method is synchronized by the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
+comment|/**    * Called for each document update on the given {@link ThreadState}'s    * {@link DocumentsWriterPerThread}.    *<p>    * nocommit: what does this note mean...?    * Note: This method is synchronized by the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
 DECL|method|onUpdate
 specifier|public
 name|void
@@ -196,6 +196,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Marks the most ram consuming active {@link DocumentsWriterPerThread} flush    * pending    */
+comment|// nocommit -- move to default policy?
 DECL|method|markLargestWriterPending
 specifier|protected
 name|void
@@ -238,12 +239,22 @@ name|ThreadState
 name|perThreadState
 parameter_list|)
 block|{
+assert|assert
+name|perThreadState
+operator|.
+name|perThread
+operator|.
+name|getNumDocsInRAM
+argument_list|()
+operator|>
+literal|0
+assert|;
 name|long
 name|maxRamSoFar
 init|=
 name|perThreadState
 operator|.
-name|perThreadBytes
+name|bytesUsed
 decl_stmt|;
 comment|// the dwpt which needs to be flushed eventually
 name|ThreadState
@@ -300,7 +311,7 @@ name|nextRam
 init|=
 name|next
 operator|.
-name|perThreadBytes
+name|bytesUsed
 decl_stmt|;
 if|if
 condition|(
@@ -344,6 +355,8 @@ return|return
 name|maxRamUsingThreadState
 return|;
 block|}
+comment|// nocommit -- I thought we pause based on "too many flush
+comment|// states pending"?
 comment|/**    * Returns the max net memory which marks the upper watermark for the    * DocumentsWriter to be healthy. If all flushing and active    * {@link DocumentsWriterPerThread} consume more memory than the upper    * watermark all incoming threads should be stalled and blocked until the    * memory drops below this.    *<p>    * Note: the upper watermark is only taken into account if this    * {@link FlushPolicy} flushes by ram usage.    *     *<p>    * The default for the max net memory is set to 2 x    * {@link IndexWriterConfig#getRAMBufferSizeMB()}    *     */
 DECL|method|getMaxNetBytes
 specifier|public
@@ -358,6 +371,7 @@ name|flushOnRAM
 argument_list|()
 condition|)
 block|{
+comment|// nocommit explain that returning -1 is allowed?
 return|return
 operator|-
 literal|1
@@ -388,6 +402,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns<code>true</code> if this {@link FlushPolicy} flushes on    * {@link IndexWriterConfig#getMaxBufferedDocs()}, otherwise    *<code>false</code>.    */
+comment|// nocommit who needs this?  policy shouldn't have to impl
+comment|// this?  our default policy should?
 DECL|method|flushOnDocCount
 specifier|protected
 name|boolean
@@ -406,6 +422,8 @@ name|DISABLE_AUTO_FLUSH
 return|;
 block|}
 comment|/**    * Returns<code>true</code> if this {@link FlushPolicy} flushes on    * {@link IndexWriterConfig#getMaxBufferedDeleteTerms()}, otherwise    *<code>false</code>.    */
+comment|// nocommit who needs this?  policy shouldn't have to impl
+comment|// this?  our default policy should?
 DECL|method|flushOnDeleteTerms
 specifier|protected
 name|boolean
@@ -424,6 +442,8 @@ name|DISABLE_AUTO_FLUSH
 return|;
 block|}
 comment|/**    * Returns<code>true</code> if this {@link FlushPolicy} flushes on    * {@link IndexWriterConfig#getRAMBufferSizeMB()}, otherwise    *<code>false</code>.    */
+comment|// nocommit who needs this?  policy shouldn't have to impl
+comment|// this?  our default policy should?
 DECL|method|flushOnRAM
 specifier|protected
 name|boolean
