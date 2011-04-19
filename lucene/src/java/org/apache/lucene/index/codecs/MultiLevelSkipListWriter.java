@@ -107,6 +107,7 @@ operator|=
 name|skipInterval
 expr_stmt|;
 comment|// calculate the maximum number of skip levels for this document frequency
+comment|// TODO: would be preferable to use integer math here instead.
 name|numberOfSkipLevels
 operator|=
 name|df
@@ -122,14 +123,14 @@ name|Math
 operator|.
 name|floor
 argument_list|(
-name|Math
+name|StrictMath
 operator|.
 name|log
 argument_list|(
 name|df
 argument_list|)
 operator|/
-name|Math
+name|StrictMath
 operator|.
 name|log
 argument_list|(
