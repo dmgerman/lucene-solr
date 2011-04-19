@@ -2754,12 +2754,22 @@ argument_list|,
 name|core
 argument_list|)
 expr_stmt|;
+comment|/*       * set both the name of the descriptor and the name of the       * core, since the descriptors name is used for persisting.       */
 name|core
 operator|.
 name|setName
 argument_list|(
 name|name
 argument_list|)
+expr_stmt|;
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|name
+operator|=
+name|name
 expr_stmt|;
 block|}
 if|if
