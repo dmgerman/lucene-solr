@@ -18419,11 +18419,10 @@ name|dir
 init|=
 name|newFSDirectory
 argument_list|(
-operator|new
-name|File
+name|_TestUtil
+operator|.
+name|getTempDir
 argument_list|(
-name|TEMP_DIR
-argument_list|,
 literal|"emptyFSDirNoLock"
 argument_list|)
 argument_list|,

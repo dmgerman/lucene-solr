@@ -408,13 +408,10 @@ name|dir
 init|=
 name|newFSDirectory
 argument_list|(
-operator|new
-name|File
-argument_list|(
-name|LuceneTestCase
+name|_TestUtil
 operator|.
-name|TEMP_DIR
-argument_list|,
+name|getTempDir
+argument_list|(
 literal|"longpostings"
 operator|+
 literal|"."

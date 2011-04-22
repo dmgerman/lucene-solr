@@ -167,11 +167,10 @@ argument_list|()
 expr_stmt|;
 name|workDir
 operator|=
-operator|new
-name|File
+name|_TestUtil
+operator|.
+name|getTempDir
 argument_list|(
-name|TEMP_DIR
-argument_list|,
 literal|"TestMultiMMap"
 argument_list|)
 expr_stmt|;
