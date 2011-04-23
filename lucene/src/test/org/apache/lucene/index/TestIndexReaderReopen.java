@@ -6129,11 +6129,10 @@ argument_list|()
 expr_stmt|;
 name|indexDir
 operator|=
-operator|new
-name|File
+name|_TestUtil
+operator|.
+name|getTempDir
 argument_list|(
-name|TEMP_DIR
-argument_list|,
 literal|"IndexReaderReopen"
 argument_list|)
 expr_stmt|;

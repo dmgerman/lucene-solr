@@ -162,7 +162,7 @@ name|maxScore
 operator|!=
 literal|null
 condition|?
-literal|""
+literal|",maxScore="
 operator|+
 name|maxScore
 else|:

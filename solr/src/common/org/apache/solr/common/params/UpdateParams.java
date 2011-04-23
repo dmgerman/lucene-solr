@@ -82,13 +82,23 @@ name|ROLLBACK
 init|=
 literal|"rollback"
 decl_stmt|;
-comment|/** Select the update processor to use.  A RequestHandler may or may not respect this parameter */
-DECL|field|UPDATE_PROCESSOR
+comment|/** Select the update processor chain to use.  A RequestHandler may or may not respect this parameter */
+DECL|field|UPDATE_CHAIN
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|UPDATE_PROCESSOR
+name|UPDATE_CHAIN
+init|=
+literal|"update.chain"
+decl_stmt|;
+comment|// TODO: Include the old deprecated param, for removal in Solr 4.0
+DECL|field|UPDATE_CHAIN_DEPRECATED
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|UPDATE_CHAIN_DEPRECATED
 init|=
 literal|"update.processor"
 decl_stmt|;

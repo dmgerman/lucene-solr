@@ -68,6 +68,7 @@ end_comment
 
 begin_class
 DECL|class|AbstractSolrEventListener
+specifier|public
 class|class
 name|AbstractSolrEventListener
 implements|implements

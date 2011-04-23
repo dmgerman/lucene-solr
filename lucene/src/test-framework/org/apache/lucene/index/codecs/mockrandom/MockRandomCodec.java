@@ -1071,7 +1071,7 @@ name|seedRandom
 argument_list|,
 literal|2
 argument_list|,
-literal|64
+literal|10
 argument_list|)
 decl_stmt|;
 if|if

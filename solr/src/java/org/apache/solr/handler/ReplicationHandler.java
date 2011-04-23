@@ -5857,27 +5857,9 @@ block|}
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|indexCommitPoint
-operator|!=
-literal|null
-condition|)
-block|{
-name|core
-operator|.
-name|getDeletionPolicy
-argument_list|()
-operator|.
-name|saveCommitPoint
-argument_list|(
-name|indexCommitPoint
-operator|.
-name|getVersion
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// We don't need to save commit points for replication, the SolrDeletionPolicy
+comment|// always saves the last commit point (and the last optimized commit point, if needed)
+comment|/***               if(indexCommitPoint != null){                 core.getDeletionPolicy().saveCommitPoint(indexCommitPoint.getVersion());               }               ***/
 block|}
 block|}
 if|if

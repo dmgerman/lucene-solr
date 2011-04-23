@@ -415,17 +415,23 @@ name|rcontext
 operator|.
 name|docBase
 decl_stmt|;
-name|float
+name|Object
 name|val
 init|=
 name|values
 operator|.
-name|floatVal
+name|objectVal
 argument_list|(
 name|localId
 argument_list|)
 decl_stmt|;
-comment|// TODO: handle all types -- see: SOLR-2443
+if|if
+condition|(
+name|val
+operator|!=
+literal|null
+condition|)
+block|{
 name|doc
 operator|.
 name|setField
@@ -435,6 +441,7 @@ argument_list|,
 name|val
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
