@@ -521,7 +521,7 @@ name|pb
 operator|.
 name|directory
 argument_list|(
-name|TEMP_DIR
+name|tempDir
 argument_list|)
 expr_stmt|;
 name|pb
