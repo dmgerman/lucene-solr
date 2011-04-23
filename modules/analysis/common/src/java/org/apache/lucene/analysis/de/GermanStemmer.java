@@ -572,8 +572,16 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Additional step for irregular plural nouns like "Matrizen -> Matrix".
+comment|// NOTE: this length constraint is probably not a great value, its just to prevent AIOOBE on empty terms
 if|if
 condition|(
+name|buffer
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+operator|&&
 name|buffer
 operator|.
 name|charAt

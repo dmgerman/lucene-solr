@@ -129,16 +129,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -252,12 +242,32 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** blast some random strings through the analyzer */
-annotation|@
-name|Ignore
+comment|// LUCENE-3043: we use keywordtokenizer in this test,
+comment|// so ensure the stemmer does not crash on zero-length strings.
+DECL|method|testEmpty
+specifier|public
+name|void
+name|testEmpty
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertAnalyzesTo
 argument_list|(
-literal|"bugs!"
+name|analyzer
+argument_list|,
+literal|""
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|""
+block|}
 argument_list|)
+expr_stmt|;
+block|}
+comment|/** blast some random strings through the analyzer */
 DECL|method|testRandomStrings
 specifier|public
 name|void
