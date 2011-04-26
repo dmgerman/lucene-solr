@@ -240,12 +240,6 @@ specifier|protected
 name|int
 name|ordBase
 decl_stmt|;
-DECL|field|docsEnum
-specifier|protected
-name|DocsEnum
-name|docsEnum
-decl_stmt|;
-comment|//used while uninverting
 DECL|method|ramUsedInBytes
 specifier|public
 name|long
@@ -837,10 +831,11 @@ name|termNum
 init|=
 literal|0
 decl_stmt|;
+name|DocsEnum
 name|docsEnum
-operator|=
+init|=
 literal|null
-expr_stmt|;
+decl_stmt|;
 comment|// Loop begins with te positioned to first term (we call
 comment|// seek above):
 for|for
