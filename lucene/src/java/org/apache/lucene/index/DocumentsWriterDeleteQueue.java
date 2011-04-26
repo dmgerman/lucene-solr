@@ -1153,6 +1153,21 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|method|bytesUsed
+specifier|public
+name|long
+name|bytesUsed
+parameter_list|()
+block|{
+return|return
+name|globalBufferedDeletes
+operator|.
+name|bytesUsed
+operator|.
+name|get
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

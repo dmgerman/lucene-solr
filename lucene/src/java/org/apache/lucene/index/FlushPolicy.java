@@ -102,7 +102,7 @@ specifier|protected
 name|IndexWriterConfig
 name|indexWriterConfig
 decl_stmt|;
-comment|/**    * Called for each delete term. If this is a delete triggered due to an update    * the given {@link ThreadState} is non-null.    *<p>    * nocommit: what does this note mean...?    * Note: This method is synchronized by the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
+comment|/**    * Called for each delete term. If this is a delete triggered due to an update    * the given {@link ThreadState} is non-null.    *<p>    * Note: This method is called synchronized on the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
 DECL|method|onDelete
 specifier|public
 specifier|abstract
@@ -116,7 +116,7 @@ name|ThreadState
 name|state
 parameter_list|)
 function_decl|;
-comment|/**    * Called for each document update on the given {@link ThreadState}'s    * {@link DocumentsWriterPerThread}.    *<p>    * nocommit: what does this note mean...?    * Note: This method is synchronized by the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
+comment|/**    * Called for each document update on the given {@link ThreadState}'s    * {@link DocumentsWriterPerThread}.    *<p>    * Note: This method is called  synchronized on the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
 DECL|method|onUpdate
 specifier|public
 name|void
@@ -193,37 +193,6 @@ name|indexWriter
 operator|.
 name|getConfig
 argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * Marks the most ram consuming active {@link DocumentsWriterPerThread} flush    * pending    */
-comment|// nocommit -- move to default policy?
-DECL|method|markLargestWriterPending
-specifier|protected
-name|void
-name|markLargestWriterPending
-parameter_list|(
-name|DocumentsWriterFlushControl
-name|control
-parameter_list|,
-name|ThreadState
-name|perThreadState
-parameter_list|,
-specifier|final
-name|long
-name|currentBytesPerThread
-parameter_list|)
-block|{
-name|control
-operator|.
-name|setFlushPending
-argument_list|(
-name|findLargestNonPendingWriter
-argument_list|(
-name|control
-argument_list|,
-name|perThreadState
-argument_list|)
-argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the current most RAM consuming non-pending {@link ThreadState} with    * at least one indexed document.    *<p>    * This method will never return<code>null</code>    */
@@ -353,112 +322,6 @@ argument_list|)
 assert|;
 return|return
 name|maxRamUsingThreadState
-return|;
-block|}
-comment|// nocommit -- I thought we pause based on "too many flush
-comment|// states pending"?
-comment|/**    * Returns the max net memory which marks the upper watermark for the    * DocumentsWriter to be healthy. If all flushing and active    * {@link DocumentsWriterPerThread} consume more memory than the upper    * watermark all incoming threads should be stalled and blocked until the    * memory drops below this.    *<p>    * Note: the upper watermark is only taken into account if this    * {@link FlushPolicy} flushes by ram usage.    *     *<p>    * The default for the max net memory is set to 2 x    * {@link IndexWriterConfig#getRAMBufferSizeMB()}    *     */
-DECL|method|getMaxNetBytes
-specifier|public
-name|long
-name|getMaxNetBytes
-parameter_list|()
-block|{
-if|if
-condition|(
-operator|!
-name|flushOnRAM
-argument_list|()
-condition|)
-block|{
-comment|// nocommit explain that returning -1 is allowed?
-return|return
-operator|-
-literal|1
-return|;
-block|}
-specifier|final
-name|double
-name|ramBufferSizeMB
-init|=
-name|indexWriterConfig
-operator|.
-name|getRAMBufferSizeMB
-argument_list|()
-decl_stmt|;
-return|return
-call|(
-name|long
-call|)
-argument_list|(
-name|ramBufferSizeMB
-operator|*
-literal|1024.d
-operator|*
-literal|1024.d
-operator|*
-literal|2
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns<code>true</code> if this {@link FlushPolicy} flushes on    * {@link IndexWriterConfig#getMaxBufferedDocs()}, otherwise    *<code>false</code>.    */
-comment|// nocommit who needs this?  policy shouldn't have to impl
-comment|// this?  our default policy should?
-DECL|method|flushOnDocCount
-specifier|protected
-name|boolean
-name|flushOnDocCount
-parameter_list|()
-block|{
-return|return
-name|indexWriterConfig
-operator|.
-name|getMaxBufferedDocs
-argument_list|()
-operator|!=
-name|IndexWriterConfig
-operator|.
-name|DISABLE_AUTO_FLUSH
-return|;
-block|}
-comment|/**    * Returns<code>true</code> if this {@link FlushPolicy} flushes on    * {@link IndexWriterConfig#getMaxBufferedDeleteTerms()}, otherwise    *<code>false</code>.    */
-comment|// nocommit who needs this?  policy shouldn't have to impl
-comment|// this?  our default policy should?
-DECL|method|flushOnDeleteTerms
-specifier|protected
-name|boolean
-name|flushOnDeleteTerms
-parameter_list|()
-block|{
-return|return
-name|indexWriterConfig
-operator|.
-name|getMaxBufferedDeleteTerms
-argument_list|()
-operator|!=
-name|IndexWriterConfig
-operator|.
-name|DISABLE_AUTO_FLUSH
-return|;
-block|}
-comment|/**    * Returns<code>true</code> if this {@link FlushPolicy} flushes on    * {@link IndexWriterConfig#getRAMBufferSizeMB()}, otherwise    *<code>false</code>.    */
-comment|// nocommit who needs this?  policy shouldn't have to impl
-comment|// this?  our default policy should?
-DECL|method|flushOnRAM
-specifier|protected
-name|boolean
-name|flushOnRAM
-parameter_list|()
-block|{
-return|return
-name|indexWriterConfig
-operator|.
-name|getRAMBufferSizeMB
-argument_list|()
-operator|!=
-name|IndexWriterConfig
-operator|.
-name|DISABLE_AUTO_FLUSH
 return|;
 block|}
 block|}

@@ -102,6 +102,24 @@ name|CodecProvider
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SetOnce
+import|;
+end_import
+
+begin_comment
+comment|/**  * {@link DocumentsWriterPerThreadPool} controls {@link ThreadState} instances  * and their thread assignments during indexing. Each {@link ThreadState} holds  * a reference to a {@link DocumentsWriterPerThread} that is once a  * {@link ThreadState} is obtained from the pool exclusively used for indexing a  * single document by the obtaining thread. Each indexing thread must obtain  * such a {@link ThreadState} to make progress. Depending on the  * {@link DocumentsWriterPerThreadPool} implementation {@link ThreadState}  * assignments might differ from document to document.  *<p>  * Once a {@link DocumentsWriterPerThread} is selected for flush the thread pool  * is reusing the flushing {@link DocumentsWriterPerThread}s ThreadState with a  * new {@link DocumentsWriterPerThread} instance.  *</p>  */
+end_comment
+
 begin_class
 DECL|class|DocumentsWriterPerThreadPool
 specifier|public
@@ -124,7 +142,7 @@ name|ThreadState
 extends|extends
 name|ReentrantLock
 block|{
-comment|// public for FlushPolicy
+comment|// package private for FlushPolicy
 DECL|field|perThread
 name|DocumentsWriterPerThread
 name|perThread
@@ -299,6 +317,22 @@ specifier|private
 name|FieldNumberBiMap
 name|globalFieldMap
 decl_stmt|;
+DECL|field|documentsWriter
+specifier|private
+specifier|final
+name|SetOnce
+argument_list|<
+name|DocumentsWriter
+argument_list|>
+name|documentsWriter
+init|=
+operator|new
+name|SetOnce
+argument_list|<
+name|DocumentsWriter
+argument_list|>
+argument_list|()
+decl_stmt|;
 DECL|method|DocumentsWriterPerThreadPool
 specifier|public
 name|DocumentsWriterPerThreadPool
@@ -351,12 +385,30 @@ name|IndexWriterConfig
 name|config
 parameter_list|)
 block|{
-name|codecProvider
-operator|=
+name|this
+operator|.
+name|documentsWriter
+operator|.
+name|set
+argument_list|(
+name|documentsWriter
+argument_list|)
+expr_stmt|;
+comment|// thread pool is bound to DW
+specifier|final
+name|CodecProvider
+name|codecs
+init|=
 name|config
 operator|.
 name|getCodecProvider
 argument_list|()
+decl_stmt|;
+name|this
+operator|.
+name|codecProvider
+operator|=
+name|codecs
 expr_stmt|;
 name|this
 operator|.
@@ -393,7 +445,7 @@ name|SegmentCodecsBuilder
 operator|.
 name|create
 argument_list|(
-name|codecProvider
+name|codecs
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -424,6 +476,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Returns the max number of {@link ThreadState} instances available in this    * {@link DocumentsWriterPerThreadPool}    */
 DECL|method|getMaxThreadStates
 specifier|public
 name|int
@@ -436,12 +489,16 @@ operator|.
 name|length
 return|;
 block|}
+comment|/**    * Returns a new {@link ThreadState} iff any new state is available otherwise    *<code>null</code>.    *     * @param lock    *<code>true</code> iff the new {@link ThreadState} should be locked    *          before published otherwise<code>false</code>.    * @return a new {@link ThreadState} iff any new state is available otherwise    *<code>null</code>    */
 DECL|method|newThreadState
 specifier|public
 specifier|synchronized
 name|ThreadState
 name|newThreadState
-parameter_list|()
+parameter_list|(
+name|boolean
+name|lock
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -463,6 +520,11 @@ index|]
 decl_stmt|;
 name|threadState
 operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+name|threadState
+operator|.
 name|perThread
 operator|.
 name|initialize
@@ -471,6 +533,7 @@ expr_stmt|;
 name|numThreadStatesActive
 operator|++
 expr_stmt|;
+comment|// increment will publish the ThreadState
 return|return
 name|threadState
 return|;
@@ -594,7 +657,7 @@ name|doc
 parameter_list|)
 function_decl|;
 comment|//public abstract void clearThreadBindings(ThreadState perThread);
-comment|// public abstract void clearAllThreadBindings();
+comment|//public abstract void clearAllThreadBindings();
 comment|/**    * Returns an iterator providing access to all {@link ThreadState}    * instances.     */
 DECL|method|getAllPerThreadsIterator
 specifier|public

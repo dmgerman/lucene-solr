@@ -505,7 +505,7 @@ expr_stmt|;
 block|}
 DECL|method|deleteQueries
 specifier|synchronized
-name|boolean
+name|void
 name|deleteQueries
 parameter_list|(
 specifier|final
@@ -523,35 +523,32 @@ argument_list|(
 name|queries
 argument_list|)
 expr_stmt|;
-comment|// nocommit -- shouldn't we check for doApplyAllDeletes
-comment|// here too?
-comment|// nocommit shouldn't this consult flush policy?  or
-comment|// should this return void now?
-return|return
-literal|false
-return|;
-block|}
-DECL|method|deleteQuery
-name|boolean
-name|deleteQuery
-parameter_list|(
-specifier|final
-name|Query
-name|query
-parameter_list|)
-throws|throws
-name|IOException
+name|flushControl
+operator|.
+name|doOnDelete
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|flushControl
+operator|.
+name|doApplyAllDeletes
+argument_list|()
+condition|)
 block|{
-return|return
-name|deleteQueries
+name|applyAllDeletes
 argument_list|(
-name|query
+name|deleteQueue
 argument_list|)
-return|;
+expr_stmt|;
 block|}
+block|}
+comment|// TODO: we could check w/ FreqProxTermsWriter: if the
+comment|// term doesn't exist, don't bother buffering into the
+comment|// per-DWPT map (but still must go into the global map)
 DECL|method|deleteTerms
 specifier|synchronized
-name|boolean
+name|void
 name|deleteTerms
 parameter_list|(
 specifier|final
@@ -596,32 +593,6 @@ name|deleteQueue
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit shouldn't this consult flush policy?  or
-comment|// should this return void now?
-return|return
-literal|false
-return|;
-block|}
-comment|// TODO: we could check w/ FreqProxTermsWriter: if the
-comment|// term doesn't exist, don't bother buffering into the
-comment|// per-DWPT map (but still must go into the global map)
-DECL|method|deleteTerm
-name|boolean
-name|deleteTerm
-parameter_list|(
-specifier|final
-name|Term
-name|term
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|deleteTerms
-argument_list|(
-name|term
-argument_list|)
-return|;
 block|}
 DECL|method|currentDeleteSession
 name|DocumentsWriterDeleteQueue
@@ -675,11 +646,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 name|applyFlushTickets
-argument_list|(
-literal|null
-argument_list|,
-literal|null
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -1373,6 +1340,8 @@ name|isFullFlush
 argument_list|()
 assert|;
 comment|/*          * Since with DWPT the flush process is concurrent and several DWPT          * could flush at the same time we must maintain the order of the          * flushes before we can apply the flushed segment and the frozen global          * deletes it is buffering. The reason for this is that the global          * deletes mark a certain point in time where we took a DWPT out of          * rotation and freeze the global deletes.          *           * Example: A flush 'A' starts and freezes the global deletes, then          * flush 'B' starts and freezes all deletes occurred since 'A' has          * started. if 'B' finishes before 'A' we need to wait until 'A' is done          * otherwise the deletes frozen by 'B' are not applied to 'A' and we          * might miss to deletes documents in 'A'.          */
+try|try
+block|{
 synchronized|synchronized
 init|(
 name|ticketQueue
@@ -1410,19 +1379,56 @@ operator|.
 name|flush
 argument_list|()
 decl_stmt|;
-comment|// nocommit -- should this success = true be moved
-comment|// under the applyFlushTickets?
+synchronized|synchronized
+init|(
+name|ticketQueue
+init|)
+block|{
+name|ticket
+operator|.
+name|segment
+operator|=
+name|newSegment
+expr_stmt|;
+block|}
+comment|// flush was successful once we reached this point - new seg. has been assigned to the ticket!
 name|success
 operator|=
 literal|true
 expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+operator|&&
+name|ticket
+operator|!=
+literal|null
+condition|)
+block|{
+synchronized|synchronized
+init|(
+name|ticketQueue
+init|)
+block|{
+comment|// In the case of a failure make sure we are making progress and
+comment|// apply all the deletes since the segment flush failed since the flush
+comment|// ticket could hold global deletes see FlushTicket#canPublish()
+name|ticket
+operator|.
+name|isSegmentFlush
+operator|=
+literal|false
+expr_stmt|;
+block|}
+block|}
+block|}
 comment|/*          * Now we are done and try to flush the ticket queue if the head of the          * queue has already finished the flush.          */
 name|applyFlushTickets
-argument_list|(
-name|ticket
-argument_list|,
-name|newSegment
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 finally|finally
@@ -1446,33 +1452,6 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|success
-operator|&&
-name|ticket
-operator|!=
-literal|null
-condition|)
-block|{
-synchronized|synchronized
-init|(
-name|ticketQueue
-init|)
-block|{
-comment|// nocommit -- shouldn't we drop the ticket in
-comment|// this case?
-comment|// In the case of a failure make sure we are making progress and
-comment|// apply all the deletes since the segment flush failed
-name|ticket
-operator|.
-name|isSegmentFlush
-operator|=
-literal|false
-expr_stmt|;
-block|}
-block|}
 block|}
 name|flushingDWPT
 operator|=
@@ -1490,13 +1469,7 @@ DECL|method|applyFlushTickets
 specifier|private
 name|void
 name|applyFlushTickets
-parameter_list|(
-name|FlushTicket
-name|current
-parameter_list|,
-name|FlushedSegment
-name|segment
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 block|{
@@ -1505,28 +1478,6 @@ init|(
 name|ticketQueue
 init|)
 block|{
-if|if
-condition|(
-name|current
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// nocommit -- can't caller set current.segment = segment?
-comment|// nocommit -- confused by this comment:
-comment|// This is a segment FlushTicket so assign the flushed segment so we can make progress.
-assert|assert
-name|segment
-operator|!=
-literal|null
-assert|;
-name|current
-operator|.
-name|segment
-operator|=
-name|segment
-expr_stmt|;
-block|}
 while|while
 condition|(
 literal|true
@@ -1846,13 +1797,12 @@ operator|=
 name|deleteQueue
 expr_stmt|;
 comment|/* Cutover to a new delete queue.  This must be synced on the flush control        * otherwise a new DWPT could sneak into the loop with an already flushing        * delete queue */
-comment|// nocommit -- shouldn't we do this?:
-comment|// assert Thread.holdsLock(flushControl);
 name|flushControl
 operator|.
 name|markForFullFlush
 argument_list|()
 expr_stmt|;
+comment|// swaps the delQueue synced on FlushControl
 assert|assert
 name|setFlushingDeleteQueue
 argument_list|(
@@ -1951,11 +1901,7 @@ argument_list|)
 expr_stmt|;
 block|}
 name|applyFlushTickets
-argument_list|(
-literal|null
-argument_list|,
-literal|null
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -2007,9 +1953,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|// nocommit -- can we add comment justifying that these
-comment|// fields are safely changed across threads because they
-comment|// are always accessed in sync(ticketQueue)?
 DECL|class|FlushTicket
 specifier|static
 specifier|final
@@ -2021,6 +1964,7 @@ specifier|final
 name|FrozenBufferedDeletes
 name|frozenDeletes
 decl_stmt|;
+comment|/* access to non-final members must be synchronized on DW#ticketQueue */
 DECL|field|segment
 name|FlushedSegment
 name|segment

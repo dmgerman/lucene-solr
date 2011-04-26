@@ -53,11 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit jdoc
-end_comment
-
-begin_comment
-comment|// nocommit -- can/should apps set this via IWC
+comment|/**  * A {@link DocumentsWriterPerThreadPool} implementation that tries to assign an  * indexing thread to the same {@link ThreadState} each time the thread tries to  * obtain a {@link ThreadState}. Once a new {@link ThreadState} is created it is  * associated with the creating thread. Subsequently, if the threads associated  * {@link ThreadState} is not in use it will be associated with the requesting  * thread. Otherwise, if the {@link ThreadState} is used by another thread  * {@link ThreadAffinityDocumentsWriterThreadPool} tries to find the currently  * minimal contended {@link ThreadState}.  */
 end_comment
 
 begin_class
@@ -159,9 +155,8 @@ name|minThreadState
 init|=
 literal|null
 decl_stmt|;
+comment|/* TODO -- another thread could lock the minThreadState we just got while       we should somehow prevent this. */
 comment|// Find the state that has minimum number of threads waiting
-comment|// noocommit -- can't another thread lock the
-comment|// minThreadState we just got?
 name|minThreadState
 operator|=
 name|minContendedThreadState
@@ -179,11 +174,14 @@ name|hasQueuedThreads
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ThreadState
 name|newState
 init|=
 name|newThreadState
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -192,10 +190,12 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|minThreadState
-operator|=
+assert|assert
 name|newState
-expr_stmt|;
+operator|.
+name|isHeldByCurrentThread
+argument_list|()
+assert|;
 name|threadBindings
 operator|.
 name|put
@@ -205,6 +205,9 @@ argument_list|,
 name|newState
 argument_list|)
 expr_stmt|;
+return|return
+name|newState
+return|;
 block|}
 elseif|else
 if|if
