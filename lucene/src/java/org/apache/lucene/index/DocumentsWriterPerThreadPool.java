@@ -659,6 +659,7 @@ function_decl|;
 comment|//public abstract void clearThreadBindings(ThreadState perThread);
 comment|//public abstract void clearAllThreadBindings();
 comment|/**    * Returns an iterator providing access to all {@link ThreadState}    * instances.     */
+comment|// TODO: new Iterator per indexed doc is overkill...?
 DECL|method|getAllPerThreadsIterator
 specifier|public
 name|Iterator
@@ -680,6 +681,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an iterator providing access to all active {@link ThreadState}    * instances.     *<p>    * Note: The returned iterator will only iterator    * {@link ThreadState}s that are active at the point in time when this method    * has been called.    *     */
+comment|// TODO: new Iterator per indexed doc is overkill...?
 DECL|method|getActivePerThreadsIterator
 specifier|public
 name|Iterator
@@ -774,6 +776,7 @@ name|minThreadState
 init|=
 literal|null
 decl_stmt|;
+comment|// TODO: new Iterator per indexed doc is overkill...?
 specifier|final
 name|Iterator
 argument_list|<
