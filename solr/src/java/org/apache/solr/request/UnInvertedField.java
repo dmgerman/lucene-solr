@@ -106,20 +106,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|StringHelper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|noggit
 operator|.
 name|CharArr
@@ -628,62 +614,41 @@ argument_list|()
 expr_stmt|;
 name|deState
 operator|.
-name|fieldName
-operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
-name|field
-argument_list|)
-expr_stmt|;
-comment|// deState.termsEnum = te.tenum;
-name|deState
-operator|.
 name|termsEnum
 operator|=
 name|te
 expr_stmt|;
-comment|// TODO: check for MultiTermsEnum in SolrIndexSearcher could now fail?
-name|deState
-operator|.
-name|docsEnum
-operator|=
-name|docsEnum
-expr_stmt|;
-name|deState
-operator|.
-name|minSetSizeCached
-operator|=
-name|maxTermDocFreq
-expr_stmt|;
 block|}
-name|docsEnum
-operator|=
-name|deState
-operator|.
-name|docsEnum
-expr_stmt|;
-name|DocSet
-name|set
-init|=
-name|searcher
-operator|.
-name|getDocSet
-argument_list|(
-name|deState
-argument_list|)
-decl_stmt|;
 name|maxTermCounts
 index|[
 name|termNum
 index|]
 operator|=
-name|set
+name|searcher
+operator|.
+name|getDocSet
+argument_list|(
+operator|new
+name|TermQuery
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+name|field
+argument_list|,
+name|topTerm
+operator|.
+name|term
+argument_list|)
+argument_list|)
+argument_list|,
+name|deState
+argument_list|)
 operator|.
 name|size
 argument_list|()
 expr_stmt|;
+comment|//System.out.println("  big term termNum=" + termNum + " term=" + topTerm.term.utf8ToString() + " size=" + maxTermCounts[termNum] + " dF=" + te.docFreq());
 block|}
 block|}
 annotation|@
@@ -839,7 +804,7 @@ name|field
 argument_list|,
 comment|// threshold, over which we use set intersections instead of counting
 comment|// to (1) save memory, and (2) speed up faceting.
-comment|// Add 2 for testing purposes so that there will always be some terms under
+comment|// Add 1 for testing purposes so that there will always be some terms under
 comment|// the threshold even when the index is very
 comment|// small.
 name|searcher
@@ -849,7 +814,7 @@ argument_list|()
 operator|/
 literal|20
 operator|+
-literal|2
+literal|1
 argument_list|,
 name|DEFAULT_INDEX_INTERVAL_BITS
 argument_list|)
