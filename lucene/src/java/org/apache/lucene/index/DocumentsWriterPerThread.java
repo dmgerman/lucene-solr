@@ -1226,6 +1226,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+comment|/**    * Prepares this DWPT for flushing. This method will freeze and return the    * {@link DocumentsWriterDeleteQueue}s global buffer and apply all pending    * deletes to this DWPT.    */
 DECL|method|prepareFlush
 name|FrozenBufferedDeletes
 name|prepareFlush
@@ -1265,6 +1266,12 @@ argument_list|,
 name|numDocsInRAM
 argument_list|)
 expr_stmt|;
+assert|assert
+name|deleteSlice
+operator|.
+name|isEmpty
+argument_list|()
+assert|;
 name|deleteSlice
 operator|=
 literal|null
@@ -1286,6 +1293,13 @@ assert|assert
 name|numDocsInRAM
 operator|>
 literal|0
+assert|;
+assert|assert
+name|deleteSlice
+operator|==
+literal|null
+operator|:
+literal|"all deletes must be applied in prepareFlush"
 assert|;
 name|flushState
 operator|=
