@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|LuceneTestCase
 import|;
 end_import
 
@@ -194,9 +194,9 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|Version
+name|LuceneTestCase
 operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|factory
 argument_list|,
@@ -241,9 +241,9 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|Version
+name|LuceneTestCase
 operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|input
 argument_list|)

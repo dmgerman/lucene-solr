@@ -508,6 +508,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Adds a Document.    * @see IndexWriter#addDocument(Document)    */
 DECL|method|addDocument
 specifier|public
 name|void
@@ -875,6 +876,9 @@ comment|// order during searching:
 if|if
 condition|(
 operator|!
+name|applyDeletions
+operator|||
+operator|!
 name|w
 operator|.
 name|codecs
@@ -914,7 +918,9 @@ return|return
 name|w
 operator|.
 name|getReader
-argument_list|()
+argument_list|(
+name|applyDeletions
+argument_list|)
 return|;
 block|}
 else|else
@@ -982,6 +988,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**    * Close this writer.    * @see IndexWriter#close()    */
 DECL|method|close
 specifier|public
 name|void
@@ -1018,6 +1025,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Forces an optimize.    *<p>    * NOTE: this should be avoided in tests unless absolutely necessary,    * as it will result in less test coverage.    * @see IndexWriter#optimize()    */
 DECL|method|optimize
 specifier|public
 name|void
