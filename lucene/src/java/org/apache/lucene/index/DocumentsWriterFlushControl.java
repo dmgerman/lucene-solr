@@ -1250,19 +1250,28 @@ name|deleteQueue
 expr_stmt|;
 comment|// Set a new delete queue - all subsequent DWPT will use this queue until
 comment|// we do another full flush
+name|DocumentsWriterDeleteQueue
+name|newQueue
+init|=
+operator|new
+name|DocumentsWriterDeleteQueue
+argument_list|()
+decl_stmt|;
+name|newQueue
+operator|.
+name|generation
+operator|=
+name|flushingQueue
+operator|.
+name|generation
+operator|+
+literal|1
+expr_stmt|;
 name|documentsWriter
 operator|.
 name|deleteQueue
 operator|=
-operator|new
-name|DocumentsWriterDeleteQueue
-argument_list|(
-operator|new
-name|BufferedDeletes
-argument_list|(
-literal|false
-argument_list|)
-argument_list|)
+name|newQueue
 expr_stmt|;
 block|}
 specifier|final
@@ -1344,6 +1353,33 @@ operator|==
 name|documentsWriter
 operator|.
 name|deleteQueue
+operator|:
+literal|" flushingQueue: "
+operator|+
+name|flushingQueue
+operator|+
+literal|" currentqueue: "
+operator|+
+name|documentsWriter
+operator|.
+name|deleteQueue
+operator|+
+literal|" perThread queue: "
+operator|+
+name|next
+operator|.
+name|perThread
+operator|.
+name|deleteQueue
+operator|+
+literal|" numDocsInRam: "
+operator|+
+name|next
+operator|.
+name|perThread
+operator|.
+name|getNumDocsInRAM
+argument_list|()
 assert|;
 if|if
 condition|(
