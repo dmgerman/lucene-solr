@@ -179,10 +179,9 @@ name|ThreadState
 name|newState
 init|=
 name|newThreadState
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
+comment|// state is already locked if non-null
 if|if
 condition|(
 name|newState

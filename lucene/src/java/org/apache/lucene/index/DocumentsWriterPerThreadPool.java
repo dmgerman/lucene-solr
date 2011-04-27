@@ -489,16 +489,13 @@ operator|.
 name|length
 return|;
 block|}
-comment|/**    * Returns a new {@link ThreadState} iff any new state is available otherwise    *<code>null</code>.    *     * @param lock    *<code>true</code> iff the new {@link ThreadState} should be locked    *          before published otherwise<code>false</code>.    * @return a new {@link ThreadState} iff any new state is available otherwise    *<code>null</code>    */
+comment|/**    * Returns a new {@link ThreadState} iff any new state is available otherwise    *<code>null</code>.    *<p>    * NOTE: the returned {@link ThreadState} is already locked iff non-    *<code>null</code>.    *     * @return a new {@link ThreadState} iff any new state is available otherwise    *<code>null</code>    */
 DECL|method|newThreadState
 specifier|public
 specifier|synchronized
 name|ThreadState
 name|newThreadState
-parameter_list|(
-name|boolean
-name|lock
-parameter_list|)
+parameter_list|()
 block|{
 if|if
 condition|(
@@ -523,6 +520,11 @@ operator|.
 name|lock
 argument_list|()
 expr_stmt|;
+comment|// lock so nobody else will get this ThreadState
+name|numThreadStatesActive
+operator|++
+expr_stmt|;
+comment|// increment will publish the ThreadState
 name|threadState
 operator|.
 name|perThread
@@ -530,10 +532,6 @@ operator|.
 name|initialize
 argument_list|()
 expr_stmt|;
-name|numThreadStatesActive
-operator|++
-expr_stmt|;
-comment|// increment will publish the ThreadState
 return|return
 name|threadState
 return|;

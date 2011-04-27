@@ -125,6 +125,7 @@ name|ReentrantLock
 argument_list|()
 decl_stmt|;
 DECL|field|generation
+specifier|final
 name|long
 name|generation
 decl_stmt|;
@@ -134,11 +135,26 @@ parameter_list|()
 block|{
 name|this
 argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|DocumentsWriterDeleteQueue
+name|DocumentsWriterDeleteQueue
+parameter_list|(
+name|long
+name|generation
+parameter_list|)
+block|{
+name|this
+argument_list|(
 operator|new
 name|BufferedDeletes
 argument_list|(
 literal|false
 argument_list|)
+argument_list|,
+name|generation
 argument_list|)
 expr_stmt|;
 block|}
@@ -147,6 +163,9 @@ name|DocumentsWriterDeleteQueue
 parameter_list|(
 name|BufferedDeletes
 name|globalBufferedDeletes
+parameter_list|,
+name|long
+name|generation
 parameter_list|)
 block|{
 name|this
@@ -154,6 +173,12 @@ operator|.
 name|globalBufferedDeletes
 operator|=
 name|globalBufferedDeletes
+expr_stmt|;
+name|this
+operator|.
+name|generation
+operator|=
+name|generation
 expr_stmt|;
 comment|/*      * we use a sentinel instance as our initial tail. No slice will ever try to      * apply this tail since the head is always omitted.      */
 name|tail
