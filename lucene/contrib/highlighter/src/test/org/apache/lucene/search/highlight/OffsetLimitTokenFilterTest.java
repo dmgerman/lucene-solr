@@ -1,8 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
 DECL|package|org.apache.lucene.search.highlight
-DECL|class|OffsetLimitTokenFilterTest
-DECL|method|testFilter
 package|package
 name|org
 operator|.
@@ -97,12 +95,14 @@ import|;
 end_import
 
 begin_class
+DECL|class|OffsetLimitTokenFilterTest
 specifier|public
 class|class
 name|OffsetLimitTokenFilterTest
 extends|extends
 name|BaseTokenStreamTestCase
 block|{
+DECL|method|testFilter
 specifier|public
 name|void
 name|testFilter
