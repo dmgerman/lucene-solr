@@ -1,13 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
 DECL|package|org.apache.lucene.search.highlight
-DECL|method|OffsetLimitTokenFilter
-DECL|field|offsetCount
-DECL|field|offsetAttrib
-DECL|field|offsetLimit
-DECL|method|OffsetLimitTokenFilter
-DECL|method|incrementToken
-DECL|method|reset
 package|package
 name|org
 operator|.
@@ -84,6 +77,7 @@ comment|/**  * This TokenFilter limits the number of tokens while indexing by ad
 end_comment
 
 begin_class
+DECL|class|OffsetLimitTokenFilter
 specifier|public
 specifier|final
 class|class
@@ -91,10 +85,12 @@ name|OffsetLimitTokenFilter
 extends|extends
 name|TokenFilter
 block|{
+DECL|field|offsetCount
 specifier|private
 name|int
 name|offsetCount
 decl_stmt|;
+DECL|field|offsetAttrib
 specifier|private
 name|OffsetAttribute
 name|offsetAttrib
@@ -106,10 +102,12 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+DECL|field|offsetLimit
 specifier|private
 name|int
 name|offsetLimit
 decl_stmt|;
+DECL|method|OffsetLimitTokenFilter
 specifier|public
 name|OffsetLimitTokenFilter
 parameter_list|(
@@ -134,6 +132,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|incrementToken
 specifier|public
 name|boolean
 name|incrementToken
@@ -180,6 +179,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|reset
 specifier|public
 name|void
 name|reset

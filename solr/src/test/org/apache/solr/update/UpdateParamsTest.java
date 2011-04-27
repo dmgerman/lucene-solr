@@ -1,14 +1,10 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-DECL|package|org.apache.solr.update
-DECL|class|UpdateParamsTest
-DECL|method|getSchemaFile
-DECL|method|getSolrConfigFile
-DECL|method|testUpdateProcessorParamDeprecation
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
+DECL|package|org.apache.solr.update
 package|package
 name|org
 operator|.
@@ -133,6 +129,7 @@ import|;
 end_import
 
 begin_class
+DECL|class|UpdateParamsTest
 specifier|public
 class|class
 name|UpdateParamsTest
@@ -141,6 +138,7 @@ name|AbstractSolrTestCase
 block|{
 annotation|@
 name|Override
+DECL|method|getSchemaFile
 specifier|public
 name|String
 name|getSchemaFile
@@ -152,6 +150,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|getSolrConfigFile
 specifier|public
 name|String
 name|getSolrConfigFile
@@ -162,6 +161,7 @@ literal|"solrconfig.xml"
 return|;
 block|}
 comment|/**    * Tests that both update.chain and update.processor works    * NOTE: This test will fail when support for update.processor is removed and should then be removed    */
+DECL|method|testUpdateProcessorParamDeprecation
 specifier|public
 name|void
 name|testUpdateProcessorParamDeprecation
