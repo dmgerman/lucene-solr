@@ -211,11 +211,6 @@ specifier|private
 name|LineFileDocs
 name|lineDocFile
 decl_stmt|;
-DECL|field|numCPUs
-specifier|private
-name|int
-name|numCPUs
-decl_stmt|;
 annotation|@
 name|Before
 annotation|@
@@ -241,16 +236,6 @@ argument_list|(
 name|random
 argument_list|)
 expr_stmt|;
-name|numCPUs
-operator|=
-name|Runtime
-operator|.
-name|getRuntime
-argument_list|()
-operator|.
-name|availableProcessors
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|testFlushByRam
 specifier|public
@@ -274,15 +259,13 @@ operator|new
 name|int
 index|[]
 block|{
-name|numCPUs
+literal|3
 operator|+
 name|random
 operator|.
 name|nextInt
 argument_list|(
-name|numCPUs
-operator|+
-literal|1
+literal|12
 argument_list|)
 block|,
 literal|1
@@ -347,7 +330,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// with a 250 mb ram buffer we should never stall
+comment|// with a 512 mb ram buffer we should never stall
 name|runFlushByRam
 argument_list|(
 name|numThreads
@@ -355,7 +338,7 @@ index|[
 name|i
 index|]
 argument_list|,
-literal|250.d
+literal|512.d
 argument_list|,
 literal|true
 argument_list|)
@@ -796,15 +779,13 @@ operator|new
 name|int
 index|[]
 block|{
-name|numCPUs
+literal|3
 operator|+
 name|random
 operator|.
 name|nextInt
 argument_list|(
-name|numCPUs
-operator|+
-literal|1
+literal|12
 argument_list|)
 block|,
 literal|1
