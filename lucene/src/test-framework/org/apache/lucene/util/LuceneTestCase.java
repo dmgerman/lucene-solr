@@ -7088,12 +7088,6 @@ name|TEST_ITER
 operator|>
 literal|1
 decl_stmt|;
-name|int
-name|lastIterFailed
-init|=
-operator|-
-literal|1
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -7148,14 +7142,10 @@ condition|(
 name|testsFailed
 condition|)
 block|{
-name|lastIterFailed
-operator|=
-name|i
-expr_stmt|;
 if|if
 condition|(
 name|i
-operator|==
+operator|>=
 name|TEST_ITER_MIN
 operator|-
 literal|1
@@ -7174,7 +7164,7 @@ name|println
 argument_list|(
 literal|"\nNOTE: iteration "
 operator|+
-name|lastIterFailed
+name|i
 operator|+
 literal|" failed !"
 argument_list|)
