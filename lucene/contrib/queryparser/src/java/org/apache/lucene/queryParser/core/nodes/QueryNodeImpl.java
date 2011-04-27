@@ -675,6 +675,9 @@ operator|.
 name|containsKey
 argument_list|(
 name|tagName
+operator|.
+name|toLowerCase
+argument_list|()
 argument_list|)
 return|;
 block|}
