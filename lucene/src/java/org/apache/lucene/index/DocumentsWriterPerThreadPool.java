@@ -355,8 +355,6 @@ name|DEFAULT_MAX_THREAD_STATES
 else|:
 name|maxNumPerThreads
 expr_stmt|;
-name|this
-operator|.
 name|perThreads
 operator|=
 operator|new
