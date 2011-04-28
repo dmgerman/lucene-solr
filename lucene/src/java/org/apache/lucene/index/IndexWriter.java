@@ -3702,13 +3702,13 @@ init|=
 literal|false
 decl_stmt|;
 name|boolean
-name|maybeMerge
+name|anySegmentFlushed
 init|=
 literal|false
 decl_stmt|;
 try|try
 block|{
-name|maybeMerge
+name|anySegmentFlushed
 operator|=
 name|docWriter
 operator|.
@@ -3745,7 +3745,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|maybeMerge
+name|anySegmentFlushed
 condition|)
 block|{
 name|maybeMerge
@@ -7347,7 +7347,7 @@ expr_stmt|;
 block|}
 specifier|final
 name|boolean
-name|maybeMerge
+name|anySegmentFlushed
 decl_stmt|;
 synchronized|synchronized
 init|(
@@ -7356,7 +7356,7 @@ init|)
 block|{
 try|try
 block|{
-name|maybeMerge
+name|anySegmentFlushed
 operator|=
 name|docWriter
 operator|.
@@ -7399,7 +7399,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-name|maybeMerge
+name|anySegmentFlushed
 condition|)
 block|{
 comment|// flushCount is incremented in flushAllThreads
@@ -7414,7 +7414,7 @@ operator|=
 literal|true
 expr_stmt|;
 return|return
-name|maybeMerge
+name|anySegmentFlushed
 return|;
 block|}
 block|}
