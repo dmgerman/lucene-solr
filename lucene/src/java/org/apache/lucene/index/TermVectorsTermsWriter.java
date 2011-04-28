@@ -268,6 +268,10 @@ argument_list|()
 expr_stmt|;
 name|tvx
 operator|=
+name|tvd
+operator|=
+name|tvf
+operator|=
 literal|null
 expr_stmt|;
 if|if
@@ -294,6 +298,7 @@ argument_list|(
 name|idxName
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -331,6 +336,7 @@ name|idxName
 argument_list|)
 argument_list|)
 throw|;
+block|}
 name|lastDocID
 operator|=
 literal|0
