@@ -313,8 +313,6 @@ literal|1
 decl_stmt|;
 comment|// total byte size of all of our files (computed on demand)
 DECL|field|docStoreOffset
-annotation|@
-name|Deprecated
 specifier|private
 name|int
 name|docStoreOffset
@@ -322,8 +320,6 @@ decl_stmt|;
 comment|// if this segment shares stored fields& vectors, this
 comment|// offset is where in that file this segment's docs begin
 DECL|field|docStoreSegment
-annotation|@
-name|Deprecated
 specifier|private
 name|String
 name|docStoreSegment
@@ -331,8 +327,6 @@ decl_stmt|;
 comment|// name used to derive fields/vectors file we share with
 comment|// other segments
 DECL|field|docStoreIsCompoundFile
-annotation|@
-name|Deprecated
 specifier|private
 name|boolean
 name|docStoreIsCompoundFile
@@ -1994,8 +1988,6 @@ operator|<=
 name|docCount
 assert|;
 block|}
-annotation|@
-name|Deprecated
 DECL|method|getDocStoreOffset
 specifier|public
 name|int
@@ -2006,8 +1998,6 @@ return|return
 name|docStoreOffset
 return|;
 block|}
-annotation|@
-name|Deprecated
 DECL|method|getDocStoreIsCompoundFile
 specifier|public
 name|boolean
@@ -2018,8 +2008,6 @@ return|return
 name|docStoreIsCompoundFile
 return|;
 block|}
-annotation|@
-name|Deprecated
 DECL|method|setDocStoreIsCompoundFile
 specifier|public
 name|void
@@ -2039,8 +2027,6 @@ name|clearFilesCache
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Deprecated
 DECL|method|setDocStore
 name|void
 name|setDocStore
@@ -2071,8 +2057,6 @@ name|clearFilesCache
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Deprecated
 DECL|method|getDocStoreSegment
 specifier|public
 name|String
@@ -2083,8 +2067,6 @@ return|return
 name|docStoreSegment
 return|;
 block|}
-annotation|@
-name|Deprecated
 DECL|method|setDocStoreOffset
 name|void
 name|setDocStoreOffset
@@ -2101,8 +2083,6 @@ name|clearFilesCache
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Deprecated
 DECL|method|setDocStoreSegment
 specifier|public
 name|void
