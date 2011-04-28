@@ -814,7 +814,7 @@ return|return
 name|writeLockTimeout
 return|;
 block|}
-comment|/**    * Determines the minimal number of delete terms required before the buffered    * in-memory delete terms are applied and flushed. If there are documents    * buffered in memory at the time, they are merged and a new segment is    * created.     *<p>Disabled by default (writer flushes by RAM usage).    *    * @throws IllegalArgumentException if maxBufferedDeleteTerms    * is enabled but smaller than 1    * @see #setRAMBufferSizeMB    * @see #setFlushPolicy(FlushPolicy)    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    */
+comment|/**    * Determines the minimal number of delete terms required before the buffered    * in-memory delete terms and queries are applied and flushed.    *<p>Disabled by default (writer flushes by RAM usage).</p>    *<p>    * NOTE:  This setting won't trigger a segment flush.    *</p>    *     * @throws IllegalArgumentException if maxBufferedDeleteTerms    * is enabled but smaller than 1    * @see #setRAMBufferSizeMB    * @see #setFlushPolicy(FlushPolicy)    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    */
 DECL|method|setMaxBufferedDeleteTerms
 specifier|public
 name|IndexWriterConfig
@@ -851,7 +851,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Returns the number of buffered deleted terms that will trigger a flush if    * enabled.    *    * @see #setMaxBufferedDeleteTerms(int)    */
+comment|/**    * Returns the number of buffered deleted terms that will trigger a flush of all    * buffered deletes if enabled.    *    * @see #setMaxBufferedDeleteTerms(int)    */
 DECL|method|getMaxBufferedDeleteTerms
 specifier|public
 name|int
@@ -862,7 +862,7 @@ return|return
 name|maxBufferedDeleteTerms
 return|;
 block|}
-comment|/**    * Determines the amount of RAM that may be used for buffering added documents    * and deletions before they are flushed to the Directory. Generally for    * faster indexing performance it's best to flush by RAM usage instead of    * document count and use as large a RAM buffer as you can.    *<p>    * When this is set, the writer will flush whenever buffered documents and    * deletions use this much RAM. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage. Note that if flushing by document    * count is also enabled, then the flush will be triggered by whichever comes    * first.    *<p>    * The maximum RAM limit is inherently determined by the JVMs available memory.    * Yet, an {@link IndexWriter} session can consume a significantly larger amount    * of memory than the given RAM limit since this limit is just an indicator when    * to flush memory resident documents to the Directory. Flushes are likely happen    * concurrently while other threads adding documents to the writer. For application    * stability the available memory in the JVM should be significantly larger than    * the RAM buffer used for indexing.    *<p>    *<b>NOTE</b>: the account of RAM usage for pending deletions is only    * approximate. Specifically, if you delete by Query, Lucene currently has no    * way to measure the RAM usage of individual Queries so the accounting will    * under-estimate and you should compensate by either calling commit()    * periodically yourself, or by using {@link #setMaxBufferedDeleteTerms(int)}    * to flush by count instead of RAM usage (each buffered delete Query counts    * as one).    *<p>    *<b>NOTE</b>: It's not guaranteed that all memory resident documents are flushed     * once this limit is exceeded. Depending on the configured {@link FlushPolicy} only a    * subset of the buffered documents are flushed and therefore only parts of the RAM    * buffer is released.        *<p>    *     * The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.    * @see #setFlushPolicy(FlushPolicy)    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    *    * @throws IllegalArgumentException    *           if ramBufferSize is enabled but non-positive, or it disables    *           ramBufferSize when maxBufferedDocs is already disabled    *               */
+comment|/**    * Determines the amount of RAM that may be used for buffering added documents    * and deletions before they are flushed to the Directory. Generally for    * faster indexing performance it's best to flush by RAM usage instead of    * document count and use as large a RAM buffer as you can.    *<p>    * When this is set, the writer will flush whenever buffered documents and    * deletions use this much RAM. Pass in {@link #DISABLE_AUTO_FLUSH} to prevent    * triggering a flush due to RAM usage. Note that if flushing by document    * count is also enabled, then the flush will be triggered by whichever comes    * first.    *<p>    * The maximum RAM limit is inherently determined by the JVMs available memory.    * Yet, an {@link IndexWriter} session can consume a significantly larger amount    * of memory than the given RAM limit since this limit is just an indicator when    * to flush memory resident documents to the Directory. Flushes are likely happen    * concurrently while other threads adding documents to the writer. For application    * stability the available memory in the JVM should be significantly larger than    * the RAM buffer used for indexing.    *<p>    *<b>NOTE</b>: the account of RAM usage for pending deletions is only    * approximate. Specifically, if you delete by Query, Lucene currently has no    * way to measure the RAM usage of individual Queries so the accounting will    * under-estimate and you should compensate by either calling commit()    * periodically yourself, or by using {@link #setMaxBufferedDeleteTerms(int)}    * to flush and apply buffered deletes by count instead of RAM usage    * (for each buffered delete Query a constant number of bytes is used to estimate    * RAM usage). Note that enabling {@link #setMaxBufferedDeleteTerms(int)} will    * not trigger any segment flushes.    *<p>    *<b>NOTE</b>: It's not guaranteed that all memory resident documents are flushed     * once this limit is exceeded. Depending on the configured {@link FlushPolicy} only a    * subset of the buffered documents are flushed and therefore only parts of the RAM    * buffer is released.        *<p>    *     * The default value is {@link #DEFAULT_RAM_BUFFER_SIZE_MB}.    * @see #setFlushPolicy(FlushPolicy)    * @see #setRAMPerThreadHardLimitMB(int)    *    *<p>Takes effect immediately, but only the next time a    * document is added, updated or deleted.    *    * @throws IllegalArgumentException    *           if ramBufferSize is enabled but non-positive, or it disables    *           ramBufferSize when maxBufferedDocs is already disabled    *               */
 DECL|method|setRAMBufferSizeMB
 specifier|public
 name|IndexWriterConfig
@@ -1093,7 +1093,7 @@ return|return
 name|mergePolicy
 return|;
 block|}
-comment|/**    * Sets the max number of simultaneous threads that may be indexing documents    * at once in IndexWriter. Values&lt; 1 are invalid and if passed    *<code>maxThreadStates</code> will be set to    * {@link #DEFAULT_MAX_THREAD_STATES}.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/** Expert: Sets the {@link DocumentsWriterPerThreadPool} instance used by the    * IndexWriter to assign thread-states to incoming indexing threads. If no    * {@link DocumentsWriterPerThreadPool} is set {@link IndexWriter} will use    * {@link ThreadAffinityDocumentsWriterThreadPool} with max number of    * thread-states set to {@value #DEFAULT_MAX_THREAD_STATES} (see    * {@link #DEFAULT_MAX_THREAD_STATES}).    *</p>    *<p>    * NOTE: The given {@link DocumentsWriterPerThreadPool} instance must not be used with    * other {@link IndexWriter} instances once it has been initialized / associated with an    * {@link IndexWriter}.    *</p>    *<p>    * NOTE: This only takes effect when IndexWriter is first created.</p>*/
 DECL|method|setIndexerThreadPool
 specifier|public
 name|IndexWriterConfig
@@ -1103,6 +1103,21 @@ name|DocumentsWriterPerThreadPool
 name|threadPool
 parameter_list|)
 block|{
+if|if
+condition|(
+name|threadPool
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"DocumentsWriterPerThreadPool must not be nul"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|indexerThreadPool
@@ -1113,6 +1128,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/** Returns the configured {@link DocumentsWriterPerThreadPool} instance.    * @see #setIndexerThreadPool(DocumentsWriterPerThreadPool)    * @return the configured {@link DocumentsWriterPerThreadPool} instance.*/
 DECL|method|getIndexerThreadPool
 specifier|public
 name|DocumentsWriterPerThreadPool
@@ -1125,7 +1141,7 @@ operator|.
 name|indexerThreadPool
 return|;
 block|}
-comment|/** Returns the max number of simultaneous threads that    *  may be indexing documents at once in IndexWriter. */
+comment|/** Returns the max number of simultaneous threads that may be indexing    * documents at once in IndexWriter.    *<p>    * To modify the max number of thread-states a new    * {@link DocumentsWriterPerThreadPool} must be set via    * {@link #setIndexerThreadPool(DocumentsWriterPerThreadPool)}.    *</p>    * @see #setIndexerThreadPool(DocumentsWriterPerThreadPool) */
 DECL|method|getMaxThreadStates
 specifier|public
 name|int
