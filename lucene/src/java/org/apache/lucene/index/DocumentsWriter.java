@@ -1802,11 +1802,7 @@ DECL|method|flushAllThreads
 specifier|final
 name|boolean
 name|flushAllThreads
-parameter_list|(
-specifier|final
-name|boolean
-name|flushDeletes
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 block|{
@@ -1899,10 +1895,9 @@ if|if
 condition|(
 operator|!
 name|anythingFlushed
-operator|&&
-name|flushDeletes
 condition|)
 block|{
+comment|// apply deletes if we did not flush any document
 synchronized|synchronized
 init|(
 name|ticketQueue

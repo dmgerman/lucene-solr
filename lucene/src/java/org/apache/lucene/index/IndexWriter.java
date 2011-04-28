@@ -859,7 +859,7 @@ argument_list|()
 expr_stmt|;
 specifier|final
 name|boolean
-name|maybeMerge
+name|anySegmentFlushed
 decl_stmt|;
 comment|/*      * for releasing a NRT reader we must ensure that       * DW doesn't add any segments or deletes until we are      * done with creating the NRT DirectoryReader.       * We release the two stage full flush after we are done opening the      * directory reader!      */
 synchronized|synchronized
@@ -874,21 +874,21 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|maybeMerge
+name|anySegmentFlushed
 operator|=
 name|docWriter
 operator|.
 name|flushAllThreads
-argument_list|(
-name|applyAllDeletes
-argument_list|)
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
 operator|!
-name|maybeMerge
+name|anySegmentFlushed
 condition|)
 block|{
+comment|// prevent double increment since docWriter#doFlush increments the flushcount
+comment|// if we flushed anything.
 name|flushCount
 operator|.
 name|incrementAndGet
@@ -988,7 +988,7 @@ block|}
 block|}
 if|if
 condition|(
-name|maybeMerge
+name|anySegmentFlushed
 condition|)
 block|{
 name|maybeMerge
@@ -7361,9 +7361,7 @@ operator|=
 name|docWriter
 operator|.
 name|flushAllThreads
-argument_list|(
-name|applyAllDeletes
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|success
 operator|=
