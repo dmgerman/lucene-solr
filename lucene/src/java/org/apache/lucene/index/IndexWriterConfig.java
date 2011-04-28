@@ -210,16 +210,6 @@ name|WRITE_LOCK_TIMEOUT
 init|=
 literal|1000
 decl_stmt|;
-comment|/** The maximum number of simultaneous threads that may be    *  indexing documents at once in IndexWriter; if more    *  than this many threads arrive they will wait for    *  others to finish. */
-DECL|field|DEFAULT_MAX_THREAD_STATES
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|DEFAULT_MAX_THREAD_STATES
-init|=
-literal|8
-decl_stmt|;
 comment|/** Default setting for {@link #setReaderPooling}. */
 DECL|field|DEFAULT_READER_POOLING
 specifier|public
@@ -511,9 +501,7 @@ name|indexerThreadPool
 operator|=
 operator|new
 name|ThreadAffinityDocumentsWriterThreadPool
-argument_list|(
-name|DEFAULT_MAX_THREAD_STATES
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|readerTermsIndexDivisor
 operator|=
@@ -1093,7 +1081,7 @@ return|return
 name|mergePolicy
 return|;
 block|}
-comment|/** Expert: Sets the {@link DocumentsWriterPerThreadPool} instance used by the    * IndexWriter to assign thread-states to incoming indexing threads. If no    * {@link DocumentsWriterPerThreadPool} is set {@link IndexWriter} will use    * {@link ThreadAffinityDocumentsWriterThreadPool} with max number of    * thread-states set to {@value #DEFAULT_MAX_THREAD_STATES} (see    * {@link #DEFAULT_MAX_THREAD_STATES}).    *</p>    *<p>    * NOTE: The given {@link DocumentsWriterPerThreadPool} instance must not be used with    * other {@link IndexWriter} instances once it has been initialized / associated with an    * {@link IndexWriter}.    *</p>    *<p>    * NOTE: This only takes effect when IndexWriter is first created.</p>*/
+comment|/** Expert: Sets the {@link DocumentsWriterPerThreadPool} instance used by the    * IndexWriter to assign thread-states to incoming indexing threads. If no    * {@link DocumentsWriterPerThreadPool} is set {@link IndexWriter} will use    * {@link ThreadAffinityDocumentsWriterThreadPool} with max number of    * thread-states set to {@value DocumentsWriterPerThreadPool#DEFAULT_MAX_THREAD_STATES} (see    * {@link DocumentsWriterPerThreadPool#DEFAULT_MAX_THREAD_STATES}).    *</p>    *<p>    * NOTE: The given {@link DocumentsWriterPerThreadPool} instance must not be used with    * other {@link IndexWriter} instances once it has been initialized / associated with an    * {@link IndexWriter}.    *</p>    *<p>    * NOTE: This only takes effect when IndexWriter is first created.</p>*/
 DECL|method|setIndexerThreadPool
 specifier|public
 name|IndexWriterConfig
@@ -1139,20 +1127,6 @@ return|return
 name|this
 operator|.
 name|indexerThreadPool
-return|;
-block|}
-comment|/** Returns the max number of simultaneous threads that may be indexing    * documents at once in IndexWriter.    *<p>    * To modify the max number of thread-states a new    * {@link DocumentsWriterPerThreadPool} must be set via    * {@link #setIndexerThreadPool(DocumentsWriterPerThreadPool)}.    *</p>    * @see #setIndexerThreadPool(DocumentsWriterPerThreadPool) */
-DECL|method|getMaxThreadStates
-specifier|public
-name|int
-name|getMaxThreadStates
-parameter_list|()
-block|{
-return|return
-name|indexerThreadPool
-operator|.
-name|getMaxThreadStates
-argument_list|()
 return|;
 block|}
 comment|/** By default, IndexWriter does not pool the    *  SegmentReaders it must open for deletions and    *  merging, unless a near-real-time reader has been    *  obtained by calling {@link IndexWriter#getReader}.    *  This method lets you enable pooling without getting a    *  near-real-time reader.  NOTE: if you set this to    *  false, IndexWriter will still pool readers once    *  {@link IndexWriter#getReader} is called.    *    *<p>Only takes effect when IndexWriter is first created. */
@@ -1691,26 +1665,6 @@ operator|.
 name|append
 argument_list|(
 name|indexerThreadPool
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"\n"
-argument_list|)
-expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"maxThreadStates="
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|indexerThreadPool
-operator|.
-name|getMaxThreadStates
-argument_list|()
 argument_list|)
 operator|.
 name|append

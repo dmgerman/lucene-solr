@@ -127,6 +127,16 @@ specifier|abstract
 class|class
 name|DocumentsWriterPerThreadPool
 block|{
+comment|/** The maximum number of simultaneous threads that may be    *  indexing documents at once in IndexWriter; if more    *  than this many threads arrive they will wait for    *  others to finish. */
+DECL|field|DEFAULT_MAX_THREAD_STATES
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|DEFAULT_MAX_THREAD_STATES
+init|=
+literal|8
+decl_stmt|;
 comment|/**    * {@link ThreadState} references and guards a    * {@link DocumentsWriterPerThread} instance that is used during indexing to    * build a in-memory index segment. {@link ThreadState} also holds all flush    * related per-thread data controlled by {@link DocumentsWriterFlushControl}.    *<p>    * A {@link ThreadState}, its methods and members should only accessed by one    * thread a time. Users must acquire the lock via {@link ThreadState#lock()}    * and release the lock in a finally block via {@link ThreadState#unlock()}    * before accessing the state.    */
 annotation|@
 name|SuppressWarnings
@@ -333,6 +343,18 @@ name|DocumentsWriter
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/**    * Creates a new {@link DocumentsWriterPerThreadPool} with max.    * {@link #DEFAULT_MAX_THREAD_STATES} thread states.    */
+DECL|method|DocumentsWriterPerThreadPool
+specifier|public
+name|DocumentsWriterPerThreadPool
+parameter_list|()
+block|{
+name|this
+argument_list|(
+name|DEFAULT_MAX_THREAD_STATES
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|DocumentsWriterPerThreadPool
 specifier|public
 name|DocumentsWriterPerThreadPool
@@ -349,8 +371,6 @@ operator|<
 literal|1
 operator|)
 condition|?
-name|IndexWriterConfig
-operator|.
 name|DEFAULT_MAX_THREAD_STATES
 else|:
 name|maxNumPerThreads
