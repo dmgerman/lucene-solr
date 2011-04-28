@@ -641,6 +641,17 @@ DECL|field|deleteSlice
 name|DeleteSlice
 name|deleteSlice
 decl_stmt|;
+DECL|field|nf
+specifier|private
+specifier|final
+name|NumberFormat
+name|nf
+init|=
+name|NumberFormat
+operator|.
+name|getInstance
+argument_list|()
+decl_stmt|;
 DECL|method|DocumentsWriterPerThread
 specifier|public
 name|DocumentsWriterPerThread
@@ -1334,6 +1345,21 @@ argument_list|,
 name|pendingDeletes
 argument_list|)
 expr_stmt|;
+specifier|final
+name|double
+name|startMBUsed
+init|=
+name|parent
+operator|.
+name|flushControl
+operator|.
+name|netBytes
+argument_list|()
+operator|/
+literal|1024.
+operator|/
+literal|1024.
+decl_stmt|;
 comment|// Apply delete-by-docID now (delete-byDocID only
 comment|// happens when an exception is hit processing that
 comment|// doc, eg if analyzer has some problem w/ the text):
@@ -1621,6 +1647,110 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+specifier|final
+name|double
+name|newSegmentSizeNoStore
+init|=
+name|newSegment
+operator|.
+name|sizeInBytes
+argument_list|(
+literal|false
+argument_list|)
+operator|/
+literal|1024.
+operator|/
+literal|1024.
+decl_stmt|;
+specifier|final
+name|double
+name|newSegmentSize
+init|=
+name|newSegment
+operator|.
+name|sizeInBytes
+argument_list|(
+literal|true
+argument_list|)
+operator|/
+literal|1024.
+operator|/
+literal|1024.
+decl_stmt|;
+name|message
+argument_list|(
+literal|"flushed: segment="
+operator|+
+name|newSegment
+operator|+
+literal|" ramUsed="
+operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
+name|startMBUsed
+argument_list|)
+operator|+
+literal|" MB"
+operator|+
+literal|" newFlushedSize="
+operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
+name|newSegmentSize
+argument_list|)
+operator|+
+literal|" MB"
+operator|+
+literal|" ("
+operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
+name|newSegmentSizeNoStore
+argument_list|)
+operator|+
+literal|" MB w/o doc stores)"
+operator|+
+literal|" docs/MB="
+operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
+name|flushedDocCount
+operator|/
+name|newSegmentSize
+argument_list|)
+operator|+
+literal|" new/old="
+operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
+literal|100.0
+operator|*
+name|newSegmentSizeNoStore
+operator|/
+name|startMBUsed
+argument_list|)
+operator|+
+literal|"%"
+argument_list|)
+expr_stmt|;
+block|}
 name|doAfterFlush
 argument_list|()
 expr_stmt|;
@@ -1733,21 +1863,12 @@ name|writer
 operator|.
 name|message
 argument_list|(
-literal|"DW: "
+literal|"DWPT: "
 operator|+
 name|message
 argument_list|)
 expr_stmt|;
 block|}
-DECL|field|nf
-name|NumberFormat
-name|nf
-init|=
-name|NumberFormat
-operator|.
-name|getInstance
-argument_list|()
-decl_stmt|;
 comment|/* Initial chunks size of the shared byte[] blocks used to      store postings data */
 DECL|field|BYTE_BLOCK_NOT_MASK
 specifier|final
@@ -1989,27 +2110,6 @@ block|}
 block|}
 block|}
 empty_stmt|;
-DECL|method|toMB
-name|String
-name|toMB
-parameter_list|(
-name|long
-name|v
-parameter_list|)
-block|{
-return|return
-name|nf
-operator|.
-name|format
-argument_list|(
-name|v
-operator|/
-literal|1024.
-operator|/
-literal|1024.
-argument_list|)
-return|;
-block|}
 block|}
 end_class
 
