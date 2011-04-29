@@ -2213,6 +2213,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+synchronized|synchronized
+init|(
+name|state
+init|)
+block|{
 return|return
 name|state
 operator|.
@@ -2225,6 +2230,7 @@ operator|.
 name|name
 argument_list|)
 return|;
+block|}
 block|}
 annotation|@
 name|Override
