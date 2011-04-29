@@ -312,6 +312,7 @@ operator|-
 literal|1
 decl_stmt|;
 comment|// total byte size of all of our files (computed on demand)
+comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreOffset
 specifier|private
 name|int
@@ -319,6 +320,7 @@ name|docStoreOffset
 decl_stmt|;
 comment|// if this segment shares stored fields& vectors, this
 comment|// offset is where in that file this segment's docs begin
+comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreSegment
 specifier|private
 name|String
@@ -326,6 +328,7 @@ name|docStoreSegment
 decl_stmt|;
 comment|// name used to derive fields/vectors file we share with
 comment|// other segments
+comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreIsCompoundFile
 specifier|private
 name|boolean
@@ -1988,26 +1991,37 @@ operator|<=
 name|docCount
 assert|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|getDocStoreOffset
 specifier|public
 name|int
 name|getDocStoreOffset
 parameter_list|()
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 return|return
 name|docStoreOffset
 return|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|getDocStoreIsCompoundFile
 specifier|public
 name|boolean
 name|getDocStoreIsCompoundFile
 parameter_list|()
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 return|return
 name|docStoreIsCompoundFile
 return|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|setDocStoreIsCompoundFile
 specifier|public
 name|void
@@ -2017,6 +2031,7 @@ name|boolean
 name|docStoreIsCompoundFile
 parameter_list|)
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 name|this
 operator|.
 name|docStoreIsCompoundFile
@@ -2027,6 +2042,9 @@ name|clearFilesCache
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|setDocStore
 name|void
 name|setDocStore
@@ -2041,6 +2059,7 @@ name|boolean
 name|isCompoundFile
 parameter_list|)
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 name|docStoreOffset
 operator|=
 name|offset
@@ -2057,16 +2076,23 @@ name|clearFilesCache
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|getDocStoreSegment
 specifier|public
 name|String
 name|getDocStoreSegment
 parameter_list|()
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 return|return
 name|docStoreSegment
 return|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|setDocStoreOffset
 name|void
 name|setDocStoreOffset
@@ -2075,6 +2101,7 @@ name|int
 name|offset
 parameter_list|)
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 name|docStoreOffset
 operator|=
 name|offset
@@ -2083,6 +2110,9 @@ name|clearFilesCache
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|setDocStoreSegment
 specifier|public
 name|void
@@ -2092,6 +2122,7 @@ name|String
 name|docStoreSegment
 parameter_list|)
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 name|this
 operator|.
 name|docStoreSegment
