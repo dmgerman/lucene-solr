@@ -4392,7 +4392,10 @@ condition|)
 block|{
 name|c
 operator|.
-name|setMaxThreadStates
+name|setIndexerThreadPool
+argument_list|(
+operator|new
+name|ThreadAffinityDocumentsWriterThreadPool
 argument_list|(
 name|_TestUtil
 operator|.
@@ -4403,6 +4406,7 @@ argument_list|,
 literal|1
 argument_list|,
 literal|20
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

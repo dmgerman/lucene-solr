@@ -315,7 +315,7 @@ operator|+
 operator|(
 name|offset0
 operator|&
-name|DocumentsWriter
+name|DocumentsWriterPerThread
 operator|.
 name|BYTE_BLOCK_NOT_MASK
 operator|)

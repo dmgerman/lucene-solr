@@ -258,7 +258,7 @@ control|)
 block|{
 if|if
 condition|(
-literal|"doFlush"
+literal|"flush"
 operator|.
 name|equals
 argument_list|(

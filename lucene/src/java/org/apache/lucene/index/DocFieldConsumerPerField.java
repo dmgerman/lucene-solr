@@ -68,6 +68,12 @@ name|void
 name|abort
 parameter_list|()
 function_decl|;
+DECL|method|getFieldInfo
+specifier|abstract
+name|FieldInfo
+name|getFieldInfo
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

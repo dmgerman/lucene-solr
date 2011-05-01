@@ -1712,7 +1712,7 @@ name|getMethodName
 argument_list|()
 argument_list|)
 operator|||
-literal|"flushDocument"
+literal|"finishDocument"
 operator|.
 name|equals
 argument_list|(

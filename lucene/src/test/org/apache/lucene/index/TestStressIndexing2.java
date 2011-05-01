@@ -1284,9 +1284,13 @@ argument_list|(
 name|maxBufferedDocs
 argument_list|)
 operator|.
-name|setMaxThreadStates
+name|setIndexerThreadPool
+argument_list|(
+operator|new
+name|ThreadAffinityDocumentsWriterThreadPool
 argument_list|(
 name|maxThreadStates
+argument_list|)
 argument_list|)
 operator|.
 name|setReaderPooling

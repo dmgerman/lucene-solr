@@ -261,7 +261,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The SegmentMerger class combines two or more Segments, represented by an IndexReader ({@link #add},  * into a single Segment.  After adding the appropriate readers, call the merge method to combine the   * segments.  *   * @see #merge  * @see #add  */
+comment|/**  * The SegmentMerger class combines two or more Segments, represented by an IndexReader ({@link #add},  * into a single Segment.  After adding the appropriate readers, call the merge method to combine the  * segments.  *  * @see #merge  * @see #add  */
 end_comment
 
 begin_class
@@ -879,7 +879,7 @@ name|MAX_RAW_MERGE_DOCS
 index|]
 expr_stmt|;
 block|}
-comment|/**    *     * @return The number of documents in all of the readers    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    *    * @return The number of documents in all of the readers    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|mergeFields
 specifier|private
 name|int
