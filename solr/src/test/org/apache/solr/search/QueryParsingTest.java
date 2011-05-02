@@ -772,7 +772,7 @@ operator|.
 name|getField
 argument_list|()
 argument_list|,
-literal|"pow(float(weight),const(2.0))"
+literal|"pow(float(weight),const(2))"
 argument_list|)
 expr_stmt|;
 comment|//test functions (more deep)
@@ -782,7 +782,7 @@ name|QueryParsing
 operator|.
 name|parseSort
 argument_list|(
-literal|"sum(product(r_f1,sum(d_f1,t_f1,1)),a_f1) asc"
+literal|"sum(product(r_f1,sum(d_f1,t_f1,1.0)),a_f1) asc"
 argument_list|,
 name|req
 argument_list|)
@@ -828,7 +828,7 @@ name|QueryParsing
 operator|.
 name|parseSort
 argument_list|(
-literal|"pow(weight,                 2)         desc"
+literal|"pow(weight,                 2.0)         desc"
 argument_list|,
 name|req
 argument_list|)
@@ -876,7 +876,7 @@ name|QueryParsing
 operator|.
 name|parseSort
 argument_list|(
-literal|"pow(weight, 2) desc, weight    desc,   bday    asc"
+literal|"pow(weight, 2.0) desc, weight    desc,   bday    asc"
 argument_list|,
 name|req
 argument_list|)

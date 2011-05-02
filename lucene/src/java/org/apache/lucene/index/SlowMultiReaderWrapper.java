@@ -114,6 +114,22 @@ begin_comment
 comment|// javadoc
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|PerDocValues
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class forces a composite reader (eg a {@link  * MultiReader} or {@link DirectoryReader} or any other  * IndexReader subclass that returns non-null from {@link  * IndexReader#getSequentialSubReaders}) to emulate an  * atomic reader.  This requires implementing the postings  * APIs on-the-fly, using the static methods in {@link  * MultiFields}, by stepping through the sub-readers to  * merge fields/terms, appending docs, etc.  *  *<p>If you ever hit an UnsupportedOperationException saying  * "please use MultiFields.XXX instead", the simple  * but non-performant workaround is to wrap your reader  * using this class.</p>  *  *<p><b>NOTE</b>: this class almost always results in a  * performance hit.  If this is important to your use case,  * it's better to get the sequential sub readers (see {@link  * ReaderUtil#gatherSubReaders}, instead, and iterate through them  * yourself.</p>  */
 end_comment
@@ -192,6 +208,25 @@ return|return
 name|MultiFields
 operator|.
 name|getFields
+argument_list|(
+name|in
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|perDocValues
+specifier|public
+name|PerDocValues
+name|perDocValues
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|MultiPerDocValues
+operator|.
+name|getPerDocs
 argument_list|(
 name|in
 argument_list|)

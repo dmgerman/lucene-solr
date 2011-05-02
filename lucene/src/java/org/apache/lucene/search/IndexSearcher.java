@@ -3268,6 +3268,22 @@ name|leaves
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"IndexSearcher("
+operator|+
+name|reader
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 

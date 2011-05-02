@@ -32,16 +32,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 import|;
 end_import
@@ -52,7 +42,7 @@ specifier|abstract
 class|class
 name|DocFieldConsumer
 block|{
-comment|/** Called when DocumentsWriter decides to create a new    *  segment */
+comment|/** Called when DocumentsWriterPerThread decides to create a new    *  segment */
 DECL|method|flush
 specifier|abstract
 name|void
@@ -60,14 +50,11 @@ name|flush
 parameter_list|(
 name|Map
 argument_list|<
-name|DocFieldConsumerPerThread
+name|FieldInfo
 argument_list|,
-name|Collection
-argument_list|<
 name|DocFieldConsumerPerField
 argument_list|>
-argument_list|>
-name|threadsAndFields
+name|fieldsToFlush
 parameter_list|,
 name|SegmentWriteState
 name|state
@@ -82,24 +69,37 @@ name|void
 name|abort
 parameter_list|()
 function_decl|;
-comment|/** Add a new thread */
-DECL|method|addThread
-specifier|abstract
-name|DocFieldConsumerPerThread
-name|addThread
-parameter_list|(
-name|DocFieldProcessorPerThread
-name|docFieldProcessorPerThread
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Called when DocumentsWriter is using too much RAM.    *  The consumer should free RAM, if possible, returning    *  true if any RAM was in fact freed. */
+comment|/** Called when DocumentsWriterPerThread is using too much RAM.    *  The consumer should free RAM, if possible, returning    *  true if any RAM was in fact freed. */
 DECL|method|freeRAM
 specifier|abstract
 name|boolean
 name|freeRAM
 parameter_list|()
+function_decl|;
+DECL|method|startDocument
+specifier|abstract
+name|void
+name|startDocument
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+DECL|method|addField
+specifier|abstract
+name|DocFieldConsumerPerField
+name|addField
+parameter_list|(
+name|FieldInfo
+name|fi
+parameter_list|)
+function_decl|;
+DECL|method|finishDocument
+specifier|abstract
+name|void
+name|finishDocument
+parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_class

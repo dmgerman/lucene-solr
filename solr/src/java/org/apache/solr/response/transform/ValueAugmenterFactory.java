@@ -94,6 +94,20 @@ name|NamedList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
 begin_comment
 comment|/**  * @version $Id$  * @since solr 4.0  */
 end_comment
@@ -323,6 +337,9 @@ name|field
 parameter_list|,
 name|String
 name|arg
+parameter_list|,
+name|SolrQueryRequest
+name|req
 parameter_list|)
 block|{
 name|Object

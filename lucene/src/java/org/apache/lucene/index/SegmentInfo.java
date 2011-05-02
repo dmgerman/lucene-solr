@@ -215,7 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *   * @lucene.experimental  */
+comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -324,6 +324,7 @@ operator|-
 literal|1
 decl_stmt|;
 comment|// total byte size of all of our files (computed on demand)
+comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreOffset
 specifier|private
 name|int
@@ -331,6 +332,7 @@ name|docStoreOffset
 decl_stmt|;
 comment|// if this segment shares stored fields& vectors, this
 comment|// offset is where in that file this segment's docs begin
+comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreSegment
 specifier|private
 name|String
@@ -338,6 +340,7 @@ name|docStoreSegment
 decl_stmt|;
 comment|// name used to derive fields/vectors file we share with
 comment|// other segments
+comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreIsCompoundFile
 specifier|private
 name|boolean
@@ -2000,82 +2003,60 @@ operator|<=
 name|docCount
 assert|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|getDocStoreOffset
 specifier|public
 name|int
 name|getDocStoreOffset
 parameter_list|()
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 return|return
 name|docStoreOffset
 return|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|getDocStoreIsCompoundFile
 specifier|public
 name|boolean
 name|getDocStoreIsCompoundFile
 parameter_list|()
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 return|return
 name|docStoreIsCompoundFile
 return|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|setDocStoreIsCompoundFile
+specifier|public
 name|void
 name|setDocStoreIsCompoundFile
 parameter_list|(
 name|boolean
-name|v
+name|docStoreIsCompoundFile
 parameter_list|)
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
+name|this
+operator|.
 name|docStoreIsCompoundFile
 operator|=
-name|v
+name|docStoreIsCompoundFile
 expr_stmt|;
 name|clearFilesCache
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|getDocStoreSegment
-specifier|public
-name|String
-name|getDocStoreSegment
-parameter_list|()
-block|{
-return|return
-name|docStoreSegment
-return|;
-block|}
-DECL|method|setDocStoreSegment
-specifier|public
-name|void
-name|setDocStoreSegment
-parameter_list|(
-name|String
-name|segment
-parameter_list|)
-block|{
-name|docStoreSegment
-operator|=
-name|segment
-expr_stmt|;
-block|}
-DECL|method|setDocStoreOffset
-name|void
-name|setDocStoreOffset
-parameter_list|(
-name|int
-name|offset
-parameter_list|)
-block|{
-name|docStoreOffset
-operator|=
-name|offset
-expr_stmt|;
-name|clearFilesCache
-argument_list|()
-expr_stmt|;
-block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|setDocStore
 name|void
 name|setDocStore
@@ -2090,6 +2071,7 @@ name|boolean
 name|isCompoundFile
 parameter_list|)
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 name|docStoreOffset
 operator|=
 name|offset
@@ -2104,6 +2086,60 @@ name|isCompoundFile
 expr_stmt|;
 name|clearFilesCache
 argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
+DECL|method|getDocStoreSegment
+specifier|public
+name|String
+name|getDocStoreSegment
+parameter_list|()
+block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
+return|return
+name|docStoreSegment
+return|;
+block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
+DECL|method|setDocStoreOffset
+name|void
+name|setDocStoreOffset
+parameter_list|(
+name|int
+name|offset
+parameter_list|)
+block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
+name|docStoreOffset
+operator|=
+name|offset
+expr_stmt|;
+name|clearFilesCache
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @deprecated shared doc stores are not supported in 4.0    */
+annotation|@
+name|Deprecated
+DECL|method|setDocStoreSegment
+specifier|public
+name|void
+name|setDocStoreSegment
+parameter_list|(
+name|String
+name|docStoreSegment
+parameter_list|)
+block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
+name|this
+operator|.
+name|docStoreSegment
+operator|=
+name|docStoreSegment
 expr_stmt|;
 block|}
 comment|/** Save this segment's info. */
@@ -2963,7 +2999,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/** Used for debugging.  Format may suddenly change.    *     *<p>Current format looks like    *<code>_a(3.1):c45/4->_1</code>, which means the segment's    *  name is<code>_a</code>; it was created with Lucene 3.1 (or    *  '?' if it's unkown); it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions); it's using the    *  shared doc stores named<code>_1</code> (this part is    *  left off if doc stores are private).</p>    */
+comment|/** Used for debugging.  Format may suddenly change.    *    *<p>Current format looks like    *<code>_a(3.1):c45/4->_1</code>, which means the segment's    *  name is<code>_a</code>; it was created with Lucene 3.1 (or    *  '?' if it's unkown); it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions); it's using the    *  shared doc stores named<code>_1</code> (this part is    *  left off if doc stores are private).</p>    */
 DECL|method|toString
 specifier|public
 name|String
@@ -3242,7 +3278,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * Used by DefaultSegmentInfosReader to upgrade a 3.0 segment to record its    * version is "3.0". This method can be removed when we're not required to    * support 3x indexes anymore, e.g. in 5.0.    *<p>    *<b>NOTE:</b> this method is used for internal purposes only - you should    * not modify the version of a SegmentInfo, or it may result in unexpected    * exceptions thrown when you attempt to open the index.    *     * @lucene.internal    */
+comment|/**    * Used by DefaultSegmentInfosReader to upgrade a 3.0 segment to record its    * version is "3.0". This method can be removed when we're not required to    * support 3x indexes anymore, e.g. in 5.0.    *<p>    *<b>NOTE:</b> this method is used for internal purposes only - you should    * not modify the version of a SegmentInfo, or it may result in unexpected    * exceptions thrown when you attempt to open the index.    *    * @lucene.internal    */
 DECL|method|setVersion
 specifier|public
 name|void

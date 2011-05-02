@@ -189,6 +189,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TestICUCollationKeyFilterFactory
 specifier|public
 class|class

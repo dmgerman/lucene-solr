@@ -194,20 +194,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_class
 DECL|class|TestPerSegmentDeletes
 specifier|public
@@ -251,13 +237,13 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|iwc
@@ -631,7 +617,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|/**     // added docs are in the ram buffer     for (int x = 15; x< 20; x++) {       writer.addDocument(TestIndexWriterReader.createDocument(x, "4", 2));       System.out.println("numRamDocs(" + x + ")" + writer.numRamDocs());     }     assertTrue(writer.numRamDocs()> 0);     // delete from the ram buffer     writer.deleteDocuments(new Term("id", Integer.toString(13)));          Term id3 = new Term("id", Integer.toString(3));          // delete from the 1st segment     writer.deleteDocuments(id3);          assertTrue(writer.numRamDocs()> 0);          //System.out     //    .println("segdels1:" + writer.docWriter.deletesToString());          //assertTrue(writer.docWriter.segmentDeletes.size()> 0);          // we cause a merge to happen     fsmp.doMerge = true;     fsmp.start = 0;     fsmp.length = 2;     System.out.println("maybeMerge "+writer.segmentInfos);          SegmentInfo info0 = writer.segmentInfos.get(0);     SegmentInfo info1 = writer.segmentInfos.get(1);          writer.maybeMerge();     System.out.println("maybeMerge after "+writer.segmentInfos);     // there should be docs in RAM     assertTrue(writer.numRamDocs()> 0);          // assert we've merged the 1 and 2 segments     // and still have a segment leftover == 2     assertEquals(2, writer.segmentInfos.size());     assertFalse(segThere(info0, writer.segmentInfos));     assertFalse(segThere(info1, writer.segmentInfos));          //System.out.println("segdels2:" + writer.docWriter.deletesToString());          //assertTrue(writer.docWriter.segmentDeletes.size()> 0);          IndexReader r = writer.getReader();     IndexReader r1 = r.getSequentialSubReaders()[0];     printDelDocs(r1.getDeletedDocs());     int[] docs = toDocsArray(id3, null, r);     System.out.println("id3 docs:"+Arrays.toString(docs));     // there shouldn't be any docs for id:3     assertTrue(docs == null);     r.close();          part2(writer, fsmp);     **/
+comment|/**     // added docs are in the ram buffer     for (int x = 15; x< 20; x++) {       writer.addDocument(TestIndexWriterReader.createDocument(x, "4", 2));       System.out.println("numRamDocs(" + x + ")" + writer.numRamDocs());     }     assertTrue(writer.numRamDocs()> 0);     // delete from the ram buffer     writer.deleteDocuments(new Term("id", Integer.toString(13)));      Term id3 = new Term("id", Integer.toString(3));      // delete from the 1st segment     writer.deleteDocuments(id3);      assertTrue(writer.numRamDocs()> 0);      //System.out     //    .println("segdels1:" + writer.docWriter.deletesToString());      //assertTrue(writer.docWriter.segmentDeletes.size()> 0);      // we cause a merge to happen     fsmp.doMerge = true;     fsmp.start = 0;     fsmp.length = 2;     System.out.println("maybeMerge "+writer.segmentInfos);      SegmentInfo info0 = writer.segmentInfos.get(0);     SegmentInfo info1 = writer.segmentInfos.get(1);      writer.maybeMerge();     System.out.println("maybeMerge after "+writer.segmentInfos);     // there should be docs in RAM     assertTrue(writer.numRamDocs()> 0);      // assert we've merged the 1 and 2 segments     // and still have a segment leftover == 2     assertEquals(2, writer.segmentInfos.size());     assertFalse(segThere(info0, writer.segmentInfos));     assertFalse(segThere(info1, writer.segmentInfos));      //System.out.println("segdels2:" + writer.docWriter.deletesToString());      //assertTrue(writer.docWriter.segmentDeletes.size()> 0);      IndexReader r = writer.getReader();     IndexReader r1 = r.getSequentialSubReaders()[0];     printDelDocs(r1.getDeletedDocs());     int[] docs = toDocsArray(id3, null, r);     System.out.println("id3 docs:"+Arrays.toString(docs));     // there shouldn't be any docs for id:3     assertTrue(docs == null);     r.close();      part2(writer, fsmp);     **/
 comment|// System.out.println("segdels2:"+writer.docWriter.segmentDeletes.toString());
 comment|//System.out.println("close");
 name|writer

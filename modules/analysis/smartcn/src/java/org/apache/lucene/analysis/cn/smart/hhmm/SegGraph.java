@@ -205,7 +205,7 @@ name|SegToken
 argument_list|>
 name|tokenList
 decl_stmt|;
-name|short
+name|int
 name|index
 init|=
 literal|0

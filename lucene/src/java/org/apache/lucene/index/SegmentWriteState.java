@@ -113,12 +113,6 @@ specifier|public
 name|boolean
 name|hasVectors
 decl_stmt|;
-DECL|field|bytesUsed
-specifier|public
-specifier|final
-name|AtomicLong
-name|bytesUsed
-decl_stmt|;
 comment|// Deletes to apply while we are flushing the segment.  A
 comment|// Term is enrolled in here if it was deleted at one
 comment|// point, and it's mapped to the docIDUpto, meaning any
@@ -181,9 +175,6 @@ name|segmentCodecs
 parameter_list|,
 name|BufferedDeletes
 name|segDeletes
-parameter_list|,
-name|AtomicLong
-name|bytesUsed
 parameter_list|)
 block|{
 name|this
@@ -238,12 +229,6 @@ name|codecId
 operator|=
 operator|-
 literal|1
-expr_stmt|;
-name|this
-operator|.
-name|bytesUsed
-operator|=
-name|bytesUsed
 expr_stmt|;
 block|}
 comment|/**    * Create a shallow {@link SegmentWriteState} copy final a codec ID    */
@@ -310,12 +295,6 @@ operator|=
 name|state
 operator|.
 name|segDeletes
-expr_stmt|;
-name|bytesUsed
-operator|=
-name|state
-operator|.
-name|bytesUsed
 expr_stmt|;
 block|}
 DECL|method|codecIdAsString

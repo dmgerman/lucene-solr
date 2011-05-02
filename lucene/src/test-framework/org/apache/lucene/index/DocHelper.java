@@ -58,6 +58,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -165,6 +175,20 @@ operator|.
 name|store
 operator|.
 name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -1592,6 +1616,9 @@ specifier|static
 name|SegmentInfo
 name|writeDoc
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
@@ -1604,11 +1631,15 @@ block|{
 return|return
 name|writeDoc
 argument_list|(
+name|random
+argument_list|,
 name|dir
 argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
+name|random
+argument_list|,
 name|MockTokenizer
 operator|.
 name|WHITESPACE
@@ -1629,6 +1660,9 @@ specifier|static
 name|SegmentInfo
 name|writeDoc
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
@@ -1655,6 +1689,7 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
+comment|/* LuceneTestCase.newIndexWriterConfig(random, */
 name|TEST_VERSION_CURRENT
 argument_list|,
 name|analyzer

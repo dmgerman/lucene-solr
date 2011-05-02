@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Update document(s) to be indexed with UIMA extracted information  *   * @version $Id$  */
+comment|/**  * Update document(s) to be indexed with UIMA extracted information  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -231,6 +231,9 @@ name|next
 parameter_list|,
 name|SolrCore
 name|solrCore
+parameter_list|,
+name|SolrUIMAConfiguration
+name|config
 parameter_list|)
 block|{
 name|super
@@ -241,6 +244,8 @@ expr_stmt|;
 name|initialize
 argument_list|(
 name|solrCore
+argument_list|,
+name|config
 argument_list|)
 expr_stmt|;
 block|}
@@ -251,26 +256,14 @@ name|initialize
 parameter_list|(
 name|SolrCore
 name|solrCore
+parameter_list|,
+name|SolrUIMAConfiguration
+name|config
 parameter_list|)
 block|{
-name|SolrUIMAConfigurationReader
-name|uimaConfigurationReader
-init|=
-operator|new
-name|SolrUIMAConfigurationReader
-argument_list|(
-name|solrCore
-operator|.
-name|getSolrConfig
-argument_list|()
-argument_list|)
-decl_stmt|;
 name|solrUIMAConfiguration
 operator|=
-name|uimaConfigurationReader
-operator|.
-name|readSolrUIMAConfiguration
-argument_list|()
+name|config
 expr_stmt|;
 name|aeProvider
 operator|=

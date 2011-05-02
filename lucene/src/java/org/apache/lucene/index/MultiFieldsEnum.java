@@ -28,39 +28,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
 name|MultiDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|Type
 import|;
 end_import
 
@@ -89,22 +57,6 @@ operator|.
 name|util
 operator|.
 name|ReaderUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderUtil
-operator|.
-name|Slice
 import|;
 end_import
 
@@ -788,261 +740,38 @@ literal|0
 return|;
 block|}
 block|}
-annotation|@
-name|Override
-DECL|method|docValues
-specifier|public
-name|DocValues
-name|docValues
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-specifier|final
-name|List
-argument_list|<
-name|MultiDocValues
-operator|.
-name|DocValuesIndex
-argument_list|>
-name|docValuesIndex
-init|=
-operator|new
-name|ArrayList
-argument_list|<
-name|MultiDocValues
-operator|.
-name|DocValuesIndex
-argument_list|>
-argument_list|()
-decl_stmt|;
-name|int
-name|docsUpto
-init|=
-literal|0
-decl_stmt|;
-name|Type
-name|type
-init|=
-literal|null
-decl_stmt|;
-specifier|final
-name|int
-name|numEnums
-init|=
-name|enumWithSlices
-operator|.
-name|length
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|numEnums
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|FieldsEnumWithSlice
-name|withSlice
-init|=
-name|enumWithSlices
-index|[
-name|i
-index|]
-decl_stmt|;
-name|Slice
-name|slice
-init|=
-name|withSlice
-operator|.
-name|slice
-decl_stmt|;
-specifier|final
-name|DocValues
-name|values
-init|=
-name|withSlice
-operator|.
-name|fields
-operator|.
-name|docValues
-argument_list|()
-decl_stmt|;
-specifier|final
-name|int
-name|start
-init|=
-name|slice
-operator|.
-name|start
-decl_stmt|;
-specifier|final
-name|int
-name|length
-init|=
-name|slice
-operator|.
-name|length
-decl_stmt|;
-if|if
-condition|(
-name|values
-operator|!=
-literal|null
-operator|&&
-name|currentField
-operator|.
-name|equals
-argument_list|(
-name|withSlice
-operator|.
-name|current
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-name|docsUpto
-operator|!=
-name|start
-condition|)
-block|{
-name|type
-operator|=
-name|values
-operator|.
-name|type
-argument_list|()
-expr_stmt|;
-name|docValuesIndex
-operator|.
-name|add
-argument_list|(
-operator|new
-name|MultiDocValues
-operator|.
-name|DocValuesIndex
-argument_list|(
-operator|new
-name|MultiDocValues
-operator|.
-name|DummyDocValues
-argument_list|(
-name|start
-argument_list|,
-name|type
-argument_list|)
-argument_list|,
-name|docsUpto
-argument_list|,
-name|start
-operator|-
-name|docsUpto
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-name|docValuesIndex
-operator|.
-name|add
-argument_list|(
-operator|new
-name|MultiDocValues
-operator|.
-name|DocValuesIndex
-argument_list|(
-name|values
-argument_list|,
-name|start
-argument_list|,
-name|length
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|docsUpto
-operator|=
-name|start
-operator|+
-name|length
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|i
-operator|+
-literal|1
-operator|==
-name|numEnums
-operator|&&
-operator|!
-name|docValuesIndex
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|docValuesIndex
-operator|.
-name|add
-argument_list|(
-operator|new
-name|MultiDocValues
-operator|.
-name|DocValuesIndex
-argument_list|(
-operator|new
-name|MultiDocValues
-operator|.
-name|DummyDocValues
-argument_list|(
-name|start
-argument_list|,
-name|type
-argument_list|)
-argument_list|,
-name|docsUpto
-argument_list|,
-name|start
-operator|-
-name|docsUpto
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-return|return
-name|docValuesIndex
-operator|.
-name|isEmpty
-argument_list|()
-condition|?
-literal|null
-else|:
-name|docValues
-operator|.
-name|reset
-argument_list|(
-name|docValuesIndex
-operator|.
-name|toArray
-argument_list|(
-name|MultiDocValues
-operator|.
-name|DocValuesIndex
-operator|.
-name|EMPTY_ARRAY
-argument_list|)
-argument_list|)
-return|;
-block|}
+comment|//  @Override
+comment|//  public DocValues docValues() throws IOException {
+comment|//    final List<MultiDocValues.DocValuesIndex> docValuesIndex = new ArrayList<MultiDocValues.DocValuesIndex>();
+comment|//    int docsUpto = 0;
+comment|//    Type type = null;
+comment|//    final int numEnums = enumWithSlices.length;
+comment|//    for (int i = 0; i< numEnums; i++) {
+comment|//      FieldsEnumWithSlice withSlice = enumWithSlices[i];
+comment|//      Slice slice = withSlice.slice;
+comment|//      final DocValues values = withSlice.fields.docValues();
+comment|//      final int start = slice.start;
+comment|//      final int length = slice.length;
+comment|//      if (values != null&& currentField.equals(withSlice.current)) {
+comment|//        if (docsUpto != start) {
+comment|//          type = values.type();
+comment|//          docValuesIndex.add(new MultiDocValues.DocValuesIndex(
+comment|//              new MultiDocValues.DummyDocValues(start, type), docsUpto, start
+comment|//                  - docsUpto));
+comment|//        }
+comment|//        docValuesIndex.add(new MultiDocValues.DocValuesIndex(values, start,
+comment|//            length));
+comment|//        docsUpto = start + length;
+comment|//
+comment|//      } else if (i + 1 == numEnums&& !docValuesIndex.isEmpty()) {
+comment|//        docValuesIndex.add(new MultiDocValues.DocValuesIndex(
+comment|//            new MultiDocValues.DummyDocValues(start, type), docsUpto, start
+comment|//                - docsUpto));
+comment|//      }
+comment|//    }
+comment|//    return docValuesIndex.isEmpty() ? null : docValues.reset(docValuesIndex
+comment|//        .toArray(MultiDocValues.DocValuesIndex.EMPTY_ARRAY));
+comment|//  }
 block|}
 end_class
 

@@ -1140,7 +1140,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setRAMBufferSizeMB
@@ -1415,7 +1417,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setRAMBufferSizeMB
@@ -1569,6 +1573,7 @@ name|failure
 operator|!=
 literal|null
 condition|)
+block|{
 name|fail
 argument_list|(
 literal|"thread "
@@ -1584,6 +1589,7 @@ operator|+
 literal|": hit unexpected failure"
 argument_list|)
 expr_stmt|;
+block|}
 name|writer
 operator|.
 name|commit
@@ -1752,7 +1758,7 @@ name|name
 operator|.
 name|equals
 argument_list|(
-literal|"DocumentsWriter.ThreadState.init start"
+literal|"DocumentsWriterPerThread addDocument start"
 argument_list|)
 condition|)
 throw|throw
@@ -1894,7 +1900,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2025,7 +2033,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setMaxBufferedDocs
@@ -2302,7 +2312,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setMaxBufferedDocs
@@ -2950,7 +2962,7 @@ control|)
 block|{
 if|if
 condition|(
-literal|"org.apache.lucene.index.FreqProxTermsWriter"
+literal|"org.apache.lucene.index.FreqProxTermsWriterPerField"
 operator|.
 name|equals
 argument_list|(
@@ -2963,7 +2975,7 @@ name|getClassName
 argument_list|()
 argument_list|)
 operator|&&
-literal|"appendPostings"
+literal|"flush"
 operator|.
 name|equals
 argument_list|(
@@ -2982,7 +2994,7 @@ literal|true
 expr_stmt|;
 if|if
 condition|(
-literal|"doFlush"
+literal|"flush"
 operator|.
 name|equals
 argument_list|(
@@ -3076,7 +3088,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setMaxBufferedDocs
@@ -4944,7 +4958,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setMaxBufferedDocs
@@ -5445,7 +5461,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -5592,7 +5610,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setMaxBufferedDocs
@@ -5711,7 +5731,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setMergeScheduler
@@ -5862,7 +5884,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 block|{
@@ -6057,7 +6081,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -6143,7 +6169,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -6380,7 +6408,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -6626,7 +6656,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setMergePolicy
@@ -6865,7 +6897,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -7066,7 +7100,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setOpenMode

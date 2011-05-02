@@ -37,11 +37,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  */
+comment|/**  * @version $Id$  *   * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|FieldProperties
+specifier|public
 specifier|abstract
 class|class
 name|FieldProperties
@@ -50,6 +51,7 @@ comment|// use a bitfield instead of many different boolean variables since
 comment|// many of the variables are independent or semi-independent.
 comment|// bit values for boolean field properties.
 DECL|field|INDEXED
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -58,6 +60,7 @@ init|=
 literal|0x00000001
 decl_stmt|;
 DECL|field|TOKENIZED
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -66,6 +69,7 @@ init|=
 literal|0x00000002
 decl_stmt|;
 DECL|field|STORED
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -74,6 +78,7 @@ init|=
 literal|0x00000004
 decl_stmt|;
 DECL|field|BINARY
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -82,6 +87,7 @@ init|=
 literal|0x00000008
 decl_stmt|;
 DECL|field|OMIT_NORMS
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -90,6 +96,7 @@ init|=
 literal|0x00000010
 decl_stmt|;
 DECL|field|OMIT_TF_POSITIONS
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -98,6 +105,7 @@ init|=
 literal|0x00000020
 decl_stmt|;
 DECL|field|STORE_TERMVECTORS
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -106,6 +114,7 @@ init|=
 literal|0x00000040
 decl_stmt|;
 DECL|field|STORE_TERMPOSITIONS
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -114,6 +123,7 @@ init|=
 literal|0x00000080
 decl_stmt|;
 DECL|field|STORE_TERMOFFSETS
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -122,6 +132,7 @@ init|=
 literal|0x00000100
 decl_stmt|;
 DECL|field|MULTIVALUED
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -130,6 +141,7 @@ init|=
 literal|0x00000200
 decl_stmt|;
 DECL|field|SORT_MISSING_FIRST
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -138,6 +150,7 @@ init|=
 literal|0x00000400
 decl_stmt|;
 DECL|field|SORT_MISSING_LAST
+specifier|protected
 specifier|final
 specifier|static
 name|int
@@ -146,6 +159,7 @@ init|=
 literal|0x00000800
 decl_stmt|;
 DECL|field|REQUIRED
+specifier|protected
 specifier|final
 specifier|static
 name|int

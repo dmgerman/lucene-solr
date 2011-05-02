@@ -231,6 +231,8 @@ name|DocHelper
 operator|.
 name|writeDoc
 argument_list|(
+name|random
+argument_list|,
 name|merge1Dir
 argument_list|,
 name|doc1
@@ -250,6 +252,8 @@ name|DocHelper
 operator|.
 name|writeDoc
 argument_list|(
+name|random
+argument_list|,
 name|merge2Dir
 argument_list|,
 name|doc2

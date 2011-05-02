@@ -104,7 +104,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|FieldsProducer
+name|PerDocValues
 import|;
 end_import
 
@@ -209,11 +209,10 @@ end_comment
 begin_class
 DECL|class|DocValuesProducerBase
 specifier|public
-specifier|abstract
 class|class
 name|DocValuesProducerBase
 extends|extends
-name|FieldsProducer
+name|PerDocValues
 block|{
 DECL|field|docValues
 specifier|protected
@@ -679,6 +678,24 @@ throw|throw
 name|ex
 throw|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|fields
+specifier|public
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|fields
+parameter_list|()
+block|{
+return|return
+name|docValues
+operator|.
+name|keySet
+argument_list|()
+return|;
 block|}
 block|}
 end_class

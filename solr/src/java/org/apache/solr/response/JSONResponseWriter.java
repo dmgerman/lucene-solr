@@ -1508,6 +1508,9 @@ name|writeArraySeparator
 argument_list|()
 expr_stmt|;
 block|}
+name|indent
+argument_list|()
+expr_stmt|;
 name|writeMapOpener
 argument_list|(
 name|doc

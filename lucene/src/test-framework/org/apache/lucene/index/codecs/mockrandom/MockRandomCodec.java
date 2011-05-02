@@ -1058,6 +1058,41 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// we pull this before the seed intentionally: because its not consumed at runtime
+comment|// (the skipInterval is written into postings header)
+name|int
+name|skipInterval
+init|=
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|seedRandom
+argument_list|,
+literal|2
+argument_list|,
+literal|10
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"MockRandomCodec: skipInterval="
+operator|+
+name|skipInterval
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|long
 name|seed
@@ -1170,6 +1205,8 @@ name|MockIntStreamFactory
 argument_list|(
 name|random
 argument_list|)
+argument_list|,
+name|skipInterval
 argument_list|)
 expr_stmt|;
 block|}
@@ -1198,6 +1235,8 @@ operator|new
 name|StandardPostingsWriter
 argument_list|(
 name|state
+argument_list|,
+name|skipInterval
 argument_list|)
 expr_stmt|;
 block|}

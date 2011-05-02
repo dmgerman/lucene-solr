@@ -585,25 +585,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|SolrCore
-operator|.
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"fields="
-operator|+
-name|fields
-operator|+
-literal|"\t globs="
-operator|+
-name|globs
-operator|+
-literal|"\t transformer="
-operator|+
-name|transformer
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|ReturnFields
 specifier|public
@@ -622,25 +603,6 @@ argument_list|(
 name|fl
 argument_list|,
 name|req
-argument_list|)
-expr_stmt|;
-name|SolrCore
-operator|.
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"fields="
-operator|+
-name|fields
-operator|+
-literal|"\t globs="
-operator|+
-name|globs
-operator|+
-literal|"\t transformer="
-operator|+
-name|transformer
 argument_list|)
 expr_stmt|;
 block|}
@@ -1000,7 +962,7 @@ name|sp
 operator|.
 name|opt
 argument_list|(
-literal|'='
+literal|':'
 argument_list|)
 condition|)
 block|{
@@ -1075,7 +1037,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// we read "key = "
+comment|// we read "key : "
 name|field
 operator|=
 name|sp
@@ -1155,7 +1117,7 @@ literal|null
 condition|)
 block|{
 comment|// We didn't find a simple name, so let's see if it's a globbed field name.
-comment|// Globbing only works with recommended field names.
+comment|// Globbing only works with field names of the recommended form (roughly like java identifiers)
 name|field
 operator|=
 name|sp
@@ -1459,6 +1421,63 @@ argument_list|,
 literal|0.0f
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|key
+operator|==
+literal|null
+condition|)
+block|{
+name|SolrParams
+name|localParams
+init|=
+name|parser
+operator|.
+name|getLocalParams
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|localParams
+operator|!=
+literal|null
+condition|)
+block|{
+name|key
+operator|=
+name|localParams
+operator|.
+name|get
+argument_list|(
+literal|"key"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|key
+operator|==
+literal|null
+condition|)
+block|{
+comment|// use the function name itself as the field name
+name|key
+operator|=
+name|sp
+operator|.
+name|val
+operator|.
+name|substring
+argument_list|(
+name|start
+argument_list|,
+name|sp
+operator|.
+name|pos
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1828,6 +1847,8 @@ argument_list|(
 name|disp
 argument_list|,
 name|args
+argument_list|,
+name|req
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -68,20 +68,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|MockTokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|Document
@@ -217,11 +203,6 @@ specifier|private
 name|String
 name|fieldName
 decl_stmt|;
-DECL|field|usePayload
-specifier|private
-name|boolean
-name|usePayload
-decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
@@ -244,13 +225,6 @@ operator|+
 name|random
 operator|.
 name|nextInt
-argument_list|()
-expr_stmt|;
-name|usePayload
-operator|=
-name|random
-operator|.
-name|nextBoolean
 argument_list|()
 expr_stmt|;
 block|}
@@ -286,13 +260,7 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockTokenizer
-operator|.
-name|WHITESPACE
-argument_list|,
-literal|true
-argument_list|,
-name|usePayload
+name|random
 argument_list|)
 argument_list|)
 argument_list|)
@@ -492,11 +460,8 @@ name|docsAndPosEnum
 operator|.
 name|docID
 argument_list|()
-operator|+
-literal|" usePayloads: "
-operator|+
-name|usePayload
 decl_stmt|;
+comment|// TODO: + " usePayloads: " + usePayload;
 name|assertEquals
 argument_list|(
 name|msg
@@ -746,19 +711,13 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockTokenizer
-operator|.
-name|WHITESPACE
-argument_list|,
-literal|true
-argument_list|,
-name|usePayload
+name|random
 argument_list|)
 argument_list|)
 operator|.
 name|setMergePolicy
 argument_list|(
-name|newInOrderLogMergePolicy
+name|newLogMergePolicy
 argument_list|()
 argument_list|)
 argument_list|)
@@ -1229,10 +1188,7 @@ name|toString
 argument_list|(
 name|pos
 argument_list|)
-operator|+
-literal|" usePayloads: "
-operator|+
-name|usePayload
+comment|/* TODO: + " usePayloads: "                 + usePayload*/
 argument_list|,
 name|pos
 index|[
@@ -1340,19 +1296,13 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockTokenizer
-operator|.
-name|WHITESPACE
-argument_list|,
-literal|true
-argument_list|,
-name|usePayload
+name|random
 argument_list|)
 argument_list|)
 operator|.
 name|setMergePolicy
 argument_list|(
-name|newInOrderLogMergePolicy
+name|newLogMergePolicy
 argument_list|()
 argument_list|)
 argument_list|)
@@ -1919,13 +1869,7 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockTokenizer
-operator|.
-name|WHITESPACE
-argument_list|,
-literal|true
-argument_list|,
-name|usePayload
+name|random
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2187,11 +2131,8 @@ operator|+
 literal|" initDoc: "
 operator|+
 name|initDoc
-operator|+
-literal|" payloads: "
-operator|+
-name|usePayload
 decl_stmt|;
+comment|// TODO: + " payloads: " + usePayload;
 name|assertEquals
 argument_list|(
 name|howMany

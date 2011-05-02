@@ -825,7 +825,7 @@ name|CodecUtil
 operator|.
 name|checkHeader
 argument_list|(
-name|in
+name|input
 argument_list|,
 name|BlockTermsWriter
 operator|.
@@ -842,7 +842,7 @@ argument_list|)
 expr_stmt|;
 name|dirOffset
 operator|=
-name|in
+name|input
 operator|.
 name|readLong
 argument_list|()
@@ -1177,20 +1177,6 @@ name|current
 operator|.
 name|iterator
 argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|docValues
-specifier|public
-name|DocValues
-name|docValues
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-literal|null
 return|;
 block|}
 block|}
@@ -3466,6 +3452,10 @@ operator|!
 name|seekPending
 condition|)
 block|{
+comment|// TODO: cutover to random-access API
+comment|// here.... really stupid that we have to decode N
+comment|// wasted term metadata just to get to the N+1th
+comment|// that we really need...
 comment|// lazily catch up on metadata decode:
 specifier|final
 name|int

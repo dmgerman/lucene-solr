@@ -100,6 +100,14 @@ literal|"Sun Open Source License"
 argument_list|,
 literal|false
 argument_list|)
+block|,
+DECL|enum constant|FAKE
+name|FAKE
+argument_list|(
+literal|"FAKE license - not needed"
+argument_list|,
+literal|false
+argument_list|)
 block|;
 DECL|field|display
 specifier|private

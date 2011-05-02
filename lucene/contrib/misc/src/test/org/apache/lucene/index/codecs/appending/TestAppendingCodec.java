@@ -196,7 +196,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LogMergePolicy
+name|TieredMergePolicy
 import|;
 end_import
 
@@ -779,7 +779,9 @@ name|LUCENE_40
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|cfg
@@ -793,7 +795,7 @@ argument_list|)
 expr_stmt|;
 operator|(
 operator|(
-name|LogMergePolicy
+name|TieredMergePolicy
 operator|)
 name|cfg
 operator|.

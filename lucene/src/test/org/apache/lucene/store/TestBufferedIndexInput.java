@@ -1324,11 +1324,10 @@ block|{
 name|File
 name|indexDir
 init|=
-operator|new
-name|File
+name|_TestUtil
+operator|.
+name|getTempDir
 argument_list|(
-name|TEMP_DIR
-argument_list|,
 literal|"testSetBufferSize"
 argument_list|)
 decl_stmt|;
@@ -1360,7 +1359,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setOpenMode

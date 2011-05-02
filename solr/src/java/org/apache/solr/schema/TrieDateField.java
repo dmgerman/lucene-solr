@@ -553,7 +553,7 @@ return|return
 operator|new
 name|Date
 argument_list|(
-name|TrieField
+name|TrieFieldHelper
 operator|.
 name|toLong
 argument_list|(
@@ -807,7 +807,7 @@ argument_list|,
 operator|new
 name|Date
 argument_list|(
-name|TrieField
+name|TrieFieldHelper
 operator|.
 name|toLong
 argument_list|(
@@ -969,7 +969,7 @@ argument_list|(
 operator|new
 name|Date
 argument_list|(
-name|TrieField
+name|TrieFieldHelper
 operator|.
 name|toLong
 argument_list|(
@@ -1199,7 +1199,7 @@ name|stored
 condition|)
 name|arr
 operator|=
-name|TrieField
+name|TrieFieldHelper
 operator|.
 name|toArr
 argument_list|(

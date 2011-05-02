@@ -26,22 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|DocValues
-import|;
-end_import
-
 begin_comment
 comment|/** Flex API for access to fields and terms  *  @lucene.experimental */
 end_comment
@@ -69,19 +53,6 @@ specifier|public
 specifier|abstract
 name|Terms
 name|terms
-parameter_list|(
-name|String
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Returns {@link DocValues} for the current field.    *     * @param field the field name    * @return the {@link DocValues} for this field or<code>null</code> if not    *         applicable.    * @throws IOException    */
-DECL|method|docValues
-specifier|public
-specifier|abstract
-name|DocValues
-name|docValues
 parameter_list|(
 name|String
 name|field

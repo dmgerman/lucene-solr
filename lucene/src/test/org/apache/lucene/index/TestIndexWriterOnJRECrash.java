@@ -176,15 +176,11 @@ argument_list|()
 expr_stmt|;
 name|tempDir
 operator|=
-name|File
+name|_TestUtil
 operator|.
-name|createTempFile
+name|getTempDir
 argument_list|(
 literal|"jrecrash"
-argument_list|,
-literal|"tmp"
-argument_list|,
-name|TEMP_DIR
 argument_list|)
 expr_stmt|;
 name|tempDir
@@ -525,7 +521,7 @@ name|pb
 operator|.
 name|directory
 argument_list|(
-name|TEMP_DIR
+name|tempDir
 argument_list|)
 expr_stmt|;
 name|pb

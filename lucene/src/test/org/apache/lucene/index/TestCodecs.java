@@ -2282,7 +2282,9 @@ name|LUCENE_31
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|config
@@ -4256,12 +4258,6 @@ argument_list|,
 name|codecInfo
 argument_list|,
 literal|null
-argument_list|,
-operator|new
-name|AtomicLong
-argument_list|(
-literal|0
-argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|final
