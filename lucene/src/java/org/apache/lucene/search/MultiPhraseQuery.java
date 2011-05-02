@@ -1057,6 +1057,11 @@ argument_list|)
 operator|.
 name|intValue
 argument_list|()
+argument_list|,
+name|terms
+index|[
+literal|0
+index|]
 argument_list|)
 expr_stmt|;
 block|}
