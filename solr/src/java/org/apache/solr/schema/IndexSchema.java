@@ -4264,6 +4264,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+block|{
 comment|// No need to be core-aware as Analyzers are not in the core-aware list
 specifier|final
 name|Class
@@ -4290,9 +4292,8 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-try|try
-block|{
-comment|// first try to use a ctor with version parameter (needed for many new Analyzers that have no default one anymore)
+comment|// first try to use a ctor with version parameter
+comment|// (needed for many new Analyzers that have no default one anymore)
 name|Constructor
 argument_list|<
 name|?
@@ -4402,6 +4403,17 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Cannot load analyzer: "
+operator|+
+name|analyzerName
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|SolrException
@@ -4415,6 +4427,8 @@ argument_list|,
 literal|"Cannot load analyzer: "
 operator|+
 name|analyzerName
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
