@@ -175,6 +175,8 @@ name|i
 index|]
 operator|.
 name|position
+argument_list|,
+name|i
 argument_list|)
 decl_stmt|;
 if|if
