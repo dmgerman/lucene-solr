@@ -4926,8 +4926,9 @@ return|return
 name|mergingSegments
 return|;
 block|}
-comment|/** Expert: the {@link MergeScheduler} calls this method    *  to retrieve the next merge requested by the    *  MergePolicy */
+comment|/**    * Expert: the {@link MergeScheduler} calls this method to retrieve the next    * merge requested by the MergePolicy    *     * @lucene.experimental    */
 DECL|method|getNextMerge
+specifier|public
 specifier|synchronized
 name|MergePolicy
 operator|.
@@ -8696,8 +8697,9 @@ name|t
 argument_list|)
 throw|;
 block|}
-comment|/**    * Merges the indicated segments, replacing them in the stack with a    * single segment.    */
+comment|/**    * Merges the indicated segments, replacing them in the stack with a    * single segment.    *     * @lucene.experimental    */
 DECL|method|merge
+specifier|public
 specifier|final
 name|void
 name|merge
