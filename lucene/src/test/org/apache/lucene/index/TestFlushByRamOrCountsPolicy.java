@@ -330,7 +330,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// with a 512 mb ram buffer we should never stall
+comment|// with a 256 mb ram buffer we should never stall
 name|runFlushByRam
 argument_list|(
 name|numThreads
@@ -338,7 +338,7 @@ index|[
 name|i
 index|]
 argument_list|,
-literal|512.d
+literal|256.d
 argument_list|,
 literal|true
 argument_list|)
@@ -354,7 +354,7 @@ name|int
 name|numThreads
 parameter_list|,
 name|double
-name|maxRam
+name|maxRamMB
 parameter_list|,
 name|boolean
 name|ensureNotStalled
@@ -455,19 +455,7 @@ name|iwc
 operator|.
 name|setRAMBufferSizeMB
 argument_list|(
-literal|1
-operator|+
-name|random
-operator|.
-name|nextInt
-argument_list|(
-literal|10
-argument_list|)
-operator|+
-name|random
-operator|.
-name|nextDouble
-argument_list|()
+name|maxRamMB
 argument_list|)
 expr_stmt|;
 name|iwc
@@ -1976,13 +1964,6 @@ name|hasBlocked
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// this assumption is too strict in this test
-comment|//      } else {
-comment|//        if (docsWriter.healthiness.wasStalled) {
-comment|//          // TODO maybe this assumtion is too strickt
-comment|//          assertTrue(" we should have blocked here numThreads: "
-comment|//              + numThreads[i], docsWriter.healthiness.hasBlocked());
-comment|//        }
 block|}
 name|assertActiveBytesAfter
 argument_list|(

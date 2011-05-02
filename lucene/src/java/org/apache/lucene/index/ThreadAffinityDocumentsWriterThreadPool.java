@@ -272,7 +272,6 @@ return|return
 name|minThreadState
 return|;
 block|}
-comment|/*   @Override   public void clearThreadBindings(ThreadState perThread) {     threadBindings.clear();   }    @Override   public void clearAllThreadBindings() {     threadBindings.clear();   }   */
 block|}
 end_class
 

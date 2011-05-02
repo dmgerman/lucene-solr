@@ -672,8 +672,6 @@ name|Document
 name|doc
 parameter_list|)
 function_decl|;
-comment|//public abstract void clearThreadBindings(ThreadState perThread);
-comment|//public abstract void clearAllThreadBindings();
 comment|/**    * Returns an iterator providing access to all {@link ThreadState}    * instances.     */
 comment|// TODO: new Iterator per indexed doc is overkill...?
 DECL|method|getAllPerThreadsIterator
