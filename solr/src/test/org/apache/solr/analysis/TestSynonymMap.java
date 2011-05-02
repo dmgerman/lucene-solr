@@ -134,14 +134,6 @@ name|ResourceLoader
 import|;
 end_import
 
-begin_import
-import|import
-name|visad
-operator|.
-name|UnimplementedException
-import|;
-end_import
-
 begin_class
 DECL|class|TestSynonymMap
 specifier|public
