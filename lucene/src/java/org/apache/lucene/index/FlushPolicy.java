@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link FlushPolicy} controls when segments are flushed from a RAM resident  * internal data-structure to the {@link IndexWriter}s {@link Directory}.  *<p>  * Segments are traditionally flushed by:  *<ul>  *<li>RAM consumption - configured via  * {@link IndexWriterConfig#setRAMBufferSizeMB(double)}</li>  *<li>Number of RAM resident documents - configured via  * {@link IndexWriterConfig#setMaxBufferedDocs(int)}</li>  *<li>Number of buffered delete terms/queries - configured via  * {@link IndexWriterConfig#setMaxBufferedDeleteTerms(int)}</li>  *</ul>  *   * The {@link IndexWriter} consults a provided {@link FlushPolicy} to control the  * flushing process. The policy is informed for each added or  * updated document as well as for each delete term. Based on the  * {@link FlushPolicy}, the information provided via {@link ThreadState} and  * {@link DocumentsWriterFlushControl}, the {@link FlushPolicy} decides if a  * {@link DocumentsWriterPerThread} needs flushing and mark it as  * flush-pending via  * {@link DocumentsWriterFlushControl#setFlushPending(ThreadState)}.  *   * @see ThreadState  * @see DocumentsWriterFlushControl  * @see DocumentsWriterPerThread  * @see IndexWriterConfig#setFlushPolicy(FlushPolicy)  */
+comment|/**  * {@link FlushPolicy} controls when segments are flushed from a RAM resident  * internal data-structure to the {@link IndexWriter}s {@link Directory}.  *<p>  * Segments are traditionally flushed by:  *<ul>  *<li>RAM consumption - configured via  * {@link IndexWriterConfig#setRAMBufferSizeMB(double)}</li>  *<li>Number of RAM resident documents - configured via  * {@link IndexWriterConfig#setMaxBufferedDocs(int)}</li>  *<li>Number of buffered delete terms/queries - configured via  * {@link IndexWriterConfig#setMaxBufferedDeleteTerms(int)}</li>  *</ul>  *   * The {@link IndexWriter} consults a provided {@link FlushPolicy} to control the  * flushing process. The policy is informed for each added or  * updated document as well as for each delete term. Based on the  * {@link FlushPolicy}, the information provided via {@link ThreadState} and  * {@link DocumentsWriterFlushControl}, the {@link FlushPolicy} decides if a  * {@link DocumentsWriterPerThread} needs flushing and mark it as  * flush-pending via  * {@link DocumentsWriterFlushControl#setFlushPending(DocumentsWriterPerThreadPool.ThreadState)}.  *   * @see ThreadState  * @see DocumentsWriterFlushControl  * @see DocumentsWriterPerThread  * @see IndexWriterConfig#setFlushPolicy(FlushPolicy)  */
 end_comment
 
 begin_class
@@ -167,7 +167,7 @@ name|ThreadState
 name|state
 parameter_list|)
 function_decl|;
-comment|/**    * Called by {@link DocumentsWriter} to initialize the FlushPolicy    */
+comment|/**    * Called by DocumentsWriter to initialize the FlushPolicy    */
 DECL|method|init
 specifier|protected
 specifier|synchronized

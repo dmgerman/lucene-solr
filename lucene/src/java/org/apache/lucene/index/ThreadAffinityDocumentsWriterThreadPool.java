@@ -52,6 +52,26 @@ name|Document
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocumentsWriterPerThreadPool
+operator|.
+name|ThreadState
+import|;
+end_import
+
+begin_comment
+comment|//javadoc
+end_comment
+
 begin_comment
 comment|/**  * A {@link DocumentsWriterPerThreadPool} implementation that tries to assign an  * indexing thread to the same {@link ThreadState} each time the thread tries to  * obtain a {@link ThreadState}. Once a new {@link ThreadState} is created it is  * associated with the creating thread. Subsequently, if the threads associated  * {@link ThreadState} is not in use it will be associated with the requesting  * thread. Otherwise, if the {@link ThreadState} is used by another thread  * {@link ThreadAffinityDocumentsWriterThreadPool} tries to find the currently  * minimal contended {@link ThreadState}.  */
 end_comment
