@@ -1,12 +1,14 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.lucene.analysis.util
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|analysis
 operator|.
 name|util
 package|;
@@ -29,6 +31,20 @@ operator|.
 name|io
 operator|.
 name|Reader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
 import|;
 end_import
 
