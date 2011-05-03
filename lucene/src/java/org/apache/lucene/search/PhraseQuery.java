@@ -1220,7 +1220,7 @@ condition|)
 block|{
 name|ArrayUtil
 operator|.
-name|quickSort
+name|mergeSort
 argument_list|(
 name|postingsFreqs
 argument_list|)

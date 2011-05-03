@@ -916,7 +916,7 @@ argument_list|)
 expr_stmt|;
 name|ArrayUtil
 operator|.
-name|quickSort
+name|mergeSort
 argument_list|(
 name|tokensInOriginalOrder
 argument_list|,
