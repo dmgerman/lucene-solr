@@ -387,7 +387,6 @@ annotation|@
 name|Override
 DECL|method|add
 specifier|public
-specifier|synchronized
 name|void
 name|add
 parameter_list|(
@@ -532,7 +531,6 @@ annotation|@
 name|Override
 DECL|method|finish
 specifier|public
-specifier|synchronized
 name|void
 name|finish
 parameter_list|(
@@ -685,13 +683,12 @@ name|defaultValues
 operator|.
 name|nextSetBit
 argument_list|(
+operator|++
 name|i
 argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|i
-operator|++
 init|;
 name|i
 operator|<
@@ -1056,6 +1053,11 @@ block|{
 comment|// TODO -- can we somehow avoid 2X method calls
 comment|// on each get? must push minValue down, and make
 comment|// PackedInts implement Ints.Source
+assert|assert
+name|docID
+operator|>=
+literal|0
+assert|;
 return|return
 name|minValue
 operator|+

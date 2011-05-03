@@ -260,7 +260,6 @@ comment|// TODO - impl bulk copy here!
 annotation|@
 name|Override
 DECL|method|add
-specifier|synchronized
 specifier|public
 name|void
 name|add
@@ -538,7 +537,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|finish
-specifier|synchronized
 specifier|public
 name|void
 name|finish

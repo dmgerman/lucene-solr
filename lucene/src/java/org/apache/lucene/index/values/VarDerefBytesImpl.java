@@ -736,7 +736,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|add
-specifier|synchronized
 specifier|public
 name|void
 name|add
@@ -987,7 +986,6 @@ comment|// some last docs that we didn't see
 annotation|@
 name|Override
 DECL|method|finish
-specifier|synchronized
 specifier|public
 name|void
 name|finish
