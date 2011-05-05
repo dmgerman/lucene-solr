@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs.docvalues
+DECL|package|org.apache.lucene.index.codecs
 package|package
 name|org
 operator|.
@@ -11,8 +11,6 @@ operator|.
 name|index
 operator|.
 name|codecs
-operator|.
-name|docvalues
 package|;
 end_package
 
@@ -207,10 +205,10 @@ comment|/**  * Abstract base class for FieldsProducer implementations supporting
 end_comment
 
 begin_class
-DECL|class|DocValuesProducerBase
+DECL|class|DefaultDocValuesProducer
 specifier|public
 class|class
-name|DocValuesProducerBase
+name|DefaultDocValuesProducer
 extends|extends
 name|PerDocValues
 block|{
@@ -234,10 +232,10 @@ name|DocValues
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Creates a new {@link DocValuesProducerBase} instance and loads all    * {@link DocValues} instances for this segment and codec.    *     * @param si    *          the segment info to load the {@link DocValues} for.    * @param dir    *          the directory to load the {@link DocValues} from.    * @param fieldInfo    *          the {@link FieldInfos}    * @param codecId    *          the codec ID    * @throws IOException    *           if an {@link IOException} occurs    */
-DECL|method|DocValuesProducerBase
-specifier|protected
-name|DocValuesProducerBase
+comment|/**    * Creates a new {@link DefaultDocValuesProducer} instance and loads all    * {@link DocValues} instances for this segment and codec.    *     * @param si    *          the segment info to load the {@link DocValues} for.    * @param dir    *          the directory to load the {@link DocValues} from.    * @param fieldInfo    *          the {@link FieldInfos}    * @param codecId    *          the codec ID    * @throws IOException    *           if an {@link IOException} occurs    */
+DECL|method|DefaultDocValuesProducer
+specifier|public
+name|DefaultDocValuesProducer
 parameter_list|(
 name|SegmentInfo
 name|si
@@ -355,7 +353,7 @@ specifier|final
 name|String
 name|id
 init|=
-name|DocValuesCodec
+name|DefaultDocValuesConsumer
 operator|.
 name|docValuesId
 argument_list|(

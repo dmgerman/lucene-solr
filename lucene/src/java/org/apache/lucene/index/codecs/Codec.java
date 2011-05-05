@@ -252,6 +252,7 @@ name|IOException
 function_decl|;
 DECL|method|docsConsumer
 specifier|public
+specifier|abstract
 name|PerDocConsumer
 name|docsConsumer
 parameter_list|(
@@ -260,13 +261,10 @@ name|state
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-return|return
-literal|null
-return|;
-block|}
+function_decl|;
 DECL|method|docsProducer
 specifier|public
+specifier|abstract
 name|PerDocValues
 name|docsProducer
 parameter_list|(
@@ -275,11 +273,7 @@ name|state
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-return|return
-literal|null
-return|;
-block|}
+function_decl|;
 comment|/**    * Gathers files associated with this segment    *     * @param dir the {@link Directory} this segment was written to    * @param segmentInfo the {@link SegmentInfo} for this segment     * @param id the codec id within this segment    * @param files the of files to add the codec files to.    */
 DECL|method|files
 specifier|public

@@ -64,8 +64,6 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|docvalues
-operator|.
 name|DocValuesConsumer
 import|;
 end_import
