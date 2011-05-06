@@ -77,6 +77,11 @@ name|?
 argument_list|>
 name|tail
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"rawtypes"
+argument_list|)
 DECL|field|tailUpdater
 specifier|private
 specifier|static
@@ -873,6 +878,11 @@ operator|=
 name|item
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"rawtypes"
+argument_list|)
 DECL|field|nextUpdater
 specifier|static
 specifier|final
