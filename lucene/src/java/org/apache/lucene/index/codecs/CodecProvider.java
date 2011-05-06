@@ -356,6 +356,24 @@ throw|;
 block|}
 block|}
 block|}
+comment|/** @lucene.internal */
+DECL|method|listAll
+specifier|public
+specifier|synchronized
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|listAll
+parameter_list|()
+block|{
+return|return
+name|codecs
+operator|.
+name|keySet
+argument_list|()
+return|;
+block|}
 DECL|method|getAllExtensions
 specifier|public
 name|Collection
