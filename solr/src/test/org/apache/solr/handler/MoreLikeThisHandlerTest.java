@@ -574,7 +574,7 @@ name|MoreLikeThisParams
 operator|.
 name|SIMILARITY_FIELDS
 argument_list|,
-literal|"name,subword,foo_ti"
+literal|"name,subword"
 argument_list|)
 expr_stmt|;
 name|params
