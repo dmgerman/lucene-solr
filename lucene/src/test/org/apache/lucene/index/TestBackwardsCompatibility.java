@@ -2965,13 +2965,17 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// we use a real directory name that is not cleaned up, because this method is only used to create backwards indexes:
 name|File
 name|indexDir
 init|=
-name|_TestUtil
-operator|.
-name|getTempDir
+operator|new
+name|File
 argument_list|(
+name|LuceneTestCase
+operator|.
+name|TEMP_DIR
+argument_list|,
 name|dirName
 argument_list|)
 decl_stmt|;
