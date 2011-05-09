@@ -619,7 +619,6 @@ name|fieldInfos
 decl_stmt|;
 DECL|field|infoStream
 specifier|private
-specifier|final
 name|PrintStream
 name|infoStream
 decl_stmt|;
@@ -2110,6 +2109,27 @@ block|}
 block|}
 block|}
 empty_stmt|;
+DECL|method|setInfoStream
+name|void
+name|setInfoStream
+parameter_list|(
+name|PrintStream
+name|infoStream
+parameter_list|)
+block|{
+name|this
+operator|.
+name|infoStream
+operator|=
+name|infoStream
+expr_stmt|;
+name|docState
+operator|.
+name|infoStream
+operator|=
+name|infoStream
+expr_stmt|;
+block|}
 block|}
 end_class
 

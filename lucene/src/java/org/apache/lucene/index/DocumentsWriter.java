@@ -705,11 +705,10 @@ argument_list|()
 operator|.
 name|perThread
 operator|.
-name|docState
-operator|.
+name|setInfoStream
+argument_list|(
 name|infoStream
-operator|=
-name|infoStream
+argument_list|)
 expr_stmt|;
 block|}
 block|}
