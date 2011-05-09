@@ -426,8 +426,8 @@ comment|// build/test/index.nocfs and run "zip
 comment|// index.<VERSION>.nocfs.zip *".  Then move those 2 zip
 comment|// files to your trunk checkout and add them to the
 comment|// oldNames array.
-comment|/*   public void testCreatePreLocklessCFS() throws IOException {     createIndex("index.cfs", true);   }    public void testCreatePreLocklessNoCFS() throws IOException {     createIndex("index.nocfs", false);   }   */
-comment|/*   public void testCreateCFS() throws IOException {     String dirName = "testindex.cfs";     createIndex(dirName, true);     rmDir(dirName);   }    public void testCreateNoCFS() throws IOException {     String dirName = "testindex.nocfs";     createIndex(dirName, true);     rmDir(dirName);   }  */
+comment|/*   public void testCreateCFS() throws IOException {     createIndex("index.cfs", true, false);   }    public void testCreateNoCFS() throws IOException {     createIndex("index.nocfs", false, false);   }   */
+comment|/*   // These are only needed for the special upgrade test to verify   // that also optimized indexes are correctly upgraded by IndexUpgrader.   // You don't need them to be build for non-3.1 (the test is happy with just one   // "old" segment format, version is unimportant:      public void testCreateOptimizedCFS() throws IOException {     createIndex("index.optimized.cfs", true, true);   }    public void testCreateOptimizedNoCFS() throws IOException {     createIndex("index.optimized.nocfs", false, true);   }  */
 DECL|field|oldNames
 specifier|final
 name|String
@@ -3007,14 +3007,14 @@ specifier|public
 name|File
 name|createIndex
 parameter_list|(
-name|Random
-name|random
-parameter_list|,
 name|String
 name|dirName
 parameter_list|,
 name|boolean
 name|doCFS
+parameter_list|,
+name|boolean
+name|optimized
 parameter_list|)
 throws|throws
 name|IOException
@@ -3129,11 +3129,28 @@ name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|optimized
+condition|)
+block|{
+name|writer
+operator|.
+name|optimize
+argument_list|()
+expr_stmt|;
+block|}
 name|writer
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|optimized
+condition|)
+block|{
 comment|// open fresh writer so we get no prx file in the added segment
 name|conf
 operator|=
@@ -3262,6 +3279,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 name|dir
 operator|.
 name|close
