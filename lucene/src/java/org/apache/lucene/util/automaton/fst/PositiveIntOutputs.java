@@ -59,19 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|// TODO: make a sharing and non-sharing variant; eg if you
-end_comment
-
-begin_comment
-comment|// output docFreq per term the FST will be smaller if you
-end_comment
-
-begin_comment
-comment|// don't share since they are not "well shared"
-end_comment
-
-begin_comment
-comment|/**  * Output is a long, for each input term.  NOTE: the  * resulting FST is not guaranteed to be minimal!  See  * {@link Builder}.  * @lucene.experimental  */
+comment|/**  * Output is a long, for each input term.  NOTE: the  * resulting FST is not guaranteed to be minimal!  See  * {@link Builder}.  You cannot store 0 output with this  * (that's reserved to mean "no output")!  * @lucene.experimental  */
 end_comment
 
 begin_class

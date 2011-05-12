@@ -1015,7 +1015,10 @@ condition|(
 name|emptyOutput
 operator|!=
 literal|null
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 operator|!
 name|emptyOutput
 operator|.
@@ -1025,34 +1028,26 @@ name|v
 argument_list|)
 condition|)
 block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"empty output is already set: "
-operator|+
+name|emptyOutput
+operator|=
 name|outputs
 operator|.
-name|outputToString
+name|merge
 argument_list|(
 name|emptyOutput
-argument_list|)
-operator|+
-literal|" vs "
-operator|+
-name|outputs
-operator|.
-name|outputToString
-argument_list|(
+argument_list|,
 name|v
 argument_list|)
-argument_list|)
-throw|;
+expr_stmt|;
 block|}
+block|}
+else|else
+block|{
 name|emptyOutput
 operator|=
 name|v
 expr_stmt|;
+block|}
 comment|// TODO: this is messy -- replace with sillyBytesWriter; maybe make
 comment|// bytes private
 specifier|final

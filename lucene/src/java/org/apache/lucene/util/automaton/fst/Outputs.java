@@ -163,6 +163,24 @@ name|T
 name|output
 parameter_list|)
 function_decl|;
+DECL|method|merge
+specifier|public
+name|T
+name|merge
+parameter_list|(
+name|T
+name|first
+parameter_list|,
+name|T
+name|second
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 block|}
 end_class
 
