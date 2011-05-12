@@ -341,12 +341,6 @@ name|lastDocID
 operator|=
 literal|0
 expr_stmt|;
-name|state
-operator|.
-name|hasVectors
-operator|=
-name|hasVectors
-expr_stmt|;
 name|hasVectors
 operator|=
 literal|false
@@ -619,19 +613,14 @@ name|docID
 argument_list|)
 expr_stmt|;
 comment|// Append term vectors to the real outputs:
-name|long
-name|pointer
-init|=
-name|tvd
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
 name|tvx
 operator|.
 name|writeLong
 argument_list|(
-name|pointer
+name|tvd
+operator|.
+name|getFilePointer
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|tvx
@@ -746,6 +735,17 @@ name|i
 index|]
 operator|.
 name|finishDocument
+argument_list|()
+expr_stmt|;
+comment|// commit the termVectors once successful success - FI will otherwise reset them
+name|perFields
+index|[
+name|i
+index|]
+operator|.
+name|fieldInfo
+operator|.
+name|commitVectors
 argument_list|()
 expr_stmt|;
 block|}
