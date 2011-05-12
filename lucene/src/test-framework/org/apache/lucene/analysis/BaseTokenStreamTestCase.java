@@ -2023,6 +2023,11 @@ comment|// TODO: we could collect offsets etc here for better checking that rese
 block|}
 name|ts
 operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
 name|close
 argument_list|()
 expr_stmt|;

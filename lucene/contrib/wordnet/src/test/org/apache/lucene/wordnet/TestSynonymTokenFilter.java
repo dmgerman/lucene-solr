@@ -781,14 +781,6 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
-name|streams
-operator|.
-name|result
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-comment|// reset the SynonymTokenFilter
 block|}
 return|return
 name|streams

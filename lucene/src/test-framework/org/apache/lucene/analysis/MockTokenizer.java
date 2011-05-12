@@ -225,6 +225,56 @@ name|off
 init|=
 literal|0
 decl_stmt|;
+comment|// TODO: "register" with LuceneTestCase to ensure all streams are closed() ?
+comment|// currently, we can only check that the lifecycle is correct if someone is reusing,
+comment|// but not for "one-offs".
+DECL|enum|State
+specifier|private
+specifier|static
+enum|enum
+name|State
+block|{
+DECL|enum constant|SETREADER
+name|SETREADER
+block|,
+comment|// consumer set a reader input either via ctor or via reset(Reader)
+DECL|enum constant|RESET
+name|RESET
+block|,
+comment|// consumer has called reset()
+DECL|enum constant|INCREMENT
+name|INCREMENT
+block|,
+comment|// consumer is consuming, has called incrementToken() == true
+DECL|enum constant|INCREMENT_FALSE
+name|INCREMENT_FALSE
+block|,
+comment|// consumer has called incrementToken() which returned false
+DECL|enum constant|END
+name|END
+block|,
+comment|// consumer has called end() to perform end of stream operations
+DECL|enum constant|CLOSE
+name|CLOSE
+comment|// consumer has called close() to release any resources
+block|}
+empty_stmt|;
+DECL|field|streamState
+specifier|private
+name|State
+name|streamState
+init|=
+name|State
+operator|.
+name|CLOSE
+decl_stmt|;
+DECL|field|enableChecks
+specifier|private
+name|boolean
+name|enableChecks
+init|=
+literal|true
+decl_stmt|;
 DECL|method|MockTokenizer
 specifier|public
 name|MockTokenizer
@@ -270,6 +320,14 @@ operator|.
 name|getInitialState
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
+name|streamState
+operator|=
+name|State
+operator|.
+name|SETREADER
+expr_stmt|;
 block|}
 DECL|method|MockTokenizer
 specifier|public
@@ -311,6 +369,14 @@ operator|.
 name|getInitialState
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
+name|streamState
+operator|=
+name|State
+operator|.
+name|SETREADER
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -323,6 +389,28 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+assert|assert
+operator|!
+name|enableChecks
+operator|||
+operator|(
+name|streamState
+operator|==
+name|State
+operator|.
+name|RESET
+operator|||
+name|streamState
+operator|==
+name|State
+operator|.
+name|INCREMENT
+operator|)
+operator|:
+literal|"incrementToken() called while in wrong state: "
+operator|+
+name|streamState
+assert|;
 name|clearAttributes
 argument_list|()
 expr_stmt|;
@@ -437,11 +525,23 @@ argument_list|,
 name|endOffset
 argument_list|)
 expr_stmt|;
+name|streamState
+operator|=
+name|State
+operator|.
+name|INCREMENT
+expr_stmt|;
 return|return
 literal|true
 return|;
 block|}
 block|}
+name|streamState
+operator|=
+name|State
+operator|.
+name|INCREMENT_FALSE
+expr_stmt|;
 return|return
 literal|false
 return|;
@@ -648,6 +748,110 @@ name|off
 operator|=
 literal|0
 expr_stmt|;
+assert|assert
+operator|!
+name|enableChecks
+operator|||
+name|streamState
+operator|!=
+name|State
+operator|.
+name|RESET
+operator|:
+literal|"double reset()"
+assert|;
+name|streamState
+operator|=
+name|State
+operator|.
+name|RESET
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|super
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+comment|// in some exceptional cases (e.g. TestIndexWriterExceptions) a test can prematurely close()
+comment|// these tests should disable this check, by default we check the normal workflow.
+comment|// TODO: investigate the CachingTokenFilter "double-close"... for now we ignore this
+assert|assert
+operator|!
+name|enableChecks
+operator|||
+name|streamState
+operator|==
+name|State
+operator|.
+name|END
+operator|||
+name|streamState
+operator|==
+name|State
+operator|.
+name|CLOSE
+operator|:
+literal|"close() called in wrong state: "
+operator|+
+name|streamState
+assert|;
+name|streamState
+operator|=
+name|State
+operator|.
+name|CLOSE
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|(
+name|Reader
+name|input
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|super
+operator|.
+name|reset
+argument_list|(
+name|input
+argument_list|)
+expr_stmt|;
+assert|assert
+operator|!
+name|enableChecks
+operator|||
+name|streamState
+operator|==
+name|State
+operator|.
+name|CLOSE
+operator|:
+literal|"setReader() called in wrong state: "
+operator|+
+name|streamState
+assert|;
+name|streamState
+operator|=
+name|State
+operator|.
+name|SETREADER
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -675,6 +879,43 @@ name|finalOffset
 argument_list|,
 name|finalOffset
 argument_list|)
+expr_stmt|;
+comment|// some tokenizers, such as limiting tokenizers, call end() before incrementToken() returns false.
+comment|// these tests should disable this check (in general you should consume the entire stream)
+assert|assert
+operator|!
+name|enableChecks
+operator|||
+name|streamState
+operator|==
+name|State
+operator|.
+name|INCREMENT_FALSE
+operator|:
+literal|"end() called before incrementToken() returned false!"
+assert|;
+name|streamState
+operator|=
+name|State
+operator|.
+name|END
+expr_stmt|;
+block|}
+comment|/**     * Toggle consumer workflow checking: if your test consumes tokenstreams normally you    * should leave this enabled.    */
+DECL|method|setEnableChecks
+specifier|public
+name|void
+name|setEnableChecks
+parameter_list|(
+name|boolean
+name|enableChecks
+parameter_list|)
+block|{
+name|this
+operator|.
+name|enableChecks
+operator|=
+name|enableChecks
 expr_stmt|;
 block|}
 block|}
