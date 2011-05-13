@@ -296,7 +296,7 @@ name|ts
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 name|fieldName
 argument_list|,

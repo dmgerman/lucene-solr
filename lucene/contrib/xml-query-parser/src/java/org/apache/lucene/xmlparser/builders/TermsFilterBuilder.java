@@ -265,12 +265,14 @@ argument_list|,
 literal|"fieldName"
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|TokenStream
 name|ts
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 name|fieldName
 argument_list|,
@@ -293,8 +295,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|Term
 name|term
 init|=

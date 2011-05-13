@@ -318,12 +318,14 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|TokenStream
 name|ts
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 name|fieldName
 argument_list|,
@@ -334,8 +336,6 @@ name|text
 argument_list|)
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|TermToBytesRefAttribute
 name|termAtt
 init|=
