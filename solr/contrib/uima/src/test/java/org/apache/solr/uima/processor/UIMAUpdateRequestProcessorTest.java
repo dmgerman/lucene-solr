@@ -603,6 +603,8 @@ name|Exception
 block|{
 name|addDoc
 argument_list|(
+literal|"uima"
+argument_list|,
 name|adoc
 argument_list|(
 literal|"id"
@@ -672,6 +674,8 @@ name|Exception
 block|{
 name|addDoc
 argument_list|(
+literal|"uima"
+argument_list|,
 name|adoc
 argument_list|(
 literal|"id"
@@ -706,6 +710,8 @@ argument_list|)
 expr_stmt|;
 name|addDoc
 argument_list|(
+literal|"uima"
+argument_list|,
 name|adoc
 argument_list|(
 literal|"id"
@@ -761,11 +767,119 @@ literal|"//*[@numFound='2']"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testErrorHandling
+specifier|public
+name|void
+name|testErrorHandling
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+try|try
+block|{
+name|addDoc
+argument_list|(
+literal|"uima-not-ignoreErrors"
+argument_list|,
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2312312321312"
+argument_list|,
+literal|"text"
+argument_list|,
+literal|"SpellCheckComponent got improvement related to recent Lucene changes. \n  "
+operator|+
+literal|"Add support for specifying Spelling SuggestWord Comparator to Lucene spell "
+operator|+
+literal|"checkers for SpellCheckComponent. Issue SOLR-2053 is already fixed, patch is"
+operator|+
+literal|" attached if you need it, but it is also committed to trunk and 3_x branch."
+operator|+
+literal|" Last Lucene European Conference has been held in Prague."
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"exception shouldn't be ignored"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|expected
+parameter_list|)
+block|{}
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"*:*"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='0']"
+argument_list|)
+expr_stmt|;
+name|addDoc
+argument_list|(
+literal|"uima-ignoreErrors"
+argument_list|,
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2312312321312"
+argument_list|,
+literal|"text"
+argument_list|,
+literal|"SpellCheckComponent got improvement related to recent Lucene changes. \n  "
+operator|+
+literal|"Add support for specifying Spelling SuggestWord Comparator to Lucene spell "
+operator|+
+literal|"checkers for SpellCheckComponent. Issue SOLR-2053 is already fixed, patch is"
+operator|+
+literal|" attached if you need it, but it is also committed to trunk and 3_x branch."
+operator|+
+literal|" Last Lucene European Conference has been held in Prague."
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"*:*"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|addDoc
 specifier|private
 name|void
 name|addDoc
 parameter_list|(
+name|String
+name|chain
+parameter_list|,
 name|String
 name|doc
 parameter_list|)
@@ -803,7 +917,7 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"uima"
+name|chain
 block|}
 argument_list|)
 expr_stmt|;
