@@ -682,6 +682,8 @@ argument_list|,
 literal|"id,score"
 argument_list|)
 argument_list|,
+literal|1e-5
+argument_list|,
 literal|"/response/docs/[0]/score==314.40338"
 argument_list|)
 expr_stmt|;
@@ -706,6 +708,8 @@ literal|"fl"
 argument_list|,
 literal|"id,score"
 argument_list|)
+argument_list|,
+literal|1e-5
 argument_list|,
 literal|"/response/docs/[0]/score==314.40338"
 argument_list|)
@@ -735,6 +739,8 @@ literal|"fl"
 argument_list|,
 literal|"id,score"
 argument_list|)
+argument_list|,
+literal|1e-5
 argument_list|,
 literal|"/response/docs/[0]/score==314.40338"
 argument_list|)
@@ -769,6 +775,8 @@ argument_list|,
 literal|"id,score"
 argument_list|)
 argument_list|,
+literal|1e-5
+argument_list|,
 literal|"/response/docs/[0]/score==314.40338"
 argument_list|)
 expr_stmt|;
@@ -797,6 +805,8 @@ literal|"fl"
 argument_list|,
 literal|"id,score"
 argument_list|)
+argument_list|,
+literal|1e-5
 argument_list|,
 literal|"/response/docs/[0]/score==314.40338"
 argument_list|)
@@ -831,6 +841,8 @@ argument_list|,
 literal|"id,score"
 argument_list|)
 argument_list|,
+literal|1e-5
+argument_list|,
 literal|"/response/docs/[0]/score==314.40338"
 argument_list|)
 expr_stmt|;
@@ -863,6 +875,8 @@ literal|"fl"
 argument_list|,
 literal|"id,score"
 argument_list|)
+argument_list|,
+literal|1e-5
 argument_list|,
 literal|"/response/docs/[0]/score==314.40338"
 argument_list|)
