@@ -1422,7 +1422,7 @@ name|uniqId
 init|=
 name|document
 operator|.
-name|getField
+name|getFieldable
 argument_list|(
 name|uniqFieldName
 argument_list|)

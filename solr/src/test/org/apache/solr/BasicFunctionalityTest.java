@@ -3138,7 +3138,7 @@ name|nextDoc
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// ensure field is not lazy
+comment|// ensure field is not lazy, only works for Non-Numeric fields currently (if you change schema behind test, this may fail)
 name|assertTrue
 argument_list|(
 name|d

@@ -741,7 +741,7 @@ name|savedTerms
 init|=
 literal|null
 decl_stmt|;
-name|Directory
+name|MockDirectoryWrapper
 name|dir
 init|=
 name|newFSDirectory
@@ -754,6 +754,17 @@ literal|"2BTerms"
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|dir
+operator|.
+name|setThrottling
+argument_list|(
+name|MockDirectoryWrapper
+operator|.
+name|Throttling
+operator|.
+name|NEVER
+argument_list|)
+expr_stmt|;
 comment|//Directory dir = newFSDirectory(new File("/p/lucene/indices/2bindex"));
 if|if
 condition|(

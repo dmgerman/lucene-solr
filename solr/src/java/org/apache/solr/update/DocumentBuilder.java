@@ -678,7 +678,7 @@ if|if
 condition|(
 name|doc
 operator|.
-name|getField
+name|getFieldable
 argument_list|(
 name|field
 operator|.
@@ -1478,7 +1478,7 @@ if|if
 condition|(
 name|out
 operator|.
-name|getField
+name|getFieldable
 argument_list|(
 name|field
 operator|.
@@ -1568,8 +1568,8 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Object
-name|f
+name|Fieldable
+name|field
 range|:
 name|luceneDoc
 operator|.
@@ -1577,14 +1577,6 @@ name|getFields
 argument_list|()
 control|)
 block|{
-name|Fieldable
-name|field
-init|=
-operator|(
-name|Fieldable
-operator|)
-name|f
-decl_stmt|;
 if|if
 condition|(
 name|field

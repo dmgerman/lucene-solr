@@ -98,7 +98,7 @@ name|merge
 operator|.
 name|segments
 operator|.
-name|info
+name|get
 argument_list|(
 literal|0
 argument_list|)
@@ -193,7 +193,7 @@ name|merge
 operator|.
 name|segments
 operator|.
-name|info
+name|get
 argument_list|(
 name|j
 argument_list|)
@@ -264,7 +264,7 @@ name|merge
 operator|.
 name|segments
 operator|.
-name|info
+name|get
 argument_list|(
 name|i
 operator|-
@@ -341,7 +341,7 @@ name|merge
 operator|.
 name|segments
 operator|.
-name|info
+name|get
 argument_list|(
 name|docMaps
 operator|.

@@ -110,7 +110,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|TokenStream
+comment|// we disable MockTokenizer checks because we will forcefully limit the
+comment|// tokenstream and call end() before incrementToken() returns false.
+name|MockTokenizer
 name|stream
 init|=
 operator|new
@@ -129,6 +131,13 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+name|stream
+operator|.
+name|setEnableChecks
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|OffsetLimitTokenFilter
 name|filter
 init|=
@@ -169,6 +178,13 @@ name|MockTokenizer
 operator|.
 name|WHITESPACE
 argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|stream
+operator|.
+name|setEnableChecks
+argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
@@ -214,6 +230,13 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|stream
+operator|.
+name|setEnableChecks
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|filter
 operator|=
 operator|new
@@ -240,6 +263,7 @@ literal|"evenmuchlongertext"
 block|}
 argument_list|)
 expr_stmt|;
+comment|// TODO: This is not actually testing reuse! (reusableTokenStream is not implemented)
 name|checkOneTermReuse
 argument_list|(
 operator|new
@@ -259,10 +283,9 @@ name|Reader
 name|reader
 parameter_list|)
 block|{
-return|return
-operator|new
-name|OffsetLimitTokenFilter
-argument_list|(
+name|MockTokenizer
+name|tokenizer
+init|=
 operator|new
 name|MockTokenizer
 argument_list|(
@@ -274,6 +297,19 @@ name|WHITESPACE
 argument_list|,
 literal|false
 argument_list|)
+decl_stmt|;
+name|tokenizer
+operator|.
+name|setEnableChecks
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|OffsetLimitTokenFilter
+argument_list|(
+name|tokenizer
 argument_list|,
 literal|10
 argument_list|)

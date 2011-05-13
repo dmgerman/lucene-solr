@@ -38,9 +38,13 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharTokenizer
+name|Tokenizer
 import|;
 end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
 
 begin_import
 import|import
@@ -52,13 +56,11 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Tokenizer
+name|util
+operator|.
+name|CharTokenizer
 import|;
 end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
 
 begin_import
 import|import

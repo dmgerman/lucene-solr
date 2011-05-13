@@ -419,9 +419,6 @@ operator|.
 name|OneMerge
 name|merge
 parameter_list|,
-name|CodecProvider
-name|codecs
-parameter_list|,
 name|PayloadProcessorProvider
 name|payloadProcessorProvider
 parameter_list|,
