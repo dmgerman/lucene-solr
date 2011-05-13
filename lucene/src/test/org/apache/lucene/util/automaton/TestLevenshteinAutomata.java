@@ -123,6 +123,32 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
+comment|// LUCENE-3094
+DECL|method|testNoWastedStates
+specifier|public
+name|void
+name|testNoWastedStates
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|AutomatonTestUtil
+operator|.
+name|assertNoDetachedStates
+argument_list|(
+operator|new
+name|LevenshteinAutomata
+argument_list|(
+literal|"abc"
+argument_list|)
+operator|.
+name|toAutomaton
+argument_list|(
+literal|1
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**     * Tests all possible characteristic vectors for some n    * This exhaustively tests the parametric transitions tables.    */
 DECL|method|assertCharVectors
 specifier|private
@@ -290,6 +316,16 @@ index|[
 name|n
 index|]
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|AutomatonTestUtil
+operator|.
+name|assertNoDetachedStates
+argument_list|(
+name|automata
+index|[
+name|n
+index|]
 argument_list|)
 expr_stmt|;
 comment|// check that the dfa for n-1 accepts a subset of the dfa for n

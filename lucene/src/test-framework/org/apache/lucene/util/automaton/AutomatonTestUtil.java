@@ -2331,6 +2331,53 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**    * Checks that an automaton has no detached states that are unreachable    * from the initial state.    */
+DECL|method|assertNoDetachedStates
+specifier|public
+specifier|static
+name|void
+name|assertNoDetachedStates
+parameter_list|(
+name|Automaton
+name|a
+parameter_list|)
+block|{
+name|int
+name|numStates
+init|=
+name|a
+operator|.
+name|getNumberOfStates
+argument_list|()
+decl_stmt|;
+name|a
+operator|.
+name|clearNumberedStates
+argument_list|()
+expr_stmt|;
+comment|// force recomputation of cached numbered states
+assert|assert
+name|numStates
+operator|==
+name|a
+operator|.
+name|getNumberOfStates
+argument_list|()
+operator|:
+literal|"automaton has "
+operator|+
+operator|(
+name|numStates
+operator|-
+name|a
+operator|.
+name|getNumberOfStates
+argument_list|()
+operator|)
+operator|+
+literal|" detached states"
+assert|;
+block|}
 block|}
 end_class
 

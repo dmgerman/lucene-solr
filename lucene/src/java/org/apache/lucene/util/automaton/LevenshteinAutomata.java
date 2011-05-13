@@ -753,8 +753,6 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// reduce the state: this doesn't appear to help anything
-comment|//states[k].reduce();
 block|}
 name|Automaton
 name|a
@@ -775,12 +773,15 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+comment|// we create some useless unconnected states, and its a net-win overall to remove these,
+comment|// as well as to combine any adjacent transitions (it makes later algorithms more efficient).
+comment|// so, while we could set our numberedStates here, its actually best not to, and instead to
+comment|// force a traversal in reduce, pruning the unconnected states while we combine adjacent transitions.
+comment|//a.setNumberedStates(states);
 name|a
 operator|.
-name|setNumberedStates
-argument_list|(
-name|states
-argument_list|)
+name|reduce
+argument_list|()
 expr_stmt|;
 comment|// we need not trim transitions to dead states, as they are not created.
 comment|//a.restoreInvariant();
