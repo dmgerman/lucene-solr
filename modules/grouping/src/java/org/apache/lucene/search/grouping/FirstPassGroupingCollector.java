@@ -946,15 +946,23 @@ return|return;
 block|}
 comment|// We already tested that the document is competitive, so replace
 comment|// the bottom group with this new group.
+comment|// java 6-only: final CollectedSearchGroup bottomGroup = orderedGroups.pollLast();
 specifier|final
 name|CollectedSearchGroup
 name|bottomGroup
 init|=
 name|orderedGroups
 operator|.
-name|pollLast
+name|last
 argument_list|()
 decl_stmt|;
+name|orderedGroups
+operator|.
+name|remove
+argument_list|(
+name|bottomGroup
+argument_list|)
+expr_stmt|;
 assert|assert
 name|orderedGroups
 operator|.
