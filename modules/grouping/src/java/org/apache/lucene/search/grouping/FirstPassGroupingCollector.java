@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** FirstPassGroupingCollector is the first of two passes necessary  *  to collected grouped hits.  This pass gathers the top N sorted  *  groups.  *  * @lucene.experimental  */
+comment|/** FirstPassGroupingCollector is the first of two passes necessary  *  to collect grouped hits.  This pass gathers the top N sorted  *  groups.  *  *<p>See {@link org.apache.lucene.search.grouping} for more  *  details including a full code example.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class

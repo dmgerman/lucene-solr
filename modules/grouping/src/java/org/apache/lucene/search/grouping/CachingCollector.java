@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Caches all docs, and optionally also scores, coming from  * a search, and is then able to replay them to another  * collector.  You specify the max RAM this class may use.  * Once the collection is done, call {@link #isCached}.  If  * this returns true, you can use {@link #replay} against a  * new collector.  If it returns false, this means too much  * RAM was required and you must instead re-run the original  * search.  *  *<p><b>NOTE</b>: this class consumes 4 (or 8 bytes, if  * scoring is cached) per collected document.  If the result  * set is large this can easily be a very substantial amount  * of RAM!  *   * @lucene.experimental  */
+comment|/**  * Caches all docs, and optionally also scores, coming from  * a search, and is then able to replay them to another  * collector.  You specify the max RAM this class may use.  * Once the collection is done, call {@link #isCached}.  If  * this returns true, you can use {@link #replay} against a  * new collector.  If it returns false, this means too much  * RAM was required and you must instead re-run the original  * search.  *  *<p><b>NOTE</b>: this class consumes 4 (or 8 bytes, if  * scoring is cached) per collected document.  If the result  * set is large this can easily be a very substantial amount  * of RAM!  *   *<p>See {@link org.apache.lucene.search.grouping} for more  * details including a full code example.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
