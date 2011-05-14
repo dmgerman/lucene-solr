@@ -11317,6 +11317,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/** @lucene.internal */
 DECL|method|segString
 specifier|public
 specifier|synchronized
