@@ -553,6 +553,11 @@ specifier|private
 name|boolean
 name|vectorsCommitted
 decl_stmt|;
+DECL|field|docValuesCommitted
+specifier|private
+name|boolean
+name|docValuesCommitted
+decl_stmt|;
 comment|/**    * Reverts all uncommitted changes on this {@link FieldInfo}    * @see #commitVectors()    */
 DECL|method|revertUncommitted
 name|void
@@ -580,6 +585,21 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|docValues
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|docValuesCommitted
+condition|)
+block|{
+name|docValues
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Commits term vector modifications. Changes to term-vectors must be    * explicitly committed once the necessary files are created. If those changes    * are not committed subsequent {@link #revertUncommitted()} will reset the    * all term-vector flags before the next document.    */
 DECL|method|commitVectors
@@ -591,6 +611,20 @@ assert|assert
 name|storeTermVector
 assert|;
 name|vectorsCommitted
+operator|=
+literal|true
+expr_stmt|;
+block|}
+DECL|method|commitDocValues
+name|void
+name|commitDocValues
+parameter_list|()
+block|{
+assert|assert
+name|hasDocValues
+argument_list|()
+assert|;
+name|docValuesCommitted
 operator|=
 literal|true
 expr_stmt|;

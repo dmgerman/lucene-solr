@@ -467,6 +467,7 @@ name|INDEX_EXTENSION
 argument_list|)
 argument_list|)
 assert|;
+comment|// until here all types use an index
 case|case
 name|BYTES_FIXED_STRAIGHT
 case|:

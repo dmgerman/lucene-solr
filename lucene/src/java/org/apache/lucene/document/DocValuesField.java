@@ -149,11 +149,6 @@ comment|/**  *<p>  * This class provides a {@link AbstractField} that enables st
 end_comment
 
 begin_class
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"serial"
-argument_list|)
 DECL|class|DocValuesField
 specifier|public
 class|class

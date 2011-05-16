@@ -1257,8 +1257,6 @@ argument_list|,
 name|fp
 operator|.
 name|fieldInfo
-argument_list|,
-name|fieldInfos
 argument_list|)
 decl_stmt|;
 name|docValuesConsumer
@@ -1502,9 +1500,6 @@ name|docState
 parameter_list|,
 name|FieldInfo
 name|fieldInfo
-parameter_list|,
-name|FieldInfos
-name|infos
 parameter_list|)
 throws|throws
 name|IOException
@@ -1634,6 +1629,11 @@ name|addValuesField
 argument_list|(
 name|fieldInfo
 argument_list|)
+expr_stmt|;
+name|fieldInfo
+operator|.
+name|commitDocValues
+argument_list|()
 expr_stmt|;
 name|docValues
 operator|.
