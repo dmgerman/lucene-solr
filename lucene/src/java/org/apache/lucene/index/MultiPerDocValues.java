@@ -184,8 +184,24 @@ name|ReaderUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ReaderUtil
+operator|.
+name|Gather
+import|;
+end_import
+
 begin_comment
-comment|/**  *   * nocommit - javadoc  * @experimental  */
+comment|/**  * Exposes per-document flex API, merged from per-document flex API of  * sub-segments. This is useful when you're interacting with an  * {@link IndexReader} implementation that consists of sequential sub-readers  * (eg DirectoryReader or {@link MultiReader}).  *   *<p>  *<b>NOTE</b>: for multi readers, you'll get better performance by gathering  * the sub readers using {@link ReaderUtil#gatherSubReaders} and then operate  * per-reader, instead of using this class.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -297,6 +313,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Returns a single {@link PerDocValues} instance for this reader, merging    * their values on the fly. This method will not return<code>null</code>.    *     *<p>    *<b>NOTE</b>: this is a slow way to access postings. It's better to get the    * sub-readers (using {@link Gather}) and iterate through them yourself.    */
 DECL|method|getPerDocs
 specifier|public
 specifier|static

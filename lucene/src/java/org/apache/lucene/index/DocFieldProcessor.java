@@ -688,7 +688,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-comment|// nocommit handle exce
+comment|// ignore and continue closing remaining consumers
 block|}
 block|}
 name|perDocConsumers

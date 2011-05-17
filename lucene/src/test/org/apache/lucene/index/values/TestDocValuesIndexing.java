@@ -574,7 +574,7 @@ name|TestDocValuesIndexing
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/*    * TODO: Roadmap to land on trunk    *     * - Add documentation for:     *  - DocValues     * - Add @lucene.experimental to all necessary classes     * - add test for unoptimized case with deletes    * - add multithreaded tests / integrate into stress indexing?    * - run RAT    */
+comment|/*    * TODO: Roadmap to land on trunk    *     * - Add documentation for:     *  - DocValues     * - add test for unoptimized case with deletes    * - add multithreaded tests / integrate into stress indexing?    */
 annotation|@
 name|Before
 DECL|method|setUp

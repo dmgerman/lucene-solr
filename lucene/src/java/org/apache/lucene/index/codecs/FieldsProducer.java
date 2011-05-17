@@ -80,22 +80,6 @@ name|Terms
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|DocValues
-import|;
-end_import
-
 begin_comment
 comment|/** Abstract API that consumes terms, doc, freq, prox and  *  payloads postings.  Concrete implementations of this  *  actually do "something" with the postings (write it into  *  the index in a specific format).  *  * @lucene.experimental  */
 end_comment

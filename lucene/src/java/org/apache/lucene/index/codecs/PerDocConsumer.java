@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * nocommit - javadoc  * @experimental  *  */
+comment|/**  * Abstract API that consumes per document values. Concrete implementations of  * this convert field values into a Codec specific format during indexing.  *<p>  * The {@link PerDocConsumer} API is accessible through flexible indexing / the  * {@link Codec} - API providing per field consumers and producers for inverted  * data (terms, postings) as well as per-document data.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -94,6 +94,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Consumes and merges the given {@link PerDocValues} producer    * into this consumers format.       */
 DECL|method|merge
 specifier|public
 name|void
