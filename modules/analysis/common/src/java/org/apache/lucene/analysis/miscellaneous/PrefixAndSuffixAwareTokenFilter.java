@@ -313,6 +313,22 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|end
+specifier|public
+name|void
+name|end
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|suffix
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 

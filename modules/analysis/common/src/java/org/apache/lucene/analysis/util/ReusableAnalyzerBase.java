@@ -352,18 +352,6 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|sink
-operator|!=
-name|source
-condition|)
-name|sink
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-comment|// only reset if the sink reference is different from source
 return|return
 literal|true
 return|;

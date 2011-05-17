@@ -42,9 +42,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|WhitespaceTokenizer
+name|MockTokenizer
 import|;
 end_import
 
@@ -142,15 +140,19 @@ operator|new
 name|TokenOffsetPayloadTokenFilter
 argument_list|(
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|StringReader
 argument_list|(
 name|test
 argument_list|)
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -183,6 +185,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|nptf
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 name|nptf
