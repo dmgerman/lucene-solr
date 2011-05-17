@@ -155,6 +155,7 @@ name|maxNumSegmentsOptimize
 decl_stmt|;
 comment|// used by IndexWriter
 DECL|field|estimatedMergeBytes
+specifier|public
 name|long
 name|estimatedMergeBytes
 decl_stmt|;
