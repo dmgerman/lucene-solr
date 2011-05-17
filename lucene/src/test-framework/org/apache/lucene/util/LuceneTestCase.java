@@ -1164,11 +1164,39 @@ init|=
 literal|null
 decl_stmt|;
 comment|/** Used to track if setUp and tearDown are called correctly from subclasses */
-DECL|field|setup
+DECL|field|state
 specifier|private
-name|boolean
-name|setup
+specifier|static
+name|State
+name|state
+init|=
+name|State
+operator|.
+name|INITIAL
 decl_stmt|;
+DECL|enum|State
+specifier|private
+specifier|static
+enum|enum
+name|State
+block|{
+DECL|enum constant|INITIAL
+name|INITIAL
+block|,
+comment|// no tests ran yet
+DECL|enum constant|SETUP
+name|SETUP
+block|,
+comment|// test has called setUp()
+DECL|enum constant|RANTEST
+name|RANTEST
+block|,
+comment|// test is running
+DECL|enum constant|TEARDOWN
+name|TEARDOWN
+comment|// test has called tearDown()
+block|}
+empty_stmt|;
 comment|/**    * Some tests expect the directory to contain a single segment, and want to do tests on that segment's reader.    * This is an utility method to help them.    */
 DECL|method|getOnlySegmentReader
 specifier|public
@@ -2055,6 +2083,12 @@ name|void
 name|beforeClassLuceneTestCaseJ4
 parameter_list|()
 block|{
+name|state
+operator|=
+name|State
+operator|.
+name|INITIAL
+expr_stmt|;
 name|staticSeed
 operator|=
 literal|"random"
@@ -2437,6 +2471,36 @@ name|void
 name|afterClassLuceneTestCaseJ4
 parameter_list|()
 block|{
+if|if
+condition|(
+operator|!
+name|testsFailed
+condition|)
+block|{
+name|assertTrue
+argument_list|(
+literal|"ensure your setUp() calls super.setUp() and your tearDown() calls super.tearDown()!!!"
+argument_list|,
+name|state
+operator|==
+name|State
+operator|.
+name|INITIAL
+operator|||
+name|state
+operator|==
+name|State
+operator|.
+name|TEARDOWN
+argument_list|)
+expr_stmt|;
+block|}
+name|state
+operator|=
+name|State
+operator|.
+name|INITIAL
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -3084,6 +3148,30 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|testsFailed
+condition|)
+block|{
+name|assertTrue
+argument_list|(
+literal|"ensure your setUp() calls super.setUp()!!!"
+argument_list|,
+name|state
+operator|==
+name|State
+operator|.
+name|SETUP
+argument_list|)
+expr_stmt|;
+block|}
+name|state
+operator|=
+name|State
+operator|.
+name|RANTEST
+expr_stmt|;
 name|super
 operator|.
 name|starting
@@ -3134,16 +3222,37 @@ argument_list|(
 name|seed
 argument_list|)
 expr_stmt|;
-name|assertFalse
+if|if
+condition|(
+operator|!
+name|testsFailed
+condition|)
+block|{
+name|assertTrue
 argument_list|(
 literal|"ensure your tearDown() calls super.tearDown()!!!"
 argument_list|,
-name|setup
+operator|(
+name|state
+operator|==
+name|State
+operator|.
+name|INITIAL
+operator|||
+name|state
+operator|==
+name|State
+operator|.
+name|TEARDOWN
+operator|)
 argument_list|)
 expr_stmt|;
-name|setup
+block|}
+name|state
 operator|=
-literal|true
+name|State
+operator|.
+name|SETUP
 expr_stmt|;
 name|savedUncaughtExceptionHandler
 operator|=
@@ -3263,16 +3372,37 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+if|if
+condition|(
+operator|!
+name|testsFailed
+condition|)
+block|{
+comment|// Note: we allow a test to go straight from SETUP -> TEARDOWN (without ever entering the RANTEST state)
+comment|// because if you assume() inside setUp(), it skips the test and the TestWatchman has no way to know...
 name|assertTrue
 argument_list|(
 literal|"ensure your setUp() calls super.setUp()!!!"
 argument_list|,
-name|setup
+name|state
+operator|==
+name|State
+operator|.
+name|RANTEST
+operator|||
+name|state
+operator|==
+name|State
+operator|.
+name|SETUP
 argument_list|)
 expr_stmt|;
-name|setup
+block|}
+name|state
 operator|=
-literal|false
+name|State
+operator|.
+name|TEARDOWN
 expr_stmt|;
 name|BooleanQuery
 operator|.
