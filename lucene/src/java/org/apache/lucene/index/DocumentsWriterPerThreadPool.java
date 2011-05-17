@@ -507,6 +507,17 @@ operator|.
 name|length
 return|;
 block|}
+comment|/**    * Returns the active number of {@link ThreadState} instances.    */
+DECL|method|getActiveThreadState
+specifier|public
+name|int
+name|getActiveThreadState
+parameter_list|()
+block|{
+return|return
+name|numThreadStatesActive
+return|;
+block|}
 comment|/**    * Returns a new {@link ThreadState} iff any new state is available otherwise    *<code>null</code>.    *<p>    * NOTE: the returned {@link ThreadState} is already locked iff non-    *<code>null</code>.    *     * @return a new {@link ThreadState} iff any new state is available otherwise    *<code>null</code>    */
 DECL|method|newThreadState
 specifier|public
