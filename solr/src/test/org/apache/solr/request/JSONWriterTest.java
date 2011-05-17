@@ -422,9 +422,10 @@ name|add
 argument_list|(
 literal|"data1"
 argument_list|,
-literal|"hello"
+literal|"he\u2028llo\u2029!"
 argument_list|)
 expr_stmt|;
+comment|// make sure that 2028 and 2029 are both escaped (they are illegal in javascript)
 name|nl
 operator|.
 name|add
@@ -456,12 +457,12 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"{\"nl\":[[\"data1\",\"he\\u2028llo\\u2029!\"],[null,42]]}"
+argument_list|,
 name|buf
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"{\"nl\":[[\"data1\",\"hello\"],[null,42]]}"
 argument_list|)
 expr_stmt|;
 name|req
