@@ -33,7 +33,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** Represents result returned by a grouping search.  *  * Note that we do not return the total number of unique  * groups; doing so would be costly.  *   * @lucene.experimental */
+comment|/** Represents result returned by a grouping search.  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -55,6 +55,13 @@ specifier|public
 specifier|final
 name|int
 name|totalGroupedHitCount
+decl_stmt|;
+comment|/** The total number of unique groups. If<code>null</code> this value is not computed. */
+DECL|field|totalGroupCount
+specifier|public
+specifier|final
+name|Integer
+name|totalGroupCount
 decl_stmt|;
 comment|/** Group results in groupSort order */
 DECL|field|groups
@@ -132,6 +139,70 @@ operator|.
 name|groups
 operator|=
 name|groups
+expr_stmt|;
+name|this
+operator|.
+name|totalGroupCount
+operator|=
+literal|null
+expr_stmt|;
+block|}
+DECL|method|TopGroups
+specifier|public
+name|TopGroups
+parameter_list|(
+name|TopGroups
+name|oldTopGroups
+parameter_list|,
+name|Integer
+name|totalGroupCount
+parameter_list|)
+block|{
+name|this
+operator|.
+name|groupSort
+operator|=
+name|oldTopGroups
+operator|.
+name|groupSort
+expr_stmt|;
+name|this
+operator|.
+name|withinGroupSort
+operator|=
+name|oldTopGroups
+operator|.
+name|withinGroupSort
+expr_stmt|;
+name|this
+operator|.
+name|totalHitCount
+operator|=
+name|oldTopGroups
+operator|.
+name|totalHitCount
+expr_stmt|;
+name|this
+operator|.
+name|totalGroupedHitCount
+operator|=
+name|oldTopGroups
+operator|.
+name|totalGroupedHitCount
+expr_stmt|;
+name|this
+operator|.
+name|groups
+operator|=
+name|oldTopGroups
+operator|.
+name|groups
+expr_stmt|;
+name|this
+operator|.
+name|totalGroupCount
+operator|=
+name|totalGroupCount
 expr_stmt|;
 block|}
 block|}
