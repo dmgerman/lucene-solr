@@ -1017,17 +1017,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-operator|!
-name|emptyOutput
-operator|.
-name|equals
-argument_list|(
-name|v
-argument_list|)
-condition|)
-block|{
 name|emptyOutput
 operator|=
 name|outputs
@@ -1039,7 +1028,6 @@ argument_list|,
 name|v
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
