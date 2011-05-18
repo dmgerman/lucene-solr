@@ -3474,8 +3474,9 @@ condition|)
 block|{
 name|cCache
 operator|=
-operator|new
 name|CachingCollector
+operator|.
+name|create
 argument_list|(
 name|c1
 argument_list|,
@@ -3502,8 +3503,9 @@ name|c
 operator|=
 name|cCache
 operator|=
-operator|new
 name|CachingCollector
+operator|.
+name|create
 argument_list|(
 name|c1
 argument_list|,
