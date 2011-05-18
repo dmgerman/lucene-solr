@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collector that collects all groups that match the  * query. Only the group value is collected, and the order  * is undefined.  This collector does not determine  * the most relevant document of a group.  *  *<p/>  * Internally, {@link SentinelIntSet} is used to detect  * if a group is already added to the total count.  For each  * segment the {@link SentinelIntSet} is cleared and filled  * with previous counted groups that occur in the new  * segment.  *  * @lucene.experimental  */
+comment|/**  * A collector that collects all groups that match the  * query. Only the group value is collected, and the order  * is undefined.  This collector does not determine  * the most relevant document of a group.  *  *<p/>  * Implementation detail: an int hash set (SentinelIntSet)  * is used to detect if a group is already added to the  * total count.  For each segment the int set is cleared and filled  * with previous counted groups that occur in the new  * segment.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -187,7 +187,7 @@ operator|.
 name|DocTermsIndex
 name|index
 decl_stmt|;
-comment|/**    * Expert: Constructs a {@link AllGroupsCollector}    *    * @param groupField  The field to group by    * @param initialSize The initial size of the {@link SentinelIntSet} and groups list. The initial size should    *                    roughly match the total number of expected unique groups. Be aware that the heap usage    *                    is 4 bytes * initialSize.    */
+comment|/**    * Expert: Constructs a {@link AllGroupsCollector}    *    * @param groupField  The field to group by    * @param initialSize The initial allocation size of the    * internal int set and group list    * which should roughly match the total    * number of expected unique groups. Be aware that the    * heap usage is 4 bytes * initialSize.    */
 DECL|method|AllGroupsCollector
 specifier|public
 name|AllGroupsCollector
@@ -228,7 +228,7 @@ name|initialSize
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a {@link AllGroupsCollector}. This sets the initialSize for the {@link SentinelIntSet} and group list    * to 128 in the {@link #AllGroupsCollector(String, int)} constructor.    *    * @param groupField The field to group by    */
+comment|/**    * Constructs a {@link AllGroupsCollector}. This sets the    * initial allocation size for the internal int set and group    * list to 128.    *    * @param groupField The field to group by    */
 DECL|method|AllGroupsCollector
 specifier|public
 name|AllGroupsCollector
