@@ -580,7 +580,7 @@ literal|"OutOfMemoryError likely caused by the Sun VM Bug described in "
 operator|+
 literal|"https://issues.apache.org/jira/browse/LUCENE-1566; try calling FSDirectory.setReadChunkSize "
 operator|+
-literal|"with a a value smaller than the current chunk size ("
+literal|"with a value smaller than the current chunk size ("
 operator|+
 name|chunkSize
 operator|+
