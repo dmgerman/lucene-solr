@@ -434,14 +434,14 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Factory method to create a {@link Writer} instance for a given type. This    * method returns default implementations for each of the different types    * defined in the {@link Type} enumeration.    *     * @param type    *          the {@link Type} to create the {@link Writer} for    * @param id    *          the file name id used to create files within the writer.    * @param directory    *          the {@link Directory} to create the files from.    * @param comp    *          a {@link BytesRef} comparator used for {@link Bytes} variants. If    *<code>null</code>    *          {@link BytesRef#getUTF8SortedAsUnicodeComparator()} is used as the    *          default.    * @param bytesUsed    *          a byte-usage tracking reference    * @return a new {@link Writer} instance for the given {@link Type}    * @throws IOException    */
+comment|/**    * Factory method to create a {@link Writer} instance for a given type. This    * method returns default implementations for each of the different types    * defined in the {@link ValueType} enumeration.    *     * @param type    *          the {@link ValueType} to create the {@link Writer} for    * @param id    *          the file name id used to create files within the writer.    * @param directory    *          the {@link Directory} to create the files from.    * @param comp    *          a {@link BytesRef} comparator used for {@link Bytes} variants. If    *<code>null</code>    *          {@link BytesRef#getUTF8SortedAsUnicodeComparator()} is used as the    *          default.    * @param bytesUsed    *          a byte-usage tracking reference    * @return a new {@link Writer} instance for the given {@link ValueType}    * @throws IOException    */
 DECL|method|create
 specifier|public
 specifier|static
 name|Writer
 name|create
 parameter_list|(
-name|Type
+name|ValueType
 name|type
 parameter_list|,
 name|String

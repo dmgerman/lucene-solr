@@ -180,7 +180,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Type
+name|ValueType
 import|;
 end_import
 
@@ -1686,7 +1686,7 @@ parameter_list|,
 name|boolean
 name|omitTermFreqAndPositions
 parameter_list|,
-name|Type
+name|ValueType
 name|docValues
 parameter_list|)
 block|{
@@ -1749,7 +1749,7 @@ parameter_list|,
 name|boolean
 name|omitTermFreqAndPositions
 parameter_list|,
-name|Type
+name|ValueType
 name|docValues
 parameter_list|)
 block|{
@@ -1983,7 +1983,7 @@ parameter_list|,
 name|boolean
 name|omitTermFreqAndPositions
 parameter_list|,
-name|Type
+name|ValueType
 name|docValuesType
 parameter_list|)
 block|{
@@ -2913,7 +2913,7 @@ operator|&&
 operator|!
 name|omitTermFreqAndPositions
 expr_stmt|;
-name|Type
+name|ValueType
 name|docValuesType
 init|=
 literal|null
@@ -2952,7 +2952,7 @@ literal|1
 case|:
 name|docValuesType
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|INTS
 expr_stmt|;
@@ -2962,7 +2962,7 @@ literal|2
 case|:
 name|docValuesType
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|FLOAT_32
 expr_stmt|;
@@ -2972,7 +2972,7 @@ literal|3
 case|:
 name|docValuesType
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|FLOAT_64
 expr_stmt|;
@@ -2982,7 +2982,7 @@ literal|4
 case|:
 name|docValuesType
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|BYTES_FIXED_STRAIGHT
 expr_stmt|;
@@ -2992,7 +2992,7 @@ literal|5
 case|:
 name|docValuesType
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|BYTES_FIXED_DEREF
 expr_stmt|;
@@ -3002,7 +3002,7 @@ literal|6
 case|:
 name|docValuesType
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|BYTES_FIXED_SORTED
 expr_stmt|;
@@ -3012,7 +3012,7 @@ literal|7
 case|:
 name|docValuesType
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|BYTES_VAR_STRAIGHT
 expr_stmt|;
@@ -3022,7 +3022,7 @@ literal|8
 case|:
 name|docValuesType
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|BYTES_VAR_DEREF
 expr_stmt|;
@@ -3032,7 +3032,7 @@ literal|9
 case|:
 name|docValuesType
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|BYTES_VAR_SORTED
 expr_stmt|;

@@ -126,7 +126,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Type
+name|ValueType
 import|;
 end_import
 
@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This class provides a {@link AbstractField} that enables storing of typed  * per-document values for scoring, sorting or value retrieval. Here's an  * example usage, adding an int value:  *   *<pre>  * document.add(new DocValuesField(name).setInt(value));  *</pre>  *   * For optimal performance, re-use the<code>DocValuesField</code> and  * {@link Document} instance for more than one document:  *   *<pre>  *  DocValuesField field = new DocValuesField(name);  *  Document document = new Document();  *  document.add(field);  *   *  for(all documents) {  *    ...  *    field.setIntValue(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   *<p>  * If doc values are stored in addition to an indexed ({@link Index}) or stored  * ({@link Store}) value it's recommended to use the {@link DocValuesField}'s  * {@link #set(AbstractField)} API:  *   *<pre>  *  DocValuesField field = new DocValuesField(name);  *  Field indexedField = new Field(name, stringValue, Stored.NO, Indexed.ANALYZED);  *  Document document = new Document();  *  document.add(indexedField);  *  field.set(indexedField);  *  for(all documents) {  *    ...  *    field.setIntValue(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   * */
+comment|/**  *<p>  * This class provides a {@link AbstractField} that enables storing of typed  * per-document values for scoring, sorting or value retrieval. Here's an  * example usage, adding an int value:  *   *<pre>  * document.add(new DocValuesField(name).setInt(value));  *</pre>  *   * For optimal performance, re-use the<code>DocValuesField</code> and  * {@link Document} instance for more than one document:  *   *<pre>  *  DocValuesField field = new DocValuesField(name);  *  Document document = new Document();  *  document.add(field);  *   *  for(all documents) {  *    ...  *    field.setInt(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   *<p>  * If doc values are stored in addition to an indexed ({@link Index}) or stored  * ({@link Store}) value it's recommended to use the {@link DocValuesField}'s  * {@link #set(AbstractField)} API:  *   *<pre>  *  DocValuesField field = new DocValuesField(name);  *  Field indexedField = new Field(name, stringValue, Stored.NO, Indexed.ANALYZED);  *  Document document = new Document();  *  document.add(indexedField);  *  field.set(indexedField);  *  for(all documents) {  *    ...  *    field.setInt(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   * */
 end_comment
 
 begin_class
@@ -175,7 +175,7 @@ name|longValue
 decl_stmt|;
 DECL|field|type
 specifier|protected
-name|Type
+name|ValueType
 name|type
 decl_stmt|;
 DECL|field|bytesComparator
@@ -229,7 +229,7 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>long</code> value and sets the field's {@link Type} to    * {@link Type#INTS} unless already set. If you want to change the    * default type use {@link #setType(Type)}.    */
+comment|/**    * Sets the given<code>long</code> value and sets the field's {@link ValueType} to    * {@link ValueType#INTS} unless already set. If you want to change the    * default type use {@link #setType(ValueType)}.    */
 DECL|method|setInt
 specifier|public
 name|void
@@ -248,7 +248,7 @@ condition|)
 block|{
 name|type
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|INTS
 expr_stmt|;
@@ -258,7 +258,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>float</code> value and sets the field's {@link Type}    * to {@link Type#FLOAT_32} unless already set. If you want to    * change the type use {@link #setType(Type)}.    */
+comment|/**    * Sets the given<code>float</code> value and sets the field's {@link ValueType}    * to {@link ValueType#FLOAT_32} unless already set. If you want to    * change the type use {@link #setType(ValueType)}.    */
 DECL|method|setFloat
 specifier|public
 name|void
@@ -277,7 +277,7 @@ condition|)
 block|{
 name|type
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|FLOAT_32
 expr_stmt|;
@@ -287,7 +287,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>double</code> value and sets the field's {@link Type}    * to {@link Type#FLOAT_64} unless already set. If you want to    * change the default type use {@link #setType(Type)}.    */
+comment|/**    * Sets the given<code>double</code> value and sets the field's {@link ValueType}    * to {@link ValueType#FLOAT_64} unless already set. If you want to    * change the default type use {@link #setType(ValueType)}.    */
 DECL|method|setFloat
 specifier|public
 name|void
@@ -306,7 +306,7 @@ condition|)
 block|{
 name|type
 operator|=
-name|Type
+name|ValueType
 operator|.
 name|FLOAT_64
 expr_stmt|;
@@ -316,7 +316,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Sets the given {@link BytesRef} value and the field's {@link Type}. The    * comparator for this field is set to<code>null</code>. If a    *<code>null</code> comparator is set the default comparator for the given    * {@link Type} is used.    */
+comment|/**    * Sets the given {@link BytesRef} value and the field's {@link ValueType}. The    * comparator for this field is set to<code>null</code>. If a    *<code>null</code> comparator is set the default comparator for the given    * {@link ValueType} is used.    */
 DECL|method|setBytes
 specifier|public
 name|void
@@ -325,7 +325,7 @@ parameter_list|(
 name|BytesRef
 name|value
 parameter_list|,
-name|Type
+name|ValueType
 name|type
 parameter_list|)
 block|{
@@ -339,7 +339,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the given {@link BytesRef} value, the field's {@link Type} and the    * field's comparator. If the {@link Comparator} is set to<code>null</code>    * the default for the given {@link Type} is used instead.    *     * @throws IllegalArgumentException    *           if the value or the type are null    */
+comment|/**    * Sets the given {@link BytesRef} value, the field's {@link ValueType} and the    * field's comparator. If the {@link Comparator} is set to<code>null</code>    * the default for the given {@link ValueType} is used instead.    *     * @throws IllegalArgumentException    *           if the value or the type are null    */
 DECL|method|setBytes
 specifier|public
 name|void
@@ -348,7 +348,7 @@ parameter_list|(
 name|BytesRef
 name|value
 parameter_list|,
-name|Type
+name|ValueType
 name|type
 parameter_list|,
 name|Comparator
@@ -456,7 +456,7 @@ return|return
 name|longValue
 return|;
 block|}
-comment|/**    * Sets the {@link BytesRef} comparator for this field. If the field has a    * numeric {@link Type} the comparator will be ignored.    */
+comment|/**    * Sets the {@link BytesRef} comparator for this field. If the field has a    * numeric {@link ValueType} the comparator will be ignored.    */
 DECL|method|setBytesComparator
 specifier|public
 name|void
@@ -476,13 +476,13 @@ operator|=
 name|comp
 expr_stmt|;
 block|}
-comment|/**    * Sets the {@link Type} for this field.    */
+comment|/**    * Sets the {@link ValueType} for this field.    */
 DECL|method|setType
 specifier|public
 name|void
 name|setType
 parameter_list|(
-name|Type
+name|ValueType
 name|type
 parameter_list|)
 block|{
@@ -508,10 +508,10 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**    * Returns the field's {@link Type}    */
+comment|/**    * Returns the field's {@link ValueType}    */
 DECL|method|type
 specifier|public
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 block|{
@@ -593,7 +593,7 @@ parameter_list|(
 name|T
 name|field
 parameter_list|,
-name|Type
+name|ValueType
 name|type
 parameter_list|)
 block|{

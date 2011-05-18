@@ -182,7 +182,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Type
+name|ValueType
 import|;
 end_import
 
@@ -390,7 +390,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Loads a {@link DocValues} instance depending on the given {@link Type}.    * Codecs that use different implementations for a certain {@link Type} can    * simply override this method and return their custom implementations.    *     * @param docCount    *          number of documents in the segment    * @param dir    *          the {@link Directory} to load the {@link DocValues} from    * @param id    *          the unique file ID within the segment    * @param type    *          the type to load    * @return a {@link DocValues} instance for the given type    * @throws IOException    *           if an {@link IOException} occurs    * @throws IllegalArgumentException    *           if the given {@link Type} is not supported    */
+comment|/**    * Loads a {@link DocValues} instance depending on the given {@link ValueType}.    * Codecs that use different implementations for a certain {@link ValueType} can    * simply override this method and return their custom implementations.    *     * @param docCount    *          number of documents in the segment    * @param dir    *          the {@link Directory} to load the {@link DocValues} from    * @param id    *          the unique file ID within the segment    * @param type    *          the type to load    * @return a {@link DocValues} instance for the given type    * @throws IOException    *           if an {@link IOException} occurs    * @throws IllegalArgumentException    *           if the given {@link ValueType} is not supported    */
 DECL|method|loadDocValues
 specifier|protected
 name|DocValues
@@ -405,7 +405,7 @@ parameter_list|,
 name|String
 name|id
 parameter_list|,
-name|Type
+name|ValueType
 name|type
 parameter_list|)
 throws|throws

@@ -902,7 +902,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Tests complete indexing of {@link Type} including deletions, merging and    * sparse value fields on Compound-File    */
+comment|/**    * Tests complete indexing of {@link ValueType} including deletions, merging and    * sparse value fields on Compound-File    */
 DECL|method|testIndexBytesNoDeletesCFS
 specifier|public
 name|void
@@ -979,7 +979,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests complete indexing of {@link Type} including deletions, merging and    * sparse value fields on None-Compound-File    */
+comment|/**    * Tests complete indexing of {@link ValueType} including deletions, merging and    * sparse value fields on None-Compound-File    */
 DECL|method|testIndexBytesNoDeletes
 specifier|public
 name|void
@@ -1071,7 +1071,7 @@ literal|10
 decl_stmt|;
 name|List
 argument_list|<
-name|Type
+name|ValueType
 argument_list|>
 name|values
 init|=
@@ -1079,7 +1079,7 @@ name|Arrays
 operator|.
 name|asList
 argument_list|(
-name|Type
+name|ValueType
 operator|.
 name|values
 argument_list|()
@@ -1094,7 +1094,7 @@ argument_list|,
 name|random
 argument_list|)
 expr_stmt|;
-name|Type
+name|ValueType
 name|first
 init|=
 name|values
@@ -1104,7 +1104,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|Type
+name|ValueType
 name|second
 init|=
 name|values
@@ -1468,13 +1468,13 @@ if|if
 condition|(
 name|second
 operator|==
-name|Type
+name|ValueType
 operator|.
 name|BYTES_VAR_STRAIGHT
 operator|||
 name|second
 operator|==
-name|Type
+name|ValueType
 operator|.
 name|BYTES_FIXED_STRAIGHT
 condition|)
@@ -1783,14 +1783,14 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|Type
+name|ValueType
 argument_list|>
 name|numVariantList
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|Type
+name|ValueType
 argument_list|>
 argument_list|(
 name|NUMERICS
@@ -1808,7 +1808,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|Type
+name|ValueType
 name|val
 range|:
 name|numVariantList
@@ -2406,14 +2406,14 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|Type
+name|ValueType
 argument_list|>
 name|byteVariantList
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|Type
+name|ValueType
 argument_list|>
 argument_list|(
 name|BYTES
@@ -2444,7 +2444,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|Type
+name|ValueType
 name|byteIndexValue
 range|:
 name|byteVariantList
@@ -3423,7 +3423,7 @@ specifier|private
 specifier|static
 name|EnumSet
 argument_list|<
-name|Type
+name|ValueType
 argument_list|>
 name|BYTES
 init|=
@@ -3431,27 +3431,27 @@ name|EnumSet
 operator|.
 name|of
 argument_list|(
-name|Type
+name|ValueType
 operator|.
 name|BYTES_FIXED_DEREF
 argument_list|,
-name|Type
+name|ValueType
 operator|.
 name|BYTES_FIXED_SORTED
 argument_list|,
-name|Type
+name|ValueType
 operator|.
 name|BYTES_FIXED_STRAIGHT
 argument_list|,
-name|Type
+name|ValueType
 operator|.
 name|BYTES_VAR_DEREF
 argument_list|,
-name|Type
+name|ValueType
 operator|.
 name|BYTES_VAR_SORTED
 argument_list|,
-name|Type
+name|ValueType
 operator|.
 name|BYTES_VAR_STRAIGHT
 argument_list|)
@@ -3461,7 +3461,7 @@ specifier|private
 specifier|static
 name|EnumSet
 argument_list|<
-name|Type
+name|ValueType
 argument_list|>
 name|NUMERICS
 init|=
@@ -3469,15 +3469,15 @@ name|EnumSet
 operator|.
 name|of
 argument_list|(
-name|Type
+name|ValueType
 operator|.
 name|INTS
 argument_list|,
-name|Type
+name|ValueType
 operator|.
 name|FLOAT_32
 argument_list|,
-name|Type
+name|ValueType
 operator|.
 name|FLOAT_64
 argument_list|)
@@ -3525,12 +3525,12 @@ parameter_list|,
 name|int
 name|numValues
 parameter_list|,
-name|Type
+name|ValueType
 name|value
 parameter_list|,
 name|List
 argument_list|<
-name|Type
+name|ValueType
 argument_list|>
 name|valueVarList
 parameter_list|,
@@ -3887,7 +3887,7 @@ name|nextBoolean
 argument_list|()
 condition|)
 block|{
-name|Type
+name|ValueType
 name|val
 init|=
 name|valueVarList

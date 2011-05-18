@@ -360,7 +360,7 @@ parameter_list|(
 name|int
 name|maxDoc
 parameter_list|,
-name|Type
+name|ValueType
 name|type
 parameter_list|)
 block|{
@@ -421,7 +421,7 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 block|{
@@ -1137,7 +1137,7 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 block|{
@@ -1165,14 +1165,14 @@ block|{
 DECL|field|type
 specifier|private
 specifier|final
-name|Type
+name|ValueType
 name|type
 decl_stmt|;
 DECL|method|EmptySource
 specifier|public
 name|EmptySource
 parameter_list|(
-name|Type
+name|ValueType
 name|type
 parameter_list|)
 block|{
@@ -1265,7 +1265,7 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 block|{
@@ -1278,7 +1278,7 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 block|{

@@ -1084,12 +1084,12 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 block|{
 return|return
-name|Type
+name|ValueType
 operator|.
 name|BYTES_FIXED_DEREF
 return|;
@@ -1215,7 +1215,7 @@ name|idxIn
 argument_list|,
 name|size
 argument_list|,
-name|Type
+name|ValueType
 operator|.
 name|BYTES_FIXED_DEREF
 argument_list|)
@@ -1237,7 +1237,7 @@ parameter_list|,
 name|int
 name|size
 parameter_list|,
-name|Type
+name|ValueType
 name|enumType
 parameter_list|)
 throws|throws
@@ -1565,12 +1565,12 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 block|{
 return|return
-name|Type
+name|ValueType
 operator|.
 name|BYTES_FIXED_DEREF
 return|;

@@ -110,7 +110,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Type
+name|ValueType
 import|;
 end_import
 
@@ -1021,7 +1021,7 @@ return|;
 block|}
 DECL|method|docValuesType
 specifier|public
-name|Type
+name|ValueType
 name|docValuesType
 parameter_list|()
 block|{

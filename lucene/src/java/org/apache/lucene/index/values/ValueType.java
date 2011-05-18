@@ -69,14 +69,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Type} specifies the type of the {@link DocValues} for a certain field.  * A {@link Type} only defines the data type for a field while the actual  * implemenation used to encode and decode the values depends on the field's  * {@link Codec}. It is up to the {@link Codec} implementing  * {@link FieldsConsumer#addValuesField(org.apache.lucene.index.FieldInfo)} and  * using a different low-level implemenations to write the stored values for a  * field.  *   * @lucene.experimental  */
+comment|/**  * {@link ValueType} specifies the type of the {@link DocValues} for a certain field.  * A {@link ValueType} only defines the data type for a field while the actual  * implemenation used to encode and decode the values depends on the field's  * {@link Codec}. It is up to the {@link Codec} implementing  * {@link FieldsConsumer#addValuesField(org.apache.lucene.index.FieldInfo)} and  * using a different low-level implemenations to write the stored values for a  * field.  *   * @lucene.experimental  */
 end_comment
 
 begin_enum
-DECL|enum|Type
+DECL|enum|ValueType
 specifier|public
 enum|enum
-name|Type
+name|ValueType
 block|{
 comment|/*    * TODO: Add INT_32 INT_64 INT_16& INT_8?!    */
 comment|/**    * Integer values.    */

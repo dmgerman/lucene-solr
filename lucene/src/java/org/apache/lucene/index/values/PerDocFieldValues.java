@@ -126,7 +126,7 @@ name|double
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Sets the given {@link BytesRef} value and the field's {@link Type}. The    * comparator for this field is set to<code>null</code>. If a    *<code>null</code> comparator is set the default comparator for the given    * {@link Type} is used.    */
+comment|/**    * Sets the given {@link BytesRef} value and the field's {@link ValueType}. The    * comparator for this field is set to<code>null</code>. If a    *<code>null</code> comparator is set the default comparator for the given    * {@link ValueType} is used.    */
 DECL|method|setBytes
 specifier|public
 name|void
@@ -135,11 +135,11 @@ parameter_list|(
 name|BytesRef
 name|value
 parameter_list|,
-name|Type
+name|ValueType
 name|type
 parameter_list|)
 function_decl|;
-comment|/**    * Sets the given {@link BytesRef} value, the field's {@link Type} and the    * field's comparator. If the {@link Comparator} is set to<code>null</code>    * the default for the given {@link Type} is used instead.    */
+comment|/**    * Sets the given {@link BytesRef} value, the field's {@link ValueType} and the    * field's comparator. If the {@link Comparator} is set to<code>null</code>    * the default for the given {@link ValueType} is used instead.    */
 DECL|method|setBytes
 specifier|public
 name|void
@@ -148,7 +148,7 @@ parameter_list|(
 name|BytesRef
 name|value
 parameter_list|,
-name|Type
+name|ValueType
 name|type
 parameter_list|,
 name|Comparator
@@ -189,7 +189,7 @@ name|long
 name|getInt
 parameter_list|()
 function_decl|;
-comment|/**    * Sets the {@link BytesRef} comparator for this field. If the field has a    * numeric {@link Type} the comparator will be ignored.    */
+comment|/**    * Sets the {@link BytesRef} comparator for this field. If the field has a    * numeric {@link ValueType} the comparator will be ignored.    */
 DECL|method|setBytesComparator
 specifier|public
 name|void
@@ -202,20 +202,20 @@ argument_list|>
 name|comp
 parameter_list|)
 function_decl|;
-comment|/**    * Sets the {@link Type}    */
+comment|/**    * Sets the {@link ValueType}    */
 DECL|method|setType
 specifier|public
 name|void
 name|setType
 parameter_list|(
-name|Type
+name|ValueType
 name|type
 parameter_list|)
 function_decl|;
-comment|/**   * Returns the {@link Type}   */
+comment|/**   * Returns the {@link ValueType}   */
 DECL|method|type
 specifier|public
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 function_decl|;

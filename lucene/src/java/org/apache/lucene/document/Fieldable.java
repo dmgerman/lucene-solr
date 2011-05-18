@@ -92,7 +92,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Type
+name|ValueType
 import|;
 end_import
 
@@ -332,10 +332,10 @@ name|boolean
 name|hasDocValues
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the {@link Type} of the set {@link PerDocFieldValues} or    *<code>null</code> if not set.    */
+comment|/**    * Returns the {@link ValueType} of the set {@link PerDocFieldValues} or    *<code>null</code> if not set.    */
 DECL|method|docValuesType
 specifier|public
-name|Type
+name|ValueType
 name|docValuesType
 parameter_list|()
 function_decl|;

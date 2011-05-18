@@ -148,7 +148,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Type
+name|ValueType
 import|;
 end_import
 
@@ -683,16 +683,16 @@ name|Document
 name|doc
 parameter_list|)
 block|{
-name|Type
+name|ValueType
 index|[]
 name|values
 init|=
-name|Type
+name|ValueType
 operator|.
 name|values
 argument_list|()
 decl_stmt|;
-name|Type
+name|ValueType
 name|type
 init|=
 name|values

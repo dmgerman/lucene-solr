@@ -261,11 +261,11 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Returns the {@link Type} of this {@link DocValues} instance    */
+comment|/**    * Returns the {@link ValueType} of this {@link DocValues} instance    */
 DECL|method|type
 specifier|public
 specifier|abstract
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 function_decl|;
@@ -333,7 +333,7 @@ name|cache
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Source of per document values like long, double or {@link BytesRef}    * depending on the {@link DocValues} fields {@link Type}. Source    * implementations provide random access semantics similar to array lookups    * and typically are entirely memory resident.    *<p>    * {@link Source} defines 3 {@link Type} //TODO finish this    */
+comment|/**    * Source of per document values like long, double or {@link BytesRef}    * depending on the {@link DocValues} fields {@link ValueType}. Source    * implementations provide random access semantics similar to array lookups    * and typically are entirely memory resident.    *<p>    * {@link Source} defines 3 {@link ValueType} //TODO finish this    */
 DECL|class|Source
 specifier|public
 specifier|static
@@ -449,11 +449,11 @@ return|return
 name|missingValue
 return|;
 block|}
-comment|/**      * Returns the {@link Type} of this source.      *       * @return the {@link Type} of this source.      */
+comment|/**      * Returns the {@link ValueType} of this source.      *       * @return the {@link ValueType} of this source.      */
 DECL|method|type
 specifier|public
 specifier|abstract
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 function_decl|;
@@ -501,7 +501,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**      * Creates a new {@link SourceEnum}      *       * @param attrs      *          the {@link AttributeSource} for this enum      * @param type      *          the enums {@link Type}      * @param source      *          the source this enum operates on      * @param numDocs      *          the number of documents within the source      */
+comment|/**      * Creates a new {@link SourceEnum}      *       * @param attrs      *          the {@link AttributeSource} for this enum      * @param type      *          the enums {@link ValueType}      * @param source      *          the source this enum operates on      * @param numDocs      *          the number of documents within the source      */
 DECL|method|SourceEnum
 specifier|protected
 name|SourceEnum
@@ -509,7 +509,7 @@ parameter_list|(
 name|AttributeSource
 name|attrs
 parameter_list|,
-name|Type
+name|ValueType
 name|type
 parameter_list|,
 name|Source
@@ -707,7 +707,7 @@ name|tmpRef
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * {@link MissingValue} is used by {@link Source} implementations to define an    * Implementation dependent value for documents that had no value assigned    * during indexing. Its purpose is similar to a default value but since the a    * missing value across {@link Type} and its implementations can be highly    * dynamic the actual values are not constant but defined per {@link Source}    * through the {@link MissingValue} struct. The actual value used to indicate    * a missing value can even changed within the same field from one segment to    * another. Certain {@link Ints} implementations for instance use a value    * outside of value set as the missing value.    */
+comment|/**    * {@link MissingValue} is used by {@link Source} implementations to define an    * Implementation dependent value for documents that had no value assigned    * during indexing. Its purpose is similar to a default value but since the a    * missing value across {@link ValueType} and its implementations can be highly    * dynamic the actual values are not constant but defined per {@link Source}    * through the {@link MissingValue} struct. The actual value used to indicate    * a missing value can even changed within the same field from one segment to    * another. Certain {@link Ints} implementations for instance use a value    * outside of value set as the missing value.    */
 DECL|class|MissingValue
 specifier|public
 specifier|final

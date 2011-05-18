@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link DocValuesEnum} is a {@link DocIdSetIterator} iterating<tt>byte[]</tt>  * ,<tt>long</tt> and<tt>double</tt> stored per document. Depending on the  * enum's {@link Type} ({@link #type()}) the enum might skip over documents that  * have no value stored. Types like {@link Type#BYTES_VAR_STRAIGHT} might not  * skip over documents even if there is no value associated with a document. The  * value for document without values again depends on the types implementation  * although a reference for a {@link Type} returned from a accessor method  * {@link #getFloat()}, {@link #getInt()} or {@link #bytes()} will never be  *<code>null</code> even if a document has no value.  *<p>  * Note: Only the reference for the enum's type are initialized to non  *<code>null</code> ie. {@link #getInt()} will always return<code>null</code>  * if the enum's Type is {@link Type#FLOAT_32}.  *   * @lucene.experimental  */
+comment|/**  * {@link DocValuesEnum} is a {@link DocIdSetIterator} iterating<tt>byte[]</tt>  * ,<tt>long</tt> and<tt>double</tt> stored per document. Depending on the  * enum's {@link ValueType} ({@link #type()}) the enum might skip over documents that  * have no value stored. Types like {@link ValueType#BYTES_VAR_STRAIGHT} might not  * skip over documents even if there is no value associated with a document. The  * value for document without values again depends on the types implementation  * although a reference for a {@link ValueType} returned from a accessor method  * {@link #getFloat()}, {@link #getInt()} or {@link #bytes()} will never be  *<code>null</code> even if a document has no value.  *<p>  * Note: Only the reference for the enum's type are initialized to non  *<code>null</code> ie. {@link #getInt()} will always return<code>null</code>  * if the enum's Type is {@link ValueType#FLOAT_32}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -119,7 +119,7 @@ decl_stmt|;
 DECL|field|enumType
 specifier|private
 specifier|final
-name|Type
+name|ValueType
 name|enumType
 decl_stmt|;
 DECL|field|bytesRef
@@ -142,7 +142,7 @@ DECL|method|DocValuesEnum
 specifier|protected
 name|DocValuesEnum
 parameter_list|(
-name|Type
+name|ValueType
 name|enumType
 parameter_list|)
 block|{
@@ -162,7 +162,7 @@ parameter_list|(
 name|AttributeSource
 name|source
 parameter_list|,
-name|Type
+name|ValueType
 name|enumType
 parameter_list|)
 block|{
@@ -240,7 +240,7 @@ block|}
 comment|/**    * Returns the type of this enum    */
 DECL|method|type
 specifier|public
-name|Type
+name|ValueType
 name|type
 parameter_list|()
 block|{
@@ -351,14 +351,14 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns an empty {@link DocValuesEnum} for the given {@link Type}.    */
+comment|/**    * Returns an empty {@link DocValuesEnum} for the given {@link ValueType}.    */
 DECL|method|emptyEnum
 specifier|public
 specifier|static
 name|DocValuesEnum
 name|emptyEnum
 parameter_list|(
-name|Type
+name|ValueType
 name|type
 parameter_list|)
 block|{

@@ -148,7 +148,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Type
+name|ValueType
 import|;
 end_import
 
@@ -640,7 +640,7 @@ name|docsUpto
 init|=
 literal|0
 decl_stmt|;
-name|Type
+name|ValueType
 name|type
 init|=
 literal|null
