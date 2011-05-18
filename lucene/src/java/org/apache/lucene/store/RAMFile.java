@@ -66,7 +66,6 @@ specifier|protected
 name|long
 name|sizeInBytes
 decl_stmt|;
-comment|// This is publicly modifiable via Directory.touchFile(), so direct access not supported
 DECL|field|lastModified
 specifier|private
 name|long

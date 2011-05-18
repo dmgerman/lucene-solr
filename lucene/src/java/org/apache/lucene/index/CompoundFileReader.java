@@ -802,28 +802,6 @@ name|fileName
 argument_list|)
 return|;
 block|}
-comment|/** Set the modified time of the compound file to now. */
-annotation|@
-name|Override
-DECL|method|touchFile
-specifier|public
-name|void
-name|touchFile
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|directory
-operator|.
-name|touchFile
-argument_list|(
-name|fileName
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** Not implemented      * @throws UnsupportedOperationException */
 annotation|@
 name|Override

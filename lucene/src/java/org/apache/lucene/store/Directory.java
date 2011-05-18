@@ -138,19 +138,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Set the modified time of an existing file to now. */
-DECL|method|touchFile
-specifier|public
-specifier|abstract
-name|void
-name|touchFile
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Removes an existing file in the directory. */
 DECL|method|deleteFile
 specifier|public
