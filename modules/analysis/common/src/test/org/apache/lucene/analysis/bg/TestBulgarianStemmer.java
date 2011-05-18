@@ -62,9 +62,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|WhitespaceTokenizer
+name|MockTokenizer
 import|;
 end_import
 
@@ -1690,19 +1688,23 @@ argument_list|(
 literal|"ÑÑÑÐ¾ÐµÐ²Ðµ"
 argument_list|)
 expr_stmt|;
-name|WhitespaceTokenizer
+name|MockTokenizer
 name|tokenStream
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|StringReader
 argument_list|(
 literal|"ÑÑÑÐ¾ÐµÐ²ÐµÑÐµ ÑÑÑÐ¾ÐµÐ²Ðµ"
 argument_list|)
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|BulgarianStemFilter

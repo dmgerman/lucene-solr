@@ -1956,7 +1956,7 @@ name|stream
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 name|fieldName
 argument_list|,
@@ -1989,6 +1989,11 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|stream
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 name|stream
@@ -2088,6 +2093,11 @@ name|maxFieldLength
 condition|)
 break|break;
 block|}
+name|stream
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
 block|}
 finally|finally
 block|{

@@ -356,11 +356,6 @@ specifier|final
 name|DocumentsWriterFlushControl
 name|flushControl
 decl_stmt|;
-DECL|field|healthiness
-specifier|final
-name|Healthiness
-name|healthiness
-decl_stmt|;
 DECL|method|DocumentsWriter
 name|DocumentsWriter
 parameter_list|(
@@ -471,25 +466,6 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|healthiness
-operator|=
-operator|new
-name|Healthiness
-argument_list|()
-expr_stmt|;
-specifier|final
-name|long
-name|maxRamPerDWPT
-init|=
-name|config
-operator|.
-name|getRAMPerThreadHardLimitMB
-argument_list|()
-operator|*
-literal|1024
-operator|*
-literal|1024
-decl_stmt|;
 name|flushControl
 operator|=
 operator|new
@@ -497,9 +473,7 @@ name|DocumentsWriterFlushControl
 argument_list|(
 name|this
 argument_list|,
-name|healthiness
-argument_list|,
-name|maxRamPerDWPT
+name|config
 argument_list|)
 expr_stmt|;
 block|}
@@ -1043,13 +1017,20 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|healthiness
+name|flushControl
 operator|.
 name|anyStalledThreads
 argument_list|()
+operator|||
+name|flushControl
+operator|.
+name|numQueuedFlushes
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
-comment|// Help out flushing any pending DWPTs so we can un-stall:
+comment|// Help out flushing any queued DWPTs so we can un-stall:
 if|if
 condition|(
 name|infoStream
@@ -1059,10 +1040,12 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"WARNING DocumentsWriter has stalled threads; will hijack this thread to flush pending segment(s)"
+literal|"DocumentsWriter has queued dwpt; will hijack this thread to flush pending segment(s)"
 argument_list|)
 expr_stmt|;
 block|}
+do|do
+block|{
 comment|// Try pick up pending threads here if possible
 name|DocumentsWriterPerThread
 name|flushingDWPT
@@ -1083,23 +1066,12 @@ condition|)
 block|{
 comment|// Don't push the delete here since the update could fail!
 name|maybeMerge
-operator|=
+operator||=
 name|doFlush
 argument_list|(
 name|flushingDWPT
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|healthiness
-operator|.
-name|anyStalledThreads
-argument_list|()
-condition|)
-block|{
-break|break;
-block|}
 block|}
 if|if
 condition|(
@@ -1107,7 +1079,7 @@ name|infoStream
 operator|!=
 literal|null
 operator|&&
-name|healthiness
+name|flushControl
 operator|.
 name|anyStalledThreads
 argument_list|()
@@ -1115,31 +1087,38 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"WARNING DocumentsWriter still has stalled threads; waiting"
+literal|"WARNING DocumentsWriter has stalled threads; waiting"
 argument_list|)
 expr_stmt|;
 block|}
-name|healthiness
+name|flushControl
 operator|.
 name|waitIfStalled
 argument_list|()
 expr_stmt|;
 comment|// block if stalled
+block|}
+do|while
+condition|(
+name|flushControl
+operator|.
+name|numQueuedFlushes
+argument_list|()
+operator|!=
+literal|0
+condition|)
+do|;
+comment|// still queued DWPTs try help flushing
 if|if
 condition|(
 name|infoStream
 operator|!=
 literal|null
-operator|&&
-name|healthiness
-operator|.
-name|anyStalledThreads
-argument_list|()
 condition|)
 block|{
 name|message
 argument_list|(
-literal|"WARNING DocumentsWriter done waiting"
+literal|"continue indexing after helpling out flushing DocumentsWriter is healthy"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1876,20 +1855,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// If a concurrent flush is still in flight wait for it
-while|while
-condition|(
-name|flushControl
-operator|.
-name|anyFlushing
-argument_list|()
-condition|)
-block|{
 name|flushControl
 operator|.
 name|waitForFlush
 argument_list|()
 expr_stmt|;
-block|}
 if|if
 condition|(
 operator|!

@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * This is an easy-to-use tool that upgrades all segments of an index from previous Lucene versions   * to the current segment file format. It can be used from command line:   *<pre>   *  java -cp lucene-core.jar org.apache.lucene.index.IndexUpgrader [-delete-prior-commits] [-verbose] indexDir   *</pre>   * Alternatively this class can be instantiated and {@link #upgrade} invoked. It uses {@link UpgradeIndexMergePolicy}   * and triggers the upgrade via an optimize request to {@link IndexWriter}.   *<p>This tool keeps only the last commit in an index; for this   * reason, if the incoming index has more than one commit, the tool   * refuses to run by default. Specify {@code -delete-prior-commits}   * to override this, allowing the tool to delete all but the last commit.   * From Java code this can be enabled by passing {@code true} to   * {@link #IndexUpgrader(Directory,PrintStream,boolean)}.   */
+comment|/**   * This is an easy-to-use tool that upgrades all segments of an index from previous Lucene versions   * to the current segment file format. It can be used from command line:   *<pre>   *  java -cp lucene-core.jar org.apache.lucene.index.IndexUpgrader [-delete-prior-commits] [-verbose] indexDir   *</pre>   * Alternatively this class can be instantiated and {@link #upgrade} invoked. It uses {@link UpgradeIndexMergePolicy}   * and triggers the upgrade via an optimize request to {@link IndexWriter}.   *<p>This tool keeps only the last commit in an index; for this   * reason, if the incoming index has more than one commit, the tool   * refuses to run by default. Specify {@code -delete-prior-commits}   * to override this, allowing the tool to delete all but the last commit.   * From Java code this can be enabled by passing {@code true} to   * {@link #IndexUpgrader(Directory,Version,PrintStream,boolean)}.   *<p><b>Warning:</b> This tool may reorder documents if the index was partially   * upgraded before execution (e.g., documents were added). If your application relies   * on&quot;monotonicity&quot; of doc IDs (which means that the order in which the documents   * were added to the index is preserved), do a full optimize instead.   * The {@link MergePolicy} set by {@link IndexWriterConfig} may also reorder   * documents.   */
 end_comment
 
 begin_class
@@ -204,12 +204,26 @@ argument_list|)
 expr_stmt|;
 name|System
 operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"WARNING: This tool may reorder document IDs!"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
 name|exit
 argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
 DECL|method|main
 specifier|public
 specifier|static
@@ -324,6 +338,10 @@ name|dir
 argument_list|)
 argument_list|)
 argument_list|,
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|out
 argument_list|,
 name|deletePriorCommits
@@ -357,17 +375,16 @@ specifier|final
 name|boolean
 name|deletePriorCommits
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
+comment|/** Creates index upgrader on the given directory, using an {@link IndexWriter} using the given    * {@code matchVersion}. The tool refuses to upgrade indexes with multiple commit points. */
 DECL|method|IndexUpgrader
 specifier|public
 name|IndexUpgrader
 parameter_list|(
 name|Directory
 name|dir
+parameter_list|,
+name|Version
+name|matchVersion
 parameter_list|)
 block|{
 name|this
@@ -377,9 +394,7 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|matchVersion
 argument_list|,
 literal|null
 argument_list|)
@@ -390,17 +405,16 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
+comment|/** Creates index upgrader on the given directory, using an {@link IndexWriter} using the given    * {@code matchVersion}. You have the possibility to upgrade indexes with multiple commit points by removing    * all older ones. If {@code infoStream} is not {@code null}, all logging output will be sent to this stream. */
 DECL|method|IndexUpgrader
 specifier|public
 name|IndexUpgrader
 parameter_list|(
 name|Directory
 name|dir
+parameter_list|,
+name|Version
+name|matchVersion
 parameter_list|,
 name|PrintStream
 name|infoStream
@@ -416,9 +430,7 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|matchVersion
 argument_list|,
 literal|null
 argument_list|)
@@ -429,6 +441,7 @@ name|deletePriorCommits
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Creates index upgrader on the given directory, using an {@link IndexWriter} using the given    * config. You have the possibility to upgrade indexes with multiple commit points by removing    * all older ones. If {@code infoStream} is not {@code null}, all logging output will be sent to this stream. */
 DECL|method|IndexUpgrader
 specifier|public
 name|IndexUpgrader

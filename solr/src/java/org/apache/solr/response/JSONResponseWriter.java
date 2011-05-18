@@ -1993,7 +1993,7 @@ operator|!=
 literal|'\\'
 operator|&&
 name|ch
-operator|!=
+operator|<
 literal|'\u2028'
 operator|)
 operator|||
@@ -2130,6 +2130,10 @@ expr_stmt|;
 break|break;
 case|case
 literal|'\u2028'
+case|:
+comment|// fallthrough
+case|case
+literal|'\u2029'
 case|:
 name|unicodeEscape
 argument_list|(

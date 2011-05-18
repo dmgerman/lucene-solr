@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Tokenizer
+name|MockTokenizer
 import|;
 end_import
 
@@ -90,9 +90,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|WhitespaceTokenizer
+name|Tokenizer
 import|;
 end_import
 
@@ -150,11 +148,15 @@ name|Tokenizer
 name|tokenizer
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|reader
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 return|return

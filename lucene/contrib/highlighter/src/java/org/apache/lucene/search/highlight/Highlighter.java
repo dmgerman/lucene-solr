@@ -302,7 +302,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 name|fieldName
 argument_list|,
@@ -403,7 +403,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 name|fieldName
 argument_list|,

@@ -482,16 +482,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
 begin_comment
 comment|/**  * Provides a static reference to a Config object modeling the main  * configuration data for a a Solr instance -- typically found in  * "solrconfig.xml".  *  * @version $Id$  */
 end_comment
@@ -702,6 +692,13 @@ expr_stmt|;
 name|initLibs
 argument_list|()
 expr_stmt|;
+name|luceneMatchVersion
+operator|=
+name|getLuceneVersion
+argument_list|(
+literal|"luceneMatchVersion"
+argument_list|)
+expr_stmt|;
 name|defaultIndexConfig
 operator|=
 operator|new
@@ -745,13 +742,6 @@ name|BooleanQuery
 operator|.
 name|getMaxClauseCount
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|luceneMatchVersion
-operator|=
-name|getLuceneVersion
-argument_list|(
-literal|"luceneMatchVersion"
 argument_list|)
 expr_stmt|;
 name|log

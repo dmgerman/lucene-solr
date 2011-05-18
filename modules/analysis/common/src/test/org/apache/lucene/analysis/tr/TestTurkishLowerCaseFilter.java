@@ -52,7 +52,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|MockTokenizer
 import|;
 end_import
 
@@ -66,9 +66,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|WhitespaceTokenizer
+name|TokenStream
 import|;
 end_import
 
@@ -97,15 +95,19 @@ name|TokenStream
 name|stream
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|StringReader
 argument_list|(
 literal|"\u0130STANBUL \u0130ZM\u0130R ISPARTA"
 argument_list|)
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|TurkishLowerCaseFilter
@@ -147,15 +149,19 @@ name|TokenStream
 name|stream
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|StringReader
 argument_list|(
 literal|"\u0049\u0307STANBUL \u0049\u0307ZM\u0049\u0307R ISPARTA"
 argument_list|)
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|TurkishLowerCaseFilter
@@ -197,15 +203,19 @@ name|TokenStream
 name|stream
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|StringReader
 argument_list|(
 literal|"\u0049\u0316\u0307STANBUL \u0049\u0307ZM\u0049\u0307R I\u0316SPARTA"
 argument_list|)
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|TurkishLowerCaseFilter

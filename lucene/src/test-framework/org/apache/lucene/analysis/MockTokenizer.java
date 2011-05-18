@@ -520,9 +520,15 @@ name|offsetAtt
 operator|.
 name|setOffset
 argument_list|(
+name|correctOffset
+argument_list|(
 name|startOffset
+argument_list|)
 argument_list|,
+name|correctOffset
+argument_list|(
 name|endOffset
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|streamState

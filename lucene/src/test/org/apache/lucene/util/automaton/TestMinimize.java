@@ -213,6 +213,27 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** n^2 space usage in Hopcroft minimization? */
+DECL|method|testMinimizeHuge
+specifier|public
+name|void
+name|testMinimizeHuge
+parameter_list|()
+block|{
+operator|new
+name|RegExp
+argument_list|(
+literal|"+-*(A|.....|BC)*]"
+argument_list|,
+name|RegExp
+operator|.
+name|NONE
+argument_list|)
+operator|.
+name|toAutomaton
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 

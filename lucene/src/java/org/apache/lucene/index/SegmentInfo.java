@@ -224,6 +224,8 @@ specifier|public
 specifier|final
 class|class
 name|SegmentInfo
+implements|implements
+name|Cloneable
 block|{
 comment|// TODO: remove with hasVector and hasProx
 DECL|field|CHECK_FIELDINFO

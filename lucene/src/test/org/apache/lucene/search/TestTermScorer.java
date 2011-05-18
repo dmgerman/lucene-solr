@@ -415,6 +415,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|super
+operator|.
+name|tearDown
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|test
 specifier|public

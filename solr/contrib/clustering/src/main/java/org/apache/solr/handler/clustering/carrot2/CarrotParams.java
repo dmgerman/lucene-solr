@@ -120,6 +120,14 @@ name|CARROT_PREFIX
 operator|+
 literal|"fragzise"
 decl_stmt|;
+DECL|field|LEXICAL_RESOURCES_DIR
+name|String
+name|LEXICAL_RESOURCES_DIR
+init|=
+name|CARROT_PREFIX
+operator|+
+literal|"lexicalResourcesDir"
+decl_stmt|;
 DECL|field|CARROT_PARAM_NAMES
 specifier|public
 specifier|static

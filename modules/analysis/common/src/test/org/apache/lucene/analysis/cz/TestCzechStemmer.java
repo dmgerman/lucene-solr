@@ -62,9 +62,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|WhitespaceTokenizer
+name|MockTokenizer
 import|;
 end_import
 
@@ -2310,15 +2308,19 @@ operator|new
 name|KeywordMarkerFilter
 argument_list|(
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|StringReader
 argument_list|(
 literal|"hole desek"
 argument_list|)
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 argument_list|,
 name|set

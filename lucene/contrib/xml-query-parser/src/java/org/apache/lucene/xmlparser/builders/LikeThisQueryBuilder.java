@@ -413,12 +413,14 @@ name|i
 operator|++
 control|)
 block|{
+try|try
+block|{
 name|TokenStream
 name|ts
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 name|fields
 index|[
@@ -444,8 +446,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|ts
 operator|.
 name|reset
