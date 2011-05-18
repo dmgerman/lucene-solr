@@ -2793,7 +2793,7 @@ name|segmentInfo
 init|=
 name|sis
 operator|.
-name|get
+name|info
 argument_list|(
 name|sis
 operator|.
