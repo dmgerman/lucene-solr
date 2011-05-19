@@ -7183,7 +7183,7 @@ name|setMergePolicy
 argument_list|(
 name|newLogMergePolicy
 argument_list|(
-literal|101
+literal|51
 argument_list|)
 argument_list|)
 argument_list|)
@@ -7228,7 +7228,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|200
+literal|100
 condition|;
 name|i
 operator|++
