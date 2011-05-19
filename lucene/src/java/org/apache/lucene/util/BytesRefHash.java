@@ -911,7 +911,7 @@ condition|)
 block|{
 name|pool
 operator|.
-name|reset
+name|dropBuffersAndReset
 argument_list|()
 expr_stmt|;
 block|}

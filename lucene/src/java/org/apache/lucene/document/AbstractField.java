@@ -1017,6 +1017,13 @@ return|return
 name|docValues
 operator|!=
 literal|null
+operator|&&
+name|docValues
+operator|.
+name|type
+argument_list|()
+operator|!=
+literal|null
 return|;
 block|}
 DECL|method|docValuesType
