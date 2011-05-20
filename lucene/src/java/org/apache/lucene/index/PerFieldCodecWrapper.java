@@ -1601,11 +1601,7 @@ condition|)
 block|{
 name|err
 operator|=
-operator|new
-name|IOException
-argument_list|(
 name|ioe
-argument_list|)
 expr_stmt|;
 block|}
 block|}
