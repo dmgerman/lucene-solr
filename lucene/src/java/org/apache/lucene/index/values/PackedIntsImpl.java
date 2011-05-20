@@ -328,31 +328,6 @@ argument_list|(
 name|bytesUsed
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|id
-operator|=
-name|id
-expr_stmt|;
-name|docToValue
-operator|=
-operator|new
-name|long
-index|[
-literal|1
-index|]
-expr_stmt|;
-name|bytesUsed
-operator|.
-name|addAndGet
-argument_list|(
-name|RamUsageEstimator
-operator|.
-name|NUM_BYTES_LONG
-argument_list|)
-expr_stmt|;
-comment|// TODO the bitset
-comment|// needs memory too
 name|datOut
 operator|=
 name|dir
@@ -382,6 +357,31 @@ argument_list|,
 name|VERSION_CURRENT
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|id
+operator|=
+name|id
+expr_stmt|;
+name|docToValue
+operator|=
+operator|new
+name|long
+index|[
+literal|1
+index|]
+expr_stmt|;
+name|bytesUsed
+operator|.
+name|addAndGet
+argument_list|(
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_LONG
+argument_list|)
+expr_stmt|;
+comment|// TODO the bitset
+comment|// needs memory too
 block|}
 annotation|@
 name|Override

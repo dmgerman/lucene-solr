@@ -354,11 +354,6 @@ operator|.
 name|getFieldInfos
 argument_list|()
 decl_stmt|;
-name|boolean
-name|indexed
-init|=
-literal|false
-decl_stmt|;
 for|for
 control|(
 name|FieldInfo
@@ -375,16 +370,7 @@ name|getCodecId
 argument_list|()
 operator|==
 name|codecId
-condition|)
-block|{
-name|indexed
-operator||=
-name|fieldInfo
-operator|.
-name|isIndexed
-expr_stmt|;
-if|if
-condition|(
+operator|&&
 name|fieldInfo
 operator|.
 name|hasDocValues
@@ -522,7 +508,6 @@ default|default:
 assert|assert
 literal|false
 assert|;
-block|}
 block|}
 block|}
 block|}
