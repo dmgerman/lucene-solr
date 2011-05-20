@@ -42,27 +42,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
 import|;
 end_import
 
@@ -194,30 +174,19 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|schema
-operator|.
-name|SchemaField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|search
 operator|.
 name|ReturnFields
 import|;
 end_import
 
+begin_comment
+comment|/**  * @lucene.internal  */
+end_comment
+
 begin_class
 DECL|class|XMLWriter
 specifier|public
-specifier|final
 class|class
 name|XMLWriter
 extends|extends
@@ -286,29 +255,10 @@ operator|.
 name|toCharArray
 argument_list|()
 decl_stmt|;
-DECL|field|defaultIndent
-specifier|private
-name|boolean
-name|defaultIndent
-init|=
-literal|false
-decl_stmt|;
 DECL|field|version
 specifier|final
 name|int
 name|version
-decl_stmt|;
-comment|// temporary working objects...
-comment|// be careful not to use these recursively...
-DECL|field|tlst
-specifier|private
-specifier|final
-name|ArrayList
-name|tlst
-init|=
-operator|new
-name|ArrayList
-argument_list|()
 decl_stmt|;
 DECL|method|writeResponse
 specifier|public
@@ -531,6 +481,9 @@ argument_list|)
 expr_stmt|;
 comment|// dump response values
 name|NamedList
+argument_list|<
+name|?
+argument_list|>
 name|lst
 init|=
 name|rsp
