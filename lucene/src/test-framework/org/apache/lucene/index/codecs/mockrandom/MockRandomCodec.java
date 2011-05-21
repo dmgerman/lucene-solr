@@ -1574,7 +1574,9 @@ argument_list|(
 name|gap
 argument_list|)
 operator|==
-literal|17
+name|gap
+operator|/
+literal|2
 return|;
 block|}
 annotation|@
