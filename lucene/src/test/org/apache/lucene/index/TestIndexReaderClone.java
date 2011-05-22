@@ -26,9 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentReader
-operator|.
-name|Norm
+name|SegmentNorms
 import|;
 end_import
 
@@ -1048,7 +1046,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1853,7 +1853,7 @@ name|origSegmentReader
 argument_list|)
 expr_stmt|;
 comment|// check the norm refs
-name|Norm
+name|SegmentNorms
 name|norm
 init|=
 name|clonedSegmentReader
@@ -2766,7 +2766,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setMergePolicy

@@ -32,6 +32,48 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|FileOutputStream
+import|;
+end_import
+
+begin_comment
+comment|// for toDot
+end_comment
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStreamWriter
+import|;
+end_import
+
+begin_comment
+comment|// for toDot
+end_comment
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Writer
+import|;
+end_import
+
+begin_comment
+comment|// for toDot
+end_comment
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collection
@@ -242,6 +284,28 @@ name|PositiveIntOutputs
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|fst
+operator|.
+name|Util
+import|;
+end_import
+
+begin_comment
+comment|// for toDot
+end_comment
+
 begin_comment
 comment|/** See {@link VariableGapTermsIndexWriter}  *   * @lucene.experimental */
 end_comment
@@ -309,6 +373,11 @@ specifier|protected
 name|long
 name|dirOffset
 decl_stmt|;
+DECL|field|segment
+specifier|final
+name|String
+name|segment
+decl_stmt|;
 DECL|method|VariableGapTermsIndexReader
 specifier|public
 name|VariableGapTermsIndexReader
@@ -350,6 +419,12 @@ operator|.
 name|TERMS_INDEX_EXTENSION
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|segment
+operator|=
+name|segment
 expr_stmt|;
 name|boolean
 name|success
@@ -840,6 +915,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|/*         final String dotFileName = segment + "_" + fieldInfo.name + ".dot";         Writer w = new OutputStreamWriter(new FileOutputStream(dotFileName));         Util.toDot(fst, w, false, false);         System.out.println("FST INDEX: SAVED to " + dotFileName);         w.close();         */
 if|if
 condition|(
 name|indexDivisor

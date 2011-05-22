@@ -565,7 +565,7 @@ name|ts
 init|=
 name|a
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 name|field
 argument_list|,
@@ -588,6 +588,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|ts
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 name|ts
@@ -621,6 +626,16 @@ name|word
 argument_list|)
 expr_stmt|;
 block|}
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 specifier|final
 name|BooleanQuery
 name|tmp

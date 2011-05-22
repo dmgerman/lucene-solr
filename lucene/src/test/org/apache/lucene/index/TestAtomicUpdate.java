@@ -641,7 +641,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setMaxBufferedDocs
@@ -651,7 +653,7 @@ argument_list|)
 decl_stmt|;
 operator|(
 operator|(
-name|LogMergePolicy
+name|TieredMergePolicy
 operator|)
 name|conf
 operator|.
@@ -659,7 +661,7 @@ name|getMergePolicy
 argument_list|()
 operator|)
 operator|.
-name|setMergeFactor
+name|setMaxMergeAtOnce
 argument_list|(
 literal|3
 argument_list|)

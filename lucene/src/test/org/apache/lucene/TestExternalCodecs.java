@@ -2213,6 +2213,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+synchronized|synchronized
+init|(
+name|state
+init|)
+block|{
 return|return
 name|state
 operator|.
@@ -2225,6 +2230,7 @@ operator|.
 name|name
 argument_list|)
 return|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -2333,13 +2339,7 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
-name|MockTokenizer
-operator|.
-name|WHITESPACE
-argument_list|,
-literal|true
-argument_list|,
-literal|true
+name|random
 argument_list|)
 argument_list|)
 operator|.

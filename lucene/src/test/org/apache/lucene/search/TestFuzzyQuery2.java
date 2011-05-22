@@ -412,6 +412,8 @@ argument_list|,
 operator|new
 name|MockAnalyzer
 argument_list|(
+name|random
+argument_list|,
 name|MockTokenizer
 operator|.
 name|KEYWORD
@@ -422,7 +424,7 @@ argument_list|)
 operator|.
 name|setMergePolicy
 argument_list|(
-name|newInOrderLogMergePolicy
+name|newLogMergePolicy
 argument_list|()
 argument_list|)
 argument_list|)

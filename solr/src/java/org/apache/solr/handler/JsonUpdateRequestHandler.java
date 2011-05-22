@@ -146,6 +146,8 @@ return|return
 operator|new
 name|JsonLoader
 argument_list|(
+name|req
+argument_list|,
 name|processor
 argument_list|)
 return|;

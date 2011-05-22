@@ -62,7 +62,77 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -125,7 +195,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * This class keeps track of each SegmentInfos instance that  * is still "live", either because it corresponds to a  * segments_N file in the Directory (a "commit", i.e. a  * committed SegmentInfos) or because it's an in-memory  * SegmentInfos that a writer is actively updating but has  * not yet committed.  This class uses simple reference  * counting to map the live SegmentInfos instances to  * individual files in the Directory.  *  * The same directory file may be referenced by more than  * one IndexCommit, i.e. more than one SegmentInfos.  * Therefore we count how many commits reference each file.  * When all the commits referencing a certain file have been  * deleted, the refcount for that file becomes zero, and the  * file is deleted.  *  * A separate deletion policy interface  * (IndexDeletionPolicy) is consulted on creation (onInit)  * and once per commit (onCommit), to decide when a commit  * should be removed.  *   * It is the business of the IndexDeletionPolicy to choose  * when to delete commit points.  The actual mechanics of  * file deletion, retrying, etc, derived from the deletion  * of commit points is the business of the IndexFileDeleter.  *   * The current default deletion policy is {@link  * KeepOnlyLastCommitDeletionPolicy}, which removes all  * prior commits when a new commit has completed.  This  * matches the behavior before 2.2.  *  * Note that you must hold the write.lock before  * instantiating this class.  It opens segments_N file(s)  * directly with no retry logic.  */
+comment|/*  * This class keeps track of each SegmentInfos instance that  * is still "live", either because it corresponds to a  * segments_N file in the Directory (a "commit", i.e. a  * committed SegmentInfos) or because it's an in-memory  * SegmentInfos that a writer is actively updating but has  * not yet committed.  This class uses simple reference  * counting to map the live SegmentInfos instances to  * individual files in the Directory.  *  * The same directory file may be referenced by more than  * one IndexCommit, i.e. more than one SegmentInfos.  * Therefore we count how many commits reference each file.  * When all the commits referencing a certain file have been  * deleted, the refcount for that file becomes zero, and the  * file is deleted.  *  * A separate deletion policy interface  * (IndexDeletionPolicy) is consulted on creation (onInit)  * and once per commit (onCommit), to decide when a commit  * should be removed.  *  * It is the business of the IndexDeletionPolicy to choose  * when to delete commit points.  The actual mechanics of  * file deletion, retrying, etc, derived from the deletion  * of commit points is the business of the IndexFileDeleter.  *  * The current default deletion policy is {@link  * KeepOnlyLastCommitDeletionPolicy}, which removes all  * prior commits when a new commit has completed.  This  * matches the behavior before 2.2.  *  * Note that you must hold the write.lock before  * instantiating this class.  It opens segments_N file(s)  * directly with no retry logic.  */
 end_comment
 
 begin_class
@@ -143,7 +213,7 @@ name|String
 argument_list|>
 name|deletable
 decl_stmt|;
-comment|/* Reference count for all files in the index.      * Counts how many existing commits reference a file.    **/
+comment|/* Reference count for all files in the index.    * Counts how many existing commits reference a file.    **/
 DECL|field|refCounts
 specifier|private
 name|Map
@@ -624,6 +694,74 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
+name|SegmentInfos
+name|infos
+init|=
+name|sis
+decl_stmt|;
+for|for
+control|(
+name|SegmentInfo
+name|segmentInfo
+range|:
+name|infos
+control|)
+block|{
+try|try
+block|{
+comment|/*                  * Force FI to load for each segment since we could see a                  * segments file and load successfully above if the files are                  * still referenced when they are deleted and the os doesn't let                  * you delete them. Yet its likely that fnm files are removed                  * while seg file is still around Since LUCENE-2984 we need FI                  * to find out if a seg has vectors and prox so we need those                  * files to be opened for a commit point.                  */
+name|segmentInfo
+operator|.
+name|getFieldInfos
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|FileNotFoundException
+name|e
+parameter_list|)
+block|{
+name|refresh
+argument_list|(
+name|segmentInfo
+operator|.
+name|name
+argument_list|)
+expr_stmt|;
+name|sis
+operator|=
+literal|null
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"init: hit FileNotFoundException when loading commit \""
+operator|+
+name|fileName
+operator|+
+literal|"\"; skipping this commit point"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+block|}
+if|if
+condition|(
+name|sis
+operator|!=
+literal|null
+condition|)
+block|{
+specifier|final
 name|CommitPoint
 name|commitPoint
 init|=
@@ -1479,7 +1617,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * For definition of "check point" see IndexWriter comments:    * "Clarification: Check Points (and commits)".    *     * Writer calls this when it has made a "consistent    * change" to the index, meaning new files are written to    * the index and the in-memory SegmentInfos have been    * modified to point to those files.    *    * This may or may not be a commit (segments_N may or may    * not have been written).    *    * We simply incref the files referenced by the new    * SegmentInfos and decref the files we had previously    * seen (if any).    *    * If this is a commit, we also call the policy to give it    * a chance to remove other commits.  If any commits are    * removed, we decref their files as well.    */
+comment|/**    * For definition of "check point" see IndexWriter comments:    * "Clarification: Check Points (and commits)".    *    * Writer calls this when it has made a "consistent    * change" to the index, meaning new files are written to    * the index and the in-memory SegmentInfos have been    * modified to point to those files.    *    * This may or may not be a commit (segments_N may or may    * not have been written).    *    * We simply incref the files referenced by the new    * SegmentInfos and decref the files we had previously    * seen (if any).    *    * If this is a commit, we also call the policy to give it    * a chance to remove other commits.  If any commits are    * removed, we decref their files as well.    */
 DECL|method|checkpoint
 specifier|public
 name|void
@@ -1506,9 +1644,6 @@ argument_list|(
 literal|"now checkpoint \""
 operator|+
 name|segmentInfos
-operator|.
-name|getCurrentSegmentFileName
-argument_list|()
 operator|+
 literal|"\" ["
 operator|+

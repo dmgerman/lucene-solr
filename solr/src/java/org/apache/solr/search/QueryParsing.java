@@ -1676,7 +1676,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Can't determine Sort Order: "
+literal|"Can't determine a Sort Order (asc or desc) in sort spec "
 operator|+
 name|sp
 argument_list|)
@@ -3469,16 +3469,23 @@ argument_list|,
 name|pos
 argument_list|)
 decl_stmt|;
-return|return
+if|if
+condition|(
 name|flt
-condition|?
+condition|)
+block|{
+return|return
 name|Double
 operator|.
 name|parseDouble
 argument_list|(
 name|v
 argument_list|)
-else|:
+return|;
+block|}
+else|else
+block|{
+return|return
 name|Long
 operator|.
 name|parseLong
@@ -3486,6 +3493,7 @@ argument_list|(
 name|v
 argument_list|)
 return|;
+block|}
 block|}
 DECL|method|getDouble
 name|double
@@ -3790,6 +3798,7 @@ argument_list|(
 name|pos
 argument_list|)
 expr_stmt|;
+comment|//          if (!Character.isJavaIdentifierPart(ch)&& ch != '.'&& ch != ':') {
 if|if
 condition|(
 operator|!
@@ -3803,10 +3812,6 @@ operator|&&
 name|ch
 operator|!=
 literal|'.'
-operator|&&
-name|ch
-operator|!=
-literal|':'
 condition|)
 block|{
 break|break;

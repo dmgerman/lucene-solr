@@ -136,6 +136,16 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
+literal|"0"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
 literal|"1"
 argument_list|,
 literal|"v_t"
@@ -609,6 +619,17 @@ literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
 comment|// function query... just make sure it doesn't throw an exception
+if|if
+condition|(
+literal|"v_s"
+operator|.
+name|equals
+argument_list|(
+name|f
+argument_list|)
+condition|)
+continue|continue;
+comment|// in this context, functions must be able to be interpreted as a float
 name|assertQ
 argument_list|(
 name|req

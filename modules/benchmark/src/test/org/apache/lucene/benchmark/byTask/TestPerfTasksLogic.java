@@ -675,7 +675,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setOpenMode
@@ -1014,7 +1016,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setOpenMode
@@ -1213,7 +1217,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setOpenMode
@@ -1485,7 +1491,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setOpenMode
@@ -1944,7 +1952,7 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"analyzer=org.apache.lucene.analysis.MockAnalyzer"
+literal|"analyzer=org.apache.lucene.analysis.core.WhitespaceAnalyzer"
 block|,
 literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
 block|,
@@ -2009,7 +2017,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setOpenMode
@@ -2100,7 +2110,7 @@ init|=
 block|{
 literal|"# ----- properties "
 block|,
-literal|"analyzer=org.apache.lucene.analysis.MockAnalyzer"
+literal|"analyzer=org.apache.lucene.analysis.core.WhitespaceAnalyzer"
 block|,
 literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
 block|,
@@ -4528,14 +4538,14 @@ literal|"five six"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// MockAnalyzer, default maxShingleSize and outputUnigrams
+comment|// WhitespaceAnalyzer, default maxShingleSize and outputUnigrams
 name|benchmark
 operator|=
 name|execBenchmark
 argument_list|(
 name|getShingleConfig
 argument_list|(
-literal|"analyzer:MockAnalyzer"
+literal|"analyzer:WhitespaceAnalyzer"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4571,14 +4581,14 @@ literal|"six"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// MockAnalyzer, maxShingleSize=3 and outputUnigrams=false
+comment|// WhitespaceAnalyzer, maxShingleSize=3 and outputUnigrams=false
 name|benchmark
 operator|=
 name|execBenchmark
 argument_list|(
 name|getShingleConfig
 argument_list|(
-literal|"outputUnigrams:false,maxShingleSize:3,analyzer:MockAnalyzer"
+literal|"outputUnigrams:false,maxShingleSize:3,analyzer:WhitespaceAnalyzer"
 argument_list|)
 argument_list|)
 expr_stmt|;

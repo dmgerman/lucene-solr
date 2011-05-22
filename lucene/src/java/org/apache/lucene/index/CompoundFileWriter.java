@@ -119,11 +119,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Combines multiple files into a single compound file.  * The file format:<br>  *<ul>  *<li>VInt fileCount</li>  *<li>{Directory}  *         fileCount entries with the following structure:</li>  *<ul>  *<li>long dataOffset</li>  *<li>String fileName</li>  *</ul>  *<li>{File Data}  *         fileCount entries with the raw data of the corresponding file</li>  *</ul>  *  * The fileCount integer indicates how many files are contained in this compound  * file. The {directory} that follows has that many entries. Each directory entry  * contains a long pointer to the start of this file's data section, and a String  * with that file's name.  */
+comment|/**  * Combines multiple files into a single compound file.  * The file format:<br>  *<ul>  *<li>VInt fileCount</li>  *<li>{Directory}  *         fileCount entries with the following structure:</li>  *<ul>  *<li>long dataOffset</li>  *<li>String fileName</li>  *</ul>  *<li>{File Data}  *         fileCount entries with the raw data of the corresponding file</li>  *</ul>  *  * The fileCount integer indicates how many files are contained in this compound  * file. The {directory} that follows has that many entries. Each directory entry  * contains a long pointer to the start of this file's data section, and a String  * with that file's name.  *   * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|CompoundFileWriter
+specifier|public
 specifier|final
 class|class
 name|CompoundFileWriter
@@ -415,7 +416,7 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Merge files with the extensions added up to now.      *  All files with these extensions are combined sequentially into the      *  compound stream. After successful merge, the source files      *  are deleted.      *  @throws IllegalStateException if close() had been called before or      *   if no file has been added to this object      */
+comment|/** Merge files with the extensions added up to now.      *  All files with these extensions are combined sequentially into the      *  compound stream.      *  @throws IllegalStateException if close() had been called before or      *   if no file has been added to this object      */
 DECL|method|close
 specifier|public
 name|void

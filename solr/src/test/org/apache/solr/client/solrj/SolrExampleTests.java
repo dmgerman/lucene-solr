@@ -536,6 +536,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -2440,6 +2450,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|Ignore
+comment|// TODO: re-enable when new transformer syntax is implemented
 DECL|method|testAugmentFields
 specifier|public
 name|void
@@ -2586,7 +2599,7 @@ name|CommonParams
 operator|.
 name|FL
 argument_list|,
-literal|"id,price,_docid_,_explain:nl_,score,aaa=_value:aaa_,ten=_value:int:10_"
+literal|"id,price,_docid_,_explain:nl_,score,aaa:_value:aaa_,ten:_value:int:10_"
 argument_list|)
 expr_stmt|;
 name|query

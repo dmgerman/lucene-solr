@@ -36,6 +36,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -55,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Pass a the field value through as a String, no matter the type  *  **/
+comment|/**  * Pass a the field value through as a String, no matter the type // Q: doesn't this mean it's a "string"?  *  **/
 end_comment
 
 begin_class
@@ -72,6 +86,12 @@ specifier|final
 name|String
 name|string
 decl_stmt|;
+DECL|field|bytesRef
+specifier|protected
+specifier|final
+name|BytesRef
+name|bytesRef
+decl_stmt|;
 DECL|method|LiteralValueSource
 specifier|public
 name|LiteralValueSource
@@ -85,6 +105,16 @@ operator|.
 name|string
 operator|=
 name|string
+expr_stmt|;
+name|this
+operator|.
+name|bytesRef
+operator|=
+operator|new
+name|BytesRef
+argument_list|(
+name|string
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** returns the literal value */
@@ -116,8 +146,10 @@ name|IOException
 block|{
 return|return
 operator|new
-name|DocValues
-argument_list|()
+name|StrDocValues
+argument_list|(
+name|this
+argument_list|)
 block|{
 annotation|@
 name|Override
@@ -131,6 +163,30 @@ parameter_list|)
 block|{
 return|return
 name|string
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|bytesVal
+parameter_list|(
+name|int
+name|doc
+parameter_list|,
+name|BytesRef
+name|target
+parameter_list|)
+block|{
+name|target
+operator|.
+name|copy
+argument_list|(
+name|bytesRef
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
 return|;
 block|}
 annotation|@

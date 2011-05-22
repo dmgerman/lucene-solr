@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test demonstrating EOF bug on the last field of the last doc   * if other docs have allready been accessed.  */
+comment|/**  * Test demonstrating EOF bug on the last field of the last doc  * if other docs have allready been accessed.  */
 end_comment
 
 begin_class
@@ -256,7 +256,9 @@ name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 operator|.
 name|setMergePolicy

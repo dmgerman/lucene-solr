@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Removes elisions from a {@link TokenStream}. For example, "l'avion" (the plane) will be  * tokenized as "avion" (plane).  *<p>  * Note that {@link StandardTokenizer} sees " ' " as a space, and cuts it out.  *   * @see<a href="http://fr.wikipedia.org/wiki/%C3%89lision">Elision in Wikipedia</a>  */
+comment|/**  * Removes elisions from a {@link TokenStream}. For example, "l'avion" (the plane) will be  * tokenized as "avion" (plane).  *   * @see<a href="http://fr.wikipedia.org/wiki/%C3%89lision">Elision in Wikipedia</a>  */
 end_comment
 
 begin_class

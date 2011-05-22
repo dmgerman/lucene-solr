@@ -781,7 +781,7 @@ name|IOException
 block|{
 name|ArrayUtil
 operator|.
-name|quickSort
+name|mergeSort
 argument_list|(
 name|subSpansByDoc
 argument_list|,

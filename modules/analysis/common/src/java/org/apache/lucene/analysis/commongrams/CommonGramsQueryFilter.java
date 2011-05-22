@@ -145,6 +145,11 @@ specifier|private
 name|String
 name|previousType
 decl_stmt|;
+DECL|field|exhausted
+specifier|private
+name|boolean
+name|exhausted
+decl_stmt|;
 comment|/**    * Constructs a new CommonGramsQueryFilter based on the provided CommomGramsFilter     *     * @param input CommonGramsFilter the QueryFilter will use    */
 DECL|method|CommonGramsQueryFilter
 specifier|public
@@ -184,6 +189,10 @@ name|previousType
 operator|=
 literal|null
 expr_stmt|;
+name|exhausted
+operator|=
+literal|false
+expr_stmt|;
 block|}
 comment|/**    * Output bigrams whenever possible to optimize queries. Only output unigrams    * when they are not a member of a bigram. Example:    *<ul>    *<li>input: "the rain in spain falls mainly"    *<li>output:"the-rain", "rain-in" ,"in-spain", "falls", "mainly"    *</ul>    */
 annotation|@
@@ -198,6 +207,9 @@ name|IOException
 block|{
 while|while
 condition|(
+operator|!
+name|exhausted
+operator|&&
 name|input
 operator|.
 name|incrementToken
@@ -260,6 +272,10 @@ operator|=
 name|current
 expr_stmt|;
 block|}
+name|exhausted
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|previous

@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|MockTokenizer
 import|;
 end_import
 
@@ -52,9 +52,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|WhitespaceTokenizer
+name|TokenStream
 import|;
 end_import
 
@@ -106,15 +104,19 @@ name|TokenStream
 name|stream
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|StringReader
 argument_list|(
 literal|"Do have a nice day"
 argument_list|)
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// 1-4 length string
@@ -162,15 +164,19 @@ name|TokenStream
 name|stream
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 operator|new
 name|StringReader
 argument_list|(
 literal|"Do have a nice day"
 argument_list|)
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// 1-4 length string

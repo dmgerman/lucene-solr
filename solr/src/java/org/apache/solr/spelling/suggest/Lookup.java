@@ -149,10 +149,14 @@ name|LookupResult
 argument_list|>
 block|{
 DECL|field|key
+specifier|public
+specifier|final
 name|String
 name|key
 decl_stmt|;
 DECL|field|value
+specifier|public
+specifier|final
 name|float
 name|value
 decl_stmt|;

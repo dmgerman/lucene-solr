@@ -2726,7 +2726,7 @@ name|ts
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 name|fieldName
 argument_list|,
@@ -2751,6 +2751,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|ts
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 name|ts
@@ -2828,6 +2833,16 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** determines if the passed term is likely to be of interest in "more like" comparisons  	 *  	 * @param term The word being considered 	 * @return true if should be ignored, false if should be used in further analysis 	 */
 DECL|method|isNoiseWord

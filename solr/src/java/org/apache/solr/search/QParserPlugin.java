@@ -203,6 +203,14 @@ block|,
 name|SpatialBoxQParserPlugin
 operator|.
 name|class
+block|,
+name|JoinQParserPlugin
+operator|.
+name|NAME
+block|,
+name|JoinQParserPlugin
+operator|.
+name|class
 block|,   }
 decl_stmt|;
 comment|/** return a {@link QParser} */

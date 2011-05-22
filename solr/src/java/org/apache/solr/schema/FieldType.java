@@ -510,6 +510,26 @@ operator|!=
 literal|0
 return|;
 block|}
+comment|/** Check if a property is set */
+DECL|method|hasProperty
+specifier|protected
+name|boolean
+name|hasProperty
+parameter_list|(
+name|int
+name|p
+parameter_list|)
+block|{
+return|return
+operator|(
+name|properties
+operator|&
+name|p
+operator|)
+operator|!=
+literal|0
+return|;
+block|}
 comment|/**    * A "polyField" is a FieldType that can produce more than one Fieldable instance for a single value, via the {@link #createFields(org.apache.solr.schema.SchemaField, Object, float)} method.  This is useful    * when hiding the implementation details of a field from the Solr end user.  For instance, a spatial point may be represented by multiple different fields.    * @return true if the {@link #createFields(org.apache.solr.schema.SchemaField, Object, float)} method may return more than one field    */
 DECL|method|isPolyField
 specifier|public

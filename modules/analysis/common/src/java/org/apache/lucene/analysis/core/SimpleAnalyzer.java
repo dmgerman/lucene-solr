@@ -52,6 +52,8 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|util
+operator|.
 name|CharTokenizer
 import|;
 end_import

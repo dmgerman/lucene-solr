@@ -38,7 +38,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharTokenizer
+name|core
+operator|.
+name|LetterTokenizer
 import|;
 end_import
 
@@ -52,9 +54,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
+name|util
 operator|.
-name|LetterTokenizer
+name|CharTokenizer
 import|;
 end_import
 

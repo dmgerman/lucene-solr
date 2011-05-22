@@ -288,7 +288,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Returns a field with the given name if any exist in this document, or    * null.  If multiple fields exists with this name, this method returns the    * first value added.    * Do not use this method with lazy loaded fields.    */
+comment|/** Returns a field with the given name if any exist in this document, or    * null.  If multiple fields exists with this name, this method returns the    * first value added.    * Do not use this method with lazy loaded fields or {@link NumericField}.    * @deprecated use {@link #getFieldable} instead and cast depending on    * data type.    * @throws ClassCastException if you try to retrieve a numerical or    * lazy loaded field.    */
+annotation|@
+name|Deprecated
 DECL|method|getField
 specifier|public
 specifier|final
@@ -347,7 +349,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Returns the string value of the field with the given name if any exist in    * this document, or null.  If multiple fields exist with this name, this    * method returns the first value added. If only binary fields with this name    * exist, returns null.    */
+comment|/** Returns the string value of the field with the given name if any exist in    * this document, or null.  If multiple fields exist with this name, this    * method returns the first value added. If only binary fields with this name    * exist, returns null.    * For {@link NumericField} it returns the string value of the number. If you want    * the actual {@code NumericField} instance back, use {@link #getFieldable}.    */
 DECL|method|get
 specifier|public
 specifier|final
@@ -426,7 +428,9 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|/**    * Returns an array of {@link Field}s with the given name.    * Do not use with lazy loaded fields.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    *    * @param name the name of the field    * @return a<code>Field[]</code> array    */
+comment|/**    * Returns an array of {@link Field}s with the given name.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    * Do not use this method with lazy loaded fields or {@link NumericField}.    *    * @param name the name of the field    * @return a<code>Field[]</code> array    * @deprecated use {@link #getFieldable} instead and cast depending on    * data type.    * @throws ClassCastException if you try to retrieve a numerical or    * lazy loaded field.    */
+annotation|@
+name|Deprecated
 DECL|method|getFields
 specifier|public
 specifier|final
@@ -622,7 +626,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|/**    * Returns an array of values of the field specified as the method parameter.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    * @param name the name of the field    * @return a<code>String[]</code> of field values    */
+comment|/**    * Returns an array of values of the field specified as the method parameter.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    * For {@link NumericField}s it returns the string value of the number. If you want    * the actual {@code NumericField} instances back, use {@link #getFieldables}.    * @param name the name of the field    * @return a<code>String[]</code> of field values    */
 DECL|method|getValues
 specifier|public
 specifier|final

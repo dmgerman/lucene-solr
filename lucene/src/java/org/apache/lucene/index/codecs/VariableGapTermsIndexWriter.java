@@ -832,6 +832,12 @@ specifier|final
 name|PositiveIntOutputs
 name|fstOutputs
 decl_stmt|;
+DECL|field|startTermsFilePointer
+specifier|private
+specifier|final
+name|long
+name|startTermsFilePointer
+decl_stmt|;
 DECL|field|fieldInfo
 specifier|final
 name|FieldInfo
@@ -946,6 +952,10 @@ name|termsFilePointer
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|startTermsFilePointer
+operator|=
+name|termsFilePointer
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -1022,6 +1032,23 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|text
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+comment|// We already added empty string in ctor
+assert|assert
+name|termsFilePointer
+operator|==
+name|startTermsFilePointer
+assert|;
+return|return;
+block|}
 specifier|final
 name|int
 name|lengthSave

@@ -262,7 +262,9 @@ literal|"foo bar foo again foo bar go go go"
 argument_list|,
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|terms

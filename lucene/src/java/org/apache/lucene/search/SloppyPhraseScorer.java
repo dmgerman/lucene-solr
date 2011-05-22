@@ -32,7 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|HashSet
 import|;
 end_import
 
@@ -405,7 +405,7 @@ return|return
 name|pp2
 return|;
 block|}
-comment|/**      * Init PhrasePositions in place.      * There is a one time initialization for this scorer:      *<br>- Put in repeats[] each pp that has another pp with same position in the doc.      *<br>- Also mark each such pp by pp.repeats = true.      *<br>Later can consult with repeats[] in termPositionsDiffer(pp), making that check efficient.      * In particular, this allows to score queries with no repetitions with no overhead due to this computation.      *<br>- Example 1 - query with no repetitions: "ho my"~2      *<br>- Example 2 - query with repetitions: "ho my my"~2      *<br>- Example 3 - query with repetitions: "my ho my"~2      *<br>Init per doc w/repeats in query, includes propagating some repeating pp's to avoid false phrase detection.        * @return end (max position), or -1 if any term ran out (i.e. done)       * @throws IOException       */
+comment|/**      * Init PhrasePositions in place.      * There is a one time initialization for this scorer (taking place at the first doc that matches all terms):      *<br>- Put in repeats[] each pp that has another pp with same position in the doc.      *       This relies on that the position in PP is computed as (TP.position - offset) and       *       so by adding offset we actually compare positions and identify that the two are       *       the same term.      *       An exclusion to this is two distinct terms in the same offset in query and same       *       position in doc. This case is detected by comparing just the (query) offsets,       *       and two such PPs are not considered "repeating".       *<br>- Also mark each such pp by pp.repeats = true.      *<br>Later can consult with repeats[] in termPositionsDiffer(pp), making that check efficient.      * In particular, this allows to score queries with no repetitions with no overhead due to this computation.      *<br>- Example 1 - query with no repetitions: "ho my"~2      *<br>- Example 2 - query with repetitions: "ho my my"~2      *<br>- Example 3 - query with repetitions: "my ho my"~2      *<br>Init per doc w/repeats in query, includes propagating some repeating pp's to avoid false phrase detection.        * @return end (max position), or -1 if any term ran out (i.e. done)       * @throws IOException       */
 DECL|method|initPhrasePositions
 specifier|private
 name|int
@@ -520,11 +520,9 @@ operator|=
 literal|true
 expr_stmt|;
 comment|// check for repeats
-name|HashMap
+name|HashSet
 argument_list|<
 name|PhrasePositions
-argument_list|,
-name|Object
 argument_list|>
 name|m
 init|=
@@ -579,6 +577,20 @@ operator|.
 name|next
 control|)
 block|{
+if|if
+condition|(
+name|pp
+operator|.
+name|offset
+operator|==
+name|pp2
+operator|.
+name|offset
+condition|)
+block|{
+continue|continue;
+comment|// not a repetition: the two PPs are originally in same offset in the query!
+block|}
 name|int
 name|tpPos2
 init|=
@@ -606,11 +618,9 @@ condition|)
 name|m
 operator|=
 operator|new
-name|HashMap
+name|HashSet
 argument_list|<
 name|PhrasePositions
-argument_list|,
-name|Object
 argument_list|>
 argument_list|()
 expr_stmt|;
@@ -628,20 +638,16 @@ literal|true
 expr_stmt|;
 name|m
 operator|.
-name|put
+name|add
 argument_list|(
 name|pp
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 name|m
 operator|.
-name|put
+name|add
 argument_list|(
 name|pp2
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -656,9 +662,6 @@ condition|)
 name|repeats
 operator|=
 name|m
-operator|.
-name|keySet
-argument_list|()
 operator|.
 name|toArray
 argument_list|(
@@ -863,7 +866,23 @@ name|pp2
 operator|==
 name|pp
 condition|)
+block|{
 continue|continue;
+block|}
+if|if
+condition|(
+name|pp
+operator|.
+name|offset
+operator|==
+name|pp2
+operator|.
+name|offset
+condition|)
+block|{
+continue|continue;
+comment|// not a repetition: the two PPs are originally in same offset in the query!
+block|}
 name|int
 name|tpPos2
 init|=
@@ -881,6 +900,7 @@ name|tpPos2
 operator|==
 name|tpPos
 condition|)
+block|{
 return|return
 name|pp
 operator|.
@@ -895,6 +915,7 @@ else|:
 name|pp2
 return|;
 comment|// do not differ: return the one with higher offset.
+block|}
 block|}
 return|return
 literal|null

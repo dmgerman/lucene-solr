@@ -38,6 +38,16 @@ name|LOWERNAMES
 init|=
 literal|"lowernames"
 decl_stmt|;
+comment|/**    * if true, ignore TikaException (give up to extract text but index meta data)    */
+DECL|field|IGNORE_TIKA_EXCEPTION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|IGNORE_TIKA_EXCEPTION
+init|=
+literal|"ignoreTikaException"
+decl_stmt|;
 comment|/**    * The param prefix for mapping Tika metadata to Solr fields.    *<p/>    * To map a field, add a name like:    *<pre>fmap.title=solr.title</pre>    *    * In this example, the tika "title" metadata value will be added to a Solr field named "solr.title"    *    *    */
 DECL|field|MAP_PREFIX
 specifier|public

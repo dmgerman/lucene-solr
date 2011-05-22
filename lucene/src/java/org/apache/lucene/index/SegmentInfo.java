@@ -203,7 +203,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *   * @lucene.experimental  */
+comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -212,7 +212,20 @@ specifier|public
 specifier|final
 class|class
 name|SegmentInfo
+implements|implements
+name|Cloneable
 block|{
+comment|// TODO: remove with hasVector and hasProx
+DECL|field|CHECK_FIELDINFO
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|CHECK_FIELDINFO
+init|=
+operator|-
+literal|2
+decl_stmt|;
 DECL|field|NO
 specifier|static
 specifier|final
@@ -312,6 +325,7 @@ operator|-
 literal|1
 decl_stmt|;
 comment|// total byte size of all of our files (computed on demand)
+comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreOffset
 specifier|private
 name|int
@@ -319,6 +333,7 @@ name|docStoreOffset
 decl_stmt|;
 comment|// if this segment shares stored fields& vectors, this
 comment|// offset is where in that file this segment's docs begin
+comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreSegment
 specifier|private
 name|String
@@ -326,6 +341,7 @@ name|docStoreSegment
 decl_stmt|;
 comment|// name used to derive fields/vectors file we share with
 comment|// other segments
+comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreIsCompoundFile
 specifier|private
 name|boolean
@@ -338,18 +354,23 @@ name|int
 name|delCount
 decl_stmt|;
 comment|// How many deleted docs in this segment
-DECL|field|hasProx
-specifier|private
-name|boolean
-name|hasProx
-decl_stmt|;
-comment|// True if this segment has any fields with omitTermFreqAndPositions==false
+comment|//TODO: remove when we don't have to support old indexes anymore that had this field
 DECL|field|hasVectors
 specifier|private
-name|boolean
+name|int
 name|hasVectors
+init|=
+name|CHECK_FIELDINFO
 decl_stmt|;
-comment|// True if this segment wrote term vectors
+comment|//TODO: remove when we don't have to support old indexes anymore that had this field
+DECL|field|hasProx
+specifier|private
+name|int
+name|hasProx
+init|=
+name|CHECK_FIELDINFO
+decl_stmt|;
+comment|// True if this segment has any fields with omitTermFreqAndPositions==false
 DECL|field|fieldInfos
 specifier|private
 name|FieldInfos
@@ -387,6 +408,12 @@ specifier|private
 name|long
 name|bufferedDeletesGen
 decl_stmt|;
+comment|// holds the fieldInfos Version to refresh files() cache if FI has changed
+DECL|field|fieldInfosVersion
+specifier|private
+name|long
+name|fieldInfosVersion
+decl_stmt|;
 DECL|method|SegmentInfo
 specifier|public
 name|SegmentInfo
@@ -403,14 +430,8 @@ parameter_list|,
 name|boolean
 name|isCompoundFile
 parameter_list|,
-name|boolean
-name|hasProx
-parameter_list|,
 name|SegmentCodecs
 name|segmentCodecs
-parameter_list|,
-name|boolean
-name|hasVectors
 parameter_list|,
 name|FieldInfos
 name|fieldInfos
@@ -459,21 +480,9 @@ name|name
 expr_stmt|;
 name|this
 operator|.
-name|hasProx
-operator|=
-name|hasProx
-expr_stmt|;
-name|this
-operator|.
 name|segmentCodecs
 operator|=
 name|segmentCodecs
-expr_stmt|;
-name|this
-operator|.
-name|hasVectors
-operator|=
-name|hasVectors
 expr_stmt|;
 name|delCount
 operator|=
@@ -949,8 +958,6 @@ name|input
 operator|.
 name|readByte
 argument_list|()
-operator|==
-name|YES
 expr_stmt|;
 comment|// System.out.println(Thread.currentThread().getName() + ": si.read hasProx=" + hasProx + " seg=" + name);
 if|if
@@ -1020,8 +1027,6 @@ name|input
 operator|.
 name|readByte
 argument_list|()
-operator|==
-literal|1
 expr_stmt|;
 block|}
 else|else
@@ -1136,6 +1141,10 @@ operator|.
 name|VECTORS_INDEX_EXTENSION
 argument_list|)
 argument_list|)
+condition|?
+name|YES
+else|:
+name|NO
 expr_stmt|;
 block|}
 finally|finally
@@ -1402,24 +1411,19 @@ name|IOException
 block|{
 return|return
 name|hasVectors
-return|;
-block|}
-DECL|method|setHasVectors
-specifier|public
-name|void
-name|setHasVectors
-parameter_list|(
-name|boolean
-name|v
-parameter_list|)
-block|{
-name|hasVectors
-operator|=
-name|v
-expr_stmt|;
-name|clearFilesCache
+operator|==
+name|CHECK_FIELDINFO
+condition|?
+name|getFieldInfos
 argument_list|()
-expr_stmt|;
+operator|.
+name|hasVectors
+argument_list|()
+else|:
+name|hasVectors
+operator|==
+name|YES
+return|;
 block|}
 DECL|method|getFieldInfos
 specifier|public
@@ -1520,11 +1524,7 @@ name|dir
 argument_list|,
 name|isCompoundFile
 argument_list|,
-name|hasProx
-argument_list|,
 name|segmentCodecs
-argument_list|,
-name|hasVectors
 argument_list|,
 name|fieldInfos
 operator|==
@@ -1646,6 +1646,18 @@ operator|.
 name|version
 operator|=
 name|version
+expr_stmt|;
+name|si
+operator|.
+name|hasProx
+operator|=
+name|hasProx
+expr_stmt|;
+name|si
+operator|.
+name|hasVectors
+operator|=
+name|hasVectors
 expr_stmt|;
 return|return
 name|si
@@ -1988,82 +2000,60 @@ operator|<=
 name|docCount
 assert|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|getDocStoreOffset
 specifier|public
 name|int
 name|getDocStoreOffset
 parameter_list|()
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 return|return
 name|docStoreOffset
 return|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|getDocStoreIsCompoundFile
 specifier|public
 name|boolean
 name|getDocStoreIsCompoundFile
 parameter_list|()
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 return|return
 name|docStoreIsCompoundFile
 return|;
 block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|setDocStoreIsCompoundFile
+specifier|public
 name|void
 name|setDocStoreIsCompoundFile
 parameter_list|(
 name|boolean
-name|v
+name|docStoreIsCompoundFile
 parameter_list|)
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
+name|this
+operator|.
 name|docStoreIsCompoundFile
 operator|=
-name|v
+name|docStoreIsCompoundFile
 expr_stmt|;
 name|clearFilesCache
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|getDocStoreSegment
-specifier|public
-name|String
-name|getDocStoreSegment
-parameter_list|()
-block|{
-return|return
-name|docStoreSegment
-return|;
-block|}
-DECL|method|setDocStoreSegment
-specifier|public
-name|void
-name|setDocStoreSegment
-parameter_list|(
-name|String
-name|segment
-parameter_list|)
-block|{
-name|docStoreSegment
-operator|=
-name|segment
-expr_stmt|;
-block|}
-DECL|method|setDocStoreOffset
-name|void
-name|setDocStoreOffset
-parameter_list|(
-name|int
-name|offset
-parameter_list|)
-block|{
-name|docStoreOffset
-operator|=
-name|offset
-expr_stmt|;
-name|clearFilesCache
-argument_list|()
-expr_stmt|;
-block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|setDocStore
 name|void
 name|setDocStore
@@ -2078,6 +2068,7 @@ name|boolean
 name|isCompoundFile
 parameter_list|)
 block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 name|docStoreOffset
 operator|=
 name|offset
@@ -2092,6 +2083,60 @@ name|isCompoundFile
 expr_stmt|;
 name|clearFilesCache
 argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
+DECL|method|getDocStoreSegment
+specifier|public
+name|String
+name|getDocStoreSegment
+parameter_list|()
+block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
+return|return
+name|docStoreSegment
+return|;
+block|}
+comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
+DECL|method|setDocStoreOffset
+name|void
+name|setDocStoreOffset
+parameter_list|(
+name|int
+name|offset
+parameter_list|)
+block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
+name|docStoreOffset
+operator|=
+name|offset
+expr_stmt|;
+name|clearFilesCache
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @deprecated shared doc stores are not supported in 4.0    */
+annotation|@
+name|Deprecated
+DECL|method|setDocStoreSegment
+specifier|public
+name|void
+name|setDocStoreSegment
+parameter_list|(
+name|String
+name|docStoreSegment
+parameter_list|)
+block|{
+comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
+name|this
+operator|.
+name|docStoreSegment
+operator|=
+name|docStoreSegment
 expr_stmt|;
 block|}
 comment|/** Save this segment's info. */
@@ -2288,10 +2333,6 @@ name|byte
 call|)
 argument_list|(
 name|hasProx
-condition|?
-literal|1
-else|:
-literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2318,30 +2359,8 @@ name|byte
 call|)
 argument_list|(
 name|hasVectors
-condition|?
-literal|1
-else|:
-literal|0
 argument_list|)
 argument_list|)
-expr_stmt|;
-block|}
-DECL|method|setHasProx
-name|void
-name|setHasProx
-parameter_list|(
-name|boolean
-name|hasProx
-parameter_list|)
-block|{
-name|this
-operator|.
-name|hasProx
-operator|=
-name|hasProx
-expr_stmt|;
-name|clearFilesCache
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|getHasProx
@@ -2349,9 +2368,23 @@ specifier|public
 name|boolean
 name|getHasProx
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|hasProx
+operator|==
+name|CHECK_FIELDINFO
+condition|?
+name|getFieldInfos
+argument_list|()
+operator|.
+name|hasProx
+argument_list|()
+else|:
+name|hasProx
+operator|==
+name|YES
 return|;
 block|}
 comment|/** Can only be called once. */
@@ -2448,6 +2481,33 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|long
+name|fisVersion
+init|=
+name|fieldInfosVersion
+decl_stmt|;
+if|if
+condition|(
+name|fisVersion
+operator|!=
+operator|(
+name|fieldInfosVersion
+operator|=
+name|getFieldInfos
+argument_list|()
+operator|.
+name|getVersion
+argument_list|()
+operator|)
+condition|)
+block|{
+name|clearFilesCache
+argument_list|()
+expr_stmt|;
+comment|// FIS has modifications - need to recompute
+block|}
+elseif|else
 if|if
 condition|(
 name|files
@@ -2460,6 +2520,7 @@ return|return
 name|files
 return|;
 block|}
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -2623,7 +2684,8 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|hasVectors
+name|getHasVectors
+argument_list|()
 condition|)
 block|{
 name|fileSet
@@ -2728,7 +2790,8 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|hasVectors
+name|getHasVectors
+argument_list|()
 condition|)
 block|{
 name|fileSet
@@ -2951,7 +3014,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/** Used for debugging.  Format may suddenly change.    *     *<p>Current format looks like    *<code>_a(3.1):c45/4->_1</code>, which means the segment's    *  name is<code>_a</code>; it was created with Lucene 3.1 (or    *  '?' if it's unkown); it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions); it's using the    *  shared doc stores named<code>_1</code> (this part is    *  left off if doc stores are private).</p>    */
+comment|/** Used for debugging.  Format may suddenly change.    *    *<p>Current format looks like    *<code>_a(3.1):c45/4->_1</code>, which means the segment's    *  name is<code>_a</code>; it was created with Lucene 3.1 (or    *  '?' if it's unkown); it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions); it's using the    *  shared doc stores named<code>_1</code> (this part is    *  left off if doc stores are private).</p>    */
 DECL|method|toString
 specifier|public
 name|String
@@ -3038,9 +3101,12 @@ literal|'x'
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 if|if
 condition|(
-name|hasVectors
+name|getHasVectors
+argument_list|()
 condition|)
 block|{
 name|s
@@ -3050,6 +3116,21 @@ argument_list|(
 literal|'v'
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
 block|}
 name|s
 operator|.
@@ -3230,7 +3311,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * Used by DefaultSegmentInfosReader to upgrade a 3.0 segment to record its    * version is "3.0". This method can be removed when we're not required to    * support 3x indexes anymore, e.g. in 5.0.    *<p>    *<b>NOTE:</b> this method is used for internal purposes only - you should    * not modify the version of a SegmentInfo, or it may result in unexpected    * exceptions thrown when you attempt to open the index.    *     * @lucene.internal    */
+comment|/**    * Used by DefaultSegmentInfosReader to upgrade a 3.0 segment to record its    * version is "3.0". This method can be removed when we're not required to    * support 3x indexes anymore, e.g. in 5.0.    *<p>    *<b>NOTE:</b> this method is used for internal purposes only - you should    * not modify the version of a SegmentInfo, or it may result in unexpected    * exceptions thrown when you attempt to open the index.    *    * @lucene.internal    */
 DECL|method|setVersion
 specifier|public
 name|void

@@ -341,6 +341,24 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|Object
+name|objectVal
+parameter_list|(
+name|int
+name|doc
+parameter_list|)
+block|{
+return|return
+name|arr
+index|[
+name|doc
+index|]
+return|;
+comment|// TODO: valid?
+block|}
 block|}
 return|;
 block|}

@@ -1652,6 +1652,7 @@ operator|.
 name|getQuery
 argument_list|()
 condition|)
+block|{
 comment|// if rewrite was no-op
 name|query
 operator|=
@@ -1664,6 +1665,10 @@ name|clone
 argument_list|()
 expr_stmt|;
 comment|// then clone before boost
+block|}
+comment|// Since the BooleanQuery only has 1 clause, the BooleanQuery will be
+comment|// written out. Therefore the rewritten Query's boost must incorporate both
+comment|// the clause's boost, and the boost of the BooleanQuery itself
 name|query
 operator|.
 name|setBoost
@@ -1747,6 +1752,10 @@ name|clone
 operator|==
 literal|null
 condition|)
+block|{
+comment|// The BooleanQuery clone is lazily initialized so only initialize
+comment|// it if a rewritten clause differs from the original clause (and hasn't been
+comment|// initialized already).  If nothing differs, the clone isn't needlessly created
 name|clone
 operator|=
 operator|(
@@ -1757,6 +1766,7 @@ operator|.
 name|clone
 argument_list|()
 expr_stmt|;
+block|}
 name|clone
 operator|.
 name|clauses

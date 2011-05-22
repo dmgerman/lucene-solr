@@ -448,10 +448,7 @@ name|MAX_VALUE
 else|:
 name|m1
 operator|.
-name|segments
-operator|.
 name|totalDocCount
-argument_list|()
 decl_stmt|;
 specifier|final
 name|int
@@ -467,10 +464,7 @@ name|MAX_VALUE
 else|:
 name|m2
 operator|.
-name|segments
-operator|.
 name|totalDocCount
-argument_list|()
 decl_stmt|;
 return|return
 name|c2

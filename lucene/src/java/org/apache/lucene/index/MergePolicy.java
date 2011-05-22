@@ -154,6 +154,12 @@ name|int
 name|maxNumSegmentsOptimize
 decl_stmt|;
 comment|// used by IndexWriter
+DECL|field|estimatedMergeBytes
+specifier|public
+name|long
+name|estimatedMergeBytes
+decl_stmt|;
+comment|// used by IndexWriter
 DECL|field|readers
 name|List
 argument_list|<
@@ -173,8 +179,17 @@ comment|// used by IndexWriter
 DECL|field|segments
 specifier|public
 specifier|final
-name|SegmentInfos
+name|List
+argument_list|<
+name|SegmentInfo
+argument_list|>
 name|segments
+decl_stmt|;
+DECL|field|totalDocCount
+specifier|public
+specifier|final
+name|int
+name|totalDocCount
 decl_stmt|;
 DECL|field|aborted
 name|boolean
@@ -192,7 +207,10 @@ DECL|method|OneMerge
 specifier|public
 name|OneMerge
 parameter_list|(
-name|SegmentInfos
+name|List
+argument_list|<
+name|SegmentInfo
+argument_list|>
 name|segments
 parameter_list|)
 block|{
@@ -212,11 +230,43 @@ argument_list|(
 literal|"segments must include at least one segment"
 argument_list|)
 throw|;
+comment|// clone the list, as the in list may be based off original SegmentInfos and may be modified
 name|this
 operator|.
 name|segments
 operator|=
+operator|new
+name|ArrayList
+argument_list|<
+name|SegmentInfo
+argument_list|>
+argument_list|(
 name|segments
+argument_list|)
+expr_stmt|;
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
+for|for
+control|(
+name|SegmentInfo
+name|info
+range|:
+name|segments
+control|)
+block|{
+name|count
+operator|+=
+name|info
+operator|.
+name|docCount
+expr_stmt|;
+block|}
+name|totalDocCount
+operator|=
+name|count
 expr_stmt|;
 block|}
 comment|/** Record that an exception occurred while executing      *  this merge */
@@ -450,7 +500,7 @@ name|append
 argument_list|(
 name|segments
 operator|.
-name|info
+name|get
 argument_list|(
 name|i
 argument_list|)

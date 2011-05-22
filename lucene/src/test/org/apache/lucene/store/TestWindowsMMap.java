@@ -48,6 +48,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|analysis
 operator|.
 name|MockAnalyzer
@@ -317,11 +331,10 @@ specifier|static
 name|String
 name|storePathname
 init|=
-operator|new
-name|File
+name|_TestUtil
+operator|.
+name|getTempDir
 argument_list|(
-name|TEMP_DIR
-argument_list|,
 literal|"testLuceneMmap"
 argument_list|)
 operator|.
@@ -371,7 +384,9 @@ name|analyzer
 init|=
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 decl_stmt|;
 comment|// TODO: something about lock timeouts and leftover locks.
 name|IndexWriter

@@ -671,22 +671,11 @@ decl_stmt|;
 if|if
 condition|(
 name|result
-operator|==
+operator|!=
 name|streams
 operator|.
 name|wrapped
 condition|)
-block|{
-comment|/* the wrapped analyzer reused the stream */
-name|streams
-operator|.
-name|shingle
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-block|}
-else|else
 block|{
 comment|/* the wrapped analyzer did not, create a new shingle around the new one */
 name|streams

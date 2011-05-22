@@ -931,13 +931,6 @@ name|wrapped
 condition|)
 block|{
 comment|/* the wrapped analyzer reused the stream */
-name|streams
-operator|.
-name|withStopFilter
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 block|}
 else|else
 block|{

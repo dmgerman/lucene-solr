@@ -300,7 +300,7 @@ name|this
 operator|.
 name|fcsi
 operator|.
-name|size
+name|numOrd
 argument_list|()
 argument_list|)
 expr_stmt|;

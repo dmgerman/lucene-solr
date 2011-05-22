@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Tokenizer
+name|MockTokenizer
 import|;
 end_import
 
@@ -90,9 +90,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|WhitespaceTokenizer
+name|Tokenizer
 import|;
 end_import
 
@@ -168,11 +166,15 @@ name|Tokenizer
 name|source
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|reader
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 return|return
@@ -210,6 +212,27 @@ literal|"rulighttestdata.zip"
 argument_list|)
 argument_list|,
 literal|"rulight.txt"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** blast some random strings through the analyzer */
+DECL|method|testRandomStrings
+specifier|public
+name|void
+name|testRandomStrings
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkRandomData
+argument_list|(
+name|random
+argument_list|,
+name|analyzer
+argument_list|,
+literal|10000
+operator|*
+name|RANDOM_MULTIPLIER
 argument_list|)
 expr_stmt|;
 block|}

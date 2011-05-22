@@ -345,73 +345,18 @@ parameter_list|()
 block|{
 name|PulsingTermState
 name|clone
+init|=
+operator|new
+name|PulsingTermState
+argument_list|()
 decl_stmt|;
 name|clone
-operator|=
-operator|(
-name|PulsingTermState
-operator|)
-name|super
 operator|.
-name|clone
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|postingsSize
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-name|clone
-operator|.
-name|postings
-operator|=
-operator|new
-name|byte
-index|[
-name|postingsSize
-index|]
-expr_stmt|;
-name|System
-operator|.
-name|arraycopy
+name|copyFrom
 argument_list|(
-name|postings
-argument_list|,
-literal|0
-argument_list|,
-name|clone
-operator|.
-name|postings
-argument_list|,
-literal|0
-argument_list|,
-name|postingsSize
+name|this
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-assert|assert
-name|wrappedTermState
-operator|!=
-literal|null
-assert|;
-name|clone
-operator|.
-name|wrappedTermState
-operator|=
-operator|(
-name|BlockTermState
-operator|)
-name|wrappedTermState
-operator|.
-name|clone
-argument_list|()
-expr_stmt|;
-block|}
 return|return
 name|clone
 return|;
@@ -511,7 +456,13 @@ name|postingsSize
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|wrappedTermState
+operator|!=
+literal|null
+condition|)
 block|{
 name|wrappedTermState
 operator|.
@@ -521,6 +472,21 @@ name|other
 operator|.
 name|wrappedTermState
 argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|wrappedTermState
+operator|=
+operator|(
+name|BlockTermState
+operator|)
+name|other
+operator|.
+name|wrappedTermState
+operator|.
+name|clone
+argument_list|()
 expr_stmt|;
 block|}
 comment|// NOTE: we do not copy the
@@ -1272,6 +1238,11 @@ specifier|private
 name|int
 name|freq
 decl_stmt|;
+DECL|field|payloadLength
+specifier|private
+name|int
+name|payloadLength
+decl_stmt|;
 DECL|method|PulsingDocsEnum
 specifier|public
 name|PulsingDocsEnum
@@ -1354,6 +1325,10 @@ name|bytes
 argument_list|)
 expr_stmt|;
 name|docID
+operator|=
+literal|0
+expr_stmt|;
+name|payloadLength
 operator|=
 literal|0
 expr_stmt|;
@@ -1487,12 +1462,6 @@ condition|(
 name|storePayloads
 condition|)
 block|{
-name|int
-name|payloadLength
-init|=
-operator|-
-literal|1
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -1836,6 +1805,10 @@ name|payloadLength
 operator|=
 literal|0
 expr_stmt|;
+name|posPending
+operator|=
+literal|0
+expr_stmt|;
 name|docID
 operator|=
 literal|0
@@ -1855,7 +1828,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PR d&p nextDoc this=" + this);
+comment|//System.out.println("PR.nextDoc this=" + this);
 while|while
 condition|(
 literal|true
@@ -1873,13 +1846,14 @@ name|eof
 argument_list|()
 condition|)
 block|{
-comment|//System.out.println("PR   END");
+comment|//System.out.println("  END");
 return|return
 name|docID
 operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
+comment|//System.out.println("  read doc code");
 specifier|final
 name|int
 name|code
@@ -1916,6 +1890,7 @@ comment|// freq is one
 block|}
 else|else
 block|{
+comment|//System.out.println("  read freq");
 name|freq
 operator|=
 name|postings
@@ -1992,6 +1967,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("PR.advance target=" + target);
 name|int
 name|doc
 decl_stmt|;
@@ -2007,6 +1983,7 @@ operator|!=
 name|NO_MORE_DOCS
 condition|)
 block|{
+comment|//System.out.println("  nextDoc got doc=" + doc);
 if|if
 condition|(
 name|doc
@@ -2015,6 +1992,8 @@ name|target
 condition|)
 block|{
 return|return
+name|docID
+operator|=
 name|doc
 return|;
 block|}
@@ -2035,7 +2014,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PR d&p nextPosition posPending=" + posPending + " vs freq=" + freq);
+comment|//System.out.println("PR.nextPosition posPending=" + posPending + " vs freq=" + freq);
 assert|assert
 name|posPending
 operator|>
@@ -2064,6 +2043,7 @@ name|payloadLength
 argument_list|)
 expr_stmt|;
 block|}
+comment|//System.out.println("  read pos code");
 specifier|final
 name|int
 name|code
@@ -2115,7 +2095,7 @@ name|readVInt
 argument_list|()
 expr_stmt|;
 block|}
-comment|//System.out.println("PR d&p nextPos return pos=" + position + " this=" + this);
+comment|//System.out.println("  return pos=" + position + " hasPayload=" + !payloadRetrieved + " posPending=" + posPending + " this=" + this);
 return|return
 name|position
 return|;
@@ -2128,6 +2108,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("PR.skipPositions: posPending=" + posPending);
 while|while
 condition|(
 name|posPending
@@ -2147,7 +2128,7 @@ operator|!
 name|payloadRetrieved
 condition|)
 block|{
-comment|//System.out.println("  skip payload len=" + payloadLength);
+comment|//System.out.println("  skip last payload len=" + payloadLength);
 name|postings
 operator|.
 name|skipBytes

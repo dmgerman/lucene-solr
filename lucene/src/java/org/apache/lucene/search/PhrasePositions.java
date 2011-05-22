@@ -70,6 +70,12 @@ name|int
 name|offset
 decl_stmt|;
 comment|// position in phrase
+DECL|field|ord
+specifier|final
+name|int
+name|ord
+decl_stmt|;
+comment|// unique across all PhrasePositions instances
 DECL|field|postings
 specifier|final
 name|DocsAndPositionsEnum
@@ -94,6 +100,9 @@ name|postings
 parameter_list|,
 name|int
 name|o
+parameter_list|,
+name|int
+name|ord
 parameter_list|)
 block|{
 name|this
@@ -105,6 +114,12 @@ expr_stmt|;
 name|offset
 operator|=
 name|o
+expr_stmt|;
+name|this
+operator|.
+name|ord
+operator|=
+name|ord
 expr_stmt|;
 block|}
 DECL|method|next

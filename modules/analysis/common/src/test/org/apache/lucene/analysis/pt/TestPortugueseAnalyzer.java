@@ -213,6 +213,31 @@ literal|"quilomÃ©tr"
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** blast some random strings through the analyzer */
+DECL|method|testRandomStrings
+specifier|public
+name|void
+name|testRandomStrings
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkRandomData
+argument_list|(
+name|random
+argument_list|,
+operator|new
+name|PortugueseAnalyzer
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|)
+argument_list|,
+literal|10000
+operator|*
+name|RANDOM_MULTIPLIER
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

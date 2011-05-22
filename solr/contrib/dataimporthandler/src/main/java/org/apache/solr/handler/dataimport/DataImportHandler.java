@@ -1274,7 +1274,7 @@ name|get
 argument_list|(
 name|UpdateParams
 operator|.
-name|UPDATE_PROCESSOR
+name|UPDATE_CHAIN
 argument_list|)
 argument_list|)
 decl_stmt|;

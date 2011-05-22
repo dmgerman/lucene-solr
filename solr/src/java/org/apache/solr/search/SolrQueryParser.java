@@ -401,14 +401,7 @@ operator|.
 name|getSolrConfig
 argument_list|()
 operator|.
-name|getLuceneVersion
-argument_list|(
-literal|"luceneMatchVersion"
-argument_list|,
-name|Version
-operator|.
-name|LUCENE_30
-argument_list|)
+name|luceneMatchVersion
 argument_list|,
 name|defaultField
 argument_list|,

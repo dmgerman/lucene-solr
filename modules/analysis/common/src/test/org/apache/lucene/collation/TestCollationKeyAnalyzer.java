@@ -455,14 +455,6 @@ name|i
 operator|++
 control|)
 block|{
-name|Locale
-name|locale
-init|=
-name|randomLocale
-argument_list|(
-name|random
-argument_list|)
-decl_stmt|;
 name|Collator
 name|collator
 init|=
@@ -470,7 +462,9 @@ name|Collator
 operator|.
 name|getInstance
 argument_list|(
-name|locale
+name|Locale
+operator|.
+name|GERMAN
 argument_list|)
 decl_stmt|;
 name|collator

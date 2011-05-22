@@ -174,9 +174,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentReader
-operator|.
-name|Norm
+name|SegmentNorms
 import|;
 end_import
 
@@ -403,7 +401,9 @@ name|anlzr
 operator|=
 operator|new
 name|MockAnalyzer
-argument_list|()
+argument_list|(
+name|random
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Test that norms values are preserved as the index is maintained. Including    * separate norms. Including merging indexes with seprate norms. Including    * optimize.    */
@@ -907,7 +907,7 @@ argument_list|(
 literal|"field1"
 argument_list|)
 expr_stmt|;
-name|Norm
+name|SegmentNorms
 name|r1norm
 init|=
 name|reader1
@@ -1048,7 +1048,7 @@ literal|"field1"
 argument_list|)
 expr_stmt|;
 comment|// load the norms for the field
-name|Norm
+name|SegmentNorms
 name|reader2CNorm
 init|=
 name|segmentReader2C
@@ -1099,7 +1099,7 @@ argument_list|(
 name|reader3C
 argument_list|)
 decl_stmt|;
-name|Norm
+name|SegmentNorms
 name|reader3CCNorm
 init|=
 name|segmentReader3C
@@ -1247,7 +1247,7 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Norm
+name|SegmentNorms
 name|reader4CCNorm
 init|=
 name|segmentReader4C
@@ -1304,7 +1304,7 @@ argument_list|(
 name|reader5C
 argument_list|)
 decl_stmt|;
-name|Norm
+name|SegmentNorms
 name|reader5CCNorm
 init|=
 name|segmentReader5C
