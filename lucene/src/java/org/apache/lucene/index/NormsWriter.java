@@ -168,13 +168,13 @@ name|normsOut
 operator|.
 name|writeBytes
 argument_list|(
-name|SegmentMerger
+name|SegmentNorms
 operator|.
 name|NORMS_HEADER
 argument_list|,
 literal|0
 argument_list|,
-name|SegmentMerger
+name|SegmentNorms
 operator|.
 name|NORMS_HEADER
 operator|.

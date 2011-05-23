@@ -2747,7 +2747,7 @@ block|{
 name|long
 name|nextNormSeek
 init|=
-name|SegmentMerger
+name|SegmentNorms
 operator|.
 name|NORMS_HEADER
 operator|.
@@ -2978,7 +2978,7 @@ else|else
 block|{
 name|normSeek
 operator|=
-name|SegmentMerger
+name|SegmentNorms
 operator|.
 name|NORMS_HEADER
 operator|.
