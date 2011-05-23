@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Base class for all Lucene unit tests that use TokenStreams.    */
+comment|/**   * Base class for all Lucene unit tests that use TokenStreams.   *<p>  * When writing unit tests for analysis components, its highly recommended  * to use the helper methods here (especially in conjunction with {@link MockAnalyzer} or  * {@link MockTokenizer}), as they contain many assertions and checks to   * catch bugs.  *   * @see MockAnalyzer  * @see MockTokenizer  */
 end_comment
 
 begin_class
