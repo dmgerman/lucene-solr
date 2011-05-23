@@ -48,20 +48,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|FieldInfos
@@ -678,9 +664,6 @@ name|requestingThread
 parameter_list|,
 name|DocumentsWriter
 name|documentsWriter
-parameter_list|,
-name|Document
-name|doc
 parameter_list|)
 function_decl|;
 comment|/**    * Returns an iterator providing access to all {@link ThreadState}    * instances.     */

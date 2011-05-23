@@ -756,6 +756,16 @@ operator|==
 name|docState
 operator|.
 name|docID
+operator|:
+literal|"lastDocID="
+operator|+
+name|lastDocID
+operator|+
+literal|" docState.docID="
+operator|+
+name|docState
+operator|.
+name|docID
 assert|;
 name|lastDocID
 operator|++
