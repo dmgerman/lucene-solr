@@ -2159,7 +2159,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|" floats failed for doc: "
+name|val
+operator|+
+literal|" failed for doc: "
 operator|+
 name|i
 operator|+
@@ -3755,6 +3757,16 @@ break|break;
 case|case
 name|FLOAT_32
 case|:
+name|valField
+operator|.
+name|setFloat
+argument_list|(
+literal|2.0f
+operator|*
+name|i
+argument_list|)
+expr_stmt|;
+break|break;
 case|case
 name|FLOAT_64
 case|:
@@ -3762,7 +3774,7 @@ name|valField
 operator|.
 name|setFloat
 argument_list|(
-literal|2.0f
+literal|2.0d
 operator|*
 name|i
 argument_list|)
