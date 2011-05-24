@@ -7947,6 +7947,23 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|hasFieldCodec
+specifier|public
+specifier|synchronized
+name|boolean
+name|hasFieldCodec
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+comment|// we have a codec for every field
+block|}
+annotation|@
+name|Override
 DECL|method|toString
 specifier|public
 specifier|synchronized

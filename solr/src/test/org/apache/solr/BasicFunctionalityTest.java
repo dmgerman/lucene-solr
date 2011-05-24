@@ -620,6 +620,11 @@ name|core
 operator|.
 name|getDeletionPolicy
 argument_list|()
+argument_list|,
+name|core
+operator|.
+name|getCodecProvider
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
