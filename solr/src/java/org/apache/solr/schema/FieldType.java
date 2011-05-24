@@ -212,7 +212,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|UnicodeUtil
+name|CharsRef
 import|;
 end_import
 
@@ -222,9 +222,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|noggit
+name|lucene
 operator|.
-name|CharArr
+name|util
+operator|.
+name|UnicodeUtil
 import|;
 end_import
 
@@ -327,20 +329,6 @@ operator|.
 name|function
 operator|.
 name|ValueSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ByteUtils
 import|;
 end_import
 
@@ -1610,11 +1598,12 @@ name|BytesRef
 name|term
 parameter_list|)
 block|{
-name|CharArr
-name|ext
+specifier|final
+name|CharsRef
+name|ref
 init|=
 operator|new
-name|CharArr
+name|CharsRef
 argument_list|(
 name|term
 operator|.
@@ -1625,9 +1614,10 @@ name|indexedToReadable
 argument_list|(
 name|term
 argument_list|,
-name|ext
+name|ref
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Fieldable
 name|f
 init|=
@@ -1635,7 +1625,7 @@ name|createField
 argument_list|(
 name|sf
 argument_list|,
-name|ext
+name|ref
 operator|.
 name|toString
 argument_list|()
@@ -1664,28 +1654,29 @@ return|return
 name|indexedForm
 return|;
 block|}
-comment|/** Given an indexed term, append the human readable representation to out */
+comment|/** Given an indexed term, append the human readable representation*/
 DECL|method|indexedToReadable
 specifier|public
-name|void
+name|CharsRef
 name|indexedToReadable
 parameter_list|(
 name|BytesRef
 name|input
 parameter_list|,
-name|CharArr
-name|out
+name|CharsRef
+name|output
 parameter_list|)
 block|{
-name|ByteUtils
-operator|.
-name|UTF8toUTF16
-argument_list|(
 name|input
-argument_list|,
-name|out
+operator|.
+name|utf8ToChars
+argument_list|(
+name|output
 argument_list|)
 expr_stmt|;
+return|return
+name|output
+return|;
 block|}
 comment|/** Given the stored field, return the human readable representation */
 DECL|method|storedToReadable
@@ -1754,6 +1745,7 @@ name|BytesRef
 name|result
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|internal
 init|=
