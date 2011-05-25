@@ -642,9 +642,18 @@ operator|!=
 literal|2
 condition|)
 block|{
-name|printUsage
-argument_list|()
+name|usage
+argument_list|(
+literal|"Wrong number of arguments ("
+operator|+
+name|args
+operator|.
+name|length
+operator|+
+literal|")"
+argument_list|)
 expr_stmt|;
+return|return;
 block|}
 name|File
 name|reutersDir
@@ -667,8 +676,14 @@ name|exists
 argument_list|()
 condition|)
 block|{
-name|printUsage
-argument_list|()
+name|usage
+argument_list|(
+literal|"Cannot find Path to Reuters SGM files ("
+operator|+
+name|reutersDir
+operator|+
+literal|")"
+argument_list|)
 expr_stmt|;
 return|return;
 block|}
@@ -684,10 +699,21 @@ name|args
 index|[
 literal|1
 index|]
+argument_list|)
+decl_stmt|;
+name|outputDir
+operator|=
+operator|new
+name|File
+argument_list|(
+name|outputDir
+operator|.
+name|getAbsolutePath
+argument_list|()
 operator|+
 literal|"-tmp"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|outputDir
 operator|.
 name|mkdirs
@@ -725,12 +751,15 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|printUsage
+DECL|method|usage
 specifier|private
 specifier|static
 name|void
-name|printUsage
-parameter_list|()
+name|usage
+parameter_list|(
+name|String
+name|msg
+parameter_list|)
 block|{
 name|System
 operator|.
@@ -738,7 +767,11 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"Usage: java -cp<...> org.apache.lucene.benchmark.utils.ExtractReuters<Path to Reuters SGM files><Output Path>"
+literal|"Usage: "
+operator|+
+name|msg
+operator|+
+literal|" :: java -cp<...> org.apache.lucene.benchmark.utils.ExtractReuters<Path to Reuters SGM files><Output Path>"
 argument_list|)
 expr_stmt|;
 block|}
