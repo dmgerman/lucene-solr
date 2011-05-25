@@ -150,6 +150,12 @@ specifier|private
 name|Directory
 name|snapshotDir
 decl_stmt|;
+comment|// so we can close it if called by SDP tests
+DECL|field|psdp
+specifier|private
+name|PersistentSnapshotDeletionPolicy
+name|psdp
+decl_stmt|;
 annotation|@
 name|Before
 annotation|@
@@ -185,6 +191,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+if|if
+condition|(
+name|psdp
+operator|!=
+literal|null
+condition|)
+name|psdp
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|snapshotDir
 operator|.
 name|close
@@ -206,6 +223,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|psdp
+operator|!=
+literal|null
+condition|)
+name|psdp
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|snapshotDir
 operator|.
 name|close
@@ -217,6 +245,8 @@ name|newDirectory
 argument_list|()
 expr_stmt|;
 return|return
+name|psdp
+operator|=
 operator|new
 name|PersistentSnapshotDeletionPolicy
 argument_list|(
@@ -883,6 +913,14 @@ name|e
 parameter_list|)
 block|{
 comment|// expected
+block|}
+finally|finally
+block|{
+name|psdp
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// Reading the snapshots info should succeed though
 name|Map
