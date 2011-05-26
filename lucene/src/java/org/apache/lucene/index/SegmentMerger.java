@@ -68,6 +68,22 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
+begin_comment
+comment|// for assert
+end_comment
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -125,22 +141,6 @@ operator|.
 name|codecs
 operator|.
 name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|CodecProvider
 import|;
 end_import
 
@@ -593,28 +593,22 @@ name|file
 assert|;
 assert|assert
 operator|!
-name|file
+name|Pattern
 operator|.
-name|substring
+name|matches
 argument_list|(
-name|file
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|'.'
-argument_list|)
+literal|"^.+[.]"
 operator|+
-literal|1
-argument_list|)
-operator|.
-name|startsWith
-argument_list|(
 name|IndexFileNames
 operator|.
 name|SEPARATE_NORMS_EXTENSION
+operator|+
+literal|"\\d+$"
+argument_list|,
+name|file
 argument_list|)
 operator|:
-literal|"separate norms file (.s*) is not allowed in .cfs: "
+literal|"separate norms file (.s[0-9]*) is not allowed in .cfs: "
 operator|+
 name|file
 assert|;
