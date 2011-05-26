@@ -593,22 +593,14 @@ name|file
 assert|;
 assert|assert
 operator|!
-name|Pattern
-operator|.
-name|matches
-argument_list|(
-literal|"^.+[.]"
-operator|+
 name|IndexFileNames
 operator|.
-name|SEPARATE_NORMS_EXTENSION
-operator|+
-literal|"\\d+$"
-argument_list|,
+name|isSeparateNormsFile
+argument_list|(
 name|file
 argument_list|)
 operator|:
-literal|"separate norms file (.s[0-9]*) is not allowed in .cfs: "
+literal|"separate norms file (.s[0-9]+) is not allowed in .cfs: "
 operator|+
 name|file
 assert|;
