@@ -616,7 +616,8 @@ name|getWeightedFragInfoList
 argument_list|(
 name|fieldFragList
 operator|.
-name|fragInfos
+name|getFragInfos
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|List
