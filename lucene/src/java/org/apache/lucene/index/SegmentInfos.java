@@ -3412,7 +3412,6 @@ parameter_list|)
 block|{
 comment|// It's OK if we fail to write this file since it's
 comment|// used only as one of the retry fallbacks.
-comment|// nocommit if this is thread interrupted we should rethrow
 block|}
 block|}
 comment|/** Writes& syncs to the Directory dir, taking care to    *  remove the segments file on exception    *<p>    *  Note: {@link #changed()} should be called prior to this    *  method if changes have been made to this {@link SegmentInfos} instance    *</p>      **/
