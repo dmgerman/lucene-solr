@@ -1405,6 +1405,11 @@ name|closed
 operator|=
 literal|true
 expr_stmt|;
+name|perThreadPool
+operator|.
+name|deactivateUnreleasedStates
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Returns an iterator that provides access to all currently active {@link ThreadState}s     */
 DECL|method|allActiveThreads
@@ -1757,6 +1762,22 @@ block|}
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|closed
+condition|)
+block|{
+name|next
+operator|.
+name|resetWriter
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// make this state inactive
+block|}
+else|else
+block|{
 comment|// get the new delete queue from DW
 name|next
 operator|.
@@ -1765,6 +1786,7 @@ operator|.
 name|initialize
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 finally|finally
