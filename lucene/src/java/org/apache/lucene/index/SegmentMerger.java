@@ -68,22 +68,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
-begin_comment
-comment|// for assert
-end_comment
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -229,6 +213,20 @@ operator|.
 name|util
 operator|.
 name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
 import|;
 end_import
 
@@ -2913,6 +2911,8 @@ argument_list|(
 name|segmentWriteState
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 comment|// NOTE: this is silly, yet, necessary -- we create a
 comment|// MultiBits as our skip docs only to have it broken
 comment|// apart when we step through the docs enums in
@@ -2929,8 +2929,6 @@ argument_list|,
 name|bitsStarts
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|consumer
 operator|.
 name|merge
@@ -3037,6 +3035,11 @@ name|IndexOutput
 name|output
 init|=
 literal|null
+decl_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
 decl_stmt|;
 try|try
 block|{
@@ -3245,22 +3248,23 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|success
+operator|=
+literal|true
+expr_stmt|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|output
-operator|!=
-literal|null
-condition|)
-block|{
-name|output
+name|IOUtils
 operator|.
-name|close
-argument_list|()
+name|closeSafely
+argument_list|(
+operator|!
+name|success
+argument_list|,
+name|output
+argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

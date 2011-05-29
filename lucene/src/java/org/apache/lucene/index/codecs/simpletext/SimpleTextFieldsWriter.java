@@ -759,6 +759,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+block|{
 name|write
 argument_list|(
 name|END
@@ -767,11 +769,15 @@ expr_stmt|;
 name|newline
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|out
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

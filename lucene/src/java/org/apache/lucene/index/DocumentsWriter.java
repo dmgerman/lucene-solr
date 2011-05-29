@@ -823,6 +823,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ThreadState
 name|perThread
 init|=
@@ -847,6 +848,8 @@ argument_list|()
 condition|)
 block|{
 comment|// we might be closed
+try|try
+block|{
 name|perThread
 operator|.
 name|perThread
@@ -854,6 +857,17 @@ operator|.
 name|abort
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+comment|// continue
+block|}
+finally|finally
+block|{
 name|perThread
 operator|.
 name|perThread
@@ -861,6 +875,14 @@ operator|.
 name|checkAndResetHasAborted
 argument_list|()
 expr_stmt|;
+name|flushControl
+operator|.
+name|doOnAbort
+argument_list|(
+name|perThread
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
