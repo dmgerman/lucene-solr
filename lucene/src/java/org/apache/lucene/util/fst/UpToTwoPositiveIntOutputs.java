@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.util.automaton.fst
+DECL|package|org.apache.lucene.util.fst
 package|package
 name|org
 operator|.
@@ -9,8 +9,6 @@ operator|.
 name|lucene
 operator|.
 name|util
-operator|.
-name|automaton
 operator|.
 name|fst
 package|;

@@ -174,8 +174,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|automaton
-operator|.
 name|fst
 operator|.
 name|Builder
@@ -192,8 +190,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|automaton
-operator|.
 name|fst
 operator|.
 name|FST
@@ -209,8 +205,6 @@ operator|.
 name|lucene
 operator|.
 name|util
-operator|.
-name|automaton
 operator|.
 name|fst
 operator|.
@@ -230,8 +224,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|automaton
-operator|.
 name|fst
 operator|.
 name|NoOutputs
@@ -247,8 +239,6 @@ operator|.
 name|lucene
 operator|.
 name|util
-operator|.
-name|automaton
 operator|.
 name|fst
 operator|.
