@@ -6586,7 +6586,7 @@ specifier|final
 name|File
 name|tmpFile
 init|=
-name|File
+name|_TestUtil
 operator|.
 name|createTempFile
 argument_list|(
