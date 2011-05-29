@@ -10307,6 +10307,11 @@ init|=
 literal|null
 decl_stmt|;
 name|boolean
+name|anyChanges
+init|=
+literal|false
+decl_stmt|;
+name|boolean
 name|drop
 init|=
 operator|!
@@ -10343,6 +10348,8 @@ condition|)
 block|{
 try|try
 block|{
+name|anyChanges
+operator||=
 name|readerPool
 operator|.
 name|release
@@ -10492,7 +10499,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// If any errors occured, throw it.
+if|if
+condition|(
+name|suppressExceptions
+operator|&&
+name|anyChanges
+condition|)
+block|{
+name|checkpoint
+argument_list|()
+expr_stmt|;
+block|}
+comment|// If any error occured, throw it.
 if|if
 condition|(
 operator|!
@@ -10507,6 +10525,18 @@ if|if
 condition|(
 name|th
 operator|instanceof
+name|IOException
+condition|)
+throw|throw
+operator|(
+name|IOException
+operator|)
+name|th
+throw|;
+if|if
+condition|(
+name|th
+operator|instanceof
 name|RuntimeException
 condition|)
 throw|throw
@@ -10527,7 +10557,6 @@ name|Error
 operator|)
 name|th
 throw|;
-comment|// defensive code - we should not hit unchecked exceptions
 throw|throw
 operator|new
 name|RuntimeException
