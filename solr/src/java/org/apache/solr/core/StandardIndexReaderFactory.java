@@ -95,6 +95,8 @@ argument_list|,
 name|readOnly
 argument_list|,
 name|termInfosIndexDivisor
+argument_list|,
+name|provider
 argument_list|)
 return|;
 block|}

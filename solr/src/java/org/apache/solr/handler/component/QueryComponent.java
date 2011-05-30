@@ -130,6 +130,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|CharsRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|ReaderUtil
 import|;
 end_import
@@ -2822,6 +2836,14 @@ name|rb
 operator|.
 name|rsp
 decl_stmt|;
+specifier|final
+name|CharsRef
+name|spare
+init|=
+operator|new
+name|CharsRef
+argument_list|()
+decl_stmt|;
 comment|// The query cache doesn't currently store sort field values, and SolrIndexSearcher doesn't
 comment|// currently have an option to return sort field values.  Because of this, we
 comment|// take the documents given and re-derive the sort values.
@@ -3262,7 +3284,12 @@ operator|)
 name|val
 operator|)
 operator|.
-name|utf8ToString
+name|utf8ToChars
+argument_list|(
+name|spare
+argument_list|)
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

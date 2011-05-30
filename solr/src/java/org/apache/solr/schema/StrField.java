@@ -104,20 +104,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ByteUtils
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -281,12 +267,10 @@ name|term
 parameter_list|)
 block|{
 return|return
-name|ByteUtils
-operator|.
-name|UTF8toUTF16
-argument_list|(
 name|term
-argument_list|)
+operator|.
+name|utf8ToString
+argument_list|()
 return|;
 block|}
 block|}

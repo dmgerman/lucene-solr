@@ -306,9 +306,9 @@ literal|null
 else|:
 name|index
 operator|.
-name|getTerm
+name|lookup
 argument_list|(
-name|doc
+name|key
 argument_list|,
 operator|new
 name|BytesRef

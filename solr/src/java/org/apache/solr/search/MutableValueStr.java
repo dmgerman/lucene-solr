@@ -30,20 +30,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|ByteUtils
-import|;
-end_import
-
 begin_class
 DECL|class|MutableValueStr
 specifier|public
@@ -72,12 +58,10 @@ block|{
 return|return
 name|exists
 condition|?
-name|ByteUtils
-operator|.
-name|UTF8toUTF16
-argument_list|(
 name|value
-argument_list|)
+operator|.
+name|utf8ToString
+argument_list|()
 else|:
 literal|null
 return|;

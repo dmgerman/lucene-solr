@@ -1908,7 +1908,9 @@ name|fileNameFromGeneration
 argument_list|(
 name|name
 argument_list|,
-literal|"s"
+name|IndexFileNames
+operator|.
+name|SEPARATE_NORMS_EXTENSION
 operator|+
 name|number
 argument_list|,

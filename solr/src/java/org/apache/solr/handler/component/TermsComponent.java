@@ -52,9 +52,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|noggit
+name|lucene
 operator|.
-name|CharArr
+name|util
+operator|.
+name|CharsRef
 import|;
 end_import
 
@@ -1083,11 +1085,11 @@ else|:
 literal|null
 operator|)
 decl_stmt|;
-name|CharArr
+name|CharsRef
 name|external
 init|=
 operator|new
-name|CharArr
+name|CharsRef
 argument_list|()
 decl_stmt|;
 while|while
@@ -1136,11 +1138,6 @@ condition|)
 block|{
 comment|// indexed text or external text?
 comment|// TODO: support "raw" mode?
-name|external
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 name|ft
 operator|.
 name|indexedToReadable
@@ -1149,6 +1146,10 @@ name|term
 argument_list|,
 name|external
 argument_list|)
+expr_stmt|;
+name|externalized
+operator|=
+literal|true
 expr_stmt|;
 if|if
 condition|(
@@ -1267,11 +1268,6 @@ operator|!
 name|externalized
 condition|)
 block|{
-name|external
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 name|ft
 operator|.
 name|indexedToReadable
@@ -1282,19 +1278,14 @@ name|external
 argument_list|)
 expr_stmt|;
 block|}
-name|String
-name|label
-init|=
-name|external
-operator|.
-name|toString
-argument_list|()
-decl_stmt|;
 name|fieldTerms
 operator|.
 name|add
 argument_list|(
-name|label
+name|external
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|docFreq
 argument_list|)
@@ -1337,11 +1328,6 @@ operator|>=
 name|limit
 condition|)
 break|break;
-name|external
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 name|ft
 operator|.
 name|indexedToReadable

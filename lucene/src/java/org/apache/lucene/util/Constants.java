@@ -165,6 +165,21 @@ argument_list|(
 literal|"SunOS"
 argument_list|)
 decl_stmt|;
+comment|/** True iff running on Mac OS X */
+DECL|field|MAC_OS_X
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|MAC_OS_X
+init|=
+name|OS_NAME
+operator|.
+name|startsWith
+argument_list|(
+literal|"Mac OS X"
+argument_list|)
+decl_stmt|;
 DECL|field|OS_ARCH
 specifier|public
 specifier|static

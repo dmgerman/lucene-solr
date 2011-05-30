@@ -521,13 +521,15 @@ decl_stmt|;
 name|File
 name|tmpInputFile
 init|=
-name|File
+name|_TestUtil
 operator|.
 name|createTempFile
 argument_list|(
 literal|"IndexInput"
 argument_list|,
 literal|"tmpFile"
+argument_list|,
+name|TEMP_DIR
 argument_list|)
 decl_stmt|;
 name|tmpInputFile

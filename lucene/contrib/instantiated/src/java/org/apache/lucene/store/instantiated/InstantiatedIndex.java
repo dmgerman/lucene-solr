@@ -322,6 +322,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CharsRef
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represented as a coupled graph of class instances, this  * all-in-memory index store implementation delivers search  * results up to a 100 times faster than the file-centric RAMDirectory  * at the cost of greater RAM consumption.  *<p>  * @lucene.experimental  *<p>  * There are no read and write locks in this store.  * {@link InstantiatedIndexReader} {@link InstantiatedIndexReader#isCurrent()} all the time  * and {@link org.apache.lucene.store.instantiated.InstantiatedIndexWriter}  * will attempt to update instances of the object graph in memory  * at the same time as a searcher is reading from it.  *  * Consider using InstantiatedIndex as if it was immutable.  */
 end_comment
@@ -1342,6 +1356,14 @@ decl_stmt|;
 name|String
 name|field
 decl_stmt|;
+specifier|final
+name|CharsRef
+name|spare
+init|=
+operator|new
+name|CharsRef
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 operator|(
@@ -1400,7 +1422,12 @@ name|termText
 init|=
 name|text
 operator|.
-name|utf8ToString
+name|utf8ToChars
+argument_list|(
+name|spare
+argument_list|)
+operator|.
+name|toString
 argument_list|()
 decl_stmt|;
 name|InstantiatedTerm

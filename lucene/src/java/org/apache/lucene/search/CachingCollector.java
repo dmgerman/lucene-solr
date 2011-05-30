@@ -710,6 +710,15 @@ index|[
 name|curUpto
 index|]
 expr_stmt|;
+name|cachedScorer
+operator|.
+name|doc
+operator|=
+name|curDocs
+index|[
+name|curUpto
+index|]
+expr_stmt|;
 name|other
 operator|.
 name|collect

@@ -232,12 +232,14 @@ argument_list|(
 name|state
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|TermsHash
 name|termsHash
 init|=
 literal|null
 decl_stmt|;
-comment|/*     Current writer chain:       FieldsConsumer         -> IMPL: FormatPostingsTermsDictWriter           -> TermsConsumer             -> IMPL: FormatPostingsTermsDictWriter.TermsWriter               -> DocsConsumer                 -> IMPL: FormatPostingsDocsWriter                   -> PositionsConsumer                     -> IMPL: FormatPostingsPositionsWriter     */
+comment|/*     Current writer chain:       FieldsConsumer         -> IMPL: FormatPostingsTermsDictWriter           -> TermsConsumer             -> IMPL: FormatPostingsTermsDictWriter.TermsWriter               -> DocsConsumer                 -> IMPL: FormatPostingsDocsWriter                   -> PositionsConsumer                     -> IMPL: FormatPostingsPositionsWriter        */
 for|for
 control|(
 name|int
@@ -376,11 +378,15 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
 name|consumer
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|field|payload
 name|BytesRef

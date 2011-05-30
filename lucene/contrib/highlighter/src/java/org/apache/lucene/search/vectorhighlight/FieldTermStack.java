@@ -128,6 +128,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CharsRef
+import|;
+end_import
+
 begin_comment
 comment|/**  *<code>FieldTermStack</code> is a stack that keeps query terms in the specified field  * of the document to be highlighted.  */
 end_comment
@@ -266,6 +280,14 @@ operator|==
 literal|null
 condition|)
 return|return;
+specifier|final
+name|CharsRef
+name|spare
+init|=
+operator|new
+name|CharsRef
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|BytesRef
@@ -286,7 +308,12 @@ name|contains
 argument_list|(
 name|term
 operator|.
-name|utf8ToString
+name|utf8ToChars
+argument_list|(
+name|spare
+argument_list|)
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 condition|)
@@ -364,7 +391,12 @@ name|TermInfo
 argument_list|(
 name|term
 operator|.
-name|utf8ToString
+name|utf8ToChars
+argument_list|(
+name|spare
+argument_list|)
+operator|.
+name|toString
 argument_list|()
 argument_list|,
 name|tvois
