@@ -1583,7 +1583,7 @@ name|params
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a {@link org.apache.lucene.search.highlight.Fragmenter} appropriate for this field. If a fragmenter    * has not been configured for this field, fall back to the configured    * default or the solr default ({@link org.apache.lucene.search.highlight.GapFragmenter}).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Fragmenter}.    */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.Fragmenter} appropriate for this field. If a fragmenter    * has not been configured for this field, fall back to the configured    * default or the solr default ({@link GapFragmenter}).    *     * @param fieldName The name of the field    * @param params The params controlling Highlighting    * @return An appropriate {@link org.apache.lucene.search.highlight.Fragmenter}.    */
 DECL|method|getFragmenter
 specifier|protected
 name|Fragmenter
