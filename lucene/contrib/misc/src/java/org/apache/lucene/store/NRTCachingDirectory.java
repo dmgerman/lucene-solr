@@ -1150,6 +1150,8 @@ name|IOUtils
 operator|.
 name|closeSafely
 argument_list|(
+literal|false
+argument_list|,
 name|in
 argument_list|,
 name|out

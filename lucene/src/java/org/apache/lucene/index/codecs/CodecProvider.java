@@ -441,6 +441,26 @@ return|return
 name|codec
 return|;
 block|}
+comment|/**    * Returns<code>true</code> iff a codec with the given name is registered    * @param name codec name    * @return<code>true</code> iff a codec with the given name is registered, otherwise<code>false</code>.    */
+DECL|method|isCodecRegistered
+specifier|public
+specifier|synchronized
+name|boolean
+name|isCodecRegistered
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|codecs
+operator|.
+name|containsKey
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
 DECL|method|getSegmentInfosWriter
 specifier|public
 name|SegmentInfosWriter
@@ -586,6 +606,26 @@ return|;
 block|}
 return|return
 name|codec
+return|;
+block|}
+comment|/**    * Returns<code>true</code> if this provider has a Codec registered for this    * field.    */
+DECL|method|hasFieldCodec
+specifier|public
+specifier|synchronized
+name|boolean
+name|hasFieldCodec
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|perFieldMap
+operator|.
+name|containsKey
+argument_list|(
+name|name
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns the default {@link Codec} for this {@link CodecProvider}    *     * @return the default {@link Codec} for this {@link CodecProvider}    */

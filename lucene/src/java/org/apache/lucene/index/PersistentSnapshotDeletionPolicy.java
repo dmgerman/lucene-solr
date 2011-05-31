@@ -230,7 +230,7 @@ specifier|final
 name|IndexWriter
 name|writer
 decl_stmt|;
-comment|/**    * Reads the snapshots information from the given {@link Directory}. This    * method does can be used if the snapshots information is needed, however you    * cannot instantiate the deletion policy (because e.g., some other process    * keeps a lock on the snapshots directory).    */
+comment|/**    * Reads the snapshots information from the given {@link Directory}. This    * method can be used if the snapshots information is needed, however you    * cannot instantiate the deletion policy (because e.g., some other process    * keeps a lock on the snapshots directory).    */
 DECL|method|readSnapshotsInfo
 specifier|public
 specifier|static
@@ -472,6 +472,8 @@ name|commit
 argument_list|()
 expr_stmt|;
 block|}
+try|try
+block|{
 comment|// Initializes the snapshots information. This code should basically run
 comment|// only if mode != CREATE, but if it is, it's no harm as we only open the
 comment|// reader once and immediately close it.
@@ -509,6 +511,39 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+comment|// don't leave any open file handles
+throw|throw
+name|e
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|writer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+comment|// don't leave any open file handles
+throw|throw
+name|e
+throw|;
 block|}
 block|}
 annotation|@

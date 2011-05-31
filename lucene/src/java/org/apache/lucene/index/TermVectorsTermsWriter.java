@@ -251,20 +251,18 @@ operator|.
 name|VECTORS_INDEX_EXTENSION
 argument_list|)
 decl_stmt|;
+name|IOUtils
+operator|.
+name|closeSafely
+argument_list|(
+literal|false
+argument_list|,
 name|tvx
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+argument_list|,
 name|tvf
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+argument_list|,
 name|tvd
-operator|.
-name|close
-argument_list|()
+argument_list|)
 expr_stmt|;
 name|tvx
 operator|=
@@ -460,6 +458,13 @@ operator|==
 literal|null
 condition|)
 block|{
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 comment|// If we hit an exception while init'ing the term
 comment|// vector output files, we must abort this segment
 comment|// because those files will be in an unknown
@@ -566,6 +571,34 @@ operator|.
 name|FORMAT_CURRENT
 argument_list|)
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|IOUtils
+operator|.
+name|closeSafely
+argument_list|(
+literal|true
+argument_list|,
+name|tvx
+argument_list|,
+name|tvd
+argument_list|,
+name|tvf
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 name|lastDocID
 operator|=
 literal|0
@@ -756,6 +789,16 @@ operator|==
 name|docState
 operator|.
 name|docID
+operator|:
+literal|"lastDocID="
+operator|+
+name|lastDocID
+operator|+
+literal|" docState.docID="
+operator|+
+name|docState
+operator|.
+name|docID
 assert|;
 name|lastDocID
 operator|++
@@ -797,6 +840,8 @@ name|IOUtils
 operator|.
 name|closeSafely
 argument_list|(
+literal|true
+argument_list|,
 name|tvx
 argument_list|,
 name|tvd
@@ -808,9 +853,18 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|ignored
+name|e
 parameter_list|)
-block|{     }
+block|{
+comment|// cannot happen since we suppress exceptions
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
 try|try
 block|{
 name|docWriter

@@ -238,7 +238,7 @@ block|{
 name|File
 name|path
 init|=
-name|File
+name|_TestUtil
 operator|.
 name|createTempFile
 argument_list|(

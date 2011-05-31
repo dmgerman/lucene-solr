@@ -1254,6 +1254,8 @@ argument_list|(
 name|seedFileName
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|out
 operator|.
 name|writeLong
@@ -1261,11 +1263,15 @@ argument_list|(
 name|seed
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|out
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 specifier|final
 name|Random
 name|random

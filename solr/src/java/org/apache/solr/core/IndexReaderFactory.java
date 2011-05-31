@@ -48,6 +48,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|CodecProvider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -107,6 +123,11 @@ init|=
 literal|1
 decl_stmt|;
 comment|//IndexReader.DEFAULT_TERMS_INDEX_DIVISOR;  Set this once Lucene makes this public.
+DECL|field|provider
+specifier|protected
+name|CodecProvider
+name|provider
+decl_stmt|;
 comment|/**    * Potentially initializes {@link #termInfosIndexDivisor}.  Overriding classes should call super.init() in order    * to make sure termInfosIndexDivisor is set.    *<p>    *<code>init</code> will be called just once, immediately after creation.    *<p>    * The args are user-level initialization parameters that may be specified    * when declaring an indexReaderFactory in solrconfig.xml    *    */
 DECL|method|init
 specifier|public
@@ -173,6 +194,23 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Sets the codec provider for this IndexReaderFactory    */
+DECL|method|setCodecProvider
+specifier|public
+name|void
+name|setCodecProvider
+parameter_list|(
+name|CodecProvider
+name|provider
+parameter_list|)
+block|{
+name|this
+operator|.
+name|provider
+operator|=
+name|provider
+expr_stmt|;
+block|}
 block|}
 end_class
 
