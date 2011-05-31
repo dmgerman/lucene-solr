@@ -20,7 +20,20 @@ begin_comment
 comment|/**  * Use by certain classes to match version compatibility  * across releases of Lucene.  *   *<p><b>WARNING</b>: When changing the version parameter  * that you supply to components in Lucene, do not simply  * change the version at search-time, but instead also adjust  * your indexing code to match, and re-index.  */
 end_comment
 
+begin_comment
+comment|// remove me when java 5 is no longer supported
+end_comment
+
+begin_comment
+comment|// this is a workaround for a JDK bug that wrongly emits a warning.
+end_comment
+
 begin_enum
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"dep-ann"
+argument_list|)
 DECL|enum|Version
 specifier|public
 enum|enum
