@@ -256,7 +256,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/** Expert: Index the field's value without an Analyzer,      * and also disable the storing of norms.  Note that you      * can also separately enable/disable norms by calling      * {@link Field#setOmitNorms}.  No norms means that      * index-time field and document boosting and field      * length normalization are disabled.  The benefit is      * less memory usage as norms take up one byte of RAM      * per indexed field for every document in the index,      * during searching.  Note that once you index a given      * field<i>with</i> norms enabled, disabling norms will      * have no effect.  In other words, for this to have the      * above described effect on a field, all instances of      * that field must be indexed with NOT_ANALYZED_NO_NORMS      * from the beginning. */
+comment|/** Expert: Index the field's value without an Analyzer,      * and also disable the indexing of norms.  Note that you      * can also separately enable/disable norms by calling      * {@link Field#setOmitNorms}.  No norms means that      * index-time field and document boosting and field      * length normalization are disabled.  The benefit is      * less memory usage as norms take up one byte of RAM      * per indexed field for every document in the index,      * during searching.  Note that once you index a given      * field<i>with</i> norms disabled, enabling norms will      * have no effect.  In other words, for this to have the      * above described effect on a field, one instance of      * that field must be indexed with NOT_ANALYZED_NO_NORMS      * at some point. */
 DECL|enum constant|NOT_ANALYZED_NO_NORMS
 name|NOT_ANALYZED_NO_NORMS
 block|{

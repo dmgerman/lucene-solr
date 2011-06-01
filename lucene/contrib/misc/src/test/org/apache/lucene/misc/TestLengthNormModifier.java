@@ -620,6 +620,8 @@ specifier|public
 name|void
 name|testMissingField
 parameter_list|()
+throws|throws
+name|Exception
 block|{
 name|FieldNormModifier
 name|fnm
@@ -644,17 +646,11 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|IllegalStateException
 name|e
 parameter_list|)
 block|{
-name|assertNull
-argument_list|(
-literal|"caught something"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|// expected
 block|}
 block|}
 DECL|method|testFieldWithNoNorm
@@ -737,17 +733,11 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|IllegalStateException
 name|e
 parameter_list|)
 block|{
-name|assertNull
-argument_list|(
-literal|"caught something"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|// expected
 block|}
 comment|// nothing should have changed
 name|r

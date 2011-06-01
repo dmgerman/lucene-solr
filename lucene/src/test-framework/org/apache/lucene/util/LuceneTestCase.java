@@ -1417,7 +1417,7 @@ name|TimeZone
 name|savedTimeZone
 decl_stmt|;
 DECL|field|stores
-specifier|private
+specifier|protected
 specifier|static
 name|Map
 argument_list|<
@@ -2187,6 +2187,31 @@ argument_list|>
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// enable this by default, for IDE consistency with ant tests (as its the default from ant)
+comment|// TODO: really should be in solr base classes, but some extend LTC directly.
+comment|// we do this in beforeClass, because some tests currently disable it
+if|if
+condition|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"solr.directoryFactory"
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.directoryFactory"
+argument_list|,
+literal|"org.apache.solr.core.MockDirectoryFactory"
+argument_list|)
+expr_stmt|;
+block|}
 name|savedCodecProvider
 operator|=
 name|CodecProvider

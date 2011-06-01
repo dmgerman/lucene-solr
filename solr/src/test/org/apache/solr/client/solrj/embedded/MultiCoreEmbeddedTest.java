@@ -84,6 +84,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// TODO: fix this test to use MockDirectoryFactory
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"solr.directoryFactory"
+argument_list|)
+expr_stmt|;
 name|super
 operator|.
 name|setUp
