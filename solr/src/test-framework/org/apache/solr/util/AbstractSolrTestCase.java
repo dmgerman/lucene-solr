@@ -678,6 +678,11 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+name|SolrTestCaseJ4
+operator|.
+name|closeDirectories
+argument_list|()
+expr_stmt|;
 name|String
 name|skip
 init|=

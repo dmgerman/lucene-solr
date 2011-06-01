@@ -1417,7 +1417,7 @@ name|TimeZone
 name|savedTimeZone
 decl_stmt|;
 DECL|field|stores
-specifier|private
+specifier|protected
 specifier|static
 name|Map
 argument_list|<
