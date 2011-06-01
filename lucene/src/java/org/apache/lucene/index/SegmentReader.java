@@ -2712,8 +2712,20 @@ name|norm
 operator|==
 literal|null
 condition|)
-comment|// not an indexed field
-return|return;
+block|{
+comment|// field does not store norms
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Cannot setNorm for field "
+operator|+
+name|field
+operator|+
+literal|": norms were omitted"
+argument_list|)
+throw|;
+block|}
 name|normsDirty
 operator|=
 literal|true
