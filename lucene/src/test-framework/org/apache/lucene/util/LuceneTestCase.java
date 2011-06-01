@@ -3787,6 +3787,30 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|// enable this by default, for IDE consistency with ant tests (as its the default from ant)
+comment|// TODO: really should be in solr base classes, but some extend LTC directly.
+if|if
+condition|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"solr.directoryFactory"
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.directoryFactory"
+argument_list|,
+literal|"org.apache.solr.core.MockDirectoryFactory"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Looks for leftover running threads, trying to kill them off,    * so they don't fail future tests.    * returns the number of rogue threads that it found.    */
 DECL|method|threadCleanup
