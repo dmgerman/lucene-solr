@@ -42,35 +42,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Collector
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|FieldCache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Scorer
 import|;
 end_import
 
@@ -133,12 +105,15 @@ comment|/**  * A collector that collects all groups that match the  * query. Onl
 end_comment
 
 begin_class
-DECL|class|AllGroupsCollector
+DECL|class|TermAllGroupsCollector
 specifier|public
 class|class
-name|AllGroupsCollector
+name|TermAllGroupsCollector
 extends|extends
-name|Collector
+name|AbstractAllGroupsCollector
+argument_list|<
+name|BytesRef
+argument_list|>
 block|{
 DECL|field|DEFAULT_INITIAL_SIZE
 specifier|private
@@ -170,6 +145,13 @@ name|BytesRef
 argument_list|>
 name|groups
 decl_stmt|;
+DECL|field|index
+specifier|private
+name|FieldCache
+operator|.
+name|DocTermsIndex
+name|index
+decl_stmt|;
 DECL|field|spareBytesRef
 specifier|private
 specifier|final
@@ -180,17 +162,10 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
-DECL|field|index
-specifier|private
-name|FieldCache
-operator|.
-name|DocTermsIndex
-name|index
-decl_stmt|;
-comment|/**    * Expert: Constructs a {@link AllGroupsCollector}    *    * @param groupField  The field to group by    * @param initialSize The initial allocation size of the    * internal int set and group list    * which should roughly match the total    * number of expected unique groups. Be aware that the    * heap usage is 4 bytes * initialSize.    */
-DECL|method|AllGroupsCollector
+comment|/**    * Expert: Constructs a {@link AbstractAllGroupsCollector}    *    * @param groupField  The field to group by    * @param initialSize The initial allocation size of the    *                    internal int set and group list    *                    which should roughly match the total    *                    number of expected unique groups. Be aware that the    *                    heap usage is 4 bytes * initialSize.    */
+DECL|method|TermAllGroupsCollector
 specifier|public
-name|AllGroupsCollector
+name|TermAllGroupsCollector
 parameter_list|(
 name|String
 name|groupField
@@ -199,12 +174,6 @@ name|int
 name|initialSize
 parameter_list|)
 block|{
-name|this
-operator|.
-name|groupField
-operator|=
-name|groupField
-expr_stmt|;
 name|ordSet
 operator|=
 operator|new
@@ -227,11 +196,17 @@ argument_list|(
 name|initialSize
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|groupField
+operator|=
+name|groupField
+expr_stmt|;
 block|}
-comment|/**    * Constructs a {@link AllGroupsCollector}. This sets the    * initial allocation size for the internal int set and group    * list to 128.    *    * @param groupField The field to group by    */
-DECL|method|AllGroupsCollector
+comment|/**    * Constructs a {@link AbstractAllGroupsCollector}. This sets the    * initial allocation size for the internal int set and group    * list to 128.    *    * @param groupField The field to group by    */
+DECL|method|TermAllGroupsCollector
 specifier|public
-name|AllGroupsCollector
+name|TermAllGroupsCollector
 parameter_list|(
 name|String
 name|groupField
@@ -245,17 +220,6 @@ name|DEFAULT_INITIAL_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setScorer
-specifier|public
-name|void
-name|setScorer
-parameter_list|(
-name|Scorer
-name|scorer
-parameter_list|)
-throws|throws
-name|IOException
-block|{   }
 DECL|method|collect
 specifier|public
 name|void
@@ -324,21 +288,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns the total number of groups for the executed search.    * This is a convenience method. The following code snippet has the same effect:<pre>getGroups().size()</pre>    *    * @return The total number of groups for the executed search    */
-DECL|method|getGroupCount
-specifier|public
-name|int
-name|getGroupCount
-parameter_list|()
-block|{
-return|return
-name|groups
-operator|.
-name|size
-argument_list|()
-return|;
-block|}
-comment|/**    * Returns the group values    *<p/>    * This is an unordered collections of group values. For each group that matched the query there is a {@link BytesRef}    * representing a group value.    *    * @return the group values    */
+comment|/**    * {@inheritDoc}    */
 DECL|method|getGroups
 specifier|public
 name|Collection
@@ -422,16 +372,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
 block|}
 block|}
 end_class

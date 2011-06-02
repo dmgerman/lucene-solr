@@ -41,6 +41,9 @@ DECL|class|TopGroups
 specifier|public
 class|class
 name|TopGroups
+parameter_list|<
+name|GROUP_VALUE_TYPE
+parameter_list|>
 block|{
 comment|/** Number of documents matching the search */
 DECL|field|totalHitCount
@@ -68,6 +71,9 @@ DECL|field|groups
 specifier|public
 specifier|final
 name|GroupDocs
+argument_list|<
+name|GROUP_VALUE_TYPE
+argument_list|>
 index|[]
 name|groups
 decl_stmt|;
@@ -106,6 +112,9 @@ name|int
 name|totalGroupedHitCount
 parameter_list|,
 name|GroupDocs
+argument_list|<
+name|GROUP_VALUE_TYPE
+argument_list|>
 index|[]
 name|groups
 parameter_list|)
@@ -152,6 +161,9 @@ specifier|public
 name|TopGroups
 parameter_list|(
 name|TopGroups
+argument_list|<
+name|GROUP_VALUE_TYPE
+argument_list|>
 name|oldTopGroups
 parameter_list|,
 name|Integer
