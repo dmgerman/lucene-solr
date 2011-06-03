@@ -341,18 +341,7 @@ specifier|abstract
 class|class
 name|Source
 block|{
-comment|// TODO we might need a close method here to null out the internal used arrays?!
-DECL|field|missingValue
-specifier|protected
-specifier|final
-name|MissingValue
-name|missingValue
-init|=
-operator|new
-name|MissingValue
-argument_list|()
-decl_stmt|;
-comment|/**      * Returns a<tt>long</tt> for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>long</tt> values.      *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>long</tt> values.      * @see MissingValue      * @see #getMissing()      */
+comment|/**      * Returns a<tt>long</tt> for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>long</tt> values.      *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>long</tt> values.      */
 DECL|method|getInt
 specifier|public
 name|long
@@ -370,7 +359,7 @@ literal|"ints are not supported"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Returns a<tt>double</tt> for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>double</tt> values.      *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>double</tt> values.      * @see MissingValue      * @see #getMissing()      */
+comment|/**      * Returns a<tt>double</tt> for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>double</tt> values.      *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>double</tt> values.      */
 DECL|method|getFloat
 specifier|public
 name|double
@@ -388,7 +377,7 @@ literal|"floats are not supported"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Returns a {@link BytesRef} for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>byte[]</tt> values.      *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>byte[]</tt> values.      * @see MissingValue      * @see #getMissing()      */
+comment|/**      * Returns a {@link BytesRef} for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>byte[]</tt> values.      *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>byte[]</tt> values.      */
 DECL|method|getBytes
 specifier|public
 name|BytesRef
@@ -436,17 +425,6 @@ name|getEnum
 argument_list|(
 literal|null
 argument_list|)
-return|;
-block|}
-comment|/**      * Returns a {@link MissingValue} instance for this {@link Source}.      * Depending on the type of this {@link Source} consumers of the API should      * check if the value returned from on of the getter methods represents a      * value for a missing document or rather a value for a document no value      * was specified during indexing.      */
-DECL|method|getMissing
-specifier|public
-name|MissingValue
-name|getMissing
-parameter_list|()
-block|{
-return|return
-name|missingValue
 return|;
 block|}
 comment|/**      * Returns the {@link ValueType} of this source.      *       * @return the {@link ValueType} of this source.      */
@@ -614,16 +592,41 @@ name|BytesRef
 name|bytesRef
 parameter_list|)
 block|{
-return|return
-name|getByOrd
-argument_list|(
+specifier|final
+name|int
+name|ord
+init|=
 name|ord
 argument_list|(
 name|docID
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|ord
+operator|<
+literal|0
+condition|)
+block|{
+name|bytesRef
+operator|.
+name|length
+operator|=
+literal|0
+expr_stmt|;
+block|}
+else|else
+block|{
+name|getByOrd
+argument_list|(
+name|ord
 argument_list|,
 name|bytesRef
 argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|bytesRef
 return|;
 block|}
 comment|/**      * Returns ord for specified docID. If this docID had not been added to the      * Writer, the ord is 0. Ord is dense, ie, starts at 0, then increments by 1      * for the next (as defined by {@link Comparator} value.      */
@@ -651,30 +654,11 @@ name|BytesRef
 name|bytesRef
 parameter_list|)
 function_decl|;
-DECL|class|LookupResult
-specifier|public
-specifier|static
-class|class
-name|LookupResult
-block|{
-comment|/**<code>true</code> iff the values was found */
-DECL|field|found
-specifier|public
-name|boolean
-name|found
-decl_stmt|;
-comment|/**        * the ordinal of the value if found or the ordinal of the value if it        * would be present in the source        */
-DECL|field|ord
-specifier|public
-name|int
-name|ord
-decl_stmt|;
-block|}
-comment|/**      * Finds the largest ord whose value is less or equal to the requested      * value. If {@link LookupResult#found} is true, then ord is an exact match.      * The returned {@link LookupResult} may be reused across calls.      */
+comment|/**      * Finds the ordinal whose value is greater or equal to the given value.      *       * @return the given values ordinal if found or otherwise      *<code>(-(ord)-1)</code>, defined as the ordinal of the first      *         element that is greater than the given value. This guarantees      *         that the return value will always be&gt;= 0 if the given value      *         is found.      *       */
 DECL|method|getByValue
 specifier|public
 specifier|final
-name|LookupResult
+name|int
 name|getByValue
 parameter_list|(
 name|BytesRef
@@ -692,11 +676,11 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Performs a lookup by value.      *       * @param value      *          the value to look up      * @param tmpRef      *          a temporary {@link BytesRef} instance used to compare internal      *          values to the given value. Must not be<code>null</code>      * @return the {@link LookupResult}      */
+comment|/**      * Performs a lookup by value.      *       * @param value      *          the value to look up      * @param tmpRef      *          a temporary {@link BytesRef} instance used to compare internal      *          values to the given value. Must not be<code>null</code>      * @return the given values ordinal if found or otherwise      *<code>(-(ord)-1)</code>, defined as the ordinal of the first      *         element that is greater than the given value. This guarantees      *         that the return value will always be&gt;= 0 if the given value      *         is found.      */
 DECL|method|getByValue
 specifier|public
 specifier|abstract
-name|LookupResult
+name|int
 name|getByValue
 parameter_list|(
 name|BytesRef
@@ -706,60 +690,6 @@ name|BytesRef
 name|tmpRef
 parameter_list|)
 function_decl|;
-block|}
-comment|/**    * {@link MissingValue} is used by {@link Source} implementations to define an    * Implementation dependent value for documents that had no value assigned    * during indexing. Its purpose is similar to a default value but since the a    * missing value across {@link ValueType} and its implementations can be highly    * dynamic the actual values are not constant but defined per {@link Source}    * through the {@link MissingValue} struct. The actual value used to indicate    * a missing value can even changed within the same field from one segment to    * another. Certain {@link Ints} implementations for instance use a value    * outside of value set as the missing value.    */
-DECL|class|MissingValue
-specifier|public
-specifier|final
-specifier|static
-class|class
-name|MissingValue
-block|{
-DECL|field|longValue
-specifier|public
-name|long
-name|longValue
-decl_stmt|;
-DECL|field|doubleValue
-specifier|public
-name|double
-name|doubleValue
-decl_stmt|;
-DECL|field|bytesValue
-specifier|public
-name|BytesRef
-name|bytesValue
-decl_stmt|;
-comment|/**      * Copies the values from the given {@link MissingValue}.      */
-DECL|method|copy
-specifier|public
-specifier|final
-name|void
-name|copy
-parameter_list|(
-name|MissingValue
-name|values
-parameter_list|)
-block|{
-name|longValue
-operator|=
-name|values
-operator|.
-name|longValue
-expr_stmt|;
-name|doubleValue
-operator|=
-name|values
-operator|.
-name|doubleValue
-expr_stmt|;
-name|bytesValue
-operator|=
-name|values
-operator|.
-name|bytesValue
-expr_stmt|;
-block|}
 block|}
 block|}
 end_class

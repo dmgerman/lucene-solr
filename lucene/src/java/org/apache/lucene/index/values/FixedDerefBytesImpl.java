@@ -1043,8 +1043,14 @@ operator|==
 literal|0
 condition|)
 block|{
+name|bytesRef
+operator|.
+name|length
+operator|=
+literal|0
+expr_stmt|;
 return|return
-literal|null
+name|bytesRef
 return|;
 block|}
 return|return

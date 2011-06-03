@@ -821,17 +821,6 @@ argument_list|(
 name|idxIn
 argument_list|)
 expr_stmt|;
-name|missingValue
-operator|.
-name|bytesValue
-operator|=
-operator|new
-name|BytesRef
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-comment|// empty
 block|}
 annotation|@
 name|Override
