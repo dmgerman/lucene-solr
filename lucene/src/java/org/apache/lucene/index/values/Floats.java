@@ -582,7 +582,7 @@ specifier|protected
 name|void
 name|setNextEnum
 parameter_list|(
-name|DocValuesEnum
+name|ValuesEnum
 name|valuesEnum
 parameter_list|)
 block|{
@@ -1568,7 +1568,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|DocValuesEnum
+name|ValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1709,7 +1709,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|DocValuesEnum
+name|ValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1820,7 +1820,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|DocValuesEnum
+name|ValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -2224,7 +2224,7 @@ specifier|abstract
 class|class
 name|FloatsEnumImpl
 extends|extends
-name|DocValuesEnum
+name|ValuesEnum
 block|{
 DECL|field|dataIn
 specifier|protected

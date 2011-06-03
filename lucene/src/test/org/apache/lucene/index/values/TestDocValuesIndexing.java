@@ -126,7 +126,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DocValuesField
+name|IndexDocValuesField
 import|;
 end_import
 
@@ -556,7 +556,7 @@ name|TestDocValuesIndexing
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/*    * TODO: Roadmap to land on trunk    *     * - Add documentation for:     *  - DocValues     * - add test for unoptimized case with deletes    * - add multithreaded tests / integrate into stress indexing?    */
+comment|/*    * - add test for unoptimized case with deletes    * - add multithreaded tests / integrate into stress indexing?    */
 annotation|@
 name|Before
 DECL|method|setUp
@@ -646,11 +646,11 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-name|DocValuesField
+name|IndexDocValuesField
 name|valuesField
 init|=
 operator|new
-name|DocValuesField
+name|IndexDocValuesField
 argument_list|(
 literal|"docId"
 argument_list|)
@@ -1382,7 +1382,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|DocValuesEnum
+name|ValuesEnum
 name|vE_1
 init|=
 name|getValuesEnum
@@ -1398,7 +1398,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|DocValuesEnum
+name|ValuesEnum
 name|vE_2
 init|=
 name|getValuesEnum
@@ -1414,7 +1414,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|DocValuesEnum
+name|ValuesEnum
 name|vE_1_merged
 init|=
 name|getValuesEnum
@@ -1430,7 +1430,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|DocValuesEnum
+name|ValuesEnum
 name|vE_2_merged
 init|=
 name|getValuesEnum
@@ -1556,7 +1556,7 @@ name|assertEquals
 argument_list|(
 name|msg
 argument_list|,
-name|DocValuesEnum
+name|ValuesEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -1570,7 +1570,7 @@ name|assertEquals
 argument_list|(
 name|msg
 argument_list|,
-name|DocValuesEnum
+name|ValuesEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -1584,7 +1584,7 @@ name|assertEquals
 argument_list|(
 name|msg
 argument_list|,
-name|DocValuesEnum
+name|ValuesEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -1602,7 +1602,7 @@ name|assertEquals
 argument_list|(
 name|msg
 argument_list|,
-name|DocValuesEnum
+name|ValuesEnum
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -1944,7 +1944,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-name|DocValuesEnum
+name|ValuesEnum
 name|intsEnum
 init|=
 name|getValuesEnum
@@ -2147,7 +2147,7 @@ literal|0.0d
 argument_list|)
 expr_stmt|;
 block|}
-name|DocValuesEnum
+name|ValuesEnum
 name|floatEnum
 init|=
 name|getValuesEnum
@@ -2732,7 +2732,7 @@ name|length
 argument_list|)
 expr_stmt|;
 comment|// make sure we advance at least until base
-name|DocValuesEnum
+name|ValuesEnum
 name|bytesEnum
 init|=
 name|getValuesEnum
@@ -2814,7 +2814,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|DocValuesEnum
+name|ValuesEnum
 name|bytesEnum
 init|=
 name|getValuesEnum
@@ -3338,7 +3338,7 @@ return|;
 block|}
 DECL|method|getValuesEnum
 specifier|private
-name|DocValuesEnum
+name|ValuesEnum
 name|getValuesEnum
 parameter_list|(
 name|IndexDocValues
@@ -3347,7 +3347,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|DocValuesEnum
+name|ValuesEnum
 name|valuesEnum
 decl_stmt|;
 if|if
@@ -3356,7 +3356,7 @@ operator|!
 operator|(
 name|values
 operator|instanceof
-name|MultiDocValues
+name|MultiIndexDocValues
 operator|)
 operator|&&
 name|random
@@ -3578,7 +3578,7 @@ name|nextBoolean
 argument_list|()
 condition|?
 operator|new
-name|DocValuesField
+name|IndexDocValuesField
 argument_list|(
 name|value
 operator|.
@@ -3626,11 +3626,11 @@ argument_list|(
 name|field
 argument_list|)
 expr_stmt|;
-name|DocValuesField
+name|IndexDocValuesField
 name|valField
 init|=
 operator|new
-name|DocValuesField
+name|IndexDocValuesField
 argument_list|(
 literal|"prototype"
 argument_list|)

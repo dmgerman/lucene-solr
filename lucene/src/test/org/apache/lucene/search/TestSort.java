@@ -106,7 +106,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DocValuesField
+name|IndexDocValuesField
 import|;
 end_import
 
@@ -1367,7 +1367,7 @@ name|f
 init|=
 name|supportsDocValues
 condition|?
-name|DocValuesField
+name|IndexDocValuesField
 operator|.
 name|set
 argument_list|(
@@ -1454,7 +1454,7 @@ name|f
 init|=
 name|supportsDocValues
 condition|?
-name|DocValuesField
+name|IndexDocValuesField
 operator|.
 name|set
 argument_list|(
@@ -1713,7 +1713,7 @@ name|f
 init|=
 name|supportsDocValues
 condition|?
-name|DocValuesField
+name|IndexDocValuesField
 operator|.
 name|set
 argument_list|(

@@ -213,9 +213,9 @@ comment|/**  * Stores ints packed with fixed-bit precision.  *   * @lucene.exper
 end_comment
 
 begin_class
-DECL|class|PackedIntsImpl
+DECL|class|IntsImpl
 class|class
-name|PackedIntsImpl
+name|IntsImpl
 block|{
 DECL|field|CODEC_NAME
 specifier|private
@@ -920,7 +920,7 @@ specifier|protected
 name|void
 name|setNextEnum
 parameter_list|(
-name|DocValuesEnum
+name|ValuesEnum
 name|valuesEnum
 parameter_list|)
 block|{
@@ -1308,7 +1308,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|DocValuesEnum
+name|ValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1502,7 +1502,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|DocValuesEnum
+name|ValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1616,7 +1616,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|DocValuesEnum
+name|ValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1644,7 +1644,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|DocValuesEnum
+name|ValuesEnum
 name|inst
 init|=
 name|packed
@@ -1715,7 +1715,7 @@ specifier|final
 class|class
 name|PackedIntsEnumImpl
 extends|extends
-name|DocValuesEnum
+name|ValuesEnum
 block|{
 DECL|field|ints
 specifier|private
@@ -1972,7 +1972,7 @@ specifier|final
 class|class
 name|FixedIntsEnumImpl
 extends|extends
-name|DocValuesEnum
+name|ValuesEnum
 block|{
 DECL|field|dataIn
 specifier|private

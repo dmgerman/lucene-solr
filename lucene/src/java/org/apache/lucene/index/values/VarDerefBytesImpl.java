@@ -1413,7 +1413,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|DocValuesEnum
+name|ValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource

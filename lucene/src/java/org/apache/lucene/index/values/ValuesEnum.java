@@ -99,15 +99,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link DocValuesEnum} is a {@link DocIdSetIterator} iterating<tt>byte[]</tt>  * ,<tt>long</tt> and<tt>double</tt> stored per document. Depending on the  * enum's {@link ValueType} ({@link #type()}) the enum might skip over documents that  * have no value stored. Types like {@link ValueType#BYTES_VAR_STRAIGHT} might not  * skip over documents even if there is no value associated with a document. The  * value for document without values again depends on the types implementation  * although a reference for a {@link ValueType} returned from a accessor method  * {@link #getFloat()}, {@link #getInt()} or {@link #bytes()} will never be  *<code>null</code> even if a document has no value.  *<p>  * Note: Only the reference for the enum's type are initialized to non  *<code>null</code> ie. {@link #getInt()} will always return<code>null</code>  * if the enum's Type is {@link ValueType#FLOAT_32}.  *   * @lucene.experimental  */
+comment|/**  * {@link ValuesEnum} is a {@link DocIdSetIterator} iterating<tt>byte[]</tt>  * ,<tt>long</tt> and<tt>double</tt> stored per document. Depending on the  * enum's {@link ValueType} ({@link #type()}) the enum might skip over documents that  * have no value stored. Types like {@link ValueType#BYTES_VAR_STRAIGHT} might not  * skip over documents even if there is no value associated with a document. The  * value for document without values again depends on the types implementation  * although a reference for a {@link ValueType} returned from a accessor method  * {@link #getFloat()}, {@link #getInt()} or {@link #bytes()} will never be  *<code>null</code> even if a document has no value.  *<p>  * Note: Only the reference for the enum's type are initialized to non  *<code>null</code> ie. {@link #getInt()} will always return<code>null</code>  * if the enum's Type is {@link ValueType#FLOAT_32}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|DocValuesEnum
+DECL|class|ValuesEnum
 specifier|public
 specifier|abstract
 class|class
-name|DocValuesEnum
+name|ValuesEnum
 extends|extends
 name|DocIdSetIterator
 block|{
@@ -137,10 +137,10 @@ specifier|protected
 name|LongsRef
 name|intsRef
 decl_stmt|;
-comment|/**    * Creates a new {@link DocValuesEnum} for the given type. The    * {@link AttributeSource} for this enum is set to<code>null</code>    */
-DECL|method|DocValuesEnum
+comment|/**    * Creates a new {@link ValuesEnum} for the given type. The    * {@link AttributeSource} for this enum is set to<code>null</code>    */
+DECL|method|ValuesEnum
 specifier|protected
-name|DocValuesEnum
+name|ValuesEnum
 parameter_list|(
 name|ValueType
 name|enumType
@@ -154,10 +154,10 @@ name|enumType
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link DocValuesEnum} for the given type.    */
-DECL|method|DocValuesEnum
+comment|/**    * Creates a new {@link ValuesEnum} for the given type.    */
+DECL|method|ValuesEnum
 specifier|protected
-name|DocValuesEnum
+name|ValuesEnum
 parameter_list|(
 name|AttributeSource
 name|source
@@ -287,7 +287,7 @@ specifier|protected
 name|void
 name|copyFrom
 parameter_list|(
-name|DocValuesEnum
+name|ValuesEnum
 name|valuesEnum
 parameter_list|)
 block|{
@@ -351,11 +351,11 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns an empty {@link DocValuesEnum} for the given {@link ValueType}.    */
+comment|/**    * Returns an empty {@link ValuesEnum} for the given {@link ValueType}.    */
 DECL|method|emptyEnum
 specifier|public
 specifier|static
-name|DocValuesEnum
+name|ValuesEnum
 name|emptyEnum
 parameter_list|(
 name|ValueType
@@ -364,7 +364,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DocValuesEnum
+name|ValuesEnum
 argument_list|(
 name|type
 argument_list|)

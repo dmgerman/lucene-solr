@@ -4781,7 +4781,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"please use MultiPerDoc#getPerDocs, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Fields"
+literal|"please use MultiPerDocValues#getPerDocs, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Fields"
 argument_list|)
 throw|;
 block|}

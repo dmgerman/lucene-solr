@@ -145,14 +145,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This class provides a {@link AbstractField} that enables storing of typed  * per-document values for scoring, sorting or value retrieval. Here's an  * example usage, adding an int value:  *   *<pre>  * document.add(new DocValuesField(name).setInt(value));  *</pre>  *   * For optimal performance, re-use the<code>DocValuesField</code> and  * {@link Document} instance for more than one document:  *   *<pre>  *  DocValuesField field = new DocValuesField(name);  *  Document document = new Document();  *  document.add(field);  *   *  for(all documents) {  *    ...  *    field.setInt(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   *<p>  * If doc values are stored in addition to an indexed ({@link Index}) or stored  * ({@link Store}) value it's recommended to use the {@link DocValuesField}'s  * {@link #set(AbstractField)} API:  *   *<pre>  *  DocValuesField field = new DocValuesField(name);  *  Field indexedField = new Field(name, stringValue, Stored.NO, Indexed.ANALYZED);  *  Document document = new Document();  *  document.add(indexedField);  *  field.set(indexedField);  *  for(all documents) {  *    ...  *    field.setInt(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   * */
+comment|/**  *<p>  * This class provides a {@link AbstractField} that enables storing of typed  * per-document values for scoring, sorting or value retrieval. Here's an  * example usage, adding an int value:  *   *<pre>  * document.add(new IndexDocValuesField(name).setInt(value));  *</pre>  *   * For optimal performance, re-use the<code>DocValuesField</code> and  * {@link Document} instance for more than one document:  *   *<pre>  *  IndexDocValuesField field = new IndexDocValuesField(name);  *  Document document = new Document();  *  document.add(field);  *   *  for(all documents) {  *    ...  *    field.setInt(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   *<p>  * If doc values are stored in addition to an indexed ({@link Index}) or stored  * ({@link Store}) value it's recommended to use the {@link IndexDocValuesField}'s  * {@link #set(AbstractField)} API:  *   *<pre>  *  IndexDocValuesField field = new IndexDocValuesField(name);  *  Field indexedField = new Field(name, stringValue, Stored.NO, Indexed.ANALYZED);  *  Document document = new Document();  *  document.add(indexedField);  *  field.set(indexedField);  *  for(all documents) {  *    ...  *    field.setInt(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   * */
 end_comment
 
 begin_class
-DECL|class|DocValuesField
+DECL|class|IndexDocValuesField
 specifier|public
 class|class
-name|DocValuesField
+name|IndexDocValuesField
 extends|extends
 name|AbstractField
 implements|implements
@@ -186,10 +186,10 @@ name|BytesRef
 argument_list|>
 name|bytesComparator
 decl_stmt|;
-comment|/**    * Creates a new {@link DocValuesField} with the given name.    */
-DECL|method|DocValuesField
+comment|/**    * Creates a new {@link IndexDocValuesField} with the given name.    */
+DECL|method|IndexDocValuesField
 specifier|public
-name|DocValuesField
+name|IndexDocValuesField
 parameter_list|(
 name|String
 name|name
@@ -218,9 +218,9 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a {@link DocValuesField} prototype    */
-DECL|method|DocValuesField
-name|DocValuesField
+comment|/**    * Creates a {@link IndexDocValuesField} prototype    */
+DECL|method|IndexDocValuesField
+name|IndexDocValuesField
 parameter_list|()
 block|{
 name|this
@@ -552,7 +552,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Sets this {@link DocValuesField} to the given {@link AbstractField} and    * returns the given field. Any modifications to this instance will be visible    * to the given field.    */
+comment|/**    * Sets this {@link IndexDocValuesField} to the given {@link AbstractField} and    * returns the given field. Any modifications to this instance will be visible    * to the given field.    */
 DECL|method|set
 specifier|public
 parameter_list|<
@@ -601,17 +601,17 @@ if|if
 condition|(
 name|field
 operator|instanceof
-name|DocValuesField
+name|IndexDocValuesField
 condition|)
 return|return
 name|field
 return|;
 specifier|final
-name|DocValuesField
+name|IndexDocValuesField
 name|valField
 init|=
 operator|new
-name|DocValuesField
+name|IndexDocValuesField
 argument_list|()
 decl_stmt|;
 switch|switch

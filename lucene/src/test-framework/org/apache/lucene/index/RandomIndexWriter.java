@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DocValuesField
+name|IndexDocValuesField
 import|;
 end_import
 
@@ -861,11 +861,11 @@ operator|!=
 literal|null
 condition|)
 return|return;
-name|DocValuesField
+name|IndexDocValuesField
 name|docValuesField
 init|=
 operator|new
-name|DocValuesField
+name|IndexDocValuesField
 argument_list|(
 name|name
 argument_list|)

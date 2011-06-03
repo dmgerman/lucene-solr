@@ -861,7 +861,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|DocValuesEnum
+name|ValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -892,7 +892,7 @@ specifier|final
 class|class
 name|FixedStraightBytesEnum
 extends|extends
-name|DocValuesEnum
+name|ValuesEnum
 block|{
 DECL|field|datIn
 specifier|private
@@ -1004,7 +1004,7 @@ specifier|protected
 name|void
 name|copyFrom
 parameter_list|(
-name|DocValuesEnum
+name|ValuesEnum
 name|valuesEnum
 parameter_list|)
 block|{

@@ -221,7 +221,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Records a value from the given document id. The methods implementation    * obtains the value for the document id from the last {@link DocValuesEnum}    * set to {@link #setNextEnum(DocValuesEnum)}.    *<p>    * This method is used during merging to provide implementation agnostic    * default merge implementation.    *</p>    *<p>    * The given document id must be the same document id returned from    * {@link DocValuesEnum#docID()} when this method is called. All documents IDs    * between the given ID and the previously given ID or<tt>0</tt> if the    * method is call the first time are filled with default values depending on    * the {@link Writer} implementation. The given document ID must always be    * greater than the previous ID or<tt>0</tt> if called the first time.    */
+comment|/**    * Records a value from the given document id. The methods implementation    * obtains the value for the document id from the last {@link ValuesEnum}    * set to {@link #setNextEnum(ValuesEnum)}.    *<p>    * This method is used during merging to provide implementation agnostic    * default merge implementation.    *</p>    *<p>    * The given document id must be the same document id returned from    * {@link ValuesEnum#docID()} when this method is called. All documents IDs    * between the given ID and the previously given ID or<tt>0</tt> if the    * method is call the first time are filled with default values depending on    * the {@link Writer} implementation. The given document ID must always be    * greater than the previous ID or<tt>0</tt> if called the first time.    */
 DECL|method|add
 specifier|protected
 specifier|abstract
@@ -234,14 +234,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Sets the next {@link DocValuesEnum} to consume values from on calls to    * {@link #add(int)}    *     * @param valuesEnum    *          the next {@link DocValuesEnum}, this must not be null    */
+comment|/**    * Sets the next {@link ValuesEnum} to consume values from on calls to    * {@link #add(int)}    *     * @param valuesEnum    *          the next {@link ValuesEnum}, this must not be null    */
 DECL|method|setNextEnum
 specifier|protected
 specifier|abstract
 name|void
 name|setNextEnum
 parameter_list|(
-name|DocValuesEnum
+name|ValuesEnum
 name|valuesEnum
 parameter_list|)
 function_decl|;
@@ -276,7 +276,7 @@ comment|// simply override this and decide if they want to merge
 comment|// segments using this generic implementation or if a bulk merge is possible
 comment|// / feasible.
 specifier|final
-name|DocValuesEnum
+name|ValuesEnum
 name|valEnum
 init|=
 name|state
@@ -340,7 +340,7 @@ literal|0
 argument_list|)
 operator|)
 operator|!=
-name|DocValuesEnum
+name|ValuesEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -395,7 +395,7 @@ name|i
 argument_list|)
 operator|)
 operator|==
-name|DocValuesEnum
+name|ValuesEnum
 operator|.
 name|NO_MORE_DOCS
 condition|)

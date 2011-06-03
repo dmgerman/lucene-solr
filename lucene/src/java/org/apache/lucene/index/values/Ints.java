@@ -54,7 +54,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|PackedIntsImpl
+name|IntsImpl
 operator|.
 name|IntsReader
 import|;
@@ -72,7 +72,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|PackedIntsImpl
+name|IntsImpl
 operator|.
 name|IntsWriter
 import|;

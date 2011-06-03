@@ -943,7 +943,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|DocValuesEnum
+name|ValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -971,7 +971,7 @@ specifier|private
 class|class
 name|VarStraightBytesEnum
 extends|extends
-name|DocValuesEnum
+name|ValuesEnum
 block|{
 DECL|field|addresses
 specifier|private

@@ -1423,7 +1423,7 @@ annotation|@
 name|Override
 DECL|method|getEnum
 specifier|public
-name|DocValuesEnum
+name|ValuesEnum
 name|getEnum
 parameter_list|(
 name|AttributeSource
@@ -1452,7 +1452,7 @@ specifier|static
 class|class
 name|VarSortedBytesEnum
 extends|extends
-name|DocValuesEnum
+name|ValuesEnum
 block|{
 DECL|field|docToOrdIndex
 specifier|private
