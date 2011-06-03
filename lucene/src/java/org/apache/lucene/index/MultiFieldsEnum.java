@@ -740,38 +740,6 @@ literal|0
 return|;
 block|}
 block|}
-comment|//  @Override
-comment|//  public DocValues docValues() throws IOException {
-comment|//    final List<MultiDocValues.DocValuesIndex> docValuesIndex = new ArrayList<MultiDocValues.DocValuesIndex>();
-comment|//    int docsUpto = 0;
-comment|//    Type type = null;
-comment|//    final int numEnums = enumWithSlices.length;
-comment|//    for (int i = 0; i< numEnums; i++) {
-comment|//      FieldsEnumWithSlice withSlice = enumWithSlices[i];
-comment|//      Slice slice = withSlice.slice;
-comment|//      final DocValues values = withSlice.fields.docValues();
-comment|//      final int start = slice.start;
-comment|//      final int length = slice.length;
-comment|//      if (values != null&& currentField.equals(withSlice.current)) {
-comment|//        if (docsUpto != start) {
-comment|//          type = values.type();
-comment|//          docValuesIndex.add(new MultiDocValues.DocValuesIndex(
-comment|//              new MultiDocValues.DummyDocValues(start, type), docsUpto, start
-comment|//                  - docsUpto));
-comment|//        }
-comment|//        docValuesIndex.add(new MultiDocValues.DocValuesIndex(values, start,
-comment|//            length));
-comment|//        docsUpto = start + length;
-comment|//
-comment|//      } else if (i + 1 == numEnums&& !docValuesIndex.isEmpty()) {
-comment|//        docValuesIndex.add(new MultiDocValues.DocValuesIndex(
-comment|//            new MultiDocValues.DummyDocValues(start, type), docsUpto, start
-comment|//                - docsUpto));
-comment|//      }
-comment|//    }
-comment|//    return docValuesIndex.isEmpty() ? null : docValues.reset(docValuesIndex
-comment|//        .toArray(MultiDocValues.DocValuesIndex.EMPTY_ARRAY));
-comment|//  }
 block|}
 end_class
 
