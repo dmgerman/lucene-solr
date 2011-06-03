@@ -398,6 +398,20 @@ return|return
 name|constant
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getBool
+specifier|public
+name|boolean
+name|getBool
+parameter_list|()
+block|{
+return|return
+name|constant
+operator|!=
+literal|0
+return|;
+block|}
 block|}
 end_class
 

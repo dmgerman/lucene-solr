@@ -229,6 +229,24 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+DECL|method|boolVal
+specifier|public
+name|boolean
+name|boolVal
+parameter_list|(
+name|int
+name|doc
+parameter_list|)
+block|{
+return|return
+name|intVal
+argument_list|(
+name|doc
+argument_list|)
+operator|!=
+literal|0
+return|;
+block|}
 comment|/** returns the bytes representation of the string val - TODO: should this return the indexed raw bytes not? */
 DECL|method|bytesVal
 specifier|public
