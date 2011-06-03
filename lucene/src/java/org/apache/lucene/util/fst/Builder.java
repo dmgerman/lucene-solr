@@ -179,7 +179,7 @@ argument_list|>
 index|[]
 name|frontier
 decl_stmt|;
-comment|/**    * Instantiates an FST/FSA builder without any pruning. A shortcut    * to {@link #Builder(INPUT_TYPE, int, int, boolean, Outputs)} with     * pruning options turned off.    */
+comment|/**    * Instantiates an FST/FSA builder without any pruning. A shortcut    * to {@link #Builder(FST.INPUT_TYPE, int, int, boolean, Outputs)} with     * pruning options turned off.    */
 DECL|method|Builder
 specifier|public
 name|Builder
