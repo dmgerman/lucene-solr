@@ -416,6 +416,11 @@ name|Exception
 name|ex
 parameter_list|)
 block|{}
+name|SolrTestCaseJ4
+operator|.
+name|closeDirectories
+argument_list|()
+expr_stmt|;
 name|super
 operator|.
 name|tearDown

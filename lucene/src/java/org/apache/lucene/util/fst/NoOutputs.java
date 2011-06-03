@@ -63,6 +63,7 @@ name|Object
 argument_list|>
 block|{
 DECL|field|NO_OUTPUT
+specifier|static
 specifier|final
 name|Object
 name|NO_OUTPUT
