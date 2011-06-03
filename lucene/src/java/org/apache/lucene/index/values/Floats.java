@@ -78,7 +78,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 operator|.
 name|Source
 import|;
@@ -325,7 +325,7 @@ block|}
 DECL|method|getValues
 specifier|public
 specifier|static
-name|DocValues
+name|IndexDocValues
 name|getValues
 parameter_list|(
 name|Directory
@@ -1174,7 +1174,7 @@ specifier|static
 class|class
 name|FloatsReader
 extends|extends
-name|DocValues
+name|IndexDocValues
 block|{
 DECL|field|datIn
 specifier|private

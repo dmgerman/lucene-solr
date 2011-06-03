@@ -62,14 +62,14 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 operator|.
 name|SortedSource
 import|;
 end_import
 
 begin_comment
-comment|/**  * {@link ValueType} specifies the type of the {@link DocValues} for a certain field.  * A {@link ValueType} only defines the data type for a field while the actual  * Implementation used to encode and decode the values depends on the field's  * {@link Codec}. It is up to the {@link Codec} implementing  * {@link PerDocConsumer#addValuesField(org.apache.lucene.index.FieldInfo)} and  * using a different low-level implementations to write the stored values for a  * field.  *   * @lucene.experimental  */
+comment|/**  * {@link ValueType} specifies the type of the {@link IndexDocValues} for a certain field.  * A {@link ValueType} only defines the data type for a field while the actual  * Implementation used to encode and decode the values depends on the field's  * {@link Codec}. It is up to the {@link Codec} implementing  * {@link PerDocConsumer#addValuesField(org.apache.lucene.index.FieldInfo)} and  * using a different low-level implementations to write the stored values for a  * field.  *   * @lucene.experimental  */
 end_comment
 
 begin_enum

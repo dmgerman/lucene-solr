@@ -60,7 +60,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 import|;
 end_import
 
@@ -315,7 +315,7 @@ name|PerDocFieldValues
 name|getDocValues
 parameter_list|()
 function_decl|;
-comment|/**    * Sets the {@link PerDocFieldValues} for this field. If    * {@link PerDocFieldValues} is set this field will store per-document values    *     * @see DocValues    */
+comment|/**    * Sets the {@link PerDocFieldValues} for this field. If    * {@link PerDocFieldValues} is set this field will store per-document values    *     * @see IndexDocValues    */
 DECL|method|setDocValues
 specifier|public
 name|void

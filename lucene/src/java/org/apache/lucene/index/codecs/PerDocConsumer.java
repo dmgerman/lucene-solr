@@ -64,7 +64,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 import|;
 end_import
 
@@ -163,7 +163,7 @@ argument_list|()
 condition|)
 block|{
 specifier|final
-name|DocValues
+name|IndexDocValues
 name|docValues
 init|=
 name|producer

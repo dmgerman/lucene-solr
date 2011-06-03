@@ -78,7 +78,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 import|;
 end_import
 
@@ -237,7 +237,7 @@ operator|.
 name|MergeState
 name|mergeState
 parameter_list|,
-name|DocValues
+name|IndexDocValues
 name|values
 parameter_list|)
 throws|throws
@@ -274,7 +274,7 @@ name|readers
 control|)
 block|{
 specifier|final
-name|DocValues
+name|IndexDocValues
 name|r
 init|=
 name|reader
@@ -369,7 +369,7 @@ comment|/**      * the source reader for this MergeState - merged values should 
 DECL|field|reader
 specifier|public
 specifier|final
-name|DocValues
+name|IndexDocValues
 name|reader
 decl_stmt|;
 comment|/** the absolute docBase for this MergeState within the resulting segment */
@@ -397,7 +397,7 @@ DECL|method|MergeState
 specifier|public
 name|MergeState
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|reader
 parameter_list|,
 name|int

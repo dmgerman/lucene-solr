@@ -230,7 +230,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 import|;
 end_import
 
@@ -1394,7 +1394,7 @@ annotation|@
 name|Override
 DECL|method|docValues
 specifier|public
-name|DocValues
+name|IndexDocValues
 name|docValues
 parameter_list|(
 name|String

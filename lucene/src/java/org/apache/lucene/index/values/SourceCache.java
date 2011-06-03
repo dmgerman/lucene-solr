@@ -64,7 +64,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 operator|.
 name|SortedSource
 import|;
@@ -82,7 +82,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 operator|.
 name|Source
 import|;
@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for {@link DocValues} {@link Source} /  * {@link SortedSource} cache.  *<p>  * {@link Source} and {@link SortedSource} instances loaded via  * {@link DocValues#load()} and {@link DocValues#loadSorted(Comparator)} are  * entirely memory resident and need to be maintained by the caller. Each call  * to {@link DocValues#load()} or {@link DocValues#loadSorted(Comparator)} will  * cause an entire reload of the underlying data. Source and  * {@link SortedSource} instances obtained from {@link DocValues#getSource()}  * and {@link DocValues#getSource()} respectively are maintained by a  * {@link SourceCache} that is closed ({@link #close(DocValues)}) once the  * {@link IndexReader} that created the {@link DocValues} instance is closed.  *<p>  * Unless {@link Source} and {@link SortedSource} instances are managed by  * another entity it is recommended to use the cached variants to obtain a  * source instance.  *<p>  * Implementation of this API must be thread-safe.  *   * @see DocValues#setCache(SourceCache)  * @see DocValues#getSource()  * @see DocValues#getSortedSorted(Comparator)  *   * @lucene.experimental  */
+comment|/**  * Abstract base class for {@link IndexDocValues} {@link Source} /  * {@link SortedSource} cache.  *<p>  * {@link Source} and {@link SortedSource} instances loaded via  * {@link IndexDocValues#load()} and {@link IndexDocValues#loadSorted(Comparator)} are  * entirely memory resident and need to be maintained by the caller. Each call  * to {@link IndexDocValues#load()} or {@link IndexDocValues#loadSorted(Comparator)} will  * cause an entire reload of the underlying data. Source and  * {@link SortedSource} instances obtained from {@link IndexDocValues#getSource()}  * and {@link IndexDocValues#getSource()} respectively are maintained by a  * {@link SourceCache} that is closed ({@link #close(IndexDocValues)}) once the  * {@link IndexReader} that created the {@link IndexDocValues} instance is closed.  *<p>  * Unless {@link Source} and {@link SortedSource} instances are managed by  * another entity it is recommended to use the cached variants to obtain a  * source instance.  *<p>  * Implementation of this API must be thread-safe.  *   * @see IndexDocValues#setCache(SourceCache)  * @see IndexDocValues#getSource()  * @see IndexDocValues#getSortedSorted(Comparator)  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -113,27 +113,27 @@ specifier|abstract
 class|class
 name|SourceCache
 block|{
-comment|/**    * Atomically loads a {@link Source} into the cache from the given    * {@link DocValues} and returns it iff no other {@link Source} has already    * been cached. Otherwise the cached source is returned.    *<p>    * This method will not return<code>null</code>    */
+comment|/**    * Atomically loads a {@link Source} into the cache from the given    * {@link IndexDocValues} and returns it iff no other {@link Source} has already    * been cached. Otherwise the cached source is returned.    *<p>    * This method will not return<code>null</code>    */
 DECL|method|load
 specifier|public
 specifier|abstract
 name|Source
 name|load
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|values
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Atomically loads a {@link SortedSource} into the cache from the given    * {@link DocValues} and returns it iff no other {@link SortedSource} has    * already been cached. Otherwise the cached source is returned.    *<p>    * This method will not return<code>null</code>    */
+comment|/**    * Atomically loads a {@link SortedSource} into the cache from the given    * {@link IndexDocValues} and returns it iff no other {@link SortedSource} has    * already been cached. Otherwise the cached source is returned.    *<p>    * This method will not return<code>null</code>    */
 DECL|method|loadSorted
 specifier|public
 specifier|abstract
 name|SortedSource
 name|loadSorted
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|values
 parameter_list|,
 name|Comparator
@@ -152,7 +152,7 @@ specifier|abstract
 name|void
 name|invalidate
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|values
 parameter_list|)
 function_decl|;
@@ -163,7 +163,7 @@ specifier|synchronized
 name|void
 name|close
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|values
 parameter_list|)
 block|{
@@ -173,7 +173,7 @@ name|values
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Simple per {@link DocValues} instance cache implementation that holds a    * {@link Source} and {@link SortedSource} reference as a member variable.    *<p>    * If a {@link DirectSourceCache} instance is closed or invalidated the cached    * reference are simply set to<code>null</code>    */
+comment|/**    * Simple per {@link IndexDocValues} instance cache implementation that holds a    * {@link Source} and {@link SortedSource} reference as a member variable.    *<p>    * If a {@link DirectSourceCache} instance is closed or invalidated the cached    * reference are simply set to<code>null</code>    */
 DECL|class|DirectSourceCache
 specifier|public
 specifier|static
@@ -199,7 +199,7 @@ specifier|synchronized
 name|Source
 name|load
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|values
 parameter_list|)
 throws|throws
@@ -230,7 +230,7 @@ specifier|synchronized
 name|SortedSource
 name|loadSorted
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|values
 parameter_list|,
 name|Comparator
@@ -269,7 +269,7 @@ specifier|synchronized
 name|void
 name|invalidate
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|values
 parameter_list|)
 block|{

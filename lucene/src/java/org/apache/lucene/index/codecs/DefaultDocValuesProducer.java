@@ -134,7 +134,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 import|;
 end_import
 
@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for FieldsProducer implementations supporting  * {@link DocValues}.  *   * @lucene.experimental  */
+comment|/**  * Abstract base class for FieldsProducer implementations supporting  * {@link IndexDocValues}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -219,11 +219,11 @@ name|TreeMap
 argument_list|<
 name|String
 argument_list|,
-name|DocValues
+name|IndexDocValues
 argument_list|>
 name|docValues
 decl_stmt|;
-comment|/**    * Creates a new {@link DefaultDocValuesProducer} instance and loads all    * {@link DocValues} instances for this segment and codec.    *     * @param si    *          the segment info to load the {@link DocValues} for.    * @param dir    *          the directory to load the {@link DocValues} from.    * @param fieldInfo    *          the {@link FieldInfos}    * @param codecId    *          the codec ID    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Creates a new {@link DefaultDocValuesProducer} instance and loads all    * {@link IndexDocValues} instances for this segment and codec.    *     * @param si    *          the segment info to load the {@link IndexDocValues} for.    * @param dir    *          the directory to load the {@link IndexDocValues} from.    * @param fieldInfo    *          the {@link FieldInfos}    * @param codecId    *          the codec ID    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|DefaultDocValuesProducer
 specifier|public
 name|DefaultDocValuesProducer
@@ -263,12 +263,12 @@ name|codecId
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@link DocValues} instance for the given field name or    *<code>null</code> if this field has no {@link DocValues}.    */
+comment|/**    * Returns a {@link IndexDocValues} instance for the given field name or    *<code>null</code> if this field has no {@link IndexDocValues}.    */
 annotation|@
 name|Override
 DECL|method|docValues
 specifier|public
-name|DocValues
+name|IndexDocValues
 name|docValues
 parameter_list|(
 name|String
@@ -293,7 +293,7 @@ name|TreeMap
 argument_list|<
 name|String
 argument_list|,
-name|DocValues
+name|IndexDocValues
 argument_list|>
 name|load
 parameter_list|(
@@ -319,7 +319,7 @@ name|TreeMap
 argument_list|<
 name|String
 argument_list|,
-name|DocValues
+name|IndexDocValues
 argument_list|>
 name|values
 init|=
@@ -328,7 +328,7 @@ name|TreeMap
 argument_list|<
 name|String
 argument_list|,
-name|DocValues
+name|IndexDocValues
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -440,10 +440,10 @@ return|return
 name|values
 return|;
 block|}
-comment|/**    * Loads a {@link DocValues} instance depending on the given {@link ValueType}.    * Codecs that use different implementations for a certain {@link ValueType} can    * simply override this method and return their custom implementations.    *     * @param docCount    *          number of documents in the segment    * @param dir    *          the {@link Directory} to load the {@link DocValues} from    * @param id    *          the unique file ID within the segment    * @param type    *          the type to load    * @return a {@link DocValues} instance for the given type    * @throws IOException    *           if an {@link IOException} occurs    * @throws IllegalArgumentException    *           if the given {@link ValueType} is not supported    */
+comment|/**    * Loads a {@link IndexDocValues} instance depending on the given {@link ValueType}.    * Codecs that use different implementations for a certain {@link ValueType} can    * simply override this method and return their custom implementations.    *     * @param docCount    *          number of documents in the segment    * @param dir    *          the {@link Directory} to load the {@link IndexDocValues} from    * @param id    *          the unique file ID within the segment    * @param type    *          the type to load    * @return a {@link IndexDocValues} instance for the given type    * @throws IOException    *           if an {@link IOException} occurs    * @throws IllegalArgumentException    *           if the given {@link ValueType} is not supported    */
 DECL|method|loadDocValues
 specifier|protected
-name|DocValues
+name|IndexDocValues
 name|loadDocValues
 parameter_list|(
 name|int
@@ -686,7 +686,7 @@ parameter_list|(
 specifier|final
 name|Collection
 argument_list|<
-name|DocValues
+name|IndexDocValues
 argument_list|>
 name|values
 parameter_list|)
@@ -700,7 +700,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
-name|DocValues
+name|IndexDocValues
 name|docValues
 range|:
 name|values

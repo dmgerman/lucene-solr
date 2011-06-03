@@ -116,7 +116,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 import|;
 end_import
 
@@ -235,7 +235,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|DocValues
+name|IndexDocValues
 argument_list|>
 name|docValues
 init|=
@@ -244,7 +244,7 @@ name|ConcurrentHashMap
 argument_list|<
 name|String
 argument_list|,
-name|DocValues
+name|IndexDocValues
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -589,7 +589,7 @@ return|;
 block|}
 DECL|method|docValues
 specifier|public
-name|DocValues
+name|IndexDocValues
 name|docValues
 parameter_list|(
 name|String
@@ -598,7 +598,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|DocValues
+name|IndexDocValues
 name|result
 init|=
 name|docValues
@@ -663,7 +663,7 @@ name|i
 operator|++
 control|)
 block|{
-name|DocValues
+name|IndexDocValues
 name|values
 init|=
 name|subs

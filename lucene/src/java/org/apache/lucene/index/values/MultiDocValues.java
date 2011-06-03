@@ -90,7 +90,7 @@ specifier|public
 class|class
 name|MultiDocValues
 extends|extends
-name|DocValues
+name|IndexDocValues
 block|{
 DECL|class|DocValuesIndex
 specifier|public
@@ -124,14 +124,14 @@ name|length
 decl_stmt|;
 DECL|field|docValues
 specifier|final
-name|DocValues
+name|IndexDocValues
 name|docValues
 decl_stmt|;
 DECL|method|DocValuesIndex
 specifier|public
 name|DocValuesIndex
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|docValues
 parameter_list|,
 name|int
@@ -269,7 +269,7 @@ expr_stmt|;
 block|}
 DECL|method|reset
 specifier|public
-name|DocValues
+name|IndexDocValues
 name|reset
 parameter_list|(
 name|DocValuesIndex
@@ -341,7 +341,7 @@ specifier|static
 class|class
 name|DummyDocValues
 extends|extends
-name|DocValues
+name|IndexDocValues
 block|{
 DECL|field|maxDoc
 specifier|final

@@ -346,7 +346,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 operator|.
 name|Source
 import|;
@@ -803,7 +803,7 @@ name|search
 operator|.
 name|scoreDocs
 decl_stmt|;
-name|DocValues
+name|IndexDocValues
 name|docValues
 init|=
 name|MultiPerDocValues
@@ -1881,7 +1881,7 @@ case|case
 name|INTS
 case|:
 block|{
-name|DocValues
+name|IndexDocValues
 name|intsReader
 init|=
 name|getDocValues
@@ -2076,7 +2076,7 @@ case|case
 name|FLOAT_64
 case|:
 block|{
-name|DocValues
+name|IndexDocValues
 name|floatReader
 init|=
 name|getDocValues
@@ -2513,7 +2513,7 @@ argument_list|()
 operator|-
 name|numRemainingValues
 decl_stmt|;
-name|DocValues
+name|IndexDocValues
 name|bytesReader
 init|=
 name|getDocValues
@@ -3155,7 +3155,7 @@ expr_stmt|;
 block|}
 DECL|method|getDocValues
 specifier|private
-name|DocValues
+name|IndexDocValues
 name|getDocValues
 parameter_list|(
 name|IndexReader
@@ -3227,7 +3227,7 @@ return|;
 case|case
 literal|1
 case|:
-name|DocValues
+name|IndexDocValues
 name|docValues
 init|=
 name|perDoc
@@ -3287,7 +3287,7 @@ specifier|private
 name|Source
 name|getSource
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|values
 parameter_list|)
 throws|throws
@@ -3341,7 +3341,7 @@ specifier|private
 name|DocValuesEnum
 name|getValuesEnum
 parameter_list|(
-name|DocValues
+name|IndexDocValues
 name|values
 parameter_list|)
 throws|throws

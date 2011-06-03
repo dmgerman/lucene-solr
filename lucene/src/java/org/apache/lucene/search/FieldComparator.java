@@ -54,7 +54,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 import|;
 end_import
 
@@ -70,7 +70,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|DocValues
+name|IndexDocValues
 operator|.
 name|Source
 import|;
@@ -1535,7 +1535,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|DocValues
+name|IndexDocValues
 name|docValues
 init|=
 name|context
@@ -2885,7 +2885,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|DocValues
+name|IndexDocValues
 name|docValues
 init|=
 name|context
