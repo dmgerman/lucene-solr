@@ -1486,6 +1486,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|//    switch (first) { // these variants don't advance over missing values
+comment|//  case BYTES_FIXED_STRAIGHT:
+comment|//  case FLOAT_32:
+comment|//  case FLOAT_64:
+comment|//  case INTS:
+comment|//    assertEquals(msg, valuesPerIndex-1, vE_1_merged.advance(valuesPerIndex-1));
+comment|//  }
 for|for
 control|(
 name|int
@@ -2740,8 +2747,6 @@ argument_list|(
 name|bytesReader
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 specifier|final
 name|int
 name|advancedTo
@@ -2773,45 +2778,6 @@ operator|<=
 name|advancedTo
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|e
-parameter_list|)
-block|{
-specifier|final
-name|int
-name|advancedTo
-init|=
-name|bytesEnum
-operator|.
-name|advance
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
-name|assertTrue
-argument_list|(
-name|byteIndexValue
-operator|.
-name|name
-argument_list|()
-operator|+
-literal|" advanced failed base:"
-operator|+
-name|base
-operator|+
-literal|" advancedTo: "
-operator|+
-name|advancedTo
-argument_list|,
-name|base
-operator|<=
-name|advancedTo
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 name|ValuesEnum
