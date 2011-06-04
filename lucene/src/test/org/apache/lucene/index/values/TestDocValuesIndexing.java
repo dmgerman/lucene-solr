@@ -1486,13 +1486,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//    switch (first) { // these variants don't advance over missing values
-comment|//  case BYTES_FIXED_STRAIGHT:
-comment|//  case FLOAT_32:
-comment|//  case FLOAT_64:
-comment|//  case INTS:
-comment|//    assertEquals(msg, valuesPerIndex-1, vE_1_merged.advance(valuesPerIndex-1));
-comment|//  }
 for|for
 control|(
 name|int
