@@ -259,7 +259,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** BlockGroupingCollector performs grouping with a  *  single pass collector, as long as you are grouping by a  *  doc block field, ie all documents sharing a given group  *  value were indexed as a doc block using the atomic  *  {@link IndexWriter#addDocuments} or {@link  *  IndexWriter#updateDocuments} API.  *  *<p>This results in faster performance (~25% faster QPS)  *  than the two-pass grouping collectors, with the tradeoff  *  being that the documents in each group must always be  *  indexed as a block.  This collector also fills in  *  TopGroups.totalGroupCount without requiring the separate  *  {@link AllGroupsCollector}.  However, this collector does  *  not fill in the groupValue of each group; this field  *  will always be null.  *  *<p><b>NOTE</b>: this collector makes no effort to verify  *  the docs were in fact indexed as a block, so it's up to  *  you to ensure this was the case.  *  *<p>See {@link org.apache.lucene.search.grouping} for more  *  details including a full code example.</p>  *  * @lucene.experimental  */
+comment|/** BlockGroupingCollector performs grouping with a  *  single pass collector, as long as you are grouping by a  *  doc block field, ie all documents sharing a given group  *  value were indexed as a doc block using the atomic  *  {@link IndexWriter#addDocuments} or {@link  *  IndexWriter#updateDocuments} API.  *  *<p>This results in faster performance (~25% faster QPS)  *  than the two-pass grouping collectors, with the tradeoff  *  being that the documents in each group must always be  *  indexed as a block.  This collector also fills in  *  TopGroups.totalGroupCount without requiring the separate  *  {@link TermAllGroupsCollector}.  However, this collector does  *  not fill in the groupValue of each group; this field  *  will always be null.  *  *<p><b>NOTE</b>: this collector makes no effort to verify  *  the docs were in fact indexed as a block, so it's up to  *  you to ensure this was the case.  *  *<p>See {@link org.apache.lucene.search.grouping} for more  *  details including a full code example.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -892,9 +892,7 @@ name|pendingSubScores
 expr_stmt|;
 name|pendingSubScores
 operator|=
-name|og
-operator|.
-name|scores
+name|savScores
 expr_stmt|;
 block|}
 name|og
@@ -1208,8 +1206,16 @@ operator|new
 name|FakeScorer
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|final
 name|GroupDocs
+argument_list|<
+name|Object
+argument_list|>
 index|[]
 name|groups
 init|=
@@ -1482,6 +1488,9 @@ index|]
 operator|=
 operator|new
 name|GroupDocs
+argument_list|<
+name|Object
+argument_list|>
 argument_list|(
 name|topDocs
 operator|.
@@ -1506,9 +1515,15 @@ comment|/*     while (groupQueue.size() != 0) {       final OneGroup og = groupQ
 return|return
 operator|new
 name|TopGroups
+argument_list|<
+name|Object
+argument_list|>
 argument_list|(
 operator|new
 name|TopGroups
+argument_list|<
+name|Object
+argument_list|>
 argument_list|(
 name|groupSort
 operator|.

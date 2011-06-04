@@ -1101,11 +1101,7 @@ name|lastPosition
 decl_stmt|;
 assert|assert
 name|delta
-operator|>
-literal|0
-operator|||
-name|position
-operator|==
+operator|>=
 literal|0
 operator|:
 literal|"position="

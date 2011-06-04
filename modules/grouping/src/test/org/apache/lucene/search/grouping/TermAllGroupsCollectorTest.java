@@ -145,10 +145,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|AllGroupsCollectorTest
+DECL|class|TermAllGroupsCollectorTest
 specifier|public
 class|class
-name|AllGroupsCollectorTest
+name|TermAllGroupsCollectorTest
 extends|extends
 name|LuceneTestCase
 block|{
@@ -822,11 +822,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|AllGroupsCollector
+name|TermAllGroupsCollector
 name|c1
 init|=
 operator|new
-name|AllGroupsCollector
+name|TermAllGroupsCollector
 argument_list|(
 name|groupField
 argument_list|)
@@ -860,11 +860,11 @@ name|getGroupCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|AllGroupsCollector
+name|TermAllGroupsCollector
 name|c2
 init|=
 operator|new
-name|AllGroupsCollector
+name|TermAllGroupsCollector
 argument_list|(
 name|groupField
 argument_list|)
@@ -898,11 +898,11 @@ name|getGroupCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|AllGroupsCollector
+name|TermAllGroupsCollector
 name|c3
 init|=
 operator|new
-name|AllGroupsCollector
+name|TermAllGroupsCollector
 argument_list|(
 name|groupField
 argument_list|)

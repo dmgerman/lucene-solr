@@ -32,20 +32,6 @@ name|ScoreDoc
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
 begin_comment
 comment|/** Represents one group in the results.  *   * @lucene.experimental */
 end_comment
@@ -55,12 +41,15 @@ DECL|class|GroupDocs
 specifier|public
 class|class
 name|GroupDocs
+parameter_list|<
+name|GROUP_VALUE_TYPE
+parameter_list|>
 block|{
 comment|/** The groupField value for all docs in this group; this    *  may be null if hits did not have the groupField. */
 DECL|field|groupValue
 specifier|public
 specifier|final
-name|BytesRef
+name|GROUP_VALUE_TYPE
 name|groupValue
 decl_stmt|;
 comment|/** Max score in this group */
@@ -85,7 +74,7 @@ specifier|final
 name|int
 name|totalHits
 decl_stmt|;
-comment|/** Matches the groupSort passed to {@link    *  FirstPassGroupingCollector}. */
+comment|/** Matches the groupSort passed to {@link    *  AbstractFirstPassGroupingCollector}. */
 DECL|field|groupSortValues
 specifier|public
 specifier|final
@@ -107,7 +96,7 @@ name|ScoreDoc
 index|[]
 name|scoreDocs
 parameter_list|,
-name|BytesRef
+name|GROUP_VALUE_TYPE
 name|groupValue
 parameter_list|,
 name|Comparable
