@@ -599,7 +599,7 @@ name|maxValue
 operator|-
 name|minValue
 operator|)
-operator|>
+operator|>=
 literal|0
 condition|)
 block|{
