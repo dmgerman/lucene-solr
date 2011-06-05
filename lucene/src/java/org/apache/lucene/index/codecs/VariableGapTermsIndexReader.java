@@ -402,8 +402,6 @@ name|segmentFileName
 argument_list|(
 name|segment
 argument_list|,
-literal|""
-operator|+
 name|codecId
 argument_list|,
 name|VariableGapTermsIndexWriter
@@ -1172,7 +1170,7 @@ parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
-name|String
+name|int
 name|id
 parameter_list|,
 name|Collection

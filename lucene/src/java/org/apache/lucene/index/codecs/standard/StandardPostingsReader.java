@@ -324,8 +324,6 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-literal|""
-operator|+
 name|codecId
 argument_list|,
 name|StandardCodec
@@ -366,8 +364,6 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-literal|""
-operator|+
 name|codecId
 argument_list|,
 name|StandardCodec
@@ -419,7 +415,7 @@ parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
-name|String
+name|int
 name|id
 parameter_list|,
 name|Collection

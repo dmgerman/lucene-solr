@@ -596,8 +596,7 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecIdAsString
-argument_list|()
+name|codecId
 argument_list|,
 name|TERMS_INDEX_EXTENSION
 argument_list|)

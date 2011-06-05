@@ -322,6 +322,11 @@ name|bytesUsed
 argument_list|)
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|method|files
 specifier|public
 specifier|static

@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Represents double[], as a slice (offset + length) into an existing float[].  *   * @lucene.internal  */
+comment|/**  * Represents double[], as a slice (offset + length) into an existing double[].  *   * @lucene.internal  */
 end_comment
 
 begin_class

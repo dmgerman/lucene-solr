@@ -656,10 +656,10 @@ operator|=
 name|codec
 expr_stmt|;
 block|}
-comment|/**    * Registers all codecs from the given provider including the field to codec    * mapping and the default field codec.    *<p>    * NOTE: This method will pass any codec from the given codec to    * {@link #register(Codec)} and sets fiels codecs via    * {@link #setFieldCodec(String, String)}.    */
+comment|/**    * Registers all codecs from the given provider including the field to codec    * mapping and the default field codec.    *<p>    * NOTE: This method will pass any codec from the given codec to    * {@link #register(Codec)} and sets fiels codecs via    * {@link #setFieldCodec(String, String)}.    * @return this    */
 DECL|method|copyFrom
 specifier|public
-name|void
+name|CodecProvider
 name|copyFrom
 parameter_list|(
 name|CodecProvider
@@ -748,6 +748,9 @@ name|getDefaultFieldCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
+return|return
+name|this
+return|;
 block|}
 block|}
 end_class

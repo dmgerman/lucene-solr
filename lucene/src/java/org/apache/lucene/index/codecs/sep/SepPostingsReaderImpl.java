@@ -337,14 +337,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-specifier|final
-name|String
-name|codecIdAsString
-init|=
-literal|""
-operator|+
-name|codecId
-decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -364,7 +356,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecIdAsString
+name|codecId
 argument_list|,
 name|SepPostingsWriterImpl
 operator|.
@@ -396,7 +388,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecIdAsString
+name|codecId
 argument_list|,
 name|SepPostingsWriterImpl
 operator|.
@@ -430,7 +422,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecIdAsString
+name|codecId
 argument_list|,
 name|SepPostingsWriterImpl
 operator|.
@@ -454,7 +446,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecIdAsString
+name|codecId
 argument_list|,
 name|SepPostingsWriterImpl
 operator|.
@@ -478,7 +470,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecIdAsString
+name|codecId
 argument_list|,
 name|SepPostingsWriterImpl
 operator|.
@@ -532,7 +524,7 @@ parameter_list|(
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
-name|String
+name|int
 name|codecId
 parameter_list|,
 name|Collection

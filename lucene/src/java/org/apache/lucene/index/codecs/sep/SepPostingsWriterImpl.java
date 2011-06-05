@@ -519,8 +519,7 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecIdAsString
-argument_list|()
+name|codecId
 argument_list|,
 name|DOC_EXTENSION
 argument_list|)
@@ -569,8 +568,7 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecIdAsString
-argument_list|()
+name|codecId
 argument_list|,
 name|FREQ_EXTENSION
 argument_list|)
@@ -609,8 +607,7 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecIdAsString
-argument_list|()
+name|codecId
 argument_list|,
 name|POS_EXTENSION
 argument_list|)
@@ -650,8 +647,7 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecIdAsString
-argument_list|()
+name|codecId
 argument_list|,
 name|PAYLOAD_EXTENSION
 argument_list|)
@@ -682,8 +678,7 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecIdAsString
-argument_list|()
+name|codecId
 argument_list|,
 name|SKIP_EXTENSION
 argument_list|)

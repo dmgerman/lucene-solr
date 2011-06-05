@@ -177,18 +177,6 @@ operator|=
 name|codecId
 expr_stmt|;
 block|}
-DECL|method|codecIdAsString
-specifier|public
-name|String
-name|codecIdAsString
-parameter_list|()
-block|{
-return|return
-literal|""
-operator|+
-name|codecId
-return|;
-block|}
 block|}
 end_class
 

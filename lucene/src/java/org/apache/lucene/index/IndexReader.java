@@ -2136,7 +2136,7 @@ name|CorruptIndexException
 throws|,
 name|IOException
 function_decl|;
-comment|/** Flex API: returns {@link Fields} for this reader.    *  This method may return null if the reader has no    *  postings.    *    *<p><b>NOTE</b>: if this is a multi reader ({@link    * #getSequentialSubReaders} is not null) then this    * method will throw UnsupportedOperationException.  If    * you really need a {@link Fields} for such a reader,    * use {@link MultiFields#getFields}.  However, for    * performance reasons, it's best to get all sub-readers    * using {@link ReaderUtil#gatherSubReaders} and iterate    * through them yourself. */
+comment|/**    * Returns {@link Fields} for this reader.    * This method may return null if the reader has no    * postings.    *    *<p><b>NOTE</b>: if this is a multi reader ({@link    * #getSequentialSubReaders} is not null) then this    * method will throw UnsupportedOperationException.  If    * you really need a {@link Fields} for such a reader,    * use {@link MultiFields#getFields}.  However, for    * performance reasons, it's best to get all sub-readers    * using {@link ReaderUtil#gatherSubReaders} and iterate    * through them yourself. */
 DECL|method|fields
 specifier|public
 specifier|abstract
@@ -2146,7 +2146,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Flex API: returns {@link PerDocValues} for this reader.    *  This method may return null if the reader has no per-document    *  values stored.    *    *<p><b>NOTE</b>: if this is a multi reader ({@link    * #getSequentialSubReaders} is not null) then this    * method will throw UnsupportedOperationException.  If    * you really need {@link PerDocValues} for such a reader,    * use {@link MultiPerDocValues#getPerDocs(IndexReader)}.  However, for    * performance reasons, it's best to get all sub-readers    * using {@link ReaderUtil#gatherSubReaders} and iterate    * through them yourself. */
+comment|/**    * Returns {@link PerDocValues} for this reader.    * This method may return null if the reader has no per-document    * values stored.    *    *<p><b>NOTE</b>: if this is a multi reader ({@link    * #getSequentialSubReaders} is not null) then this    * method will throw UnsupportedOperationException.  If    * you really need {@link PerDocValues} for such a reader,    * use {@link MultiPerDocValues#getPerDocs(IndexReader)}.  However, for    * performance reasons, it's best to get all sub-readers    * using {@link ReaderUtil#gatherSubReaders} and iterate    * through them yourself. */
 DECL|method|perDocValues
 specifier|public
 specifier|abstract
