@@ -7170,6 +7170,17 @@ argument_list|(
 name|RANDOM_MULTIPLIER
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|TEST_NIGHTLY
+condition|)
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|" -Dtests.nightly=true"
+argument_list|)
+expr_stmt|;
 return|return
 name|sb
 operator|.
