@@ -283,7 +283,13 @@ specifier|final
 name|int
 name|noDocs
 init|=
+operator|(
+name|TEST_NIGHTLY
+condition|?
 literal|10000
+else|:
+literal|5000
+operator|)
 operator|*
 name|RANDOM_MULTIPLIER
 decl_stmt|;

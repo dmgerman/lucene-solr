@@ -1352,7 +1352,13 @@ comment|// increase number of iterations for more complete testing
 name|int
 name|num
 init|=
+operator|(
+name|TEST_NIGHTLY
+condition|?
 literal|50
+else|:
+literal|10
+operator|)
 operator|*
 name|RANDOM_MULTIPLIER
 decl_stmt|;

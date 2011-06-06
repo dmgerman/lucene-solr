@@ -1654,7 +1654,7 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// mock a very slow harddisk here so that flushing is very slow
+comment|// mock a very slow harddisk sometimes here so that flushing is very slow
 name|dir
 operator|.
 name|setThrottling
@@ -1663,7 +1663,7 @@ name|MockDirectoryWrapper
 operator|.
 name|Throttling
 operator|.
-name|ALWAYS
+name|SOMETIMES
 argument_list|)
 expr_stmt|;
 name|IndexWriterConfig

@@ -251,7 +251,13 @@ decl_stmt|;
 name|int
 name|num
 init|=
+operator|(
+name|TEST_NIGHTLY
+condition|?
 literal|5000
+else|:
+literal|500
+operator|)
 operator|*
 name|RANDOM_MULTIPLIER
 decl_stmt|;

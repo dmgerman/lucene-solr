@@ -122,6 +122,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|MockDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Constants
@@ -660,7 +674,7 @@ name|isDirectory
 argument_list|()
 condition|)
 block|{
-name|Directory
+name|MockDirectoryWrapper
 name|dir
 init|=
 name|newFSDirectory
@@ -668,6 +682,14 @@ argument_list|(
 name|file
 argument_list|)
 decl_stmt|;
+name|dir
+operator|.
+name|setCheckIndexOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// don't double-checkindex
 if|if
 condition|(
 name|IndexReader
