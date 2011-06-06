@@ -444,7 +444,7 @@ else|:
 operator|(
 name|RANDOM_MULTIPLIER
 operator|*
-literal|2e4
+literal|2e3
 operator|)
 operator|)
 operator|*

@@ -299,13 +299,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|_TestUtil
-operator|.
-name|checkIndex
-argument_list|(
-name|rdOut
-argument_list|)
-expr_stmt|;
 name|rdOut
 operator|.
 name|close
@@ -634,13 +627,6 @@ name|iwOut
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|_TestUtil
-operator|.
-name|checkIndex
-argument_list|(
-name|rdOut
-argument_list|)
 expr_stmt|;
 name|rdOut
 operator|.
