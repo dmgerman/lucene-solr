@@ -1021,7 +1021,7 @@ name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATION_TRIES
 argument_list|,
-literal|5
+literal|10
 argument_list|)
 expr_stmt|;
 name|query

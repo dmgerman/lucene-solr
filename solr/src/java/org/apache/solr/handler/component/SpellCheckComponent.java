@@ -1261,6 +1261,18 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+name|int
+name|maxCollationEvaluations
+init|=
+name|params
+operator|.
+name|getInt
+argument_list|(
+name|SPELLCHECK_MAX_COLLATION_EVALUATIONS
+argument_list|,
+literal|10000
+argument_list|)
+decl_stmt|;
 name|boolean
 name|collationExtendedResults
 init|=
@@ -1313,6 +1325,8 @@ argument_list|,
 name|maxCollations
 argument_list|,
 name|maxCollationTries
+argument_list|,
+name|maxCollationEvaluations
 argument_list|)
 decl_stmt|;
 comment|//by sorting here we guarantee a non-distributed request returns all
