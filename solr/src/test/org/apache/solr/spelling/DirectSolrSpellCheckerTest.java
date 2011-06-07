@@ -337,7 +337,7 @@ name|DirectSolrSpellChecker
 operator|.
 name|MINQUERYLENGTH
 argument_list|,
-literal|"2"
+literal|2
 argument_list|)
 expr_stmt|;
 comment|// we will try "fob"
