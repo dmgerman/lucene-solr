@@ -437,6 +437,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Limit a date's resolution. For example, the date<code>1095767411000</code>    * (which represents 2004-09-21 13:50:11) will be changed to     *<code>1093989600000</code> (2004-09-01 00:00:00) when using    *<code>Resolution.MONTH</code>.    *     * @param resolution The desired resolution of the date to be returned    * @return the date with all values more precise than<code>resolution</code>    *  set to 0 or 1, expressed as milliseconds since January 1, 1970, 00:00:00 GMT    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|method|round
 specifier|public
 specifier|static
