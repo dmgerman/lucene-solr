@@ -5915,6 +5915,15 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|int
+name|iter
+init|=
+name|TEST_NIGHTLY
+condition|?
+literal|200
+else|:
+literal|20
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -5924,7 +5933,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|200
+name|iter
 condition|;
 name|i
 operator|++
