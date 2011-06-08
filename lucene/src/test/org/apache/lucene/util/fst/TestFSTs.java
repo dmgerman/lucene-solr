@@ -6623,9 +6623,10 @@ name|testRandomWords
 argument_list|(
 literal|1000
 argument_list|,
-literal|5
-operator|*
-name|RANDOM_MULTIPLIER
+name|atLeast
+argument_list|(
+literal|2
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//testRandomWords(20, 100);
@@ -6981,15 +6982,12 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|int
-name|RUN_TIME_SEC
+name|RUN_TIME_MSEC
 init|=
-name|LuceneTestCase
-operator|.
-name|TEST_NIGHTLY
-condition|?
-literal|100
-else|:
-literal|1
+name|atLeast
+argument_list|(
+literal|500
+argument_list|)
 decl_stmt|;
 specifier|final
 name|IndexWriterConfig
@@ -7079,9 +7077,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|+
-name|RUN_TIME_SEC
-operator|*
-literal|1000
+name|RUN_TIME_MSEC
 decl_stmt|;
 name|Document
 name|doc

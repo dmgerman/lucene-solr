@@ -129,9 +129,10 @@ block|{
 name|int
 name|num
 init|=
-literal|3
-operator|*
-name|RANDOM_MULTIPLIER
+name|atLeast
+argument_list|(
+literal|1
+argument_list|)
 decl_stmt|;
 for|for
 control|(

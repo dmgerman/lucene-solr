@@ -296,6 +296,8 @@ specifier|final
 name|int
 name|crashTime
 init|=
+name|TEST_NIGHTLY
+condition|?
 name|_TestUtil
 operator|.
 name|nextInt
@@ -305,6 +307,17 @@ argument_list|,
 literal|500
 argument_list|,
 literal|4000
+argument_list|)
+else|:
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|,
+literal|300
+argument_list|,
+literal|1000
 argument_list|)
 decl_stmt|;
 name|Thread

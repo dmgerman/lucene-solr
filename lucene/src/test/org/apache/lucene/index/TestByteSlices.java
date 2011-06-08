@@ -97,9 +97,10 @@ specifier|final
 name|int
 name|NUM_STREAM
 init|=
+name|atLeast
+argument_list|(
 literal|100
-operator|*
-name|RANDOM_MULTIPLIER
+argument_list|)
 decl_stmt|;
 name|ByteSliceWriter
 name|writer
@@ -196,9 +197,10 @@ block|}
 name|int
 name|num
 init|=
+name|atLeast
+argument_list|(
 literal|10000
-operator|*
-name|RANDOM_MULTIPLIER
+argument_list|)
 decl_stmt|;
 for|for
 control|(
