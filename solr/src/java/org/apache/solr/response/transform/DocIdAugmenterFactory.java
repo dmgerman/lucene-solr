@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -98,8 +108,13 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
+name|Map
+argument_list|<
 name|String
-name|arg
+argument_list|,
+name|String
+argument_list|>
+name|args
 parameter_list|,
 name|SolrQueryRequest
 name|req
@@ -107,9 +122,11 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|arg
-operator|!=
-literal|null
+operator|!
+name|args
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 throw|throw

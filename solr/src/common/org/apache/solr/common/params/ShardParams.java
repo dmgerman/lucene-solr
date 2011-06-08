@@ -77,6 +77,16 @@ name|IS_SHARD
 init|=
 literal|"isShard"
 decl_stmt|;
+comment|/** The requested URL for this shard */
+DECL|field|SHARD_URL
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SHARD_URL
+init|=
+literal|"shard.url"
+decl_stmt|;
 comment|/** query type for shard requests */
 DECL|field|SHARDS_QT
 specifier|public
