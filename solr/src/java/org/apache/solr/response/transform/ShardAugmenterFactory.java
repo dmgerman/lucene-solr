@@ -20,11 +20,17 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Map
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|ShardParams
 import|;
 end_import
 
@@ -40,7 +46,7 @@ name|common
 operator|.
 name|params
 operator|.
-name|ShardParams
+name|SolrParams
 import|;
 end_import
 
@@ -80,13 +86,8 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|args
+name|SolrParams
+name|params
 parameter_list|,
 name|SolrQueryRequest
 name|req

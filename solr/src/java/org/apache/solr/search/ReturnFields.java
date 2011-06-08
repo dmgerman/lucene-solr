@@ -1275,6 +1275,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|MapSolrParams
+name|augmenterParams
+init|=
+operator|new
+name|MapSolrParams
+argument_list|(
+name|augmenterArgs
+argument_list|)
+decl_stmt|;
 name|augmenters
 operator|.
 name|addTransformer
@@ -1285,7 +1294,7 @@ name|create
 argument_list|(
 name|disp
 argument_list|,
-name|augmenterArgs
+name|augmenterParams
 argument_list|,
 name|req
 argument_list|)
