@@ -738,6 +738,14 @@ argument_list|(
 name|tempDir
 argument_list|)
 decl_stmt|;
+name|dir
+operator|.
+name|setCheckIndexOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// don't double-checkIndex, we do it ourselves.
 specifier|final
 name|IndexWriterConfig
 name|conf
@@ -3590,6 +3598,13 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|_TestUtil
+operator|.
+name|checkIndex
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
 name|s
 operator|.
 name|close
@@ -3599,6 +3614,13 @@ name|dir
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+name|_TestUtil
+operator|.
+name|rmDir
+argument_list|(
+name|tempDir
+argument_list|)
 expr_stmt|;
 name|docs
 operator|.
