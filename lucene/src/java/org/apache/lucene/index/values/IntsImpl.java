@@ -746,7 +746,6 @@ argument_list|(
 name|PACKED
 argument_list|)
 expr_stmt|;
-comment|// TODO -- long can't work right since it's signed
 name|datOut
 operator|.
 name|writeLong
