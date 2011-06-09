@@ -130,16 +130,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -220,9 +210,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Gets a list of everything we can find in the classpath and makes sure it has    * a name, description, etc...    */
-annotation|@
-name|Ignore
-comment|// TODO: reenable once SOLR-2160 is fixed
 DECL|method|testCallMBeanInfo
 specifier|public
 name|void
@@ -231,7 +218,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|//    Object[] init = org.apache.solr.search.QParserPlugin.standardPlugins;
 name|List
 argument_list|<
 name|Class
