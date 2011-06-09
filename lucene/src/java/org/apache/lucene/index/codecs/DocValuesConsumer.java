@@ -139,8 +139,6 @@ specifier|abstract
 class|class
 name|DocValuesConsumer
 block|{
-comment|// TODO this might need to go in the codec package since is a direct relative
-comment|// to TermsConsumer
 DECL|field|bytesUsed
 specifier|protected
 specifier|final
