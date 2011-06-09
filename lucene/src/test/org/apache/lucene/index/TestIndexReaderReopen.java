@@ -3828,9 +3828,10 @@ specifier|final
 name|int
 name|n
 init|=
+name|atLeast
+argument_list|(
 literal|30
-operator|*
-name|RANDOM_MULTIPLIER
+argument_list|)
 decl_stmt|;
 name|IndexWriter
 name|writer

@@ -334,11 +334,10 @@ specifier|static
 name|int
 name|maxId
 init|=
-name|TEST_NIGHTLY
-condition|?
-literal|10000
-else|:
+name|atLeast
+argument_list|(
 literal|500
+argument_list|)
 decl_stmt|;
 DECL|field|intLength
 specifier|static

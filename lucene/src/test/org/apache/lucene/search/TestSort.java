@@ -499,9 +499,10 @@ specifier|final
 name|int
 name|NUM_STRINGS
 init|=
+name|atLeast
+argument_list|(
 literal|6000
-operator|*
-name|RANDOM_MULTIPLIER
+argument_list|)
 decl_stmt|;
 DECL|field|full
 specifier|private

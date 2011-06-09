@@ -220,9 +220,10 @@ specifier|final
 name|int
 name|NUM_DOCS
 init|=
+name|atLeast
+argument_list|(
 literal|1000
-operator|*
-name|RANDOM_MULTIPLIER
+argument_list|)
 decl_stmt|;
 DECL|field|unicodeStrings
 specifier|private
@@ -1766,6 +1767,14 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// seek the enum around (note this isn't a great test here)
+name|int
+name|num
+init|=
+name|atLeast
+argument_list|(
+literal|100
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1775,9 +1784,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
-operator|*
-name|RANDOM_MULTIPLIER
+name|num
 condition|;
 name|i
 operator|++
