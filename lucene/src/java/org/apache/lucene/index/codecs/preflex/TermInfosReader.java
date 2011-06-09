@@ -254,6 +254,11 @@ argument_list|(
 name|ti
 argument_list|)
 expr_stmt|;
+assert|assert
+name|termOrd
+operator|>=
+literal|0
+assert|;
 name|this
 operator|.
 name|termOrd
@@ -1526,6 +1531,19 @@ condition|(
 name|useCache
 condition|)
 block|{
+comment|// LUCENE-3183: it's possible, if term is Term("",
+comment|// ""), for the STE to be incorrectly un-positioned
+comment|// after scan-to; work around this by not caching in
+comment|// this case:
+if|if
+condition|(
+name|enumerator
+operator|.
+name|position
+operator|>=
+literal|0
+condition|)
+block|{
 name|termsCache
 operator|.
 name|put
@@ -1547,6 +1565,7 @@ name|position
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
