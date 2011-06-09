@@ -227,7 +227,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p/> Provides functionality equivalent to the snapshooter script</p>  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  *<p/> Provides functionality equivalent to the snapshooter script</p>  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

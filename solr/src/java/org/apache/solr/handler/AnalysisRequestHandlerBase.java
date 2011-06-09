@@ -361,7 +361,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A base class for all analysis request handlers.  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * A base class for all analysis request handlers.  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

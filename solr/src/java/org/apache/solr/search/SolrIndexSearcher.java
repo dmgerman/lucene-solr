@@ -425,7 +425,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * SolrIndexSearcher adds schema awareness and caching functionality  * over the lucene IndexSearcher.  *  * @version $Id$  * @since solr 0.9  */
+comment|/**  * SolrIndexSearcher adds schema awareness and caching functionality  * over the lucene IndexSearcher.  *  *  * @since solr 0.9  */
 end_comment
 
 begin_class

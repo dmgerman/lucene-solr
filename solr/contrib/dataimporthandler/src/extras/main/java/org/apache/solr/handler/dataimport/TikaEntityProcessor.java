@@ -413,7 +413,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>An implementation of {@link EntityProcessor} which reads data from rich docs  * using<a href="http://tika.apache.org/">Apache Tika</a>  *  * @version $Id$  * @since solr 3.1  */
+comment|/**  *<p>An implementation of {@link EntityProcessor} which reads data from rich docs  * using<a href="http://tika.apache.org/">Apache Tika</a>  *  * @since solr 3.1  */
 end_comment
 
 begin_class

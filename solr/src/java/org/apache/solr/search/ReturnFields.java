@@ -325,7 +325,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class representing the return fields  *  * @version $Id$  * @since solr 4.0  */
+comment|/**  * A class representing the return fields  *  *  * @since solr 4.0  */
 end_comment
 
 begin_class

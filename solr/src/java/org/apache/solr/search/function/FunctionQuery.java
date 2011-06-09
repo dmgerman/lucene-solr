@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Returns a score for each document based on a ValueSource,  * often some function of the value of a field.  *  *<b>Note: This API is experimental and may change in non backward-compatible ways in the future</b>  *  * @version $Id$  */
+comment|/**  * Returns a score for each document based on a ValueSource,  * often some function of the value of a field.  *  *<b>Note: This API is experimental and may change in non backward-compatible ways in the future</b>  *  *  */
 end_comment
 
 begin_class

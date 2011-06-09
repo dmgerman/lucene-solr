@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Extra lucene sorting utilities& convenience methods  *  * @version $Id$  *  */
+comment|/**  * Extra lucene sorting utilities& convenience methods  *  *  *  */
 end_comment
 
 begin_class

@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Construct {@link CommonGramsQueryFilter}.  *   * This is pretty close to a straight copy from {@link StopFilterFactory}.  *   *<pre class="prettyprint">  *&lt;fieldType name="text_cmmngrmsqry" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.CommonGramsQueryFilterFactory" words="commongramsquerystopwords.txt" ignoreCase="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  * @version $Id$  */
+comment|/**  * Construct {@link CommonGramsQueryFilter}.  *   * This is pretty close to a straight copy from {@link StopFilterFactory}.  *   *<pre class="prettyprint">  *&lt;fieldType name="text_cmmngrmsqry" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.CommonGramsQueryFilterFactory" words="commongramsquerystopwords.txt" ignoreCase="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  */
 end_comment
 
 begin_class

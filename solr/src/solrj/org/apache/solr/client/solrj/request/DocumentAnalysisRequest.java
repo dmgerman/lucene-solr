@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A request for the org.apache.solr.handler.DocumentAnalysisRequestHandler.  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * A request for the org.apache.solr.handler.DocumentAnalysisRequestHandler.  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

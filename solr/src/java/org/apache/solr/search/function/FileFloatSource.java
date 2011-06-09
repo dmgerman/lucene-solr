@@ -411,7 +411,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Obtains float field values from an external file.  * @version $Id$  */
+comment|/**  * Obtains float field values from an external file.  *  */
 end_comment
 
 begin_class

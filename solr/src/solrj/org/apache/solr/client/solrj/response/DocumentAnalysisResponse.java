@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A response that is returned by processing the {@link org.apache.solr.client.solrj.request.DocumentAnalysisRequest}.  * Holds a map of {@link DocumentAnalysis} objects by a document id (unique key).  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * A response that is returned by processing the {@link org.apache.solr.client.solrj.request.DocumentAnalysisRequest}.  * Holds a map of {@link DocumentAnalysis} objects by a document id (unique key).  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

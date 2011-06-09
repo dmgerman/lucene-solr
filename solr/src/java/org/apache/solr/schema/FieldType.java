@@ -393,7 +393,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for all field types used by an index schema.  *  * @version $Id$  */
+comment|/**  * Base class for all field types used by an index schema.  *  *  */
 end_comment
 
 begin_class

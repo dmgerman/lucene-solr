@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple Iterator of document Ids which may include score information.  *  *<p>  * The order of the documents is determined by the context in which the  * DocIterator instance was retrieved.  *</p>  *  * @version $Id$  */
+comment|/**  * Simple Iterator of document Ids which may include score information.  *  *<p>  * The order of the documents is determined by the context in which the  * DocIterator instance was retrieved.  *</p>  *  *  */
 end_comment
 
 begin_interface

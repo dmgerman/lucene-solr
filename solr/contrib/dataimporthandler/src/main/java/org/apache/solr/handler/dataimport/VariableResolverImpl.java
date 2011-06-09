@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * The default implementation of VariableResolver interface  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  * @version $Id$  * @see VariableResolver  * @since solr 1.3  */
+comment|/**  *<p>  * The default implementation of VariableResolver interface  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  *  * @see VariableResolver  * @since solr 1.3  */
 end_comment
 
 begin_class

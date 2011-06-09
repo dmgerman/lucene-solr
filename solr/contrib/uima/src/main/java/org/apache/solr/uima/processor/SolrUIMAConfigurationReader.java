@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Read configuration for Solr-UIMA integration  *   * @version $Id$  *   */
+comment|/**  * Read configuration for Solr-UIMA integration  *   *  *   */
 end_comment
 
 begin_class

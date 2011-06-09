@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for FieldReaderDataSource  *  * @version $Id$  * @see org.apache.solr.handler.dataimport.FieldReaderDataSource  * @since 1.4  */
+comment|/**  * Test for FieldReaderDataSource  *  *  * @see org.apache.solr.handler.dataimport.FieldReaderDataSource  * @since 1.4  */
 end_comment
 
 begin_class

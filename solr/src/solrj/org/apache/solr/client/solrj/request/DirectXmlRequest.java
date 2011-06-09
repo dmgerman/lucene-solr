@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Send arbitrary XML to a request handler  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * Send arbitrary XML to a request handler  *   *  * @since solr 1.3  */
 end_comment
 
 begin_class

@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Obtains int field values from the {@link org.apache.lucene.search.FieldCache}  * using<code>getInts()</code>  * and makes those values available as other numeric types, casting as needed. *  * @version $Id$  */
+comment|/**  * Obtains int field values from the {@link org.apache.lucene.search.FieldCache}  * using<code>getInts()</code>  * and makes those values available as other numeric types, casting as needed. *  *  */
 end_comment
 
 begin_class

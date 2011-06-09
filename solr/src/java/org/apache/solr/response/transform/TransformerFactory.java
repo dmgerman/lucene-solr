@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * New instance for each request  *  * @version $Id$  */
+comment|/**  * New instance for each request  *  *  */
 end_comment
 
 begin_class

@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>LinearFloatFunction</code> implements a linear function over  * another {@link org.apache.solr.search.function.ValueSource}.  *<br>  * Normally Used as an argument to a {@link org.apache.solr.search.function.FunctionQuery}  *  * @version $Id$  */
+comment|/**  *<code>LinearFloatFunction</code> implements a linear function over  * another {@link org.apache.solr.search.function.ValueSource}.  *<br>  * Normally Used as an argument to a {@link org.apache.solr.search.function.FunctionQuery}  *  *  */
 end_comment
 
 begin_class

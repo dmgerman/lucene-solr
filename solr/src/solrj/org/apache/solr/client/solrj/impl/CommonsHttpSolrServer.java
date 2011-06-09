@@ -517,7 +517,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The {@link CommonsHttpSolrServer} uses the Apache Commons HTTP Client to connect to solr.   *<pre class="prettyprint">SolrServer server = new CommonsHttpSolrServer( url );</pre>  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * The {@link CommonsHttpSolrServer} uses the Apache Commons HTTP Client to connect to solr.   *<pre class="prettyprint">SolrServer server = new CommonsHttpSolrServer( url );</pre>  *   *  * @since solr 1.3  */
 end_comment
 
 begin_class

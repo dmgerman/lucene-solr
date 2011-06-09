@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A<code>TokenizerFactory</code> breaks up a stream of characters   * into tokens.  *  *<p>  * TokenizerFactories are registered for<code>FieldType</code>s with the  *<code>IndexSchema</code> through the<code>schema.xml</code> file.  *</p>  *<p>  * Example<code>schema.xml</code> entry to register a TokenizerFactory   * implementation to tokenize fields of type "cool"  *</p>  *<pre>  *&lt;fieldtype name="cool" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *      ...  *</pre>  *<p>  * A single instance of any registered TokenizerFactory is created  * via the default constructor and is reused for each FieldType.  *</p>  * @version $Id$  */
+comment|/**  * A<code>TokenizerFactory</code> breaks up a stream of characters   * into tokens.  *  *<p>  * TokenizerFactories are registered for<code>FieldType</code>s with the  *<code>IndexSchema</code> through the<code>schema.xml</code> file.  *</p>  *<p>  * Example<code>schema.xml</code> entry to register a TokenizerFactory   * implementation to tokenize fields of type "cool"  *</p>  *<pre>  *&lt;fieldtype name="cool" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *      ...  *</pre>  *<p>  * A single instance of any registered TokenizerFactory is created  * via the default constructor and is reused for each FieldType.  *</p>  *  */
 end_comment
 
 begin_interface

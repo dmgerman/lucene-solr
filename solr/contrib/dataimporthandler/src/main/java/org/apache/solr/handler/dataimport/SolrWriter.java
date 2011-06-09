@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p> Writes documents to SOLR as well as provides methods for loading and persisting last index time.</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p> Writes documents to SOLR as well as provides methods for loading and persisting last index time.</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  * @since solr 1.3  */
 end_comment
 
 begin_class

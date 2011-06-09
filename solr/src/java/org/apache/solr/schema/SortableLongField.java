@@ -243,7 +243,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  *   * @deprecated use {@link LongField} or {@link TrieLongField} - will be removed in 5.x  */
+comment|/**  *  *   * @deprecated use {@link LongField} or {@link TrieLongField} - will be removed in 5.x  */
 end_comment
 
 begin_class

@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

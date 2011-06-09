@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenizer for trie fields. It uses NumericTokenStream to create multiple trie encoded string per number.  * Each string created by this tokenizer for a given number differs from the previous by the given precisionStep.  * For query time token streams that only contain the highest precision term, use 32/64 as precisionStep.  *<p/>  * Refer to {@link org.apache.lucene.search.NumericRangeQuery} for more details.  *  * @version $Id$  * @see org.apache.lucene.search.NumericRangeQuery  * @see org.apache.solr.schema.TrieField  * @since solr 1.4  */
+comment|/**  * Tokenizer for trie fields. It uses NumericTokenStream to create multiple trie encoded string per number.  * Each string created by this tokenizer for a given number differs from the previous by the given precisionStep.  * For query time token streams that only contain the highest precision term, use 32/64 as precisionStep.  *<p/>  * Refer to {@link org.apache.lucene.search.NumericRangeQuery} for more details.  *  *  * @see org.apache.lucene.search.NumericRangeQuery  * @see org.apache.solr.schema.TrieField  * @since solr 1.4  */
 end_comment
 
 begin_class

@@ -131,7 +131,7 @@ comment|//         -> child22(2)
 end_comment
 
 begin_comment
-comment|/**  * Test for MailEntityProcessor. The tests are marked as ignored because we'd need a mail server (real or mocked) for  * these to work.  *  * TODO: Find a way to make the tests actually test code  *  * @version $Id$  * @see org.apache.solr.handler.dataimport.MailEntityProcessor  * @since solr 1.4  */
+comment|/**  * Test for MailEntityProcessor. The tests are marked as ignored because we'd need a mail server (real or mocked) for  * these to work.  *  * TODO: Find a way to make the tests actually test code  *  * @see org.apache.solr.handler.dataimport.MailEntityProcessor  * @since solr 1.4  */
 end_comment
 
 begin_class

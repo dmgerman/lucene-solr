@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * DateFilter JUnit tests.  *   *   * @version $Revision$  */
+comment|/**  * DateFilter JUnit tests.  *   *   */
 end_comment
 
 begin_class

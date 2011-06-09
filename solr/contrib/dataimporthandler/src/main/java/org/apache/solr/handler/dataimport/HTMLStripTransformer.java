@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Transformer} implementation which strip off HTML tags using {@link HTMLStripCharFilter} This is useful  * in case you don't need this HTML anyway.  *  * @version $Id$  * @see HTMLStripCharFilter  * @since solr 1.4  */
+comment|/**  * A {@link Transformer} implementation which strip off HTML tags using {@link HTMLStripCharFilter} This is useful  * in case you don't need this HTML anyway.  *  * @see HTMLStripCharFilter  * @since solr 1.4  */
 end_comment
 
 begin_class

@@ -473,7 +473,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a simple harness that may be useful when  * writing testcases.  *  *<p>  * This class lives in the tests-framework source tree (and not in the test source  * tree), so that it will be included with even the most minimal solr  * distribution, in order to encourage plugin writers to create unit   * tests for their plugins.  *  * @version $Id$  */
+comment|/**  * This class provides a simple harness that may be useful when  * writing testcases.  *  *<p>  * This class lives in the tests-framework source tree (and not in the test source  * tree), so that it will be included with even the most minimal solr  * distribution, in order to encourage plugin writers to create unit   * tests for their plugins.  *  *  */
 end_comment
 
 begin_class

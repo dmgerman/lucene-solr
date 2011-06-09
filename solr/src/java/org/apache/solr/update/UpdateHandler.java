@@ -243,7 +243,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>UpdateHandler</code> handles requests to change the index  * (adds, deletes, commits, optimizes, etc).  *  * @version $Id$  * @since solr 0.9  */
+comment|/**  *<code>UpdateHandler</code> handles requests to change the index  * (adds, deletes, commits, optimizes, etc).  *  *  * @since solr 0.9  */
 end_comment
 
 begin_class

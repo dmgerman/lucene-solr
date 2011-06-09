@@ -211,7 +211,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for SpellCheckComponent's response in Solrj  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  * Test for SpellCheckComponent's response in Solrj  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

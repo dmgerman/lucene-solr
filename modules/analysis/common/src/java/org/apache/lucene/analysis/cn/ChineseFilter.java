@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} with a stop word table.    *<ul>  *<li>Numeric tokens are removed.  *<li>English tokens must be larger than 1 character.  *<li>One Chinese character as one Chinese word.  *</ul>  * TO DO:  *<ol>  *<li>Add Chinese stop words, such as \ue400  *<li>Dictionary based Chinese word extraction  *<li>Intelligent Chinese word extraction  *</ol>  *   * @version 1.0  * @deprecated (3.1) Use {@link StopFilter} instead, which has the same functionality.  * This filter will be removed in Lucene 5.0  */
+comment|/**  * A {@link TokenFilter} with a stop word table.    *<ul>  *<li>Numeric tokens are removed.  *<li>English tokens must be larger than 1 character.  *<li>One Chinese character as one Chinese word.  *</ul>  * TO DO:  *<ol>  *<li>Add Chinese stop words, such as \ue400  *<li>Dictionary based Chinese word extraction  *<li>Intelligent Chinese word extraction  *</ol>  *   * @deprecated (3.1) Use {@link StopFilter} instead, which has the same functionality.  * This filter will be removed in Lucene 5.0  */
 end_comment
 
 begin_class
