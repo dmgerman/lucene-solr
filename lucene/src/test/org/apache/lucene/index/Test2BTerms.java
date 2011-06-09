@@ -765,6 +765,14 @@ operator|.
 name|NEVER
 argument_list|)
 expr_stmt|;
+name|dir
+operator|.
+name|setCheckIndexOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// don't double-checkindex
 comment|//Directory dir = newFSDirectory(new File("/p/lucene/indices/2bindex"));
 if|if
 condition|(

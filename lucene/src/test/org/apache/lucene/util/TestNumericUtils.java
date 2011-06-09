@@ -2174,9 +2174,13 @@ block|{
 name|long
 name|num
 init|=
-literal|100L
-operator|*
-name|RANDOM_MULTIPLIER
+operator|(
+name|long
+operator|)
+name|atLeast
+argument_list|(
+literal|10
+argument_list|)
 decl_stmt|;
 for|for
 control|(

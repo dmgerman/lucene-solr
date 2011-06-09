@@ -526,16 +526,6 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|Test
 import|;
 end_import
@@ -2440,9 +2430,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-comment|// TODO: re-enable when new transformer syntax is implemented
 DECL|method|testAugmentFields
 specifier|public
 name|void
@@ -2589,7 +2576,7 @@ name|CommonParams
 operator|.
 name|FL
 argument_list|,
-literal|"id,price,_docid_,_explain:nl_,score,aaa:_value:aaa_,ten:_value:int:10_"
+literal|"id,price,[docid],[explain style=nl],score,aaa:[value v=aaa],ten:[value v=10 t=int]"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2712,7 +2699,7 @@ name|out1
 operator|.
 name|getFieldValue
 argument_list|(
-literal|"_docid_"
+literal|"[docid]"
 argument_list|)
 decl_stmt|;
 name|int
@@ -2725,7 +2712,7 @@ name|out2
 operator|.
 name|getFieldValue
 argument_list|(
-literal|"_docid_"
+literal|"[docid]"
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -2756,7 +2743,7 @@ name|out1
 operator|.
 name|getFieldValue
 argument_list|(
-literal|"_explain:nl_"
+literal|"[explain]"
 argument_list|)
 decl_stmt|;
 name|assertEquals

@@ -475,9 +475,10 @@ specifier|static
 name|int
 name|NUM_TEST_ITER
 init|=
+name|atLeast
+argument_list|(
 literal|20
-operator|*
-name|RANDOM_MULTIPLIER
+argument_list|)
 decl_stmt|;
 DECL|field|NUM_TEST_THREADS
 specifier|private

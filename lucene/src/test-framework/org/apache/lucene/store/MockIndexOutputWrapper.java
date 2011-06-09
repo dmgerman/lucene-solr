@@ -487,8 +487,12 @@ name|dir
 operator|.
 name|randomState
 operator|.
-name|nextBoolean
-argument_list|()
+name|nextInt
+argument_list|(
+literal|200
+argument_list|)
+operator|==
+literal|0
 condition|)
 block|{
 specifier|final

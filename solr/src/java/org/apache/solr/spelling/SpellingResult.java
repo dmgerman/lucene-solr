@@ -243,10 +243,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|add
+comment|/**    * Adds an original token with its document frequency    *     * @param token original token    * @param docFreq original token's document frequency    */
+DECL|method|addFrequency
 specifier|public
 name|void
-name|add
+name|addFrequency
 parameter_list|(
 name|Token
 name|token

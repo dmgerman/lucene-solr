@@ -92,9 +92,10 @@ name|Exception
 block|{
 name|testPQ
 argument_list|(
+name|atLeast
+argument_list|(
 literal|10000
-operator|*
-name|RANDOM_MULTIPLIER
+argument_list|)
 argument_list|,
 name|random
 argument_list|)

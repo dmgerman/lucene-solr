@@ -1352,9 +1352,10 @@ comment|// increase number of iterations for more complete testing
 name|int
 name|num
 init|=
-literal|50
-operator|*
-name|RANDOM_MULTIPLIER
+name|atLeast
+argument_list|(
+literal|10
+argument_list|)
 decl_stmt|;
 for|for
 control|(

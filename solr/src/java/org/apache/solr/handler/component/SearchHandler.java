@@ -1779,6 +1779,18 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// a sub (shard) request
+name|params
+operator|.
+name|set
+argument_list|(
+name|ShardParams
+operator|.
+name|SHARD_URL
+argument_list|,
+name|shard
+argument_list|)
+expr_stmt|;
+comment|// so the shard knows what was asked
 if|if
 condition|(
 name|rb

@@ -4177,23 +4177,34 @@ comment|// reliably remap them w/ Map:
 specifier|final
 name|Map
 argument_list|<
+name|String
+argument_list|,
+name|Map
+argument_list|<
 name|Float
 argument_list|,
 name|Float
+argument_list|>
 argument_list|>
 name|scoreMap
 init|=
 operator|new
 name|HashMap
 argument_list|<
+name|String
+argument_list|,
+name|Map
+argument_list|<
 name|Float
 argument_list|,
 name|Float
+argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// Tricky: must separately set .score2, because the doc
 comment|// block index was created with possible deletions!
+comment|//System.out.println("fixup score2");
 for|for
 control|(
 name|int
@@ -4209,6 +4220,36 @@ name|contentID
 operator|++
 control|)
 block|{
+comment|//System.out.println("  term=real" + contentID);
+specifier|final
+name|Map
+argument_list|<
+name|Float
+argument_list|,
+name|Float
+argument_list|>
+name|termScoreMap
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|Float
+argument_list|,
+name|Float
+argument_list|>
+argument_list|()
+decl_stmt|;
+name|scoreMap
+operator|.
+name|put
+argument_list|(
+literal|"real"
+operator|+
+name|contentID
+argument_list|,
+name|termScoreMap
+argument_list|)
+expr_stmt|;
 comment|//System.out.println("term=real" + contentID + " dfold=" + s.docFreq(new Term("content", "real"+contentID)) +
 comment|//" dfnew=" + s2.docFreq(new Term("content", "real"+contentID)));
 specifier|final
@@ -4292,8 +4333,8 @@ name|doc
 index|]
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("  score=" + hit.score + " id=" + docIDToID2[hit.doc]);
-name|scoreMap
+comment|//System.out.println("    score=" + gd.score + " score2=" + hit.score + " id=" + docIDToID2[hit.doc]);
+name|termScoreMap
 operator|.
 name|put
 argument_list|(
@@ -5583,6 +5624,22 @@ operator|.
 name|getSort
 argument_list|()
 decl_stmt|;
+specifier|final
+name|Map
+argument_list|<
+name|Float
+argument_list|,
+name|Float
+argument_list|>
+name|termScoreMap
+init|=
+name|scoreMap
+operator|.
+name|get
+argument_list|(
+name|searchTerm
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -5634,6 +5691,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//System.out.println("remap " + groupDocsHits.groupSortValues[groupSortIDX] + " to " + termScoreMap.get(groupDocsHits.groupSortValues[groupSortIDX]));
 name|groupDocsHits
 operator|.
 name|groupSortValues
@@ -5641,7 +5699,7 @@ index|[
 name|groupSortIDX
 index|]
 operator|=
-name|scoreMap
+name|termScoreMap
 operator|.
 name|get
 argument_list|(
@@ -5753,7 +5811,7 @@ index|[
 name|docSortIDX
 index|]
 operator|=
-name|scoreMap
+name|termScoreMap
 operator|.
 name|get
 argument_list|(

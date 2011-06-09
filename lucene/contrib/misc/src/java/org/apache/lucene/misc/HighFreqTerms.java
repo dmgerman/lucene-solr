@@ -571,7 +571,7 @@ name|println
 argument_list|(
 literal|"\n\n"
 operator|+
-literal|"java org.apache.lucene.misc.HighFreqTerms<index dir> [-t][number_terms] [field]\n\t -t: include totalTermFreq\n\n"
+literal|"java org.apache.lucene.misc.HighFreqTerms<index dir> [-t] [number_terms] [field]\n\t -t: include totalTermFreq\n\n"
 argument_list|)
 expr_stmt|;
 block|}

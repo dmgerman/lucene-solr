@@ -790,7 +790,7 @@ name|JettySolrRunner
 argument_list|(
 literal|"/solr"
 argument_list|,
-literal|3456
+literal|8983
 argument_list|)
 decl_stmt|;
 name|jetty

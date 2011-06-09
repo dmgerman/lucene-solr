@@ -151,8 +151,8 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|String
-name|args
+name|SolrParams
+name|params
 parameter_list|,
 name|SolrQueryRequest
 name|req

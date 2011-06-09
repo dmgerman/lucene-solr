@@ -608,13 +608,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|_TestUtil
-operator|.
-name|checkIndex
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
 block|}
 name|dir
 operator|.
@@ -2515,13 +2508,6 @@ name|w
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|_TestUtil
-operator|.
-name|checkIndex
-argument_list|(
-name|dir
-argument_list|)
 expr_stmt|;
 name|dir
 operator|.

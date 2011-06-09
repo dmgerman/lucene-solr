@@ -840,9 +840,10 @@ comment|// do many small tests so the thread locals go away inbetween
 name|int
 name|num
 init|=
+name|atLeast
+argument_list|(
 literal|10
-operator|*
-name|RANDOM_MULTIPLIER
+argument_list|)
 decl_stmt|;
 for|for
 control|(
