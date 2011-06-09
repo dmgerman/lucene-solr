@@ -209,7 +209,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link WordDelimiterFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_wd" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.WordDelimiterFilterFactory" protected="protectedword.txt"  *             preserveOriginal="0" splitOnNumerics="1" splitOnCaseChange="1"  *             catenateWords="0" catenateNumbers="0" catenateAll="0"  *             generateWordParts="1" generateNumberParts="1" stemEnglishPossessive="1"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   * @version $Id$  */
+comment|/**  * Factory for {@link WordDelimiterFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_wd" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.WordDelimiterFilterFactory" protected="protectedword.txt"  *             preserveOriginal="0" splitOnNumerics="1" splitOnCaseChange="1"  *             catenateWords="0" catenateNumbers="0" catenateAll="0"  *             generateWordParts="1" generateNumberParts="1" stemEnglishPossessive="1"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
 end_comment
 
 begin_class

@@ -297,7 +297,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TestCase for {@link UIMAUpdateRequestProcessor}  *   * @version $Id$  */
+comment|/**  * TestCase for {@link UIMAUpdateRequestProcessor}  *   *  */
 end_comment
 
 begin_class

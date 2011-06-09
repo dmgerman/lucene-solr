@@ -39,7 +39,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**Testcase for TikaEntityProcessor  * @version $Id$  * @since solr 1.5   */
+comment|/**Testcase for TikaEntityProcessor  * @since solr 1.5   */
 end_comment
 
 begin_class

@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Factory for {@link TurkishLowerCaseFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_trlwr" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.TurkishLowerCaseFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   * @version $Id$  */
+comment|/**   * Factory for {@link TurkishLowerCaseFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_trlwr" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.TurkishLowerCaseFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
 end_comment
 
 begin_class

@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A hash key encapsulating a query, a list of filters, and a sort  * @version $Id$  */
+comment|/** A hash key encapsulating a query, a list of filters, and a sort  *  */
 end_comment
 
 begin_class

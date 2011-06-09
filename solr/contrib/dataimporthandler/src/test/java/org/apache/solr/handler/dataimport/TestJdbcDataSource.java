@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Test for JdbcDataSource  *</p>  *<p/>  *<p>  * Note: The tests are ignored for the lack of DB support for testing  *</p>  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p>  * Test for JdbcDataSource  *</p>  *<p/>  *<p>  * Note: The tests are ignored for the lack of DB support for testing  *</p>  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

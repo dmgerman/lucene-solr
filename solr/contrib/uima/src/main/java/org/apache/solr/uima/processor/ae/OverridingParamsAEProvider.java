@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link AEProvider} implementation that creates an Aggregate AE from the given path, also  * injecting runtime parameters defined in the solrconfig.xml Solr configuration file and assigning  * them as overriding parameters in the aggregate AE  *   * @version $Id$  */
+comment|/**  * {@link AEProvider} implementation that creates an Aggregate AE from the given path, also  * injecting runtime parameters defined in the solrconfig.xml Solr configuration file and assigning  * them as overriding parameters in the aggregate AE  *   *  */
 end_comment
 
 begin_class

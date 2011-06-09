@@ -455,7 +455,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * SolrServer that connects directly to SolrCore  *   * TODO -- this implementation sends the response to XML and then parses it.    * It *should* be able to convert the response directly into a named list.  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * SolrServer that connects directly to SolrCore  *   * TODO -- this implementation sends the response to XML and then parses it.    * It *should* be able to convert the response directly into a named list.  *   *  * @since solr 1.3  */
 end_comment
 
 begin_class

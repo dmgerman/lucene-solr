@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p> Test disabling components</p>  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  *<p> Test disabling components</p>  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

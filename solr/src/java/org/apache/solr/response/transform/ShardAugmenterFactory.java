@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  * @since solr 4.0  */
+comment|/**  *  * @since solr 4.0  */
 end_comment
 
 begin_class

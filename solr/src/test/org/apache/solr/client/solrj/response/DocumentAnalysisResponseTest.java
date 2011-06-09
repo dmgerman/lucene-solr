@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A test for the {@link DocumentAnalysisResponse} class.  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * A test for the {@link DocumentAnalysisResponse} class.  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

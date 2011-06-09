@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link PositionFilter}.  * Set the positionIncrement of all tokens to the "positionIncrement", except the first return token which retains its  * original positionIncrement value. The default positionIncrement value is zero.  *<pre class="prettyprint">  *&lt;fieldType name="text_position" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.PositionFilterFactory" positionIncrement="0"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * @version $Id$  * @see org.apache.lucene.analysis.position.PositionFilter  * @since solr 1.4  */
+comment|/**  * Factory for {@link PositionFilter}.  * Set the positionIncrement of all tokens to the "positionIncrement", except the first return token which retains its  * original positionIncrement value. The default positionIncrement value is zero.  *<pre class="prettyprint">  *&lt;fieldType name="text_position" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.PositionFilterFactory" positionIncrement="0"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  *  * @see org.apache.lucene.analysis.position.PositionFilter  * @since solr 1.4  */
 end_comment
 
 begin_class

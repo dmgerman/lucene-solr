@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link TrimFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_trm" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.NGramTokenizerFactory"/&gt;  *&lt;filter class="solr.TrimFilterFactory" updateOffsets="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  * @version $Id$  * @see TrimFilter  */
+comment|/**  * Factory for {@link TrimFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_trm" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.NGramTokenizerFactory"/&gt;  *&lt;filter class="solr.TrimFilterFactory" updateOffsets="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * @see TrimFilter  */
 end_comment
 
 begin_class

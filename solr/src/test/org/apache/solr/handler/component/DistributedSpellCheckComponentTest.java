@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for SpellCheckComponent's distributed querying  *  * @since solr 1.5  * @version $Id$  * @see org.apache.solr.handler.component.SpellCheckComponent  */
+comment|/**  * Test for SpellCheckComponent's distributed querying  *  * @since solr 1.5  *  * @see org.apache.solr.handler.component.SpellCheckComponent  */
 end_comment
 
 begin_class

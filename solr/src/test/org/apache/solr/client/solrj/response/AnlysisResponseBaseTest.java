@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Test case for the {@link AnalysisResponseBase} class.  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * A Test case for the {@link AnalysisResponseBase} class.  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for SpellingQueryConverter  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  * Test for SpellingQueryConverter  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

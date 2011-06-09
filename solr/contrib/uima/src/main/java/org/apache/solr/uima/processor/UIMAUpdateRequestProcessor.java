@@ -249,7 +249,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Update document(s) to be indexed with UIMA extracted information  *  * @version $Id$  */
+comment|/**  * Update document(s) to be indexed with UIMA extracted information  *  *  */
 end_comment
 
 begin_class

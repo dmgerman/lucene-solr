@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Adds debugging information to a request.  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * Adds debugging information to a request.  *   *  * @since solr 1.3  */
 end_comment
 
 begin_class

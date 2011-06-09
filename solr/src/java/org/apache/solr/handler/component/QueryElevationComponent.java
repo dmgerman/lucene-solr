@@ -637,7 +637,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A component to elevate some documents to the top of the result set.  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * A component to elevate some documents to the top of the result set.  *   *  * @since solr 1.3  */
 end_comment
 
 begin_class

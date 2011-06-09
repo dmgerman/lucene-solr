@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tokenize Chinese text as individual chinese characters.  *   *<p>  * The difference between ChineseTokenizer and  * CJKTokenizer is that they have different  * token parsing logic.  *</p>  *<p>  * For example, if the Chinese text  * "C1C2C3C4" is to be indexed:  *<ul>  *<li>The tokens returned from ChineseTokenizer are C1, C2, C3, C4.   *<li>The tokens returned from the CJKTokenizer are C1C2, C2C3, C3C4.  *</ul>  *</p>  *<p>  * Therefore the index created by CJKTokenizer is much larger.  *</p>  *<p>  * The problem is that when searching for C1, C1C2, C1C3,  * C4C2, C1C2C3 ... the ChineseTokenizer works, but the  * CJKTokenizer will not work.  *</p>  * @version 1.0  * @deprecated (3.1) Use {@link StandardTokenizer} instead, which has the same functionality.  * This filter will be removed in Lucene 5.0  */
+comment|/**  * Tokenize Chinese text as individual chinese characters.  *   *<p>  * The difference between ChineseTokenizer and  * CJKTokenizer is that they have different  * token parsing logic.  *</p>  *<p>  * For example, if the Chinese text  * "C1C2C3C4" is to be indexed:  *<ul>  *<li>The tokens returned from ChineseTokenizer are C1, C2, C3, C4.   *<li>The tokens returned from the CJKTokenizer are C1C2, C2C3, C3C4.  *</ul>  *</p>  *<p>  * Therefore the index created by CJKTokenizer is much larger.  *</p>  *<p>  * The problem is that when searching for C1, C1C2, C1C3,  * C4C2, C1C2C3 ... the ChineseTokenizer works, but the  * CJKTokenizer will not work.  *</p>  * @deprecated (3.1) Use {@link StandardTokenizer} instead, which has the same functionality.  * This filter will be removed in Lucene 5.0  */
 end_comment
 
 begin_class

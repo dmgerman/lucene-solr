@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A special Handler that registers all standard admin handlers  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * A special Handler that registers all standard admin handlers  *   *  * @since solr 1.3  */
 end_comment
 
 begin_class

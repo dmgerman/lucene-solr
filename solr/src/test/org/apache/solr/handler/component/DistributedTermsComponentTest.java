@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for TermsComponent distributed querying  *  * @version $Id$  * @since solr 1.5  */
+comment|/**  * Test for TermsComponent distributed querying  *  *  * @since solr 1.5  */
 end_comment
 
 begin_class

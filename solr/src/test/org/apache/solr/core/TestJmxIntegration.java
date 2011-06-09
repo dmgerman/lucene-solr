@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for JMX Integration  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  * Test for JMX Integration  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

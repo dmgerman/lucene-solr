@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is a simple wrapper to SolrParams that will throw a 400  * exception if you ask for a parameter that does not exist.  Fields  * specified with  *   * In short, any value you for from a<code>RequiredSolrParams</code>   * will return a valid non-null value or throw a 400 exception.    * (If you pass in<code>null</code> as the default value, you can   * get a null return value)  *   * @version $Id$  * @since solr 1.2  */
+comment|/**  * This is a simple wrapper to SolrParams that will throw a 400  * exception if you ask for a parameter that does not exist.  Fields  * specified with  *   * In short, any value you for from a<code>RequiredSolrParams</code>   * will return a valid non-null value or throw a 400 exception.    * (If you pass in<code>null</code> as the default value, you can   * get a null return value)  *   *  * @since solr 1.2  */
 end_comment
 
 begin_class

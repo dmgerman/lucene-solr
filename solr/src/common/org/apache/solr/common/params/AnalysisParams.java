@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Defines the request parameters used by all analysis request handlers.  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * Defines the request parameters used by all analysis request handlers.  *  *  * @since solr 1.4  */
 end_comment
 
 begin_interface

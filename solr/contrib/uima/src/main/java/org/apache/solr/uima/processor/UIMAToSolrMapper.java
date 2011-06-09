@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Map UIMA types and features over fields of a Solr document  *   * @version $Id$  */
+comment|/**  * Map UIMA types and features over fields of a Solr document  *   *  */
 end_comment
 
 begin_class
