@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Scorer for queries with a required subscorer  * and an excluding (prohibited) sub DocIdSetIterator.  *<br>  * This<code>Scorer</code> implements {@link Scorer#skipTo(int)},  * and it uses the skipTo() on the given scorers.  */
+comment|/** A Scorer for queries with a required subscorer  * and an excluding (prohibited) sub DocIdSetIterator.  *<br>  * This<code>Scorer</code> implements {@link Scorer#advance(int)},  * and it uses the skipTo() on the given scorers.  */
 end_comment
 
 begin_class

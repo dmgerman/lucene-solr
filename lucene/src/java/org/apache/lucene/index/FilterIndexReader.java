@@ -54,9 +54,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|codecs
 operator|.
-name|ReaderContext
+name|PerDocValues
 import|;
 end_import
 
@@ -1794,6 +1794,23 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|perDocValues
+specifier|public
+name|PerDocValues
+name|perDocValues
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|in
+operator|.
+name|perDocValues
+argument_list|()
+return|;
 block|}
 block|}
 end_class

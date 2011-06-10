@@ -639,6 +639,36 @@ name|segmentName
 return|;
 block|}
 block|}
+comment|/** Sugar for passing "" + name instead */
+DECL|method|segmentFileName
+specifier|public
+specifier|static
+name|String
+name|segmentFileName
+parameter_list|(
+name|String
+name|segmentName
+parameter_list|,
+name|int
+name|name
+parameter_list|,
+name|String
+name|ext
+parameter_list|)
+block|{
+return|return
+name|segmentFileName
+argument_list|(
+name|segmentName
+argument_list|,
+literal|""
+operator|+
+name|name
+argument_list|,
+name|ext
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns true if the given filename ends with the given extension. One    * should provide a<i>pure</i> extension, without '.'.    */
 DECL|method|matchesExtension
 specifier|public

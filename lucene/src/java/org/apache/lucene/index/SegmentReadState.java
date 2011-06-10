@@ -77,7 +77,7 @@ decl_stmt|;
 DECL|field|codecId
 specifier|public
 specifier|final
-name|String
+name|int
 name|codecId
 decl_stmt|;
 DECL|method|SegmentReadState
@@ -112,7 +112,8 @@ name|readBufferSize
 argument_list|,
 name|termsIndexDivisor
 argument_list|,
-literal|""
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -135,7 +136,7 @@ parameter_list|,
 name|int
 name|termsIndexDivisor
 parameter_list|,
-name|String
+name|int
 name|codecId
 parameter_list|)
 block|{
