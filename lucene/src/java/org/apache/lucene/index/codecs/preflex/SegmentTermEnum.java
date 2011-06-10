@@ -681,7 +681,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** Optimized scan, without allocating new terms.     *  Return number of invocations to next(). */
+comment|/* Optimized scan, without allocating new terms.     *  Return number of invocations to next().    *    * NOTE: LUCENE-3183: if you pass Term("", "") here then this    * will incorrectly return before positioning the enum,    * and position will be -1; caller must detect this. */
 DECL|method|scanTo
 specifier|final
 name|int
