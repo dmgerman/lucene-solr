@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is an incomplete representation of the data returned from Luke  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  * This is an incomplete representation of the data returned from Luke  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

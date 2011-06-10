@@ -277,7 +277,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @version $Id$  * @since solr 1.3  */
+comment|/**  *  * @since solr 1.3  */
 end_comment
 
 begin_class

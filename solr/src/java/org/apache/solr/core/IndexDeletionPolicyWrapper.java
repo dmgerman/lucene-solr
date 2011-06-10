@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for an IndexDeletionPolicy instance.  *<p/>  * Provides features for looking up IndexCommit given a version. Allows reserving index  * commit points for certain amounts of time to support features such as index replication  * or snapshooting directly out of a live index directory.  *  * @version $Id$  * @see org.apache.lucene.index.IndexDeletionPolicy  */
+comment|/**  * A wrapper for an IndexDeletionPolicy instance.  *<p/>  * Provides features for looking up IndexCommit given a version. Allows reserving index  * commit points for certain amounts of time to support features such as index replication  * or snapshooting directly out of a live index directory.  *  *  * @see org.apache.lucene.index.IndexDeletionPolicy  */
 end_comment
 
 begin_class

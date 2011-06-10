@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A plugin that can be initialized with a PluginInfo  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * A plugin that can be initialized with a PluginInfo  *  *  * @since solr 1.4  */
 end_comment
 
 begin_interface

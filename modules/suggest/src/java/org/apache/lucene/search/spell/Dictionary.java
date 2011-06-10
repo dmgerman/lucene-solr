@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple interface representing a Dictionary. A Dictionary  * here is just a list of words.  *   *  * @version 1.0  */
+comment|/**  * A simple interface representing a Dictionary. A Dictionary  * here is just a list of words.  *   *  */
 end_comment
 
 begin_interface

@@ -246,9 +246,10 @@ specifier|final
 name|int
 name|NUM_DOCS
 init|=
+name|atLeast
+argument_list|(
 literal|500
-operator|*
-name|RANDOM_MULTIPLIER
+argument_list|)
 decl_stmt|;
 DECL|field|directory
 specifier|private

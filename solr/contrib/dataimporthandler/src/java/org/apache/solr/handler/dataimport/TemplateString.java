@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Provides functionality for replacing variables in a templatized string. It  * can also be used to get the place-holders (variables) in a templatized  * string.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p>  * Provides functionality for replacing variables in a templatized string. It  * can also be used to get the place-holders (variables) in a templatized  * string.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

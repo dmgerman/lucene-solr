@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Holds stats info  *  * @version $Id: SpellCheckResponse.java 693622 2008-09-09 21:21:06Z gsingers $  * @since solr 1.4  */
+comment|/**  * Holds stats info  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

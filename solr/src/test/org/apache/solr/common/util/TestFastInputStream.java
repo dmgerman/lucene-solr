@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for FastInputStream.  *  * @version $Id$  * @see org.apache.solr.common.util.FastInputStream  */
+comment|/**  * Test for FastInputStream.  *  *  * @see org.apache.solr.common.util.FastInputStream  */
 end_comment
 
 begin_class

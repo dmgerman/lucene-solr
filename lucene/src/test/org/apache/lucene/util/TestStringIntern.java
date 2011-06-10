@@ -192,9 +192,10 @@ specifier|final
 name|int
 name|iter
 init|=
-literal|1000000
-operator|*
-name|RANDOM_MULTIPLIER
+name|atLeast
+argument_list|(
+literal|100000
+argument_list|)
 decl_stmt|;
 comment|// try native intern
 comment|// StringHelper.interner = new StringInterner();

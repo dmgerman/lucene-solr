@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A streaming xpath parser which uses StAX for XML parsing. It supports only  * a subset of xpath syntax.  *</p><pre>  * /a/b/subject[@qualifier='fullTitle']  * /a/b/subject[@qualifier=]/subtag  * /a/b/subject/@qualifier  * //a  * //a/b...  * /a//b  * /a//b...  * /a/b/c  *</pre>  * A record is a Map<String,Object> . The key is the provided name  * and the value is a String or a List<String>  *  * This class is thread-safe for parsing xml. But adding fields is not  * thread-safe. The recommended usage is to addField() in one thread and   * then share the instance across threads.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *<p>  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p>  * A streaming xpath parser which uses StAX for XML parsing. It supports only  * a subset of xpath syntax.  *</p><pre>  * /a/b/subject[@qualifier='fullTitle']  * /a/b/subject[@qualifier=]/subtag  * /a/b/subject/@qualifier  * //a  * //a/b...  * /a//b  * /a//b...  * /a/b/c  *</pre>  * A record is a Map<String,Object> . The key is the provided name  * and the value is a String or a List<String>  *  * This class is thread-safe for parsing xml. But adding fields is not  * thread-safe. The recommended usage is to addField() in one thread and   * then share the instance across threads.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *<p>  *  * @since solr 1.3  */
 end_comment
 
 begin_class

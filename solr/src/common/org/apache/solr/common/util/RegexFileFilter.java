@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Accepts any file whose name matches the pattern  * @version $Id$  */
+comment|/**  * Accepts any file whose name matches the pattern  *  */
 end_comment
 
 begin_class

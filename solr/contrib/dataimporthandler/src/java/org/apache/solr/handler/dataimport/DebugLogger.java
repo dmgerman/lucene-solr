@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Implements most of the interactive development functionality  *</p>  *<p/>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p>  * Implements most of the interactive development functionality  *</p>  *<p/>  *<p>  * Refer to<a  * href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a>  * for more details.  *</p>  *<p/>  *<b>This API is experimental and subject to change</b>  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

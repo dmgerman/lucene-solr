@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link PatternReplaceCharFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_ptnreplace" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([^a-z])" replacement=""  *                 maxBlockChars="10000" blockDelimiters="|"/&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   * @version $Id$  * @since Solr 3.1  */
+comment|/**  * Factory for {@link PatternReplaceCharFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_ptnreplace" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([^a-z])" replacement=""  *                 maxBlockChars="10000" blockDelimiters="|"/&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   *  * @since Solr 3.1  */
 end_comment
 
 begin_class

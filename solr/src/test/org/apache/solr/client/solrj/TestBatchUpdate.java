@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for SOLR-1038  *  * @since solr 1.4  * @version $Id$  */
+comment|/**  * Test for SOLR-1038  *  * @since solr 1.4  *  */
 end_comment
 
 begin_class

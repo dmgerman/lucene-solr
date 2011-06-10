@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Document boost unit test.  *  *  * @version $Revision$  */
+comment|/** Document boost unit test.  *  *  */
 end_comment
 
 begin_class

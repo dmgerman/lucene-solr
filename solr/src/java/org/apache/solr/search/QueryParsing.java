@@ -469,7 +469,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Collection of static utilities useful for query parsing.  *  * @version $Id$  */
+comment|/**  * Collection of static utilities useful for query parsing.  *  *  */
 end_comment
 
 begin_class
@@ -627,6 +627,7 @@ return|;
 block|}
 comment|// note to self: something needs to detect infinite recursion when parsing queries
 DECL|method|parseLocalParams
+specifier|public
 specifier|static
 name|int
 name|parseLocalParams
@@ -651,6 +652,55 @@ parameter_list|)
 throws|throws
 name|ParseException
 block|{
+return|return
+name|parseLocalParams
+argument_list|(
+name|txt
+argument_list|,
+name|start
+argument_list|,
+name|target
+argument_list|,
+name|params
+argument_list|,
+name|LOCALPARAM_START
+argument_list|,
+name|LOCALPARAM_END
+argument_list|)
+return|;
+block|}
+DECL|method|parseLocalParams
+specifier|public
+specifier|static
+name|int
+name|parseLocalParams
+parameter_list|(
+name|String
+name|txt
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|target
+parameter_list|,
+name|SolrParams
+name|params
+parameter_list|,
+name|String
+name|startString
+parameter_list|,
+name|char
+name|endChar
+parameter_list|)
+throws|throws
+name|ParseException
+block|{
 name|int
 name|off
 init|=
@@ -663,7 +713,7 @@ name|txt
 operator|.
 name|startsWith
 argument_list|(
-name|LOCALPARAM_START
+name|startString
 argument_list|,
 name|off
 argument_list|)
@@ -691,7 +741,10 @@ name|p
 operator|.
 name|pos
 operator|+=
-literal|2
+name|startString
+operator|.
+name|length
+argument_list|()
 expr_stmt|;
 comment|// skip over "{!"
 for|for
@@ -713,7 +766,7 @@ if|if
 condition|(
 name|ch
 operator|==
-name|LOCALPARAM_END
+name|endChar
 condition|)
 block|{
 return|return
@@ -746,7 +799,11 @@ throw|throw
 operator|new
 name|ParseException
 argument_list|(
-literal|"Expected identifier '}' parsing local params '"
+literal|"Expected ending character '"
+operator|+
+name|endChar
+operator|+
+literal|"' parsing local params '"
 operator|+
 name|txt
 operator|+
@@ -849,7 +906,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// read unquoted literal ended by whitespace or '}'
+comment|// read unquoted literal ended by whitespace or endChar (normally '}')
 comment|// there is no escaping.
 name|int
 name|valStart
@@ -909,7 +966,7 @@ if|if
 condition|(
 name|c
 operator|==
-name|LOCALPARAM_END
+name|endChar
 operator|||
 name|Character
 operator|.
@@ -2627,6 +2684,11 @@ name|getMinimumNumberShouldMatch
 argument_list|()
 operator|!=
 literal|0
+operator|||
+name|q
+operator|.
+name|isCoordDisabled
+argument_list|()
 condition|)
 block|{
 name|needParens
@@ -2825,6 +2887,22 @@ operator|.
 name|getMinimumNumberShouldMatch
 argument_list|()
 argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|q
+operator|.
+name|isCoordDisabled
+argument_list|()
+condition|)
+block|{
+name|out
+operator|.
+name|append
+argument_list|(
+literal|"/no_coord"
 argument_list|)
 expr_stmt|;
 block|}

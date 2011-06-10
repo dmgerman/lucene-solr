@@ -157,6 +157,18 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"maxCollationTries"
 decl_stmt|;
+comment|/**    *<p>    * The maximum number of word correction combinations to rank and evaluate prior to deciding which collation    * candidates to test against the index.  This is a performance safety-net in cases a user enters a query with    * many misspelled words.  The default is 10,000 combinations.     *</p>    */
+DECL|field|SPELLCHECK_MAX_COLLATION_EVALUATIONS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SPELLCHECK_MAX_COLLATION_EVALUATIONS
+init|=
+name|SPELLCHECK_PREFIX
+operator|+
+literal|"maxCollationEvaluations"
+decl_stmt|;
 comment|/**    *<p>    * Whether to use the Extended Results Format for collations.     * Includes "before>after" pairs to easily allow clients to generate messages like "no results for PORK.  did you mean POLK?"    * Also indicates the # of hits each collation will return on re-query.  Default=false, which retains 1.4-compatible output.    *</p>    */
 DECL|field|SPELLCHECK_COLLATE_EXTENDED_RESULTS
 specifier|public

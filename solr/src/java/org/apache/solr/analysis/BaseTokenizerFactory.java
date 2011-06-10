@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple abstract implementation that handles init arg processing.  *   * @version $Id$  */
+comment|/**  * Simple abstract implementation that handles init arg processing.  *   *  */
 end_comment
 
 begin_class

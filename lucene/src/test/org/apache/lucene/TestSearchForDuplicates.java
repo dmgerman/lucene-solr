@@ -273,6 +273,15 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+specifier|final
+name|int
+name|MAX_DOCS
+init|=
+name|atLeast
+argument_list|(
+literal|225
+argument_list|)
+decl_stmt|;
 name|doTest
 argument_list|(
 name|random
@@ -280,6 +289,8 @@ argument_list|,
 name|pw
 argument_list|,
 literal|false
+argument_list|,
+name|MAX_DOCS
 argument_list|)
 expr_stmt|;
 name|pw
@@ -327,6 +338,8 @@ argument_list|,
 name|pw
 argument_list|,
 literal|true
+argument_list|,
+name|MAX_DOCS
 argument_list|)
 expr_stmt|;
 name|pw
@@ -371,6 +384,9 @@ name|out
 parameter_list|,
 name|boolean
 name|useCompoundFiles
+parameter_list|,
+name|int
+name|MAX_DOCS
 parameter_list|)
 throws|throws
 name|Exception
@@ -464,12 +480,6 @@ name|out
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
-name|int
-name|MAX_DOCS
-init|=
-literal|225
-decl_stmt|;
 for|for
 control|(
 name|int

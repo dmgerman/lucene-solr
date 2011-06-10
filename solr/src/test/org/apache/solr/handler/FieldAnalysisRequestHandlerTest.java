@@ -199,7 +199,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A test for {@link FieldAnalysisRequestHandler}.  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * A test for {@link FieldAnalysisRequestHandler}.  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

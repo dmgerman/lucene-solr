@@ -20,6 +20,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -71,20 +91,6 @@ operator|.
 name|common
 operator|.
 name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrCore
 import|;
 end_import
 
@@ -148,28 +154,8 @@ name|ValueSource
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
 begin_comment
-comment|/**  * Add values from a ValueSource (function query etc)  *  * NOT really sure how or if this could work...  *  * @version $Id$  * @since solr 4.0  */
+comment|/**  * Add values from a ValueSource (function query etc)  *  * NOT really sure how or if this could work...  *  *  * @since solr 4.0  */
 end_comment
 
 begin_class
@@ -306,7 +292,7 @@ name|this
 operator|.
 name|fcontext
 operator|=
-name|valueSource
+name|ValueSource
 operator|.
 name|newContext
 argument_list|(

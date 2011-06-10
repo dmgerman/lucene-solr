@@ -479,8 +479,6 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-literal|""
-operator|+
 name|state
 operator|.
 name|codecId

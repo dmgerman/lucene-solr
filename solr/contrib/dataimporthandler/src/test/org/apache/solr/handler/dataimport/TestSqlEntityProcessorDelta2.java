@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Test for SqlEntityProcessor which checks variations in primary key names and deleted ids  *</p>  *   *  * @version $Id: TestSqlEntityProcessor2.java 723824 2008-12-05 19:14:11Z shalin $  * @since solr 1.3  */
+comment|/**  *<p>  * Test for SqlEntityProcessor which checks variations in primary key names and deleted ids  *</p>  *   *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

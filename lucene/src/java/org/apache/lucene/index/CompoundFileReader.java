@@ -618,6 +618,7 @@ argument_list|(
 name|id
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FileEntry
 name|entry
 init|=

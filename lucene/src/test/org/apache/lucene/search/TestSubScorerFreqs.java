@@ -250,6 +250,14 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// make sure we have more than one segment occationally
+name|int
+name|num
+init|=
+name|atLeast
+argument_list|(
+literal|31
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -259,9 +267,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|31
-operator|*
-name|RANDOM_MULTIPLIER
+name|num
 condition|;
 name|i
 operator|++

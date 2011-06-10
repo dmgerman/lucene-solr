@@ -197,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for Thai language. It uses {@link java.text.BreakIterator} to break words.  * @version 0.2  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
+comment|/**  * {@link Analyzer} for Thai language. It uses {@link java.text.BreakIterator} to break words.  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
 end_comment
 
 begin_class

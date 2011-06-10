@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * @version $Id: SolrExampleJettyTest.java 724175 2008-12-07 19:07:11Z ryan $  * @since solr 1.3  */
+comment|/**  *   *  * @since solr 1.3  */
 end_comment
 
 begin_class

@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract super class that manages standard solr-style plugin configuration.  *   * @version $Id$  * @since solr 1.3  */
+comment|/**  * An abstract super class that manages standard solr-style plugin configuration.  *   *  * @since solr 1.3  */
 end_comment
 
 begin_class

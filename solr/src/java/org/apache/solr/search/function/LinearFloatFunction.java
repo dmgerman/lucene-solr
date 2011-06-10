@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>LinearFloatFunction</code> implements a linear function over  * another {@link ValueSource}.  *<br>  * Normally Used as an argument to a {@link FunctionQuery}  *  * @version $Id$  */
+comment|/**  *<code>LinearFloatFunction</code> implements a linear function over  * another {@link ValueSource}.  *<br>  * Normally Used as an argument to a {@link FunctionQuery}  *  *  */
 end_comment
 
 begin_class

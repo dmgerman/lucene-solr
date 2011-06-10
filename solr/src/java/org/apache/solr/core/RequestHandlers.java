@@ -1006,7 +1006,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * The<code>LazyRequestHandlerWrapper</core> wraps any {@link SolrRequestHandler}.      * Rather then instanciate and initalize the handler on startup, this wrapper waits    * until it is actually called.  This should only be used for handlers that are    * unlikely to be used in the normal lifecycle.    *     * You can enable lazy loading in solrconfig.xml using:    *     *<pre>    *&lt;requestHandler name="..." class="..." startup="lazy"&gt;    *    ...    *&lt;/requestHandler&gt;    *</pre>    *     * This is a private class - if there is a real need for it to be public, it could    * move    *     * @version $Id$    * @since solr 1.2    */
+comment|/**    * The<code>LazyRequestHandlerWrapper</core> wraps any {@link SolrRequestHandler}.      * Rather then instanciate and initalize the handler on startup, this wrapper waits    * until it is actually called.  This should only be used for handlers that are    * unlikely to be used in the normal lifecycle.    *     * You can enable lazy loading in solrconfig.xml using:    *     *<pre>    *&lt;requestHandler name="..." class="..." startup="lazy"&gt;    *    ...    *&lt;/requestHandler&gt;    *</pre>    *     * This is a private class - if there is a real need for it to be public, it could    * move    *     * @since solr 1.2    */
 DECL|class|LazyRequestHandlerWrapper
 specifier|private
 specifier|static

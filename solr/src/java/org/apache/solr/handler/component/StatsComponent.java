@@ -96,18 +96,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|noggit
-operator|.
-name|CharArr
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|common
@@ -295,7 +283,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Stats component calculates simple statistics on numeric field values  *   * @version $Id$  * @since solr 1.4  */
+comment|/**  * Stats component calculates simple statistics on numeric field values  *   *  * @since solr 1.4  */
 end_comment
 
 begin_class

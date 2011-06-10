@@ -384,7 +384,7 @@ parameter_list|,
 name|int
 name|indexDivisor
 parameter_list|,
-name|String
+name|int
 name|codecId
 parameter_list|)
 throws|throws
@@ -795,12 +795,6 @@ specifier|final
 class|class
 name|FieldIndexData
 block|{
-DECL|field|fieldInfo
-specifier|private
-specifier|final
-name|FieldInfo
-name|fieldInfo
-decl_stmt|;
 DECL|field|indexStart
 specifier|private
 specifier|final
@@ -830,12 +824,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|this
-operator|.
-name|fieldInfo
-operator|=
-name|fieldInfo
-expr_stmt|;
 name|this
 operator|.
 name|indexStart
@@ -1182,7 +1170,7 @@ parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
-name|String
+name|int
 name|id
 parameter_list|,
 name|Collection

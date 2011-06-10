@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A response that is returned by processing the {@link org.apache.solr.client.solrj.request.FieldAnalysisRequest}.  * Holds a map of {@link Analysis} objects per field name as well as a map of {@link Analysis} objects per field type.  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * A response that is returned by processing the {@link org.apache.solr.client.solrj.request.FieldAnalysisRequest}.  * Holds a map of {@link Analysis} objects per field name as well as a map of {@link Analysis} objects per field type.  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

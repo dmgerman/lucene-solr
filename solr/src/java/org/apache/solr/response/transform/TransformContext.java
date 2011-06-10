@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Environment variables for the transformed documents  *  * @version $Id$  * @since solr 4.0  */
+comment|/**  * Environment variables for the transformed documents  *  *  * @since solr 4.0  */
 end_comment
 
 begin_class

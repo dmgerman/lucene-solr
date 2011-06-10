@@ -119,7 +119,7 @@ decl_stmt|;
 DECL|field|codecId
 specifier|public
 specifier|final
-name|String
+name|int
 name|codecId
 decl_stmt|;
 comment|/** Expert: The fraction of terms in the "dictionary" which should be stored    * in RAM.  Smaller values use more memory, but make searching slightly    * faster, while larger values use less memory and make searching slightly    * slower.  Searching is typically not dominated by dictionary lookup, so    * tweaking this is rarely useful.*/
@@ -208,7 +208,8 @@ name|segmentCodecs
 expr_stmt|;
 name|codecId
 operator|=
-literal|""
+operator|-
+literal|1
 expr_stmt|;
 block|}
 comment|/**    * Create a shallow {@link SegmentWriteState} copy final a codec ID    */
@@ -218,7 +219,7 @@ parameter_list|(
 name|SegmentWriteState
 name|state
 parameter_list|,
-name|String
+name|int
 name|codecId
 parameter_list|)
 block|{

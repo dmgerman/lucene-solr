@@ -104,6 +104,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|int
+name|num
+init|=
+name|atLeast
+argument_list|(
+literal|10
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -113,9 +121,7 @@ literal|0
 init|;
 name|iter
 operator|<
-literal|10
-operator|*
-name|RANDOM_MULTIPLIER
+name|num
 condition|;
 name|iter
 operator|++

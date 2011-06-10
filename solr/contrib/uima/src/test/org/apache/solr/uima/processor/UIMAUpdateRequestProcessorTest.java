@@ -90,6 +90,20 @@ name|solr
 operator|.
 name|common
 operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|params
 operator|.
 name|MultiMapSolrParams
@@ -297,7 +311,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TestCase for {@link UIMAUpdateRequestProcessor}  *   * @version $Id$  */
+comment|/**  * TestCase for {@link UIMAUpdateRequestProcessor}  *   *  */
 end_comment
 
 begin_class
@@ -871,6 +885,81 @@ argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+name|addDoc
+argument_list|(
+literal|"uima-not-ignoreErrors"
+argument_list|,
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2312312321312"
+argument_list|,
+literal|"text"
+argument_list|,
+literal|"SpellCheckComponent got improvement related to recent Lucene changes."
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"exception shouldn't be ignored"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|StringIndexOutOfBoundsException
+name|e
+parameter_list|)
+block|{
+comment|// SOLR-2579
+name|fail
+argument_list|(
+literal|"exception shouldn't be raised"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SolrException
+name|expected
+parameter_list|)
+block|{}
+try|try
+block|{
+name|addDoc
+argument_list|(
+literal|"uima-ignoreErrors"
+argument_list|,
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2312312321312"
+argument_list|,
+literal|"text"
+argument_list|,
+literal|"SpellCheckComponent got improvement related to recent Lucene changes."
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|StringIndexOutOfBoundsException
+name|e
+parameter_list|)
+block|{
+comment|// SOLR-2579
+name|fail
+argument_list|(
+literal|"exception shouldn't be raised"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|addDoc
 specifier|private

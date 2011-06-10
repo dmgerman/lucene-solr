@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Standard Solr deletion policy that allows reserving index commit points  * for certain amounts of time to support features such as index replication  * or snapshooting directly out of a live index directory.  *  * @version $Id$  * @see org.apache.lucene.index.IndexDeletionPolicy  */
+comment|/**  * Standard Solr deletion policy that allows reserving index commit points  * for certain amounts of time to support features such as index replication  * or snapshooting directly out of a live index directory.  *  *  * @see org.apache.lucene.index.IndexDeletionPolicy  */
 end_comment
 
 begin_class

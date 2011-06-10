@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represent the field and boost information needed to construct and index  * a Lucene Document.  Like the SolrDocument, the field values should  * match those specified in schema.xml   *  * @version $Id$  * @since solr 1.3  */
+comment|/**  * Represent the field and boost information needed to construct and index  * a Lucene Document.  Like the SolrDocument, the field values should  * match those specified in schema.xml   *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

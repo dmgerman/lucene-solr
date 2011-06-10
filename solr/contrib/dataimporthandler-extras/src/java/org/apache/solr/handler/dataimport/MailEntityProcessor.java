@@ -227,7 +227,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link EntityProcessor} instance which can index emails along with their attachments from POP3 or IMAP sources. Refer to  *<a href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a> for more  * details.<b>This API is experimental and subject to change</b>  *  * @version $Id$  * @since solr 1.4  */
+comment|/**  * An {@link EntityProcessor} instance which can index emails along with their attachments from POP3 or IMAP sources. Refer to  *<a href="http://wiki.apache.org/solr/DataImportHandler">http://wiki.apache.org/solr/DataImportHandler</a> for more  * details.<b>This API is experimental and subject to change</b>  *  *  * @since solr 1.4  */
 end_comment
 
 begin_class

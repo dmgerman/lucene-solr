@@ -533,9 +533,10 @@ comment|// test lots of smaller different params together
 name|int
 name|num
 init|=
+name|atLeast
+argument_list|(
 literal|3
-operator|*
-name|RANDOM_MULTIPLIER
+argument_list|)
 decl_stmt|;
 for|for
 control|(

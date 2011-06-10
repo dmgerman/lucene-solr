@@ -285,7 +285,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Abstract base class for DataImportHandler tests  *</p>  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @version $Id$  * @since solr 1.3  */
+comment|/**  *<p>  * Abstract base class for DataImportHandler tests  *</p>  *<p/>  *<b>This API is experimental and subject to change</b>  *  *  * @since solr 1.3  */
 end_comment
 
 begin_class

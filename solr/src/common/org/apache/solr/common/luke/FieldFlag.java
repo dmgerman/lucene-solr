@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * @version $Id: AdminHandlers.java 608150 2008-01-02 17:15:30Z ryan $  * @since solr 1.3  */
+comment|/**  *  * @since solr 1.3  */
 end_comment
 
 begin_enum

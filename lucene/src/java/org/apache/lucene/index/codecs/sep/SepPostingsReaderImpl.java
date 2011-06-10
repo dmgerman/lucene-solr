@@ -331,7 +331,7 @@ parameter_list|,
 name|IntStreamFactory
 name|intFactory
 parameter_list|,
-name|String
+name|int
 name|codecId
 parameter_list|)
 throws|throws
@@ -524,7 +524,7 @@ parameter_list|(
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
-name|String
+name|int
 name|codecId
 parameter_list|,
 name|Collection

@@ -734,9 +734,10 @@ argument_list|(
 name|random
 argument_list|)
 argument_list|,
-literal|10000
-operator|*
-name|RANDOM_MULTIPLIER
+name|atLeast
+argument_list|(
+literal|1000
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
