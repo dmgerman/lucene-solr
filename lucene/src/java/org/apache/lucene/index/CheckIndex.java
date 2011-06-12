@@ -1431,6 +1431,13 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|result
+operator|.
+name|maxSegmentName
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 for|for
 control|(
 name|int
