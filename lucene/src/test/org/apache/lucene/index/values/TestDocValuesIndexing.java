@@ -2436,7 +2436,7 @@ decl_stmt|;
 name|int
 name|bytesSize
 init|=
-literal|7
+literal|1
 operator|+
 name|random
 operator|.
@@ -3479,7 +3479,7 @@ name|boolean
 name|withDeletions
 parameter_list|,
 name|int
-name|multOfSeven
+name|bytesSize
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -3621,7 +3621,7 @@ init|=
 operator|new
 name|byte
 index|[
-name|multOfSeven
+name|bytesSize
 index|]
 decl_stmt|;
 if|if
