@@ -271,11 +271,11 @@ condition|)
 return|return
 literal|false
 return|;
-name|SingleFunction
+name|SimpleBoolFunction
 name|other
 init|=
 operator|(
-name|SingleFunction
+name|SimpleBoolFunction
 operator|)
 name|o
 decl_stmt|;
