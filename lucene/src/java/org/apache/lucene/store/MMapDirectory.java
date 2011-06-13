@@ -1017,13 +1017,6 @@ name|ByteBuffer
 index|[]
 name|buffers
 decl_stmt|;
-DECL|field|bufSizes
-specifier|private
-name|int
-index|[]
-name|bufSizes
-decl_stmt|;
-comment|// keep here, ByteBuffer.size() method is optional
 DECL|field|length
 specifier|private
 specifier|final
@@ -1159,16 +1152,6 @@ index|[
 name|nrBuffers
 index|]
 expr_stmt|;
-name|this
-operator|.
-name|bufSizes
-operator|=
-operator|new
-name|int
-index|[
-name|nrBuffers
-index|]
-expr_stmt|;
 name|long
 name|bufferStart
 init|=
@@ -1240,15 +1223,6 @@ name|bufferStart
 argument_list|,
 name|bufSize
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|bufSizes
-index|[
-name|bufNr
-index|]
-operator|=
-name|bufSize
 expr_stmt|;
 name|bufferStart
 operator|+=
@@ -1696,7 +1670,6 @@ operator|.
 name|length
 index|]
 expr_stmt|;
-comment|// No need to clone bufSizes.
 comment|// Since most clones will use only one buffer, duplicate() could also be
 comment|// done lazy in clones, e.g. when adapting curBuf.
 for|for
