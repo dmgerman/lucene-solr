@@ -2856,14 +2856,6 @@ parameter_list|)
 block|{
 comment|// expected exception
 block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// mmapdir will give us this from java.nio.Buffer.position()
-block|}
 finally|finally
 block|{
 name|reader
@@ -2905,14 +2897,6 @@ name|e
 parameter_list|)
 block|{
 comment|// expected exception
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// mmapdir will give us this from java.nio.Buffer.position()
 block|}
 finally|finally
 block|{
