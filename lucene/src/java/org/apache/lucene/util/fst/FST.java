@@ -2314,8 +2314,7 @@ name|arc
 operator|.
 name|label
 operator|=
-operator|-
-literal|1
+name|END_LABEL
 expr_stmt|;
 name|arc
 operator|.
@@ -2575,8 +2574,7 @@ name|arc
 operator|.
 name|label
 operator|=
-operator|-
-literal|1
+name|END_LABEL
 expr_stmt|;
 name|arc
 operator|.
@@ -2835,8 +2833,7 @@ name|arc
 operator|.
 name|label
 operator|==
-operator|-
-literal|1
+name|END_LABEL
 condition|)
 block|{
 comment|// This was a fake inserted "final" arc

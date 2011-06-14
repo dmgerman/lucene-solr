@@ -792,6 +792,14 @@ argument_list|(
 name|codecs
 argument_list|)
 decl_stmt|;
+name|destInfos
+operator|.
+name|counter
+operator|=
+name|infos
+operator|.
+name|counter
+expr_stmt|;
 for|for
 control|(
 name|String

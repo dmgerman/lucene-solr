@@ -235,6 +235,18 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+operator|!
+operator|(
+name|dir
+operator|instanceof
+name|CompoundFileReader
+operator|)
+operator|:
+literal|"compound file inside of compound file: "
+operator|+
+name|name
+assert|;
 name|directory
 operator|=
 name|dir
@@ -803,7 +815,7 @@ name|fileName
 argument_list|)
 return|;
 block|}
-comment|/** Not implemented      * @throws UnsupportedOperationException */
+comment|/** Not implemented    * @throws UnsupportedOperationException */
 annotation|@
 name|Override
 DECL|method|deleteFile
@@ -821,7 +833,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Not implemented      * @throws UnsupportedOperationException */
+comment|/** Not implemented    * @throws UnsupportedOperationException */
 DECL|method|renameFile
 specifier|public
 name|void
@@ -840,7 +852,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Returns the length of a file in the directory.      * @throws IOException if the file does not exist */
+comment|/** Returns the length of a file in the directory.    * @throws IOException if the file does not exist */
 annotation|@
 name|Override
 DECL|method|fileLength
@@ -888,7 +900,7 @@ operator|.
 name|length
 return|;
 block|}
-comment|/** Not implemented      * @throws UnsupportedOperationException */
+comment|/** Not implemented    * @throws UnsupportedOperationException */
 annotation|@
 name|Override
 DECL|method|createOutput
@@ -921,8 +933,8 @@ name|names
 parameter_list|)
 throws|throws
 name|IOException
-block|{     }
-comment|/** Not implemented      * @throws UnsupportedOperationException */
+block|{   }
+comment|/** Not implemented    * @throws UnsupportedOperationException */
 annotation|@
 name|Override
 DECL|method|makeLock
@@ -940,7 +952,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Implementation of an IndexInput that reads from a portion of the      *  compound file. The visibility is left as "package" *only* because      *  this helps with testing since JUnit test cases in a different class      *  can then access package fields of this class.      */
+comment|/** Implementation of an IndexInput that reads from a portion of the    *  compound file. The visibility is left as "package" *only* because    *  this helps with testing since JUnit test cases in a different class    *  can then access package fields of this class.    */
 DECL|class|CSIndexInput
 specifier|static
 specifier|final
@@ -1087,7 +1099,7 @@ return|return
 name|clone
 return|;
 block|}
-comment|/** Expert: implements buffer refill.  Reads bytes from the current          *  position in the input.          * @param b the array to read bytes into          * @param offset the offset in the array to start storing bytes          * @param len the number of bytes to read          */
+comment|/** Expert: implements buffer refill.  Reads bytes from the current      *  position in the input.      * @param b the array to read bytes into      * @param offset the offset in the array to start storing bytes      * @param len the number of bytes to read      */
 annotation|@
 name|Override
 DECL|method|readInternal
@@ -1152,7 +1164,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Expert: implements seek.  Sets current position in this file, where          *  the next {@link #readInternal(byte[],int,int)} will occur.          * @see #readInternal(byte[],int,int)          */
+comment|/** Expert: implements seek.  Sets current position in this file, where      *  the next {@link #readInternal(byte[],int,int)} will occur.      * @see #readInternal(byte[],int,int)      */
 annotation|@
 name|Override
 DECL|method|seekInternal

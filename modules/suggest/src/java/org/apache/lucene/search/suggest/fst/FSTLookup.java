@@ -296,6 +296,34 @@ name|TermFreqIterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|InputStreamDataInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|OutputStreamDataOutput
+import|;
+end_import
+
 begin_comment
 comment|/**  * Finite state automata based implementation of {@link Lookup} query   * suggestion/ autocomplete interface.  *   *<h2>Implementation details</h2>   *   *<p>The construction step in {@link #build(TermFreqIterator)} works as follows:  *<ul>  *<li>A set of input terms (String) and weights (float) is given.</li>  *<li>The range of weights is determined and then all weights are discretized into a fixed set   * of values ({@link #buckets}).  * Note that this means that minor changes in weights may be lost during automaton construction.   * In general, this is not a big problem because the "priorities" of completions can be split  * into a fixed set of classes (even as rough as: very frequent, frequent, baseline, marginal).  * If you need exact, fine-grained weights, use {@link TSTLookup} instead.<li>  *<li>All terms in the input are preprended with a synthetic pseudo-character being the weight  * of that term. For example a term<code>abc</code> with a discretized weight equal '1' would  * become<code>1abc</code>.</li>   *<li>The terms are sorted by their raw value of utf16 character values (including the synthetic  * term in front).</li>  *<li>A finite state automaton ({@link FST}) is constructed from the input. The root node has  * arcs labeled with all possible weights. We cache all these arcs, highest-weight first.</li>     *</ul>  *   *<p>At runtime, in {@link #lookup(String, boolean, int)}, the automaton is utilized as follows:  *<ul>  *<li>For each possible term weight encoded in the automaton (cached arcs from the root above),   * starting with the highest one, we descend along the path of the input key. If the key is not  * a prefix of a sequence in the automaton (path ends prematurely), we exit immediately.   * No completions.  *<li>Otherwise, we have found an internal automaton node that ends the key.<b>The entire  * subautomaton (all paths) starting from this node form the key's completions.</b> We start  * the traversal of this subautomaton. Every time we reach a final state (arc), we add a single  * suggestion to the list of results (the weight of this suggestion is constant and equal to the  * root path we started from). The tricky part is that because automaton edges are sorted and  * we scan depth-first, we can terminate the entire procedure as soon as we collect enough   * suggestions the user requested.  *<li>In case the number of suggestions collected in the step above is still insufficient,  * we proceed to the next (smaller) weight leaving the root node and repeat the same   * algorithm again.   *</li>  *</ul>  *    *<h2>Runtime behavior and performance characteristic</h2>  *   *<p>The algorithm described above is optimized for finding suggestions to short prefixes  * in a top-weights-first order. This is probably the most common use case: it allows   * presenting suggestions early and sorts them by the global frequency (and then alphabetically).  *   *<p>If there is an exact match in the automaton, it is returned first on the results  * list (even with by-weight sorting).  *   *<p>Note that the maximum lookup time for<b>any prefix</b>  * is the time of descending to the subtree, plus traversal of the subtree up to the number  * of requested suggestions (because they are already presorted by weight on the root level  * and alphabetically at any node level).  *   *<p>To order alphabetically only (no ordering by priorities), use identical term weights   * for all terms. Alphabetical suggestions are returned even if non-constant weights are  * used, but the algorithm for doing this is suboptimal.    *   *<p>"alphabetically" in any of the documentation above indicates utf16 codepoint order,   * nothing else.  */
 end_comment
