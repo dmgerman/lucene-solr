@@ -235,6 +235,18 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+operator|!
+operator|(
+name|dir
+operator|instanceof
+name|CompoundFileReader
+operator|)
+operator|:
+literal|"compound file inside of compound file: "
+operator|+
+name|name
+assert|;
 name|directory
 operator|=
 name|dir
