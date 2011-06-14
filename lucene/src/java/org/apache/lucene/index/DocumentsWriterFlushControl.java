@@ -534,6 +534,24 @@ operator|+
 literal|" active: "
 operator|+
 name|activeBytes
+operator|+
+literal|" pending: "
+operator|+
+name|numPending
+operator|+
+literal|" flushing: "
+operator|+
+name|numFlushingDWPT
+argument_list|()
+operator|+
+literal|" blocked: "
+operator|+
+name|numBlockedFlushes
+argument_list|()
+operator|+
+literal|" peakDelta: "
+operator|+
+name|peakDelta
 assert|;
 block|}
 return|return
