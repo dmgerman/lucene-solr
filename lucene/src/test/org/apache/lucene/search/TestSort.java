@@ -4646,6 +4646,9 @@ class|class
 name|MyFieldComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|Integer
+argument_list|>
 block|{
 DECL|field|docValues
 name|int
@@ -4716,6 +4719,7 @@ name|int
 name|slot2
 parameter_list|)
 block|{
+comment|// values are small enough that overflow won't happen
 return|return
 name|slotValues
 index|[
@@ -4849,10 +4853,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Integer
 name|value
 parameter_list|(
 name|int

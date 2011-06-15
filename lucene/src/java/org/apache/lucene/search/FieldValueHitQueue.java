@@ -701,15 +701,12 @@ operator|.
 name|length
 decl_stmt|;
 specifier|final
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Object
 index|[]
 name|fields
 init|=
 operator|new
-name|Comparable
+name|Object
 index|[
 name|n
 index|]

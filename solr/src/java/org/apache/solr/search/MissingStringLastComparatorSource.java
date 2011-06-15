@@ -260,6 +260,9 @@ class|class
 name|TermOrdValComparator_SML
 extends|extends
 name|FieldComparator
+argument_list|<
+name|BytesRef
+argument_list|>
 block|{
 DECL|field|NULL_ORD
 specifier|private
@@ -452,10 +455,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|BytesRef
 name|value
 parameter_list|(
 name|int
@@ -506,6 +506,9 @@ class|class
 name|PerSegmentComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|BytesRef
+argument_list|>
 block|{
 DECL|field|parent
 specifier|protected
@@ -937,10 +940,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|BytesRef
 name|value
 parameter_list|(
 name|int

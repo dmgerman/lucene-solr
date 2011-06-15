@@ -28,10 +28,10 @@ name|FieldDoc
 extends|extends
 name|ScoreDoc
 block|{
-comment|/** Expert: The values which are used to sort the referenced document.    * The order of these will match the original sort criteria given by a    * Sort object.  Each Object will be either an Integer, Float or String,    * depending on the type of values in the terms of the original field.    * @see Sort    * @see IndexSearcher#search(Query,Filter,int,Sort)    */
+comment|/** Expert: The values which are used to sort the referenced document.    * The order of these will match the original sort criteria given by a    * Sort object.  Each Object will have been returned from    * the<code>value</code> method corresponding    * FieldComparator used to sort this field.    * @see Sort    * @see IndexSearcher#search(Query,Filter,int,Sort)    */
 DECL|field|fields
 specifier|public
-name|Comparable
+name|Object
 index|[]
 name|fields
 decl_stmt|;
@@ -66,7 +66,7 @@ parameter_list|,
 name|float
 name|score
 parameter_list|,
-name|Comparable
+name|Object
 index|[]
 name|fields
 parameter_list|)

@@ -446,6 +446,9 @@ specifier|public
 specifier|abstract
 class|class
 name|FieldComparator
+parameter_list|<
+name|T
+parameter_list|>
 block|{
 comment|/**    * Compare hit at slot1 with hit at slot2.    *     * @param slot1 first slot to compare    * @param slot2 second slot to compare    * @return any N< 0 if slot2's value is sorted after    * slot1, any N> 0 if the slot2's value is sorted before    * slot1 and 0 if they are equal    */
 DECL|method|compare
@@ -528,20 +531,52 @@ block|{
 comment|// Empty implementation since most comparators don't need the score. This
 comment|// can be overridden by those that need it.
 block|}
-comment|/**    * Return the actual value in the slot.    *    * @param slot the value    * @return value in this slot upgraded to Comparable    */
+comment|/**    * Return the actual value in the slot.    *    * @param slot the value    * @return value in this slot    */
 DECL|method|value
 specifier|public
 specifier|abstract
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|T
 name|value
 parameter_list|(
 name|int
 name|slot
 parameter_list|)
 function_decl|;
+comment|/** Returns -1 if first is less than second.  Default    *  impl to assume the type implements Comparable and    *  invoke .compareTo; be sure to override this method if    *  your FieldComparator's type isn't a Comparable or    *  if your values may sometimes be null */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|compareValues
+specifier|public
+name|int
+name|compareValues
+parameter_list|(
+name|T
+name|first
+parameter_list|,
+name|T
+name|second
+parameter_list|)
+block|{
+return|return
+operator|(
+operator|(
+name|Comparable
+argument_list|<
+name|T
+argument_list|>
+operator|)
+name|first
+operator|)
+operator|.
+name|compareTo
+argument_list|(
+name|second
+argument_list|)
+return|;
+block|}
 DECL|class|NumericComparator
 specifier|public
 specifier|static
@@ -552,9 +587,16 @@ parameter_list|<
 name|T
 extends|extends
 name|CachedArray
+parameter_list|,
+name|U
+extends|extends
+name|Number
 parameter_list|>
 extends|extends
 name|FieldComparator
+argument_list|<
+name|U
+argument_list|>
 block|{
 DECL|field|creator
 specifier|protected
@@ -649,6 +691,8 @@ extends|extends
 name|NumericComparator
 argument_list|<
 name|ByteValues
+argument_list|,
+name|Byte
 argument_list|>
 block|{
 DECL|field|docValues
@@ -913,10 +957,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Byte
 name|value
 parameter_list|(
 name|int
@@ -947,6 +988,8 @@ extends|extends
 name|NumericComparator
 argument_list|<
 name|DoubleValues
+argument_list|,
+name|Double
 argument_list|>
 block|{
 DECL|field|docValues
@@ -1273,10 +1316,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Double
 name|value
 parameter_list|(
 name|int
@@ -1305,6 +1345,9 @@ class|class
 name|FloatDocValuesComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|Double
+argument_list|>
 block|{
 DECL|field|values
 specifier|private
@@ -1568,10 +1611,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
 name|Double
-argument_list|>
 name|value
 parameter_list|(
 name|int
@@ -1602,6 +1642,8 @@ extends|extends
 name|NumericComparator
 argument_list|<
 name|FloatValues
+argument_list|,
+name|Float
 argument_list|>
 block|{
 DECL|field|docValues
@@ -1931,10 +1973,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Float
 name|value
 parameter_list|(
 name|int
@@ -1965,6 +2004,8 @@ extends|extends
 name|NumericComparator
 argument_list|<
 name|ShortValues
+argument_list|,
+name|Short
 argument_list|>
 block|{
 DECL|field|docValues
@@ -2229,10 +2270,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Short
 name|value
 parameter_list|(
 name|int
@@ -2263,6 +2301,8 @@ extends|extends
 name|NumericComparator
 argument_list|<
 name|IntValues
+argument_list|,
+name|Integer
 argument_list|>
 block|{
 DECL|field|docValues
@@ -2597,10 +2637,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Integer
 name|value
 parameter_list|(
 name|int
@@ -2629,6 +2666,9 @@ class|class
 name|IntDocValuesComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|Long
+argument_list|>
 block|{
 DECL|field|values
 specifier|private
@@ -2895,10 +2935,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
 name|Long
-argument_list|>
 name|value
 parameter_list|(
 name|int
@@ -2929,6 +2966,8 @@ extends|extends
 name|NumericComparator
 argument_list|<
 name|LongValues
+argument_list|,
+name|Long
 argument_list|>
 block|{
 DECL|field|docValues
@@ -3259,10 +3298,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Long
 name|value
 parameter_list|(
 name|int
@@ -3291,6 +3327,9 @@ class|class
 name|RelevanceComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|Float
+argument_list|>
 block|{
 DECL|field|scores
 specifier|private
@@ -3508,10 +3547,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Float
 name|value
 parameter_list|(
 name|int
@@ -3530,6 +3566,32 @@ index|]
 argument_list|)
 return|;
 block|}
+comment|// Override because we sort reverse of natural Float order:
+annotation|@
+name|Override
+DECL|method|compareValues
+specifier|public
+name|int
+name|compareValues
+parameter_list|(
+name|Float
+name|first
+parameter_list|,
+name|Float
+name|second
+parameter_list|)
+block|{
+comment|// Reversed intentionally because relevance by default
+comment|// sorts descending:
+return|return
+name|second
+operator|.
+name|compareTo
+argument_list|(
+name|first
+argument_list|)
+return|;
+block|}
 block|}
 comment|/** Sorts by ascending docID */
 DECL|class|DocComparator
@@ -3540,6 +3602,9 @@ class|class
 name|DocComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|Integer
+argument_list|>
 block|{
 DECL|field|docIDs
 specifier|private
@@ -3699,10 +3764,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Integer
 name|value
 parameter_list|(
 name|int
@@ -3731,6 +3793,9 @@ class|class
 name|TermOrdValComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|BytesRef
+argument_list|>
 block|{
 comment|/** @lucene.internal */
 DECL|field|ords
@@ -3998,6 +4063,9 @@ class|class
 name|PerSegmentComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|BytesRef
+argument_list|>
 block|{
 annotation|@
 name|Override
@@ -4076,10 +4144,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|BytesRef
 name|value
 parameter_list|(
 name|int
@@ -5564,10 +5629,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|BytesRef
 name|value
 parameter_list|(
 name|int
@@ -5591,6 +5653,9 @@ class|class
 name|TermValComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|BytesRef
+argument_list|>
 block|{
 DECL|field|values
 specifier|private
@@ -5897,10 +5962,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|BytesRef
 name|value
 parameter_list|(
 name|int

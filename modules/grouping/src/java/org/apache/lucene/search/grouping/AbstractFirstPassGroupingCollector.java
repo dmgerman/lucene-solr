@@ -470,7 +470,7 @@ operator|.
 name|sortValues
 operator|=
 operator|new
-name|Comparable
+name|Object
 index|[
 name|sortFieldCount
 index|]

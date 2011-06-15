@@ -543,6 +543,9 @@ class|class
 name|ValueSourceComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|Double
+argument_list|>
 block|{
 DECL|field|values
 specifier|private
@@ -786,7 +789,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
+name|Double
 name|value
 parameter_list|(
 name|int

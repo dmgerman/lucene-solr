@@ -142,11 +142,13 @@ name|dsdlc
 operator|!=
 literal|null
 condition|)
+block|{
 name|dsdlc
 operator|.
 name|cleanUp
 argument_list|()
 expr_stmt|;
+block|}
 name|dsdlc
 operator|=
 literal|null
@@ -192,6 +194,9 @@ class|class
 name|DistanceScoreDocLookupComparator
 extends|extends
 name|FieldComparator
+argument_list|<
+name|Double
+argument_list|>
 block|{
 DECL|field|values
 specifier|private
@@ -423,10 +428,7 @@ annotation|@
 name|Override
 DECL|method|value
 specifier|public
-name|Comparable
-argument_list|<
 name|Double
-argument_list|>
 name|value
 parameter_list|(
 name|int
