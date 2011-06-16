@@ -2919,11 +2919,11 @@ argument_list|)
 decl_stmt|;
 name|spanScorer
 operator|=
-name|snq
-operator|.
-name|weight
-argument_list|(
 name|searcher
+operator|.
+name|createNormalizedWeight
+argument_list|(
+name|snq
 argument_list|)
 operator|.
 name|scorer

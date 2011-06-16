@@ -929,7 +929,7 @@ name|subQueryWeight
 operator|=
 name|subQuery
 operator|.
-name|weight
+name|createWeight
 argument_list|(
 name|searcher
 argument_list|)
