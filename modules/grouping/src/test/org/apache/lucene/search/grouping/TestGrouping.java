@@ -6717,11 +6717,11 @@ specifier|final
 name|Weight
 name|w
 init|=
-name|query
-operator|.
-name|weight
-argument_list|(
 name|topSearcher
+operator|.
+name|createNormalizedWeight
+argument_list|(
+name|query
 argument_list|)
 decl_stmt|;
 specifier|final
