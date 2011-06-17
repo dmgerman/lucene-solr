@@ -78,7 +78,7 @@ comment|/** Matches the groupSort passed to {@link    *  AbstractFirstPassGroupi
 DECL|field|groupSortValues
 specifier|public
 specifier|final
-name|Comparable
+name|Object
 index|[]
 name|groupSortValues
 decl_stmt|;
@@ -99,7 +99,7 @@ parameter_list|,
 name|GROUP_VALUE_TYPE
 name|groupValue
 parameter_list|,
-name|Comparable
+name|Object
 index|[]
 name|groupSortValues
 parameter_list|)

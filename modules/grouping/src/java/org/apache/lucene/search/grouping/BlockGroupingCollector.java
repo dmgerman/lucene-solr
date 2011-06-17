@@ -1406,7 +1406,7 @@ operator|.
 name|count
 expr_stmt|;
 specifier|final
-name|Comparable
+name|Object
 index|[]
 name|groupSortValues
 decl_stmt|;

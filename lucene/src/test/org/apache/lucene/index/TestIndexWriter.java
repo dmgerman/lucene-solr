@@ -9652,6 +9652,10 @@ name|listAll
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// NOTE: here we rely on "Windows" behavior, ie, even
+comment|// though IW wanted to delete _0.cfs since it was
+comment|// optimized away, because we have a reader open
+comment|// against this file, it should still be here:
 name|assertTrue
 argument_list|(
 name|files

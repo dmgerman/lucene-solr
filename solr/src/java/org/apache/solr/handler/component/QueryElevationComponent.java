@@ -3017,6 +3017,9 @@ name|Override
 DECL|method|newComparator
 specifier|public
 name|FieldComparator
+argument_list|<
+name|Integer
+argument_list|>
 name|newComparator
 parameter_list|(
 specifier|final
@@ -3039,6 +3042,9 @@ block|{
 return|return
 operator|new
 name|FieldComparator
+argument_list|<
+name|Integer
+argument_list|>
 argument_list|()
 block|{
 name|FieldCache
@@ -3240,7 +3246,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Comparable
+name|Integer
 name|value
 parameter_list|(
 name|int

@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>An implementation of {@link EntityProcessor} which reads data from a url/file and give out a row which contains one String  * value. The name of the field is 'plainText'.  *  *  * @since solr 1.4  */
+comment|/**  *<p>An implementation of {@link EntityProcessor} which reads data from a url/file and give out a row which contains one String  * value. The name of the field is 'plainText'.  *  * @since solr 1.4  */
 end_comment
 
 begin_class

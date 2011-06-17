@@ -28,10 +28,10 @@ name|FieldDoc
 extends|extends
 name|ScoreDoc
 block|{
-comment|/** Expert: The values which are used to sort the referenced document.    * The order of these will match the original sort criteria given by a    * Sort object.  Each Object will be either an Integer, Float or String,    * depending on the type of values in the terms of the original field.    * @see Sort    * @see IndexSearcher#search(Query,Filter,int,Sort)    */
+comment|/** Expert: The values which are used to sort the referenced document.    * The order of these will match the original sort criteria given by a    * Sort object.  Each Object will have been returned from    * the<code>value</code> method corresponding    * FieldComparator used to sort this field.    * @see Sort    * @see IndexSearcher#search(Query,Filter,int,Sort)    */
 DECL|field|fields
 specifier|public
-name|Comparable
+name|Object
 index|[]
 name|fields
 decl_stmt|;
@@ -66,7 +66,7 @@ parameter_list|,
 name|float
 name|score
 parameter_list|,
-name|Comparable
+name|Object
 index|[]
 name|fields
 parameter_list|)
@@ -76,6 +76,41 @@ argument_list|(
 name|doc
 argument_list|,
 name|score
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|fields
+operator|=
+name|fields
+expr_stmt|;
+block|}
+comment|/** Expert: Creates one of these objects with the given sort information. */
+DECL|method|FieldDoc
+specifier|public
+name|FieldDoc
+parameter_list|(
+name|int
+name|doc
+parameter_list|,
+name|float
+name|score
+parameter_list|,
+name|Object
+index|[]
+name|fields
+parameter_list|,
+name|int
+name|shardIndex
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|doc
+argument_list|,
+name|score
+argument_list|,
+name|shardIndex
 argument_list|)
 expr_stmt|;
 name|this

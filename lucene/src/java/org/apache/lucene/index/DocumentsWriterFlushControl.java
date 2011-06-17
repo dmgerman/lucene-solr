@@ -480,6 +480,21 @@ name|flushBytes
 operator|+
 name|activeBytes
 decl_stmt|;
+specifier|final
+name|long
+name|ramBufferBytes
+init|=
+call|(
+name|long
+call|)
+argument_list|(
+name|maxConfiguredRamBuffer
+operator|*
+literal|1024
+operator|*
+literal|1024
+argument_list|)
+decl_stmt|;
 comment|// take peakDelta into account - worst case is that all flushing, pending and blocked DWPT had maxMem and the last doc had the peakDelta
 specifier|final
 name|long
@@ -492,11 +507,7 @@ argument_list|(
 literal|2
 operator|*
 operator|(
-name|maxConfiguredRamBuffer
-operator|*
-literal|1024
-operator|*
-literal|1024
+name|ramBufferBytes
 operator|)
 argument_list|)
 operator|+
@@ -514,6 +525,18 @@ operator|*
 name|peakDelta
 operator|)
 decl_stmt|;
+if|if
+condition|(
+name|peakDelta
+operator|<
+operator|(
+name|ramBufferBytes
+operator|>>
+literal|1
+operator|)
+condition|)
+block|{
+comment|/*          * if we are indexing with very low maxRamBuffer like 0.1MB memory can          * easily overflow if we check out some DWPT based on docCount and have          * several DWPT in flight indexing large documents (compared to the ram          * buffer). This means that those DWPT and their threads will not hit          * the stall control before asserting the memory which would in turn          * fail. To prevent this we only assert if the the largest document seen          * is smaller than the 1/2 of the maxRamBufferMB          */
 assert|assert
 name|ram
 operator|<=
@@ -531,28 +554,29 @@ literal|" flush mem: "
 operator|+
 name|flushBytes
 operator|+
-literal|" active: "
+literal|" activeMem: "
 operator|+
 name|activeBytes
 operator|+
-literal|" pending: "
+literal|" pendingMem: "
 operator|+
 name|numPending
 operator|+
-literal|" flushing: "
+literal|" flushingMem: "
 operator|+
 name|numFlushingDWPT
 argument_list|()
 operator|+
-literal|" blocked: "
+literal|" blockedMem: "
 operator|+
 name|numBlockedFlushes
 argument_list|()
 operator|+
-literal|" peakDelta: "
+literal|" peakDeltaMem: "
 operator|+
 name|peakDelta
 assert|;
+block|}
 block|}
 return|return
 literal|true

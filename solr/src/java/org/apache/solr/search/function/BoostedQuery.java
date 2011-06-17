@@ -309,7 +309,7 @@ name|qWeight
 operator|=
 name|q
 operator|.
-name|weight
+name|createWeight
 argument_list|(
 name|searcher
 argument_list|)

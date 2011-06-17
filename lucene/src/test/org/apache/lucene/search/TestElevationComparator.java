@@ -989,6 +989,9 @@ block|{
 return|return
 operator|new
 name|FieldComparator
+argument_list|<
+name|Integer
+argument_list|>
 argument_list|()
 block|{
 name|FieldCache
@@ -1214,10 +1217,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
+name|Integer
 name|value
 parameter_list|(
 name|int
