@@ -72,7 +72,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Set
+name|Map
 import|;
 end_import
 
@@ -252,9 +252,11 @@ parameter_list|,
 name|int
 name|maxSegmentCount
 parameter_list|,
-name|Set
+name|Map
 argument_list|<
 name|SegmentInfo
+argument_list|,
+name|Boolean
 argument_list|>
 name|segmentsToOptimize
 parameter_list|)
@@ -289,7 +291,7 @@ if|if
 condition|(
 name|segmentsToOptimize
 operator|.
-name|contains
+name|containsKey
 argument_list|(
 name|info
 argument_list|)
@@ -464,7 +466,7 @@ block|{
 assert|assert
 name|segmentsToOptimize
 operator|.
-name|contains
+name|containsKey
 argument_list|(
 name|info
 argument_list|)

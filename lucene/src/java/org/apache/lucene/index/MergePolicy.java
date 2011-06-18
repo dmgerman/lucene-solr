@@ -96,7 +96,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Set
+name|Map
 import|;
 end_import
 
@@ -930,7 +930,7 @@ name|CorruptIndexException
 throws|,
 name|IOException
 function_decl|;
-comment|/**    * Determine what set of merge operations is necessary in order to optimize    * the index. {@link IndexWriter} calls this when its    * {@link IndexWriter#optimize()} method is called. This call is always    * synchronized on the {@link IndexWriter} instance so only one thread at a    * time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    * @param maxSegmentCount    *          requested maximum number of segments in the index (currently this    *          is always 1)    * @param segmentsToOptimize    *          contains the specific SegmentInfo instances that must be merged    *          away. This may be a subset of all SegmentInfos.    */
+comment|/**    * Determine what set of merge operations is necessary in order to optimize    * the index. {@link IndexWriter} calls this when its    * {@link IndexWriter#optimize()} method is called. This call is always    * synchronized on the {@link IndexWriter} instance so only one thread at a    * time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    * @param maxSegmentCount    *          requested maximum number of segments in the index (currently this    *          is always 1)    * @param segmentsToOptimize    *          contains the specific SegmentInfo instances that must be merged    *          away. This may be a subset of all    *          SegmentInfos.  If the value is True for a    *          given SegmentInfo, that means this segment was    *          an original segment present in the    *          to-be-optimized index; else, it was a segment    *          produced by a cascaded merge.    */
 DECL|method|findMergesForOptimize
 specifier|public
 specifier|abstract
@@ -943,9 +943,11 @@ parameter_list|,
 name|int
 name|maxSegmentCount
 parameter_list|,
-name|Set
+name|Map
 argument_list|<
 name|SegmentInfo
+argument_list|,
+name|Boolean
 argument_list|>
 name|segmentsToOptimize
 parameter_list|)
