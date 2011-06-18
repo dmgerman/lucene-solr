@@ -194,6 +194,13 @@ name|noCFSRatio
 init|=
 literal|0.1
 decl_stmt|;
+DECL|field|reclaimDeletesWeight
+specifier|private
+name|double
+name|reclaimDeletesWeight
+init|=
+literal|2.0
+decl_stmt|;
 comment|/** Maximum number of segments to be merged at a time    *  during "normal" merging.  For explicit merging (eg,    *  optimize or expungeDeletes was called), see {@link    *  #setMaxMergeAtOnceExplicit}.  Default is 10. */
 DECL|method|setMaxMergeAtOnce
 specifier|public
@@ -332,6 +339,54 @@ operator|/
 literal|1024
 operator|/
 literal|1024.
+return|;
+block|}
+comment|/** Controls how aggressively merges that reclaim more    *  deletions are favored.  Higher values favor selecting    *  merges that reclaim deletions.  A value of 0.0 means    *  deletions don't impact merge selection. */
+DECL|method|setReclaimDeletesWeight
+specifier|public
+name|TieredMergePolicy
+name|setReclaimDeletesWeight
+parameter_list|(
+name|double
+name|v
+parameter_list|)
+block|{
+if|if
+condition|(
+name|v
+operator|<
+literal|0.0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"reclaimDeletesWeight must be>= 0.0 (got "
+operator|+
+name|v
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
+name|reclaimDeletesWeight
+operator|=
+name|v
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/** See {@link #setReclaimDeletesWeight}. */
+DECL|method|getReclaimDeletesWeight
+specifier|public
+name|double
+name|getReclaimDeletesWeight
+parameter_list|()
+block|{
+return|return
+name|reclaimDeletesWeight
 return|;
 block|}
 comment|/** Segments smaller than this are "rounded up" to this    *  size, ie treated as equal (floor) size for merge    *  selection.  This is to prevent frequent flushing of    *  tiny segments from allowing a long tail in the index.    *  Default is 2 MB. */
@@ -1784,7 +1839,14 @@ name|totBeforeMergeBytes
 decl_stmt|;
 name|mergeScore
 operator|*=
+name|Math
+operator|.
+name|pow
+argument_list|(
 name|nonDelRatio
+argument_list|,
+name|reclaimDeletesWeight
+argument_list|)
 expr_stmt|;
 specifier|final
 name|double
