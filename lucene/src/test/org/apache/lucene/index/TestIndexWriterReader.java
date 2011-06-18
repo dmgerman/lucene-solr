@@ -6434,6 +6434,13 @@ argument_list|(
 literal|"SimpleText"
 argument_list|)
 expr_stmt|;
+name|illegalCodecs
+operator|.
+name|add
+argument_list|(
+literal|"Memory"
+argument_list|)
+expr_stmt|;
 name|IndexWriterConfig
 name|conf
 init|=

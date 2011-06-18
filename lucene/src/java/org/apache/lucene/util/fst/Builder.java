@@ -92,6 +92,10 @@ name|INPUT_TYPE
 import|;
 end_import
 
+begin_comment
+comment|// javadoc
+end_comment
+
 begin_import
 import|import
 name|java
@@ -401,6 +405,24 @@ name|fst
 operator|.
 name|nodeCount
 return|;
+block|}
+comment|/** Pass false to disable the array arc optimization    *  while building the FST.  This is necessary if    *  encoding a single arc may take more than 255 bytes. */
+DECL|method|setAllowArrayArcs
+specifier|public
+name|void
+name|setAllowArrayArcs
+parameter_list|(
+name|boolean
+name|b
+parameter_list|)
+block|{
+name|fst
+operator|.
+name|setAllowArrayArcs
+argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|compileNode
 specifier|private

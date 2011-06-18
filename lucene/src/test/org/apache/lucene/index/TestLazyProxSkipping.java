@@ -817,6 +817,28 @@ literal|"SimpleText"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"This test cannot run with Memory codec"
+argument_list|,
+name|CodecProvider
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getFieldCodec
+argument_list|(
+name|this
+operator|.
+name|field
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"Memory"
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// test whether only the minimum amount of seeks()
 comment|// are performed
 name|performTest
