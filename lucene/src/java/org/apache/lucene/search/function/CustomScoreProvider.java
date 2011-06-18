@@ -52,6 +52,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|Explanation
@@ -77,7 +95,7 @@ comment|// for javadocs
 end_comment
 
 begin_comment
-comment|/**  * An instance of this subclass should be returned by  * {@link CustomScoreQuery#getCustomScoreProvider}, if you want  * to modify the custom score calculation of a {@link CustomScoreQuery}.  *<p>Since Lucene 2.9, queries operate on each segment of an index separately,  * so the protected {@link #reader} field can be used to resolve doc IDs,  * as the supplied<code>doc</code> ID is per-segment and without knowledge  * of the IndexReader you cannot access the document or {@link FieldCache}.  *   * @lucene.experimental  * @since 2.9.2  */
+comment|/**  * An instance of this subclass should be returned by  * {@link CustomScoreQuery#getCustomScoreProvider}, if you want  * to modify the custom score calculation of a {@link CustomScoreQuery}.  *<p>Since Lucene 2.9, queries operate on each segment of an index separately,  * so the protected {@link #context} field can be used to resolve doc IDs,  * as the supplied<code>doc</code> ID is per-segment and without knowledge  * of the IndexReader you cannot access the document or {@link FieldCache}.  *   * @lucene.experimental  * @since 2.9.2  */
 end_comment
 
 begin_class
