@@ -398,6 +398,13 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+DECL|field|allowArrayArcs
+specifier|private
+name|boolean
+name|allowArrayArcs
+init|=
+literal|true
+decl_stmt|;
 DECL|class|Arc
 specifier|public
 specifier|final
@@ -3772,6 +3779,20 @@ return|return
 name|arcWithOutputCount
 return|;
 block|}
+DECL|method|setAllowArrayArcs
+specifier|public
+name|void
+name|setAllowArrayArcs
+parameter_list|(
+name|boolean
+name|v
+parameter_list|)
+block|{
+name|allowArrayArcs
+operator|=
+name|v
+expr_stmt|;
+block|}
 comment|/**    * Nodes will be expanded if their depth (distance from the root node) is    *&lt;= this value and their number of arcs is&gt;=    * {@link #FIXED_ARRAY_NUM_ARCS_SHALLOW}.    *     *<p>    * Fixed array consumes more RAM but enables binary search on the arcs    * (instead of a linear scan) on lookup by arc label.    *     * @return<code>true</code> if<code>node</code> should be stored in an    *         expanded (array) form.    *     * @see #FIXED_ARRAY_NUM_ARCS_DEEP    * @see Builder.UnCompiledNode#depth    */
 DECL|method|shouldExpand
 specifier|private
@@ -3786,6 +3807,9 @@ name|node
 parameter_list|)
 block|{
 return|return
+name|allowArrayArcs
+operator|&&
+operator|(
 operator|(
 name|node
 operator|.
@@ -3805,6 +3829,7 @@ operator|.
 name|numArcs
 operator|>=
 name|FIXED_ARRAY_NUM_ARCS_DEEP
+operator|)
 return|;
 block|}
 comment|// Non-static: writes to FST's byte[]

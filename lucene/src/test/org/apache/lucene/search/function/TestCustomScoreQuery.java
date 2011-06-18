@@ -121,6 +121,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -405,15 +407,15 @@ specifier|protected
 name|CustomScoreProvider
 name|getCustomScoreProvider
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 block|{
 return|return
 operator|new
 name|CustomScoreProvider
 argument_list|(
-name|reader
+name|context
 argument_list|)
 block|{
 annotation|@
@@ -567,15 +569,15 @@ specifier|protected
 name|CustomScoreProvider
 name|getCustomScoreProvider
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 block|{
 return|return
 operator|new
 name|CustomScoreProvider
 argument_list|(
-name|reader
+name|context
 argument_list|)
 block|{
 annotation|@
@@ -796,8 +798,8 @@ specifier|protected
 name|CustomScoreProvider
 name|getCustomScoreProvider
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -813,6 +815,8 @@ name|DEFAULT
 operator|.
 name|getInts
 argument_list|(
+name|context
+operator|.
 name|reader
 argument_list|,
 name|INT_FIELD
@@ -822,7 +826,7 @@ return|return
 operator|new
 name|CustomScoreProvider
 argument_list|(
-name|reader
+name|context
 argument_list|)
 block|{
 annotation|@
@@ -847,6 +851,8 @@ name|assertTrue
 argument_list|(
 name|doc
 operator|<=
+name|context
+operator|.
 name|reader
 operator|.
 name|maxDoc

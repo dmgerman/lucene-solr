@@ -39,8 +39,28 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
 
 begin_import
 import|import
@@ -75,7 +95,7 @@ comment|// for javadocs
 end_comment
 
 begin_comment
-comment|/**  * An instance of this subclass should be returned by  * {@link CustomScoreQuery#getCustomScoreProvider}, if you want  * to modify the custom score calculation of a {@link CustomScoreQuery}.  *<p>Since Lucene 2.9, queries operate on each segment of an index separately,  * so the protected {@link #reader} field can be used to resolve doc IDs,  * as the supplied<code>doc</code> ID is per-segment and without knowledge  * of the IndexReader you cannot access the document or {@link FieldCache}.  *   * @lucene.experimental  * @since 2.9.2  */
+comment|/**  * An instance of this subclass should be returned by  * {@link CustomScoreQuery#getCustomScoreProvider}, if you want  * to modify the custom score calculation of a {@link CustomScoreQuery}.  *<p>Since Lucene 2.9, queries operate on each segment of an index separately,  * so the protected {@link #context} field can be used to resolve doc IDs,  * as the supplied<code>doc</code> ID is per-segment and without knowledge  * of the IndexReader you cannot access the document or {@link FieldCache}.  *   * @lucene.experimental  * @since 2.9.2  */
 end_comment
 
 begin_class
@@ -84,26 +104,26 @@ specifier|public
 class|class
 name|CustomScoreProvider
 block|{
-DECL|field|reader
+DECL|field|context
 specifier|protected
 specifier|final
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 decl_stmt|;
 comment|/**    * Creates a new instance of the provider class for the given {@link IndexReader}.    */
 DECL|method|CustomScoreProvider
 specifier|public
 name|CustomScoreProvider
 parameter_list|(
-name|IndexReader
-name|reader
+name|AtomicReaderContext
+name|context
 parameter_list|)
 block|{
 name|this
 operator|.
-name|reader
+name|context
 operator|=
-name|reader
+name|context
 expr_stmt|;
 block|}
 comment|/**    * Compute a custom score by the subQuery score and a number of     * {@link ValueSourceQuery} scores.    *<p>     * Subclasses can override this method to modify the custom score.      *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override the other     * {@link #customScore(int, float, float) customScore()}     * method, which is simpler.     *<p>    * The default computation herein is a multiplication of given scores:    *<pre>    *     ModifiedScore = valSrcScore * valSrcScores[0] * valSrcScores[1] * ...    *</pre>    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScores scores of that doc by the ValueSourceQuery.    * @return custom score.    */
