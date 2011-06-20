@@ -6880,9 +6880,15 @@ name|IOException
 block|{
 name|testRandomWords
 argument_list|(
-name|atLeast
+name|_TestUtil
+operator|.
+name|nextInt
 argument_list|(
+name|random
+argument_list|,
 literal|50000
+argument_list|,
+literal|60000
 argument_list|)
 argument_list|,
 name|atLeast
