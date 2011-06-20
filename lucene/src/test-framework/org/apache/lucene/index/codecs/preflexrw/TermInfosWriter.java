@@ -64,6 +64,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexFileNames
 import|;
 end_import
@@ -526,6 +540,7 @@ name|isIndex
 operator|=
 name|isi
 expr_stmt|;
+comment|// nocommit pass IOContext in via ctor
 name|output
 operator|=
 name|directory
@@ -552,6 +567,10 @@ operator|.
 name|TERMS_EXTENSION
 operator|)
 argument_list|)
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 name|boolean

@@ -634,6 +634,26 @@ return|return
 name|total
 return|;
 block|}
+DECL|method|getMergeInfo
+specifier|public
+name|MergeInfo
+name|getMergeInfo
+parameter_list|()
+block|{
+return|return
+operator|new
+name|MergeInfo
+argument_list|(
+name|totalDocCount
+argument_list|,
+name|estimatedMergeBytes
+argument_list|,
+name|isExternal
+argument_list|,
+name|optimize
+argument_list|)
+return|;
+block|}
 block|}
 comment|/**    * A MergeSpecification instance provides the information    * necessary to perform multiple merges.  It simply    * contains a list of {@link OneMerge} instances.    */
 DECL|class|MergeSpecification

@@ -314,6 +314,10 @@ operator|.
 name|createOutput
 argument_list|(
 name|indexFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|boolean

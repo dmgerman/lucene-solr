@@ -38,6 +38,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SegmentInfo
 import|;
 end_import
@@ -53,6 +67,22 @@ operator|.
 name|index
 operator|.
 name|SegmentInfos
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IOContext
+operator|.
+name|Context
 import|;
 end_import
 
@@ -203,10 +233,14 @@ name|segmentFileName
 parameter_list|,
 name|SegmentInfos
 name|infos
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//nocommit should this context always be flush?
 name|IndexOutput
 name|out
 init|=
@@ -215,6 +249,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|segmentFileName
+argument_list|,
+name|context
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -336,6 +372,9 @@ name|dir
 parameter_list|,
 name|String
 name|segmentFileName
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -348,6 +387,8 @@ operator|.
 name|createOutput
 argument_list|(
 name|segmentFileName
+argument_list|,
+name|context
 argument_list|)
 decl_stmt|;
 name|ChecksumIndexOutput

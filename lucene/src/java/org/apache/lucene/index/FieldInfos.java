@@ -1161,6 +1161,10 @@ operator|.
 name|openInput
 argument_list|(
 name|name
+argument_list|,
+name|IOContext
+operator|.
+name|READONCE
 argument_list|)
 decl_stmt|;
 try|try
@@ -2351,6 +2355,10 @@ operator|.
 name|createOutput
 argument_list|(
 name|name
+argument_list|,
+name|IOContext
+operator|.
+name|READONCE
 argument_list|)
 decl_stmt|;
 try|try

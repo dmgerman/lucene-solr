@@ -48,6 +48,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IOContext
+operator|.
+name|Context
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|ArrayUtil
@@ -332,6 +348,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// nocommit - is this always a flush here or should we have a IOContext argument?
 name|fieldsWriter
 operator|=
 operator|new
@@ -345,6 +362,14 @@ name|docWriter
 operator|.
 name|getSegment
 argument_list|()
+argument_list|,
+operator|new
+name|IOContext
+argument_list|(
+name|Context
+operator|.
+name|FLUSH
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|lastDocID

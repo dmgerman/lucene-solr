@@ -561,7 +561,7 @@ name|segmentInfo
 argument_list|,
 name|state
 operator|.
-name|readBufferSize
+name|context
 argument_list|,
 name|state
 operator|.
@@ -578,6 +578,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+comment|//nocommit we should pass the IOContext down to the TermIndexReader
 name|indexReader
 operator|=
 operator|new
@@ -663,7 +664,7 @@ name|docsReader
 argument_list|,
 name|state
 operator|.
-name|readBufferSize
+name|context
 argument_list|,
 name|StandardCodec
 operator|.

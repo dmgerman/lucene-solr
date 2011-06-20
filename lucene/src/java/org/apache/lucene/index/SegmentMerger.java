@@ -90,6 +90,22 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IOContext
+operator|.
+name|Context
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 operator|.
 name|FieldOption
@@ -567,6 +583,9 @@ parameter_list|,
 specifier|final
 name|SegmentInfo
 name|info
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -592,6 +611,8 @@ argument_list|(
 name|directory
 argument_list|,
 name|fileName
+argument_list|,
+name|context
 argument_list|,
 name|checkAbort
 argument_list|)
@@ -1216,6 +1237,7 @@ decl_stmt|;
 name|setMatchingSegmentReaders
 argument_list|()
 expr_stmt|;
+comment|// nocommit - should we rather use IOContext.MERGE here?
 specifier|final
 name|FieldsWriter
 name|fieldsWriter
@@ -1226,6 +1248,10 @@ argument_list|(
 name|directory
 argument_list|,
 name|segment
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 try|try
@@ -1407,6 +1433,7 @@ operator|+
 literal|"; now aborting this merge to prevent index corruption"
 argument_list|)
 throw|;
+comment|//nocommit if Merge then what to initialize OneMerge with ?
 name|segmentWriteState
 operator|=
 operator|new
@@ -1427,6 +1454,10 @@ argument_list|,
 name|codecInfo
 argument_list|,
 literal|null
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 return|return
@@ -1837,6 +1868,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|//nocommit Putting MERGE context here would lead to assert error. What should MergeInfo be initialized with here?
 name|TermVectorsWriter
 name|termVectorsWriter
 init|=
@@ -1848,6 +1880,14 @@ argument_list|,
 name|segment
 argument_list|,
 name|fieldInfos
+argument_list|,
+operator|new
+name|IOContext
+argument_list|(
+name|Context
+operator|.
+name|DEFAULT
+argument_list|)
 argument_list|)
 decl_stmt|;
 try|try
@@ -3334,6 +3374,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//nocommit Putting MERGE context here would lead to assert error. What should MergeInfo be initialized with here?
 name|output
 operator|=
 name|directory
@@ -3351,6 +3392,14 @@ argument_list|,
 name|IndexFileNames
 operator|.
 name|NORMS_EXTENSION
+argument_list|)
+argument_list|,
+operator|new
+name|IOContext
+argument_list|(
+name|Context
+operator|.
+name|DEFAULT
 argument_list|)
 argument_list|)
 expr_stmt|;

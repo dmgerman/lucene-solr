@@ -2433,6 +2433,10 @@ operator|new
 name|RAMDirectory
 argument_list|(
 name|aux
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2617,6 +2621,10 @@ operator|new
 name|RAMDirectory
 argument_list|(
 name|aux
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 argument_list|)
 argument_list|)
@@ -4200,6 +4208,10 @@ operator|new
 name|RAMDirectory
 argument_list|(
 name|dir
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 argument_list|)
 expr_stmt|;

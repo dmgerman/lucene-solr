@@ -90,6 +90,20 @@ begin_comment
 comment|// javadoc
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IOContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link FSDirectory} implementation that uses java.nio's FileChannel's  * positional read, which allows multiple threads to read from the same file  * without synchronizing.  *<p>  * This class only uses FileChannel when reading; writing is achieved with  * {@link FSDirectory.FSIndexOutput}.  *<p>  *<b>NOTE</b>: NIOFSDirectory is not recommended on Windows because of a bug in  * how FileChannel.read is implemented in Sun's JRE. Inside of the  * implementation the position is apparently synchronized. See<a  * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6265734">here</a>  * for details.  *</p>  *<p>  *<font color="red"><b>NOTE:</b> Accessing this class either directly or  * indirectly from a thread while it's interrupted can close the  * underlying file descriptor immediately if at the same time the thread is  * blocked on IO. The file descriptor will remain closed and subsequent access  * to {@link NIOFSDirectory} will throw a {@link ClosedChannelException}. If  * your application uses either {@link Thread#interrupt()} or  * {@link Future#cancel(boolean)} you should use {@link SimpleFSDirectory} in  * favor of {@link NIOFSDirectory}.</font>  *</p>  */
 end_comment
@@ -154,8 +168,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
-name|bufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -176,7 +190,7 @@ argument_list|,
 name|name
 argument_list|)
 argument_list|,
-name|bufferSize
+name|context
 argument_list|,
 name|getReadChunkSize
 argument_list|()
@@ -222,8 +236,8 @@ parameter_list|(
 name|File
 name|path
 parameter_list|,
-name|int
-name|bufferSize
+name|IOContext
+name|context
 parameter_list|,
 name|int
 name|chunkSize
@@ -235,7 +249,7 @@ name|super
 argument_list|(
 name|path
 argument_list|,
-name|bufferSize
+name|context
 argument_list|,
 name|chunkSize
 argument_list|)

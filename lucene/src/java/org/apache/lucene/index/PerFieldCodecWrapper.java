@@ -562,8 +562,8 @@ parameter_list|,
 name|SegmentInfo
 name|si
 parameter_list|,
-name|int
-name|readBufferSize
+name|IOContext
+name|context
 parameter_list|,
 name|int
 name|indexDivisor
@@ -673,7 +673,7 @@ name|si
 argument_list|,
 name|fieldInfos
 argument_list|,
-name|readBufferSize
+name|context
 argument_list|,
 name|indexDivisor
 argument_list|,
@@ -1010,7 +1010,7 @@ name|segmentInfo
 argument_list|,
 name|state
 operator|.
-name|readBufferSize
+name|context
 argument_list|,
 name|state
 operator|.
@@ -1141,7 +1141,7 @@ name|segmentInfo
 argument_list|,
 name|state
 operator|.
-name|readBufferSize
+name|context
 argument_list|,
 name|state
 operator|.
@@ -1190,8 +1190,8 @@ parameter_list|,
 name|SegmentInfo
 name|si
 parameter_list|,
-name|int
-name|readBufferSize
+name|IOContext
+name|context
 parameter_list|,
 name|int
 name|indexDivisor
@@ -1293,7 +1293,7 @@ name|si
 argument_list|,
 name|fieldInfos
 argument_list|,
-name|readBufferSize
+name|context
 argument_list|,
 name|indexDivisor
 argument_list|,

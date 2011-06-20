@@ -96,6 +96,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -206,8 +220,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
-name|bufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -215,6 +229,7 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+comment|//nocommit - use buffer based on IOContext
 return|return
 operator|new
 name|DirectIOLinuxIndexInput
@@ -232,7 +247,9 @@ name|forcedBufferSize
 operator|==
 literal|0
 condition|?
-name|bufferSize
+name|BufferedIndexInput
+operator|.
+name|BUFFER_SIZE
 else|:
 name|forcedBufferSize
 argument_list|)
@@ -247,6 +264,9 @@ name|createOutput
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -259,6 +279,7 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+comment|//nocommit - use buffer based on IOContext
 return|return
 operator|new
 name|DirectIOLinuxIndexOutput

@@ -3090,6 +3090,9 @@ name|openInput
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -3103,6 +3106,8 @@ operator|.
 name|openInput
 argument_list|(
 name|name
+argument_list|,
+name|context
 argument_list|)
 argument_list|)
 return|;
@@ -3221,6 +3226,9 @@ name|createOutput
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -3231,6 +3239,8 @@ operator|.
 name|createOutput
 argument_list|(
 name|name
+argument_list|,
+name|context
 argument_list|)
 return|;
 block|}

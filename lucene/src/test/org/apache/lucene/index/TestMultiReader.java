@@ -73,6 +73,10 @@ argument_list|,
 name|IndexReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 name|SegmentReader
@@ -94,6 +98,10 @@ argument_list|,
 name|IndexReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 name|readers

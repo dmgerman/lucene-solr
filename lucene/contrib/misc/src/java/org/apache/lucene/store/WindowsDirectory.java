@@ -44,6 +44,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -155,8 +169,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
-name|bufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -164,6 +178,7 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+comment|//nocommit - use buffer based on IOContext
 return|return
 operator|new
 name|WindowsIndexInput
@@ -177,14 +192,7 @@ argument_list|,
 name|name
 argument_list|)
 argument_list|,
-name|Math
-operator|.
-name|max
-argument_list|(
-name|bufferSize
-argument_list|,
 name|DEFAULT_BUFFERSIZE
-argument_list|)
 argument_list|)
 return|;
 block|}

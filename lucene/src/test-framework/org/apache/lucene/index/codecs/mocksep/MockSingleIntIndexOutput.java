@@ -86,6 +86,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|codecs
 operator|.
 name|sep
@@ -159,6 +173,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//nocommit pass IOContext in via ctor!
 name|out
 operator|=
 name|dir
@@ -166,6 +181,10 @@ operator|.
 name|createOutput
 argument_list|(
 name|fileName
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 name|boolean

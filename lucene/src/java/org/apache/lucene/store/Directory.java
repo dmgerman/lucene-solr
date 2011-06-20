@@ -68,6 +68,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|IOUtils
@@ -173,6 +187,9 @@ name|createOutput
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -193,7 +210,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns a stream reading an existing file. */
+comment|/** Returns a stream reading an existing file, with the    * specified read buffer size.  The particular Directory    * implementation may ignore the buffer size.  Currently    * the only Directory implementations that respect this    * parameter are {@link FSDirectory} and {@link    * org.apache.lucene.index.CompoundFileReader}.   */
 DECL|method|openInput
 specifier|public
 specifier|abstract
@@ -202,32 +219,13 @@ name|openInput
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns a stream reading an existing file, with the    * specified read buffer size.  The particular Directory    * implementation may ignore the buffer size.  Currently    * the only Directory implementations that respect this    * parameter are {@link FSDirectory} and {@link    * org.apache.lucene.index.CompoundFileReader}.   */
-DECL|method|openInput
-specifier|public
-name|IndexInput
-name|openInput
-parameter_list|(
-name|String
-name|name
-parameter_list|,
-name|int
-name|bufferSize
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|openInput
-argument_list|(
-name|name
-argument_list|)
-return|;
-block|}
 comment|/** Construct a {@link Lock}.    * @param name the name of the lock file    */
 DECL|method|makeLock
 specifier|public
@@ -380,6 +378,9 @@ name|src
 parameter_list|,
 name|String
 name|dest
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -392,6 +393,8 @@ operator|.
 name|createOutput
 argument_list|(
 name|dest
+argument_list|,
+name|context
 argument_list|)
 decl_stmt|;
 name|IndexInput
@@ -400,6 +403,8 @@ init|=
 name|openInput
 argument_list|(
 name|src
+argument_list|,
+name|context
 argument_list|)
 decl_stmt|;
 name|IOException

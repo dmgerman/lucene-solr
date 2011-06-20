@@ -441,6 +441,10 @@ argument_list|(
 name|dir
 argument_list|,
 literal|"_2.cfs"
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 name|FieldInfos
@@ -1113,6 +1117,10 @@ operator|.
 name|openInput
 argument_list|(
 name|src
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 name|IndexOutput
@@ -1123,6 +1131,10 @@ operator|.
 name|createOutput
 argument_list|(
 name|dest
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 name|byte

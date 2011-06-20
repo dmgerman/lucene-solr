@@ -1566,6 +1566,10 @@ operator|.
 name|createOutput
 argument_list|(
 name|fileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 decl_stmt|;
 return|return
@@ -4039,6 +4043,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//nocommit its seems due to the nature of this codec that we should use IOContext.READONCE here where applicable.
 specifier|final
 name|String
 name|fileName
@@ -4071,6 +4076,10 @@ operator|.
 name|openInput
 argument_list|(
 name|fileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 decl_stmt|;
 specifier|final

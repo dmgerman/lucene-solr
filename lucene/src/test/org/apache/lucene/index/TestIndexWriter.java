@@ -7324,6 +7324,10 @@ operator|.
 name|createOutput
 argument_list|(
 literal|"myrandomfile"
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 name|out

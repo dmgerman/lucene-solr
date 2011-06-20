@@ -319,6 +319,9 @@ name|openInput
 parameter_list|(
 name|String
 name|fileName
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -331,6 +334,8 @@ operator|.
 name|openInput
 argument_list|(
 name|fileName
+argument_list|,
+name|context
 argument_list|)
 decl_stmt|;
 if|if

@@ -1002,6 +1002,7 @@ argument_list|(
 name|info
 argument_list|)
 assert|;
+comment|//nocommit is IOContext.DEFAULT the right thing to do here?
 specifier|final
 name|SegmentReader
 name|reader
@@ -1013,6 +1014,10 @@ argument_list|(
 name|info
 argument_list|,
 literal|false
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 name|int
@@ -1227,6 +1232,7 @@ argument_list|(
 name|info
 argument_list|)
 assert|;
+comment|//nocommit is IOContext.DEFAULT the right thing to do here?
 name|SegmentReader
 name|reader
 init|=
@@ -1237,6 +1243,10 @@ argument_list|(
 name|info
 argument_list|,
 literal|false
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 name|int

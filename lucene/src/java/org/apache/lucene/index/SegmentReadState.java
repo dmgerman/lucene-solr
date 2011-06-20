@@ -58,11 +58,11 @@ specifier|final
 name|FieldInfos
 name|fieldInfos
 decl_stmt|;
-DECL|field|readBufferSize
+DECL|field|context
 specifier|public
 specifier|final
-name|int
-name|readBufferSize
+name|IOContext
+name|context
 decl_stmt|;
 comment|// NOTE: if this is< 0, that means "defer terms index
 comment|// load until needed".  But if the codec must load the
@@ -93,8 +93,8 @@ parameter_list|,
 name|FieldInfos
 name|fieldInfos
 parameter_list|,
-name|int
-name|readBufferSize
+name|IOContext
+name|context
 parameter_list|,
 name|int
 name|termsIndexDivisor
@@ -108,7 +108,7 @@ name|info
 argument_list|,
 name|fieldInfos
 argument_list|,
-name|readBufferSize
+name|context
 argument_list|,
 name|termsIndexDivisor
 argument_list|,
@@ -130,8 +130,8 @@ parameter_list|,
 name|FieldInfos
 name|fieldInfos
 parameter_list|,
-name|int
-name|readBufferSize
+name|IOContext
+name|context
 parameter_list|,
 name|int
 name|termsIndexDivisor
@@ -160,9 +160,9 @@ name|fieldInfos
 expr_stmt|;
 name|this
 operator|.
-name|readBufferSize
+name|context
 operator|=
-name|readBufferSize
+name|context
 expr_stmt|;
 name|this
 operator|.

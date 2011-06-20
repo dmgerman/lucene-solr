@@ -661,6 +661,10 @@ operator|.
 name|createOutput
 argument_list|(
 name|payloadFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 block|}
@@ -692,6 +696,10 @@ operator|.
 name|createOutput
 argument_list|(
 name|skipFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|totalNumDocs

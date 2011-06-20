@@ -189,16 +189,25 @@ name|FORMAT_NO_SEGMENT_PREFIX
 decl_stmt|;
 DECL|field|directory
 specifier|private
+specifier|final
 name|Directory
 name|directory
 decl_stmt|;
 DECL|field|fileName
 specifier|private
+specifier|final
 name|String
 name|fileName
 decl_stmt|;
+DECL|field|context
+specifier|private
+specifier|final
+name|IOContext
+name|context
+decl_stmt|;
 DECL|field|ids
 specifier|private
+specifier|final
 name|HashSet
 argument_list|<
 name|String
@@ -207,6 +216,7 @@ name|ids
 decl_stmt|;
 DECL|field|entries
 specifier|private
+specifier|final
 name|LinkedList
 argument_list|<
 name|FileEntry
@@ -222,6 +232,7 @@ literal|false
 decl_stmt|;
 DECL|field|checkAbort
 specifier|private
+specifier|final
 name|MergeState
 operator|.
 name|CheckAbort
@@ -237,6 +248,9 @@ name|dir
 parameter_list|,
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 block|{
 name|this
@@ -244,6 +258,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|name
+argument_list|,
+name|context
 argument_list|,
 literal|null
 argument_list|)
@@ -257,6 +273,9 @@ name|dir
 parameter_list|,
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|,
 name|MergeState
 operator|.
@@ -321,6 +340,12 @@ argument_list|<
 name|FileEntry
 argument_list|>
 argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|context
+operator|=
+name|context
 expr_stmt|;
 block|}
 comment|/** Returns the directory of the compound file. */
@@ -495,6 +520,8 @@ operator|.
 name|createOutput
 argument_list|(
 name|fileName
+argument_list|,
+name|context
 argument_list|)
 decl_stmt|;
 name|IOException
@@ -742,6 +769,8 @@ argument_list|(
 name|source
 operator|.
 name|file
+argument_list|,
+name|context
 argument_list|)
 decl_stmt|;
 try|try

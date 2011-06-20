@@ -1039,7 +1039,7 @@ name|segmentInfo
 argument_list|,
 name|state
 operator|.
-name|readBufferSize
+name|context
 argument_list|,
 name|state
 operator|.
@@ -1087,6 +1087,10 @@ argument_list|,
 name|state
 operator|.
 name|codecId
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|success
@@ -1141,7 +1145,7 @@ name|postings
 argument_list|,
 name|state
 operator|.
-name|readBufferSize
+name|context
 argument_list|,
 name|TERMS_CACHE_SIZE
 argument_list|,

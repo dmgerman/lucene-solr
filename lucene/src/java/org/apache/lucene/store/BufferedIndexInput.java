@@ -119,6 +119,7 @@ name|BufferedIndexInput
 parameter_list|()
 block|{}
 comment|/** Inits BufferedIndexInput with a specific bufferSize */
+comment|//nocommit To cleanup class variable bufferSize as the the default size is always used
 DECL|method|BufferedIndexInput
 specifier|public
 name|BufferedIndexInput
@@ -129,7 +130,9 @@ parameter_list|)
 block|{
 name|checkBufferSize
 argument_list|(
-name|bufferSize
+name|BufferedIndexInput
+operator|.
+name|BUFFER_SIZE
 argument_list|)
 expr_stmt|;
 name|this
