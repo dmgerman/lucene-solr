@@ -4374,9 +4374,15 @@ comment|// must be> 4096 so it spans multiple chunks
 name|int
 name|termCount
 init|=
-name|atLeast
+name|_TestUtil
+operator|.
+name|nextInt
 argument_list|(
-literal|5000
+name|random
+argument_list|,
+literal|4097
+argument_list|,
+literal|8200
 argument_list|)
 decl_stmt|;
 name|List
