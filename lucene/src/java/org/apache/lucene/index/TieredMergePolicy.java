@@ -502,7 +502,7 @@ return|return
 name|expungeDeletesPctAllowed
 return|;
 block|}
-comment|/** Sets the allowed number of segments per tier.  Smaller    *  values mean more merging but fewer segments.    *  setMaxMergeAtOnce} otherwise you'll hit    *  Default is 10.0. */
+comment|/** Sets the allowed number of segments per tier.  Smaller    *  values mean more merging but fewer segments.    *    *<p><b>NOTE</b>: this value should be>= the {@link    *  #setMaxMergeAtOnce} otherwise you'll force too much    *  merging to occur.</p>    *    *<p>Default is 10.0.</p> */
 DECL|method|setSegmentsPerTier
 specifier|public
 name|TieredMergePolicy
