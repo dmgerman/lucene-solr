@@ -223,6 +223,16 @@ name|BYTES
 init|=
 literal|12
 decl_stmt|;
+comment|/** Force rewriting of SortField using {@link SortField#rewrite(IndexSearcher)}    * before it can be used for sorting */
+DECL|field|REWRITEABLE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|REWRITEABLE
+init|=
+literal|13
+decl_stmt|;
 comment|/** Represents sorting by document score (relevance). */
 DECL|field|FIELD_SCORE
 specifier|public
@@ -1914,6 +1924,18 @@ argument_list|,
 name|field
 argument_list|)
 return|;
+case|case
+name|SortField
+operator|.
+name|REWRITEABLE
+case|:
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"SortField needs to be rewritten through Sort.rewrite(..) and SortField.rewrite(..)"
+argument_list|)
+throw|;
 default|default:
 throw|throw
 operator|new
@@ -1925,6 +1947,22 @@ name|type
 argument_list|)
 throw|;
 block|}
+block|}
+comment|/**    * Rewrites this SortField, returning a new SortField if a change is made.    * Subclasses should override this define their rewriting behavior when this    * SortField is of type {@link SortField#REWRITEABLE}    *    * @param searcher IndexSearcher to use during rewriting    * @return New rewritten SortField, or {@code this} if nothing has changed.    * @throws IOException Can be thrown by the rewriting    * @lucene.experimental    */
+DECL|method|rewrite
+specifier|public
+name|SortField
+name|rewrite
+parameter_list|(
+name|IndexSearcher
+name|searcher
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|this
+return|;
 block|}
 block|}
 end_class

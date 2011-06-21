@@ -148,6 +148,16 @@ name|INDEX_DIR
 init|=
 literal|"indexDir"
 decl_stmt|;
+comment|/** If you merge indexes, what is the source core's name    * More than one source core can be specified by multiple srcCore parameters */
+DECL|field|SRC_CORE
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SRC_CORE
+init|=
+literal|"srcCore"
+decl_stmt|;
 comment|/** The collection name in solr cloud */
 DECL|field|COLLECTION
 specifier|public

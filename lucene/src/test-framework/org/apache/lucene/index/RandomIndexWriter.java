@@ -635,14 +635,12 @@ block|{
 comment|// randomly enable / disable docValues
 name|doDocValues
 operator|=
-name|r
+name|LuceneTestCase
 operator|.
-name|nextInt
+name|rarely
 argument_list|(
-literal|10
+name|r
 argument_list|)
-operator|!=
-literal|0
 expr_stmt|;
 block|}
 comment|/**    * Adds a Document.    * @see IndexWriter#addDocument(Document)    */
