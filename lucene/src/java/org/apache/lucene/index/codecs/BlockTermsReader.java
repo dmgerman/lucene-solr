@@ -1410,9 +1410,7 @@ name|termSuffixesReader
 init|=
 operator|new
 name|ByteArrayDataInput
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* Common prefix used for all terms in this block. */
 DECL|field|termBlockPrefix
@@ -1434,9 +1432,7 @@ name|freqReader
 init|=
 operator|new
 name|ByteArrayDataInput
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 DECL|field|metaDataUpto
 specifier|private
