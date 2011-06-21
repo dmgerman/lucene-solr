@@ -219,6 +219,7 @@ operator|.
 name|FIELD_DOC
 expr_stmt|;
 block|}
+elseif|else
 if|if
 condition|(
 name|field
