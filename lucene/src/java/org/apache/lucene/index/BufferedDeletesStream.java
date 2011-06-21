@@ -1778,12 +1778,16 @@ comment|// by re-using the same TermsEnum and seeking only
 comment|// forwards
 if|if
 condition|(
+operator|!
 name|term
 operator|.
 name|field
 argument_list|()
-operator|!=
+operator|.
+name|equals
+argument_list|(
 name|currentField
+argument_list|)
 condition|)
 block|{
 assert|assert

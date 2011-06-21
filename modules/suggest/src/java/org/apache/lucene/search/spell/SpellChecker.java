@@ -416,19 +416,6 @@ name|F_WORD
 init|=
 literal|"word"
 decl_stmt|;
-DECL|field|F_WORD_TERM
-specifier|private
-specifier|static
-specifier|final
-name|Term
-name|F_WORD_TERM
-init|=
-operator|new
-name|Term
-argument_list|(
-name|F_WORD
-argument_list|)
-decl_stmt|;
 comment|/**    * the spell index    */
 comment|// don't modify the directory directly - see #swapSearcher()
 comment|// TODO: why is this package private?
@@ -1700,10 +1687,11 @@ name|indexSearcher
 operator|.
 name|docFreq
 argument_list|(
-name|F_WORD_TERM
-operator|.
-name|createTerm
+operator|new
+name|Term
 argument_list|(
+name|F_WORD
+argument_list|,
 name|word
 argument_list|)
 argument_list|)

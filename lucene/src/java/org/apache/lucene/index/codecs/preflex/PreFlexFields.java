@@ -1327,6 +1327,11 @@ specifier|private
 name|FieldInfo
 name|fieldInfo
 decl_stmt|;
+DECL|field|internedFieldName
+specifier|private
+name|String
+name|internedFieldName
+decl_stmt|;
 DECL|field|skipNext
 specifier|private
 name|boolean
@@ -1341,11 +1346,6 @@ DECL|field|seekTermEnum
 specifier|private
 name|SegmentTermEnum
 name|seekTermEnum
-decl_stmt|;
-DECL|field|protoTerm
-specifier|private
-name|Term
-name|protoTerm
 decl_stmt|;
 DECL|field|UTF8_NON_BMP_LEAD
 specifier|private
@@ -1678,10 +1678,13 @@ name|seekEnum
 argument_list|(
 name|te
 argument_list|,
-name|protoTerm
-operator|.
-name|createTerm
+operator|new
+name|Term
 argument_list|(
+name|fieldInfo
+operator|.
+name|name
+argument_list|,
 name|term
 argument_list|)
 argument_list|,
@@ -1712,9 +1715,7 @@ operator|.
 name|field
 argument_list|()
 operator|!=
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
 return|return
@@ -2256,10 +2257,13 @@ name|seekEnum
 argument_list|(
 name|termEnum
 argument_list|,
-name|protoTerm
-operator|.
-name|createTerm
+operator|new
+name|Term
 argument_list|(
+name|fieldInfo
+operator|.
+name|name
+argument_list|,
 name|scratchTerm
 argument_list|)
 argument_list|,
@@ -2288,9 +2292,7 @@ operator|.
 name|field
 argument_list|()
 operator|==
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
 if|if
@@ -2485,9 +2487,7 @@ operator|.
 name|field
 argument_list|()
 operator|!=
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
 name|scratchTerm
@@ -2916,10 +2916,13 @@ name|seekEnum
 argument_list|(
 name|seekTermEnum
 argument_list|,
-name|protoTerm
-operator|.
-name|createTerm
+operator|new
+name|Term
 argument_list|(
+name|fieldInfo
+operator|.
+name|name
+argument_list|,
 name|scratchTerm
 argument_list|)
 argument_list|,
@@ -3058,9 +3061,7 @@ operator|.
 name|field
 argument_list|()
 operator|==
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
 specifier|final
@@ -3257,16 +3258,25 @@ name|fieldInfo
 operator|=
 name|fieldInfo
 expr_stmt|;
-name|protoTerm
+name|internedFieldName
 operator|=
-operator|new
-name|Term
-argument_list|(
 name|fieldInfo
 operator|.
 name|name
-argument_list|)
+operator|.
+name|intern
+argument_list|()
 expr_stmt|;
+specifier|final
+name|Term
+name|term
+init|=
+operator|new
+name|Term
+argument_list|(
+name|internedFieldName
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|termEnum
@@ -3281,7 +3291,7 @@ argument_list|()
 operator|.
 name|terms
 argument_list|(
-name|protoTerm
+name|term
 argument_list|)
 expr_stmt|;
 name|seekTermEnum
@@ -3291,7 +3301,7 @@ argument_list|()
 operator|.
 name|terms
 argument_list|(
-name|protoTerm
+name|term
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("  term=" + termEnum.term());
@@ -3305,7 +3315,7 @@ name|seekEnum
 argument_list|(
 name|termEnum
 argument_list|,
-name|protoTerm
+name|term
 argument_list|,
 literal|true
 argument_list|)
@@ -3340,9 +3350,7 @@ operator|.
 name|field
 argument_list|()
 operator|==
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
 name|newSuffixStart
@@ -3486,10 +3494,13 @@ specifier|final
 name|Term
 name|t0
 init|=
-name|protoTerm
-operator|.
-name|createTerm
+operator|new
+name|Term
 argument_list|(
+name|fieldInfo
+operator|.
+name|name
+argument_list|,
 name|term
 argument_list|)
 decl_stmt|;
@@ -3529,9 +3540,7 @@ operator|.
 name|field
 argument_list|()
 operator|==
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 operator|&&
 name|term
 operator|.
@@ -3586,9 +3595,7 @@ operator|.
 name|field
 argument_list|()
 operator|!=
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
 comment|// TODO: maybe we can handle this like the next()
@@ -3851,11 +3858,10 @@ operator|.
 name|field
 argument_list|()
 operator|!=
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
+comment|// PreFlex codec interns field names; verify:
 assert|assert
 name|t2
 operator|==
@@ -3869,12 +3875,9 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 argument_list|)
 assert|;
-comment|// make sure fields are in fact interned
 name|current
 operator|=
 literal|null
@@ -4163,6 +4166,7 @@ block|{
 return|return
 literal|null
 return|;
+comment|// PreFlex codec interns field names:
 block|}
 elseif|else
 if|if
@@ -4175,9 +4179,7 @@ operator|.
 name|field
 argument_list|()
 operator|!=
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
 return|return
@@ -4228,9 +4230,7 @@ operator|.
 name|field
 argument_list|()
 operator|==
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
 name|newSuffixStart
@@ -4279,11 +4279,10 @@ operator|.
 name|field
 argument_list|()
 operator|!=
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
+comment|// PreFlex codec interns field names; verify:
 assert|assert
 name|t
 operator|==
@@ -4297,12 +4296,9 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 argument_list|)
 assert|;
-comment|// make sure fields are in fact interned
 name|current
 operator|=
 literal|null
@@ -4369,11 +4365,10 @@ operator|.
 name|field
 argument_list|()
 operator|!=
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 condition|)
 block|{
+comment|// PreFlex codec interns field names; verify:
 assert|assert
 name|t
 operator|==
@@ -4387,12 +4382,9 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|fieldInfo
-operator|.
-name|name
+name|internedFieldName
 argument_list|)
 assert|;
-comment|// make sure fields are in fact interned
 return|return
 literal|null
 return|;

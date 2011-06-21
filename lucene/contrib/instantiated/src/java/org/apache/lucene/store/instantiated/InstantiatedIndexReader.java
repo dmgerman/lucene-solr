@@ -1741,6 +1741,7 @@ name|orderedTerms
 operator|.
 name|length
 operator|||
+operator|!
 name|orderedTerms
 index|[
 name|i
@@ -1748,8 +1749,11 @@ index|]
 operator|.
 name|field
 argument_list|()
-operator|!=
+operator|.
+name|equals
+argument_list|(
 name|field
+argument_list|)
 condition|)
 block|{
 comment|// field does not exist

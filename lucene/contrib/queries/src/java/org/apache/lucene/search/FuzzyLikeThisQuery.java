@@ -935,18 +935,6 @@ operator|.
 name|numDocs
 argument_list|()
 decl_stmt|;
-name|Term
-name|internSavingTemplateTerm
-init|=
-operator|new
-name|Term
-argument_list|(
-name|f
-operator|.
-name|fieldName
-argument_list|)
-decl_stmt|;
-comment|//optimization to avoid constructing new Term() objects
 name|HashSet
 argument_list|<
 name|String
@@ -1017,10 +1005,13 @@ decl_stmt|;
 name|Term
 name|startTerm
 init|=
-name|internSavingTemplateTerm
-operator|.
-name|createTerm
+operator|new
+name|Term
 argument_list|(
+name|f
+operator|.
+name|fieldName
+argument_list|,
 name|term
 argument_list|)
 decl_stmt|;

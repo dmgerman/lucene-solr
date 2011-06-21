@@ -862,12 +862,17 @@ if|if
 condition|(
 name|lowerCaseTerms
 condition|)
+block|{
 name|term
 operator|=
+operator|new
+name|Term
+argument_list|(
 name|term
 operator|.
-name|createTerm
-argument_list|(
+name|field
+argument_list|()
+argument_list|,
 name|text
 operator|.
 name|toLowerCase
@@ -878,6 +883,7 @@ name|ENGLISH
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|int
 name|docfreq
 init|=

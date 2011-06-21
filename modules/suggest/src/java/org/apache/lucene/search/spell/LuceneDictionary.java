@@ -114,20 +114,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|StringHelper
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -179,12 +165,7 @@ name|this
 operator|.
 name|field
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|field
-argument_list|)
 expr_stmt|;
 block|}
 DECL|method|getWordsIterator

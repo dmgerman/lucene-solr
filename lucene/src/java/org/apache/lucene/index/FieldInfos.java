@@ -240,20 +240,6 @@ name|CodecUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|StringHelper
-import|;
-end_import
-
 begin_comment
 comment|/** Access to the Fieldable Info file that describes document fields and whether or  *  not they are indexed. Each segment has a separate Fieldable Info file. Objects  *  of this class are thread-safe for multiple readers, but only one thread can  *  be adding documents at a time, with no other reader or writer threads  *  accessing this object.  *  @lucene.experimental  */
 end_comment
@@ -1988,15 +1974,6 @@ name|docValuesType
 parameter_list|)
 block|{
 comment|// don't check modifiable here since we use that to initially build up FIs
-name|name
-operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|globalFieldNumbers
@@ -2763,15 +2740,10 @@ block|{
 name|String
 name|name
 init|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|input
 operator|.
 name|readString
 argument_list|()
-argument_list|)
 decl_stmt|;
 comment|// if this is a previous format codec 0 will be preflex!
 specifier|final

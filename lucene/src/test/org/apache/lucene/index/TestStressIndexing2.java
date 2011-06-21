@@ -2082,15 +2082,6 @@ index|]
 decl_stmt|;
 comment|// r2 id to r1 id mapping
 comment|// create mapping from id2 space to id2 based on idField
-name|idField
-operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
-name|idField
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Fields
 name|f1
@@ -4438,10 +4429,7 @@ name|idField
 init|=
 name|newField
 argument_list|(
-name|idTerm
-operator|.
-name|field
-argument_list|()
+literal|"id"
 argument_list|,
 name|idString
 argument_list|,
@@ -4818,10 +4806,11 @@ name|w
 operator|.
 name|updateDocument
 argument_list|(
-name|idTerm
-operator|.
-name|createTerm
+operator|new
+name|Term
 argument_list|(
+literal|"id"
+argument_list|,
 name|idString
 argument_list|)
 argument_list|,
@@ -4882,10 +4871,11 @@ name|w
 operator|.
 name|deleteDocuments
 argument_list|(
-name|idTerm
-operator|.
-name|createTerm
+operator|new
+name|Term
 argument_list|(
+literal|"id"
+argument_list|,
 name|idString
 argument_list|)
 argument_list|)
@@ -4944,10 +4934,11 @@ argument_list|(
 operator|new
 name|TermQuery
 argument_list|(
-name|idTerm
-operator|.
-name|createTerm
+operator|new
+name|Term
 argument_list|(
+literal|"id"
+argument_list|,
 name|idString
 argument_list|)
 argument_list|)

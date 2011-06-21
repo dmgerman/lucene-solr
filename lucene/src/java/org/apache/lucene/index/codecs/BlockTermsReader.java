@@ -495,8 +495,11 @@ return|return
 name|other
 operator|.
 name|field
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|field
+argument_list|)
 operator|&&
 name|term
 operator|.

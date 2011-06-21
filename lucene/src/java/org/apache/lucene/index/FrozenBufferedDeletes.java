@@ -89,26 +89,26 @@ DECL|class|FrozenBufferedDeletes
 class|class
 name|FrozenBufferedDeletes
 block|{
-comment|/* Rough logic: Term is object w/      String field and String text (OBJ_HEADER + 2*POINTER).      We don't count Term's field since it's interned.      Term's text is String (OBJ_HEADER + 4*INT + POINTER +      OBJ_HEADER + string.length*CHAR). */
+comment|/* Rough logic: Term is object w/      String field and String text (OBJ_HEADER + 2*POINTER).      Term's text is String (OBJ_HEADER + 4*INT + POINTER +        OBJ_HEADER + text.length*CHAR).      Term's field is String (OBJ_HEADER + 4*INT + POINTER +        OBJ_HEADER + field.length*CHAR). */
 DECL|field|BYTES_PER_DEL_TERM
 specifier|final
 specifier|static
 name|int
 name|BYTES_PER_DEL_TERM
 init|=
-literal|3
+literal|4
 operator|*
 name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_REF
 operator|+
-literal|3
+literal|4
 operator|*
 name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_HEADER
 operator|+
-literal|4
+literal|8
 operator|*
 name|RamUsageEstimator
 operator|.

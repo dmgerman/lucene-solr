@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|StringHelper
+name|BytesRef
 import|;
 end_import
 
@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|StringHelper
 import|;
 end_import
 
@@ -418,12 +418,7 @@ name|this
 operator|.
 name|field
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|field
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -666,14 +661,9 @@ name|this
 operator|.
 name|field
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|creator
 operator|.
 name|field
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -861,12 +851,7 @@ name|this
 operator|.
 name|field
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|field
-argument_list|)
 expr_stmt|;
 block|}
 if|if
@@ -1406,14 +1391,18 @@ name|o
 decl_stmt|;
 return|return
 operator|(
+name|StringHelper
+operator|.
+name|equals
+argument_list|(
 name|other
 operator|.
 name|field
-operator|==
+argument_list|,
 name|this
 operator|.
 name|field
-comment|// field is always interned
+argument_list|)
 operator|&&
 name|other
 operator|.
