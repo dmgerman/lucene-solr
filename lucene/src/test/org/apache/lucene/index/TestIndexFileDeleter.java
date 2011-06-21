@@ -68,6 +68,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|CompoundFileDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|Directory
 import|;
 end_import
@@ -432,15 +446,16 @@ comment|// field 0; on others, field 1.  So, here we have to
 comment|// figure out which field number corresponds to
 comment|// "content", and then set our expected file names below
 comment|// accordingly:
-name|CompoundFileReader
+name|CompoundFileDirectory
 name|cfsReader
 init|=
-operator|new
-name|CompoundFileReader
-argument_list|(
 name|dir
-argument_list|,
+operator|.
+name|openCompoundInput
+argument_list|(
 literal|"_2.cfs"
+argument_list|,
+literal|1024
 argument_list|)
 decl_stmt|;
 name|FieldInfos

@@ -290,7 +290,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|SimilarityProvider
+name|TermQuery
 import|;
 end_import
 
@@ -302,9 +302,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|store
 operator|.
-name|TermQuery
+name|CompoundFileDirectory
 import|;
 end_import
 
@@ -3481,15 +3481,16 @@ comment|// field 0; on others, field 1.  So, here we have to
 comment|// figure out which field number corresponds to
 comment|// "content", and then set our expected file names below
 comment|// accordingly:
-name|CompoundFileReader
+name|CompoundFileDirectory
 name|cfsReader
 init|=
-operator|new
-name|CompoundFileReader
-argument_list|(
 name|dir
-argument_list|,
+operator|.
+name|openCompoundInput
+argument_list|(
 literal|"_0.cfs"
+argument_list|,
+literal|1024
 argument_list|)
 decl_stmt|;
 name|FieldInfos
@@ -3563,6 +3564,8 @@ name|String
 index|[]
 block|{
 literal|"_0.cfs"
+block|,
+literal|"_0.cfe"
 block|,
 literal|"_0_1.del"
 block|,
