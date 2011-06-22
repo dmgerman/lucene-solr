@@ -314,7 +314,7 @@ argument_list|()
 operator|<=
 name|DefaultSegmentInfosWriter
 operator|.
-name|FORMAT_4_0
+name|FORMAT_FLEX
 condition|)
 block|{
 name|infos

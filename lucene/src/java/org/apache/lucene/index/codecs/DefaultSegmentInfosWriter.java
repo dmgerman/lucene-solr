@@ -147,23 +147,23 @@ operator|-
 literal|10
 decl_stmt|;
 comment|/** Each segment records the Lucene version that created it. */
-DECL|field|FORMAT_3_1
+DECL|field|FORMAT_SEGMENT_RECORDS_VERSION
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|FORMAT_3_1
+name|FORMAT_SEGMENT_RECORDS_VERSION
 init|=
 operator|-
 literal|11
 decl_stmt|;
 comment|/** Each segment records whether its postings are written    *  in the new flex format */
-DECL|field|FORMAT_4_0
+DECL|field|FORMAT_FLEX
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|FORMAT_4_0
+name|FORMAT_FLEX
 init|=
 operator|-
 literal|12
@@ -176,7 +176,7 @@ specifier|final
 name|int
 name|FORMAT_CURRENT
 init|=
-name|FORMAT_4_0
+name|FORMAT_FLEX
 decl_stmt|;
 comment|/** This must always point to the first supported file format. */
 DECL|field|FORMAT_MINIMUM
