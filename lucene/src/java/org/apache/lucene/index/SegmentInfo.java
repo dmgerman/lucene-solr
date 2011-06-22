@@ -2612,7 +2612,7 @@ argument_list|()
 operator|.
 name|compare
 argument_list|(
-literal|"4.0"
+literal|"3.4"
 argument_list|,
 name|version
 argument_list|)
