@@ -230,6 +230,8 @@ argument_list|()
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|SCORE
 argument_list|)
 expr_stmt|;
@@ -273,6 +275,8 @@ name|getType
 argument_list|()
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|FLOAT
 argument_list|)
@@ -333,6 +337,8 @@ argument_list|()
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|FLOAT
 argument_list|)
 expr_stmt|;
@@ -373,6 +379,8 @@ name|getType
 argument_list|()
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|LONG
 argument_list|)
@@ -434,6 +442,8 @@ argument_list|()
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|FLOAT
 argument_list|)
 expr_stmt|;
@@ -474,6 +484,8 @@ name|getType
 argument_list|()
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|LONG
 argument_list|)
@@ -534,6 +546,8 @@ argument_list|()
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|FLOAT
 argument_list|)
 expr_stmt|;
@@ -574,6 +588,8 @@ name|getType
 argument_list|()
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|LONG
 argument_list|)
@@ -635,6 +651,8 @@ argument_list|()
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|FLOAT
 argument_list|)
 expr_stmt|;
@@ -676,6 +694,8 @@ argument_list|()
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|LONG
 argument_list|)
 expr_stmt|;
@@ -709,6 +729,8 @@ name|getType
 argument_list|()
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|FLOAT
 argument_list|)
@@ -756,6 +778,8 @@ name|getType
 argument_list|()
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|REWRITEABLE
 argument_list|)
@@ -806,6 +830,8 @@ argument_list|()
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|REWRITEABLE
 argument_list|)
 expr_stmt|;
@@ -851,6 +877,8 @@ name|getType
 argument_list|()
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|REWRITEABLE
 argument_list|)
@@ -900,6 +928,8 @@ argument_list|()
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|REWRITEABLE
 argument_list|)
 expr_stmt|;
@@ -929,6 +959,8 @@ name|getType
 argument_list|()
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|FLOAT
 argument_list|)
@@ -971,6 +1003,8 @@ argument_list|()
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|LONG
 argument_list|)
 expr_stmt|;
@@ -1004,6 +1038,8 @@ name|getType
 argument_list|()
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|FLOAT
 argument_list|)
@@ -1051,6 +1087,8 @@ name|getType
 argument_list|()
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|REWRITEABLE
 argument_list|)

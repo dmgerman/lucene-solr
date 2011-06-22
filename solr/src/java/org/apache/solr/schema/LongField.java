@@ -225,6 +225,8 @@ name|name
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|LONG
 argument_list|,
 name|reverse

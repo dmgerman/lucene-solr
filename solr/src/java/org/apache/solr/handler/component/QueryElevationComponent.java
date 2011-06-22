@@ -2538,6 +2538,8 @@ literal|null
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|SCORE
 argument_list|,
 literal|false
@@ -2601,6 +2603,8 @@ argument_list|()
 operator|!=
 name|SortField
 operator|.
+name|Type
+operator|.
 name|SCORE
 condition|)
 block|{
@@ -2642,6 +2646,8 @@ name|getType
 argument_list|()
 operator|==
 name|SortField
+operator|.
+name|Type
 operator|.
 name|SCORE
 condition|)

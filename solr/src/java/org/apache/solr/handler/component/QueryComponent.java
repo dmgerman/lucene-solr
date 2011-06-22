@@ -2798,7 +2798,9 @@ range|:
 name|sortFields
 control|)
 block|{
-name|int
+name|SortField
+operator|.
+name|Type
 name|type
 init|=
 name|sortField
@@ -2812,11 +2814,15 @@ name|type
 operator|==
 name|SortField
 operator|.
+name|Type
+operator|.
 name|SCORE
 operator|||
 name|type
 operator|==
 name|SortField
+operator|.
+name|Type
 operator|.
 name|DOC
 condition|)

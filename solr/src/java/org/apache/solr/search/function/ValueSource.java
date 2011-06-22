@@ -347,6 +347,8 @@ argument_list|()
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|REWRITEABLE
 argument_list|,
 name|reverse

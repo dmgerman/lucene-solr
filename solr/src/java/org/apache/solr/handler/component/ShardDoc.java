@@ -327,7 +327,9 @@ name|i
 control|)
 block|{
 comment|// keep track of the named fields
-name|int
+name|SortField
+operator|.
+name|Type
 name|type
 init|=
 name|fields
@@ -344,11 +346,15 @@ name|type
 operator|!=
 name|SortField
 operator|.
+name|Type
+operator|.
 name|SCORE
 operator|&&
 name|type
 operator|!=
 name|SortField
+operator|.
+name|Type
 operator|.
 name|DOC
 condition|)
@@ -416,6 +422,8 @@ argument_list|()
 operator|==
 name|SortField
 operator|.
+name|Type
+operator|.
 name|STRING
 condition|)
 block|{
@@ -432,6 +440,8 @@ argument_list|(
 name|fieldname
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|STRING
 argument_list|,
@@ -647,7 +657,9 @@ parameter_list|(
 name|String
 name|fieldname
 parameter_list|,
-name|int
+name|SortField
+operator|.
+name|Type
 name|type
 parameter_list|,
 name|FieldComparatorSource
@@ -665,8 +677,6 @@ name|type
 condition|)
 block|{
 case|case
-name|SortField
-operator|.
 name|SCORE
 case|:
 name|comparator
@@ -678,8 +688,6 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|SortField
-operator|.
 name|STRING
 case|:
 name|comparator
@@ -691,8 +699,6 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|SortField
-operator|.
 name|CUSTOM
 case|:
 if|if
@@ -725,8 +731,6 @@ comment|// throw new RuntimeException("Custom sort not supported factory is "+fa
 block|}
 break|break;
 case|case
-name|SortField
-operator|.
 name|DOC
 case|:
 comment|// TODO: we can support this!
