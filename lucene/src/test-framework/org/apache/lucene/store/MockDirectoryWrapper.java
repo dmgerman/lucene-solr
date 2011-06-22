@@ -1903,6 +1903,7 @@ return|;
 block|}
 block|}
 DECL|method|addFileHandle
+specifier|synchronized
 name|void
 name|addFileHandle
 parameter_list|(
