@@ -1200,6 +1200,27 @@ literal|'>'
 argument_list|)
 expr_stmt|;
 break|break;
+case|case
+name|REWRITEABLE
+case|:
+name|buffer
+operator|.
+name|append
+argument_list|(
+literal|"<rewriteable: \""
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|field
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"\">"
+argument_list|)
+expr_stmt|;
+break|break;
 default|default:
 name|buffer
 operator|.
