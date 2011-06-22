@@ -1126,14 +1126,14 @@ comment|// either we are on 4.0 or we don't have a lastGlobalFieldMapVersion i.e
 assert|assert
 name|DefaultSegmentInfosWriter
 operator|.
-name|FORMAT_FLEX
+name|FORMAT_4_0
 operator|<=
 name|format
 operator|||
 operator|(
 name|DefaultSegmentInfosWriter
 operator|.
-name|FORMAT_FLEX
+name|FORMAT_4_0
 operator|>
 name|format
 operator|&&
@@ -3728,7 +3728,7 @@ name|format
 operator|>
 name|DefaultSegmentInfosWriter
 operator|.
-name|FORMAT_FLEX
+name|FORMAT_4_0
 condition|)
 block|{
 assert|assert

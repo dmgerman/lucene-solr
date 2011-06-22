@@ -1163,12 +1163,12 @@ name|format
 operator|==
 name|DefaultSegmentInfosWriter
 operator|.
-name|FORMAT_SEGMENT_RECORDS_VERSION
+name|FORMAT_3_1
 condition|)
 block|{
 name|sFormat
 operator|=
-literal|"FORMAT_SEGMENT_RECORDS_VERSION [Lucene 3.1+]"
+literal|"FORMAT_3_1 [Lucene 3.1]"
 expr_stmt|;
 block|}
 elseif|else
@@ -1178,12 +1178,12 @@ name|format
 operator|==
 name|DefaultSegmentInfosWriter
 operator|.
-name|FORMAT_FLEX
+name|FORMAT_4_0
 condition|)
 block|{
 name|sFormat
 operator|=
-literal|"FORMAT_FLEX [Lucene 4.0+]"
+literal|"FORMAT_4_0 [Lucene 4.0]"
 expr_stmt|;
 block|}
 elseif|else
