@@ -178,6 +178,16 @@ name|SHARD
 init|=
 literal|"shard"
 decl_stmt|;
+comment|/** If you unload a core, delete the index too */
+DECL|field|DELETE_INDEX
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|DELETE_INDEX
+init|=
+literal|"deleteIndex"
+decl_stmt|;
 DECL|enum|CoreAdminAction
 specifier|public
 enum|enum
