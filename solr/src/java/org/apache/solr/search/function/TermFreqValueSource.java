@@ -231,6 +231,12 @@ comment|// no one should call us for deleted docs?
 name|docs
 operator|=
 name|terms
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|terms
 operator|.
 name|docs
 argument_list|(
