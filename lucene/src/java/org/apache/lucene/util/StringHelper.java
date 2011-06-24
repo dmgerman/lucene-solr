@@ -233,8 +233,13 @@ condition|)
 block|{
 return|return
 name|aToken
-operator|-
+operator|<
 name|bToken
+condition|?
+operator|-
+literal|1
+else|:
+literal|1
 return|;
 block|}
 block|}
