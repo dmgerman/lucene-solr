@@ -3824,13 +3824,20 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+comment|// NOTE: this also controls the number of threads!
 specifier|final
 name|int
 name|n
 init|=
-name|atLeast
+name|_TestUtil
+operator|.
+name|nextInt
 argument_list|(
-literal|30
+name|random
+argument_list|,
+literal|20
+argument_list|,
+literal|40
 argument_list|)
 decl_stmt|;
 name|IndexWriter
