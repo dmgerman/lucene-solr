@@ -3878,6 +3878,32 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|TEST_ITER
+operator|>
+literal|1
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"WARNING: you are using -Dtests.iter=n where n> 1, not all tests support this option."
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Some may crash or fail: this is not a bug."
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Looks for leftover running threads, trying to kill them off,    * so they don't fail future tests.    * returns the number of rogue threads that it found.    */
 DECL|method|threadCleanup
