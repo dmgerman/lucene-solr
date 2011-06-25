@@ -22,21 +22,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|common
 operator|.
-name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
+name|mutable
 operator|.
 name|MutableValue
 import|;
@@ -48,11 +36,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|search
+name|common
 operator|.
-name|MutableValueFloat
+name|mutable
+operator|.
+name|MutableValueStr
 import|;
 end_import
 
@@ -62,11 +52,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|search
+name|util
 operator|.
-name|MutableValueStr
+name|BytesRef
 import|;
 end_import
 

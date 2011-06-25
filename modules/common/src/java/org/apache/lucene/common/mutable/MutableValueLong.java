@@ -4,15 +4,17 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.search
+DECL|package|org.apache.lucene.common.mutable
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|search
+name|common
+operator|.
+name|mutable
 package|;
 end_package
 
