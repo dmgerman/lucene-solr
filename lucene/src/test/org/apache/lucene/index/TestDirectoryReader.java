@@ -1034,7 +1034,7 @@ argument_list|()
 decl_stmt|;
 name|te2
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 operator|new
 name|BytesRef
@@ -1084,7 +1084,7 @@ argument_list|()
 decl_stmt|;
 name|te3
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 operator|new
 name|BytesRef

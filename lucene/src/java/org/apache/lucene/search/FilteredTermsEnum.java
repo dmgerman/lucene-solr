@@ -369,10 +369,10 @@ block|}
 comment|/** This enum does not support seeking!    * @throws UnsupportedOperationException    */
 annotation|@
 name|Override
-DECL|method|seek
+DECL|method|seekExact
 specifier|public
-name|SeekStatus
-name|seek
+name|boolean
+name|seekExact
 parameter_list|(
 name|BytesRef
 name|term
@@ -400,10 +400,41 @@ block|}
 comment|/** This enum does not support seeking!    * @throws UnsupportedOperationException    */
 annotation|@
 name|Override
-DECL|method|seek
+DECL|method|seekCeil
 specifier|public
 name|SeekStatus
-name|seek
+name|seekCeil
+parameter_list|(
+name|BytesRef
+name|term
+parameter_list|,
+name|boolean
+name|useCache
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" does not support seeking"
+argument_list|)
+throw|;
+block|}
+comment|/** This enum does not support seeking!    * @throws UnsupportedOperationException    */
+annotation|@
+name|Override
+DECL|method|seekExact
+specifier|public
+name|void
+name|seekExact
 parameter_list|(
 name|long
 name|ord
@@ -499,10 +530,10 @@ block|}
 comment|/** This enum does not support seeking!    * @throws UnsupportedOperationException    */
 annotation|@
 name|Override
-DECL|method|seek
+DECL|method|seekExact
 specifier|public
 name|void
-name|seek
+name|seekExact
 parameter_list|(
 name|BytesRef
 name|term
@@ -628,7 +659,7 @@ literal|null
 operator|||
 name|tenum
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 name|t
 argument_list|,

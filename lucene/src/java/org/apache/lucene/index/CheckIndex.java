@@ -4192,7 +4192,7 @@ if|if
 condition|(
 name|terms
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 name|lastTerm
 argument_list|)
@@ -4379,7 +4379,7 @@ operator|)
 decl_stmt|;
 name|terms
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 name|ord
 argument_list|)
@@ -4426,7 +4426,7 @@ if|if
 condition|(
 name|terms
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 name|seekTerms
 index|[

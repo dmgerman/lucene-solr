@@ -985,7 +985,7 @@ if|if
 condition|(
 name|termsEnum
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 name|lowerBytes
 argument_list|,

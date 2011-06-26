@@ -1152,16 +1152,17 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|seek
+DECL|method|seekCeil
 specifier|public
 name|SeekStatus
-name|seek
+name|seekCeil
 parameter_list|(
 name|BytesRef
 name|text
 parameter_list|,
 name|boolean
 name|useCache
+comment|/* ignored */
 parameter_list|)
 throws|throws
 name|IOException
@@ -1196,7 +1197,7 @@ operator|)
 operator|>>>
 literal|1
 decl_stmt|;
-name|seek
+name|seekExact
 argument_list|(
 name|mid
 argument_list|)
@@ -1259,7 +1260,7 @@ return|;
 block|}
 else|else
 block|{
-name|seek
+name|seekExact
 argument_list|(
 name|low
 argument_list|)
@@ -1271,12 +1272,10 @@ name|NOT_FOUND
 return|;
 block|}
 block|}
-annotation|@
-name|Override
-DECL|method|seek
+DECL|method|seekExact
 specifier|public
-name|SeekStatus
-name|seek
+name|void
+name|seekExact
 parameter_list|(
 name|long
 name|ord
@@ -1329,11 +1328,6 @@ name|int
 operator|)
 name|ord
 expr_stmt|;
-return|return
-name|SeekStatus
-operator|.
-name|FOUND
-return|;
 block|}
 annotation|@
 name|Override
@@ -1622,10 +1616,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|seek
+DECL|method|seekExact
 specifier|public
 name|void
-name|seek
+name|seekExact
 parameter_list|(
 name|BytesRef
 name|term
@@ -1647,7 +1641,7 @@ name|OrdTermState
 assert|;
 name|this
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 operator|(
 operator|(

@@ -3404,10 +3404,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|seek
+DECL|method|seekExact
 specifier|public
-name|SeekStatus
-name|seek
+name|void
+name|seekExact
 parameter_list|(
 name|long
 name|ord
@@ -3439,10 +3439,10 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|seek
+DECL|method|seekCeil
 specifier|public
 name|SeekStatus
-name|seek
+name|seekCeil
 parameter_list|(
 name|BytesRef
 name|term
