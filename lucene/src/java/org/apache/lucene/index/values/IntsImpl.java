@@ -890,10 +890,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|add
+DECL|method|mergeDoc
 specifier|protected
 name|void
-name|add
+name|mergeDoc
 parameter_list|(
 name|int
 name|docID
