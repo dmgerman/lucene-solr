@@ -154,6 +154,9 @@ name|dir
 parameter_list|,
 name|String
 name|id
+parameter_list|,
+name|int
+name|numDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -165,6 +168,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|id
+argument_list|,
+name|numDocs
 argument_list|)
 return|;
 block|}

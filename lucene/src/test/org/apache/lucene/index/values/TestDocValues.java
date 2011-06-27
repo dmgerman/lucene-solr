@@ -1468,6 +1468,8 @@ argument_list|(
 name|dir
 argument_list|,
 literal|"test"
+argument_list|,
+literal|2
 argument_list|)
 decl_stmt|;
 name|Source
@@ -1844,6 +1846,10 @@ argument_list|(
 name|dir
 argument_list|,
 literal|"test"
+argument_list|,
+name|sourceArray
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 name|Source
@@ -2043,6 +2049,10 @@ argument_list|(
 name|dir
 argument_list|,
 literal|"test"
+argument_list|,
+name|sourceArray
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 name|Source
@@ -2239,6 +2249,10 @@ argument_list|(
 name|dir
 argument_list|,
 literal|"test"
+argument_list|,
+name|sourceArray
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 name|Source
@@ -2438,6 +2452,10 @@ argument_list|(
 name|dir
 argument_list|,
 literal|"test"
+argument_list|,
+name|sourceArray
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 name|Source
@@ -3107,6 +3125,10 @@ argument_list|(
 name|dir
 argument_list|,
 literal|"test"
+argument_list|,
+name|NUM_VALUES
+operator|+
+name|additionalDocs
 argument_list|)
 decl_stmt|;
 for|for

@@ -473,6 +473,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|id
+argument_list|,
+name|docCount
 argument_list|)
 return|;
 case|case
