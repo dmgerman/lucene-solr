@@ -633,7 +633,7 @@ return|return
 name|phraseLimit
 return|;
 block|}
-comment|/**    * set the maximum number of phrases to analyze when searching for the highest-scoring phrase.    * The default is 5000.  To ensure that all phrases are analyzed, use a negative number or Integer.MAX_VALUE.    */
+comment|/**    * set the maximum number of phrases to analyze when searching for the highest-scoring phrase.    * The default is unlimited (Integer.MAX_VALUE).    */
 DECL|method|setPhraseLimit
 specifier|public
 name|void
