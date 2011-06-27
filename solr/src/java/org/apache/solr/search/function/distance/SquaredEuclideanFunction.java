@@ -28,9 +28,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
+name|queries
 operator|.
-name|DistanceUtils
+name|function
+operator|.
+name|DocValues
 import|;
 end_import
 
@@ -40,13 +42,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|search
+name|spatial
 operator|.
-name|function
-operator|.
-name|DocValues
+name|DistanceUtils
 import|;
 end_import
 

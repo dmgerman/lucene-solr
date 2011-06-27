@@ -18,6 +18,22 @@ name|function
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|ValueSource
+import|;
+end_import
+
 begin_comment
 comment|/**  *<code>ConstNumberSource</code> is the base class for all constant numbers  */
 end_comment

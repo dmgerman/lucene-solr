@@ -42,6 +42,38 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|ValueSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|IndexSearcher
@@ -69,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>LinearFloatFunction</code> implements a linear function over  * another {@link ValueSource}.  *<br>  * Normally Used as an argument to a {@link FunctionQuery}  *  *  */
+comment|/**  *<code>LinearFloatFunction</code> implements a linear function over  * another {@link ValueSource}.  *<br>  * Normally Used as an argument to a {@link org.apache.lucene.queries.function.FunctionQuery}  *  *  */
 end_comment
 
 begin_class

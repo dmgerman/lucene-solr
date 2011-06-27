@@ -42,6 +42,38 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|ValueSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|IndexSearcher
@@ -61,38 +93,6 @@ operator|.
 name|function
 operator|.
 name|MultiValueSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|function
-operator|.
-name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|function
-operator|.
-name|ValueSource
 import|;
 end_import
 
@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Converts individual ValueSource instances to leverage the DocValues *Val functions that work with multiple values,  * i.e. {@link org.apache.solr.search.function.DocValues#doubleVal(int, double[])}  */
+comment|/**  * Converts individual ValueSource instances to leverage the DocValues *Val functions that work with multiple values,  * i.e. {@link org.apache.lucene.queries.function.DocValues#doubleVal(int, double[])}  */
 end_comment
 
 begin_comment
