@@ -1400,7 +1400,7 @@ argument_list|)
 argument_list|,
 name|ValueType
 operator|.
-name|INTS
+name|VAR_INTS
 argument_list|)
 else|:
 operator|new
