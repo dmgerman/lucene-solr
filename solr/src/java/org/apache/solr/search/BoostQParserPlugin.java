@@ -56,6 +56,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|valuesource
+operator|.
+name|QueryValueSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queryParser
 operator|.
 name|ParseException
@@ -138,24 +156,8 @@ name|BoostedQuery
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|function
-operator|.
-name|QueryValueSource
-import|;
-end_import
-
 begin_comment
-comment|/**  * Create a boosted query from the input value.  The main value is the query to be boosted.  *<br>Other parameters:<code>b</code>, the function query to use as the boost.  *<p>Example:<code>{!boost b=log(popularity)}foo</code> creates a query "foo"  * which is boosted (scores are multiplied) by the function query<code>log(popularity)</code>.  * The query to be boosted may be of any type.  *  *<p>Example:<code>{!boost b=recip(ms(NOW,mydatefield),3.16e-11,1,1)}foo</code> creates a query "foo"  * which is boosted by the date boosting function referenced in {@link org.apache.solr.search.function.ReciprocalFloatFunction}  */
+comment|/**  * Create a boosted query from the input value.  The main value is the query to be boosted.  *<br>Other parameters:<code>b</code>, the function query to use as the boost.  *<p>Example:<code>{!boost b=log(popularity)}foo</code> creates a query "foo"  * which is boosted (scores are multiplied) by the function query<code>log(popularity)</code>.  * The query to be boosted may be of any type.  *  *<p>Example:<code>{!boost b=recip(ms(NOW,mydatefield),3.16e-11,1,1)}foo</code> creates a query "foo"  * which is boosted by the date boosting function referenced in  * {@link org.apache.lucene.queries.function.valuesource.ReciprocalFloatFunction}  */
 end_comment
 
 begin_class
