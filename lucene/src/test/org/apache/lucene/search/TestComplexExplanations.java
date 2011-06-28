@@ -97,8 +97,13 @@ name|Exception
 block|{
 name|searcher
 operator|.
-name|close
+name|setSimilarityProvider
+argument_list|(
+name|IndexSearcher
+operator|.
+name|getDefaultSimilarityProvider
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|super
 operator|.
