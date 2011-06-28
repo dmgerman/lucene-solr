@@ -983,6 +983,25 @@ literal|true
 expr_stmt|;
 break|break;
 block|}
+elseif|else
+if|if
+condition|(
+operator|!
+name|threads
+index|[
+name|i
+index|]
+operator|.
+name|isAlive
+argument_list|()
+condition|)
+block|{
+name|fail
+argument_list|(
+literal|"thread failed before indexing a single document"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|writer
 operator|.

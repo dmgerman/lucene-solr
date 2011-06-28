@@ -401,6 +401,8 @@ name|DATE_TIME_FIELD
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|STRING
 argument_list|,
 literal|true

@@ -818,6 +818,8 @@ literal|null
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|SCORE
 argument_list|)
 argument_list|)
@@ -882,6 +884,8 @@ argument_list|(
 literal|null
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|SCORE
 argument_list|)

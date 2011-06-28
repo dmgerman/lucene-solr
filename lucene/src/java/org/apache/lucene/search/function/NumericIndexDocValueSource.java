@@ -210,7 +210,7 @@ block|}
 block|}
 return|;
 case|case
-name|INTS
+name|VAR_INTS
 case|:
 return|return
 operator|new

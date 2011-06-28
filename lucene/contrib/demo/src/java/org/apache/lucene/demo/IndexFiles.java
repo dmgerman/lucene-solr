@@ -259,7 +259,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Index all text files under a directory. See http://lucene.apache.org/java/4_0/demo.html. */
+comment|/** Index all text files under a directory.  *<p>  * This is a command-line application demonstrating simple Lucene indexing.  * Run it with no command-line arguments for usage information.  */
 end_comment
 
 begin_class
@@ -291,9 +291,10 @@ init|=
 literal|"java org.apache.lucene.demo.IndexFiles"
 operator|+
 literal|" [-index INDEX_PATH] [-docs DOCS_PATH] [-update]\n\n"
-comment|// TODO: Change the link with every release (or: fill in some less error-prone alternative here...)
 operator|+
-literal|"See http://lucene.apache.org/java/4_0/demo.html for details."
+literal|"This indexes the documents in DOCS_PATH, creating a Lucene index"
+operator|+
+literal|"in INDEX_PATH that can be searched with SearchFiles"
 decl_stmt|;
 name|String
 name|indexPath

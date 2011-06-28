@@ -22,9 +22,9 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|search
+name|queries
 operator|.
 name|function
 operator|.

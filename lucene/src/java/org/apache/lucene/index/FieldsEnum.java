@@ -85,7 +85,7 @@ return|return
 name|atts
 return|;
 block|}
-comment|/** Increments the enumeration to the next field.  The    *  returned field is always interned, so simple ==    *  comparison is allowed.  Returns null when there are no    *  more fields.*/
+comment|/** Increments the enumeration to the next field. Returns    * null when there are no more fields.*/
 DECL|method|next
 specifier|public
 specifier|abstract

@@ -366,20 +366,6 @@ name|FieldCacheSanityChecker
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|StringHelper
-import|;
-end_import
-
 begin_comment
 comment|/**  * Expert: The default cache implementation, storing all values in memory.  * A WeakHashMap is used for storage.  *  *<p>Created: May 19, 2004 4:40:36 PM  *   * @lucene.internal -- this is now public so that the tests can use reflection  * to call methods.  It will likely be removed without (much) notice.  *   * @since   lucene 1.4  */
 end_comment
@@ -1582,12 +1568,7 @@ name|this
 operator|.
 name|field
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|field
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -1628,8 +1609,11 @@ condition|(
 name|other
 operator|.
 name|field
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|field
+argument_list|)
 condition|)
 block|{
 if|if

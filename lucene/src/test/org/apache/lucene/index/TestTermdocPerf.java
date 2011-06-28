@@ -613,7 +613,7 @@ control|)
 block|{
 name|tenum
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 operator|new
 name|BytesRef

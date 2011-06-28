@@ -944,7 +944,7 @@ name|Object
 argument_list|>
 name|kids
 init|=
-name|getAllDecendentReaderKeys
+name|getAllDescendentReaderKeys
 argument_list|(
 name|rf
 operator|.
@@ -1200,7 +1200,7 @@ name|InsanityType
 operator|.
 name|SUBREADER
 argument_list|,
-literal|"Found caches for decendents of "
+literal|"Found caches for descendants of "
 operator|+
 name|parent
 operator|.
@@ -1217,13 +1217,13 @@ name|insanity
 return|;
 block|}
 comment|/**    * Checks if the seed is an IndexReader, and if so will walk    * the hierarchy of subReaders building up a list of the objects     * returned by obj.getFieldCacheKey()    */
-DECL|method|getAllDecendentReaderKeys
+DECL|method|getAllDescendentReaderKeys
 specifier|private
 name|List
 argument_list|<
 name|Object
 argument_list|>
-name|getAllDecendentReaderKeys
+name|getAllDescendentReaderKeys
 parameter_list|(
 name|Object
 name|seed

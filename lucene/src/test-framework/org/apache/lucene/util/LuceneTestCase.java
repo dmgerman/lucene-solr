@@ -3878,6 +3878,32 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|TEST_ITER
+operator|>
+literal|1
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"WARNING: you are using -Dtests.iter=n where n> 1, not all tests support this option."
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Some may crash or fail: this is not a bug."
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Looks for leftover running threads, trying to kill them off,    * so they don't fail future tests.    * returns the number of rogue threads that it found.    */
 DECL|method|threadCleanup
@@ -4215,6 +4241,19 @@ expr_stmt|;
 throw|throw
 name|e
 throw|;
+block|}
+if|if
+condition|(
+name|insanity
+operator|.
+name|length
+operator|!=
+literal|0
+condition|)
+block|{
+name|reportAdditionalFailureInfo
+argument_list|()
+expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
@@ -6335,6 +6374,24 @@ argument_list|,
 name|tv
 argument_list|)
 return|;
+block|}
+if|if
+condition|(
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+comment|// tickle any code still relying on field names being interned:
+name|name
+operator|=
+operator|new
+name|String
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(

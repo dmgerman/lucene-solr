@@ -108,7 +108,7 @@ name|WeightedPhraseInfo
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * a constructor.    *     * @param fieldTermStack FieldTermStack object    * @param fieldQuery FieldQuery object    */
+comment|/**    * create a FieldPhraseList that has no limit on the number of phrases to analyze    *     * @param fieldTermStack FieldTermStack object    * @param fieldQuery FieldQuery object    */
 DECL|method|FieldPhraseList
 specifier|public
 name|FieldPhraseList
@@ -118,6 +118,33 @@ name|fieldTermStack
 parameter_list|,
 name|FieldQuery
 name|fieldQuery
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|fieldTermStack
+argument_list|,
+name|fieldQuery
+argument_list|,
+name|Integer
+operator|.
+name|MAX_VALUE
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * a constructor.    *     * @param fieldTermStack FieldTermStack object    * @param fieldQuery FieldQuery object    * @param phraseLimit maximum size of phraseList    */
+DECL|method|FieldPhraseList
+specifier|public
+name|FieldPhraseList
+parameter_list|(
+name|FieldTermStack
+name|fieldTermStack
+parameter_list|,
+name|FieldQuery
+name|fieldQuery
+parameter_list|,
+name|int
+name|phraseLimit
 parameter_list|)
 block|{
 specifier|final
@@ -159,6 +186,15 @@ name|fieldTermStack
 operator|.
 name|isEmpty
 argument_list|()
+operator|&&
+operator|(
+name|phraseList
+operator|.
+name|size
+argument_list|()
+operator|<
+name|phraseLimit
+operator|)
 condition|)
 block|{
 name|phraseCandidate

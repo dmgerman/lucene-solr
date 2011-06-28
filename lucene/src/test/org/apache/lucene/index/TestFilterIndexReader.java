@@ -802,7 +802,7 @@ name|FOUND
 argument_list|,
 name|terms
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 operator|new
 name|BytesRef

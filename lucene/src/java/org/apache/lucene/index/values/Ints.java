@@ -120,16 +120,15 @@ parameter_list|,
 name|String
 name|id
 parameter_list|,
-name|boolean
-name|useFixedArray
-parameter_list|,
 name|AtomicLong
 name|bytesUsed
+parameter_list|,
+name|ValueType
+name|type
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO - implement fixed?!
 return|return
 operator|new
 name|IntsWriter
@@ -139,6 +138,8 @@ argument_list|,
 name|id
 argument_list|,
 name|bytesUsed
+argument_list|,
+name|type
 argument_list|)
 return|;
 block|}
@@ -154,8 +155,8 @@ parameter_list|,
 name|String
 name|id
 parameter_list|,
-name|boolean
-name|useFixedArray
+name|int
+name|numDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -167,6 +168,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|id
+argument_list|,
+name|numDocs
 argument_list|)
 return|;
 block|}

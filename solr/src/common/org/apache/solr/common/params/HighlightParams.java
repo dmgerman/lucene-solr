@@ -246,6 +246,17 @@ name|HIGHLIGHT
 operator|+
 literal|".tag.post"
 decl_stmt|;
+DECL|field|PHRASE_LIMIT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PHRASE_LIMIT
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".phraseLimit"
+decl_stmt|;
 DECL|field|MULTI_VALUED_SEPARATOR
 specifier|public
 specifier|static

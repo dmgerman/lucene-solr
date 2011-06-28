@@ -152,22 +152,6 @@ name|ReaderContext
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|TermsEnum
-operator|.
-name|SeekStatus
-import|;
-end_import
-
 begin_comment
 comment|/**  * Maintains a {@link IndexReader} {@link TermState} view over  * {@link IndexReader} instances containing a single term. The  * {@link PerReaderTermState} doesn't track if the given {@link TermState}  * objects are valid, neither if the {@link TermState} instances refer to the  * same terms in the associated readers.  *   * @lucene.experimental  */
 end_comment
@@ -433,13 +417,9 @@ decl_stmt|;
 comment|// thread-private don't share!
 if|if
 condition|(
-name|SeekStatus
-operator|.
-name|FOUND
-operator|==
 name|termsEnum
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 name|bytes
 argument_list|,

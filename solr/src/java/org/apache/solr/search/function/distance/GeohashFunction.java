@@ -26,13 +26,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|function
+name|IndexReader
 operator|.
-name|ValueSource
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -42,9 +42,9 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|search
+name|queries
 operator|.
 name|function
 operator|.
@@ -60,11 +60,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|queries
 operator|.
-name|IndexReader
+name|function
 operator|.
-name|AtomicReaderContext
+name|ValueSource
 import|;
 end_import
 

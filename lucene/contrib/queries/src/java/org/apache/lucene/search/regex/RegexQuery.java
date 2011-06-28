@@ -54,6 +54,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|RegexpQuery
+import|;
+end_import
+
+begin_comment
+comment|// javadoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|Term
@@ -113,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements the regular expression term search query.  * The expressions supported depend on the regular expression implementation  * used by way of the {@link RegexCapabilities} interface.  *  * @see RegexTermsEnum  */
+comment|/** Implements the regular expression term search query.  * The expressions supported depend on the regular expression implementation  * used by way of the {@link RegexCapabilities} interface.  *<p>  * NOTE: You may wish to consider using the regex query support   * in {@link RegexpQuery} instead, as it has better performance.  *   * @see RegexTermsEnum  */
 end_comment
 
 begin_class

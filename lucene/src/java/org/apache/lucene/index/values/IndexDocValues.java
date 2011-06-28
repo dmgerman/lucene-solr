@@ -494,6 +494,28 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**      * Returns<code>true</code> iff this {@link Source} exposes an array via      * {@link #getArray()} otherwise<code>false</code>.      *       * @return<code>true</code> iff this {@link Source} exposes an array via      *         {@link #getArray()} otherwise<code>false</code>.      */
+DECL|method|hasArray
+specifier|public
+name|boolean
+name|hasArray
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+comment|/**      * Returns the internal array representation iff this {@link Source} uses an      * array as its inner representation, otherwise<code>null</code>.      */
+DECL|method|getArray
+specifier|public
+name|Object
+name|getArray
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 comment|/**    * {@link ValuesEnum} utility for {@link Source} implemenations.    *     */
 DECL|class|SourceEnum

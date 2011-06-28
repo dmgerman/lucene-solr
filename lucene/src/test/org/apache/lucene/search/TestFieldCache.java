@@ -1828,7 +1828,7 @@ name|FOUND
 argument_list|,
 name|tenum
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 name|val1
 argument_list|)

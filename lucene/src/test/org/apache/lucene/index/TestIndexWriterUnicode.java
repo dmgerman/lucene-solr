@@ -1037,7 +1037,7 @@ name|FOUND
 argument_list|,
 name|terms
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 name|tr
 argument_list|)

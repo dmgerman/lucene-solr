@@ -153,16 +153,12 @@ if|if
 condition|(
 name|termsEnum
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 name|text
+argument_list|,
+literal|true
 argument_list|)
-operator|==
-name|TermsEnum
-operator|.
-name|SeekStatus
-operator|.
-name|FOUND
 condition|)
 block|{
 return|return
@@ -202,16 +198,12 @@ if|if
 condition|(
 name|termsEnum
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 name|text
+argument_list|,
+literal|true
 argument_list|)
-operator|==
-name|TermsEnum
-operator|.
-name|SeekStatus
-operator|.
-name|FOUND
 condition|)
 block|{
 return|return
@@ -257,16 +249,12 @@ if|if
 condition|(
 name|termsEnum
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 name|text
+argument_list|,
+literal|true
 argument_list|)
-operator|==
-name|TermsEnum
-operator|.
-name|SeekStatus
-operator|.
-name|FOUND
 condition|)
 block|{
 return|return
@@ -316,16 +304,12 @@ if|if
 condition|(
 name|termsEnum
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 name|text
+argument_list|,
+literal|true
 argument_list|)
-operator|==
-name|TermsEnum
-operator|.
-name|SeekStatus
-operator|.
-name|FOUND
 condition|)
 block|{
 return|return
@@ -346,7 +330,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * Expert: Get {@link DocsEnum} for the specified {@link TermState}.    * This method may return<code>null</code> if the term does not exist.    *     * @see TermsEnum#termState()    * @see TermsEnum#seek(BytesRef, TermState) */
+comment|/**    * Expert: Get {@link DocsEnum} for the specified {@link TermState}.    * This method may return<code>null</code> if the term does not exist.    *     * @see TermsEnum#termState()    * @see TermsEnum#seekExact(BytesRef, TermState) */
 DECL|method|docs
 specifier|public
 name|DocsEnum
@@ -376,7 +360,7 @@ argument_list|()
 decl_stmt|;
 name|termsEnum
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 name|term
 argument_list|,
@@ -394,7 +378,7 @@ name|reuse
 argument_list|)
 return|;
 block|}
-comment|/**    * Get {@link DocsEnum} for the specified {@link TermState}. This    * method will may return<code>null</code> if the term does not exists, or positions were    * not indexed.    *     * @see TermsEnum#termState()    * @see TermsEnum#seek(BytesRef, TermState) */
+comment|/**    * Get {@link DocsEnum} for the specified {@link TermState}. This    * method will may return<code>null</code> if the term does not exists, or positions were    * not indexed.    *     * @see TermsEnum#termState()    * @see TermsEnum#seekExact(BytesRef, TermState) */
 DECL|method|docsAndPositions
 specifier|public
 name|DocsAndPositionsEnum
@@ -424,7 +408,7 @@ argument_list|()
 decl_stmt|;
 name|termsEnum
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 name|term
 argument_list|,

@@ -3458,7 +3458,7 @@ expr_stmt|;
 block|}
 name|termsEnum
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 operator|new
 name|BytesRef
@@ -4464,6 +4464,8 @@ argument_list|(
 literal|"title"
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|STRING
 argument_list|)

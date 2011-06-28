@@ -317,6 +317,7 @@ literal|0
 condition|)
 block|{
 comment|// seek forward
+comment|//System.out.println("    seek fwd");
 break|break;
 block|}
 elseif|else
@@ -363,6 +364,7 @@ name|upto
 operator|++
 expr_stmt|;
 block|}
+comment|//System.out.println("  fall through upto=" + upto);
 block|}
 DECL|method|doNext
 specifier|protected
@@ -1534,6 +1536,16 @@ operator|.
 name|label
 operator|<
 name|targetLabel
+operator|:
+literal|"arc.label="
+operator|+
+name|arc
+operator|.
+name|label
+operator|+
+literal|" vs targetLabel="
+operator|+
+name|targetLabel
 assert|;
 name|pushLast
 argument_list|()
@@ -1768,6 +1780,160 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+block|}
+block|}
+comment|/** Seeks to exactly target term. */
+DECL|method|doSeekExact
+specifier|protected
+name|boolean
+name|doSeekExact
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// TODO: possibly caller could/should provide common
+comment|// prefix length?  ie this work may be redundant if
+comment|// caller is in fact intersecting against its own
+comment|// automaton
+comment|//System.out.println("FE: seek exact upto=" + upto);
+comment|// Save time by starting at the end of the shared prefix
+comment|// b/w our current term& the target:
+name|rewindPrefix
+argument_list|()
+expr_stmt|;
+comment|//System.out.println("FE: after rewind upto=" + upto);
+name|FST
+operator|.
+name|Arc
+argument_list|<
+name|T
+argument_list|>
+name|arc
+init|=
+name|getArc
+argument_list|(
+name|upto
+operator|-
+literal|1
+argument_list|)
+decl_stmt|;
+name|int
+name|targetLabel
+init|=
+name|getTargetLabel
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+comment|//System.out.println("  cycle target=" + (targetLabel == -1 ? "-1" : (char) targetLabel));
+specifier|final
+name|FST
+operator|.
+name|Arc
+argument_list|<
+name|T
+argument_list|>
+name|nextArc
+init|=
+name|fst
+operator|.
+name|findTargetArc
+argument_list|(
+name|targetLabel
+argument_list|,
+name|arc
+argument_list|,
+name|getArc
+argument_list|(
+name|upto
+argument_list|)
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|nextArc
+operator|==
+literal|null
+condition|)
+block|{
+comment|// short circuit
+comment|//upto--;
+comment|//upto = 0;
+name|fst
+operator|.
+name|readFirstTargetArc
+argument_list|(
+name|arc
+argument_list|,
+name|getArc
+argument_list|(
+name|upto
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//System.out.println("  no match upto=" + upto);
+return|return
+literal|false
+return|;
+block|}
+comment|// Match -- recurse:
+name|output
+index|[
+name|upto
+index|]
+operator|=
+name|fst
+operator|.
+name|outputs
+operator|.
+name|add
+argument_list|(
+name|output
+index|[
+name|upto
+operator|-
+literal|1
+index|]
+argument_list|,
+name|nextArc
+operator|.
+name|output
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|targetLabel
+operator|==
+name|FST
+operator|.
+name|END_LABEL
+condition|)
+block|{
+comment|//System.out.println("  return found; upto=" + upto + " output=" + output[upto] + " nextArc=" + nextArc.isLast());
+return|return
+literal|true
+return|;
+block|}
+name|setCurrentLabel
+argument_list|(
+name|targetLabel
+argument_list|)
+expr_stmt|;
+name|incr
+argument_list|()
+expr_stmt|;
+name|targetLabel
+operator|=
+name|getTargetLabel
+argument_list|()
+expr_stmt|;
+name|arc
+operator|=
+name|nextArc
+expr_stmt|;
 block|}
 block|}
 DECL|method|incr

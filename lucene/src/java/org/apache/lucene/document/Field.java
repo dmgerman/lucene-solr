@@ -54,20 +54,6 @@ name|IndexWriter
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|StringHelper
-import|;
-end_import
-
 begin_comment
 comment|/**   A field is a section of a Document.  Each field has two parts, a name and a   value.  Values may be free text, provided as a String or as a Reader, or they   may be atomic keywords, which are not further processed.  Such keywords may   be used to represent dates, urls, etc.  Fields are optionally stored in the   index, so that they may be returned with hits on the document.   */
 end_comment
@@ -1042,46 +1028,6 @@ name|TermVector
 name|termVector
 parameter_list|)
 block|{
-name|this
-argument_list|(
-name|name
-argument_list|,
-literal|true
-argument_list|,
-name|value
-argument_list|,
-name|store
-argument_list|,
-name|index
-argument_list|,
-name|termVector
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Create a field by specifying its name, value and how it will    * be saved in the index.    *     * @param name The name of the field    * @param internName Whether to .intern() name or not    * @param value The string to process    * @param store Whether<code>value</code> should be stored in the index    * @param index Whether the field should be indexed, and if so, if it should    *  be tokenized before indexing     * @param termVector Whether term vector should be stored    * @throws NullPointerException if name or value is<code>null</code>    * @throws IllegalArgumentException in any of the following situations:    *<ul>     *<li>the field is neither stored nor indexed</li>     *<li>the field is not indexed but termVector is<code>TermVector.YES</code></li>    *</ul>     */
-DECL|method|Field
-specifier|public
-name|Field
-parameter_list|(
-name|String
-name|name
-parameter_list|,
-name|boolean
-name|internName
-parameter_list|,
-name|String
-name|value
-parameter_list|,
-name|Store
-name|store
-parameter_list|,
-name|Index
-name|index
-parameter_list|,
-name|TermVector
-name|termVector
-parameter_list|)
-block|{
 if|if
 condition|(
 name|name
@@ -1177,20 +1123,6 @@ operator|+
 literal|"for a field that is not indexed"
 argument_list|)
 throw|;
-if|if
-condition|(
-name|internName
-condition|)
-comment|// field names are optionally interned
-name|name
-operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|name
@@ -1336,14 +1268,8 @@ name|this
 operator|.
 name|name
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|name
-argument_list|)
 expr_stmt|;
-comment|// field names are interned
 name|this
 operator|.
 name|fieldsData
@@ -1449,14 +1375,8 @@ name|this
 operator|.
 name|name
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|name
-argument_list|)
 expr_stmt|;
-comment|// field names are interned
 name|this
 operator|.
 name|fieldsData
@@ -1575,14 +1495,8 @@ name|this
 operator|.
 name|name
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|name
-argument_list|)
 expr_stmt|;
-comment|// field names are interned
 name|fieldsData
 operator|=
 name|value

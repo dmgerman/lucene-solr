@@ -1576,7 +1576,7 @@ name|result
 init|=
 name|termsEnum
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 name|term
 argument_list|)

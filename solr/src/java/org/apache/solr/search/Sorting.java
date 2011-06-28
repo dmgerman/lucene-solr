@@ -88,6 +88,8 @@ name|fieldName
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|STRING
 argument_list|,
 literal|true
@@ -124,6 +126,8 @@ name|fieldName
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|STRING
 argument_list|,
 literal|false
@@ -139,6 +143,8 @@ argument_list|(
 name|fieldName
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|STRING
 argument_list|,

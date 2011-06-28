@@ -355,12 +355,16 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|term
 operator|.
 name|field
 argument_list|()
-operator|!=
+operator|.
+name|equals
+argument_list|(
 name|lastField
+argument_list|)
 condition|)
 block|{
 name|termsC
@@ -411,7 +415,7 @@ if|if
 condition|(
 name|termsEnum
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 name|br
 argument_list|)

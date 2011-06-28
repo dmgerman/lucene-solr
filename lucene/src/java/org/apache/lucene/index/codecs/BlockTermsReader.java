@@ -495,8 +495,11 @@ return|return
 name|other
 operator|.
 name|field
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|field
+argument_list|)
 operator|&&
 name|term
 operator|.
@@ -1382,7 +1385,7 @@ specifier|private
 name|BytesRef
 name|nextIndexTerm
 decl_stmt|;
-comment|/* True after seek(TermState), do defer seeking.  If the app then          calls next() (which is not "typical"), then we'll do the real seek */
+comment|/* True after seekExact(TermState), do defer seeking.  If the app then          calls next() (which is not "typical"), then we'll do the real seek */
 DECL|field|seekPending
 specifier|private
 name|boolean
@@ -1407,9 +1410,7 @@ name|termSuffixesReader
 init|=
 operator|new
 name|ByteArrayDataInput
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|/* Common prefix used for all terms in this block. */
 DECL|field|termBlockPrefix
@@ -1431,9 +1432,7 @@ name|freqReader
 init|=
 operator|new
 name|ByteArrayDataInput
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 DECL|field|metaDataUpto
 specifier|private
@@ -1557,10 +1556,10 @@ comment|// return NOT_FOUND so it's a waste for us to fill in
 comment|// the term that was actually NOT_FOUND
 annotation|@
 name|Override
-DECL|method|seek
+DECL|method|seekCeil
 specifier|public
 name|SeekStatus
-name|seek
+name|seekCeil
 parameter_list|(
 specifier|final
 name|BytesRef
@@ -1628,7 +1627,7 @@ operator|=
 literal|true
 expr_stmt|;
 comment|//System.out.println("  cached!");
-name|seek
+name|seekExact
 argument_list|(
 name|target
 argument_list|,
@@ -2915,10 +2914,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|seek
+DECL|method|seekExact
 specifier|public
 name|void
-name|seek
+name|seekExact
 parameter_list|(
 name|BytesRef
 name|target
@@ -3009,10 +3008,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|seek
+DECL|method|seekExact
 specifier|public
-name|SeekStatus
-name|seek
+name|void
+name|seekExact
 parameter_list|(
 name|long
 name|ord
@@ -3036,27 +3035,11 @@ literal|"terms index was not loaded"
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
+assert|assert
 name|ord
-operator|>=
+operator|<
 name|numTerms
-condition|)
-block|{
-name|state
-operator|.
-name|ord
-operator|=
-name|numTerms
-operator|-
-literal|1
-expr_stmt|;
-return|return
-name|SeekStatus
-operator|.
-name|END
-return|;
-block|}
+assert|;
 comment|// TODO: if ord is in same terms block and
 comment|// after current ord, we should avoid this seek just
 comment|// like we do in the seek(BytesRef) case
@@ -3174,12 +3157,6 @@ assert|assert
 name|indexIsCurrent
 assert|;
 block|}
-comment|// always found
-return|return
-name|SeekStatus
-operator|.
-name|FOUND
-return|;
 block|}
 annotation|@
 name|Override

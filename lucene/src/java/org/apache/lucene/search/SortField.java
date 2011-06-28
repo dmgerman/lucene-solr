@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|StringHelper
+name|BytesRef
 import|;
 end_import
 
@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|StringHelper
 import|;
 end_import
 
@@ -102,137 +102,64 @@ specifier|public
 class|class
 name|SortField
 block|{
-comment|/** Sort by document score (relevance).  Sort values are Float and higher    * values are at the front. */
-DECL|field|SCORE
+DECL|enum|Type
 specifier|public
 specifier|static
-specifier|final
-name|int
+enum|enum
+name|Type
+block|{
+comment|/** Sort by document score (relevance).  Sort values are Float and higher      * values are at the front. */
+DECL|enum constant|SCORE
 name|SCORE
-init|=
-literal|0
-decl_stmt|;
-comment|/** Sort by document number (index order).  Sort values are Integer and lower    * values are at the front. */
-DECL|field|DOC
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Sort by document number (index order).  Sort values are Integer and lower      * values are at the front. */
+DECL|enum constant|DOC
 name|DOC
-init|=
-literal|1
-decl_stmt|;
-comment|// reserved, in Lucene 2.9, there was a constant: AUTO = 2;
-comment|/** Sort using term values as Strings.  Sort values are String and lower    * values are at the front. */
-DECL|field|STRING
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Sort using term values as Strings.  Sort values are String and lower      * values are at the front. */
+DECL|enum constant|STRING
 name|STRING
-init|=
-literal|3
-decl_stmt|;
-comment|/** Sort using term values as encoded Integers.  Sort values are Integer and    * lower values are at the front. */
-DECL|field|INT
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Sort using term values as encoded Integers.  Sort values are Integer and      * lower values are at the front. */
+DECL|enum constant|INT
 name|INT
-init|=
-literal|4
-decl_stmt|;
-comment|/** Sort using term values as encoded Floats.  Sort values are Float and    * lower values are at the front. */
-DECL|field|FLOAT
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Sort using term values as encoded Floats.  Sort values are Float and      * lower values are at the front. */
+DECL|enum constant|FLOAT
 name|FLOAT
-init|=
-literal|5
-decl_stmt|;
-comment|/** Sort using term values as encoded Longs.  Sort values are Long and    * lower values are at the front. */
-DECL|field|LONG
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Sort using term values as encoded Longs.  Sort values are Long and      * lower values are at the front. */
+DECL|enum constant|LONG
 name|LONG
-init|=
-literal|6
-decl_stmt|;
-comment|/** Sort using term values as encoded Doubles.  Sort values are Double and    * lower values are at the front. */
-DECL|field|DOUBLE
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Sort using term values as encoded Doubles.  Sort values are Double and      * lower values are at the front. */
+DECL|enum constant|DOUBLE
 name|DOUBLE
-init|=
-literal|7
-decl_stmt|;
-comment|/** Sort using term values as encoded Shorts.  Sort values are Short and    * lower values are at the front. */
-DECL|field|SHORT
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Sort using term values as encoded Shorts.  Sort values are Short and      * lower values are at the front. */
+DECL|enum constant|SHORT
 name|SHORT
-init|=
-literal|8
-decl_stmt|;
-comment|/** Sort using a custom Comparator.  Sort values are any Comparable and    * sorting is done according to natural order. */
-DECL|field|CUSTOM
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Sort using a custom Comparator.  Sort values are any Comparable and      * sorting is done according to natural order. */
+DECL|enum constant|CUSTOM
 name|CUSTOM
-init|=
-literal|9
-decl_stmt|;
-comment|/** Sort using term values as encoded Bytes.  Sort values are Byte and    * lower values are at the front. */
-DECL|field|BYTE
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Sort using term values as encoded Bytes.  Sort values are Byte and      * lower values are at the front. */
+DECL|enum constant|BYTE
 name|BYTE
-init|=
-literal|10
-decl_stmt|;
-comment|/** Sort using term values as Strings, but comparing by    * value (using String.compareTo) for all comparisons.    * This is typically slower than {@link #STRING}, which    * uses ordinals to do the sorting. */
-DECL|field|STRING_VAL
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Sort using term values as Strings, but comparing by      * value (using String.compareTo) for all comparisons.      * This is typically slower than {@link #STRING}, which      * uses ordinals to do the sorting. */
+DECL|enum constant|STRING_VAL
 name|STRING_VAL
-init|=
-literal|11
-decl_stmt|;
+block|,
 comment|/** Sort use byte[] index values. */
-DECL|field|BYTES
-specifier|public
-specifier|static
-specifier|final
-name|int
+DECL|enum constant|BYTES
 name|BYTES
-init|=
-literal|12
-decl_stmt|;
-comment|/** Force rewriting of SortField using {@link SortField#rewrite(IndexSearcher)}    * before it can be used for sorting */
-DECL|field|REWRITEABLE
-specifier|public
-specifier|static
-specifier|final
-name|int
+block|,
+comment|/** Force rewriting of SortField using {@link SortField#rewrite(IndexSearcher)}      * before it can be used for sorting */
+DECL|enum constant|REWRITEABLE
 name|REWRITEABLE
-init|=
-literal|13
-decl_stmt|;
+block|}
 comment|/** Represents sorting by document score (relevance). */
 DECL|field|FIELD_SCORE
 specifier|public
@@ -246,6 +173,8 @@ name|SortField
 argument_list|(
 literal|null
 argument_list|,
+name|Type
+operator|.
 name|SCORE
 argument_list|)
 decl_stmt|;
@@ -262,6 +191,8 @@ name|SortField
 argument_list|(
 literal|null
 argument_list|,
+name|Type
+operator|.
 name|DOC
 argument_list|)
 decl_stmt|;
@@ -272,7 +203,7 @@ name|field
 decl_stmt|;
 DECL|field|type
 specifier|private
-name|int
+name|Type
 name|type
 decl_stmt|;
 comment|// defaults to determining type dynamically
@@ -313,7 +244,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|int
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -333,7 +264,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|int
+name|Type
 name|type
 parameter_list|,
 name|boolean
@@ -418,12 +349,7 @@ name|this
 operator|.
 name|field
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|field
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -440,12 +366,6 @@ operator|.
 name|IntParser
 condition|)
 block|{
-name|this
-operator|.
-name|type
-operator|=
-name|INT
-expr_stmt|;
 name|this
 operator|.
 name|creator
@@ -476,12 +396,6 @@ condition|)
 block|{
 name|this
 operator|.
-name|type
-operator|=
-name|FLOAT
-expr_stmt|;
-name|this
-operator|.
 name|creator
 operator|=
 operator|new
@@ -508,12 +422,6 @@ operator|.
 name|ShortParser
 condition|)
 block|{
-name|this
-operator|.
-name|type
-operator|=
-name|SHORT
-expr_stmt|;
 name|this
 operator|.
 name|creator
@@ -544,12 +452,6 @@ condition|)
 block|{
 name|this
 operator|.
-name|type
-operator|=
-name|BYTE
-expr_stmt|;
-name|this
-operator|.
 name|creator
 operator|=
 operator|new
@@ -576,12 +478,6 @@ operator|.
 name|LongParser
 condition|)
 block|{
-name|this
-operator|.
-name|type
-operator|=
-name|LONG
-expr_stmt|;
 name|this
 operator|.
 name|creator
@@ -612,12 +508,6 @@ condition|)
 block|{
 name|this
 operator|.
-name|type
-operator|=
-name|DOUBLE
-expr_stmt|;
-name|this
-operator|.
 name|creator
 operator|=
 operator|new
@@ -646,6 +536,17 @@ operator|+
 literal|")"
 argument_list|)
 throw|;
+name|this
+operator|.
+name|type
+operator|=
+name|this
+operator|.
+name|creator
+operator|.
+name|getSortType
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * Sort by a cached entry value    * @param creator    * @param reverse    */
 DECL|method|SortField
@@ -666,14 +567,9 @@ name|this
 operator|.
 name|field
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|creator
 operator|.
 name|field
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -693,7 +589,7 @@ name|type
 operator|=
 name|creator
 operator|.
-name|getSortTypeID
+name|getSortType
 argument_list|()
 expr_stmt|;
 block|}
@@ -765,6 +661,8 @@ name|initFieldType
 argument_list|(
 name|field
 argument_list|,
+name|Type
+operator|.
 name|CUSTOM
 argument_list|)
 expr_stmt|;
@@ -794,6 +692,8 @@ name|initFieldType
 argument_list|(
 name|field
 argument_list|,
+name|Type
+operator|.
 name|CUSTOM
 argument_list|)
 expr_stmt|;
@@ -820,7 +720,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|int
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -841,10 +741,14 @@ if|if
 condition|(
 name|type
 operator|!=
+name|Type
+operator|.
 name|SCORE
 operator|&&
 name|type
 operator|!=
+name|Type
+operator|.
 name|DOC
 condition|)
 throw|throw
@@ -861,12 +765,7 @@ name|this
 operator|.
 name|field
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|field
-argument_list|)
 expr_stmt|;
 block|}
 if|if
@@ -991,7 +890,7 @@ block|}
 comment|/** Returns the type of contents in the field.    * @return One of the constants SCORE, DOC, STRING, INT or FLOAT.    */
 DECL|method|getType
 specifier|public
-name|int
+name|Type
 name|getType
 parameter_list|()
 block|{
@@ -1301,6 +1200,27 @@ literal|'>'
 argument_list|)
 expr_stmt|;
 break|break;
+case|case
+name|REWRITEABLE
+case|:
+name|buffer
+operator|.
+name|append
+argument_list|(
+literal|"<rewriteable: \""
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|field
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"\">"
+argument_list|)
+expr_stmt|;
+break|break;
 default|default:
 name|buffer
 operator|.
@@ -1406,14 +1326,18 @@ name|o
 decl_stmt|;
 return|return
 operator|(
+name|StringHelper
+operator|.
+name|equals
+argument_list|(
 name|other
 operator|.
 name|field
-operator|==
+argument_list|,
 name|this
 operator|.
 name|field
-comment|// field is always interned
+argument_list|)
 operator|&&
 name|other
 operator|.
@@ -1496,6 +1420,9 @@ name|int
 name|hash
 init|=
 name|type
+operator|.
+name|hashCode
+argument_list|()
 operator|^
 literal|0x346565dd
 operator|+
@@ -1653,8 +1580,6 @@ name|type
 condition|)
 block|{
 case|case
-name|SortField
-operator|.
 name|SCORE
 case|:
 return|return
@@ -1667,8 +1592,6 @@ name|numHits
 argument_list|)
 return|;
 case|case
-name|SortField
-operator|.
 name|DOC
 case|:
 return|return
@@ -1681,8 +1604,6 @@ name|numHits
 argument_list|)
 return|;
 case|case
-name|SortField
-operator|.
 name|INT
 case|:
 if|if
@@ -1725,8 +1646,6 @@ argument_list|)
 return|;
 block|}
 case|case
-name|SortField
-operator|.
 name|FLOAT
 case|:
 if|if
@@ -1769,8 +1688,6 @@ argument_list|)
 return|;
 block|}
 case|case
-name|SortField
-operator|.
 name|LONG
 case|:
 return|return
@@ -1793,8 +1710,6 @@ name|missingValue
 argument_list|)
 return|;
 case|case
-name|SortField
-operator|.
 name|DOUBLE
 case|:
 return|return
@@ -1817,8 +1732,6 @@ name|missingValue
 argument_list|)
 return|;
 case|case
-name|SortField
-operator|.
 name|BYTE
 case|:
 return|return
@@ -1841,8 +1754,6 @@ name|missingValue
 argument_list|)
 return|;
 case|case
-name|SortField
-operator|.
 name|SHORT
 case|:
 return|return
@@ -1865,8 +1776,6 @@ name|missingValue
 argument_list|)
 return|;
 case|case
-name|SortField
-operator|.
 name|CUSTOM
 case|:
 assert|assert
@@ -1889,8 +1798,6 @@ name|reverse
 argument_list|)
 return|;
 case|case
-name|SortField
-operator|.
 name|STRING
 case|:
 return|return
@@ -1909,8 +1816,6 @@ name|reverse
 argument_list|)
 return|;
 case|case
-name|SortField
-operator|.
 name|STRING_VAL
 case|:
 return|return
@@ -1925,8 +1830,6 @@ name|field
 argument_list|)
 return|;
 case|case
-name|SortField
-operator|.
 name|REWRITEABLE
 case|:
 throw|throw
@@ -1948,7 +1851,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Rewrites this SortField, returning a new SortField if a change is made.    * Subclasses should override this define their rewriting behavior when this    * SortField is of type {@link SortField#REWRITEABLE}    *    * @param searcher IndexSearcher to use during rewriting    * @return New rewritten SortField, or {@code this} if nothing has changed.    * @throws IOException Can be thrown by the rewriting    * @lucene.experimental    */
+comment|/**    * Rewrites this SortField, returning a new SortField if a change is made.    * Subclasses should override this define their rewriting behavior when this    * SortField is of type {@link SortField.Type#REWRITEABLE}    *    * @param searcher IndexSearcher to use during rewriting    * @return New rewritten SortField, or {@code this} if nothing has changed.    * @throws IOException Can be thrown by the rewriting    * @lucene.experimental    */
 DECL|method|rewrite
 specifier|public
 name|SortField

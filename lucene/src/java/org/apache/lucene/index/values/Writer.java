@@ -222,11 +222,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Records a value from the given document id. The methods implementation    * obtains the value for the document id from the last {@link ValuesEnum}    * set to {@link #setNextEnum(ValuesEnum)}.    *<p>    * This method is used during merging to provide implementation agnostic    * default merge implementation.    *</p>    *<p>    * The given document id must be the same document id returned from    * {@link ValuesEnum#docID()} when this method is called. All documents IDs    * between the given ID and the previously given ID or<tt>0</tt> if the    * method is call the first time are filled with default values depending on    * the {@link Writer} implementation. The given document ID must always be    * greater than the previous ID or<tt>0</tt> if called the first time.    */
-DECL|method|add
+DECL|method|mergeDoc
 specifier|protected
 specifier|abstract
 name|void
-name|add
+name|mergeDoc
 parameter_list|(
 name|int
 name|docID
@@ -234,7 +234,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Sets the next {@link ValuesEnum} to consume values from on calls to    * {@link #add(int)}    *     * @param valuesEnum    *          the next {@link ValuesEnum}, this must not be null    */
+comment|/**    * Sets the next {@link ValuesEnum} to consume values from on calls to    * {@link #mergeDoc(int)}    *     * @param valuesEnum    *          the next {@link ValuesEnum}, this must not be null    */
 DECL|method|setNextEnum
 specifier|protected
 specifier|abstract
@@ -412,7 +412,7 @@ name|i
 condition|)
 block|{
 comment|// we are on the doc to merge
-name|add
+name|mergeDoc
 argument_list|(
 name|docID
 argument_list|)
@@ -483,7 +483,19 @@ name|type
 condition|)
 block|{
 case|case
-name|INTS
+name|FIXED_INTS_16
+case|:
+case|case
+name|FIXED_INTS_32
+case|:
+case|case
+name|FIXED_INTS_64
+case|:
+case|case
+name|FIXED_INTS_8
+case|:
+case|case
+name|VAR_INTS
 case|:
 return|return
 name|Ints
@@ -494,9 +506,9 @@ name|directory
 argument_list|,
 name|id
 argument_list|,
-literal|true
-argument_list|,
 name|bytesUsed
+argument_list|,
+name|type
 argument_list|)
 return|;
 case|case
