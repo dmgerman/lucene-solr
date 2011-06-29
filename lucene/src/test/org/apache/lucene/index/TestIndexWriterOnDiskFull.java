@@ -684,7 +684,11 @@ decl_stmt|;
 name|int
 name|NUM_DIR
 init|=
+name|TEST_NIGHTLY
+condition|?
 literal|50
+else|:
+literal|5
 decl_stmt|;
 name|int
 name|END_COUNT
@@ -693,7 +697,13 @@ name|START_COUNT
 operator|+
 name|NUM_DIR
 operator|*
+operator|(
+name|TEST_NIGHTLY
+condition|?
 literal|25
+else|:
+literal|5
+operator|)
 decl_stmt|;
 comment|// Build up a bunch of dirs that have indexes which we
 comment|// will then merge together by calling addIndexes(*):
