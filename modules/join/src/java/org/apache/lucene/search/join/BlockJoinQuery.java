@@ -417,6 +417,8 @@ operator|=
 name|scoreMode
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createWeight
 specifier|public
 name|Weight
