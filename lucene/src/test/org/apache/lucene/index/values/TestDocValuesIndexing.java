@@ -2412,6 +2412,7 @@ name|Closeable
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|bytesSize
 init|=
@@ -2419,7 +2420,7 @@ literal|1
 operator|+
 name|atLeast
 argument_list|(
-literal|10
+literal|50
 argument_list|)
 decl_stmt|;
 name|OpenBitSet
@@ -2625,6 +2626,11 @@ operator|+
 literal|" - "
 operator|+
 name|msg
+operator|+
+name|br
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|,
 name|bytesSize
 argument_list|,
@@ -2899,6 +2905,17 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|assertTrue
+argument_list|(
+name|msg
+argument_list|,
+name|br
+operator|.
+name|length
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
