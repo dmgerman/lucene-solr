@@ -1677,6 +1677,43 @@ name|br
 operator|.
 name|length
 expr_stmt|;
+comment|// Just to ensure all codecs can
+comment|// handle a caller that mucks with the
+comment|// returned payload:
+if|if
+condition|(
+name|rarely
+argument_list|()
+condition|)
+block|{
+name|br
+operator|.
+name|bytes
+operator|=
+operator|new
+name|byte
+index|[
+name|random
+operator|.
+name|nextInt
+argument_list|(
+literal|5
+argument_list|)
+index|]
+expr_stmt|;
+block|}
+name|br
+operator|.
+name|length
+operator|=
+literal|0
+expr_stmt|;
+name|br
+operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
 block|}
 block|}
 block|}

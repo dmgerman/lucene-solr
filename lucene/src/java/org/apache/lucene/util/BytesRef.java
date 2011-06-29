@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Represents byte[], as a slice (offset + length) into an  *  existing byte[].  *  *  @lucene.experimental */
+comment|/** Represents byte[], as a slice (offset + length) into an  *  existing byte[].  The {@link #bytes} member should never be null;  *  use {@link #EMPTY_BYTES} if necessary.  *  *  @lucene.experimental */
 end_comment
 
 begin_class

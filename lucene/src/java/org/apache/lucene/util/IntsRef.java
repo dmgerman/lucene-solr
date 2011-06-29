@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** Represents int[], as a slice (offset + length) into an  *  existing int[].  *  *  @lucene.internal */
+comment|/** Represents int[], as a slice (offset + length) into an  *  existing int[].  The {@link #ints} member should never be null; use  *  {@link #EMPTY_INTS} if necessary.  *  *  @lucene.internal */
 end_comment
 
 begin_class
@@ -32,6 +32,20 @@ argument_list|<
 name|IntsRef
 argument_list|>
 block|{
+DECL|field|EMPTY_INTS
+specifier|public
+specifier|static
+specifier|final
+name|int
+index|[]
+name|EMPTY_INTS
+init|=
+operator|new
+name|int
+index|[
+literal|0
+index|]
+decl_stmt|;
 DECL|field|ints
 specifier|public
 name|int
