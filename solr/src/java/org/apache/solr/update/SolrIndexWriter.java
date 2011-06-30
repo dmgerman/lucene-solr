@@ -202,6 +202,20 @@ name|Locale
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
 begin_comment
 comment|/**  * An IndexWriter that is configured via Solr config mechanisms.  *  * @since solr 0.9  */
 end_comment
@@ -228,6 +242,29 @@ name|SolrIndexWriter
 operator|.
 name|class
 argument_list|)
+decl_stmt|;
+comment|// These should *only* be used for debugging or monitoring purposes
+DECL|field|numOpens
+specifier|public
+specifier|static
+specifier|final
+name|AtomicLong
+name|numOpens
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
+decl_stmt|;
+DECL|field|numCloses
+specifier|public
+specifier|static
+specifier|final
+name|AtomicLong
+name|numCloses
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
 decl_stmt|;
 DECL|field|name
 name|String
@@ -551,6 +588,11 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
+name|numOpens
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|setInfoStream
 specifier|private
@@ -688,6 +730,11 @@ name|isClosed
 operator|=
 literal|true
 expr_stmt|;
+name|numCloses
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 annotation|@
@@ -734,6 +781,11 @@ operator|!
 name|isClosed
 condition|)
 block|{
+assert|assert
+literal|false
+operator|:
+literal|"SolrIndexWriter was not closed prior to finalize()"
+assert|;
 name|log
 operator|.
 name|error
