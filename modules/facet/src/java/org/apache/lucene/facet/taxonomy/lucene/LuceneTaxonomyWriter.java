@@ -362,20 +362,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Term
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Terms
 import|;
 end_import
@@ -391,22 +377,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|TermsEnum
-operator|.
-name|SeekStatus
 import|;
 end_import
 
@@ -2761,6 +2731,7 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|// TODO: use a pq here
 name|String
 name|first
 init|=
@@ -2882,19 +2853,6 @@ argument_list|)
 decl_stmt|;
 comment|// TODO (Facet): we already had this term in our hands before, in nextTE...
 comment|// // TODO (Facet): no need to make this term?
-name|Term
-name|t
-init|=
-operator|new
-name|Term
-argument_list|(
-name|Consts
-operator|.
-name|FULL
-argument_list|,
-name|first
-argument_list|)
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -2931,31 +2889,6 @@ comment|// but since we do this in lexical order of terms, just
 comment|// like Lucene's merge works, we hope there are few seeks.
 comment|// TODO (Facet): is there a quicker way? E.g., not specifying the
 comment|// next term by name every time?
-name|SeekStatus
-name|result
-init|=
-name|othertes
-index|[
-name|i
-index|]
-operator|.
-name|seekCeil
-argument_list|(
-name|t
-operator|.
-name|bytes
-argument_list|()
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-assert|assert
-name|result
-operator|==
-name|SeekStatus
-operator|.
-name|FOUND
-assert|;
 name|otherdocsEnum
 index|[
 name|i
@@ -3059,43 +2992,6 @@ comment|// 'first' and currentMain are the same, so both the main and some
 comment|// other taxonomies need to be moved, but a category doesn't need
 comment|// to be added because it already existed in the main taxonomy.
 comment|// TODO (Facet): Again, is there a quicker way?
-name|Term
-name|t
-init|=
-operator|new
-name|Term
-argument_list|(
-name|Consts
-operator|.
-name|FULL
-argument_list|,
-name|first
-argument_list|)
-decl_stmt|;
-comment|// TODO: fix bug in MTE seekExact and use that instead.
-name|SeekStatus
-name|result
-init|=
-name|mainte
-operator|.
-name|seekCeil
-argument_list|(
-name|t
-operator|.
-name|bytes
-argument_list|()
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-assert|assert
-name|result
-operator|==
-name|SeekStatus
-operator|.
-name|FOUND
-assert|;
-comment|// // TODO (Facet): explicit check / throw exception?
 name|mainde
 operator|=
 name|mainte
@@ -3164,31 +3060,6 @@ argument_list|)
 condition|)
 block|{
 comment|// TODO (Facet): again, is there a quicker way?
-name|result
-operator|=
-name|othertes
-index|[
-name|i
-index|]
-operator|.
-name|seekCeil
-argument_list|(
-name|t
-operator|.
-name|bytes
-argument_list|()
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-assert|assert
-name|result
-operator|==
-name|SeekStatus
-operator|.
-name|FOUND
-assert|;
-comment|// TODO (Facet): explicit check / throw exception?
 name|otherdocsEnum
 index|[
 name|i

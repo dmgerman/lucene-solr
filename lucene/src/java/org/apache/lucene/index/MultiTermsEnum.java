@@ -185,6 +185,11 @@ specifier|private
 name|BytesRef
 name|lastSeek
 decl_stmt|;
+DECL|field|lastSeekExact
+specifier|private
+name|boolean
+name|lastSeekExact
+decl_stmt|;
 DECL|field|lastSeekScratch
 specifier|private
 specifier|final
@@ -758,6 +763,10 @@ name|lastSeek
 operator|=
 literal|null
 expr_stmt|;
+name|lastSeekExact
+operator|=
+literal|true
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -926,6 +935,19 @@ operator|.
 name|term
 argument_list|()
 expr_stmt|;
+assert|assert
+name|term
+operator|.
+name|equals
+argument_list|(
+name|currentSubs
+index|[
+name|i
+index|]
+operator|.
+name|current
+argument_list|)
+assert|;
 block|}
 block|}
 comment|// if at least one sub had exact match to the requested
@@ -960,6 +982,10 @@ expr_stmt|;
 name|numTop
 operator|=
 literal|0
+expr_stmt|;
+name|lastSeekExact
+operator|=
+literal|false
 expr_stmt|;
 name|boolean
 name|seekOpt
@@ -1480,6 +1506,38 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|lastSeekExact
+condition|)
+block|{
+comment|// Must seekCeil at this point, so those subs that
+comment|// didn't have the term can find the following term.
+comment|// NOTE: we could save some CPU by only seekCeil the
+comment|// subs that didn't match the last exact seek... but
+comment|// most impls short-circuit if you seekCeil to term
+comment|// they are already on.
+specifier|final
+name|SeekStatus
+name|status
+init|=
+name|seekCeil
+argument_list|(
+name|current
+argument_list|)
+decl_stmt|;
+assert|assert
+name|status
+operator|==
+name|SeekStatus
+operator|.
+name|FOUND
+assert|;
+name|lastSeekExact
+operator|=
+literal|false
+expr_stmt|;
+block|}
 name|lastSeek
 operator|=
 literal|null
