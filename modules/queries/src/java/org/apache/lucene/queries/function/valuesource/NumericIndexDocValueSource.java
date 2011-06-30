@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.search.function
+DECL|package|org.apache.lucene.queries.function.valuesource
 package|package
 name|org
 operator|.
@@ -8,9 +8,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|queries
 operator|.
 name|function
+operator|.
+name|valuesource
 package|;
 end_package
 
@@ -25,6 +27,16 @@ operator|.
 name|io
 operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -76,6 +88,38 @@ name|ValueType
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queries
+operator|.
+name|function
+operator|.
+name|ValueSource
+import|;
+end_import
+
 begin_comment
 comment|/**  * Expert: obtains numeric field values from a {@link IndexDocValues} field.  * This {@link ValueSource} is compatible with all numerical  * {@link IndexDocValues}  *   * @lucene.experimental  *   */
 end_comment
@@ -116,8 +160,11 @@ specifier|public
 name|DocValues
 name|getValues
 parameter_list|(
-name|AtomicReaderContext
+name|Map
 name|context
+parameter_list|,
+name|AtomicReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
@@ -128,7 +175,7 @@ operator|.
 name|Source
 name|source
 init|=
-name|context
+name|readerContext
 operator|.
 name|reader
 operator|.
@@ -159,6 +206,7 @@ case|:
 case|case
 name|FLOAT_64
 case|:
+comment|// TODO (chrism) Change to use FloatDocValues and IntDocValues
 return|return
 operator|new
 name|DocValues

@@ -463,6 +463,10 @@ parameter_list|)
 block|{
 return|return
 name|o
+operator|!=
+literal|null
+operator|&&
+name|o
 operator|.
 name|getClass
 argument_list|()
