@@ -443,7 +443,8 @@ operator|=
 name|doc
 expr_stmt|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|Iterator
@@ -464,7 +465,8 @@ block|{
 name|int
 name|upto
 decl_stmt|;
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -476,7 +478,8 @@ operator|<
 name|count
 return|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|next
@@ -489,7 +492,8 @@ return|return
 name|doc
 return|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

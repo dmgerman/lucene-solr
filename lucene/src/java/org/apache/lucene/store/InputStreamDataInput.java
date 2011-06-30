@@ -178,7 +178,8 @@ name|cnt
 expr_stmt|;
 block|}
 block|}
-comment|//@Override -- not until Java 1.6
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
