@@ -1044,6 +1044,9 @@ operator|.
 name|MIN_VALUE
 argument_list|)
 expr_stmt|;
+name|closeAll
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/**    * Creating an index, matching the results of an top K = Integer.MAX_VALUE and top-1000 requests    */
@@ -1571,6 +1574,9 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|closeAll
+argument_list|()
 expr_stmt|;
 block|}
 block|}

@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|RAMDirectory
+name|Directory
 import|;
 end_import
 
@@ -273,6 +273,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Directory
+name|dir
+init|=
+name|newDirectory
+argument_list|()
+decl_stmt|;
 name|TaxonomyWriter
 name|taxonomy
 init|=
@@ -283,9 +289,7 @@ operator|=
 operator|new
 name|LuceneTaxonomyWriter
 argument_list|(
-operator|new
-name|RAMDirectory
-argument_list|()
+name|dir
 argument_list|)
 expr_stmt|;
 name|int
@@ -592,6 +596,16 @@ argument_list|(
 literal|100000
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|taxonomy
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}

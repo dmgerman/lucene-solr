@@ -373,28 +373,6 @@ throws|throws
 name|Exception
 block|{
 comment|// test that constant score works well
-name|assertTrue
-argument_list|(
-literal|"Would like to test this with deletions!"
-argument_list|,
-name|indexReader
-operator|.
-name|hasDeletions
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"Would like to test this with deletions!"
-argument_list|,
-name|indexReader
-operator|.
-name|numDeletedDocs
-argument_list|()
-operator|>
-literal|0
-argument_list|)
-expr_stmt|;
 name|Query
 name|q
 init|=

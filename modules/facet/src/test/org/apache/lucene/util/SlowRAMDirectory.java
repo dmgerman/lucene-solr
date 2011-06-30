@@ -96,6 +96,10 @@ begin_comment
 comment|/**  * Test utility - slow directory  */
 end_comment
 
+begin_comment
+comment|// TODO: move to test-framework and sometimes use in tests?
+end_comment
+
 begin_class
 DECL|class|SlowRAMDirectory
 specifier|public

@@ -82,7 +82,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriter
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -277,7 +277,7 @@ specifier|protected
 name|void
 name|populateIndex
 parameter_list|(
-name|IndexWriter
+name|RandomIndexWriter
 name|iw
 parameter_list|,
 name|TaxonomyWriter
