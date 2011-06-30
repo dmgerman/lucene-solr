@@ -535,6 +535,10 @@ operator|.
 name|directory
 argument_list|,
 name|docFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|docIndex
@@ -584,6 +588,10 @@ operator|.
 name|directory
 argument_list|,
 name|frqFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|freqIndex
@@ -623,6 +631,10 @@ operator|.
 name|directory
 argument_list|,
 name|posFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|posIndex

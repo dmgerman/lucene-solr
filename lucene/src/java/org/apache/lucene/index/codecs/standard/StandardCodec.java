@@ -920,6 +920,10 @@ argument_list|,
 name|state
 operator|.
 name|codecId
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 return|;
 block|}

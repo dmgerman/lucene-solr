@@ -2964,9 +2964,10 @@ name|RAMDirectory
 argument_list|(
 name|startDir
 argument_list|,
-name|IOContext
-operator|.
-name|DEFAULT
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;

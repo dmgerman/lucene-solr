@@ -92,20 +92,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IOContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexFileNames
 import|;
 end_import
@@ -127,20 +113,6 @@ end_import
 begin_comment
 comment|// javadocs
 end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|MergeInfo
-import|;
-end_import
 
 begin_import
 import|import

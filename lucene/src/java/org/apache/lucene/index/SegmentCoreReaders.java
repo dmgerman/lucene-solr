@@ -102,6 +102,20 @@ name|Directory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
+import|;
+end_import
+
 begin_comment
 comment|/** Holds core readers that are shared (unchanged) when  * SegmentReader is cloned or reopened */
 end_comment

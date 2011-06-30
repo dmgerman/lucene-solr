@@ -28,20 +28,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IOContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|Directory
@@ -58,7 +44,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|BufferedIndexInput
+name|IOContext
 import|;
 end_import
 
@@ -123,6 +109,9 @@ name|dir
 parameter_list|,
 name|String
 name|fileName
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException

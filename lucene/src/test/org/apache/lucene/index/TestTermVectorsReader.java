@@ -188,11 +188,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|store
 operator|.
-name|IOContext
-operator|.
-name|Context
+name|Directory
 import|;
 end_import
 
@@ -206,7 +204,23 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|Directory
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
+operator|.
+name|Context
 import|;
 end_import
 
@@ -1155,9 +1169,10 @@ name|seg
 argument_list|,
 name|fieldInfos
 argument_list|,
-name|IOContext
-operator|.
-name|READ
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 for|for
@@ -1294,9 +1309,10 @@ name|seg
 argument_list|,
 name|fieldInfos
 argument_list|,
-name|IOContext
-operator|.
-name|READ
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|TermPositionVector
@@ -1675,9 +1691,10 @@ name|seg
 argument_list|,
 name|fieldInfos
 argument_list|,
-name|IOContext
-operator|.
-name|READ
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|TermPositionVector
@@ -1952,9 +1969,10 @@ name|seg
 argument_list|,
 name|fieldInfos
 argument_list|,
-name|IOContext
-operator|.
-name|READ
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|SortedTermVectorMapper
@@ -2862,9 +2880,10 @@ name|seg
 argument_list|,
 name|fieldInfos
 argument_list|,
-name|IOContext
-operator|.
-name|READ
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//Bad document number, good field number
@@ -2913,9 +2932,10 @@ name|seg
 argument_list|,
 name|fieldInfos
 argument_list|,
-name|IOContext
-operator|.
-name|READ
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//Bad document number, no field
@@ -2959,9 +2979,10 @@ name|seg
 argument_list|,
 name|fieldInfos
 argument_list|,
-name|IOContext
-operator|.
-name|READ
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//good document number, bad field number

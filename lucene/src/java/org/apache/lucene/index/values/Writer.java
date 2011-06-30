@@ -90,6 +90,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Bits
@@ -458,6 +472,9 @@ name|comp
 parameter_list|,
 name|AtomicLong
 name|bytesUsed
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -497,6 +514,8 @@ argument_list|,
 literal|true
 argument_list|,
 name|bytesUsed
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -514,6 +533,8 @@ argument_list|,
 literal|4
 argument_list|,
 name|bytesUsed
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -531,6 +552,8 @@ argument_list|,
 literal|8
 argument_list|,
 name|bytesUsed
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -556,6 +579,8 @@ argument_list|,
 literal|true
 argument_list|,
 name|bytesUsed
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -581,6 +606,8 @@ argument_list|,
 literal|true
 argument_list|,
 name|bytesUsed
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -606,6 +633,8 @@ argument_list|,
 literal|true
 argument_list|,
 name|bytesUsed
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -631,6 +660,8 @@ argument_list|,
 literal|false
 argument_list|,
 name|bytesUsed
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -656,6 +687,8 @@ argument_list|,
 literal|false
 argument_list|,
 name|bytesUsed
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -681,6 +714,8 @@ argument_list|,
 literal|false
 argument_list|,
 name|bytesUsed
+argument_list|,
+name|context
 argument_list|)
 return|;
 default|default:

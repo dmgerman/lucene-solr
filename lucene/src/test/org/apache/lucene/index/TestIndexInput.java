@@ -750,9 +750,10 @@ name|createOutput
 argument_list|(
 literal|"foo"
 argument_list|,
-name|IOContext
-operator|.
-name|DEFAULT
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|os
@@ -781,9 +782,10 @@ name|openInput
 argument_list|(
 literal|"foo"
 argument_list|,
-name|IOContext
-operator|.
-name|DEFAULT
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|checkReads

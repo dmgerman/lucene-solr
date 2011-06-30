@@ -120,11 +120,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|store
 operator|.
-name|IOContext
-operator|.
-name|Context
+name|Directory
 import|;
 end_import
 
@@ -138,7 +136,23 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|Directory
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
+operator|.
+name|Context
 import|;
 end_import
 
@@ -474,9 +488,10 @@ name|IndexReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|,
-name|IOContext
-operator|.
-name|READ
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertTrue

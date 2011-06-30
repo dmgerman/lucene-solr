@@ -48,11 +48,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|store
 operator|.
 name|IOContext
-operator|.
-name|Context
 import|;
 end_import
 
@@ -219,7 +217,11 @@ comment|// It's possible that all documents seen in this segment
 comment|// hit non-aborting exceptions, in which case we will
 comment|// not have yet init'd the FieldsWriter:
 name|initFieldsWriter
-argument_list|()
+argument_list|(
+name|state
+operator|.
+name|context
+argument_list|)
 expr_stmt|;
 name|fill
 argument_list|(
@@ -337,7 +339,10 @@ specifier|private
 specifier|synchronized
 name|void
 name|initFieldsWriter
-parameter_list|()
+parameter_list|(
+name|IOContext
+name|context
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -348,7 +353,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// nocommit - is this always a flush here or should we have a IOContext argument?
 name|fieldsWriter
 operator|=
 operator|new
@@ -363,13 +367,7 @@ operator|.
 name|getSegment
 argument_list|()
 argument_list|,
-operator|new
-name|IOContext
-argument_list|(
-name|Context
-operator|.
-name|FLUSH
-argument_list|)
+name|context
 argument_list|)
 expr_stmt|;
 name|lastDocID
@@ -460,7 +458,11 @@ literal|"StoredFieldsWriter.finishDocument start"
 argument_list|)
 assert|;
 name|initFieldsWriter
-argument_list|()
+argument_list|(
+name|IOContext
+operator|.
+name|DEFAULT
+argument_list|)
 expr_stmt|;
 name|fill
 argument_list|(

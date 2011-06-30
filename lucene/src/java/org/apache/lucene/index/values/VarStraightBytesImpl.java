@@ -52,20 +52,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IOContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|values
 operator|.
 name|Bytes
@@ -121,6 +107,20 @@ operator|.
 name|store
 operator|.
 name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
 import|;
 end_import
 
@@ -300,11 +300,13 @@ name|id
 parameter_list|,
 name|AtomicLong
 name|bytesUsed
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//nocommit this needs an IOContext too
 name|super
 argument_list|(
 name|dir
@@ -321,9 +323,7 @@ literal|null
 argument_list|,
 name|bytesUsed
 argument_list|,
-name|IOContext
-operator|.
-name|DEFAULT
+name|context
 argument_list|)
 expr_stmt|;
 name|docToAddress
@@ -353,6 +353,9 @@ name|dir
 parameter_list|,
 name|String
 name|id
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -366,6 +369,8 @@ argument_list|,
 operator|new
 name|AtomicLong
 argument_list|()
+argument_list|,
+name|context
 argument_list|)
 expr_stmt|;
 block|}
@@ -739,6 +744,9 @@ name|id
 parameter_list|,
 name|int
 name|maxDoc
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -755,9 +763,7 @@ name|VERSION_START
 argument_list|,
 literal|true
 argument_list|,
-name|IOContext
-operator|.
-name|DEFAULT
+name|context
 argument_list|)
 expr_stmt|;
 name|this

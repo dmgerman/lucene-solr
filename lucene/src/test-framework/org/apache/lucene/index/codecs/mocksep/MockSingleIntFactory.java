@@ -42,7 +42,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|store
 operator|.
 name|IOContext
 import|;
@@ -167,6 +167,9 @@ name|dir
 parameter_list|,
 name|String
 name|fileName
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -178,6 +181,8 @@ argument_list|(
 name|dir
 argument_list|,
 name|fileName
+argument_list|,
+name|context
 argument_list|)
 return|;
 block|}

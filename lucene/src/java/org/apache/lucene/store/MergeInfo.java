@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index
+DECL|package|org.apache.lucene.store
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|store
 package|;
 end_package
 
@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|//nocommit javadoc
+comment|/**  *<p>A MergeInfo provides information required for a MERGE context and other optimization operations.  *  It is used as part of an {@link IOContext} in case of MERGE context.</p>  */
 end_comment
 
 begin_class
@@ -47,6 +47,7 @@ name|boolean
 name|optimize
 decl_stmt|;
 comment|// used by IndexWriter
+comment|/**    *<p>Creates a new {@link MergeInfo} instance from    * the values required for a MERGE {@link IOContext} context.    *     * These values are only estimates and are not the actual values.    *     */
 DECL|method|MergeInfo
 specifier|public
 name|MergeInfo

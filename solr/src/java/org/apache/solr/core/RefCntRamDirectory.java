@@ -48,9 +48,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|store
 operator|.
-name|IOContext
+name|Directory
 import|;
 end_import
 
@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|Directory
+name|IOContext
 import|;
 end_import
 
