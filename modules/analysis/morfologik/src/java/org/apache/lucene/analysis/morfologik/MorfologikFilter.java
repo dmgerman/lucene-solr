@@ -179,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link TokenFilter} using Morfologik library.  * @see<a href="http://morfologik.blogspot.com/">Morfologik project page</a>  *  * MorfologikFilter contains a {@link MorphosyntacticTagAttribute}, which provides morphosyntactic  * annotations for produced lemmas. See the Morfologik documentation for details.  */
+comment|/**  * {@link TokenFilter} using Morfologik library.  *  * MorfologikFilter contains a {@link MorphosyntacticTagAttribute}, which provides morphosyntactic  * annotations for produced lemmas. See the Morfologik documentation for details.  *   * @see<a href="http://morfologik.blogspot.com/">Morfologik project page</a>  */
 end_comment
 
 begin_class

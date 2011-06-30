@@ -191,7 +191,7 @@ name|MORFOLOGIK
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a    * {@link ReusableAnalyzerBase.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @param field ignored field name    * @param reader source of tokens    *     * @return A    *         {@link ReusableAnalyzerBase.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter} and {@link MorfologikFilter}.    */
+comment|/**    * Creates a    * {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @param field ignored field name    * @param reader source of tokens    *     * @return A    *         {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter} and {@link MorfologikFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents
