@@ -32,16 +32,6 @@ name|OutputStream
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
 begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -140,16 +130,38 @@ name|int
 name|newLength
 parameter_list|)
 block|{
-name|buffer
-operator|=
-name|Arrays
+comment|// It actually should be: (Java 1.7, when its intrinsic on all machines)
+comment|// buffer = Arrays.copyOf(buffer, newLength);
+name|byte
+index|[]
+name|newBuffer
+init|=
+operator|new
+name|byte
+index|[
+name|newLength
+index|]
+decl_stmt|;
+name|System
 operator|.
-name|copyOf
+name|arraycopy
 argument_list|(
 name|buffer
 argument_list|,
-name|newLength
+literal|0
+argument_list|,
+name|newBuffer
+argument_list|,
+literal|0
+argument_list|,
+name|buffer
+operator|.
+name|length
 argument_list|)
+expr_stmt|;
+name|buffer
+operator|=
+name|newBuffer
 expr_stmt|;
 block|}
 comment|/**    * For reuse-ability, this stream object can be re-initialized with another    * given buffer and starting position.    *     * @param buffer some space to which writing will be made.    * @param startPos an index (inclusive) from white data will be written.    */
