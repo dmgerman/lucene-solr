@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.search.function
+DECL|package|org.apache.lucene.queries
 package|package
 name|org
 operator|.
@@ -8,9 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|function
+name|queries
 package|;
 end_package
 
@@ -126,7 +124,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-comment|/**    * Compute a custom score by the subQuery score and a number of     * {@link ValueSourceQuery} scores.    *<p>     * Subclasses can override this method to modify the custom score.      *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override the other     * {@link #customScore(int, float, float) customScore()}     * method, which is simpler.     *<p>    * The default computation herein is a multiplication of given scores:    *<pre>    *     ModifiedScore = valSrcScore * valSrcScores[0] * valSrcScores[1] * ...    *</pre>    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScores scores of that doc by the ValueSourceQuery.    * @return custom score.    */
+comment|/**    * Compute a custom score by the subQuery score and a number of     * {@link org.apache.lucene.queries.function.FunctionQuery} scores.    *<p>     * Subclasses can override this method to modify the custom score.      *<p>    * If your custom scoring is different than the default herein you     * should override at least one of the two customScore() methods.    * If the number of ValueSourceQueries is always&lt; 2 it is     * sufficient to override the other     * {@link #customScore(int, float, float) customScore()}     * method, which is simpler.     *<p>    * The default computation herein is a multiplication of given scores:    *<pre>    *     ModifiedScore = valSrcScore * valSrcScores[0] * valSrcScores[1] * ...    *</pre>    *     * @param doc id of scored doc.     * @param subQueryScore score of that doc by the subQuery.    * @param valSrcScores scores of that doc by the ValueSourceQuery.    * @return custom score.    */
 DECL|method|customScore
 specifier|public
 name|float
