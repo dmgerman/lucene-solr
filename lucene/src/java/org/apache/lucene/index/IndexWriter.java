@@ -6971,7 +6971,6 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
-comment|// nocommit - we should pass a MergeInfo here into merge to create corresponding IOContext instances?
 name|int
 name|docCount
 init|=

@@ -940,7 +940,6 @@ name|upto
 init|=
 literal|0
 decl_stmt|;
-comment|//nocommit - randomize the IOContext here?
 name|IndexOutput
 name|out
 init|=
@@ -1018,7 +1017,6 @@ literal|2
 condition|)
 block|{
 comment|// Truncate the file:
-comment|//nocommit - randomize the IOContext here?
 name|IndexOutput
 name|out
 init|=
@@ -1827,7 +1825,6 @@ expr_stmt|;
 block|}
 block|}
 comment|//System.out.println(Thread.currentThread().getName() + ": MDW: create " + name);
-comment|// nocommit - randomize the IOContext here?
 name|IndexOutput
 name|io
 init|=
@@ -2104,7 +2101,6 @@ literal|false
 argument_list|)
 throw|;
 block|}
-comment|// nocommit - randomize IOContext here?
 name|IndexInput
 name|ii
 init|=

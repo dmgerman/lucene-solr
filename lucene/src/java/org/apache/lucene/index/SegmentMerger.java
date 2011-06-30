@@ -1249,7 +1249,6 @@ decl_stmt|;
 name|setMatchingSegmentReaders
 argument_list|()
 expr_stmt|;
-comment|// nocommit - should we rather use IOContext.MERGE here?
 specifier|final
 name|FieldsWriter
 name|fieldsWriter
