@@ -2398,7 +2398,7 @@ return|return
 name|gen4test
 return|;
 block|}
-comment|/**    * This test is to address a bug (Tracker #146354) in a previous version.  If a TFC cache is    * written to disk, and then the taxonomy grows (but the index does not change),    * and then the TFC cache is re-read from disk, there will be an exception    * thrown, as the integers are read off of the disk according to taxonomy    * size, which has changed.    */
+comment|/**    * This test is to address a bug in a previous version.  If a TFC cache is    * written to disk, and then the taxonomy grows (but the index does not change),    * and then the TFC cache is re-read from disk, there will be an exception    * thrown, as the integers are read off of the disk according to taxonomy    * size, which has changed.    */
 annotation|@
 name|Test
 DECL|method|testGrowingTaxonomy

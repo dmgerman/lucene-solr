@@ -967,7 +967,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Test that a document with no payloads does not confuse the payload decoder.    * Test was added for tracker 143670.    * At the time of writing the test it exposes the bug fixed in tracker 143670.    * However NOTE that this exposure depends on Lucene internal implementation and     * as such in the future it may stop to expose that specific bug.    * The test should always pass, though :)     */
+comment|/**    * Test that a document with no payloads does not confuse the payload decoder.    */
 annotation|@
 name|Test
 DECL|method|testPayloadIteratorWithInvalidDoc
