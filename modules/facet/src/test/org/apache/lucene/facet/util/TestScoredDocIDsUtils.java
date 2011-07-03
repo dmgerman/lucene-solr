@@ -922,7 +922,9 @@ argument_list|()
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"Deleted docs must not appear in the allDocsScoredDocIds set"
+literal|"Deleted docs must not appear in the allDocsScoredDocIds set: "
+operator|+
+name|docNum
 argument_list|,
 name|docFactory
 operator|.
@@ -1412,7 +1414,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Create the index
+comment|// Create the index - force log-merge policy since we rely on docs order.
 name|RandomIndexWriter
 name|writer
 init|=
@@ -1440,6 +1442,12 @@ name|KEYWORD
 argument_list|,
 literal|false
 argument_list|)
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
