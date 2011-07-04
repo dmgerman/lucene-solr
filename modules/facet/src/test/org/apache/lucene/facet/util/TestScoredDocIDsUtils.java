@@ -870,14 +870,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|int
-name|numErasedDocs
-init|=
-name|reader
-operator|.
-name|numDeletedDocs
-argument_list|()
-decl_stmt|;
 name|ScoredDocIDs
 name|allDocs
 init|=
@@ -920,17 +912,22 @@ operator|.
 name|getDocID
 argument_list|()
 decl_stmt|;
-name|assertFalse
+name|assertNull
 argument_list|(
 literal|"Deleted docs must not appear in the allDocsScoredDocIds set: "
 operator|+
 name|docNum
 argument_list|,
-name|docFactory
+name|reader
 operator|.
-name|markedDeleted
+name|document
 argument_list|(
 name|docNum
+argument_list|)
+operator|.
+name|getFieldable
+argument_list|(
+literal|"del"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -943,17 +940,6 @@ name|allDocs
 operator|.
 name|size
 argument_list|()
-argument_list|,
-name|numIteratedDocs
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"Wrong number of (live) documents"
-argument_list|,
-name|N_DOCS
-operator|-
-name|numErasedDocs
 argument_list|,
 name|numIteratedDocs
 argument_list|)
@@ -1132,19 +1118,24 @@ name|docNum
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertFalse
+name|assertNull
 argument_list|(
-literal|"Complement-Set must not contain deleted documents (doc="
+literal|"Complement-Set must not contain docs from the original set (doc="
 operator|+
 name|docNum
 operator|+
 literal|")"
 argument_list|,
-name|docFactory
+name|reader
 operator|.
-name|markedDeleted
+name|document
 argument_list|(
 name|docNum
+argument_list|)
+operator|.
+name|getFieldable
+argument_list|(
+literal|"del"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1359,6 +1350,34 @@ argument_list|(
 name|deletionMark
 argument_list|)
 expr_stmt|;
+comment|// Add a special field for docs that are marked for deletion. Later we
+comment|// assert that those docs are not returned by all-scored-doc-IDs.
+name|doc
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Field
+argument_list|(
+literal|"del"
+argument_list|,
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|docNum
+argument_list|)
+argument_list|,
+name|Store
+operator|.
+name|YES
+argument_list|,
+name|Index
+operator|.
+name|NO
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1414,7 +1433,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Create the index - force log-merge policy since we rely on docs order.
 name|RandomIndexWriter
 name|writer
 init|=
@@ -1442,12 +1460,6 @@ name|KEYWORD
 argument_list|,
 literal|false
 argument_list|)
-argument_list|)
-operator|.
-name|setMergePolicy
-argument_list|(
-name|newLogMergePolicy
-argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
