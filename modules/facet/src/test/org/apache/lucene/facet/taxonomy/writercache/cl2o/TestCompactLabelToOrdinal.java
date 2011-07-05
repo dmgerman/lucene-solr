@@ -174,9 +174,12 @@ specifier|final
 name|int
 name|n
 init|=
-literal|100
+name|atLeast
+argument_list|(
+literal|10
 operator|*
 literal|1000
+argument_list|)
 decl_stmt|;
 specifier|final
 name|int
