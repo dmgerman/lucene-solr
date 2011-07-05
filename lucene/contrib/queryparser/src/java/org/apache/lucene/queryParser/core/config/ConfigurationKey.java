@@ -21,26 +21,49 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * This interface should be implemented by classes that wants to listen for  * field configuration requests. The implementation receives a  * {@link FieldConfig} object and may add/change its configuration.  *   * @see FieldConfig  * @see QueryConfigHandler  */
+comment|/**  * An instance of this class represents a key that is used to retrieve a value  * from {@link AbstractQueryConfig}. It also holds the value's type, which is  * defined in the generic argument.  *   * @see AbstractQueryConfig  */
 end_comment
 
-begin_interface
-DECL|interface|FieldConfigListener
+begin_class
+DECL|class|ConfigurationKey
+specifier|final
 specifier|public
-interface|interface
-name|FieldConfigListener
+class|class
+name|ConfigurationKey
+parameter_list|<
+name|T
+parameter_list|>
 block|{
-comment|/**    * This method is called ever time a field configuration is requested.    *     * @param fieldConfig    *          the field configuration requested, should never be null    */
-DECL|method|buildFieldConfig
-name|void
-name|buildFieldConfig
-parameter_list|(
-name|FieldConfig
-name|fieldConfig
-parameter_list|)
-function_decl|;
+DECL|method|ConfigurationKey
+specifier|private
+name|ConfigurationKey
+parameter_list|()
+block|{}
+comment|/**    * Creates a new instance.    *     * @param<T> the value's type    *     * @return a new instance    */
+DECL|method|newInstance
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|ConfigurationKey
+argument_list|<
+name|T
+argument_list|>
+name|newInstance
+parameter_list|()
+block|{
+return|return
+operator|new
+name|ConfigurationKey
+argument_list|<
+name|T
+argument_list|>
+argument_list|()
+return|;
 block|}
-end_interface
+block|}
+end_class
 
 end_unit
 

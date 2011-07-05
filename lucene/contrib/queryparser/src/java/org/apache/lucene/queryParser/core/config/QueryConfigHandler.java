@@ -56,28 +56,18 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|queryParser
 operator|.
-name|Attribute
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
+name|core
 operator|.
 name|util
 operator|.
-name|AttributeSource
+name|StringUtils
 import|;
 end_import
 
 begin_comment
-comment|/**  * This class can be used to hold any query configuration and no field  * configuration. For field configuration, it creates a empty  * {@link FieldConfig} object and delegate it to field config listeners,   * these are responsible for setting up all the field configuration.  *   * {@link QueryConfigHandler} should be extended by classes that intends to  * provide configuration to {@link QueryNodeProcessor} objects.  *   * This class extends {@link AttributeSource}, so {@link Attribute}s can be  * attached to it.  *   * The class that extends {@link QueryConfigHandler} should also provide  * {@link FieldConfig} objects for each collection field.  *   * @see Attribute  * @see FieldConfig  * @see FieldConfigListener  * @see QueryConfigHandler  */
+comment|/**  * This class can be used to hold any query configuration and no field  * configuration. For field configuration, it creates an empty  * {@link FieldConfig} object and delegate it to field config listeners,   * these are responsible for setting up all the field configuration.  *   * {@link QueryConfigHandler} should be extended by classes that intends to  * provide configuration to {@link QueryNodeProcessor} objects.  *   * The class that extends {@link QueryConfigHandler} should also provide  * {@link FieldConfig} objects for each collection field.  *   * @see FieldConfig  * @see FieldConfigListener  * @see QueryConfigHandler  */
 end_comment
 
 begin_class
@@ -87,9 +77,10 @@ specifier|abstract
 class|class
 name|QueryConfigHandler
 extends|extends
-name|AttributeSource
+name|AbstractQueryConfig
 block|{
 DECL|field|listeners
+specifier|final
 specifier|private
 name|LinkedList
 argument_list|<
@@ -120,7 +111,12 @@ init|=
 operator|new
 name|FieldConfig
 argument_list|(
+name|StringUtils
+operator|.
+name|toString
+argument_list|(
 name|fieldName
+argument_list|)
 argument_list|)
 decl_stmt|;
 for|for
