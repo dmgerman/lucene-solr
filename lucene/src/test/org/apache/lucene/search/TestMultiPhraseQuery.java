@@ -3069,9 +3069,6 @@ name|IOException
 throws|,
 name|ParseException
 block|{
-comment|//    QueryParser qp = new QueryParser(TEST_VERSION_CURRENT, "field", new CannedAnalyzer(INCR_0_QUERY_TOKENS_AND)); // nocommit - move this to its own test
-comment|//    final Query q = qp.parse("\"this text is acually ignored\"");
-comment|//    assertTrue("wrong query type!", q instanceof MultiPhraseQuery);
 name|MultiPhraseQuery
 name|q
 init|=
