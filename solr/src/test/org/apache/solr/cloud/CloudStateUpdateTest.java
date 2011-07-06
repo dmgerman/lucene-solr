@@ -1209,11 +1209,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|core
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+comment|// core.close();  // this core is managed by container1 now
 block|}
 annotation|@
 name|Override
