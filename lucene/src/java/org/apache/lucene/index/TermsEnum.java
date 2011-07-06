@@ -304,7 +304,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *      * @param skipDocs set bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
+comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *      * @param liveDocs set bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
 DECL|method|docs
 specifier|public
 specifier|abstract
@@ -312,7 +312,7 @@ name|DocsEnum
 name|docs
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
@@ -328,7 +328,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
@@ -498,7 +498,7 @@ name|DocsEnum
 name|docs
 parameter_list|(
 name|Bits
-name|bits
+name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
@@ -519,7 +519,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|bits
+name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse

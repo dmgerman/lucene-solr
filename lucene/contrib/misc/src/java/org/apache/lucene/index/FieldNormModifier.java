@@ -520,11 +520,11 @@ control|)
 block|{
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|subReader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 name|int
@@ -601,7 +601,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|delDocs
+name|liveDocs
 argument_list|,
 name|docs
 argument_list|)
@@ -673,12 +673,11 @@ control|)
 block|{
 if|if
 condition|(
-name|delDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|delDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(

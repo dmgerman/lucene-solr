@@ -64,20 +64,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|MultiFields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|NumericUtils
@@ -3038,7 +3024,7 @@ name|IOException
 block|{
 specifier|final
 name|Bits
-name|skipDocs
+name|liveDocs
 init|=
 name|canIgnoreDeletedDocs
 condition|?
@@ -3046,12 +3032,12 @@ literal|null
 else|:
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|skipDocs
+name|liveDocs
 operator|==
 literal|null
 condition|)
@@ -3183,7 +3169,7 @@ name|maxDoc
 argument_list|()
 decl_stmt|;
 comment|// a DocIdSetIterator generating docIds by
-comment|// incrementing a variable& checking skipDocs -
+comment|// incrementing a variable& checking liveDocs -
 return|return
 operator|new
 name|DocIdSetIterator
@@ -3235,7 +3221,8 @@ block|}
 block|}
 do|while
 condition|(
-name|skipDocs
+operator|!
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -3279,8 +3266,7 @@ control|)
 block|{
 if|if
 condition|(
-operator|!
-name|skipDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(

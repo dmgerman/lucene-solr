@@ -291,11 +291,11 @@ name|BytesRef
 argument_list|()
 decl_stmt|;
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 if|if
@@ -433,7 +433,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|delDocs
+name|liveDocs
 argument_list|,
 name|docs
 argument_list|)

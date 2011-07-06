@@ -1505,13 +1505,18 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
+assert|assert
+name|liveDocs
+operator|!=
+literal|null
+assert|;
 if|if
 condition|(
 name|matchingFieldsReader
@@ -1535,7 +1540,8 @@ control|)
 block|{
 if|if
 condition|(
-name|delDocs
+operator|!
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -1577,7 +1583,8 @@ condition|)
 break|break;
 if|if
 condition|(
-name|delDocs
+operator|!
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -1657,7 +1664,8 @@ control|)
 block|{
 if|if
 condition|(
-name|delDocs
+operator|!
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -2097,11 +2105,11 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 if|if
@@ -2127,7 +2135,8 @@ control|)
 block|{
 if|if
 condition|(
-name|delDocs
+operator|!
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -2169,7 +2178,8 @@ condition|)
 break|break;
 if|if
 condition|(
-name|delDocs
+operator|!
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -2246,7 +2256,8 @@ control|)
 block|{
 if|if
 condition|(
-name|delDocs
+operator|!
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -2661,7 +2672,7 @@ name|add
 argument_list|(
 name|r
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2722,7 +2733,7 @@ name|add
 argument_list|(
 name|r
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2958,15 +2969,15 @@ literal|0
 decl_stmt|;
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 assert|assert
-name|delDocs
+name|liveDocs
 operator|!=
 literal|null
 assert|;
@@ -3019,7 +3030,8 @@ control|)
 block|{
 if|if
 condition|(
-name|delDocs
+operator|!
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -3130,7 +3142,7 @@ comment|// apart when we step through the docs enums in
 comment|// MultiDocsEnum.
 name|mergeState
 operator|.
-name|multiDeletedDocs
+name|multiLiveDocs
 operator|=
 operator|new
 name|MultiBits
@@ -3138,6 +3150,8 @@ argument_list|(
 name|bits
 argument_list|,
 name|bitsStarts
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|consumer
@@ -3191,7 +3205,7 @@ condition|)
 block|{
 name|mergeState
 operator|.
-name|multiDeletedDocs
+name|multiLiveDocs
 operator|=
 operator|new
 name|MultiBits
@@ -3199,6 +3213,8 @@ argument_list|(
 name|perDocBits
 argument_list|,
 name|perDocBitsStarts
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -3488,11 +3504,11 @@ comment|// this segment has deleted docs, so we have to
 comment|// check for every doc if it is deleted or not
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 for|for
@@ -3512,8 +3528,7 @@ control|)
 block|{
 if|if
 condition|(
-operator|!
-name|delDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(

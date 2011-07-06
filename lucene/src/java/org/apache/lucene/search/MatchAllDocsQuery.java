@@ -185,11 +185,11 @@ specifier|final
 name|int
 name|maxDoc
 decl_stmt|;
-DECL|field|delDocs
+DECL|field|liveDocs
 specifier|private
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 decl_stmt|;
 DECL|field|similarity
 specifier|private
@@ -227,11 +227,11 @@ name|similarity
 operator|=
 name|similarity
 expr_stmt|;
-name|delDocs
+name|liveDocs
 operator|=
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 expr_stmt|;
 name|score
@@ -282,7 +282,7 @@ operator|++
 expr_stmt|;
 while|while
 condition|(
-name|delDocs
+name|liveDocs
 operator|!=
 literal|null
 operator|&&
@@ -290,7 +290,8 @@ name|doc
 operator|<
 name|maxDoc
 operator|&&
-name|delDocs
+operator|!
+name|liveDocs
 operator|.
 name|get
 argument_list|(

@@ -470,11 +470,11 @@ name|currentFields
 return|;
 block|}
 block|}
-DECL|method|getDeletedDocs
+DECL|method|getLiveDocs
 specifier|public
 specifier|static
 name|Bits
-name|getDeletedDocs
+name|getLiveDocs
 parameter_list|(
 name|IndexReader
 name|r
@@ -496,7 +496,7 @@ name|List
 argument_list|<
 name|Bits
 argument_list|>
-name|delDocs
+name|liveDocs
 init|=
 operator|new
 name|ArrayList
@@ -548,14 +548,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// record all delDocs, even if they are null
-name|delDocs
+comment|// record all liveDocs, even if they are null
+name|liveDocs
 operator|.
 name|add
 argument_list|(
 name|r
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -596,7 +596,7 @@ argument_list|)
 throw|;
 block|}
 assert|assert
-name|delDocs
+name|liveDocs
 operator|.
 name|size
 argument_list|()
@@ -605,7 +605,7 @@ literal|0
 assert|;
 if|if
 condition|(
-name|delDocs
+name|liveDocs
 operator|.
 name|size
 argument_list|()
@@ -616,7 +616,7 @@ block|{
 comment|// Only one actual sub reader -- optimize this case
 name|result
 operator|=
-name|delDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -631,9 +631,11 @@ operator|=
 operator|new
 name|MultiBits
 argument_list|(
-name|delDocs
+name|liveDocs
 argument_list|,
 name|starts
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -708,7 +710,7 @@ name|IndexReader
 name|r
 parameter_list|,
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|String
 name|field
@@ -752,7 +754,7 @@ name|terms
 operator|.
 name|docs
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|term
 argument_list|,
@@ -778,7 +780,7 @@ name|IndexReader
 name|r
 parameter_list|,
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|String
 name|field
@@ -822,7 +824,7 @@ name|terms
 operator|.
 name|docsAndPositions
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|term
 argument_list|,

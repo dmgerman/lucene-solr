@@ -3334,6 +3334,23 @@ name|pass
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: pass="
+operator|+
+name|pass
+argument_list|)
+expr_stmt|;
+block|}
 name|boolean
 name|useCompoundFile
 init|=
@@ -3484,7 +3501,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\nTEST: cycle i="
+literal|"\nTEST: write i="
 operator|+
 name|i
 argument_list|)
@@ -3959,6 +3976,23 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: i="
+operator|+
+name|i
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 name|IndexReader
@@ -3973,6 +4007,23 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  got reader="
+operator|+
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Work backwards in commits on what the expected
 comment|// count should be.
 name|searcher
@@ -4028,6 +4079,23 @@ block|}
 block|}
 name|assertEquals
 argument_list|(
+literal|"maxDoc="
+operator|+
+name|searcher
+operator|.
+name|maxDoc
+argument_list|()
+operator|+
+literal|" numDocs="
+operator|+
+name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
+operator|.
+name|numDocs
+argument_list|()
+argument_list|,
 name|expectedCount
 argument_list|,
 name|hits

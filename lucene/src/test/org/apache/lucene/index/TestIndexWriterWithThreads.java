@@ -1095,7 +1095,7 @@ name|reader
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -1453,7 +1453,7 @@ name|delDocs
 init|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)

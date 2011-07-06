@@ -1977,7 +1977,7 @@ name|numDocs
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the stored fields of the<code>n</code><sup>th</sup>    *<code>Document</code> in this index.    *<p>    *<b>NOTE:</b> for performance reasons, this method does not check if the    * requested document is deleted, and therefore asking for a deleted document    * may yield unspecified results. Usually this is not required, however you    * can test if the doc is deleted by checking the {@link    * Bits} returned from {@link MultiFields#getDeletedDocs}.    *     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Returns the stored fields of the<code>n</code><sup>th</sup>    *<code>Document</code> in this index.    *<p>    *<b>NOTE:</b> for performance reasons, this method does not check if the    * requested document is deleted, and therefore asking for a deleted document    * may yield unspecified results. Usually this is not required, however you    * can test if the doc is deleted by checking the {@link    * Bits} returned from {@link MultiFields#getLiveDocs}.    *     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|document
 specifier|public
 name|Document
@@ -2003,7 +2003,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * Get the {@link org.apache.lucene.document.Document} at the<code>n</code>    *<sup>th</sup> position. The {@link FieldSelector} may be used to determine    * what {@link org.apache.lucene.document.Field}s to load and how they should    * be loaded.<b>NOTE:</b> If this Reader (more specifically, the underlying    *<code>FieldsReader</code>) is closed before the lazy    * {@link org.apache.lucene.document.Field} is loaded an exception may be    * thrown. If you want the value of a lazy    * {@link org.apache.lucene.document.Field} to be available after closing you    * must explicitly load it or fetch the Document again with a new loader.    *<p>    *<b>NOTE:</b> for performance reasons, this method does not check if the    * requested document is deleted, and therefore asking for a deleted document    * may yield unspecified results. Usually this is not required, however you    * can test if the doc is deleted by checking the {@link    * Bits} returned from {@link MultiFields#getDeletedDocs}.    *     * @param n Get the document at the<code>n</code><sup>th</sup> position    * @param fieldSelector The {@link FieldSelector} to use to determine what    *        Fields should be loaded on the Document. May be null, in which case    *        all Fields will be loaded.    * @return The stored fields of the    *         {@link org.apache.lucene.document.Document} at the nth position    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @see org.apache.lucene.document.Fieldable    * @see org.apache.lucene.document.FieldSelector    * @see org.apache.lucene.document.SetBasedFieldSelector    * @see org.apache.lucene.document.LoadFirstFieldSelector    */
+comment|/**    * Get the {@link org.apache.lucene.document.Document} at the<code>n</code>    *<sup>th</sup> position. The {@link FieldSelector} may be used to determine    * what {@link org.apache.lucene.document.Field}s to load and how they should    * be loaded.<b>NOTE:</b> If this Reader (more specifically, the underlying    *<code>FieldsReader</code>) is closed before the lazy    * {@link org.apache.lucene.document.Field} is loaded an exception may be    * thrown. If you want the value of a lazy    * {@link org.apache.lucene.document.Field} to be available after closing you    * must explicitly load it or fetch the Document again with a new loader.    *<p>    *<b>NOTE:</b> for performance reasons, this method does not check if the    * requested document is deleted, and therefore asking for a deleted document    * may yield unspecified results. Usually this is not required, however you    * can test if the doc is deleted by checking the {@link    * Bits} returned from {@link MultiFields#getLiveDocs}.    *     * @param n Get the document at the<code>n</code><sup>th</sup> position    * @param fieldSelector The {@link FieldSelector} to use to determine what    *        Fields should be loaded on the Document. May be null, in which case    *        all Fields will be loaded.    * @return The stored fields of the    *         {@link org.apache.lucene.document.Document} at the nth position    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @see org.apache.lucene.document.Fieldable    * @see org.apache.lucene.document.FieldSelector    * @see org.apache.lucene.document.SetBasedFieldSelector    * @see org.apache.lucene.document.LoadFirstFieldSelector    */
 comment|// TODO (1.5): When we convert to JDK 1.5 make this Set<String>
 DECL|method|document
 specifier|public
@@ -2356,7 +2356,7 @@ name|DocsEnum
 name|termDocsEnum
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|String
 name|field
@@ -2418,7 +2418,7 @@ name|terms
 operator|.
 name|docs
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|term
 argument_list|,
@@ -2440,7 +2440,7 @@ name|DocsAndPositionsEnum
 name|termPositionsEnum
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|String
 name|field
@@ -2502,7 +2502,7 @@ name|terms
 operator|.
 name|docsAndPositions
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|term
 argument_list|,
@@ -2524,7 +2524,7 @@ name|DocsEnum
 name|termDocsEnum
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|String
 name|field
@@ -2589,7 +2589,7 @@ name|terms
 operator|.
 name|docs
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|term
 argument_list|,
@@ -2613,7 +2613,7 @@ name|DocsAndPositionsEnum
 name|termPositionsEnum
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|String
 name|field
@@ -2678,7 +2678,7 @@ name|terms
 operator|.
 name|docsAndPositions
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|term
 argument_list|,
@@ -2777,7 +2777,7 @@ name|this
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|this
 argument_list|)
@@ -3053,12 +3053,12 @@ name|FieldOption
 name|fldOption
 parameter_list|)
 function_decl|;
-comment|/** Returns the {@link Bits} representing deleted docs.  A    *  set bit indicates the doc ID has been deleted.  This    *  method should return null when there are no deleted    *  docs.    *    *  The returned instance has been safely published for use by    *  multiple threads without additional synchronization.    * @lucene.experimental */
-DECL|method|getDeletedDocs
+comment|/** Returns the {@link Bits} representing live (not    *  deleted) docs.  A set bit indicates the doc ID has not    *  been deleted.  If this method returns null it means    *  there are no deleted documents (all documents are    *  live).    *    *  The returned instance has been safely published for    *  use by multiple threads without additional    *  synchronization.    * @lucene.experimental */
+DECL|method|getLiveDocs
 specifier|public
 specifier|abstract
 name|Bits
-name|getDeletedDocs
+name|getLiveDocs
 parameter_list|()
 function_decl|;
 comment|/**    * Expert: return the IndexCommit that this reader has    * opened.  This method is only implemented by those    * readers that correspond to a Directory with its own    * segments_N file.    *    * @lucene.experimental    */

@@ -1393,7 +1393,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|// removing deleted docs shouldn't matter
-comment|// final Bits delDocs = MultiFields.getDeletedDocs(reader);
+comment|// final Bits liveDocs = MultiFields.getLiveDocs(reader);
 for|for
 control|(
 name|String

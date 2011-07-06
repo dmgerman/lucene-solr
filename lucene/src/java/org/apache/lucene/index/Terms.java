@@ -227,7 +227,7 @@ name|DocsEnum
 name|docs
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|BytesRef
 name|text
@@ -262,7 +262,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 argument_list|)
@@ -282,7 +282,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|BytesRef
 name|text
@@ -317,7 +317,7 @@ name|termsEnum
 operator|.
 name|docsAndPositions
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 argument_list|)
@@ -337,7 +337,7 @@ name|DocsEnum
 name|docs
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|BytesRef
 name|term
@@ -372,7 +372,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 argument_list|)
@@ -385,7 +385,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|BytesRef
 name|term
@@ -420,7 +420,7 @@ name|termsEnum
 operator|.
 name|docsAndPositions
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 argument_list|)

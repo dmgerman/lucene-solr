@@ -481,11 +481,11 @@ init|=
 literal|null
 decl_stmt|;
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -512,10 +512,9 @@ if|if
 condition|(
 literal|null
 operator|==
-name|delDocs
+name|liveDocs
 operator|||
-operator|!
-name|delDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(

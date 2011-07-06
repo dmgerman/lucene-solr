@@ -747,7 +747,7 @@ name|ir
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|ir
 argument_list|)

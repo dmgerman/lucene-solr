@@ -431,11 +431,11 @@ argument_list|)
 decl_stmt|;
 comment|// TODO (Facet): avoid Multi*?
 name|Bits
-name|deletedDocs
+name|liveDocs
 init|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|indexReader
 argument_list|)
@@ -451,7 +451,7 @@ name|getTermDocsEnum
 argument_list|(
 name|indexReader
 argument_list|,
-name|deletedDocs
+name|liveDocs
 argument_list|,
 name|drillDownTerm
 operator|.

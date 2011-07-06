@@ -1652,11 +1652,11 @@ expr_stmt|;
 block|}
 block|}
 name|Bits
-name|fromDeletedDocs
+name|fromLiveDocs
 init|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|fromSearcher
 operator|.
@@ -1665,17 +1665,17 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 name|Bits
-name|toDeletedDocs
+name|toLiveDocs
 init|=
 name|fromSearcher
 operator|==
 name|toSearcher
 condition|?
-name|fromDeletedDocs
+name|fromLiveDocs
 else|:
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|toSearcher
 operator|.
@@ -1699,9 +1699,9 @@ name|fromField
 expr_stmt|;
 name|fromDeState
 operator|.
-name|deletedDocs
+name|liveDocs
 operator|=
-name|fromDeletedDocs
+name|fromLiveDocs
 expr_stmt|;
 name|fromDeState
 operator|.
@@ -1737,9 +1737,9 @@ name|toField
 expr_stmt|;
 name|toDeState
 operator|.
-name|deletedDocs
+name|liveDocs
 operator|=
-name|toDeletedDocs
+name|toLiveDocs
 expr_stmt|;
 name|toDeState
 operator|.
@@ -1810,7 +1810,7 @@ block|{
 name|fromTermDirectCount
 operator|++
 expr_stmt|;
-comment|// OK to skip deletedDocs, since we check for intersection with docs matching query
+comment|// OK to skip liveDocs, since we check for intersection with docs matching query
 name|fromDeState
 operator|.
 name|docsEnum
@@ -2329,7 +2329,7 @@ block|{
 name|toTermDirectCount
 operator|++
 expr_stmt|;
-comment|// need to use deletedDocs here so we don't map to any deleted ones
+comment|// need to use liveDocs here so we don't map to any deleted ones
 name|toDeState
 operator|.
 name|docsEnum
@@ -2342,7 +2342,7 @@ name|docs
 argument_list|(
 name|toDeState
 operator|.
-name|deletedDocs
+name|liveDocs
 argument_list|,
 name|toDeState
 operator|.
