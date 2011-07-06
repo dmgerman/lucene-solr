@@ -202,6 +202,11 @@ name|pos
 operator|+=
 name|count
 expr_stmt|;
+assert|assert
+name|pos
+operator|<=
+name|limit
+assert|;
 block|}
 annotation|@
 name|Override

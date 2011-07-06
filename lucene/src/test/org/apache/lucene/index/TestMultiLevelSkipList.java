@@ -553,7 +553,7 @@ name|termPositionsEnum
 argument_list|(
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|,
 name|term

@@ -28,15 +28,6 @@ specifier|public
 interface|interface
 name|UpdateParams
 block|{
-comment|/** wait till the command has flushed */
-DECL|field|WAIT_FLUSH
-specifier|public
-specifier|static
-name|String
-name|WAIT_FLUSH
-init|=
-literal|"waitFlush"
-decl_stmt|;
 comment|/** wait for the search to warm up */
 DECL|field|WAIT_SEARCHER
 specifier|public
@@ -45,6 +36,14 @@ name|String
 name|WAIT_SEARCHER
 init|=
 literal|"waitSearcher"
+decl_stmt|;
+DECL|field|SOFT_COMMIT
+specifier|public
+specifier|static
+name|String
+name|SOFT_COMMIT
+init|=
+literal|"softCommit"
 decl_stmt|;
 comment|/** overwrite indexing fields */
 DECL|field|OVERWRITE

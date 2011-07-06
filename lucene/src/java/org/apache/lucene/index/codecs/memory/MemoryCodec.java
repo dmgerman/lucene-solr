@@ -1687,10 +1687,10 @@ argument_list|(
 name|buffer
 argument_list|)
 decl_stmt|;
-DECL|field|skipDocs
+DECL|field|liveDocs
 specifier|private
 name|Bits
-name|skipDocs
+name|liveDocs
 decl_stmt|;
 DECL|field|docUpto
 specifier|private
@@ -1776,7 +1776,7 @@ name|BytesRef
 name|bufferIn
 parameter_list|,
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|int
 name|numDocs
@@ -1864,9 +1864,9 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|skipDocs
+name|liveDocs
 operator|=
-name|skipDocs
+name|liveDocs
 expr_stmt|;
 name|docID
 operator|=
@@ -2118,12 +2118,11 @@ block|}
 block|}
 if|if
 condition|(
-name|skipDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|skipDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -2254,10 +2253,10 @@ argument_list|(
 name|buffer
 argument_list|)
 decl_stmt|;
-DECL|field|skipDocs
+DECL|field|liveDocs
 specifier|private
 name|Bits
-name|skipDocs
+name|liveDocs
 decl_stmt|;
 DECL|field|docUpto
 specifier|private
@@ -2368,7 +2367,7 @@ name|BytesRef
 name|bufferIn
 parameter_list|,
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|int
 name|numDocs
@@ -2516,9 +2515,9 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|skipDocs
+name|liveDocs
 operator|=
-name|skipDocs
+name|liveDocs
 expr_stmt|;
 name|docID
 operator|=
@@ -2707,12 +2706,11 @@ block|}
 block|}
 if|if
 condition|(
-name|skipDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|skipDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -2856,6 +2854,10 @@ argument_list|(
 literal|"    nextPos storePayloads="
 operator|+
 name|storePayloads
+operator|+
+literal|" this="
+operator|+
+name|this
 argument_list|)
 expr_stmt|;
 assert|assert
@@ -2940,6 +2942,14 @@ operator|.
 name|length
 operator|=
 name|payloadLength
+expr_stmt|;
+comment|// Necessary, in case caller changed the
+comment|// payload.bytes from prior call:
+name|payload
+operator|.
+name|bytes
+operator|=
+name|buffer
 expr_stmt|;
 name|payloadRetrieved
 operator|=
@@ -3545,7 +3555,7 @@ name|DocsEnum
 name|docs
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
@@ -3639,7 +3649,7 @@ name|current
 operator|.
 name|output
 argument_list|,
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|docFreq
 argument_list|)
@@ -3653,7 +3663,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
@@ -3773,7 +3783,7 @@ name|current
 operator|.
 name|output
 argument_list|,
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|docFreq
 argument_list|)

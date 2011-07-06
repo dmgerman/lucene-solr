@@ -527,17 +527,17 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|getDeletedDocs
+DECL|method|getLiveDocs
 specifier|public
 name|Bits
-name|getDeletedDocs
+name|getLiveDocs
 parameter_list|()
 block|{
 throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"please use MultiFields.getDeletedDocs, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Bits deletedDocs"
+literal|"please use MultiFields.getLiveDocs, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Bits liveDocs"
 argument_list|)
 throw|;
 block|}

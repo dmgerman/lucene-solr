@@ -348,6 +348,15 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"No exceptions when loading an unoptimized reader!"

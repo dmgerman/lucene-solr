@@ -627,7 +627,8 @@ name|SegmentInfo
 argument_list|>
 argument_list|()
 block|{
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare
@@ -702,7 +703,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/** Resolves the buffered deleted Term/Query/docIDs, into    *  actual deleted docIDs in the deletedDocs BitVector for    *  each SegmentReader. */
+comment|/** Resolves the buffered deleted Term/Query/docIDs, into    *  actual deleted docIDs in the liveDocs BitVector for    *  each SegmentReader. */
 DECL|method|applyDeletes
 specifier|public
 specifier|synchronized
@@ -1887,7 +1888,7 @@ name|docs
 argument_list|(
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|,
 name|docs

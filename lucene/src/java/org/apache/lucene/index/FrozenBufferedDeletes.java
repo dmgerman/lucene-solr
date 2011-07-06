@@ -452,7 +452,8 @@ name|Term
 argument_list|>
 argument_list|()
 block|{
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -473,7 +474,8 @@ specifier|private
 name|int
 name|upto
 decl_stmt|;
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -487,7 +489,8 @@ operator|.
 name|length
 return|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|Term
 name|next
@@ -501,7 +504,8 @@ operator|++
 index|]
 return|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -536,7 +540,8 @@ name|QueryAndLimit
 argument_list|>
 argument_list|()
 block|{
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -557,7 +562,8 @@ specifier|private
 name|int
 name|upto
 decl_stmt|;
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -571,7 +577,8 @@ operator|.
 name|length
 return|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|QueryAndLimit
 name|next
@@ -601,7 +608,8 @@ return|return
 name|ret
 return|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

@@ -21,7 +21,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * This interface should be implemented by classes that wants to listen for  * field configuration requests. The implementation receives a  * {@link FieldConfig} object and may add/change its attributes.  *   * @see FieldConfig  * @see QueryConfigHandler  */
+comment|/**  * This interface should be implemented by classes that wants to listen for  * field configuration requests. The implementation receives a  * {@link FieldConfig} object and may add/change its configuration.  *   * @see FieldConfig  * @see QueryConfigHandler  */
 end_comment
 
 begin_interface

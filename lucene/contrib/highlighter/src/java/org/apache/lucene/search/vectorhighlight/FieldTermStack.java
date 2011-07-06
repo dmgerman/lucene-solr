@@ -467,10 +467,9 @@ name|TermInfo
 name|termInfo
 parameter_list|)
 block|{
-comment|// termList.push( termInfo );  // avoid Java 1.6 feature
 name|termList
 operator|.
-name|addFirst
+name|push
 argument_list|(
 name|termInfo
 argument_list|)

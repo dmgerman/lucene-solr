@@ -91,7 +91,7 @@ operator|.
 name|trim
 argument_list|()
 decl_stmt|;
-comment|// odd undocumented legacy behavior, -1 ment "all" (now "100%")
+comment|// odd undocumented legacy behavior, -1 meant "all" (now "100%")
 name|strVal
 operator|=
 operator|(

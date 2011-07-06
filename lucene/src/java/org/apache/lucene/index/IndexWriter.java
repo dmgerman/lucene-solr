@@ -6032,7 +6032,7 @@ if|if
 condition|(
 name|flushedSegment
 operator|.
-name|deletedDocuments
+name|liveDocs
 operator|!=
 literal|null
 condition|)
@@ -6043,7 +6043,13 @@ name|delCount
 init|=
 name|flushedSegment
 operator|.
-name|deletedDocuments
+name|segmentInfo
+operator|.
+name|docCount
+operator|-
+name|flushedSegment
+operator|.
+name|liveDocs
 operator|.
 name|count
 argument_list|()
@@ -6107,7 +6113,7 @@ comment|// carry the changes; there's no reason to use
 comment|// filesystem as intermediary here.
 name|flushedSegment
 operator|.
-name|deletedDocuments
+name|liveDocs
 operator|.
 name|write
 argument_list|(
@@ -8563,11 +8569,11 @@ continue|continue;
 block|}
 specifier|final
 name|Bits
-name|prevDelDocs
+name|prevLiveDocs
 init|=
 name|previousReader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -8585,11 +8591,11 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|Bits
-name|currentDelDocs
+name|currentLiveDocs
 init|=
 name|currentReader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 if|if
@@ -8639,7 +8645,8 @@ control|)
 block|{
 if|if
 condition|(
-name|prevDelDocs
+operator|!
+name|prevLiveDocs
 operator|.
 name|get
 argument_list|(
@@ -8647,7 +8654,8 @@ name|j
 argument_list|)
 condition|)
 assert|assert
-name|currentDelDocs
+operator|!
+name|currentLiveDocs
 operator|.
 name|get
 argument_list|(
@@ -8658,7 +8666,8 @@ else|else
 block|{
 if|if
 condition|(
-name|currentDelDocs
+operator|!
+name|currentLiveDocs
 operator|.
 name|get
 argument_list|(
@@ -8724,7 +8733,8 @@ control|)
 block|{
 if|if
 condition|(
-name|currentDelDocs
+operator|!
+name|currentLiveDocs
 operator|.
 name|get
 argument_list|(

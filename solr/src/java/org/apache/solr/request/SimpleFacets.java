@@ -3859,11 +3859,11 @@ name|field
 expr_stmt|;
 name|deState
 operator|.
-name|deletedDocs
+name|liveDocs
 operator|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|r
 argument_list|)

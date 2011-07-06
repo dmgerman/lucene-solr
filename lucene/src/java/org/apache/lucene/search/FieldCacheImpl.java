@@ -968,7 +968,8 @@ operator|.
 name|ReaderFinishedListener
 argument_list|()
 block|{
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|void
 name|finished

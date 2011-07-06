@@ -186,7 +186,27 @@ name|standard
 operator|.
 name|config
 operator|.
-name|LowercaseExpandedTermsAttribute
+name|StandardQueryConfigHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryParser
+operator|.
+name|standard
+operator|.
+name|config
+operator|.
+name|StandardQueryConfigHandler
+operator|.
+name|ConfigurationKeys
 import|;
 end_import
 
@@ -227,7 +247,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor verifies if the attribute  * {@link LowercaseExpandedTermsAttribute} is defined in the  * {@link QueryConfigHandler}. If it is and the expanded terms should be  * lower-cased, it looks for every {@link WildcardQueryNode},  * {@link FuzzyQueryNode} and {@link ParametricQueryNode} and lower-case its  * term.<br/>  *   * @see LowercaseExpandedTermsAttribute  */
+comment|/**  * This processor verifies if   * {@link ConfigurationKeys#LOWERCASE_EXPANDED_TERMS} is defined in the  * {@link QueryConfigHandler}. If it is and the expanded terms should be  * lower-cased, it looks for every {@link WildcardQueryNode},  * {@link FuzzyQueryNode} and {@link ParametricQueryNode} and lower-case its  * term.<br/>  *   * @see ConfigurationKeys#LOWERCASE_EXPANDED_TERMS  */
 end_comment
 
 begin_class
@@ -258,33 +278,26 @@ parameter_list|)
 throws|throws
 name|QueryNodeException
 block|{
-if|if
-condition|(
+name|Boolean
+name|lowercaseExpandedTerms
+init|=
 name|getQueryConfigHandler
 argument_list|()
 operator|.
-name|hasAttribute
+name|get
 argument_list|(
-name|LowercaseExpandedTermsAttribute
+name|ConfigurationKeys
 operator|.
-name|class
+name|LOWERCASE_EXPANDED_TERMS
 argument_list|)
-condition|)
-block|{
+decl_stmt|;
 if|if
 condition|(
-name|getQueryConfigHandler
-argument_list|()
-operator|.
-name|getAttribute
-argument_list|(
-name|LowercaseExpandedTermsAttribute
-operator|.
-name|class
-argument_list|)
-operator|.
-name|isLowercaseExpandedTerms
-argument_list|()
+name|lowercaseExpandedTerms
+operator|!=
+literal|null
+operator|&&
+name|lowercaseExpandedTerms
 condition|)
 block|{
 return|return
@@ -295,7 +308,6 @@ argument_list|(
 name|queryTree
 argument_list|)
 return|;
-block|}
 block|}
 return|return
 name|queryTree

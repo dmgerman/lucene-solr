@@ -106,10 +106,10 @@ name|BufferedDeletes
 name|segDeletes
 decl_stmt|;
 comment|// Lazily created:
-DECL|field|deletedDocs
+DECL|field|liveDocs
 specifier|public
 name|BitVector
-name|deletedDocs
+name|liveDocs
 decl_stmt|;
 DECL|field|segmentCodecs
 specifier|final

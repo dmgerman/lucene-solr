@@ -2818,7 +2818,7 @@ name|DocsEnum
 name|docs
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
@@ -2843,7 +2843,7 @@ name|fieldInfo
 argument_list|,
 name|state
 argument_list|,
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 argument_list|)
@@ -2865,7 +2865,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
@@ -2901,7 +2901,7 @@ name|fieldInfo
 argument_list|,
 name|state
 argument_list|,
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 argument_list|)

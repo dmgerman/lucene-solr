@@ -98,7 +98,9 @@ name|standard
 operator|.
 name|config
 operator|.
-name|MultiTermRewriteMethodAttribute
+name|StandardQueryConfigHandler
+operator|.
+name|ConfigurationKeys
 import|;
 end_import
 
@@ -164,6 +166,15 @@ name|MultiTermRewriteMethodProcessor
 extends|extends
 name|QueryNodeProcessorImpl
 block|{
+DECL|field|TAG_ID
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TAG_ID
+init|=
+literal|"MultiTermRewriteMethodConfiguration"
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|postProcessNode
@@ -192,31 +203,6 @@ operator|instanceof
 name|RegexpQueryNode
 condition|)
 block|{
-if|if
-condition|(
-operator|!
-name|getQueryConfigHandler
-argument_list|()
-operator|.
-name|hasAttribute
-argument_list|(
-name|MultiTermRewriteMethodAttribute
-operator|.
-name|class
-argument_list|)
-condition|)
-block|{
-comment|// This should not happen, this attribute is created in the
-comment|// StandardQueryConfigHandler
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"MultiTermRewriteMethodAttribute should be set on the QueryConfigHandler"
-argument_list|)
-throw|;
-block|}
-comment|// read the attribute value and use a TAG to take the value to the Builder
 name|MultiTermQuery
 operator|.
 name|RewriteMethod
@@ -225,21 +211,36 @@ init|=
 name|getQueryConfigHandler
 argument_list|()
 operator|.
-name|getAttribute
+name|get
 argument_list|(
-name|MultiTermRewriteMethodAttribute
+name|ConfigurationKeys
 operator|.
-name|class
+name|MULTI_TERM_REWRITE_METHOD
 argument_list|)
-operator|.
-name|getMultiTermRewriteMethod
-argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|rewriteMethod
+operator|==
+literal|null
+condition|)
+block|{
+comment|// This should not happen, this configuration is set in the
+comment|// StandardQueryConfigHandler
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"StandardQueryConfigHandler.ConfigurationKeys.MULTI_TERM_REWRITE_METHOD should be set on the QueryConfigHandler"
+argument_list|)
+throw|;
+block|}
+comment|// use a TAG to take the value to the Builder
 name|node
 operator|.
 name|setTag
 argument_list|(
-name|MultiTermRewriteMethodAttribute
+name|MultiTermRewriteMethodProcessor
 operator|.
 name|TAG_ID
 argument_list|,

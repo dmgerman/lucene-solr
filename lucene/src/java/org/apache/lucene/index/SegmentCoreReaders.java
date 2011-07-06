@@ -856,6 +856,22 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SegmentCoreReader(owner="
+operator|+
+name|owner
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 

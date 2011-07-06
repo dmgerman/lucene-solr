@@ -336,11 +336,11 @@ decl_stmt|;
 comment|//assume all are INvalid
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -408,7 +408,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|delDocs
+name|liveDocs
 argument_list|,
 name|docs
 argument_list|)
@@ -534,11 +534,11 @@ expr_stmt|;
 comment|//assume all are valid
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -617,7 +617,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|delDocs
+name|liveDocs
 argument_list|,
 name|docs
 argument_list|)

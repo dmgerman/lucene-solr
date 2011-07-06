@@ -498,6 +498,19 @@ argument_list|,
 name|actual
 argument_list|)
 expr_stmt|;
+name|FieldCache
+operator|.
+name|DEFAULT
+operator|.
+name|purge
+argument_list|(
+name|s
+operator|.
+name|getIndexReader
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// our wrapping can create insanity otherwise
 name|s
 operator|.
 name|close

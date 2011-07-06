@@ -393,13 +393,11 @@ specifier|final
 name|int
 name|fixedLength
 init|=
-literal|3
+literal|1
 operator|+
-name|random
-operator|.
-name|nextInt
+name|atLeast
 argument_list|(
-literal|7
+literal|50
 argument_list|)
 decl_stmt|;
 for|for

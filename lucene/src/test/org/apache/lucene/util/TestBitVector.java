@@ -844,6 +844,11 @@ argument_list|(
 name|size
 argument_list|)
 decl_stmt|;
+name|bv
+operator|.
+name|invertAll
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -861,7 +866,7 @@ control|)
 block|{
 name|bv
 operator|.
-name|set
+name|clear
 argument_list|(
 name|i
 argument_list|)
@@ -872,6 +877,8 @@ name|i
 operator|+
 literal|1
 argument_list|,
+name|size
+operator|-
 name|bv
 operator|.
 name|count
@@ -931,7 +938,7 @@ name|bv2
 expr_stmt|;
 name|bv
 operator|.
-name|set
+name|clear
 argument_list|(
 name|i
 argument_list|)
@@ -942,6 +949,8 @@ name|i
 operator|+
 literal|1
 argument_list|,
+name|size
+operator|-
 name|bv
 operator|.
 name|count
@@ -1003,7 +1012,7 @@ name|bv2
 expr_stmt|;
 name|bv
 operator|.
-name|clear
+name|set
 argument_list|(
 name|i
 argument_list|)
@@ -1012,6 +1021,8 @@ name|assertEquals
 argument_list|(
 name|i
 argument_list|,
+name|size
+operator|-
 name|bv
 operator|.
 name|count

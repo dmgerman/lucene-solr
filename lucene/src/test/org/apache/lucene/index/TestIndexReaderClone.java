@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests cloning multiple types of readers, modifying the deletedDocs and norms  * and verifies copy on write semantics of the deletedDocs and norms is  * implemented properly  */
+comment|/**  * Tests cloning multiple types of readers, modifying the liveDocs and norms  * and verifies copy on write semantics of the liveDocs and norms is  * implemented properly  */
 end_comment
 
 begin_class
@@ -1503,23 +1503,22 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|r1
 argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-name|delDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|delDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -1527,11 +1526,11 @@ literal|10
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertFalse
 argument_list|(
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|pr1Clone
 argument_list|)
@@ -1736,7 +1735,7 @@ name|assertNull
 argument_list|(
 name|origSegmentReader
 operator|.
-name|deletedDocsRef
+name|liveDocsRef
 argument_list|)
 expr_stmt|;
 name|origSegmentReader
@@ -1935,15 +1934,15 @@ argument_list|(
 name|origReader
 argument_list|)
 decl_stmt|;
-comment|// deletedDocsRef should be null because nothing has updated yet
+comment|// liveDocsRef should be null because nothing has updated yet
 name|assertNull
 argument_list|(
 name|origSegmentReader
 operator|.
-name|deletedDocsRef
+name|liveDocsRef
 argument_list|)
 expr_stmt|;
-comment|// we deleted a document, so there is now a deletedDocs bitvector and a
+comment|// we deleted a document, so there is now a liveDocs bitvector and a
 comment|// reference to it
 name|origReader
 operator|.
@@ -1987,7 +1986,7 @@ argument_list|,
 name|origSegmentReader
 argument_list|)
 expr_stmt|;
-comment|// deleting a document creates a new deletedDocs bitvector, the refs goes to
+comment|// deleting a document creates a new liveDocs bitvector, the refs goes to
 comment|// 1
 name|clonedReader
 operator|.
@@ -2016,11 +2015,11 @@ name|assertTrue
 argument_list|(
 name|origSegmentReader
 operator|.
-name|deletedDocs
+name|liveDocs
 operator|!=
 name|clonedSegmentReader
 operator|.
-name|deletedDocs
+name|liveDocs
 argument_list|)
 expr_stmt|;
 name|assertDocDeleted
@@ -2034,21 +2033,20 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|origSegmentReader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
-name|delDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|delDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -2058,11 +2056,11 @@ argument_list|)
 expr_stmt|;
 comment|// doc 2 should not be deleted
 comment|// in original segmentreader
-name|assertTrue
+name|assertFalse
 argument_list|(
 name|clonedSegmentReader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 operator|.
 name|get
@@ -2258,11 +2256,11 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertFalse
 argument_list|(
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|r
 argument_list|)
@@ -2456,7 +2454,7 @@ name|assertEquals
 argument_list|(
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 operator|.
 name|get
@@ -2466,7 +2464,7 @@ argument_list|)
 argument_list|,
 name|reader2
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 operator|.
 name|get
@@ -2494,7 +2492,7 @@ name|refCount
 argument_list|,
 name|reader
 operator|.
-name|deletedDocsRef
+name|liveDocsRef
 operator|.
 name|get
 argument_list|()

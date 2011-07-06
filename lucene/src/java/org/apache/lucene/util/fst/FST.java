@@ -2035,7 +2035,7 @@ literal|"max arc size is too large ("
 operator|+
 name|maxBytesPerArc
 operator|+
-literal|")"
+literal|"); disable array arcs by calling Builder.setAllowArrayArcs(false)"
 argument_list|)
 throw|;
 block|}

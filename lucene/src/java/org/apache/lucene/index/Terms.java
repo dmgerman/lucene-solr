@@ -175,7 +175,7 @@ literal|0
 return|;
 block|}
 block|}
-comment|/** Returns the number of documents containing the    *  specified term text.  Returns 0 if the term does not    *  exist. */
+comment|/** Returns the total number of occurrences of this term    *  across all documents (the sum of the freq() for each    *  doc that has this term).  This will be -1 if the    *  codec doesn't support this measure.  Note that, like    *  other term measures, this measure does not take    *  deleted documents into account. */
 DECL|method|totalTermFreq
 specifier|public
 name|long
@@ -227,7 +227,7 @@ name|DocsEnum
 name|docs
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|BytesRef
 name|text
@@ -262,7 +262,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 argument_list|)
@@ -282,7 +282,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|BytesRef
 name|text
@@ -317,7 +317,7 @@ name|termsEnum
 operator|.
 name|docsAndPositions
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 argument_list|)
@@ -337,7 +337,7 @@ name|DocsEnum
 name|docs
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|BytesRef
 name|term
@@ -372,7 +372,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 argument_list|)
@@ -385,7 +385,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|BytesRef
 name|term
@@ -420,7 +420,7 @@ name|termsEnum
 operator|.
 name|docsAndPositions
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 argument_list|)

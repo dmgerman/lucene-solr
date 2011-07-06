@@ -214,7 +214,7 @@ name|standard
 operator|.
 name|config
 operator|.
-name|DefaultOperatorAttribute
+name|StandardQueryConfigHandler
 import|;
 end_import
 
@@ -232,14 +232,34 @@ name|standard
 operator|.
 name|config
 operator|.
-name|DefaultOperatorAttribute
+name|StandardQueryConfigHandler
+operator|.
+name|ConfigurationKeys
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryParser
+operator|.
+name|standard
+operator|.
+name|config
+operator|.
+name|StandardQueryConfigHandler
 operator|.
 name|Operator
 import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This processor is used to apply the correct {@link ModifierQueryNode} to {@link BooleanQueryNode}s children.  *</p>  *<p>  * It walks through the query node tree looking for {@link BooleanQueryNode}s. If an {@link AndQueryNode} is found,  * every child, which is not a {@link ModifierQueryNode} or the {@link ModifierQueryNode}   * is {@link Modifier#MOD_NONE}, becomes a {@link Modifier#MOD_REQ}. For any other  * {@link BooleanQueryNode} which is not an {@link OrQueryNode}, it checks the default operator is {@link Operator#AND},  * if it is, the same operation when an {@link AndQueryNode} is found is applied to it.  *</p>  *   * @see DefaultOperatorAttribute  * @see PrecedenceQueryParser#setDefaultOperator  */
+comment|/**  *<p>  * This processor is used to apply the correct {@link ModifierQueryNode} to {@link BooleanQueryNode}s children.  *</p>  *<p>  * It walks through the query node tree looking for {@link BooleanQueryNode}s. If an {@link AndQueryNode} is found,  * every child, which is not a {@link ModifierQueryNode} or the {@link ModifierQueryNode}   * is {@link Modifier#MOD_NONE}, becomes a {@link Modifier#MOD_REQ}. For any other  * {@link BooleanQueryNode} which is not an {@link OrQueryNode}, it checks the default operator is {@link Operator#AND},  * if it is, the same operation when an {@link AndQueryNode} is found is applied to it.  *</p>  *   * @see ConfigurationKeys#DEFAULT_OPERATOR  * @see PrecedenceQueryParser#setDefaultOperator  */
 end_comment
 
 begin_class
@@ -292,25 +312,31 @@ parameter_list|)
 throws|throws
 name|QueryNodeException
 block|{
-if|if
-condition|(
-operator|!
+name|Operator
+name|op
+init|=
 name|getQueryConfigHandler
 argument_list|()
 operator|.
-name|hasAttribute
+name|get
 argument_list|(
-name|DefaultOperatorAttribute
+name|ConfigurationKeys
 operator|.
-name|class
+name|DEFAULT_OPERATOR
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|op
+operator|==
+literal|null
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"DefaultOperatorAttribute should be set on the QueryConfigHandler"
+literal|"StandardQueryConfigHandler.ConfigurationKeys.DEFAULT_OPERATOR should be set on the QueryConfigHandler"
 argument_list|)
 throw|;
 block|}
@@ -318,22 +344,13 @@ name|this
 operator|.
 name|usingAnd
 operator|=
+name|StandardQueryConfigHandler
+operator|.
 name|Operator
 operator|.
 name|AND
 operator|==
-name|getQueryConfigHandler
-argument_list|()
-operator|.
-name|getAttribute
-argument_list|(
-name|DefaultOperatorAttribute
-operator|.
-name|class
-argument_list|)
-operator|.
-name|getOperator
-argument_list|()
+name|op
 expr_stmt|;
 return|return
 name|super

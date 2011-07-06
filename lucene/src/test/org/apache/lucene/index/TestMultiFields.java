@@ -639,11 +639,11 @@ argument_list|()
 expr_stmt|;
 comment|//System.out.println("TEST reader=" + reader);
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -656,9 +656,9 @@ range|:
 name|deleted
 control|)
 block|{
-name|assertTrue
+name|assertFalse
 argument_list|(
-name|delDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -744,7 +744,7 @@ name|terms2
 operator|.
 name|docs
 argument_list|(
-name|delDocs
+name|liveDocs
 argument_list|,
 name|term
 argument_list|,
@@ -817,7 +817,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/*   private void verify(IndexReader r, String term, List<Integer> expected) throws Exception {     DocsEnum docs = MultiFields.getTermDocsEnum(r,                                                 MultiFields.getDeletedDocs(r),                                                 "field",                                                 new BytesRef(term));      for(int docID : expected) {       assertEquals(docID, docs.nextDoc());     }     assertEquals(docs.NO_MORE_DOCS, docs.nextDoc());   }   */
+comment|/*   private void verify(IndexReader r, String term, List<Integer> expected) throws Exception {     DocsEnum docs = MultiFields.getTermDocsEnum(r,                                                 MultiFields.getLiveDocs(r),                                                 "field",                                                 new BytesRef(term));      for(int docID : expected) {       assertEquals(docID, docs.nextDoc());     }     assertEquals(docs.NO_MORE_DOCS, docs.nextDoc());   }   */
 DECL|method|testSeparateEnums
 specifier|public
 name|void

@@ -655,7 +655,7 @@ name|mergedReader
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|mergedReader
 argument_list|)

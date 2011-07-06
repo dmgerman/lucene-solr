@@ -505,9 +505,11 @@ name|dis
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|disi
 operator|=
 name|dis
@@ -545,9 +547,11 @@ name|disi
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|new
 name|ConstantScorer

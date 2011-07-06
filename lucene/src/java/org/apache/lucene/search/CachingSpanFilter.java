@@ -178,11 +178,11 @@ annotation|@
 name|Override
 specifier|protected
 name|SpanFilterResult
-name|mergeDeletes
+name|mergeLiveDocs
 parameter_list|(
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 parameter_list|,
 specifier|final
 name|SpanFilterResult
@@ -281,7 +281,7 @@ argument_list|()
 condition|?
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 else|:
 name|coreKey

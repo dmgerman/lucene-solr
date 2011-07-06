@@ -76,11 +76,13 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|queries
 operator|.
-name|spell
+name|function
 operator|.
-name|StringDistance
+name|docvalues
+operator|.
+name|FloatDocValues
 import|;
 end_import
 
@@ -90,13 +92,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|search
 operator|.
-name|function
+name|spell
 operator|.
-name|FloatDocValues
+name|StringDistance
 import|;
 end_import
 

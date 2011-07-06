@@ -150,7 +150,27 @@ name|standard
 operator|.
 name|config
 operator|.
-name|DefaultPhraseSlopAttribute
+name|StandardQueryConfigHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryParser
+operator|.
+name|standard
+operator|.
+name|config
+operator|.
+name|StandardQueryConfigHandler
+operator|.
+name|ConfigurationKeys
 import|;
 end_import
 
@@ -173,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor verifies if the attribute {@link DefaultPhraseSlopAttribute}  * is defined in the {@link QueryConfigHandler}. If it is, it looks for every  * {@link TokenizedPhraseQueryNode} and {@link MultiPhraseQueryNode} that does  * not have any {@link SlopQueryNode} applied to it and creates an  * {@link SlopQueryNode} and apply to it. The new {@link SlopQueryNode} has the  * same slop value defined in the attribute.<br/>  *   * @see SlopQueryNode  * @see DefaultPhraseSlopAttribute  */
+comment|/**  * This processor verifies if {@link ConfigurationKeys#PHRASE_SLOP}  * is defined in the {@link QueryConfigHandler}. If it is, it looks for every  * {@link TokenizedPhraseQueryNode} and {@link MultiPhraseQueryNode} that does  * not have any {@link SlopQueryNode} applied to it and creates an  * {@link SlopQueryNode} and apply to it. The new {@link SlopQueryNode} has the  * same slop value defined in the configuration.<br/>  *   * @see SlopQueryNode  * @see ConfigurationKeys#PHRASE_SLOP  */
 end_comment
 
 begin_class
@@ -229,33 +249,30 @@ operator|!=
 literal|null
 condition|)
 block|{
-if|if
-condition|(
+name|Integer
+name|defaultPhraseSlop
+init|=
 name|queryConfig
 operator|.
-name|hasAttribute
+name|get
 argument_list|(
-name|DefaultPhraseSlopAttribute
+name|ConfigurationKeys
 operator|.
-name|class
+name|PHRASE_SLOP
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|defaultPhraseSlop
+operator|!=
+literal|null
 condition|)
 block|{
 name|this
 operator|.
 name|defaultPhraseSlop
 operator|=
-name|queryConfig
-operator|.
-name|getAttribute
-argument_list|(
-name|DefaultPhraseSlopAttribute
-operator|.
-name|class
-argument_list|)
-operator|.
-name|getDefaultPhraseSlop
-argument_list|()
+name|defaultPhraseSlop
 expr_stmt|;
 return|return
 name|super
