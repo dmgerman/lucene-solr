@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.common.mutable
+DECL|package|org.apache.lucene.util.mutable
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|common
+name|util
 operator|.
 name|mutable
 package|;
