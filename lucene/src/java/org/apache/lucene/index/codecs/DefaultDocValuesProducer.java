@@ -917,10 +917,7 @@ else|else
 block|{
 name|toClose
 operator|=
-name|docValues
-operator|.
-name|values
-argument_list|()
+name|closeables
 expr_stmt|;
 block|}
 name|IOUtils
