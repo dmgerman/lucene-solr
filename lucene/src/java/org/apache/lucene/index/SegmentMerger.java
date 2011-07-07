@@ -3142,8 +3142,6 @@ name|docBase
 init|=
 literal|0
 decl_stmt|;
-try|try
-block|{
 for|for
 control|(
 name|IndexReader
@@ -3335,19 +3333,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-finally|finally
-block|{
-name|IOUtils
-operator|.
-name|closeSafely
-argument_list|(
-literal|false
-argument_list|,
-name|perDocProducers
-argument_list|)
-expr_stmt|;
-block|}
+comment|/* don't close the perDocProducers here since they are private segment producers      * and will be closed once the SegmentReader goes out of scope */
 block|}
 DECL|field|mergeState
 specifier|private
