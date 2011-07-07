@@ -46,6 +46,22 @@ name|RandomAccessFile
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
+operator|.
+name|Context
+import|;
+end_import
+
 begin_comment
 comment|/** A straightforward implementation of {@link FSDirectory}  *  using java.io.RandomAccessFile.  However, this class has  *  poor concurrent performance (multiple threads will  *  bottleneck) as it synchronizes when multiple threads  *  read from the same file.  It's usually better to use  *  {@link NIOFSDirectory} or {@link MMapDirectory} instead. */
 end_comment
@@ -261,12 +277,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//nocommit Use IOContext to decide bufferSize instead of BufferedIndexInput.BUFFER_SIZE
 name|super
 argument_list|(
-name|BufferedIndexInput
-operator|.
-name|BUFFER_SIZE
+name|context
 argument_list|)
 expr_stmt|;
 name|file

@@ -215,7 +215,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-comment|//nocommit - use buffer based on IOContext
 return|return
 operator|new
 name|DirectIOLinuxIndexInput
@@ -229,15 +228,10 @@ argument_list|,
 name|name
 argument_list|)
 argument_list|,
-name|forcedBufferSize
-operator|==
-literal|0
-condition|?
-name|BufferedIndexInput
-operator|.
-name|BUFFER_SIZE
-else|:
-name|forcedBufferSize
+name|bufferSize
+argument_list|(
+name|context
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -265,7 +259,6 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
-comment|//nocommit - use buffer based on IOContext
 return|return
 operator|new
 name|DirectIOLinuxIndexOutput
@@ -279,15 +272,34 @@ argument_list|,
 name|name
 argument_list|)
 argument_list|,
+name|bufferSize
+argument_list|(
+name|context
+argument_list|)
+argument_list|)
+return|;
+block|}
+DECL|method|bufferSize
+specifier|private
+name|int
+name|bufferSize
+parameter_list|(
+name|IOContext
+name|context
+parameter_list|)
+block|{
+return|return
 name|forcedBufferSize
-operator|==
+operator|!=
 literal|0
 condition|?
-name|BufferedIndexOutput
-operator|.
-name|BUFFER_SIZE
-else|:
 name|forcedBufferSize
+else|:
+name|BufferedIndexInput
+operator|.
+name|bufferSize
+argument_list|(
+name|context
 argument_list|)
 return|;
 block|}
@@ -966,6 +978,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO make use of IOContext
 name|FileDescriptor
 name|fd
 init|=

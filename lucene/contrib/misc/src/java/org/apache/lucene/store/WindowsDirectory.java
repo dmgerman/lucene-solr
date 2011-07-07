@@ -164,7 +164,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-comment|//nocommit - use buffer based on IOContext
 return|return
 operator|new
 name|WindowsIndexInput

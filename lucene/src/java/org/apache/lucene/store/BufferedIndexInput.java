@@ -39,7 +39,7 @@ name|BufferedIndexInput
 extends|extends
 name|IndexInput
 block|{
-comment|/** Default buffer size */
+comment|/** Default buffer size set to 1024*/
 DECL|field|BUFFER_SIZE
 specifier|public
 specifier|static
@@ -48,6 +48,22 @@ name|int
 name|BUFFER_SIZE
 init|=
 literal|1024
+decl_stmt|;
+comment|// The normal read buffer size defaults to 1024, but
+comment|// increasing this during merging seems to yield
+comment|// performance gains.  However we don't want to increase
+comment|// it too much because there are quite a few
+comment|// BufferedIndexInputs created during merging.  See
+comment|// LUCENE-888 for details.
+comment|/**    * A buffer size for merges set to 4096    */
+DECL|field|MERGE_BUFFER_SIZE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MERGE_BUFFER_SIZE
+init|=
+literal|4096
 decl_stmt|;
 DECL|field|bufferSize
 specifier|private
@@ -118,8 +134,24 @@ specifier|public
 name|BufferedIndexInput
 parameter_list|()
 block|{}
+DECL|method|BufferedIndexInput
+specifier|public
+name|BufferedIndexInput
+parameter_list|(
+name|IOContext
+name|context
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|bufferSize
+argument_list|(
+name|context
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Inits BufferedIndexInput with a specific bufferSize */
-comment|//nocommit To cleanup class variable bufferSize as the the default size is always used
 DECL|method|BufferedIndexInput
 specifier|public
 name|BufferedIndexInput
@@ -130,9 +162,7 @@ parameter_list|)
 block|{
 name|checkBufferSize
 argument_list|(
-name|BufferedIndexInput
-operator|.
-name|BUFFER_SIZE
+name|bufferSize
 argument_list|)
 expr_stmt|;
 name|this
@@ -1467,6 +1497,57 @@ argument_list|,
 name|numBytes
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+comment|/**    * Returns default buffer sizes for the given {@link IOContext}    */
+DECL|method|bufferSize
+specifier|public
+specifier|static
+name|int
+name|bufferSize
+parameter_list|(
+name|IOContext
+name|context
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|context
+operator|.
+name|context
+condition|)
+block|{
+case|case
+name|DEFAULT
+case|:
+case|case
+name|FLUSH
+case|:
+case|case
+name|READ
+case|:
+return|return
+name|BUFFER_SIZE
+return|;
+case|case
+name|MERGE
+case|:
+return|return
+name|MERGE_BUFFER_SIZE
+return|;
+default|default:
+assert|assert
+literal|false
+operator|:
+literal|"unknown IOContext "
+operator|+
+name|context
+operator|.
+name|context
+assert|;
+return|return
+name|BUFFER_SIZE
+return|;
 block|}
 block|}
 block|}

@@ -869,7 +869,6 @@ operator|.
 name|number
 argument_list|)
 decl_stmt|;
-comment|//nocommit not sure if this is the correct information provided to FlushInfo
 name|IndexOutput
 name|out
 init|=

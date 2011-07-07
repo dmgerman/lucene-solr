@@ -1960,7 +1960,7 @@ block|{
 comment|//      if (poolReaders) {
 comment|//        readBufferSize = BufferedIndexInput.BUFFER_SIZE;
 comment|//      }
-comment|// nocommit context should be part of the key used to cache that reader in the pool.
+comment|// TODO: context should be part of the key used to cache that reader in the pool.
 name|SegmentReader
 name|sr
 init|=
@@ -11609,7 +11609,6 @@ block|}
 comment|// TODO: in the non-realtime case, we may want to only
 comment|// keep deletes (it's costly to open entire reader
 comment|// when we just need deletes)
-comment|// nocommit  should we use another flag "isMergedSegment" or a "READ" context here?
 specifier|final
 name|SegmentReader
 name|mergedReader

@@ -1781,6 +1781,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// IOContext triggers different buffer sizes so we use default here
 comment|// Setup the test file - we need more than 1024 bytes
 name|IndexOutput
 name|os
@@ -1791,10 +1792,9 @@ name|createOutput
 argument_list|(
 name|file
 argument_list|,
-name|newIOContext
-argument_list|(
-name|random
-argument_list|)
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 for|for
@@ -1837,10 +1837,9 @@ name|openInput
 argument_list|(
 name|file
 argument_list|,
-name|newIOContext
-argument_list|(
-name|random
-argument_list|)
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 comment|// This read primes the buffer in IndexInput
