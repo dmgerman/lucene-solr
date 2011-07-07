@@ -1266,7 +1266,7 @@ name|range
 init|=
 name|parser
 operator|.
-name|parse
+name|getQuery
 argument_list|()
 decl_stmt|;
 name|QParser
@@ -1296,7 +1296,7 @@ name|frange
 init|=
 name|parser2
 operator|.
-name|parse
+name|getQuery
 argument_list|()
 decl_stmt|;
 name|req
@@ -1420,7 +1420,7 @@ name|rangeQ
 init|=
 name|parser
 operator|.
-name|parse
+name|getQuery
 argument_list|()
 decl_stmt|;
 name|List
@@ -1485,7 +1485,7 @@ name|q
 init|=
 name|parser
 operator|.
-name|parse
+name|getQuery
 argument_list|()
 decl_stmt|;
 comment|// SolrIndexSearcher searcher = req.getSearcher();

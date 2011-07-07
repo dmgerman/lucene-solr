@@ -47,11 +47,6 @@ specifier|public
 name|boolean
 name|optimize
 decl_stmt|;
-DECL|field|waitFlush
-specifier|public
-name|boolean
-name|waitFlush
-decl_stmt|;
 DECL|field|waitSearcher
 specifier|public
 name|boolean
@@ -63,6 +58,13 @@ DECL|field|expungeDeletes
 specifier|public
 name|boolean
 name|expungeDeletes
+init|=
+literal|false
+decl_stmt|;
+DECL|field|softCommit
+specifier|public
+name|boolean
+name|softCommit
 init|=
 literal|false
 decl_stmt|;
@@ -112,10 +114,6 @@ literal|"commit(optimize="
 operator|+
 name|optimize
 operator|+
-literal|",waitFlush="
-operator|+
-name|waitFlush
-operator|+
 literal|",waitSearcher="
 operator|+
 name|waitSearcher
@@ -123,6 +121,10 @@ operator|+
 literal|",expungeDeletes="
 operator|+
 name|expungeDeletes
+operator|+
+literal|",softCommit="
+operator|+
+name|softCommit
 operator|+
 literal|')'
 return|;

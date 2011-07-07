@@ -377,7 +377,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
@@ -393,7 +393,7 @@ name|super
 operator|.
 name|docsAndPositions
 argument_list|(
-name|skipDocs
+name|liveDocs
 argument_list|,
 name|reuse
 operator|==
@@ -802,7 +802,7 @@ name|FOUND
 argument_list|,
 name|terms
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 operator|new
 name|BytesRef
@@ -821,7 +821,7 @@ name|docsAndPositions
 argument_list|(
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)

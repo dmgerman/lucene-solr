@@ -169,7 +169,7 @@ name|float
 name|getBoost
 parameter_list|()
 function_decl|;
-comment|/** Returns the name of the field as an interned string.    * For example "date", "title", "body", ...    */
+comment|/** Returns the name of the field.    * For example "date", "title", "body", ...    */
 DECL|method|name
 name|String
 name|name

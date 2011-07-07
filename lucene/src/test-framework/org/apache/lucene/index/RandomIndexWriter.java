@@ -696,7 +696,8 @@ name|Document
 argument_list|>
 argument_list|()
 block|{
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -716,7 +717,8 @@ block|{
 name|boolean
 name|done
 decl_stmt|;
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -727,7 +729,8 @@ operator|!
 name|done
 return|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -739,7 +742,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|next
@@ -1018,7 +1022,39 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|INTS
+name|VAR_INTS
+case|:
+name|docValuesField
+operator|.
+name|setInt
+argument_list|(
+name|random
+operator|.
+name|nextLong
+argument_list|()
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|FIXED_INTS_16
+case|:
+name|docValuesField
+operator|.
+name|setInt
+argument_list|(
+name|random
+operator|.
+name|nextInt
+argument_list|(
+name|Short
+operator|.
+name|MAX_VALUE
+argument_list|)
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|FIXED_INTS_32
 case|:
 name|docValuesField
 operator|.
@@ -1028,6 +1064,36 @@ name|random
 operator|.
 name|nextInt
 argument_list|()
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|FIXED_INTS_64
+case|:
+name|docValuesField
+operator|.
+name|setInt
+argument_list|(
+name|random
+operator|.
+name|nextLong
+argument_list|()
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|FIXED_INTS_8
+case|:
+name|docValuesField
+operator|.
+name|setInt
+argument_list|(
+name|random
+operator|.
+name|nextInt
+argument_list|(
+literal|128
+argument_list|)
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1245,7 +1311,8 @@ name|Document
 argument_list|>
 argument_list|()
 block|{
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1265,7 +1332,8 @@ block|{
 name|boolean
 name|done
 decl_stmt|;
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1276,7 +1344,8 @@ operator|!
 name|done
 return|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -1288,7 +1357,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|next

@@ -1511,6 +1511,8 @@ literal|"sort1"
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|STRING
 argument_list|,
 name|random
@@ -1533,6 +1535,8 @@ argument_list|(
 literal|"sort2"
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|STRING
 argument_list|,
@@ -1565,6 +1569,8 @@ literal|"sort1"
 argument_list|,
 name|SortField
 operator|.
+name|Type
+operator|.
 name|STRING
 argument_list|,
 name|random
@@ -1584,6 +1590,8 @@ argument_list|(
 literal|"sort2"
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|STRING
 argument_list|,
@@ -1607,6 +1615,8 @@ argument_list|(
 literal|"id"
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|INT
 argument_list|)
@@ -1662,7 +1672,8 @@ name|GroupDoc
 argument_list|>
 argument_list|()
 block|{
-comment|// @Override -- Not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare
@@ -1694,6 +1705,8 @@ name|getType
 argument_list|()
 operator|==
 name|SortField
+operator|.
+name|Type
 operator|.
 name|SCORE
 condition|)
@@ -1933,6 +1946,8 @@ name|getType
 argument_list|()
 operator|==
 name|SortField
+operator|.
+name|Type
 operator|.
 name|SCORE
 condition|)
@@ -4738,6 +4753,8 @@ argument_list|()
 operator|==
 name|SortField
 operator|.
+name|Type
+operator|.
 name|SCORE
 condition|)
 block|{
@@ -4766,6 +4783,8 @@ name|getType
 argument_list|()
 operator|==
 name|SortField
+operator|.
+name|Type
 operator|.
 name|SCORE
 condition|)
@@ -6139,6 +6158,8 @@ argument_list|()
 operator|==
 name|SortField
 operator|.
+name|Type
+operator|.
 name|SCORE
 condition|)
 block|{
@@ -6233,6 +6254,8 @@ name|getType
 argument_list|()
 operator|==
 name|SortField
+operator|.
+name|Type
 operator|.
 name|SCORE
 condition|)

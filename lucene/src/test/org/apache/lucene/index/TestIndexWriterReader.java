@@ -407,6 +407,18 @@ name|out
 else|:
 literal|null
 decl_stmt|;
+DECL|field|numThreads
+specifier|private
+specifier|final
+name|int
+name|numThreads
+init|=
+name|TEST_NIGHTLY
+condition|?
+literal|5
+else|:
+literal|3
+decl_stmt|;
 DECL|method|count
 specifier|public
 specifier|static
@@ -438,7 +450,7 @@ name|r
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|r
 argument_list|)
@@ -2632,7 +2644,7 @@ operator|.
 name|joinThreads
 argument_list|()
 expr_stmt|;
-comment|//assertEquals(100 + numDirs * (3 * numIter / 4) * addDirThreads.NUM_THREADS
+comment|//assertEquals(100 + numDirs * (3 * numIter / 4) * addDirThreads.numThreads
 comment|//    * addDirThreads.NUM_INIT_DOCS, addDirThreads.mainWriter.numDocs());
 name|assertEquals
 argument_list|(
@@ -2704,7 +2716,7 @@ name|numDocs
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//assertEquals(100 + numDirs * (3 * numIter / 4) * addDirThreads.NUM_THREADS
+comment|//assertEquals(100 + numDirs * (3 * numIter / 4) * addDirThreads.numThreads
 comment|//    * addDirThreads.NUM_INIT_DOCS, reader.numDocs());
 name|reader
 operator|.
@@ -2731,14 +2743,6 @@ DECL|field|addDir
 name|Directory
 name|addDir
 decl_stmt|;
-DECL|field|NUM_THREADS
-specifier|final
-specifier|static
-name|int
-name|NUM_THREADS
-init|=
-literal|5
-decl_stmt|;
 DECL|field|NUM_INIT_DOCS
 specifier|final
 specifier|static
@@ -2760,7 +2764,7 @@ init|=
 operator|new
 name|Thread
 index|[
-name|NUM_THREADS
+name|numThreads
 index|]
 decl_stmt|;
 DECL|field|mainWriter
@@ -2959,7 +2963,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|NUM_THREADS
+name|numThreads
 condition|;
 name|i
 operator|++
@@ -3107,7 +3111,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|NUM_THREADS
+name|numThreads
 condition|;
 name|i
 operator|++
@@ -3237,7 +3241,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|NUM_THREADS
+name|numThreads
 condition|;
 name|i
 operator|++
@@ -4776,12 +4780,6 @@ name|getReader
 argument_list|()
 decl_stmt|;
 specifier|final
-name|int
-name|NUM_THREAD
-init|=
-literal|5
-decl_stmt|;
-specifier|final
 name|float
 name|SECONDS
 init|=
@@ -4832,7 +4830,7 @@ init|=
 operator|new
 name|Thread
 index|[
-name|NUM_THREAD
+name|numThreads
 index|]
 decl_stmt|;
 for|for
@@ -4844,7 +4842,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|NUM_THREAD
+name|numThreads
 condition|;
 name|i
 operator|++
@@ -5041,7 +5039,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|NUM_THREAD
+name|numThreads
 condition|;
 name|i
 operator|++
@@ -5246,12 +5244,6 @@ name|getReader
 argument_list|()
 decl_stmt|;
 specifier|final
-name|int
-name|NUM_THREAD
-init|=
-literal|5
-decl_stmt|;
-specifier|final
 name|float
 name|SECONDS
 init|=
@@ -5302,7 +5294,7 @@ init|=
 operator|new
 name|Thread
 index|[
-name|NUM_THREAD
+name|numThreads
 index|]
 decl_stmt|;
 for|for
@@ -5314,7 +5306,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|NUM_THREAD
+name|numThreads
 condition|;
 name|i
 operator|++
@@ -5590,7 +5582,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|NUM_THREAD
+name|numThreads
 condition|;
 name|i
 operator|++

@@ -125,6 +125,16 @@ parameter_list|()
 block|{
 comment|/* NOOP */
 block|}
+annotation|@
+name|Override
+DECL|method|postSoftCommit
+specifier|public
+name|void
+name|postSoftCommit
+parameter_list|()
+block|{
+comment|/* NOOP */
+block|}
 DECL|method|newSearcher
 specifier|public
 name|void

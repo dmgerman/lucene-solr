@@ -490,7 +490,7 @@ name|status
 init|=
 name|termsEnum
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 name|prefixRef
 argument_list|)

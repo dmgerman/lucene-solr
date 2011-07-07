@@ -987,7 +987,7 @@ name|reader
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -1392,7 +1392,7 @@ name|docsAndPositions
 argument_list|(
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|,
 operator|new
@@ -1697,7 +1697,7 @@ name|docsAndPositions
 argument_list|(
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|,
 operator|new
@@ -1757,7 +1757,7 @@ name|docsAndPositions
 argument_list|(
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|,
 operator|new
@@ -1827,7 +1827,7 @@ name|docsAndPositions
 argument_list|(
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|,
 operator|new

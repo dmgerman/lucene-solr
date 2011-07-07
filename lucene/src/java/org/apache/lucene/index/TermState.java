@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Encapsulates all required internal state to position the associated  * {@link TermsEnum} without re-seeking.  *   * @see TermsEnum#seek(org.apache.lucene.util.BytesRef, TermState)  * @see TermsEnum#termState()  * @lucene.experimental  */
+comment|/**  * Encapsulates all required internal state to position the associated  * {@link TermsEnum} without re-seeking.  *   * @see TermsEnum#seekExact(org.apache.lucene.util.BytesRef, TermState)  * @see TermsEnum#termState()  * @lucene.experimental  */
 end_comment
 
 begin_class

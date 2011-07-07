@@ -1570,6 +1570,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* This test shows a big speedup from limiting the number of analyzed phrases in     * this bad case for FieldPhraseList */
+comment|/* But it is not reliable as a unit test since it is timing-dependent   public void testManyRepeatedTerms() throws Exception {       long t = System.currentTimeMillis();       testManyTermsWithLimit (-1);       long t1 = System.currentTimeMillis();       testManyTermsWithLimit (1);       long t2 = System.currentTimeMillis();       assertTrue (t2-t1 * 1000< t1-t);   }   private void testManyTermsWithLimit (int limit) throws Exception {       StringBuilder buf = new StringBuilder ();       for (int i = 0; i< 16000; i++) {           buf.append("a b c ");       }       make1d1fIndex( buf.toString());        Query query = tq("a");       FieldQuery fq = new FieldQuery( query, true, true );       FieldTermStack stack = new FieldTermStack( reader, 0, F, fq );       FieldPhraseList fpl = new FieldPhraseList( stack, fq, limit);       if (limit< 0 || limit> 16000)           assertEquals( 16000, fpl.phraseList.size() );       else           assertEquals( limit, fpl.phraseList.size() );       assertEquals( "a(1.0)((0,1))", fpl.phraseList.get( 0 ).toString() );         }   */
 block|}
 end_class
 

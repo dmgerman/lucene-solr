@@ -70,6 +70,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Iterator
@@ -160,9 +170,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|standard
-operator|.
-name|StandardAnalyzer
+name|TokenStream
 import|;
 end_import
 
@@ -334,7 +342,7 @@ name|F_WORD
 init|=
 literal|"word"
 decl_stmt|;
-comment|/** 	 * 	 */
+comment|/** 	 * we don't actually analyze any text (only a NOT_ANALYZED field), 	 * but analyzer can't be null, docinverter wants the offset gap! 	 */
 DECL|field|ana
 specifier|private
 specifier|static
@@ -343,12 +351,27 @@ name|Analyzer
 name|ana
 init|=
 operator|new
-name|StandardAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
-argument_list|)
+name|Analyzer
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|TokenStream
+name|tokenStream
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
+name|Reader
+name|reader
+parameter_list|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+block|}
 decl_stmt|;
 comment|/**      * Takes arg of prolog file name and index directory.      */
 DECL|method|main

@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Fields
+name|DocsEnum
 import|;
 end_import
 
@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|Fields
 import|;
 end_import
 
@@ -67,6 +67,20 @@ operator|.
 name|IndexReader
 operator|.
 name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
 import|;
 end_import
 
@@ -106,9 +120,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|DocsEnum
+name|Bits
 import|;
 end_import
 
@@ -123,20 +137,6 @@ operator|.
 name|util
 operator|.
 name|OpenBitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
 import|;
 end_import
 
@@ -428,8 +428,6 @@ init|=
 operator|new
 name|OpenBitSet
 argument_list|(
-name|context
-operator|.
 name|reader
 operator|.
 name|maxDoc
@@ -443,11 +441,11 @@ literal|0
 decl_stmt|;
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 name|DocsEnum
@@ -468,7 +466,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|delDocs
+name|liveDocs
 argument_list|,
 name|docsEnum
 argument_list|)

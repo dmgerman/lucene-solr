@@ -258,7 +258,7 @@ name|standard
 operator|.
 name|config
 operator|.
-name|DateResolutionAttribute
+name|StandardQueryConfigHandler
 import|;
 end_import
 
@@ -276,7 +276,9 @@ name|standard
 operator|.
 name|config
 operator|.
-name|LocaleAttribute
+name|StandardQueryConfigHandler
+operator|.
+name|ConfigurationKeys
 import|;
 end_import
 
@@ -299,7 +301,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor converts {@link ParametricRangeQueryNode} objects to  * {@link RangeQueryNode} objects. It reads the lower and upper bounds value  * from the {@link ParametricRangeQueryNode} object and try to parse their  * values using a {@link DateFormat}. If the values cannot be parsed to a date  * value, it will only create the {@link RangeQueryNode} using the non-parsed  * values.<br/>  *<br/>  * If a {@link LocaleAttribute} is defined in the {@link QueryConfigHandler} it  * will be used to parse the date, otherwise {@link Locale#getDefault()} will be  * used.<br/>  *<br/>  * If a {@link DateResolutionAttribute} is defined and the {@link Resolution} is  * not<code>null</code> it will also be used to parse the date value.<br/>  *<br/>  *   * @see DateResolutionAttribute  * @see LocaleAttribute  * @see RangeQueryNode  * @see ParametricRangeQueryNode  */
+comment|/**  * This processor converts {@link ParametricRangeQueryNode} objects to  * {@link RangeQueryNode} objects. It reads the lower and upper bounds value  * from the {@link ParametricRangeQueryNode} object and try to parse their  * values using a {@link DateFormat}. If the values cannot be parsed to a date  * value, it will only create the {@link RangeQueryNode} using the non-parsed  * values.<br/>  *<br/>  * If a {@link ConfigurationKeys#LOCALE} is defined in the {@link QueryConfigHandler} it  * will be used to parse the date, otherwise {@link Locale#getDefault()} will be  * used.<br/>  *<br/>  * If a {@link ConfigurationKeys#DATE_RESOLUTION} is defined and the {@link Resolution} is  * not<code>null</code> it will also be used to parse the date value.<br/>  *<br/>  *   * @see ConfigurationKeys#DATE_RESOLUTION  * @see ConfigurationKeys#LOCALE  * @see RangeQueryNode  * @see ParametricRangeQueryNode  */
 end_comment
 
 begin_class
@@ -361,14 +363,6 @@ operator|.
 name|getLowerBound
 argument_list|()
 decl_stmt|;
-name|Locale
-name|locale
-init|=
-name|Locale
-operator|.
-name|getDefault
-argument_list|()
-decl_stmt|;
 name|DateTools
 operator|.
 name|Resolution
@@ -381,32 +375,31 @@ name|inclusive
 init|=
 literal|false
 decl_stmt|;
-if|if
-condition|(
+name|Locale
+name|locale
+init|=
 name|getQueryConfigHandler
 argument_list|()
 operator|.
-name|hasAttribute
+name|get
 argument_list|(
-name|LocaleAttribute
+name|ConfigurationKeys
 operator|.
-name|class
+name|LOCALE
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|locale
+operator|==
+literal|null
 condition|)
 block|{
 name|locale
 operator|=
-name|getQueryConfigHandler
-argument_list|()
+name|Locale
 operator|.
-name|getAttribute
-argument_list|(
-name|LocaleAttribute
-operator|.
-name|class
-argument_list|)
-operator|.
-name|getLocale
+name|getDefault
 argument_list|()
 expr_stmt|;
 block|}
@@ -456,33 +449,17 @@ operator|!=
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-name|fieldConfig
-operator|.
-name|hasAttribute
-argument_list|(
-name|DateResolutionAttribute
-operator|.
-name|class
-argument_list|)
-condition|)
-block|{
 name|dateRes
 operator|=
 name|fieldConfig
 operator|.
-name|getAttribute
+name|get
 argument_list|(
-name|DateResolutionAttribute
+name|ConfigurationKeys
 operator|.
-name|class
+name|DATE_RESOLUTION
 argument_list|)
-operator|.
-name|getDateResolution
-argument_list|()
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(

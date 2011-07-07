@@ -582,7 +582,7 @@ name|termDocsEnum
 argument_list|(
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|,
 name|field
@@ -874,9 +874,11 @@ name|reader
 operator|.
 name|termDocsEnum
 argument_list|(
+name|context
+operator|.
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|,
 name|term

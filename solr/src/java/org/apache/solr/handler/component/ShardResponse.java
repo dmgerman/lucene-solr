@@ -172,6 +172,7 @@ name|shard
 return|;
 block|}
 DECL|method|setShardRequest
+specifier|public
 name|void
 name|setShardRequest
 parameter_list|(
@@ -187,6 +188,7 @@ name|rsp
 expr_stmt|;
 block|}
 DECL|method|setSolrResponse
+specifier|public
 name|void
 name|setSolrResponse
 parameter_list|(

@@ -275,6 +275,27 @@ name|qt
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|handler
+operator|instanceof
+name|PingRequestHandler
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Cannot execute the PingRequestHandler recursively"
+argument_list|)
+throw|;
+block|}
 comment|// Execute the ping query and catch any possible exception
 name|Throwable
 name|ex

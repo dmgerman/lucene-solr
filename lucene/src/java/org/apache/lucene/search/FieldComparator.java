@@ -3531,7 +3531,18 @@ name|scorer
 parameter_list|)
 block|{
 comment|// wrap with a ScoreCachingWrappingScorer so that successive calls to
-comment|// score() will not incur score computation over and over again.
+comment|// score() will not incur score computation over and
+comment|// over again.
+if|if
+condition|(
+operator|!
+operator|(
+name|scorer
+operator|instanceof
+name|ScoreCachingWrappingScorer
+operator|)
+condition|)
+block|{
 name|this
 operator|.
 name|scorer
@@ -3542,6 +3553,16 @@ argument_list|(
 name|scorer
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|this
+operator|.
+name|scorer
+operator|=
+name|scorer
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

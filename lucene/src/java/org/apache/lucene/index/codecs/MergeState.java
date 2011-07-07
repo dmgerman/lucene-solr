@@ -202,10 +202,10 @@ name|int
 name|mergedDocCount
 decl_stmt|;
 comment|// Total # merged docs
-DECL|field|multiDeletedDocs
+DECL|field|multiLiveDocs
 specifier|public
 name|Bits
-name|multiDeletedDocs
+name|multiLiveDocs
 decl_stmt|;
 DECL|field|checkAbort
 specifier|public

@@ -383,10 +383,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getDeletedDocs
+DECL|method|getLiveDocs
 specifier|public
 name|Bits
-name|getDeletedDocs
+name|getLiveDocs
 parameter_list|()
 block|{
 return|return
@@ -403,6 +403,7 @@ name|n
 parameter_list|)
 block|{
 return|return
+operator|!
 operator|(
 name|index
 operator|.
@@ -421,7 +422,8 @@ argument_list|(
 name|n
 argument_list|)
 operator|)
-operator|||
+operator|&&
+operator|!
 operator|(
 name|uncommittedDeletedDocuments
 operator|!=
@@ -1741,6 +1743,7 @@ name|orderedTerms
 operator|.
 name|length
 operator|||
+operator|!
 name|orderedTerms
 index|[
 name|i
@@ -1748,8 +1751,11 @@ index|]
 operator|.
 name|field
 argument_list|()
-operator|!=
+operator|.
+name|equals
+argument_list|(
 name|field
+argument_list|)
 condition|)
 block|{
 comment|// field does not exist

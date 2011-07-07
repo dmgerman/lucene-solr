@@ -676,10 +676,12 @@ operator|+=
 name|inc
 expr_stmt|;
 block|}
+comment|/**    * To rewrite to a simpler form, instead return a simpler    * enum from {@link #getTermsEnum(Terms, AttributeSource)}.  For example,    * to rewrite to a single term, return a {@link SingleTermsEnum}    */
 annotation|@
 name|Override
 DECL|method|rewrite
 specifier|public
+specifier|final
 name|Query
 name|rewrite
 parameter_list|(

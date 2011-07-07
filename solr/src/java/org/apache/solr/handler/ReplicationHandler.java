@@ -248,20 +248,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|update
-operator|.
-name|DirectUpdateHandler2
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|util
 operator|.
 name|RefCounted
@@ -5862,42 +5848,15 @@ comment|// always saves the last commit point (and the last optimized commit poi
 comment|/***               if(indexCommitPoint != null){                 core.getDeletionPolicy().saveCommitPoint(indexCommitPoint.getVersion());               }               ***/
 block|}
 block|}
-if|if
-condition|(
+comment|// reboot the writer on the new index
 name|core
 operator|.
 name|getUpdateHandler
 argument_list|()
-operator|instanceof
-name|DirectUpdateHandler2
-condition|)
-block|{
-operator|(
-operator|(
-name|DirectUpdateHandler2
-operator|)
-name|core
 operator|.
-name|getUpdateHandler
-argument_list|()
-operator|)
-operator|.
-name|forceOpenWriter
+name|newIndexWriter
 argument_list|()
 expr_stmt|;
-block|}
-else|else
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"The update handler being used is not an instance or sub-class of DirectUpdateHandler2. "
-operator|+
-literal|"Replicate on Startup cannot work."
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -6067,9 +6026,11 @@ operator|new
 name|CloseHook
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
-name|close
+name|preClose
 parameter_list|(
 name|SolrCore
 name|core
@@ -6089,6 +6050,16 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|postClose
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|)
+block|{}
 block|}
 argument_list|)
 expr_stmt|;
@@ -6325,6 +6296,13 @@ parameter_list|)
 block|{
 comment|/*no op*/
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|postSoftCommit
+parameter_list|()
+block|{        }
 block|}
 return|;
 block|}

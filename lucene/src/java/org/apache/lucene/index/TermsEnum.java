@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Iterator to seek ({@link #seek}) or step through ({@link  * #next} terms, obtain frequency information ({@link  * #docFreq}), and obtain a {@link DocsEnum} or {@link  * DocsAndPositionsEnum} for the current term ({@link  * #docs}.  *   *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than all that precede it.</p>  *  *<p>On obtaining a TermsEnum, you must first call  * {@link #next} or {@link #seek}.  *  * @lucene.experimental */
+comment|/** Iterator to seek ({@link #seekCeil(BytesRef)}, {@link  * #seekExact(BytesRef,boolean)}) or step through ({@link  * #next} terms to obtain frequency information ({@link  * #docFreq}), {@link DocsEnum} or {@link  * DocsAndPositionsEnum} for the current term ({@link  * #docs}.  *   *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than the one before it.</p>  *  *<p>The TermsEnum is unpositioned when you first obtain it  * and you must first successfully call {@link #next} or one  * of the<code>seek</code> methods.  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -119,7 +119,7 @@ return|return
 name|atts
 return|;
 block|}
-comment|/** Represents returned result from {@link #seek}.    *  If status is FOUND, then the precise term was found.    *  If status is NOT_FOUND, then a different term was    *  found.  If the status is END, the end of the iteration    *  was hit. */
+comment|/** Represents returned result from {@link #seekCeil}.    *  If status is FOUND, then the precise term was found.    *  If status is NOT_FOUND, then a different term was    *  found.  If the status is END, the end of the iteration    *  was hit. */
 DECL|enum|SeekStatus
 DECL|enum constant|END
 DECL|enum constant|FOUND
@@ -136,12 +136,40 @@ block|,
 name|NOT_FOUND
 block|}
 empty_stmt|;
-comment|/** Expert: just like {@link #seek(BytesRef)} but allows    *  you to control whether the implementation should    *  attempt to use its term cache (if it uses one). */
-DECL|method|seek
+comment|/** Attemps to seek to the exact term, returning    *  true if the term is found.  If this returns false, the    *  enum is unpositioned.  For some codecs, seekExact may    *  be substantially faster than {@link #seekCeil}. */
+DECL|method|seekExact
+specifier|public
+name|boolean
+name|seekExact
+parameter_list|(
+name|BytesRef
+name|text
+parameter_list|,
+name|boolean
+name|useCache
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|seekCeil
+argument_list|(
+name|text
+argument_list|,
+name|useCache
+argument_list|)
+operator|==
+name|SeekStatus
+operator|.
+name|FOUND
+return|;
+block|}
+comment|/** Expert: just like {@link #seekCeil(BytesRef)} but allows    *  you to control whether the implementation should    *  attempt to use its term cache (if it uses one). */
+DECL|method|seekCeil
 specifier|public
 specifier|abstract
 name|SeekStatus
-name|seek
+name|seekCeil
 parameter_list|(
 name|BytesRef
 name|text
@@ -152,12 +180,12 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Seeks to the specified term.  Returns SeekStatus to    *  indicate whether exact term was found, a different    *  term was found, or EOF was hit.  The target term may    *  be before or after the current term. */
-DECL|method|seek
+comment|/** Seeks to the specified term, if it exists, or to the    *  next (ceiling) term.  Returns SeekStatus to    *  indicate whether exact term was found, a different    *  term was found, or EOF was hit.  The target term may    *  be before or after the current term.  If this returns    *  SeekStatus.END, the enum is unpositioned. */
+DECL|method|seekCeil
 specifier|public
 specifier|final
 name|SeekStatus
-name|seek
+name|seekCeil
 parameter_list|(
 name|BytesRef
 name|text
@@ -166,7 +194,7 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|seek
+name|seekCeil
 argument_list|(
 name|text
 argument_list|,
@@ -174,12 +202,12 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** Seeks to the specified term by ordinal (position) as    *  previously returned by {@link #ord}.  The target ord    *  may be before or after the current ord.  See {@link    *  #seek(BytesRef)}. */
-DECL|method|seek
+comment|/** Seeks to the specified term by ordinal (position) as    *  previously returned by {@link #ord}.  The target ord    *  may be before or after the current ord, and must be    *  within bounds. */
+DECL|method|seekExact
 specifier|public
 specifier|abstract
-name|SeekStatus
-name|seek
+name|void
+name|seekExact
 parameter_list|(
 name|long
 name|ord
@@ -187,11 +215,11 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Expert: Seeks a specific position by {@link TermState} previously obtained    * from {@link #termState()}. Callers should maintain the {@link TermState} to    * use this method. Low-level implementations may position the TermsEnum    * without re-seeking the term dictionary.    *<p>    * Seeking by {@link TermState} should only be used iff the enum the state was    * obtained from and the enum the state is used for seeking are obtained from    * the same {@link IndexReader}, otherwise a {@link #seek(BytesRef, TermState)} call can    * leave the enum in undefined state.    *<p>    * NOTE: Using this method with an incompatible {@link TermState} might leave    * this {@link TermsEnum} in undefined state. On a segment level    * {@link TermState} instances are compatible only iff the source and the    * target {@link TermsEnum} operate on the same field. If operating on segment    * level, TermState instances must not be used across segments.    *<p>    * NOTE: A seek by {@link TermState} might not restore the    * {@link AttributeSource}'s state. {@link AttributeSource} states must be    * maintained separately if this method is used.    * @param term the term the TermState corresponds to    * @param state the {@link TermState}    * */
-DECL|method|seek
+comment|/**    * Expert: Seeks a specific position by {@link TermState} previously obtained    * from {@link #termState()}. Callers should maintain the {@link TermState} to    * use this method. Low-level implementations may position the TermsEnum    * without re-seeking the term dictionary.    *<p>    * Seeking by {@link TermState} should only be used iff the enum the state was    * obtained from and the enum the state is used for seeking are obtained from    * the same {@link IndexReader}.    *<p>    * NOTE: Using this method with an incompatible {@link TermState} might leave    * this {@link TermsEnum} in undefined state. On a segment level    * {@link TermState} instances are compatible only iff the source and the    * target {@link TermsEnum} operate on the same field. If operating on segment    * level, TermState instances must not be used across segments.    *<p>    * NOTE: A seek by {@link TermState} might not restore the    * {@link AttributeSource}'s state. {@link AttributeSource} states must be    * maintained separately if this method is used.    * @param term the term the TermState corresponds to    * @param state the {@link TermState}    * */
+DECL|method|seekExact
 specifier|public
 name|void
-name|seek
+name|seekExact
 parameter_list|(
 name|BytesRef
 name|term
@@ -202,13 +230,31 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|seek
+if|if
+condition|(
+operator|!
+name|seekExact
 argument_list|(
 name|term
+argument_list|,
+literal|true
 argument_list|)
-expr_stmt|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"term="
+operator|+
+name|term
+operator|+
+literal|" does not exist"
+argument_list|)
+throw|;
 block|}
-comment|/** Increments the enumeration to the next element.    *  Returns the resulting term, or null if the end was    *  hit.  The returned BytesRef may be re-used across calls    *  to next. */
+block|}
+comment|/** Increments the enumeration to the next term.    *  Returns the resulting term, or null if the end was    *  hit (which means the enum is unpositioned).  The    *  returned BytesRef may be re-used across calls to next. */
 DECL|method|next
 specifier|public
 specifier|abstract
@@ -218,7 +264,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns current term. Do not call this before calling    *  next() for the first time, after next() returns null    *  or after seek returns {@link SeekStatus#END}.*/
+comment|/** Returns current term. Do not call this when the enum    *  is unpositioned. */
 DECL|method|term
 specifier|public
 specifier|abstract
@@ -228,7 +274,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns ordinal position for current term.  This is an    *  optional method (the codec may throw {@link    *  UnsupportedOperationException}).  Do not call this    *  before calling {@link #next} for the first time or after    *  {@link #next} returns null or {@link #seek} returns    *  END; */
+comment|/** Returns ordinal position for current term.  This is an    *  optional method (the codec may throw {@link    *  UnsupportedOperationException}).  Do not call this    *  when the enum is unpositioned. */
 DECL|method|ord
 specifier|public
 specifier|abstract
@@ -238,7 +284,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns the number of documents containing the current    *  term.  Do not call this before calling next() for the    *  first time, after next() returns null or seek returns    *  {@link SeekStatus#END}.*/
+comment|/** Returns the number of documents containing the current    *  term.  Do not call this when the enum is unpositioned.    *  {@link SeekStatus#END}.*/
 DECL|method|docFreq
 specifier|public
 specifier|abstract
@@ -258,7 +304,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this before calling {@link #next} or {@link    *  #seek} for the first time.  This method will not    *  return null.    *      * @param skipDocs set bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
+comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *      * @param liveDocs set bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
 DECL|method|docs
 specifier|public
 specifier|abstract
@@ -266,7 +312,7 @@ name|DocsEnum
 name|docs
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
@@ -274,7 +320,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link DocsAndPositionsEnum} for the current term.    *  Do not call this before calling {@link #next} or    *  {@link #seek} for the first time.  This method will    *  only return null if positions were not indexed into    *  the postings by this codec. */
+comment|/** Get {@link DocsAndPositionsEnum} for the current term.    *  Do not call this when the enum is unpositioned.    *  This method will only return null if positions were    *  not indexed into the postings by this codec. */
 DECL|method|docsAndPositions
 specifier|public
 specifier|abstract
@@ -282,7 +328,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
@@ -290,7 +336,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Expert: Returns the TermsEnums internal state to position the TermsEnum    * without re-seeking the term dictionary.    *<p>    * NOTE: A seek by {@link TermState} might not capture the    * {@link AttributeSource}'s state. Callers must maintain the    * {@link AttributeSource} states separately    *     * @see TermState    * @see #seek(BytesRef, TermState)    */
+comment|/**    * Expert: Returns the TermsEnums internal state to position the TermsEnum    * without re-seeking the term dictionary.    *<p>    * NOTE: A seek by {@link TermState} might not capture the    * {@link AttributeSource}'s state. Callers must maintain the    * {@link AttributeSource} states separately    *     * @see TermState    * @see #seekExact(BytesRef, TermState)    */
 DECL|method|termState
 specifier|public
 name|TermState
@@ -346,7 +392,7 @@ annotation|@
 name|Override
 specifier|public
 name|SeekStatus
-name|seek
+name|seekCeil
 parameter_list|(
 name|BytesRef
 name|term
@@ -364,19 +410,13 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|SeekStatus
-name|seek
+name|void
+name|seekExact
 parameter_list|(
 name|long
 name|ord
 parameter_list|)
-block|{
-return|return
-name|SeekStatus
-operator|.
-name|END
-return|;
-block|}
+block|{}
 annotation|@
 name|Override
 specifier|public
@@ -458,7 +498,7 @@ name|DocsEnum
 name|docs
 parameter_list|(
 name|Bits
-name|bits
+name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
@@ -479,7 +519,7 @@ name|DocsAndPositionsEnum
 name|docsAndPositions
 parameter_list|(
 name|Bits
-name|bits
+name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
@@ -541,7 +581,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|seek
+name|seekExact
 parameter_list|(
 name|BytesRef
 name|term

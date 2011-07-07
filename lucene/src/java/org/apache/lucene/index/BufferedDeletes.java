@@ -169,26 +169,26 @@ DECL|class|BufferedDeletes
 class|class
 name|BufferedDeletes
 block|{
-comment|/* Rough logic: HashMap has an array[Entry] w/ varying      load factor (say 2 * POINTER).  Entry is object w/ Term      key, Integer val, int hash, Entry next      (OBJ_HEADER + 3*POINTER + INT).  Term is object w/      String field and String text (OBJ_HEADER + 2*POINTER).      We don't count Term's field since it's interned.      Term's text is String (OBJ_HEADER + 4*INT + POINTER +      OBJ_HEADER + string.length*CHAR).  Integer is      OBJ_HEADER + INT. */
+comment|/* Rough logic: HashMap has an array[Entry] w/ varying      load factor (say 2 * POINTER).  Entry is object w/ Term      key, Integer val, int hash, Entry next      (OBJ_HEADER + 3*POINTER + INT).  Term is object w/      String field and String text (OBJ_HEADER + 2*POINTER).      Term's field is String (OBJ_HEADER + 4*INT + POINTER +      OBJ_HEADER + string.length*CHAR).      Term's text is String (OBJ_HEADER + 4*INT + POINTER +      OBJ_HEADER + string.length*CHAR).  Integer is      OBJ_HEADER + INT. */
 DECL|field|BYTES_PER_DEL_TERM
 specifier|final
 specifier|static
 name|int
 name|BYTES_PER_DEL_TERM
 init|=
-literal|8
+literal|9
 operator|*
 name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_REF
 operator|+
-literal|5
+literal|7
 operator|*
 name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_HEADER
 operator|+
-literal|6
+literal|10
 operator|*
 name|RamUsageEstimator
 operator|.
@@ -954,6 +954,20 @@ operator|.
 name|bytes
 operator|.
 name|length
+operator|+
+operator|(
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_CHAR
+operator|*
+name|term
+operator|.
+name|field
+argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -975,7 +989,8 @@ name|Term
 argument_list|>
 argument_list|()
 block|{
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1014,7 +1029,8 @@ name|QueryAndLimit
 argument_list|>
 argument_list|()
 block|{
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1054,7 +1070,8 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1067,7 +1084,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|QueryAndLimit
 name|next
@@ -1105,7 +1123,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

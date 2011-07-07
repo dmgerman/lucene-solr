@@ -3021,7 +3021,7 @@ name|result
 init|=
 name|termsEnum
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 name|prefixRef
 argument_list|,
@@ -3098,7 +3098,7 @@ argument_list|)
 expr_stmt|;
 name|te
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 literal|0
 argument_list|)
@@ -3273,17 +3273,9 @@ name|idx
 operator|++
 control|)
 block|{
-name|assertEquals
-argument_list|(
-name|TermsEnum
-operator|.
-name|SeekStatus
-operator|.
-name|FOUND
-argument_list|,
 name|te
 operator|.
-name|seek
+name|seekExact
 argument_list|(
 operator|(
 name|long
@@ -3292,7 +3284,6 @@ name|buffer
 index|[
 name|idx
 index|]
-argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final

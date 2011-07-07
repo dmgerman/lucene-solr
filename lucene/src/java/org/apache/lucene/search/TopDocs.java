@@ -962,6 +962,11 @@ name|totalHitCount
 init|=
 literal|0
 decl_stmt|;
+name|int
+name|availHitCount
+init|=
+literal|0
+decl_stmt|;
 name|float
 name|maxScore
 init|=
@@ -1018,6 +1023,14 @@ name|shard
 operator|.
 name|totalHits
 expr_stmt|;
+name|availHitCount
+operator|+=
+name|shard
+operator|.
+name|scoreDocs
+operator|.
+name|length
+expr_stmt|;
 name|queue
 operator|.
 name|add
@@ -1060,7 +1073,7 @@ name|min
 argument_list|(
 name|topN
 argument_list|,
-name|totalHitCount
+name|availHitCount
 argument_list|)
 index|]
 decl_stmt|;

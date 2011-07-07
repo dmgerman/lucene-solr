@@ -315,7 +315,7 @@ argument_list|()
 argument_list|,
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 argument_list|)
 argument_list|)
@@ -384,12 +384,12 @@ specifier|final
 name|int
 name|docCount
 decl_stmt|;
-comment|/** the deleted bits for this MergeState */
-DECL|field|bits
+comment|/** the not deleted bits for this MergeState */
+DECL|field|liveDocs
 specifier|public
 specifier|final
 name|Bits
-name|bits
+name|liveDocs
 decl_stmt|;
 DECL|method|MergeState
 specifier|public
@@ -405,7 +405,7 @@ name|int
 name|docCount
 parameter_list|,
 name|Bits
-name|bits
+name|liveDocs
 parameter_list|)
 block|{
 assert|assert
@@ -433,9 +433,9 @@ name|docCount
 expr_stmt|;
 name|this
 operator|.
-name|bits
+name|liveDocs
 operator|=
-name|bits
+name|liveDocs
 expr_stmt|;
 block|}
 block|}

@@ -164,7 +164,9 @@ name|standard
 operator|.
 name|config
 operator|.
-name|AllowLeadingWildcardAttribute
+name|StandardQueryConfigHandler
+operator|.
+name|ConfigurationKeys
 import|;
 end_import
 
@@ -205,7 +207,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor verifies if the attribute  * {@link AllowLeadingWildcardAttribute} is defined in the  * {@link QueryConfigHandler}. If it is and leading wildcard is not allowed, it  * looks for every {@link WildcardQueryNode} contained in the query node tree  * and throws an exception if any of them has a leading wildcard ('*' or '?').<br/>  *   * @see AllowLeadingWildcardAttribute  */
+comment|/**  * This processor verifies if  * {@link ConfigurationKeys#ALLOW_LEADING_WILDCARD} is defined in the  * {@link QueryConfigHandler}. If it is and leading wildcard is not allowed, it  * looks for every {@link WildcardQueryNode} contained in the query node tree  * and throws an exception if any of them has a leading wildcard ('*' or '?').<br/>  *   * @see ConfigurationKeys#ALLOW_LEADING_WILDCARD  */
 end_comment
 
 begin_class
@@ -236,39 +238,30 @@ parameter_list|)
 throws|throws
 name|QueryNodeException
 block|{
-if|if
-condition|(
-name|getQueryConfigHandler
-argument_list|()
-operator|.
-name|hasAttribute
-argument_list|(
-name|AllowLeadingWildcardAttribute
-operator|.
-name|class
-argument_list|)
-condition|)
-block|{
-name|AllowLeadingWildcardAttribute
-name|alwAttr
+name|Boolean
+name|allowsLeadingWildcard
 init|=
 name|getQueryConfigHandler
 argument_list|()
 operator|.
-name|getAttribute
+name|get
 argument_list|(
-name|AllowLeadingWildcardAttribute
+name|ConfigurationKeys
 operator|.
-name|class
+name|ALLOW_LEADING_WILDCARD
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|allowsLeadingWildcard
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
 operator|!
-name|alwAttr
-operator|.
-name|isAllowLeadingWildcard
-argument_list|()
+name|allowsLeadingWildcard
 condition|)
 block|{
 return|return

@@ -124,6 +124,15 @@ specifier|final
 name|FragmentsBuilder
 name|fragmentsBuilder
 decl_stmt|;
+DECL|field|phraseLimit
+specifier|private
+name|int
+name|phraseLimit
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
+decl_stmt|;
 comment|/**    * the default constructor.    */
 DECL|method|FastVectorHighlighter
 specifier|public
@@ -576,6 +585,8 @@ argument_list|(
 name|fieldTermStack
 argument_list|,
 name|fieldQuery
+argument_list|,
+name|phraseLimit
 argument_list|)
 decl_stmt|;
 return|return
@@ -610,6 +621,34 @@ block|{
 return|return
 name|fieldMatch
 return|;
+block|}
+comment|/**    * @return the maximum number of phrases to analyze when searching for the highest-scoring phrase.    */
+DECL|method|getPhraseLimit
+specifier|public
+name|int
+name|getPhraseLimit
+parameter_list|()
+block|{
+return|return
+name|phraseLimit
+return|;
+block|}
+comment|/**    * set the maximum number of phrases to analyze when searching for the highest-scoring phrase.    * The default is unlimited (Integer.MAX_VALUE).    */
+DECL|method|setPhraseLimit
+specifier|public
+name|void
+name|setPhraseLimit
+parameter_list|(
+name|int
+name|phraseLimit
+parameter_list|)
+block|{
+name|this
+operator|.
+name|phraseLimit
+operator|=
+name|phraseLimit
+expr_stmt|;
 block|}
 block|}
 end_class

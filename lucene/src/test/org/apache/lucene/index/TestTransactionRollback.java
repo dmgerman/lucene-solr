@@ -480,11 +480,11 @@ comment|//Perhaps not the most efficient approach but meets our
 comment|//needs here.
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|r
 argument_list|)
@@ -509,12 +509,11 @@ control|)
 block|{
 if|if
 condition|(
-name|delDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|delDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(

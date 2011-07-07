@@ -38,9 +38,9 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|search
+name|queries
 operator|.
 name|function
 operator|.
@@ -54,13 +54,15 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|search
+name|queries
 operator|.
 name|function
 operator|.
-name|FieldCacheSource
+name|docvalues
+operator|.
+name|StringIndexDocValues
 import|;
 end_import
 
@@ -70,13 +72,15 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|search
+name|queries
 operator|.
 name|function
 operator|.
-name|StringIndexDocValues
+name|valuesource
+operator|.
+name|FieldCacheSource
 import|;
 end_import
 

@@ -1513,7 +1513,7 @@ name|reader
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -1677,6 +1677,43 @@ name|br
 operator|.
 name|length
 expr_stmt|;
+comment|// Just to ensure all codecs can
+comment|// handle a caller that mucks with the
+comment|// returned payload:
+if|if
+condition|(
+name|rarely
+argument_list|()
+condition|)
+block|{
+name|br
+operator|.
+name|bytes
+operator|=
+operator|new
+name|byte
+index|[
+name|random
+operator|.
+name|nextInt
+argument_list|(
+literal|5
+argument_list|)
+index|]
+expr_stmt|;
+block|}
+name|br
+operator|.
+name|length
+operator|=
+literal|0
+expr_stmt|;
+name|br
+operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -1700,7 +1737,7 @@ name|reader
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -1856,7 +1893,7 @@ name|reader
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -2140,7 +2177,7 @@ name|reader
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -3306,11 +3343,11 @@ name|iterator
 argument_list|()
 decl_stmt|;
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|reader
 argument_list|)
@@ -3347,7 +3384,7 @@ name|terms
 operator|.
 name|docsAndPositions
 argument_list|(
-name|delDocs
+name|liveDocs
 argument_list|,
 name|tp
 argument_list|)

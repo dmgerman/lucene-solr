@@ -618,6 +618,64 @@ argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
+comment|// frange as filter not cached
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!frange cache=false v="
+operator|+
+name|f
+operator|+
+literal|" l='"
+operator|+
+name|v
+operator|+
+literal|"' u='"
+operator|+
+name|v
+operator|+
+literal|"'}"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// frange as filter run after the main query
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!frange cache=false cost=100 v="
+operator|+
+name|f
+operator|+
+literal|" l='"
+operator|+
+name|v
+operator|+
+literal|"' u='"
+operator|+
+name|v
+operator|+
+literal|"'}"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|)
+expr_stmt|;
 comment|// exists()
 name|assertQ
 argument_list|(

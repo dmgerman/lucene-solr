@@ -4858,6 +4858,14 @@ name|void
 name|postCommit
 parameter_list|()
 block|{     }
+annotation|@
+name|Override
+DECL|method|postSoftCommit
+specifier|public
+name|void
+name|postSoftCommit
+parameter_list|()
+block|{     }
 block|}
 DECL|method|getSpellCheckers
 specifier|public

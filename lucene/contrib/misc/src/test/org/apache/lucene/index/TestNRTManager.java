@@ -942,11 +942,11 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|Bits
-name|delDocs
+name|liveDocs
 init|=
 name|reader
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|()
 decl_stmt|;
 name|int
@@ -987,12 +987,11 @@ control|)
 block|{
 if|if
 condition|(
-name|delDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|delDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -3443,7 +3442,7 @@ expr_stmt|;
 block|}
 name|termsEnum
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 operator|new
 name|BytesRef
@@ -4449,6 +4448,8 @@ argument_list|(
 literal|"title"
 argument_list|,
 name|SortField
+operator|.
+name|Type
 operator|.
 name|STRING
 argument_list|)

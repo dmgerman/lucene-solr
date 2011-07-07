@@ -118,24 +118,6 @@ name|ValueType
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|StringHelper
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
 begin_comment
 comment|/**  *  *  **/
 end_comment
@@ -308,14 +290,8 @@ name|this
 operator|.
 name|name
 operator|=
-name|StringHelper
-operator|.
-name|intern
-argument_list|(
 name|name
-argument_list|)
 expr_stmt|;
-comment|// field names are interned
 name|this
 operator|.
 name|isStored
@@ -392,7 +368,7 @@ return|return
 name|boost
 return|;
 block|}
-comment|/** Returns the name of the field as an interned string.    * For example "date", "title", "body", ...    */
+comment|/** Returns the name of the field.    * For example "date", "title", "body", ...    */
 DECL|method|name
 specifier|public
 name|String

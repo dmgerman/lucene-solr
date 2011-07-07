@@ -786,7 +786,7 @@ decl_stmt|;
 DECL|field|queue
 specifier|private
 specifier|final
-name|SortedSet
+name|NavigableSet
 argument_list|<
 name|MergedGroup
 argument_list|<
@@ -1199,7 +1199,6 @@ operator|>
 name|topN
 condition|)
 block|{
-comment|// TODO java 1.6: .pollLast
 specifier|final
 name|MergedGroup
 argument_list|<
@@ -1209,17 +1208,10 @@ name|group
 init|=
 name|queue
 operator|.
-name|last
+name|pollLast
 argument_list|()
 decl_stmt|;
 comment|//System.out.println("PRUNE: " + group);
-name|queue
-operator|.
-name|remove
-argument_list|(
-name|group
-argument_list|)
-expr_stmt|;
 name|group
 operator|.
 name|inQueue
@@ -1367,7 +1359,6 @@ operator|!=
 literal|0
 condition|)
 block|{
-comment|// TODO Java 1.6: pollFirst()
 specifier|final
 name|MergedGroup
 argument_list|<
@@ -1377,16 +1368,9 @@ name|group
 init|=
 name|queue
 operator|.
-name|first
+name|pollFirst
 argument_list|()
 decl_stmt|;
-name|queue
-operator|.
-name|remove
-argument_list|(
-name|group
-argument_list|)
-expr_stmt|;
 name|group
 operator|.
 name|processed

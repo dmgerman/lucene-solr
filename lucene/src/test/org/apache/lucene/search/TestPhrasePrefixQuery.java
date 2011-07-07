@@ -506,7 +506,7 @@ argument_list|()
 decl_stmt|;
 name|te
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 operator|new
 name|BytesRef

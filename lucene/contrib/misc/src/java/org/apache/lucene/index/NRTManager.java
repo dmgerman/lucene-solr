@@ -1302,7 +1302,8 @@ expr_stmt|;
 comment|//System.out.println(Thread.currentThread().getName() + ": done");
 block|}
 comment|/** NOTE: caller must separately close the writer. */
-comment|// @Override -- not until Java 1.6
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

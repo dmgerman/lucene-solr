@@ -482,6 +482,26 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+comment|/** Used as a local parameter on queries.  cache=false means don't check any query or filter caches.    * cache=true is the default.    */
+DECL|field|CACHE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CACHE
+init|=
+literal|"cache"
+decl_stmt|;
+comment|/** Used as a local param on filter queries in conjunction with cache=false.  Filters are checked in order, from    * smallest cost to largest. If cost>=100 and the query implements PostFilter, then that interface will be used to do post query filtering.    */
+DECL|field|COST
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|COST
+init|=
+literal|"cost"
+decl_stmt|;
 block|}
 end_interface
 

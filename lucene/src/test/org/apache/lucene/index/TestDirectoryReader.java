@@ -1034,7 +1034,7 @@ argument_list|()
 decl_stmt|;
 name|te2
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 operator|new
 name|BytesRef
@@ -1054,7 +1054,7 @@ name|mr2
 argument_list|,
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|mr2
 argument_list|)
@@ -1084,7 +1084,7 @@ argument_list|()
 decl_stmt|;
 name|te3
 operator|.
-name|seek
+name|seekCeil
 argument_list|(
 operator|new
 name|BytesRef
@@ -1101,7 +1101,7 @@ name|docs
 argument_list|(
 name|MultiFields
 operator|.
-name|getDeletedDocs
+name|getLiveDocs
 argument_list|(
 name|mr3
 argument_list|)

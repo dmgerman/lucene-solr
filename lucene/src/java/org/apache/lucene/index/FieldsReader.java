@@ -2150,8 +2150,6 @@ operator|.
 name|name
 argument_list|,
 comment|// name
-literal|false
-argument_list|,
 name|fieldsStream
 operator|.
 name|readString

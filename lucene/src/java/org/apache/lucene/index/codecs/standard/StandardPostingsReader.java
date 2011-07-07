@@ -810,9 +810,7 @@ name|bytesReader
 operator|=
 operator|new
 name|ByteArrayDataInput
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 elseif|else
@@ -1049,7 +1047,7 @@ name|BlockTermState
 name|termState
 parameter_list|,
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
@@ -1126,7 +1124,7 @@ name|StandardTermState
 operator|)
 name|termState
 argument_list|,
-name|skipDocs
+name|liveDocs
 argument_list|)
 return|;
 block|}
@@ -1144,7 +1142,7 @@ name|BlockTermState
 name|termState
 parameter_list|,
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
@@ -1244,7 +1242,7 @@ name|StandardTermState
 operator|)
 name|termState
 argument_list|,
-name|skipDocs
+name|liveDocs
 argument_list|)
 return|;
 block|}
@@ -1323,7 +1321,7 @@ name|StandardTermState
 operator|)
 name|termState
 argument_list|,
-name|skipDocs
+name|liveDocs
 argument_list|)
 return|;
 block|}
@@ -1376,9 +1374,9 @@ name|int
 name|freq
 decl_stmt|;
 comment|// freq we last read
-DECL|field|skipDocs
+DECL|field|liveDocs
 name|Bits
-name|skipDocs
+name|liveDocs
 decl_stmt|;
 DECL|field|freqOffset
 name|long
@@ -1435,7 +1433,7 @@ name|StandardTermState
 name|termState
 parameter_list|,
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -1464,9 +1462,9 @@ name|storePayloads
 expr_stmt|;
 name|this
 operator|.
-name|skipDocs
+name|liveDocs
 operator|=
-name|skipDocs
+name|liveDocs
 expr_stmt|;
 name|freqOffset
 operator|=
@@ -1612,12 +1610,11 @@ block|}
 block|}
 if|if
 condition|(
-name|skipDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|skipDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -1752,12 +1749,11 @@ block|}
 block|}
 if|if
 condition|(
-name|skipDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|skipDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -2010,9 +2006,9 @@ DECL|field|position
 name|int
 name|position
 decl_stmt|;
-DECL|field|skipDocs
+DECL|field|liveDocs
 name|Bits
-name|skipDocs
+name|liveDocs
 decl_stmt|;
 DECL|field|freqOffset
 name|long
@@ -2097,7 +2093,7 @@ name|StandardTermState
 name|termState
 parameter_list|,
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -2116,9 +2112,9 @@ name|storePayloads
 assert|;
 name|this
 operator|.
-name|skipDocs
+name|liveDocs
 operator|=
-name|skipDocs
+name|liveDocs
 expr_stmt|;
 comment|// TODO: for full enum case (eg segment merging) this
 comment|// seek is unnecessary; maybe we can avoid in such
@@ -2276,12 +2272,11 @@ name|freq
 expr_stmt|;
 if|if
 condition|(
-name|skipDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|skipDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(
@@ -2663,9 +2658,9 @@ DECL|field|position
 name|int
 name|position
 decl_stmt|;
-DECL|field|skipDocs
+DECL|field|liveDocs
 name|Bits
-name|skipDocs
+name|liveDocs
 decl_stmt|;
 DECL|field|freqOffset
 name|long
@@ -2763,7 +2758,7 @@ name|StandardTermState
 name|termState
 parameter_list|,
 name|Bits
-name|skipDocs
+name|liveDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -2805,9 +2800,9 @@ expr_stmt|;
 block|}
 name|this
 operator|.
-name|skipDocs
+name|liveDocs
 operator|=
-name|skipDocs
+name|liveDocs
 expr_stmt|;
 comment|// TODO: for full enum case (eg segment merging) this
 comment|// seek is unnecessary; maybe we can avoid in such
@@ -2964,12 +2959,11 @@ name|freq
 expr_stmt|;
 if|if
 condition|(
-name|skipDocs
+name|liveDocs
 operator|==
 literal|null
 operator|||
-operator|!
-name|skipDocs
+name|liveDocs
 operator|.
 name|get
 argument_list|(

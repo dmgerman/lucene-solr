@@ -153,7 +153,13 @@ block|{
 throw|throw
 operator|new
 name|UnsupportedOperationException
-argument_list|()
+argument_list|(
+literal|"Query "
+operator|+
+name|this
+operator|+
+literal|" does not implement createWeight"
+argument_list|)
 throw|;
 block|}
 comment|/** Expert: called to re-write queries into primitive queries. For example,    * a PrefixQuery will be rewritten into a BooleanQuery that consists    * of TermQuerys.    */
