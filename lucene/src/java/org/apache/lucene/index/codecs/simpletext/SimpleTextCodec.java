@@ -236,20 +236,6 @@ name|Directory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
 begin_comment
 comment|/** For debugging, curiosity, transparency only!!  Do not  *  use this codec in production.  *  *<p>This codec stores all postings data in a single  *  human-readable text file (_N.pst).  You can view this in  *  any text editor, and even edit it to alter your index.  *  *  @lucene.experimental */
 end_comment
@@ -267,9 +253,10 @@ specifier|public
 name|SimpleTextCodec
 parameter_list|()
 block|{
-name|name
-operator|=
+name|super
+argument_list|(
 literal|"SimpleText"
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -398,6 +385,9 @@ argument_list|,
 name|id
 argument_list|,
 name|files
+argument_list|,
+name|getDocValuesUseCFS
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -427,6 +417,9 @@ operator|.
 name|getDocValuesExtensions
 argument_list|(
 name|extensions
+argument_list|,
+name|getDocValuesUseCFS
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -450,9 +443,10 @@ name|DefaultDocValuesConsumer
 argument_list|(
 name|state
 argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
+name|getDocValuesSortComparator
+argument_list|()
+argument_list|,
+name|getDocValuesUseCFS
 argument_list|()
 argument_list|)
 return|;
@@ -489,6 +483,12 @@ argument_list|,
 name|state
 operator|.
 name|codecId
+argument_list|,
+name|getDocValuesUseCFS
+argument_list|()
+argument_list|,
+name|getDocValuesSortComparator
+argument_list|()
 argument_list|)
 return|;
 block|}
