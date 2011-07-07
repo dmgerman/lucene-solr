@@ -390,7 +390,7 @@ operator|=
 name|docValuesUseCFS
 expr_stmt|;
 block|}
-comment|/**    * Returns<code>true</code> iff compound file should be used for    * IndexDocValues, otherwise<code>false</code>.    *     * @see #setDocValuesUseCFS(boolean);    * @return<code>true</code> iff compound file should be used for    *         IndexDocValues, otherwise<code>false</code>.    */
+comment|/**    * Returns<code>true</code> iff compound file should be used for    * IndexDocValues, otherwise<code>false</code>.    *     * @see #setDocValuesUseCFS(boolean)    * @return<code>true</code> iff compound file should be used for    *         IndexDocValues, otherwise<code>false</code>.    */
 DECL|method|getDocValuesUseCFS
 specifier|public
 name|boolean
