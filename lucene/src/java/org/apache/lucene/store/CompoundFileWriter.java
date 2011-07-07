@@ -429,22 +429,9 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-if|if
-condition|(
-name|entries
-operator|.
-name|isEmpty
+name|initDataOut
 argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"CFS has no entries"
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 if|if
 condition|(
 operator|!
