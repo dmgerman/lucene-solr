@@ -101,7 +101,7 @@ specifier|protected
 name|LockFactory
 name|lockFactory
 decl_stmt|;
-comment|/**    * Returns an array of strings, one for each file in the directory.    *     * @throws NoSuchDirectoryException if the directory is not prepared for any    *         write operations (such as {@link #createOutput(String)}).    * @throws IOException in case of other IO errors    */
+comment|/**    * Returns an array of strings, one for each file in the directory.    *     * @throws NoSuchDirectoryException if the directory is not prepared for any    *         write operations (such as {@link #createOutput(String, IOContext)}).    * @throws IOException in case of other IO errors    */
 DECL|method|listAll
 specifier|public
 specifier|abstract

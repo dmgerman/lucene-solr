@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * IOContext holds additional details on the merge/search context. A IOContext  * object can never be initialized as null as passed as a parameter to either  * {@link #org.apache.lucene.store.Directory.openInput()} or  * {@link #org.apache.lucene.store.Directory.createInput()}  */
+comment|/**  * IOContext holds additional details on the merge/search context. A IOContext  * object can never be initialized as null as passed as a parameter to either  * {@link org.apache.lucene.store.Directory#openInput(String, IOContext)} or  * {@link org.apache.lucene.store.Directory#createOutput(String, IOContext)}  */
 end_comment
 
 begin_class

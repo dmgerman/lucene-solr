@@ -44,22 +44,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|MergePolicy
-operator|.
-name|OneMerge
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|Directory
@@ -105,22 +89,6 @@ operator|.
 name|store
 operator|.
 name|IndexOutput
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|IOContext
-operator|.
-name|Context
 import|;
 end_import
 
@@ -1409,7 +1377,7 @@ return|return
 name|version
 return|;
 block|}
-comment|/** Writes this vector to the file<code>name</code> in Directory<code>d</code>, in a format that can be read by the constructor {@link     #BitVector(Directory, String)}.  */
+comment|/** Writes this vector to the file<code>name</code> in Directory<code>d</code>, in a format that can be read by the constructor {@link     #BitVector(Directory, String, IOContext)}.  */
 DECL|method|write
 specifier|public
 specifier|final
