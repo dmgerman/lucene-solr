@@ -3577,7 +3577,7 @@ parameter_list|)
 block|{
 comment|// expected
 block|}
-name|Similarity
+name|DefaultSimilarity
 name|sim
 init|=
 operator|new
@@ -3758,7 +3758,7 @@ parameter_list|)
 block|{
 comment|// expected
 block|}
-name|Similarity
+name|DefaultSimilarity
 name|sim
 init|=
 operator|new
@@ -3910,7 +3910,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|Similarity
+name|DefaultSimilarity
 name|sim
 init|=
 operator|new
@@ -4117,7 +4117,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|Similarity
+name|DefaultSimilarity
 name|sim
 init|=
 operator|new
@@ -5278,7 +5278,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|Similarity
+name|DefaultSimilarity
 name|sim
 init|=
 operator|new

@@ -366,6 +366,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|TFIDFSimilarity
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|TermQuery
 import|;
 end_import
@@ -657,7 +671,7 @@ decl_stmt|;
 comment|/**      * For idf() calculations.      */
 DECL|field|similarity
 specifier|private
-name|Similarity
+name|TFIDFSimilarity
 name|similarity
 decl_stmt|;
 comment|// = new DefaultSimilarity();
@@ -730,7 +744,7 @@ parameter_list|(
 name|IndexReader
 name|ir
 parameter_list|,
-name|Similarity
+name|TFIDFSimilarity
 name|sim
 parameter_list|)
 block|{
@@ -749,7 +763,7 @@ expr_stmt|;
 block|}
 DECL|method|getSimilarity
 specifier|public
-name|Similarity
+name|TFIDFSimilarity
 name|getSimilarity
 parameter_list|()
 block|{
@@ -762,7 +776,7 @@ specifier|public
 name|void
 name|setSimilarity
 parameter_list|(
-name|Similarity
+name|TFIDFSimilarity
 name|similarity
 parameter_list|)
 block|{

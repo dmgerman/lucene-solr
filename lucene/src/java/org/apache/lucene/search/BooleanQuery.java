@@ -559,23 +559,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getValue
+DECL|method|getValueForNormalization
 specifier|public
 name|float
-name|getValue
-parameter_list|()
-block|{
-return|return
-name|getBoost
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|sumOfSquaredWeights
-specifier|public
-name|float
-name|sumOfSquaredWeights
+name|getValueForNormalization
 parameter_list|()
 throws|throws
 name|IOException
@@ -614,7 +601,7 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
-name|sumOfSquaredWeights
+name|getValueForNormalization
 argument_list|()
 decl_stmt|;
 comment|// sum sub weights
@@ -682,9 +669,12 @@ name|normalize
 parameter_list|(
 name|float
 name|norm
+parameter_list|,
+name|float
+name|topLevelBoost
 parameter_list|)
 block|{
-name|norm
+name|topLevelBoost
 operator|*=
 name|getBoost
 argument_list|()
@@ -704,6 +694,8 @@ operator|.
 name|normalize
 argument_list|(
 name|norm
+argument_list|,
+name|topLevelBoost
 argument_list|)
 expr_stmt|;
 block|}

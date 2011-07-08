@@ -475,31 +475,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Small Util class used to pass both an idf factor as well as an    * explanation for that factor.    *     * This class will likely be held on a {@link Weight}, so be aware     * before storing any large or un-serializable fields.    *    */
-DECL|class|IDFExplanation
-specifier|public
-specifier|static
-specifier|abstract
-class|class
-name|IDFExplanation
-block|{
-comment|/**      * @return the idf factor      */
-DECL|method|getIdf
-specifier|public
-specifier|abstract
-name|float
-name|getIdf
-parameter_list|()
-function_decl|;
-comment|/**      * This should be calculated lazily if possible.      *       * @return the explanation for the idf factor.      */
-DECL|method|explain
-specifier|public
-specifier|abstract
-name|String
-name|explain
-parameter_list|()
-function_decl|;
-block|}
 block|}
 end_class
 
