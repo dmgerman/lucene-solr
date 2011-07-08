@@ -286,6 +286,22 @@ name|comparator
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a {@link SortedSource} instance using a default {@link BytesRef}    * comparator for this {@link IndexDocValues} field instance like    * {@link #getSource()}.    *<p>    * This method will return null iff this {@link IndexDocValues} represent a    * {@link Source} instead of a {@link SortedSource}.    */
+DECL|method|getSortedSorted
+specifier|public
+name|SortedSource
+name|getSortedSorted
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|getSortedSorted
+argument_list|(
+literal|null
+argument_list|)
+return|;
+block|}
 comment|/**    * Loads and returns a {@link SortedSource} instance for this    * {@link IndexDocValues} field instance like {@link #load()}.    *<p>    * This method will return null iff this {@link IndexDocValues} represent a    * {@link Source} instead of a {@link SortedSource}.    */
 DECL|method|loadSorted
 specifier|public
@@ -306,6 +322,22 @@ operator|new
 name|UnsupportedOperationException
 argument_list|()
 throw|;
+block|}
+comment|/**    * Loads and returns a {@link SortedSource} instance using a default    * {@link BytesRef} comparator for this {@link IndexDocValues} field instance    * like {@link #load()}.    *<p>    * This method will return null iff this {@link IndexDocValues} represent a    * {@link Source} instead of a {@link SortedSource}.    */
+DECL|method|loadSorted
+specifier|public
+name|SortedSource
+name|loadSorted
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|loadSorted
+argument_list|(
+literal|null
+argument_list|)
+return|;
 block|}
 comment|/**    * Returns the {@link ValueType} of this {@link IndexDocValues} instance    */
 DECL|method|type

@@ -159,9 +159,6 @@ parameter_list|()
 block|{
 comment|// NOTE: we impersonate the PreFlex codec so that it can
 comment|// read the segments we write!
-name|super
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Override

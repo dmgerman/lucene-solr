@@ -800,9 +800,10 @@ name|Random
 name|random
 parameter_list|)
 block|{
-name|name
-operator|=
+name|super
+argument_list|(
 literal|"MockRandom"
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -2516,6 +2517,9 @@ argument_list|,
 name|codecId
 argument_list|,
 name|files
+argument_list|,
+name|getDocValuesUseCFS
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// hackish!
@@ -2614,6 +2618,9 @@ operator|.
 name|getDocValuesExtensions
 argument_list|(
 name|extensions
+argument_list|,
+name|getDocValuesUseCFS
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|extensions
@@ -2645,9 +2652,10 @@ name|DefaultDocValuesConsumer
 argument_list|(
 name|state
 argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
+name|getDocValuesSortComparator
+argument_list|()
+argument_list|,
+name|getDocValuesUseCFS
 argument_list|()
 argument_list|)
 return|;
@@ -2684,6 +2692,12 @@ argument_list|,
 name|state
 operator|.
 name|codecId
+argument_list|,
+name|getDocValuesUseCFS
+argument_list|()
+argument_list|,
+name|getDocValuesSortComparator
+argument_list|()
 argument_list|,
 name|state
 operator|.

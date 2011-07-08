@@ -216,9 +216,13 @@ name|FuzzyLikeThisQuery
 extends|extends
 name|Query
 block|{
+comment|// TODO: generalize this query (at least it should not reuse this static sim!
+comment|// a better way might be to convert this into multitermquery rewrite methods.
+comment|// the rewrite method can 'average' the TermContext's term statistics (docfreq,totalTermFreq)
+comment|// provided to TermQuery, so that the general idea is agnostic to any scoring system...
 DECL|field|sim
 specifier|static
-name|Similarity
+name|TFIDFSimilarity
 name|sim
 init|=
 operator|new

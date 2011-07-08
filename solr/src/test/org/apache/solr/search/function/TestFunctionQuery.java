@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Similarity
+name|TFIDFSimilarity
 import|;
 end_import
 
@@ -2151,7 +2151,7 @@ argument_list|,
 literal|"//float[@name='score']='5.0'"
 argument_list|)
 expr_stmt|;
-name|Similarity
+name|TFIDFSimilarity
 name|similarity
 init|=
 operator|new
@@ -2361,9 +2361,14 @@ literal|"//float[@name='score']='"
 operator|+
 name|similarity
 operator|.
+name|decodeNormValue
+argument_list|(
+name|similarity
+operator|.
 name|computeNorm
 argument_list|(
 name|state
+argument_list|)
 argument_list|)
 operator|+
 literal|"'"

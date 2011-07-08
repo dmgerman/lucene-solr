@@ -249,9 +249,10 @@ specifier|public
 name|PreFlexCodec
 parameter_list|()
 block|{
-name|name
-operator|=
+name|super
+argument_list|(
 literal|"PreFlex"
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
