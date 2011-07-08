@@ -431,6 +431,13 @@ argument_list|,
 name|docIdSet
 argument_list|,
 name|number
+operator|-
+name|leaves
+index|[
+name|subIndex
+index|]
+operator|.
+name|docBase
 argument_list|)
 expr_stmt|;
 name|List
