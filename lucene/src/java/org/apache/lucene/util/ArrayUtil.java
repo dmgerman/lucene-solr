@@ -673,6 +673,17 @@ name|int
 name|minSize
 parameter_list|)
 block|{
+assert|assert
+name|minSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|minSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 if|if
 condition|(
 name|array
@@ -765,6 +776,17 @@ name|int
 name|minSize
 parameter_list|)
 block|{
+assert|assert
+name|minSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|minSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 if|if
 condition|(
 name|array
@@ -857,6 +879,17 @@ name|int
 name|minSize
 parameter_list|)
 block|{
+assert|assert
+name|minSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|minSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 if|if
 condition|(
 name|array
@@ -949,6 +982,17 @@ name|int
 name|targetSize
 parameter_list|)
 block|{
+assert|assert
+name|targetSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|targetSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 specifier|final
 name|int
 name|newSize
@@ -1024,6 +1068,17 @@ name|int
 name|minSize
 parameter_list|)
 block|{
+assert|assert
+name|minSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|minSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 if|if
 condition|(
 name|array
@@ -1116,6 +1171,17 @@ name|int
 name|targetSize
 parameter_list|)
 block|{
+assert|assert
+name|targetSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|targetSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 specifier|final
 name|int
 name|newSize
@@ -1191,6 +1257,17 @@ name|int
 name|minSize
 parameter_list|)
 block|{
+assert|assert
+name|minSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|minSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 if|if
 condition|(
 name|array
@@ -1283,6 +1360,17 @@ name|int
 name|targetSize
 parameter_list|)
 block|{
+assert|assert
+name|targetSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|targetSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 specifier|final
 name|int
 name|newSize
@@ -1358,6 +1446,17 @@ name|int
 name|minSize
 parameter_list|)
 block|{
+assert|assert
+name|minSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|minSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 if|if
 condition|(
 name|array
@@ -1448,6 +1547,17 @@ name|int
 name|targetSize
 parameter_list|)
 block|{
+assert|assert
+name|targetSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|targetSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 specifier|final
 name|int
 name|newSize
@@ -1521,6 +1631,17 @@ name|int
 name|minSize
 parameter_list|)
 block|{
+assert|assert
+name|minSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|minSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 if|if
 condition|(
 name|array
@@ -1611,6 +1732,17 @@ name|int
 name|targetSize
 parameter_list|)
 block|{
+assert|assert
+name|targetSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|targetSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 specifier|final
 name|int
 name|newSize
@@ -1684,6 +1816,17 @@ name|int
 name|minSize
 parameter_list|)
 block|{
+assert|assert
+name|minSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|minSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 if|if
 condition|(
 name|array
@@ -1776,6 +1919,17 @@ name|int
 name|targetSize
 parameter_list|)
 block|{
+assert|assert
+name|targetSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|targetSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 specifier|final
 name|int
 name|newSize
@@ -1853,6 +2007,17 @@ name|int
 name|minSize
 parameter_list|)
 block|{
+assert|assert
+name|minSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|minSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 if|if
 condition|(
 name|array
@@ -1953,6 +2118,17 @@ name|int
 name|targetSize
 parameter_list|)
 block|{
+assert|assert
+name|targetSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|targetSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 specifier|final
 name|int
 name|newSize
@@ -2034,6 +2210,17 @@ name|int
 name|minSize
 parameter_list|)
 block|{
+assert|assert
+name|minSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|minSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 if|if
 condition|(
 name|array
@@ -2134,6 +2321,17 @@ name|int
 name|targetSize
 parameter_list|)
 block|{
+assert|assert
+name|targetSize
+operator|>=
+literal|0
+operator|:
+literal|"size must be positive (got "
+operator|+
+name|targetSize
+operator|+
+literal|"): likely integer overflow?"
+assert|;
 specifier|final
 name|int
 name|newSize
@@ -2400,7 +2598,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* DISABLE THIS FOR NOW: This has performance problems until Java creates intrinsics for Class#getComponentType() and Array.newInstance()   public static<T> T[] grow(T[] array, int minSize) {     if (array.length< minSize) {       @SuppressWarnings("unchecked") final T[] newArray =         (T[]) Array.newInstance(array.getClass().getComponentType(), oversize(minSize, RamUsageEstimator.NUM_BYTES_OBJECT_REF));       System.arraycopy(array, 0, newArray, 0, array.length);       return newArray;     } else       return array;   }    public static<T> T[] grow(T[] array) {     return grow(array, 1 + array.length);   }    public static<T> T[] shrink(T[] array, int targetSize) {     final int newSize = getShrinkSize(array.length, targetSize, RamUsageEstimator.NUM_BYTES_OBJECT_REF);     if (newSize != array.length) {       @SuppressWarnings("unchecked") final T[] newArray =         (T[]) Array.newInstance(array.getClass().getComponentType(), newSize);       System.arraycopy(array, 0, newArray, 0, newSize);       return newArray;     } else       return array;   }   */
+comment|/* DISABLE THIS FOR NOW: This has performance problems until Java creates intrinsics for Class#getComponentType() and Array.newInstance()   public static<T> T[] grow(T[] array, int minSize) {     assert minSize>= 0: "size must be positive (got " + minSize + "): likely integer overflow?";     if (array.length< minSize) {       @SuppressWarnings("unchecked") final T[] newArray =         (T[]) Array.newInstance(array.getClass().getComponentType(), oversize(minSize, RamUsageEstimator.NUM_BYTES_OBJECT_REF));       System.arraycopy(array, 0, newArray, 0, array.length);       return newArray;     } else       return array;   }    public static<T> T[] grow(T[] array) {     return grow(array, 1 + array.length);   }    public static<T> T[] shrink(T[] array, int targetSize) {     assert targetSize>= 0: "size must be positive (got " + targetSize + "): likely integer overflow?";     final int newSize = getShrinkSize(array.length, targetSize, RamUsageEstimator.NUM_BYTES_OBJECT_REF);     if (newSize != array.length) {       @SuppressWarnings("unchecked") final T[] newArray =         (T[]) Array.newInstance(array.getClass().getComponentType(), newSize);       System.arraycopy(array, 0, newArray, 0, newSize);       return newArray;     } else       return array;   }   */
 comment|// Since Arrays.equals doesn't implement offsets for equals
 comment|/**    * See if two array slices are the same.    *    * @param left        The left array to compare    * @param offsetLeft  The offset into the array.  Must be positive    * @param right       The right array to compare    * @param offsetRight the offset into the right array.  Must be positive    * @param length      The length of the section of the array to compare    * @return true if the two arrays, starting at their respective offsets, are equal    *     * @see java.util.Arrays#equals(char[], char[])    */
 DECL|method|equals
