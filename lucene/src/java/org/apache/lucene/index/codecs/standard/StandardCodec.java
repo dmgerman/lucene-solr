@@ -350,20 +350,6 @@ name|Directory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
 begin_comment
 comment|/** Default codec.   *  @lucene.experimental */
 end_comment
@@ -381,9 +367,10 @@ specifier|public
 name|StandardCodec
 parameter_list|()
 block|{
-name|name
-operator|=
+name|super
+argument_list|(
 literal|"Standard"
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -786,6 +773,9 @@ argument_list|,
 name|id
 argument_list|,
 name|files
+argument_list|,
+name|getDocValuesUseCFS
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -813,6 +803,9 @@ operator|.
 name|getDocValuesExtensions
 argument_list|(
 name|extensions
+argument_list|,
+name|getDocValuesUseCFS
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -877,9 +870,10 @@ name|DefaultDocValuesConsumer
 argument_list|(
 name|state
 argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
+name|getDocValuesSortComparator
+argument_list|()
+argument_list|,
+name|getDocValuesUseCFS
 argument_list|()
 argument_list|)
 return|;
@@ -916,6 +910,12 @@ argument_list|,
 name|state
 operator|.
 name|codecId
+argument_list|,
+name|getDocValuesUseCFS
+argument_list|()
+argument_list|,
+name|getDocValuesSortComparator
+argument_list|()
 argument_list|)
 return|;
 block|}

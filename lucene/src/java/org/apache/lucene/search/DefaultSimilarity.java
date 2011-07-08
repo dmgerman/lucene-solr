@@ -40,14 +40,14 @@ specifier|public
 class|class
 name|DefaultSimilarity
 extends|extends
-name|Similarity
+name|TFIDFSimilarity
 block|{
 comment|/** Implemented as    *<code>state.getBoost()*lengthNorm(numTerms)</code>, where    *<code>numTerms</code> is {@link FieldInvertState#getLength()} if {@link    *  #setDiscountOverlaps} is false, else it's {@link    *  FieldInvertState#getLength()} - {@link    *  FieldInvertState#getNumOverlap()}.    *    *  @lucene.experimental */
 annotation|@
 name|Override
 DECL|method|computeNorm
 specifier|public
-name|float
+name|byte
 name|computeNorm
 parameter_list|(
 name|FieldInvertState
@@ -83,6 +83,8 @@ name|getLength
 argument_list|()
 expr_stmt|;
 return|return
+name|encodeNormValue
+argument_list|(
 name|state
 operator|.
 name|getBoost
@@ -103,6 +105,7 @@ name|numTerms
 argument_list|)
 argument_list|)
 operator|)
+argument_list|)
 return|;
 block|}
 comment|/** Implemented as<code>sqrt(freq)</code>. */

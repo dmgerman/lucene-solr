@@ -40,6 +40,18 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|BaseDistributedSearchTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|SolrDocument
@@ -57,18 +69,6 @@ operator|.
 name|common
 operator|.
 name|SolrDocumentList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|TestDistributedSearch
 import|;
 end_import
 
@@ -1623,7 +1623,7 @@ argument_list|)
 expr_stmt|;
 name|cmp
 operator|=
-name|TestDistributedSearch
+name|BaseDistributedSearchTestCase
 operator|.
 name|compare
 argument_list|(

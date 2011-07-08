@@ -705,14 +705,9 @@ name|field
 argument_list|,
 name|fieldSim
 operator|.
-name|encodeNormValue
-argument_list|(
-name|fieldSim
-operator|.
 name|computeNorm
 argument_list|(
 name|invertState
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

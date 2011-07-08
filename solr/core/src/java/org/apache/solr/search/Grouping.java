@@ -1387,7 +1387,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Specify at least on field, function or query to group by."
+literal|"Specify at least one field, function or query to group by."
 argument_list|)
 throw|;
 block|}

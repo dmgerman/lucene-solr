@@ -496,7 +496,7 @@ literal|""
 argument_list|)
 throw|;
 block|}
-comment|/**    * Creates a new {@link IndexDocValues} instance that provides either memory    * resident or iterative access to a per-document stored<tt>byte[]</tt>    * value. The returned {@link IndexDocValues} instance will be initialized without    * consuming a significant amount of memory.    *     * @param dir    *          the directory to load the {@link IndexDocValues} from.    * @param id    *          the file ID in the {@link Directory} to load the values from.    * @param mode    *          the mode used to store the values    * @param fixedSize    *<code>true</code> iff the values are stored with fixed-size,    *          otherwise<code>false</code>    * @param maxDoc    *          the number of document values stored for the given ID    * @return an initialized {@link IndexDocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Creates a new {@link IndexDocValues} instance that provides either memory    * resident or iterative access to a per-document stored<tt>byte[]</tt>    * value. The returned {@link IndexDocValues} instance will be initialized without    * consuming a significant amount of memory.    *     * @param dir    *          the directory to load the {@link IndexDocValues} from.    * @param id    *          the file ID in the {@link Directory} to load the values from.    * @param mode    *          the mode used to store the values    * @param fixedSize    *<code>true</code> iff the values are stored with fixed-size,    *          otherwise<code>false</code>    * @param maxDoc    *          the number of document values stored for the given ID    * @param sortComparator byte comparator used by sorted variants    * @return an initialized {@link IndexDocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|getValues
 specifier|public
 specifier|static
@@ -517,6 +517,12 @@ name|fixedSize
 parameter_list|,
 name|int
 name|maxDoc
+parameter_list|,
+name|Comparator
+argument_list|<
+name|BytesRef
+argument_list|>
+name|sortComparator
 parameter_list|)
 throws|throws
 name|IOException
@@ -669,6 +675,8 @@ argument_list|,
 name|id
 argument_list|,
 name|maxDoc
+argument_list|,
+name|sortComparator
 argument_list|)
 return|;
 block|}

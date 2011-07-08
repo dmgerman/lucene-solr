@@ -69,7 +69,7 @@ name|File
 argument_list|(
 name|SOURCE_HOME
 argument_list|,
-literal|"src/webapp/web"
+literal|"webapp/web"
 argument_list|)
 operator|.
 name|getAbsolutePath

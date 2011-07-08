@@ -1723,8 +1723,21 @@ operator|==
 literal|1
 condition|)
 block|{
-comment|// simple containment, no matter what the description says,
+comment|// simple containment, unless its a freq of: (which lets a query explain how the freq is calculated),
 comment|// just verify contained expl has same score
+if|if
+condition|(
+operator|!
+name|expl
+operator|.
+name|getDescription
+argument_list|()
+operator|.
+name|endsWith
+argument_list|(
+literal|"with freq of:"
+argument_list|)
+condition|)
 name|verifyExplanation
 argument_list|(
 name|q
@@ -1900,6 +1913,7 @@ parameter_list|)
 block|{             }
 block|}
 block|}
+comment|// TODO: this is a TERRIBLE assertion!!!!
 name|Assert
 operator|.
 name|assertTrue

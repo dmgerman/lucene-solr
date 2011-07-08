@@ -235,7 +235,7 @@ annotation|@
 name|Override
 DECL|method|computeNorm
 specifier|public
-name|float
+name|byte
 name|computeNorm
 parameter_list|(
 name|FieldInvertState
@@ -271,6 +271,8 @@ name|getLength
 argument_list|()
 expr_stmt|;
 return|return
+name|encodeNormValue
+argument_list|(
 name|state
 operator|.
 name|getBoost
@@ -279,6 +281,7 @@ operator|*
 name|computeLengthNorm
 argument_list|(
 name|numTokens
+argument_list|)
 argument_list|)
 return|;
 block|}

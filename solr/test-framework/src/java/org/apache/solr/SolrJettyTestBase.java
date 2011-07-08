@@ -1,16 +1,12 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.client.solrj
+DECL|package|org.apache.solr
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|solr
-operator|.
-name|client
-operator|.
-name|solrj
 package|;
 end_package
 
@@ -46,7 +42,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|SolrTestCaseJ4
+name|client
+operator|.
+name|solrj
+operator|.
+name|SolrServer
 import|;
 end_import
 

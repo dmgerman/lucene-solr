@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Calculate query weights and build query scorers.  *<p>  * The purpose of {@link Weight} is to ensure searching does not modify a  * {@link Query}, so that a {@link Query} instance can be reused.<br>  * {@link IndexSearcher} dependent state of the query should reside in the  * {@link Weight}.<br>  * {@link IndexReader} dependent state should reside in the {@link Scorer}.  *<p>  * Since {@link Weight} creates {@link Scorer} instances for a given  * {@link AtomicReaderContext} ({@link #scorer(IndexReader.AtomicReaderContext, ScorerContext)})  * callers must maintain the relationship between the searcher's top-level  * {@link ReaderContext} and the context used to create a {@link Scorer}.   *<p>  * A<code>Weight</code> is used in the following way:  *<ol>  *<li>A<code>Weight</code> is constructed by a top-level query, given a  *<code>IndexSearcher</code> ({@link Query#createWeight(IndexSearcher)}).  *<li>The {@link #sumOfSquaredWeights()} method is called on the  *<code>Weight</code> to compute the query normalization factor  * {@link SimilarityProvider#queryNorm(float)} of the query clauses contained in the  * query.  *<li>The query normalization factor is passed to {@link #normalize(float)}. At  * this point the weighting is complete.  *<li>A<code>Scorer</code> is constructed by  * {@link #scorer(IndexReader.AtomicReaderContext, ScorerContext)}.  *</ol>  *   * @since 2.9  */
+comment|/**  * Expert: Calculate query weights and build query scorers.  *<p>  * The purpose of {@link Weight} is to ensure searching does not modify a  * {@link Query}, so that a {@link Query} instance can be reused.<br>  * {@link IndexSearcher} dependent state of the query should reside in the  * {@link Weight}.<br>  * {@link IndexReader} dependent state should reside in the {@link Scorer}.  *<p>  * Since {@link Weight} creates {@link Scorer} instances for a given  * {@link AtomicReaderContext} ({@link #scorer(IndexReader.AtomicReaderContext, ScorerContext)})  * callers must maintain the relationship between the searcher's top-level  * {@link ReaderContext} and the context used to create a {@link Scorer}.   *<p>  * A<code>Weight</code> is used in the following way:  *<ol>  *<li>A<code>Weight</code> is constructed by a top-level query, given a  *<code>IndexSearcher</code> ({@link Query#createWeight(IndexSearcher)}).  *<li>The {@link #getValueForNormalization()} method is called on the  *<code>Weight</code> to compute the query normalization factor  * {@link SimilarityProvider#queryNorm(float)} of the query clauses contained in the  * query.  *<li>The query normalization factor is passed to {@link #normalize(float, float)}. At  * this point the weighting is complete.  *<li>A<code>Scorer</code> is constructed by  * {@link #scorer(IndexReader.AtomicReaderContext, ScorerContext)}.  *</ol>  *   * @since 2.9  */
 end_comment
 
 begin_class
@@ -107,15 +107,17 @@ name|Query
 name|getQuery
 parameter_list|()
 function_decl|;
-comment|/** The weight for this query. */
-DECL|method|getValue
+comment|/** The value for normalization of contained query clauses (e.g. sum of squared weights). */
+DECL|method|getValueForNormalization
 specifier|public
 specifier|abstract
 name|float
-name|getValue
+name|getValueForNormalization
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
-comment|/** Assigns the query normalization factor to this. */
+comment|/** Assigns the query normalization factor and boost from parent queries to this. */
 DECL|method|normalize
 specifier|public
 specifier|abstract
@@ -124,6 +126,9 @@ name|normalize
 parameter_list|(
 name|float
 name|norm
+parameter_list|,
+name|float
+name|topLevelBoost
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a {@link Scorer} which scores documents in/out-of order according    * to<code>scoreDocsInOrder</code>.    *<p>    *<b>NOTE:</b> even if<code>scoreDocsInOrder</code> is false, it is    * recommended to check whether the returned<code>Scorer</code> indeed scores    * documents out of order (i.e., call {@link #scoresDocsOutOfOrder()}), as    * some<code>Scorer</code> implementations will always return documents    * in-order.<br>    *<b>NOTE:</b> null can be returned if no documents will be scored by this    * query.    *     * @param context    *          the {@link AtomicReaderContext} for which to return the {@link Scorer}.    * @param scorerContext the {@link ScorerContext} holding the scores context variables    * @return a {@link Scorer} which scores documents in/out-of order.    * @throws IOException    */
@@ -139,16 +144,6 @@ parameter_list|,
 name|ScorerContext
 name|scorerContext
 parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** The sum of squared weights of contained query clauses. */
-DECL|method|sumOfSquaredWeights
-specifier|public
-specifier|abstract
-name|float
-name|sumOfSquaredWeights
-parameter_list|()
 throws|throws
 name|IOException
 function_decl|;

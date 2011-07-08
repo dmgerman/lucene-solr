@@ -38,10 +38,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|client
-operator|.
-name|solrj
-operator|.
 name|SolrJettyTestBase
 import|;
 end_import
