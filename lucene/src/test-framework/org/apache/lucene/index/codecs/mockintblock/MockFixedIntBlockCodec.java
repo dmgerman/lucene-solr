@@ -635,8 +635,8 @@ parameter_list|,
 name|String
 name|fileName
 parameter_list|,
-name|int
-name|readBufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -651,7 +651,7 @@ name|openInput
 argument_list|(
 name|fileName
 argument_list|,
-name|readBufferSize
+name|context
 argument_list|)
 argument_list|)
 block|{
@@ -740,6 +740,9 @@ name|dir
 parameter_list|,
 name|String
 name|fileName
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -752,6 +755,8 @@ operator|.
 name|createOutput
 argument_list|(
 name|fileName
+argument_list|,
+name|context
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -998,7 +1003,7 @@ name|segmentInfo
 argument_list|,
 name|state
 operator|.
-name|readBufferSize
+name|context
 argument_list|,
 operator|new
 name|MockIntFactory
@@ -1052,6 +1057,10 @@ argument_list|,
 name|state
 operator|.
 name|codecId
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 name|success
@@ -1106,7 +1115,7 @@ name|postingsReader
 argument_list|,
 name|state
 operator|.
-name|readBufferSize
+name|context
 argument_list|,
 name|StandardCodec
 operator|.
@@ -1342,6 +1351,10 @@ argument_list|()
 argument_list|,
 name|getDocValuesSortComparator
 argument_list|()
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 return|;
 block|}

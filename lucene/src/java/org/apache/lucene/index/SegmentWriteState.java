@@ -48,6 +48,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BitVector
@@ -129,6 +143,12 @@ name|int
 name|termIndexInterval
 decl_stmt|;
 comment|// TODO: this should be private to the codec, not settable here or in IWC
+DECL|field|context
+specifier|public
+specifier|final
+name|IOContext
+name|context
+decl_stmt|;
 DECL|method|SegmentWriteState
 specifier|public
 name|SegmentWriteState
@@ -156,6 +176,9 @@ name|segmentCodecs
 parameter_list|,
 name|BufferedDeletes
 name|segDeletes
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 block|{
 name|this
@@ -211,6 +234,12 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+name|this
+operator|.
+name|context
+operator|=
+name|context
+expr_stmt|;
 block|}
 comment|/**    * Create a shallow {@link SegmentWriteState} copy final a codec ID    */
 DECL|method|SegmentWriteState
@@ -264,6 +293,12 @@ operator|=
 name|state
 operator|.
 name|segmentCodecs
+expr_stmt|;
+name|context
+operator|=
+name|state
+operator|.
+name|context
 expr_stmt|;
 name|this
 operator|.

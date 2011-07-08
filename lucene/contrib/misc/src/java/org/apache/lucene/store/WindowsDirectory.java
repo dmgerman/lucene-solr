@@ -155,8 +155,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
-name|bufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -181,7 +181,12 @@ name|Math
 operator|.
 name|max
 argument_list|(
+name|BufferedIndexInput
+operator|.
 name|bufferSize
+argument_list|(
+name|context
+argument_list|)
 argument_list|,
 name|DEFAULT_BUFFERSIZE
 argument_list|)

@@ -44,7 +44,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|BufferedIndexInput
+name|IOContext
 import|;
 end_import
 
@@ -79,6 +79,9 @@ name|dir
 parameter_list|,
 name|String
 name|fileName
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -90,30 +93,11 @@ name|dir
 argument_list|,
 name|fileName
 argument_list|,
-name|BufferedIndexInput
-operator|.
-name|BUFFER_SIZE
+name|context
 argument_list|)
 return|;
 block|}
-DECL|method|openInput
-specifier|public
-specifier|abstract
-name|IntIndexInput
-name|openInput
-parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
-name|String
-name|fileName
-parameter_list|,
-name|int
-name|readBufferSize
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
+comment|//  public abstract IntIndexInput openInput(Directory dir, String fileName, IOContext context) throws IOException;
 DECL|method|createOutput
 specifier|public
 specifier|abstract
@@ -125,6 +109,9 @@ name|dir
 parameter_list|,
 name|String
 name|fileName
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException

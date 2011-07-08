@@ -156,7 +156,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|BufferedIndexInput
+name|Directory
 import|;
 end_import
 
@@ -170,7 +170,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|Directory
+name|IOContext
 import|;
 end_import
 
@@ -1138,9 +1138,9 @@ argument_list|,
 name|ext
 argument_list|)
 argument_list|,
-name|BufferedIndexInput
+name|IOContext
 operator|.
-name|BUFFER_SIZE
+name|READONCE
 argument_list|)
 expr_stmt|;
 block|}
@@ -1246,9 +1246,9 @@ operator|.
 name|COMPOUND_FILE_EXTENSION
 argument_list|)
 argument_list|,
-name|BufferedIndexInput
+name|IOContext
 operator|.
-name|BUFFER_SIZE
+name|READONCE
 argument_list|)
 expr_stmt|;
 block|}

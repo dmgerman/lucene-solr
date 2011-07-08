@@ -586,8 +586,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
-name|bufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -656,8 +656,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
-name|bufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -668,7 +668,7 @@ name|MMapCompoundFileDirectory
 argument_list|(
 name|name
 argument_list|,
-name|bufferSize
+name|context
 argument_list|)
 return|;
 block|}
@@ -694,8 +694,8 @@ parameter_list|(
 name|String
 name|fileName
 parameter_list|,
-name|int
-name|readBufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -708,7 +708,7 @@ name|this
 argument_list|,
 name|fileName
 argument_list|,
-name|readBufferSize
+name|context
 argument_list|)
 expr_stmt|;
 name|IndexInput

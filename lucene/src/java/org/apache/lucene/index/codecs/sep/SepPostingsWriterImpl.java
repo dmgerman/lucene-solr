@@ -535,6 +535,10 @@ operator|.
 name|directory
 argument_list|,
 name|docFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|docIndex
@@ -584,6 +588,10 @@ operator|.
 name|directory
 argument_list|,
 name|frqFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|freqIndex
@@ -623,6 +631,10 @@ operator|.
 name|directory
 argument_list|,
 name|posFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|posIndex
@@ -661,6 +673,10 @@ operator|.
 name|createOutput
 argument_list|(
 name|payloadFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 block|}
@@ -692,6 +708,10 @@ operator|.
 name|createOutput
 argument_list|(
 name|skipFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|totalNumDocs

@@ -948,6 +948,13 @@ operator|.
 name|createOutput
 argument_list|(
 name|name
+argument_list|,
+name|LuceneTestCase
+operator|.
+name|newIOContext
+argument_list|(
+name|randomState
+argument_list|)
 argument_list|)
 decl_stmt|;
 while|while
@@ -1018,6 +1025,13 @@ operator|.
 name|createOutput
 argument_list|(
 name|name
+argument_list|,
+name|LuceneTestCase
+operator|.
+name|newIOContext
+argument_list|(
+name|randomState
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|out
@@ -1598,6 +1612,9 @@ name|createOutput
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -1821,6 +1838,13 @@ operator|.
 name|createOutput
 argument_list|(
 name|name
+argument_list|,
+name|LuceneTestCase
+operator|.
+name|newIOContext
+argument_list|(
+name|randomState
+argument_list|)
 argument_list|)
 argument_list|,
 name|name
@@ -2011,6 +2035,9 @@ name|openInput
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -2089,6 +2116,13 @@ operator|.
 name|openInput
 argument_list|(
 name|name
+argument_list|,
+name|LuceneTestCase
+operator|.
+name|newIOContext
+argument_list|(
+name|randomState
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2116,8 +2150,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
-name|bufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -2139,7 +2173,7 @@ name|openCompoundInput
 argument_list|(
 name|name
 argument_list|,
-name|bufferSize
+name|context
 argument_list|)
 argument_list|,
 literal|false
@@ -2155,6 +2189,9 @@ name|createCompoundOutput
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -2175,6 +2212,8 @@ operator|.
 name|createCompoundOutput
 argument_list|(
 name|name
+argument_list|,
+name|context
 argument_list|)
 argument_list|,
 literal|true
@@ -3060,6 +3099,9 @@ name|src
 parameter_list|,
 name|String
 name|dest
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -3067,6 +3109,7 @@ block|{
 name|maybeYield
 argument_list|()
 expr_stmt|;
+comment|// randomize the IOContext here?
 name|delegate
 operator|.
 name|copy
@@ -3076,6 +3119,8 @@ argument_list|,
 name|src
 argument_list|,
 name|dest
+argument_list|,
+name|context
 argument_list|)
 expr_stmt|;
 block|}

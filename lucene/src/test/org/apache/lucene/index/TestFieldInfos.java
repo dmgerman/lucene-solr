@@ -213,6 +213,11 @@ operator|.
 name|createOutput
 argument_list|(
 name|filename
+argument_list|,
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertTrue

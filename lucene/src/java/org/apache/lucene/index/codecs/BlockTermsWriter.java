@@ -365,6 +365,10 @@ operator|.
 name|createOutput
 argument_list|(
 name|termsFileName
+argument_list|,
+name|state
+operator|.
+name|context
 argument_list|)
 expr_stmt|;
 name|boolean
