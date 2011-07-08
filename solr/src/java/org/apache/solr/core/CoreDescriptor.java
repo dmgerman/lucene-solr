@@ -156,8 +156,9 @@ operator|.
 name|setCollectionName
 argument_list|(
 name|name
-operator|==
-literal|""
+operator|.
+name|isEmpty
+argument_list|()
 condition|?
 name|coreContainer
 operator|.

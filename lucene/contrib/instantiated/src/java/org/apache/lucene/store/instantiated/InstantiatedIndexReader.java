@@ -473,6 +473,7 @@ literal|null
 decl_stmt|;
 DECL|class|NormUpdate
 specifier|private
+specifier|static
 class|class
 name|NormUpdate
 block|{
@@ -1638,8 +1639,11 @@ index|]
 operator|.
 name|field
 argument_list|()
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|currentField
+argument_list|)
 condition|)
 do|;
 name|currentField
@@ -1794,10 +1798,10 @@ index|[
 name|i
 index|]
 operator|.
+name|equals
+argument_list|(
 name|field
-argument_list|()
-operator|==
-name|field
+argument_list|)
 condition|)
 block|{
 name|sum

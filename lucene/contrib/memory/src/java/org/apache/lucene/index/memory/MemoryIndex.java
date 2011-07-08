@@ -5498,9 +5498,13 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|fieldName
-operator|!=
+operator|.
+name|equals
+argument_list|(
 name|cachedFieldName
+argument_list|)
 operator|||
 name|sim
 operator|!=

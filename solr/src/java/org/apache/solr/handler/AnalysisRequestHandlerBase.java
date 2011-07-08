@@ -1022,14 +1022,6 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-specifier|final
-name|BytesRef
-name|bytes
-init|=
-operator|new
-name|BytesRef
-argument_list|()
-decl_stmt|;
 try|try
 block|{
 name|tokenStream
