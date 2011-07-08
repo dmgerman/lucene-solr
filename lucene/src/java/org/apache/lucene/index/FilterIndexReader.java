@@ -435,6 +435,23 @@ name|getSumTotalTermFreq
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getSumDocFreq
+specifier|public
+name|long
+name|getSumDocFreq
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|in
+operator|.
+name|getSumDocFreq
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** Base class for filtering {@link TermsEnum} implementations. */
 DECL|class|FilterFieldsEnum

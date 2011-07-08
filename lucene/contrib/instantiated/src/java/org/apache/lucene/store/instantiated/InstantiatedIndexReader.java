@@ -1862,6 +1862,19 @@ return|return
 name|sumTotalTermFreq
 return|;
 block|}
+comment|// TODO: support this?
+annotation|@
+name|Override
+specifier|public
+name|long
+name|getSumDocFreq
+parameter_list|()
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public

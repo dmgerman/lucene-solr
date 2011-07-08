@@ -756,6 +756,11 @@ name|sumTotalTermCount
 init|=
 literal|0
 decl_stmt|;
+name|long
+name|sumDF
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -765,6 +770,14 @@ range|:
 name|terms
 control|)
 block|{
+name|sumDF
+operator|+=
+name|term
+operator|.
+name|docs
+operator|.
+name|length
+expr_stmt|;
 name|sumTotalTermCount
 operator|+=
 name|term
@@ -780,6 +793,8 @@ operator|.
 name|finish
 argument_list|(
 name|sumTotalTermCount
+argument_list|,
+name|sumDF
 argument_list|)
 expr_stmt|;
 block|}

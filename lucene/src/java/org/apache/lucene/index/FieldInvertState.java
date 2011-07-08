@@ -61,6 +61,10 @@ DECL|field|maxTermFrequency
 name|int
 name|maxTermFrequency
 decl_stmt|;
+DECL|field|uniqueTermCount
+name|int
+name|uniqueTermCount
+decl_stmt|;
 DECL|field|boost
 name|float
 name|boost
@@ -151,6 +155,10 @@ operator|=
 literal|0
 expr_stmt|;
 name|maxTermFrequency
+operator|=
+literal|0
+expr_stmt|;
+name|uniqueTermCount
 operator|=
 literal|0
 expr_stmt|;
@@ -275,6 +283,17 @@ parameter_list|()
 block|{
 return|return
 name|maxTermFrequency
+return|;
+block|}
+comment|/**    * Return the number of unique terms encountered in this field.    */
+DECL|method|getUniqueTermCount
+specifier|public
+name|int
+name|getUniqueTermCount
+parameter_list|()
+block|{
+return|return
+name|uniqueTermCount
 return|;
 block|}
 DECL|method|getAttributeSource
