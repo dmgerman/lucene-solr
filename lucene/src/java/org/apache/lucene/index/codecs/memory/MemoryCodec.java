@@ -4081,7 +4081,7 @@ name|sumTotalTermFreq
 operator|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
