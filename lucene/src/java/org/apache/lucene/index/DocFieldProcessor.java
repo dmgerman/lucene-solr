@@ -192,6 +192,20 @@ name|ArrayUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * This is a DocConsumer that gathers all fields under the  * same name, and calls per-field consumers to process field  * by field.  This class doesn't doesn't do any "real" work  * of its own: it just forwards the fields to a  * DocFieldConsumer.  */
 end_comment
@@ -435,6 +449,19 @@ argument_list|)
 expr_stmt|;
 block|}
 empty_stmt|;
+comment|// close perDocConsumer during flush to ensure all files are flushed due to PerCodec CFS
+name|IOUtils
+operator|.
+name|closeSafely
+argument_list|(
+literal|true
+argument_list|,
+name|perDocConsumers
+operator|.
+name|values
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -505,23 +532,19 @@ name|next
 expr_stmt|;
 block|}
 block|}
-for|for
-control|(
-name|PerDocConsumer
-name|consumer
-range|:
+try|try
+block|{
+name|IOUtils
+operator|.
+name|closeSafely
+argument_list|(
+literal|true
+argument_list|,
 name|perDocConsumers
 operator|.
 name|values
 argument_list|()
-control|)
-block|{
-try|try
-block|{
-name|consumer
-operator|.
-name|close
-argument_list|()
+argument_list|)
 expr_stmt|;
 comment|// TODO add abort to PerDocConsumer!
 block|}
@@ -532,7 +555,6 @@ name|e
 parameter_list|)
 block|{
 comment|// ignore on abort!
-block|}
 block|}
 try|try
 block|{
@@ -752,34 +774,6 @@ name|totalFieldCount
 operator|=
 literal|0
 expr_stmt|;
-for|for
-control|(
-name|PerDocConsumer
-name|consumer
-range|:
-name|perDocConsumers
-operator|.
-name|values
-argument_list|()
-control|)
-block|{
-try|try
-block|{
-name|consumer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|// ignore and continue closing remaining consumers
-block|}
-block|}
 name|perDocConsumers
 operator|.
 name|clear
