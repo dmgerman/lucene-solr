@@ -491,6 +491,7 @@ operator|.
 name|DBBI_AVAILABLE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ThaiAnalyzer
 name|analyzer
 init|=
@@ -502,11 +503,7 @@ argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo
 argument_list|(
-operator|new
-name|ThaiAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|analyzer
 argument_list|,
 literal|"à¸à¸²à¸£à¸à¸µà¹à¹à¸à¹à¸à¹à¸­à¸ the à¹à¸ªà¸à¸à¸§à¹à¸²à¸à¸²à¸à¸à¸µ"
 argument_list|,
@@ -598,11 +595,7 @@ expr_stmt|;
 comment|// case that a stopword is adjacent to thai text, with no whitespace
 name|assertAnalyzesTo
 argument_list|(
-operator|new
-name|ThaiAnalyzer
-argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|)
+name|analyzer
 argument_list|,
 literal|"à¸à¸²à¸£à¸à¸µà¹à¹à¸à¹à¸à¹à¸­à¸the à¹à¸ªà¸à¸à¸§à¹à¸²à¸à¸²à¸à¸à¸µ"
 argument_list|,

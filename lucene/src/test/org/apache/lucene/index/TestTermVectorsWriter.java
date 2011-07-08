@@ -2493,6 +2493,11 @@ operator|new
 name|RAMDirectory
 argument_list|(
 name|dir
+argument_list|,
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 block|}

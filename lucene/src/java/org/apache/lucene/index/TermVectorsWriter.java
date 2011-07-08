@@ -40,6 +40,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|IndexOutput
 import|;
 end_import
@@ -136,6 +150,9 @@ name|segment
 parameter_list|,
 name|FieldInfos
 name|fieldInfos
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -166,6 +183,8 @@ name|IndexFileNames
 operator|.
 name|VECTORS_INDEX_EXTENSION
 argument_list|)
+argument_list|,
+name|context
 argument_list|)
 expr_stmt|;
 name|tvx
@@ -195,6 +214,8 @@ name|IndexFileNames
 operator|.
 name|VECTORS_DOCUMENTS_EXTENSION
 argument_list|)
+argument_list|,
+name|context
 argument_list|)
 expr_stmt|;
 name|tvd
@@ -224,6 +245,8 @@ name|IndexFileNames
 operator|.
 name|VECTORS_FIELDS_EXTENSION
 argument_list|)
+argument_list|,
+name|context
 argument_list|)
 expr_stmt|;
 name|tvf

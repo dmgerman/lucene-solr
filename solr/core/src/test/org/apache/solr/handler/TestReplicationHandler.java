@@ -4478,17 +4478,6 @@ operator|.
 name|mkdirs
 argument_list|()
 expr_stmt|;
-name|File
-name|f
-init|=
-operator|new
-name|File
-argument_list|(
-name|confDir
-argument_list|,
-literal|"solrconfig.xml"
-argument_list|)
-decl_stmt|;
 name|copyConfigFile
 argument_list|(
 name|getSolrConfigFile

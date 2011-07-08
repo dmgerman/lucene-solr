@@ -186,6 +186,20 @@ name|QueryWrapperFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
+import|;
+end_import
+
 begin_comment
 comment|/* Tracks the stream of {@link BufferedDeletes}.  * When DocumentsWriterPerThread flushes, its buffered  * deletes are appended to this stream.  We later  * apply these deletes (resolve them to the actual  * docIDs, per segment) when a merge is started  * (only to the to-be-merged segments).  We  * also apply to all segments when NRT reader is pulled,  * commit/close is called, or when too many deletes are  * buffered and must be flushed (by RAM usage or by count).  *  * Each packet is assigned a generation, and each flushed or  * merged segment is also assigned a generation, so we can  * track which BufferedDeletes packets to apply to any given  * segment. */
 end_comment
@@ -1014,6 +1028,10 @@ argument_list|(
 name|info
 argument_list|,
 literal|false
+argument_list|,
+name|IOContext
+operator|.
+name|READ
 argument_list|)
 decl_stmt|;
 name|int
@@ -1238,6 +1256,10 @@ argument_list|(
 name|info
 argument_list|,
 literal|false
+argument_list|,
+name|IOContext
+operator|.
+name|READ
 argument_list|)
 decl_stmt|;
 name|int

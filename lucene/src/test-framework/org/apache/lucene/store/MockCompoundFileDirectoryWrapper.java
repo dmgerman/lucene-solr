@@ -87,7 +87,9 @@ name|parent
 argument_list|,
 name|name
 argument_list|,
-literal|1024
+name|IOContext
+operator|.
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 name|this
@@ -189,8 +191,8 @@ parameter_list|(
 name|String
 name|id
 parameter_list|,
-name|int
-name|readBufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -202,7 +204,7 @@ name|openInput
 argument_list|(
 name|id
 argument_list|,
-name|readBufferSize
+name|context
 argument_list|)
 return|;
 block|}
@@ -338,6 +340,9 @@ name|createOutput
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -348,6 +353,8 @@ operator|.
 name|createOutput
 argument_list|(
 name|name
+argument_list|,
+name|context
 argument_list|)
 return|;
 block|}
@@ -501,6 +508,9 @@ name|src
 parameter_list|,
 name|String
 name|dest
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -514,6 +524,8 @@ argument_list|,
 name|src
 argument_list|,
 name|dest
+argument_list|,
+name|context
 argument_list|)
 expr_stmt|;
 block|}
@@ -563,6 +575,9 @@ name|createCompoundOutput
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -573,9 +588,13 @@ operator|.
 name|createCompoundOutput
 argument_list|(
 name|name
+argument_list|,
+name|context
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|openCompoundInput
 specifier|public
 name|CompoundFileDirectory
@@ -584,8 +603,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|int
-name|bufferSize
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -597,7 +616,7 @@ name|openCompoundInput
 argument_list|(
 name|name
 argument_list|,
-name|bufferSize
+name|context
 argument_list|)
 return|;
 block|}

@@ -521,6 +521,11 @@ operator|new
 name|RAMDirectory
 argument_list|(
 name|startDir
+argument_list|,
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;

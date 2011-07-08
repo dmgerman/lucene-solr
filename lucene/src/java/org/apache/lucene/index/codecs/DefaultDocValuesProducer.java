@@ -236,6 +236,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -325,6 +339,9 @@ argument_list|<
 name|BytesRef
 argument_list|>
 name|sortComparator
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -373,7 +390,7 @@ operator|.
 name|COMPOUND_FILE_EXTENSION
 argument_list|)
 argument_list|,
-literal|1024
+name|context
 argument_list|)
 expr_stmt|;
 block|}
@@ -405,6 +422,8 @@ argument_list|,
 name|directory
 argument_list|,
 name|codecId
+argument_list|,
+name|context
 argument_list|)
 expr_stmt|;
 block|}
@@ -456,6 +475,9 @@ name|dir
 parameter_list|,
 name|int
 name|codecId
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -554,6 +576,8 @@ name|getDocValues
 argument_list|()
 argument_list|,
 name|sortComparator
+argument_list|,
+name|context
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -610,6 +634,9 @@ argument_list|<
 name|BytesRef
 argument_list|>
 name|sortComparator
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -644,6 +671,8 @@ argument_list|,
 name|id
 argument_list|,
 name|docCount
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -659,6 +688,8 @@ argument_list|,
 name|id
 argument_list|,
 name|docCount
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -674,6 +705,8 @@ argument_list|,
 name|id
 argument_list|,
 name|docCount
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -699,6 +732,8 @@ argument_list|,
 name|docCount
 argument_list|,
 name|sortComparator
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -724,6 +759,8 @@ argument_list|,
 name|docCount
 argument_list|,
 name|sortComparator
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -749,6 +786,8 @@ argument_list|,
 name|docCount
 argument_list|,
 name|sortComparator
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -774,6 +813,8 @@ argument_list|,
 name|docCount
 argument_list|,
 name|sortComparator
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -799,6 +840,8 @@ argument_list|,
 name|docCount
 argument_list|,
 name|sortComparator
+argument_list|,
+name|context
 argument_list|)
 return|;
 case|case
@@ -824,6 +867,8 @@ argument_list|,
 name|docCount
 argument_list|,
 name|sortComparator
+argument_list|,
+name|context
 argument_list|)
 return|;
 default|default:

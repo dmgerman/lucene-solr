@@ -224,6 +224,11 @@ operator|.
 name|createOutput
 argument_list|(
 literal|"foo.txt"
+argument_list|,
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|pool
@@ -251,6 +256,11 @@ operator|.
 name|openInput
 argument_list|(
 literal|"foo.txt"
+argument_list|,
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertEquals

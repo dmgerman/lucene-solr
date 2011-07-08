@@ -26,6 +26,20 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
+import|;
+end_import
+
 begin_class
 DECL|class|TestMultiReader
 specifier|public
@@ -73,6 +87,11 @@ argument_list|,
 name|IndexReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
+argument_list|,
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|SegmentReader
@@ -94,6 +113,11 @@ argument_list|,
 name|IndexReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
+argument_list|,
+name|newIOContext
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|readers
