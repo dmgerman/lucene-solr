@@ -168,6 +168,24 @@ specifier|static
 name|String
 name|LEADING_WILDCARD_NOT_ALLOWED
 decl_stmt|;
+DECL|field|COULD_NOT_PARSE_NUMBER
+specifier|public
+specifier|static
+name|String
+name|COULD_NOT_PARSE_NUMBER
+decl_stmt|;
+DECL|field|NUMBER_CLASS_NOT_SUPPORTED_BY_NUMERIC_RANGE_QUERY
+specifier|public
+specifier|static
+name|String
+name|NUMBER_CLASS_NOT_SUPPORTED_BY_NUMERIC_RANGE_QUERY
+decl_stmt|;
+DECL|field|UNSUPPORTED_NUMERIC_DATA_TYPE
+specifier|public
+specifier|static
+name|String
+name|UNSUPPORTED_NUMERIC_DATA_TYPE
+decl_stmt|;
 block|}
 end_class
 
