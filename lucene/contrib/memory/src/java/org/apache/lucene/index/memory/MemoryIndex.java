@@ -3654,6 +3654,24 @@ name|getSumTotalTermFreq
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|getSumDocFreq
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// each term has df=1
+return|return
+name|info
+operator|.
+name|sortedTerms
+operator|.
+name|length
+return|;
+block|}
 block|}
 return|;
 block|}
