@@ -39,7 +39,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This query node represents a range query.  *   * @see ParametricRangeQueryNodeProcessor  * @see org.apache.lucene.search.TermRangeQuery  */
+comment|/**  * This query node represents a range query.  *   * @see org.apache.lucene.queryParser.standard.processors.ParametricRangeQueryNodeProcessor  * @see org.apache.lucene.search.TermRangeQuery  */
 end_comment
 
 begin_class
