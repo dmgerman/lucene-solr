@@ -1300,6 +1300,17 @@ argument_list|,
 name|f
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|set
+argument_list|(
+name|FacetParams
+operator|.
+name|FACET
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 return|return
 name|this
 return|;
