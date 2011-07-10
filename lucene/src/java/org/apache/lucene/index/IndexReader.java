@@ -420,220 +420,59 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Constants describing field properties, for example used for    * {@link IndexReader#getFieldNames(FieldOption)}.    */
-DECL|class|FieldOption
+DECL|enum|FieldOption
 specifier|public
 specifier|static
-specifier|final
-class|class
+enum|enum
 name|FieldOption
 block|{
-DECL|field|option
-specifier|private
-name|String
-name|option
-decl_stmt|;
-DECL|method|FieldOption
-specifier|private
-name|FieldOption
-parameter_list|()
-block|{ }
-DECL|method|FieldOption
-specifier|private
-name|FieldOption
-parameter_list|(
-name|String
-name|option
-parameter_list|)
-block|{
-name|this
-operator|.
-name|option
-operator|=
-name|option
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|this
-operator|.
-name|option
-return|;
-block|}
 comment|/** All fields */
-DECL|field|ALL
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|ALL
 name|ALL
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"ALL"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All indexed fields */
-DECL|field|INDEXED
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|INDEXED
 name|INDEXED
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"INDEXED"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All fields that store payloads */
-DECL|field|STORES_PAYLOADS
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|STORES_PAYLOADS
 name|STORES_PAYLOADS
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"STORES_PAYLOADS"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All fields that omit tf */
-DECL|field|OMIT_TERM_FREQ_AND_POSITIONS
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|OMIT_TERM_FREQ_AND_POSITIONS
 name|OMIT_TERM_FREQ_AND_POSITIONS
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"OMIT_TERM_FREQ_AND_POSITIONS"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All fields which are not indexed */
-DECL|field|UNINDEXED
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|UNINDEXED
 name|UNINDEXED
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"UNINDEXED"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All fields which are indexed with termvectors enabled */
-DECL|field|INDEXED_WITH_TERMVECTOR
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|INDEXED_WITH_TERMVECTOR
 name|INDEXED_WITH_TERMVECTOR
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"INDEXED_WITH_TERMVECTOR"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All fields which are indexed but don't have termvectors enabled */
-DECL|field|INDEXED_NO_TERMVECTOR
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|INDEXED_NO_TERMVECTOR
 name|INDEXED_NO_TERMVECTOR
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"INDEXED_NO_TERMVECTOR"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All fields with termvectors enabled. Please note that only standard termvector fields are returned */
-DECL|field|TERMVECTOR
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|TERMVECTOR
 name|TERMVECTOR
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"TERMVECTOR"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All fields with termvectors with position values enabled */
-DECL|field|TERMVECTOR_WITH_POSITION
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|TERMVECTOR_WITH_POSITION
 name|TERMVECTOR_WITH_POSITION
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"TERMVECTOR_WITH_POSITION"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All fields with termvectors with offset values enabled */
-DECL|field|TERMVECTOR_WITH_OFFSET
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|TERMVECTOR_WITH_OFFSET
 name|TERMVECTOR_WITH_OFFSET
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"TERMVECTOR_WITH_OFFSET"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All fields with termvectors with offset values and position values enabled */
-DECL|field|TERMVECTOR_WITH_POSITION_OFFSET
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|TERMVECTOR_WITH_POSITION_OFFSET
 name|TERMVECTOR_WITH_POSITION_OFFSET
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"TERMVECTOR_WITH_POSITION_OFFSET"
-argument_list|)
-decl_stmt|;
+block|,
 comment|/** All fields holding doc values */
-DECL|field|DOC_VALUES
-specifier|public
-specifier|static
-specifier|final
-name|FieldOption
+DECL|enum constant|DOC_VALUES
 name|DOC_VALUES
-init|=
-operator|new
-name|FieldOption
-argument_list|(
-literal|"DOC_VALUES"
-argument_list|)
-decl_stmt|;
 block|}
 DECL|field|closed
 specifier|private
