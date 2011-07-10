@@ -347,6 +347,8 @@ specifier|final
 name|void
 name|initForWrite
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 assert|assert
 operator|!
