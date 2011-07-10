@@ -734,6 +734,12 @@ argument_list|,
 literal|false
 argument_list|)
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 for|for
