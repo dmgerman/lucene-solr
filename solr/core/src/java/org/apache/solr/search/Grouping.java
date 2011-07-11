@@ -2813,14 +2813,9 @@ block|}
 name|int
 name|len
 init|=
-name|Math
-operator|.
-name|min
-argument_list|(
-name|numGroups
-argument_list|,
 name|docsGathered
-argument_list|)
+operator|-
+name|offset
 decl_stmt|;
 if|if
 condition|(
