@@ -238,20 +238,6 @@ name|lucene
 operator|.
 name|queryParser
 operator|.
-name|TestQueryParser
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryParser
-operator|.
 name|core
 operator|.
 name|QueryNodeException
@@ -469,7 +455,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This test case tests {@link PrecedenceQueryParser}.  *</p>  *<p>  * It contains all tests from {@link TestQueryParser} with some adjusted to   * fit the precedence requirement, plus some precedence test cases.   *</p>  *   * @see TestQueryParser  */
+comment|/**  *<p>  * This test case tests {@link PrecedenceQueryParser}.  *</p>  *<p>  * It contains all tests from {@link org.apache.lucene.queryparser.classic.TestQueryParser}  * with some adjusted to fit the precedence requirement, plus some precedence test cases.  *</p>  *   * @see org.apache.lucene.queryparser.classic.TestQueryParser  */
 end_comment
 
 begin_class

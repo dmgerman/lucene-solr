@@ -72,7 +72,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
+name|queryparser
+operator|.
+name|classic
 operator|.
 name|ParseException
 import|;
@@ -86,11 +88,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
+name|queryparser
+operator|.
+name|classic
 operator|.
 name|QueryParser
-operator|.
-name|Operator
 import|;
 end_import
 
@@ -580,6 +582,8 @@ comment|/**    * Returns the "prefered" default operator for use by Query Parser
 DECL|method|getQueryParserDefaultOperator
 specifier|public
 specifier|static
+name|QueryParser
+operator|.
 name|Operator
 name|getQueryParserDefaultOperator
 parameter_list|(
@@ -618,10 +622,14 @@ argument_list|(
 name|val
 argument_list|)
 condition|?
+name|QueryParser
+operator|.
 name|Operator
 operator|.
 name|AND
 else|:
+name|QueryParser
+operator|.
 name|Operator
 operator|.
 name|OR

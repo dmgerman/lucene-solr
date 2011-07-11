@@ -72,24 +72,6 @@ name|PositionIncrementAttribute
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryParser
-operator|.
-name|QueryParser
-import|;
-end_import
-
-begin_comment
-comment|// for javadoc
-end_comment
-
 begin_comment
 comment|/**  * Abstract base class for TokenFilters that may remove tokens.  * You have to implement {@link #accept} and return a boolean if the current  * token should be preserved. {@link #incrementToken} uses this method  * to decide if a token should be passed to the caller.  */
 end_comment
@@ -261,7 +243,7 @@ return|return
 name|enablePositionIncrements
 return|;
 block|}
-comment|/**    * If<code>true</code>, this TokenFilter will preserve    * positions of the incoming tokens (ie, accumulate and    * set position increments of the removed tokens).    * Generally,<code>true</code> is best as it does not    * lose information (positions of the original tokens)    * during indexing.    *     *<p> When set, when a token is stopped    * (omitted), the position increment of the following    * token is incremented.    *    *<p><b>NOTE</b>: be sure to also    * set {@link QueryParser#setEnablePositionIncrements} if    * you use QueryParser to create queries.    */
+comment|/**    * If<code>true</code>, this TokenFilter will preserve    * positions of the incoming tokens (ie, accumulate and    * set position increments of the removed tokens).    * Generally,<code>true</code> is best as it does not    * lose information (positions of the original tokens)    * during indexing.    *     *<p> When set, when a token is stopped    * (omitted), the position increment of the following    * token is incremented.    *    *<p><b>NOTE</b>: be sure to also    * set org.apache.lucene.queryparser.classic.QueryParser#setEnablePositionIncrements if    * you use QueryParser to create queries.    */
 DECL|method|setEnablePositionIncrements
 specifier|public
 name|void

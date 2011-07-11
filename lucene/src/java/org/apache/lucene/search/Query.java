@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link MultiTermQuery}<li> {@link BooleanQuery}<li> {@link WildcardQuery}<li> {@link PhraseQuery}<li> {@link PrefixQuery}<li> {@link MultiPhraseQuery}<li> {@link FuzzyQuery}<li> {@link TermRangeQuery}<li> {@link NumericRangeQuery}<li> {@link org.apache.lucene.search.spans.SpanQuery}</ul><p>A parser for queries is contained in:<ul><li>{@link org.apache.lucene.queryParser.QueryParser QueryParser}</ul> */
+comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link MultiTermQuery}<li> {@link BooleanQuery}<li> {@link WildcardQuery}<li> {@link PhraseQuery}<li> {@link PrefixQuery}<li> {@link MultiPhraseQuery}<li> {@link FuzzyQuery}<li> {@link TermRangeQuery}<li> {@link NumericRangeQuery}<li> {@link org.apache.lucene.search.spans.SpanQuery}</ul> */
 end_comment
 
 begin_class
@@ -111,7 +111,7 @@ return|return
 name|boost
 return|;
 block|}
-comment|/** Prints a query to a string, with<code>field</code> assumed to be the     * default field and omitted.    *<p>The representation used is one that is supposed to be readable    * by {@link org.apache.lucene.queryParser.QueryParser QueryParser}. However,    * there are the following limitations:    *<ul>    *<li>If the query was created by the parser, the printed    *  representation may not be exactly what was parsed. For example,    *  characters that need to be escaped will be represented without    *  the required backslash.</li>    *<li>Some of the more complicated queries (e.g. span queries)    *  don't have a representation that can be parsed by QueryParser.</li>    *</ul>    */
+comment|/** Prints a query to a string, with<code>field</code> assumed to be the     * default field and omitted.    */
 DECL|method|toString
 specifier|public
 specifier|abstract

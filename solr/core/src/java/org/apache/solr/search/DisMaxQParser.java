@@ -24,7 +24,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
+name|queryparser
+operator|.
+name|classic
 operator|.
 name|ParseException
 import|;
@@ -38,11 +40,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
+name|queryparser
+operator|.
+name|classic
 operator|.
 name|QueryParser
-operator|.
-name|Operator
 import|;
 end_import
 
@@ -275,6 +277,8 @@ name|SolrParams
 name|params
 parameter_list|)
 block|{
+name|QueryParser
+operator|.
 name|Operator
 name|op
 init|=
@@ -307,6 +311,8 @@ name|op
 operator|.
 name|equals
 argument_list|(
+name|QueryParser
+operator|.
 name|Operator
 operator|.
 name|AND

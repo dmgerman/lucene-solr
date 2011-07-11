@@ -34,7 +34,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
+name|queryparser
+operator|.
+name|classic
 operator|.
 name|QueryParser
 import|;

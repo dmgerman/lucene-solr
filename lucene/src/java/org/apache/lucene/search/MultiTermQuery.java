@@ -90,20 +90,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
-operator|.
-name|QueryParser
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|AttributeSource
@@ -125,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract {@link Query} that matches documents  * containing a subset of terms provided by a {@link  * FilteredTermsEnum} enumeration.  *  *<p>This query cannot be used directly; you must subclass  * it and define {@link #getTermsEnum(Terms,AttributeSource)} to provide a {@link  * FilteredTermsEnum} that iterates through the terms to be  * matched.  *  *<p><b>NOTE</b>: if {@link #setRewriteMethod} is either  * {@link #CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE} or {@link  * #SCORING_BOOLEAN_QUERY_REWRITE}, you may encounter a  * {@link BooleanQuery.TooManyClauses} exception during  * searching, which happens when the number of terms to be  * searched exceeds {@link  * BooleanQuery#getMaxClauseCount()}.  Setting {@link  * #setRewriteMethod} to {@link #CONSTANT_SCORE_FILTER_REWRITE}  * prevents this.  *  *<p>The recommended rewrite method is {@link  * #CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}: it doesn't spend CPU  * computing unhelpful scores, and it tries to pick the most  * performant rewrite method given the query. If you  * need scoring (like {@link FuzzyQuery}, use  * {@link TopTermsScoringBooleanQueryRewrite} which uses  * a priority queue to only collect competitive terms  * and not hit this limitation.  *  * Note that {@link QueryParser} produces  * MultiTermQueries using {@link  * #CONSTANT_SCORE_AUTO_REWRITE_DEFAULT} by default.  */
+comment|/**  * An abstract {@link Query} that matches documents  * containing a subset of terms provided by a {@link  * FilteredTermsEnum} enumeration.  *  *<p>This query cannot be used directly; you must subclass  * it and define {@link #getTermsEnum(Terms,AttributeSource)} to provide a {@link  * FilteredTermsEnum} that iterates through the terms to be  * matched.  *  *<p><b>NOTE</b>: if {@link #setRewriteMethod} is either  * {@link #CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE} or {@link  * #SCORING_BOOLEAN_QUERY_REWRITE}, you may encounter a  * {@link BooleanQuery.TooManyClauses} exception during  * searching, which happens when the number of terms to be  * searched exceeds {@link  * BooleanQuery#getMaxClauseCount()}.  Setting {@link  * #setRewriteMethod} to {@link #CONSTANT_SCORE_FILTER_REWRITE}  * prevents this.  *  *<p>The recommended rewrite method is {@link  * #CONSTANT_SCORE_AUTO_REWRITE_DEFAULT}: it doesn't spend CPU  * computing unhelpful scores, and it tries to pick the most  * performant rewrite method given the query. If you  * need scoring (like {@link FuzzyQuery}, use  * {@link TopTermsScoringBooleanQueryRewrite} which uses  * a priority queue to only collect competitive terms  * and not hit this limitation.  *  * Note that org.apache.lucene.queryparser.classic.QueryParser produces  * MultiTermQueries using {@link  * #CONSTANT_SCORE_AUTO_REWRITE_DEFAULT} by default.  */
 end_comment
 
 begin_class

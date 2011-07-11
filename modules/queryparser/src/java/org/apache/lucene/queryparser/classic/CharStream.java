@@ -8,7 +8,7 @@ comment|/* JavaCCOptions:STATIC=false */
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.queryParser
+DECL|package|org.apache.lucene.queryparser.classic
 package|package
 name|org
 operator|.
@@ -16,7 +16,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
+name|queryparser
+operator|.
+name|classic
 package|;
 end_package
 
@@ -42,13 +44,13 @@ name|io
 operator|.
 name|IOException
 function_decl|;
-comment|/**    * Returns the column position of the character last read.    * @deprecated (gen)    * @see #getEndColumn    */
+comment|/**    * Returns the column position of the character last read.    * @deprecated    * @see #getEndColumn    */
 DECL|method|getColumn
 name|int
 name|getColumn
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the line number of the character last read.    * @deprecated (gen)    * @see #getEndLine    */
+comment|/**    * Returns the line number of the character last read.    * @deprecated    * @see #getEndLine    */
 DECL|method|getLine
 name|int
 name|getLine
@@ -125,7 +127,7 @@ block|}
 end_interface
 
 begin_comment
-comment|/* JavaCC - OriginalChecksum=32a89423891f765dde472f7ef0e3ef7b (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=0790771f0d47abfd976f028fa2364b0f (do not edit this line) */
 end_comment
 
 end_unit

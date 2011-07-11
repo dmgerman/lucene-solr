@@ -8,7 +8,7 @@ comment|/* JavaCCOptions: */
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.queryParser
+DECL|package|org.apache.lucene.queryparser.classic
 package|package
 name|org
 operator|.
@@ -16,7 +16,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryParser
+name|queryparser
+operator|.
+name|classic
 package|;
 end_package
 
@@ -476,7 +478,7 @@ block|}
 end_class
 
 begin_comment
-comment|/* JavaCC - OriginalChecksum=1c94e13236c7e0121e49427992341ee3 (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=b55ad725f5fbc672fa115f498926930c (do not edit this line) */
 end_comment
 
 end_unit
