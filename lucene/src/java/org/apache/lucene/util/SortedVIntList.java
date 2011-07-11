@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Stores and iterate on sorted integers in compressed form in RAM.<br>  * The code for compressing the differences between ascending integers was  * borrowed from {@link org.apache.lucene.store.IndexInput} and  * {@link org.apache.lucene.store.IndexOutput}.  *<p>  *<b>NOTE:</b> this class assumes the stored integers are doc Ids (hence why it  * extends {@link DocIdSet}). Therefore its {@link #iterator()} assumes {@link  * DocIdSetIterator#NO_MORE_DOCS} can be used as sentinel. If you intent to use  * this value, then make sure it's not used during search flow.  */
+comment|/**  * Stores and iterate on sorted integers in compressed form in RAM.<br>  * The code for compressing the differences between ascending integers was  * borrowed from {@link org.apache.lucene.store.IndexInput} and  * {@link org.apache.lucene.store.IndexOutput}.  *<p>  *<b>NOTE:</b> this class assumes the stored integers are doc Ids (hence why it  * extends {@link DocIdSet}). Therefore its {@link #iterator()} assumes {@link  * DocIdSetIterator#NO_MORE_DOCS} can be used as sentinel. If you intent to use  * this value, then make sure it's not used during search flow.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -232,8 +232,6 @@ name|done
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Create a SortedVIntList from an OpenBitSet.    * @param  bits  A bit set representing a set of integers.    */
-comment|/*   public SortedVIntList(OpenBitSet bits) {     SortedVIntListBuilder builder = new SortedVIntListBuilder();     int nextInt = bits.nextSetBit(0);     while (nextInt != -1) {       builder.addInt(nextInt);       nextInt = bits.nextSetBit(nextInt + 1);     }     builder.done();   }   */
 comment|/**    * Create a SortedVIntList.    * @param  docIdSetIterator  An iterator providing document numbers as a set of integers.    *                  This DocIdSetIterator is iterated completely when this constructor    *                  is called and it must provide the integers in non    *                  decreasing order.    */
 DECL|method|SortedVIntList
 specifier|public
