@@ -139,6 +139,7 @@ end_import
 begin_class
 DECL|class|DOMUtilTestBase
 specifier|public
+specifier|abstract
 class|class
 name|DOMUtilTestBase
 extends|extends
