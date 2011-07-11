@@ -103,11 +103,23 @@ import|;
 end_import
 
 begin_comment
+comment|// TODO: if FST is pure prefix trie we can do a more compact
+end_comment
+
+begin_comment
+comment|// job, ie, once we are at a 'suffix only', just store the
+end_comment
+
+begin_comment
+comment|// completion labels as a string not as a series of arcs.
+end_comment
+
+begin_comment
 comment|// NOTE: while the FST is able to represent a non-final
 end_comment
 
 begin_comment
-comment|// dead-end state (NON_FINAL_END_NODE=0), the layres above
+comment|// dead-end state (NON_FINAL_END_NODE=0), the layers above
 end_comment
 
 begin_comment

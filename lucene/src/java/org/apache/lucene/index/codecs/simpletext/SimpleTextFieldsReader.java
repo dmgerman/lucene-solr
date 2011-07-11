@@ -2891,12 +2891,6 @@ name|INPUT_TYPE
 operator|.
 name|BYTE1
 argument_list|,
-literal|0
-argument_list|,
-literal|0
-argument_list|,
-literal|true
-argument_list|,
 operator|new
 name|PairOutputs
 argument_list|<
