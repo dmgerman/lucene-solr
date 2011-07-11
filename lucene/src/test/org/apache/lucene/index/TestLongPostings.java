@@ -190,7 +190,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -505,11 +505,11 @@ expr_stmt|;
 comment|/*       for(int idx=0;idx<s1.length();idx++) {         System.out.println("  s1 ch=0x" + Integer.toHexString(s1.charAt(idx)));       }       for(int idx=0;idx<s2.length();idx++) {         System.out.println("  s2 ch=0x" + Integer.toHexString(s2.charAt(idx)));       }       */
 block|}
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|isS1
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|NUM_DOCS
 argument_list|)

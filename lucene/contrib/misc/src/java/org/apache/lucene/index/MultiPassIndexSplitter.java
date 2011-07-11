@@ -118,7 +118,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
+name|FixedBitSet
 import|;
 end_import
 
@@ -132,7 +132,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|Bits
 import|;
 end_import
 
@@ -977,7 +977,7 @@ extends|extends
 name|FilterIndexReader
 block|{
 DECL|field|liveDocs
-name|OpenBitSet
+name|FixedBitSet
 name|liveDocs
 decl_stmt|;
 DECL|method|FakeDeleteIndexReader
@@ -1041,9 +1041,12 @@ decl_stmt|;
 name|liveDocs
 operator|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
+name|in
+operator|.
 name|maxDoc
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -1095,7 +1098,7 @@ argument_list|)
 condition|)
 name|liveDocs
 operator|.
-name|fastSet
+name|set
 argument_list|(
 name|i
 argument_list|)

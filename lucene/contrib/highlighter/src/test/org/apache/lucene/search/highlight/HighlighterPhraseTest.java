@@ -464,7 +464,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -951,12 +951,17 @@ literal|true
 argument_list|)
 decl_stmt|;
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|bitset
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
+argument_list|(
+name|indexReader
+operator|.
+name|maxDoc
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|indexSearcher
 operator|.
@@ -1064,6 +1069,15 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final
+name|int
+name|maxDoc
+init|=
+name|indexReader
+operator|.
+name|maxDoc
+argument_list|()
+decl_stmt|;
+specifier|final
 name|Highlighter
 name|highlighter
 init|=
@@ -1100,6 +1114,12 @@ init|;
 name|position
 operator|>=
 literal|0
+operator|&&
+name|position
+operator|<
+name|maxDoc
+operator|-
+literal|1
 condition|;
 name|position
 operator|=

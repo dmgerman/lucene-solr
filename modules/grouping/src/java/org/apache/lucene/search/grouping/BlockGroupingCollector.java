@@ -372,7 +372,6 @@ specifier|private
 name|int
 name|groupEndDocID
 decl_stmt|;
-comment|//private OpenBitSet lastDocPerGroupBits;
 DECL|field|lastDocPerGroupBits
 specifier|private
 name|DocIdSetIterator

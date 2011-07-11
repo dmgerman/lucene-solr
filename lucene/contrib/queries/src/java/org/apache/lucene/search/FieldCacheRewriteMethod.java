@@ -385,6 +385,7 @@ operator|.
 name|field
 argument_list|)
 decl_stmt|;
+comment|// Cannot use FixedBitSet because we require long index (ord):
 specifier|final
 name|OpenBitSet
 name|termSet
@@ -513,7 +514,7 @@ condition|)
 block|{
 name|termSet
 operator|.
-name|fastSet
+name|set
 argument_list|(
 name|ord
 argument_list|)
@@ -576,7 +577,7 @@ block|{
 return|return
 name|termSet
 operator|.
-name|fastGet
+name|get
 argument_list|(
 name|fcsi
 operator|.

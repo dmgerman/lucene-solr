@@ -162,7 +162,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -356,11 +356,11 @@ block|}
 else|else
 block|{
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|bits
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|context
 operator|.
@@ -461,7 +461,7 @@ condition|)
 block|{
 name|bits
 operator|.
-name|fastSet
+name|set
 argument_list|(
 name|doc
 argument_list|)

@@ -460,7 +460,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -1788,7 +1788,7 @@ range|:
 name|numVariantList
 control|)
 block|{
-name|OpenBitSet
+name|FixedBitSet
 name|deleted
 init|=
 name|indexValues
@@ -1835,17 +1835,12 @@ specifier|final
 name|int
 name|numRemainingValues
 init|=
-call|(
-name|int
-call|)
-argument_list|(
 name|numValues
 operator|-
 name|deleted
 operator|.
 name|cardinality
 argument_list|()
-argument_list|)
 decl_stmt|;
 specifier|final
 name|int
@@ -2465,7 +2460,7 @@ argument_list|(
 literal|50
 argument_list|)
 decl_stmt|;
-name|OpenBitSet
+name|FixedBitSet
 name|deleted
 init|=
 name|indexValues
@@ -2510,17 +2505,12 @@ specifier|final
 name|int
 name|numRemainingValues
 init|=
-call|(
-name|int
-call|)
-argument_list|(
 name|numValues
 operator|-
 name|deleted
 operator|.
 name|cardinality
 argument_list|()
-argument_list|)
 decl_stmt|;
 specifier|final
 name|int
@@ -3509,7 +3499,7 @@ block|}
 decl_stmt|;
 DECL|method|indexValues
 specifier|private
-name|OpenBitSet
+name|FixedBitSet
 name|indexValues
 parameter_list|(
 name|IndexWriter
@@ -3549,11 +3539,11 @@ argument_list|(
 name|value
 argument_list|)
 decl_stmt|;
-name|OpenBitSet
+name|FixedBitSet
 name|deleted
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|numValues
 argument_list|)

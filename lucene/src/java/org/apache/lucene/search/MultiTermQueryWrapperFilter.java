@@ -122,7 +122,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
+name|FixedBitSet
 import|;
 end_import
 
@@ -136,7 +136,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|Bits
 import|;
 end_import
 
@@ -420,14 +420,16 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// fill into a OpenBitSet
+comment|// fill into a FixedBitSet
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|bitSet
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
+name|context
+operator|.
 name|reader
 operator|.
 name|maxDoc

@@ -228,7 +228,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -605,7 +605,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|OpenBitSet
+name|FixedBitSet
 name|validBits
 init|=
 operator|(
@@ -616,7 +616,7 @@ argument_list|)
 operator|)
 condition|?
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|maxDoc
 argument_list|)

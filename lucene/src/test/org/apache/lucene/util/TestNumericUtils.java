@@ -1377,6 +1377,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+comment|// Cannot use FixedBitSet since the range could be long:
 specifier|final
 name|OpenBitSet
 name|bits
@@ -1623,13 +1624,15 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"The sub-range concenated should match the whole range"
 argument_list|,
+literal|0
+argument_list|,
 name|bits
 operator|.
-name|isEmpty
+name|cardinality
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2790,13 +2793,13 @@ throws|throws
 name|Exception
 block|{
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|bits
 init|=
 name|useBitSet
 condition|?
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|upper
 operator|-
@@ -3031,13 +3034,15 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"The sub-range concenated should match the whole range"
 argument_list|,
+literal|0
+argument_list|,
 name|bits
 operator|.
-name|isEmpty
+name|cardinality
 argument_list|()
 argument_list|)
 expr_stmt|;

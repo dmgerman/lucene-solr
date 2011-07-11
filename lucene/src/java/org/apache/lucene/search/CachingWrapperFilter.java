@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSetDISI
+name|FixedBitSet
 import|;
 end_import
 
@@ -536,7 +536,7 @@ block|}
 block|}
 expr_stmt|;
 block|}
-comment|/** Provide the DocIdSet to be cached, using the DocIdSet provided    *  by the wrapped Filter.    *<p>This implementation returns the given {@link DocIdSet}, if {@link DocIdSet#isCacheable}    *  returns<code>true</code>, else it copies the {@link DocIdSetIterator} into    *  an {@link OpenBitSetDISI}.    */
+comment|/** Provide the DocIdSet to be cached, using the DocIdSet provided    *  by the wrapped Filter.    *<p>This implementation returns the given {@link DocIdSet}, if {@link DocIdSet#isCacheable}    *  returns<code>true</code>, else it copies the {@link DocIdSetIterator} into    *  an {@link FixedBitSet}.    */
 DECL|method|docIdSetToCache
 specifier|protected
 name|DocIdSet
@@ -592,28 +592,45 @@ decl_stmt|;
 comment|// null is allowed to be returned by iterator(),
 comment|// in this case we wrap with the empty set,
 comment|// which is cacheable.
-return|return
-operator|(
+if|if
+condition|(
 name|it
 operator|==
 literal|null
-operator|)
-condition|?
+condition|)
+block|{
+return|return
 name|DocIdSet
 operator|.
 name|EMPTY_DOCIDSET
-else|:
+return|;
+block|}
+else|else
+block|{
+specifier|final
+name|FixedBitSet
+name|bits
+init|=
 operator|new
-name|OpenBitSetDISI
+name|FixedBitSet
 argument_list|(
-name|it
-argument_list|,
 name|reader
 operator|.
 name|maxDoc
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|bits
+operator|.
+name|or
+argument_list|(
+name|it
+argument_list|)
+expr_stmt|;
+return|return
+name|bits
 return|;
+block|}
 block|}
 block|}
 comment|// for testing

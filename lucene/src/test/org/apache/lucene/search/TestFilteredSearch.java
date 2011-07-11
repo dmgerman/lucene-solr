@@ -194,7 +194,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -613,12 +613,19 @@ operator|.
 name|isAtomic
 assert|;
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|set
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
+argument_list|(
+name|context
+operator|.
+name|reader
+operator|.
+name|maxDoc
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|int
 name|docBase
@@ -690,8 +697,10 @@ block|}
 return|return
 name|set
 operator|.
-name|isEmpty
+name|cardinality
 argument_list|()
+operator|==
+literal|0
 condition|?
 literal|null
 else|:

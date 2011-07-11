@@ -74,7 +74,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -188,11 +188,11 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|bits
 init|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|context
 operator|.
