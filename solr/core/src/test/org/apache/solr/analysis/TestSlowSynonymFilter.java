@@ -4,17 +4,15 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.analysis.synonym
+DECL|package|org.apache.solr.analysis
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|analysis
-operator|.
-name|synonym
 package|;
 end_package
 
@@ -158,22 +156,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|WhitespaceTokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|tokenattributes
 operator|.
 name|*
@@ -181,14 +163,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  */
+comment|/**  * @deprecated Remove this test in Lucene 5.0  */
 end_comment
 
 begin_class
-DECL|class|TestSynonymFilter
+annotation|@
+name|Deprecated
+DECL|class|TestSlowSynonymFilter
 specifier|public
 class|class
-name|TestSynonymFilter
+name|TestSlowSynonymFilter
 extends|extends
 name|BaseTokenStreamTestCase
 block|{
@@ -229,7 +213,7 @@ specifier|static
 name|void
 name|assertTokenizesTo
 parameter_list|(
-name|SynonymMap
+name|SlowSynonymMap
 name|dict
 parameter_list|,
 name|String
@@ -261,11 +245,11 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|SynonymFilter
+name|SlowSynonymFilter
 name|stream
 init|=
 operator|new
-name|SynonymFilter
+name|SlowSynonymFilter
 argument_list|(
 name|tokenizer
 argument_list|,
@@ -285,7 +269,7 @@ specifier|static
 name|void
 name|assertTokenizesTo
 parameter_list|(
-name|SynonymMap
+name|SlowSynonymMap
 name|dict
 parameter_list|,
 name|String
@@ -321,11 +305,11 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|SynonymFilter
+name|SlowSynonymFilter
 name|stream
 init|=
 operator|new
-name|SynonymFilter
+name|SlowSynonymFilter
 argument_list|(
 name|tokenizer
 argument_list|,
@@ -347,7 +331,7 @@ specifier|static
 name|void
 name|assertTokenizesTo
 parameter_list|(
-name|SynonymMap
+name|SlowSynonymMap
 name|dict
 parameter_list|,
 name|List
@@ -376,11 +360,11 @@ argument_list|(
 name|input
 argument_list|)
 decl_stmt|;
-name|SynonymFilter
+name|SlowSynonymFilter
 name|stream
 init|=
 operator|new
-name|SynonymFilter
+name|SlowSynonymFilter
 argument_list|(
 name|tokenizer
 argument_list|,
@@ -402,7 +386,7 @@ specifier|static
 name|void
 name|assertTokenizesTo
 parameter_list|(
-name|SynonymMap
+name|SlowSynonymMap
 name|dict
 parameter_list|,
 name|List
@@ -439,11 +423,11 @@ argument_list|(
 name|input
 argument_list|)
 decl_stmt|;
-name|SynonymFilter
+name|SlowSynonymFilter
 name|stream
 init|=
 operator|new
-name|SynonymFilter
+name|SlowSynonymFilter
 argument_list|(
 name|tokenizer
 argument_list|,
@@ -472,11 +456,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SynonymMap
+name|SlowSynonymMap
 name|map
 init|=
 operator|new
-name|SynonymMap
+name|SlowSynonymMap
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -885,11 +869,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SynonymMap
+name|SlowSynonymMap
 name|map
 init|=
 operator|new
-name|SynonymMap
+name|SlowSynonymMap
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -1441,11 +1425,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SynonymMap
+name|SlowSynonymMap
 name|map
 init|=
 operator|new
-name|SynonymMap
+name|SlowSynonymMap
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -1807,11 +1791,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SynonymMap
+name|SlowSynonymMap
 name|map
 init|=
 operator|new
-name|SynonymMap
+name|SlowSynonymMap
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -2052,11 +2036,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SynonymMap
+name|SlowSynonymMap
 name|map
 init|=
 operator|new
-name|SynonymMap
+name|SlowSynonymMap
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -2290,11 +2274,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SynonymMap
+name|SlowSynonymMap
 name|map
 init|=
 operator|new
-name|SynonymMap
+name|SlowSynonymMap
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -2557,11 +2541,11 @@ comment|// a a=>b
 comment|// x=>y
 comment|// analysing "a x" causes "y" to have a bad offset (end less than start)
 comment|// SOLR-167
-name|SynonymMap
+name|SlowSynonymMap
 name|map
 init|=
 operator|new
-name|SynonymMap
+name|SlowSynonymMap
 argument_list|()
 decl_stmt|;
 name|boolean

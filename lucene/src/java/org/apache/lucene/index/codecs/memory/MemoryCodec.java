@@ -736,14 +736,6 @@ argument_list|,
 name|outputs
 argument_list|)
 expr_stmt|;
-comment|// The byte[] output we create can easily be> 255 bytes:
-name|builder
-operator|.
-name|setAllowArrayArcs
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 DECL|class|PostingsWriter
 specifier|private

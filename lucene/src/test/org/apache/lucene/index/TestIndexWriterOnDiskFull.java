@@ -92,6 +92,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|CodecProvider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|IndexSearcher
@@ -690,6 +706,51 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// MemoryCodec, since it uses FST, is not necessarily
+comment|// "additive", ie if you add up N small FSTs, then merge
+comment|// them, the merged result can easily be larger than the
+comment|// sum because the merged FST may use array encoding for
+comment|// some arcs (which uses more space):
+name|assumeFalse
+argument_list|(
+literal|"This test cannot run with Memory codec"
+argument_list|,
+name|CodecProvider
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getFieldCodec
+argument_list|(
+literal|"id"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"Memory"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"This test cannot run with Memory codec"
+argument_list|,
+name|CodecProvider
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getFieldCodec
+argument_list|(
+literal|"content"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"Memory"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|int
 name|START_COUNT
 init|=

@@ -1941,6 +1941,23 @@ name|maxWordLength
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: BaseTokenStreamTestCase: get first token stream now text="
+operator|+
+name|text
+argument_list|)
+expr_stmt|;
+block|}
 name|TokenStream
 name|ts
 init|=
@@ -2221,6 +2238,21 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: BaseTokenStreamTestCase: re-run analysis"
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|typeAtt
