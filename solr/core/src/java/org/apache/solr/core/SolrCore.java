@@ -3552,11 +3552,11 @@ name|UpdateRequestProcessorFactory
 index|[]
 block|{
 operator|new
-name|RunUpdateProcessorFactory
+name|LogUpdateProcessorFactory
 argument_list|()
 block|,
 operator|new
-name|LogUpdateProcessorFactory
+name|RunUpdateProcessorFactory
 argument_list|()
 block|}
 decl_stmt|;

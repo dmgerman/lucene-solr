@@ -131,7 +131,7 @@ name|UpdateRequestProcessor
 block|{
 DECL|field|log
 specifier|protected
-specifier|static
+specifier|final
 name|Logger
 name|log
 init|=
@@ -139,9 +139,8 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|UpdateRequestProcessor
-operator|.
-name|class
+name|getClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|next
