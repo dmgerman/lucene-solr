@@ -88,6 +88,7 @@ decl_stmt|;
 comment|/** The scorerDocQueue contains all subscorers ordered by their current doc(),    * with the minimum at the top.    *<br>The scorerDocQueue is initialized the first time nextDoc() or advance() is called.    *<br>An exhausted scorer is immediately removed from the scorerDocQueue.    *<br>If less than the minimumNrMatchers scorers    * remain in the scorerDocQueue nextDoc() and advance() return false.    *<p>    * After each to call to nextDoc() or advance()    *<code>currentSumScore</code> is the total score of the current matching doc,    *<code>nrMatchers</code> is the number of matching scorers,    * and all scorers are after the matching doc, or are exhausted.    */
 DECL|field|scorerDocQueue
 specifier|private
+specifier|final
 name|ScorerDocQueue
 name|scorerDocQueue
 decl_stmt|;
@@ -192,6 +193,8 @@ name|subScorers
 operator|=
 name|subScorers
 expr_stmt|;
+name|scorerDocQueue
+operator|=
 name|initScorerDocQueue
 argument_list|()
 expr_stmt|;
@@ -223,25 +226,28 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Called the first time nextDoc() or advance() is called to    * initialize<code>scorerDocQueue</code>.    */
+comment|/** Called the first time nextDoc() or advance() is called to    * initialize<code>scorerDocQueue</code>.    * @return     */
 DECL|method|initScorerDocQueue
 specifier|private
-name|void
+name|ScorerDocQueue
 name|initScorerDocQueue
 parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|scorerDocQueue
-operator|=
+specifier|final
+name|ScorerDocQueue
+name|docQueue
+init|=
 operator|new
 name|ScorerDocQueue
 argument_list|(
 name|nrScorers
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Scorer
 name|se
 range|:
@@ -258,7 +264,7 @@ operator|!=
 name|NO_MORE_DOCS
 condition|)
 block|{
-name|scorerDocQueue
+name|docQueue
 operator|.
 name|insert
 argument_list|(
@@ -267,6 +273,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+return|return
+name|docQueue
+return|;
 block|}
 comment|/** Scores and collects all matching documents.    * @param collector The collector to which all matching documents are passed through.    */
 annotation|@
