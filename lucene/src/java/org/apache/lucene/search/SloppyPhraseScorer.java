@@ -67,12 +67,6 @@ specifier|private
 name|boolean
 name|checkedRepeats
 decl_stmt|;
-DECL|field|similarity
-specifier|private
-specifier|final
-name|Similarity
-name|similarity
-decl_stmt|;
 DECL|method|SloppyPhraseScorer
 name|SloppyPhraseScorer
 parameter_list|(
@@ -84,9 +78,6 @@ operator|.
 name|PostingsAndFreq
 index|[]
 name|postings
-parameter_list|,
-name|Similarity
-name|similarity
 parameter_list|,
 name|int
 name|slop
@@ -113,12 +104,6 @@ operator|.
 name|slop
 operator|=
 name|slop
-expr_stmt|;
-name|this
-operator|.
-name|similarity
-operator|=
-name|similarity
 expr_stmt|;
 block|}
 comment|/**      * Score a candidate doc for all slop-valid position-combinations (matches)       * encountered while traversing/hopping the PhrasePositions.      *<br> The score contribution of a match depends on the distance:       *<br> - highest score for distance=0 (exact match).      *<br> - score gets lower as distance gets higher.      *<br>Example: for query "a b"~2, a document "x a b a y" can be scored twice:       * once for "a b" (distance=0), and once for "b a" (distance=2).      *<br>Possibly not all valid combinations are encountered, because for efficiency        * we always propagate the least PhrasePosition. This allows to base on       * PriorityQueue and move forward faster.       * As result, for example, document "a b c b a"      * would score differently for queries "a b c"~4 and "c b a"~4, although       * they really are equivalent.       * Similarly, for doc "a b c b a f g", query "c b"~2       * would get same score as "g f"~2, although "c b"~2 could be matched twice.      * We may want to fix this in the future (currently not, for performance reasons).      */
@@ -299,9 +284,9 @@ name|slop
 condition|)
 name|freq
 operator|+=
-name|similarity
+name|docScorer
 operator|.
-name|sloppyFreq
+name|computeSlopFactor
 argument_list|(
 name|matchLength
 argument_list|)

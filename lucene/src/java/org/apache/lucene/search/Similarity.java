@@ -140,6 +140,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|SmallFloat
 import|;
 end_import
@@ -173,16 +187,6 @@ specifier|abstract
 class|class
 name|Similarity
 block|{
-DECL|field|NO_DOC_ID_PROVIDED
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|NO_DOC_ID_PROVIDED
-init|=
-operator|-
-literal|1
-decl_stmt|;
 comment|/**    * Computes the normalization value for a field, given the accumulated    * state of term processing for this field (see {@link FieldInvertState}).    *     *<p>Implementations should calculate a byte value based on the field    * state and then return that value.    *    *<p>Matches in longer fields are less precise, so implementations of this    * method usually return smaller values when<code>state.getLength()</code> is large,    * and larger values when<code>state.getLength()</code> is small.    *     * @lucene.experimental    *     * @param state current processing state for this field    * @return the calculated byte norm    */
 DECL|method|computeNorm
 specifier|public
@@ -194,48 +198,6 @@ name|FieldInvertState
 name|state
 parameter_list|)
 function_decl|;
-comment|/** Computes the amount of a sloppy phrase match, based on an edit distance.    * This value is summed for each sloppy phrase match in a document to form    * the frequency to be used in scoring instead of the exact term count.    *    *<p>A phrase match with a small edit distance to a document passage more    * closely matches the document, so implementations of this method usually    * return larger values when the edit distance is small and smaller values    * when it is large.    *    * @see PhraseQuery#setSlop(int)    * @param distance the edit distance of this sloppy phrase match    * @return the frequency increment for this match    */
-DECL|method|sloppyFreq
-specifier|public
-specifier|abstract
-name|float
-name|sloppyFreq
-parameter_list|(
-name|int
-name|distance
-parameter_list|)
-function_decl|;
-comment|/**    * Calculate a scoring factor based on the data in the payload.  Overriding implementations    * are responsible for interpreting what is in the payload.  Lucene makes no assumptions about    * what is in the byte array.    *<p>    * The default implementation returns 1.    *    * @param docId The docId currently being scored.  If this value is {@link #NO_DOC_ID_PROVIDED}, then it should be assumed that the PayloadQuery implementation does not provide document information    * @param start The start position of the payload    * @param end The end position of the payload    * @param payload The payload byte array to be scored    * @param offset The offset into the payload array    * @param length The length in the array    * @return An implementation dependent float to be used as a scoring factor    *    */
-comment|// TODO: maybe switch this API to BytesRef?
-DECL|method|scorePayload
-specifier|public
-name|float
-name|scorePayload
-parameter_list|(
-name|int
-name|docId
-parameter_list|,
-name|int
-name|start
-parameter_list|,
-name|int
-name|end
-parameter_list|,
-name|byte
-index|[]
-name|payload
-parameter_list|,
-name|int
-name|offset
-parameter_list|,
-name|int
-name|length
-parameter_list|)
-block|{
-return|return
-literal|1
-return|;
-block|}
 comment|/**    * Compute any collection-level stats (e.g. IDF, average document length, etc) needed for scoring a query.    */
 DECL|method|computeStats
 specifier|public
@@ -395,6 +357,37 @@ name|doc
 parameter_list|,
 name|float
 name|freq
+parameter_list|)
+function_decl|;
+comment|/** Computes the amount of a sloppy phrase match, based on an edit distance. */
+DECL|method|computeSlopFactor
+specifier|public
+specifier|abstract
+name|float
+name|computeSlopFactor
+parameter_list|(
+name|int
+name|distance
+parameter_list|)
+function_decl|;
+comment|/** Calculate a scoring factor based on the data in the payload. */
+DECL|method|computePayloadFactor
+specifier|public
+specifier|abstract
+name|float
+name|computePayloadFactor
+parameter_list|(
+name|int
+name|doc
+parameter_list|,
+name|int
+name|start
+parameter_list|,
+name|int
+name|end
+parameter_list|,
+name|BytesRef
+name|payload
 parameter_list|)
 function_decl|;
 comment|/**      * Explain the score for a single document      * @param doc document id      * @param freq Explanation of how the sloppy term frequency was computed      * @return document's score      */

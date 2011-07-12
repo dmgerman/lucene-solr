@@ -72,6 +72,24 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|DefaultSimilarity
+import|;
+end_import
+
+begin_comment
+comment|// javadocs only
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -285,7 +303,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanTermQuery} except that it factors  * in the value of the payload located at each of the positions where the  * {@link org.apache.lucene.index.Term} occurs.  *<p>  * In order to take advantage of this, you must override  * {@link org.apache.lucene.search.Similarity#scorePayload(int, int, int, byte[],int,int)}  * which returns 1 by default.  *<p>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  **/
+comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanTermQuery} except that it factors  * in the value of the payload located at each of the positions where the  * {@link org.apache.lucene.index.Term} occurs.  *<p/>  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link DefaultSimilarity}), you must override {@link DefaultSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *<p/>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  * @see org.apache.lucene.search.Similarity.SloppyDocScorer#computePayloadFactor(int, int, int, BytesRef)  **/
 end_comment
 
 begin_class
@@ -443,8 +461,6 @@ argument_list|,
 name|this
 argument_list|,
 name|similarity
-argument_list|,
-name|similarity
 operator|.
 name|sloppyDocScorer
 argument_list|(
@@ -499,9 +515,6 @@ name|Weight
 name|weight
 parameter_list|,
 name|Similarity
-name|similarity
-parameter_list|,
-name|Similarity
 operator|.
 name|SloppyDocScorer
 name|docScorer
@@ -514,8 +527,6 @@ argument_list|(
 name|spans
 argument_list|,
 name|weight
-argument_list|,
-name|similarity
 argument_list|,
 name|docScorer
 argument_list|)
@@ -591,9 +602,9 @@ argument_list|()
 decl_stmt|;
 name|freq
 operator|+=
-name|similarity
+name|docScorer
 operator|.
-name|sloppyFreq
+name|computeSlopFactor
 argument_list|(
 name|matchLength
 argument_list|)
@@ -692,9 +703,9 @@ name|payloadsSeen
 argument_list|,
 name|payloadScore
 argument_list|,
-name|similarity
+name|docScorer
 operator|.
-name|scorePayload
+name|computePayloadFactor
 argument_list|(
 name|doc
 argument_list|,
@@ -709,16 +720,6 @@ name|end
 argument_list|()
 argument_list|,
 name|payload
-operator|.
-name|bytes
-argument_list|,
-name|payload
-operator|.
-name|offset
-argument_list|,
-name|payload
-operator|.
-name|length
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -752,28 +753,7 @@ name|payloadsSeen
 argument_list|,
 name|payloadScore
 argument_list|,
-name|similarity
-operator|.
-name|scorePayload
-argument_list|(
-name|doc
-argument_list|,
-name|spans
-operator|.
-name|start
-argument_list|()
-argument_list|,
-name|spans
-operator|.
-name|end
-argument_list|()
-argument_list|,
-literal|null
-argument_list|,
-literal|0
-argument_list|,
-literal|0
-argument_list|)
+literal|1F
 argument_list|)
 expr_stmt|;
 block|}

@@ -132,12 +132,6 @@ specifier|protected
 name|float
 name|freq
 decl_stmt|;
-DECL|field|similarity
-specifier|protected
-specifier|final
-name|Similarity
-name|similarity
-decl_stmt|;
 DECL|field|docScorer
 specifier|protected
 specifier|final
@@ -157,9 +151,6 @@ name|Weight
 name|weight
 parameter_list|,
 name|Similarity
-name|similarity
-parameter_list|,
-name|Similarity
 operator|.
 name|SloppyDocScorer
 name|docScorer
@@ -171,12 +162,6 @@ name|super
 argument_list|(
 name|weight
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|similarity
-operator|=
-name|similarity
 expr_stmt|;
 name|this
 operator|.
@@ -352,9 +337,9 @@ argument_list|()
 decl_stmt|;
 name|freq
 operator|+=
-name|similarity
+name|docScorer
 operator|.
-name|sloppyFreq
+name|computeSlopFactor
 argument_list|(
 name|matchLength
 argument_list|)

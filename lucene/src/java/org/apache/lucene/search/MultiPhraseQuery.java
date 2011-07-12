@@ -1157,8 +1157,6 @@ name|this
 argument_list|,
 name|postingsFreqs
 argument_list|,
-name|similarity
-argument_list|,
 name|slop
 argument_list|,
 name|similarity

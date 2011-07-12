@@ -453,9 +453,6 @@ name|Weight
 name|weight
 parameter_list|,
 name|Similarity
-name|similarity
-parameter_list|,
-name|Similarity
 operator|.
 name|SloppyDocScorer
 name|docScorer
@@ -468,8 +465,6 @@ argument_list|(
 name|spans
 argument_list|,
 name|weight
-argument_list|,
-name|similarity
 argument_list|,
 name|docScorer
 argument_list|)

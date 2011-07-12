@@ -114,6 +114,24 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|DefaultSimilarity
+import|;
+end_import
+
+begin_comment
+comment|// javadocs only
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Weight
 import|;
 end_import
@@ -256,6 +274,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|ToStringUtils
 import|;
 end_import
@@ -291,7 +323,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanNearQuery} except that it factors  * in the value of the payloads located at each of the positions where the  * {@link org.apache.lucene.search.spans.TermSpans} occurs.  *<p/>  * In order to take advantage of this, you must override  * {@link org.apache.lucene.search.Similarity#scorePayload}  * which returns 1 by default.  *<p/>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  *   * @see org.apache.lucene.search.Similarity#scorePayload  */
+comment|/**  * This class is very similar to  * {@link org.apache.lucene.search.spans.SpanNearQuery} except that it factors  * in the value of the payloads located at each of the positions where the  * {@link org.apache.lucene.search.spans.TermSpans} occurs.  *<p/>  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link DefaultSimilarity}), you must override {@link DefaultSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *<p/>  * Payload scores are aggregated using a pluggable {@link PayloadFunction}.  *   * @see org.apache.lucene.search.Similarity.SloppyDocScorer#computePayloadFactor(int, int, int, BytesRef)  */
 end_comment
 
 begin_class
@@ -1183,8 +1215,6 @@ name|spans
 argument_list|,
 name|weight
 argument_list|,
-name|similarity
-argument_list|,
 name|docScorer
 argument_list|)
 expr_stmt|;
@@ -1380,6 +1410,15 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// TODO change the whole spans api to use bytesRef, or nuke spans
+DECL|field|scratch
+name|BytesRef
+name|scratch
+init|=
+operator|new
+name|BytesRef
+argument_list|()
+decl_stmt|;
 comment|/**      * By default, uses the {@link PayloadFunction} to score the payloads, but      * can be overridden to do other things.      *       * @param payLoads The payloads      * @param start The start position of the span being scored      * @param end The end position of the span being scored      *       * @see Spans      */
 DECL|method|processPayloads
 specifier|protected
@@ -1410,6 +1449,26 @@ range|:
 name|payLoads
 control|)
 block|{
+name|scratch
+operator|.
+name|bytes
+operator|=
+name|thePayload
+expr_stmt|;
+name|scratch
+operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
+name|scratch
+operator|.
+name|length
+operator|=
+name|thePayload
+operator|.
+name|length
+expr_stmt|;
 name|payloadScore
 operator|=
 name|function
@@ -1428,9 +1487,9 @@ name|payloadsSeen
 argument_list|,
 name|payloadScore
 argument_list|,
-name|similarity
+name|docScorer
 operator|.
-name|scorePayload
+name|computePayloadFactor
 argument_list|(
 name|doc
 argument_list|,
@@ -1444,13 +1503,7 @@ operator|.
 name|end
 argument_list|()
 argument_list|,
-name|thePayload
-argument_list|,
-literal|0
-argument_list|,
-name|thePayload
-operator|.
-name|length
+name|scratch
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1516,9 +1569,9 @@ argument_list|()
 decl_stmt|;
 name|freq
 operator|+=
-name|similarity
+name|docScorer
 operator|.
-name|sloppyFreq
+name|computeSlopFactor
 argument_list|(
 name|matchLength
 argument_list|)
