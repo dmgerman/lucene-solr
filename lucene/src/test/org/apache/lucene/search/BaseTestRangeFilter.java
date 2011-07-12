@@ -333,11 +333,6 @@ DECL|field|maxId
 specifier|static
 name|int
 name|maxId
-init|=
-name|atLeast
-argument_list|(
-literal|500
-argument_list|)
 decl_stmt|;
 DECL|field|intLength
 specifier|static
@@ -472,6 +467,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|maxId
+operator|=
+name|atLeast
+argument_list|(
+literal|500
+argument_list|)
+expr_stmt|;
 name|signedIndexDir
 operator|=
 operator|new

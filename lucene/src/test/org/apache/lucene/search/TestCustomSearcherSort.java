@@ -222,15 +222,8 @@ decl_stmt|;
 comment|// reduced from 20000 to 2000 to speed up test...
 DECL|field|INDEX_SIZE
 specifier|private
-specifier|final
-specifier|static
 name|int
 name|INDEX_SIZE
-init|=
-name|atLeast
-argument_list|(
-literal|2000
-argument_list|)
 decl_stmt|;
 comment|/**    * Create index and query for test cases.    */
 annotation|@
@@ -247,6 +240,13 @@ name|super
 operator|.
 name|setUp
 argument_list|()
+expr_stmt|;
+name|INDEX_SIZE
+operator|=
+name|atLeast
+argument_list|(
+literal|2000
+argument_list|)
 expr_stmt|;
 name|index
 operator|=
