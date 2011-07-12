@@ -508,7 +508,6 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-comment|// TODO should we check if readOnly and context combination makes sense like asserting that if read only we don't get a default?
 return|return
 name|get
 argument_list|(
@@ -620,7 +619,9 @@ block|}
 name|instance
 operator|.
 name|loadLiveDocs
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 name|instance
 operator|.
@@ -791,7 +792,10 @@ DECL|method|loadLiveDocs
 specifier|private
 name|void
 name|loadLiveDocs
-parameter_list|()
+parameter_list|(
+name|IOContext
+name|context
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -817,9 +821,13 @@ operator|.
 name|getDelFileName
 argument_list|()
 argument_list|,
+operator|new
 name|IOContext
-operator|.
-name|DEFAULT
+argument_list|(
+name|context
+argument_list|,
+literal|true
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -1373,7 +1381,11 @@ assert|;
 name|clone
 operator|.
 name|loadLiveDocs
-argument_list|()
+argument_list|(
+name|IOContext
+operator|.
+name|READ
+argument_list|)
 expr_stmt|;
 block|}
 elseif|else
