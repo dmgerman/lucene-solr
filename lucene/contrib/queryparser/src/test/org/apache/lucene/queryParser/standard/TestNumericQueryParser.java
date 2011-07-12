@@ -599,6 +599,13 @@ argument_list|(
 name|random
 argument_list|)
 expr_stmt|;
+name|LOCALE
+operator|=
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+expr_stmt|;
 name|TIMEZONE
 operator|=
 name|randomTimeZone
@@ -706,9 +713,10 @@ operator|&
 literal|20
 operator|)
 operator|+
-literal|1
+literal|4
 argument_list|)
 expr_stmt|;
+comment|// the loop checks for< 1000, this is a must!
 comment|// assumes localized date pattern will have at least year, month, day, hour, minute
 name|SimpleDateFormat
 name|dateFormat
