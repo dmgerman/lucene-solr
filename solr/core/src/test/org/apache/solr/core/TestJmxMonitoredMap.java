@@ -370,7 +370,9 @@ argument_list|,
 name|SolrInfoMBean
 argument_list|>
 argument_list|(
-literal|null
+literal|""
+argument_list|,
+literal|""
 argument_list|,
 name|config
 argument_list|)

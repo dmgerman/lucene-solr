@@ -985,7 +985,7 @@ init|=
 operator|new
 name|SolrCore
 argument_list|(
-literal|"collection1"
+name|coreName
 argument_list|,
 name|dataDirectory
 argument_list|,
