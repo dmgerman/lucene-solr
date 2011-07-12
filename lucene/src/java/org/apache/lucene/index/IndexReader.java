@@ -442,6 +442,10 @@ comment|/** All fields that omit tf */
 DECL|enum constant|OMIT_TERM_FREQ_AND_POSITIONS
 name|OMIT_TERM_FREQ_AND_POSITIONS
 block|,
+comment|/** All fields that omit positions */
+DECL|enum constant|OMIT_POSITIONS
+name|OMIT_POSITIONS
+block|,
 comment|/** All fields which are not indexed */
 DECL|enum constant|UNINDEXED
 name|UNINDEXED

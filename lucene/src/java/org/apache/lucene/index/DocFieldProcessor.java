@@ -1111,7 +1111,7 @@ literal|false
 argument_list|,
 name|field
 operator|.
-name|getOmitTermFreqAndPositions
+name|getIndexOptions
 argument_list|()
 argument_list|,
 name|field
@@ -1204,7 +1204,7 @@ literal|false
 argument_list|,
 name|field
 operator|.
-name|getOmitTermFreqAndPositions
+name|getIndexOptions
 argument_list|()
 argument_list|,
 name|field

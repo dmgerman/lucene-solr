@@ -66,6 +66,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|FieldInfo
+operator|.
+name|IndexOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|IndexInput
@@ -265,9 +281,13 @@ name|IOException
 block|{
 if|if
 condition|(
-name|currentFieldOmitTermFreqAndPositions
+name|indexOptions
+operator|!=
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 condition|)
-comment|// This field does not store term freq, positions, payloads
+comment|// This field does not store positions, payloads
 return|return
 literal|0
 return|;
@@ -484,8 +504,11 @@ throws|throws
 name|IOException
 block|{
 assert|assert
-operator|!
-name|currentFieldOmitTermFreqAndPositions
+name|indexOptions
+operator|==
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 assert|;
 for|for
 control|(

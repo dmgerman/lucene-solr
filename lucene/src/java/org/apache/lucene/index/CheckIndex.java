@@ -610,7 +610,7 @@ DECL|field|numFields
 name|int
 name|numFields
 decl_stmt|;
-comment|/** True if at least one of the fields in this segment        *  does not omitTermFreqAndPositions.        *  @see AbstractField#setOmitTermFreqAndPositions */
+comment|/** True if at least one of the fields in this segment        *  has position data        *  @see AbstractField#setIndexOptions(org.apache.lucene.index.FieldInfo.IndexOptions) */
 DECL|field|hasProx
 specifier|public
 name|boolean

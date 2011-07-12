@@ -1996,11 +1996,11 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|.
-name|setOmitTermFreqAndPositions
+name|setIndexOptions
 argument_list|(
 name|fi
 operator|.
-name|omitTermFreqAndPositions
+name|indexOptions
 argument_list|)
 expr_stmt|;
 name|doc
@@ -2182,11 +2182,11 @@ expr_stmt|;
 block|}
 name|f
 operator|.
-name|setOmitTermFreqAndPositions
+name|setIndexOptions
 argument_list|(
 name|fi
 operator|.
-name|omitTermFreqAndPositions
+name|indexOptions
 argument_list|)
 expr_stmt|;
 name|f

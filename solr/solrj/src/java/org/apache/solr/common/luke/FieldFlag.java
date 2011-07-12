@@ -100,6 +100,14 @@ argument_list|,
 literal|"Omit Tf"
 argument_list|)
 block|,
+DECL|enum constant|OMIT_POSITIONS
+name|OMIT_POSITIONS
+argument_list|(
+literal|'P'
+argument_list|,
+literal|"Omit Positions"
+argument_list|)
+block|,
 DECL|enum constant|LAZY
 name|LAZY
 argument_list|(

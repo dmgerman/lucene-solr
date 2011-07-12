@@ -252,6 +252,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|FieldInfo
+operator|.
+name|IndexOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -2190,9 +2206,11 @@ argument_list|)
 decl_stmt|;
 name|f
 operator|.
-name|setOmitTermFreqAndPositions
+name|setIndexOptions
 argument_list|(
-literal|true
+name|IndexOptions
+operator|.
+name|DOCS_ONLY
 argument_list|)
 expr_stmt|;
 name|doc
@@ -2303,9 +2321,13 @@ literal|"f1"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertFalse
+name|assertEquals
 argument_list|(
 literal|"omitTermFreqAndPositions field bit should not be set for f1"
+argument_list|,
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 argument_list|,
 name|fi
 operator|.
@@ -2314,7 +2336,7 @@ argument_list|(
 literal|"f1"
 argument_list|)
 operator|.
-name|omitTermFreqAndPositions
+name|indexOptions
 argument_list|)
 expr_stmt|;
 comment|// f2
@@ -2330,9 +2352,13 @@ literal|"f2"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"omitTermFreqAndPositions field bit should be set for f2"
+argument_list|,
+name|IndexOptions
+operator|.
+name|DOCS_ONLY
 argument_list|,
 name|fi
 operator|.
@@ -2341,7 +2367,7 @@ argument_list|(
 literal|"f2"
 argument_list|)
 operator|.
-name|omitTermFreqAndPositions
+name|indexOptions
 argument_list|)
 expr_stmt|;
 name|reader

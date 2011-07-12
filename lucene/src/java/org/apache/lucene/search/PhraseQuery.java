@@ -1315,7 +1315,7 @@ operator|.
 name|field
 argument_list|()
 operator|+
-literal|"\" was indexed with Field.omitTermFreqAndPositions=true; cannot run PhraseQuery (term="
+literal|"\" was indexed without position data; cannot run PhraseQuery (term="
 operator|+
 name|t
 operator|.

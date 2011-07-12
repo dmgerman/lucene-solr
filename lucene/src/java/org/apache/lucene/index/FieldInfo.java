@@ -93,10 +93,10 @@ name|boolean
 name|omitNorms
 decl_stmt|;
 comment|// omit norms associated with indexed fields
-DECL|field|omitTermFreqAndPositions
+DECL|field|indexOptions
 specifier|public
-name|boolean
-name|omitTermFreqAndPositions
+name|IndexOptions
+name|indexOptions
 decl_stmt|;
 DECL|field|storePayloads
 specifier|public
@@ -112,6 +112,26 @@ init|=
 name|UNASSIGNED_CODEC_ID
 decl_stmt|;
 comment|// set inside SegmentCodecs#build() during segment flush - this is used to identify the codec used to write this field
+comment|/**    * Controls how much information is stored in the postings lists.    * @lucene.experimental    */
+DECL|enum|IndexOptions
+specifier|public
+specifier|static
+enum|enum
+name|IndexOptions
+block|{
+comment|/** only documents are indexed: term frequencies and positions are omitted */
+DECL|enum constant|DOCS_ONLY
+name|DOCS_ONLY
+block|,
+comment|/** only documents and term frequencies are indexed: positions are omitted */
+DECL|enum constant|DOCS_AND_FREQS
+name|DOCS_AND_FREQS
+block|,
+comment|/** full postings: documents, frequencies, and positions */
+DECL|enum constant|DOCS_AND_FREQS_AND_POSITIONS
+name|DOCS_AND_FREQS_AND_POSITIONS
+block|}
+empty_stmt|;
 DECL|method|FieldInfo
 name|FieldInfo
 parameter_list|(
@@ -139,8 +159,8 @@ parameter_list|,
 name|boolean
 name|storePayloads
 parameter_list|,
-name|boolean
-name|omitTermFreqAndPositions
+name|IndexOptions
+name|indexOptions
 parameter_list|,
 name|ValueType
 name|docValues
@@ -201,9 +221,9 @@ name|omitNorms
 expr_stmt|;
 name|this
 operator|.
-name|omitTermFreqAndPositions
+name|indexOptions
 operator|=
-name|omitTermFreqAndPositions
+name|indexOptions
 expr_stmt|;
 block|}
 else|else
@@ -241,14 +261,19 @@ literal|false
 expr_stmt|;
 name|this
 operator|.
-name|omitTermFreqAndPositions
+name|indexOptions
 operator|=
-literal|false
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 expr_stmt|;
 block|}
 assert|assert
-operator|!
-name|omitTermFreqAndPositions
+name|indexOptions
+operator|==
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 operator|||
 operator|!
 name|storePayloads
@@ -318,7 +343,7 @@ name|omitNorms
 argument_list|,
 name|storePayloads
 argument_list|,
-name|omitTermFreqAndPositions
+name|indexOptions
 argument_list|,
 name|docValues
 argument_list|)
@@ -358,8 +383,8 @@ parameter_list|,
 name|boolean
 name|storePayloads
 parameter_list|,
-name|boolean
-name|omitTermFreqAndPositions
+name|IndexOptions
+name|indexOptions
 parameter_list|)
 block|{
 if|if
@@ -473,18 +498,33 @@ if|if
 condition|(
 name|this
 operator|.
-name|omitTermFreqAndPositions
+name|indexOptions
 operator|!=
-name|omitTermFreqAndPositions
+name|indexOptions
 condition|)
 block|{
+comment|// downgrade
 name|this
 operator|.
-name|omitTermFreqAndPositions
+name|indexOptions
 operator|=
-literal|true
+name|this
+operator|.
+name|indexOptions
+operator|.
+name|compareTo
+argument_list|(
+name|indexOptions
+argument_list|)
+operator|<
+literal|0
+condition|?
+name|this
+operator|.
+name|indexOptions
+else|:
+name|indexOptions
 expr_stmt|;
-comment|// if one require omitTermFreqAndPositions at least once, it remains off for life
 name|this
 operator|.
 name|storePayloads
@@ -494,10 +534,13 @@ expr_stmt|;
 block|}
 block|}
 assert|assert
-operator|!
 name|this
 operator|.
-name|omitTermFreqAndPositions
+name|indexOptions
+operator|==
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
 operator|||
 operator|!
 name|this

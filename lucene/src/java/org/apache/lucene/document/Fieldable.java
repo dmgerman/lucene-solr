@@ -40,6 +40,22 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|FieldInfo
+operator|.
+name|IndexOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|FieldInvertState
 import|;
 end_import
@@ -293,19 +309,19 @@ index|[]
 name|result
 parameter_list|)
 function_decl|;
-comment|/** @see #setOmitTermFreqAndPositions */
-DECL|method|getOmitTermFreqAndPositions
-name|boolean
-name|getOmitTermFreqAndPositions
+comment|/** @see #setIndexOptions */
+DECL|method|getIndexOptions
+name|IndexOptions
+name|getIndexOptions
 parameter_list|()
 function_decl|;
-comment|/** Expert:   *   * If set, omit term freq, positions and payloads from   * postings for this field.   *   *<p><b>NOTE</b>: While this option reduces storage space   * required in the index, it also means any query   * requiring positional information, such as {@link   * PhraseQuery} or {@link SpanQuery} subclasses will   * fail with an exception.   */
-DECL|method|setOmitTermFreqAndPositions
+comment|/** Expert:   *   * If set, omit term freq, and optionally positions and payloads from   * postings for this field.   *   *<p><b>NOTE</b>: While this option reduces storage space   * required in the index, it also means any query   * requiring positional information, such as {@link   * PhraseQuery} or {@link SpanQuery} subclasses will   * fail with an exception.   */
+DECL|method|setIndexOptions
 name|void
-name|setOmitTermFreqAndPositions
+name|setIndexOptions
 parameter_list|(
-name|boolean
-name|omitTermFreqAndPositions
+name|IndexOptions
+name|indexOptions
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the {@link PerDocFieldValues}    */
