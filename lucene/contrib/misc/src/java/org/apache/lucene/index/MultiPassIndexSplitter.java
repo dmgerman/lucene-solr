@@ -166,6 +166,9 @@ specifier|public
 name|void
 name|split
 parameter_list|(
+name|Version
+name|version
+parameter_list|,
 name|IndexReader
 name|input
 parameter_list|,
@@ -412,9 +415,7 @@ argument_list|,
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_CURRENT
+name|version
 argument_list|,
 literal|null
 argument_list|)
@@ -467,6 +468,11 @@ literal|"Done."
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
 DECL|method|main
 specifier|public
 specifier|static
@@ -958,6 +964,10 @@ name|splitter
 operator|.
 name|split
 argument_list|(
+name|Version
+operator|.
+name|LUCENE_CURRENT
+argument_list|,
 name|input
 argument_list|,
 name|dirs

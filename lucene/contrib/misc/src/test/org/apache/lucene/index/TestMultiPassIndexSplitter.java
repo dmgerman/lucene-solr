@@ -367,6 +367,8 @@ name|splitter
 operator|.
 name|split
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|input
 argument_list|,
 name|dirs
@@ -764,6 +766,8 @@ name|splitter
 operator|.
 name|split
 argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|input
 argument_list|,
 name|dirs
