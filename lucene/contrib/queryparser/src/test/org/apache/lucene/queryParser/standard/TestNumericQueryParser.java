@@ -913,6 +913,13 @@ operator|<
 literal|1000
 condition|)
 empty_stmt|;
+comment|// prune date value so it doesn't pass in insane values to some calendars.
+name|randomDate
+operator|=
+name|randomDate
+operator|%
+literal|3400000000000l
+expr_stmt|;
 comment|// truncate to second
 name|randomDate
 operator|=
