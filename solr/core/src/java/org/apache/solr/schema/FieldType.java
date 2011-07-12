@@ -1247,7 +1247,7 @@ name|boost
 argument_list|)
 return|;
 block|}
-comment|/**    * Create the field from native Lucene parts.  Mostly intended for use by FieldTypes outputing multiple    * Fields per SchemaField    * @param name The name of the field    * @param val The _internal_ value to index    * @param storage {@link org.apache.lucene.document.Field.Store}    * @param index {@link org.apache.lucene.document.Field.Index}    * @param vec {@link org.apache.lucene.document.Field.TermVector}    * @param omitNorms true if norms should be omitted    * @param omitTFPos true if term freq and position should be omitted.    * @param boost The boost value    * @return the {@link org.apache.lucene.document.Fieldable}.    */
+comment|/**    * Create the field from native Lucene parts.  Mostly intended for use by FieldTypes outputing multiple    * Fields per SchemaField    * @param name The name of the field    * @param val The _internal_ value to index    * @param storage {@link org.apache.lucene.document.Field.Store}    * @param index {@link org.apache.lucene.document.Field.Index}    * @param vec {@link org.apache.lucene.document.Field.TermVector}    * @param omitNorms true if norms should be omitted    * @param options options for what should be indexed in the postings    * @param boost The boost value    * @return the {@link org.apache.lucene.document.Fieldable}.    */
 DECL|method|createField
 specifier|protected
 name|Fieldable
