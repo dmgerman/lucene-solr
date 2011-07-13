@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -64,48 +54,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|DocIdSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DocIdSetIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|OpenBitSet
@@ -126,8 +74,18 @@ name|OpenBitSetDISI
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
-comment|/**  *<p>  * Allows multiple {@link Filter}s to be chained.  * Logical operations such as<b>NOT</b> and<b>XOR</b>  * are applied between filters. One operation can be used  * for all filters, or a specific operation can be declared  * for each filter.  *</p>  *<p>  * Order in which filters are called depends on  * the position of the filter in the chain. It's probably  * more efficient to place the most restrictive filters  * /least computationally-intensive filters first.  *</p>  *  */
+comment|/**  *<p>  * Allows multiple {@link Filter}s to be chained.  * Logical operations such as<b>NOT</b> and<b>XOR</b>  * are applied between filters. One operation can be used  * for all filters, or a specific operation can be declared  * for each filter.  *</p>  *<p>  * Order in which filters are called depends on  * the position of the filter in the chain. It's probably  * more efficient to place the most restrictive filters  * /least computationally-intensive filters first.  *</p>  */
 end_comment
 
 begin_class
@@ -174,7 +132,7 @@ name|XOR
 init|=
 literal|3
 decl_stmt|;
-comment|/**      * Logical operation when none is declared. Defaults to      * OR.      */
+comment|/**    * Logical operation when none is declared. Defaults to OR.    */
 DECL|field|DEFAULT
 specifier|public
 specifier|static
@@ -183,7 +141,7 @@ name|DEFAULT
 init|=
 name|OR
 decl_stmt|;
-comment|/** The filter chain */
+comment|/**    * The filter chain    */
 DECL|field|chain
 specifier|private
 name|Filter
@@ -206,7 +164,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**      * Ctor.      * @param chain The chain of filters      */
+comment|/**    * Ctor.    *    * @param chain The chain of filters    */
 DECL|method|ChainedFilter
 specifier|public
 name|ChainedFilter
@@ -223,34 +181,7 @@ operator|=
 name|chain
 expr_stmt|;
 block|}
-comment|/**      * Ctor.      * @param chain The chain of filters      * @param logicArray Logical operations to apply between filters      */
-DECL|method|ChainedFilter
-specifier|public
-name|ChainedFilter
-parameter_list|(
-name|Filter
-index|[]
-name|chain
-parameter_list|,
-name|int
-index|[]
-name|logicArray
-parameter_list|)
-block|{
-name|this
-operator|.
-name|chain
-operator|=
-name|chain
-expr_stmt|;
-name|this
-operator|.
-name|logicArray
-operator|=
-name|logicArray
-expr_stmt|;
-block|}
-comment|/**      * Ctor.      * @param chain The chain of filters      * @param logic Logical operation to apply to ALL filters      */
+comment|/**    * Ctor.    *    * @param chain The chain of filters    * @param logicArray Logical operations to apply between filters    */
 DECL|method|ChainedFilter
 specifier|public
 name|ChainedFilter
@@ -260,6 +191,33 @@ index|[]
 name|chain
 parameter_list|,
 name|int
+index|[]
+name|logicArray
+parameter_list|)
+block|{
+name|this
+operator|.
+name|chain
+operator|=
+name|chain
+expr_stmt|;
+name|this
+operator|.
+name|logicArray
+operator|=
+name|logicArray
+expr_stmt|;
+block|}
+comment|/**    * Ctor.    *    * @param chain The chain of filters    * @param logic Logical operation to apply to ALL filters    */
+DECL|method|ChainedFilter
+specifier|public
+name|ChainedFilter
+parameter_list|(
+name|Filter
+index|[]
+name|chain
+parameter_list|,
+name|int
 name|logic
 parameter_list|)
 block|{
@@ -276,7 +234,7 @@ operator|=
 name|logic
 expr_stmt|;
 block|}
-comment|/**      * {@link Filter#getDocIdSet}.      */
+comment|/**    * {@link Filter#getDocIdSet}.    */
 annotation|@
 name|Override
 DECL|method|getDocIdSet
@@ -316,6 +274,7 @@ operator|!=
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 name|getDocIdSet
 argument_list|(
@@ -326,6 +285,7 @@ argument_list|,
 name|index
 argument_list|)
 return|;
+block|}
 elseif|else
 if|if
 condition|(
@@ -333,6 +293,7 @@ name|logicArray
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|getDocIdSet
 argument_list|(
@@ -343,7 +304,7 @@ argument_list|,
 name|index
 argument_list|)
 return|;
-else|else
+block|}
 return|return
 name|getDocIdSet
 argument_list|(
@@ -457,7 +418,7 @@ decl_stmt|;
 name|OpenBitSetDISI
 name|result
 decl_stmt|;
-comment|/**          * First AND operation takes place against a completely false          * bitset and will always return zero results.          */
+comment|/**      * First AND operation takes place against a completely false      * bitset and will always return zero results.      */
 if|if
 condition|(
 name|logic
@@ -566,7 +527,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Delegates to each filter in the chain.      * @param reader IndexReader      * @param logic Logical operation      * @return DocIdSet      */
+comment|/**    * Delegates to each filter in the chain.    *    * @param context AtomicReaderContext    * @param logic Logical operation    * @return DocIdSet    */
 DECL|method|getDocIdSet
 specifier|private
 name|DocIdSet
@@ -641,14 +602,14 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Delegates to each filter in the chain.      * @param reader IndexReader      * @param logic Logical operation      * @return DocIdSet      */
+comment|/**    * Delegates to each filter in the chain.    *    * @param context AtomicReaderContext    * @param logic Logical operation    * @return DocIdSet    */
 DECL|method|getDocIdSet
 specifier|private
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
 name|AtomicReaderContext
-name|info
+name|context
 parameter_list|,
 name|int
 index|[]
@@ -671,6 +632,7 @@ name|chain
 operator|.
 name|length
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -678,12 +640,13 @@ argument_list|(
 literal|"Invalid number of elements in logic array"
 argument_list|)
 throw|;
+block|}
 name|OpenBitSetDISI
 name|result
 init|=
 name|initialResult
 argument_list|(
-name|info
+name|context
 argument_list|,
 name|logic
 index|[
@@ -734,7 +697,7 @@ index|]
 operator|.
 name|getDocIdSet
 argument_list|(
-name|info
+name|context
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -767,29 +730,17 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|Filter
+name|aChain
+range|:
 name|chain
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 name|sb
 operator|.
 name|append
 argument_list|(
-name|chain
-index|[
-name|i
-index|]
+name|aChain
 argument_list|)
 expr_stmt|;
 name|sb

@@ -163,10 +163,12 @@ name|pre
 operator|==
 literal|null
 condition|)
+block|{
 name|pre
 operator|=
 literal|""
 expr_stmt|;
+block|}
 name|setInitialSeekTerm
 argument_list|(
 name|prefixRef

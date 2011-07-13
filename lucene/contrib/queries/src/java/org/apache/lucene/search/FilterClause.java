@@ -43,16 +43,16 @@ class|class
 name|FilterClause
 block|{
 DECL|field|occur
+specifier|private
+specifier|final
 name|Occur
 name|occur
-init|=
-literal|null
 decl_stmt|;
 DECL|field|filter
+specifier|private
+specifier|final
 name|Filter
 name|filter
-init|=
-literal|null
 decl_stmt|;
 comment|/** 	 * Create a new FilterClause 	 * @param filter A Filter object containing a BitSet 	 * @param occur A parameter implementation indicating SHOULD, MUST or MUST NOT 	 */
 DECL|method|FilterClause

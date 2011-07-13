@@ -20,146 +20,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|PrintStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -268,133 +128,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BooleanClause
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|BooleanQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DefaultSimilarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|IndexSearcher
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Query
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|ScoreDoc
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|TFIDFSimilarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|TermQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|TopDocs
+name|*
 import|;
 end_import
 
@@ -454,8 +188,38 @@ name|PriorityQueue
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
-comment|/**  * Generate "more like this" similarity queries.   * Based on this mail:  *<code><pre>  * Lucene does let you access the document frequency of terms, with IndexReader.docFreq().  * Term frequencies can be computed by re-tokenizing the text, which, for a single document,  * is usually fast enough.  But looking up the docFreq() of every term in the document is  * probably too slow.  *   * You can use some heuristics to prune the set of terms, to avoid calling docFreq() too much,  * or at all.  Since you're trying to maximize a tf*idf score, you're probably most interested  * in terms with a high tf. Choosing a tf threshold even as low as two or three will radically  * reduce the number of terms under consideration.  Another heuristic is that terms with a  * high idf (i.e., a low df) tend to be longer.  So you could threshold the terms by the  * number of characters, not selecting anything less than, e.g., six or seven characters.  * With these sorts of heuristics you can usually find small set of, e.g., ten or fewer terms  * that do a pretty good job of characterizing a document.  *   * It all depends on what you're trying to do.  If you're trying to eek out that last percent  * of precision and recall regardless of computational difficulty so that you can win a TREC  * competition, then the techniques I mention above are useless.  But if you're trying to  * provide a "more like this" button on a search results page that does a decent job and has  * good performance, such techniques might be useful.  *   * An efficient, effective "more-like-this" query generator would be a great contribution, if  * anyone's interested.  I'd imagine that it would take a Reader or a String (the document's  * text), analyzer Analyzer, and return a set of representative terms using heuristics like those  * above.  The frequency and length thresholds could be parameters, etc.  *   * Doug  *</pre></code>  *  *  *<p>  *<h3>Initial Usage</h3>  *  * This class has lots of options to try to make it efficient and flexible.  * See the body of {@link #main main()} below in the source for real code, or  * if you want pseudo code, the simplest possible usage is as follows. The bold  * fragment is specific to this class.  *  *<pre class="prettyprint">  *  * IndexReader ir = ...  * IndexSearcher is = ...  *   * MoreLikeThis mlt = new MoreLikeThis(ir);  * Reader target = ... // orig source of doc you want to find similarities to  * Query query = mlt.like( target);  *   * Hits hits = is.search(query);  * // now the usual iteration thru 'hits' - the only thing to watch for is to make sure  * //you ignore the doc if it matches your 'target' document, as it should be similar to itself  *  *</pre>  *  * Thus you:  *<ol>  *<li> do your normal, Lucene setup for searching,  *<li> create a MoreLikeThis,  *<li> get the text of the doc you want to find similarities to  *<li> then call one of the like() calls to generate a similarity query  *<li> call the searcher to find the similar docs  *</ol>  *  *<h3>More Advanced Usage</h3>  *  * You may want to use {@link #setFieldNames setFieldNames(...)} so you can examine  * multiple fields (e.g. body and title) for similarity.  *<p>  *  * Depending on the size of your index and the size and makeup of your documents you  * may want to call the other set methods to control how the similarity queries are  * generated:  *<ul>  *<li> {@link #setMinTermFreq setMinTermFreq(...)}  *<li> {@link #setMinDocFreq setMinDocFreq(...)}  *<li> {@link #setMaxDocFreq setMaxDocFreq(...)}  *<li> {@link #setMaxDocFreqPct setMaxDocFreqPct(...)}  *<li> {@link #setMinWordLen setMinWordLen(...)}  *<li> {@link #setMaxWordLen setMaxWordLen(...)}  *<li> {@link #setMaxQueryTerms setMaxQueryTerms(...)}  *<li> {@link #setMaxNumTokensParsed setMaxNumTokensParsed(...)}  *<li> {@link #setStopWords setStopWord(...)}   *</ul>   *  *<hr>  *<pre>  * Changes: Mark Harwood 29/02/04  * Some bugfixing, some refactoring, some optimisation.  *  - bugfix: retrieveTerms(int docNum) was not working for indexes without a termvector -added missing code  *  - bugfix: No significant terms being created for fields with a termvector - because   *            was only counting one occurrence per term/field pair in calculations(ie not including frequency info from TermVector)   *  - refactor: moved common code into isNoiseWord()  *  - optimise: when no termvector support available - used maxNumTermsParsed to limit amount of tokenization  *</pre>  *  */
+comment|/**  * Generate "more like this" similarity queries.  * Based on this mail:  *<code><pre>  * Lucene does let you access the document frequency of terms, with IndexReader.docFreq().  * Term frequencies can be computed by re-tokenizing the text, which, for a single document,  * is usually fast enough.  But looking up the docFreq() of every term in the document is  * probably too slow.  *<p/>  * You can use some heuristics to prune the set of terms, to avoid calling docFreq() too much,  * or at all.  Since you're trying to maximize a tf*idf score, you're probably most interested  * in terms with a high tf. Choosing a tf threshold even as low as two or three will radically  * reduce the number of terms under consideration.  Another heuristic is that terms with a  * high idf (i.e., a low df) tend to be longer.  So you could threshold the terms by the  * number of characters, not selecting anything less than, e.g., six or seven characters.  * With these sorts of heuristics you can usually find small set of, e.g., ten or fewer terms  * that do a pretty good job of characterizing a document.  *<p/>  * It all depends on what you're trying to do.  If you're trying to eek out that last percent  * of precision and recall regardless of computational difficulty so that you can win a TREC  * competition, then the techniques I mention above are useless.  But if you're trying to  * provide a "more like this" button on a search results page that does a decent job and has  * good performance, such techniques might be useful.  *<p/>  * An efficient, effective "more-like-this" query generator would be a great contribution, if  * anyone's interested.  I'd imagine that it would take a Reader or a String (the document's  * text), analyzer Analyzer, and return a set of representative terms using heuristics like those  * above.  The frequency and length thresholds could be parameters, etc.  *<p/>  * Doug  *</pre></code>  *<p/>  *<p/>  *<p/>  *<h3>Initial Usage</h3>  *<p/>  * This class has lots of options to try to make it efficient and flexible.  * See the body of {@link #main main()} below in the source for real code, or  * if you want pseudo code, the simplest possible usage is as follows. The bold  * fragment is specific to this class.  *<p/>  *<pre class="prettyprint">  *<p/>  * IndexReader ir = ...  * IndexSearcher is = ...  *<p/>  * MoreLikeThis mlt = new MoreLikeThis(ir);  * Reader target = ... // orig source of doc you want to find similarities to  * Query query = mlt.like( target);  *<p/>  * Hits hits = is.search(query);  * // now the usual iteration thru 'hits' - the only thing to watch for is to make sure  * //you ignore the doc if it matches your 'target' document, as it should be similar to itself  *<p/>  *</pre>  *<p/>  * Thus you:  *<ol>  *<li> do your normal, Lucene setup for searching,  *<li> create a MoreLikeThis,  *<li> get the text of the doc you want to find similarities to  *<li> then call one of the like() calls to generate a similarity query  *<li> call the searcher to find the similar docs  *</ol>  *<p/>  *<h3>More Advanced Usage</h3>  *<p/>  * You may want to use {@link #setFieldNames setFieldNames(...)} so you can examine  * multiple fields (e.g. body and title) for similarity.  *<p/>  *<p/>  * Depending on the size of your index and the size and makeup of your documents you  * may want to call the other set methods to control how the similarity queries are  * generated:  *<ul>  *<li> {@link #setMinTermFreq setMinTermFreq(...)}  *<li> {@link #setMinDocFreq setMinDocFreq(...)}  *<li> {@link #setMaxDocFreq setMaxDocFreq(...)}  *<li> {@link #setMaxDocFreqPct setMaxDocFreqPct(...)}  *<li> {@link #setMinWordLen setMinWordLen(...)}  *<li> {@link #setMaxWordLen setMaxWordLen(...)}  *<li> {@link #setMaxQueryTerms setMaxQueryTerms(...)}  *<li> {@link #setMaxNumTokensParsed setMaxNumTokensParsed(...)}  *<li> {@link #setStopWords setStopWord(...)}  *</ul>  *<p/>  *<hr>  *<pre>  * Changes: Mark Harwood 29/02/04  * Some bugfixing, some refactoring, some optimisation.  * - bugfix: retrieveTerms(int docNum) was not working for indexes without a termvector -added missing code  * - bugfix: No significant terms being created for fields with a termvector - because  * was only counting one occurrence per term/field pair in calculations(ie not including frequency info from TermVector)  * - refactor: moved common code into isNoiseWord()  * - optimise: when no termvector support available - used maxNumTermsParsed to limit amount of tokenization  *</pre>  */
 end_comment
 
 begin_class
@@ -465,7 +229,7 @@ specifier|final
 class|class
 name|MoreLikeThis
 block|{
-comment|/** 	 * Default maximum number of tokens to parse in each example doc field that is not stored with TermVector support. 	 * @see #getMaxNumTokensParsed 	 */
+comment|/**    * Default maximum number of tokens to parse in each example doc field that is not stored with TermVector support.    *    * @see #getMaxNumTokensParsed    */
 DECL|field|DEFAULT_MAX_NUM_TOKENS_PARSED
 specifier|public
 specifier|static
@@ -475,7 +239,7 @@ name|DEFAULT_MAX_NUM_TOKENS_PARSED
 init|=
 literal|5000
 decl_stmt|;
-comment|/**      * Ignore terms with less than this frequency in the source doc. 	 * @see #getMinTermFreq 	 * @see #setMinTermFreq	       */
+comment|/**    * Ignore terms with less than this frequency in the source doc.    *    * @see #getMinTermFreq    * @see #setMinTermFreq    */
 DECL|field|DEFAULT_MIN_TERM_FREQ
 specifier|public
 specifier|static
@@ -485,7 +249,7 @@ name|DEFAULT_MIN_TERM_FREQ
 init|=
 literal|2
 decl_stmt|;
-comment|/**      * Ignore words which do not occur in at least this many docs. 	 * @see #getMinDocFreq 	 * @see #setMinDocFreq	       */
+comment|/**    * Ignore words which do not occur in at least this many docs.    *    * @see #getMinDocFreq    * @see #setMinDocFreq    */
 DECL|field|DEFAULT_MIN_DOC_FREQ
 specifier|public
 specifier|static
@@ -495,7 +259,7 @@ name|DEFAULT_MIN_DOC_FREQ
 init|=
 literal|5
 decl_stmt|;
-comment|/**      * Ignore words which occur in more than this many docs. 	 * @see #getMaxDocFreq 	 * @see #setMaxDocFreq	  	 * @see #setMaxDocFreqPct	       */
+comment|/**    * Ignore words which occur in more than this many docs.    *    * @see #getMaxDocFreq    * @see #setMaxDocFreq    * @see #setMaxDocFreqPct    */
 DECL|field|DEFAULT_MAX_DOC_FREQ
 specifier|public
 specifier|static
@@ -507,7 +271,7 @@ name|Integer
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-comment|/**      * Boost terms in query based on score. 	 * @see #isBoost 	 * @see #setBoost       */
+comment|/**    * Boost terms in query based on score.    *    * @see #isBoost    * @see #setBoost    */
 DECL|field|DEFAULT_BOOST
 specifier|public
 specifier|static
@@ -517,7 +281,7 @@ name|DEFAULT_BOOST
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Default field names. Null is used to specify that the field names should be looked      * up at runtime from the provided reader.      */
+comment|/**    * Default field names. Null is used to specify that the field names should be looked    * up at runtime from the provided reader.    */
 DECL|field|DEFAULT_FIELD_NAMES
 specifier|public
 specifier|static
@@ -533,7 +297,7 @@ block|{
 literal|"contents"
 block|}
 decl_stmt|;
-comment|/**      * Ignore words less than this length or if 0 then this has no effect. 	 * @see #getMinWordLen 	 * @see #setMinWordLen	       */
+comment|/**    * Ignore words less than this length or if 0 then this has no effect.    *    * @see #getMinWordLen    * @see #setMinWordLen    */
 DECL|field|DEFAULT_MIN_WORD_LENGTH
 specifier|public
 specifier|static
@@ -543,7 +307,7 @@ name|DEFAULT_MIN_WORD_LENGTH
 init|=
 literal|0
 decl_stmt|;
-comment|/**      * Ignore words greater than this length or if 0 then this has no effect. 	 * @see #getMaxWordLen 	 * @see #setMaxWordLen	       */
+comment|/**    * Ignore words greater than this length or if 0 then this has no effect.    *    * @see #getMaxWordLen    * @see #setMaxWordLen    */
 DECL|field|DEFAULT_MAX_WORD_LENGTH
 specifier|public
 specifier|static
@@ -553,7 +317,7 @@ name|DEFAULT_MAX_WORD_LENGTH
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 * Default set of stopwords. 	 * If null means to allow stop words. 	 * 	 * @see #setStopWords 	 * @see #getStopWords 	 */
+comment|/**    * Default set of stopwords.    * If null means to allow stop words.    *    * @see #setStopWords    * @see #getStopWords    */
 DECL|field|DEFAULT_STOP_WORDS
 specifier|public
 specifier|static
@@ -566,7 +330,7 @@ name|DEFAULT_STOP_WORDS
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Current set of stop words. 	 */
+comment|/**    * Current set of stop words.    */
 DECL|field|stopWords
 specifier|private
 name|Set
@@ -577,7 +341,7 @@ name|stopWords
 init|=
 name|DEFAULT_STOP_WORDS
 decl_stmt|;
-comment|/**      * Return a Query with no more than this many terms.      *      * @see BooleanQuery#getMaxClauseCount 	 * @see #getMaxQueryTerms 	 * @see #setMaxQueryTerms	       */
+comment|/**    * Return a Query with no more than this many terms.    *    * @see BooleanQuery#getMaxClauseCount    * @see #getMaxQueryTerms    * @see #setMaxQueryTerms    */
 DECL|field|DEFAULT_MAX_QUERY_TERMS
 specifier|public
 specifier|static
@@ -587,7 +351,7 @@ name|DEFAULT_MAX_QUERY_TERMS
 init|=
 literal|25
 decl_stmt|;
-comment|/**      * Analyzer that will be used to parse the doc.      */
+comment|/**    * Analyzer that will be used to parse the doc.    */
 DECL|field|analyzer
 specifier|private
 name|Analyzer
@@ -595,7 +359,7 @@ name|analyzer
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Ignore words less frequent that this.      */
+comment|/**    * Ignore words less frequent that this.    */
 DECL|field|minTermFreq
 specifier|private
 name|int
@@ -603,7 +367,7 @@ name|minTermFreq
 init|=
 name|DEFAULT_MIN_TERM_FREQ
 decl_stmt|;
-comment|/**      * Ignore words which do not occur in at least this many docs.      */
+comment|/**    * Ignore words which do not occur in at least this many docs.    */
 DECL|field|minDocFreq
 specifier|private
 name|int
@@ -611,7 +375,7 @@ name|minDocFreq
 init|=
 name|DEFAULT_MIN_DOC_FREQ
 decl_stmt|;
-comment|/**      * Ignore words which occur in more than this many docs. 	 */
+comment|/**    * Ignore words which occur in more than this many docs.    */
 DECL|field|maxDocFreq
 specifier|private
 name|int
@@ -619,7 +383,7 @@ name|maxDocFreq
 init|=
 name|DEFAULT_MAX_DOC_FREQ
 decl_stmt|;
-comment|/**      * Should we apply a boost to the Query based on the scores?      */
+comment|/**    * Should we apply a boost to the Query based on the scores?    */
 DECL|field|boost
 specifier|private
 name|boolean
@@ -627,7 +391,7 @@ name|boost
 init|=
 name|DEFAULT_BOOST
 decl_stmt|;
-comment|/**      * Field name we'll analyze.      */
+comment|/**    * Field name we'll analyze.    */
 DECL|field|fieldNames
 specifier|private
 name|String
@@ -636,7 +400,7 @@ name|fieldNames
 init|=
 name|DEFAULT_FIELD_NAMES
 decl_stmt|;
-comment|/** 	 * The maximum number of tokens to parse in each example doc field that is not stored with TermVector support 	 */
+comment|/**    * The maximum number of tokens to parse in each example doc field that is not stored with TermVector support    */
 DECL|field|maxNumTokensParsed
 specifier|private
 name|int
@@ -644,7 +408,7 @@ name|maxNumTokensParsed
 init|=
 name|DEFAULT_MAX_NUM_TOKENS_PARSED
 decl_stmt|;
-comment|/**      * Ignore words if less than this len.      */
+comment|/**    * Ignore words if less than this len.    */
 DECL|field|minWordLen
 specifier|private
 name|int
@@ -652,7 +416,7 @@ name|minWordLen
 init|=
 name|DEFAULT_MIN_WORD_LENGTH
 decl_stmt|;
-comment|/**      * Ignore words if greater than this len.      */
+comment|/**    * Ignore words if greater than this len.    */
 DECL|field|maxWordLen
 specifier|private
 name|int
@@ -660,7 +424,7 @@ name|maxWordLen
 init|=
 name|DEFAULT_MAX_WORD_LENGTH
 decl_stmt|;
-comment|/**      * Don't return a query longer than this.      */
+comment|/**    * Don't return a query longer than this.    */
 DECL|field|maxQueryTerms
 specifier|private
 name|int
@@ -668,21 +432,21 @@ name|maxQueryTerms
 init|=
 name|DEFAULT_MAX_QUERY_TERMS
 decl_stmt|;
-comment|/**      * For idf() calculations.      */
+comment|/**    * For idf() calculations.    */
 DECL|field|similarity
 specifier|private
 name|TFIDFSimilarity
 name|similarity
 decl_stmt|;
 comment|// = new DefaultSimilarity();
-comment|/**      * IndexReader to use      */
+comment|/**    * IndexReader to use    */
 DECL|field|ir
 specifier|private
 specifier|final
 name|IndexReader
 name|ir
 decl_stmt|;
-comment|/**      * Boost factor to use when boosting the terms      */
+comment|/**    * Boost factor to use when boosting the terms    */
 DECL|field|boostFactor
 specifier|private
 name|float
@@ -690,7 +454,7 @@ name|boostFactor
 init|=
 literal|1
 decl_stmt|;
-comment|/**      * Returns the boost factor used when boosting terms      * @return the boost factor used when boosting terms      */
+comment|/**    * Returns the boost factor used when boosting terms    *    * @return the boost factor used when boosting terms    */
 DECL|method|getBoostFactor
 specifier|public
 name|float
@@ -701,7 +465,7 @@ return|return
 name|boostFactor
 return|;
 block|}
-comment|/**      * Sets the boost factor to use when boosting terms      * @param boostFactor      */
+comment|/**    * Sets the boost factor to use when boosting terms    *    * @param boostFactor    */
 DECL|method|setBoostFactor
 specifier|public
 name|void
@@ -718,7 +482,7 @@ operator|=
 name|boostFactor
 expr_stmt|;
 block|}
-comment|/**      * Constructor requiring an IndexReader.      */
+comment|/**    * Constructor requiring an IndexReader.    */
 DECL|method|MoreLikeThis
 specifier|public
 name|MoreLikeThis
@@ -787,7 +551,7 @@ operator|=
 name|similarity
 expr_stmt|;
 block|}
-comment|/**      * Returns an analyzer that will be used to parse source doc with. The default analyzer      * is not set.      *      * @return the analyzer that will be used to parse source doc with.      */
+comment|/**    * Returns an analyzer that will be used to parse source doc with. The default analyzer    * is not set.    *    * @return the analyzer that will be used to parse source doc with.    */
 DECL|method|getAnalyzer
 specifier|public
 name|Analyzer
@@ -798,7 +562,7 @@ return|return
 name|analyzer
 return|;
 block|}
-comment|/**      * Sets the analyzer to use. An analyzer is not required for generating a query with the      * {@link #like(int)} method, all other 'like' methods require an analyzer.      *      * @param analyzer the analyzer to use to tokenize text.      */
+comment|/**    * Sets the analyzer to use. An analyzer is not required for generating a query with the    * {@link #like(int)} method, all other 'like' methods require an analyzer.    *    * @param analyzer the analyzer to use to tokenize text.    */
 DECL|method|setAnalyzer
 specifier|public
 name|void
@@ -815,7 +579,7 @@ operator|=
 name|analyzer
 expr_stmt|;
 block|}
-comment|/**      * Returns the frequency below which terms will be ignored in the source doc. The default      * frequency is the {@link #DEFAULT_MIN_TERM_FREQ}.      *      * @return the frequency below which terms will be ignored in the source doc.      */
+comment|/**    * Returns the frequency below which terms will be ignored in the source doc. The default    * frequency is the {@link #DEFAULT_MIN_TERM_FREQ}.    *    * @return the frequency below which terms will be ignored in the source doc.    */
 DECL|method|getMinTermFreq
 specifier|public
 name|int
@@ -826,7 +590,7 @@ return|return
 name|minTermFreq
 return|;
 block|}
-comment|/**      * Sets the frequency below which terms will be ignored in the source doc.      *      * @param minTermFreq the frequency below which terms will be ignored in the source doc.      */
+comment|/**    * Sets the frequency below which terms will be ignored in the source doc.    *    * @param minTermFreq the frequency below which terms will be ignored in the source doc.    */
 DECL|method|setMinTermFreq
 specifier|public
 name|void
@@ -843,7 +607,7 @@ operator|=
 name|minTermFreq
 expr_stmt|;
 block|}
-comment|/**      * Returns the frequency at which words will be ignored which do not occur in at least this      * many docs. The default frequency is {@link #DEFAULT_MIN_DOC_FREQ}.      *      * @return the frequency at which words will be ignored which do not occur in at least this      * many docs.      */
+comment|/**    * Returns the frequency at which words will be ignored which do not occur in at least this    * many docs. The default frequency is {@link #DEFAULT_MIN_DOC_FREQ}.    *    * @return the frequency at which words will be ignored which do not occur in at least this    *         many docs.    */
 DECL|method|getMinDocFreq
 specifier|public
 name|int
@@ -854,7 +618,7 @@ return|return
 name|minDocFreq
 return|;
 block|}
-comment|/**      * Sets the frequency at which words will be ignored which do not occur in at least this      * many docs.      *      * @param minDocFreq the frequency at which words will be ignored which do not occur in at      * least this many docs.      */
+comment|/**    * Sets the frequency at which words will be ignored which do not occur in at least this    * many docs.    *    * @param minDocFreq the frequency at which words will be ignored which do not occur in at    * least this many docs.    */
 DECL|method|setMinDocFreq
 specifier|public
 name|void
@@ -871,7 +635,7 @@ operator|=
 name|minDocFreq
 expr_stmt|;
 block|}
-comment|/**      * Returns the maximum frequency in which words may still appear.       * Words that appear in more than this many docs will be ignored. The default frequency is       * {@link #DEFAULT_MAX_DOC_FREQ}.      *      * @return get the maximum frequency at which words are still allowed,        * words which occur in more docs than this are ignored.      */
+comment|/**    * Returns the maximum frequency in which words may still appear.    * Words that appear in more than this many docs will be ignored. The default frequency is    * {@link #DEFAULT_MAX_DOC_FREQ}.    *    * @return get the maximum frequency at which words are still allowed,    *         words which occur in more docs than this are ignored.    */
 DECL|method|getMaxDocFreq
 specifier|public
 name|int
@@ -882,7 +646,7 @@ return|return
 name|maxDocFreq
 return|;
 block|}
-comment|/**      * Set the maximum frequency in which words may still appear. Words that appear      * in more than this many docs will be ignored. 	 *  	 * @param maxFreq 	 *            the maximum count of documents that a term may appear  	 *            in to be still considered relevant 	 */
+comment|/**    * Set the maximum frequency in which words may still appear. Words that appear    * in more than this many docs will be ignored.    *    * @param maxFreq the maximum count of documents that a term may appear    * in to be still considered relevant    */
 DECL|method|setMaxDocFreq
 specifier|public
 name|void
@@ -899,7 +663,7 @@ operator|=
 name|maxFreq
 expr_stmt|;
 block|}
-comment|/**      * Set the maximum percentage in which words may still appear. Words that appear      * in more than this many percent of all docs will be ignored. 	 *  	 * @param maxPercentage 	 *            the maximum percentage of documents (0-100) that a term may appear  	 *            in to be still considered relevant 	 */
+comment|/**    * Set the maximum percentage in which words may still appear. Words that appear    * in more than this many percent of all docs will be ignored.    *    * @param maxPercentage the maximum percentage of documents (0-100) that a term may appear    * in to be still considered relevant    */
 DECL|method|setMaxDocFreqPct
 specifier|public
 name|void
@@ -923,7 +687,7 @@ operator|/
 literal|100
 expr_stmt|;
 block|}
-comment|/**      * Returns whether to boost terms in query based on "score" or not. The default is      * {@link #DEFAULT_BOOST}.      *      * @return whether to boost terms in query based on "score" or not. 	 * @see #setBoost      */
+comment|/**    * Returns whether to boost terms in query based on "score" or not. The default is    * {@link #DEFAULT_BOOST}.    *    * @return whether to boost terms in query based on "score" or not.    * @see #setBoost    */
 DECL|method|isBoost
 specifier|public
 name|boolean
@@ -934,7 +698,7 @@ return|return
 name|boost
 return|;
 block|}
-comment|/**      * Sets whether to boost terms in query based on "score" or not.      *      * @param boost true to boost terms in query based on "score", false otherwise. 	 * @see #isBoost      */
+comment|/**    * Sets whether to boost terms in query based on "score" or not.    *    * @param boost true to boost terms in query based on "score", false otherwise.    * @see #isBoost    */
 DECL|method|setBoost
 specifier|public
 name|void
@@ -951,7 +715,7 @@ operator|=
 name|boost
 expr_stmt|;
 block|}
-comment|/**      * Returns the field names that will be used when generating the 'More Like This' query.      * The default field names that will be used is {@link #DEFAULT_FIELD_NAMES}.      *      * @return the field names that will be used when generating the 'More Like This' query.      */
+comment|/**    * Returns the field names that will be used when generating the 'More Like This' query.    * The default field names that will be used is {@link #DEFAULT_FIELD_NAMES}.    *    * @return the field names that will be used when generating the 'More Like This' query.    */
 DECL|method|getFieldNames
 specifier|public
 name|String
@@ -963,7 +727,7 @@ return|return
 name|fieldNames
 return|;
 block|}
-comment|/**      * Sets the field names that will be used when generating the 'More Like This' query.      * Set this to null for the field names to be determined at runtime from the IndexReader      * provided in the constructor.      *      * @param fieldNames the field names that will be used when generating the 'More Like This'      * query.      */
+comment|/**    * Sets the field names that will be used when generating the 'More Like This' query.    * Set this to null for the field names to be determined at runtime from the IndexReader    * provided in the constructor.    *    * @param fieldNames the field names that will be used when generating the 'More Like This'    * query.    */
 DECL|method|setFieldNames
 specifier|public
 name|void
@@ -981,7 +745,7 @@ operator|=
 name|fieldNames
 expr_stmt|;
 block|}
-comment|/**      * Returns the minimum word length below which words will be ignored. Set this to 0 for no      * minimum word length. The default is {@link #DEFAULT_MIN_WORD_LENGTH}.      *      * @return the minimum word length below which words will be ignored.      */
+comment|/**    * Returns the minimum word length below which words will be ignored. Set this to 0 for no    * minimum word length. The default is {@link #DEFAULT_MIN_WORD_LENGTH}.    *    * @return the minimum word length below which words will be ignored.    */
 DECL|method|getMinWordLen
 specifier|public
 name|int
@@ -992,7 +756,7 @@ return|return
 name|minWordLen
 return|;
 block|}
-comment|/**      * Sets the minimum word length below which words will be ignored.      *      * @param minWordLen the minimum word length below which words will be ignored.      */
+comment|/**    * Sets the minimum word length below which words will be ignored.    *    * @param minWordLen the minimum word length below which words will be ignored.    */
 DECL|method|setMinWordLen
 specifier|public
 name|void
@@ -1009,7 +773,7 @@ operator|=
 name|minWordLen
 expr_stmt|;
 block|}
-comment|/**      * Returns the maximum word length above which words will be ignored. Set this to 0 for no      * maximum word length. The default is {@link #DEFAULT_MAX_WORD_LENGTH}.      *      * @return the maximum word length above which words will be ignored.      */
+comment|/**    * Returns the maximum word length above which words will be ignored. Set this to 0 for no    * maximum word length. The default is {@link #DEFAULT_MAX_WORD_LENGTH}.    *    * @return the maximum word length above which words will be ignored.    */
 DECL|method|getMaxWordLen
 specifier|public
 name|int
@@ -1020,7 +784,7 @@ return|return
 name|maxWordLen
 return|;
 block|}
-comment|/**      * Sets the maximum word length above which words will be ignored.      *      * @param maxWordLen the maximum word length above which words will be ignored.      */
+comment|/**    * Sets the maximum word length above which words will be ignored.    *    * @param maxWordLen the maximum word length above which words will be ignored.    */
 DECL|method|setMaxWordLen
 specifier|public
 name|void
@@ -1037,7 +801,7 @@ operator|=
 name|maxWordLen
 expr_stmt|;
 block|}
-comment|/** 	 * Set the set of stopwords. 	 * Any word in this set is considered "uninteresting" and ignored. 	 * Even if your Analyzer allows stopwords, you might want to tell the MoreLikeThis code to ignore them, as 	 * for the purposes of document similarity it seems reasonable to assume that "a stop word is never interesting". 	 *  	 * @param stopWords set of stopwords, if null it means to allow stop words 	 * 	 * @see #getStopWords	  	 */
+comment|/**    * Set the set of stopwords.    * Any word in this set is considered "uninteresting" and ignored.    * Even if your Analyzer allows stopwords, you might want to tell the MoreLikeThis code to ignore them, as    * for the purposes of document similarity it seems reasonable to assume that "a stop word is never interesting".    *    * @param stopWords set of stopwords, if null it means to allow stop words    * @see #getStopWords    */
 DECL|method|setStopWords
 specifier|public
 name|void
@@ -1057,7 +821,7 @@ operator|=
 name|stopWords
 expr_stmt|;
 block|}
-comment|/** 	 * Get the current stop words being used. 	 * @see #setStopWords 	 */
+comment|/**    * Get the current stop words being used.    *    * @see #setStopWords    */
 DECL|method|getStopWords
 specifier|public
 name|Set
@@ -1071,7 +835,7 @@ return|return
 name|stopWords
 return|;
 block|}
-comment|/**      * Returns the maximum number of query terms that will be included in any generated query.      * The default is {@link #DEFAULT_MAX_QUERY_TERMS}.      *      * @return the maximum number of query terms that will be included in any generated query.      */
+comment|/**    * Returns the maximum number of query terms that will be included in any generated query.    * The default is {@link #DEFAULT_MAX_QUERY_TERMS}.    *    * @return the maximum number of query terms that will be included in any generated query.    */
 DECL|method|getMaxQueryTerms
 specifier|public
 name|int
@@ -1082,7 +846,7 @@ return|return
 name|maxQueryTerms
 return|;
 block|}
-comment|/**      * Sets the maximum number of query terms that will be included in any generated query.      *      * @param maxQueryTerms the maximum number of query terms that will be included in any      * generated query.      */
+comment|/**    * Sets the maximum number of query terms that will be included in any generated query.    *    * @param maxQueryTerms the maximum number of query terms that will be included in any    * generated query.    */
 DECL|method|setMaxQueryTerms
 specifier|public
 name|void
@@ -1099,7 +863,7 @@ operator|=
 name|maxQueryTerms
 expr_stmt|;
 block|}
-comment|/** 	 * @return The maximum number of tokens to parse in each example doc field that is not stored with TermVector support 	 * @see #DEFAULT_MAX_NUM_TOKENS_PARSED 	 */
+comment|/**    * @return The maximum number of tokens to parse in each example doc field that is not stored with TermVector support    * @see #DEFAULT_MAX_NUM_TOKENS_PARSED    */
 DECL|method|getMaxNumTokensParsed
 specifier|public
 name|int
@@ -1110,7 +874,7 @@ return|return
 name|maxNumTokensParsed
 return|;
 block|}
-comment|/** 	 * @param i The maximum number of tokens to parse in each example doc field that is not stored with TermVector support 	 */
+comment|/**    * @param i The maximum number of tokens to parse in each example doc field that is not stored with TermVector support    */
 DECL|method|setMaxNumTokensParsed
 specifier|public
 name|void
@@ -1125,7 +889,7 @@ operator|=
 name|i
 expr_stmt|;
 block|}
-comment|/**      * Return a query that will return docs like the passed lucene document ID.      *      * @param docNum the documentID of the lucene doc to generate the 'More Like This" query for.      * @return a query that will return docs like the passed lucene document ID.      */
+comment|/**    * Return a query that will return docs like the passed lucene document ID.    *    * @param docNum the documentID of the lucene doc to generate the 'More Like This" query for.    * @return a query that will return docs like the passed lucene document ID.    */
 DECL|method|like
 specifier|public
 name|Query
@@ -1189,7 +953,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Return a query that will return docs like the passed file.      *      * @return a query that will return docs like the passed file.      */
+comment|/**    * Return a query that will return docs like the passed file.    *    * @return a query that will return docs like the passed file.    */
 DECL|method|like
 specifier|public
 name|Query
@@ -1254,7 +1018,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Return a query that will return docs like the passed URL.      *      * @return a query that will return docs like the passed URL.      */
+comment|/**    * Return a query that will return docs like the passed URL.    *    * @return a query that will return docs like the passed URL.    */
 DECL|method|like
 specifier|public
 name|Query
@@ -1283,7 +1047,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Return a query that will return docs like the passed stream.      *      * @return a query that will return docs like the passed stream.      */
+comment|/**    * Return a query that will return docs like the passed stream.    *    * @return a query that will return docs like the passed stream.    */
 DECL|method|like
 specifier|public
 name|Query
@@ -1310,7 +1074,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Return a query that will return docs like the passed Reader.      *      * @return a query that will return docs like the passed Reader.      */
+comment|/**    * Return a query that will return docs like the passed Reader.    *    * @return a query that will return docs like the passed Reader.    */
 DECL|method|like
 specifier|public
 name|Query
@@ -1332,7 +1096,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Create the More like query from a PriorityQueue      */
+comment|/**    * Create the More like query from a PriorityQueue    */
 DECL|method|createQuery
 specifier|private
 name|Query
@@ -1369,7 +1133,6 @@ decl_stmt|;
 while|while
 condition|(
 operator|(
-operator|(
 name|cur
 operator|=
 name|q
@@ -1379,7 +1142,6 @@ argument_list|()
 operator|)
 operator|!=
 literal|null
-operator|)
 condition|)
 block|{
 name|Object
@@ -1442,9 +1204,6 @@ index|[
 literal|2
 index|]
 operator|)
-operator|.
-name|floatValue
-argument_list|()
 expr_stmt|;
 block|}
 name|float
@@ -1459,9 +1218,6 @@ index|[
 literal|2
 index|]
 operator|)
-operator|.
-name|floatValue
-argument_list|()
 decl_stmt|;
 name|tq
 operator|.
@@ -1522,7 +1278,7 @@ return|return
 name|query
 return|;
 block|}
-comment|/**      * Create a PriorityQueue from a word->tf map.      *      * @param words a map of words keyed on the word(String) with Int objects as the values.      */
+comment|/**    * Create a PriorityQueue from a word->tf map.    *    * @param words a map of words keyed on the word(String) with Int objects as the values.    */
 DECL|method|createQueue
 specifier|private
 name|PriorityQueue
@@ -1565,37 +1321,18 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// will order words by score
-name|Iterator
-argument_list|<
+for|for
+control|(
 name|String
-argument_list|>
-name|it
-init|=
+name|word
+range|:
 name|words
 operator|.
 name|keySet
 argument_list|()
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|it
-operator|.
-name|hasNext
-argument_list|()
-condition|)
+control|)
 block|{
 comment|// for every word
-name|String
-name|word
-init|=
-name|it
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
 name|int
 name|tf
 init|=
@@ -1639,19 +1376,10 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|String
+name|fieldName
+range|:
 name|fieldNames
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 name|int
@@ -1664,10 +1392,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-name|fieldNames
-index|[
-name|i
-index|]
+name|fieldName
 argument_list|,
 name|word
 argument_list|)
@@ -1681,10 +1406,7 @@ operator|>
 name|docFreq
 operator|)
 condition|?
-name|fieldNames
-index|[
-name|i
-index|]
+name|fieldName
 else|:
 name|topField
 expr_stmt|;
@@ -1769,36 +1491,16 @@ comment|// the word
 name|topField
 block|,
 comment|// the top field
-name|Float
-operator|.
-name|valueOf
-argument_list|(
 name|score
-argument_list|)
 block|,
 comment|// overall score
-name|Float
-operator|.
-name|valueOf
-argument_list|(
 name|idf
-argument_list|)
 block|,
 comment|// idf
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|docFreq
-argument_list|)
 block|,
 comment|// freq in all docs
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|tf
-argument_list|)
 block|}
 argument_list|)
 expr_stmt|;
@@ -1807,7 +1509,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**      * Describe the parameters that control how the "more like this" query is formed.      */
+comment|/**    * Describe the parameters that control how the "more like this" query is formed.    */
 DECL|method|describeParams
 specifier|public
 name|String
@@ -1826,11 +1528,20 @@ operator|.
 name|append
 argument_list|(
 literal|"\t"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"maxQueryTerms  : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|maxQueryTerms
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
@@ -1839,11 +1550,20 @@ operator|.
 name|append
 argument_list|(
 literal|"\t"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"minWordLen     : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|minWordLen
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
@@ -1852,11 +1572,20 @@ operator|.
 name|append
 argument_list|(
 literal|"\t"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"maxWordLen     : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|maxWordLen
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
@@ -1865,7 +1594,10 @@ operator|.
 name|append
 argument_list|(
 literal|"\t"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"fieldNames     : "
 argument_list|)
 expr_stmt|;
@@ -1876,29 +1608,12 @@ literal|""
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|fieldNames
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|String
 name|fieldName
-init|=
+range|:
 name|fieldNames
-index|[
-name|i
-index|]
-decl_stmt|;
+control|)
+block|{
 name|sb
 operator|.
 name|append
@@ -1928,11 +1643,20 @@ operator|.
 name|append
 argument_list|(
 literal|"\t"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"boost          : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|boost
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
@@ -1941,11 +1665,20 @@ operator|.
 name|append
 argument_list|(
 literal|"\t"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"minTermFreq    : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|minTermFreq
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
@@ -1954,11 +1687,20 @@ operator|.
 name|append
 argument_list|(
 literal|"\t"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"minDocFreq     : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|minDocFreq
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
@@ -1969,7 +1711,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Test driver.      * Pass in "-i INDEX" and then either "-fn FILE" or "-url URL".      */
+comment|/**    * Test driver.    * Pass in "-i INDEX" and then either "-fn FILE" or "-url URL".    */
 DECL|method|main
 specifier|public
 specifier|static
@@ -2418,7 +2160,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Find words for a more-like-this query former.      *      * @param docNum the id of the lucene document from which to find terms      */
+comment|/**    * Find words for a more-like-this query former.    *    * @param docNum the id of the lucene document from which to find terms    */
 DECL|method|retrieveTerms
 specifier|public
 name|PriorityQueue
@@ -2453,29 +2195,12 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|fieldNames
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|String
 name|fieldName
-init|=
+range|:
 name|fieldNames
-index|[
-name|i
-index|]
-decl_stmt|;
+control|)
+block|{
 name|TermFreqVector
 name|vector
 init|=
@@ -2578,7 +2303,7 @@ name|termFreqMap
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Adds terms and frequencies found in vector into the Map termFreqMap 	 * @param termFreqMap a Map of terms and their frequencies 	 * @param vector List of terms and their frequencies for a doc/field 	 */
+comment|/**    * Adds terms and frequencies found in vector into the Map termFreqMap    *    * @param termFreqMap a Map of terms and their frequencies    * @param vector List of terms and their frequencies for a doc/field    */
 DECL|method|addTermFrequencies
 specifier|private
 name|void
@@ -2723,7 +2448,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Adds term frequencies found by tokenizing text from reader into the Map words 	 * @param r a source of text to be tokenized 	 * @param termFreqMap a Map of terms and their frequencies 	 * @param fieldName Used by analyzer for any special per-field analysis 	 */
+comment|/**    * Adds term frequencies found by tokenizing text from reader into the Map words    *    * @param r a source of text to be tokenized    * @param termFreqMap a Map of terms and their frequencies    * @param fieldName Used by analyzer for any special per-field analysis    */
 DECL|method|addTermFrequencies
 specifier|private
 name|void
@@ -2886,7 +2611,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** determines if the passed term is likely to be of interest in "more like" comparisons  	 *  	 * @param term The word being considered 	 * @return true if should be ignored, false if should be used in further analysis 	 */
+comment|/**    * determines if the passed term is likely to be of interest in "more like" comparisons    *    * @param term The word being considered    * @return true if should be ignored, false if should be used in further analysis    */
 DECL|method|isNoiseWord
 specifier|private
 name|boolean
@@ -2934,8 +2659,7 @@ return|return
 literal|true
 return|;
 block|}
-if|if
-condition|(
+return|return
 name|stopWords
 operator|!=
 literal|null
@@ -2946,17 +2670,9 @@ name|contains
 argument_list|(
 name|term
 argument_list|)
-condition|)
-block|{
-return|return
-literal|true
 return|;
 block|}
-return|return
-literal|false
-return|;
-block|}
-comment|/**      * Find words for a more-like-this query former. 	 * The result is a priority queue of arrays with one entry for<b>every word</b> in the document. 	 * Each array has 6 elements. 	 * The elements are: 	 *<ol> 	 *<li> The word (String) 	 *<li> The top field that this word comes from (String) 	 *<li> The score for this word (Float) 	 *<li> The IDF value (Float) 	 *<li> The frequency of this word in the index (Integer) 	 *<li> The frequency of this word in the source document (Integer)	 	  	 *</ol> 	 * This is a somewhat "advanced" routine, and in general only the 1st entry in the array is of interest. 	 * This method is exposed so that you can identify the "interesting words" in a document. 	 * For an easier method to call see {@link #retrieveInterestingTerms retrieveInterestingTerms()}.      *      * @param r the reader that has the content of the document 	 * @return the most interesting words in the document ordered by score, with the highest scoring, or best entry, first 	 * 	 * @see #retrieveInterestingTerms      */
+comment|/**    * Find words for a more-like-this query former.    * The result is a priority queue of arrays with one entry for<b>every word</b> in the document.    * Each array has 6 elements.    * The elements are:    *<ol>    *<li> The word (String)    *<li> The top field that this word comes from (String)    *<li> The score for this word (Float)    *<li> The IDF value (Float)    *<li> The frequency of this word in the index (Integer)    *<li> The frequency of this word in the source document (Integer)    *</ol>    * This is a somewhat "advanced" routine, and in general only the 1st entry in the array is of interest.    * This method is exposed so that you can identify the "interesting words" in a document.    * For an easier method to call see {@link #retrieveInterestingTerms retrieveInterestingTerms()}.    *    * @param r the reader that has the content of the document    * @return the most interesting words in the document ordered by score, with the highest scoring, or best entry, first    * @see #retrieveInterestingTerms    */
 DECL|method|retrieveTerms
 specifier|public
 name|PriorityQueue
@@ -2991,29 +2707,12 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|fieldNames
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|String
 name|fieldName
-init|=
+range|:
 name|fieldNames
-index|[
-name|i
-index|]
-decl_stmt|;
+control|)
+block|{
 name|addTermFrequencies
 argument_list|(
 name|r
@@ -3031,7 +2730,7 @@ name|words
 argument_list|)
 return|;
 block|}
-comment|/**    * @see #retrieveInterestingTerms(java.io.Reader)     */
+comment|/**    * @see #retrieveInterestingTerms(java.io.Reader)    */
 DECL|method|retrieveInterestingTerms
 specifier|public
 name|String
@@ -3146,7 +2845,7 @@ name|res
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Convenience routine to make it easy to return the most interesting words in a document. 	 * More advanced users will call {@link #retrieveTerms(java.io.Reader) retrieveTerms()} directly. 	 * @param r the source document 	 * @return the most interesting words in the document 	 * 	 * @see #retrieveTerms(java.io.Reader) 	 * @see #setMaxQueryTerms 	 */
+comment|/**    * Convenience routine to make it easy to return the most interesting words in a document.    * More advanced users will call {@link #retrieveTerms(java.io.Reader) retrieveTerms()} directly.    *    * @param r the source document    * @return the most interesting words in the document    * @see #retrieveTerms(java.io.Reader)    * @see #setMaxQueryTerms    */
 DECL|method|retrieveInterestingTerms
 specifier|public
 name|String
@@ -3261,7 +2960,7 @@ name|res
 argument_list|)
 return|;
 block|}
-comment|/**      * PriorityQueue that orders words by score.      */
+comment|/**    * PriorityQueue that orders words by score.    */
 DECL|class|FreqQ
 specifier|private
 specifier|static
@@ -3327,18 +3026,12 @@ index|]
 decl_stmt|;
 return|return
 name|fa
-operator|.
-name|floatValue
-argument_list|()
 operator|>
 name|fb
-operator|.
-name|floatValue
-argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * Use for frequencies and to avoid renewing Integers.      */
+comment|/**    * Use for frequencies and to avoid renewing Integers.    */
 DECL|class|Int
 specifier|private
 specifier|static

@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -36,21 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
+name|*
 import|;
 end_import
 
@@ -78,9 +54,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|Terms
+name|Bits
 import|;
 end_import
 
@@ -92,37 +68,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|DocsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|TermsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|MultiFields
+name|BytesRef
 import|;
 end_import
 
@@ -142,15 +90,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
+name|IOException
 import|;
 end_import
 
@@ -164,59 +108,44 @@ name|Filter
 block|{
 comment|// TODO: make duplicate filter aware of ReaderContext such that we can
 comment|// filter duplicates across segments
+comment|/**    * KeepMode determines which document id to consider as the master, all others being    * identified as duplicates. Selecting the "first occurrence" can potentially save on IO.    */
+DECL|enum|KeepMode
+specifier|public
+enum|enum
+name|KeepMode
+block|{
+DECL|enum constant|KM_USE_FIRST_OCCURRENCE
+DECL|enum constant|KM_USE_LAST_OCCURRENCE
+name|KM_USE_FIRST_OCCURRENCE
+block|,
+name|KM_USE_LAST_OCCURRENCE
+block|}
+DECL|field|keepMode
+specifier|private
+name|KeepMode
+name|keepMode
+decl_stmt|;
+comment|/**    * "Full" processing mode starts by setting all bits to false and only setting bits    * for documents that contain the given field and are identified as none-duplicates.    *<p/>    * "Fast" processing sets all bits to true then unsets all duplicate docs found for the    * given field. This approach avoids the need to read TermDocs for terms that are seen    * to have a document frequency of exactly "1" (i.e. no duplicates). While a potentially    * faster approach , the downside is that bitsets produced will include bits set for    * documents that do not actually contain the field given.    */
+DECL|enum|ProcessingMode
+specifier|public
+enum|enum
+name|ProcessingMode
+block|{
+DECL|enum constant|PM_FULL_VALIDATION
+DECL|enum constant|PM_FAST_INVALIDATION
+name|PM_FULL_VALIDATION
+block|,
+name|PM_FAST_INVALIDATION
+block|}
+DECL|field|processingMode
+specifier|private
+name|ProcessingMode
+name|processingMode
+decl_stmt|;
 DECL|field|fieldName
+specifier|private
 name|String
 name|fieldName
-decl_stmt|;
-comment|/** 	 * KeepMode determines which document id to consider as the master, all others being  	 * identified as duplicates. Selecting the "first occurrence" can potentially save on IO. 	 */
-DECL|field|keepMode
-name|int
-name|keepMode
-init|=
-name|KM_USE_FIRST_OCCURRENCE
-decl_stmt|;
-DECL|field|KM_USE_FIRST_OCCURRENCE
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|KM_USE_FIRST_OCCURRENCE
-init|=
-literal|1
-decl_stmt|;
-DECL|field|KM_USE_LAST_OCCURRENCE
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|KM_USE_LAST_OCCURRENCE
-init|=
-literal|2
-decl_stmt|;
-comment|/** 	 * "Full" processing mode starts by setting all bits to false and only setting bits 	 * for documents that contain the given field and are identified as none-duplicates.   	 * "Fast" processing sets all bits to true then unsets all duplicate docs found for the 	 * given field. This approach avoids the need to read TermDocs for terms that are seen  	 * to have a document frequency of exactly "1" (i.e. no duplicates). While a potentially  	 * faster approach , the downside is that bitsets produced will include bits set for  	 * documents that do not actually contain the field given. 	 *  	 */
-DECL|field|processingMode
-name|int
-name|processingMode
-init|=
-name|PM_FULL_VALIDATION
-decl_stmt|;
-DECL|field|PM_FULL_VALIDATION
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|PM_FULL_VALIDATION
-init|=
-literal|1
-decl_stmt|;
-DECL|field|PM_FAST_INVALIDATION
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|PM_FAST_INVALIDATION
-init|=
-literal|2
 decl_stmt|;
 DECL|method|DuplicateFilter
 specifier|public
@@ -230,8 +159,12 @@ name|this
 argument_list|(
 name|fieldName
 argument_list|,
+name|KeepMode
+operator|.
 name|KM_USE_LAST_OCCURRENCE
 argument_list|,
+name|ProcessingMode
+operator|.
 name|PM_FULL_VALIDATION
 argument_list|)
 expr_stmt|;
@@ -243,10 +176,10 @@ parameter_list|(
 name|String
 name|fieldName
 parameter_list|,
-name|int
+name|KeepMode
 name|keepMode
 parameter_list|,
-name|int
+name|ProcessingMode
 name|processingMode
 parameter_list|)
 block|{
@@ -286,6 +219,8 @@ if|if
 condition|(
 name|processingMode
 operator|==
+name|ProcessingMode
+operator|.
 name|PM_FAST_INVALIDATION
 condition|)
 block|{
@@ -361,10 +296,14 @@ decl_stmt|;
 if|if
 condition|(
 name|terms
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
+return|return
+name|bits
+return|;
+block|}
 name|TermsEnum
 name|termsEnum
 init|=
@@ -434,6 +373,8 @@ if|if
 condition|(
 name|keepMode
 operator|==
+name|KeepMode
+operator|.
 name|KM_USE_FIRST_OCCURRENCE
 condition|)
 block|{
@@ -487,7 +428,6 @@ argument_list|(
 name|lastDoc
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -559,10 +499,14 @@ decl_stmt|;
 if|if
 condition|(
 name|terms
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
+return|return
+name|bits
+return|;
+block|}
 name|TermsEnum
 name|termsEnum
 init|=
@@ -643,6 +587,8 @@ if|if
 condition|(
 name|keepMode
 operator|==
+name|KeepMode
+operator|.
 name|KM_USE_FIRST_OCCURRENCE
 condition|)
 block|{
@@ -700,6 +646,8 @@ if|if
 condition|(
 name|keepMode
 operator|==
+name|KeepMode
+operator|.
 name|KM_USE_LAST_OCCURRENCE
 condition|)
 block|{
@@ -711,7 +659,6 @@ argument_list|(
 name|lastDoc
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -748,7 +695,7 @@ expr_stmt|;
 block|}
 DECL|method|getKeepMode
 specifier|public
-name|int
+name|KeepMode
 name|getKeepMode
 parameter_list|()
 block|{
@@ -761,7 +708,7 @@ specifier|public
 name|void
 name|setKeepMode
 parameter_list|(
-name|int
+name|KeepMode
 name|keepMode
 parameter_list|)
 block|{
@@ -789,9 +736,11 @@ name|this
 operator|==
 name|obj
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 operator|(
@@ -812,9 +761,11 @@ name|getClass
 argument_list|()
 operator|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|DuplicateFilter
 name|other
 init|=
@@ -836,14 +787,6 @@ name|other
 operator|.
 name|processingMode
 operator|&&
-operator|(
-name|fieldName
-operator|==
-name|other
-operator|.
-name|fieldName
-operator|||
-operator|(
 name|fieldName
 operator|!=
 literal|null
@@ -856,8 +799,6 @@ name|other
 operator|.
 name|fieldName
 argument_list|)
-operator|)
-operator|)
 return|;
 block|}
 annotation|@
@@ -880,6 +821,9 @@ operator|*
 name|hash
 operator|+
 name|keepMode
+operator|.
+name|hashCode
+argument_list|()
 expr_stmt|;
 name|hash
 operator|=
@@ -888,6 +832,9 @@ operator|*
 name|hash
 operator|+
 name|processingMode
+operator|.
+name|hashCode
+argument_list|()
 expr_stmt|;
 name|hash
 operator|=
@@ -906,7 +853,7 @@ return|;
 block|}
 DECL|method|getProcessingMode
 specifier|public
-name|int
+name|ProcessingMode
 name|getProcessingMode
 parameter_list|()
 block|{
@@ -919,7 +866,7 @@ specifier|public
 name|void
 name|setProcessingMode
 parameter_list|(
-name|int
+name|ProcessingMode
 name|processingMode
 parameter_list|)
 block|{

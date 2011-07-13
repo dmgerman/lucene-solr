@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -108,6 +98,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|SlowMultiReaderWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Term
 import|;
 end_import
@@ -134,9 +138,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|SlowMultiReaderWrapper
+name|FixedBitSet
 import|;
 end_import
 
@@ -156,15 +160,11 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
+name|java
 operator|.
 name|util
 operator|.
-name|FixedBitSet
+name|HashSet
 import|;
 end_import
 
