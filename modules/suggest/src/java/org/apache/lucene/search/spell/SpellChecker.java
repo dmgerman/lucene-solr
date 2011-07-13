@@ -2403,10 +2403,9 @@ operator|+
 name|ng
 argument_list|)
 decl_stmt|;
-name|doc
-operator|.
-name|add
-argument_list|(
+name|Field
+name|ngramField
+init|=
 operator|new
 name|Field
 argument_list|(
@@ -2426,6 +2425,23 @@ name|Index
 operator|.
 name|NOT_ANALYZED
 argument_list|)
+decl_stmt|;
+comment|// spellchecker does not use positional queries, but we want freqs
+comment|// for scoring these multivalued n-gram fields.
+name|ngramField
+operator|.
+name|setIndexOptions
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS
+argument_list|)
+expr_stmt|;
+name|doc
+operator|.
+name|add
+argument_list|(
+name|ngramField
 argument_list|)
 expr_stmt|;
 if|if
