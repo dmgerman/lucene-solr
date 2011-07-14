@@ -811,9 +811,6 @@ name|this
 operator|.
 name|numDocs
 operator|=
-operator|(
-name|int
-operator|)
 name|bits
 operator|.
 name|cardinality
