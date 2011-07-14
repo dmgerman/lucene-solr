@@ -22,11 +22,17 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Collection
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|SolrRequest
 import|;
 end_import
 
@@ -59,22 +65,6 @@ operator|.
 name|solrj
 operator|.
 name|SolrServerException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|SolrRequest
 import|;
 end_import
 
@@ -141,6 +131,16 @@ operator|.
 name|util
 operator|.
 name|ContentStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
 import|;
 end_import
 
@@ -233,6 +233,12 @@ block|{
 name|String
 name|qt
 init|=
+name|query
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
 name|query
 operator|.
 name|get
