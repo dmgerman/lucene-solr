@@ -110,9 +110,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|queries
 operator|.
-name|similar
+name|mlt
 operator|.
 name|MoreLikeThisQuery
 import|;
