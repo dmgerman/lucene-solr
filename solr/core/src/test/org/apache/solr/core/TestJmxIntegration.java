@@ -714,6 +714,14 @@ argument_list|(
 name|coreName
 argument_list|)
 expr_stmt|;
+comment|// chill for a moment, so our beans can get ready
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|1000
+argument_list|)
+expr_stmt|;
 name|Set
 argument_list|<
 name|ObjectInstance

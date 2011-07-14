@@ -118,6 +118,18 @@ name|Test
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXParseException
+import|;
+end_import
+
 begin_comment
 comment|/**  *  */
 end_comment
@@ -568,6 +580,14 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|int
+name|zkPort
+init|=
+name|zkServer
+operator|.
+name|getPort
+argument_list|()
+decl_stmt|;
 name|zkServer
 operator|.
 name|shutdown
@@ -587,6 +607,8 @@ operator|new
 name|ZkTestServer
 argument_list|(
 name|zkDir
+argument_list|,
+name|zkPort
 argument_list|)
 expr_stmt|;
 name|zkServer
@@ -745,6 +767,54 @@ argument_list|,
 literal|"//*[@numFound='0']"
 argument_list|)
 expr_stmt|;
+comment|// SOLR-2651: test that reload still gets config files from zookeeper
+name|zkController
+operator|.
+name|getZkClient
+argument_list|()
+operator|.
+name|setData
+argument_list|(
+literal|"/configs/conf1/solrconfig.xml"
+argument_list|,
+operator|new
+name|byte
+index|[
+literal|0
+index|]
+argument_list|)
+expr_stmt|;
+comment|// we set the solrconfig to nothing, so this reload should fail
+try|try
+block|{
+name|h
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|reload
+argument_list|(
+name|h
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"The reloaded SolrCore did not pick up configs from zookeeper"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SAXParseException
+name|e
+parameter_list|)
+block|{            }
 block|}
 annotation|@
 name|AfterClass
