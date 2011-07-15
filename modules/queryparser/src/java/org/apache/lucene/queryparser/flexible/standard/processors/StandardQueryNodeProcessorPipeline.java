@@ -232,13 +232,6 @@ expr_stmt|;
 name|add
 argument_list|(
 operator|new
-name|LowercaseExpandedTermsQueryNodeProcessor
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|add
-argument_list|(
-operator|new
 name|NumericQueryNodeProcessor
 argument_list|()
 argument_list|)
@@ -247,6 +240,13 @@ name|add
 argument_list|(
 operator|new
 name|NumericRangeQueryNodeProcessor
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|add
+argument_list|(
+operator|new
+name|LowercaseExpandedTermsQueryNodeProcessor
 argument_list|()
 argument_list|)
 expr_stmt|;
