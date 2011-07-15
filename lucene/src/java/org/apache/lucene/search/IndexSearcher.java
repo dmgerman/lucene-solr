@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -333,6 +343,8 @@ DECL|class|IndexSearcher
 specifier|public
 class|class
 name|IndexSearcher
+implements|implements
+name|Closeable
 block|{
 DECL|field|reader
 specifier|final
@@ -956,6 +968,8 @@ name|similarityProvider
 return|;
 block|}
 comment|/**    * Note that the underlying IndexReader is not closed, if    * IndexSearcher was constructed with IndexSearcher(IndexReader r).    * If the IndexReader was supplied implicitly by specifying a directory, then    * the IndexReader is closed.    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
