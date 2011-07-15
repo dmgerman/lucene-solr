@@ -3898,9 +3898,9 @@ argument_list|(
 name|getSolrHome
 argument_list|()
 argument_list|,
-name|instanceDir
+name|cd
 operator|.
-name|getName
+name|getInstanceDir
 argument_list|()
 argument_list|)
 expr_stmt|;
