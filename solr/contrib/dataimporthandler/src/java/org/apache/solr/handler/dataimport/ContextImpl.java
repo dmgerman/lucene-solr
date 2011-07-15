@@ -87,7 +87,7 @@ extends|extends
 name|Context
 block|{
 DECL|field|entity
-specifier|private
+specifier|protected
 name|DataConfig
 operator|.
 name|Entity

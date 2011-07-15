@@ -65,7 +65,7 @@ name|entity
 argument_list|,
 literal|null
 argument_list|,
-comment|//to be fethed realtime
+comment|//to be fetched realtime
 literal|null
 argument_list|,
 literal|null
@@ -223,11 +223,25 @@ name|checkLimited
 argument_list|()
 expr_stmt|;
 return|return
-name|super
+name|entity
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|getVariableResolver
+argument_list|()
 operator|.
-name|getResolvedEntityAttribute
+name|replaceTokens
+argument_list|(
+name|entity
+operator|.
+name|allAttributes
+operator|.
+name|get
 argument_list|(
 name|name
+argument_list|)
 argument_list|)
 return|;
 block|}
