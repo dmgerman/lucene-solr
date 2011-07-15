@@ -1368,7 +1368,7 @@ block|}
 block|}
 comment|/*    * This method borrowed from Ant's PropertyHelper.replaceProperties:    *   http://svn.apache.org/repos/asf/ant/core/trunk/src/main/org/apache/tools/ant/PropertyHelper.java    */
 DECL|method|substituteProperty
-specifier|private
+specifier|public
 specifier|static
 name|String
 name|substituteProperty
