@@ -130,20 +130,6 @@ name|Directory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
-import|;
-end_import
-
 begin_comment
 comment|/** Holds common state used during segment merging  *  * @lucene.experimental */
 end_comment
@@ -182,13 +168,6 @@ index|[]
 name|docMaps
 decl_stmt|;
 comment|// Maps docIDs around deletions
-DECL|field|delCounts
-specifier|public
-name|int
-index|[]
-name|delCounts
-decl_stmt|;
-comment|// Deletion count per reader
 DECL|field|docBase
 specifier|public
 name|int
@@ -202,11 +181,6 @@ name|int
 name|mergedDocCount
 decl_stmt|;
 comment|// Total # merged docs
-DECL|field|multiLiveDocs
-specifier|public
-name|Bits
-name|multiLiveDocs
-decl_stmt|;
 DECL|field|checkAbort
 specifier|public
 name|CheckAbort

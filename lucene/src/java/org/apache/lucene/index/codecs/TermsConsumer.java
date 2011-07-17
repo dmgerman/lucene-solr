@@ -284,6 +284,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// We can pass null for liveDocs, because the
+comment|// mapping enum will skip the non-live docs:
 name|docsEnumIn
 operator|=
 operator|(
@@ -293,9 +295,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|mergeState
-operator|.
-name|multiLiveDocs
+literal|null
 argument_list|,
 name|docsEnumIn
 argument_list|)
@@ -439,6 +439,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// We can pass null for liveDocs, because the
+comment|// mapping enum will skip the non-live docs:
 name|postingsEnumIn
 operator|=
 operator|(
@@ -448,9 +450,7 @@ name|termsEnum
 operator|.
 name|docsAndPositions
 argument_list|(
-name|mergeState
-operator|.
-name|multiLiveDocs
+literal|null
 argument_list|,
 name|postingsEnumIn
 argument_list|)
