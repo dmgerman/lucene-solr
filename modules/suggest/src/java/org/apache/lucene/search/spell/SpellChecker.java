@@ -533,36 +533,6 @@ name|SuggestWord
 argument_list|>
 name|comparator
 decl_stmt|;
-comment|/** we don't need to actually analyze any content:    *  all fields are indexed NOT_ANALYZED, but docsinverter    *  needs this for the offset gap!    */
-DECL|field|noAnalyzer
-specifier|private
-specifier|static
-name|Analyzer
-name|noAnalyzer
-init|=
-operator|new
-name|Analyzer
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|TokenStream
-name|tokenStream
-parameter_list|(
-name|String
-name|fieldName
-parameter_list|,
-name|Reader
-name|reader
-parameter_list|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-block|}
-decl_stmt|;
 comment|/**    * Use the given directory as a spell checker index. The directory    * is created if it doesn't exist yet.    * @param spellIndex the spell index directory    * @param sd the {@link StringDistance} measurement to use     * @throws IOException if Spellchecker can not open the directory    */
 DECL|method|SpellChecker
 specifier|public
@@ -696,7 +666,7 @@ name|Version
 operator|.
 name|LUCENE_CURRENT
 argument_list|,
-name|noAnalyzer
+literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1693,7 +1663,7 @@ name|Version
 operator|.
 name|LUCENE_CURRENT
 argument_list|,
-name|noAnalyzer
+literal|null
 argument_list|)
 operator|.
 name|setOpenMode
@@ -1818,7 +1788,7 @@ name|Version
 operator|.
 name|LUCENE_CURRENT
 argument_list|,
-name|noAnalyzer
+literal|null
 argument_list|)
 operator|.
 name|setRAMBufferSizeMB
