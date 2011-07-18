@@ -699,22 +699,6 @@ literal|0
 return|;
 block|}
 block|}
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|equals
-parameter_list|(
-name|Object
-name|other
-parameter_list|)
-block|{
-return|return
-name|sortSegInfoByDelGen
-operator|==
-name|other
-return|;
-block|}
 block|}
 decl_stmt|;
 comment|/** Resolves the buffered deleted Term/Query/docIDs, into    *  actual deleted docIDs in the liveDocs BitVector for    *  each SegmentReader. */
