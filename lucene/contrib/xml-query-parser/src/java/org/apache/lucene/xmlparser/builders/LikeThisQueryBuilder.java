@@ -526,6 +526,11 @@ argument_list|,
 name|fields
 argument_list|,
 name|analyzer
+argument_list|,
+name|fields
+index|[
+literal|0
+index|]
 argument_list|)
 decl_stmt|;
 name|mlt

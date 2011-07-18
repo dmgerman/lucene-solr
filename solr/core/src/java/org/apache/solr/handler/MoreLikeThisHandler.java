@@ -2436,6 +2436,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// analyzing with the first field: previous (stupid) behavior
 name|rawMLTQuery
 operator|=
 name|mlt
@@ -2443,6 +2444,14 @@ operator|.
 name|like
 argument_list|(
 name|reader
+argument_list|,
+name|mlt
+operator|.
+name|getFieldNames
+argument_list|()
+index|[
+literal|0
+index|]
 argument_list|)
 expr_stmt|;
 name|boostedMLTQuery
