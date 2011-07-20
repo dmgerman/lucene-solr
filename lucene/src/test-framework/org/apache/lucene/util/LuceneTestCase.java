@@ -4479,7 +4479,7 @@ name|p
 init|=
 name|TEST_NIGHTLY
 condition|?
-literal|25
+literal|10
 else|:
 literal|5
 decl_stmt|;
@@ -4507,10 +4507,10 @@ name|min
 argument_list|(
 name|p
 argument_list|,
-literal|90
+literal|50
 argument_list|)
 decl_stmt|;
-comment|// never more than 90
+comment|// never more than 50
 return|return
 name|random
 operator|.

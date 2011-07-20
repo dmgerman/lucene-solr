@@ -395,7 +395,7 @@ name|RANDOM_MULTIPLIER
 else|:
 name|atLeast
 argument_list|(
-literal|2000
+literal|1000
 argument_list|)
 decl_stmt|;
 for|for
@@ -670,7 +670,7 @@ name|num
 init|=
 name|atLeast
 argument_list|(
-literal|1000
+literal|100
 argument_list|)
 decl_stmt|;
 for|for
