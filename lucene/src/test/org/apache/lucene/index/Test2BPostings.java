@@ -452,6 +452,8 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|VERBOSE
+operator|&&
 name|i
 operator|%
 literal|100000
@@ -495,6 +497,11 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
 name|ci
 operator|.
 name|setInfoStream
@@ -504,6 +511,7 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+block|}
 name|ci
 operator|.
 name|checkIndex
