@@ -4411,7 +4411,7 @@ init|=
 operator|(
 name|TEST_NIGHTLY
 condition|?
-literal|5
+literal|3
 operator|*
 name|i
 else|:
