@@ -329,6 +329,11 @@ specifier|private
 name|Properties
 name|persistedProperties
 decl_stmt|;
+DECL|field|propWriter
+specifier|private
+name|DIHPropertiesWriter
+name|propWriter
+decl_stmt|;
 DECL|method|DocBuilder
 specifier|public
 name|DocBuilder
@@ -338,6 +343,9 @@ name|dataImporter
 parameter_list|,
 name|SolrWriter
 name|writer
+parameter_list|,
+name|DIHPropertiesWriter
+name|propWriter
 parameter_list|,
 name|DataImporter
 operator|.
@@ -363,6 +371,12 @@ operator|.
 name|writer
 operator|=
 name|writer
+expr_stmt|;
+name|this
+operator|.
+name|propWriter
+operator|=
+name|propWriter
 expr_stmt|;
 name|DataImporter
 operator|.
@@ -409,7 +423,7 @@ argument_list|)
 expr_stmt|;
 name|persistedProperties
 operator|=
-name|writer
+name|propWriter
 operator|.
 name|readIndexerProperties
 argument_list|()
@@ -1481,7 +1495,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|writer
+name|propWriter
 operator|.
 name|persist
 argument_list|(
