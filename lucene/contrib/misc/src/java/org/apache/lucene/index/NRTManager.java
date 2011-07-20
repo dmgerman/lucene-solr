@@ -873,6 +873,20 @@ name|searchingGen
 operator|.
 name|get
 argument_list|()
+operator|:
+literal|"noDeletesSearchingGen="
+operator|+
+name|noDeletesSearchingGen
+operator|.
+name|get
+argument_list|()
+operator|+
+literal|" searchingGen="
+operator|+
+name|searchingGen
+operator|.
+name|get
+argument_list|()
 assert|;
 if|if
 condition|(

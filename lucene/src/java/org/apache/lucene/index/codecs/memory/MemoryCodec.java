@@ -4405,18 +4405,6 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|loadTermsIndex
-parameter_list|(
-name|int
-name|indexDivisor
-parameter_list|)
-block|{
-comment|// no op
-block|}
-annotation|@
-name|Override
-specifier|public
-name|void
 name|close
 parameter_list|()
 block|{

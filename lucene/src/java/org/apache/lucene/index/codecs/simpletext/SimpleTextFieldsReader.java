@@ -3633,17 +3633,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|loadTermsIndex
-specifier|public
-name|void
-name|loadTermsIndex
-parameter_list|(
-name|int
-name|indexDivisor
-parameter_list|)
-block|{   }
-annotation|@
-name|Override
 DECL|method|close
 specifier|public
 name|void

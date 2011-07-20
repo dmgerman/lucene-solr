@@ -1094,6 +1094,12 @@ operator|.
 name|release
 argument_list|(
 name|reader
+argument_list|,
+name|IOContext
+operator|.
+name|Context
+operator|.
+name|READ
 argument_list|)
 expr_stmt|;
 block|}
@@ -1298,6 +1304,12 @@ operator|.
 name|release
 argument_list|(
 name|reader
+argument_list|,
+name|IOContext
+operator|.
+name|Context
+operator|.
+name|READ
 argument_list|)
 expr_stmt|;
 block|}

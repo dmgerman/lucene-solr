@@ -1654,6 +1654,8 @@ name|MergeAbortedException
 operator|)
 condition|)
 block|{
+comment|//System.out.println(Thread.currentThread().getName() + ": CMS: exc");
+comment|//exc.printStackTrace(System.out);
 if|if
 condition|(
 operator|!

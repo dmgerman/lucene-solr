@@ -2110,6 +2110,17 @@ name|input
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|version
+operator|<
+name|VERSION_DGAPS_CLEARED
+condition|)
+block|{
+name|invertAll
+argument_list|()
+expr_stmt|;
+block|}
 assert|assert
 name|verifyCount
 argument_list|()

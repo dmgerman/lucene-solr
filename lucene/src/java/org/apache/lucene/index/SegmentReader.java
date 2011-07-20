@@ -180,20 +180,6 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|BufferedIndexInput
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|Directory
 import|;
 end_import
@@ -830,24 +816,6 @@ literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|liveDocs
-operator|.
-name|getVersion
-argument_list|()
-operator|<
-name|BitVector
-operator|.
-name|VERSION_DGAPS_CLEARED
-condition|)
-block|{
-name|liveDocs
-operator|.
-name|invertAll
-argument_list|()
-expr_stmt|;
-block|}
 name|liveDocsRef
 operator|=
 operator|new
@@ -3159,31 +3127,6 @@ expr_stmt|;
 comment|// increment also if some norms are separate
 block|}
 block|}
-block|}
-comment|// NOTE: only called from IndexWriter when a near
-comment|// real-time reader is opened, or applyDeletes is run,
-comment|// sharing a segment that's still being merged.  This
-comment|// method is not thread safe, and relies on the
-comment|// synchronization in IndexWriter
-DECL|method|loadTermsIndex
-name|void
-name|loadTermsIndex
-parameter_list|(
-name|int
-name|indexDivisor
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|core
-operator|.
-name|fields
-operator|.
-name|loadTermsIndex
-argument_list|(
-name|indexDivisor
-argument_list|)
-expr_stmt|;
 block|}
 comment|// for testing only
 DECL|method|normsClosed

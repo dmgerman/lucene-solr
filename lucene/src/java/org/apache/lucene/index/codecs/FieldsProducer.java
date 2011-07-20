@@ -104,18 +104,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-DECL|method|loadTermsIndex
-specifier|public
-specifier|abstract
-name|void
-name|loadTermsIndex
-parameter_list|(
-name|int
-name|indexDivisor
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 DECL|field|EMPTY
 specifier|public
 specifier|static
@@ -158,18 +146,6 @@ operator|.
 name|EMPTY
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|loadTermsIndex
-parameter_list|(
-name|int
-name|indexDivisor
-parameter_list|)
-throws|throws
-name|IOException
-block|{            }
 annotation|@
 name|Override
 specifier|public

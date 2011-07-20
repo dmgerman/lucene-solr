@@ -3451,6 +3451,21 @@ condition|)
 block|{
 comment|// Must force the close else the writer can have
 comment|// open files which cause exc in MockRAMDir.close
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: now rollback"
+argument_list|)
+expr_stmt|;
+block|}
 name|modifier
 operator|.
 name|rollback
