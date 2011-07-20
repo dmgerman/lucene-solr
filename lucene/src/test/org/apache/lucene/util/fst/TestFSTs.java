@@ -6170,13 +6170,15 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"  term="
+literal|"  term prefix="
 operator|+
 name|inputToString
 argument_list|(
 name|inputMode
 argument_list|,
 name|prefix
+argument_list|,
+literal|false
 argument_list|)
 operator|+
 literal|" count="
@@ -6541,7 +6543,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"  fstEnum.next term="
+literal|"  fstEnum.next prefix="
 operator|+
 name|inputToString
 argument_list|(
@@ -6550,6 +6552,8 @@ argument_list|,
 name|current
 operator|.
 name|input
+argument_list|,
+literal|false
 argument_list|)
 operator|+
 literal|" output="
@@ -6728,7 +6732,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: verify term="
+literal|"TEST: verify prefix="
 operator|+
 name|inputToString
 argument_list|(
@@ -6738,6 +6742,8 @@ name|ent
 operator|.
 name|getKey
 argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 operator|+
 literal|" output="
@@ -7083,6 +7089,47 @@ name|IntsRef
 name|term
 parameter_list|)
 block|{
+return|return
+name|inputToString
+argument_list|(
+name|inputMode
+argument_list|,
+name|term
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
+DECL|method|inputToString
+specifier|private
+specifier|static
+name|String
+name|inputToString
+parameter_list|(
+name|int
+name|inputMode
+parameter_list|,
+name|IntsRef
+name|term
+parameter_list|,
+name|boolean
+name|isValidUnicode
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|isValidUnicode
+condition|)
+block|{
+return|return
+name|term
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+elseif|else
 if|if
 condition|(
 name|inputMode
