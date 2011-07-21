@@ -1171,16 +1171,6 @@ condition|)
 return|return
 literal|null
 return|;
-name|VariableResolverImpl
-name|vri
-init|=
-name|VariableResolverImpl
-operator|.
-name|CURRENT_VARIABLE_RESOLVER
-operator|.
-name|get
-argument_list|()
-decl_stmt|;
 return|return
 name|evaluator
 operator|.

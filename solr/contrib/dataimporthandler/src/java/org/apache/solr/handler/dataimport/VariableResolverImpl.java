@@ -91,11 +91,6 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Used for creating Evaluators    */
-DECL|field|context
-name|Context
-name|context
-decl_stmt|;
 DECL|field|templateString
 specifier|private
 specifier|final
