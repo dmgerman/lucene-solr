@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Properties
@@ -39,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  */
+comment|/**  * @since solr 3.2  */
 end_comment
 
 begin_interface
