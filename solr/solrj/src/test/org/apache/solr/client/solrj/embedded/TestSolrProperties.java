@@ -471,7 +471,7 @@ name|getSolrHome
 parameter_list|()
 block|{
 return|return
-literal|"solr/shared"
+literal|"solrj/solr/shared"
 return|;
 block|}
 DECL|method|getOrigSolrXml

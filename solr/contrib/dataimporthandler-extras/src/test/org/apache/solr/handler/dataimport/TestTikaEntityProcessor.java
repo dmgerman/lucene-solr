@@ -197,7 +197,7 @@ literal|"<entity processor=\"TikaEntityProcessor\" url=\""
 operator|+
 name|getFile
 argument_list|(
-literal|"solr-word.pdf"
+literal|"dihextras/solr-word.pdf"
 argument_list|)
 operator|.
 name|getAbsolutePath
@@ -252,7 +252,7 @@ literal|"dataimport-schema-no-unique-key.xml"
 argument_list|,
 name|getFile
 argument_list|(
-literal|"solr-dihextras"
+literal|"dihextras/solr"
 argument_list|)
 operator|.
 name|getAbsolutePath

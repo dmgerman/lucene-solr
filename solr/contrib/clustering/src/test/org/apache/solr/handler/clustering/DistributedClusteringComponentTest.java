@@ -62,15 +62,8 @@ name|String
 name|getSolrHome
 parameter_list|()
 block|{
-comment|// TODO: this should work with just "solr-clustering"...
 return|return
-name|getFile
-argument_list|(
-literal|"solr-clustering"
-argument_list|)
-operator|.
-name|getAbsolutePath
-argument_list|()
+literal|"clustering/solr"
 return|;
 block|}
 annotation|@

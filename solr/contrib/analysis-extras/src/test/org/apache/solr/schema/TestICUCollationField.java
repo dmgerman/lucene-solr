@@ -446,7 +446,7 @@ name|copyFile
 argument_list|(
 name|getFile
 argument_list|(
-literal|"solr-analysis-extras/conf/solrconfig-icucollate.xml"
+literal|"analysis-extras/solr/conf/solrconfig-icucollate.xml"
 argument_list|)
 argument_list|,
 operator|new
@@ -464,7 +464,7 @@ name|copyFile
 argument_list|(
 name|getFile
 argument_list|(
-literal|"solr-analysis-extras/conf/schema-icucollate.xml"
+literal|"analysis-extras/solr/conf/schema-icucollate.xml"
 argument_list|)
 argument_list|,
 operator|new

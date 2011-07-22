@@ -247,7 +247,13 @@ literal|"solrconfig.xml"
 argument_list|,
 literal|"schema.xml"
 argument_list|,
-literal|"solr-extraction"
+name|getFile
+argument_list|(
+literal|"extraction/solr"
+argument_list|)
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -315,7 +321,7 @@ argument_list|)
 expr_stmt|;
 name|loadLocal
 argument_list|(
-literal|"solr-word.pdf"
+literal|"extraction/solr-word.pdf"
 argument_list|,
 literal|"fmap.created"
 argument_list|,
@@ -390,7 +396,7 @@ argument_list|)
 expr_stmt|;
 name|loadLocal
 argument_list|(
-literal|"simple.html"
+literal|"extraction/simple.html"
 argument_list|,
 literal|"fmap.created"
 argument_list|,
@@ -457,7 +463,7 @@ argument_list|)
 expr_stmt|;
 name|loadLocal
 argument_list|(
-literal|"simple.html"
+literal|"extraction/simple.html"
 argument_list|,
 literal|"literal.id"
 argument_list|,
@@ -517,7 +523,7 @@ expr_stmt|;
 comment|// load again in the exact same way, but boost one field
 name|loadLocal
 argument_list|(
-literal|"simple.html"
+literal|"extraction/simple.html"
 argument_list|,
 literal|"literal.id"
 argument_list|,
@@ -582,7 +588,7 @@ comment|//test lowercase and then uprefix
 comment|// test capture
 name|loadLocal
 argument_list|(
-literal|"simple.html"
+literal|"extraction/simple.html"
 argument_list|,
 literal|"literal.id"
 argument_list|,
@@ -624,7 +630,7 @@ argument_list|)
 expr_stmt|;
 name|loadLocal
 argument_list|(
-literal|"version_control.xml"
+literal|"extraction/version_control.xml"
 argument_list|,
 literal|"fmap.created"
 argument_list|,
@@ -740,7 +746,7 @@ expr_stmt|;
 comment|// TODO: should this exception be happening?
 name|loadLocal
 argument_list|(
-literal|"simple.html"
+literal|"extraction/simple.html"
 argument_list|,
 literal|"literal.id"
 argument_list|,
@@ -783,7 +789,7 @@ expr_stmt|;
 block|}
 name|loadLocal
 argument_list|(
-literal|"simple.html"
+literal|"extraction/simple.html"
 argument_list|,
 literal|"literal.id"
 argument_list|,
@@ -834,7 +840,7 @@ expr_stmt|;
 comment|//Test when both uprefix and default are specified.
 name|loadLocal
 argument_list|(
-literal|"simple.html"
+literal|"extraction/simple.html"
 argument_list|,
 literal|"literal.id"
 argument_list|,
@@ -921,7 +927,7 @@ expr_stmt|;
 comment|//test literal
 name|loadLocal
 argument_list|(
-literal|"version_control.xml"
+literal|"extraction/version_control.xml"
 argument_list|,
 literal|"fmap.created"
 argument_list|,
@@ -1018,7 +1024,7 @@ try|try
 block|{
 name|loadLocal
 argument_list|(
-literal|"version_control.xml"
+literal|"extraction/version_control.xml"
 argument_list|,
 literal|"fmap.created"
 argument_list|,
@@ -1078,7 +1084,7 @@ comment|//nothing to see here, move along
 block|}
 name|loadLocal
 argument_list|(
-literal|"version_control.xml"
+literal|"extraction/version_control.xml"
 argument_list|,
 literal|"fmap.created"
 argument_list|,
@@ -1176,7 +1182,7 @@ expr_stmt|;
 comment|// Load plain text specifying MIME type:
 name|loadLocal
 argument_list|(
-literal|"version_control.txt"
+literal|"extraction/version_control.txt"
 argument_list|,
 literal|"fmap.created"
 argument_list|,
@@ -1282,7 +1288,7 @@ expr_stmt|;
 comment|// Load plain text specifying filename
 name|loadLocal
 argument_list|(
-literal|"version_control.txt"
+literal|"extraction/version_control.txt"
 argument_list|,
 literal|"fmap.created"
 argument_list|,
@@ -1320,7 +1326,7 @@ name|ExtractingParams
 operator|.
 name|RESOURCE_NAME
 argument_list|,
-literal|"version_control.txt"
+literal|"extraction/version_control.txt"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1392,7 +1398,7 @@ name|rsp
 init|=
 name|loadLocal
 argument_list|(
-literal|"solr-word.pdf"
+literal|"extraction/solr-word.pdf"
 argument_list|,
 name|ExtractingParams
 operator|.
@@ -1517,7 +1523,7 @@ name|rsp
 operator|=
 name|loadLocal
 argument_list|(
-literal|"solr-word.pdf"
+literal|"extraction/solr-word.pdf"
 argument_list|,
 name|ExtractingParams
 operator|.
@@ -1683,7 +1689,7 @@ name|rsp
 init|=
 name|loadLocal
 argument_list|(
-literal|"example.html"
+literal|"extraction/example.html"
 argument_list|,
 name|ExtractingParams
 operator|.
@@ -1793,7 +1799,7 @@ argument_list|)
 expr_stmt|;
 name|loadLocal
 argument_list|(
-literal|"arabic.pdf"
+literal|"extraction/arabic.pdf"
 argument_list|,
 literal|"fmap.created"
 argument_list|,
@@ -1906,7 +1912,7 @@ try|try
 block|{
 name|loadLocal
 argument_list|(
-literal|"password-is-solrcell.docx"
+literal|"extraction/password-is-solrcell.docx"
 argument_list|,
 literal|"literal.id"
 argument_list|,
@@ -1945,7 +1951,7 @@ try|try
 block|{
 name|loadLocal
 argument_list|(
-literal|"password-is-solrcell.docx"
+literal|"extraction/password-is-solrcell.docx"
 argument_list|,
 literal|"fmap.created"
 argument_list|,

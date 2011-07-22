@@ -321,7 +321,7 @@ name|schema
 argument_list|,
 name|getFile
 argument_list|(
-literal|"solr-dih"
+literal|"dih/solr"
 argument_list|)
 operator|.
 name|getAbsolutePath

@@ -184,7 +184,7 @@ argument_list|)
 operator|.
 name|openResource
 argument_list|(
-literal|"sampleDateFacetResponse.xml"
+literal|"solrj/sampleDateFacetResponse.xml"
 argument_list|)
 decl_stmt|;
 name|assertNotNull

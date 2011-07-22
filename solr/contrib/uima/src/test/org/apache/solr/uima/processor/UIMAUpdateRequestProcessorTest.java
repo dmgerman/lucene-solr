@@ -339,7 +339,13 @@ literal|"solrconfig.xml"
 argument_list|,
 literal|"schema.xml"
 argument_list|,
-literal|"solr-uima"
+name|getFile
+argument_list|(
+literal|"uima/solr"
+argument_list|)
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

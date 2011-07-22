@@ -78,7 +78,7 @@ literal|"solrconfig.xml"
 argument_list|,
 literal|"schema.xml"
 argument_list|,
-literal|"solr-clustering"
+literal|"clustering/solr"
 argument_list|)
 expr_stmt|;
 name|numberOfDocs
