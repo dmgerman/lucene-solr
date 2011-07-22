@@ -113,13 +113,6 @@ name|Context
 name|context
 parameter_list|)
 function_decl|;
-comment|//TODO add comments
-DECL|method|getDebugLogger
-specifier|public
-name|DebugLogger
-name|getDebugLogger
-parameter_list|()
-function_decl|;
 block|}
 end_interface
 

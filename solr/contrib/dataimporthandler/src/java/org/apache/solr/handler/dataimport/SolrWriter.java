@@ -775,18 +775,6 @@ parameter_list|)
 block|{
 comment|/* NO-OP */
 block|}
-annotation|@
-name|Override
-DECL|method|getDebugLogger
-specifier|public
-name|DebugLogger
-name|getDebugLogger
-parameter_list|()
-block|{
-return|return
-name|debugLogger
-return|;
-block|}
 block|}
 end_class
 
