@@ -503,6 +503,35 @@ operator|-
 name|prevCount
 argument_list|)
 expr_stmt|;
+comment|// test that offset works when not caching main query
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!cache=false}*:*"
+argument_list|,
+literal|"start"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"val_i asc"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"val_i"
+argument_list|)
+argument_list|,
+literal|"/response/docs==[{'val_i':3}]"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|class|Model
 class|class

@@ -6000,13 +6000,6 @@ argument_list|)
 expr_stmt|;
 comment|//Parameters: cmd.getQuery(),theFilt,cmd.getSort(),0,supersetMaxDoc,cmd.getFlags(),cmd.getTimeAllowed(),responseHeader);
 block|}
-if|if
-condition|(
-name|key
-operator|!=
-literal|null
-condition|)
-block|{
 name|superset
 operator|=
 name|out
@@ -6032,7 +6025,6 @@ name|getLen
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|// lastly, put the superset in the cache if the size is less than or equal
 comment|// to queryResultMaxDocsCached
