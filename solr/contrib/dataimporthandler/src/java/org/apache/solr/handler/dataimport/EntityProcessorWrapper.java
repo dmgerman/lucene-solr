@@ -421,8 +421,6 @@ name|transformer
 operator|=
 name|docBuilder
 operator|.
-name|writer
-operator|.
 name|getDebugLogger
 argument_list|()
 operator|.

@@ -607,10 +607,9 @@ name|ctx
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getDebubLogger
-specifier|private
+DECL|method|getDebugLogger
 name|DebugLogger
-name|getDebubLogger
+name|getDebugLogger
 parameter_list|()
 block|{
 if|if
@@ -3570,7 +3569,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|getDebubLogger
+name|getDebugLogger
 argument_list|()
 operator|.
 name|log
@@ -3590,7 +3589,7 @@ condition|(
 name|verboseDebug
 condition|)
 block|{
-name|getDebubLogger
+name|getDebugLogger
 argument_list|()
 operator|.
 name|log
@@ -3661,7 +3660,7 @@ operator|.
 name|start
 condition|)
 block|{
-name|getDebubLogger
+name|getDebugLogger
 argument_list|()
 operator|.
 name|log
@@ -3685,7 +3684,7 @@ operator|.
 name|isDocRoot
 condition|)
 block|{
-name|getDebubLogger
+name|getDebugLogger
 argument_list|()
 operator|.
 name|log
@@ -3851,7 +3850,7 @@ condition|(
 name|verboseDebug
 condition|)
 block|{
-name|getDebubLogger
+name|getDebugLogger
 argument_list|()
 operator|.
 name|log
@@ -4050,7 +4049,7 @@ condition|(
 name|verboseDebug
 condition|)
 block|{
-name|getDebubLogger
+name|getDebugLogger
 argument_list|()
 operator|.
 name|log
@@ -4163,7 +4162,7 @@ condition|(
 name|verboseDebug
 condition|)
 block|{
-name|getDebubLogger
+name|getDebugLogger
 argument_list|()
 operator|.
 name|log
@@ -4199,7 +4198,7 @@ condition|(
 name|verboseDebug
 condition|)
 block|{
-name|getDebubLogger
+name|getDebugLogger
 argument_list|()
 operator|.
 name|log
@@ -4221,7 +4220,7 @@ name|entity
 operator|.
 name|isDocRoot
 condition|)
-name|getDebubLogger
+name|getDebugLogger
 argument_list|()
 operator|.
 name|log
@@ -4253,7 +4252,7 @@ condition|(
 name|verboseDebug
 condition|)
 block|{
-name|getDebubLogger
+name|getDebugLogger
 argument_list|()
 operator|.
 name|log
