@@ -93,7 +93,7 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
-comment|/** 	 *<p> 	 *  Add a document to this writer's underlying data store. 	 *</p> 	 * @param doc 	 * @return 	 */
+comment|/** 	 *<p> 	 *  Add a document to this writer's underlying data store. 	 *</p> 	 * @param doc 	 * @return true on success, false on failure 	 */
 DECL|method|upload
 specifier|public
 name|boolean
