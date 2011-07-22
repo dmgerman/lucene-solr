@@ -1232,25 +1232,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|log
-specifier|public
-name|void
-name|log
-parameter_list|(
-name|int
-name|event
-parameter_list|,
-name|String
-name|name
-parameter_list|,
-name|Object
-name|row
-parameter_list|)
-block|{
-comment|// Do nothing
-block|}
-annotation|@
-name|Override
 DECL|method|doDeleteAll
 specifier|public
 name|void
