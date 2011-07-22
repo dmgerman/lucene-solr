@@ -212,18 +212,6 @@ end_import
 
 begin_import
 import|import
-name|sun
-operator|.
-name|tools
-operator|.
-name|asm
-operator|.
-name|CatchData
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
