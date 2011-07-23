@@ -926,9 +926,9 @@ expr_stmt|;
 comment|// enclosing mark, don't split
 name|doSplit
 argument_list|(
-literal|"Ûtest"
+literal|"testâ"
 argument_list|,
-literal|"Ûtest"
+literal|"testâ"
 argument_list|)
 expr_stmt|;
 comment|// combining spacing mark (the virama), don't split
