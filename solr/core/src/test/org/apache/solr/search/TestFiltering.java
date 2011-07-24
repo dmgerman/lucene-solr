@@ -135,6 +135,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|clearIndex
+argument_list|()
+expr_stmt|;
 name|assertU
 argument_list|(
 name|adoc
