@@ -1050,12 +1050,6 @@ init|=
 operator|(
 name|INDEXED
 operator||
-name|OMIT_NORMS
-operator||
-name|OMIT_TF_POSITIONS
-operator||
-name|OMIT_POSITIONS
-operator||
 name|STORE_TERMVECTORS
 operator||
 name|STORE_TERMPOSITIONS
@@ -1085,7 +1079,7 @@ literal|"SchemaField: "
 operator|+
 name|name
 operator|+
-literal|" conflicting indexed field options:"
+literal|" conflicting 'true' field options for non-indexed field:"
 operator|+
 name|props
 argument_list|)
@@ -1102,6 +1096,57 @@ condition|(
 name|on
 argument_list|(
 name|falseProps
+argument_list|,
+name|INDEXED
+argument_list|)
+condition|)
+block|{
+name|int
+name|pp
+init|=
+operator|(
+name|OMIT_NORMS
+operator||
+name|OMIT_TF_POSITIONS
+operator||
+name|OMIT_POSITIONS
+operator|)
+decl_stmt|;
+if|if
+condition|(
+name|on
+argument_list|(
+name|pp
+argument_list|,
+name|falseProps
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"SchemaField: "
+operator|+
+name|name
+operator|+
+literal|" conflicting 'false' field options for non-indexed field:"
+operator|+
+name|props
+argument_list|)
+throw|;
+block|}
+name|p
+operator|&=
+operator|~
+name|pp
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|on
+argument_list|(
+name|trueProps
 argument_list|,
 name|OMIT_TF_POSITIONS
 argument_list|)
@@ -1122,7 +1167,7 @@ name|on
 argument_list|(
 name|pp
 argument_list|,
-name|trueProps
+name|falseProps
 argument_list|)
 condition|)
 block|{
@@ -1134,7 +1179,7 @@ literal|"SchemaField: "
 operator|+
 name|name
 operator|+
-literal|" conflicting indexed field options:"
+literal|" conflicting tf and position field options:"
 operator|+
 name|props
 argument_list|)

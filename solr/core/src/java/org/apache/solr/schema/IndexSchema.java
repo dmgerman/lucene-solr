@@ -2919,7 +2919,12 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Schema Parsing Failed"
+literal|"Schema Parsing Failed: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|,
