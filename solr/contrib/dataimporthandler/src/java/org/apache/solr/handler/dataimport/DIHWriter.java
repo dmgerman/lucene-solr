@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @solr.experimental  *  */
+comment|/**  * @lucene.experimental  *  */
 end_comment
 
 begin_interface
