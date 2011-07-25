@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This query node represents a range query.  *   * @see org.apache.lucene.queryparser.flexible.standard.processors.ParametricRangeQueryNodeProcessor  * @see org.apache.lucene.search.TermRangeQuery  */
+comment|/**  * This query node represents a range query composed by {@link FieldQueryNode}  * bounds, which means the bound values are strings.  *   * @see FieldQueryNode  * @see AbstractRangeQueryNode  */
 end_comment
 
 begin_class
@@ -57,6 +57,7 @@ argument_list|<
 name|FieldQueryNode
 argument_list|>
 block|{
+comment|/**    * Constructs a {@link TermRangeQueryNode} object using the given    * {@link FieldQueryNode} as its bounds.    *     * @param lower the lower bound    * @param upper the upper bound    * @param lowerInclusive<code>true</code> if the lower bound is inclusive, otherwise,<code>false</code>    * @param upperInclusive<code>true</code> if the upper bound is inclusive, otherwise,<code>false</code>    */
 DECL|method|TermRangeQueryNode
 specifier|public
 name|TermRangeQueryNode

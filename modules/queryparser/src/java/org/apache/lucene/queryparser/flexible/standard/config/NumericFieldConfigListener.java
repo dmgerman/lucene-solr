@@ -114,6 +114,10 @@ name|ConfigurationKeys
 import|;
 end_import
 
+begin_comment
+comment|/**  * This listener is used to listen to {@link FieldConfig} requests in  * {@link QueryConfigHandler} and add {@link ConfigurationKeys#NUMERIC_CONFIG}  * based on the {@link ConfigurationKeys#NUMERIC_CONFIG_MAP} set in the  * {@link QueryConfigHandler}.  *   * @see NumericConfig  * @see QueryConfigHandler  * @see ConfigurationKeys#NUMERIC_CONFIG  * @see ConfigurationKeys#NUMERIC_CONFIG_MAP  */
+end_comment
+
 begin_class
 DECL|class|NumericFieldConfigListener
 specifier|public
@@ -128,6 +132,7 @@ specifier|private
 name|QueryConfigHandler
 name|config
 decl_stmt|;
+comment|/**    * Construcs a {@link NumericFieldConfigListener} object using the given {@link QueryConfigHandler}.    *     * @param config the {@link QueryConfigHandler} it will listen too    */
 DECL|method|NumericFieldConfigListener
 specifier|public
 name|NumericFieldConfigListener

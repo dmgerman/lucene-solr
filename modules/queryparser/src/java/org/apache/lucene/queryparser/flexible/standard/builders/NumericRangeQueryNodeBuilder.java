@@ -202,6 +202,10 @@ name|NumericRangeQuery
 import|;
 end_import
 
+begin_comment
+comment|/**  * Builds {@link NumericRangeQuery}s out of {@link NumericRangeQueryNode}s.  *  * @see NumericRangeQuery  * @see NumericRangeQueryNode  */
+end_comment
+
 begin_class
 DECL|class|NumericRangeQueryNodeBuilder
 specifier|public
@@ -210,6 +214,7 @@ name|NumericRangeQueryNodeBuilder
 implements|implements
 name|StandardQueryBuilder
 block|{
+comment|/**    * Constructs a {@link NumericRangeQueryNodeBuilder} object.    */
 DECL|method|NumericRangeQueryNodeBuilder
 specifier|public
 name|NumericRangeQueryNodeBuilder

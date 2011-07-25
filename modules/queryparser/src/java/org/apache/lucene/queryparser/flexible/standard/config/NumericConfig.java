@@ -46,6 +46,24 @@ name|NumericField
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|NumericRangeQuery
+import|;
+end_import
+
+begin_comment
+comment|/**  * This class holds the configuration used to parse numeric queries and create  * {@link NumericRangeQuery}s.  *   * @see NumericRangeQuery  * @see NumberFormat  */
+end_comment
+
 begin_class
 DECL|class|NumericConfig
 specifier|public
@@ -69,6 +87,7 @@ operator|.
 name|DataType
 name|type
 decl_stmt|;
+comment|/**    * Constructs a {@link NumericConfig} object.    *     * @param precisionStep    *          the precision used to index the numeric values    * @param format    *          the {@link NumberFormat} used to parse a {@link String} to    *          {@link Number}    * @param type    *          the numeric type used to index the numeric values    *     * @see NumericConfig#setPrecisionStep(int)    * @see NumericConfig#setNumberFormat(NumberFormat)    * @see #setType(org.apache.lucene.document.NumericField.DataType)    */
 DECL|method|NumericConfig
 specifier|public
 name|NumericConfig
@@ -101,6 +120,7 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Returns the precision used to index the numeric values    *     * @return the precision used to index the numeric values    *     * @see NumericRangeQuery#getPrecisionStep()    */
 DECL|method|getPrecisionStep
 specifier|public
 name|int
@@ -111,6 +131,7 @@ return|return
 name|precisionStep
 return|;
 block|}
+comment|/**    * Sets the precision used to index the numeric values    *     * @param precisionStep    *          the precision used to index the numeric values    *     * @see NumericRangeQuery#getPrecisionStep()    */
 DECL|method|setPrecisionStep
 specifier|public
 name|void
@@ -127,6 +148,7 @@ operator|=
 name|precisionStep
 expr_stmt|;
 block|}
+comment|/**    * Returns the {@link NumberFormat} used to parse a {@link String} to    * {@link Number}    *     * @return the {@link NumberFormat} used to parse a {@link String} to    *         {@link Number}    */
 DECL|method|getNumberFormat
 specifier|public
 name|NumberFormat
@@ -137,6 +159,7 @@ return|return
 name|format
 return|;
 block|}
+comment|/**    * Returns the numeric type used to index the numeric values    *     * @return the numeric type used to index the numeric values    */
 DECL|method|getType
 specifier|public
 name|NumericField
@@ -149,6 +172,7 @@ return|return
 name|type
 return|;
 block|}
+comment|/**    * Sets the numeric type used to index the numeric values    *     * @param type the numeric type used to index the numeric values    */
 DECL|method|setType
 specifier|public
 name|void
@@ -182,6 +206,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
+comment|/**    * Sets the {@link NumberFormat} used to parse a {@link String} to    * {@link Number}    *     * @param format    *          the {@link NumberFormat} used to parse a {@link String} to    *          {@link Number}, cannot be<code>null</code>    */
 DECL|method|setNumberFormat
 specifier|public
 name|void
@@ -260,11 +285,34 @@ name|precisionStep
 operator|&&
 name|this
 operator|.
+name|type
+operator|==
+name|other
+operator|.
+name|type
+operator|&&
+operator|(
+name|this
+operator|.
 name|format
 operator|==
 name|other
 operator|.
 name|format
+operator|||
+operator|(
+name|this
+operator|.
+name|format
+operator|.
+name|equals
+argument_list|(
+name|other
+operator|.
+name|format
+argument_list|)
+operator|)
+operator|)
 condition|)
 block|{
 return|return

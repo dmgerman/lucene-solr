@@ -178,6 +178,26 @@ name|core
 operator|.
 name|nodes
 operator|.
+name|FieldQueryNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
+name|core
+operator|.
+name|nodes
+operator|.
 name|ParametricQueryNode
 import|;
 end_import
@@ -366,6 +386,10 @@ name|NumericRangeQueryNode
 import|;
 end_import
 
+begin_comment
+comment|/**  * This processor is used to convert {@link ParametricRangeQueryNode}s to  * {@link NumericRangeQueryNode}s. It looks for  * {@link ConfigurationKeys#NUMERIC_CONFIG} set in the {@link FieldConfig} of  * every {@link ParametricRangeQueryNode} found. If  * {@link ConfigurationKeys#NUMERIC_CONFIG} is found, it considers that  * {@link ParametricRangeQueryNode} to be a numeric range query and convert it to  * {@link NumericRangeQueryNode}.  *   * @see ConfigurationKeys#NUMERIC_CONFIG  * @see ParametricRangeQueryNode  * @see NumericConfig  * @see NumericRangeQueryNode  */
+end_comment
+
 begin_class
 DECL|class|NumericRangeQueryNodeProcessor
 specifier|public
@@ -374,6 +398,7 @@ name|NumericRangeQueryNodeProcessor
 extends|extends
 name|QueryNodeProcessorImpl
 block|{
+comment|/**    * Constructs an empty {@link NumericRangeQueryNode} object.    */
 DECL|method|NumericRangeQueryNodeProcessor
 specifier|public
 name|NumericRangeQueryNodeProcessor

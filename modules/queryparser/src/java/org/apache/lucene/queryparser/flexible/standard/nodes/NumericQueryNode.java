@@ -58,6 +58,26 @@ name|core
 operator|.
 name|nodes
 operator|.
+name|FieldQueryNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
+name|core
+operator|.
+name|nodes
+operator|.
 name|FieldValuePairQueryNode
 import|;
 end_import
@@ -124,6 +144,30 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
+name|standard
+operator|.
+name|config
+operator|.
+name|NumericConfig
+import|;
+end_import
+
+begin_comment
+comment|/**  * This query node represents a field query that holds a numeric value. It is  * similar to {@link FieldQueryNode}, however the {@link #getValue()} returns a  * {@link Number}.  *   * @see NumericConfig  */
+end_comment
+
 begin_class
 DECL|class|NumericQueryNode
 specifier|public
@@ -152,6 +196,7 @@ specifier|private
 name|Number
 name|value
 decl_stmt|;
+comment|/**    * Creates a {@link NumericQueryNode} object using the given field,    * {@link Number} value and {@link NumberFormat} used to convert the value to    * {@link String}.    *     * @param field the field associated with this query node    * @param value the value hold by this node    * @param numberFormat the {@link NumberFormat} used to convert the value to {@link String}    */
 DECL|method|NumericQueryNode
 specifier|public
 name|NumericQueryNode
@@ -185,6 +230,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Returns the field associated with this node.    *     * @return the field associated with this node    */
 DECL|method|getField
 specifier|public
 name|CharSequence
@@ -197,6 +243,7 @@ operator|.
 name|field
 return|;
 block|}
+comment|/**    * Sets the field associated with this node.    *     * @param fieldName the field associated with this node    */
 DECL|method|setField
 specifier|public
 name|void
@@ -213,6 +260,7 @@ operator|=
 name|fieldName
 expr_stmt|;
 block|}
+comment|/**    * This method is used to get the value converted to {@link String} and    * escaped using the given {@link EscapeQuerySyntax}.    *     * @param escaper the {@link EscapeQuerySyntax} used to escape the value {@link String}    *     * @return the value converte to {@link String} and escaped    */
 DECL|method|getTermEscaped
 specifier|protected
 name|CharSequence
@@ -291,6 +339,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**    * Sets the {@link NumberFormat} used to convert the value to {@link String}.    *     * @param format the {@link NumberFormat} used to convert the value to {@link String}    */
 DECL|method|setNumberFormat
 specifier|public
 name|void
@@ -307,6 +356,7 @@ operator|=
 name|format
 expr_stmt|;
 block|}
+comment|/**    * Returns the {@link NumberFormat} used to convert the value to {@link String}.    *     * @return the {@link NumberFormat} used to convert the value to {@link String}    */
 DECL|method|getNumberFormat
 specifier|public
 name|NumberFormat
@@ -319,6 +369,7 @@ operator|.
 name|numberFormat
 return|;
 block|}
+comment|/**    * Returns the numeric value as {@link Number}.    *     * @return the numeric value    */
 DECL|method|getValue
 specifier|public
 name|Number
@@ -329,6 +380,7 @@ return|return
 name|value
 return|;
 block|}
+comment|/**    * Sets the numeric value.    *     * @param value the numeric value    */
 DECL|method|setValue
 specifier|public
 name|void

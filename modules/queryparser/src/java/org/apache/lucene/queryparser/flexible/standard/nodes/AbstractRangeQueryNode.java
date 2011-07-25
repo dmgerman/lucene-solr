@@ -152,6 +152,10 @@ name|StringUtils
 import|;
 end_import
 
+begin_comment
+comment|/**  * This class should be extended by nodes intending to represent range queries.   *  * @param<T> the type of the range query bounds (lower and upper)  */
+end_comment
+
 begin_class
 DECL|class|AbstractRangeQueryNode
 specifier|public
@@ -179,6 +183,7 @@ name|lowerInclusive
 decl_stmt|,
 name|upperInclusive
 decl_stmt|;
+comment|/**    * Constructs an {@link AbstractRangeQueryNode}, it should be invoked only by    * its extenders.    */
 DECL|method|AbstractRangeQueryNode
 specifier|protected
 name|AbstractRangeQueryNode
@@ -193,6 +198,7 @@ name|allocate
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Returns the field associated with this node.    *     * @return the field associated with this node    *     * @see FieldableNode    */
 DECL|method|getField
 specifier|public
 name|CharSequence
@@ -251,6 +257,7 @@ return|return
 name|field
 return|;
 block|}
+comment|/**    * Sets the field associated with this node.    *     * @param fieldName the field associated with this node    */
 DECL|method|setField
 specifier|public
 name|void
@@ -303,6 +310,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Returns the lower bound node.    *     * @return the lower bound node.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -327,6 +335,7 @@ literal|0
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the upper bound node.    *     * @return the upper bound node.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -351,6 +360,7 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns whether the lower bound is inclusive or exclusive.    *     * @return<code>true</code> if the lower bound is inclusive, otherwise,<code>false</code>    */
 DECL|method|isLowerInclusive
 specifier|public
 name|boolean
@@ -361,6 +371,7 @@ return|return
 name|lowerInclusive
 return|;
 block|}
+comment|/**    * Returns whether the upper bound is inclusive or exclusive.    *     * @return<code>true</code> if the upper bound is inclusive, otherwise,<code>false</code>    */
 DECL|method|isUpperInclusive
 specifier|public
 name|boolean
@@ -371,6 +382,7 @@ return|return
 name|upperInclusive
 return|;
 block|}
+comment|/**    * Sets the lower and upper bounds.    *     * @param lower the lower bound,<code>null</code> if lower bound is open    * @param upper the upper bound,<code>null</code> if upper bound is open    * @param lowerInclusive<code>true</code> if the lower bound is inclusive, otherwise,<code>false</code>    * @param upperInclusive<code>true</code> if the upper bound is inclusive, otherwise,<code>false</code>    *     * @see #getLowerBound()    * @see #getUpperBound()    * @see #isLowerInclusive()    * @see #isUpperInclusive()    */
 DECL|method|setBounds
 specifier|public
 name|void

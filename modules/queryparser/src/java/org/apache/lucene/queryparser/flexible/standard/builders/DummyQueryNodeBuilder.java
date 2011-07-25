@@ -54,6 +54,26 @@ name|flexible
 operator|.
 name|core
 operator|.
+name|builders
+operator|.
+name|QueryTreeBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
+name|core
+operator|.
 name|nodes
 operator|.
 name|FieldQueryNode
@@ -95,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Builds a {@link TermQuery} object from a {@link FieldQueryNode} object.  */
+comment|/**  * This builder does nothing. Commonly used for {@link QueryNode} objects that  * are built by its parent's builder.  *   * @see StandardQueryBuilder  * @see QueryTreeBuilder  */
 end_comment
 
 begin_class
@@ -106,6 +126,7 @@ name|DummyQueryNodeBuilder
 implements|implements
 name|StandardQueryBuilder
 block|{
+comment|/**    * Constructs a {@link DummyQueryNodeBuilder} object.    */
 DECL|method|DummyQueryNodeBuilder
 specifier|public
 name|DummyQueryNodeBuilder
@@ -113,6 +134,7 @@ parameter_list|()
 block|{
 comment|// empty constructor
 block|}
+comment|/**    * Always return<code>null</code>.    *     * return<code>null</code>    */
 DECL|method|build
 specifier|public
 name|TermQuery

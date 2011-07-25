@@ -96,6 +96,26 @@ name|queryparser
 operator|.
 name|flexible
 operator|.
+name|core
+operator|.
+name|nodes
+operator|.
+name|FieldQueryNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
 name|standard
 operator|.
 name|config
@@ -106,6 +126,10 @@ end_import
 
 begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements. See the NOTICE file distributed with this  * work for additional information regarding copyright ownership. The ASF  * licenses this file to You under the Apache License, Version 2.0 (the  * "License"); you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the  * License for the specific language governing permissions and limitations under  * the License.  */
+end_comment
+
+begin_comment
+comment|/**  * This query node represents a range query composed by {@link NumericQueryNode}  * bounds, which means the bound values are {@link Number}s.  *   * @see NumericQueryNode  * @see AbstractRangeQueryNode  */
 end_comment
 
 begin_class
@@ -124,6 +148,7 @@ specifier|public
 name|NumericConfig
 name|numericConfig
 decl_stmt|;
+comment|/**    * Constructs a {@link NumericRangeQueryNode} object using the given    * {@link NumericQueryNode} as its bounds and {@link NumericConfig}.    *     * @param lower the lower bound    * @param upper the upper bound    * @param lowerInclusive<code>true</code> if the lower bound is inclusive, otherwise,<code>false</code>    * @param upperInclusive<code>true</code> if the upper bound is inclusive, otherwise,<code>false</code>    * @param numericConfig the {@link NumericConfig} that represents associated with the upper and lower bounds    *     * @see #setBounds(NumericQueryNode, NumericQueryNode, boolean, boolean, NumericConfig)    */
 DECL|method|NumericRangeQueryNode
 specifier|public
 name|NumericRangeQueryNode
@@ -259,6 +284,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * Sets the upper and lower bounds of this range query node and the    * {@link NumericConfig} associated with these bounds.    *     * @param lower the lower bound    * @param upper the upper bound    * @param lowerInclusive<code>true</code> if the lower bound is inclusive, otherwise,<code>false</code>    * @param upperInclusive<code>true</code> if the upper bound is inclusive, otherwise,<code>false</code>    * @param numericConfig the {@link NumericConfig} that represents associated with the upper and lower bounds    *     */
 DECL|method|setBounds
 specifier|public
 name|void
@@ -458,6 +484,7 @@ operator|=
 name|numericConfig
 expr_stmt|;
 block|}
+comment|/**    * Returns the {@link NumericConfig} associated with the lower and upper bounds.    *     * @return the {@link NumericConfig} associated with the lower and upper bounds    */
 DECL|method|getNumericConfig
 specifier|public
 name|NumericConfig
