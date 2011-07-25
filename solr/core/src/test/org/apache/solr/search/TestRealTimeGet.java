@@ -299,7 +299,7 @@ expr_stmt|;
 block|}
 comment|/***   @Test   public void testGetRealtime() throws Exception {     SolrQueryRequest sr1 = req("q","foo");     IndexReader r1 = sr1.getCore().getRealtimeReader();      assertU(adoc("id","1"));      IndexReader r2 = sr1.getCore().getRealtimeReader();     assertNotSame(r1, r2);     int refcount = r2.getRefCount();      // make sure a new reader wasn't opened     IndexReader r3 = sr1.getCore().getRealtimeReader();     assertSame(r2, r3);     assertEquals(refcount+1, r3.getRefCount());      assertU(commit());      // this is not critical, but currently a commit does not refresh the reader     // if nothing has changed     IndexReader r4 = sr1.getCore().getRealtimeReader();     assertEquals(refcount+2, r4.getRefCount());       r1.decRef();     r2.decRef();     r3.decRef();     r4.decRef();     sr1.close();   }   ***/
 DECL|field|model
-specifier|private
+specifier|final
 name|ConcurrentHashMap
 argument_list|<
 name|Integer
@@ -318,8 +318,6 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|field|committedModel
-specifier|private
-specifier|volatile
 name|Map
 argument_list|<
 name|Integer
@@ -338,12 +336,10 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|field|snapshotCount
-specifier|private
 name|long
 name|snapshotCount
 decl_stmt|;
 DECL|field|committedModelClock
-specifier|private
 name|long
 name|committedModelClock
 decl_stmt|;
@@ -353,7 +349,6 @@ name|int
 name|lastId
 decl_stmt|;
 DECL|field|field
-specifier|private
 specifier|final
 name|String
 name|field
@@ -361,7 +356,6 @@ init|=
 literal|"val_l"
 decl_stmt|;
 DECL|field|ex
-specifier|private
 specifier|volatile
 name|Throwable
 name|ex
@@ -647,6 +641,8 @@ name|version
 decl_stmt|;
 synchronized|synchronized
 init|(
+name|TestRealTimeGet
+operator|.
 name|this
 init|)
 block|{
@@ -702,6 +698,8 @@ argument_list|)
 expr_stmt|;
 synchronized|synchronized
 init|(
+name|TestRealTimeGet
+operator|.
 name|this
 init|)
 block|{
@@ -986,6 +984,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
+synchronized|synchronized
+init|(
+name|TestRealTimeGet
+operator|.
+name|this
+init|)
+block|{
 name|val
 operator|=
 name|committedModel
@@ -995,6 +1000,7 @@ argument_list|(
 name|id
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|SolrQueryRequest
 name|sreq
