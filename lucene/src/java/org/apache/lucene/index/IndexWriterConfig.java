@@ -515,6 +515,12 @@ name|LogByteSizeMergePolicy
 argument_list|()
 expr_stmt|;
 block|}
+name|flushPolicy
+operator|=
+operator|new
+name|FlushByRamOrCountsPolicy
+argument_list|()
+expr_stmt|;
 name|readerPooling
 operator|=
 name|DEFAULT_READER_POOLING
