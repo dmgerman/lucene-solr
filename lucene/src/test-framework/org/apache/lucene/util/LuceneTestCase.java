@@ -2309,6 +2309,16 @@ literal|true
 expr_stmt|;
 block|}
 annotation|@
+name|Deprecated
+DECL|field|icuTested
+specifier|private
+specifier|static
+name|boolean
+name|icuTested
+init|=
+literal|false
+decl_stmt|;
+annotation|@
 name|BeforeClass
 DECL|method|beforeClassLuceneTestCaseJ4
 specifier|public
@@ -2625,6 +2635,48 @@ operator|.
 name|getDefault
 argument_list|()
 expr_stmt|;
+comment|// START hack to init ICU safely before we randomize locales.
+comment|// ICU fails during classloading when a special Java7-only locale is the default
+comment|// see: http://bugs.icu-project.org/trac/ticket/8734
+if|if
+condition|(
+operator|!
+name|icuTested
+condition|)
+block|{
+name|icuTested
+operator|=
+literal|true
+expr_stmt|;
+try|try
+block|{
+name|Locale
+operator|.
+name|setDefault
+argument_list|(
+name|Locale
+operator|.
+name|US
+argument_list|)
+expr_stmt|;
+name|Class
+operator|.
+name|forName
+argument_list|(
+literal|"com.ibm.icu.util.ULocale"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassNotFoundException
+name|cnfe
+parameter_list|)
+block|{
+comment|// ignore if no ICU is in classpath
+block|}
+block|}
+comment|// END hack
 name|locale
 operator|=
 name|TEST_LOCALE
