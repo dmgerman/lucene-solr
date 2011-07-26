@@ -471,6 +471,13 @@ name|deletes
 operator|.
 name|size
 argument_list|()
+operator|+
+literal|" totBytesUsed="
+operator|+
+name|bytesUsed
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

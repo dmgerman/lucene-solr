@@ -102,21 +102,15 @@ operator|.
 name|get
 argument_list|()
 decl_stmt|;
-comment|// If deletes alone are consuming> 1/2 our RAM
-comment|// buffer, force them all to apply now. This is to
-comment|// prevent too-frequent flushing of a long tail of
-comment|// tiny segments:
 if|if
 condition|(
 operator|(
 name|flushOnRAM
 argument_list|()
 operator|&&
-name|writer
+name|control
 operator|.
-name|deleteQueue
-operator|.
-name|bytesUsed
+name|getDeleteBytesUsed
 argument_list|()
 operator|>
 operator|(
@@ -128,8 +122,6 @@ name|indexWriterConfig
 operator|.
 name|getRAMBufferSizeMB
 argument_list|()
-operator|/
-literal|2
 operator|)
 operator|)
 condition|)
@@ -154,11 +146,9 @@ name|message
 argument_list|(
 literal|"force apply deletes bytesUsed="
 operator|+
-name|writer
+name|control
 operator|.
-name|deleteQueue
-operator|.
-name|bytesUsed
+name|getDeleteBytesUsed
 argument_list|()
 operator|+
 literal|" vs ramBuffer="
@@ -253,6 +243,11 @@ name|control
 operator|.
 name|activeBytes
 argument_list|()
+operator|+
+name|control
+operator|.
+name|getDeleteBytesUsed
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -261,6 +256,50 @@ operator|>=
 name|limit
 condition|)
 block|{
+specifier|final
+name|DocumentsWriter
+name|writer
+init|=
+name|this
+operator|.
+name|writer
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|writer
+operator|.
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|writer
+operator|.
+name|message
+argument_list|(
+literal|"flush: activeBytes="
+operator|+
+name|control
+operator|.
+name|activeBytes
+argument_list|()
+operator|+
+literal|" deleteBytes="
+operator|+
+name|control
+operator|.
+name|getDeleteBytesUsed
+argument_list|()
+operator|+
+literal|" vs limit="
+operator|+
+name|limit
+argument_list|)
+expr_stmt|;
+block|}
 name|markLargestWriterPending
 argument_list|(
 name|control
