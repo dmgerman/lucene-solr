@@ -1729,6 +1729,34 @@ literal|2
 operator|)
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"force apply deletes bytesUsed="
+operator|+
+name|flushControl
+operator|.
+name|getDeleteBytesUsed
+argument_list|()
+operator|+
+literal|" vs ramBuffer="
+operator|+
+operator|(
+literal|1024
+operator|*
+literal|1024
+operator|*
+name|ramBufferSizeMB
+operator|)
+argument_list|)
+expr_stmt|;
+block|}
 name|applyAllDeletes
 argument_list|(
 name|deleteQueue
