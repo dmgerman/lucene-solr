@@ -448,6 +448,17 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** @lucene.internal */
+DECL|method|getFreqCutoff
+specifier|public
+name|int
+name|getFreqCutoff
+parameter_list|()
+block|{
+return|return
+name|freqCutoff
+return|;
+block|}
 comment|/** Terms with freq<= freqCutoff are inlined into terms    *  dict. */
 DECL|method|PulsingCodec
 specifier|public
