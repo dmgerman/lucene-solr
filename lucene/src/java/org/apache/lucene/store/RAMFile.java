@@ -78,7 +78,7 @@ argument_list|()
 decl_stmt|;
 comment|// File used as buffer, in no RAMDirectory
 DECL|method|RAMFile
-specifier|protected
+specifier|public
 name|RAMFile
 parameter_list|()
 block|{}

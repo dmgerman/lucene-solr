@@ -5622,6 +5622,7 @@ argument_list|()
 decl_stmt|;
 comment|// Cannot use RandomIndexWriter because we don't want to
 comment|// ever call commit() for this test:
+comment|// note: tiny rambuffer used, as with a 1MB buffer the test is too slow (flush @ 128,999)
 name|IndexWriter
 name|w
 init|=
@@ -5643,7 +5644,7 @@ argument_list|)
 operator|.
 name|setRAMBufferSizeMB
 argument_list|(
-literal|1.0f
+literal|0.2f
 argument_list|)
 operator|.
 name|setMaxBufferedDocs
@@ -5805,7 +5806,7 @@ block|}
 name|count
 operator|++
 expr_stmt|;
-comment|// Today we applyDelets @ count=7199; even if we make
+comment|// Today we applyDeletes @ count=21553; even if we make
 comment|// sizable improvements to RAM efficiency of buffered
 comment|// del term we're unlikely to go over 100K:
 if|if

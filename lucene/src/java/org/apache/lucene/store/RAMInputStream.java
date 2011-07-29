@@ -27,11 +27,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** A memory-resident {@link IndexInput} implementation. */
+comment|/** A memory-resident {@link IndexInput} implementation.   *    *  @lucene.internal */
 end_comment
 
 begin_class
 DECL|class|RAMInputStream
+specifier|public
 class|class
 name|RAMInputStream
 extends|extends
@@ -86,6 +87,7 @@ name|int
 name|bufferLength
 decl_stmt|;
 DECL|method|RAMInputStream
+specifier|public
 name|RAMInputStream
 parameter_list|(
 name|RAMFile
