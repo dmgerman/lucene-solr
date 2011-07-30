@@ -1445,7 +1445,7 @@ init|=
 operator|new
 name|AtomicLong
 argument_list|(
-literal|10000000
+literal|0
 argument_list|)
 decl_stmt|;
 comment|// number of query operations to perform in total       // TODO: temporarily high due to lack of stability

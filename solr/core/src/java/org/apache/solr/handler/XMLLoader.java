@@ -1424,15 +1424,8 @@ argument_list|)
 expr_stmt|;
 name|deleteCmd
 operator|.
-name|id
-operator|=
-literal|null
-expr_stmt|;
-name|deleteCmd
-operator|.
-name|query
-operator|=
-literal|null
+name|clear
+argument_list|()
 expr_stmt|;
 break|break;
 comment|// Add everything to the text

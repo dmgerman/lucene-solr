@@ -536,12 +536,7 @@ argument_list|(
 name|cmd
 operator|.
 name|getPrintableId
-argument_list|(
-name|req
-operator|.
-name|getSchema
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -559,12 +554,7 @@ argument_list|,
 name|cmd
 operator|.
 name|getPrintableId
-argument_list|(
-name|req
-operator|.
-name|getSchema
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

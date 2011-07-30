@@ -744,9 +744,8 @@ name|IOException
 block|{
 name|templateAdd
 operator|.
-name|indexedId
-operator|=
-literal|null
+name|clear
+argument_list|()
 expr_stmt|;
 name|doAdd
 argument_list|(

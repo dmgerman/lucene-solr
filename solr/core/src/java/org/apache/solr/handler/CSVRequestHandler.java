@@ -2537,9 +2537,8 @@ name|IOException
 block|{
 name|templateAdd
 operator|.
-name|indexedId
-operator|=
-literal|null
+name|clear
+argument_list|()
 expr_stmt|;
 name|SolrInputDocument
 name|doc
