@@ -874,13 +874,6 @@ name|docsSinceCommit
 operator|++
 expr_stmt|;
 block|}
-comment|// this is the only unsynchronized code in the iwAccess block, which
-comment|// should account for most of the time
-name|Term
-name|updateTerm
-init|=
-literal|null
-decl_stmt|;
 if|if
 condition|(
 name|cmd
@@ -888,6 +881,9 @@ operator|.
 name|overwrite
 condition|)
 block|{
+name|Term
+name|updateTerm
+decl_stmt|;
 name|Term
 name|idTerm
 init|=
@@ -1061,7 +1057,7 @@ return|return
 name|rc
 return|;
 block|}
-comment|// could return the number of docs deleted, but is that always possible to know???
+comment|// we don't return the number of docs deleted because it's not always possible to quickly know that info.
 annotation|@
 name|Override
 DECL|method|delete
@@ -1147,8 +1143,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// why not return number of docs deleted?
-comment|// Depending on implementation, we may not be able to immediately determine the num...
+comment|// we don't return the number of docs deleted because it's not always possible to quickly know that info.
 annotation|@
 name|Override
 DECL|method|deleteByQuery
@@ -1177,17 +1172,10 @@ name|madeIt
 init|=
 literal|false
 decl_stmt|;
-name|boolean
-name|delAll
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
 name|Query
 name|q
-init|=
-literal|null
 decl_stmt|;
 try|try
 block|{
@@ -1237,8 +1225,9 @@ name|e
 argument_list|)
 throw|;
 block|}
+name|boolean
 name|delAll
-operator|=
+init|=
 name|MatchAllDocsQuery
 operator|.
 name|class
@@ -1247,7 +1236,7 @@ name|q
 operator|.
 name|getClass
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|delAll
@@ -1355,9 +1344,6 @@ argument_list|()
 expr_stmt|;
 name|int
 name|rc
-init|=
-operator|-
-literal|1
 decl_stmt|;
 name|log
 operator|.
@@ -1626,9 +1612,6 @@ name|callPostOptimizeCallbacks
 argument_list|()
 expr_stmt|;
 block|}
-comment|// open a new searcher in the sync block to avoid opening it
-comment|// after a deleteByQuery changed the index, or in between deletes
-comment|// and adds of another commit being done.
 if|if
 condition|(
 name|cmd
@@ -1734,7 +1717,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// if we are supposed to wait for the searcher to be registered, then we should do it
-comment|// outside of the synchronized block so that other update operations can proceed.
+comment|// outside any synchronized block so that other update operations can proceed.
 if|if
 condition|(
 name|waitSearcher
