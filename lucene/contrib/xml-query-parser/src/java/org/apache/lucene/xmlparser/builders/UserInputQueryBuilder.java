@@ -302,10 +302,16 @@ name|text
 argument_list|)
 expr_stmt|;
 block|}
+comment|// use the boost of the original query here, too and multiply (which may be != 1.0f):
 name|q
 operator|.
 name|setBoost
 argument_list|(
+name|q
+operator|.
+name|getBoost
+argument_list|()
+operator|*
 name|DOMUtils
 operator|.
 name|getAttribute

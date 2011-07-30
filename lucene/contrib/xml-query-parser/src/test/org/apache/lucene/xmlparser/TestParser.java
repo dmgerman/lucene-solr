@@ -812,6 +812,16 @@ argument_list|(
 literal|"UserInputQueryCustomField.xml"
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|20.0f
+argument_list|,
+name|q
+operator|.
+name|getBoost
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|int
 name|h
 init|=
