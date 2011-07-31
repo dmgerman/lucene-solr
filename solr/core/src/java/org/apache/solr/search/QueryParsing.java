@@ -1427,7 +1427,7 @@ argument_list|(
 literal|null
 argument_list|)
 decl_stmt|;
-name|ParseException
+name|Exception
 name|qParserException
 init|=
 literal|null
@@ -1438,15 +1438,23 @@ name|field
 operator|==
 literal|null
 operator|||
+operator|!
+name|Character
+operator|.
+name|isWhitespace
+argument_list|(
 name|sp
 operator|.
-name|ch
+name|peekChar
 argument_list|()
-operator|!=
-literal|' '
+argument_list|)
 condition|)
 block|{
 comment|// let's try it as a function instead
+name|field
+operator|=
+literal|null
+expr_stmt|;
 name|String
 name|funcStr
 init|=
@@ -1711,7 +1719,17 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|ParseException
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+throw|throw
+name|ioe
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
 name|e
 parameter_list|)
 block|{

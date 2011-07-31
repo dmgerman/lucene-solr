@@ -2204,7 +2204,7 @@ block|,
 literal|0x10FFFF
 block|}
 decl_stmt|;
-comment|/** Returns random string, all codepoints within the same unicode block. */
+comment|/** Returns random string of length between 0-20 codepoints, all codepoints within the same unicode block. */
 DECL|method|randomRealisticUnicodeString
 specifier|public
 specifier|static
@@ -2224,7 +2224,7 @@ literal|20
 argument_list|)
 return|;
 block|}
-comment|/** Returns random string, all codepoints within the same unicode block. */
+comment|/** Returns random string of length up to maxLength codepoints , all codepoints within the same unicode block. */
 DECL|method|randomRealisticUnicodeString
 specifier|public
 specifier|static
@@ -2238,10 +2238,40 @@ name|int
 name|maxLength
 parameter_list|)
 block|{
+return|return
+name|randomRealisticUnicodeString
+argument_list|(
+name|r
+argument_list|,
+literal|0
+argument_list|,
+literal|20
+argument_list|)
+return|;
+block|}
+comment|/** Returns random string of length between min and max codepoints, all codepoints within the same unicode block. */
+DECL|method|randomRealisticUnicodeString
+specifier|public
+specifier|static
+name|String
+name|randomRealisticUnicodeString
+parameter_list|(
+name|Random
+name|r
+parameter_list|,
+name|int
+name|minLength
+parameter_list|,
+name|int
+name|maxLength
+parameter_list|)
+block|{
 specifier|final
 name|int
 name|end
 init|=
+name|minLength
+operator|+
 name|r
 operator|.
 name|nextInt
