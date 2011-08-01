@@ -3513,6 +3513,71 @@ name|getRewriteMethod
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// test open ranges
+name|assertQueryEquals
+argument_list|(
+literal|"[ a TO * ]"
+argument_list|,
+literal|null
+argument_list|,
+literal|"[a TO *]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[ * TO z ]"
+argument_list|,
+literal|null
+argument_list|,
+literal|"[* TO z]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[ * TO * ]"
+argument_list|,
+literal|null
+argument_list|,
+literal|"[* TO *]"
+argument_list|)
+expr_stmt|;
+comment|// mixing exclude and include bounds
+name|assertQueryEquals
+argument_list|(
+literal|"{ a TO z ]"
+argument_list|,
+literal|null
+argument_list|,
+literal|"{a TO z]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[ a TO z }"
+argument_list|,
+literal|null
+argument_list|,
+literal|"[a TO z}"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"{ a TO * ]"
+argument_list|,
+literal|null
+argument_list|,
+literal|"{a TO *]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[ * TO z }"
+argument_list|,
+literal|null
+argument_list|,
+literal|"[* TO z}"
+argument_list|)
+expr_stmt|;
 name|assertQueryEquals
 argument_list|(
 literal|"[ a TO z ]"

@@ -188,6 +188,12 @@ specifier|static
 name|String
 name|UNSUPPORTED_NUMERIC_DATA_TYPE
 decl_stmt|;
+DECL|field|NUMERIC_CANNOT_BE_EMPTY
+specifier|public
+specifier|static
+name|String
+name|NUMERIC_CANNOT_BE_EMPTY
+decl_stmt|;
 block|}
 end_class
 

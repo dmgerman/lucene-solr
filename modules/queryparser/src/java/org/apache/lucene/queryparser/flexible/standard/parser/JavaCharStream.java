@@ -1335,7 +1335,7 @@ block|}
 block|}
 annotation|@
 name|Deprecated
-comment|/**    * @deprecated (gen)    * @see #getEndColumn    */
+comment|/**    * @deprecated    * @see #getEndColumn    */
 DECL|method|getColumn
 specifier|public
 name|int
@@ -1351,7 +1351,7 @@ return|;
 block|}
 annotation|@
 name|Deprecated
-comment|/**    * @deprecated (gen)    * @see #getEndLine    */
+comment|/**    * @deprecated    * @see #getEndLine    */
 DECL|method|getLine
 specifier|public
 name|int
@@ -2654,7 +2654,7 @@ block|}
 end_class
 
 begin_comment
-comment|/* JavaCC - OriginalChecksum=f19c73b8f7faf94cc4a581e7b2933cc6 (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=7eecaeeaea1254b3e35fe8890a0127ce (do not edit this line) */
 end_comment
 
 end_unit

@@ -68,7 +68,7 @@ name|flexible
 operator|.
 name|core
 operator|.
-name|QueryNodeParseException
+name|*
 import|;
 end_import
 
@@ -88,7 +88,7 @@ name|core
 operator|.
 name|messages
 operator|.
-name|QueryParserMessages
+name|*
 import|;
 end_import
 
@@ -783,7 +783,7 @@ block|}
 end_class
 
 begin_comment
-comment|/* JavaCC - OriginalChecksum=38bce846fe6c8482993969f741c0323e (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=0f25f4245374bbf9920c9a82efecadd2 (do not edit this line) */
 end_comment
 
 end_unit
