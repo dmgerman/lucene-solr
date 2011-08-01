@@ -210,10 +210,6 @@ specifier|final
 name|UpdateRequestProcessor
 name|processor
 decl_stmt|;
-DECL|field|debugLogger
-name|DebugLogger
-name|debugLogger
-decl_stmt|;
 DECL|field|req
 name|SolrQueryRequest
 name|req
