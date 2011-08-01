@@ -581,8 +581,9 @@ operator|instanceof
 name|SolrDocument
 condition|)
 block|{
-comment|// Remove any fields that were not requested
-comment|// This typically happens when distributed search adds extra fields to an internal request
+comment|// Remove any fields that were not requested.
+comment|// This typically happens when distributed search adds
+comment|// extra fields to an internal request
 name|SolrDocument
 name|doc
 init|=
@@ -591,17 +592,43 @@ name|SolrDocument
 operator|)
 name|o
 decl_stmt|;
-for|for
-control|(
+name|Iterator
+argument_list|<
+name|Map
+operator|.
+name|Entry
+argument_list|<
 name|String
-name|fname
-range|:
+argument_list|,
+name|Object
+argument_list|>
+argument_list|>
+name|i
+init|=
 name|doc
 operator|.
-name|getFieldNames
+name|iterator
 argument_list|()
-control|)
+decl_stmt|;
+while|while
+condition|(
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|)
 block|{
+name|String
+name|fname
+init|=
+name|i
+operator|.
+name|next
+argument_list|()
+operator|.
+name|getKey
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -613,12 +640,10 @@ name|fname
 argument_list|)
 condition|)
 block|{
-name|doc
+name|i
 operator|.
-name|removeFields
-argument_list|(
-name|fname
-argument_list|)
+name|remove
+argument_list|()
 expr_stmt|;
 block|}
 block|}
