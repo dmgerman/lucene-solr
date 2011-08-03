@@ -118,7 +118,7 @@ name|SUMMARY_FRAGSIZE
 init|=
 name|CARROT_PREFIX
 operator|+
-literal|"fragzise"
+literal|"fragSize"
 decl_stmt|;
 DECL|field|LEXICAL_RESOURCES_DIR
 name|String
