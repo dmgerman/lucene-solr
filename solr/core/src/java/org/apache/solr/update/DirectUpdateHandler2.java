@@ -1591,6 +1591,13 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+name|numDocsPending
+operator|.
+name|set
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 name|callPostCommitCallbacks
 argument_list|()
 expr_stmt|;
