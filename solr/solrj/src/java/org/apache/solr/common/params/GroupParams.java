@@ -143,17 +143,17 @@ literal|".cache.percent"
 decl_stmt|;
 comment|// Note: Since you can supply multiple fields to group on, but only have a facets for the whole result. It only makes
 comment|// sense to me to support these parameters for the first group.
-comment|/** Whether the docSet (for example for faceting) should be based on plain documents (a.k.a UNGROUPED) or on the groups (a.k.a GROUPED). */
-DECL|field|GROUP_COLLAPSE
+comment|/** Whether the docSet (for example for faceting) should be based on plain documents (a.k.a UNGROUPED) or on the groups (a.k.a GROUPED).     * The docSet will only the most relevant documents per group. It is if you query for everything with group.limit=1  */
+DECL|field|GROUP_TRUNCATE
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|GROUP_COLLAPSE
+name|GROUP_TRUNCATE
 init|=
 name|GROUP
 operator|+
-literal|".collapse"
+literal|".truncate"
 decl_stmt|;
 comment|/** Whether the group count should be included in the response. */
 DECL|field|GROUP_TOTAL_COUNT

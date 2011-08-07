@@ -422,12 +422,12 @@ class|class
 name|TemporalResult
 block|{
 DECL|field|groupHead
-specifier|protected
+specifier|public
 name|GH
 name|groupHead
 decl_stmt|;
 DECL|field|stop
-specifier|protected
+specifier|public
 name|boolean
 name|stop
 decl_stmt|;
