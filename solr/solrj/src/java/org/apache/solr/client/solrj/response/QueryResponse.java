@@ -1347,9 +1347,15 @@ operator|new
 name|Group
 argument_list|(
 name|sGroupValue
+operator|!=
+literal|null
+condition|?
+name|sGroupValue
 operator|.
 name|toString
 argument_list|()
+else|:
+literal|null
 argument_list|,
 name|doclist
 argument_list|)
