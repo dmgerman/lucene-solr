@@ -143,7 +143,7 @@ init|=
 operator|new
 name|CommonsHttpSolrServer
 argument_list|(
-literal|"http://localhost:11235/solr/"
+literal|"http://[ff01::114]:11235/solr/"
 argument_list|,
 name|httpClient
 argument_list|)
