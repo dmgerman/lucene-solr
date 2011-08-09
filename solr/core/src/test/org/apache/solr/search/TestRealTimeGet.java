@@ -228,25 +228,6 @@ name|Object
 index|[]
 name|syncArr
 decl_stmt|;
-DECL|field|sanityModel
-specifier|final
-name|ConcurrentHashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|Long
-argument_list|>
-name|sanityModel
-init|=
-operator|new
-name|ConcurrentHashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|Long
-argument_list|>
-argument_list|()
-decl_stmt|;
 DECL|method|initModel
 specifier|private
 name|void
@@ -370,9 +351,9 @@ specifier|final
 name|int
 name|maxConcurrentCommits
 init|=
-literal|2
+name|nWriteThreads
 decl_stmt|;
-comment|// number of committers at a time... needed if we want to avoid commit errors due to exceeding the max
+comment|// number of committers at a time... it should be<= maxWarmingSearchers
 comment|// query variables
 specifier|final
 name|int
@@ -388,10 +369,13 @@ init|=
 operator|new
 name|AtomicLong
 argument_list|(
-literal|1000
+name|atLeast
+argument_list|(
+literal|10000
+argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// number of query operations to perform in total       // TODO: once lucene level passes, we can move on to the solr level
+comment|// number of query operations to perform in total
 name|int
 name|nReadThreads
 init|=

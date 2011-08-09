@@ -1619,6 +1619,11 @@ name|callPostOptimizeCallbacks
 argument_list|()
 expr_stmt|;
 block|}
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 if|if
 condition|(
 name|cmd
@@ -1653,6 +1658,7 @@ argument_list|,
 name|waitSearcher
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// reset commit tracking
 if|if
