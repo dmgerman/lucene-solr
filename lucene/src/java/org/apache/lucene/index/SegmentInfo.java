@@ -3196,17 +3196,23 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|Throwable
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|RuntimeException
+comment|// Messy: because getHasVectors may be used in an
+comment|// un-thread-safe way, and may attempt to open an fnm
+comment|// file that has since (legitimately) been deleted by
+comment|// IndexWriter, instead of throwing these exceptions
+comment|// up, just add v? to indicate we don't know if this
+comment|// segment has vectors:
+name|s
+operator|.
+name|append
 argument_list|(
-name|e
+literal|"v?"
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 name|s
 operator|.

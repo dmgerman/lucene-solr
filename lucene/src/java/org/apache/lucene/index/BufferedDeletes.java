@@ -408,7 +408,12 @@ operator|.
 name|size
 argument_list|()
 operator|+
-literal|")"
+literal|") terms="
+operator|+
+name|terms
+operator|.
+name|keySet
+argument_list|()
 expr_stmt|;
 block|}
 if|if

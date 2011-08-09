@@ -542,7 +542,7 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"docWriter: now abort"
+literal|"now abort"
 argument_list|)
 expr_stmt|;
 block|}
@@ -592,12 +592,21 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"docWriter: done abort"
+literal|"done abort"
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 block|}
+DECL|field|INFO_VERBOSE
+specifier|private
+specifier|final
+specifier|static
+name|boolean
+name|INFO_VERBOSE
+init|=
+literal|false
+decl_stmt|;
 DECL|field|parent
 specifier|final
 name|DocumentsWriter
@@ -970,6 +979,62 @@ name|numDocsInRAM
 operator|==
 literal|0
 assert|;
+if|if
+condition|(
+name|INFO_VERBOSE
+condition|)
+block|{
+name|message
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" init seg="
+operator|+
+name|segment
+operator|+
+literal|" delQueue="
+operator|+
+name|deleteQueue
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|INFO_VERBOSE
+condition|)
+block|{
+name|message
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" update delTerm="
+operator|+
+name|delTerm
+operator|+
+literal|" docID="
+operator|+
+name|docState
+operator|.
+name|docID
+operator|+
+literal|" seg="
+operator|+
+name|segment
+argument_list|)
+expr_stmt|;
 block|}
 name|boolean
 name|success
@@ -1134,6 +1199,62 @@ name|numDocsInRAM
 operator|==
 literal|0
 assert|;
+if|if
+condition|(
+name|INFO_VERBOSE
+condition|)
+block|{
+name|message
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" init seg="
+operator|+
+name|segment
+operator|+
+literal|" delQueue="
+operator|+
+name|deleteQueue
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|INFO_VERBOSE
+condition|)
+block|{
+name|message
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" update delTerm="
+operator|+
+name|delTerm
+operator|+
+literal|" docID="
+operator|+
+name|docState
+operator|.
+name|docID
+operator|+
+literal|" seg="
+operator|+
+name|segment
+argument_list|)
+expr_stmt|;
 block|}
 name|int
 name|docCount
@@ -2369,6 +2490,38 @@ name|infoStream
 operator|=
 name|infoStream
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"DocumentsWriterPerThread [pendingDeletes="
+operator|+
+name|pendingDeletes
+operator|+
+literal|", segment="
+operator|+
+name|segment
+operator|+
+literal|", aborting="
+operator|+
+name|aborting
+operator|+
+literal|", numDocsInRAM="
+operator|+
+name|numDocsInRAM
+operator|+
+literal|", deleteQueue="
+operator|+
+name|deleteQueue
+operator|+
+literal|"]"
+return|;
 block|}
 block|}
 end_class

@@ -22,6 +22,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|atomic
@@ -274,6 +284,7 @@ argument_list|(
 name|term
 argument_list|)
 decl_stmt|;
+comment|//    System.out.println(Thread.currentThread().getName() + ": push " + termNode + " this=" + this);
 name|add
 argument_list|(
 name|termNode
@@ -450,7 +461,7 @@ name|tryLock
 argument_list|()
 condition|)
 block|{
-comment|/*        * The global buffer must be locked but we don't need to upate them if        * there is an update going on right now. It is sufficient to apply the        * deletes that have been added after the current in-flight global slices        * tail the next time we can get the lock!        */
+comment|/*        * The global buffer must be locked but we don't need to update them if        * there is an update going on right now. It is sufficient to apply the        * deletes that have been added after the current in-flight global slices        * tail the next time we can get the lock!        */
 try|try
 block|{
 if|if
@@ -461,6 +472,7 @@ name|globalSlice
 argument_list|)
 condition|)
 block|{
+comment|//          System.out.println(Thread.currentThread() + ": apply globalSlice");
 name|globalSlice
 operator|.
 name|apply
@@ -554,6 +566,7 @@ name|MAX_INT
 argument_list|)
 expr_stmt|;
 block|}
+comment|//      System.out.println(Thread.currentThread().getName() + ": now freeze global buffer " + globalBufferedDeletes);
 specifier|final
 name|FrozenBufferedDeletes
 name|packet
@@ -727,6 +740,7 @@ argument_list|,
 name|docIDUpto
 argument_list|)
 expr_stmt|;
+comment|//        System.out.println(Thread.currentThread().getName() + ": pull " + current + " docIDUpto=" + docIDUpto);
 block|}
 do|while
 condition|(
@@ -1003,6 +1017,20 @@ name|docIDUpto
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"del="
+operator|+
+name|item
+return|;
+block|}
 block|}
 DECL|class|QueryArrayNode
 specifier|private
@@ -1122,6 +1150,25 @@ name|docIDUpto
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"dels="
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|item
+argument_list|)
+return|;
 block|}
 block|}
 DECL|method|forceApplyGlobalSlice

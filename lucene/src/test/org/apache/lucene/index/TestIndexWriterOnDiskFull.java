@@ -2558,6 +2558,10 @@ argument_list|(
 name|ftdm
 operator|.
 name|didFail1
+operator|||
+name|ftdm
+operator|.
+name|didFail2
 argument_list|)
 expr_stmt|;
 block|}

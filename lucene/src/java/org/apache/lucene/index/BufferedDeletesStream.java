@@ -1801,6 +1801,7 @@ argument_list|(
 literal|null
 argument_list|)
 assert|;
+comment|//System.out.println(Thread.currentThread().getName() + " del terms reader=" + reader);
 for|for
 control|(
 name|Term
@@ -1950,6 +1951,7 @@ operator|.
 name|nextDoc
 argument_list|()
 decl_stmt|;
+comment|//System.out.println(Thread.currentThread().getName() + " del term=" + term + " doc=" + docID);
 if|if
 condition|(
 name|docID

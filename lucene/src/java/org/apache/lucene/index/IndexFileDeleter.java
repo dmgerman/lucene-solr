@@ -1634,6 +1634,11 @@ argument_list|(
 literal|"now checkpoint \""
 operator|+
 name|segmentInfos
+operator|.
+name|toString
+argument_list|(
+name|directory
+argument_list|)
 operator|+
 literal|"\" ["
 operator|+
