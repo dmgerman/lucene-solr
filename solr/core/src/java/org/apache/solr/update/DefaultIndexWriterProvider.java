@@ -299,6 +299,25 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|updateCore
+specifier|public
+specifier|synchronized
+name|void
+name|updateCore
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|)
+block|{
+name|this
+operator|.
+name|core
+operator|=
+name|core
+expr_stmt|;
+block|}
 block|}
 end_class
 

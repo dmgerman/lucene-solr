@@ -40,6 +40,20 @@ name|IndexWriter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrCore
+import|;
+end_import
+
 begin_interface
 DECL|interface|IndexWriterProvider
 specifier|public
@@ -83,6 +97,15 @@ name|rollbackIndexWriter
 parameter_list|()
 throws|throws
 name|IOException
+function_decl|;
+DECL|method|updateCore
+specifier|public
+name|void
+name|updateCore
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|)
 function_decl|;
 block|}
 end_interface

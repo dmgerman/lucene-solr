@@ -636,6 +636,15 @@ operator|)
 operator|.
 name|indexWriterProvider
 expr_stmt|;
+name|this
+operator|.
+name|indexWriterProvider
+operator|.
+name|updateCore
+argument_list|(
+name|core
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
