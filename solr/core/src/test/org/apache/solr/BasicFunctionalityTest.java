@@ -599,7 +599,9 @@ name|getIndexWriterProvider
 argument_list|()
 operator|.
 name|getIndexWriter
-argument_list|()
+argument_list|(
+name|core
+argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(

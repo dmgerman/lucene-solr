@@ -161,7 +161,12 @@ name|getIndexWriterProvider
 argument_list|()
 operator|.
 name|getIndexWriter
+argument_list|(
+name|h
+operator|.
+name|getCore
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
