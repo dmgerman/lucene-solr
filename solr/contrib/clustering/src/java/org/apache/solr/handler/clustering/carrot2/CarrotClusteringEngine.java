@@ -1156,11 +1156,6 @@ specifier|final
 name|String
 name|carrot2ResourcesDir
 init|=
-name|resourceLoader
-operator|.
-name|getConfigDir
-argument_list|()
-operator|+
 name|initParams
 operator|.
 name|get

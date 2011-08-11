@@ -1306,7 +1306,7 @@ name|wordsToCheck
 argument_list|)
 expr_stmt|;
 comment|// "customsolrstopword" is in stopwords.en, "customsolrstoplabel" is in
-comment|// stoplabels.en, so we're expecting only one cluster with label "online".
+comment|// stoplabels.mt, so we're expecting only one cluster with label "online".
 specifier|final
 name|List
 argument_list|<
