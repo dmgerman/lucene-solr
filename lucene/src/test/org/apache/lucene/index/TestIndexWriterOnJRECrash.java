@@ -237,6 +237,13 @@ name|vendor
 operator|.
 name|startsWith
 argument_list|(
+literal|"Oracle"
+argument_list|)
+operator|||
+name|vendor
+operator|.
+name|startsWith
+argument_list|(
 literal|"Sun"
 argument_list|)
 operator|||
