@@ -538,6 +538,8 @@ operator|=
 operator|new
 name|CommitTracker
 argument_list|(
+literal|"Hard"
+argument_list|,
 name|core
 argument_list|,
 name|docsUpperBound
@@ -570,6 +572,8 @@ operator|=
 operator|new
 name|CommitTracker
 argument_list|(
+literal|"Soft"
+argument_list|,
 name|core
 argument_list|,
 name|softCommitDocsUpperBound
@@ -668,6 +672,8 @@ operator|=
 operator|new
 name|CommitTracker
 argument_list|(
+literal|"Hard"
+argument_list|,
 name|core
 argument_list|,
 name|docsUpperBound
@@ -700,6 +706,8 @@ operator|=
 operator|new
 name|CommitTracker
 argument_list|(
+literal|"Soft"
+argument_list|,
 name|core
 argument_list|,
 name|softCommitDocsUpperBound
@@ -824,9 +832,6 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|boolean
-name|triggered
-init|=
 name|commitTracker
 operator|.
 name|addedDocument
@@ -835,14 +840,7 @@ name|cmd
 operator|.
 name|commitWithin
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|triggered
-condition|)
-block|{
-comment|// if we hard commit, don't soft commit
+expr_stmt|;
 name|softCommitTracker
 operator|.
 name|addedDocument
@@ -852,16 +850,6 @@ operator|.
 name|commitWithin
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-comment|// still inc softCommit
-name|softCommitTracker
-operator|.
-name|docsSinceCommit
-operator|++
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|cmd
