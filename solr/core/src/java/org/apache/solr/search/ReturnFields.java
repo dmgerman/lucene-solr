@@ -381,6 +381,8 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+comment|// The lucene field names to request from the SolrIndexSearcher
+comment|// Order is important for CSVResponseWriter
 DECL|field|fields
 specifier|private
 specifier|final
@@ -397,7 +399,8 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// order is important for CSVResponseWriter
+comment|// Field names that are OK to include in the response.
+comment|// This will include pseudo fields, lucene fields, and matching globs
 DECL|field|okFieldNames
 specifier|private
 name|Set
@@ -413,7 +416,6 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// Collection of everything that could match
 DECL|field|transformer
 specifier|private
 name|DocTransformer
@@ -1935,6 +1937,14 @@ name|s
 argument_list|)
 condition|)
 block|{
+name|okFieldNames
+operator|.
+name|add
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+comment|// Don't calculate it again
 return|return
 literal|true
 return|;
