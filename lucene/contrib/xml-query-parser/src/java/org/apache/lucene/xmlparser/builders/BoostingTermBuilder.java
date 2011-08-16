@@ -38,9 +38,9 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|spans
+name|payloads
 operator|.
-name|SpanQuery
+name|AveragePayloadFunction
 import|;
 end_import
 
@@ -70,9 +70,9 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|payloads
+name|spans
 operator|.
-name|AveragePayloadFunction
+name|SpanQuery
 import|;
 end_import
 
@@ -121,7 +121,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *   */
+comment|/**  *  */
 end_comment
 
 begin_class

@@ -101,7 +101,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *   */
+comment|/**  *  */
 end_comment
 
 begin_class
@@ -112,16 +112,19 @@ name|BoostingQueryBuilder
 implements|implements
 name|QueryBuilder
 block|{
-DECL|field|factory
+DECL|field|DEFAULT_BOOST
 specifier|private
-name|QueryBuilder
-name|factory
-decl_stmt|;
-DECL|field|defaultBoost
+specifier|static
 name|float
-name|defaultBoost
+name|DEFAULT_BOOST
 init|=
 literal|0.01f
+decl_stmt|;
+DECL|field|factory
+specifier|private
+specifier|final
+name|QueryBuilder
+name|factory
 decl_stmt|;
 DECL|method|BoostingQueryBuilder
 specifier|public
@@ -203,7 +206,7 @@ name|boostQueryElem
 argument_list|,
 literal|"boost"
 argument_list|,
-name|defaultBoost
+name|DEFAULT_BOOST
 argument_list|)
 decl_stmt|;
 name|boostQueryElem

@@ -91,7 +91,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *   */
+comment|/**  *  */
 end_comment
 
 begin_class
@@ -103,10 +103,12 @@ extends|extends
 name|SpanBuilderBase
 block|{
 DECL|field|factory
+specifier|private
+specifier|final
 name|SpanQueryBuilder
 name|factory
 decl_stmt|;
-comment|/**      * @param factory      */
+comment|/**    * @param factory    */
 DECL|method|SpanNotBuilder
 specifier|public
 name|SpanNotBuilder
@@ -115,9 +117,6 @@ name|SpanQueryBuilder
 name|factory
 parameter_list|)
 block|{
-name|super
-argument_list|()
-expr_stmt|;
 name|this
 operator|.
 name|factory

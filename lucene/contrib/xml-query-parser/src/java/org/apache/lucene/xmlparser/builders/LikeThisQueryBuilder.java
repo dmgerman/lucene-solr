@@ -191,7 +191,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *   */
+comment|/**  *  */
 end_comment
 
 begin_class
@@ -202,35 +202,47 @@ name|LikeThisQueryBuilder
 implements|implements
 name|QueryBuilder
 block|{
-DECL|field|analyzer
+DECL|field|DEFAULT_MAX_QUERY_TERMS
 specifier|private
-name|Analyzer
-name|analyzer
-decl_stmt|;
-DECL|field|defaultFieldNames
-name|String
-name|defaultFieldNames
-index|[]
-decl_stmt|;
-DECL|field|defaultMaxQueryTerms
+specifier|static
+specifier|final
 name|int
-name|defaultMaxQueryTerms
+name|DEFAULT_MAX_QUERY_TERMS
 init|=
 literal|20
 decl_stmt|;
-DECL|field|defaultMinTermFrequency
+DECL|field|DEFAULT_MIN_TERM_FREQUENCY
+specifier|private
+specifier|static
+specifier|final
 name|int
-name|defaultMinTermFrequency
+name|DEFAULT_MIN_TERM_FREQUENCY
 init|=
 literal|1
 decl_stmt|;
-DECL|field|defaultPercentTermsToMatch
+DECL|field|DEFAULT_PERCENT_TERMS_TO_MATCH
+specifier|private
+specifier|static
+specifier|final
 name|float
-name|defaultPercentTermsToMatch
+name|DEFAULT_PERCENT_TERMS_TO_MATCH
 init|=
 literal|30
 decl_stmt|;
 comment|//default is a 3rd of selected terms must match
+DECL|field|analyzer
+specifier|private
+specifier|final
+name|Analyzer
+name|analyzer
+decl_stmt|;
+DECL|field|defaultFieldNames
+specifier|private
+specifier|final
+name|String
+name|defaultFieldNames
+index|[]
+decl_stmt|;
 DECL|method|LikeThisQueryBuilder
 specifier|public
 name|LikeThisQueryBuilder
@@ -256,7 +268,7 @@ operator|=
 name|defaultFieldNames
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.apache.lucene.xmlparser.QueryObjectBuilder#process(org.w3c.dom.Element) 	 */
+comment|/* (non-Javadoc)     * @see org.apache.lucene.xmlparser.QueryObjectBuilder#process(org.w3c.dom.Element)     */
 DECL|method|getQuery
 specifier|public
 name|Query
@@ -398,19 +410,10 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|String
+name|field
+range|:
 name|fields
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 try|try
@@ -422,10 +425,7 @@ name|analyzer
 operator|.
 name|reusableTokenStream
 argument_list|(
-name|fields
-index|[
-name|i
-index|]
+name|field
 argument_list|,
 operator|new
 name|StringReader
@@ -545,7 +545,7 @@ name|e
 argument_list|,
 literal|"maxQueryTerms"
 argument_list|,
-name|defaultMaxQueryTerms
+name|DEFAULT_MAX_QUERY_TERMS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -561,7 +561,7 @@ name|e
 argument_list|,
 literal|"minTermFrequency"
 argument_list|,
-name|defaultMinTermFrequency
+name|DEFAULT_MIN_TERM_FREQUENCY
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -577,7 +577,7 @@ name|e
 argument_list|,
 literal|"percentTermsToMatch"
 argument_list|,
-name|defaultPercentTermsToMatch
+name|DEFAULT_PERCENT_TERMS_TO_MATCH
 argument_list|)
 operator|/
 literal|100

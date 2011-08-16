@@ -157,7 +157,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *   */
+comment|/**  *  */
 end_comment
 
 begin_class
@@ -170,6 +170,7 @@ name|FilterBuilder
 block|{
 DECL|field|factory
 specifier|private
+specifier|final
 name|FilterBuilder
 name|factory
 decl_stmt|;

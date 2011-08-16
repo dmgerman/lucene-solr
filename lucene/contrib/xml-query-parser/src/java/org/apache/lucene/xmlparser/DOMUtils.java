@@ -14,40 +14,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|DocumentBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|DocumentBuilderFactory
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|w3c
@@ -94,12 +60,46 @@ name|InputSource
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|DocumentBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|DocumentBuilderFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
 begin_comment
 comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_comment
-comment|/**  *   */
+comment|/**  *  */
 end_comment
 
 begin_class
@@ -449,7 +449,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Returns an attribute value from this node, or first parent node with this attribute defined 	 * @param element  	 * @param attributeName 	 * @return A non-zero-length value if defined, otherwise null 	 */
+comment|/**    * Returns an attribute value from this node, or first parent node with this attribute defined    *    * @param element    * @param attributeName    * @return A non-zero-length value if defined, otherwise null    */
 DECL|method|getAttributeWithInheritance
 specifier|public
 specifier|static
@@ -575,21 +575,16 @@ argument_list|,
 name|tagName
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+return|return
 name|child
 operator|!=
 literal|null
-condition|)
-block|{
-return|return
+condition|?
 name|getText
 argument_list|(
 name|child
 argument_list|)
-return|;
-block|}
-return|return
+else|:
 literal|null
 return|;
 block|}
@@ -683,8 +678,7 @@ argument_list|(
 name|attributeName
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+return|return
 operator|(
 name|result
 operator|==
@@ -699,13 +693,9 @@ argument_list|(
 name|result
 argument_list|)
 operator|)
-condition|)
-block|{
-return|return
+condition|?
 name|deflt
-return|;
-block|}
-return|return
+else|:
 name|result
 return|;
 block|}
@@ -735,8 +725,7 @@ argument_list|(
 name|attributeName
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+return|return
 operator|(
 name|result
 operator|==
@@ -751,13 +740,9 @@ argument_list|(
 name|result
 argument_list|)
 operator|)
-condition|)
-block|{
-return|return
+condition|?
 name|deflt
-return|;
-block|}
-return|return
+else|:
 name|Float
 operator|.
 name|parseFloat
@@ -792,8 +777,7 @@ argument_list|(
 name|attributeName
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+return|return
 operator|(
 name|result
 operator|==
@@ -808,13 +792,9 @@ argument_list|(
 name|result
 argument_list|)
 operator|)
-condition|)
-block|{
-return|return
+condition|?
 name|deflt
-return|;
-block|}
-return|return
+else|:
 name|Integer
 operator|.
 name|parseInt
@@ -849,8 +829,7 @@ argument_list|(
 name|attributeName
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+return|return
 operator|(
 name|result
 operator|==
@@ -865,22 +844,15 @@ argument_list|(
 name|result
 argument_list|)
 operator|)
-condition|)
-block|{
-return|return
+condition|?
 name|deflt
-return|;
-block|}
-return|return
+else|:
 name|Boolean
 operator|.
 name|valueOf
 argument_list|(
 name|result
 argument_list|)
-operator|.
-name|booleanValue
-argument_list|()
 return|;
 block|}
 comment|/* Returns text of node and all child nodes - without markup */
@@ -1066,7 +1038,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** 	* Helper method to parse an XML file into a DOM tree, given a reader. 	* @param is reader of the XML file to be parsed 	* @return an org.w3c.dom.Document object 	*/
+comment|/**    * Helper method to parse an XML file into a DOM tree, given a reader.    *    * @param is reader of the XML file to be parsed    * @return an org.w3c.dom.Document object    */
 DECL|method|loadXML
 specifier|public
 specifier|static

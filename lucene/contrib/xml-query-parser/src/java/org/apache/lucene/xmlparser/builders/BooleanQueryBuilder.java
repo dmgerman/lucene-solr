@@ -143,7 +143,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *   */
+comment|/**  *  */
 end_comment
 
 begin_class
@@ -156,6 +156,7 @@ name|QueryBuilder
 block|{
 DECL|field|factory
 specifier|private
+specifier|final
 name|QueryBuilder
 name|factory
 decl_stmt|;
@@ -174,7 +175,7 @@ operator|=
 name|factory
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.apache.lucene.xmlparser.QueryObjectBuilder#process(org.w3c.dom.Element) 	 */
+comment|/* (non-Javadoc)     * @see org.apache.lucene.xmlparser.QueryObjectBuilder#process(org.w3c.dom.Element)     */
 DECL|method|getQuery
 specifier|public
 name|Query

@@ -141,7 +141,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *   */
+comment|/**  *  */
 end_comment
 
 begin_class
@@ -152,34 +152,47 @@ name|FuzzyLikeThisQueryBuilder
 implements|implements
 name|QueryBuilder
 block|{
-DECL|field|defaultMaxNumTerms
+DECL|field|DEFAULT_MAX_NUM_TERMS
+specifier|private
+specifier|static
+specifier|final
 name|int
-name|defaultMaxNumTerms
+name|DEFAULT_MAX_NUM_TERMS
 init|=
 literal|50
 decl_stmt|;
-DECL|field|defaultMinSimilarity
+DECL|field|DEFAULT_MIN_SIMILARITY
+specifier|private
+specifier|static
+specifier|final
 name|float
-name|defaultMinSimilarity
+name|DEFAULT_MIN_SIMILARITY
 init|=
 name|FuzzyQuery
 operator|.
 name|defaultMinSimilarity
 decl_stmt|;
-DECL|field|defaultPrefixLength
+DECL|field|DEFAULT_PREFIX_LENGTH
+specifier|private
+specifier|static
+specifier|final
 name|int
-name|defaultPrefixLength
+name|DEFAULT_PREFIX_LENGTH
 init|=
 literal|1
 decl_stmt|;
-DECL|field|defaultIgnoreTF
+DECL|field|DEFAULT_IGNORE_TF
+specifier|private
+specifier|static
+specifier|final
 name|boolean
-name|defaultIgnoreTF
+name|DEFAULT_IGNORE_TF
 init|=
 literal|false
 decl_stmt|;
 DECL|field|analyzer
 specifier|private
+specifier|final
 name|Analyzer
 name|analyzer
 decl_stmt|;
@@ -230,7 +243,7 @@ name|e
 argument_list|,
 literal|"maxNumTerms"
 argument_list|,
-name|defaultMaxNumTerms
+name|DEFAULT_MAX_NUM_TERMS
 argument_list|)
 decl_stmt|;
 name|FuzzyLikeThisQuery
@@ -256,7 +269,7 @@ name|e
 argument_list|,
 literal|"ignoreTF"
 argument_list|,
-name|defaultIgnoreTF
+name|DEFAULT_IGNORE_TF
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -302,7 +315,7 @@ name|fieldElem
 argument_list|,
 literal|"minSimilarity"
 argument_list|,
-name|defaultMinSimilarity
+name|DEFAULT_MIN_SIMILARITY
 argument_list|)
 decl_stmt|;
 name|int
@@ -316,7 +329,7 @@ name|fieldElem
 argument_list|,
 literal|"prefixLength"
 argument_list|,
-name|defaultPrefixLength
+name|DEFAULT_PREFIX_LENGTH
 argument_list|)
 decl_stmt|;
 name|String

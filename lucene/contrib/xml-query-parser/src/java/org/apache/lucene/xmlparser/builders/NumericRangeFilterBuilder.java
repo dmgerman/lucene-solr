@@ -20,16 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -154,8 +144,18 @@ name|Element
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
-comment|/**  * Creates a {@link NumericRangeFilter}. The table below specifies the required  * attributes and the defaults if optional attributes are omitted. For more  * detail on what each of the attributes actually do, consult the documentation  * for {@link NumericRangeFilter}:  *<table>  *<tr>  *<th>Attribute name</th>  *<th>Values</th>  *<th>Required</th>  *<th>Default</th>  *</tr>  *<tr>  *<td>fieldName</td>  *<td>String</td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>lowerTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>upperTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>type</td>  *<td>int, long, float, double</td>  *<td>No</td>  *<td>int</td>  *</tr>  *<tr>  *<td>includeLower</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>includeUpper</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>precisionStep</td>  *<td>Integer</td>  *<td>No</td>  *<td>4</td>  *</tr>  *</table>  *<p>  * If an error occurs parsing the supplied<tt>lowerTerm</tt> or  *<tt>upperTerm</tt> into the numeric type specified by<tt>type</tt>, then the  * error will be silently ignored and the resulting filter will not match any  * documents.  */
+comment|/**  * Creates a {@link NumericRangeFilter}. The table below specifies the required  * attributes and the defaults if optional attributes are omitted. For more  * detail on what each of the attributes actually do, consult the documentation  * for {@link NumericRangeFilter}:  *<table>  *<tr>  *<th>Attribute name</th>  *<th>Values</th>  *<th>Required</th>  *<th>Default</th>  *</tr>  *<tr>  *<td>fieldName</td>  *<td>String</td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>lowerTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>upperTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>type</td>  *<td>int, long, float, double</td>  *<td>No</td>  *<td>int</td>  *</tr>  *<tr>  *<td>includeLower</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>includeUpper</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>precisionStep</td>  *<td>Integer</td>  *<td>No</td>  *<td>4</td>  *</tr>  *</table>  *<p/>  * If an error occurs parsing the supplied<tt>lowerTerm</tt> or  *<tt>upperTerm</tt> into the numeric type specified by<tt>type</tt>, then the  * error will be silently ignored and the resulting filter will not match any  * documents.  */
 end_comment
 
 begin_class
@@ -184,7 +184,7 @@ name|strictMode
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 * Specifies how this {@link NumericRangeFilterBuilder} will handle errors. 	 *<p> 	 * If this is set to true, {@link #getFilter(Element)} will throw a 	 * {@link ParserException} if it is unable to parse the lowerTerm or upperTerm 	 * into the appropriate numeric type. If this is set to false, then this 	 * exception will be silently ignored and the resulting filter will not match 	 * any documents. 	 *<p> 	 * Defaults to false. 	 *  	 * @param strictMode 	 */
+comment|/**    * Specifies how this {@link NumericRangeFilterBuilder} will handle errors.    *<p/>    * If this is set to true, {@link #getFilter(Element)} will throw a    * {@link ParserException} if it is unable to parse the lowerTerm or upperTerm    * into the appropriate numeric type. If this is set to false, then this    * exception will be silently ignored and the resulting filter will not match    * any documents.    *<p/>    * Defaults to false.    *    * @param strictMode    */
 DECL|method|setStrictMode
 specifier|public
 name|void
