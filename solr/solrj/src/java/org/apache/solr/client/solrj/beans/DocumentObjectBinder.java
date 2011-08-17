@@ -211,32 +211,12 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|solrDocList
-operator|.
-name|size
-argument_list|()
-condition|;
-name|j
-operator|++
-control|)
-block|{
 name|SolrDocument
 name|sdoc
-init|=
+range|:
 name|solrDocList
-operator|.
-name|get
-argument_list|(
-name|j
-argument_list|)
-decl_stmt|;
+control|)
+block|{
 name|result
 operator|.
 name|add
@@ -324,67 +304,24 @@ name|clazz
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 name|T
 name|obj
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|obj
-operator|=
 name|clazz
 operator|.
 name|newInstance
 argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Could not instantiate object of "
-operator|+
-name|clazz
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
+decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|fields
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|DocField
 name|docField
-init|=
+range|:
 name|fields
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
+control|)
+block|{
 name|docField
 operator|.
 name|inject
@@ -398,6 +335,25 @@ block|}
 return|return
 name|obj
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|BindingException
+argument_list|(
+literal|"Could not instantiate object of "
+operator|+
+name|clazz
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 DECL|method|toSolrInputDocument
 specifier|public
@@ -432,7 +388,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|BindingException
 argument_list|(
 literal|"class: "
 operator|+
@@ -491,7 +447,7 @@ argument_list|>
 name|mapValue
 init|=
 operator|(
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -655,7 +611,7 @@ name|superClazz
 init|=
 name|clazz
 decl_stmt|;
-name|ArrayList
+name|List
 argument_list|<
 name|AccessibleObject
 argument_list|>
@@ -801,23 +757,20 @@ name|Class
 name|type
 decl_stmt|;
 DECL|field|isArray
-DECL|field|isList
 specifier|private
 name|boolean
 name|isArray
-init|=
-literal|false
-decl_stmt|,
+decl_stmt|;
+DECL|field|isList
+specifier|private
+name|boolean
 name|isList
-init|=
-literal|false
 decl_stmt|;
 comment|/*      * dynamic fields may use a Map based data structure to bind a given field.      * if a mapping is done using, "Map<String, List<String>> foo",<code>isContainedInMap</code>      * is set to<code>TRUE</code> as well as<code>isList</code> is set to<code>TRUE</code>      */
 DECL|field|isContainedInMap
+specifier|private
 name|boolean
 name|isContainedInMap
-init|=
-literal|false
 decl_stmt|;
 DECL|field|dynamicFieldNamePatternMatcher
 specifier|private
@@ -1115,7 +1068,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|//dynamic fields are annotated as @Field("categories_*")
 elseif|else
 if|if
 condition|(
@@ -1132,6 +1084,7 @@ operator|>=
 literal|0
 condition|)
 block|{
+comment|//dynamic fields are annotated as @Field("categories_*")
 comment|//if the field was annotated as a dynamic field, convert the name into a pattern
 comment|//the wildcard (*) is supposed to be either a prefix or a suffix, hence the use of replaceFirst
 name|name
@@ -1213,13 +1166,15 @@ name|length
 operator|!=
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|BindingException
 argument_list|(
 literal|"Invalid setter method. Must have one and only one parameter"
 argument_list|)
 throw|;
+block|}
 name|type
 operator|=
 name|params
@@ -1259,7 +1214,6 @@ name|isList
 operator|=
 literal|true
 expr_stmt|;
-comment|/*ParameterizedType parameterizedType = null;         if(field !=null){           if( field.getGenericType() instanceof ParameterizedType){             parameterizedType = (ParameterizedType) field.getGenericType();             Type[] types = parameterizedType.getActualTypeArguments();             if (types != null&& types.length> 0) type = (Class) types[0];           }         }*/
 block|}
 elseif|else
 if|if
@@ -1295,7 +1249,6 @@ name|getComponentType
 argument_list|()
 expr_stmt|;
 block|}
-comment|//corresponding to the support for dynamicFields
 elseif|else
 if|if
 condition|(
@@ -1312,6 +1265,7 @@ operator|.
 name|class
 condition|)
 block|{
+comment|//corresponding to the support for dynamicFields
 name|isContainedInMap
 operator|=
 literal|true
@@ -1395,7 +1349,7 @@ operator|instanceof
 name|Class
 condition|)
 block|{
-comment|//the value could be multivalued then it is a List ,Collection,ArrayList
+comment|//the value could be multivalued then it is a List, Collection, ArrayList
 if|if
 condition|(
 name|types
@@ -1452,7 +1406,6 @@ index|]
 expr_stmt|;
 block|}
 block|}
-comment|//Of all the Parameterized types, only List is supported
 elseif|else
 if|if
 condition|(
@@ -1464,6 +1417,7 @@ operator|instanceof
 name|ParameterizedType
 condition|)
 block|{
+comment|//Of all the Parameterized types, only List is supported
 name|Type
 name|rawType
 init|=
@@ -1513,7 +1467,6 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-comment|//Array types
 elseif|else
 if|if
 condition|(
@@ -1525,6 +1478,7 @@ operator|instanceof
 name|GenericArrayType
 condition|)
 block|{
+comment|//Array types
 name|type
 operator|=
 call|(
@@ -1548,12 +1502,12 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|//Throw an Exception if types are not known
 else|else
 block|{
+comment|//Throw an Exception if types are not known
 throw|throw
 operator|new
-name|RuntimeException
+name|BindingException
 argument_list|(
 literal|"Allowed type for values of mapping a dynamicField are : "
 operator|+
@@ -1621,7 +1575,7 @@ name|allValuesMap
 init|=
 literal|null
 decl_stmt|;
-name|ArrayList
+name|List
 name|allValuesList
 init|=
 literal|null
@@ -1692,7 +1646,9 @@ name|val
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 if|if
 condition|(
 name|isContainedInMap
@@ -1713,7 +1669,7 @@ name|List
 operator|)
 condition|)
 block|{
-name|ArrayList
+name|List
 name|al
 init|=
 operator|new
@@ -1919,8 +1875,6 @@ condition|)
 block|{
 name|List
 name|list
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -2020,7 +1974,7 @@ name|List
 operator|)
 condition|)
 block|{
-name|ArrayList
+name|List
 name|list
 init|=
 operator|new
@@ -2175,7 +2129,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|BindingException
 argument_list|(
 literal|"Exception while setting value : "
 operator|+
@@ -2234,7 +2188,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|BindingException
 argument_list|(
 literal|"Exception while getting value: "
 operator|+
@@ -2255,7 +2209,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|BindingException
 argument_list|(
 literal|"Missing getter for field: "
 operator|+
@@ -2290,7 +2244,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|BindingException
 argument_list|(
 literal|"Exception while getting value: "
 operator|+
