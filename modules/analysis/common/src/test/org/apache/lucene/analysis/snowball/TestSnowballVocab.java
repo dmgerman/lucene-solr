@@ -122,8 +122,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|util
-operator|.
 name|VocabularyAssert
 operator|.
 name|*
