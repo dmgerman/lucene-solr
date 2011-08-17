@@ -261,20 +261,13 @@ argument_list|(
 literal|1000
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"WARNING: NUM_ORDS is wired to 2, test fails otherwise!!!!!!!!!!!!!!!!!!!!!"
-argument_list|)
-expr_stmt|;
 name|NUM_ORDS
 operator|=
+name|atLeast
+argument_list|(
 literal|2
+argument_list|)
 expr_stmt|;
-comment|//atLeast(2);
 name|directory
 operator|=
 name|newDirectory
@@ -2338,7 +2331,7 @@ block|}
 if|if
 condition|(
 name|chunk
-operator|<
+operator|<=
 name|buffer
 operator|.
 name|length
