@@ -314,6 +314,26 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queryparser
+operator|.
+name|util
+operator|.
+name|QueryParserTestBase
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|BooleanQuery
@@ -465,7 +485,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This test case tests {@link PrecedenceQueryParser}.  *</p>  *<p>  * It contains all tests from {@link org.apache.lucene.queryparser.classic.TestQueryParser}  * with some adjusted to fit the precedence requirement, plus some precedence test cases.  *</p>  *   * @see org.apache.lucene.queryparser.classic.TestQueryParser  */
+comment|/**  *<p>  * This test case tests {@link PrecedenceQueryParser}.  *</p>  *<p>  * It contains all tests from {@link QueryParserTestBase}  * with some adjusted to fit the precedence requirement, plus some precedence test cases.  *</p>  *   * @see QueryParserTestBase  */
+end_comment
+
+begin_comment
+comment|//TODO: refactor this to actually extend that class, overriding the tests
+end_comment
+
+begin_comment
+comment|//that it adjusts to fit the precedence requirement, adding its extra tests.
 end_comment
 
 begin_class
