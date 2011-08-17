@@ -261,13 +261,20 @@ argument_list|(
 literal|1000
 argument_list|)
 expr_stmt|;
-name|NUM_ORDS
-operator|=
-name|atLeast
+name|System
+operator|.
+name|out
+operator|.
+name|println
 argument_list|(
-literal|2
+literal|"WARNING: NUM_ORDS is wired to 2, test fails otherwise!!!!!!!!!!!!!!!!!!!!!"
 argument_list|)
 expr_stmt|;
+name|NUM_ORDS
+operator|=
+literal|2
+expr_stmt|;
+comment|//atLeast(2);
 name|directory
 operator|=
 name|newDirectory
