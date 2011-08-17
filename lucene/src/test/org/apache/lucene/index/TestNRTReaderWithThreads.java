@@ -551,7 +551,7 @@ decl_stmt|;
 name|Document
 name|doc
 init|=
-name|TestIndexWriterReader
+name|DocHelper
 operator|.
 name|createDocument
 argument_list|(
