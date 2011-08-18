@@ -842,6 +842,9 @@ expr_stmt|;
 block|}
 try|try
 block|{
+name|boolean
+name|triggered
+init|=
 name|commitTracker
 operator|.
 name|addedDocument
@@ -850,7 +853,14 @@ name|cmd
 operator|.
 name|commitWithin
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|triggered
+condition|)
+block|{
+comment|// if we hard commit, don't soft commit
 name|softCommitTracker
 operator|.
 name|addedDocument
@@ -860,6 +870,16 @@ operator|.
 name|commitWithin
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// still inc softCommit
+name|softCommitTracker
+operator|.
+name|docsSinceCommit
+operator|++
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|cmd
