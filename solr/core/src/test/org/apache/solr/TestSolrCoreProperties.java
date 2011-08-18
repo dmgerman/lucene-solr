@@ -312,11 +312,6 @@ operator|.
 name|stop
 argument_list|()
 expr_stmt|;
-name|SolrTestCaseJ4
-operator|.
-name|closeDirectories
-argument_list|()
-expr_stmt|;
 name|AbstractSolrTestCase
 operator|.
 name|recurseDelete

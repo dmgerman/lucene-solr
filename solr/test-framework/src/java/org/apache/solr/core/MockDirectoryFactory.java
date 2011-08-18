@@ -74,14 +74,14 @@ specifier|public
 class|class
 name|MockDirectoryFactory
 extends|extends
-name|DirectoryFactory
+name|CachingDirectoryFactory
 block|{
 annotation|@
 name|Override
-DECL|method|open
+DECL|method|create
 specifier|public
 name|Directory
-name|open
+name|create
 parameter_list|(
 name|String
 name|path

@@ -22,7 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|Closeable
 import|;
 end_import
 
@@ -58,22 +58,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|NamedList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|util
 operator|.
 name|plugin
@@ -83,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides access to a Directory implementation.   *   */
+comment|/**  * Provides access to a Directory implementation. You must release every  * Directory that you get.  */
 end_comment
 
 begin_class
@@ -94,13 +78,25 @@ class|class
 name|DirectoryFactory
 implements|implements
 name|NamedListInitializedPlugin
+implements|,
+name|Closeable
 block|{
-comment|/**    * Opens a Lucene directory    *     * @throws IOException    */
-DECL|method|open
+comment|/**    * Close the this and all of the Directories it contains.    *     * @throws IOException    */
+DECL|method|close
 specifier|public
 specifier|abstract
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Creates a new Directory for a given path.    *     * @param path    * @return    * @throws IOException    */
+DECL|method|create
+specifier|protected
+specifier|abstract
 name|Directory
-name|open
+name|create
 parameter_list|(
 name|String
 name|path
@@ -108,41 +104,76 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Returns true if a Directory exists for a given path.    *     * @param path    * @return    */
 DECL|method|exists
 specifier|public
+specifier|abstract
 name|boolean
 name|exists
 parameter_list|(
 name|String
 name|path
 parameter_list|)
-block|{
-comment|// back compat behavior
-name|File
-name|dirFile
-init|=
-operator|new
-name|File
-argument_list|(
-name|path
-argument_list|)
-decl_stmt|;
-return|return
-name|dirFile
-operator|.
-name|canRead
-argument_list|()
-return|;
-block|}
-DECL|method|init
+function_decl|;
+comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path.    *     * @param path    * @param rawLockType    * @return    * @throws IOException    */
+DECL|method|get
 specifier|public
-name|void
-name|init
+specifier|abstract
+name|Directory
+name|get
 parameter_list|(
-name|NamedList
-name|args
+name|String
+name|path
+parameter_list|,
+name|String
+name|rawLockType
 parameter_list|)
-block|{   }
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path unless forceNew,    * in which case a new Directory is returned.    *     * @param path    * @param rawLockType    * @param forceNew    * @return    * @throws IOException    */
+DECL|method|get
+specifier|public
+specifier|abstract
+name|Directory
+name|get
+parameter_list|(
+name|String
+name|path
+parameter_list|,
+name|String
+name|rawLockType
+parameter_list|,
+name|boolean
+name|forceNew
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Increment the number of references to the given Directory. You must call    * release for every call to this method.    *     * @param directory    */
+DECL|method|incRef
+specifier|public
+specifier|abstract
+name|void
+name|incRef
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+function_decl|;
+comment|/**    * Releases the Directory so that it may be closed when it is no longer    * referenced.    *     * @param directory    * @throws IOException    */
+DECL|method|release
+specifier|public
+specifier|abstract
+name|void
+name|release
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_class
 

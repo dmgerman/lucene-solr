@@ -162,13 +162,6 @@ operator|.
 name|newReaderCalled
 argument_list|)
 expr_stmt|;
-name|TestFSDirectoryFactory
-operator|.
-name|dir
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 DECL|class|TestFSDirectoryFactory
 specifier|static
@@ -176,7 +169,7 @@ specifier|public
 class|class
 name|TestFSDirectoryFactory
 extends|extends
-name|DirectoryFactory
+name|CachingDirectoryFactory
 block|{
 DECL|field|openCalled
 specifier|public
@@ -196,10 +189,10 @@ name|dir
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|open
+DECL|method|create
 specifier|public
 name|Directory
-name|open
+name|create
 parameter_list|(
 name|String
 name|path
@@ -211,20 +204,6 @@ name|openCalled
 operator|=
 literal|true
 expr_stmt|;
-comment|// need to close the directory, or otherwise the test fails.
-if|if
-condition|(
-name|dir
-operator|!=
-literal|null
-condition|)
-block|{
-name|dir
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
 return|return
 name|dir
 operator|=

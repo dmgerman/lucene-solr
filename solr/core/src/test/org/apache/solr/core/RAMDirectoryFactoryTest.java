@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -40,7 +50,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|SingleInstanceLockFactory
+name|RAMDirectory
 import|;
 end_import
 
@@ -55,16 +65,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|Directory
 name|directory
 init|=
 operator|new
-name|RefCntRamDirectory
+name|RAMDirectory
 argument_list|()
 decl_stmt|;
 name|RAMDirectoryFactory
@@ -120,8 +120,9 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+specifier|protected
 name|Directory
-name|openNew
+name|create
 parameter_list|(
 name|String
 name|path
@@ -145,9 +146,11 @@ name|dir1
 init|=
 name|factory
 operator|.
-name|open
+name|get
 argument_list|(
 name|path
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -155,9 +158,11 @@ name|dir2
 init|=
 name|factory
 operator|.
-name|open
+name|get
 argument_list|(
 name|path
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -166,31 +171,24 @@ literal|"RAMDirectoryFactory should not create new instance of RefCntRamDirector
 operator|+
 literal|"every time open() is called for the same path"
 argument_list|,
-name|directory
-argument_list|,
 name|dir1
+argument_list|,
+name|dir2
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|factory
+operator|.
+name|release
 argument_list|(
-literal|"RAMDirectoryFactory should not create new instance of RefCntRamDirectory "
-operator|+
-literal|"every time open() is called for the same path"
-argument_list|,
-name|directory
-argument_list|,
-name|dir2
+name|dir1
 argument_list|)
 expr_stmt|;
-name|dir1
+name|factory
 operator|.
-name|close
-argument_list|()
-expr_stmt|;
+name|release
+argument_list|(
 name|dir2
-operator|.
-name|close
-argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|dotestOpenSucceedForEmptyDir
@@ -213,9 +211,11 @@ name|dir
 init|=
 name|factory
 operator|.
-name|open
+name|get
 argument_list|(
 literal|"/fake/path"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -224,6 +224,13 @@ literal|"RAMDirectoryFactory should create RefCntRamDirectory even if the path d
 operator|+
 literal|"to index directory on the file system"
 argument_list|,
+name|dir
+argument_list|)
+expr_stmt|;
+name|factory
+operator|.
+name|release
+argument_list|(
 name|dir
 argument_list|)
 expr_stmt|;

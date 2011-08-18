@@ -2232,7 +2232,7 @@ name|softTracker
 operator|.
 name|timeUpperBound
 operator|=
-literal|1000
+literal|1200
 expr_stmt|;
 name|softTracker
 operator|.
@@ -2632,14 +2632,28 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|2
-argument_list|,
+comment|// depending on timing, you might see 2 or 3 soft commits
+name|int
+name|softCommitCnt
+init|=
 name|softTracker
 operator|.
 name|getCommitCount
 argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"commit cnt:"
+operator|+
+name|softCommitCnt
+argument_list|,
+name|softCommitCnt
+operator|==
+literal|2
+operator|||
+name|softCommitCnt
+operator|==
+literal|3
 argument_list|)
 expr_stmt|;
 name|assertEquals
