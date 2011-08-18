@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.xmlparser.webdemo
+DECL|package|org.apache.lucene.demo.xmlparser
 package|package
 name|org
 operator|.
@@ -12,9 +12,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|xmlparser
+name|demo
 operator|.
-name|webdemo
+name|xmlparser
 package|;
 end_package
 
