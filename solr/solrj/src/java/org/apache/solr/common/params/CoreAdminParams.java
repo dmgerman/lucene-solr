@@ -178,6 +178,16 @@ name|SHARD
 init|=
 literal|"shard"
 decl_stmt|;
+comment|/** Prefix for core property name=value pair **/
+DECL|field|PROPERTY_PREFIX
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_PREFIX
+init|=
+literal|"property."
+decl_stmt|;
 comment|/** If you unload a core, delete the index too */
 DECL|field|DELETE_INDEX
 specifier|public
