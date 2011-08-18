@@ -384,6 +384,12 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
+comment|// LUCENE-1468: our NRTCachingDirectory will actually exist (RAMDir!),
+comment|// but if the underlying delegate is an FSDir and mkdirs() has not
+comment|// yet been called, because so far everything is a cached write,
+comment|// in this case, we don't want to throw a NoSuchDirectoryException
+try|try
+block|{
 for|for
 control|(
 name|String
@@ -405,6 +411,28 @@ argument_list|(
 name|f
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchDirectoryException
+name|ex
+parameter_list|)
+block|{
+comment|// however, if there are no cached files, then the directory truly
+comment|// does not "exist"
+if|if
+condition|(
+name|files
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+name|ex
+throw|;
+block|}
 block|}
 return|return
 name|files
@@ -861,11 +889,14 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|// final due to LUCENE-3382: currently CFS backdoors the directory to create CFE
+comment|// by using the basic implementation and not delegating, we ensure that all
+comment|// openInput/createOutput requests come thru NRTCachingDirectory.
 annotation|@
 name|Override
 DECL|method|openCompoundInput
 specifier|public
-specifier|synchronized
+specifier|final
 name|CompoundFileDirectory
 name|openCompoundInput
 parameter_list|(
@@ -878,18 +909,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|cache
-operator|.
-name|fileExists
-argument_list|(
-name|name
-argument_list|)
-condition|)
-block|{
 return|return
-name|cache
+name|super
 operator|.
 name|openCompoundInput
 argument_list|(
@@ -899,25 +920,14 @@ name|context
 argument_list|)
 return|;
 block|}
-else|else
-block|{
-return|return
-name|delegate
-operator|.
-name|openCompoundInput
-argument_list|(
-name|name
-argument_list|,
-name|context
-argument_list|)
-return|;
-block|}
-block|}
+comment|// final due to LUCENE-3382: currently CFS backdoors the directory to create CFE
+comment|// by using the basic implementation and not delegating, we ensure that all
+comment|// openInput/createOutput requests come thru NRTCachingDirectory.
 annotation|@
 name|Override
 DECL|method|createCompoundOutput
 specifier|public
-specifier|synchronized
+specifier|final
 name|CompoundFileDirectory
 name|createCompoundOutput
 parameter_list|(
@@ -930,32 +940,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|cache
-operator|.
-name|fileExists
-argument_list|(
-name|name
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"File "
-operator|+
-name|name
-operator|+
-literal|"already exists"
-argument_list|)
-throw|;
-block|}
-else|else
-block|{
 return|return
-name|delegate
+name|super
 operator|.
 name|createCompoundOutput
 argument_list|(
@@ -964,7 +950,6 @@ argument_list|,
 name|context
 argument_list|)
 return|;
-block|}
 block|}
 comment|/** Close this directory, which flushes any cached files    *  to the delegate and then closes the delegate. */
 annotation|@
