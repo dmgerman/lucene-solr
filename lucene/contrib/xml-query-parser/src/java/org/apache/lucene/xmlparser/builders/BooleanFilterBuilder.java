@@ -40,7 +40,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|queries
 operator|.
 name|BooleanFilter
 import|;
@@ -68,7 +68,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|queries
 operator|.
 name|FilterClause
 import|;
