@@ -842,9 +842,6 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|boolean
-name|triggered
-init|=
 name|commitTracker
 operator|.
 name|addedDocument
@@ -853,33 +850,16 @@ name|cmd
 operator|.
 name|commitWithin
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|triggered
-condition|)
-block|{
-comment|// if we hard commit, don't soft commit
+expr_stmt|;
 name|softCommitTracker
 operator|.
 name|addedDocument
 argument_list|(
-name|cmd
-operator|.
-name|commitWithin
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-comment|// still inc softCommit
-name|softCommitTracker
-operator|.
-name|docsSinceCommit
-operator|++
-expr_stmt|;
-block|}
+comment|// TODO: support commitWithin with soft update
 if|if
 condition|(
 name|cmd
@@ -1115,7 +1095,8 @@ if|if
 condition|(
 name|commitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -1126,7 +1107,8 @@ name|scheduleCommitWithin
 argument_list|(
 name|commitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1135,7 +1117,8 @@ if|if
 condition|(
 name|softCommitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -1146,7 +1129,8 @@ name|scheduleCommitWithin
 argument_list|(
 name|softCommitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1277,7 +1261,8 @@ if|if
 condition|(
 name|commitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -1288,7 +1273,8 @@ name|scheduleCommitWithin
 argument_list|(
 name|commitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1297,7 +1283,8 @@ if|if
 condition|(
 name|softCommitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -1308,7 +1295,8 @@ name|scheduleCommitWithin
 argument_list|(
 name|softCommitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1425,7 +1413,8 @@ literal|1
 operator|&&
 name|commitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -1436,7 +1425,8 @@ name|scheduleCommitWithin
 argument_list|(
 name|commitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1449,7 +1439,8 @@ literal|1
 operator|&&
 name|softCommitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -1460,7 +1451,8 @@ name|scheduleCommitWithin
 argument_list|(
 name|softCommitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2191,7 +2183,8 @@ if|if
 condition|(
 name|commitTracker
 operator|.
-name|docsUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -2204,7 +2197,8 @@ literal|"autocommit maxDocs"
 argument_list|,
 name|commitTracker
 operator|.
-name|docsUpperBound
+name|getTimeUpperBound
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2212,7 +2206,8 @@ if|if
 condition|(
 name|commitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -2227,7 +2222,8 @@ literal|""
 operator|+
 name|commitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|+
 literal|"ms"
 argument_list|)
@@ -2241,14 +2237,16 @@ literal|"autocommits"
 argument_list|,
 name|commitTracker
 operator|.
-name|autoCommitCount
+name|getCommitCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
 name|softCommitTracker
 operator|.
-name|docsUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -2261,7 +2259,8 @@ literal|"soft autocommit maxDocs"
 argument_list|,
 name|softCommitTracker
 operator|.
-name|docsUpperBound
+name|getTimeUpperBound
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2269,7 +2268,8 @@ if|if
 condition|(
 name|softCommitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -2284,7 +2284,8 @@ literal|""
 operator|+
 name|softCommitTracker
 operator|.
-name|timeUpperBound
+name|getTimeUpperBound
+argument_list|()
 operator|+
 literal|"ms"
 argument_list|)
@@ -2298,7 +2299,8 @@ literal|"soft autocommits"
 argument_list|,
 name|softCommitTracker
 operator|.
-name|autoCommitCount
+name|getCommitCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|lst
