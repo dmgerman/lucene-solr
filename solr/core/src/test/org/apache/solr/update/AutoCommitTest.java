@@ -2242,7 +2242,7 @@ name|softTracker
 operator|.
 name|setTimeUpperBound
 argument_list|(
-literal|200
+literal|100
 argument_list|)
 expr_stmt|;
 name|softTracker
@@ -2257,7 +2257,7 @@ name|hardTracker
 operator|.
 name|setTimeUpperBound
 argument_list|(
-literal|1000
+literal|500
 argument_list|)
 expr_stmt|;
 name|hardTracker
@@ -2358,7 +2358,7 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
-comment|// Check it it is in the index
+comment|// Check if it is in the index
 name|assertQ
 argument_list|(
 literal|"shouldn't find any"
@@ -2518,14 +2518,28 @@ argument_list|,
 name|rsp
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|2
-argument_list|,
+name|int
+name|totalCommits
+init|=
 name|softTracker
 operator|.
 name|getCommitCount
 argument_list|()
+operator|+
+name|hardTracker
+operator|.
+name|getCommitCount
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"expected:>=2 but got "
+operator|+
+name|totalCommits
+argument_list|,
+name|totalCommits
+operator|>=
+literal|2
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -2670,14 +2684,28 @@ operator|==
 literal|3
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
+comment|// depending on timing, you might see 1 or 2 hard commits
+name|int
+name|hardCommitCnt
+init|=
 name|hardTracker
 operator|.
 name|getCommitCount
 argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"commit cnt:"
+operator|+
+name|hardCommitCnt
+argument_list|,
+name|hardCommitCnt
+operator|==
+literal|1
+operator|||
+name|hardCommitCnt
+operator|==
+literal|2
 argument_list|)
 expr_stmt|;
 name|assertQ
