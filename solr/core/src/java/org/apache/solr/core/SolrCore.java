@@ -2785,7 +2785,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new core and register it in the list of cores.    * If a core with the same name already exists, it will be stopped and replaced by this one.    *@param dataDir the index directory    *@param config a solr config instance    *@param schema a solr schema instance    *@param updateHandler    *    *@since solr 1.3    */
+comment|/**    * Creates a new core and register it in the list of cores.    * If a core with the same name already exists, it will be stopped and replaced by this one.    *    * @param name    * @param dataDir the index directory    * @param config a solr config instance    * @param schema a solr schema instance    *    * @since solr 1.3    */
 DECL|method|SolrCore
 specifier|public
 name|SolrCore

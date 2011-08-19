@@ -91,7 +91,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Creates a new Directory for a given path.    *     * @param path    * @return    * @throws IOException    */
+comment|/**    * Creates a new Directory for a given path.    *     * @throws IOException    */
 DECL|method|create
 specifier|protected
 specifier|abstract
@@ -104,7 +104,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns true if a Directory exists for a given path.    *     * @param path    * @return    */
+comment|/**    * Returns true if a Directory exists for a given path.    *     */
 DECL|method|exists
 specifier|public
 specifier|abstract
@@ -115,7 +115,7 @@ name|String
 name|path
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path.    *     * @param path    * @param rawLockType    * @return    * @throws IOException    */
+comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path.    *     * @throws IOException    */
 DECL|method|get
 specifier|public
 specifier|abstract
@@ -131,7 +131,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path unless forceNew,    * in which case a new Directory is returned.    *     * @param path    * @param rawLockType    * @param forceNew    * @return    * @throws IOException    */
+comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path unless forceNew,    * in which case a new Directory is returned.    *     * @throws IOException    */
 DECL|method|get
 specifier|public
 specifier|abstract
@@ -150,7 +150,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Increment the number of references to the given Directory. You must call    * release for every call to this method.    *     * @param directory    */
+comment|/**    * Increment the number of references to the given Directory. You must call    * release for every call to this method.    *     */
 DECL|method|incRef
 specifier|public
 specifier|abstract
@@ -161,7 +161,7 @@ name|Directory
 name|directory
 parameter_list|)
 function_decl|;
-comment|/**    * Releases the Directory so that it may be closed when it is no longer    * referenced.    *     * @param directory    * @throws IOException    */
+comment|/**    * Releases the Directory so that it may be closed when it is no longer    * referenced.    *     * @throws IOException    */
 DECL|method|release
 specifier|public
 specifier|abstract

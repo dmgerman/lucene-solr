@@ -92,7 +92,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Get the current IndexWriter. If a new IndexWriter must be created, use the    * settings from the given {@link SolrCore}.    *     * @param core    * @return    * @throws IOException    */
+comment|/**    * Get the current IndexWriter. If a new IndexWriter must be created, use the    * settings from the given {@link SolrCore}.    *     * @throws IOException    */
 DECL|method|getIndexWriter
 specifier|public
 specifier|abstract

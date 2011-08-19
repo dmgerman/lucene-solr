@@ -2520,7 +2520,7 @@ comment|//
 comment|//      return super.search(newQuery[0], newFilter[0], sort);
 comment|//    }
 comment|//  }
-comment|/**    * @return the indexDir on which this searcher is opened    * @see #SolrIndexSearcher(SolrCore, IndexSchema, String, Directory, boolean)    */
+comment|/**    * @return the indexDir on which this searcher is opened    */
 DECL|method|getIndexDir
 specifier|public
 name|String
