@@ -251,6 +251,17 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|// LUCENE-3380: either or both of our dirs could be FSDirs,
+comment|// but if one underlying delegate is an FSDir and mkdirs() has not
+comment|// yet been called, because so far everything is written to the other,
+comment|// in this case, we don't want to throw a NoSuchDirectoryException
+name|NoSuchDirectoryException
+name|exc
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|String
@@ -270,6 +281,20 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchDirectoryException
+name|e
+parameter_list|)
+block|{
+name|exc
+operator|=
+name|e
+expr_stmt|;
+block|}
+try|try
+block|{
 for|for
 control|(
 name|String
@@ -288,6 +313,59 @@ argument_list|(
 name|f
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchDirectoryException
+name|e
+parameter_list|)
+block|{
+comment|// we got NoSuchDirectoryException from both dirs
+comment|// rethrow the first.
+if|if
+condition|(
+name|exc
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+name|exc
+throw|;
+block|}
+comment|// we got NoSuchDirectoryException from the secondary,
+comment|// and the primary is empty.
+if|if
+condition|(
+name|files
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+block|}
+comment|// we got NoSuchDirectoryException from the primary,
+comment|// and the secondary is empty.
+if|if
+condition|(
+name|exc
+operator|!=
+literal|null
+operator|&&
+name|files
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+name|exc
+throw|;
 block|}
 return|return
 name|files
@@ -642,10 +720,14 @@ name|context
 argument_list|)
 return|;
 block|}
+comment|// final due to LUCENE-3380: currently CFS backdoors the directory to create CFE
+comment|// by using the basic implementation and not delegating, we ensure that all
+comment|// openInput/createOutput requests come thru NRTCachingDirectory.
 annotation|@
 name|Override
 DECL|method|openCompoundInput
 specifier|public
+specifier|final
 name|CompoundFileDirectory
 name|openCompoundInput
 parameter_list|(
@@ -659,10 +741,7 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|getDirectory
-argument_list|(
-name|name
-argument_list|)
+name|super
 operator|.
 name|openCompoundInput
 argument_list|(
@@ -672,10 +751,14 @@ name|context
 argument_list|)
 return|;
 block|}
+comment|// final due to LUCENE-3380: currently CFS backdoors the directory to create CFE
+comment|// by using the basic implementation and not delegating, we ensure that all
+comment|// openInput/createOutput requests come thru NRTCachingDirectory.
 annotation|@
 name|Override
 DECL|method|createCompoundOutput
 specifier|public
+specifier|final
 name|CompoundFileDirectory
 name|createCompoundOutput
 parameter_list|(
@@ -689,10 +772,7 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|getDirectory
-argument_list|(
-name|name
-argument_list|)
+name|super
 operator|.
 name|createCompoundOutput
 argument_list|(
