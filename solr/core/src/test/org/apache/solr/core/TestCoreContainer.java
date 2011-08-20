@@ -622,6 +622,8 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+comment|// y is closed by the container, but
+comment|// x has been removed from the container
 if|if
 condition|(
 name|x
@@ -632,38 +634,6 @@ block|{
 try|try
 block|{
 name|x
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|""
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-name|y
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|y
 operator|.
 name|close
 argument_list|()
