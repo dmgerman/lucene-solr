@@ -143,6 +143,7 @@ specifier|final
 name|T
 name|NO_OUTPUT
 decl_stmt|;
+comment|// private static final boolean DEBUG = false;
 comment|// simplistic pruning: we prune node (and all following
 comment|// nodes) if less than this number of terms go through it:
 DECL|field|minSuffixCount1
@@ -195,6 +196,51 @@ argument_list|>
 index|[]
 name|frontier
 decl_stmt|;
+comment|// Expert: you pass an instance of this if you want to do
+comment|// something "custom" as suffixes are "frozen":
+DECL|class|FreezeTail
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|FreezeTail
+parameter_list|<
+name|T
+parameter_list|>
+block|{
+DECL|method|freeze
+specifier|public
+specifier|abstract
+name|void
+name|freeze
+parameter_list|(
+specifier|final
+name|UnCompiledNode
+argument_list|<
+name|T
+argument_list|>
+index|[]
+name|frontier
+parameter_list|,
+name|int
+name|prefixLenPlus1
+parameter_list|,
+name|IntsRef
+name|prevInput
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+block|}
+DECL|field|freezeTail
+specifier|private
+specifier|final
+name|FreezeTail
+argument_list|<
+name|T
+argument_list|>
+name|freezeTail
+decl_stmt|;
 comment|/**    * Instantiates an FST/FSA builder without any pruning. A shortcut    * to {@link #Builder(FST.INPUT_TYPE, int, int, boolean, boolean, int, Outputs)} with     * pruning options turned off.    */
 DECL|method|Builder
 specifier|public
@@ -229,6 +275,8 @@ operator|.
 name|MAX_VALUE
 argument_list|,
 name|outputs
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -262,6 +310,12 @@ argument_list|<
 name|T
 argument_list|>
 name|outputs
+parameter_list|,
+name|FreezeTail
+argument_list|<
+name|T
+argument_list|>
+name|freezeTail
 parameter_list|)
 block|{
 name|this
@@ -275,6 +329,12 @@ operator|.
 name|minSuffixCount2
 operator|=
 name|minSuffixCount2
+expr_stmt|;
+name|this
+operator|.
+name|freezeTail
+operator|=
+name|freezeTail
 expr_stmt|;
 name|this
 operator|.
@@ -575,10 +635,10 @@ return|return
 name|fn
 return|;
 block|}
-DECL|method|compilePrevTail
+DECL|method|freezeTail
 specifier|private
 name|void
-name|compilePrevTail
+name|freezeTail
 parameter_list|(
 name|int
 name|prefixLenPlus1
@@ -586,12 +646,42 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
+if|if
+condition|(
+name|freezeTail
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Custom plugin:
+name|freezeTail
+operator|.
+name|freeze
+argument_list|(
+name|frontier
+argument_list|,
 name|prefixLenPlus1
-operator|>=
-literal|1
-assert|;
+argument_list|,
+name|lastInput
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|//System.out.println("  compileTail " + prefixLenPlus1);
+specifier|final
+name|int
+name|downTo
+init|=
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|1
+argument_list|,
+name|prefixLenPlus1
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -603,7 +693,7 @@ name|length
 init|;
 name|idx
 operator|>=
-name|prefixLenPlus1
+name|downTo
 condition|;
 name|idx
 operator|--
@@ -680,6 +770,7 @@ name|inputCount
 operator|<
 name|minSuffixCount2
 operator|||
+operator|(
 name|minSuffixCount2
 operator|==
 literal|1
@@ -689,11 +780,16 @@ operator|.
 name|inputCount
 operator|==
 literal|1
+operator|&&
+name|idx
+operator|>
+literal|1
+operator|)
 condition|)
 block|{
 comment|// my parent, about to be compiled, doesn't make the cut, so
 comment|// I'm definitely pruned
-comment|// if pruneCount2 is 1, we keep only up
+comment|// if minSuffixCount2 is 1, we keep only up
 comment|// until the 'distinguished edge', ie we keep only the
 comment|// 'divergent' part of the FST. if my parent, about to be
 comment|// compiled, has inputCount 1 then we are already past the
@@ -739,6 +835,7 @@ name|inputCount
 operator|<
 name|minSuffixCount2
 operator|||
+operator|(
 name|minSuffixCount2
 operator|==
 literal|1
@@ -748,6 +845,11 @@ operator|.
 name|inputCount
 operator|==
 literal|1
+operator|&&
+name|idx
+operator|>
+literal|1
+operator|)
 condition|)
 block|{
 comment|// drop all arcs
@@ -980,6 +1082,7 @@ argument_list|,
 name|idx
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1313,6 +1416,8 @@ name|output
 argument_list|)
 expr_stmt|;
 block|}
+comment|// for debugging
+comment|/*   private String toString(BytesRef b) {     try {       return b.utf8ToString() + " " + b;     } catch (Throwable t) {       return b.toString();     }   }   */
 comment|/** It's OK to add the same input twice in a row with    *  different outputs, as long as outputs impls the merge    *  method. */
 DECL|method|add
 specifier|public
@@ -1328,7 +1433,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("\nFST ADD: input=" + input + " output=" + fst.outputs.outputToString(output));
+comment|/*     if (DEBUG) {       BytesRef b = new BytesRef(input.length);       for(int x=0;x<input.length;x++) {         b.bytes[x] = (byte) input.ints[x];       }       b.length = input.length;       if (output == NO_OUTPUT) {         System.out.println("\nFST ADD: input=" + toString(b) + " " + b);       } else {         System.out.println("\nFST ADD: input=" + toString(b) + " " + b + " output=" + fst.outputs.outputToString(output));       }     }     */
 assert|assert
 name|lastInput
 operator|.
@@ -1435,7 +1540,6 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|//System.out.println("  incr " + pos1);
 name|frontier
 index|[
 name|pos1
@@ -1444,6 +1548,7 @@ operator|.
 name|inputCount
 operator|++
 expr_stmt|;
+comment|//System.out.println("  incr " + pos1 + " ct=" + frontier[pos1].inputCount + " n=" + frontier[pos1]);
 if|if
 condition|(
 name|pos1
@@ -1587,7 +1692,7 @@ expr_stmt|;
 block|}
 comment|// minimize/compile states from previous input's
 comment|// orphan'd suffix
-name|compilePrevTail
+name|freezeTail
 argument_list|(
 name|prefixLenPlus1
 argument_list|)
@@ -1638,7 +1743,6 @@ name|idx
 index|]
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("  incr tail " + idx);
 name|frontier
 index|[
 name|idx
@@ -1969,37 +2073,39 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// minimize nodes in the last word's suffix
-name|compilePrevTail
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
-comment|//System.out.println("finish: inputCount=" + frontier[0].inputCount);
-if|if
-condition|(
+specifier|final
+name|UnCompiledNode
+argument_list|<
+name|T
+argument_list|>
+name|root
+init|=
 name|frontier
 index|[
 literal|0
 index|]
+decl_stmt|;
+comment|// minimize nodes in the last word's suffix
+name|freezeTail
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|root
 operator|.
 name|inputCount
 operator|<
 name|minSuffixCount1
 operator|||
-name|frontier
-index|[
-literal|0
-index|]
+name|root
 operator|.
 name|inputCount
 operator|<
 name|minSuffixCount2
 operator|||
-name|frontier
-index|[
-literal|0
-index|]
+name|root
 operator|.
 name|numArcs
 operator|==
@@ -2036,32 +2142,6 @@ return|return
 literal|null
 return|;
 block|}
-else|else
-block|{
-name|fst
-operator|.
-name|finish
-argument_list|(
-name|compileNode
-argument_list|(
-name|frontier
-index|[
-literal|0
-index|]
-argument_list|,
-name|lastInput
-operator|.
-name|length
-argument_list|)
-operator|.
-name|address
-argument_list|)
-expr_stmt|;
-comment|//System.out.println("compile addr = " + fst.getStartNode());
-return|return
-name|fst
-return|;
-block|}
 block|}
 else|else
 block|{
@@ -2074,10 +2154,7 @@ condition|)
 block|{
 name|compileAllTargets
 argument_list|(
-name|frontier
-index|[
-literal|0
-index|]
+name|root
 argument_list|,
 name|lastInput
 operator|.
@@ -2085,17 +2162,15 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|//System.out.println("NOW: " + frontier[0].numArcs);
+block|}
+comment|//if (DEBUG) System.out.println("  builder.finish root.isFinal=" + root.isFinal + " root.output=" + root.output);
 name|fst
 operator|.
 name|finish
 argument_list|(
 name|compileNode
 argument_list|(
-name|frontier
-index|[
-literal|0
-index|]
+name|root
 argument_list|,
 name|lastInput
 operator|.
@@ -2105,8 +2180,6 @@ operator|.
 name|address
 argument_list|)
 expr_stmt|;
-block|}
-comment|/*     if (dedupHash != null) {       System.out.println("NH: " + dedupHash.count());      }     */
 return|return
 name|fst
 return|;
@@ -2231,6 +2304,7 @@ block|}
 block|}
 block|}
 DECL|class|Arc
+specifier|public
 specifier|static
 class|class
 name|Arc
@@ -2303,6 +2377,7 @@ return|;
 block|}
 block|}
 DECL|class|UnCompiledNode
+specifier|public
 specifier|static
 specifier|final
 class|class
@@ -2322,10 +2397,12 @@ argument_list|>
 name|owner
 decl_stmt|;
 DECL|field|numArcs
+specifier|public
 name|int
 name|numArcs
 decl_stmt|;
 DECL|field|arcs
+specifier|public
 name|Arc
 argument_list|<
 name|T
@@ -2333,20 +2410,28 @@ argument_list|>
 index|[]
 name|arcs
 decl_stmt|;
+comment|// TODO: instead of recording isFinal/output on the
+comment|// node, maybe we should use -1 arc to mean "end" (like
+comment|// we do when reading the FST).  Would simplify much
+comment|// code here...
 DECL|field|output
+specifier|public
 name|T
 name|output
 decl_stmt|;
 DECL|field|isFinal
+specifier|public
 name|boolean
 name|isFinal
 decl_stmt|;
 DECL|field|inputCount
+specifier|public
 name|long
 name|inputCount
 decl_stmt|;
 comment|/** This node's depth, starting from the automaton root. */
 DECL|field|depth
+specifier|public
 specifier|final
 name|int
 name|depth

@@ -18,6 +18,46 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -82,7 +122,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TermsEnum
+name|Terms
 import|;
 end_import
 
@@ -94,11 +134,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|AutomatonTermsEnum
-operator|.
-name|CompiledAutomaton
+name|TermsEnum
 import|;
 end_import
 
@@ -276,47 +314,23 @@ name|util
 operator|.
 name|automaton
 operator|.
+name|CompiledAutomaton
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
 name|LevenshteinAutomata
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
 import|;
 end_import
 
@@ -425,11 +439,11 @@ specifier|final
 name|boolean
 name|raw
 decl_stmt|;
-DECL|field|tenum
+DECL|field|terms
 specifier|private
 specifier|final
-name|TermsEnum
-name|tenum
+name|Terms
+name|terms
 decl_stmt|;
 DECL|field|term
 specifier|private
@@ -455,8 +469,8 @@ DECL|method|FuzzyTermsEnum
 specifier|public
 name|FuzzyTermsEnum
 parameter_list|(
-name|TermsEnum
-name|tenum
+name|Terms
+name|terms
 parameter_list|,
 name|AttributeSource
 name|atts
@@ -523,9 +537,9 @@ argument_list|)
 throw|;
 name|this
 operator|.
-name|tenum
+name|terms
 operator|=
-name|tenum
+name|terms
 expr_stmt|;
 name|this
 operator|.
@@ -789,10 +803,46 @@ name|size
 argument_list|()
 condition|)
 block|{
+comment|//if (BlockTreeTermsWriter.DEBUG) System.out.println("FuzzyTE.getAEnum: ed=" + editDistance + " lastTerm=" + (lastTerm==null ? "null" : lastTerm.utf8ToString()));
+specifier|final
+name|CompiledAutomaton
+name|compiled
+init|=
+name|runAutomata
+operator|.
+name|get
+argument_list|(
+name|editDistance
+argument_list|)
+decl_stmt|;
 return|return
 operator|new
 name|AutomatonFuzzyTermsEnum
 argument_list|(
+name|terms
+operator|.
+name|intersect
+argument_list|(
+name|compiled
+argument_list|,
+name|lastTerm
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|compiled
+operator|.
+name|floor
+argument_list|(
+name|lastTerm
+argument_list|,
+operator|new
+name|BytesRef
+argument_list|()
+argument_list|)
+argument_list|)
+argument_list|,
 name|runAutomata
 operator|.
 name|subList
@@ -814,8 +864,6 @@ operator|+
 literal|1
 index|]
 argument_list|)
-argument_list|,
-name|lastTerm
 argument_list|)
 return|;
 block|}
@@ -851,6 +899,7 @@ operator|.
 name|automata
 argument_list|()
 decl_stmt|;
+comment|//System.out.println("cached automata size: " + runAutomata.size());
 if|if
 condition|(
 name|runAutomata
@@ -917,6 +966,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+comment|//System.out.println("compute automaton n=" + i);
 comment|// constant prefix
 if|if
 condition|(
@@ -966,6 +1016,8 @@ argument_list|(
 name|a
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1580,13 +1632,13 @@ name|term
 argument_list|()
 return|;
 block|}
-comment|/**    * Implement fuzzy enumeration with automaton.    *<p>    * This is the fastest method as opposed to LinearFuzzyTermsEnum:    * as enumeration is logarithmic to the number of terms (instead of linear)    * and comparison is linear to length of the term (rather than quadratic)    */
+comment|/**    * Implement fuzzy enumeration with Terms.intersect.    *<p>    * This is the fastest method as opposed to LinearFuzzyTermsEnum:    * as enumeration is logarithmic to the number of terms (instead of linear)    * and comparison is linear to length of the term (rather than quadratic)    */
 DECL|class|AutomatonFuzzyTermsEnum
 specifier|private
 class|class
 name|AutomatonFuzzyTermsEnum
 extends|extends
-name|AutomatonTermsEnum
+name|FilteredTermsEnum
 block|{
 DECL|field|matchers
 specifier|private
@@ -1600,12 +1652,6 @@ specifier|private
 specifier|final
 name|BytesRef
 name|termRef
-decl_stmt|;
-DECL|field|lastTerm
-specifier|private
-specifier|final
-name|BytesRef
-name|lastTerm
 decl_stmt|;
 DECL|field|boostAtt
 specifier|private
@@ -1627,12 +1673,12 @@ DECL|method|AutomatonFuzzyTermsEnum
 specifier|public
 name|AutomatonFuzzyTermsEnum
 parameter_list|(
+name|TermsEnum
+name|tenum
+parameter_list|,
 name|CompiledAutomaton
 name|compiled
 index|[]
-parameter_list|,
-name|BytesRef
-name|lastTerm
 parameter_list|)
 throws|throws
 name|IOException
@@ -1641,14 +1687,7 @@ name|super
 argument_list|(
 name|tenum
 argument_list|,
-name|compiled
-index|[
-name|compiled
-operator|.
-name|length
-operator|-
-literal|1
-index|]
+literal|false
 argument_list|)
 expr_stmt|;
 name|this
@@ -1693,12 +1732,6 @@ index|]
 operator|.
 name|runAutomaton
 expr_stmt|;
-name|this
-operator|.
-name|lastTerm
-operator|=
-name|lastTerm
-expr_stmt|;
 name|termRef
 operator|=
 operator|new
@@ -1723,6 +1756,7 @@ name|BytesRef
 name|term
 parameter_list|)
 block|{
+comment|//System.out.println("AFTE.accept term=" + term);
 name|int
 name|ed
 init|=
@@ -1732,17 +1766,8 @@ name|length
 operator|-
 literal|1
 decl_stmt|;
-if|if
-condition|(
-name|matches
-argument_list|(
-name|term
-argument_list|,
-name|ed
-argument_list|)
-condition|)
-block|{
-comment|// we match the outer dfa
+comment|// we are wrapping either an intersect() TermsEnum or an AutomatonTermsENum,
+comment|// so we know the outer DFA always matches.
 comment|// now compute exact edit distance
 while|while
 condition|(
@@ -1772,6 +1797,7 @@ block|{
 break|break;
 block|}
 block|}
+comment|//System.out.println("CHECK term=" + term.utf8ToString() + " ed=" + ed);
 comment|// scale to a boost and return (if similarity> minSimilarity)
 if|if
 condition|(
@@ -1788,10 +1814,11 @@ argument_list|(
 literal|1.0F
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("  yes");
 return|return
 name|AcceptStatus
 operator|.
-name|YES_AND_SEEK
+name|YES
 return|;
 block|}
 else|else
@@ -1854,10 +1881,11 @@ operator|*
 name|scale_factor
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("  yes");
 return|return
 name|AcceptStatus
 operator|.
-name|YES_AND_SEEK
+name|YES
 return|;
 block|}
 else|else
@@ -1865,18 +1893,9 @@ block|{
 return|return
 name|AcceptStatus
 operator|.
-name|NO_AND_SEEK
+name|NO
 return|;
 block|}
-block|}
-block|}
-else|else
-block|{
-return|return
-name|AcceptStatus
-operator|.
-name|NO_AND_SEEK
-return|;
 block|}
 block|}
 comment|/** returns true if term is within k edits of the query term */
@@ -1922,39 +1941,6 @@ argument_list|,
 name|term
 operator|.
 name|length
-argument_list|)
-return|;
-block|}
-comment|/** defers to superclass, except can start at an arbitrary location */
-annotation|@
-name|Override
-DECL|method|nextSeekTerm
-specifier|protected
-name|BytesRef
-name|nextSeekTerm
-parameter_list|(
-name|BytesRef
-name|term
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-if|if
-condition|(
-name|term
-operator|==
-literal|null
-condition|)
-name|term
-operator|=
-name|lastTerm
-expr_stmt|;
-return|return
-name|super
-operator|.
-name|nextSeekTerm
-argument_list|(
-name|term
 argument_list|)
 return|;
 block|}
@@ -2014,7 +2000,10 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|tenum
+name|terms
+operator|.
+name|iterator
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|this

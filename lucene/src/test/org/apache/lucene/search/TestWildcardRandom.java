@@ -372,6 +372,23 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: setUp searcher="
+operator|+
+name|searcher
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|N
 specifier|private
@@ -488,6 +505,36 @@ throws|throws
 name|Exception
 block|{
 comment|// TODO: run with different rewrites
+specifier|final
+name|String
+name|filledPattern
+init|=
+name|fillPattern
+argument_list|(
+name|pattern
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: run wildcard pattern="
+operator|+
+name|pattern
+operator|+
+literal|" filled="
+operator|+
+name|filledPattern
+argument_list|)
+expr_stmt|;
+block|}
 name|Query
 name|wq
 init|=
@@ -499,10 +546,7 @@ name|Term
 argument_list|(
 literal|"field"
 argument_list|,
-name|fillPattern
-argument_list|(
-name|pattern
-argument_list|)
+name|filledPattern
 argument_list|)
 argument_list|)
 decl_stmt|;

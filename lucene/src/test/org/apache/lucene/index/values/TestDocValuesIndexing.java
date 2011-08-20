@@ -1712,6 +1712,11 @@ return|return
 name|cfg
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|method|runTestNumerics
 specifier|public
 name|void

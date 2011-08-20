@@ -975,19 +975,6 @@ argument_list|,
 name|a3
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|a1
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|a3
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// different class
 name|AutomatonQuery
 name|w1

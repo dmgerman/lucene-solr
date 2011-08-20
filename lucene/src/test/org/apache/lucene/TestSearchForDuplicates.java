@@ -453,7 +453,9 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: now build index"
+literal|"TEST: now build index MAX_DOCS="
+operator|+
+name|MAX_DOCS
 argument_list|)
 expr_stmt|;
 name|writer

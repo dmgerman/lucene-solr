@@ -1377,9 +1377,6 @@ operator|new
 name|FuzzyTermsEnum
 argument_list|(
 name|terms
-operator|.
-name|iterator
-argument_list|()
 argument_list|,
 name|atts
 argument_list|,

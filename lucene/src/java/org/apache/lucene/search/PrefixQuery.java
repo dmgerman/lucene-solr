@@ -196,6 +196,9 @@ argument_list|(
 name|tenum
 argument_list|,
 name|prefix
+operator|.
+name|bytes
+argument_list|()
 argument_list|)
 return|;
 block|}

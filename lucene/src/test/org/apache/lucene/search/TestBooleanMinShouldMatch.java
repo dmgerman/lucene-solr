@@ -484,6 +484,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("TEST: now check");
 name|QueryUtils
 operator|.
 name|check

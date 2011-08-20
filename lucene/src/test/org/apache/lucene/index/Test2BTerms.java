@@ -770,6 +770,7 @@ literal|"2BTerms"
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|//MockDirectoryWrapper dir = newFSDirectory(new File("/p/lucene/indices/2bindex"));
 name|dir
 operator|.
 name|setThrottling
@@ -789,7 +790,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|// don't double-checkindex
-comment|//Directory dir = newFSDirectory(new File("/p/lucene/indices/2bindex"));
 if|if
 condition|(
 literal|true
@@ -854,6 +854,19 @@ name|CREATE
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|w
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
+argument_list|)
+expr_stmt|;
 name|MergePolicy
 name|mp
 init|=

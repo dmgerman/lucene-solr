@@ -675,7 +675,7 @@ block|{
 return|return
 name|output
 operator|.
-name|utf8ToString
+name|toString
 argument_list|()
 return|;
 block|}

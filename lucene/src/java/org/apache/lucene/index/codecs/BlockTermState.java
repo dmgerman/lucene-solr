@@ -88,24 +88,18 @@ name|long
 name|totalTermFreq
 decl_stmt|;
 comment|// total number of occurrences of this term
-DECL|field|termCount
+DECL|field|termBlockOrd
 specifier|public
 name|int
-name|termCount
+name|termBlockOrd
 decl_stmt|;
-comment|// term ord are in the current block
+comment|// the term's ord in the current block
 DECL|field|blockFilePointer
 specifier|public
 name|long
 name|blockFilePointer
 decl_stmt|;
-comment|// fp into the terms dict primary file (_X.tib) that holds this term
-DECL|field|blockTermCount
-specifier|public
-name|int
-name|blockTermCount
-decl_stmt|;
-comment|// how many terms in current block
+comment|// fp into the terms dict primary file (_X.tim) that holds this term
 annotation|@
 name|Override
 DECL|method|copyFrom
@@ -159,11 +153,11 @@ name|other
 operator|.
 name|totalTermFreq
 expr_stmt|;
-name|termCount
+name|termBlockOrd
 operator|=
 name|other
 operator|.
-name|termCount
+name|termBlockOrd
 expr_stmt|;
 name|blockFilePointer
 operator|=
@@ -184,11 +178,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"ord="
-operator|+
-name|ord
-operator|+
-literal|" docFreq="
+literal|"docFreq="
 operator|+
 name|docFreq
 operator|+
@@ -196,9 +186,9 @@ literal|" totalTermFreq="
 operator|+
 name|totalTermFreq
 operator|+
-literal|" termCount="
+literal|" termBlockOrd="
 operator|+
-name|termCount
+name|termBlockOrd
 operator|+
 literal|" blockFP="
 operator|+

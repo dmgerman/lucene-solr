@@ -425,7 +425,12 @@ literal|"required codec '"
 operator|+
 name|name
 operator|+
-literal|"' not found"
+literal|"' not found; known codecs: "
+operator|+
+name|codecs
+operator|.
+name|keySet
+argument_list|()
 argument_list|)
 throw|;
 block|}

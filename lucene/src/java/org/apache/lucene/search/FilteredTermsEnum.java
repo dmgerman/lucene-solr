@@ -135,6 +135,10 @@ import|;
 end_import
 
 begin_comment
+comment|// TODO: move this class to oal.index
+end_comment
+
+begin_comment
 comment|/**  * Abstract class for enumerating a subset of all terms.   *   *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than all that precede it.</p>  *<p><em>Please note:</em> Consumers of this enum cannot  * call {@code seek()}, it is forward only; it throws  * {@link UnsupportedOperationException} when a seeking method  * is called.  */
 end_comment
 
@@ -158,8 +162,6 @@ DECL|field|doSeek
 specifier|private
 name|boolean
 name|doSeek
-init|=
-literal|true
 decl_stmt|;
 DECL|field|actualTerm
 specifier|private
@@ -220,6 +222,28 @@ name|TermsEnum
 name|tenum
 parameter_list|)
 block|{
+name|this
+argument_list|(
+name|tenum
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a filtered {@link TermsEnum} on a terms enum.    * @param tenum the terms enumeration to filter.    */
+DECL|method|FilteredTermsEnum
+specifier|public
+name|FilteredTermsEnum
+parameter_list|(
+specifier|final
+name|TermsEnum
+name|tenum
+parameter_list|,
+specifier|final
+name|boolean
+name|startWithSeek
+parameter_list|)
+block|{
 assert|assert
 name|tenum
 operator|!=
@@ -230,6 +254,10 @@ operator|.
 name|tenum
 operator|=
 name|tenum
+expr_stmt|;
+name|doSeek
+operator|=
+name|startWithSeek
 expr_stmt|;
 block|}
 comment|/**    * Use this method to set the initial {@link BytesRef}    * to seek before iterating. This is a convenience method for    * subclasses that do not override {@link #nextSeekTerm}.    * If the initial seek term is {@code null} (default),    * the enum is empty.    *<P>You can only use this method, if you keep the default    * implementation of {@link #nextSeekTerm}.    */
@@ -596,6 +624,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("FTE.next doSeek=" + doSeek);
+comment|//new Throwable().printStackTrace(System.out);
 for|for
 control|(
 init|;
@@ -621,6 +651,7 @@ argument_list|(
 name|actualTerm
 argument_list|)
 decl_stmt|;
+comment|//System.out.println("  seek to t=" + (t == null ? "null" : t.utf8ToString()) + " tenum=" + tenum);
 comment|// Make sure we always seek forward:
 assert|assert
 name|actualTerm
@@ -672,6 +703,7 @@ name|END
 condition|)
 block|{
 comment|// no more terms to seek to or enum exhausted
+comment|//System.out.println("  return null");
 return|return
 literal|null
 return|;
@@ -683,6 +715,7 @@ operator|.
 name|term
 argument_list|()
 expr_stmt|;
+comment|//System.out.println("  got term=" + actualTerm.utf8ToString());
 block|}
 else|else
 block|{

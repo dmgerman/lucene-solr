@@ -106,14 +106,17 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/** Copies index from other */
-DECL|method|set
+DECL|method|copyFrom
 specifier|public
 specifier|abstract
 name|void
-name|set
+name|copyFrom
 parameter_list|(
 name|Index
 name|other
+parameter_list|,
+name|boolean
+name|copyLast
 parameter_list|)
 throws|throws
 name|IOException

@@ -102,12 +102,19 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Flush count terms starting at start "backwards", as a    *  block. start is a negative offset from the end of the    *  terms stack, ie bigger start means further back in    *  the stack. */
 DECL|method|flushTermsBlock
 specifier|public
 specifier|abstract
 name|void
 name|flushTermsBlock
-parameter_list|()
+parameter_list|(
+name|int
+name|start
+parameter_list|,
+name|int
+name|count
+parameter_list|)
 throws|throws
 name|IOException
 function_decl|;

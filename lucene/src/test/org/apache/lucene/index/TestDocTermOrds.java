@@ -2889,10 +2889,18 @@ name|println
 argument_list|(
 literal|"TEST: verify prefix="
 operator|+
+operator|(
+name|prefixRef
+operator|==
+literal|null
+condition|?
+literal|"null"
+else|:
 name|prefixRef
 operator|.
 name|utf8ToString
 argument_list|()
+operator|)
 argument_list|)
 expr_stmt|;
 name|System

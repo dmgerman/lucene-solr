@@ -32,6 +32,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collections
 import|;
 end_import
@@ -43,16 +53,6 @@ operator|.
 name|util
 operator|.
 name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
 import|;
 end_import
 
@@ -136,7 +136,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MultiFields
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -192,20 +192,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|RandomIndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|CodecProvider
@@ -223,6 +209,20 @@ operator|.
 name|store
 operator|.
 name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeSource
 import|;
 end_import
 
@@ -293,20 +293,6 @@ operator|.
 name|util
 operator|.
 name|_TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|AttributeSource
 import|;
 end_import
 
@@ -961,6 +947,23 @@ argument_list|(
 name|random
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: regexp="
+operator|+
+name|reg
+argument_list|)
+expr_stmt|;
+block|}
 name|assertSame
 argument_list|(
 name|reg
@@ -1018,42 +1021,6 @@ operator|.
 name|NONE
 argument_list|)
 decl_stmt|;
-comment|// we can't compare the two if automaton rewrites to a simpler enum.
-comment|// for example: "a\uda07\udcc7?.*?" gets rewritten to a simpler query:
-comment|// a\uda07* prefixquery. Prefixquery then does the "wrong" thing, which
-comment|// isn't really wrong as the query was undefined to begin with... but not
-comment|// automatically comparable.
-comment|// TODO: does this check even matter anymore?!
-name|Terms
-name|terms
-init|=
-name|MultiFields
-operator|.
-name|getTerms
-argument_list|(
-name|searcher1
-operator|.
-name|getIndexReader
-argument_list|()
-argument_list|,
-literal|"field"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|smart
-operator|.
-name|getTermsEnum
-argument_list|(
-name|terms
-argument_list|)
-operator|instanceof
-name|AutomatonTermsEnum
-operator|)
-condition|)
-return|return;
 name|TopDocs
 name|smartDocs
 init|=

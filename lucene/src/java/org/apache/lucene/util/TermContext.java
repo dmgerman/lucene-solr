@@ -61,6 +61,38 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|ReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
 import|;
 end_import
 
@@ -120,54 +152,6 @@ name|TermsEnum
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-operator|.
-name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-operator|.
-name|ReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|TermsEnum
-operator|.
-name|SeekStatus
-import|;
-end_import
-
 begin_comment
 comment|/**  * Maintains a {@link IndexReader} {@link TermState} view over  * {@link IndexReader} instances containing a single term. The  * {@link TermContext} doesn't track if the given {@link TermState}  * objects are valid, neither if the {@link TermState} instances refer to the  * same terms in the associated readers.  *   * @lucene.experimental  */
 end_comment
@@ -203,6 +187,7 @@ specifier|private
 name|long
 name|totalTermFreq
 decl_stmt|;
+comment|//public static boolean DEBUG = BlockTreeTermsWriter.DEBUG;
 comment|/**    * Creates an empty {@link TermContext} from a {@link ReaderContext}    */
 DECL|method|TermContext
 specifier|public
@@ -375,6 +360,7 @@ argument_list|(
 name|context
 argument_list|)
 decl_stmt|;
+comment|//if (DEBUG) System.out.println("prts.build term=" + term);
 for|for
 control|(
 name|int
@@ -392,6 +378,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|//if (DEBUG) System.out.println("  r=" + leaves[i].reader);
 specifier|final
 name|Fields
 name|fields
@@ -462,6 +449,7 @@ operator|.
 name|termState
 argument_list|()
 decl_stmt|;
+comment|//if (DEBUG) System.out.println("    found");
 name|perReaderTermState
 operator|.
 name|register

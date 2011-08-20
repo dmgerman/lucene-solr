@@ -80,11 +80,13 @@ class|class
 name|TwoLongs
 block|{
 DECL|field|first
+specifier|public
 specifier|final
 name|long
 name|first
 decl_stmt|;
 DECL|field|second
+specifier|public
 specifier|final
 name|long
 name|second

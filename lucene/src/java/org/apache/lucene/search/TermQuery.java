@@ -595,12 +595,15 @@ name|bytes
 argument_list|()
 argument_list|)
 operator|:
-literal|"no termstate found but term exists in reader"
+literal|"no termstate found but term exists in reader term="
+operator|+
+name|term
 assert|;
 return|return
 literal|null
 return|;
 block|}
+comment|//System.out.println("LD=" + reader.getLiveDocs() + " set?=" + (reader.getLiveDocs() != null ? reader.getLiveDocs().get(0) : "null"));
 specifier|final
 name|TermsEnum
 name|termsEnum
@@ -654,6 +657,7 @@ throws|throws
 name|IOException
 block|{
 comment|// only called from assert
+comment|//System.out.println("TQ.termNotInReader reader=" + reader + " term=" + field + ":" + bytes.utf8ToString());
 specifier|final
 name|Terms
 name|terms

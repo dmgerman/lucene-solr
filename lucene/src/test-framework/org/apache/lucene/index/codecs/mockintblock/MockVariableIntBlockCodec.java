@@ -212,7 +212,7 @@ name|codecs
 operator|.
 name|sep
 operator|.
-name|SepPostingsReaderImpl
+name|SepPostingsReader
 import|;
 end_import
 
@@ -230,7 +230,7 @@ name|codecs
 operator|.
 name|sep
 operator|.
-name|SepPostingsWriterImpl
+name|SepPostingsWriter
 import|;
 end_import
 
@@ -1054,7 +1054,7 @@ name|PostingsWriterBase
 name|postingsWriter
 init|=
 operator|new
-name|SepPostingsWriterImpl
+name|SepPostingsWriter
 argument_list|(
 name|state
 argument_list|,
@@ -1174,7 +1174,7 @@ name|PostingsReaderBase
 name|postingsReader
 init|=
 operator|new
-name|SepPostingsReaderImpl
+name|SepPostingsReader
 argument_list|(
 name|state
 operator|.
@@ -1369,7 +1369,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|SepPostingsReaderImpl
+name|SepPostingsReader
 operator|.
 name|files
 argument_list|(
@@ -1437,7 +1437,7 @@ argument_list|>
 name|extensions
 parameter_list|)
 block|{
-name|SepPostingsWriterImpl
+name|SepPostingsWriter
 operator|.
 name|getExtensions
 argument_list|(

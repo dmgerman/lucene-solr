@@ -1071,9 +1071,6 @@ operator|.
 name|field
 argument_list|()
 argument_list|)
-operator|.
-name|iterator
-argument_list|()
 argument_list|,
 name|atts
 argument_list|,

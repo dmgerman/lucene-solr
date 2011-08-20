@@ -1162,6 +1162,23 @@ name|AveragePayloadFunction
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: run query="
+operator|+
+name|query
+argument_list|)
+expr_stmt|;
+block|}
 comment|// all should have score = 3 because adjacent terms have payloads of 2,4
 comment|// and all the similarity factors are set to 1
 name|hits
@@ -1186,15 +1203,15 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"should be 100 hits"
+argument_list|,
+literal|100
 argument_list|,
 name|hits
 operator|.
 name|totalHits
-operator|==
-literal|100
 argument_list|)
 expr_stmt|;
 for|for

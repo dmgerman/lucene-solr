@@ -235,10 +235,10 @@ comment|// prox and one that doesn't?
 end_comment
 
 begin_class
-DECL|class|PulsingPostingsReaderImpl
+DECL|class|PulsingPostingsReader
 specifier|public
 class|class
-name|PulsingPostingsReaderImpl
+name|PulsingPostingsReader
 extends|extends
 name|PostingsReaderBase
 block|{
@@ -252,9 +252,9 @@ DECL|field|maxPositions
 name|int
 name|maxPositions
 decl_stmt|;
-DECL|method|PulsingPostingsReaderImpl
+DECL|method|PulsingPostingsReader
 specifier|public
-name|PulsingPostingsReaderImpl
+name|PulsingPostingsReader
 parameter_list|(
 name|PostingsReaderBase
 name|wrappedPostingsReader
@@ -288,15 +288,15 @@ name|checkHeader
 argument_list|(
 name|termsIn
 argument_list|,
-name|PulsingPostingsWriterImpl
+name|PulsingPostingsWriter
 operator|.
 name|CODEC
 argument_list|,
-name|PulsingPostingsWriterImpl
+name|PulsingPostingsWriter
 operator|.
 name|VERSION_START
 argument_list|,
-name|PulsingPostingsWriterImpl
+name|PulsingPostingsWriter
 operator|.
 name|VERSION_START
 argument_list|)
@@ -361,18 +361,73 @@ parameter_list|()
 block|{
 name|PulsingTermState
 name|clone
-init|=
-operator|new
-name|PulsingTermState
-argument_list|()
 decl_stmt|;
 name|clone
+operator|=
+operator|(
+name|PulsingTermState
+operator|)
+name|super
 operator|.
-name|copyFrom
+name|clone
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|postingsSize
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+name|clone
+operator|.
+name|postings
+operator|=
+operator|new
+name|byte
+index|[
+name|postingsSize
+index|]
+expr_stmt|;
+name|System
+operator|.
+name|arraycopy
 argument_list|(
-name|this
+name|postings
+argument_list|,
+literal|0
+argument_list|,
+name|clone
+operator|.
+name|postings
+argument_list|,
+literal|0
+argument_list|,
+name|postingsSize
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+assert|assert
+name|wrappedTermState
+operator|!=
+literal|null
+assert|;
+name|clone
+operator|.
+name|wrappedTermState
+operator|=
+operator|(
+name|BlockTermState
+operator|)
+name|wrappedTermState
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 name|clone
 return|;
@@ -472,13 +527,7 @@ name|postingsSize
 argument_list|)
 expr_stmt|;
 block|}
-elseif|else
-if|if
-condition|(
-name|wrappedTermState
-operator|!=
-literal|null
-condition|)
+else|else
 block|{
 name|wrappedTermState
 operator|.
@@ -488,21 +537,6 @@ name|other
 operator|.
 name|wrappedTermState
 argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|wrappedTermState
-operator|=
-operator|(
-name|BlockTermState
-operator|)
-name|other
-operator|.
-name|wrappedTermState
-operator|.
-name|clone
-argument_list|()
 expr_stmt|;
 block|}
 comment|// NOTE: we do not copy the
@@ -568,6 +602,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("PR.readTermsBlock state=" + _termState);
 specifier|final
 name|PulsingTermState
 name|termState
@@ -613,6 +648,7 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+comment|//System.out.println("  len=" + len + " fp=" + termsIn.getFilePointer());
 if|if
 condition|(
 name|termState
@@ -670,7 +706,7 @@ name|termState
 operator|.
 name|wrappedTermState
 operator|.
-name|termCount
+name|termBlockOrd
 operator|=
 literal|0
 expr_stmt|;
@@ -771,7 +807,6 @@ operator|<=
 name|maxPositions
 condition|)
 block|{
-comment|//System.out.println("  inlined pos=" + termState.inlinedBytesReader.getPosition());
 comment|// Inlined into terms dict -- just read the byte[] blob in,
 comment|// but don't decode it now (we only decode when a DocsEnum
 comment|// or D&PEnum is pulled):
@@ -846,6 +881,7 @@ operator|.
 name|postingsSize
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("  inlined bytes=" + termState.postingsSize);
 block|}
 else|else
 block|{
@@ -893,7 +929,7 @@ name|termState
 operator|.
 name|wrappedTermState
 operator|.
-name|termCount
+name|termBlockOrd
 operator|++
 expr_stmt|;
 block|}
@@ -1221,6 +1257,12 @@ name|PulsingDocsEnum
 extends|extends
 name|DocsEnum
 block|{
+DECL|field|postingsBytes
+specifier|private
+name|byte
+index|[]
+name|postingsBytes
+decl_stmt|;
 DECL|field|postings
 specifier|private
 specifier|final
@@ -1305,11 +1347,17 @@ operator|!=
 operator|-
 literal|1
 assert|;
-specifier|final
-name|byte
-index|[]
-name|bytes
-init|=
+comment|// Must make a copy of termState's byte[] so that if
+comment|// app does TermsEnum.next(), this DocsEnum is not affected
+if|if
+condition|(
+name|postingsBytes
+operator|==
+literal|null
+condition|)
+block|{
+name|postingsBytes
+operator|=
 operator|new
 name|byte
 index|[
@@ -1317,7 +1365,34 @@ name|termState
 operator|.
 name|postingsSize
 index|]
-decl_stmt|;
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|postingsBytes
+operator|.
+name|length
+operator|<
+name|termState
+operator|.
+name|postingsSize
+condition|)
+block|{
+name|postingsBytes
+operator|=
+name|ArrayUtil
+operator|.
+name|grow
+argument_list|(
+name|postingsBytes
+argument_list|,
+name|termState
+operator|.
+name|postingsSize
+argument_list|)
+expr_stmt|;
+block|}
 name|System
 operator|.
 name|arraycopy
@@ -1328,7 +1403,7 @@ name|postings
 argument_list|,
 literal|0
 argument_list|,
-name|bytes
+name|postingsBytes
 argument_list|,
 literal|0
 argument_list|,
@@ -1341,7 +1416,13 @@ name|postings
 operator|.
 name|reset
 argument_list|(
-name|bytes
+name|postingsBytes
+argument_list|,
+literal|0
+argument_list|,
+name|termState
+operator|.
+name|postingsSize
 argument_list|)
 expr_stmt|;
 name|docID
@@ -1428,6 +1509,7 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+comment|//System.out.println("  read code=" + code);
 if|if
 condition|(
 name|indexOptions
@@ -1596,7 +1678,6 @@ name|docID
 argument_list|)
 condition|)
 block|{
-comment|//System.out.println("  return docID=" + docID + " freq=" + freq);
 return|return
 name|docID
 return|;
@@ -1680,6 +1761,12 @@ name|PulsingDocsAndPositionsEnum
 extends|extends
 name|DocsAndPositionsEnum
 block|{
+DECL|field|postingsBytes
+specifier|private
+name|byte
+index|[]
+name|postingsBytes
+decl_stmt|;
 DECL|field|postings
 specifier|private
 specifier|final
@@ -1787,11 +1874,15 @@ operator|!=
 operator|-
 literal|1
 assert|;
-specifier|final
-name|byte
-index|[]
-name|bytes
-init|=
+if|if
+condition|(
+name|postingsBytes
+operator|==
+literal|null
+condition|)
+block|{
+name|postingsBytes
+operator|=
 operator|new
 name|byte
 index|[
@@ -1799,7 +1890,34 @@ name|termState
 operator|.
 name|postingsSize
 index|]
-decl_stmt|;
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|postingsBytes
+operator|.
+name|length
+operator|<
+name|termState
+operator|.
+name|postingsSize
+condition|)
+block|{
+name|postingsBytes
+operator|=
+name|ArrayUtil
+operator|.
+name|grow
+argument_list|(
+name|postingsBytes
+argument_list|,
+name|termState
+operator|.
+name|postingsSize
+argument_list|)
+expr_stmt|;
+block|}
 name|System
 operator|.
 name|arraycopy
@@ -1810,7 +1928,7 @@ name|postings
 argument_list|,
 literal|0
 argument_list|,
-name|bytes
+name|postingsBytes
 argument_list|,
 literal|0
 argument_list|,
@@ -1823,7 +1941,13 @@ name|postings
 operator|.
 name|reset
 argument_list|(
-name|bytes
+name|postingsBytes
+argument_list|,
+literal|0
+argument_list|,
+name|termState
+operator|.
+name|postingsSize
 argument_list|)
 expr_stmt|;
 name|this
@@ -1859,7 +1983,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PR.nextDoc this=" + this);
+comment|//System.out.println("PR d&p nextDoc this=" + this);
 while|while
 condition|(
 literal|true
@@ -1877,14 +2001,13 @@ name|eof
 argument_list|()
 condition|)
 block|{
-comment|//System.out.println("  END");
+comment|//System.out.println("PR   END");
 return|return
 name|docID
 operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
-comment|//System.out.println("  read doc code");
 specifier|final
 name|int
 name|code
@@ -1921,7 +2044,6 @@ comment|// freq is one
 block|}
 else|else
 block|{
-comment|//System.out.println("  read freq");
 name|freq
 operator|=
 name|postings
@@ -1997,7 +2119,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PR.advance target=" + target);
 name|int
 name|doc
 decl_stmt|;
@@ -2013,7 +2134,6 @@ operator|!=
 name|NO_MORE_DOCS
 condition|)
 block|{
-comment|//System.out.println("  nextDoc got doc=" + doc);
 if|if
 condition|(
 name|doc
@@ -2044,7 +2164,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PR.nextPosition posPending=" + posPending + " vs freq=" + freq);
+comment|//System.out.println("PR d&p nextPosition posPending=" + posPending + " vs freq=" + freq);
 assert|assert
 name|posPending
 operator|>
@@ -2073,7 +2193,6 @@ name|payloadLength
 argument_list|)
 expr_stmt|;
 block|}
-comment|//System.out.println("  read pos code");
 specifier|final
 name|int
 name|code
@@ -2125,7 +2244,7 @@ name|readVInt
 argument_list|()
 expr_stmt|;
 block|}
-comment|//System.out.println("  return pos=" + position + " hasPayload=" + !payloadRetrieved + " posPending=" + posPending + " this=" + this);
+comment|//System.out.println("PR d&p nextPos return pos=" + position + " this=" + this);
 return|return
 name|position
 return|;
@@ -2138,7 +2257,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PR.skipPositions: posPending=" + posPending);
 while|while
 condition|(
 name|posPending
@@ -2158,7 +2276,7 @@ operator|!
 name|payloadRetrieved
 condition|)
 block|{
-comment|//System.out.println("  skip last payload len=" + payloadLength);
+comment|//System.out.println("  skip payload len=" + payloadLength);
 name|postings
 operator|.
 name|skipBytes

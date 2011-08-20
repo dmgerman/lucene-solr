@@ -608,6 +608,23 @@ operator|.
 name|CONSTANT_SCORE_FILTER_REWRITE
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: query="
+operator|+
+name|query
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|query
 return|;
@@ -664,6 +681,27 @@ argument_list|(
 name|method
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: query="
+operator|+
+name|query
+operator|+
+literal|" method="
+operator|+
+name|method
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|query
 return|;
@@ -1870,6 +1908,23 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: reader="
+operator|+
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
 name|int
 name|medId
 init|=

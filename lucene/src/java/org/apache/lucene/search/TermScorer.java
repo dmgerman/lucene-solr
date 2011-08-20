@@ -246,6 +246,7 @@ name|end
 condition|)
 block|{
 comment|// for docs in window
+comment|//System.out.println("TS: collect doc=" + doc);
 name|c
 operator|.
 name|collect

@@ -32,6 +32,26 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -173,11 +193,11 @@ comment|/** @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|PulsingPostingsWriterImpl
+DECL|class|PulsingPostingsWriter
 specifier|public
 specifier|final
 class|class
-name|PulsingPostingsWriterImpl
+name|PulsingPostingsWriter
 extends|extends
 name|PostingsWriterBase
 block|{
@@ -187,7 +207,7 @@ specifier|static
 name|String
 name|CODEC
 init|=
-literal|"PulsedPostings"
+literal|"PulsedPostingsWriter"
 decl_stmt|;
 comment|// To add a new version, increment from the last one, and
 comment|// change VERSION_CURRENT to point to your new version:
@@ -221,6 +241,52 @@ DECL|field|storePayloads
 specifier|private
 name|boolean
 name|storePayloads
+decl_stmt|;
+DECL|class|PendingTerm
+specifier|private
+specifier|static
+class|class
+name|PendingTerm
+block|{
+DECL|field|bytes
+specifier|private
+specifier|final
+name|byte
+index|[]
+name|bytes
+decl_stmt|;
+DECL|method|PendingTerm
+specifier|public
+name|PendingTerm
+parameter_list|(
+name|byte
+index|[]
+name|bytes
+parameter_list|)
+block|{
+name|this
+operator|.
+name|bytes
+operator|=
+name|bytes
+expr_stmt|;
+block|}
+block|}
+DECL|field|pendingTerms
+specifier|private
+specifier|final
+name|List
+argument_list|<
+name|PendingTerm
+argument_list|>
+name|pendingTerms
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|PendingTerm
+argument_list|>
+argument_list|()
 decl_stmt|;
 comment|// one entry per position
 DECL|field|pending
@@ -279,9 +345,9 @@ name|PostingsWriterBase
 name|wrappedPostingsWriter
 decl_stmt|;
 comment|/** If the total number of positions (summed across all docs    *  for this term) is<= maxPositions, then the postings are    *  inlined into terms dict */
-DECL|method|PulsingPostingsWriterImpl
+DECL|method|PulsingPostingsWriter
 specifier|public
-name|PulsingPostingsWriterImpl
+name|PulsingPostingsWriter
 parameter_list|(
 name|int
 name|maxPositions
@@ -390,7 +456,19 @@ name|void
 name|startTerm
 parameter_list|()
 block|{
-comment|//System.out.println("PW   startTerm");
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW   startTerm"
+argument_list|)
+expr_stmt|;
 assert|assert
 name|pendingCount
 operator|==
@@ -420,7 +498,27 @@ name|fieldInfo
 operator|.
 name|indexOptions
 expr_stmt|;
-comment|//System.out.println("PW field=" + fieldInfo.name + " omitTF=" + omitTF);
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW field="
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|" indexOptions="
+operator|+
+name|indexOptions
+argument_list|)
+expr_stmt|;
 name|storePayloads
 operator|=
 name|fieldInfo
@@ -434,7 +532,13 @@ argument_list|(
 name|fieldInfo
 argument_list|)
 expr_stmt|;
+comment|//DEBUG = BlockTreeTermsWriter.DEBUG;
 block|}
+DECL|field|DEBUG
+specifier|private
+name|boolean
+name|DEBUG
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|startDoc
@@ -460,7 +564,22 @@ literal|"got docID="
 operator|+
 name|docID
 assert|;
-comment|//System.out.println("PW     doc=" + docID);
+comment|/*     if (termID != -1) {       if (docID == 0) {         baseDocID = termID;       } else if (baseDocID + docID != termID) {         throw new RuntimeException("WRITE: baseDocID=" + baseDocID + " docID=" + docID + " termID=" + termID);       }     }     */
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW     doc="
+operator|+
+name|docID
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|pendingCount
@@ -473,7 +592,19 @@ block|{
 name|push
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("PW: wrapped.finishDoc");
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW: wrapped.finishDoc"
+argument_list|)
+expr_stmt|;
 name|wrappedPostingsWriter
 operator|.
 name|finishDoc
@@ -582,7 +713,37 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PW       pos=" + position + " payload=" + (payload == null ? "null" : payload.length + " bytes"));
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW       pos="
+operator|+
+name|position
+operator|+
+literal|" payload="
+operator|+
+operator|(
+name|payload
+operator|==
+literal|null
+condition|?
+literal|"null"
+else|:
+name|payload
+operator|.
+name|length
+operator|+
+literal|" bytes"
+operator|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|pendingCount
@@ -720,7 +881,19 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PW     finishDoc");
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW     finishDoc"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|pendingCount
@@ -746,16 +919,7 @@ operator|new
 name|RAMOutputStream
 argument_list|()
 decl_stmt|;
-DECL|field|buffer2
-specifier|private
-specifier|final
-name|RAMOutputStream
-name|buffer2
-init|=
-operator|new
-name|RAMOutputStream
-argument_list|()
-decl_stmt|;
+comment|// private int baseDocID;
 comment|/** Called when we are done adding docs to this term */
 annotation|@
 name|Override
@@ -770,7 +934,34 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PW   finishTerm docCount=" + stats.docFreq);
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW   finishTerm docCount="
+operator|+
+name|stats
+operator|.
+name|docFreq
+operator|+
+literal|" pendingCount="
+operator|+
+name|pendingCount
+operator|+
+literal|" pendingTerms.size()="
+operator|+
+name|pendingTerms
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 assert|assert
 name|pendingCount
 operator|>
@@ -794,6 +985,15 @@ operator|.
 name|finishTerm
 argument_list|(
 name|stats
+argument_list|)
+expr_stmt|;
+comment|// Must add null entry to record terms that our
+comment|// wrapped postings impl added
+name|pendingTerms
+operator|.
+name|add
+argument_list|(
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -864,7 +1064,29 @@ name|doc
 operator|.
 name|docID
 expr_stmt|;
-comment|//System.out.println("  write doc=" + doc.docID + " freq=" + doc.termFreq);
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  write doc="
+operator|+
+name|doc
+operator|.
+name|docID
+operator|+
+literal|" freq="
+operator|+
+name|doc
+operator|.
+name|termFreq
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|doc
@@ -966,7 +1188,23 @@ name|pos
 operator|.
 name|pos
 expr_stmt|;
-comment|//System.out.println("    write pos=" + pos.pos);
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    write pos="
+operator|+
+name|pos
+operator|.
+name|pos
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|storePayloads
@@ -1124,6 +1362,13 @@ name|docID
 operator|-
 name|lastDocID
 decl_stmt|;
+assert|assert
+name|doc
+operator|.
+name|termFreq
+operator|!=
+literal|0
+assert|;
 if|if
 condition|(
 name|doc
@@ -1234,11 +1479,14 @@ name|docID
 expr_stmt|;
 block|}
 block|}
-comment|//System.out.println("  bytes=" + buffer.getFilePointer());
-name|buffer2
-operator|.
-name|writeVInt
-argument_list|(
+specifier|final
+name|byte
+index|[]
+name|bytes
+init|=
+operator|new
+name|byte
+index|[
 operator|(
 name|int
 operator|)
@@ -1246,13 +1494,26 @@ name|buffer
 operator|.
 name|getFilePointer
 argument_list|()
-argument_list|)
-expr_stmt|;
+index|]
+decl_stmt|;
 name|buffer
 operator|.
 name|writeTo
 argument_list|(
-name|buffer2
+name|bytes
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|pendingTerms
+operator|.
+name|add
+argument_list|(
+operator|new
+name|PendingTerm
+argument_list|(
+name|bytes
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|buffer
@@ -1288,10 +1549,147 @@ DECL|method|flushTermsBlock
 specifier|public
 name|void
 name|flushTermsBlock
-parameter_list|()
+parameter_list|(
+name|int
+name|start
+parameter_list|,
+name|int
+name|count
+parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW: flushTermsBlock start="
+operator|+
+name|start
+operator|+
+literal|" count="
+operator|+
+name|count
+operator|+
+literal|" pendingTerms.size()="
+operator|+
+name|pendingTerms
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|int
+name|wrappedCount
+init|=
+literal|0
+decl_stmt|;
+assert|assert
+name|buffer
+operator|.
+name|getFilePointer
+argument_list|()
+operator|==
+literal|0
+assert|;
+assert|assert
+name|start
+operator|>=
+name|count
+assert|;
+specifier|final
+name|int
+name|limit
+init|=
+name|pendingTerms
+operator|.
+name|size
+argument_list|()
+operator|-
+name|start
+operator|+
+name|count
+decl_stmt|;
+for|for
+control|(
+name|int
+name|idx
+init|=
+name|pendingTerms
+operator|.
+name|size
+argument_list|()
+operator|-
+name|start
+init|;
+name|idx
+operator|<
+name|limit
+condition|;
+name|idx
+operator|++
+control|)
+block|{
+specifier|final
+name|PendingTerm
+name|term
+init|=
+name|pendingTerms
+operator|.
+name|get
+argument_list|(
+name|idx
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|term
+operator|==
+literal|null
+condition|)
+block|{
+name|wrappedCount
+operator|++
+expr_stmt|;
+block|}
+else|else
+block|{
+name|buffer
+operator|.
+name|writeVInt
+argument_list|(
+name|term
+operator|.
+name|bytes
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|writeBytes
+argument_list|(
+name|term
+operator|.
+name|bytes
+argument_list|,
+literal|0
+argument_list|,
+name|term
+operator|.
+name|bytes
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 name|termsOut
 operator|.
 name|writeVInt
@@ -1299,23 +1697,122 @@ argument_list|(
 operator|(
 name|int
 operator|)
-name|buffer2
+name|buffer
 operator|.
 name|getFilePointer
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|buffer2
+name|buffer
 operator|.
 name|writeTo
 argument_list|(
 name|termsOut
 argument_list|)
 expr_stmt|;
-name|buffer2
+name|buffer
 operator|.
 name|reset
 argument_list|()
+expr_stmt|;
+comment|// TDOO: this could be somewhat costly since
+comment|// pendingTerms.size() could be biggish?
+name|int
+name|futureWrappedCount
+init|=
+literal|0
+decl_stmt|;
+specifier|final
+name|int
+name|limit2
+init|=
+name|pendingTerms
+operator|.
+name|size
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|idx
+init|=
+name|limit
+init|;
+name|idx
+operator|<
+name|limit2
+condition|;
+name|idx
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|pendingTerms
+operator|.
+name|get
+argument_list|(
+name|idx
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
+name|futureWrappedCount
+operator|++
+expr_stmt|;
+block|}
+block|}
+comment|// Remove the terms we just wrote:
+name|pendingTerms
+operator|.
+name|subList
+argument_list|(
+name|pendingTerms
+operator|.
+name|size
+argument_list|()
+operator|-
+name|start
+argument_list|,
+name|limit
+argument_list|)
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW:   len="
+operator|+
+name|buffer
+operator|.
+name|getFilePointer
+argument_list|()
+operator|+
+literal|" fp="
+operator|+
+name|termsOut
+operator|.
+name|getFilePointer
+argument_list|()
+operator|+
+literal|" futureWrappedCount="
+operator|+
+name|futureWrappedCount
+operator|+
+literal|" wrappedCount="
+operator|+
+name|wrappedCount
+argument_list|)
 expr_stmt|;
 comment|// TODO: can we avoid calling this if all terms
 comment|// were inlined...?  Eg for a "primary key" field, the
@@ -1323,7 +1820,13 @@ comment|// wrapped codec is never invoked...
 name|wrappedPostingsWriter
 operator|.
 name|flushTermsBlock
-argument_list|()
+argument_list|(
+name|futureWrappedCount
+operator|+
+name|wrappedCount
+argument_list|,
+name|wrappedCount
+argument_list|)
 expr_stmt|;
 block|}
 comment|// Pushes pending positions to the wrapped codec
@@ -1335,7 +1838,25 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("PW now push @ " + pendingCount + " wrapped=" + wrappedPostingsWriter);
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW now push @ "
+operator|+
+name|pendingCount
+operator|+
+literal|" wrapped="
+operator|+
+name|wrappedPostingsWriter
+argument_list|)
+expr_stmt|;
 assert|assert
 name|pendingCount
 operator|==
@@ -1382,7 +1903,29 @@ name|doc
 operator|=
 name|pos
 expr_stmt|;
-comment|//System.out.println("PW: wrapped.startDoc docID=" + doc.docID + " tf=" + doc.termFreq);
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW: wrapped.startDoc docID="
+operator|+
+name|doc
+operator|.
+name|docID
+operator|+
+literal|" tf="
+operator|+
+name|doc
+operator|.
+name|termFreq
+argument_list|)
+expr_stmt|;
 name|wrappedPostingsWriter
 operator|.
 name|startDoc
@@ -1418,7 +1961,19 @@ name|doc
 operator|.
 name|docID
 assert|;
-comment|//System.out.println("PW: wrapped.finishDoc");
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW: wrapped.finishDoc"
+argument_list|)
+expr_stmt|;
 name|wrappedPostingsWriter
 operator|.
 name|finishDoc
@@ -1428,7 +1983,29 @@ name|doc
 operator|=
 name|pos
 expr_stmt|;
-comment|//System.out.println("PW: wrapped.startDoc docID=" + doc.docID + " tf=" + doc.termFreq);
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW: wrapped.startDoc docID="
+operator|+
+name|doc
+operator|.
+name|docID
+operator|+
+literal|" tf="
+operator|+
+name|doc
+operator|.
+name|termFreq
+argument_list|)
+expr_stmt|;
 name|wrappedPostingsWriter
 operator|.
 name|startDoc
@@ -1443,7 +2020,23 @@ name|termFreq
 argument_list|)
 expr_stmt|;
 block|}
-comment|//System.out.println("PW:   wrapped.addPos pos=" + pos.pos);
+if|if
+condition|(
+name|DEBUG
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PW:   wrapped.addPos pos="
+operator|+
+name|pos
+operator|.
+name|pos
+argument_list|)
+expr_stmt|;
 name|wrappedPostingsWriter
 operator|.
 name|addPosition

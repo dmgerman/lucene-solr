@@ -572,6 +572,23 @@ argument_list|,
 name|hitCount
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: now delete by term="
+operator|+
+name|term
+argument_list|)
+expr_stmt|;
+block|}
 name|modifier
 operator|.
 name|deleteDocuments
@@ -584,6 +601,21 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: now getHitCount"
+argument_list|)
+expr_stmt|;
+block|}
 name|hitCount
 operator|=
 name|getHitCount

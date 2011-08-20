@@ -1930,6 +1930,7 @@ argument_list|,
 name|docs
 argument_list|)
 decl_stmt|;
+comment|//System.out.println("BDS: got docsEnum=" + docsEnum);
 if|if
 condition|(
 name|docsEnum

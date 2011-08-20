@@ -121,6 +121,23 @@ name|iter
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: iter="
+operator|+
+name|iter
+argument_list|)
+expr_stmt|;
+block|}
 name|Directory
 name|dir
 init|=
@@ -159,6 +176,19 @@ operator|.
 name|keepFullyDeletedSegments
 argument_list|(
 name|w
+argument_list|)
+expr_stmt|;
+name|w
+operator|.
+name|setInfoStream
+argument_list|(
+name|VERBOSE
+condition|?
+name|System
+operator|.
+name|out
+else|:
+literal|null
 argument_list|)
 expr_stmt|;
 name|Map
@@ -299,6 +329,27 @@ operator|.
 name|nextBoolean
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: onlyUniqueTerms="
+operator|+
+name|onlyUniqueTerms
+operator|+
+literal|" numDocs="
+operator|+
+name|numDocs
+argument_list|)
+expr_stmt|;
+block|}
 name|Set
 argument_list|<
 name|BytesRef
@@ -552,6 +603,23 @@ name|delID
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: delete "
+operator|+
+name|delID
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -592,7 +660,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"UTF16 order:"
+literal|"TEST: terms in UTF16 order:"
 argument_list|)
 expr_stmt|;
 for|for
@@ -620,8 +688,64 @@ operator|.
 name|utf8ToString
 argument_list|()
 argument_list|)
+operator|+
+literal|" "
+operator|+
+name|b
 argument_list|)
 expr_stmt|;
+for|for
+control|(
+name|int
+name|docID
+range|:
+name|docs
+operator|.
+name|get
+argument_list|(
+name|b
+argument_list|)
+control|)
+block|{
+if|if
+condition|(
+name|deleted
+operator|.
+name|contains
+argument_list|(
+name|docID
+argument_list|)
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    "
+operator|+
+name|docID
+operator|+
+literal|" (deleted)"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    "
+operator|+
+name|docID
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 name|IndexReader
@@ -637,7 +761,23 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("TEST reader=" + reader);
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: reader="
+operator|+
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
 name|Bits
 name|liveDocs
 init|=
@@ -723,7 +863,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: seek to term= "
+literal|"TEST: seek term="
 operator|+
 name|UnicodeUtil
 operator|.
@@ -734,6 +874,10 @@ operator|.
 name|utf8ToString
 argument_list|()
 argument_list|)
+operator|+
+literal|" "
+operator|+
+name|term
 argument_list|)
 expr_stmt|;
 block|}
