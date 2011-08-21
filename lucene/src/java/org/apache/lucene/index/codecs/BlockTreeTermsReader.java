@@ -4884,7 +4884,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-comment|//if (DEBUG) System.out.println("    cycle ent=" + currentFrame.nextEnt + " (of " + currentFrame.entCount + ") prefix=" + currentFrame.prefix + " suffix=" + currentFrame.suffix);
+comment|//if (DEBUG) System.out.println("    cycle ent=" + currentFrame.nextEnt + " (of " + currentFrame.entCount + ") prefix=" + currentFrame.prefix + " suffix=" + currentFrame.suffix + " isBlock=" + isSubBlock + " firstLabel=" + (currentFrame.suffix == 0 ? "" : (currentFrame.suffixBytes[currentFrame.startBytePos])&0xff));
 name|term
 operator|.
 name|length
@@ -4966,6 +4966,7 @@ argument_list|)
 condition|)
 block|{
 comment|// Recurse
+comment|//if (DEBUG) System.out.println("      recurse!");
 name|currentFrame
 operator|=
 name|pushFrame
@@ -5129,27 +5130,11 @@ name|currentFrame
 operator|.
 name|suffix
 expr_stmt|;
-if|if
-condition|(
-name|lastIsSubBlock
-condition|)
-block|{
-comment|// Recurse
-name|currentFrame
-operator|=
-name|pushFrame
-argument_list|(
-name|getState
-argument_list|()
-argument_list|)
-expr_stmt|;
-break|break;
-block|}
-else|else
-block|{
-comment|//if (DEBUG) System.out.println("  fallback return term=" + brToString(term) + " curFrame.nextEnt=" + currentFrame.nextEnt);
+comment|// If the last entry was a block we don't
+comment|// need to bother recursing and pushing to
+comment|// the last term under it because the first
+comment|// next() will simply skip the frame anyway
 return|return;
-block|}
 block|}
 block|}
 block|}
