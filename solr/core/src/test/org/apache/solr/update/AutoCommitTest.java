@@ -2469,7 +2469,7 @@ name|softTracker
 operator|.
 name|setTimeUpperBound
 argument_list|(
-literal|300
+literal|500
 argument_list|)
 expr_stmt|;
 name|softTracker
