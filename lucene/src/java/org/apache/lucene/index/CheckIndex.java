@@ -908,7 +908,7 @@ operator|=
 name|verbose
 expr_stmt|;
 block|}
-comment|/** Set infoStream where messages should go. See {@link setInfoStream(PrintStream,boolean)}. */
+comment|/** Set infoStream where messages should go. See {@link #setInfoStream(PrintStream,boolean)}. */
 DECL|method|setInfoStream
 specifier|public
 name|void

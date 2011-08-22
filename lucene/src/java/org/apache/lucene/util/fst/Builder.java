@@ -241,7 +241,7 @@ name|T
 argument_list|>
 name|freezeTail
 decl_stmt|;
-comment|/**    * Instantiates an FST/FSA builder without any pruning. A shortcut    * to {@link #Builder(FST.INPUT_TYPE, int, int, boolean, boolean, int, Outputs)} with     * pruning options turned off.    */
+comment|/**    * Instantiates an FST/FSA builder without any pruning. A shortcut    * to {@link #Builder(FST.INPUT_TYPE, int, int, boolean, boolean, int, Outputs, FreezeTail)} with    * pruning options turned off.    */
 DECL|method|Builder
 specifier|public
 name|Builder
