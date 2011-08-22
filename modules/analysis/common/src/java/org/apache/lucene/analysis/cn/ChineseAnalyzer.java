@@ -58,8 +58,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|util
-operator|.
 name|ReusableAnalyzerBase
 import|;
 end_import
@@ -107,7 +105,7 @@ name|ChineseAnalyzer
 extends|extends
 name|ReusableAnalyzerBase
 block|{
-comment|/**    * Creates    * {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link ChineseTokenizer} filtered with    *         {@link ChineseFilter}    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link ChineseTokenizer} filtered with    *         {@link ChineseFilter}    */
 annotation|@
 name|Override
 DECL|method|createComponents

@@ -321,7 +321,7 @@ name|stopwords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates    * {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.util.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link GreekLowerCaseFilter}, {@link StandardFilter},    *         {@link StopFilter}, and {@link GreekStemFilter}    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link GreekLowerCaseFilter}, {@link StandardFilter},    *         {@link StopFilter}, and {@link GreekStemFilter}    */
 annotation|@
 name|Override
 DECL|method|createComponents
