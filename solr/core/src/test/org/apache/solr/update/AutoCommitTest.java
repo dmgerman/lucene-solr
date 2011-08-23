@@ -2697,7 +2697,7 @@ name|softTrigger
 operator|.
 name|waitForNewSearcher
 argument_list|(
-literal|15000
+literal|30000
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2839,7 +2839,7 @@ name|softTrigger
 operator|.
 name|waitForNewSearcher
 argument_list|(
-literal|15000
+literal|30000
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2913,7 +2913,7 @@ name|hardTrigger
 operator|.
 name|waitForNewSearcher
 argument_list|(
-literal|15000
+literal|30000
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2951,7 +2951,7 @@ name|softTrigger
 operator|.
 name|waitForNewSearcher
 argument_list|(
-literal|15000
+literal|30000
 argument_list|)
 argument_list|)
 expr_stmt|;
