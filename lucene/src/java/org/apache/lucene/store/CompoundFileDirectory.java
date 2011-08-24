@@ -212,7 +212,7 @@ specifier|final
 name|IndexInputSlicer
 name|handle
 decl_stmt|;
-comment|/**    * Create a new CompoundFileDirectory.    *<p>    * NOTE: subclasses must call {@link #initForRead(Map)} before the directory can be used.    */
+comment|/**    * Create a new CompoundFileDirectory.    */
 DECL|method|CompoundFileDirectory
 specifier|public
 name|CompoundFileDirectory
