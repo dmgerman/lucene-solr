@@ -720,16 +720,12 @@ name|context
 argument_list|)
 return|;
 block|}
-comment|// final due to LUCENE-3380: currently CFS backdoors the directory to create CFE
-comment|// by using the basic implementation and not delegating, we ensure that all
-comment|// openInput/createOutput requests come thru NRTCachingDirectory.
 annotation|@
 name|Override
-DECL|method|openCompoundInput
+DECL|method|createSlicer
 specifier|public
-specifier|final
-name|CompoundFileDirectory
-name|openCompoundInput
+name|IndexInputSlicer
+name|createSlicer
 parameter_list|(
 name|String
 name|name
@@ -741,40 +737,12 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|super
-operator|.
-name|openCompoundInput
+name|getDirectory
 argument_list|(
 name|name
-argument_list|,
-name|context
 argument_list|)
-return|;
-block|}
-comment|// final due to LUCENE-3380: currently CFS backdoors the directory to create CFE
-comment|// by using the basic implementation and not delegating, we ensure that all
-comment|// openInput/createOutput requests come thru NRTCachingDirectory.
-annotation|@
-name|Override
-DECL|method|createCompoundOutput
-specifier|public
-specifier|final
-name|CompoundFileDirectory
-name|createCompoundOutput
-parameter_list|(
-name|String
-name|name
-parameter_list|,
-name|IOContext
-name|context
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|super
 operator|.
-name|createCompoundOutput
+name|createSlicer
 argument_list|(
 name|name
 argument_list|,
