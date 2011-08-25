@@ -20,6 +20,36 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|junit
@@ -55,36 +85,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -330,6 +330,20 @@ operator|.
 name|clearCache
 argument_list|()
 expr_stmt|;
+name|assertU
+argument_list|(
+name|delQ
+argument_list|(
+literal|"*:*"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|super
 operator|.
 name|tearDown
@@ -415,6 +429,86 @@ argument_list|,
 name|DemoEvaluator
 operator|.
 name|evaluated
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testContinue
+specifier|public
+name|void
+name|testContinue
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|runFullImport
+argument_list|(
+name|twoEntitiesWithFailingProcessor
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"*:*"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='0']"
+argument_list|)
+expr_stmt|;
+comment|// should rollback
+block|}
+annotation|@
+name|Test
+DECL|method|testContinueThreaded
+specifier|public
+name|void
+name|testContinueThreaded
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|runFullImport
+argument_list|(
+name|twoThreadedEntitiesWithFailingProcessor
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"*:*"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='0']"
+argument_list|)
+expr_stmt|;
+comment|// should rollback
+block|}
+annotation|@
+name|Test
+DECL|method|testFailingTransformerContinueThreaded
+specifier|public
+name|void
+name|testFailingTransformerContinueThreaded
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|runFullImport
+argument_list|(
+name|twoThreadedEntitiesWithFailingTransformer
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"*:*"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='4']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -631,6 +725,170 @@ literal|"</document>"
 operator|+
 literal|"</dataConfig>"
 decl_stmt|;
+DECL|field|twoThreadedEntitiesWithFailingProcessor
+specifier|private
+specifier|final
+name|String
+name|twoThreadedEntitiesWithFailingProcessor
+init|=
+literal|"<dataConfig><dataSource type=\"MockDataSource\"/>\n"
+operator|+
+literal|"<document>"
+operator|+
+literal|"<entity name=\"job\" processor=\"TestDocBuilderThreaded$DemoProcessor\" \n"
+operator|+
+literal|" threads=\"1\" "
+operator|+
+literal|" query=\"select * from y\""
+operator|+
+literal|" pk=\"id\" \n"
+operator|+
+literal|" worker=\"id\" \n"
+operator|+
+literal|" onError=\"continue\" "
+operator|+
+literal|">"
+operator|+
+literal|"<field column=\"id\" />\n"
+operator|+
+literal|"<entity name=\"details\" processor=\"TestDocBuilderThreaded$FailingProcessor\" \n"
+operator|+
+literal|"worker=\"${job.worker}\" \n"
+operator|+
+literal|"query=\"${job.worker}\" \n"
+operator|+
+literal|"transformer=\"TemplateTransformer\" "
+operator|+
+literal|"onError=\"continue\" "
+operator|+
+literal|"fail=\"yes\" "
+operator|+
+literal|">"
+operator|+
+literal|"<field column=\"author_s\" />"
+operator|+
+literal|"<field column=\"title_s\" />"
+operator|+
+literal|"<field column=\"text_s\" />"
+operator|+
+literal|"<field column=\"generated_id_s\" template=\"generated_${job.id}\" />"
+operator|+
+literal|"</entity>"
+operator|+
+literal|"</entity>"
+operator|+
+literal|"</document>"
+operator|+
+literal|"</dataConfig>"
+decl_stmt|;
+DECL|field|twoEntitiesWithFailingProcessor
+specifier|private
+specifier|final
+name|String
+name|twoEntitiesWithFailingProcessor
+init|=
+literal|"<dataConfig><dataSource type=\"MockDataSource\"/>\n"
+operator|+
+literal|"<document>"
+operator|+
+literal|"<entity name=\"job\" processor=\"TestDocBuilderThreaded$DemoProcessor\" \n"
+operator|+
+literal|" query=\"select * from y\""
+operator|+
+literal|" pk=\"id\" \n"
+operator|+
+literal|" worker=\"id\" \n"
+operator|+
+literal|" onError=\"continue\" "
+operator|+
+literal|">"
+operator|+
+literal|"<field column=\"id\" />\n"
+operator|+
+literal|"<entity name=\"details\" processor=\"TestDocBuilderThreaded$FailingProcessor\" \n"
+operator|+
+literal|"worker=\"${job.worker}\" \n"
+operator|+
+literal|"query=\"${job.worker}\" \n"
+operator|+
+literal|"transformer=\"TemplateTransformer\" "
+operator|+
+literal|"onError=\"continue\" "
+operator|+
+literal|"fail=\"yes\" "
+operator|+
+literal|">"
+operator|+
+literal|"<field column=\"author_s\" />"
+operator|+
+literal|"<field column=\"title_s\" />"
+operator|+
+literal|"<field column=\"text_s\" />"
+operator|+
+literal|"<field column=\"generated_id_s\" template=\"generated_${job.id}\" />"
+operator|+
+literal|"</entity>"
+operator|+
+literal|"</entity>"
+operator|+
+literal|"</document>"
+operator|+
+literal|"</dataConfig>"
+decl_stmt|;
+DECL|field|twoThreadedEntitiesWithFailingTransformer
+specifier|private
+specifier|final
+name|String
+name|twoThreadedEntitiesWithFailingTransformer
+init|=
+literal|"<dataConfig><dataSource type=\"MockDataSource\"/>\n"
+operator|+
+literal|"<document>"
+operator|+
+literal|"<entity name=\"job\" processor=\"TestDocBuilderThreaded$DemoProcessor\" \n"
+operator|+
+literal|" threads=\"1\" "
+operator|+
+literal|" query=\"select * from y\""
+operator|+
+literal|" pk=\"id\" \n"
+operator|+
+literal|" worker=\"id\" \n"
+operator|+
+literal|" onError=\"continue\" "
+operator|+
+literal|">"
+operator|+
+literal|"<field column=\"id\" />\n"
+operator|+
+literal|"<entity name=\"details\" \n"
+operator|+
+literal|"worker=\"${job.worker}\" \n"
+operator|+
+literal|"query=\"${job.worker}\" \n"
+operator|+
+literal|"transformer=\"TestDocBuilderThreaded$FailingTransformer\" "
+operator|+
+literal|"onError=\"continue\" "
+operator|+
+literal|">"
+operator|+
+literal|"<field column=\"author_s\" />"
+operator|+
+literal|"<field column=\"title_s\" />"
+operator|+
+literal|"<field column=\"text_s\" />"
+operator|+
+literal|"<field column=\"generated_id_s\" template=\"generated_${job.id}\" />"
+operator|+
+literal|"</entity>"
+operator|+
+literal|"</entity>"
+operator|+
+literal|"</document>"
+operator|+
+literal|"</dataConfig>"
+decl_stmt|;
 DECL|class|DemoProcessor
 specifier|public
 specifier|static
@@ -708,6 +966,102 @@ else|else
 name|entitiesInitied
 operator|++
 expr_stmt|;
+block|}
+block|}
+DECL|class|FailingProcessor
+specifier|public
+specifier|static
+class|class
+name|FailingProcessor
+extends|extends
+name|SqlEntityProcessor
+block|{
+annotation|@
+name|Override
+DECL|method|init
+specifier|public
+name|void
+name|init
+parameter_list|(
+name|Context
+name|context
+parameter_list|)
+block|{
+name|super
+operator|.
+name|init
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
+name|String
+name|fail
+init|=
+name|context
+operator|.
+name|getResolvedEntityAttribute
+argument_list|(
+literal|"fail"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fail
+operator|!=
+literal|null
+operator|&&
+name|fail
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"yes"
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"I was told to"
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
+DECL|class|FailingTransformer
+specifier|public
+specifier|static
+class|class
+name|FailingTransformer
+extends|extends
+name|Transformer
+block|{
+annotation|@
+name|Override
+DECL|method|transformRow
+specifier|public
+name|Object
+name|transformRow
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|row
+parameter_list|,
+name|Context
+name|context
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Always fail"
+argument_list|)
+throw|;
 block|}
 block|}
 DECL|class|DemoEvaluator

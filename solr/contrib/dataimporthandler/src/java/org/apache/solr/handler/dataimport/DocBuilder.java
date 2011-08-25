@@ -1884,15 +1884,15 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|error
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"error in import"
+literal|"Error in multi-threaded import"
 argument_list|,
 name|e
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 block|}
 else|else
