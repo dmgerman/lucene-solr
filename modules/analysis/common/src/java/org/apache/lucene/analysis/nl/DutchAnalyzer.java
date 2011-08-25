@@ -439,6 +439,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|stemdict
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -603,50 +604,6 @@ name|matchVersion
 operator|=
 name|matchVersion
 expr_stmt|;
-block|}
-comment|/**    * Reads a stemdictionary file , that overrules the stemming algorithm    * This is a textfile that contains per line    *<tt>word<b>\t</b>stem</tt>, i.e: two tab seperated words    */
-DECL|method|setStemDictionary
-specifier|public
-name|void
-name|setStemDictionary
-parameter_list|(
-name|File
-name|stemdictFile
-parameter_list|)
-block|{
-try|try
-block|{
-name|stemdict
-operator|=
-name|WordlistLoader
-operator|.
-name|getStemDict
-argument_list|(
-name|stemdictFile
-argument_list|)
-expr_stmt|;
-name|setPreviousTokenStream
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-comment|// force a new stemmer to be created
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|// TODO: throw IOException
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 comment|/**    * Returns a (possibly reused) {@link TokenStream} which tokenizes all the     * text in the provided {@link Reader}.    *    * @return A {@link TokenStream} built from a {@link StandardTokenizer}    *   filtered with {@link StandardFilter}, {@link LowerCaseFilter},     *   {@link StopFilter}, {@link KeywordMarkerFilter} if a stem exclusion set is provided,    *   {@link StemmerOverrideFilter}, and {@link SnowballFilter}    */
 annotation|@
