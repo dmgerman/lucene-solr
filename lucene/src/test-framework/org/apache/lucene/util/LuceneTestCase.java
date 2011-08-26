@@ -4877,7 +4877,7 @@ name|c
 operator|.
 name|setTermIndexInterval
 argument_list|(
-name|random
+name|r
 operator|.
 name|nextBoolean
 argument_list|()
