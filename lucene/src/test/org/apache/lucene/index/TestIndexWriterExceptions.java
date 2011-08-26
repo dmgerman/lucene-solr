@@ -794,6 +794,8 @@ name|idField
 init|=
 name|newField
 argument_list|(
+name|r
+argument_list|,
 literal|"id"
 argument_list|,
 literal|""
