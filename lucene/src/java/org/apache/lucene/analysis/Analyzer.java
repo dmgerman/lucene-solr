@@ -66,6 +66,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|CloseableThreadLocal
@@ -83,20 +97,6 @@ operator|.
 name|store
 operator|.
 name|AlreadyClosedException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Fieldable
 import|;
 end_import
 
@@ -381,7 +381,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Invoked before indexing a Fieldable instance if    * terms have already been added to that field.  This allows custom    * analyzers to place an automatic position increment gap between    * Fieldable instances using the same field name.  The default value    * position increment gap is 0.  With a 0 position increment gap and    * the typical default token position increment of 1, all terms in a field,    * including across Fieldable instances, are in successive positions, allowing    * exact PhraseQuery matches, for instance, across Fieldable instance boundaries.    *    * @param fieldName Fieldable name being indexed.    * @return position increment gap, added to the next token emitted from {@link #tokenStream(String,Reader)}    */
+comment|/**    * Invoked before indexing a IndexableField instance if    * terms have already been added to that field.  This allows custom    * analyzers to place an automatic position increment gap between    * IndexbleField instances using the same field name.  The default value    * position increment gap is 0.  With a 0 position increment gap and    * the typical default token position increment of 1, all terms in a field,    * including across IndexableField instances, are in successive positions, allowing    * exact PhraseQuery matches, for instance, across IndexableField instance boundaries.    *    * @param fieldName IndexableField name being indexed.    * @return position increment gap, added to the next token emitted from {@link #tokenStream(String,Reader)}    */
 DECL|method|getPositionIncrementGap
 specifier|public
 name|int
@@ -401,7 +401,7 @@ specifier|public
 name|int
 name|getOffsetGap
 parameter_list|(
-name|Fieldable
+name|IndexableField
 name|field
 parameter_list|)
 block|{
@@ -409,16 +409,20 @@ if|if
 condition|(
 name|field
 operator|.
-name|isTokenized
+name|tokenized
 argument_list|()
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|0
 return|;
+block|}
 block|}
 comment|/** Frees persistent resources used by this Analyzer */
 DECL|method|close

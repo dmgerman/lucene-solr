@@ -168,9 +168,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|document
 operator|.
-name|IOContext
+name|StringField
 import|;
 end_import
 
@@ -355,6 +355,20 @@ operator|.
 name|store
 operator|.
 name|FSDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
 import|;
 end_import
 
@@ -10417,11 +10431,9 @@ literal|"id"
 argument_list|,
 literal|""
 argument_list|,
-name|Field
+name|StringField
 operator|.
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 decl_stmt|;
 name|doc
@@ -11358,11 +11370,9 @@ literal|"field"
 argument_list|,
 literal|""
 argument_list|,
-name|Field
+name|StringField
 operator|.
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 decl_stmt|;
 name|doc

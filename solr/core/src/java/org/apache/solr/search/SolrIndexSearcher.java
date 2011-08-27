@@ -200,6 +200,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|FieldSelectorVisitor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|DocsEnum
@@ -231,6 +245,8 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -245,8 +261,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-operator|.
-name|AtomicReaderContext
 import|;
 end_import
 
@@ -275,6 +289,20 @@ operator|.
 name|index
 operator|.
 name|MultiFields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StoredFieldVisitor
 import|;
 end_import
 
@@ -2624,24 +2652,23 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Retrieve a {@link Document} using a {@link org.apache.lucene.document.FieldSelector}    * This method does not currently use the Solr document cache.    *     * @see IndexReader#document(int, FieldSelector) */
+comment|/** Visit a document's fields using a {@link StoredFieldVisitor}    *  This method does not currently use the Solr document cache.    *     * @see IndexReader#document(int, StoredFieldVisitor) */
 annotation|@
 name|Override
 DECL|method|doc
 specifier|public
-name|Document
+name|void
 name|doc
 parameter_list|(
 name|int
 name|n
 parameter_list|,
-name|FieldSelector
-name|fieldSelector
+name|StoredFieldVisitor
+name|visitor
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
 name|getIndexReader
 argument_list|()
 operator|.
@@ -2649,9 +2676,9 @@ name|document
 argument_list|(
 name|n
 argument_list|,
-name|fieldSelector
+name|visitor
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 comment|/**    * Retrieve the {@link Document} instance corresponding to the document id.    *    * Note: The document will have all fields accessable, but if a field    * filter is provided, only the provided fields will be loaded (the     * remainder will be available lazily).    */
 DECL|method|doc
@@ -2723,8 +2750,20 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|d
-operator|=
+specifier|final
+name|FieldSelectorVisitor
+name|visitor
+init|=
+operator|new
+name|FieldSelectorVisitor
+argument_list|(
+operator|new
+name|SetNonLazyFieldSelector
+argument_list|(
+name|fields
+argument_list|)
+argument_list|)
+decl_stmt|;
 name|getIndexReader
 argument_list|()
 operator|.
@@ -2732,12 +2771,15 @@ name|document
 argument_list|(
 name|i
 argument_list|,
-operator|new
-name|SetNonLazyFieldSelector
-argument_list|(
-name|fields
+name|visitor
 argument_list|)
-argument_list|)
+expr_stmt|;
+name|d
+operator|=
+name|visitor
+operator|.
+name|getDocument
+argument_list|()
 expr_stmt|;
 block|}
 if|if

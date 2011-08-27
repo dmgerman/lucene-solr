@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|StringField
 import|;
 end_import
 
@@ -246,17 +246,9 @@ index|[
 name|i
 index|]
 argument_list|,
-name|Field
+name|StringField
 operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;

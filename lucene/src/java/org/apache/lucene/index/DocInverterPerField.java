@@ -44,20 +44,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|Fieldable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|analysis
 operator|.
 name|TokenStream
@@ -239,7 +225,7 @@ name|void
 name|processFields
 parameter_list|(
 specifier|final
-name|Fieldable
+name|IndexableField
 index|[]
 name|fields
 parameter_list|,
@@ -253,14 +239,7 @@ block|{
 name|fieldState
 operator|.
 name|reset
-argument_list|(
-name|docState
-operator|.
-name|doc
-operator|.
-name|getBoost
 argument_list|()
-argument_list|)
 expr_stmt|;
 specifier|final
 name|boolean
@@ -291,7 +270,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|Fieldable
+name|IndexableField
 name|field
 init|=
 name|fields
@@ -306,7 +285,7 @@ if|if
 condition|(
 name|field
 operator|.
-name|isIndexed
+name|indexed
 argument_list|()
 operator|&&
 name|doInvert
@@ -341,16 +320,20 @@ operator|.
 name|name
 argument_list|)
 expr_stmt|;
+comment|// TODO (LUCENE-2309): this analysis logic should be
+comment|// outside of indexer -- field should simply give us
+comment|// a TokenStream, even for multi-valued fields
 if|if
 condition|(
 operator|!
 name|field
 operator|.
-name|isTokenized
+name|tokenized
 argument_list|()
 condition|)
 block|{
 comment|// un-tokenized field
+specifier|final
 name|String
 name|stringValue
 init|=
@@ -359,6 +342,11 @@ operator|.
 name|stringValue
 argument_list|()
 decl_stmt|;
+assert|assert
+name|stringValue
+operator|!=
+literal|null
+assert|;
 specifier|final
 name|int
 name|valueLength
@@ -469,10 +457,12 @@ name|streamValue
 operator|!=
 literal|null
 condition|)
+block|{
 name|stream
 operator|=
 name|streamValue
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|// the field does not have a TokenStream,
@@ -497,10 +487,12 @@ name|readerValue
 operator|!=
 literal|null
 condition|)
+block|{
 name|reader
 operator|=
 name|readerValue
 expr_stmt|;
+block|}
 else|else
 block|{
 name|String
@@ -785,7 +777,7 @@ name|boost
 operator|*=
 name|field
 operator|.
-name|getBoost
+name|boost
 argument_list|()
 expr_stmt|;
 block|}

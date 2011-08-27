@@ -78,25 +78,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
-operator|.
-name|Index
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
-operator|.
-name|Store
+name|TextField
 import|;
 end_import
 
@@ -215,13 +197,9 @@ literal|"field1"
 argument_list|,
 literal|"the quick brown fox jumps"
 argument_list|,
-name|Store
+name|TextField
 operator|.
-name|YES
-argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -235,13 +213,9 @@ literal|"field2"
 argument_list|,
 literal|"the quick brown fox jumps"
 argument_list|,
-name|Store
+name|TextField
 operator|.
-name|YES
-argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -255,13 +229,9 @@ literal|"field4"
 argument_list|,
 literal|""
 argument_list|,
-name|Store
+name|TextField
 operator|.
-name|NO
-argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -318,13 +288,9 @@ literal|"field0"
 argument_list|,
 literal|""
 argument_list|,
-name|Store
+name|TextField
 operator|.
-name|NO
-argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -338,13 +304,9 @@ literal|"field1"
 argument_list|,
 literal|"the fox jumps over the lazy dog"
 argument_list|,
-name|Store
+name|TextField
 operator|.
-name|YES
-argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -358,13 +320,9 @@ literal|"field3"
 argument_list|,
 literal|"the fox jumps over the lazy dog"
 argument_list|,
-name|Store
+name|TextField
 operator|.
-name|YES
-argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;

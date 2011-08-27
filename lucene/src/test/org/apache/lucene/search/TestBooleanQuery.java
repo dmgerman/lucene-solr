@@ -60,20 +60,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|MockAnalyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|Document
@@ -90,7 +76,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|TextField
 import|;
 end_import
 
@@ -525,17 +511,9 @@ literal|"field"
 argument_list|,
 literal|"a b c d"
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Store
-operator|.
-name|NO
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1042,11 +1020,9 @@ literal|"field"
 argument_list|,
 literal|"foo bar"
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1104,11 +1080,9 @@ literal|"field"
 argument_list|,
 literal|"foo baz"
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;

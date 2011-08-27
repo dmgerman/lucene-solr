@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|NumericField
 import|;
 end_import
 
@@ -84,7 +84,21 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|NumericField
+name|StringField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|TextField
 import|;
 end_import
 
@@ -542,11 +556,9 @@ argument_list|(
 name|random
 argument_list|)
 argument_list|,
-name|Field
+name|StringField
 operator|.
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -570,11 +582,9 @@ name|length
 argument_list|)
 index|]
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;

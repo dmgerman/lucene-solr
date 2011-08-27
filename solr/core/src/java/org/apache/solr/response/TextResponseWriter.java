@@ -68,9 +68,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Fieldable
+name|IndexableField
 import|;
 end_import
 
@@ -645,14 +645,14 @@ if|if
 condition|(
 name|val
 operator|instanceof
-name|Fieldable
+name|IndexableField
 condition|)
 block|{
-name|Fieldable
+name|IndexableField
 name|f
 init|=
 operator|(
-name|Fieldable
+name|IndexableField
 operator|)
 name|val
 decl_stmt|;
@@ -1262,13 +1262,10 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Fieldable
+name|IndexableField
 name|f
 range|:
 name|doc
-operator|.
-name|getFields
-argument_list|()
 control|)
 block|{
 comment|// Make sure multivalued fields are represented as lists

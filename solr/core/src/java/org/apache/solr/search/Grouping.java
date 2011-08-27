@@ -38,9 +38,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Fieldable
+name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -54,9 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|AtomicReaderContext
+name|IndexableField
 import|;
 end_import
 
@@ -3634,7 +3634,7 @@ name|utf8ToString
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Fieldable
+name|IndexableField
 name|field
 init|=
 name|schemaField

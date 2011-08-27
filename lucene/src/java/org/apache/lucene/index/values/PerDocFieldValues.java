@@ -50,20 +50,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|Fieldable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|codecs
@@ -87,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Per document and field values consumed by {@link DocValuesConsumer}.   * @see IndexDocValuesField  * @see Fieldable#setDocValues(PerDocFieldValues)  *   * @lucene.experimental  */
+comment|/**  * Per document and field values consumed by {@link DocValuesConsumer}.   * @see IndexDocValuesField  *   * @lucene.experimental  */
 end_comment
 
 begin_interface
@@ -203,20 +189,20 @@ name|comp
 parameter_list|)
 function_decl|;
 comment|/**    * Sets the {@link ValueType}    */
-DECL|method|setType
+DECL|method|setDocValuesType
 specifier|public
 name|void
-name|setType
+name|setDocValuesType
 parameter_list|(
 name|ValueType
 name|type
 parameter_list|)
 function_decl|;
 comment|/**   * Returns the {@link ValueType}   */
-DECL|method|type
+DECL|method|docValuesType
 specifier|public
 name|ValueType
-name|type
+name|docValuesType
 parameter_list|()
 function_decl|;
 block|}

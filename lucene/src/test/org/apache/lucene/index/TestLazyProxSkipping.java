@@ -114,11 +114,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|codecs
-operator|.
-name|CodecProvider
+name|TextField
 import|;
 end_import
 
@@ -130,9 +128,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Field
+name|codecs
+operator|.
+name|CodecProvider
 import|;
 end_import
 
@@ -609,17 +609,9 @@ name|field
 argument_list|,
 name|content
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -949,17 +941,9 @@ name|field
 argument_list|,
 literal|"a b"
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;

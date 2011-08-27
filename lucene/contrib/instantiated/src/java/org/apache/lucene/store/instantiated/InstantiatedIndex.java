@@ -134,9 +134,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Fieldable
+name|IndexReader
 import|;
 end_import
 
@@ -150,7 +150,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|IndexableField
 import|;
 end_import
 
@@ -1072,13 +1072,10 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|Fieldable
+name|IndexableField
 name|field
 range|:
 name|sourceDocument
-operator|.
-name|getFields
-argument_list|()
 control|)
 block|{
 if|if
@@ -1126,15 +1123,12 @@ name|document
 expr_stmt|;
 for|for
 control|(
-name|Fieldable
+name|IndexableField
 name|field
 range|:
 name|document
 operator|.
 name|getDocument
-argument_list|()
-operator|.
-name|getFields
 argument_list|()
 control|)
 block|{
@@ -1159,7 +1153,7 @@ if|if
 condition|(
 name|field
 operator|.
-name|isTermVectorStored
+name|storeTermVectors
 argument_list|()
 condition|)
 block|{
@@ -1811,15 +1805,12 @@ comment|// deleted
 block|}
 for|for
 control|(
-name|Fieldable
+name|IndexableField
 name|field
 range|:
 name|document
 operator|.
 name|getDocument
-argument_list|()
-operator|.
-name|getFields
 argument_list|()
 control|)
 block|{
@@ -1827,12 +1818,12 @@ if|if
 condition|(
 name|field
 operator|.
-name|isTermVectorStored
+name|storeTermVectors
 argument_list|()
 operator|&&
 name|field
 operator|.
-name|isStoreOffsetWithTermVector
+name|storeTermVectorOffsets
 argument_list|()
 condition|)
 block|{

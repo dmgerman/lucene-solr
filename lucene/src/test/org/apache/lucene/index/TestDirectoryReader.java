@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|TextField
 import|;
 end_import
 
@@ -1269,17 +1269,9 @@ literal|"body"
 argument_list|,
 name|s
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;

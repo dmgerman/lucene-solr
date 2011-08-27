@@ -68,9 +68,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Fieldable
+name|IndexableField
 import|;
 end_import
 
@@ -245,7 +245,7 @@ name|isPolyField
 argument_list|()
 condition|)
 block|{
-name|Fieldable
+name|IndexableField
 index|[]
 name|fields
 init|=
@@ -331,7 +331,7 @@ block|}
 comment|// Add each field
 for|for
 control|(
-name|Fieldable
+name|IndexableField
 name|field
 range|:
 name|fields
@@ -349,7 +349,7 @@ block|}
 block|}
 else|else
 block|{
-name|Fieldable
+name|IndexableField
 name|field
 init|=
 name|sfield
@@ -621,23 +621,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|setBoost
-specifier|public
-name|void
-name|setBoost
-parameter_list|(
-name|float
-name|boost
-parameter_list|)
-block|{
-name|doc
-operator|.
-name|setBoost
-argument_list|(
-name|boost
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|endDoc
 specifier|public
 name|void
@@ -678,7 +661,7 @@ if|if
 condition|(
 name|doc
 operator|.
-name|getFieldable
+name|getField
 argument_list|(
 name|field
 operator|.
@@ -789,10 +772,13 @@ name|v
 init|=
 name|doc
 operator|.
-name|get
+name|getField
 argument_list|(
 name|n
 argument_list|)
+operator|.
+name|stringValue
+argument_list|()
 decl_stmt|;
 name|builder
 operator|.
@@ -897,7 +883,7 @@ name|isPolyField
 argument_list|()
 condition|)
 block|{
-name|Fieldable
+name|IndexableField
 index|[]
 name|farr
 init|=
@@ -917,7 +903,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|Fieldable
+name|IndexableField
 name|f
 range|:
 name|farr
@@ -941,7 +927,7 @@ block|}
 block|}
 else|else
 block|{
-name|Fieldable
+name|IndexableField
 name|f
 init|=
 name|field
@@ -1044,16 +1030,15 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-name|out
-operator|.
-name|setBoost
-argument_list|(
+specifier|final
+name|float
+name|docBoost
+init|=
 name|doc
 operator|.
 name|getDocumentBoost
 argument_list|()
-argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// Load fields from SolrDocument to Document
 for|for
 control|(
@@ -1198,6 +1183,8 @@ name|sfield
 argument_list|,
 name|v
 argument_list|,
+name|docBoost
+operator|*
 name|boost
 argument_list|)
 expr_stmt|;
@@ -1244,7 +1231,7 @@ argument_list|()
 operator|&&
 name|out
 operator|.
-name|getFieldable
+name|getField
 argument_list|(
 name|destinationField
 operator|.
@@ -1324,7 +1311,7 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
-name|Fieldable
+name|IndexableField
 index|[]
 name|fields
 init|=
@@ -1334,6 +1321,8 @@ name|createFields
 argument_list|(
 name|val
 argument_list|,
+name|docBoost
+operator|*
 name|boost
 argument_list|)
 decl_stmt|;
@@ -1347,7 +1336,7 @@ block|{
 comment|// null fields are not added
 for|for
 control|(
-name|Fieldable
+name|IndexableField
 name|f
 range|:
 name|fields
@@ -1375,7 +1364,7 @@ comment|// For multi-valued fields, we only want to set the boost on the
 comment|// first field.
 name|boost
 operator|=
-literal|1.0f
+name|docBoost
 expr_stmt|;
 block|}
 block|}
@@ -1478,7 +1467,7 @@ if|if
 condition|(
 name|out
 operator|.
-name|getFieldable
+name|getField
 argument_list|(
 name|field
 operator|.
@@ -1568,20 +1557,17 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Fieldable
+name|IndexableField
 name|field
 range|:
 name|luceneDoc
-operator|.
-name|getFields
-argument_list|()
 control|)
 block|{
 if|if
 condition|(
 name|field
 operator|.
-name|isStored
+name|stored
 argument_list|()
 condition|)
 block|{

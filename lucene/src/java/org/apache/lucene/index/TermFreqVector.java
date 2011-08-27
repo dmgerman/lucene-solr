@@ -40,7 +40,7 @@ specifier|public
 interface|interface
 name|TermFreqVector
 block|{
-comment|/**    * The {@link org.apache.lucene.document.Fieldable} name.     * @return The name of the field this vector is associated with.    *     */
+comment|/**    * The {@link org.apache.lucene.index.IndexableField} name.     * @return The name of the field this vector is associated with.    *     */
 DECL|method|getField
 specifier|public
 name|String

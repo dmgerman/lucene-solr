@@ -1875,6 +1875,10 @@ block|{
 comment|// skip deleted docs
 continue|continue;
 block|}
+comment|// TODO: this could be more efficient using
+comment|// FieldVisitor instead of loading/writing entire
+comment|// doc; ie we just have to renumber the field number
+comment|// on the fly?
 comment|// NOTE: it's very important to first assign to doc then pass it to
 comment|// termVectorsWriter.addAllDocVectors; see LUCENE-1282
 name|Document

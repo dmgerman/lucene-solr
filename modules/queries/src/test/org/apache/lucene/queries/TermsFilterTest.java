@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -40,7 +50,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|StringField
 import|;
 end_import
 
@@ -169,16 +179,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
 import|;
 end_import
 
@@ -420,17 +420,9 @@ literal|""
 operator|+
 name|term
 argument_list|,
-name|Field
+name|StringField
 operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;

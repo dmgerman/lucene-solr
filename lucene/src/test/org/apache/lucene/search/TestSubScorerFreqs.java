@@ -290,17 +290,9 @@ literal|"f"
 argument_list|,
 literal|"a b c d b c d c d d"
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Store
-operator|.
-name|NO
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -327,17 +319,9 @@ literal|"f"
 argument_list|,
 literal|"a b c d"
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Store
-operator|.
-name|NO
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;

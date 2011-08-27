@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|TextField
 import|;
 end_import
 
@@ -870,17 +870,9 @@ name|FIELD_T
 argument_list|,
 literal|"Optimize not deleting all files"
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -894,17 +886,9 @@ name|FIELD_C
 argument_list|,
 literal|"Deleted When I run an optimize in our production environment."
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;

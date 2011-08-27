@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|TextField
 import|;
 end_import
 
@@ -297,17 +297,9 @@ name|FN
 argument_list|,
 literal|"the quick brown fox jumps over the lazy ??? dog 493432 49344"
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Store
-operator|.
-name|NO
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;

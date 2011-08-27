@@ -26,20 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Fieldable
-import|;
-end_import
-
 begin_class
 DECL|class|DocFieldConsumerPerField
 specifier|abstract
@@ -52,7 +38,7 @@ specifier|abstract
 name|void
 name|processFields
 parameter_list|(
-name|Fieldable
+name|IndexableField
 index|[]
 name|fields
 parameter_list|,

@@ -74,20 +74,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|Fieldable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|ByteBlockPool
@@ -596,7 +582,7 @@ DECL|method|start
 name|void
 name|start
 parameter_list|(
-name|Fieldable
+name|IndexableField
 name|f
 parameter_list|)
 block|{
@@ -649,7 +635,7 @@ DECL|method|start
 name|boolean
 name|start
 parameter_list|(
-name|Fieldable
+name|IndexableField
 index|[]
 name|fields
 parameter_list|,
@@ -681,6 +667,7 @@ name|nextPerField
 operator|!=
 literal|null
 condition|)
+block|{
 name|doNextCall
 operator|=
 name|nextPerField
@@ -692,6 +679,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|doCall
 operator|||

@@ -180,9 +180,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Fieldable
+name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -196,9 +198,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|AtomicReaderContext
+name|IndexableField
 import|;
 end_import
 
@@ -367,7 +367,7 @@ specifier|public
 name|String
 name|toExternal
 parameter_list|(
-name|Fieldable
+name|IndexableField
 name|f
 parameter_list|)
 block|{
@@ -459,7 +459,7 @@ specifier|public
 name|Integer
 name|toObject
 parameter_list|(
-name|Fieldable
+name|IndexableField
 name|f
 parameter_list|)
 block|{
@@ -492,7 +492,7 @@ parameter_list|,
 name|String
 name|name
 parameter_list|,
-name|Fieldable
+name|IndexableField
 name|f
 parameter_list|)
 throws|throws

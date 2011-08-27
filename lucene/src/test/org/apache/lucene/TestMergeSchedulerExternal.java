@@ -236,6 +236,20 @@ name|Field
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|StringField
+import|;
+end_import
+
 begin_comment
 comment|/**  * Holds tests cases to verify external APIs are accessible  * while not being in org.apache.lucene.index package.  */
 end_comment
@@ -521,17 +535,9 @@ literal|"id"
 argument_list|,
 literal|""
 argument_list|,
-name|Field
+name|StringField
 operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|TYPE_STORED
 argument_list|)
 decl_stmt|;
 name|doc

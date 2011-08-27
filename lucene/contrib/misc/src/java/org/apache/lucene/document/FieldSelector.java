@@ -17,7 +17,7 @@ comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed unde
 end_comment
 
 begin_comment
-comment|/**  * Similar to a {@link java.io.FileFilter}, the FieldSelector allows one to make decisions about  * what Fields get loaded on a {@link Document} by {@link org.apache.lucene.index.IndexReader#document(int,org.apache.lucene.document.FieldSelector)}  *  **/
+comment|/**  * Similar to a {@link java.io.FileFilter}, the FieldSelector allows one to make decisions about  * what Fields get loaded on a {@link Document} by {@link FieldSelectorVisitor}  *  **/
 end_comment
 
 begin_interface

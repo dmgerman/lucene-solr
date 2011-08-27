@@ -172,7 +172,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|StringField
 import|;
 end_import
 
@@ -481,17 +481,9 @@ operator|.
 name|text
 argument_list|()
 argument_list|,
-name|Field
+name|StringField
 operator|.
-name|Store
-operator|.
-name|NO
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|TYPE_UNSTORED
 argument_list|)
 argument_list|)
 expr_stmt|;

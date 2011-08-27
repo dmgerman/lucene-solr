@@ -88,9 +88,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
-operator|.
-name|Index
+name|StringField
 import|;
 end_import
 
@@ -104,9 +102,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
-operator|.
-name|Store
+name|TextField
 import|;
 end_import
 
@@ -697,13 +693,9 @@ literal|"id"
 argument_list|,
 name|id
 argument_list|,
-name|Store
+name|StringField
 operator|.
-name|YES
-argument_list|,
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -717,13 +709,9 @@ literal|"indexname"
 argument_list|,
 name|indexName
 argument_list|,
-name|Store
+name|StringField
 operator|.
-name|YES
-argument_list|,
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -754,13 +742,9 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-name|Store
+name|TextField
 operator|.
-name|YES
-argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -812,13 +796,9 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-name|Store
+name|TextField
 operator|.
-name|YES
-argument_list|,
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -54,9 +54,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Fieldable
+name|IndexableField
 import|;
 end_import
 
@@ -359,7 +359,7 @@ specifier|public
 name|int
 name|getOffsetGap
 parameter_list|(
-name|Fieldable
+name|IndexableField
 name|field
 parameter_list|)
 block|{
@@ -382,10 +382,12 @@ name|analyzer
 operator|==
 literal|null
 condition|)
+block|{
 name|analyzer
 operator|=
 name|defaultAnalyzer
 expr_stmt|;
+block|}
 return|return
 name|analyzer
 operator|.

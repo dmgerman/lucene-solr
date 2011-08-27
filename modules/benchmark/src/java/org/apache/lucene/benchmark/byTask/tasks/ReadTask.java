@@ -140,9 +140,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Fieldable
+name|IndexReader
 import|;
 end_import
 
@@ -156,7 +156,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|IndexableField
 import|;
 end_import
 
@@ -1342,9 +1342,9 @@ parameter_list|)
 block|{
 name|List
 argument_list|<
-name|Fieldable
+name|IndexableField
 argument_list|>
-name|fieldables
+name|fields
 init|=
 name|document
 operator|.
@@ -1363,7 +1363,7 @@ argument_list|<
 name|String
 argument_list|>
 argument_list|(
-name|fieldables
+name|fields
 operator|.
 name|size
 argument_list|()
@@ -1372,17 +1372,17 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|Fieldable
-name|fieldable
+name|IndexableField
+name|f
 range|:
-name|fieldables
+name|fields
 control|)
 block|{
 name|result
 operator|.
 name|add
 argument_list|(
-name|fieldable
+name|f
 operator|.
 name|name
 argument_list|()

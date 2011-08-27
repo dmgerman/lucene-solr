@@ -76,14 +76,17 @@ name|docValues
 decl_stmt|;
 comment|// true if term vector for this field should be stored
 DECL|field|storeTermVector
+specifier|public
 name|boolean
 name|storeTermVector
 decl_stmt|;
 DECL|field|storeOffsetWithTermVector
+specifier|public
 name|boolean
 name|storeOffsetWithTermVector
 decl_stmt|;
 DECL|field|storePositionWithTermVector
+specifier|public
 name|boolean
 name|storePositionWithTermVector
 decl_stmt|;

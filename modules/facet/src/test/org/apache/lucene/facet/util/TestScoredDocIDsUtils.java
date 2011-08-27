@@ -100,9 +100,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
-operator|.
-name|Index
+name|FieldType
 import|;
 end_import
 
@@ -116,9 +114,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
-operator|.
-name|Store
+name|StringField
 import|;
 end_import
 
@@ -925,7 +921,7 @@ argument_list|(
 name|docNum
 argument_list|)
 operator|.
-name|getFieldable
+name|getField
 argument_list|(
 literal|"del"
 argument_list|)
@@ -1134,7 +1130,7 @@ argument_list|(
 name|docNum
 argument_list|)
 operator|.
-name|getFieldable
+name|getField
 argument_list|(
 literal|"del"
 argument_list|)
@@ -1248,19 +1244,11 @@ name|Field
 name|deletionMark
 init|=
 operator|new
-name|Field
+name|StringField
 argument_list|(
 name|field
 argument_list|,
 name|delTxt
-argument_list|,
-name|Store
-operator|.
-name|NO
-argument_list|,
-name|Index
-operator|.
-name|NOT_ANALYZED_NO_NORMS
 argument_list|)
 decl_stmt|;
 DECL|field|alphaContent
@@ -1271,19 +1259,11 @@ name|Field
 name|alphaContent
 init|=
 operator|new
-name|Field
+name|StringField
 argument_list|(
 name|field
 argument_list|,
 name|alphaTxt
-argument_list|,
-name|Store
-operator|.
-name|NO
-argument_list|,
-name|Index
-operator|.
-name|NOT_ANALYZED_NO_NORMS
 argument_list|)
 decl_stmt|;
 DECL|field|numDocs
@@ -1353,6 +1333,20 @@ argument_list|)
 expr_stmt|;
 comment|// Add a special field for docs that are marked for deletion. Later we
 comment|// assert that those docs are not returned by all-scored-doc-IDs.
+name|FieldType
+name|ft
+init|=
+operator|new
+name|FieldType
+argument_list|()
+decl_stmt|;
+name|ft
+operator|.
+name|setStored
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|doc
 operator|.
 name|add
@@ -1362,20 +1356,14 @@ name|Field
 argument_list|(
 literal|"del"
 argument_list|,
+name|ft
+argument_list|,
 name|Integer
 operator|.
 name|toString
 argument_list|(
 name|docNum
 argument_list|)
-argument_list|,
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Index
-operator|.
-name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

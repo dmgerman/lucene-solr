@@ -20,25 +20,43 @@ begin_comment
 comment|/**  *  Provides information about what should be done with this Field   *  **/
 end_comment
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexableField
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
 begin_enum
 DECL|enum|FieldSelectorResult
 specifier|public
 enum|enum
 name|FieldSelectorResult
 block|{
-comment|/**      * Load this {@link Field} every time the {@link Document} is loaded, reading in the data as it is encountered.      *  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should not return null.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
+comment|/**      * Load this {@link Field} every time the {@link Document} is loaded, reading in the data as it is encountered.      *  {@link Document#getField(String)} should not return null.      *<p/>      * {@link Document#add(IndexableField)} should be called by the Reader.      */
 DECL|enum constant|LOAD
 name|LOAD
 block|,
-comment|/**      * Lazily load this {@link Field}.  This means the {@link Field} is valid, but it may not actually contain its data until      * invoked.  {@link Document#getField(String)} SHOULD NOT BE USED.  {@link Document#getFieldable(String)} is safe to use and should      * return a valid instance of a {@link Fieldable}.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
+comment|/**      * Lazily load this {@link Field}.  This means the {@link Field} is valid, but it may not actually contain its data until      * invoked.  {@link Document#getField(String)} is safe to use and should      * return a valid instance of a {@link IndexableField}.      *<p/>      * {@link Document#add(IndexableField)} should be called by the Reader.      */
 DECL|enum constant|LAZY_LOAD
 name|LAZY_LOAD
 block|,
-comment|/**      * Do not load the {@link Field}.  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should return null.      * {@link Document#add(Fieldable)} is not called.      *<p/>      * {@link Document#add(Fieldable)} should not be called by the Reader.      */
+comment|/**      * Do not load the {@link Field}.  {@link Document#getField(String)} should return null.      * {@link Document#add(IndexableField)} is not called.      *<p/>      * {@link Document#add(IndexableField)} should not be called by the Reader.      */
 DECL|enum constant|NO_LOAD
 name|NO_LOAD
 block|,
-comment|/**      * Load this field as in the {@link #LOAD} case, but immediately return from {@link Field} loading for the {@link Document}.  Thus, the      * Document may not have its complete set of Fields.  {@link Document#getField(String)} and {@link Document#getFieldable(String)} should      * both be valid for this {@link Field}      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
+comment|/**      * Load this field as in the {@link #LOAD} case, but immediately return from {@link Field} loading for the {@link Document}.  Thus, the      * Document may not have its complete set of Fields.  {@link Document#getField(String)} should      * both be valid for this {@link Field}      *<p/>      * {@link Document#add(IndexableField)} should be called by the Reader.      */
 DECL|enum constant|LOAD_AND_BREAK
 name|LOAD_AND_BREAK
 block|,
@@ -50,7 +68,7 @@ comment|/** Expert: Like {@link #SIZE} but immediately break from the field load
 DECL|enum constant|SIZE_AND_BREAK
 name|SIZE_AND_BREAK
 block|,
-comment|/**      * Lazily load this {@link Field}, but do not cache the result.  This means the {@link Field} is valid, but it may not actually contain its data until      * invoked.  {@link Document#getField(String)} SHOULD NOT BE USED.  {@link Document#getFieldable(String)} is safe to use and should      * return a valid instance of a {@link Fieldable}.      *<p/>      * {@link Document#add(Fieldable)} should be called by the Reader.      */
+comment|/**      * Lazily load this {@link Field}, but do not cache the result.  This means the {@link Field} is valid, but it may not actually contain its data until      * invoked.  {@link Document#getField(String)} is safe to use and should      * return a valid instance of a {@link IndexableField}.      *<p/>      * {@link Document#add(IndexableField)} should be called by the Reader.      */
 DECL|enum constant|LATENT
 name|LATENT
 block|}

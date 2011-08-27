@@ -36,27 +36,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-operator|.
-name|ErrorCode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Fieldable
+name|IndexableField
 import|;
 end_import
 
@@ -534,7 +518,7 @@ return|;
 block|}
 DECL|method|createField
 specifier|public
-name|Fieldable
+name|IndexableField
 name|createField
 parameter_list|(
 name|Object
@@ -559,7 +543,7 @@ return|;
 block|}
 DECL|method|createFields
 specifier|public
-name|Fieldable
+name|IndexableField
 index|[]
 name|createFields
 parameter_list|(
@@ -660,7 +644,7 @@ parameter_list|,
 name|String
 name|name
 parameter_list|,
-name|Fieldable
+name|IndexableField
 name|val
 parameter_list|)
 throws|throws

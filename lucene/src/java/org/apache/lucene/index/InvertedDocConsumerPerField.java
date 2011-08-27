@@ -26,27 +26,13 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Fieldable
-import|;
-end_import
-
 begin_class
 DECL|class|InvertedDocConsumerPerField
 specifier|abstract
 class|class
 name|InvertedDocConsumerPerField
 block|{
-comment|// Called once per field, and is given all Fieldable
+comment|// Called once per field, and is given all IndexableField
 comment|// occurrences for this field in the document.  Return
 comment|// true if you wish to see inverted tokens for these
 comment|// fields:
@@ -55,7 +41,7 @@ specifier|abstract
 name|boolean
 name|start
 parameter_list|(
-name|Fieldable
+name|IndexableField
 index|[]
 name|fields
 parameter_list|,
@@ -71,7 +57,7 @@ specifier|abstract
 name|void
 name|start
 parameter_list|(
-name|Fieldable
+name|IndexableField
 name|field
 parameter_list|)
 function_decl|;
@@ -84,8 +70,8 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|// Called once per field per document, after all Fieldable
-comment|// occurrences are inverted
+comment|// Called once per field per document, after all IndexableFields
+comment|// are inverted
 DECL|method|finish
 specifier|abstract
 name|void

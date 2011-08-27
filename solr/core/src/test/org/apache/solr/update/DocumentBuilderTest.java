@@ -543,7 +543,7 @@ name|assertNotNull
 argument_list|(
 name|out
 operator|.
-name|getFieldable
+name|getField
 argument_list|(
 literal|"home_0"
 operator|+
@@ -559,7 +559,7 @@ name|assertNotNull
 argument_list|(
 name|out
 operator|.
-name|getFieldable
+name|getField
 argument_list|(
 literal|"home_1"
 operator|+

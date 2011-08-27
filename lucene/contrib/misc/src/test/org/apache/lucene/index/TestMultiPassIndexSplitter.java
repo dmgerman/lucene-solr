@@ -54,7 +54,21 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|StringField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|TextField
 import|;
 end_import
 
@@ -82,7 +96,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
+name|BytesRef
 import|;
 end_import
 
@@ -96,7 +110,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|LuceneTestCase
 import|;
 end_import
 
@@ -204,17 +218,9 @@ name|i
 operator|+
 literal|""
 argument_list|,
-name|Field
+name|StringField
 operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -232,17 +238,9 @@ literal|" "
 operator|+
 name|i
 argument_list|,
-name|Field
+name|TextField
 operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;

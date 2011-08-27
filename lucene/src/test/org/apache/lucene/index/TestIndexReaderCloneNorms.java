@@ -126,9 +126,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
-operator|.
-name|Index
+name|FieldType
 import|;
 end_import
 
@@ -142,9 +140,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
-operator|.
-name|Store
+name|TextField
 import|;
 end_import
 
@@ -161,20 +157,6 @@ operator|.
 name|IndexWriterConfig
 operator|.
 name|OpenMode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentNorms
 import|;
 end_import
 
@@ -1990,6 +1972,24 @@ literal|"anyfield"
 argument_list|)
 decl_stmt|;
 comment|// in this test the same similarity is used for all fields so it does not matter what field is passed
+name|FieldType
+name|customType
+init|=
+operator|new
+name|FieldType
+argument_list|(
+name|TextField
+operator|.
+name|TYPE_UNSTORED
+argument_list|)
+decl_stmt|;
+name|customType
+operator|.
+name|setTokenized
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -2018,13 +2018,7 @@ literal|"v"
 operator|+
 name|i
 argument_list|,
-name|Store
-operator|.
-name|NO
-argument_list|,
-name|Index
-operator|.
-name|NOT_ANALYZED
+name|customType
 argument_list|)
 decl_stmt|;
 name|f

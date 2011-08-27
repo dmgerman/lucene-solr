@@ -38,9 +38,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Fieldable
+name|IndexableField
 import|;
 end_import
 
@@ -55,20 +55,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
-name|DateField
 import|;
 end_import
 
@@ -697,7 +683,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-name|Fieldable
+name|IndexableField
 name|out
 init|=
 operator|(

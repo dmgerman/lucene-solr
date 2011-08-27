@@ -206,9 +206,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Field
+name|IndexableField
 import|;
 end_import
 
@@ -851,7 +851,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Field
+name|IndexableField
 name|f
 init|=
 name|doc
