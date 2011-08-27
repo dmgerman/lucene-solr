@@ -883,10 +883,8 @@ name|IOException
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|this
 operator|.
 name|subs

@@ -1175,10 +1175,8 @@ finally|finally
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|in
 argument_list|,
 name|out

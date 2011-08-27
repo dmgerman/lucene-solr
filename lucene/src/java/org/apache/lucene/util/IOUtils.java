@@ -66,7 +66,7 @@ parameter_list|()
 block|{}
 comment|// no instance
 comment|/**    *<p>Closes all given<tt>Closeable</tt>s, suppressing all thrown exceptions. Some of the<tt>Closeable</tt>s    * may be null, they are ignored. After everything is closed, method either throws<tt>priorException</tt>,    * if one is supplied, or the first of suppressed exceptions, or completes normally.</p>    *<p>Sample usage:<br/>    *<pre>    * Closeable resource1 = null, resource2 = null, resource3 = null;    * ExpectedException priorE = null;    * try {    *   resource1 = ...; resource2 = ...; resource3 = ...; // Acquisition may throw ExpectedException    *   ..do..stuff.. // May throw ExpectedException    * } catch (ExpectedException e) {    *   priorE = e;    * } finally {    *   closeSafely(priorE, resource1, resource2, resource3);    * }    *</pre>    *</p>    * @param priorException<tt>null</tt> or an exception that will be rethrown after method completion    * @param objects         objects to call<tt>close()</tt> on    */
-DECL|method|closeSafely
+DECL|method|closeWhileHandlingException
 specifier|public
 specifier|static
 parameter_list|<
@@ -75,7 +75,7 @@ extends|extends
 name|Exception
 parameter_list|>
 name|void
-name|closeSafely
+name|closeWhileHandlingException
 parameter_list|(
 name|E
 name|priorException
@@ -218,7 +218,7 @@ throw|;
 block|}
 block|}
 comment|/** @see #closeSafely(Exception, Closeable...) */
-DECL|method|closeSafely
+DECL|method|closeWhileHandlingException
 specifier|public
 specifier|static
 parameter_list|<
@@ -227,7 +227,7 @@ extends|extends
 name|Exception
 parameter_list|>
 name|void
-name|closeSafely
+name|closeWhileHandlingException
 parameter_list|(
 name|E
 name|priorException
@@ -371,16 +371,13 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Closes all given<tt>Closeable</tt>s, suppressing all thrown exceptions.    * Some of the<tt>Closeable</tt>s may be null, they are ignored. After    * everything is closed, and if {@code suppressExceptions} is {@code false},    * method either throws the first of suppressed exceptions, or completes    * normally.    *     * @param suppressExceptions    *          if true then exceptions that occur during close() are suppressed    * @param objects    *          objects to call<tt>close()</tt> on    */
-DECL|method|closeSafely
+comment|/**    * Closes all given<tt>Closeable</tt>s.  Some of the    *<tt>Closeable</tt>s may be null; they are    * ignored.  After everything is closed, the method either    * throws the first exception it hit while closing, or    * completes normally if there were no exceptions.    *     * @param objects    *          objects to call<tt>close()</tt> on    */
+DECL|method|close
 specifier|public
 specifier|static
 name|void
-name|closeSafely
+name|close
 parameter_list|(
-name|boolean
-name|suppressExceptions
-parameter_list|,
 name|Closeable
 modifier|...
 name|objects
@@ -436,10 +433,12 @@ name|th
 operator|==
 literal|null
 condition|)
+block|{
 name|th
 operator|=
 name|t
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -447,9 +446,6 @@ condition|(
 name|th
 operator|!=
 literal|null
-operator|&&
-operator|!
-name|suppressExceptions
 condition|)
 block|{
 if|if
@@ -497,16 +493,13 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * @see #closeSafely(boolean, Closeable...)    */
-DECL|method|closeSafely
+comment|/**    * @see #close(Closeable...)    */
+DECL|method|close
 specifier|public
 specifier|static
 name|void
-name|closeSafely
+name|close
 parameter_list|(
-name|boolean
-name|suppressExceptions
-parameter_list|,
 name|Iterable
 argument_list|<
 name|?
@@ -566,10 +559,12 @@ name|th
 operator|==
 literal|null
 condition|)
+block|{
 name|th
 operator|=
 name|t
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -577,9 +572,6 @@ condition|(
 name|th
 operator|!=
 literal|null
-operator|&&
-operator|!
-name|suppressExceptions
 condition|)
 block|{
 if|if
@@ -625,6 +617,102 @@ argument_list|(
 name|th
 argument_list|)
 throw|;
+block|}
+block|}
+comment|/**    * Closes all given<tt>Closeable</tt>s, suppressing all thrown exceptions.    * Some of the<tt>Closeable</tt>s may be null, they are ignored.    *     * @param objects    *          objects to call<tt>close()</tt> on    */
+DECL|method|closeWhileHandlingException
+specifier|public
+specifier|static
+name|void
+name|closeWhileHandlingException
+parameter_list|(
+name|Closeable
+modifier|...
+name|objects
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+for|for
+control|(
+name|Closeable
+name|object
+range|:
+name|objects
+control|)
+block|{
+try|try
+block|{
+if|if
+condition|(
+name|object
+operator|!=
+literal|null
+condition|)
+block|{
+name|object
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{       }
+block|}
+block|}
+comment|/**    * @see #closeSafely(boolean, Closeable...)    */
+DECL|method|closeWhileHandlingException
+specifier|public
+specifier|static
+name|void
+name|closeWhileHandlingException
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|Closeable
+argument_list|>
+name|objects
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+for|for
+control|(
+name|Closeable
+name|object
+range|:
+name|objects
+control|)
+block|{
+try|try
+block|{
+if|if
+condition|(
+name|object
+operator|!=
+literal|null
+condition|)
+block|{
+name|object
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{       }
 block|}
 block|}
 comment|/** This reflected {@link Method} is {@code null} before Java 7 */

@@ -1684,10 +1684,8 @@ condition|)
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|datOut
 argument_list|)
 expr_stmt|;
@@ -1767,10 +1765,8 @@ condition|)
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|idxOut
 argument_list|)
 expr_stmt|;

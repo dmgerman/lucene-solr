@@ -4010,10 +4010,8 @@ argument_list|)
 expr_stmt|;
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|target
 argument_list|,
 name|input
@@ -4127,10 +4125,8 @@ argument_list|)
 expr_stmt|;
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|target
 argument_list|,
 name|input

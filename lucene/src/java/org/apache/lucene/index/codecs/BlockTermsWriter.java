@@ -440,10 +440,8 @@ condition|)
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|out
 argument_list|)
 expr_stmt|;
@@ -704,10 +702,8 @@ finally|finally
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|out
 argument_list|,
 name|postingsWriter

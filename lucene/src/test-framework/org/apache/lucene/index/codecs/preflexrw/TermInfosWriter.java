@@ -408,10 +408,8 @@ try|try
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|output
 argument_list|)
 expr_stmt|;
@@ -640,10 +638,8 @@ try|try
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|output
 argument_list|)
 expr_stmt|;

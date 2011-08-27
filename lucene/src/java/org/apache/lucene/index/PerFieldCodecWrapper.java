@@ -443,10 +443,8 @@ condition|)
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|consumers
 argument_list|)
 expr_stmt|;
@@ -512,10 +510,8 @@ name|IOException
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|consumers
 argument_list|)
 expr_stmt|;
@@ -737,10 +733,8 @@ comment|// committing, or, for any other reason) we must
 comment|// go back and close all FieldsProducers we opened:
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|producers
 operator|.
 name|values
@@ -935,10 +929,8 @@ name|IOException
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|codecs
 operator|.
 name|values
@@ -1307,10 +1299,8 @@ condition|)
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|producers
 operator|.
 name|values
@@ -1392,10 +1382,8 @@ name|IOException
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|codecs
 operator|.
 name|values
@@ -1482,10 +1470,8 @@ name|IOException
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|consumers
 argument_list|)
 expr_stmt|;

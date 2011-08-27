@@ -516,10 +516,8 @@ condition|)
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|fields
 argument_list|,
 name|perDocProducer

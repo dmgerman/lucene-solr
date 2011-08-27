@@ -477,10 +477,8 @@ try|try
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|fieldsStream
 argument_list|,
 name|indexStream

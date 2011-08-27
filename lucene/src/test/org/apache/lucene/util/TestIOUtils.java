@@ -195,7 +195,7 @@ argument_list|()
 decl_stmt|;
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
 name|t
 argument_list|,
@@ -344,7 +344,7 @@ try|try
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
 operator|(
 name|TestException

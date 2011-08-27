@@ -971,10 +971,8 @@ condition|)
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|indexIn
 argument_list|,
 name|this
@@ -1114,10 +1112,8 @@ try|try
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|close
 argument_list|(
-literal|false
-argument_list|,
 name|in
 argument_list|,
 name|postingsReader

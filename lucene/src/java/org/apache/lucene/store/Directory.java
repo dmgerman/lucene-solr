@@ -436,7 +436,7 @@ finally|finally
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
 name|priorException
 argument_list|,

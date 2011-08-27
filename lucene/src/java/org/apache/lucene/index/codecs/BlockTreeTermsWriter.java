@@ -773,10 +773,8 @@ condition|)
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|out
 argument_list|,
 name|indexOut
@@ -4324,7 +4322,7 @@ finally|finally
 block|{
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
 name|ioe
 argument_list|,

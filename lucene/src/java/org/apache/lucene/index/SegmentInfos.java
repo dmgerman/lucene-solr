@@ -1312,10 +1312,8 @@ comment|// We hit an exception above; try to close the file
 comment|// but suppress any exception:
 name|IOUtils
 operator|.
-name|closeSafely
+name|closeWhileHandlingException
 argument_list|(
-literal|true
-argument_list|,
 name|segnOutput
 argument_list|)
 expr_stmt|;
