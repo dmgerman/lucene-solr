@@ -690,9 +690,10 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|maybeYield
-argument_list|()
-expr_stmt|;
+comment|// NOTE: do not maybeYield here, since it consumes
+comment|// randomness and can thus (unexpectedly during
+comment|// debugging) change the behavior of a seed
+comment|// maybeYield();
 return|return
 literal|"MockDirWrapper("
 operator|+

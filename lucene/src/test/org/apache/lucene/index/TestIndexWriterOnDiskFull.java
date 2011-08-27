@@ -697,6 +697,10 @@ block|}
 block|}
 block|}
 block|}
+comment|// TODO: make @Nightly variant that provokes more disk
+comment|// fulls
+comment|// TODO: have test fail if on any given top
+comment|// iter there was not a single IOE hit
 comment|/*   Test: make sure when we run out of disk space or hit   random IOExceptions in any of the addIndexes(*) calls   that 1) index is not corrupt (searcher can open/search   it) and 2) transactional semantics are followed:   either all or none of the incoming documents were in   fact added.    */
 DECL|method|testAddIndexOnDiskFull
 specifier|public
