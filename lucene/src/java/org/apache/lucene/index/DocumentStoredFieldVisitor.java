@@ -384,6 +384,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FieldType
 name|ft
 init|=
@@ -429,6 +430,15 @@ argument_list|(
 name|fieldInfo
 operator|.
 name|storeTermVector
+argument_list|)
+expr_stmt|;
+name|ft
+operator|.
+name|setIndexed
+argument_list|(
+name|fieldInfo
+operator|.
+name|isIndexed
 argument_list|)
 expr_stmt|;
 name|ft
