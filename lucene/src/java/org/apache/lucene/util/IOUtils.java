@@ -217,7 +217,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** @see #closeSafely(Exception, Closeable...) */
+comment|/** @see #closeWhileHandlingException(Exception, Closeable...) */
 DECL|method|closeWhileHandlingException
 specifier|public
 specifier|static
@@ -665,7 +665,7 @@ parameter_list|)
 block|{       }
 block|}
 block|}
-comment|/**    * @see #closeSafely(boolean, Closeable...)    */
+comment|/**    * @see #closeWhileHandlingException(Closeable...)    */
 DECL|method|closeWhileHandlingException
 specifier|public
 specifier|static
