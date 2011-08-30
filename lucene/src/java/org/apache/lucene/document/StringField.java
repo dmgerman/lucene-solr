@@ -33,7 +33,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** A field that is indexed but not tokenized: the entire  *  String value is indexed as a single token.  For example  *  this might be used for a 'country' field or an 'id'  *  field, or any field that you intend to use for sorting  *  or access through the field cache.  *  *<p/>This field's value is not stored by default; use the  *  {@link TYPE_STORED} type (pass it to<code>new  *  Field</code>) to store the value. */
+comment|/** A field that is indexed but not tokenized: the entire  *  String value is indexed as a single token.  For example  *  this might be used for a 'country' field or an 'id'  *  field, or any field that you intend to use for sorting  *  or access through the field cache.  *  *<p/>This field's value is not stored by default; use the  *  {@link StringField#TYPE_STORED} type (pass it to<code>new  *  Field</code>) to store the value. */
 end_comment
 
 begin_class

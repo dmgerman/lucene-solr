@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A field that is indexed and tokenized, without term  *  vectors.  For example this would be used on a 'body'  *  field, that contains the bulk of a document's text.  *   *  This field's value is not stored by default; use the  *  {@link TYPE_STORED} type (pass it to<code>new  *  Field</code>) to store the value. */
+comment|/** A field that is indexed and tokenized, without term  *  vectors.  For example this would be used on a 'body'  *  field, that contains the bulk of a document's text.  *   *  This field's value is not stored by default; use the  *  {@link TextField#TYPE_STORED} type (pass it to<code>new  *  Field</code>) to store the value. */
 end_comment
 
 begin_class
