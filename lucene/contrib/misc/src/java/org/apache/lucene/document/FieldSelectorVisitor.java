@@ -1057,13 +1057,6 @@ operator|.
 name|indexOptions
 argument_list|)
 expr_stmt|;
-name|ft
-operator|.
-name|setLazy
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|binary

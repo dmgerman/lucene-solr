@@ -188,6 +188,11 @@ name|type
 operator|=
 name|type
 expr_stmt|;
+name|type
+operator|.
+name|freeze
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|Field
 specifier|public
@@ -250,6 +255,11 @@ operator|.
 name|type
 operator|=
 name|type
+expr_stmt|;
+name|type
+operator|.
+name|freeze
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|Field
@@ -319,6 +329,11 @@ operator|.
 name|type
 operator|=
 name|type
+expr_stmt|;
+name|type
+operator|.
+name|freeze
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|Field
@@ -399,6 +414,11 @@ name|name
 operator|=
 name|name
 expr_stmt|;
+name|type
+operator|.
+name|freeze
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|Field
 specifier|public
@@ -431,6 +451,11 @@ operator|.
 name|name
 operator|=
 name|name
+expr_stmt|;
+name|type
+operator|.
+name|freeze
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|Field
@@ -551,6 +576,11 @@ operator|.
 name|fieldsData
 operator|=
 name|value
+expr_stmt|;
+name|type
+operator|.
+name|freeze
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * The value of the field as a String, or null. If null, the Reader value or    * binary value is used. Exactly one of stringValue(), readerValue(), and    * getBinaryValue() must be set.    */
@@ -711,8 +741,6 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: change the value of this field. See<a    * href="#setValue(java.lang.String)">setValue(String)</a>.    */
-comment|/*   public void setValue(byte[] value, int offset, int length) {     if (!isBinary) {       throw new IllegalArgumentException(           "cannot set a byte[] value on a non-binary field");     }     fieldsData = value;     binaryLength = length;     binaryOffset = offset;   }   */
 comment|/**    * Expert: sets the token stream to be used for indexing and causes    * isIndexed() and isTokenized() to return true. May be combined with stored    * values from stringValue() or getBinaryValue()    */
 DECL|method|setTokenStream
 specifier|public
@@ -1014,13 +1042,6 @@ condition|(
 name|fieldsData
 operator|!=
 literal|null
-operator|&&
-name|type
-operator|.
-name|lazy
-argument_list|()
-operator|==
-literal|false
 condition|)
 block|{
 name|result
