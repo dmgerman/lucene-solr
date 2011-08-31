@@ -80,20 +80,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -189,6 +175,20 @@ operator|.
 name|util
 operator|.
 name|BitVector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Counter
 import|;
 end_import
 
@@ -625,7 +625,7 @@ name|consumer
 decl_stmt|;
 DECL|field|bytesUsed
 specifier|final
-name|AtomicLong
+name|Counter
 name|bytesUsed
 decl_stmt|;
 DECL|field|flushState
@@ -779,11 +779,10 @@ argument_list|()
 expr_stmt|;
 name|bytesUsed
 operator|=
-operator|new
-name|AtomicLong
-argument_list|(
-literal|0
-argument_list|)
+name|Counter
+operator|.
+name|newCounter
+argument_list|()
 expr_stmt|;
 name|byteBlockAllocator
 operator|=

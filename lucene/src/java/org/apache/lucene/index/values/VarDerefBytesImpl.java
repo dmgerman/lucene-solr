@@ -30,20 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -280,6 +266,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Counter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|IOUtils
 import|;
 end_import
@@ -441,7 +441,7 @@ parameter_list|(
 name|int
 name|size
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|)
 block|{
@@ -457,7 +457,7 @@ annotation|@
 name|Override
 DECL|method|bytesUsed
 specifier|public
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|()
 block|{
@@ -681,7 +681,7 @@ parameter_list|,
 name|String
 name|id
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|IOContext
@@ -725,7 +725,7 @@ parameter_list|,
 name|Allocator
 name|allocator
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|IOContext

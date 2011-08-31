@@ -50,20 +50,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -204,6 +190,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Counter
+import|;
+end_import
+
 begin_comment
 comment|/**  *   * @lucene.experimental  */
 end_comment
@@ -237,7 +237,7 @@ decl_stmt|;
 DECL|field|bytesUsed
 specifier|private
 specifier|final
-name|AtomicLong
+name|Counter
 name|bytesUsed
 decl_stmt|;
 DECL|field|comparator

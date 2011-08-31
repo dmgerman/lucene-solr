@@ -30,20 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -106,6 +92,20 @@ name|IOContext
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Counter
+import|;
+end_import
+
 begin_comment
 comment|/**  * @lucene.experimental  */
 end_comment
@@ -134,7 +134,7 @@ parameter_list|,
 name|String
 name|id
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|ValueType

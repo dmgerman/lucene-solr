@@ -28,20 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -84,6 +70,20 @@ name|IOContext
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Counter
+import|;
+end_import
+
 begin_comment
 comment|/**  * Encapsulates all necessary state to initiate a {@link PerDocConsumer} and  * create all necessary files in order to consume and merge per-document values.  *   * @lucene.experimental  */
 end_comment
@@ -121,7 +121,7 @@ decl_stmt|;
 DECL|field|bytesUsed
 specifier|public
 specifier|final
-name|AtomicLong
+name|Counter
 name|bytesUsed
 decl_stmt|;
 DECL|field|segmentCodecs
@@ -157,7 +157,7 @@ parameter_list|,
 name|FieldInfos
 name|fieldInfos
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|int
@@ -266,11 +266,10 @@ name|codecId
 expr_stmt|;
 name|bytesUsed
 operator|=
-operator|new
-name|AtomicLong
-argument_list|(
-literal|0
-argument_list|)
+name|Counter
+operator|.
+name|newCounter
+argument_list|()
 expr_stmt|;
 name|context
 operator|=

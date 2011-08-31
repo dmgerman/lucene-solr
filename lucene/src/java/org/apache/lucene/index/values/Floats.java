@@ -40,20 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -192,6 +178,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Counter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|FloatsRef
 import|;
 end_import
@@ -304,7 +304,7 @@ parameter_list|,
 name|int
 name|precisionBytes
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|IOContext
@@ -470,7 +470,7 @@ parameter_list|,
 name|int
 name|precision
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|IOContext
@@ -913,7 +913,7 @@ parameter_list|,
 name|String
 name|id
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|IOContext
@@ -1288,7 +1288,7 @@ parameter_list|,
 name|String
 name|id
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|IOContext

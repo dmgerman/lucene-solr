@@ -40,20 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -124,6 +110,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Counter
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract API for per-document stored primitive values of type<tt>byte[]</tt>  * ,<tt>long</tt> or<tt>double</tt>. The API accepts a single value for each  * document. The underlying storage mechanism, file formats, data-structures and  * representations depend on the actual implementation.  *<p>  * Document IDs passed to this API must always be increasing unless stated  * otherwise.  *</p>  *   * @lucene.experimental  */
 end_comment
@@ -142,7 +142,7 @@ DECL|method|Writer
 specifier|protected
 name|Writer
 parameter_list|(
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|)
 block|{
@@ -469,7 +469,7 @@ name|BytesRef
 argument_list|>
 name|comp
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|IOContext

@@ -38,20 +38,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -105,6 +91,20 @@ operator|.
 name|util
 operator|.
 name|BytesRefHash
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Counter
 import|;
 end_import
 
@@ -235,7 +235,7 @@ decl_stmt|;
 DECL|field|bytesUsed
 specifier|private
 specifier|final
-name|AtomicLong
+name|Counter
 name|bytesUsed
 decl_stmt|;
 DECL|method|TermsHashPerField
@@ -300,8 +300,9 @@ name|docWriter
 operator|.
 name|bytesUsed
 else|:
-operator|new
-name|AtomicLong
+name|Counter
+operator|.
+name|newCounter
 argument_list|()
 expr_stmt|;
 name|fieldState
@@ -1508,7 +1509,7 @@ decl_stmt|;
 DECL|field|bytesUsed
 specifier|private
 specifier|final
-name|AtomicLong
+name|Counter
 name|bytesUsed
 decl_stmt|;
 DECL|method|PostingsBytesStartArray
@@ -1518,7 +1519,7 @@ parameter_list|(
 name|TermsHashPerField
 name|perField
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|)
 block|{
@@ -1710,7 +1711,7 @@ annotation|@
 name|Override
 DECL|method|bytesUsed
 specifier|public
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|()
 block|{

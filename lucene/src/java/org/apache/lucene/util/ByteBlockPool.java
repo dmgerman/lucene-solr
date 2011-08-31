@@ -48,20 +48,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -305,14 +291,14 @@ block|{
 DECL|field|bytesUsed
 specifier|private
 specifier|final
-name|AtomicLong
+name|Counter
 name|bytesUsed
 decl_stmt|;
 DECL|method|DirectTrackingAllocator
 specifier|public
 name|DirectTrackingAllocator
 parameter_list|(
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|)
 block|{
@@ -331,7 +317,7 @@ parameter_list|(
 name|int
 name|blockSize
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|)
 block|{

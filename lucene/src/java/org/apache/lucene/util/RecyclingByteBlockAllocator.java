@@ -47,7 +47,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * A {@link ByteBlockPool.Allocator} implementation that recycles unused byte  * blocks in a buffer and reuses them in subsequent calls to  * {@link #getByteBlock()}.  *   * @lucene.internal  */
+comment|/**  * A threadsafe {@link ByteBlockPool.Allocator} implementation that recycles unused byte  * blocks in a buffer and reuses them in subsequent calls to  * {@link #getByteBlock()}.  *   * @lucene.internal  */
 end_comment
 
 begin_class
@@ -442,6 +442,7 @@ block|}
 comment|/**    * @return the number of bytes currently allocated by this {@link Allocator}    */
 DECL|method|bytesUsed
 specifier|public
+specifier|synchronized
 name|long
 name|bytesUsed
 parameter_list|()

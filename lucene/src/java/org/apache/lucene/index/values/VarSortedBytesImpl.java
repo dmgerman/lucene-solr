@@ -50,20 +50,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -239,6 +225,20 @@ operator|.
 name|util
 operator|.
 name|BytesRefHash
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Counter
 import|;
 end_import
 
@@ -437,7 +437,7 @@ name|BytesRef
 argument_list|>
 name|comp
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|IOContext
@@ -489,7 +489,7 @@ parameter_list|,
 name|Allocator
 name|allocator
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|IOContext

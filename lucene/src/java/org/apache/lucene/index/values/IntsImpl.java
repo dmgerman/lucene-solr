@@ -40,20 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -268,6 +254,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Counter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|IOUtils
 import|;
 end_import
@@ -466,7 +466,7 @@ parameter_list|,
 name|String
 name|id
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|,
 name|ValueType
@@ -1961,7 +1961,7 @@ operator|new
 name|ShortValues
 argument_list|(
 operator|(
-name|AtomicLong
+name|Counter
 operator|)
 literal|null
 argument_list|)
@@ -1983,7 +1983,7 @@ operator|new
 name|IntValues
 argument_list|(
 operator|(
-name|AtomicLong
+name|Counter
 operator|)
 literal|null
 argument_list|)
@@ -2005,7 +2005,7 @@ operator|new
 name|LongValues
 argument_list|(
 operator|(
-name|AtomicLong
+name|Counter
 operator|)
 literal|null
 argument_list|)
@@ -2027,7 +2027,7 @@ operator|new
 name|ByteValues
 argument_list|(
 operator|(
-name|AtomicLong
+name|Counter
 operator|)
 literal|null
 argument_list|)

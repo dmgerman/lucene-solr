@@ -198,7 +198,7 @@ name|bytesStartArray
 decl_stmt|;
 DECL|field|bytesUsed
 specifier|private
-name|AtomicLong
+name|Counter
 name|bytesUsed
 decl_stmt|;
 comment|/**    * Creates a new {@link BytesRefHash} with a {@link ByteBlockPool} using a    * {@link DirectAllocator}.    */
@@ -319,18 +319,16 @@ argument_list|()
 operator|==
 literal|null
 condition|?
-operator|new
-name|AtomicLong
-argument_list|(
-literal|0
-argument_list|)
+name|Counter
+operator|.
+name|newCounter
+argument_list|()
 else|:
 name|bytesStartArray
 operator|.
 name|bytesUsed
 argument_list|()
 expr_stmt|;
-empty_stmt|;
 name|bytesUsed
 operator|.
 name|addAndGet
@@ -2144,16 +2142,16 @@ index|[]
 name|clear
 parameter_list|()
 function_decl|;
-comment|/**      * A {@link AtomicLong} reference holding the number of bytes used by this      * {@link BytesStartArray}. The {@link BytesRefHash} uses this reference to      * track it memory usage      *       * @return a {@link AtomicLong} reference holding the number of bytes used      *         by this {@link BytesStartArray}.      */
+comment|/**      * A {@link Counter} reference holding the number of bytes used by this      * {@link BytesStartArray}. The {@link BytesRefHash} uses this reference to      * track it memory usage      *       * @return a {@link AtomicLong} reference holding the number of bytes used      *         by this {@link BytesStartArray}.      */
 DECL|method|bytesUsed
 specifier|public
 specifier|abstract
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * A direct {@link BytesStartArray} that tracks all memory allocation using an {@link AtomicLong} instance.    */
+comment|/**    * A direct {@link BytesStartArray} that tracks all memory allocation using an {@link Counter} instance.    */
 DECL|class|TrackingDirectBytesStartArray
 specifier|public
 specifier|static
@@ -2177,7 +2175,7 @@ decl_stmt|;
 DECL|field|bytesUsed
 specifier|protected
 specifier|final
-name|AtomicLong
+name|Counter
 name|bytesUsed
 decl_stmt|;
 DECL|method|TrackingDirectBytesStartArray
@@ -2187,7 +2185,7 @@ parameter_list|(
 name|int
 name|initSize
 parameter_list|,
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|)
 block|{
@@ -2348,7 +2346,7 @@ annotation|@
 name|Override
 DECL|method|bytesUsed
 specifier|public
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|()
 block|{
@@ -2380,7 +2378,7 @@ decl_stmt|;
 DECL|field|bytesUsed
 specifier|private
 specifier|final
-name|AtomicLong
+name|Counter
 name|bytesUsed
 decl_stmt|;
 DECL|method|DirectBytesStartArray
@@ -2395,11 +2393,10 @@ name|this
 operator|.
 name|bytesUsed
 operator|=
-operator|new
-name|AtomicLong
-argument_list|(
-literal|0
-argument_list|)
+name|Counter
+operator|.
+name|newCounter
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -2486,7 +2483,7 @@ annotation|@
 name|Override
 DECL|method|bytesUsed
 specifier|public
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|()
 block|{

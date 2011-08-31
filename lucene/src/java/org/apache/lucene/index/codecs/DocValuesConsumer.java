@@ -40,20 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -128,6 +114,20 @@ name|Bits
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Counter
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract API that consumes {@link PerDocFieldValues}.  * {@link DocValuesConsumer} are always associated with a specific field and  * segments. Concrete implementations of this API write the given  * {@link PerDocFieldValues} into a implementation specific format depending on  * the fields meta-data.  *   * @lucene.experimental  */
 end_comment
@@ -142,7 +142,7 @@ block|{
 DECL|field|bytesUsed
 specifier|protected
 specifier|final
-name|AtomicLong
+name|Counter
 name|bytesUsed
 decl_stmt|;
 comment|/**    * Creates a new {@link DocValuesConsumer}.    *     * @param bytesUsed    *          bytes-usage tracking reference used by implementation to track    *          internally allocated memory. All tracked bytes must be released    *          once {@link #finish(int)} has been called.    */
@@ -150,7 +150,7 @@ DECL|method|DocValuesConsumer
 specifier|protected
 name|DocValuesConsumer
 parameter_list|(
-name|AtomicLong
+name|Counter
 name|bytesUsed
 parameter_list|)
 block|{
@@ -162,11 +162,10 @@ name|bytesUsed
 operator|==
 literal|null
 condition|?
-operator|new
-name|AtomicLong
-argument_list|(
-literal|0
-argument_list|)
+name|Counter
+operator|.
+name|newCounter
+argument_list|()
 else|:
 name|bytesUsed
 expr_stmt|;
