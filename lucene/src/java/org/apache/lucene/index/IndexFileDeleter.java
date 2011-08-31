@@ -1415,6 +1415,13 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// Set to null so that we regenerate the list of pending
+comment|// files; else we can accumulate same file more than
+comment|// once
+name|deletable
+operator|=
+literal|null
+expr_stmt|;
 name|refresh
 argument_list|(
 literal|null
