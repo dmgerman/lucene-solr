@@ -432,10 +432,13 @@ argument_list|(
 name|filePath
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 comment|// execute the test only if we are able to set file to read only mode
-if|if
-condition|(
-operator|(
+name|assumeTrue
+argument_list|(
+literal|"No dataimport.properties file"
+argument_list|,
 name|f
 operator|.
 name|exists
@@ -445,16 +448,18 @@ name|f
 operator|.
 name|createNewFile
 argument_list|()
-operator|)
-operator|&&
+argument_list|)
+expr_stmt|;
+name|assumeTrue
+argument_list|(
+literal|"dataimport.proprties can't be set read only"
+argument_list|,
 name|f
 operator|.
 name|setReadOnly
 argument_list|()
-condition|)
-block|{
-try|try
-block|{
+argument_list|)
+expr_stmt|;
 name|List
 name|parentRow
 init|=
@@ -540,7 +545,6 @@ operator|.
 name|delete
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|// WORKS
