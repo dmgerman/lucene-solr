@@ -2140,6 +2140,35 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|docID
+operator|<
+literal|0
+operator|||
+name|docID
+operator|>=
+name|maxDoc
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"docID must be>= 0 and< maxDoc="
+operator|+
+name|maxDoc
+argument_list|()
+operator|+
+literal|" (got docID="
+operator|+
+name|docID
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 name|getFieldsReader
 argument_list|()
 operator|.
