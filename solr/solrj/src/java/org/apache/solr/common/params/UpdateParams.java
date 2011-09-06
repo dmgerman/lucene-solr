@@ -63,6 +63,15 @@ name|COMMIT
 init|=
 literal|"commit"
 decl_stmt|;
+comment|/** Commit within a certain time period (in ms) */
+DECL|field|COMMIT_WITHIN
+specifier|public
+specifier|static
+name|String
+name|COMMIT_WITHIN
+init|=
+literal|"commitWithin"
+decl_stmt|;
 comment|/** Optimize the index and commit everything after the command completes */
 DECL|field|OPTIMIZE
 specifier|public

@@ -672,6 +672,22 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|templateAdd
+operator|.
+name|commitWithin
+operator|=
+name|params
+operator|.
+name|getInt
+argument_list|(
+name|UpdateParams
+operator|.
+name|COMMIT_WITHIN
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
 comment|//this is lightweight
 name|autoDetectParser
 operator|=

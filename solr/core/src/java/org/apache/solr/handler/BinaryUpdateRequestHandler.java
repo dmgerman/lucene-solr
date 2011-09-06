@@ -129,22 +129,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|handler
-operator|.
-name|XmlUpdateRequestHandler
-operator|.
-name|COMMIT_WITHIN
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -564,6 +548,8 @@ name|params
 operator|.
 name|getInt
 argument_list|(
+name|UpdateParams
+operator|.
 name|COMMIT_WITHIN
 argument_list|,
 operator|-

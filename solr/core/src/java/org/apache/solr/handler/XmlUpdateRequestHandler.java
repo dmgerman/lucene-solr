@@ -232,6 +232,7 @@ name|OVERWRITE
 init|=
 literal|"overwrite"
 decl_stmt|;
+comment|// NOTE: This constant is for use with the<add> XML tag, not the HTTP param with same name
 DECL|field|COMMIT_WITHIN
 specifier|public
 specifier|static
