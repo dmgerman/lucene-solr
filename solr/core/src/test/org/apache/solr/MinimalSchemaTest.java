@@ -353,10 +353,14 @@ literal|"qt"
 argument_list|,
 name|handler
 argument_list|,
-comment|// this should be fairly innoculous for any type of query
+comment|// this should be fairly innocuous for any type of query
 literal|"q"
 argument_list|,
 literal|"foo:bar"
+argument_list|,
+literal|"omitHeader"
+argument_list|,
+literal|"false"
 argument_list|)
 argument_list|,
 literal|"//lst[@name='responseHeader']"
