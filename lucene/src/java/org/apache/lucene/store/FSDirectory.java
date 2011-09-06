@@ -1524,6 +1524,13 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|parent
+operator|.
+name|onIndexOutputClosed
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 comment|// only close the file if it has not been closed yet
 if|if
 condition|(
@@ -1566,13 +1573,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|parent
-operator|.
-name|onIndexOutputClosed
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1584,11 +1584,13 @@ comment|// Suppress so we don't mask original exception
 block|}
 block|}
 else|else
+block|{
 name|file
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
