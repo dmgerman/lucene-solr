@@ -1072,12 +1072,12 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-comment|/* userQuery may have been pre-processes .. expose that */
 if|if
 condition|(
 name|dbgQuery
 condition|)
 block|{
+comment|/* userQuery may have been pre-processed .. expose that */
 name|dbg
 operator|.
 name|add
