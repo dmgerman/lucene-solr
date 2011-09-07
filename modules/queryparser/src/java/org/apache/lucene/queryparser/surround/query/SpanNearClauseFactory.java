@@ -174,6 +174,7 @@ specifier|public
 class|class
 name|SpanNearClauseFactory
 block|{
+comment|// FIXME: rename to SpanClauseFactory
 DECL|method|SpanNearClauseFactory
 specifier|public
 name|SpanNearClauseFactory
@@ -395,10 +396,10 @@ name|weight
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|addSpanNearQuery
+DECL|method|addSpanQuery
 specifier|public
 name|void
-name|addSpanNearQuery
+name|addSpanQuery
 parameter_list|(
 name|Query
 name|q
@@ -419,14 +420,14 @@ operator|!
 operator|(
 name|q
 operator|instanceof
-name|SpanNearQuery
+name|SpanQuery
 operator|)
 condition|)
 throw|throw
 operator|new
 name|AssertionError
 argument_list|(
-literal|"Expected SpanNearQuery: "
+literal|"Expected SpanQuery: "
 operator|+
 name|q
 operator|.
@@ -437,11 +438,10 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
-comment|/* CHECKME: wrap in Hashable...? */
 name|addSpanQueryWeighted
 argument_list|(
 operator|(
-name|SpanNearQuery
+name|SpanQuery
 operator|)
 name|q
 argument_list|,
@@ -452,10 +452,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeSpanNearClause
+DECL|method|makeSpanClause
 specifier|public
 name|SpanQuery
-name|makeSpanNearClause
+name|makeSpanClause
 parameter_list|()
 block|{
 name|SpanQuery
