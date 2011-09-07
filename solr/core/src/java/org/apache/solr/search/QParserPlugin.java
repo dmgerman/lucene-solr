@@ -211,6 +211,14 @@ block|,
 name|JoinQParserPlugin
 operator|.
 name|class
+block|,
+name|SurroundQParserPlugin
+operator|.
+name|NAME
+block|,
+name|SurroundQParserPlugin
+operator|.
+name|class
 block|,   }
 decl_stmt|;
 comment|/** return a {@link QParser} */
