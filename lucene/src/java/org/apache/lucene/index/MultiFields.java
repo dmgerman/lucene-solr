@@ -193,7 +193,7 @@ name|Terms
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/** Returns a single {@link Fields} instance for this    *  reader, merging fields/terms/docs/positions on the    *  fly.  This method will not return null.    *    *<p><b>NOTE</b>: this is a slow way to access postings.    *  It's better to get the sub-readers (using {@link    *  Gather}) and iterate through them    *  yourself. */
+comment|/** Returns a single {@link Fields} instance for this    *  reader, merging fields/terms/docs/positions on the    *  fly.  This method will return null if the reader     *  has no postings.    *    *<p><b>NOTE</b>: this is a slow way to access postings.    *  It's better to get the sub-readers (using {@link    *  Gather}) and iterate through them    *  yourself. */
 DECL|method|getFields
 specifier|public
 specifier|static
