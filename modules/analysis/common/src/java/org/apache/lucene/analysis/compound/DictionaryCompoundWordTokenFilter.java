@@ -285,7 +285,7 @@ init|=
 literal|0
 init|;
 name|i
-operator|<
+operator|<=
 name|token
 operator|.
 name|length
@@ -312,11 +312,9 @@ init|=
 name|this
 operator|.
 name|minSubwordSize
-operator|-
-literal|1
 init|;
 name|j
-operator|<
+operator|<=
 name|this
 operator|.
 name|maxSubwordSize
