@@ -311,6 +311,13 @@ name|VERBOSE_REF_COUNTS
 init|=
 literal|false
 decl_stmt|;
+comment|// Used only for assert
+DECL|field|writer
+specifier|private
+specifier|final
+name|IndexWriter
+name|writer
+decl_stmt|;
 DECL|method|setInfoStream
 name|void
 name|setInfoStream
@@ -382,6 +389,26 @@ specifier|final
 name|FilenameFilter
 name|indexFilenameFilter
 decl_stmt|;
+comment|// called only from assert
+DECL|method|locked
+specifier|private
+name|boolean
+name|locked
+parameter_list|()
+block|{
+return|return
+name|writer
+operator|==
+literal|null
+operator|||
+name|Thread
+operator|.
+name|holdsLock
+argument_list|(
+name|writer
+argument_list|)
+return|;
+block|}
 comment|/**    * Initialize the deleter: find all previous commits in    * the Directory, incref the files they reference, call    * the policy to let it delete commits.  This will remove    * any files not referenced by any of the commits.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|IndexFileDeleter
 specifier|public
@@ -401,6 +428,9 @@ name|infoStream
 parameter_list|,
 name|CodecProvider
 name|codecs
+parameter_list|,
+name|IndexWriter
+name|writer
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -412,6 +442,12 @@ operator|.
 name|infoStream
 operator|=
 name|infoStream
+expr_stmt|;
+name|this
+operator|.
+name|writer
+operator|=
+name|writer
 expr_stmt|;
 specifier|final
 name|String
@@ -1256,6 +1292,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 name|String
 index|[]
 name|files
@@ -1418,6 +1458,10 @@ block|{
 comment|// Set to null so that we regenerate the list of pending
 comment|// files; else we can accumulate same file more than
 comment|// once
+assert|assert
+name|locked
+argument_list|()
+assert|;
 name|deletable
 operator|=
 literal|null
@@ -1437,6 +1481,10 @@ throws|throws
 name|IOException
 block|{
 comment|// DecRef old files from the last checkpoint, if any:
+assert|assert
+name|locked
+argument_list|()
+assert|;
 name|int
 name|size
 init|=
@@ -1496,6 +1544,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 if|if
 condition|(
 name|infoStream
@@ -1539,6 +1591,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 if|if
 condition|(
 name|deletable
@@ -1629,6 +1685,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 if|if
 condition|(
 name|infoStream
@@ -1766,6 +1826,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 comment|// If this is a commit point, also incRef the
 comment|// segments_N file:
 for|for
@@ -1804,6 +1868,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 for|for
 control|(
 specifier|final
@@ -1830,6 +1898,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 name|RefCount
 name|rc
 init|=
@@ -1880,6 +1952,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 for|for
 control|(
 specifier|final
@@ -1906,6 +1982,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 name|RefCount
 name|rc
 init|=
@@ -1973,6 +2053,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 for|for
 control|(
 specifier|final
@@ -2005,6 +2089,10 @@ name|String
 name|fileName
 parameter_list|)
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 if|if
 condition|(
 operator|!
@@ -2043,6 +2131,10 @@ name|String
 name|fileName
 parameter_list|)
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 name|RefCount
 name|rc
 decl_stmt|;
@@ -2104,6 +2196,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 for|for
 control|(
 specifier|final
@@ -2134,6 +2230,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 for|for
 control|(
 specifier|final
@@ -2189,6 +2289,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|locked
+argument_list|()
+assert|;
 try|try
 block|{
 if|if

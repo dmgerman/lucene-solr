@@ -3265,6 +3265,11 @@ argument_list|)
 expr_stmt|;
 comment|// Default deleter (for backwards compatibility) is
 comment|// KeepOnlyLastCommitDeleter:
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|deleter
 operator|=
 operator|new
@@ -3282,8 +3287,11 @@ argument_list|,
 name|infoStream
 argument_list|,
 name|codecs
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|deleter
@@ -7772,6 +7780,11 @@ argument_list|)
 expr_stmt|;
 comment|// delete new non cfs files directly: they were never
 comment|// registered with IFD
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|deleter
 operator|.
 name|deleteNewFiles
@@ -7782,6 +7795,7 @@ name|files
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|info
 operator|.
 name|setUseCompoundFile
@@ -8569,6 +8583,11 @@ operator|!
 name|success
 condition|)
 block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|deleter
 operator|.
 name|decRef
@@ -8576,6 +8595,7 @@ argument_list|(
 name|toCommit
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|startCommit
