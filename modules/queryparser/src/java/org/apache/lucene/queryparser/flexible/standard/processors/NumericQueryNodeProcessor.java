@@ -198,47 +198,27 @@ name|core
 operator|.
 name|nodes
 operator|.
-name|ParametricQueryNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|flexible
-operator|.
-name|core
-operator|.
-name|nodes
-operator|.
-name|ParametricRangeQueryNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|flexible
-operator|.
-name|core
-operator|.
-name|nodes
-operator|.
 name|QueryNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
+name|core
+operator|.
+name|nodes
+operator|.
+name|RangeQueryNode
 import|;
 end_import
 
@@ -345,7 +325,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor is used to convert {@link FieldQueryNode}s to  * {@link NumericRangeQueryNode}s. It looks for  * {@link ConfigurationKeys#NUMERIC_CONFIG} set in the {@link FieldConfig} of  * every {@link FieldQueryNode} found. If  * {@link ConfigurationKeys#NUMERIC_CONFIG} is found, it considers that  * {@link FieldQueryNode} to be a numeric query and convert it to  * {@link NumericRangeQueryNode} with upper and lower inclusive and lower and  * upper equals to the value represented by the {@link FieldQueryNode} converted  * to {@link Number}. It means that<b>field:1</b> is converted to<b>field:[1 TO  * 1]</b>.<br/>  *<br/>  * Note that {@link ParametricQueryNode}s are ignored, even being a  * {@link FieldQueryNode}.  *   * @see ConfigurationKeys#NUMERIC_CONFIG  * @see FieldQueryNode  * @see NumericConfig  * @see NumericQueryNode  */
+comment|/**  * This processor is used to convert {@link FieldQueryNode}s to  * {@link NumericRangeQueryNode}s. It looks for  * {@link ConfigurationKeys#NUMERIC_CONFIG} set in the {@link FieldConfig} of  * every {@link FieldQueryNode} found. If  * {@link ConfigurationKeys#NUMERIC_CONFIG} is found, it considers that  * {@link FieldQueryNode} to be a numeric query and convert it to  * {@link NumericRangeQueryNode} with upper and lower inclusive and lower and  * upper equals to the value represented by the {@link FieldQueryNode} converted  * to {@link Number}. It means that<b>field:1</b> is converted to<b>field:[1  * TO 1]</b>.<br/>  *<br/>  * Note that {@link FieldQueryNode}s children of a  * {@link RangeQueryNode} are ignored.  *   * @see ConfigurationKeys#NUMERIC_CONFIG  * @see FieldQueryNode  * @see NumericConfig  * @see NumericQueryNode  */
 end_comment
 
 begin_class
@@ -390,7 +370,7 @@ operator|.
 name|getParent
 argument_list|()
 operator|instanceof
-name|ParametricRangeQueryNode
+name|RangeQueryNode
 operator|)
 condition|)
 block|{

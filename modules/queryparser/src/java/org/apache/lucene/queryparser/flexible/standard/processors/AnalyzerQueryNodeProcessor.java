@@ -280,26 +280,6 @@ name|core
 operator|.
 name|nodes
 operator|.
-name|ParametricQueryNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|flexible
-operator|.
-name|core
-operator|.
-name|nodes
-operator|.
 name|QueryNode
 import|;
 end_import
@@ -321,6 +301,26 @@ operator|.
 name|nodes
 operator|.
 name|QuotedFieldQueryNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
+name|core
+operator|.
+name|nodes
+operator|.
+name|RangeQueryNode
 import|;
 end_import
 
@@ -467,7 +467,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This processor verifies if {@link ConfigurationKeys#ANALYZER}  * is defined in the {@link QueryConfigHandler}. If it is and the analyzer is  * not<code>null</code>, it looks for every {@link FieldQueryNode} that is not  * {@link WildcardQueryNode}, {@link FuzzyQueryNode} or  * {@link ParametricQueryNode} contained in the query node tree, then it applies  * the analyzer to that {@link FieldQueryNode} object.<br/>  *<br/>  * If the analyzer return only one term, the returned term is set to the  * {@link FieldQueryNode} and it's returned.<br/>  *<br/>  * If the analyzer return more than one term, a {@link TokenizedPhraseQueryNode}  * or {@link MultiPhraseQueryNode} is created, whether there is one or more  * terms at the same position, and it's returned.<br/>  *<br/>  * If no term is returned by the analyzer a {@link NoTokenFoundQueryNode} object  * is returned.<br/>  *   * @see ConfigurationKeys#ANALYZER  * @see Analyzer  * @see TokenStream  */
+comment|/**  * This processor verifies if {@link ConfigurationKeys#ANALYZER}  * is defined in the {@link QueryConfigHandler}. If it is and the analyzer is  * not<code>null</code>, it looks for every {@link FieldQueryNode} that is not  * {@link WildcardQueryNode}, {@link FuzzyQueryNode} or  * {@link RangeQueryNode} contained in the query node tree, then it applies  * the analyzer to that {@link FieldQueryNode} object.<br/>  *<br/>  * If the analyzer return only one term, the returned term is set to the  * {@link FieldQueryNode} and it's returned.<br/>  *<br/>  * If the analyzer return more than one term, a {@link TokenizedPhraseQueryNode}  * or {@link MultiPhraseQueryNode} is created, whether there is one or more  * terms at the same position, and it's returned.<br/>  *<br/>  * If no term is returned by the analyzer a {@link NoTokenFoundQueryNode} object  * is returned.<br/>  *   * @see ConfigurationKeys#ANALYZER  * @see Analyzer  * @see TokenStream  */
 end_comment
 
 begin_class
@@ -626,8 +626,11 @@ operator|&&
 operator|!
 operator|(
 name|node
+operator|.
+name|getParent
+argument_list|()
 operator|instanceof
-name|ParametricQueryNode
+name|RangeQueryNode
 operator|)
 condition|)
 block|{

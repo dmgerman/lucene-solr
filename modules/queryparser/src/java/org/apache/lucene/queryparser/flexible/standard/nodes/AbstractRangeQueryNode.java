@@ -126,6 +126,26 @@ name|flexible
 operator|.
 name|core
 operator|.
+name|nodes
+operator|.
+name|RangeQueryNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
+name|core
+operator|.
 name|parser
 operator|.
 name|EscapeQuerySyntax
@@ -153,13 +173,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class should be extended by nodes intending to represent range queries.   *  * @param<T> the type of the range query bounds (lower and upper)  */
+comment|/**  * This class should be extended by nodes intending to represent range queries.  *   * @param<T>  *          the type of the range query bounds (lower and upper)  */
 end_comment
 
 begin_class
 DECL|class|AbstractRangeQueryNode
 specifier|public
-specifier|abstract
 class|class
 name|AbstractRangeQueryNode
 parameter_list|<
@@ -173,7 +192,13 @@ parameter_list|>
 extends|extends
 name|QueryNodeImpl
 implements|implements
-name|FieldableNode
+name|RangeQueryNode
+argument_list|<
+name|FieldValuePairQueryNode
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
 block|{
 DECL|field|lowerInclusive
 DECL|field|upperInclusive
@@ -442,14 +467,15 @@ if|if
 condition|(
 operator|(
 name|upperField
-operator|==
+operator|!=
 literal|null
-operator|&&
+operator|||
 name|lowerField
-operator|==
+operator|!=
 literal|null
 operator|)
-operator|||
+operator|&&
+operator|(
 operator|(
 name|upperField
 operator|!=
@@ -461,6 +487,15 @@ operator|.
 name|equals
 argument_list|(
 name|lowerField
+argument_list|)
+operator|)
+operator|||
+operator|!
+name|lowerField
+operator|.
+name|equals
+argument_list|(
+name|upperField
 argument_list|)
 operator|)
 condition|)

@@ -106,26 +106,6 @@ name|core
 operator|.
 name|nodes
 operator|.
-name|ParametricQueryNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|flexible
-operator|.
-name|core
-operator|.
-name|nodes
-operator|.
 name|QueryNode
 import|;
 end_import
@@ -207,6 +187,26 @@ operator|.
 name|nodes
 operator|.
 name|PrefixWildcardQueryNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
+name|standard
+operator|.
+name|nodes
+operator|.
+name|TermRangeQueryNode
 import|;
 end_import
 
@@ -325,13 +325,16 @@ operator|.
 name|getText
 argument_list|()
 decl_stmt|;
-comment|// do not process wildcards for ParametricQueryNode and
+comment|// do not process wildcards for TermRangeQueryNode children and
 comment|// QuotedFieldQueryNode to reproduce the old parser behavior
 if|if
 condition|(
 name|fqn
+operator|.
+name|getParent
+argument_list|()
 operator|instanceof
-name|ParametricQueryNode
+name|TermRangeQueryNode
 operator|||
 name|fqn
 operator|instanceof
