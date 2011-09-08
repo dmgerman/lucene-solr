@@ -32,7 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
+name|LinkedHashSet
 import|;
 end_import
 
@@ -238,7 +238,7 @@ operator|||
 operator|(
 name|pp2
 operator|=
-name|termPositionsDiffer
+name|termPositionsConflict
 argument_list|(
 name|pp
 argument_list|)
@@ -403,7 +403,7 @@ return|return
 name|pp2
 return|;
 block|}
-comment|/**      * Init PhrasePositions in place.      * There is a one time initialization for this scorer (taking place at the first doc that matches all terms):      *<br>- Put in repeats[] each pp that has another pp with same position in the doc.      *       This relies on that the position in PP is computed as (TP.position - offset) and       *       so by adding offset we actually compare positions and identify that the two are       *       the same term.      *       An exclusion to this is two distinct terms in the same offset in query and same       *       position in doc. This case is detected by comparing just the (query) offsets,       *       and two such PPs are not considered "repeating".       *<br>- Also mark each such pp by pp.repeats = true.      *<br>Later can consult with repeats[] in termPositionsDiffer(pp), making that check efficient.      * In particular, this allows to score queries with no repetitions with no overhead due to this computation.      *<br>- Example 1 - query with no repetitions: "ho my"~2      *<br>- Example 2 - query with repetitions: "ho my my"~2      *<br>- Example 3 - query with repetitions: "my ho my"~2      *<br>Init per doc w/repeats in query, includes propagating some repeating pp's to avoid false phrase detection.        * @return end (max position), or -1 if any term ran out (i.e. done)       * @throws IOException       */
+comment|/**      * Init PhrasePositions in place.      * There is a one time initialization for this scorer (taking place at the first doc that matches all terms):      *<br>- Put in repeats[] each pp that has another pp with same position in the doc.      *       This relies on that the position in PP is computed as (TP.position - offset) and       *       so by adding offset we actually compare positions and identify that the two are       *       the same term.      *       An exclusion to this is two distinct terms in the same offset in query and same       *       position in doc. This case is detected by comparing just the (query) offsets,       *       and two such PPs are not considered "repeating".       *<br>- Also mark each such pp by pp.repeats = true.      *<br>Later can consult with repeats[] in termPositionsConflict(pp), making that check efficient.      * In particular, this allows to score queries with no repetitions with no overhead due to this computation.      *<br>- Example 1 - query with no repetitions: "ho my"~2      *<br>- Example 2 - query with repetitions: "ho my my"~2      *<br>- Example 3 - query with repetitions: "my ho my"~2      *<br>Init per doc w/repeats in query, includes propagating some repeating pp's to avoid false phrase detection.        * @return end (max position), or -1 if any term ran out (i.e. done)       * @throws IOException       */
 DECL|method|initPhrasePositions
 specifier|private
 name|int
@@ -506,7 +506,7 @@ operator|.
 name|firstPosition
 argument_list|()
 expr_stmt|;
-comment|// one time initializatin for this scorer
+comment|// one time initialization for this scorer
 if|if
 condition|(
 operator|!
@@ -518,7 +518,7 @@ operator|=
 literal|true
 expr_stmt|;
 comment|// check for repeats
-name|HashSet
+name|LinkedHashSet
 argument_list|<
 name|PhrasePositions
 argument_list|>
@@ -526,6 +526,7 @@ name|m
 init|=
 literal|null
 decl_stmt|;
+comment|// see comment (*) below why order is important
 for|for
 control|(
 name|PhrasePositions
@@ -616,7 +617,7 @@ condition|)
 name|m
 operator|=
 operator|new
-name|HashSet
+name|LinkedHashSet
 argument_list|<
 name|PhrasePositions
 argument_list|>
@@ -672,6 +673,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// with repeats must advance some repeating pp's so they all start with differing tp's
+comment|// (*) It is important that pps are handled by their original order in the query,
+comment|// because we advance the pp with larger offset, and so processing them in that order
+comment|// allows to cover all pairs.
 if|if
 condition|(
 name|repeats
@@ -712,7 +716,7 @@ condition|(
 operator|(
 name|pp2
 operator|=
-name|termPositionsDiffer
+name|termPositionsConflict
 argument_list|(
 name|pp
 argument_list|)
@@ -729,7 +733,7 @@ operator|.
 name|nextPosition
 argument_list|()
 condition|)
-comment|// out of pps that do not differ, advance the pp with higher offset
+comment|// among pps that do not differ, advance the pp with higher offset
 return|return
 operator|-
 literal|1
@@ -809,17 +813,17 @@ name|end
 return|;
 block|}
 comment|/**      * We disallow two pp's to have the same TermPosition, thereby verifying multiple occurrences       * in the query of the same word would go elsewhere in the matched doc.      * @return null if differ (i.e. valid) otherwise return the higher offset PhrasePositions      * out of the first two PPs found to not differ.      */
-DECL|method|termPositionsDiffer
+DECL|method|termPositionsConflict
 specifier|private
 name|PhrasePositions
-name|termPositionsDiffer
+name|termPositionsConflict
 parameter_list|(
 name|PhrasePositions
 name|pp
 parameter_list|)
 block|{
 comment|// efficiency note: a more efficient implementation could keep a map between repeating
-comment|// pp's, so that if pp1a, pp1b, pp1c are repeats term1, and pp2a, pp2b are repeats
+comment|// pp's, so that if pp1a, pp1b, pp1c are repeats of term1, and pp2a, pp2b are repeats
 comment|// of term2, pp2a would only be checked against pp2b but not against pp1a, pp1b, pp1c.
 comment|// However this would complicate code, for a rather rare case, so choice is to compromise here.
 name|int
