@@ -929,6 +929,8 @@ name|SortableStr2double
 argument_list|(
 name|sortable
 argument_list|)
+argument_list|,
+literal|0.001
 argument_list|)
 expr_stmt|;
 name|long

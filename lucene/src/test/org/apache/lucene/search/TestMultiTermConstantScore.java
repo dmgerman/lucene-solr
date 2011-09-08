@@ -1013,6 +1013,8 @@ name|i
 index|]
 operator|.
 name|score
+argument_list|,
+name|SCORE_COMP_THRESH
 argument_list|)
 expr_stmt|;
 block|}
@@ -1092,6 +1094,8 @@ name|i
 index|]
 operator|.
 name|score
+argument_list|,
+name|SCORE_COMP_THRESH
 argument_list|)
 expr_stmt|;
 block|}
@@ -1216,6 +1220,8 @@ name|scorer
 operator|.
 name|score
 argument_list|()
+argument_list|,
+name|SCORE_COMP_THRESH
 argument_list|)
 expr_stmt|;
 block|}

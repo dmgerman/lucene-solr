@@ -3558,7 +3558,7 @@ argument_list|)
 expr_stmt|;
 name|Assert
 operator|.
-name|assertEquals
+name|assertArrayEquals
 argument_list|(
 literal|"wrong sort field values"
 argument_list|,

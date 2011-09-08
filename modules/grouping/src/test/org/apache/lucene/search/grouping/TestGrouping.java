@@ -6529,7 +6529,7 @@ condition|(
 name|doSortValues
 condition|)
 block|{
-name|assertEquals
+name|assertArrayEquals
 argument_list|(
 name|group1
 operator|.
@@ -7345,6 +7345,8 @@ argument_list|,
 name|actualFD
 operator|.
 name|score
+argument_list|,
+literal|0.1
 argument_list|)
 expr_stmt|;
 block|}

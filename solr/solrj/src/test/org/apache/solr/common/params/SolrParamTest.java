@@ -873,6 +873,8 @@ literal|"xxx"
 argument_list|,
 name|pfloat
 argument_list|)
+argument_list|,
+literal|0.1
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -930,6 +932,8 @@ literal|"float"
 argument_list|,
 name|pfloat
 argument_list|)
+argument_list|,
+literal|0.1
 argument_list|)
 expr_stmt|;
 name|assertEquals
