@@ -4259,6 +4259,47 @@ decl_stmt|;
 if|if
 condition|(
 name|fieldTerms
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Unusual: the FieldsEnum returned a field but
+comment|// the Terms for that field is null; this should
+comment|// only happen if it's a ghost field (field with
+comment|// no terms, eg there used to be terms but all
+comment|// docs got deleted and then merged away):
+comment|// make sure TermsEnum is empty:
+if|if
+condition|(
+name|fieldsEnum
+operator|.
+name|terms
+argument_list|()
+operator|.
+name|next
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Fields.terms(field="
+operator|+
+name|field
+operator|+
+literal|") returned null yet the field appears to have terms"
+argument_list|)
+throw|;
+block|}
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|fieldTerms
 operator|instanceof
 name|BlockTreeTermsReader
 operator|.
@@ -4821,6 +4862,7 @@ operator|+
 name|totDocCount2
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}
