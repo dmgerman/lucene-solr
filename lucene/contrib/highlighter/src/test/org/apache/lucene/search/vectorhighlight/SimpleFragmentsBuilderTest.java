@@ -385,7 +385,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<b>a</b> b b b b b b b b b "
+literal|"<b>a</b> b b b b b b b b b b"
 argument_list|,
 name|f
 index|[
@@ -512,7 +512,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<b>a</b> b b b b b b b b b "
+literal|"<b>a</b> b b b b b b b b b b"
 argument_list|,
 name|f
 index|[
@@ -522,7 +522,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"b b<b>a</b> b<b>a</b> b b b b b "
+literal|"b b<b>a</b> b<b>a</b> b b b b b c"
 argument_list|,
 name|f
 index|[
@@ -771,7 +771,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|" b c<b>d</b> e "
+literal|"a b c<b>d</b> e "
 argument_list|,
 name|sfb
 operator|.
@@ -871,7 +871,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|" most<b>search engines</b> use only one of these methods. Even the<b>search engines</b> that says they can use t"
+literal|"The most<b>search engines</b> use only one of these methods. Even the<b>search engines</b> that says they can use the"
 argument_list|,
 name|sfb
 operator|.
@@ -976,7 +976,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"ssing<b>speed</b>, the "
+literal|"processing<b>speed</b>, the "
 argument_list|,
 name|sfb
 operator|.
