@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link BoundaryScanner} implementation that uses {@link BreakIterator} to find  * boundaries in the text. Boundary {@link Type} can be specified ({@link Type#SENTENCE} is the default).  */
+comment|/**  * A {@link BoundaryScanner} implementation that uses {@link BreakIterator} to find  * boundaries in the text.  * @see BreakIterator  */
 end_comment
 
 begin_class
