@@ -102,6 +102,20 @@ name|solr
 operator|.
 name|common
 operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|params
 operator|.
 name|ModifiableSolrParams
@@ -205,7 +219,7 @@ specifier|final
 name|int
 name|DOC_COMMIT_DELAY_MS
 init|=
-literal|250
+literal|1
 decl_stmt|;
 comment|// settings, not final so we can change them in testing
 DECL|field|docsUpperBound
@@ -258,15 +272,6 @@ name|AtomicInteger
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
-DECL|field|lastAddedTime
-specifier|private
-specifier|volatile
-name|long
-name|lastAddedTime
-init|=
-operator|-
-literal|1
 decl_stmt|;
 DECL|field|core
 specifier|private
@@ -403,7 +408,6 @@ block|}
 comment|/** schedule individual commits */
 DECL|method|scheduleCommitWithin
 specifier|public
-specifier|synchronized
 name|void
 name|scheduleCommitWithin
 parameter_list|(
@@ -419,7 +423,6 @@ expr_stmt|;
 block|}
 DECL|method|_scheduleCommitWithin
 specifier|private
-specifier|synchronized
 name|void
 name|_scheduleCommitWithin
 parameter_list|(
@@ -427,7 +430,18 @@ name|long
 name|commitMaxTime
 parameter_list|)
 block|{
-comment|// Check if there is a commit already scheduled for longer then this time
+if|if
+condition|(
+name|commitMaxTime
+operator|<=
+literal|0
+condition|)
+return|return;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 if|if
 condition|(
 name|pending
@@ -442,30 +456,50 @@ name|TimeUnit
 operator|.
 name|MILLISECONDS
 argument_list|)
-operator|>=
+operator|<=
 name|commitMaxTime
 condition|)
 block|{
+comment|// There is already a pending commit that will happen first, so
+comment|// nothing else to do here.
+comment|// log.info("###returning since getDelay()==" + pending.getDelay(TimeUnit.MILLISECONDS) + " less than " + commitMaxTime);
+return|return;
+block|}
+if|if
+condition|(
+name|pending
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// we need to schedule a commit to happen sooner than the existing one,
+comment|// so lets try to cancel the existing one first.
+name|boolean
+name|canceled
+init|=
 name|pending
 operator|.
 name|cancel
 argument_list|(
 literal|false
 argument_list|)
-expr_stmt|;
-name|pending
-operator|=
-literal|null
-expr_stmt|;
-block|}
-comment|// schedule a new commit
+decl_stmt|;
 if|if
 condition|(
-name|pending
-operator|==
-literal|null
+operator|!
+name|canceled
 condition|)
 block|{
+comment|// It looks like we can't cancel... it must have just started running!
+comment|// this is possible due to thread scheduling delays and a low commitMaxTime.
+comment|// Nothing else to do since we obviously can't schedule our commit *before*
+comment|// the one that just started running (or has just completed).
+comment|// log.info("###returning since cancel failed");
+return|return;
+block|}
+block|}
+comment|// log.info("###scheduling for " + commitMaxTime);
+comment|// schedule our new commit
 name|pending
 operator|=
 name|scheduler
@@ -486,56 +520,52 @@ block|}
 comment|/**    * Indicate that documents have been added    */
 DECL|method|addedDocument
 specifier|public
-name|boolean
+name|void
 name|addedDocument
 parameter_list|(
 name|int
 name|commitWithin
 parameter_list|)
 block|{
-name|docsSinceCommit
-operator|.
-name|incrementAndGet
-argument_list|()
-expr_stmt|;
-name|lastAddedTime
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-expr_stmt|;
-name|boolean
-name|triggered
-init|=
-literal|false
-decl_stmt|;
-comment|// maxDocs-triggered autoCommit
+comment|// maxDocs-triggered autoCommit.  Use == instead of> so we only trigger once on the way up
 if|if
 condition|(
 name|docsUpperBound
 operator|>
 literal|0
-operator|&&
-operator|(
-name|docsSinceCommit
-operator|.
-name|get
-argument_list|()
-operator|>
-name|docsUpperBound
-operator|)
 condition|)
 block|{
+name|long
+name|docs
+init|=
+name|docsSinceCommit
+operator|.
+name|incrementAndGet
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|docs
+operator|==
+name|docsUpperBound
+operator|+
+literal|1
+condition|)
+block|{
+comment|// reset the count here instead of run() so we don't miss other documents being added
+name|docsSinceCommit
+operator|.
+name|set
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 name|_scheduleCommitWithin
 argument_list|(
 name|DOC_COMMIT_DELAY_MS
 argument_list|)
 expr_stmt|;
-name|triggered
-operator|=
-literal|true
-expr_stmt|;
+block|}
 block|}
 comment|// maxTime-triggered autoCommit
 name|long
@@ -563,50 +593,15 @@ argument_list|(
 name|ctime
 argument_list|)
 expr_stmt|;
-name|triggered
-operator|=
-literal|true
-expr_stmt|;
 block|}
-return|return
-name|triggered
-return|;
 block|}
-comment|/** Inform tracker that a commit has occurred, cancel any pending commits */
+comment|/** Inform tracker that a commit has occurred */
 DECL|method|didCommit
 specifier|public
 name|void
 name|didCommit
 parameter_list|()
-block|{
-if|if
-condition|(
-name|pending
-operator|!=
-literal|null
-condition|)
-block|{
-name|pending
-operator|.
-name|cancel
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|pending
-operator|=
-literal|null
-expr_stmt|;
-comment|// let it start another one
-block|}
-name|docsSinceCommit
-operator|.
-name|set
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-block|}
+block|{   }
 comment|/** Inform tracker that a rollback has occurred, cancel any pending commits */
 DECL|method|didRollback
 specifier|public
@@ -614,6 +609,11 @@ name|void
 name|didRollback
 parameter_list|()
 block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 if|if
 condition|(
 name|pending
@@ -642,22 +642,26 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|/** This is the worker part for the ScheduledFuture **/
 DECL|method|run
 specifier|public
-specifier|synchronized
 name|void
 name|run
 parameter_list|()
 block|{
-name|long
-name|started
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+comment|// log.info("###start commit. pending=null");
+name|pending
+operator|=
+literal|null
+expr_stmt|;
+comment|// allow a new commit to be scheduled
+block|}
 name|SolrQueryRequest
 name|req
 init|=
@@ -697,6 +701,14 @@ operator|=
 name|softCommit
 expr_stmt|;
 comment|// no need for command.maxOptimizeSegments = 1; since it is not optimizing
+comment|// we increment this *before* calling commit because it was causing a race
+comment|// in the tests (the new searcher was registered and the test proceeded
+comment|// to check the commit count before we had incremented it.)
+name|autoCommitCount
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 name|core
 operator|.
 name|getUpdateHandler
@@ -707,11 +719,6 @@ argument_list|(
 name|command
 argument_list|)
 expr_stmt|;
-name|autoCommitCount
-operator|.
-name|incrementAndGet
-argument_list|()
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -719,93 +726,26 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|SolrException
+operator|.
 name|log
-operator|.
-name|error
 argument_list|(
+name|log
+argument_list|,
 literal|"auto commit error..."
-argument_list|)
-expr_stmt|;
+argument_list|,
 name|e
-operator|.
-name|printStackTrace
-argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 finally|finally
 block|{
-name|pending
-operator|=
-literal|null
-expr_stmt|;
+comment|// log.info("###done committing");
 name|req
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
-comment|// check if docs have been submitted since the commit started
-if|if
-condition|(
-name|lastAddedTime
-operator|>
-name|started
-condition|)
-block|{
-if|if
-condition|(
-name|docsUpperBound
-operator|>
-literal|0
-operator|&&
-name|docsSinceCommit
-operator|.
-name|get
-argument_list|()
-operator|>
-name|docsUpperBound
-condition|)
-block|{
-name|pending
-operator|=
-name|scheduler
-operator|.
-name|schedule
-argument_list|(
-name|this
-argument_list|,
-literal|100
-argument_list|,
-name|TimeUnit
-operator|.
-name|MILLISECONDS
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|timeUpperBound
-operator|>
-literal|0
-condition|)
-block|{
-name|pending
-operator|=
-name|scheduler
-operator|.
-name|schedule
-argument_list|(
-name|this
-argument_list|,
-name|timeUpperBound
-argument_list|,
-name|TimeUnit
-operator|.
-name|MILLISECONDS
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 comment|// to facilitate testing: blocks if called during commit

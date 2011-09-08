@@ -224,6 +224,20 @@ name|AbstractSolrTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|RefCounted
+import|;
+end_import
+
 begin_class
 DECL|class|NewSearcherListener
 class|class
@@ -263,6 +277,12 @@ specifier|private
 specifier|volatile
 name|TriggerOn
 name|triggerOnType
+decl_stmt|;
+DECL|field|newSearcher
+specifier|private
+specifier|volatile
+name|SolrIndexSearcher
+name|newSearcher
 decl_stmt|;
 DECL|method|NewSearcherListener
 specifier|public
@@ -373,6 +393,13 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|newSearcher
+operator|=
+name|newSearcher
+expr_stmt|;
+comment|// log.info("TEST: newSearcher event: triggered="+triggered+" newSearcher="+newSearcher);
 block|}
 annotation|@
 name|Override
@@ -414,6 +441,7 @@ name|triggered
 operator|=
 literal|false
 expr_stmt|;
+comment|// log.info("TEST: trigger reset");
 block|}
 DECL|method|waitForNewSearcher
 name|boolean
@@ -448,9 +476,44 @@ condition|(
 name|triggered
 condition|)
 block|{
+comment|// check if the new searcher has been registered yet
+name|RefCounted
+argument_list|<
+name|SolrIndexSearcher
+argument_list|>
+name|registeredSearcherH
+init|=
+name|newSearcher
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getSearcher
+argument_list|()
+decl_stmt|;
+name|SolrIndexSearcher
+name|registeredSearcher
+init|=
+name|registeredSearcherH
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+name|registeredSearcherH
+operator|.
+name|decref
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|registeredSearcher
+operator|==
+name|newSearcher
+condition|)
 return|return
 literal|true
 return|;
+comment|// log.info("TEST: waiting for searcher " + newSearcher + " to be registered.  current=" + registeredSearcher);
 block|}
 try|try
 block|{
@@ -507,6 +570,90 @@ block|{
 return|return
 literal|"solrconfig.xml"
 return|;
+block|}
+DECL|method|verbose
+specifier|public
+specifier|static
+name|void
+name|verbose
+parameter_list|(
+name|Object
+modifier|...
+name|args
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|VERBOSE
+condition|)
+return|return;
+name|StringBuilder
+name|sb
+init|=
+operator|new
+name|StringBuilder
+argument_list|(
+literal|"###TEST:"
+argument_list|)
+decl_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|':'
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|Object
+name|o
+range|:
+name|args
+control|)
+block|{
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|' '
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+name|o
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+name|log
+operator|.
+name|info
+argument_list|(
+name|sb
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// System.out.println(sb.toString());
 block|}
 comment|/**    * Take a string and make it an iterable ContentStream    *     * This should be moved to a helper class. (it is useful for the client too!)    */
 DECL|method|toContentStreams
@@ -2026,6 +2173,16 @@ argument_list|,
 literal|"//result[@numFound=0]"
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|softTracker
+operator|.
+name|getCommitCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Wait longer than the autocommit time
 name|assertTrue
 argument_list|(
@@ -2102,6 +2259,11 @@ argument_list|,
 literal|"//result[@numFound=0]"
 argument_list|)
 expr_stmt|;
+name|verbose
+argument_list|(
+literal|"###about to delete 529"
+argument_list|)
+expr_stmt|;
 comment|// Delete the document
 name|assertU
 argument_list|(
@@ -2124,6 +2286,16 @@ literal|"//result[@numFound=1]"
 argument_list|)
 expr_stmt|;
 comment|// Wait longer than the autocommit time
+name|verbose
+argument_list|(
+literal|"###starting to wait for new searcher.  softTracker.getCommitCount()=="
+argument_list|,
+name|softTracker
+operator|.
+name|getCommitCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|assertTrue
 argument_list|(
 name|trigger
@@ -2139,6 +2311,17 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+name|verbose
+argument_list|(
+literal|"###done waiting for new searcher.  softTracker.getCommitCount()=="
+argument_list|,
+name|softTracker
+operator|.
+name|getCommitCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// what's the point of this update?
 name|req
 operator|.
 name|setContentStreams
