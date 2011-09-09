@@ -2391,7 +2391,7 @@ literal|"autocommit maxDocs"
 argument_list|,
 name|commitTracker
 operator|.
-name|getTimeUpperBound
+name|getDocsUpperBound
 argument_list|()
 argument_list|)
 expr_stmt|;
