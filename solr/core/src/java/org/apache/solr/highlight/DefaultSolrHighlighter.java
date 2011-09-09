@@ -2027,6 +2027,11 @@ operator|.
 name|getFieldQuery
 argument_list|(
 name|query
+argument_list|,
+name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// Highlight each document

@@ -228,6 +228,8 @@ name|Query
 name|query
 parameter_list|)
 block|{
+comment|// TODO: should we deprecate this?
+comment|// because if there is no reader, then we cannot rewrite MTQ.
 try|try
 block|{
 return|return

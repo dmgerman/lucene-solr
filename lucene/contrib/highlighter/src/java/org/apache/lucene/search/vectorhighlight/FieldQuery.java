@@ -625,6 +625,10 @@ condition|(
 name|sourceQuery
 operator|instanceof
 name|MultiTermQuery
+operator|&&
+name|reader
+operator|!=
+literal|null
 condition|)
 block|{
 name|MultiTermQuery
