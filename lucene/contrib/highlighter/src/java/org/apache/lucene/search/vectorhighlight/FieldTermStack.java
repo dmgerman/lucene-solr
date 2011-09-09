@@ -219,6 +219,27 @@ name|fieldName
 operator|=
 name|fieldName
 expr_stmt|;
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|termSet
+init|=
+name|fieldQuery
+operator|.
+name|getTermSet
+argument_list|(
+name|fieldName
+argument_list|)
+decl_stmt|;
+comment|// just return to make null snippet if un-matched fieldName specified when fieldMatch == true
+if|if
+condition|(
+name|termSet
+operator|==
+literal|null
+condition|)
+return|return;
 name|TermFreqVector
 name|tfv
 init|=
@@ -263,27 +284,6 @@ block|{
 return|return;
 comment|// just return to make null snippets
 block|}
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|termSet
-init|=
-name|fieldQuery
-operator|.
-name|getTermSet
-argument_list|(
-name|fieldName
-argument_list|)
-decl_stmt|;
-comment|// just return to make null snippet if un-matched fieldName specified when fieldMatch == true
-if|if
-condition|(
-name|termSet
-operator|==
-literal|null
-condition|)
-return|return;
 specifier|final
 name|CharsRef
 name|spare
