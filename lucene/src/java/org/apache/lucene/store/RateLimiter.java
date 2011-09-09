@@ -40,6 +40,12 @@ specifier|public
 class|class
 name|RateLimiter
 block|{
+DECL|field|mbPerSec
+specifier|private
+specifier|volatile
+name|double
+name|mbPerSec
+decl_stmt|;
 DECL|field|nsPerByte
 specifier|private
 specifier|volatile
@@ -64,21 +70,28 @@ name|double
 name|mbPerSec
 parameter_list|)
 block|{
-name|setMaxRate
+name|setMbPerSec
 argument_list|(
 name|mbPerSec
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|setMaxRate
+comment|/**    * Sets an updated mb per second rate limit.    */
+DECL|method|setMbPerSec
 specifier|public
 name|void
-name|setMaxRate
+name|setMbPerSec
 parameter_list|(
 name|double
 name|mbPerSec
 parameter_list|)
 block|{
+name|this
+operator|.
+name|mbPerSec
+operator|=
+name|mbPerSec
+expr_stmt|;
 name|nsPerByte
 operator|=
 literal|1000000000.
@@ -91,6 +104,19 @@ operator|*
 name|mbPerSec
 operator|)
 expr_stmt|;
+block|}
+comment|/**    * The current mb per second rate limit.    */
+DECL|method|getMbPerSec
+specifier|public
+name|double
+name|getMbPerSec
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|mbPerSec
+return|;
 block|}
 comment|/** Pauses, if necessary, to keep the instantaneous IO    *  rate at or below the target. NOTE: multiple threads    *  may safely use this, however the implementation is    *  not perfectly thread safe but likely in practice this    *  is harmless (just means in some rare cases the rate    *  might exceed the target).  It's best to call this    *  with a biggish count, not one byte at a time. */
 DECL|method|pause

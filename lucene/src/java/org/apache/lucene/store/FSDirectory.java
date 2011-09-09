@@ -219,13 +219,9 @@ name|DEFAULT_READ_CHUNK_SIZE
 decl_stmt|;
 comment|// LUCENE-1566
 comment|// null means no limite
-DECL|field|maxMergeWriteMBPerSec
-specifier|private
-name|Double
-name|maxMergeWriteMBPerSec
-decl_stmt|;
 DECL|field|mergeWriteRateLimiter
 specifier|private
+specifier|volatile
 name|RateLimiter
 name|mergeWriteRateLimiter
 decl_stmt|;
@@ -925,7 +921,6 @@ block|}
 comment|/** Sets the maximum (approx) MB/sec allowed by all write    *  IO performed by merging.  Pass null to have no limit.    *    *<p><b>NOTE</b>: if merges are already running there is    *  no guarantee this new rate will apply to them; it will    *  only apply for certain to new merges.    *    * @lucene.experimental */
 DECL|method|setMaxMergeWriteMBPerSec
 specifier|public
-specifier|synchronized
 name|void
 name|setMaxMergeWriteMBPerSec
 parameter_list|(
@@ -933,10 +928,11 @@ name|Double
 name|mbPerSec
 parameter_list|)
 block|{
-name|maxMergeWriteMBPerSec
-operator|=
-name|mbPerSec
-expr_stmt|;
+name|RateLimiter
+name|limiter
+init|=
+name|mergeWriteRateLimiter
+decl_stmt|;
 if|if
 condition|(
 name|mbPerSec
@@ -946,14 +942,14 @@ condition|)
 block|{
 if|if
 condition|(
-name|mergeWriteRateLimiter
+name|limiter
 operator|!=
 literal|null
 condition|)
 block|{
-name|mergeWriteRateLimiter
+name|limiter
 operator|.
-name|setMaxRate
+name|setMbPerSec
 argument_list|(
 name|Double
 operator|.
@@ -969,14 +965,14 @@ block|}
 elseif|else
 if|if
 condition|(
-name|mergeWriteRateLimiter
+name|limiter
 operator|!=
 literal|null
 condition|)
 block|{
-name|mergeWriteRateLimiter
+name|limiter
 operator|.
-name|setMaxRate
+name|setMbPerSec
 argument_list|(
 name|mbPerSec
 argument_list|)
@@ -994,6 +990,23 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Sets the rate limiter to be used to limit (approx) MB/sec allowed    * by all IO performed when merging. Pass null to have no limit.    *    *<p>Passing an instance of rate limiter compared to setting it using    * {@link #setMaxMergeWriteMBPerSec(Double)} allows to use the same limiter    * instance across several directories globally limiting IO when merging    * across them.    *    * @lucene.experimental */
+DECL|method|setMaxMergeWriteLimiter
+specifier|public
+name|void
+name|setMaxMergeWriteLimiter
+parameter_list|(
+name|RateLimiter
+name|mergeWriteRateLimiter
+parameter_list|)
+block|{
+name|this
+operator|.
+name|mergeWriteRateLimiter
+operator|=
+name|mergeWriteRateLimiter
+expr_stmt|;
+block|}
 comment|/** See {@link #setMaxMergeWriteMBPerSec}.    *    * @lucene.experimental */
 DECL|method|getMaxMergeWriteMBPerSec
 specifier|public
@@ -1001,8 +1014,22 @@ name|Double
 name|getMaxMergeWriteMBPerSec
 parameter_list|()
 block|{
+name|RateLimiter
+name|limiter
+init|=
+name|mergeWriteRateLimiter
+decl_stmt|;
 return|return
-name|maxMergeWriteMBPerSec
+name|limiter
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|limiter
+operator|.
+name|getMbPerSec
+argument_list|()
 return|;
 block|}
 DECL|method|ensureCanWrite
