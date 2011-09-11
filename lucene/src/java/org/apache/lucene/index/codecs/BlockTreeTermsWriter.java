@@ -1729,6 +1729,10 @@ DECL|field|sumDocFreq
 name|long
 name|sumDocFreq
 decl_stmt|;
+DECL|field|docCount
+name|int
+name|docCount
+decl_stmt|;
 DECL|field|indexStartFP
 name|long
 name|indexStartFP
@@ -3939,6 +3943,9 @@ name|sumTotalTermFreq
 parameter_list|,
 name|long
 name|sumDocFreq
+parameter_list|,
+name|int
+name|docCount
 parameter_list|)
 throws|throws
 name|IOException
@@ -4029,6 +4036,12 @@ operator|.
 name|sumDocFreq
 operator|=
 name|sumDocFreq
+expr_stmt|;
+name|this
+operator|.
+name|docCount
+operator|=
+name|docCount
 expr_stmt|;
 comment|// Write FST to index
 name|indexStartFP
@@ -4283,6 +4296,15 @@ argument_list|(
 name|field
 operator|.
 name|sumDocFreq
+argument_list|)
+expr_stmt|;
+name|out
+operator|.
+name|writeVInt
+argument_list|(
+name|field
+operator|.
+name|docCount
 argument_list|)
 expr_stmt|;
 name|indexOut

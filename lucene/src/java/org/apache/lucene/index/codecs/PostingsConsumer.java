@@ -100,6 +100,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|FixedBitSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * @lucene.experimental  */
 end_comment
@@ -186,6 +200,10 @@ parameter_list|,
 specifier|final
 name|DocsEnum
 name|postings
+parameter_list|,
+specifier|final
+name|FixedBitSet
+name|visitedDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -238,6 +256,13 @@ condition|)
 block|{
 break|break;
 block|}
+name|visitedDocs
+operator|.
+name|set
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 specifier|final
 name|int
 name|freq
@@ -306,6 +331,13 @@ condition|)
 block|{
 break|break;
 block|}
+name|visitedDocs
+operator|.
+name|set
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 specifier|final
 name|int
 name|freq

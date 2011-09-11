@@ -585,6 +585,16 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns the number of documents that have at least one    *  term for this field, or -1 if this measure isn't    *  stored by the codec.  Note that, just like other term    *  measures, this measure does not take deleted documents    *  into account. */
+DECL|method|getDocCount
+specifier|public
+specifier|abstract
+name|int
+name|getDocCount
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 comment|/**    * Returns a thread-private {@link TermsEnum} instance. Obtaining    * {@link TermsEnum} from this method might be more efficient than using    * {@link #iterator()} directly since this method doesn't necessarily create a    * new {@link TermsEnum} instance.    *<p>    * NOTE: {@link TermsEnum} instances obtained from this method must not be    * shared across threads. The enum should only be used within a local context    * where other threads can't access it.    *     * @return a thread-private {@link TermsEnum} instance    * @throws IOException    *           if an IOException occurs    * @lucene.internal    */
 DECL|method|getThreadTermsEnum
 specifier|public

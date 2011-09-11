@@ -110,6 +110,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|FixedBitSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * @lucene.experimental  */
 end_comment
@@ -162,6 +176,9 @@ name|sumTotalTermFreq
 parameter_list|,
 name|long
 name|sumDocFreq
+parameter_list|,
+name|int
+name|docCount
 parameter_list|)
 throws|throws
 name|IOException
@@ -230,6 +247,17 @@ name|long
 name|sumDFsinceLastAbortCheck
 init|=
 literal|0
+decl_stmt|;
+name|FixedBitSet
+name|visitedDocs
+init|=
+operator|new
+name|FixedBitSet
+argument_list|(
+name|mergeState
+operator|.
+name|mergedDocCount
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -334,6 +362,8 @@ argument_list|(
 name|mergeState
 argument_list|,
 name|docsEnum
+argument_list|,
+name|visitedDocs
 argument_list|)
 decl_stmt|;
 if|if
@@ -554,6 +584,8 @@ argument_list|(
 name|mergeState
 argument_list|,
 name|postingsEnum
+argument_list|,
+name|visitedDocs
 argument_list|)
 decl_stmt|;
 if|if
@@ -622,6 +654,11 @@ argument_list|(
 name|sumTotalTermFreq
 argument_list|,
 name|sumDocFreq
+argument_list|,
+name|visitedDocs
+operator|.
+name|cardinality
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -440,6 +440,23 @@ name|getSumDocFreq
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getDocCount
+specifier|public
+name|int
+name|getDocCount
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|in
+operator|.
+name|getDocCount
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** Base class for filtering {@link TermsEnum} implementations. */
 DECL|class|FilterFieldsEnum

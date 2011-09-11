@@ -1857,6 +1857,21 @@ operator|-
 literal|1
 return|;
 block|}
+comment|// TODO: support this?
+annotation|@
+name|Override
+specifier|public
+name|int
+name|getDocCount
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
