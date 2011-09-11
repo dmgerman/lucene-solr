@@ -32,11 +32,27 @@ name|IndexOptions
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexableFieldType
+import|;
+end_import
+
 begin_class
 DECL|class|FieldType
 specifier|public
 class|class
 name|FieldType
+implements|implements
+name|IndexableFieldType
 block|{
 DECL|field|indexed
 specifier|private
@@ -91,7 +107,7 @@ DECL|method|FieldType
 specifier|public
 name|FieldType
 parameter_list|(
-name|FieldType
+name|IndexableFieldType
 name|ref
 parameter_list|)
 block|{
@@ -192,7 +208,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/** Prevents future changes.  Note that when a FieldType    *  is first bound to a Field instance, it is frozen. */
+comment|/**    * Prevents future changes. Note, it is recommended that this is called once    * the FieldTypes's properties have been set, to prevent unintential state    * changes.    */
 DECL|method|freeze
 specifier|public
 name|void

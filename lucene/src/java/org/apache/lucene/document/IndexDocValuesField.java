@@ -60,6 +60,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexableFieldType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|values
 operator|.
 name|PerDocFieldValues
@@ -168,7 +182,7 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|FieldType
+name|IndexableFieldType
 name|type
 parameter_list|)
 block|{
@@ -189,7 +203,7 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|FieldType
+name|IndexableFieldType
 name|type
 parameter_list|,
 name|String
@@ -864,7 +878,7 @@ argument_list|()
 argument_list|,
 name|field
 operator|.
-name|getFieldType
+name|fieldType
 argument_list|()
 argument_list|,
 name|field

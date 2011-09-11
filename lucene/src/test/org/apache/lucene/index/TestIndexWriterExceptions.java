@@ -7565,6 +7565,9 @@ name|assertFalse
 argument_list|(
 name|field
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|storeTermVectors
 argument_list|()
 argument_list|)
@@ -7707,6 +7710,9 @@ expr_stmt|;
 name|assertFalse
 argument_list|(
 name|field
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|storeTermVectors
 argument_list|()

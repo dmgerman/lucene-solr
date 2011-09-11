@@ -542,6 +542,9 @@ index|[
 literal|0
 index|]
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|storeTermVectors
 argument_list|()
 argument_list|)
@@ -592,6 +595,9 @@ name|fields
 index|[
 literal|0
 index|]
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|storeTermVectors
 argument_list|()

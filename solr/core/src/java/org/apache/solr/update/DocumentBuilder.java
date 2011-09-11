@@ -1567,6 +1567,9 @@ if|if
 condition|(
 name|field
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|stored
 argument_list|()
 condition|)

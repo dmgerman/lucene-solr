@@ -418,6 +418,9 @@ index|[
 name|i
 index|]
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|indexed
 argument_list|()
 condition|)

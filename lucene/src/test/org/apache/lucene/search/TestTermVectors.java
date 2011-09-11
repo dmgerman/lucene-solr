@@ -788,7 +788,6 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-empty_stmt|;
 name|FieldType
 name|ft
 init|=

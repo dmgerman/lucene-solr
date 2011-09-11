@@ -2987,12 +2987,6 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-name|document
-operator|=
-operator|new
-name|Document
-argument_list|()
-expr_stmt|;
 name|FieldType
 name|customType
 init|=

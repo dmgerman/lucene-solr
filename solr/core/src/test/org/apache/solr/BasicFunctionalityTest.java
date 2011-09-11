@@ -1823,6 +1823,9 @@ name|assertTrue
 argument_list|(
 name|luf
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|storeTermVectors
 argument_list|()
 argument_list|)
@@ -1860,6 +1863,9 @@ name|assertTrue
 argument_list|(
 operator|!
 name|luf
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|storeTermVectors
 argument_list|()
@@ -1902,6 +1908,9 @@ name|assertTrue
 argument_list|(
 name|luf
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|storeTermVectorPositions
 argument_list|()
 argument_list|)
@@ -1942,6 +1951,9 @@ expr_stmt|;
 name|assertTrue
 argument_list|(
 name|luf
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|storeTermVectorOffsets
 argument_list|()
@@ -1989,10 +2001,16 @@ name|assertTrue
 argument_list|(
 name|luf
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|storeTermVectorOffsets
 argument_list|()
 operator|&&
 name|luf
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|storeTermVectorPositions
 argument_list|()

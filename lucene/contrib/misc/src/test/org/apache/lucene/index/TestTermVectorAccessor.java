@@ -144,13 +144,11 @@ argument_list|)
 decl_stmt|;
 name|Document
 name|doc
-decl_stmt|;
-name|doc
-operator|=
+init|=
 operator|new
 name|Document
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|FieldType
 name|customType
 init|=

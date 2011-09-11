@@ -64,22 +64,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-operator|.
-name|IndexOptions
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|values
 operator|.
 name|PerDocFieldValues
@@ -151,13 +135,6 @@ name|float
 name|boost
 parameter_list|()
 function_decl|;
-comment|/* True if the field's value should be stored */
-DECL|method|stored
-specifier|public
-name|boolean
-name|stored
-parameter_list|()
-function_decl|;
 comment|/* Non-null if this field has a binary value */
 DECL|method|binaryValue
 specifier|public
@@ -210,53 +187,11 @@ name|Number
 name|numericValue
 parameter_list|()
 function_decl|;
-comment|/* True if this field should be indexed (inverted) */
-DECL|method|indexed
+comment|/**    * Returns the IndexableFieldType describing the properties of this field    *    * @return IndexableFieldType for this field    */
+DECL|method|fieldType
 specifier|public
-name|boolean
-name|indexed
-parameter_list|()
-function_decl|;
-comment|/* True if this field's value should be analyzed */
-DECL|method|tokenized
-specifier|public
-name|boolean
-name|tokenized
-parameter_list|()
-function_decl|;
-comment|/* True if norms should not be indexed */
-DECL|method|omitNorms
-specifier|public
-name|boolean
-name|omitNorms
-parameter_list|()
-function_decl|;
-comment|/* {@link IndexOptions}, describing what should be    * recorded into the inverted index */
-DECL|method|indexOptions
-specifier|public
-name|IndexOptions
-name|indexOptions
-parameter_list|()
-function_decl|;
-comment|/* True if term vectors should be indexed */
-DECL|method|storeTermVectors
-specifier|public
-name|boolean
-name|storeTermVectors
-parameter_list|()
-function_decl|;
-comment|/* True if term vector offsets should be indexed */
-DECL|method|storeTermVectorOffsets
-specifier|public
-name|boolean
-name|storeTermVectorOffsets
-parameter_list|()
-function_decl|;
-comment|/* True if term vector positions should be indexed */
-DECL|method|storeTermVectorPositions
-specifier|public
-name|boolean
-name|storeTermVectorPositions
+name|IndexableFieldType
+name|fieldType
 parameter_list|()
 function_decl|;
 comment|/* Non-null if doc values should be indexed */

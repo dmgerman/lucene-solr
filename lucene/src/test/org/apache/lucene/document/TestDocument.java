@@ -305,6 +305,9 @@ name|assertTrue
 argument_list|(
 name|binaryFld
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|stored
 argument_list|()
 argument_list|)
@@ -313,6 +316,9 @@ name|assertFalse
 argument_list|(
 name|binaryFld
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|indexed
 argument_list|()
 argument_list|)
@@ -320,6 +326,9 @@ expr_stmt|;
 name|assertFalse
 argument_list|(
 name|binaryFld
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|tokenized
 argument_list|()

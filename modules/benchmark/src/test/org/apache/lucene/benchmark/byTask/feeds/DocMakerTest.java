@@ -781,6 +781,9 @@ operator|.
 name|TITLE_FIELD
 argument_list|)
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|omitNorms
 argument_list|()
 argument_list|)
@@ -795,6 +798,9 @@ name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|)
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|omitNorms
 argument_list|()
@@ -825,6 +831,9 @@ operator|.
 name|TITLE_FIELD
 argument_list|)
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|omitNorms
 argument_list|()
 argument_list|)
@@ -839,6 +848,9 @@ name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|)
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|omitNorms
 argument_list|()
@@ -869,6 +881,9 @@ operator|.
 name|TITLE_FIELD
 argument_list|)
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|omitNorms
 argument_list|()
 argument_list|)
@@ -883,6 +898,9 @@ name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|)
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|omitNorms
 argument_list|()
@@ -913,6 +931,9 @@ operator|.
 name|TITLE_FIELD
 argument_list|)
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|omitNorms
 argument_list|()
 argument_list|)
@@ -927,6 +948,9 @@ name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|)
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|omitNorms
 argument_list|()
@@ -957,6 +981,9 @@ operator|.
 name|TITLE_FIELD
 argument_list|)
 operator|.
+name|fieldType
+argument_list|()
+operator|.
 name|omitNorms
 argument_list|()
 argument_list|)
@@ -971,6 +998,9 @@ name|DocMaker
 operator|.
 name|BODY_FIELD
 argument_list|)
+operator|.
+name|fieldType
+argument_list|()
 operator|.
 name|omitNorms
 argument_list|()

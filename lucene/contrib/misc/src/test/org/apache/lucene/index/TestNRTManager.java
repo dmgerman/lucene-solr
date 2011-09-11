@@ -618,7 +618,7 @@ operator|)
 name|f
 operator|)
 operator|.
-name|getFieldType
+name|fieldType
 argument_list|()
 argument_list|,
 name|field1
