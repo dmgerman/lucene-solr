@@ -116,6 +116,8 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|similarities
+operator|.
 name|DefaultSimilarity
 import|;
 end_import
@@ -130,6 +132,8 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|similarities
+operator|.
 name|DefaultSimilarityProvider
 import|;
 end_import
@@ -143,6 +147,8 @@ operator|.
 name|lucene
 operator|.
 name|search
+operator|.
+name|similarities
 operator|.
 name|Similarity
 import|;

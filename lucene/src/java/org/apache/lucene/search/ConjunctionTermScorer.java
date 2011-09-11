@@ -40,6 +40,8 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|similarities
+operator|.
 name|Similarity
 operator|.
 name|ExactDocScorer

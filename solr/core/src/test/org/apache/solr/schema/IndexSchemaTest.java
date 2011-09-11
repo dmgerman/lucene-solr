@@ -148,6 +148,8 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|similarities
+operator|.
 name|SimilarityProvider
 import|;
 end_import

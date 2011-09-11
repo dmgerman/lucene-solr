@@ -50,6 +50,22 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|similarities
+operator|.
+name|Similarity
+import|;
+end_import
+
 begin_class
 DECL|class|ExactPhraseScorer
 specifier|final

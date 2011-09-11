@@ -32,6 +32,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -123,7 +133,7 @@ specifier|static
 name|float
 name|EXPLAIN_SCORE_TOLERANCE_DELTA
 init|=
-literal|0.0002f
+literal|0.02f
 decl_stmt|;
 comment|/**    * Tests that all documents up to maxDoc which are *not* in the    * expected result set, have an explanation which indicates that     * the document does not match    */
 DECL|method|checkNoMatchExplanations
@@ -1707,6 +1717,23 @@ operator|.
 name|getDetails
 argument_list|()
 decl_stmt|;
+comment|// TODO: can we improve this entire method? its really geared to work only with TF/IDF
+if|if
+condition|(
+name|expl
+operator|.
+name|getDescription
+argument_list|()
+operator|.
+name|endsWith
+argument_list|(
+literal|"computed from:"
+argument_list|)
+condition|)
+block|{
+return|return;
+comment|// something more complicated.
+block|}
 if|if
 condition|(
 name|detail
@@ -1774,7 +1801,11 @@ name|getDescription
 argument_list|()
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|)
 decl_stmt|;
 name|boolean
 name|productOf

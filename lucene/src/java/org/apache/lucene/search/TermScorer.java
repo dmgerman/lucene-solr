@@ -40,6 +40,22 @@ name|DocsEnum
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|similarities
+operator|.
+name|Similarity
+import|;
+end_import
+
 begin_comment
 comment|/** Expert: A<code>Scorer</code> for documents matching a<code>Term</code>.  */
 end_comment

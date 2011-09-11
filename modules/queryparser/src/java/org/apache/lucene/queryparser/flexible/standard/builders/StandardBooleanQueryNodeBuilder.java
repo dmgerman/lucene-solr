@@ -258,7 +258,9 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|SimilarityProvider
+name|BooleanQuery
+operator|.
+name|TooManyClauses
 import|;
 end_import
 
@@ -272,9 +274,9 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BooleanQuery
+name|similarities
 operator|.
-name|TooManyClauses
+name|SimilarityProvider
 import|;
 end_import
 

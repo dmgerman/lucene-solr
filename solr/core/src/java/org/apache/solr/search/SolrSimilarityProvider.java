@@ -26,6 +26,8 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|similarities
+operator|.
 name|DefaultSimilarityProvider
 import|;
 end_import
@@ -39,6 +41,8 @@ operator|.
 name|lucene
 operator|.
 name|search
+operator|.
+name|similarities
 operator|.
 name|Similarity
 import|;

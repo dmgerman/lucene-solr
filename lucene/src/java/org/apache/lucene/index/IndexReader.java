@@ -206,6 +206,8 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|similarities
+operator|.
 name|Similarity
 import|;
 end_import
@@ -1943,7 +1945,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  By default, the norm represents the product of the field's {@link    * org.apache.lucene.document.Field#setBoost(float) boost} and its    * length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    *<b>NOTE:</b> If this field does not index norms, then    * this method throws {@link IllegalStateException}.    *    * @see #norms(String)    * @see Similarity#computeNorm(FieldInvertState)    * @see org.apache.lucene.search.DefaultSimilarity#decodeNormValue(byte)    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    * @throws IllegalStateException if the field does not index norms    */
+comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  By default, the norm represents the product of the field's {@link    * org.apache.lucene.document.Field#setBoost(float) boost} and its    * length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    *<b>NOTE:</b> If this field does not index norms, then    * this method throws {@link IllegalStateException}.    *    * @see #norms(String)    * @see Similarity#computeNorm(FieldInvertState)    * @see org.apache.lucene.search.similarities.DefaultSimilarity#decodeNormValue(byte)    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    * @throws IllegalStateException if the field does not index norms    */
 DECL|method|setNorm
 specifier|public
 specifier|synchronized

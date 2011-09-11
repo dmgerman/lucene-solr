@@ -142,6 +142,22 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|similarities
+operator|.
+name|DefaultSimilarityProvider
+import|;
+end_import
+
 begin_comment
 comment|/*******************************************************************************  * Some expanded tests to make sure my patch doesn't break other SpanTermQuery  * functionality.  *   */
 end_comment
@@ -225,6 +241,13 @@ argument_list|(
 name|newLogMergePolicy
 argument_list|()
 argument_list|)
+operator|.
+name|setSimilarityProvider
+argument_list|(
+operator|new
+name|DefaultSimilarityProvider
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|addDocument
@@ -281,6 +304,15 @@ operator|=
 name|newSearcher
 argument_list|(
 name|reader2
+argument_list|)
+expr_stmt|;
+name|searcher2
+operator|.
+name|setSimilarityProvider
+argument_list|(
+operator|new
+name|DefaultSimilarityProvider
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
