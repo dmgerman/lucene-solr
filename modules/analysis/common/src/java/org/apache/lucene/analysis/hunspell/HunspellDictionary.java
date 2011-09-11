@@ -1263,7 +1263,7 @@ name|decoder
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// nocommit, don't create millions of strings.
+comment|// TODO: don't create millions of strings.
 name|String
 name|line
 init|=
@@ -1283,7 +1283,7 @@ argument_list|(
 name|line
 argument_list|)
 decl_stmt|;
-comment|// nocommit, the flags themselves can be double-chars (long) or also numeric
+comment|// TODO: the flags themselves can be double-chars (long) or also numeric
 comment|// either way the trick is to encode them as char... but they must be parsed differently
 while|while
 condition|(
