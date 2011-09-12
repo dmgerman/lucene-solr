@@ -1620,6 +1620,13 @@ argument_list|,
 name|documentsWriter
 argument_list|)
 decl_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|perThread
@@ -1647,10 +1654,31 @@ name|perThread
 argument_list|)
 expr_stmt|;
 block|}
+name|success
+operator|=
+literal|true
+expr_stmt|;
 comment|// simply return the ThreadState even in a flush all case sine we already hold the lock
 return|return
 name|perThread
 return|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+comment|// make sure we unlock if this fails
+name|perThread
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 DECL|method|markForFullFlush
 name|void
