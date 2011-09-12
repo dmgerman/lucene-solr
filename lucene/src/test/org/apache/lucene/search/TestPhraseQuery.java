@@ -307,14 +307,14 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|Analyzer
+name|ReusableAnalyzerBase
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
-name|TokenStream
-name|tokenStream
+name|TokenStreamComponents
+name|createComponents
 parameter_list|(
 name|String
 name|fieldName
@@ -325,6 +325,9 @@ parameter_list|)
 block|{
 return|return
 operator|new
+name|TokenStreamComponents
+argument_list|(
+operator|new
 name|MockTokenizer
 argument_list|(
 name|reader
@@ -334,6 +337,7 @@ operator|.
 name|WHITESPACE
 argument_list|,
 literal|false
+argument_list|)
 argument_list|)
 return|;
 block|}

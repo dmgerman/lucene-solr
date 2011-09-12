@@ -11709,7 +11709,7 @@ specifier|final
 class|class
 name|SynonymAnalyzer
 extends|extends
-name|Analyzer
+name|ReusableAnalyzerBase
 block|{
 DECL|field|synonyms
 specifier|private
@@ -11744,10 +11744,10 @@ block|}
 comment|/*    * (non-Javadoc)    *     * @see org.apache.lucene.analysis.Analyzer#tokenStream(java.lang.String,    *      java.io.Reader)    */
 annotation|@
 name|Override
-DECL|method|tokenStream
+DECL|method|createComponents
 specifier|public
-name|TokenStream
-name|tokenStream
+name|TokenStreamComponents
+name|createComponents
 parameter_list|(
 name|String
 name|arg0
@@ -11800,11 +11800,17 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
+name|TokenStreamComponents
+argument_list|(
+name|stream
+argument_list|,
+operator|new
 name|SynonymTokenizer
 argument_list|(
 name|stream
 argument_list|,
 name|synonyms
+argument_list|)
 argument_list|)
 return|;
 block|}

@@ -411,7 +411,7 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-name|boolean
+name|void
 name|reset
 parameter_list|(
 specifier|final
@@ -432,14 +432,13 @@ operator|.
 name|maxTokenLength
 argument_list|)
 expr_stmt|;
-return|return
 name|super
 operator|.
 name|reset
 argument_list|(
 name|reader
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 block|}
 return|;

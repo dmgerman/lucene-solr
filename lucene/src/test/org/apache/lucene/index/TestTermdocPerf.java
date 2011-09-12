@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|ReusableAnalyzerBase
 import|;
 end_import
 
@@ -428,14 +428,14 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|Analyzer
+name|ReusableAnalyzerBase
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
-name|TokenStream
-name|tokenStream
+name|TokenStreamComponents
+name|createComponents
 parameter_list|(
 name|String
 name|fieldName
@@ -445,7 +445,11 @@ name|reader
 parameter_list|)
 block|{
 return|return
+operator|new
+name|TokenStreamComponents
+argument_list|(
 name|ts
+argument_list|)
 return|;
 block|}
 block|}

@@ -432,14 +432,14 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|Analyzer
+name|ReusableAnalyzerBase
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
-name|TokenStream
-name|tokenStream
+name|TokenStreamComponents
+name|createComponents
 parameter_list|(
 name|String
 name|fieldName
@@ -450,7 +450,10 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|TokenStream
+name|TokenStreamComponents
+argument_list|(
+operator|new
+name|Tokenizer
 argument_list|()
 block|{
 specifier|private
@@ -604,6 +607,7 @@ literal|0
 expr_stmt|;
 block|}
 block|}
+argument_list|)
 return|;
 block|}
 block|}
