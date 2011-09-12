@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Geometric as limiting form of the Bose-Einstein model.  The formula used in Lucene differs  * slightly from the one in the original paper: {@code F} is increased by {@code tfn}  * and {@code N} is increased by {@code F}.  * @lucene.experimental  */
+comment|/**  * Geometric as limiting form of the Bose-Einstein model.  The formula used in Lucene differs  * slightly from the one in the original paper: {@code F} is increased by {@code 1}  * and {@code N} is increased by {@code F}.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -65,27 +65,33 @@ parameter_list|)
 block|{
 comment|// just like in BE, approximation only holds true when F<< N, so we use lambda = F / (N + F)
 name|double
-name|lambda
+name|F
 init|=
 name|stats
 operator|.
 name|getTotalTermFreq
 argument_list|()
-operator|/
-call|(
+operator|+
+literal|1
+decl_stmt|;
 name|double
-call|)
-argument_list|(
+name|N
+init|=
 name|stats
 operator|.
 name|getNumberOfDocuments
 argument_list|()
+decl_stmt|;
+name|double
+name|lambda
+init|=
+name|F
+operator|/
+operator|(
+name|N
 operator|+
-name|stats
-operator|.
-name|getTotalTermFreq
-argument_list|()
-argument_list|)
+name|F
+operator|)
 decl_stmt|;
 comment|// -log(1 / (lambda + 1)) -> log(lambda + 1)
 return|return

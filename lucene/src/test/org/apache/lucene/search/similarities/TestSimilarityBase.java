@@ -1905,7 +1905,11 @@ name|FREQ
 operator|+
 literal|2000.0f
 operator|*
+operator|(
 name|TOTAL_TERM_FREQ
+operator|+
+literal|1
+operator|)
 operator|/
 operator|(
 name|NUMBER_OF_FIELD_TOKENS
@@ -1947,7 +1951,11 @@ operator|/
 operator|(
 name|a
 operator|*
+operator|(
 name|TOTAL_TERM_FREQ
+operator|+
+literal|1
+operator|)
 operator|/
 operator|(
 name|NUMBER_OF_FIELD_TOKENS
@@ -1999,7 +2007,11 @@ name|DOC_LEN
 operator|+
 literal|0.1f
 operator|*
+operator|(
 name|TOTAL_TERM_FREQ
+operator|+
+literal|1
+operator|)
 operator|/
 operator|(
 name|NUMBER_OF_FIELD_TOKENS
@@ -2023,7 +2035,11 @@ operator|/
 operator|(
 literal|0.1f
 operator|*
+operator|(
 name|TOTAL_TERM_FREQ
+operator|+
+literal|1
+operator|)
 operator|/
 operator|(
 name|NUMBER_OF_FIELD_TOKENS
@@ -2080,7 +2096,7 @@ name|correctnessTestCore
 argument_list|(
 name|sim
 argument_list|,
-literal|4.26267987704f
+literal|4.178574562072754f
 argument_list|)
 expr_stmt|;
 block|}
@@ -2118,7 +2134,7 @@ name|correctnessTestCore
 argument_list|(
 name|sim
 argument_list|,
-literal|2.24069910825f
+literal|2.2387237548828125f
 argument_list|)
 expr_stmt|;
 block|}
@@ -2189,13 +2205,17 @@ name|lambda
 init|=
 operator|(
 literal|1.0f
-operator|*
+operator|+
 name|TOTAL_TERM_FREQ
 operator|)
 operator|/
+operator|(
+literal|1f
+operator|+
 name|NUMBER_OF_DOCUMENTS
+operator|)
 decl_stmt|;
-comment|// 0.7
+comment|// 0.7029703
 name|float
 name|p
 init|=
@@ -2253,7 +2273,7 @@ name|tfn
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// 21.1113611585
+comment|// 21.065619
 name|float
 name|gold
 init|=
@@ -2261,7 +2281,7 @@ name|l
 operator|*
 name|p
 decl_stmt|;
-comment|// 2.29734137536
+comment|// 2.2923636
 name|correctnessTestCore
 argument_list|(
 name|sim
@@ -2302,7 +2322,7 @@ name|correctnessTestCore
 argument_list|(
 name|sim
 argument_list|,
-literal|6.23455315685f
+literal|5.747603416442871f
 argument_list|)
 expr_stmt|;
 block|}
@@ -2338,7 +2358,7 @@ name|correctnessTestCore
 argument_list|(
 name|sim
 argument_list|,
-literal|1.6463143825531006f
+literal|1.6390540599822998f
 argument_list|)
 expr_stmt|;
 block|}
@@ -2387,10 +2407,16 @@ operator|(
 name|TOTAL_TERM_FREQ
 operator|+
 literal|1
+operator|+
+literal|1
 operator|)
 operator|/
 operator|(
+operator|(
 name|DOC_FREQ
+operator|+
+literal|1
+operator|)
 operator|*
 operator|(
 name|tfn
@@ -2399,22 +2425,24 @@ literal|1
 operator|)
 operator|)
 decl_stmt|;
-comment|// 0.728205128205
-name|float
+comment|// 0.67132866
+name|double
 name|f
 init|=
 name|TOTAL_TERM_FREQ
 operator|+
+literal|1
+operator|+
 name|tfn
 decl_stmt|;
-name|float
+name|double
 name|n
 init|=
 name|f
 operator|+
 name|NUMBER_OF_DOCUMENTS
 decl_stmt|;
-name|float
+name|double
 name|n1
 init|=
 name|n
@@ -2423,8 +2451,8 @@ name|f
 operator|-
 literal|1
 decl_stmt|;
-comment|// 256.5
-name|float
+comment|// 258.5
+name|double
 name|m1
 init|=
 name|n
@@ -2435,21 +2463,21 @@ name|tfn
 operator|-
 literal|2
 decl_stmt|;
-comment|// 246.75
-name|float
+comment|// 248.75
+name|double
 name|n2
 init|=
 name|f
 decl_stmt|;
-comment|// 78.75
-name|float
+comment|// 79.75
+name|double
 name|m2
 init|=
 name|f
 operator|-
 name|tfn
 decl_stmt|;
-comment|// 70.0
+comment|// 71.0
 name|float
 name|be
 init|=
@@ -2476,7 +2504,7 @@ operator|.
 name|E
 argument_list|)
 operator|+
-comment|// -8.916400790508378
+comment|// -8.924494472554715
 operator|(
 operator|(
 name|m1
@@ -2507,7 +2535,7 @@ name|n1
 argument_list|)
 operator|)
 operator|-
-comment|// 91.85089272283668
+comment|// 91.9620374903885
 operator|(
 operator|(
 name|m2
@@ -2539,8 +2567,8 @@ argument_list|)
 operator|)
 argument_list|)
 decl_stmt|;
-comment|// 67.09778276257171
-comment|// 15.836709
+comment|// 67.26544321004599
+comment|// 15.7720995
 name|float
 name|gold
 init|=
@@ -2548,7 +2576,7 @@ name|b
 operator|*
 name|be
 decl_stmt|;
-comment|// 11.532373
+comment|// 10.588263
 name|correctnessTestCore
 argument_list|(
 name|sim
@@ -2595,6 +2623,8 @@ init|=
 name|TOTAL_TERM_FREQ
 operator|+
 name|FREQ
+operator|+
+literal|1
 decl_stmt|;
 name|double
 name|p
@@ -2607,7 +2637,7 @@ operator|+
 literal|1
 operator|)
 decl_stmt|;
-comment|// 0.009900990099
+comment|// 0.009900990099009901
 name|double
 name|phi
 init|=
@@ -2615,7 +2645,7 @@ name|FREQ
 operator|/
 name|totalTermFreqNorm
 decl_stmt|;
-comment|// 0.09090909090909091
+comment|// 0.08974358974358974
 name|double
 name|D
 init|=
@@ -2630,7 +2660,7 @@ operator|/
 name|p
 argument_list|)
 operator|+
-comment|// 0.17884523239871358
+comment|// 0.17498542370019005
 operator|(
 literal|1
 operator|-
@@ -2689,7 +2719,7 @@ operator|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// 16.449575
+comment|// 16.328257
 name|correctnessTestCore
 argument_list|(
 name|sim
@@ -2823,10 +2853,16 @@ operator|(
 name|TOTAL_TERM_FREQ
 operator|+
 literal|1
+operator|+
+literal|1
 operator|)
 operator|/
 operator|(
+operator|(
 name|DOC_FREQ
+operator|+
+literal|1
+operator|)
 operator|*
 operator|(
 name|FREQ

@@ -406,12 +406,13 @@ parameter_list|)
 block|{
 return|return
 operator|(
-name|float
-operator|)
 name|stats
 operator|.
 name|getTotalTermFreq
 argument_list|()
+operator|+
+literal|1F
+operator|)
 operator|/
 operator|(
 name|stats
@@ -419,7 +420,7 @@ operator|.
 name|getNumberOfFieldTokens
 argument_list|()
 operator|+
-literal|1
+literal|1F
 operator|)
 return|;
 block|}

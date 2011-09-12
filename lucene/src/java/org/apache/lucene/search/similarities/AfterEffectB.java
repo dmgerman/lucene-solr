@@ -66,6 +66,8 @@ name|stats
 operator|.
 name|getTotalTermFreq
 argument_list|()
+operator|+
+literal|1
 decl_stmt|;
 name|int
 name|n
@@ -74,6 +76,8 @@ name|stats
 operator|.
 name|getDocFreq
 argument_list|()
+operator|+
+literal|1
 decl_stmt|;
 return|return
 operator|(
