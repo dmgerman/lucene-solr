@@ -1203,7 +1203,7 @@ index|]
 operator|.
 name|score
 argument_list|,
-literal|0.0000001f
+literal|0.000001f
 argument_list|)
 expr_stmt|;
 block|}
