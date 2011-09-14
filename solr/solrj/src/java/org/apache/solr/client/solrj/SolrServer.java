@@ -289,11 +289,21 @@ name|SolrServer
 implements|implements
 name|Serializable
 block|{
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1L
+decl_stmt|;
 DECL|field|binder
 specifier|private
 name|DocumentObjectBinder
 name|binder
 decl_stmt|;
+comment|/**    * Adds a collection of documents    * @param docs  the collection of documents    * @throws SolrServerException    * @throws IOException    */
 DECL|method|add
 specifier|public
 name|UpdateResponse
@@ -304,6 +314,36 @@ argument_list|<
 name|SolrInputDocument
 argument_list|>
 name|docs
+parameter_list|)
+throws|throws
+name|SolrServerException
+throws|,
+name|IOException
+block|{
+return|return
+name|add
+argument_list|(
+name|docs
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+return|;
+block|}
+comment|/**    * Adds a collection of documents, specifying max time before they become committed    * @param docs  the collection of documents    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.4    */
+DECL|method|add
+specifier|public
+name|UpdateResponse
+name|add
+parameter_list|(
+name|Collection
+argument_list|<
+name|SolrInputDocument
+argument_list|>
+name|docs
+parameter_list|,
+name|int
+name|commitWithinMs
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -324,6 +364,13 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
+name|req
+operator|.
+name|setCommitWithin
+argument_list|(
+name|commitWithinMs
+argument_list|)
+expr_stmt|;
 return|return
 name|req
 operator|.
@@ -333,6 +380,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/**    * Adds a collection of beans    * @param beans  the collection of beans    * @throws SolrServerException    * @throws IOException    */
 DECL|method|addBeans
 specifier|public
 name|UpdateResponse
@@ -343,6 +391,36 @@ argument_list|<
 name|?
 argument_list|>
 name|beans
+parameter_list|)
+throws|throws
+name|SolrServerException
+throws|,
+name|IOException
+block|{
+return|return
+name|addBeans
+argument_list|(
+name|beans
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+return|;
+block|}
+comment|/**    * Adds a collection of beans specifying max time before they become committed    * @param beans  the collection of beans    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.4    */
+DECL|method|addBeans
+specifier|public
+name|UpdateResponse
+name|addBeans
+parameter_list|(
+name|Collection
+argument_list|<
+name|?
+argument_list|>
+name|beans
+parameter_list|,
+name|int
+name|commitWithinMs
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -400,9 +478,12 @@ return|return
 name|add
 argument_list|(
 name|docs
+argument_list|,
+name|commitWithinMs
 argument_list|)
 return|;
 block|}
+comment|/**    * Adds a single document    * @param doc  the input document    * @throws SolrServerException    * @throws IOException    */
 DECL|method|add
 specifier|public
 name|UpdateResponse
@@ -410,6 +491,33 @@ name|add
 parameter_list|(
 name|SolrInputDocument
 name|doc
+parameter_list|)
+throws|throws
+name|SolrServerException
+throws|,
+name|IOException
+block|{
+return|return
+name|add
+argument_list|(
+name|doc
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+return|;
+block|}
+comment|/**    * Adds a single document specifying max time before it becomes committed    * @param doc  the input document    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.4    */
+DECL|method|add
+specifier|public
+name|UpdateResponse
+name|add
+parameter_list|(
+name|SolrInputDocument
+name|doc
+parameter_list|,
+name|int
+name|commitWithinMs
 parameter_list|)
 throws|throws
 name|SolrServerException
@@ -430,6 +538,13 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|req
+operator|.
+name|setCommitWithin
+argument_list|(
+name|commitWithinMs
+argument_list|)
+expr_stmt|;
 return|return
 name|req
 operator|.
@@ -439,6 +554,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/**    * Adds a single bean    * @param obj  the input bean    * @throws SolrServerException    * @throws IOException    */
 DECL|method|addBean
 specifier|public
 name|UpdateResponse
@@ -446,6 +562,33 @@ name|addBean
 parameter_list|(
 name|Object
 name|obj
+parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|SolrServerException
+block|{
+return|return
+name|addBean
+argument_list|(
+name|obj
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+return|;
+block|}
+comment|/**    * Adds a single bean specifying max time before it becomes committed    * @param obj  the input bean    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.4    */
+DECL|method|addBean
+specifier|public
+name|UpdateResponse
+name|addBean
+parameter_list|(
+name|Object
+name|obj
+parameter_list|,
+name|int
+name|commitWithinMs
 parameter_list|)
 throws|throws
 name|IOException
@@ -462,10 +605,12 @@ name|toSolrInputDocument
 argument_list|(
 name|obj
 argument_list|)
+argument_list|,
+name|commitWithinMs
 argument_list|)
 return|;
 block|}
-comment|/** waitFlush=true and waitSearcher=true to be inline with the defaults for plain HTTP access    * @throws IOException     */
+comment|/**     * Performs an explicit commit, causing pending documents to be committed for indexing    *<p>    * waitFlush=true and waitSearcher=true to be inline with the defaults for plain HTTP access    * @throws SolrServerException    * @throws IOException     */
 DECL|method|commit
 specifier|public
 name|UpdateResponse
@@ -485,7 +630,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** waitFlush=true and waitSearcher=true to be inline with the defaults for plain HTTP access    * @throws IOException     */
+comment|/**     * Performs an explicit optimize, causing a merge of all segments to one.    *<p>    * waitFlush=true and waitSearcher=true to be inline with the defaults for plain HTTP access    *<p>    * Note: In most cases it is not required to do explicit optimize    * @throws SolrServerException    * @throws IOException     */
 DECL|method|optimize
 specifier|public
 name|UpdateResponse
@@ -507,6 +652,7 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/**     * Performs an explicit commit, causing pending documents to be committed for indexing    * @param waitFlush  block until index changes are flushed to disk    * @param waitSearcher  block until a new searcher is opened and registered as the main query searcher, making the changes visible     * @throws SolrServerException    * @throws IOException    */
 DECL|method|commit
 specifier|public
 name|UpdateResponse
@@ -547,6 +693,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/**     * Performs an explicit optimize, causing a merge of all segments to one.    *<p>    * Note: In most cases it is not required to do explicit optimize    * @param waitFlush  block until index changes are flushed to disk    * @param waitSearcher  block until a new searcher is opened and registered as the main query searcher, making the changes visible     * @throws SolrServerException    * @throws IOException     */
 DECL|method|optimize
 specifier|public
 name|UpdateResponse
@@ -574,6 +721,7 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/**     * Performs an explicit optimize, causing a merge of all segments to one.    *<p>    * Note: In most cases it is not required to do explicit optimize    * @param waitFlush  block until index changes are flushed to disk    * @param waitSearcher  block until a new searcher is opened and registered as the main query searcher, making the changes visible     * @param maxSegments  optimizes down to at most this number of segments    * @throws SolrServerException    * @throws IOException     */
 DECL|method|optimize
 specifier|public
 name|UpdateResponse
@@ -619,6 +767,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/**    * Performs a rollback of all non-committed documents pending.    *<p>    * Note that this is not a true rollback as in databases. Content you have previously    * added may have been committed due to autoCommit, buffer full, other client performing    * a commit etc.    * @throws SolrServerException    * @throws IOException    */
 DECL|method|rollback
 specifier|public
 name|UpdateResponse
@@ -643,6 +792,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/**    * Deletes a single document by unique ID    * @param id  the ID of the document to delete    * @throws SolrServerException    * @throws IOException    */
 DECL|method|deleteById
 specifier|public
 name|UpdateResponse
@@ -672,6 +822,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/**    * Deletes a list of documents by unique ID    * @param ids  the list of document IDs to delete     * @throws SolrServerException    * @throws IOException    */
 DECL|method|deleteById
 specifier|public
 name|UpdateResponse
@@ -704,6 +855,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/**    * Deletes documents from the index based on a query    * @param query  the query expressing what documents to delete    * @throws SolrServerException    * @throws IOException    */
 DECL|method|deleteByQuery
 specifier|public
 name|UpdateResponse
@@ -733,6 +885,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/**    * Issues a ping request to check if the server is alive    * @throws SolrServerException    * @throws IOException    */
 DECL|method|ping
 specifier|public
 name|SolrPingResponse
@@ -754,6 +907,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/**    * Performs a query to the Solr server    * @param params  an object holding all key/value parameters to send along the request    * @throws SolrServerException    */
 DECL|method|query
 specifier|public
 name|QueryResponse
@@ -778,6 +932,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/**    * Performs a query to the Solr server    * @param params  an object holding all key/value parameters to send along the request    * @param method  specifies the HTTP method to use for the request, such as GET or POST    * @throws SolrServerException    */
 DECL|method|query
 specifier|public
 name|QueryResponse
