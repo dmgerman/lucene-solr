@@ -341,6 +341,27 @@ name|SolrFragmentsBuilder
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|// Thread safe registry
+DECL|field|boundaryScanners
+specifier|protected
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|SolrBoundaryScanner
+argument_list|>
+name|boundaryScanners
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|SolrBoundaryScanner
+argument_list|>
+argument_list|()
+decl_stmt|;
 annotation|@
 name|Deprecated
 DECL|method|initalize
