@@ -330,7 +330,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Adds a collection of documents, specifying max time before they become committed    * @param docs  the collection of documents    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.4    */
+comment|/**    * Adds a collection of documents, specifying max time before they become committed    * @param docs  the collection of documents    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.5    */
 DECL|method|add
 specifier|public
 name|UpdateResponse
@@ -407,7 +407,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Adds a collection of beans specifying max time before they become committed    * @param beans  the collection of beans    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.4    */
+comment|/**    * Adds a collection of beans specifying max time before they become committed    * @param beans  the collection of beans    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.5    */
 DECL|method|addBeans
 specifier|public
 name|UpdateResponse
@@ -507,7 +507,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Adds a single document specifying max time before it becomes committed    * @param doc  the input document    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.4    */
+comment|/**    * Adds a single document specifying max time before it becomes committed    * @param doc  the input document    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.5    */
 DECL|method|add
 specifier|public
 name|UpdateResponse
@@ -578,7 +578,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Adds a single bean specifying max time before it becomes committed    * @param obj  the input bean    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.4    */
+comment|/**    * Adds a single bean specifying max time before it becomes committed    * @param obj  the input bean    * @param commitWithinMs  max time (in ms) before a commit will happen     * @throws SolrServerException    * @throws IOException    * @since solr 3.5    */
 DECL|method|addBean
 specifier|public
 name|UpdateResponse
