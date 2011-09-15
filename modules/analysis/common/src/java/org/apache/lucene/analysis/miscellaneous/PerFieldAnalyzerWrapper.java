@@ -86,6 +86,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -101,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This analyzer is used to facilitate scenarios where different  * fields require different analysis techniques.  Use {@link #addAnalyzer}  * to add a non-default analyzer on a field name basis.  *   *<p>Example usage:  *   *<pre>  *   PerFieldAnalyzerWrapper aWrapper =  *      new PerFieldAnalyzerWrapper(new StandardAnalyzer());  *   aWrapper.addAnalyzer("firstname", new KeywordAnalyzer());  *   aWrapper.addAnalyzer("lastname", new KeywordAnalyzer());  *</pre>  *   *<p>In this example, StandardAnalyzer will be used for all fields except "firstname"  * and "lastname", for which KeywordAnalyzer will be used.  *   *<p>A PerFieldAnalyzerWrapper can be used like any other analyzer, for both indexing  * and query parsing.  */
+comment|/**  * This analyzer is used to facilitate scenarios where different  * fields require different analysis techniques.  Use the Map  * argument in {@link #PerFieldAnalyzerWrapper(Analyzer, java.util.Map)}  * to add non-default analyzers for fields.  *   *<p>Example usage:  *   *<pre>  *   Map analyzerPerField = new HashMap();  *   analyzerPerField.put("firstname", new KeywordAnalyzer());  *   analyzerPerField.put("lastname", new KeywordAnalyzer());  *  *   PerFieldAnalyzerWrapper aWrapper =  *      new PerFieldAnalyzerWrapper(new StandardAnalyzer(), analyzerPerField);  *</pre>  *   *<p>In this example, StandardAnalyzer will be used for all fields except "firstname"  * and "lastname", for which KeywordAnalyzer will be used.  *   *<p>A PerFieldAnalyzerWrapper can be used like any other analyzer, for both indexing  * and query parsing.  */
 end_comment
 
 begin_class
@@ -115,27 +125,20 @@ name|Analyzer
 block|{
 DECL|field|defaultAnalyzer
 specifier|private
+specifier|final
 name|Analyzer
 name|defaultAnalyzer
 decl_stmt|;
-DECL|field|analyzerMap
+DECL|field|fieldAnalyzers
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
 argument_list|,
 name|Analyzer
 argument_list|>
-name|analyzerMap
-init|=
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Analyzer
-argument_list|>
-argument_list|()
+name|fieldAnalyzers
 decl_stmt|;
 comment|/**    * Constructs with default analyzer.    *    * @param defaultAnalyzer Any fields not specifically    * defined to use a different analyzer will use the one provided here.    */
 DECL|method|PerFieldAnalyzerWrapper
@@ -177,43 +180,27 @@ name|defaultAnalyzer
 operator|=
 name|defaultAnalyzer
 expr_stmt|;
-if|if
-condition|(
+name|this
+operator|.
+name|fieldAnalyzers
+operator|=
+operator|(
 name|fieldAnalyzers
 operator|!=
 literal|null
-condition|)
-block|{
-name|analyzerMap
-operator|.
-name|putAll
-argument_list|(
+operator|)
+condition|?
 name|fieldAnalyzers
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Defines an analyzer to use for the specified field.    *    * @param fieldName field name requiring a non-default analyzer    * @param analyzer non-default analyzer to use for field    */
-DECL|method|addAnalyzer
-specifier|public
-name|void
-name|addAnalyzer
-parameter_list|(
-name|String
-name|fieldName
-parameter_list|,
-name|Analyzer
-name|analyzer
-parameter_list|)
-block|{
-name|analyzerMap
+else|:
+name|Collections
 operator|.
-name|put
-argument_list|(
-name|fieldName
-argument_list|,
-name|analyzer
-argument_list|)
+expr|<
+name|String
+operator|,
+name|Analyzer
+operator|>
+name|emptyMap
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -233,7 +220,7 @@ block|{
 name|Analyzer
 name|analyzer
 init|=
-name|analyzerMap
+name|fieldAnalyzers
 operator|.
 name|get
 argument_list|(
@@ -282,7 +269,7 @@ block|{
 name|Analyzer
 name|analyzer
 init|=
-name|analyzerMap
+name|fieldAnalyzers
 operator|.
 name|get
 argument_list|(
@@ -325,7 +312,7 @@ block|{
 name|Analyzer
 name|analyzer
 init|=
-name|analyzerMap
+name|fieldAnalyzers
 operator|.
 name|get
 argument_list|(
@@ -366,7 +353,7 @@ block|{
 name|Analyzer
 name|analyzer
 init|=
-name|analyzerMap
+name|fieldAnalyzers
 operator|.
 name|get
 argument_list|(
@@ -408,7 +395,7 @@ block|{
 return|return
 literal|"PerFieldAnalyzerWrapper("
 operator|+
-name|analyzerMap
+name|fieldAnalyzers
 operator|+
 literal|", default="
 operator|+
