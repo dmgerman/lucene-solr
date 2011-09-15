@@ -1315,7 +1315,7 @@ operator|&&
 name|greedy
 condition|)
 block|{
-comment|// We have enough suggestion to return immediately. Keep on looking for an
+comment|// We have enough suggestions to return immediately. Keep on looking for an
 comment|// exact match, if requested.
 if|if
 condition|(
