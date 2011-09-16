@@ -751,7 +751,7 @@ operator|=
 name|acc
 expr_stmt|;
 block|}
-comment|/**    * The accuracy (minimum score) to be used, unless overridden in {@link #suggestSimilar(String, int, org.apache.lucene.index.IndexReader, String, boolean, float)}, to    * decide whether a suggestion is included or not.    * @return The current accuracy setting    */
+comment|/**    * The accuracy (minimum score) to be used, unless overridden in {@link #suggestSimilar(String, int, IndexReader, String, SuggestMode, float)}, to    * decide whether a suggestion is included or not.    * @return The current accuracy setting    */
 DECL|method|getAccuracy
 specifier|public
 name|float
@@ -762,7 +762,7 @@ return|return
 name|accuracy
 return|;
 block|}
-comment|/**    * Suggest similar words.    *     *<p>As the Lucene similarity that is used to fetch the most relevant n-grammed terms    * is not the same as the edit distance strategy used to calculate the best    * matching spell-checked word from the hits that Lucene found, one usually has    * to retrieve a couple of numSug's in order to get the true best match.    *    *<p>I.e. if numSug == 1, don't count on that suggestion being the best one.    * Thus, you should set this value to<b>at least</b> 5 for a good suggestion.    *    * @param word the word you want a spell check done on    * @param numSug the number of suggested words    * @throws IOException if the underlying index throws an {@link IOException}    * @throws AlreadyClosedException if the Spellchecker is already closed    * @return String[]    *    * @see #suggestSimilar(String, int, org.apache.lucene.index.IndexReader, String, boolean, float)     */
+comment|/**    * Suggest similar words.    *     *<p>As the Lucene similarity that is used to fetch the most relevant n-grammed terms    * is not the same as the edit distance strategy used to calculate the best    * matching spell-checked word from the hits that Lucene found, one usually has    * to retrieve a couple of numSug's in order to get the true best match.    *    *<p>I.e. if numSug == 1, don't count on that suggestion being the best one.    * Thus, you should set this value to<b>at least</b> 5 for a good suggestion.    *    * @param word the word you want a spell check done on    * @param numSug the number of suggested words    * @throws IOException if the underlying index throws an {@link IOException}    * @throws AlreadyClosedException if the Spellchecker is already closed    * @return String[]    *    * @see #suggestSimilar(String, int, IndexReader, String, SuggestMode, float)     */
 DECL|method|suggestSimilar
 specifier|public
 name|String
@@ -797,7 +797,7 @@ name|SUGGEST_WHEN_NOT_IN_INDEX
 argument_list|)
 return|;
 block|}
-comment|/**    * Suggest similar words.    *    *<p>As the Lucene similarity that is used to fetch the most relevant n-grammed terms    * is not the same as the edit distance strategy used to calculate the best    * matching spell-checked word from the hits that Lucene found, one usually has    * to retrieve a couple of numSug's in order to get the true best match.    *    *<p>I.e. if numSug == 1, don't count on that suggestion being the best one.    * Thus, you should set this value to<b>at least</b> 5 for a good suggestion.    *    * @param word the word you want a spell check done on    * @param numSug the number of suggested words    * @param accuracy The minimum score a suggestion must have in order to qualify for inclusion in the results    * @throws IOException if the underlying index throws an {@link IOException}    * @throws AlreadyClosedException if the Spellchecker is already closed    * @return String[]    *    * @see #suggestSimilar(String, int, org.apache.lucene.index.IndexReader, String, boolean, float)    */
+comment|/**    * Suggest similar words.    *    *<p>As the Lucene similarity that is used to fetch the most relevant n-grammed terms    * is not the same as the edit distance strategy used to calculate the best    * matching spell-checked word from the hits that Lucene found, one usually has    * to retrieve a couple of numSug's in order to get the true best match.    *    *<p>I.e. if numSug == 1, don't count on that suggestion being the best one.    * Thus, you should set this value to<b>at least</b> 5 for a good suggestion.    *    * @param word the word you want a spell check done on    * @param numSug the number of suggested words    * @param accuracy The minimum score a suggestion must have in order to qualify for inclusion in the results    * @throws IOException if the underlying index throws an {@link IOException}    * @throws AlreadyClosedException if the Spellchecker is already closed    * @return String[]    *    * @see #suggestSimilar(String, int, IndexReader, String, SuggestMode, float)    */
 DECL|method|suggestSimilar
 specifier|public
 name|String

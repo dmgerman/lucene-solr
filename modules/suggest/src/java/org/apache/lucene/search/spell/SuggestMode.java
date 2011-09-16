@@ -36,7 +36,7 @@ comment|/**    * Return only suggested words that are as frequent or more freque
 DECL|enum constant|SUGGEST_MORE_POPULAR
 name|SUGGEST_MORE_POPULAR
 block|,
-comment|/**    * Always attempt to offer suggestions (however, other parameters may limit    * suggestions. For example, see    * {@link DirectSpellChecker.setMaxQueryFrequency} ).    */
+comment|/**    * Always attempt to offer suggestions (however, other parameters may limit    * suggestions. For example, see    * {@link DirectSpellChecker#setMaxQueryFrequency(float)} ).    */
 DECL|enum constant|SUGGEST_ALWAYS
 name|SUGGEST_ALWAYS
 block|}

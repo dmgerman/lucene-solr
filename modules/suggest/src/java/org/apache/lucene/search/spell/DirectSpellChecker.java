@@ -808,7 +808,7 @@ name|accuracy
 argument_list|)
 return|;
 block|}
-comment|/**    * Suggest similar words.    *     *<p>Unlike {@link SpellChecker}, the similarity used to fetch the most    * relevant terms is an edit distance, therefore typically a low value    * for numSug will work very well.    *     * @param term Term you want to spell check on    * @param numSug the maximum number of suggested words    * @param ir IndexReader to find terms from    * @param morePopular return only suggested words that are as frequent or more frequent than the searched word    * @param accuracy return only suggested words that match with this similarity    * @return sorted list of the suggested words according to the comparator    * @throws IOException    */
+comment|/**    * Suggest similar words.    *     *<p>Unlike {@link SpellChecker}, the similarity used to fetch the most    * relevant terms is an edit distance, therefore typically a low value    * for numSug will work very well.    *     * @param term Term you want to spell check on    * @param numSug the maximum number of suggested words    * @param ir IndexReader to find terms from    * @param suggestMode specifies when to return suggested words    * @param accuracy return only suggested words that match with this similarity    * @return sorted list of the suggested words according to the comparator    * @throws IOException    */
 DECL|method|suggestSimilar
 specifier|public
 name|SuggestWord
