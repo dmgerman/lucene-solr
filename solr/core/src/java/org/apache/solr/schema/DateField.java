@@ -1021,7 +1021,7 @@ operator|+
 literal|'Z'
 return|;
 block|}
-comment|/**    * @see {#formatExternal}    */
+comment|/**    * @see #formatExternal    */
 DECL|method|toExternal
 specifier|public
 name|String
