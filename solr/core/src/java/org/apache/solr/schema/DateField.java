@@ -976,7 +976,8 @@ return|;
 block|}
 comment|/**    * Thread safe method that can be used by subclasses to format a Date    * using the Internal representation.    */
 DECL|method|formatDate
-specifier|protected
+specifier|public
+specifier|static
 name|String
 name|formatDate
 parameter_list|(
@@ -997,10 +998,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Return the standard human readable form of the date    */
-DECL|method|toExternal
+DECL|method|formatExternal
 specifier|public
+specifier|static
 name|String
-name|toExternal
+name|formatExternal
 parameter_list|(
 name|Date
 name|d
@@ -1020,9 +1022,27 @@ operator|+
 literal|'Z'
 return|;
 block|}
+comment|/**    * @see {#formatExternal}    */
+DECL|method|toExternal
+specifier|public
+name|String
+name|toExternal
+parameter_list|(
+name|Date
+name|d
+parameter_list|)
+block|{
+return|return
+name|formatExternal
+argument_list|(
+name|d
+argument_list|)
+return|;
+block|}
 comment|/**    * Thread safe method that can be used by subclasses to parse a Date    * that is already in the internal representation    */
 DECL|method|parseDate
-specifier|protected
+specifier|public
+specifier|static
 name|Date
 name|parseDate
 parameter_list|(
@@ -1588,7 +1608,7 @@ literal|1000l
 decl_stmt|;
 if|if
 condition|(
-literal|0l
+literal|0L
 operator|==
 name|millis
 condition|)
@@ -1596,6 +1616,19 @@ block|{
 return|return
 name|toAppendTo
 return|;
+block|}
+if|if
+condition|(
+name|millis
+operator|<
+literal|0L
+condition|)
+block|{
+comment|// original date was prior to epoch
+name|millis
+operator|+=
+literal|1000L
+expr_stmt|;
 block|}
 name|int
 name|posBegin

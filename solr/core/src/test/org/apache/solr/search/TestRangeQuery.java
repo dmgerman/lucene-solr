@@ -524,13 +524,13 @@ index|[]
 name|dates
 init|=
 block|{
-literal|"1999-12-31T23:59:59.999Z"
+literal|"0299-12-31T23:59:59.999Z"
 block|,
 literal|"2000-01-01T00:00:00.000Z"
 block|,
 literal|"2000-01-01T00:00:00.001Z"
 block|,
-literal|"1999-12-31T23:59:59.998Z"
+literal|"0299-12-31T23:59:59.998Z"
 block|,
 literal|"2000-01-01T00:00:00.002Z"
 block|}
