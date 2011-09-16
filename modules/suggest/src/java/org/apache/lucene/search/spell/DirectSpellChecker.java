@@ -735,7 +735,7 @@ operator|=
 name|distance
 expr_stmt|;
 block|}
-comment|/**    * Calls {@link #suggestSimilar(Term, int, IndexReader, boolean)     *       suggestSimilar(term, numSug, ir, false)}    */
+comment|/**    * Calls {@link #suggestSimilar(Term, int, IndexReader, SuggestMode)     *       suggestSimilar(term, numSug, ir, SuggestMode.SUGGEST_WHEN_NOT_IN_INDEX)}    */
 DECL|method|suggestSimilar
 specifier|public
 name|SuggestWord
@@ -763,11 +763,13 @@ name|numSug
 argument_list|,
 name|ir
 argument_list|,
-literal|false
+name|SuggestMode
+operator|.
+name|SUGGEST_WHEN_NOT_IN_INDEX
 argument_list|)
 return|;
 block|}
-comment|/**    * Calls {@link #suggestSimilar(Term, int, IndexReader, boolean, float)     *       suggestSimilar(term, numSug, ir, morePopular, this.accuracy)}    */
+comment|/**    * Calls {@link #suggestSimilar(Term, int, IndexReader, SuggestMode, float)     *       suggestSimilar(term, numSug, ir, suggestMode, this.accuracy)}    *     */
 DECL|method|suggestSimilar
 specifier|public
 name|SuggestWord
@@ -783,8 +785,8 @@ parameter_list|,
 name|IndexReader
 name|ir
 parameter_list|,
-name|boolean
-name|morePopular
+name|SuggestMode
+name|suggestMode
 parameter_list|)
 throws|throws
 name|IOException
@@ -798,8 +800,10 @@ name|numSug
 argument_list|,
 name|ir
 argument_list|,
-name|morePopular
+name|suggestMode
 argument_list|,
+name|this
+operator|.
 name|accuracy
 argument_list|)
 return|;
@@ -820,8 +824,8 @@ parameter_list|,
 name|IndexReader
 name|ir
 parameter_list|,
-name|boolean
-name|morePopular
+name|SuggestMode
+name|suggestMode
 parameter_list|,
 name|float
 name|accuracy
@@ -908,12 +912,13 @@ argument_list|(
 name|term
 argument_list|)
 decl_stmt|;
-comment|// see line 341 of spellchecker. this is certainly very very nice for perf,
-comment|// but is it really the right way to go?
 if|if
 condition|(
-operator|!
-name|morePopular
+name|suggestMode
+operator|==
+name|SuggestMode
+operator|.
+name|SUGGEST_WHEN_NOT_IN_INDEX
 operator|&&
 name|docfreq
 operator|>
@@ -986,8 +991,11 @@ return|;
 block|}
 if|if
 condition|(
-operator|!
-name|morePopular
+name|suggestMode
+operator|!=
+name|SuggestMode
+operator|.
+name|SUGGEST_MORE_POPULAR
 condition|)
 name|docfreq
 operator|=
