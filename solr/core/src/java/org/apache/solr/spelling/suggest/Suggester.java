@@ -382,16 +382,6 @@ name|LOCATION
 init|=
 literal|"sourceLocation"
 decl_stmt|;
-comment|/** Field to use as the source of terms if using IndexReader. */
-DECL|field|FIELD
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|FIELD
-init|=
-literal|"field"
-decl_stmt|;
 comment|/** Fully-qualified class of the {@link Lookup} implementation. */
 DECL|field|LOOKUP_IMPL
 specifier|public
@@ -431,11 +421,6 @@ DECL|field|storeDir
 specifier|protected
 name|File
 name|storeDir
-decl_stmt|;
-DECL|field|field
-specifier|protected
-name|String
-name|field
 decl_stmt|;
 DECL|field|threshold
 specifier|protected
@@ -535,18 +520,6 @@ operator|.
 name|get
 argument_list|(
 name|LOCATION
-argument_list|)
-expr_stmt|;
-name|field
-operator|=
-operator|(
-name|String
-operator|)
-name|config
-operator|.
-name|get
-argument_list|(
-name|FIELD
 argument_list|)
 expr_stmt|;
 name|lookupImpl
