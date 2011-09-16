@@ -32,7 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|LinkedList
+name|Comparator
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
+name|LinkedList
 import|;
 end_import
 
@@ -90,23 +90,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|index
 operator|.
-name|NumericUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ToStringUtils
+name|FilteredTermsEnum
 import|;
 end_import
 
@@ -121,6 +107,20 @@ operator|.
 name|index
 operator|.
 name|Terms
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|TermsEnum
 import|;
 end_import
 
@@ -160,9 +160,23 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|TermsEnum
+name|NumericUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ToStringUtils
 import|;
 end_import
 
@@ -282,7 +296,7 @@ name|maxInclusive
 expr_stmt|;
 comment|// For bigger precisionSteps this query likely
 comment|// hits too many terms, so set to CONSTANT_SCORE_FILTER right off
-comment|// (especially as the FilteredTermEnum is costly if wasted only for AUTO tests because it
+comment|// (especially as the FilteredTermsEnum is costly if wasted only for AUTO tests because it
 comment|// creates new enums from IndexReader for each sub-range)
 switch|switch
 condition|(
