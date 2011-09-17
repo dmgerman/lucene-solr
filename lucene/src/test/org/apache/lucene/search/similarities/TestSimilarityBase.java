@@ -3217,8 +3217,12 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-literal|2
+literal|"2"
 argument_list|,
+name|reader
+operator|.
+name|document
+argument_list|(
 name|topDocs
 operator|.
 name|scoreDocs
@@ -3227,6 +3231,12 @@ literal|0
 index|]
 operator|.
 name|doc
+argument_list|)
+operator|.
+name|get
+argument_list|(
+name|FIELD_ID
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
