@@ -170,7 +170,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** Returns the original query if it was already a positive query, otherwise    * return the negative of the query (i.e., a positive query).    *<p>    * Example: both id:10 and id:-10 will return id:10    *<p>    * The caller can tell the sign of the original by a reference comparison between    * the original and returned query.    * @param q    * @return    */
+comment|/** Returns the original query if it was already a positive query, otherwise    * return the negative of the query (i.e., a positive query).    *<p>    * Example: both id:10 and id:-10 will return id:10    *<p>    * The caller can tell the sign of the original by a reference comparison between    * the original and returned query.    * @param q Query to create the absolute version of    * @return Absolute version of the Query    */
 DECL|method|getAbs
 specifier|public
 specifier|static

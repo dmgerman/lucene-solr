@@ -325,7 +325,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Sets the docSet based on the created {@link DocSet}      *      * @param searcher The searcher executing the      * @return      * @throws IOException      */
+comment|/**      * Sets the docSet based on the created {@link DocSet}      *      * @param searcher The searcher executing the      * @return this      * @throws IOException      */
 DECL|method|setDocSet
 specifier|public
 name|Builder
