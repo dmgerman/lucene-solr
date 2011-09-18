@@ -144,6 +144,17 @@ init|=
 name|getClass
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|clazz
+operator|.
+name|desiredAssertionStatus
+argument_list|()
+condition|)
+return|return
+literal|true
+return|;
 assert|assert
 name|clazz
 operator|.
