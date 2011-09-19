@@ -4,7 +4,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.handler
+DECL|package|org.apache.solr.update.processor
 package|package
 name|org
 operator|.
@@ -12,7 +12,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|handler
+name|update
+operator|.
+name|processor
 package|;
 end_package
 
@@ -99,22 +101,6 @@ operator|.
 name|update
 operator|.
 name|RollbackUpdateCommand
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|update
-operator|.
-name|processor
-operator|.
-name|UpdateRequestProcessor
 import|;
 end_import
 
