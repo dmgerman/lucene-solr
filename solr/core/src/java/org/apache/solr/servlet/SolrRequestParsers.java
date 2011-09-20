@@ -1740,17 +1740,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Only add it if it actually has something...
-elseif|else
-if|if
-condition|(
-name|item
-operator|.
-name|getSize
-argument_list|()
-operator|>
-literal|0
-condition|)
+comment|// Add the stream
+else|else
 block|{
 name|streams
 operator|.
