@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A<code>ShardResultTransformer</code> is responsible for transforming a grouped shard result into group related  * structures (such as {@link org.apache.lucene.search.grouping.TopGroups} and {@link org.apache.lucene.search.grouping.SearchGroup})  * and visa versa.  */
+comment|/**  * A<code>ShardResultTransformer</code> is responsible for transforming a grouped shard result into group related  * structures (such as {@link org.apache.lucene.search.grouping.TopGroups} and {@link org.apache.lucene.search.grouping.SearchGroup})  * and visa versa.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface

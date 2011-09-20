@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Responsible for transforming the grouped result into the final format for displaying purposes.  */
+comment|/**  * Responsible for transforming the grouped result into the final format for displaying purposes.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface

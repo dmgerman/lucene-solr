@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collector that filters incoming doc ids that are not in the filter  */
+comment|/**  * A collector that filters incoming doc ids that are not in the filter.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

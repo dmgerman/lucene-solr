@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Responsible for processing shard responses.  */
+comment|/**  * Responsible for processing shard responses.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface

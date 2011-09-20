@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Encapsulates the grouping options like fields group sort and more specified by clients.  */
+comment|/**  * Encapsulates the grouping options like fields group sort and more specified by clients.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -140,6 +140,11 @@ DECL|field|needScore
 specifier|private
 name|boolean
 name|needScore
+decl_stmt|;
+DECL|field|truncateGroups
+specifier|private
+name|boolean
+name|truncateGroups
 decl_stmt|;
 DECL|method|getFields
 specifier|public
@@ -514,6 +519,32 @@ operator|.
 name|needScore
 operator|=
 name|needScore
+expr_stmt|;
+block|}
+DECL|method|isTruncateGroups
+specifier|public
+name|boolean
+name|isTruncateGroups
+parameter_list|()
+block|{
+return|return
+name|truncateGroups
+return|;
+block|}
+DECL|method|setTruncateGroups
+specifier|public
+name|void
+name|setTruncateGroups
+parameter_list|(
+name|boolean
+name|truncateGroups
+parameter_list|)
+block|{
+name|this
+operator|.
+name|truncateGroups
+operator|=
+name|truncateGroups
 expr_stmt|;
 block|}
 block|}

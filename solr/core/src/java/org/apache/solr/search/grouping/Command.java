@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  */
+comment|/**  * Defines a grouping command.  * This is an abstraction on how the {@link Collector} instances are created  * and how the results are retrieved from the {@link Collector} instances.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface
@@ -93,6 +93,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
+comment|/**    * Returns a list of {@link Collector} instances to be    * included in the search based on the .    *    * @return a list of {@link Collector} instances    * @throws IOException If I/O related errors occur    */
 DECL|method|create
 name|List
 argument_list|<
@@ -103,21 +104,25 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Returns the results that the collectors created    * by {@link #create()} contain after a search has been executed.    *    * @return The results of the collectors    */
 DECL|method|result
 name|T
 name|result
 parameter_list|()
 function_decl|;
+comment|/**    * @return The key of this command to uniquely identify itself    */
 DECL|method|getKey
 name|String
 name|getKey
 parameter_list|()
 function_decl|;
+comment|/**    * @return The group sort (overall sort)    */
 DECL|method|getGroupSort
 name|Sort
 name|getGroupSort
 parameter_list|()
 function_decl|;
+comment|/**    * @return The sort inside a group    */
 DECL|method|getSortWithinGroup
 name|Sort
 name|getSortWithinGroup
