@@ -190,6 +190,32 @@ return|return
 name|totalHits
 return|;
 block|}
+comment|/** The number of valid PQ entries */
+DECL|method|topDocsSize
+specifier|protected
+name|int
+name|topDocsSize
+parameter_list|()
+block|{
+comment|// In case pq was populated with sentinel values, there might be less
+comment|// results than pq.size(). Therefore return all results until either
+comment|// pq.size() or totalHits.
+return|return
+name|totalHits
+operator|<
+name|pq
+operator|.
+name|size
+argument_list|()
+condition|?
+name|totalHits
+else|:
+name|pq
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
 comment|/** Returns the top docs that were collected by this collector. */
 DECL|method|topDocs
 specifier|public
@@ -205,18 +231,7 @@ name|topDocs
 argument_list|(
 literal|0
 argument_list|,
-name|totalHits
-operator|<
-name|pq
-operator|.
-name|size
-argument_list|()
-condition|?
-name|totalHits
-else|:
-name|pq
-operator|.
-name|size
+name|topDocsSize
 argument_list|()
 argument_list|)
 return|;
@@ -239,18 +254,7 @@ name|topDocs
 argument_list|(
 name|start
 argument_list|,
-name|totalHits
-operator|<
-name|pq
-operator|.
-name|size
-argument_list|()
-condition|?
-name|totalHits
-else|:
-name|pq
-operator|.
-name|size
+name|topDocsSize
 argument_list|()
 argument_list|)
 return|;
@@ -274,22 +278,13 @@ comment|// pq.size() or totalHits.
 name|int
 name|size
 init|=
-name|totalHits
-operator|<
-name|pq
-operator|.
-name|size
-argument_list|()
-condition|?
-name|totalHits
-else|:
-name|pq
-operator|.
-name|size
+name|topDocsSize
 argument_list|()
 decl_stmt|;
 comment|// Don't bother to throw an exception, just return an empty TopDocs in case
 comment|// the parameters are invalid or out of range.
+comment|// TODO: shouldn't we throw IAE if apps give bad params here so they dont
+comment|// have sneaky silent bugs?
 if|if
 condition|(
 name|start

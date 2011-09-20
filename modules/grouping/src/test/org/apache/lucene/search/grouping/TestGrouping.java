@@ -7475,6 +7475,8 @@ name|weight
 argument_list|,
 literal|null
 argument_list|,
+literal|null
+argument_list|,
 name|topN
 argument_list|)
 return|;
