@@ -1021,7 +1021,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Finds the top<code>n</code>    * hits for<code>query</code>, applying<code>filter</code> if non-null,    * where all results are after a previous result (<code>after</code>).    *<p>    * By passing the bottom result from a previous page as<code>after</code>,    * this method can be used for efficient 'deep-paging' across potentially    * large result sets.    *    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Finds the top<code>n</code>    * hits for<code>query</code> where all results are after a previous     * result (<code>after</code>).    *<p>    * By passing the bottom result from a previous page as<code>after</code>,    * this method can be used for efficient 'deep-paging' across potentially    * large result sets.    *    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|searchAfter
 specifier|public
 name|TopDocs
