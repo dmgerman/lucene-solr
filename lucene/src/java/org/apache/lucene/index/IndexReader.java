@@ -2883,7 +2883,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Don't can ensureOpen since we commit() on close
+comment|// Don't call ensureOpen since we commit() on close
 name|doCommit
 argument_list|(
 name|commitUserData
