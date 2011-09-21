@@ -220,6 +220,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|MultiFields
 operator|.
@@ -239,6 +242,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|MultiPerDocValues
 operator|.
@@ -256,6 +262,9 @@ name|Bits
 name|getLiveDocs
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|MultiFields
 operator|.
@@ -372,6 +381,9 @@ name|ReaderContext
 name|getTopReaderContext
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|readerContext
 return|;

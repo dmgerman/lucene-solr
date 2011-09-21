@@ -646,6 +646,9 @@ name|Bits
 name|getLiveDocs
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|liveDocs
 return|;
@@ -903,6 +906,9 @@ name|BitVector
 name|bv
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 operator|(
 name|BitVector
@@ -1046,6 +1052,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|boolean
 name|deletionsUpToDate
 init|=
@@ -2190,6 +2199,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|core
 operator|.
@@ -3576,6 +3588,9 @@ name|ReaderContext
 name|getTopReaderContext
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|readerContext
 return|;
@@ -3790,6 +3805,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|core
 operator|.

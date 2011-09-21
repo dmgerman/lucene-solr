@@ -338,6 +338,9 @@ name|ReaderFinishedListener
 name|listener
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|readerFinishedListeners
 operator|.
 name|add
@@ -356,6 +359,9 @@ name|ReaderFinishedListener
 name|listener
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|readerFinishedListeners
 operator|.
 name|remove
@@ -468,6 +474,7 @@ name|DOC_VALUES
 block|}
 DECL|field|closed
 specifier|private
+specifier|volatile
 name|boolean
 name|closed
 decl_stmt|;
@@ -666,12 +673,18 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
+specifier|final
+name|int
+name|rc
+init|=
 name|refCount
 operator|.
 name|getAndDecrement
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|rc
 operator|==
 literal|1
 condition|)
@@ -713,6 +726,26 @@ block|}
 name|readerFinished
 argument_list|()
 expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|rc
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"too many decRef calls: refCount was "
+operator|+
+name|rc
+operator|+
+literal|" before decrement"
+argument_list|)
+throw|;
 block|}
 block|}
 DECL|method|IndexReader
@@ -2850,6 +2883,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// Don't can ensureOpen since we commit() on close
 name|doCommit
 argument_list|(
 name|commitUserData
@@ -3405,6 +3439,9 @@ index|[]
 name|getSequentialSubReaders
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -3424,6 +3461,8 @@ name|Object
 name|getCoreCacheKey
 parameter_list|()
 block|{
+comment|// Don't can ensureOpen since FC calls this (to evict)
+comment|// on close
 return|return
 name|this
 return|;
@@ -3534,6 +3573,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 specifier|final
 name|PerDocValues
 name|perDoc
@@ -3576,6 +3618,9 @@ name|Fields
 name|fields
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|fields
@@ -3589,6 +3634,9 @@ name|Fields
 name|retrieveFields
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|fields
 return|;
@@ -3608,6 +3656,9 @@ name|PerDocValues
 name|perDocValues
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|perDocValues
@@ -3621,6 +3672,9 @@ name|PerDocValues
 name|retrievePerDoc
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|perDocValues
 return|;
