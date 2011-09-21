@@ -434,7 +434,7 @@ name|copyFile
 argument_list|(
 name|getFile
 argument_list|(
-literal|"solr/conf/solrconfig-collate.xml"
+literal|"solr/conf/solrconfig-basic.xml"
 argument_list|)
 argument_list|,
 operator|new

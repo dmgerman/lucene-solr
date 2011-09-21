@@ -2215,6 +2215,8 @@ name|getAttribute
 argument_list|(
 literal|"class"
 argument_list|)
+argument_list|,
+literal|"search.similarities."
 argument_list|)
 decl_stmt|;
 comment|// just like always, assume it's a SimilarityProviderFactory and get a ClassCastException - reasonable error handling
@@ -3710,6 +3712,8 @@ name|getAttribute
 argument_list|(
 literal|"class"
 argument_list|)
+argument_list|,
+literal|"search.similarities."
 argument_list|)
 decl_stmt|;
 if|if

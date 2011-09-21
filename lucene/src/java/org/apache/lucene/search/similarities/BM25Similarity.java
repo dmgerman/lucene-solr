@@ -1947,6 +1947,26 @@ operator|+
 literal|")"
 return|;
 block|}
+DECL|method|getK1
+specifier|public
+name|float
+name|getK1
+parameter_list|()
+block|{
+return|return
+name|k1
+return|;
+block|}
+DECL|method|getB
+specifier|public
+name|float
+name|getB
+parameter_list|()
+block|{
+return|return
+name|b
+return|;
+block|}
 block|}
 end_class
 
