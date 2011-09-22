@@ -575,14 +575,12 @@ comment|// or a reverse iterator... should they be separate classes
 comment|// for efficiency, or have a common root interface?  (or
 comment|// maybe both?  could ask for a SetBitsIterator, etc...
 DECL|field|arr
-specifier|private
 specifier|final
 name|long
 index|[]
 name|arr
 decl_stmt|;
 DECL|field|words
-specifier|private
 specifier|final
 name|int
 name|words
