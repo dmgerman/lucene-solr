@@ -87,11 +87,11 @@ name|PhrasePositions
 name|next
 decl_stmt|;
 comment|// used to make lists
-DECL|field|repeats
-name|boolean
-name|repeats
+DECL|field|nextRepeating
+name|PhrasePositions
+name|nextRepeating
 decl_stmt|;
-comment|// there's other pp for same term (e.g. query="1st word 2nd word"~1)
+comment|// link to next repeating pp: standing for same term in different query offsets
 DECL|method|PhrasePositions
 name|PhrasePositions
 parameter_list|(
@@ -142,7 +142,7 @@ if|if
 condition|(
 name|doc
 operator|==
-name|postings
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -179,7 +179,7 @@ if|if
 condition|(
 name|doc
 operator|==
-name|postings
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -246,6 +246,54 @@ block|}
 else|else
 return|return
 literal|false
+return|;
+block|}
+comment|/** for debug purposes */
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+name|String
+name|s
+init|=
+literal|"d:"
+operator|+
+name|doc
+operator|+
+literal|" o:"
+operator|+
+name|offset
+operator|+
+literal|" p:"
+operator|+
+name|position
+operator|+
+literal|" c:"
+operator|+
+name|count
+decl_stmt|;
+if|if
+condition|(
+name|nextRepeating
+operator|!=
+literal|null
+condition|)
+block|{
+name|s
+operator|+=
+literal|" rpt[ "
+operator|+
+name|nextRepeating
+operator|+
+literal|" ]"
+expr_stmt|;
+block|}
+return|return
+name|s
 return|;
 block|}
 block|}
