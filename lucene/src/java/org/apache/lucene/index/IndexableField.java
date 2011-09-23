@@ -22,7 +22,31 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|Reader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|Analyzer
 import|;
 end_import
 
@@ -156,13 +180,6 @@ name|Reader
 name|readerValue
 parameter_list|()
 function_decl|;
-comment|/* Non-null if this field has a pre-tokenized ({@link TokenStream}) value */
-DECL|method|tokenStreamValue
-specifier|public
-name|TokenStream
-name|tokenStreamValue
-parameter_list|()
-function_decl|;
 comment|// Numeric field:
 comment|/* True if this field is numeric */
 DECL|method|numeric
@@ -207,6 +224,18 @@ specifier|public
 name|ValueType
 name|docValuesType
 parameter_list|()
+function_decl|;
+comment|/**    * Creates the TokenStream used for indexing this field.  If appropriate,    * implementations should use the given Analyzer to create the TokenStreams.    *    * @param analyzer Analyzer that should be used to create the TokenStreams from    * @return TokenStream value for indexing the document.  Should always return    *         a non-null value if the field is to be indexed    * @throws IOException Can be thrown while creating the TokenStream    */
+DECL|method|tokenStream
+specifier|public
+name|TokenStream
+name|tokenStream
+parameter_list|(
+name|Analyzer
+name|analyzer
+parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_interface

@@ -719,17 +719,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Returns always<code>null</code>    */
-DECL|method|tokenStreamValue
-specifier|public
-name|TokenStream
-name|tokenStreamValue
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|docValuesType
