@@ -314,7 +314,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Merges the given taxonomy and index directories and commits the changes to    * the given writers. This method uses {@link MemoryOrdinalMap} to store the    * mapped ordinals. If you cannot afford the memory, you can use    * {@link #merge(Directory, Directory, OrdinalMap, IndexWriter, LuceneTaxonomyWriter)}    * by passing {@link DiskOrdinalMap}.    *     * @see #merge(Directory, Directory, OrdinalMap, IndexWriter, LuceneTaxonomyWriter)    */
+comment|/**    * Merges the given taxonomy and index directories and commits the changes to    * the given writers. This method uses {@link MemoryOrdinalMap} to store the    * mapped ordinals. If you cannot afford the memory, you can use    * {@link #merge(Directory, Directory, LuceneTaxonomyWriter.OrdinalMap, IndexWriter, LuceneTaxonomyWriter)}    * by passing {@link DiskOrdinalMap}.    *     * @see #merge(Directory, Directory, LuceneTaxonomyWriter.OrdinalMap, IndexWriter, LuceneTaxonomyWriter)    */
 DECL|method|merge
 specifier|public
 specifier|static
