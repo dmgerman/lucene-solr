@@ -42,23 +42,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|concurrent
-operator|.
-name|ExecutorService
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
+name|List
 import|;
 end_import
 
@@ -80,7 +64,23 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|concurrent
+operator|.
+name|ExecutorService
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
 import|;
 end_import
 
@@ -124,20 +124,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|IndexSearcher
@@ -166,6 +152,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|SearcherWarmer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|ThreadInterruptedException
@@ -181,7 +181,7 @@ comment|//   - we could make this work also w/ "normal" reopen/commit?
 end_comment
 
 begin_comment
-comment|/**  * Utility class to manage sharing near-real-time searchers  * across multiple searching threads.  *  *<p>NOTE: to use this class, you must call reopen  * periodically.  The {@link NRTManagerReopenThread} is a  * simple class to do this on a periodic basis.  If you  * implement your own reopener, be sure to call {@link  * #addWaitingListener} so your reopener is notified when a  * caller is waiting for a specific generation searcher.</p>  *  * @lucene.experimental */
+comment|/**  * Utility class to manage sharing near-real-time searchers  * across multiple searching threads.  *  *<p>NOTE: to use this class, you must call reopen  * periodically.  The {@link NRTManagerReopenThread} is a  * simple class to do this on a periodic basis.  If you  * implement your own reopener, be sure to call {@link  * #addWaitingListener} so your reopener is notified when a  * caller is waiting for a specific generation searcher.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -222,6 +222,12 @@ specifier|final
 name|AtomicLong
 name|noDeletesSearchingGen
 decl_stmt|;
+DECL|field|warmer
+specifier|private
+specifier|final
+name|SearcherWarmer
+name|warmer
+decl_stmt|;
 DECL|field|waitingListeners
 specifier|private
 specifier|final
@@ -250,26 +256,7 @@ specifier|volatile
 name|IndexSearcher
 name|noDeletesCurrentSearcher
 decl_stmt|;
-comment|/**    * Create new NRTManager.  Note that this installs a    * merged segment warmer on the provided IndexWriter's    * config.    *     *  @param writer IndexWriter to open near-real-time    *         readers   */
-DECL|method|NRTManager
-specifier|public
-name|NRTManager
-parameter_list|(
-name|IndexWriter
-name|writer
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|this
-argument_list|(
-name|writer
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Create new NRTManager.  Note that this installs a    * merged segment warmer on the provided IndexWriter's    * config.    *     *  @param writer IndexWriter to open near-real-time    *         readers    *  @param es ExecutorService to pass to the IndexSearcher   */
+comment|/**    * Create new NRTManager.    *     *  @param writer IndexWriter to open near-real-time    *         readers    *  @param es optional ExecutorService so different segments can    *         be searched concurrently (see {@link    *         IndexSearcher#IndexSearcher(IndexReader,ExecutorService)}.  Pass null    *         to search segments sequentially.    *  @param warmer optional {@link SearcherWarmer}.  Pass    *         null if you don't require the searcher to warmed    *         before going live.  If this is non-null then a    *         merged segment warmer is installed on the    *         provided IndexWriter's config.    *    *<p><b>NOTE</b>: the provided {@link SearcherWarmer} is    *  not invoked for the initial searcher; you should    *  warm it yourself if necessary.    */
 DECL|method|NRTManager
 specifier|public
 name|NRTManager
@@ -279,6 +266,9 @@ name|writer
 parameter_list|,
 name|ExecutorService
 name|es
+parameter_list|,
+name|SearcherWarmer
+name|warmer
 parameter_list|)
 throws|throws
 name|IOException
@@ -294,6 +284,12 @@ operator|.
 name|es
 operator|=
 name|es
+expr_stmt|;
+name|this
+operator|.
+name|warmer
+operator|=
+name|warmer
 expr_stmt|;
 name|indexingGen
 operator|=
@@ -344,6 +340,15 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|this
+operator|.
+name|warmer
+operator|!=
+literal|null
+condition|)
+block|{
 name|writer
 operator|.
 name|getConfig
@@ -373,15 +378,28 @@ name|NRTManager
 operator|.
 name|this
 operator|.
+name|warmer
+operator|.
 name|warm
 argument_list|(
+operator|new
+name|IndexSearcher
+argument_list|(
 name|reader
+argument_list|,
+name|NRTManager
+operator|.
+name|this
+operator|.
+name|es
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** NRTManager invokes this interface to notify it when a    *  caller is waiting for a specific generation searcher    *  to be visible. */
 DECL|interface|WaitingListener
@@ -447,7 +465,12 @@ parameter_list|(
 name|Term
 name|t
 parameter_list|,
-name|Document
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|IndexableField
+argument_list|>
 name|d
 parameter_list|,
 name|Analyzer
@@ -483,7 +506,12 @@ parameter_list|(
 name|Term
 name|t
 parameter_list|,
-name|Document
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|IndexableField
+argument_list|>
 name|d
 parameter_list|)
 throws|throws
@@ -516,7 +544,14 @@ name|t
 parameter_list|,
 name|Iterable
 argument_list|<
-name|Document
+name|?
+extends|extends
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|IndexableField
+argument_list|>
 argument_list|>
 name|docs
 parameter_list|,
@@ -555,7 +590,14 @@ name|t
 parameter_list|,
 name|Iterable
 argument_list|<
-name|Document
+name|?
+extends|extends
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|IndexableField
+argument_list|>
 argument_list|>
 name|docs
 parameter_list|)
@@ -636,7 +678,12 @@ specifier|public
 name|long
 name|addDocument
 parameter_list|(
-name|Document
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|IndexableField
+argument_list|>
 name|d
 parameter_list|,
 name|Analyzer
@@ -669,7 +716,14 @@ name|addDocuments
 parameter_list|(
 name|Iterable
 argument_list|<
-name|Document
+name|?
+extends|extends
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|IndexableField
+argument_list|>
 argument_list|>
 name|docs
 parameter_list|,
@@ -701,7 +755,12 @@ specifier|public
 name|long
 name|addDocument
 parameter_list|(
-name|Document
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|IndexableField
+argument_list|>
 name|d
 parameter_list|)
 throws|throws
@@ -729,7 +788,14 @@ name|addDocuments
 parameter_list|(
 name|Iterable
 argument_list|<
-name|Document
+name|?
+extends|extends
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|IndexableField
+argument_list|>
 argument_list|>
 name|docs
 parameter_list|)
@@ -984,7 +1050,7 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/** Release the searcher obtained from {@link    *  #get()} or {@link #get(long)}. */
+comment|/** Release the searcher obtained from {@link    *  #get()} or {@link #get(long)}.    *    *<p><b>NOTE</b>: it's safe to call this after {@link    *  #close}. */
 DECL|method|release
 specifier|public
 name|void
@@ -1143,14 +1209,10 @@ argument_list|,
 name|applyDeletes
 argument_list|)
 decl_stmt|;
-name|warm
-argument_list|(
-name|nextReader
-argument_list|)
-expr_stmt|;
-comment|// Transfer reference to swapSearcher:
-name|swapSearcher
-argument_list|(
+specifier|final
+name|IndexSearcher
+name|nextSearcher
+init|=
 operator|new
 name|IndexSearcher
 argument_list|(
@@ -1158,6 +1220,26 @@ name|nextReader
 argument_list|,
 name|es
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|warmer
+operator|!=
+literal|null
+condition|)
+block|{
+name|warmer
+operator|.
+name|warm
+argument_list|(
+name|nextSearcher
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Transfer reference to swapSearcher:
+name|swapSearcher
+argument_list|(
+name|nextSearcher
 argument_list|,
 name|newSearcherGen
 argument_list|,
@@ -1168,18 +1250,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** Override this to warm the newly opened reader before    *  it's swapped in.  Note that this is called both for    *  newly merged segments and for new top-level readers    *  opened by #reopen. */
-DECL|method|warm
-specifier|protected
-name|void
-name|warm
-parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|)
-throws|throws
-name|IOException
-block|{   }
 comment|// Steals a reference from newSearcher:
 DECL|method|swapSearcher
 specifier|private
@@ -1315,7 +1385,7 @@ argument_list|()
 expr_stmt|;
 comment|//System.out.println(Thread.currentThread().getName() + ": done");
 block|}
-comment|/** NOTE: caller must separately close the writer. */
+comment|/** Close this NRTManager to future searching.  Any    *  searches still in process in other threads won't be    *  affected, and they should still call {@link #release}    *  after they are done.    *    *<p><b>NOTE</b>: caller must separately close the writer. */
 annotation|@
 name|Override
 DECL|method|close
