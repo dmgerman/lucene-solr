@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TokenFilterFactory that creates instances of {@link org.apache.lucene.analysis.hunspell.HunspellStemFilter}.  * Example config for British English including a custom dictionary:  *<pre class="prettyprint">  *&lt;filter class=&quot;solr.HunspellStemFilterFactory&quot;  *    dictionary=&quot;en_GB.dic,my_custom.dic&quot;  *    affix=&quot;en_GB.aff&quot;/&gt;</pre>  * Dictionaries for many languages are available through the OpenOffice project  * @see http://wiki.services.openoffice.org/wiki/Dictionaries  */
+comment|/**  * TokenFilterFactory that creates instances of {@link org.apache.lucene.analysis.hunspell.HunspellStemFilter}.  * Example config for British English including a custom dictionary:  *<pre class="prettyprint">  *&lt;filter class=&quot;solr.HunspellStemFilterFactory&quot;  *    dictionary=&quot;en_GB.dic,my_custom.dic&quot;  *    affix=&quot;en_GB.aff&quot;/&gt;</pre>  * Dictionaries for many languages are available through the OpenOffice project  * See http://wiki.services.openoffice.org/wiki/Dictionaries  */
 end_comment
 
 begin_class
