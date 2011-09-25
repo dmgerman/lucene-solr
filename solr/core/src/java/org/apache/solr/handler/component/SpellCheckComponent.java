@@ -3594,6 +3594,16 @@ name|token
 argument_list|)
 expr_stmt|;
 block|}
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 return|return
 name|result
 return|;

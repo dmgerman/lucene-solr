@@ -630,6 +630,16 @@ name|token
 argument_list|)
 expr_stmt|;
 block|}
+name|stream
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|stream
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

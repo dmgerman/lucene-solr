@@ -26,6 +26,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|MockTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|core
 operator|.
 name|KeywordTokenizer
@@ -4002,7 +4016,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"expecting only WhitespaceTokenizer to be applied"
+literal|"expecting only MockTokenizer to be applied"
 argument_list|,
 literal|1
 argument_list|,
@@ -4018,7 +4032,7 @@ name|indexPart
 operator|.
 name|get
 argument_list|(
-name|WhitespaceTokenizer
+name|MockTokenizer
 operator|.
 name|class
 operator|.
@@ -4028,14 +4042,14 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"expecting only WhitespaceTokenizer to be applied"
+literal|"expecting only MockTokenizer to be applied"
 argument_list|,
 name|tokenList
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"expecting WhitespaceTokenizer to produce 10 tokens"
+literal|"expecting MockTokenizer to produce 10 tokens"
 argument_list|,
 literal|10
 argument_list|,
@@ -4433,7 +4447,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"expecting only WhitespaceTokenizer to be applied"
+literal|"expecting only MockTokenizer to be applied"
 argument_list|,
 literal|1
 argument_list|,
@@ -4449,7 +4463,7 @@ name|queryPart
 operator|.
 name|get
 argument_list|(
-name|WhitespaceTokenizer
+name|MockTokenizer
 operator|.
 name|class
 operator|.
@@ -4459,14 +4473,14 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"expecting only WhitespaceTokenizer to be applied"
+literal|"expecting only MockTokenizer to be applied"
 argument_list|,
 name|tokenList
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"expecting WhitespaceTokenizer to produce 2 tokens"
+literal|"expecting MockTokenizer to produce 2 tokens"
 argument_list|,
 literal|2
 argument_list|,
@@ -4932,12 +4946,17 @@ name|indexPart
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.core.WhitespaceTokenizer"
+name|MockTokenizer
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Expecting WhitespaceTokenizer analysis breakdown"
+literal|"Expecting MockTokenizer analysis breakdown"
 argument_list|,
 name|tokenList
 argument_list|)
@@ -5131,12 +5150,17 @@ name|indexPart
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.core.WhitespaceTokenizer"
+name|MockTokenizer
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Expcting WhitespaceTokenizer analysis breakdown"
+literal|"Expcting MockTokenizer analysis breakdown"
 argument_list|,
 name|tokenList
 argument_list|)

@@ -22,6 +22,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|MockTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|client
@@ -1209,12 +1223,17 @@ name|queryResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.core.WhitespaceTokenizer"
+name|MockTokenizer
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Expecting the 'WhitespaceTokenizer' to be applied on the query for the 'whitetok' field"
+literal|"Expecting the 'MockTokenizer' to be applied on the query for the 'whitetok' field"
 argument_list|,
 name|tokenList
 argument_list|)
