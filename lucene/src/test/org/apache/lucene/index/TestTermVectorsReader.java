@@ -1112,7 +1112,7 @@ specifier|private
 class|class
 name|MyAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override

@@ -126,20 +126,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ReusableAnalyzerBase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenStream
 import|;
 end_import
@@ -265,7 +251,7 @@ specifier|final
 class|class
 name|PatternAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 comment|/**<code>"\\W+"</code>; Divides text at non-letters (NOT Character.isLetter(c)) */
 DECL|field|NON_WORD_PATTERN

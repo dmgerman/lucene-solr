@@ -100,20 +100,6 @@ name|Tokenizer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|ReusableAnalyzerBase
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests for {@link KStemmer}  */
 end_comment
@@ -131,7 +117,7 @@ name|Analyzer
 name|a
 init|=
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|()
 block|{
 annotation|@

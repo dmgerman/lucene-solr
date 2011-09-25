@@ -107,7 +107,7 @@ specifier|final
 class|class
 name|MockAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 DECL|field|runAutomaton
 specifier|private

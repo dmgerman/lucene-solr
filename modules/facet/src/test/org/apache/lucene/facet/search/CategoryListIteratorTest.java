@@ -972,7 +972,7 @@ name|Analyzer
 name|noPayloadsAnalyzer
 init|=
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|()
 block|{
 annotation|@

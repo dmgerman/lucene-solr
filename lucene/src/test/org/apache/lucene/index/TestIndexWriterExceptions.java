@@ -2345,10 +2345,10 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|(
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 operator|.
 name|PerFieldReuseStrategy
 argument_list|()
@@ -2742,7 +2742,7 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|()
 block|{
 annotation|@
@@ -3509,10 +3509,10 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|(
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 operator|.
 name|PerFieldReuseStrategy
 argument_list|()
@@ -4196,10 +4196,10 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|(
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 operator|.
 name|PerFieldReuseStrategy
 argument_list|()

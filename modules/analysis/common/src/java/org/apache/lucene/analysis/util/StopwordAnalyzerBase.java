@@ -48,23 +48,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ReusableAnalyzerBase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|WordlistLoader
+name|Analyzer
 import|;
 end_import
 
@@ -93,7 +77,7 @@ specifier|abstract
 class|class
 name|StopwordAnalyzerBase
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 comment|/**    * An immutable stopword set    */
 DECL|field|stopwords
@@ -205,7 +189,7 @@ name|Class
 argument_list|<
 name|?
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|>
 name|aClass
 parameter_list|,

@@ -166,20 +166,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ReusableAnalyzerBase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|util
 operator|.
 name|StopwordAnalyzerBase
@@ -448,13 +434,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates    * {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.ReusableAnalyzerBase.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , and {@link CzechStemFilter} (only if version is>= LUCENE_31). If    *         a version is>= LUCENE_31 and a stem exclusion set is provided via    *         {@link #CzechAnalyzer(Version, Set, Set)} a    *         {@link KeywordMarkerFilter} is added before    *         {@link CzechStemFilter}.    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , and {@link CzechStemFilter} (only if version is>= LUCENE_31). If    *         a version is>= LUCENE_31 and a stem exclusion set is provided via    *         {@link #CzechAnalyzer(Version, Set, Set)} a    *         {@link KeywordMarkerFilter} is added before    *         {@link CzechStemFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents
 specifier|protected
-name|ReusableAnalyzerBase
-operator|.
 name|TokenStreamComponents
 name|createComponents
 parameter_list|(

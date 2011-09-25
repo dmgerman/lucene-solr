@@ -1015,7 +1015,7 @@ specifier|final
 class|class
 name|QPTestAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 comment|/** Filters MockTokenizer with StopFilter. */
 annotation|@
@@ -2197,7 +2197,7 @@ specifier|private
 class|class
 name|SimpleCJKAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override
@@ -7403,7 +7403,7 @@ specifier|private
 class|class
 name|CannedAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override

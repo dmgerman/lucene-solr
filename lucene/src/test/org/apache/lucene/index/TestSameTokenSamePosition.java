@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ReusableAnalyzerBase
+name|Analyzer
 import|;
 end_import
 
@@ -371,7 +371,7 @@ specifier|final
 class|class
 name|BugReproAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override

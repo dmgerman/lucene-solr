@@ -1749,10 +1749,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getStream
+DECL|method|createComponents
 specifier|public
-name|TokenStreamInfo
-name|getStream
+name|TokenStreamComponents
+name|createComponents
 parameter_list|(
 name|String
 name|fieldName
@@ -1887,10 +1887,8 @@ block|}
 decl_stmt|;
 return|return
 operator|new
-name|TokenStreamInfo
+name|TokenStreamComponents
 argument_list|(
-name|ts
-argument_list|,
 name|ts
 argument_list|)
 return|;

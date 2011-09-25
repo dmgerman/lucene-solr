@@ -2234,7 +2234,7 @@ specifier|final
 class|class
 name|AnalyzerReturningNull
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 DECL|field|stdAnalyzer
 name|MockAnalyzer

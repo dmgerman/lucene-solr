@@ -699,7 +699,7 @@ name|create
 argument_list|(
 name|tokenizerChain
 operator|.
-name|charStream
+name|initReader
 argument_list|(
 operator|new
 name|StringReader
@@ -1187,7 +1187,7 @@ block|}
 block|}
 argument_list|)
 decl_stmt|;
-comment|/**    * Converts the list of Tokens to a list of NamedLists representing the tokens.    *    * @param tokens  Tokens to convert    * @param context The analysis context    *    * @return List of NamedLists containing the relevant information taken from the tokens    */
+comment|/**    * Converts the list of Tokens to a list of NamedLists representing the tokens.    *    * @param tokenList  Tokens to convert    * @param context The analysis context    *    * @return List of NamedLists containing the relevant information taken from the tokens    */
 DECL|method|convertTokensToNamedLists
 specifier|private
 name|List

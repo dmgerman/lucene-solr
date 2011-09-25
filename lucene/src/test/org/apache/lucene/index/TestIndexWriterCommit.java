@@ -1134,7 +1134,7 @@ comment|// no payloads
 name|analyzer
 operator|=
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|()
 block|{
 annotation|@
@@ -1188,7 +1188,7 @@ decl_stmt|;
 name|analyzer
 operator|=
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|()
 block|{
 annotation|@

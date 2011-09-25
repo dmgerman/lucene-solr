@@ -2606,7 +2606,7 @@ specifier|static
 class|class
 name|PayloadAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 DECL|field|fieldToData
 name|Map

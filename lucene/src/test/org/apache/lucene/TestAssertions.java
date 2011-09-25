@@ -32,20 +32,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|ReusableAnalyzerBase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|LuceneTestCase
@@ -131,7 +117,7 @@ specifier|static
 class|class
 name|TestAnalyzer1
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override
@@ -158,7 +144,7 @@ specifier|final
 class|class
 name|TestAnalyzer2
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override
@@ -184,7 +170,7 @@ specifier|static
 class|class
 name|TestAnalyzer3
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override
@@ -210,7 +196,7 @@ specifier|static
 class|class
 name|TestAnalyzer4
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override

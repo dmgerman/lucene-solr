@@ -3674,7 +3674,7 @@ specifier|final
 class|class
 name|PayloadAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override
@@ -3980,7 +3980,7 @@ specifier|final
 class|class
 name|TestPayloadAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override

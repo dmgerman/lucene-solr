@@ -109,7 +109,7 @@ specifier|final
 class|class
 name|MockPayloadAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override

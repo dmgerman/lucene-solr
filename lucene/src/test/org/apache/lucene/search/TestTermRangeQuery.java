@@ -1597,7 +1597,7 @@ specifier|static
 class|class
 name|SingleCharAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 DECL|class|SingleCharTokenizer
 specifier|private

@@ -224,7 +224,7 @@ expr_stmt|;
 name|checkOneTermReuse
 argument_list|(
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|()
 block|{
 annotation|@

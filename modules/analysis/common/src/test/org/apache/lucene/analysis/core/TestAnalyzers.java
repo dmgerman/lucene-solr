@@ -725,7 +725,7 @@ specifier|static
 class|class
 name|LowerCaseWhitespaceAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override

@@ -728,7 +728,7 @@ specifier|final
 class|class
 name|ASCIIAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override

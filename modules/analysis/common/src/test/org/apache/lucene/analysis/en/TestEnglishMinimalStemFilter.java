@@ -94,20 +94,6 @@ name|Tokenizer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|ReusableAnalyzerBase
-import|;
-end_import
-
 begin_comment
 comment|/**  * Simple tests for {@link EnglishMinimalStemFilter}  */
 end_comment
@@ -126,7 +112,7 @@ name|Analyzer
 name|analyzer
 init|=
 operator|new
-name|ReusableAnalyzerBase
+name|Analyzer
 argument_list|()
 block|{
 annotation|@

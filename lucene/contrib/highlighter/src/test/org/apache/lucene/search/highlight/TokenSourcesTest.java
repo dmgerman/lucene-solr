@@ -400,7 +400,7 @@ specifier|final
 class|class
 name|OverlapAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override

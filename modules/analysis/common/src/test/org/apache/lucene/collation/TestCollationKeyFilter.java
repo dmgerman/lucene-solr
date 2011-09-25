@@ -247,7 +247,7 @@ specifier|final
 class|class
 name|TestAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 specifier|private
 name|Collator

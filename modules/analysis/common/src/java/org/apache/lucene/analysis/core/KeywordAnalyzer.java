@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|ReusableAnalyzerBase
+name|Analyzer
 import|;
 end_import
 
@@ -53,7 +53,7 @@ specifier|final
 class|class
 name|KeywordAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 DECL|method|KeywordAnalyzer
 specifier|public

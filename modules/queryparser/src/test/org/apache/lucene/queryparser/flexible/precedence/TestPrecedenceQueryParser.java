@@ -682,7 +682,7 @@ specifier|final
 class|class
 name|QPTestAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 comment|/** Filters MockTokenizer with StopFilter. */
 annotation|@

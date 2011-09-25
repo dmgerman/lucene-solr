@@ -1152,7 +1152,7 @@ specifier|final
 class|class
 name|BigramAnalyzer
 extends|extends
-name|ReusableAnalyzerBase
+name|Analyzer
 block|{
 annotation|@
 name|Override
