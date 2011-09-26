@@ -371,18 +371,14 @@ block|}
 comment|/** Obtain the current IndexSearcher.  You must match    *  every call to get with one call to {@link #release};    *  it's best to do so in a finally clause. */
 DECL|method|get
 specifier|public
+specifier|synchronized
 name|IndexSearcher
 name|get
 parameter_list|()
 block|{
-name|IndexSearcher
-name|toReturn
-init|=
-name|currentSearcher
-decl_stmt|;
 if|if
 condition|(
-name|toReturn
+name|currentSearcher
 operator|==
 literal|null
 condition|)
@@ -395,7 +391,7 @@ literal|"this SearcherManager is closed"
 argument_list|)
 throw|;
 block|}
-name|toReturn
+name|currentSearcher
 operator|.
 name|getIndexReader
 argument_list|()
@@ -404,7 +400,7 @@ name|incRef
 argument_list|()
 expr_stmt|;
 return|return
-name|toReturn
+name|currentSearcher
 return|;
 block|}
 comment|/** Release the searcher previously obtained with {@link    *  #get}.    *    *<p><b>NOTE</b>: it's safe to call this after {@link    *  #close}. */
@@ -431,6 +427,7 @@ block|}
 comment|// Replaces old searcher with new one
 DECL|method|swapSearcher
 specifier|private
+specifier|synchronized
 name|void
 name|swapSearcher
 parameter_list|(
