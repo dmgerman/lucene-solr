@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StringField
+name|TextField
 import|;
 end_import
 
@@ -245,7 +245,7 @@ argument_list|(
 name|i
 argument_list|)
 argument_list|,
-name|StringField
+name|TextField
 operator|.
 name|TYPE_UNSTORED
 argument_list|)
@@ -271,7 +271,7 @@ literal|"even"
 else|:
 literal|"odd"
 argument_list|,
-name|StringField
+name|TextField
 operator|.
 name|TYPE_UNSTORED
 argument_list|)
