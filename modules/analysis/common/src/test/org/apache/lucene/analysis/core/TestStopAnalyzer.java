@@ -269,7 +269,7 @@ name|stream
 init|=
 name|stop
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|"test"
 argument_list|,
@@ -295,6 +295,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|stream
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 name|stream
@@ -387,7 +392,7 @@ name|stream
 init|=
 name|newStop
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|"test"
 argument_list|,
@@ -530,7 +535,7 @@ name|stream
 init|=
 name|newStop
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|"test"
 argument_list|,

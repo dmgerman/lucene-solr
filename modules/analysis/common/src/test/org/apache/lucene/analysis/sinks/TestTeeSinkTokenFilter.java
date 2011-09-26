@@ -619,15 +619,12 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-name|TeeSinkTokenFilter
-name|tee
+name|TokenStream
+name|tokenStream
 init|=
-operator|new
-name|TeeSinkTokenFilter
-argument_list|(
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|"field"
 argument_list|,
@@ -637,6 +634,14 @@ argument_list|(
 literal|"abcd   "
 argument_list|)
 argument_list|)
+decl_stmt|;
+name|TeeSinkTokenFilter
+name|tee
+init|=
+operator|new
+name|TeeSinkTokenFilter
+argument_list|(
+name|tokenStream
 argument_list|)
 decl_stmt|;
 name|TokenStream

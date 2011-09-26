@@ -1224,7 +1224,7 @@ name|assertTokenStreamContents
 argument_list|(
 name|a
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|"dummy"
 argument_list|,

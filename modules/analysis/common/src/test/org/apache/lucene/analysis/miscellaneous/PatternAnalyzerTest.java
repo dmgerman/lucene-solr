@@ -569,7 +569,7 @@ name|ts
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|"dummy"
 argument_list|,
@@ -595,7 +595,7 @@ name|ts2
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|"dummy"
 argument_list|,

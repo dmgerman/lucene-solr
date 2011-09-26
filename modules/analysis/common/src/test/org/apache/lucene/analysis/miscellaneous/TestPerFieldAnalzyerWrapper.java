@@ -181,7 +181,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|"field"
 argument_list|,
@@ -204,6 +204,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|tokenStream
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|assertTrue
 argument_list|(
 name|tokenStream
@@ -228,7 +233,7 @@ name|tokenStream
 operator|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|"special"
 argument_list|,
@@ -249,6 +254,11 @@ name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
+expr_stmt|;
+name|tokenStream
+operator|.
+name|reset
+argument_list|()
 expr_stmt|;
 name|assertTrue
 argument_list|(
