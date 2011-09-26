@@ -460,6 +460,23 @@ name|setReadOnly
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"dataimport.proprties is still writable even though "
+operator|+
+literal|"marked readonly - test running as superuser?"
+argument_list|,
+name|f
+operator|.
+name|canWrite
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|ignoreException
+argument_list|(
+literal|"Properties is not writable"
+argument_list|)
+expr_stmt|;
 name|List
 name|parentRow
 init|=
