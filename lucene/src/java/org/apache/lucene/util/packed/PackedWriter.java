@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexOutput
+name|DataOutput
 import|;
 end_import
 
@@ -92,7 +92,7 @@ DECL|method|PackedWriter
 specifier|public
 name|PackedWriter
 parameter_list|(
-name|IndexOutput
+name|DataOutput
 name|out
 parameter_list|,
 name|int

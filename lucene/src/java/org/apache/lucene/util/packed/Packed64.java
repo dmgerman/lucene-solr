@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexInput
+name|DataInput
 import|;
 end_import
 
@@ -613,12 +613,12 @@ name|updateCached
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Creates an array with content retrieved from the given IndexInput.    * @param in       an IndexInput, positioned at the start of Packed64-content.    * @param valueCount  the number of elements.    * @param bitsPerValue the number of bits available for any given value.    * @throws java.io.IOException if the values for the backing array could not    *                             be retrieved.    */
+comment|/**    * Creates an array with content retrieved from the given DataInput.    * @param in       a DataInput, positioned at the start of Packed64-content.    * @param valueCount  the number of elements.    * @param bitsPerValue the number of bits available for any given value.    * @throws java.io.IOException if the values for the backing array could not    *                             be retrieved.    */
 DECL|method|Packed64
 specifier|public
 name|Packed64
 parameter_list|(
-name|IndexInput
+name|DataInput
 name|in
 parameter_list|,
 name|int
