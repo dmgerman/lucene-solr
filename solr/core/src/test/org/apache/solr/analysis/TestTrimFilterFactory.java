@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|MockTokenizer
 import|;
 end_import
 
@@ -70,9 +70,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|KeywordTokenizer
+name|TokenStream
 import|;
 end_import
 
@@ -144,13 +142,19 @@ operator|.
 name|create
 argument_list|(
 operator|new
-name|KeywordTokenizer
+name|MockTokenizer
 argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 literal|"trim me    "
 argument_list|)
+argument_list|,
+name|MockTokenizer
+operator|.
+name|KEYWORD
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -76,9 +76,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
+name|en
 operator|.
-name|WhitespaceTokenizer
+name|PorterStemFilter
 import|;
 end_import
 
@@ -92,9 +92,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|en
-operator|.
-name|PorterStemFilter
+name|MockTokenizer
 import|;
 end_import
 
@@ -188,11 +186,15 @@ name|Tokenizer
 name|tokenizer
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|DEFAULT_VERSION
-argument_list|,
 name|reader
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|StemmerOverrideFilterFactory
@@ -305,11 +307,15 @@ name|Tokenizer
 name|tokenizer
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|DEFAULT_VERSION
-argument_list|,
 name|reader
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|StemmerOverrideFilterFactory
