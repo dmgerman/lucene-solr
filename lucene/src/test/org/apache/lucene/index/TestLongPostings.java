@@ -352,16 +352,21 @@ operator|.
 name|getBytesRef
 argument_list|()
 decl_stmt|;
-name|int
-name|count
-init|=
-literal|0
-decl_stmt|;
 name|ts
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
+name|boolean
+name|changed
+init|=
+literal|false
+decl_stmt|;
 while|while
 condition|(
 name|ts
@@ -393,7 +398,12 @@ name|s
 argument_list|)
 condition|)
 block|{
-break|break;
+comment|// The value was changed during analysis.  Keep iterating so the
+comment|// tokenStream is exhausted.
+name|changed
+operator|=
+literal|true
+expr_stmt|;
 block|}
 name|count
 operator|++
@@ -409,8 +419,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// Did we iterate just once and the value was unchanged?
 if|if
 condition|(
+operator|!
+name|changed
+operator|&&
 name|count
 operator|==
 literal|1
