@@ -2366,6 +2366,8 @@ name|getNumFound
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// TODO: not a great way to test this - timing is easily out
+comment|// of whack due to parallel tests and various computer specs/load
 name|Thread
 operator|.
 name|sleep
@@ -2388,7 +2390,12 @@ literal|"id:id3"
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
+name|int
+name|cnt
+init|=
+literal|0
+decl_stmt|;
+while|while
 condition|(
 name|rsp
 operator|.
@@ -2401,7 +2408,18 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// wait and try again for slower machines
+comment|// wait and try again for slower/busier machines
+comment|// and/or parallel test effects.
+if|if
+condition|(
+name|cnt
+operator|++
+operator|==
+literal|10
+condition|)
+block|{
+break|break;
+block|}
 name|Thread
 operator|.
 name|sleep
@@ -2509,7 +2527,11 @@ literal|"id:id4"
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
+name|cnt
+operator|=
+literal|0
+expr_stmt|;
+while|while
 condition|(
 name|rsp
 operator|.
@@ -2522,7 +2544,18 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// wait and try again for slower machines
+comment|// wait and try again for slower/busier machines
+comment|// and/or parallel test effects.
+if|if
+condition|(
+name|cnt
+operator|++
+operator|==
+literal|10
+condition|)
+block|{
+break|break;
+block|}
 name|Thread
 operator|.
 name|sleep
@@ -2540,7 +2573,7 @@ argument_list|(
 operator|new
 name|SolrQuery
 argument_list|(
-literal|"id:id4"
+literal|"id:id3"
 argument_list|)
 argument_list|)
 expr_stmt|;
