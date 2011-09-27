@@ -2814,6 +2814,7 @@ name|docs
 operator|.
 name|scoreDocs
 decl_stmt|;
+comment|//it would be so nice if we had a thread-safe insert
 name|lock
 operator|.
 name|lock
@@ -2848,7 +2849,6 @@ index|[
 name|j
 index|]
 decl_stmt|;
-comment|//it would be so nice if we had a thread-safe insert
 if|if
 condition|(
 name|scoreDoc
