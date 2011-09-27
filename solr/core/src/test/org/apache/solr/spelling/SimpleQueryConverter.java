@@ -235,6 +235,8 @@ name|String
 name|origQuery
 parameter_list|)
 block|{
+try|try
+block|{
 name|Collection
 argument_list|<
 name|Token
@@ -264,7 +266,7 @@ name|ts
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|""
 argument_list|,
@@ -348,8 +350,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|ts
 operator|.
 name|reset
@@ -450,6 +450,19 @@ name|tok
 argument_list|)
 expr_stmt|;
 block|}
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+return|return
+name|result
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -465,9 +478,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-return|return
-name|result
-return|;
 block|}
 block|}
 end_class

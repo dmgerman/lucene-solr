@@ -844,6 +844,8 @@ name|Analyzer
 name|analyzer
 parameter_list|)
 block|{
+try|try
+block|{
 specifier|final
 name|Set
 argument_list|<
@@ -864,7 +866,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|tokenStream
+name|reusableTokenStream
 argument_list|(
 literal|""
 argument_list|,
@@ -897,8 +899,6 @@ operator|.
 name|getBytesRef
 argument_list|()
 decl_stmt|;
-try|try
-block|{
 name|tokenStream
 operator|.
 name|reset
@@ -929,6 +929,19 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|tokenStream
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|tokenStream
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+return|return
+name|tokens
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -946,9 +959,6 @@ name|ioe
 argument_list|)
 throw|;
 block|}
-return|return
-name|tokens
-return|;
 block|}
 comment|/**    * Analyzes the given TokenStream, collecting the Tokens it produces.    *    * @param tokenStream TokenStream to analyze    *    * @return List of tokens produced from the TokenStream    */
 DECL|method|analyzeTokenStream

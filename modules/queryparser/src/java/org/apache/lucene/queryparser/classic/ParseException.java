@@ -107,6 +107,30 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+comment|/**    * Creates a new ParseException which is wrapping another Throwable with an    * additional message    *    * @param message Message for the Exception    * @param throwable Wrapped Throwable    */
+DECL|method|ParseException
+specifier|public
+name|ParseException
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|Throwable
+name|throwable
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|message
+argument_list|,
+name|throwable
+argument_list|)
+expr_stmt|;
+name|specialConstructor
+operator|=
+literal|false
+expr_stmt|;
+block|}
 comment|/**    * This variable determines which constructor was used to create    * this object and thereby affects the semantics of the    * "getMessage" method (see below).    */
 DECL|field|specialConstructor
 specifier|protected
