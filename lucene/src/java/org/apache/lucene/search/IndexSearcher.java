@@ -2814,6 +2814,13 @@ name|docs
 operator|.
 name|scoreDocs
 decl_stmt|;
+name|lock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|int
@@ -2842,13 +2849,6 @@ name|j
 index|]
 decl_stmt|;
 comment|//it would be so nice if we had a thread-safe insert
-name|lock
-operator|.
-name|lock
-argument_list|()
-expr_stmt|;
-try|try
-block|{
 if|if
 condition|(
 name|scoreDoc
@@ -2860,7 +2860,10 @@ argument_list|(
 name|scoreDoc
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
+block|}
 block|}
 finally|finally
 block|{
@@ -2869,7 +2872,6 @@ operator|.
 name|unlock
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 return|return
 name|docs
