@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index
+DECL|package|org.apache.lucene.document
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 package|;
 end_package
 
@@ -54,9 +54,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|BinaryField
+name|FieldInfo
 import|;
 end_import
 
@@ -68,9 +68,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Document
+name|IndexReader
 import|;
 end_import
 
@@ -82,51 +82,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|Field
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FieldType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|NumericField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|TextField
+name|StoredFieldVisitor
 import|;
 end_import
 
