@@ -1699,13 +1699,6 @@ argument_list|(
 name|fieldName
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|fields
-operator|!=
-literal|null
-condition|)
-block|{
 for|for
 control|(
 name|int
@@ -1755,7 +1748,6 @@ argument_list|,
 name|fieldName
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
