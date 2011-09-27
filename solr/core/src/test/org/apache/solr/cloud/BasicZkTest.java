@@ -52,6 +52,18 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|params
@@ -789,6 +801,13 @@ expr_stmt|;
 comment|// we set the solrconfig to nothing, so this reload should fail
 try|try
 block|{
+name|SolrTestCaseJ4
+operator|.
+name|ignoreException
+argument_list|(
+literal|"SAXParseException"
+argument_list|)
+expr_stmt|;
 name|h
 operator|.
 name|getCoreContainer
@@ -804,6 +823,11 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|SolrTestCaseJ4
+operator|.
+name|resetExceptionIgnores
+argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
