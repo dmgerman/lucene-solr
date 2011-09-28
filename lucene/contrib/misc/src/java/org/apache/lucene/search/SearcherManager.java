@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Utility class to safely share {@link IndexSearcher} instances  *  across multiple threads, while periodically reopening.  *  This class ensures each IndexSearcher instance is not  *  closed until it is no longer needed.  *  *<p>Use {@link #get} to obtain the current searcher, and  *  {@link #release} to release it, like this:  *  *<pre>  *    IndexSearcher s = manager.get();  *    try {  *      // Do searching, doc retrieval, etc. with s  *    } finally {  *      manager.release(s);  *    }  *    // Do not use s after this!  *    s = null;  *</pre>  *  *<p>In addition you should periodically call {@link  *  #maybeReopen}.  While it's possible to call this just  *  before running each query, this is discouraged since it  *  penalizes the unlucky queries that do the reopen.  It's  *  better to  use a separate background thread, that  *  periodically calls maybeReopen.  Finally, be sure to  *  call {@link #close} once you are done.  *  *<p><b>NOTE</b>: if you have an {@link IndexWriter}, it's  *  better to use {@link NRTManager} since that class pulls  *  near-real-time readers from the IndexWriter.  *  *  @lucene.experimental  */
+comment|/** Utility class to safely share {@link IndexSearcher} instances  *  across multiple threads, while periodically reopening.  *  This class ensures each IndexSearcher instance is not  *  closed until it is no longer needed.  *  *<p>Use {@link #acquire} to obtain the current searcher, and  *  {@link #release} to release it, like this:  *  *<pre>  *    IndexSearcher s = manager.acquire();  *    try {  *      // Do searching, doc retrieval, etc. with s  *    } finally {  *      manager.release(s);  *    }  *    // Do not use s after this!  *    s = null;  *</pre>  *  *<p>In addition you should periodically call {@link  *  #maybeReopen}.  While it's possible to call this just  *  before running each query, this is discouraged since it  *  penalizes the unlucky queries that do the reopen.  It's  *  better to  use a separate background thread, that  *  periodically calls maybeReopen.  Finally, be sure to  *  call {@link #close} once you are done.  *  *<p><b>NOTE</b>: if you have an {@link IndexWriter}, it's  *  better to use {@link NRTManager} since that class pulls  *  near-real-time readers from the IndexWriter.  *  *  @lucene.experimental  */
 end_comment
 
 begin_class
@@ -390,7 +390,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/** Obtain the current IndexSearcher.  You must match    *  every call to get with one call to {@link #release};    *  it's best to do so in a finally clause. */
+comment|/** Obtain the current IndexSearcher.  You must match    *  every call to acquire with one call to {@link #release};    *  it's best to do so in a finally clause. */
 DECL|method|acquire
 specifier|public
 name|IndexSearcher
@@ -438,7 +438,7 @@ return|return
 name|searcher
 return|;
 block|}
-comment|/** Release the searcher previously obtained with {@link    *  #get}.    *    *<p><b>NOTE</b>: it's safe to call this after {@link    *  #close}. */
+comment|/** Release the searcher previously obtained with {@link    *  #acquire}.    *    *<p><b>NOTE</b>: it's safe to call this after {@link    *  #close}. */
 DECL|method|release
 specifier|public
 name|void
