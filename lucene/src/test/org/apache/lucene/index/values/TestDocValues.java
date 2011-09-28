@@ -1492,6 +1492,10 @@ literal|"test"
 argument_list|,
 literal|2
 argument_list|,
+name|ValueType
+operator|.
+name|VAR_INTS
+argument_list|,
 name|newIOContext
 argument_list|(
 name|random
@@ -1881,6 +1885,10 @@ name|sourceArray
 operator|.
 name|length
 argument_list|,
+name|ValueType
+operator|.
+name|FIXED_INTS_8
+argument_list|,
 name|newIOContext
 argument_list|(
 name|random
@@ -2093,6 +2101,10 @@ name|sourceArray
 operator|.
 name|length
 argument_list|,
+name|ValueType
+operator|.
+name|FIXED_INTS_16
+argument_list|,
 name|newIOContext
 argument_list|(
 name|random
@@ -2301,6 +2313,10 @@ argument_list|,
 name|sourceArray
 operator|.
 name|length
+argument_list|,
+name|ValueType
+operator|.
+name|FIXED_INTS_64
 argument_list|,
 name|newIOContext
 argument_list|(
@@ -2513,6 +2529,10 @@ argument_list|,
 name|sourceArray
 operator|.
 name|length
+argument_list|,
+name|ValueType
+operator|.
+name|FIXED_INTS_32
 argument_list|,
 name|newIOContext
 argument_list|(
@@ -3213,6 +3233,8 @@ argument_list|,
 name|NUM_VALUES
 operator|+
 name|additionalDocs
+argument_list|,
+name|type
 argument_list|,
 name|newIOContext
 argument_list|(
