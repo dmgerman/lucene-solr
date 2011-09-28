@@ -793,7 +793,6 @@ return|return;
 block|}
 comment|// We already tested that the document is competitive, so replace
 comment|// the bottom group with this new group.
-comment|// java 6-only: final CollectedSearchGroup bottomGroup = orderedGroups.pollLast();
 specifier|final
 name|CollectedSearchGroup
 argument_list|<
@@ -801,6 +800,8 @@ name|GROUP_VALUE_TYPE
 argument_list|>
 name|bottomGroup
 init|=
+name|orderedGroups
+operator|.
 name|pollLast
 argument_list|()
 decl_stmt|;
@@ -1428,39 +1429,6 @@ name|GROUP_VALUE_TYPE
 name|reuse
 parameter_list|)
 function_decl|;
-DECL|method|pollLast
-specifier|protected
-name|CollectedSearchGroup
-argument_list|<
-name|GROUP_VALUE_TYPE
-argument_list|>
-name|pollLast
-parameter_list|()
-block|{
-comment|// java 6-only: final CollectedSearchGroup bottomGroup = orderedGroups.pollLast();
-specifier|final
-name|CollectedSearchGroup
-argument_list|<
-name|GROUP_VALUE_TYPE
-argument_list|>
-name|bottomGroup
-init|=
-name|orderedGroups
-operator|.
-name|last
-argument_list|()
-decl_stmt|;
-name|orderedGroups
-operator|.
-name|remove
-argument_list|(
-name|bottomGroup
-argument_list|)
-expr_stmt|;
-return|return
-name|bottomGroup
-return|;
-block|}
 block|}
 end_class
 
