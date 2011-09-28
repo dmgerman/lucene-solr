@@ -3677,12 +3677,12 @@ argument_list|()
 argument_list|,
 name|field1
 operator|.
-name|fieldType
+name|stringValue
 argument_list|()
 argument_list|,
 name|field1
 operator|.
-name|stringValue
+name|fieldType
 argument_list|()
 argument_list|)
 decl_stmt|;

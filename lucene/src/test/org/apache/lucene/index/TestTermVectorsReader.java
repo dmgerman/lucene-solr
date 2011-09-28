@@ -828,9 +828,9 @@ index|[
 name|i
 index|]
 argument_list|,
-name|customType
-argument_list|,
 literal|""
+argument_list|,
+name|customType
 argument_list|)
 argument_list|)
 expr_stmt|;

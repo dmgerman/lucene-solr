@@ -316,11 +316,11 @@ name|Field
 argument_list|(
 literal|"partnum"
 argument_list|,
+literal|"Q36"
+argument_list|,
 name|StringField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"Q36"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -333,11 +333,11 @@ name|Field
 argument_list|(
 literal|"description"
 argument_list|,
+literal|"Illidium Space Modulator"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"Illidium Space Modulator"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -415,11 +415,11 @@ name|Field
 argument_list|(
 literal|"partnum"
 argument_list|,
+literal|"Q36"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"Q36"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -445,11 +445,11 @@ name|Field
 argument_list|(
 literal|"partnum"
 argument_list|,
+literal|"Q37"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"Q37"
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -168,9 +168,9 @@ name|Field
 argument_list|(
 literal|"stringStored"
 argument_list|,
-name|ft
-argument_list|,
 name|binaryValStored
+argument_list|,
+name|ft
 argument_list|)
 decl_stmt|;
 name|Document

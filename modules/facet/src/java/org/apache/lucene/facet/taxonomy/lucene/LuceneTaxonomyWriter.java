@@ -784,9 +784,9 @@ name|Consts
 operator|.
 name|FIELD_PAYLOADS
 argument_list|,
-name|ft
-argument_list|,
 name|parentStream
+argument_list|,
+name|ft
 argument_list|)
 expr_stmt|;
 name|fullPathField
@@ -798,11 +798,11 @@ name|Consts
 operator|.
 name|FULL
 argument_list|,
+literal|""
+argument_list|,
 name|StringField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|""
 argument_list|)
 expr_stmt|;
 name|this

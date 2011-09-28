@@ -774,11 +774,11 @@ name|Field
 argument_list|(
 literal|"content"
 argument_list|,
+literal|"doc 1"
+argument_list|,
 name|StringField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"doc 1"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -804,11 +804,11 @@ name|Field
 argument_list|(
 literal|"content"
 argument_list|,
+literal|"doc 2"
+argument_list|,
 name|StringField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"doc 2"
 argument_list|)
 argument_list|)
 expr_stmt|;

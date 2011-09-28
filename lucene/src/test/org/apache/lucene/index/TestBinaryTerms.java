@@ -334,11 +334,11 @@ name|Field
 argument_list|(
 literal|"id"
 argument_list|,
-name|customType
-argument_list|,
 literal|""
 operator|+
 name|i
+argument_list|,
+name|customType
 argument_list|)
 argument_list|)
 expr_stmt|;

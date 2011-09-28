@@ -7623,11 +7623,11 @@ name|Field
 argument_list|(
 literal|"field"
 argument_list|,
+literal|"a field"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"a field"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -7768,11 +7768,11 @@ name|Field
 argument_list|(
 literal|"field"
 argument_list|,
+literal|"a field"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"a field"
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -1356,14 +1356,14 @@ name|Field
 argument_list|(
 literal|"del"
 argument_list|,
-name|ft
-argument_list|,
 name|Integer
 operator|.
 name|toString
 argument_list|(
 name|docNum
 argument_list|)
+argument_list|,
+name|ft
 argument_list|)
 argument_list|)
 expr_stmt|;

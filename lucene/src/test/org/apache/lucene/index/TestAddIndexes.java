@@ -6250,9 +6250,9 @@ name|Field
 argument_list|(
 literal|"c"
 argument_list|,
-name|customType
-argument_list|,
 literal|"v"
+argument_list|,
+name|customType
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -6532,11 +6532,11 @@ name|Field
 argument_list|(
 literal|"c"
 argument_list|,
+literal|"some text"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"some text"
 argument_list|)
 argument_list|)
 expr_stmt|;

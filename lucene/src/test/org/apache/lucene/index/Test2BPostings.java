@@ -431,11 +431,11 @@ name|Field
 argument_list|(
 literal|"field"
 argument_list|,
-name|ft
-argument_list|,
 operator|new
 name|MyTokenStream
 argument_list|()
+argument_list|,
+name|ft
 argument_list|)
 decl_stmt|;
 name|doc

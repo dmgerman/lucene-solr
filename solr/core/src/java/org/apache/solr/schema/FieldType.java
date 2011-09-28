@@ -1360,9 +1360,9 @@ name|Field
 argument_list|(
 name|name
 argument_list|,
-name|type
-argument_list|,
 name|val
+argument_list|,
+name|type
 argument_list|)
 decl_stmt|;
 name|f

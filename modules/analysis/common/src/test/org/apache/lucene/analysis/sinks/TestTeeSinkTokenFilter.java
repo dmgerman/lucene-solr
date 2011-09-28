@@ -692,9 +692,9 @@ name|Field
 argument_list|(
 literal|"field"
 argument_list|,
-name|ft
-argument_list|,
 name|tee
+argument_list|,
+name|ft
 argument_list|)
 decl_stmt|;
 name|Field
@@ -705,9 +705,9 @@ name|Field
 argument_list|(
 literal|"field"
 argument_list|,
-name|ft
-argument_list|,
 name|sink
+argument_list|,
+name|ft
 argument_list|)
 decl_stmt|;
 name|doc

@@ -6269,9 +6269,9 @@ name|Field
 argument_list|(
 name|name
 argument_list|,
-name|type
-argument_list|,
 name|value
+argument_list|,
+name|type
 argument_list|)
 return|;
 block|}
@@ -6379,9 +6379,9 @@ name|Field
 argument_list|(
 name|name
 argument_list|,
-name|newType
-argument_list|,
 name|value
+argument_list|,
+name|newType
 argument_list|)
 return|;
 block|}

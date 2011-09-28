@@ -647,11 +647,11 @@ name|Field
 argument_list|(
 literal|"id"
 argument_list|,
+literal|"2"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"2"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -664,11 +664,11 @@ name|Field
 argument_list|(
 literal|"name"
 argument_list|,
+literal|"name2"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"name2"
 argument_list|)
 argument_list|)
 expr_stmt|;

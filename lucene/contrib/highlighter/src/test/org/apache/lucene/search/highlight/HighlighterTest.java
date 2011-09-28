@@ -10601,11 +10601,11 @@ name|Field
 argument_list|(
 name|f
 argument_list|,
+name|v
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-name|v
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -11532,11 +11532,11 @@ name|Field
 argument_list|(
 name|FIELD_NAME
 argument_list|,
+name|text
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-name|text
 argument_list|)
 decl_stmt|;
 name|d

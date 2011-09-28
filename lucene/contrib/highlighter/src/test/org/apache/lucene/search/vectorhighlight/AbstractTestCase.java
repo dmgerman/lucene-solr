@@ -2006,9 +2006,9 @@ name|Field
 argument_list|(
 name|F
 argument_list|,
-name|customType
-argument_list|,
 name|value
+argument_list|,
+name|customType
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2141,9 +2141,9 @@ name|Field
 argument_list|(
 name|F
 argument_list|,
-name|customType
-argument_list|,
 name|value
+argument_list|,
+name|customType
 argument_list|)
 argument_list|)
 expr_stmt|;

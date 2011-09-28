@@ -3811,16 +3811,16 @@ name|Field
 argument_list|(
 literal|"id"
 argument_list|,
-name|StringField
-operator|.
-name|TYPE_STORED
-argument_list|,
 name|Integer
 operator|.
 name|toString
 argument_list|(
 name|id
 argument_list|)
+argument_list|,
+name|StringField
+operator|.
+name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3865,9 +3865,9 @@ name|Field
 argument_list|(
 literal|"autf8"
 argument_list|,
-name|customType2
-argument_list|,
 literal|"Lu\uD834\uDD1Ece\uD834\uDD60ne \u0000 \u2620 ab\ud917\udc17cd"
+argument_list|,
+name|customType2
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3880,9 +3880,9 @@ name|Field
 argument_list|(
 literal|"utf8"
 argument_list|,
-name|customType2
-argument_list|,
 literal|"Lu\uD834\uDD1Ece\uD834\uDD60ne \u0000 \u2620 ab\ud917\udc17cd"
+argument_list|,
+name|customType2
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3895,9 +3895,9 @@ name|Field
 argument_list|(
 literal|"content2"
 argument_list|,
-name|customType2
-argument_list|,
 literal|"here is more content with aaa aaa aaa"
+argument_list|,
+name|customType2
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3910,9 +3910,9 @@ name|Field
 argument_list|(
 literal|"fie\u2C77ld"
 argument_list|,
-name|customType2
-argument_list|,
 literal|"field with non-ascii name"
+argument_list|,
+name|customType2
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4007,9 +4007,9 @@ name|Field
 argument_list|(
 literal|"content3"
 argument_list|,
-name|customType
-argument_list|,
 literal|"aaa"
+argument_list|,
+name|customType
 argument_list|)
 decl_stmt|;
 name|doc
@@ -4049,9 +4049,9 @@ name|Field
 argument_list|(
 literal|"content4"
 argument_list|,
-name|customType2
-argument_list|,
 literal|"aaa"
+argument_list|,
+name|customType2
 argument_list|)
 expr_stmt|;
 name|doc

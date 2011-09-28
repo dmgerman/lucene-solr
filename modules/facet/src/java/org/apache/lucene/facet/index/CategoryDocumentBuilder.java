@@ -689,9 +689,9 @@ operator|.
 name|getKey
 argument_list|()
 argument_list|,
-name|ft
-argument_list|,
 name|stream
+argument_list|,
+name|ft
 argument_list|)
 argument_list|)
 expr_stmt|;

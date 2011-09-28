@@ -1050,9 +1050,9 @@ name|Field
 argument_list|(
 literal|"f"
 argument_list|,
-name|customType
-argument_list|,
 name|docText
+argument_list|,
+name|customType
 argument_list|)
 decl_stmt|;
 name|doc
@@ -1406,9 +1406,9 @@ name|Field
 argument_list|(
 literal|"lyrics"
 argument_list|,
-name|customType
-argument_list|,
 literal|""
+argument_list|,
+name|customType
 argument_list|)
 decl_stmt|;
 name|Document

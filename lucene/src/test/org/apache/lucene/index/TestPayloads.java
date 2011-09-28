@@ -3776,11 +3776,11 @@ name|Field
 argument_list|(
 literal|"hasMaybepayload"
 argument_list|,
+literal|"here we go"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"here we go"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3833,11 +3833,11 @@ name|Field
 argument_list|(
 literal|"hasMaybepayload2"
 argument_list|,
+literal|"here we go"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"here we go"
 argument_list|)
 argument_list|)
 expr_stmt|;

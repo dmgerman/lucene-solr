@@ -1002,8 +1002,6 @@ name|fieldInfo
 operator|.
 name|name
 argument_list|,
-name|ft
-argument_list|,
 operator|new
 name|String
 argument_list|(
@@ -1011,6 +1009,8 @@ name|b
 argument_list|,
 literal|"UTF-8"
 argument_list|)
+argument_list|,
+name|ft
 argument_list|)
 argument_list|)
 expr_stmt|;

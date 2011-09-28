@@ -1058,11 +1058,11 @@ name|Field
 argument_list|(
 literal|"content"
 argument_list|,
+literal|"alpha"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"alpha"
 argument_list|)
 argument_list|)
 expr_stmt|;

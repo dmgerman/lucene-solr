@@ -1043,11 +1043,11 @@ name|Field
 argument_list|(
 literal|"keyword"
 argument_list|,
+literal|"test1"
+argument_list|,
 name|StringField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"test1"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1060,11 +1060,11 @@ name|Field
 argument_list|(
 literal|"text"
 argument_list|,
+literal|"test1"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"test1"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1077,9 +1077,9 @@ name|Field
 argument_list|(
 literal|"unindexed"
 argument_list|,
-name|customType3
-argument_list|,
 literal|"test1"
+argument_list|,
+name|customType3
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1268,11 +1268,11 @@ name|Field
 argument_list|(
 literal|"keyword"
 argument_list|,
+literal|"test1"
+argument_list|,
 name|StringField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"test1"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1285,11 +1285,11 @@ name|Field
 argument_list|(
 literal|"text"
 argument_list|,
+literal|"test1"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"test1"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1302,9 +1302,9 @@ name|Field
 argument_list|(
 literal|"unindexed"
 argument_list|,
-name|customType3
-argument_list|,
 literal|"test1"
+argument_list|,
+name|customType3
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1362,11 +1362,11 @@ name|Field
 argument_list|(
 literal|"keyword2"
 argument_list|,
+literal|"test1"
+argument_list|,
 name|StringField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"test1"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1379,11 +1379,11 @@ name|Field
 argument_list|(
 literal|"text2"
 argument_list|,
+literal|"test1"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"test1"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1396,9 +1396,9 @@ name|Field
 argument_list|(
 literal|"unindexed2"
 argument_list|,
-name|customType3
-argument_list|,
 literal|"test1"
+argument_list|,
+name|customType3
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1556,11 +1556,11 @@ name|Field
 argument_list|(
 literal|"tvnot"
 argument_list|,
+literal|"tvnot"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"tvnot"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1571,11 +1571,11 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
+literal|"termvector"
+argument_list|,
 literal|"termvector"
 argument_list|,
 name|customType5
-argument_list|,
-literal|"termvector"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1586,11 +1586,11 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
+literal|"tvoffset"
+argument_list|,
 literal|"tvoffset"
 argument_list|,
 name|customType6
-argument_list|,
-literal|"tvoffset"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1601,11 +1601,11 @@ argument_list|(
 operator|new
 name|Field
 argument_list|(
+literal|"tvposition"
+argument_list|,
 literal|"tvposition"
 argument_list|,
 name|customType7
-argument_list|,
-literal|"tvposition"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1618,9 +1618,9 @@ name|Field
 argument_list|(
 literal|"tvpositionoffset"
 argument_list|,
-name|customType8
-argument_list|,
 literal|"tvpositionoffset"
+argument_list|,
+name|customType8
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2326,11 +2326,11 @@ name|Field
 argument_list|(
 literal|"tvnot"
 argument_list|,
+literal|"one two two three three three"
+argument_list|,
 name|TextField
 operator|.
 name|TYPE_STORED
-argument_list|,
-literal|"one two two three three three"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2343,9 +2343,9 @@ name|Field
 argument_list|(
 literal|"termvector"
 argument_list|,
-name|customType5
-argument_list|,
 literal|"one two two three three three"
+argument_list|,
+name|customType5
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2358,9 +2358,9 @@ name|Field
 argument_list|(
 literal|"tvoffset"
 argument_list|,
-name|customType6
-argument_list|,
 literal|"one two two three three three"
+argument_list|,
+name|customType6
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2373,9 +2373,9 @@ name|Field
 argument_list|(
 literal|"tvposition"
 argument_list|,
-name|customType7
-argument_list|,
 literal|"one two two three three three"
+argument_list|,
+name|customType7
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2388,9 +2388,9 @@ name|Field
 argument_list|(
 literal|"tvpositionoffset"
 argument_list|,
-name|customType8
-argument_list|,
 literal|"one two two three three three"
+argument_list|,
+name|customType8
 argument_list|)
 argument_list|)
 expr_stmt|;
