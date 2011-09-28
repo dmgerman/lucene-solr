@@ -129,7 +129,7 @@ expr_stmt|;
 return|return
 name|mgr
 operator|.
-name|get
+name|acquire
 argument_list|()
 return|;
 block|}
@@ -401,7 +401,7 @@ block|}
 return|return
 name|mgr
 operator|.
-name|get
+name|acquire
 argument_list|()
 return|;
 block|}

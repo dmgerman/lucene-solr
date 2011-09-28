@@ -56,9 +56,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|atomic
-operator|.
-name|AtomicBoolean
+name|Semaphore
 import|;
 end_import
 
@@ -164,12 +162,14 @@ decl_stmt|;
 DECL|field|reopening
 specifier|private
 specifier|final
-name|AtomicBoolean
+name|Semaphore
 name|reopening
 init|=
 operator|new
-name|AtomicBoolean
-argument_list|()
+name|Semaphore
+argument_list|(
+literal|1
+argument_list|)
 decl_stmt|;
 DECL|field|es
 specifier|private
@@ -276,13 +276,10 @@ comment|// Ensure only 1 thread does reopen at once; other
 comment|// threads just return immediately:
 if|if
 condition|(
-operator|!
 name|reopening
 operator|.
-name|getAndSet
-argument_list|(
-literal|true
-argument_list|)
+name|tryAcquire
+argument_list|()
 condition|)
 block|{
 try|try
@@ -381,10 +378,8 @@ finally|finally
 block|{
 name|reopening
 operator|.
-name|set
-argument_list|(
-literal|false
-argument_list|)
+name|release
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -396,16 +391,24 @@ return|;
 block|}
 block|}
 comment|/** Obtain the current IndexSearcher.  You must match    *  every call to get with one call to {@link #release};    *  it's best to do so in a finally clause. */
-DECL|method|get
+DECL|method|acquire
 specifier|public
-specifier|synchronized
 name|IndexSearcher
-name|get
+name|acquire
 parameter_list|()
+block|{
+name|IndexSearcher
+name|searcher
+decl_stmt|;
+do|do
 block|{
 if|if
 condition|(
+operator|(
+name|searcher
+operator|=
 name|currentSearcher
+operator|)
 operator|==
 literal|null
 condition|)
@@ -418,16 +421,21 @@ literal|"this SearcherManager is closed"
 argument_list|)
 throw|;
 block|}
-name|currentSearcher
+block|}
+do|while
+condition|(
+operator|!
+name|searcher
 operator|.
 name|getIndexReader
 argument_list|()
 operator|.
-name|incRef
+name|tryIncRef
 argument_list|()
-expr_stmt|;
+condition|)
+do|;
 return|return
-name|currentSearcher
+name|searcher
 return|;
 block|}
 comment|/** Release the searcher previously obtained with {@link    *  #get}.    *    *<p><b>NOTE</b>: it's safe to call this after {@link    *  #close}. */
@@ -451,7 +459,7 @@ name|decRef
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Replaces old searcher with new one
+comment|// Replaces old searcher with new one - needs to be synced to make close() work
 DECL|method|swapSearcher
 specifier|private
 specifier|synchronized
