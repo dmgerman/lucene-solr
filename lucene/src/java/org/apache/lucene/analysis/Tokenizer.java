@@ -248,7 +248,7 @@ else|:
 name|currentOff
 return|;
 block|}
-comment|/** Expert: Reset the tokenizer to a new reader.  Typically, an    *  analyzer (in its reusableTokenStream method) will use    *  this to re-use a previously created tokenizer. */
+comment|/** Expert: Reset the tokenizer to a new reader.  Typically, an    *  analyzer (in its tokenStream method) will use    *  this to re-use a previously created tokenizer. */
 DECL|method|reset
 specifier|public
 name|void

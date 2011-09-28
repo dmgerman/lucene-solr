@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An Analyzer builds TokenStreams, which analyze text.  It thus represents a  * policy for extracting index terms from text.  *<p>  * To prevent consistency problems, this class does not allow subclasses to  * extend {@link #reusableTokenStream(String, Reader)} or  * {@link #tokenStream(String, Reader)} directly. Instead, subclasses must  * implement {@link #createComponents(String, Reader)}.  *</p>  *<p>The {@code Analyzer}-API in Lucene is based on the decorator pattern.  * Therefore all non-abstract subclasses must be final! This is checked  * when Java assertions are enabled.  */
+comment|/**  * An Analyzer builds TokenStreams, which analyze text.  It thus represents a  * policy for extracting index terms from text.  *<p>  * In order to define what analysis is done, subclasses must define their  * {@link TokenStreamComponents} in {@link #createComponents(String, Reader)}.  * The components are then reused in each call to {@link #tokenStream(String, Reader)}.  */
 end_comment
 
 begin_class
@@ -158,11 +158,11 @@ name|aReader
 parameter_list|)
 function_decl|;
 comment|/**    * Creates a TokenStream that is allowed to be re-use from the previous time    * that the same thread called this method.  Callers that do not need to use    * more than one TokenStream at the same time from this analyzer should use    * this method for better performance.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#reset(Reader)}.    *</p>    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    */
-DECL|method|reusableTokenStream
+DECL|method|tokenStream
 specifier|public
 specifier|final
 name|TokenStream
-name|reusableTokenStream
+name|tokenStream
 parameter_list|(
 specifier|final
 name|String
@@ -232,37 +232,6 @@ expr_stmt|;
 block|}
 return|return
 name|components
-operator|.
-name|getTokenStream
-argument_list|()
-return|;
-block|}
-comment|/**    * Creates a TokenStream which tokenizes all the text in the provided    * Reader.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents} and returns the sink of the    * components. Each calls to this method will create a new instance of    * {@link TokenStreamComponents}. Created {@link TokenStream} instances are     * never reused.    *</p>    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    */
-DECL|method|tokenStream
-specifier|public
-specifier|final
-name|TokenStream
-name|tokenStream
-parameter_list|(
-specifier|final
-name|String
-name|fieldName
-parameter_list|,
-specifier|final
-name|Reader
-name|reader
-parameter_list|)
-block|{
-return|return
-name|createComponents
-argument_list|(
-name|fieldName
-argument_list|,
-name|initReader
-argument_list|(
-name|reader
-argument_list|)
-argument_list|)
 operator|.
 name|getTokenStream
 argument_list|()
@@ -341,7 +310,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * This class encapsulates the outer components of a token stream. It provides    * access to the source ({@link Tokenizer}) and the outer end (sink), an    * instance of {@link TokenFilter} which also serves as the    * {@link TokenStream} returned by    * {@link Analyzer#tokenStream(String, Reader)} and    * {@link Analyzer#reusableTokenStream(String, Reader)}.    */
+comment|/**    * This class encapsulates the outer components of a token stream. It provides    * access to the source ({@link Tokenizer}) and the outer end (sink), an    * instance of {@link TokenFilter} which also serves as the    * {@link TokenStream} returned by    * {@link Analyzer#tokenStream(String, Reader)} and    * {@link Analyzer#tokenStream(String, Reader)}.    */
 DECL|class|TokenStreamComponents
 specifier|public
 specifier|static

@@ -424,7 +424,7 @@ operator|=
 name|getAnalyzer
 argument_list|()
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|field
 argument_list|,
@@ -788,7 +788,7 @@ operator|=
 name|getAnalyzer
 argument_list|()
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|field
 argument_list|,
@@ -988,7 +988,7 @@ operator|=
 name|getAnalyzer
 argument_list|()
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|field
 argument_list|,
@@ -1171,7 +1171,7 @@ operator|=
 name|getAnalyzer
 argument_list|()
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|field
 argument_list|,
@@ -1292,7 +1292,7 @@ operator|=
 name|getAnalyzer
 argument_list|()
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|field
 argument_list|,

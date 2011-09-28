@@ -1077,7 +1077,7 @@ name|stream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"field"
 argument_list|,

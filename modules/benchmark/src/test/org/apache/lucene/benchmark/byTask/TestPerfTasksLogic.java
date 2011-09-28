@@ -4211,7 +4211,7 @@ name|ts1
 init|=
 name|a1
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"bogus"
 argument_list|,
@@ -4227,7 +4227,7 @@ name|ts2
 init|=
 name|a2
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"bogus"
 argument_list|,
@@ -4446,7 +4446,7 @@ operator|.
 name|getAnalyzer
 argument_list|()
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"bogus"
 argument_list|,

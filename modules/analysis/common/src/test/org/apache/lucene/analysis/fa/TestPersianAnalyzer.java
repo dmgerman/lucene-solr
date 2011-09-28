@@ -1092,7 +1092,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Basic test ensuring that reusableTokenStream works correctly.    */
+comment|/**    * Basic test ensuring that tokenStream works correctly.    */
 DECL|method|testReusableTokenStream
 specifier|public
 name|void

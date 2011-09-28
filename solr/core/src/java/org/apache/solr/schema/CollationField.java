@@ -1050,7 +1050,7 @@ name|source
 operator|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|field
 argument_list|,

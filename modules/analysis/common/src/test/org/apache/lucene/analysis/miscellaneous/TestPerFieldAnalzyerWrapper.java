@@ -181,7 +181,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"field"
 argument_list|,
@@ -233,7 +233,7 @@ name|tokenStream
 operator|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"special"
 argument_list|,

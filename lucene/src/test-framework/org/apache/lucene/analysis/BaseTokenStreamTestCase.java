@@ -1224,7 +1224,7 @@ name|assertTokenStreamContents
 argument_list|(
 name|a
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"dummy"
 argument_list|,
@@ -1504,7 +1504,7 @@ name|assertTokenStreamContents
 argument_list|(
 name|a
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"dummy"
 argument_list|,
@@ -1963,7 +1963,7 @@ name|ts
 init|=
 name|a
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"dummy"
 argument_list|,

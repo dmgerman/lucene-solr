@@ -321,22 +321,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-operator|.
-name|ReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
 import|;
 end_import
 
@@ -940,7 +924,7 @@ name|stream
 operator|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|fieldName
 argument_list|,

@@ -845,7 +845,7 @@ name|tokenStream
 init|=
 name|a1
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|""
 argument_list|,
@@ -905,7 +905,7 @@ name|ts2
 init|=
 name|a2
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|""
 argument_list|,

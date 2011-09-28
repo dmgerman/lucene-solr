@@ -305,7 +305,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Set maximum allowed token length.  If a token is seen    * that exceeds this length then it is discarded.  This    * setting only takes effect the next time tokenStream or    * reusableTokenStream is called.    */
+comment|/**    * Set maximum allowed token length.  If a token is seen    * that exceeds this length then it is discarded.  This    * setting only takes effect the next time tokenStream or    * tokenStream is called.    */
 DECL|method|setMaxTokenLength
 specifier|public
 name|void

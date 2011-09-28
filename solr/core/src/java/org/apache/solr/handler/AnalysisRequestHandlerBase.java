@@ -508,7 +508,7 @@ name|tokenStream
 operator|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|context
 operator|.
@@ -866,7 +866,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|""
 argument_list|,

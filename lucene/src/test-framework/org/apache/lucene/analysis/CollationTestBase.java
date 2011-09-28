@@ -1452,7 +1452,7 @@ literal|"US"
 argument_list|,
 name|usAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"US"
 argument_list|,
@@ -1494,7 +1494,7 @@ literal|"France"
 argument_list|,
 name|franceAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"France"
 argument_list|,
@@ -1536,7 +1536,7 @@ literal|"Sweden"
 argument_list|,
 name|swedenAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"Sweden"
 argument_list|,
@@ -1578,7 +1578,7 @@ literal|"Denmark"
 argument_list|,
 name|denmarkAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"Denmark"
 argument_list|,
@@ -1999,7 +1999,7 @@ name|ts
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"fake"
 argument_list|,
@@ -2145,7 +2145,7 @@ name|ts
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"fake"
 argument_list|,

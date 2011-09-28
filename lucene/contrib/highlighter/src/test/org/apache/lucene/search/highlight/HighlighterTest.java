@@ -1070,7 +1070,7 @@ argument_list|,
 literal|true
 argument_list|)
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|fieldName
 argument_list|,
@@ -1247,7 +1247,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -1826,7 +1826,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -2036,7 +2036,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -2244,7 +2244,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -2437,7 +2437,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -2619,7 +2619,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -2805,7 +2805,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -2992,7 +2992,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -3157,7 +3157,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -3396,7 +3396,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -3557,7 +3557,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -3784,7 +3784,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -4207,7 +4207,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -5192,7 +5192,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|HighlighterTest
 operator|.
@@ -5357,7 +5357,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|HighlighterTest
 operator|.
@@ -5526,7 +5526,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|HighlighterTest
 operator|.
@@ -6535,7 +6535,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -6935,7 +6935,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -7009,7 +7009,7 @@ name|tokenStream
 operator|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -7241,7 +7241,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|null
 argument_list|,
@@ -7388,7 +7388,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -7546,7 +7546,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -7603,7 +7603,7 @@ name|tokenStream
 operator|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -7805,7 +7805,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -8227,7 +8227,7 @@ argument_list|,
 literal|true
 argument_list|)
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"text"
 argument_list|,
@@ -8519,7 +8519,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -8664,7 +8664,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -8808,7 +8808,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -11106,7 +11106,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -12568,7 +12568,7 @@ name|tokenStream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|HighlighterTest
 operator|.

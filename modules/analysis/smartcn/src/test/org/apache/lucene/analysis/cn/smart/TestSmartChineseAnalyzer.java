@@ -1120,7 +1120,7 @@ name|stream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|""
 argument_list|,
@@ -1201,7 +1201,7 @@ name|stream
 init|=
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|""
 argument_list|,

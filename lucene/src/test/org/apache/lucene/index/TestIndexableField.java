@@ -824,7 +824,7 @@ literal|null
 condition|?
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|name
 argument_list|()
@@ -835,7 +835,7 @@ argument_list|)
 else|:
 name|analyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 name|name
 argument_list|()

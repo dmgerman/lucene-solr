@@ -439,7 +439,7 @@ name|protectedTokenStream
 init|=
 name|protectedAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"variedField"
 argument_list|,
@@ -466,7 +466,7 @@ name|protectedTokenStream
 operator|=
 name|protectedAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
@@ -515,7 +515,7 @@ name|protectedTokenStream
 init|=
 name|protectedAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
@@ -568,7 +568,7 @@ name|protectedTokenStream
 init|=
 name|protectedAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
@@ -595,7 +595,7 @@ name|protectedTokenStream
 operator|=
 name|protectedAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
@@ -639,7 +639,7 @@ name|protectedTokenStream
 operator|=
 name|protectedAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
@@ -699,7 +699,7 @@ name|protectedTokenStream
 init|=
 name|protectedAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
@@ -752,7 +752,7 @@ name|protectedTokenStream
 operator|=
 name|protectedAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
@@ -914,7 +914,7 @@ name|protectedTokenStream
 init|=
 name|protectedAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
@@ -941,7 +941,7 @@ name|protectedTokenStream
 operator|=
 name|protectedAnalyzer
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"variedField"
 argument_list|,
@@ -1004,7 +1004,7 @@ name|ts
 init|=
 name|a
 operator|.
-name|reusableTokenStream
+name|tokenStream
 argument_list|(
 literal|"repetitiveField"
 argument_list|,
