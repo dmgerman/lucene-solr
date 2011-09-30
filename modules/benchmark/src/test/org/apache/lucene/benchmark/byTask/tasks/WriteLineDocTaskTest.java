@@ -912,6 +912,7 @@ argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
+break|break;
 case|case
 name|PLAIN
 case|:

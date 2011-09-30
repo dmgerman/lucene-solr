@@ -429,7 +429,11 @@ name|reader
 argument_list|,
 name|Collections
 operator|.
-name|EMPTY_LIST
+expr|<
+name|String
+operator|>
+name|emptyList
+argument_list|()
 argument_list|,
 literal|1
 argument_list|)
