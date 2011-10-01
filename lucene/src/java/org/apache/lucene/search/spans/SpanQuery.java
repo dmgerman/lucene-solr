@@ -86,6 +86,20 @@ name|Weight
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
 begin_comment
 comment|/** Base class for span-based queries. */
 end_comment
@@ -108,6 +122,9 @@ name|getSpans
 parameter_list|(
 name|AtomicReaderContext
 name|context
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException

@@ -84,6 +84,20 @@ name|ReaderContext
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
 begin_comment
 comment|/**   * Helper class that adds some extra checks to ensure correct  * usage of {@code IndexSearcher} and {@code Weight}.  * TODO: Extend this by more checks, that's just a start.  */
 end_comment
@@ -262,8 +276,14 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|,
-name|ScorerContext
-name|scorerContext
+name|boolean
+name|scoreDocsInOrder
+parameter_list|,
+name|boolean
+name|topScorer
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -275,7 +295,11 @@ name|scorer
 argument_list|(
 name|context
 argument_list|,
-name|scorerContext
+name|scoreDocsInOrder
+argument_list|,
+name|topScorer
+argument_list|,
+name|acceptDocs
 argument_list|)
 return|;
 block|}

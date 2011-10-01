@@ -338,6 +338,20 @@ name|Spans
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class used to extract {@link WeightedSpanTerm}s from a {@link Query} based on whether   * {@link Term}s from the {@link Query} are contained in a supplied {@link TokenStream}.  */
 end_comment
@@ -1584,6 +1598,16 @@ argument_list|(
 name|field
 argument_list|)
 decl_stmt|;
+name|Bits
+name|acceptDocs
+init|=
+name|context
+operator|.
+name|reader
+operator|.
+name|getLiveDocs
+argument_list|()
+decl_stmt|;
 specifier|final
 name|Spans
 name|spans
@@ -1605,6 +1629,8 @@ operator|.
 name|getSpans
 argument_list|(
 name|context
+argument_list|,
+name|acceptDocs
 argument_list|)
 expr_stmt|;
 block|}
@@ -1617,6 +1643,8 @@ operator|.
 name|getSpans
 argument_list|(
 name|context
+argument_list|,
+name|acceptDocs
 argument_list|)
 expr_stmt|;
 block|}

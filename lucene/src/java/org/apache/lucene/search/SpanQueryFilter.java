@@ -210,6 +210,13 @@ operator|.
 name|getSpans
 argument_list|(
 name|context
+argument_list|,
+name|context
+operator|.
+name|reader
+operator|.
+name|getLiveDocs
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|List

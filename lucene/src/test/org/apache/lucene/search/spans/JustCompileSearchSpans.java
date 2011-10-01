@@ -84,6 +84,20 @@ name|Similarity
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
 begin_comment
 comment|/**  * Holds all implementations of classes in the o.a.l.s.spans package as a  * back-compatibility test. It does not run any tests per-se, however if  * someone adds a method to an interface or abstract method to an abstract  * class, one of the implementations here will fail to compile and so we know  * back-compat policy was violated.  */
 end_comment
@@ -270,6 +284,9 @@ name|getSpans
 parameter_list|(
 name|AtomicReaderContext
 name|context
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
