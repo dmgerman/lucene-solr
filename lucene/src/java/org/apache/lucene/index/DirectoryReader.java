@@ -1049,7 +1049,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** This constructor is only used for {@link #reopen()} */
+comment|/** This constructor is only used for {@link #doOpenIfChanged()} */
 DECL|method|DirectoryReader
 name|DirectoryReader
 parameter_list|(
@@ -1062,10 +1062,6 @@ parameter_list|,
 name|SegmentReader
 index|[]
 name|oldReaders
-parameter_list|,
-name|int
-index|[]
-name|oldStarts
 parameter_list|,
 name|boolean
 name|readOnly
@@ -1388,6 +1384,20 @@ name|readerFinishedListeners
 operator|=
 name|readerFinishedListeners
 expr_stmt|;
+name|readerShared
+index|[
+name|i
+index|]
+operator|=
+literal|false
+expr_stmt|;
+name|newReaders
+index|[
+name|i
+index|]
+operator|=
+name|newReader
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -1412,22 +1422,11 @@ argument_list|,
 name|readOnly
 argument_list|)
 expr_stmt|;
-assert|assert
-name|newReader
-operator|.
-name|readerFinishedListeners
-operator|==
-name|readerFinishedListeners
-assert|;
-block|}
 if|if
 condition|(
 name|newReader
 operator|==
-name|newReaders
-index|[
-name|i
-index|]
+literal|null
 condition|)
 block|{
 comment|// this reader will be shared between the old and the new one,
@@ -1439,7 +1438,10 @@ index|]
 operator|=
 literal|true
 expr_stmt|;
-name|newReader
+name|newReaders
+index|[
+name|i
+index|]
 operator|.
 name|incRef
 argument_list|()
@@ -1447,6 +1449,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
+assert|assert
+name|newReader
+operator|.
+name|readerFinishedListeners
+operator|==
+name|readerFinishedListeners
+assert|;
 name|readerShared
 index|[
 name|i
@@ -1454,6 +1463,7 @@ index|]
 operator|=
 literal|false
 expr_stmt|;
+comment|// Steal ref returned to us by reopenSegment:
 name|newReaders
 index|[
 name|i
@@ -1461,6 +1471,7 @@ index|]
 operator|=
 name|newReader
 expr_stmt|;
+block|}
 block|}
 name|success
 operator|=
@@ -1975,11 +1986,11 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-comment|// doReopen calls ensureOpen
+comment|// doOpenIfChanged calls ensureOpen
 name|DirectoryReader
 name|newReader
 init|=
-name|doReopen
+name|doOpenIfChanged
 argument_list|(
 operator|(
 name|SegmentInfos
@@ -2072,11 +2083,11 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|reopen
-specifier|public
+DECL|method|doOpenIfChanged
+specifier|protected
 specifier|final
 name|IndexReader
-name|reopen
+name|doOpenIfChanged
 parameter_list|()
 throws|throws
 name|CorruptIndexException
@@ -2085,7 +2096,7 @@ name|IOException
 block|{
 comment|// Preserve current readOnly
 return|return
-name|doReopen
+name|doOpenIfChanged
 argument_list|(
 name|readOnly
 argument_list|,
@@ -2095,11 +2106,11 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|reopen
-specifier|public
+DECL|method|doOpenIfChanged
+specifier|protected
 specifier|final
 name|IndexReader
-name|reopen
+name|doOpenIfChanged
 parameter_list|(
 name|boolean
 name|openReadOnly
@@ -2110,7 +2121,7 @@ throws|,
 name|IOException
 block|{
 return|return
-name|doReopen
+name|doOpenIfChanged
 argument_list|(
 name|openReadOnly
 argument_list|,
@@ -2120,11 +2131,11 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|reopen
-specifier|public
+DECL|method|doOpenIfChanged
+specifier|protected
 specifier|final
 name|IndexReader
-name|reopen
+name|doOpenIfChanged
 parameter_list|(
 specifier|final
 name|IndexCommit
@@ -2136,7 +2147,7 @@ throws|,
 name|IOException
 block|{
 return|return
-name|doReopen
+name|doOpenIfChanged
 argument_list|(
 literal|true
 argument_list|,
@@ -2144,11 +2155,13 @@ name|commit
 argument_list|)
 return|;
 block|}
-DECL|method|doReopenFromWriter
+comment|// NOTE: always returns a non-null result (ie new reader)
+comment|// but that could change someday
+DECL|method|doOpenFromWriter
 specifier|private
 specifier|final
 name|IndexReader
-name|doReopenFromWriter
+name|doOpenFromWriter
 parameter_list|(
 name|boolean
 name|openReadOnly
@@ -2216,10 +2229,10 @@ return|return
 name|reader
 return|;
 block|}
-DECL|method|doReopen
+DECL|method|doOpenIfChanged
 specifier|private
 name|IndexReader
-name|doReopen
+name|doOpenIfChanged
 parameter_list|(
 specifier|final
 name|boolean
@@ -2253,7 +2266,7 @@ literal|null
 condition|)
 block|{
 return|return
-name|doReopenFromWriter
+name|doOpenFromWriter
 argument_list|(
 name|openReadOnly
 argument_list|,
@@ -2264,7 +2277,7 @@ block|}
 else|else
 block|{
 return|return
-name|doReopenNoWriter
+name|doOpenNoWriter
 argument_list|(
 name|openReadOnly
 argument_list|,
@@ -2273,11 +2286,11 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|doReopenNoWriter
+DECL|method|doOpenNoWriter
 specifier|private
 specifier|synchronized
 name|IndexReader
-name|doReopenNoWriter
+name|doOpenNoWriter
 parameter_list|(
 specifier|final
 name|boolean
@@ -2336,7 +2349,7 @@ block|}
 else|else
 block|{
 return|return
-name|this
+literal|null
 return|;
 block|}
 block|}
@@ -2365,7 +2378,7 @@ block|}
 else|else
 block|{
 return|return
-name|this
+literal|null
 return|;
 block|}
 block|}
@@ -2381,6 +2394,7 @@ operator|.
 name|getDirectory
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -2388,6 +2402,7 @@ argument_list|(
 literal|"the specified commit does not match the specified Directory"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|segmentInfos
@@ -2426,7 +2441,7 @@ block|}
 else|else
 block|{
 return|return
-name|this
+literal|null
 return|;
 block|}
 block|}
@@ -2479,7 +2494,7 @@ name|codecs
 argument_list|)
 expr_stmt|;
 return|return
-name|doReopen
+name|doOpenIfChanged
 argument_list|(
 name|infos
 argument_list|,
@@ -2497,11 +2512,11 @@ name|commit
 argument_list|)
 return|;
 block|}
-DECL|method|doReopen
+DECL|method|doOpenIfChanged
 specifier|private
 specifier|synchronized
 name|DirectoryReader
-name|doReopen
+name|doOpenIfChanged
 parameter_list|(
 name|SegmentInfos
 name|infos
@@ -2517,11 +2532,7 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-name|DirectoryReader
-name|reader
-decl_stmt|;
-name|reader
-operator|=
+return|return
 operator|new
 name|DirectoryReader
 argument_list|(
@@ -2530,8 +2541,6 @@ argument_list|,
 name|infos
 argument_list|,
 name|subReaders
-argument_list|,
-name|starts
 argument_list|,
 name|openReadOnly
 argument_list|,
@@ -2543,9 +2552,6 @@ name|codecs
 argument_list|,
 name|readerFinishedListeners
 argument_list|)
-expr_stmt|;
-return|return
-name|reader
 return|;
 block|}
 comment|/** Version number when this IndexReader was opened. */

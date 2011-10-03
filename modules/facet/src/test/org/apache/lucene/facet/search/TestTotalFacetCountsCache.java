@@ -1980,16 +1980,23 @@ expr_stmt|;
 name|IndexReader
 name|r2
 init|=
+name|IndexReader
+operator|.
+name|openIfChanged
+argument_list|(
 name|readers
 index|[
 literal|0
 index|]
 operator|.
 name|indexReader
-operator|.
-name|reopen
-argument_list|()
+argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|r2
+argument_list|)
+expr_stmt|;
 comment|// Hold on to the 'original' reader so we can do some checks with it
 name|IndexReader
 name|origReader

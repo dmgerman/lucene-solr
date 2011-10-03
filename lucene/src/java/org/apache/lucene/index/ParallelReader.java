@@ -1024,14 +1024,14 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Tries to reopen the subreaders.    *<br>    * If one or more subreaders could be re-opened (i. e. subReader.reopen()     * returned a new instance != subReader), then a new ParallelReader instance     * is returned, otherwise this instance is returned.    *<p>    * A re-opened instance might share one or more subreaders with the old     * instance. Index modification operations result in undefined behavior    * when performed before the old instance is closed.    * (see {@link IndexReader#reopen()}).    *<p>    * If subreaders are shared, then the reference count of those    * readers is increased to ensure that the subreaders remain open    * until the last referring reader is closed.    *     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error     */
+comment|/**    * Tries to reopen the subreaders.    *<br>    * If one or more subreaders could be re-opened (i. e. subReader.reopen()     * returned a new instance != subReader), then a new ParallelReader instance     * is returned, otherwise null is returned.    *<p>    * A re-opened instance might share one or more subreaders with the old     * instance. Index modification operations result in undefined behavior    * when performed before the old instance is closed.    * (see {@link IndexReader#openIfChanged}).    *<p>    * If subreaders are shared, then the reference count of those    * readers is increased to ensure that the subreaders remain open    * until the last referring reader is closed.    *     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error     */
 annotation|@
 name|Override
-DECL|method|reopen
-specifier|public
+DECL|method|doOpenIfChanged
+specifier|protected
 specifier|synchronized
 name|IndexReader
-name|reopen
+name|doOpenIfChanged
 parameter_list|()
 throws|throws
 name|CorruptIndexException
@@ -1116,16 +1116,41 @@ operator|.
 name|clone
 argument_list|()
 expr_stmt|;
+name|reopened
+operator|=
+literal|true
+expr_stmt|;
+block|}
+else|else
+block|{
+name|newReader
+operator|=
+name|IndexReader
+operator|.
+name|openIfChanged
+argument_list|(
+name|oldReader
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|newReader
+operator|!=
+literal|null
+condition|)
+block|{
+name|reopened
+operator|=
+literal|true
+expr_stmt|;
 block|}
 else|else
 block|{
 name|newReader
 operator|=
 name|oldReader
-operator|.
-name|reopen
-argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|newReaders
 operator|.
@@ -1134,20 +1159,6 @@ argument_list|(
 name|newReader
 argument_list|)
 expr_stmt|;
-comment|// if at least one of the subreaders was updated we remember that
-comment|// and return a new ParallelReader
-if|if
-condition|(
-name|newReader
-operator|!=
-name|oldReader
-condition|)
-block|{
-name|reopened
-operator|=
-literal|true
-expr_stmt|;
-block|}
 block|}
 name|success
 operator|=
@@ -1360,7 +1371,7 @@ else|else
 block|{
 comment|// No subreader was refreshed
 return|return
-name|this
+literal|null
 return|;
 block|}
 block|}

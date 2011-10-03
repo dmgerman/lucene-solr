@@ -266,7 +266,7 @@ operator|=
 name|warmer
 expr_stmt|;
 block|}
-comment|/** You must call this, periodically, to perform a    *  reopen.  This calls {@link IndexReader#reopen} on the    *  underlying reader, and if that returns a new reader,    *  it's warmed (if you provided a {@link SearcherWarmer}    *  and then swapped into production.    *    *<p><b>Threads</b>: it's fine for more than one thread to    *  call this at once.  Only the first thread will attempt    *  the reopen; subsequent threads will see that another    *  thread is already handling reopen and will return    *  immediately.  Note that this means if another thread    *  is already reopening then subsequent threads will    *  return right away without waiting for the reader    *  reopen to complete.</p>    *    *<p>This method returns true if a new reader was in    *  fact opened.</p>    */
+comment|/** You must call this, periodically, to perform a    *  reopen.  This calls {@link IndexReader#openIfChanged} on the    *  underlying reader, and if that returns a new reader,    *  it's warmed (if you provided a {@link SearcherWarmer}    *  and then swapped into production.    *    *<p><b>Threads</b>: it's fine for more than one thread to    *  call this at once.  Only the first thread will attempt    *  the reopen; subsequent threads will see that another    *  thread is already handling reopen and will return    *  immediately.  Note that this means if another thread    *  is already reopening then subsequent threads will    *  return right away without waiting for the reader    *  reopen to complete.</p>    *    *<p>This method returns true if a new reader was in    *  fact opened.</p>    */
 DECL|method|maybeReopen
 specifier|public
 name|boolean
@@ -305,22 +305,21 @@ block|{
 name|IndexReader
 name|newReader
 init|=
+name|IndexReader
+operator|.
+name|openIfChanged
+argument_list|(
 name|currentSearcher
 operator|.
 name|getIndexReader
 argument_list|()
-operator|.
-name|reopen
-argument_list|()
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
 name|newReader
 operator|!=
-name|currentSearcher
-operator|.
-name|getIndexReader
-argument_list|()
+literal|null
 condition|)
 block|{
 name|IndexSearcher
