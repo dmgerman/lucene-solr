@@ -126,14 +126,14 @@ specifier|public
 class|class
 name|CheckHits
 block|{
-comment|/**    * Some explains methods calculate their values though a slightly    * different  order of operations from the actual scoring method ...    * this allows for a small amount of variation    */
+comment|/**    * Some explains methods calculate their values though a slightly    * different  order of operations from the actual scoring method ...    * this allows for a small amount of relative variation    */
 DECL|field|EXPLAIN_SCORE_TOLERANCE_DELTA
 specifier|public
 specifier|static
 name|float
 name|EXPLAIN_SCORE_TOLERANCE_DELTA
 init|=
-literal|0.02f
+literal|0.001f
 decl_stmt|;
 comment|/**    * Tests that all documents up to maxDoc which are *not* in the    * expected result set, have an explanation which indicates that     * the document does not match    */
 DECL|method|checkNoMatchExplanations
@@ -1642,6 +1642,32 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|explainToleranceDelta
+specifier|private
+specifier|static
+name|float
+name|explainToleranceDelta
+parameter_list|(
+name|float
+name|f1
+parameter_list|,
+name|float
+name|f2
+parameter_list|)
+block|{
+return|return
+name|Math
+operator|.
+name|max
+argument_list|(
+name|f1
+argument_list|,
+name|f2
+argument_list|)
+operator|*
+name|EXPLAIN_SCORE_TOLERANCE_DELTA
+return|;
+block|}
 comment|/**     * Assert that an explanation has the expected score, and optionally that its    * sub-details max/sum/factor match to that score.    *    * @param q String representation of the query for assertion messages    * @param doc Document ID for assertion messages    * @param score Real score value of doc with query q    * @param deep indicates whether a deep comparison of sub-Explanation details should be executed    * @param expl The Explanation to match against score    */
 DECL|method|verifyExplanation
 specifier|public
@@ -1699,7 +1725,12 @@ name|score
 argument_list|,
 name|value
 argument_list|,
-name|EXPLAIN_SCORE_TOLERANCE_DELTA
+name|explainToleranceDelta
+argument_list|(
+name|score
+argument_list|,
+name|value
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -2139,7 +2170,12 @@ name|combined
 argument_list|,
 name|value
 argument_list|,
-name|EXPLAIN_SCORE_TOLERANCE_DELTA
+name|explainToleranceDelta
+argument_list|(
+name|combined
+argument_list|,
+name|value
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
