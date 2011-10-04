@@ -2379,7 +2379,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|// TODO (Facet): synchronization of some sort?
 DECL|field|parentArray
 specifier|private
 name|ParentArray
@@ -2387,6 +2386,7 @@ name|parentArray
 decl_stmt|;
 DECL|method|getParentArray
 specifier|private
+specifier|synchronized
 name|ParentArray
 name|getParentArray
 parameter_list|()
