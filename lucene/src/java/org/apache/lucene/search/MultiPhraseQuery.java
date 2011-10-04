@@ -918,6 +918,8 @@ operator|=
 operator|new
 name|UnionDocsAndPositionsEnum
 argument_list|(
+name|liveDocs
+argument_list|,
 name|reader
 argument_list|,
 name|terms
@@ -2355,6 +2357,9 @@ DECL|method|UnionDocsAndPositionsEnum
 specifier|public
 name|UnionDocsAndPositionsEnum
 parameter_list|(
+name|Bits
+name|liveDocs
+parameter_list|,
 name|IndexReader
 name|indexReader
 parameter_list|,
@@ -2376,15 +2381,6 @@ name|LinkedList
 argument_list|<
 name|DocsAndPositionsEnum
 argument_list|>
-argument_list|()
-decl_stmt|;
-specifier|final
-name|Bits
-name|liveDocs
-init|=
-name|indexReader
-operator|.
-name|getLiveDocs
 argument_list|()
 decl_stmt|;
 for|for
