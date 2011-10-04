@@ -135,6 +135,15 @@ name|EXPLAIN_SCORE_TOLERANCE_DELTA
 init|=
 literal|0.001f
 decl_stmt|;
+comment|/**    * In general we use a relative epsilon, but some tests do crazy things    * like boost documents with 0, creating tiny tiny scores where the    * relative difference is large but the absolute difference is tiny.    * we ensure the the epsilon is always at least this big.    */
+DECL|field|EXPLAIN_SCORE_TOLERANCE_MINIMUM
+specifier|public
+specifier|static
+name|float
+name|EXPLAIN_SCORE_TOLERANCE_MINIMUM
+init|=
+literal|1e-6f
+decl_stmt|;
 comment|/**    * Tests that all documents up to maxDoc which are *not* in the    * expected result set, have an explanation which indicates that     * the document does not match    */
 DECL|method|checkNoMatchExplanations
 specifier|public
@@ -1660,6 +1669,12 @@ name|Math
 operator|.
 name|max
 argument_list|(
+name|EXPLAIN_SCORE_TOLERANCE_MINIMUM
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
 name|Math
 operator|.
 name|abs
@@ -1676,6 +1691,7 @@ argument_list|)
 argument_list|)
 operator|*
 name|EXPLAIN_SCORE_TOLERANCE_DELTA
+argument_list|)
 return|;
 block|}
 comment|/**     * Assert that an explanation has the expected score, and optionally that its    * sub-details max/sum/factor match to that score.    *    * @param q String representation of the query for assertion messages    * @param doc Document ID for assertion messages    * @param score Real score value of doc with query q    * @param deep indicates whether a deep comparison of sub-Explanation details should be executed    * @param expl The Explanation to match against score    */
