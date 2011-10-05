@@ -359,7 +359,7 @@ name|ReentrantReadWriteLock
 argument_list|()
 decl_stmt|;
 comment|// The following are the limited-size LRU caches used to cache the latest
-comment|// results from getOrdinal() and getCategoryCache().
+comment|// results from getOrdinal() and getLabel().
 comment|// Because LRUHashMap is not thread-safe, we need to synchronize on this
 comment|// object when using it. Unfortunately, this is not optimal under heavy
 comment|// contention because it means that while one thread is using the cache
@@ -372,7 +372,7 @@ comment|// However, even in the current sub-optimal implementation we do not mak
 comment|// the mistake of locking out readers while waiting for disk in a cache
 comment|// miss - below, we do not hold cache lock while reading missing data from
 comment|// disk.
-DECL|field|getOrdinalCache
+DECL|field|ordinalCache
 specifier|private
 specifier|final
 name|LRUHashMap
@@ -381,9 +381,9 @@ name|String
 argument_list|,
 name|Integer
 argument_list|>
-name|getOrdinalCache
+name|ordinalCache
 decl_stmt|;
-DECL|field|getCategoryCache
+DECL|field|categoryCache
 specifier|private
 specifier|final
 name|LRUHashMap
@@ -392,7 +392,7 @@ name|Integer
 argument_list|,
 name|String
 argument_list|>
-name|getCategoryCache
+name|categoryCache
 decl_stmt|;
 comment|// getParent() needs to be extremely efficient, to the point that we need
 comment|// to fetch all the data in advance into memory, and answer these calls
@@ -451,7 +451,7 @@ argument_list|)
 expr_stmt|;
 comment|// These are the default cache sizes; they can be configured after
 comment|// construction with the cache's setMaxSize() method
-name|getOrdinalCache
+name|ordinalCache
 operator|=
 operator|new
 name|LRUHashMap
@@ -464,7 +464,7 @@ argument_list|(
 literal|4000
 argument_list|)
 expr_stmt|;
-name|getCategoryCache
+name|categoryCache
 operator|=
 operator|new
 name|LRUHashMap
@@ -477,7 +477,7 @@ argument_list|(
 literal|4000
 argument_list|)
 expr_stmt|;
-comment|// TODO (Facet): consider lazily create parent array it when asked, not in the constructor
+comment|// TODO (Facet): consider lazily create parent array when asked, not in the constructor
 name|parentArray
 operator|=
 operator|new
@@ -558,10 +558,10 @@ argument_list|()
 expr_stmt|;
 synchronized|synchronized
 init|(
-name|getCategoryCache
+name|categoryCache
 init|)
 block|{
-name|getCategoryCache
+name|categoryCache
 operator|.
 name|setMaxSize
 argument_list|(
@@ -571,10 +571,10 @@ expr_stmt|;
 block|}
 synchronized|synchronized
 init|(
-name|getOrdinalCache
+name|ordinalCache
 init|)
 block|{
-name|getOrdinalCache
+name|ordinalCache
 operator|.
 name|setMaxSize
 argument_list|(
@@ -644,13 +644,13 @@ decl_stmt|;
 comment|// First try to find the answer in the LRU cache:
 synchronized|synchronized
 init|(
-name|getOrdinalCache
+name|ordinalCache
 init|)
 block|{
 name|Integer
 name|res
 init|=
-name|getOrdinalCache
+name|ordinalCache
 operator|.
 name|get
 argument_list|(
@@ -767,12 +767,12 @@ comment|// not care about this possibilty, as LRUCache replaces previous values
 comment|// of the same keys (it doesn't store duplicates).
 synchronized|synchronized
 init|(
-name|getOrdinalCache
+name|ordinalCache
 init|)
 block|{
 comment|// GB: new Integer(int); creates a new object each and every time.
 comment|// Integer.valueOf(int) might not (See JavaDoc).
-name|getOrdinalCache
+name|ordinalCache
 operator|.
 name|put
 argument_list|(
@@ -934,13 +934,13 @@ argument_list|)
 decl_stmt|;
 synchronized|synchronized
 init|(
-name|getCategoryCache
+name|categoryCache
 init|)
 block|{
 name|String
 name|res
 init|=
-name|getCategoryCache
+name|categoryCache
 operator|.
 name|get
 argument_list|(
@@ -1042,10 +1042,10 @@ comment|// not care about this possibility, as LRUCache replaces previous
 comment|// values of the same keys (it doesn't store duplicates).
 synchronized|synchronized
 init|(
-name|getCategoryCache
+name|categoryCache
 init|)
 block|{
-name|getCategoryCache
+name|categoryCache
 operator|.
 name|put
 argument_list|(
@@ -1218,7 +1218,7 @@ argument_list|>
 argument_list|>
 name|i
 init|=
-name|getOrdinalCache
+name|ordinalCache
 operator|.
 name|entrySet
 argument_list|()
@@ -1318,12 +1318,12 @@ name|childrenArrays
 operator|=
 literal|null
 expr_stmt|;
-name|getCategoryCache
+name|categoryCache
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-name|getOrdinalCache
+name|ordinalCache
 operator|.
 name|clear
 argument_list|()
