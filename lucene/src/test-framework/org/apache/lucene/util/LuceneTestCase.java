@@ -66,6 +66,18 @@ name|lang
 operator|.
 name|annotation
 operator|.
+name|ElementType
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|annotation
+operator|.
 name|Inherited
 import|;
 end_import
@@ -91,6 +103,18 @@ operator|.
 name|annotation
 operator|.
 name|RetentionPolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|annotation
+operator|.
+name|Target
 import|;
 end_import
 
@@ -2185,6 +2209,8 @@ operator|new
 name|RandomCodecProvider
 argument_list|(
 name|random
+argument_list|,
+name|useNoMemoryExpensiveCodec
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3726,6 +3752,73 @@ name|TEARDOWN
 operator|)
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|useNoMemoryExpensiveCodec
+condition|)
+block|{
+specifier|final
+name|String
+name|defCodec
+init|=
+name|CodecProvider
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getDefaultFieldCodec
+argument_list|()
+decl_stmt|;
+comment|// Stupid: assumeFalse in setUp() does not print any information, because
+comment|// TestWatchman does not watch test during setUp() - getName() is also not defined...
+comment|// => print info directly and use assume without message:
+if|if
+condition|(
+literal|"SimpleText"
+operator|.
+name|equals
+argument_list|(
+name|defCodec
+argument_list|)
+operator|||
+literal|"Memory"
+operator|.
+name|equals
+argument_list|(
+name|defCodec
+argument_list|)
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: A test method in "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|" was ignored, as it uses too much memory with "
+operator|+
+name|defCodec
+operator|+
+literal|"."
+argument_list|)
+expr_stmt|;
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * Forcible purges all cache entries from the FieldCache.    *<p>    * This method will be called by tearDown to clean up FieldCache.DEFAULT.    * If a (poorly written) test has some expectation that the FieldCache    * will persist across test methods (ie: a static IndexReader) this    * method can be overridden to do nothing.    *</p>    *    * @see FieldCache#purgeAllCaches()    */
@@ -7584,6 +7677,12 @@ return|return
 name|context
 return|;
 block|}
+comment|// initialized by the TestRunner
+DECL|field|useNoMemoryExpensiveCodec
+specifier|static
+name|boolean
+name|useNoMemoryExpensiveCodec
+decl_stmt|;
 comment|// recorded seed: for beforeClass
 DECL|field|staticSeed
 specifier|private
@@ -7643,6 +7742,30 @@ DECL|interface|Nightly
 specifier|public
 annotation_defn|@interface
 name|Nightly
+block|{}
+comment|/**    * Annotation for test classes that should only use codecs that are not memory expensive (avoid SimpleText, MemoryCodec).    */
+annotation|@
+name|Documented
+annotation|@
+name|Inherited
+annotation|@
+name|Retention
+argument_list|(
+name|RetentionPolicy
+operator|.
+name|RUNTIME
+argument_list|)
+annotation|@
+name|Target
+argument_list|(
+name|ElementType
+operator|.
+name|TYPE
+argument_list|)
+DECL|interface|UseNoMemoryExpensiveCodec
+specifier|public
+annotation_defn|@interface
+name|UseNoMemoryExpensiveCodec
 block|{}
 annotation|@
 name|Ignore

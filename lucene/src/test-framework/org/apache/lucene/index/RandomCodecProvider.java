@@ -280,6 +280,9 @@ name|RandomCodecProvider
 parameter_list|(
 name|Random
 name|random
+parameter_list|,
+name|boolean
+name|useNoMemoryExpensiveCodec
 parameter_list|)
 block|{
 name|this
@@ -409,6 +412,12 @@ name|maxItemsPerBlock
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|useNoMemoryExpensiveCodec
+condition|)
+block|{
 name|register
 argument_list|(
 operator|new
@@ -423,6 +432,7 @@ name|MemoryCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|Collections
 operator|.
 name|shuffle

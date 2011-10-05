@@ -234,6 +234,22 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LuceneTestCase
+operator|.
+name|UseNoMemoryExpensiveCodec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|FixedBitSet
 import|;
 end_import
@@ -253,6 +269,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|UseNoMemoryExpensiveCodec
 DECL|class|TestLongPostings
 specifier|public
 class|class
@@ -444,50 +462,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeFalse
-argument_list|(
-literal|"Too slow with SimpleText codec at night"
-argument_list|,
-name|TEST_NIGHTLY
-operator|&&
-name|CodecProvider
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getFieldCodec
-argument_list|(
-literal|"field"
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"SimpleText"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"Too slow with Memory codec at night"
-argument_list|,
-name|TEST_NIGHTLY
-operator|&&
-name|CodecProvider
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getFieldCodec
-argument_list|(
-literal|"field"
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"Memory"
-argument_list|)
-argument_list|)
-expr_stmt|;
 comment|// Don't use _TestUtil.getTempDir so that we own the
 comment|// randomness (ie same seed will point to same dir):
 name|Directory
@@ -1475,50 +1449,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|assumeFalse
-argument_list|(
-literal|"Too slow with SimpleText codec at night"
-argument_list|,
-name|TEST_NIGHTLY
-operator|&&
-name|CodecProvider
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getFieldCodec
-argument_list|(
-literal|"field"
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"SimpleText"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"Too slow with Memory codec at night"
-argument_list|,
-name|TEST_NIGHTLY
-operator|&&
-name|CodecProvider
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getFieldCodec
-argument_list|(
-literal|"field"
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"Memory"
-argument_list|)
-argument_list|)
-expr_stmt|;
 comment|// Don't use _TestUtil.getTempDir so that we own the
 comment|// randomness (ie same seed will point to same dir):
 name|Directory

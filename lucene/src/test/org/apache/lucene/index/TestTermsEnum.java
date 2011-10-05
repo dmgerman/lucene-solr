@@ -290,6 +290,22 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LuceneTestCase
+operator|.
+name|UseNoMemoryExpensiveCodec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|_TestUtil
 import|;
 end_import
@@ -359,6 +375,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|UseNoMemoryExpensiveCodec
 DECL|class|TestTermsEnum
 specifier|public
 class|class
