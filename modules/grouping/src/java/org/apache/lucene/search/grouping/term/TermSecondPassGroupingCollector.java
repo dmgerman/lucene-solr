@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.search.grouping
+DECL|package|org.apache.lucene.search.grouping.term
 package|package
 name|org
 operator|.
@@ -11,6 +11,8 @@ operator|.
 name|search
 operator|.
 name|grouping
+operator|.
+name|term
 package|;
 end_package
 
@@ -70,6 +72,54 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|grouping
+operator|.
+name|AbstractSecondPassGroupingCollector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|grouping
+operator|.
+name|SearchGroup
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|grouping
+operator|.
+name|SentinelIntSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -97,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concrete implementation of {@link AbstractSecondPassGroupingCollector} that groups based on  * field values and more specifically uses {@link org.apache.lucene.search.FieldCache.DocTermsIndex}  * to collect grouped docs.  *  * @lucene.experimental  */
+comment|/**  * Concrete implementation of {@link org.apache.lucene.search.grouping.AbstractSecondPassGroupingCollector} that groups based on  * field values and more specifically uses {@link org.apache.lucene.search.FieldCache.DocTermsIndex}  * to collect grouped docs.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

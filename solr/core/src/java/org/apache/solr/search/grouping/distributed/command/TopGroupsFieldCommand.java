@@ -78,6 +78,8 @@ name|search
 operator|.
 name|grouping
 operator|.
+name|term
+operator|.
 name|TermAllGroupsCollector
 import|;
 end_import
@@ -93,6 +95,8 @@ operator|.
 name|search
 operator|.
 name|grouping
+operator|.
+name|term
 operator|.
 name|TermSecondPassGroupingCollector
 import|;

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.search.grouping
+DECL|package|org.apache.lucene.search.grouping.term
 package|package
 name|org
 operator|.
@@ -11,6 +11,8 @@ operator|.
 name|search
 operator|.
 name|grouping
+operator|.
+name|term
 package|;
 end_package
 
@@ -43,6 +45,38 @@ operator|.
 name|search
 operator|.
 name|FieldCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|grouping
+operator|.
+name|AbstractAllGroupsCollector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|grouping
+operator|.
+name|SentinelIntSet
 import|;
 end_import
 

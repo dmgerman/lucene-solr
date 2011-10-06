@@ -102,21 +102,9 @@ name|search
 operator|.
 name|grouping
 operator|.
+name|term
+operator|.
 name|TermAllGroupHeadsCollector
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|FixedBitSet
 import|;
 end_import
 
