@@ -541,7 +541,6 @@ operator|.
 name|acquire
 argument_list|()
 decl_stmt|;
-comment|// nocommit get(gen, false);
 if|if
 condition|(
 name|VERBOSE
