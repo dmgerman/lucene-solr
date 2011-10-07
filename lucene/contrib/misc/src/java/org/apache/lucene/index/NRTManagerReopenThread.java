@@ -91,15 +91,15 @@ specifier|private
 name|boolean
 name|finish
 decl_stmt|;
-DECL|field|waitingNeedsDeletes
-specifier|private
-name|boolean
-name|waitingNeedsDeletes
-decl_stmt|;
 DECL|field|waitingGen
 specifier|private
 name|long
 name|waitingGen
+decl_stmt|;
+DECL|field|waitingNeedsDeletes
+specifier|private
+name|boolean
+name|waitingNeedsDeletes
 decl_stmt|;
 comment|/**    * Create NRTManagerReopenThread, to periodically reopen the NRT searcher.    *    * @param targetMaxStaleSec Maximum time until a new    *        reader must be opened; this sets the upper bound    *        on how slowly reopens may occur    *    * @param targetMinStaleSec Mininum time until a new    *        reader can be opened; this sets the lower bound    *        on how quickly reopens may occur, when a caller    *        is waiting for a specific indexing change to    *        become visible.    */
 DECL|method|NRTManagerReopenThread
@@ -283,10 +283,6 @@ condition|(
 literal|true
 condition|)
 block|{
-specifier|final
-name|boolean
-name|doApplyDeletes
-decl_stmt|;
 name|boolean
 name|hasWaiting
 init|=
@@ -405,18 +401,6 @@ block|{
 comment|//System.out.println("reopen: finish");
 return|return;
 block|}
-name|doApplyDeletes
-operator|=
-name|hasWaiting
-condition|?
-name|waitingNeedsDeletes
-else|:
-literal|true
-expr_stmt|;
-name|waitingNeedsDeletes
-operator|=
-literal|false
-expr_stmt|;
 comment|//System.out.println("reopen: start hasWaiting=" + hasWaiting);
 block|}
 name|lastReopenStartNS
@@ -431,9 +415,9 @@ block|{
 comment|//final long t0 = System.nanoTime();
 name|manager
 operator|.
-name|reopen
+name|maybeReopen
 argument_list|(
-name|doApplyDeletes
+name|waitingNeedsDeletes
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("reopen took " + ((System.nanoTime()-t0)/1000000.0) + " msec");
