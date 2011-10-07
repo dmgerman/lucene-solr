@@ -301,13 +301,13 @@ case|case
 name|BYTES_VAR_DEREF
 case|:
 case|case
-name|BYTES_VAR_SORTED
+name|BYTES_VAR_STRAIGHT
 case|:
 case|case
 name|BYTES_FIXED_SORTED
 case|:
 case|case
-name|BYTES_VAR_STRAIGHT
+name|BYTES_VAR_SORTED
 case|:
 name|files
 operator|.

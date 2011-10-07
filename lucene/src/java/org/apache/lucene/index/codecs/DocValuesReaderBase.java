@@ -584,6 +584,8 @@ argument_list|,
 name|docCount
 argument_list|,
 name|context
+argument_list|,
+name|type
 argument_list|)
 return|;
 case|case
@@ -601,6 +603,8 @@ argument_list|,
 name|docCount
 argument_list|,
 name|context
+argument_list|,
+name|type
 argument_list|)
 return|;
 case|case

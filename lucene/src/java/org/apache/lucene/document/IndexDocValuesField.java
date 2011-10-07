@@ -44,20 +44,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|TokenStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|IndexableFieldType
@@ -752,23 +738,69 @@ case|case
 name|BYTES_FIXED_DEREF
 case|:
 case|case
-name|BYTES_FIXED_SORTED
-case|:
-case|case
 name|BYTES_FIXED_STRAIGHT
 case|:
 case|case
 name|BYTES_VAR_DEREF
 case|:
 case|case
-name|BYTES_VAR_SORTED
+name|BYTES_VAR_STRAIGHT
 case|:
 case|case
-name|BYTES_VAR_STRAIGHT
+name|BYTES_FIXED_SORTED
+case|:
+case|case
+name|BYTES_VAR_SORTED
+case|:
+comment|// don't use to unicode string this is not necessarily unicode here
+name|value
+operator|=
+literal|"bytes: "
+operator|+
+name|bytes
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
+break|break;
+case|case
+name|FIXED_INTS_16
 case|:
 name|value
 operator|=
-literal|"bytes:bytes.utf8ToString();"
+literal|"int16: "
+operator|+
+name|longValue
+expr_stmt|;
+break|break;
+case|case
+name|FIXED_INTS_32
+case|:
+name|value
+operator|=
+literal|"int32: "
+operator|+
+name|longValue
+expr_stmt|;
+break|break;
+case|case
+name|FIXED_INTS_64
+case|:
+name|value
+operator|=
+literal|"int64: "
+operator|+
+name|longValue
+expr_stmt|;
+break|break;
+case|case
+name|FIXED_INTS_8
+case|:
+name|value
+operator|=
+literal|"int8: "
+operator|+
+name|longValue
 expr_stmt|;
 break|break;
 case|case
@@ -776,7 +808,7 @@ name|VAR_INTS
 case|:
 name|value
 operator|=
-literal|"int:"
+literal|"vint: "
 operator|+
 name|longValue
 expr_stmt|;
@@ -786,7 +818,7 @@ name|FLOAT_32
 case|:
 name|value
 operator|=
-literal|"float32:"
+literal|"float32: "
 operator|+
 name|doubleValue
 expr_stmt|;
@@ -796,7 +828,7 @@ name|FLOAT_64
 case|:
 name|value
 operator|=
-literal|"float64:"
+literal|"float64: "
 operator|+
 name|doubleValue
 expr_stmt|;
@@ -885,19 +917,19 @@ case|case
 name|BYTES_FIXED_DEREF
 case|:
 case|case
-name|BYTES_FIXED_SORTED
-case|:
-case|case
 name|BYTES_FIXED_STRAIGHT
 case|:
 case|case
 name|BYTES_VAR_DEREF
 case|:
 case|case
-name|BYTES_VAR_SORTED
+name|BYTES_VAR_STRAIGHT
 case|:
 case|case
-name|BYTES_VAR_STRAIGHT
+name|BYTES_FIXED_SORTED
+case|:
+case|case
+name|BYTES_VAR_SORTED
 case|:
 name|BytesRef
 name|ref
@@ -931,6 +963,18 @@ name|type
 argument_list|)
 expr_stmt|;
 break|break;
+case|case
+name|FIXED_INTS_16
+case|:
+case|case
+name|FIXED_INTS_32
+case|:
+case|case
+name|FIXED_INTS_64
+case|:
+case|case
+name|FIXED_INTS_8
+case|:
 case|case
 name|VAR_INTS
 case|:

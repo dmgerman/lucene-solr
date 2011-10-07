@@ -221,6 +221,26 @@ throws|throws
 name|IOException
 function_decl|;
 block|}
+DECL|interface|RandomAccessReaderIterator
+specifier|public
+specifier|static
+interface|interface
+name|RandomAccessReaderIterator
+extends|extends
+name|ReaderIterator
+block|{
+comment|/**      * @param index the position of the wanted value.      * @return the value at the stated index.      */
+DECL|method|get
+name|long
+name|get
+parameter_list|(
+name|int
+name|index
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+block|}
 comment|/**    * A packed integer array that can be modified.    * @lucene.internal    */
 DECL|interface|Mutable
 specifier|public
@@ -612,6 +632,26 @@ specifier|public
 specifier|static
 name|ReaderIterator
 name|getReaderIterator
+parameter_list|(
+name|IndexInput
+name|in
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|getRandomAccessReaderIterator
+argument_list|(
+name|in
+argument_list|)
+return|;
+block|}
+comment|/**    * Retrieve PackedInts as a {@link RandomAccessReaderIterator}    * @param in positioned at the beginning of a stored packed int structure.    * @return an iterator to access the values    * @throws IOException if the structure could not be retrieved.    * @lucene.internal    */
+DECL|method|getRandomAccessReaderIterator
+specifier|public
+specifier|static
+name|RandomAccessReaderIterator
+name|getRandomAccessReaderIterator
 parameter_list|(
 name|IndexInput
 name|in

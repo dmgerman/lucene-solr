@@ -922,10 +922,10 @@ case|case
 name|BYTES_FIXED_DEREF
 case|:
 case|case
-name|BYTES_FIXED_SORTED
+name|BYTES_FIXED_STRAIGHT
 case|:
 case|case
-name|BYTES_FIXED_STRAIGHT
+name|BYTES_FIXED_SORTED
 case|:
 specifier|final
 name|String
@@ -1003,10 +1003,10 @@ case|case
 name|BYTES_VAR_DEREF
 case|:
 case|case
-name|BYTES_VAR_SORTED
+name|BYTES_VAR_STRAIGHT
 case|:
 case|case
-name|BYTES_VAR_STRAIGHT
+name|BYTES_VAR_SORTED
 case|:
 name|BytesRef
 name|ref
