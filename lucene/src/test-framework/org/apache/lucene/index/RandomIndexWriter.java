@@ -927,13 +927,14 @@ case|:
 case|case
 name|BYTES_FIXED_SORTED
 case|:
+comment|//make sure we use a valid unicode string with a fixed size byte length
 specifier|final
 name|String
 name|randomUnicodeString
 init|=
 name|_TestUtil
 operator|.
-name|randomUnicodeString
+name|randomFixedByteLengthUnicodeString
 argument_list|(
 name|random
 argument_list|,
