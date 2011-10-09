@@ -30,34 +30,78 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
+name|index
+operator|.
+name|CategoryContainer
+import|;
+end_import
+
 begin_comment
-comment|/**  * Represents content from a specified source, such as TREC, Reuters etc. A  * {@link ContentSource} is responsible for creating {@link DocData} objects for  * its documents to be consumed by {@link DocMaker}. It also keeps track  * of various statistics, such as how many documents were generated, size in  * bytes etc.  *<p>  * For supported configuration parameters see {@link ContentItemsSource}.  */
+comment|/**  * Source items for facets.  *<p>  * For supported configuration parameters see {@link ContentItemsSource}.  */
 end_comment
 
 begin_class
-DECL|class|ContentSource
+DECL|class|FacetSource
 specifier|public
 specifier|abstract
 class|class
-name|ContentSource
+name|FacetSource
 extends|extends
 name|ContentItemsSource
 block|{
-comment|/** Returns the next {@link DocData} from the content source.     * Implementations must account for multi-threading, as multiple threads     * can call this method simultaneously. */
-DECL|method|getNextDocData
+comment|/** Returns the next {@link CategoryContainer facets content item}.     * Implementations must account for multi-threading, as multiple threads     * can call this method simultaneously.     */
+DECL|method|getNextFacets
 specifier|public
 specifier|abstract
-name|DocData
-name|getNextDocData
+name|CategoryContainer
+name|getNextFacets
 parameter_list|(
-name|DocData
-name|docData
+name|CategoryContainer
+name|facets
 parameter_list|)
 throws|throws
 name|NoMoreDataException
 throws|,
 name|IOException
 function_decl|;
+annotation|@
+name|Override
+DECL|method|resetInputs
+specifier|public
+name|void
+name|resetInputs
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|printStatistics
+argument_list|(
+literal|"facets"
+argument_list|)
+expr_stmt|;
+comment|// re-initiate since properties by round may have changed.
+name|setConfig
+argument_list|(
+name|getConfig
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|resetInputs
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
