@@ -1526,6 +1526,12 @@ specifier|final
 name|float
 name|queryBoost
 decl_stmt|;
+comment|/** query's outer boost (only for explain) */
+DECL|field|topLevelBoost
+specifier|private
+name|float
+name|topLevelBoost
+decl_stmt|;
 comment|/** weight (idf * boost) */
 DECL|field|weight
 specifier|private
@@ -1625,6 +1631,12 @@ block|{
 comment|// we don't normalize with queryNorm at all, we just capture the top-level boost
 name|this
 operator|.
+name|topLevelBoost
+operator|=
+name|topLevelBoost
+expr_stmt|;
+name|this
+operator|.
 name|weight
 operator|=
 name|idf
@@ -1688,15 +1700,20 @@ argument_list|(
 name|stats
 operator|.
 name|queryBoost
+operator|*
+name|stats
+operator|.
+name|topLevelBoost
 argument_list|,
 literal|"boost"
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|stats
+name|boostExpl
 operator|.
-name|queryBoost
+name|getValue
+argument_list|()
 operator|!=
 literal|1.0f
 condition|)
