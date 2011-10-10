@@ -805,10 +805,7 @@ index|[]
 name|BASIC_MODELS
 init|=
 block|{
-operator|new
-name|BasicModelBE
-argument_list|()
-block|,
+comment|/* TODO: enable new BasicModelBE(), */
 comment|/* TODO: enable new BasicModelD(), */
 operator|new
 name|BasicModelG
