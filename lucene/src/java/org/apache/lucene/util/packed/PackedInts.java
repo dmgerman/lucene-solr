@@ -173,6 +173,18 @@ name|int
 name|size
 parameter_list|()
 function_decl|;
+comment|/**      * Expert: if the bit-width of this reader matches one of      * java's native types, returns the underlying array      * (ie, byte[], short[], int[], long[]); else, returns      * null.  Note that when accessing the array you must      * upgrade the type (bitwise AND with all ones), to      * interpret the full value as unsigned.  Ie,      * bytes[idx]&0xFF, shorts[idx]&0xFFFF, etc.      */
+DECL|method|getArray
+name|Object
+name|getArray
+parameter_list|()
+function_decl|;
+comment|/**      * Returns true if this implementation is backed by a      * native java array.      *      * @see #getArray      */
+DECL|method|hasArray
+name|boolean
+name|hasArray
+parameter_list|()
+function_decl|;
 block|}
 comment|/**    * Run-once iterator interface, to decode previously saved PackedInts.    */
 DECL|interface|ReaderIterator
@@ -360,6 +372,26 @@ name|maxValue
 argument_list|(
 name|bitsPerValue
 argument_list|)
+return|;
+block|}
+DECL|method|getArray
+specifier|public
+name|Object
+name|getArray
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+DECL|method|hasArray
+specifier|public
+name|boolean
+name|hasArray
+parameter_list|()
+block|{
+return|return
+literal|false
 return|;
 block|}
 block|}

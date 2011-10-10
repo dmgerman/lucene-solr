@@ -72,7 +72,6 @@ end_comment
 
 begin_class
 DECL|class|Direct64
-specifier|public
 class|class
 name|Direct64
 extends|extends
@@ -186,17 +185,6 @@ operator|=
 name|values
 expr_stmt|;
 block|}
-DECL|method|getArray
-specifier|public
-name|long
-index|[]
-name|getArray
-parameter_list|()
-block|{
-return|return
-name|values
-return|;
-block|}
 comment|/**    * Creates an array backed by the given values.    *</p><p>    * Note: The values are used directly, so changes to the given values will    * affect the structure.    * @param values   used as the internal backing array.    */
 DECL|method|Direct64
 specifier|public
@@ -297,6 +285,31 @@ argument_list|,
 literal|0L
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getArray
+specifier|public
+name|long
+index|[]
+name|getArray
+parameter_list|()
+block|{
+return|return
+name|values
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hasArray
+specifier|public
+name|boolean
+name|hasArray
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
 block|}
 block|}
 end_class
