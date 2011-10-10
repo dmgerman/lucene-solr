@@ -309,7 +309,7 @@ specifier|protected
 name|void
 name|merge
 parameter_list|(
-name|MergeState
+name|SingleSubMergeState
 name|state
 parameter_list|)
 throws|throws

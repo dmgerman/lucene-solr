@@ -215,27 +215,18 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Merges the given {@link org.apache.lucene.index.codecs.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param values    *          the docValues to merge in    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Merges the given {@link org.apache.lucene.index.codecs.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param docValues docValues array containing one instance per reader (    *          {@link MergeState#readers}) or<code>null</code> if the reader has    *          no {@link IndexDocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|merge
 specifier|public
 name|void
 name|merge
 parameter_list|(
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
 name|MergeState
 name|mergeState
 parameter_list|,
 name|IndexDocValues
-name|values
+index|[]
+name|docValues
 parameter_list|)
 throws|throws
 name|IOException
@@ -245,15 +236,11 @@ name|mergeState
 operator|!=
 literal|null
 assert|;
-comment|// TODO we need some kind of compatibility notation for values such
-comment|// that two slightly different segments can be merged eg. fixed vs.
-comment|// variable byte len or float32 vs. float64
 name|boolean
-name|merged
+name|hasMerged
 init|=
 literal|false
 decl_stmt|;
-comment|/*      * We ignore the given DocValues here and merge from the subReaders directly      * to support bulk copies on the DocValues Writer level. if this gets merged      * with MultiDocValues the writer can not optimize for bulk-copyable data      */
 for|for
 control|(
 name|int
@@ -299,31 +286,17 @@ argument_list|(
 name|readerIDX
 argument_list|)
 decl_stmt|;
-specifier|final
-name|IndexDocValues
-name|r
-init|=
-name|reader
-operator|.
-name|reader
-operator|.
-name|docValues
-argument_list|(
-name|mergeState
-operator|.
-name|fieldInfo
-operator|.
-name|name
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
-name|r
+name|docValues
+index|[
+name|readerIDX
+index|]
 operator|!=
 literal|null
 condition|)
 block|{
-name|merged
+name|hasMerged
 operator|=
 literal|true
 expr_stmt|;
@@ -332,9 +305,12 @@ argument_list|(
 operator|new
 name|Writer
 operator|.
-name|MergeState
+name|SingleSubMergeState
 argument_list|(
-name|r
+name|docValues
+index|[
+name|readerIDX
+index|]
 argument_list|,
 name|mergeState
 operator|.
@@ -358,9 +334,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// only finish if no exception is thrown!
 if|if
 condition|(
-name|merged
+name|hasMerged
 condition|)
 block|{
 name|finish
@@ -372,25 +349,25 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Merges the given {@link MergeState} into this {@link DocValuesConsumer}.    * {@link MergeState#docBase} must always be increasing. Merging segments out    * of order is not supported.    *     * @param mergeState    *          the {@link MergeState} to merge    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Merges the given {@link SingleSubMergeState} into this {@link DocValuesConsumer}.    *     * @param mergeState    *          the {@link SingleSubMergeState} to merge    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|merge
 specifier|protected
 specifier|abstract
 name|void
 name|merge
 parameter_list|(
-name|MergeState
+name|SingleSubMergeState
 name|mergeState
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
 comment|/**    * Specialized auxiliary MergeState is necessary since we don't want to    * exploit internals up to the codecs consumer. An instance of this class is    * created for each merged low level {@link IndexReader} we are merging to    * support low level bulk copies.    */
-DECL|class|MergeState
+DECL|class|SingleSubMergeState
 specifier|public
 specifier|static
 class|class
-name|MergeState
+name|SingleSubMergeState
 block|{
 comment|/**      * the source reader for this MergeState - merged values should be read from      * this instance      */
 DECL|field|reader
@@ -420,9 +397,9 @@ specifier|final
 name|Bits
 name|liveDocs
 decl_stmt|;
-DECL|method|MergeState
+DECL|method|SingleSubMergeState
 specifier|public
-name|MergeState
+name|SingleSubMergeState
 parameter_list|(
 name|IndexDocValues
 name|reader

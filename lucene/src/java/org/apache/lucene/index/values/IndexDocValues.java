@@ -262,6 +262,18 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Returns the size per value in bytes or<code>-1</code> iff size per value    * is variable.    *     * @return the size per value in bytes or<code>-1</code> iff size per value    * is variable.    */
+DECL|method|getValueSize
+specifier|public
+name|int
+name|getValueSize
+parameter_list|()
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
 comment|/**    * Sets the {@link SourceCache} used by this {@link IndexDocValues} instance. This    * method should be called before {@link #load()} is called. All {@link Source} instances in the currently used cache will be closed    * before the new cache is installed.    *<p>    * Note: All instances previously obtained from {@link #load()} will be lost.    *     * @throws IllegalArgumentException    *           if the given cache is<code>null</code>    *     */
 DECL|method|setCache
 specifier|public
