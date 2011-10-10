@@ -2955,21 +2955,7 @@ operator|.
 name|score
 decl_stmt|;
 comment|// check if scores match
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|otherScore
-operator|-
-name|score
-argument_list|)
-operator|>
-literal|1.0e-6f
-condition|)
-block|{
-name|fail
+name|assertEquals
 argument_list|(
 literal|"Doc "
 operator|+
@@ -3005,9 +2991,14 @@ name|q2
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|score
+argument_list|,
+name|otherScore
+argument_list|,
+literal|1.0e-6f
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|// check if subset
