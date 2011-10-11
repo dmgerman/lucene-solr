@@ -215,7 +215,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Merges the given {@link org.apache.lucene.index.codecs.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param docValues docValues array containing one instance per reader (    *          {@link MergeState#readers}) or<code>null</code> if the reader has    *          no {@link IndexDocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Merges the given {@link org.apache.lucene.index.codecs.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param docValues docValues array containing one instance per reader (    *          {@link org.apache.lucene.index.codecs.MergeState#readers}) or<code>null</code> if the reader has    *          no {@link IndexDocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|merge
 specifier|public
 name|void
