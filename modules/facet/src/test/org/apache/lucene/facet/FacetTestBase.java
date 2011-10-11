@@ -1958,11 +1958,11 @@ operator|+
 name|actualResults
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Results are not the same!"
-argument_list|)
-expr_stmt|;
+throw|throw
+operator|new
+name|NotSameResultError
+argument_list|()
+throw|;
 block|}
 block|}
 comment|/** exclude the residue and numDecendants because it is incorrect in sampling */
@@ -2031,6 +2031,27 @@ argument_list|,
 literal|""
 argument_list|)
 return|;
+block|}
+comment|/** Special Error class for ability to ignore only this error and retry... */
+DECL|class|NotSameResultError
+specifier|public
+specifier|static
+class|class
+name|NotSameResultError
+extends|extends
+name|Error
+block|{
+DECL|method|NotSameResultError
+specifier|public
+name|NotSameResultError
+parameter_list|()
+block|{
+name|super
+argument_list|(
+literal|"Results are not the same!"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
