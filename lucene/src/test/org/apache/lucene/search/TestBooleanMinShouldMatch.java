@@ -2996,7 +2996,14 @@ name|score
 argument_list|,
 name|otherScore
 argument_list|,
-literal|1.0e-6f
+name|CheckHits
+operator|.
+name|explainToleranceDelta
+argument_list|(
+name|score
+argument_list|,
+name|otherScore
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

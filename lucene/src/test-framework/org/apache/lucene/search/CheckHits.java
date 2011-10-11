@@ -1651,8 +1651,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** returns a reasonable epsilon for comparing two floats,    *  where minor differences are acceptable such as score vs. explain */
 DECL|method|explainToleranceDelta
-specifier|private
+specifier|public
 specifier|static
 name|float
 name|explainToleranceDelta
