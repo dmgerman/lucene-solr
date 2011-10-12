@@ -143,7 +143,7 @@ interface|interface
 name|IndexableField
 block|{
 comment|// TODO: add attrs to this API?
-comment|/* Field name */
+comment|/** Field name */
 DECL|method|name
 specifier|public
 name|String
@@ -159,21 +159,21 @@ name|float
 name|boost
 parameter_list|()
 function_decl|;
-comment|/* Non-null if this field has a binary value */
+comment|/** Non-null if this field has a binary value */
 DECL|method|binaryValue
 specifier|public
 name|BytesRef
 name|binaryValue
 parameter_list|()
 function_decl|;
-comment|/* Non-null if this field has a string value */
+comment|/** Non-null if this field has a string value */
 DECL|method|stringValue
 specifier|public
 name|String
 name|stringValue
 parameter_list|()
 function_decl|;
-comment|/* Non-null if this field has a Reader value */
+comment|/** Non-null if this field has a Reader value */
 DECL|method|readerValue
 specifier|public
 name|Reader
@@ -181,14 +181,14 @@ name|readerValue
 parameter_list|()
 function_decl|;
 comment|// Numeric field:
-comment|/* True if this field is numeric */
+comment|/** True if this field is numeric */
 DECL|method|numeric
 specifier|public
 name|boolean
 name|numeric
 parameter_list|()
 function_decl|;
-comment|/* Numeric {@link NumericField.DataType}; only used if    * the field is numeric */
+comment|/** Numeric {@link org.apache.lucene.document.NumericField.DataType}; only used if    * the field is numeric */
 DECL|method|numericDataType
 specifier|public
 name|NumericField
@@ -197,7 +197,7 @@ name|DataType
 name|numericDataType
 parameter_list|()
 function_decl|;
-comment|/* Numeric value; only used if the field is numeric */
+comment|/** Numeric value; only used if the field is numeric */
 DECL|method|numericValue
 specifier|public
 name|Number
@@ -211,14 +211,14 @@ name|IndexableFieldType
 name|fieldType
 parameter_list|()
 function_decl|;
-comment|/* Non-null if doc values should be indexed */
+comment|/** Non-null if doc values should be indexed */
 DECL|method|docValues
 specifier|public
 name|PerDocFieldValues
 name|docValues
 parameter_list|()
 function_decl|;
-comment|/* DocValues type; only used if docValues is non-null */
+comment|/** DocValues type; only used if docValues is non-null */
 DECL|method|docValuesType
 specifier|public
 name|ValueType

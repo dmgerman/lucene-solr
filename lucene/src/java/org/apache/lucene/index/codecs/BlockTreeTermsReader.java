@@ -3964,7 +3964,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO: if the automaon is "smallish" we really
+comment|// TODO: if the automaton is "smallish" we really
 comment|// should use the terms index to seek at least to
 comment|// the initial term and likely to subsequent terms
 comment|// (or, maybe just fallback to ATE for such cases).

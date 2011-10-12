@@ -1737,7 +1737,7 @@ return|return
 name|c
 return|;
 block|}
-comment|/** Returns true if these two auotomata accept exactly the    *  same language.  This is a costly computation!  Note    *  also that a1 and a2 will be determinized as a side    *  effect. */
+comment|/** Returns true if these two automata accept exactly the    *  same language.  This is a costly computation!  Note    *  also that a1 and a2 will be determinized as a side    *  effect. */
 DECL|method|sameLanguage
 specifier|public
 specifier|static

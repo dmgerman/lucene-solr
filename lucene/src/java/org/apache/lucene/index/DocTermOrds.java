@@ -122,7 +122,7 @@ specifier|public
 class|class
 name|DocTermOrds
 block|{
-comment|// Term ords are shifted by this, internally, to reseve
+comment|// Term ords are shifted by this, internally, to reserve
 comment|// values 0 (end term) and 1 (index is a pointer into byte array)
 DECL|field|TNUM_OFFSET
 specifier|private

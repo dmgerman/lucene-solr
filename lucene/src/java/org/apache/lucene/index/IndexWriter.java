@@ -2735,7 +2735,7 @@ condition|)
 block|{
 comment|// the pulled reader could be from an in-flight merge
 comment|// while the info we see has already new applied deletes after a commit
-comment|// we max out the delets since deletes never shrink
+comment|// we max out the deletes since deletes never shrink
 return|return
 name|Math
 operator|.

@@ -3110,7 +3110,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/** Used for debugging.  Format may suddenly change.    *    *<p>Current format looks like    *<code>_a(3.1):c45/4->_1</code>, which means the segment's    *  name is<code>_a</code>; it was created with Lucene 3.1 (or    *  '?' if it's unkown); it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions); it's using the    *  shared doc stores named<code>_1</code> (this part is    *  left off if doc stores are private).</p>    */
+comment|/** Used for debugging.  Format may suddenly change.    *    *<p>Current format looks like    *<code>_a(3.1):c45/4->_1</code>, which means the segment's    *  name is<code>_a</code>; it was created with Lucene 3.1 (or    *  '?' if it's unknown); it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions); it's using the    *  shared doc stores named<code>_1</code> (this part is    *  left off if doc stores are private).</p>    */
 DECL|method|toString
 specifier|public
 name|String
@@ -3221,7 +3221,7 @@ name|e
 parameter_list|)
 block|{
 comment|// Messy: because getHasVectors may be used in an
-comment|// un-thread-safe way, and may attempt to open an fnm
+comment|// thread-unsafe way, and may attempt to open an fnm
 comment|// file that has since (legitimately) been deleted by
 comment|// IndexWriter, instead of throwing these exceptions
 comment|// up, just add v? to indicate we don't know if this

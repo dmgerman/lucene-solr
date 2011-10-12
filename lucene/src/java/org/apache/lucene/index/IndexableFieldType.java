@@ -38,56 +38,56 @@ specifier|public
 interface|interface
 name|IndexableFieldType
 block|{
-comment|/* True if this field should be indexed (inverted) */
+comment|/** True if this field should be indexed (inverted) */
 DECL|method|indexed
 specifier|public
 name|boolean
 name|indexed
 parameter_list|()
 function_decl|;
-comment|/* True if the field's value should be stored */
+comment|/** True if the field's value should be stored */
 DECL|method|stored
 specifier|public
 name|boolean
 name|stored
 parameter_list|()
 function_decl|;
-comment|/* True if this field's value should be analyzed */
+comment|/** True if this field's value should be analyzed */
 DECL|method|tokenized
 specifier|public
 name|boolean
 name|tokenized
 parameter_list|()
 function_decl|;
-comment|/* True if term vectors should be indexed */
+comment|/** True if term vectors should be indexed */
 DECL|method|storeTermVectors
 specifier|public
 name|boolean
 name|storeTermVectors
 parameter_list|()
 function_decl|;
-comment|/* True if term vector offsets should be indexed */
+comment|/** True if term vector offsets should be indexed */
 DECL|method|storeTermVectorOffsets
 specifier|public
 name|boolean
 name|storeTermVectorOffsets
 parameter_list|()
 function_decl|;
-comment|/* True if term vector positions should be indexed */
+comment|/** True if term vector positions should be indexed */
 DECL|method|storeTermVectorPositions
 specifier|public
 name|boolean
 name|storeTermVectorPositions
 parameter_list|()
 function_decl|;
-comment|/* True if norms should not be indexed */
+comment|/** True if norms should not be indexed */
 DECL|method|omitNorms
 specifier|public
 name|boolean
 name|omitNorms
 parameter_list|()
 function_decl|;
-comment|/* {@link IndexOptions}, describing what should be    * recorded into the inverted index */
+comment|/** {@link IndexOptions}, describing what should be    * recorded into the inverted index */
 DECL|method|indexOptions
 specifier|public
 name|IndexOptions

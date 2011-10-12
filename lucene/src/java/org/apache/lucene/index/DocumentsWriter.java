@@ -1562,7 +1562,7 @@ init|(
 name|ticketQueue
 init|)
 block|{
-comment|// Each flush is assigned a ticket in the order they accquire the ticketQueue lock
+comment|// Each flush is assigned a ticket in the order they acquire the ticketQueue lock
 name|ticket
 operator|=
 operator|new

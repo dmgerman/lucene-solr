@@ -208,7 +208,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Prevents future changes. Note, it is recommended that this is called once    * the FieldTypes's properties have been set, to prevent unintential state    * changes.    */
+comment|/**    * Prevents future changes. Note, it is recommended that this is called once    * the FieldTypes's properties have been set, to prevent unintentional state    * changes.    */
 DECL|method|freeze
 specifier|public
 name|void

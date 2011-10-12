@@ -128,7 +128,7 @@ name|long
 name|bytes
 parameter_list|)
 block|{
-comment|// TODO: this is purely instantenous rate; maybe we
+comment|// TODO: this is purely instantaneous rate; maybe we
 comment|// should also offer decayed recent history one?
 specifier|final
 name|long
@@ -169,7 +169,7 @@ operator|=
 name|curNS
 expr_stmt|;
 block|}
-comment|// While loop because Thread.sleep doesn't alway sleep
+comment|// While loop because Thread.sleep doesn't always sleep
 comment|// enough:
 while|while
 condition|(

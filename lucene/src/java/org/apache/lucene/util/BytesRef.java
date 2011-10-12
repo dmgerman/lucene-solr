@@ -270,7 +270,7 @@ operator|.
 name|length
 expr_stmt|;
 block|}
-comment|/**    * @param text Initialize the byte[] from the UTF8 bytes    * for the provided Sring.  This must be well-formed    * unicode text, with no unpaired surrogates or U+FFFF.    */
+comment|/**    * @param text Initialize the byte[] from the UTF8 bytes    * for the provided String.  This must be well-formed    * unicode text, with no unpaired surrogates or U+FFFF.    */
 DECL|method|BytesRef
 specifier|public
 name|BytesRef

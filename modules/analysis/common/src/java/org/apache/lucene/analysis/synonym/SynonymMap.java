@@ -270,7 +270,7 @@ name|WORD_SEPARATOR
 init|=
 literal|0
 decl_stmt|;
-comment|/** map<input word, list<ord>> */
+comment|/** map&lt;input word, list&lt;ord&gt;&gt; */
 DECL|field|fst
 specifier|public
 specifier|final
@@ -280,7 +280,7 @@ name|BytesRef
 argument_list|>
 name|fst
 decl_stmt|;
-comment|/** map<ord, outputword> */
+comment|/** map&lt;ord, outputword&gt; */
 DECL|field|words
 specifier|public
 specifier|final

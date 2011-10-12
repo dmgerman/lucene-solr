@@ -85,7 +85,7 @@ name|Collator
 name|collator
 parameter_list|)
 block|{
-comment|// clone in case JRE doesnt properly sync,
+comment|// clone in case JRE doesn't properly sync,
 comment|// or to reduce contention in case they do
 name|this
 operator|.

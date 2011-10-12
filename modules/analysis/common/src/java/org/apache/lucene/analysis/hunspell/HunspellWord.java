@@ -97,7 +97,7 @@ operator|>=
 literal|0
 return|;
 block|}
-comment|/**    * Returns the flags associated with the word    *    * @return Flags asssociated with the word    */
+comment|/**    * Returns the flags associated with the word    *    * @return Flags associated with the word    */
 DECL|method|getFlags
 specifier|public
 name|char

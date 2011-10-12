@@ -1025,7 +1025,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Parses the encoding specificed in the affix file readable through the provided InputStream    *    * @param affix InputStream for reading the affix file    * @return Encoding specified in the affix file    * @throws IOException Can be thrown while reading from the InputStream    * @throws ParseException Thrown if the first non-empty non-comment line read from the file does not adhere to the format {@code SET<encoding>}    */
+comment|/**    * Parses the encoding specified in the affix file readable through the provided InputStream    *    * @param affix InputStream for reading the affix file    * @return Encoding specified in the affix file    * @throws IOException Can be thrown while reading from the InputStream    * @throws ParseException Thrown if the first non-empty non-comment line read from the file does not adhere to the format {@code SET<encoding>}    */
 DECL|method|getDictionaryEncoding
 specifier|private
 name|String
@@ -1231,7 +1231,7 @@ name|newDecoder
 argument_list|()
 return|;
 block|}
-comment|/**    * Determines the appropriate {@link FlagParsingStrategy} based on the FLAG definiton line taken from the affix file    *    * @param flagLine Line containing the flag information    * @return FlagParsingStrategy that handles parsing flags in the way specified in the FLAG definiton    */
+comment|/**    * Determines the appropriate {@link FlagParsingStrategy} based on the FLAG definition line taken from the affix file    *    * @param flagLine Line containing the flag information    * @return FlagParsingStrategy that handles parsing flags in the way specified in the FLAG definition    */
 DECL|method|getFlagParsingStrategy
 specifier|private
 name|FlagParsingStrategy
