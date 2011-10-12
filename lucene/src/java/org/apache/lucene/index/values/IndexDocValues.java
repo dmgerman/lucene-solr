@@ -606,7 +606,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|binarySearch
-specifier|protected
+specifier|private
 name|int
 name|binarySearch
 parameter_list|(
