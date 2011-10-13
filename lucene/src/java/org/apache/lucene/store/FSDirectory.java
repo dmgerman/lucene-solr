@@ -218,7 +218,7 @@ init|=
 name|DEFAULT_READ_CHUNK_SIZE
 decl_stmt|;
 comment|// LUCENE-1566
-comment|// null means no limite
+comment|// null means no limit
 DECL|field|mergeWriteRateLimiter
 specifier|private
 specifier|volatile
