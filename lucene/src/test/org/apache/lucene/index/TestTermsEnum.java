@@ -1342,7 +1342,7 @@ name|numTerms
 init|=
 name|atLeast
 argument_list|(
-literal|1000
+literal|300
 argument_list|)
 decl_stmt|;
 specifier|final
