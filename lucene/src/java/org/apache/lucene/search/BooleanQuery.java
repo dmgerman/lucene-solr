@@ -1550,13 +1550,6 @@ name|size
 argument_list|()
 operator|==
 literal|0
-operator|&&
-name|prohibited
-operator|.
-name|size
-argument_list|()
-operator|<
-literal|32
 condition|)
 block|{
 return|return
@@ -1828,18 +1821,6 @@ operator|++
 name|numProhibited
 expr_stmt|;
 block|}
-block|}
-if|if
-condition|(
-name|numProhibited
-operator|>
-literal|32
-condition|)
-block|{
-comment|// cannot use BS
-return|return
-literal|false
-return|;
 block|}
 comment|// scorer() will return an out-of-order scorer if requested.
 return|return

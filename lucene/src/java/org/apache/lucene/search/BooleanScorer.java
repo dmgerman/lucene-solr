@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/* Description from Doug Cutting (excerpted from  * LUCENE-1483):  *  * BooleanScorer uses a ~16k array to score windows of  * docs. So it scores docs 0-16k first, then docs 16-32k,  * etc. For each window it iterates through all query terms  * and accumulates a score in table[doc%16k]. It also stores  * in the table a bitmask representing which terms  * contributed to the score. Non-zero scores are chained in  * a linked list. At the end of scoring each window it then  * iterates through the linked list and, if the bitmask  * matches the boolean constraints, collects a hit. For  * boolean queries with lots of frequent terms this can be  * much faster, since it does not need to update a priority  * queue for each posting, instead performing constant-time  * operations per posting. The only downside is that it  * results in hits being delivered out-of-order within the  * window, which means it cannot be nested within other  * scorers. But it works well as a top-level scorer.  *  * The new BooleanScorer2 implementation instead works by  * merging priority queues of postings, albeit with some  * clever tricks. For example, a pure conjunction (all terms  * required) does not require a priority queue. Instead it  * sorts the posting streams at the start, then repeatedly  * skips the first to to the last. If the first ever equals  * the last, then there's a hit. When some terms are  * required and some terms are optional, the conjunction can  * be evaluated first, then the optional terms can all skip  * to the match and be added to the score. Thus the  * conjunction can reduce the number of priority queue  * updates for the optional terms. */
+comment|/* Description from Doug Cutting (excerpted from  * LUCENE-1483):  *  * BooleanScorer uses an array to score windows of  * 2K docs. So it scores docs 0-2K first, then docs 2K-4K,  * etc. For each window it iterates through all query terms  * and accumulates a score in table[doc%2K]. It also stores  * in the table a bitmask representing which terms  * contributed to the score. Non-zero scores are chained in  * a linked list. At the end of scoring each window it then  * iterates through the linked list and, if the bitmask  * matches the boolean constraints, collects a hit. For  * boolean queries with lots of frequent terms this can be  * much faster, since it does not need to update a priority  * queue for each posting, instead performing constant-time  * operations per posting. The only downside is that it  * results in hits being delivered out-of-order within the  * window, which means it cannot be nested within other  * scorers. But it works well as a top-level scorer.  *  * The new BooleanScorer2 implementation instead works by  * merging priority queues of postings, albeit with some  * clever tricks. For example, a pure conjunction (all terms  * required) does not require a priority queue. Instead it  * sorts the posting streams at the start, then repeatedly  * skips the first to to the last. If the first ever equals  * the last, then there's a hit. When some terms are  * required and some terms are optional, the conjunction can  * be evaluated first, then the optional terms can all skip  * to the match and be added to the score. Thus the  * conjunction can reduce the number of priority queue  * updates for the optional terms. */
 end_comment
 
 begin_class
@@ -194,6 +194,7 @@ name|BucketTable
 operator|.
 name|MASK
 decl_stmt|;
+specifier|final
 name|Bucket
 name|bucket
 init|=
@@ -204,25 +205,6 @@ index|[
 name|i
 index|]
 decl_stmt|;
-if|if
-condition|(
-name|bucket
-operator|==
-literal|null
-condition|)
-name|table
-operator|.
-name|buckets
-index|[
-name|i
-index|]
-operator|=
-name|bucket
-operator|=
-operator|new
-name|Bucket
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|bucket
@@ -484,6 +466,9 @@ name|float
 name|score
 decl_stmt|;
 comment|// incremental score
+comment|// TODO: break out bool anyProhibited, int
+comment|// numRequiredMatched; then we can remove 32 limit on
+comment|// required clauses
 DECL|field|bits
 name|int
 name|bits
@@ -552,7 +537,35 @@ DECL|method|BucketTable
 specifier|public
 name|BucketTable
 parameter_list|()
-block|{}
+block|{
+comment|// Pre-fill to save the lazy init when collecting
+comment|// each sub:
+for|for
+control|(
+name|int
+name|idx
+init|=
+literal|0
+init|;
+name|idx
+operator|<
+name|SIZE
+condition|;
+name|idx
+operator|++
+control|)
+block|{
+name|buckets
+index|[
+name|idx
+index|]
+operator|=
+operator|new
+name|Bucket
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 DECL|method|newCollector
 specifier|public
 name|Collector
@@ -600,8 +613,6 @@ DECL|field|prohibited
 specifier|public
 name|boolean
 name|prohibited
-init|=
-literal|false
 decl_stmt|;
 DECL|field|collector
 specifier|public
@@ -701,20 +712,6 @@ name|coordFactors
 decl_stmt|;
 comment|// TODO: re-enable this if BQ ever sends us required clauses
 comment|//private int requiredMask = 0;
-DECL|field|prohibitedMask
-specifier|private
-name|int
-name|prohibitedMask
-init|=
-literal|0
-decl_stmt|;
-DECL|field|nextMask
-specifier|private
-name|int
-name|nextMask
-init|=
-literal|1
-decl_stmt|;
 DECL|field|minNrShouldMatch
 specifier|private
 specifier|final
@@ -737,6 +734,16 @@ name|int
 name|doc
 init|=
 operator|-
+literal|1
+decl_stmt|;
+comment|// Any time a prohibited clause matches we set bit 0:
+DECL|field|PROHIBITED_MASK
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|PROHIBITED_MASK
+init|=
 literal|1
 decl_stmt|;
 DECL|method|BooleanScorer
@@ -858,22 +865,6 @@ range|:
 name|prohibitedScorers
 control|)
 block|{
-name|int
-name|mask
-init|=
-name|nextMask
-decl_stmt|;
-name|nextMask
-operator|=
-name|nextMask
-operator|<<
-literal|1
-expr_stmt|;
-name|prohibitedMask
-operator||=
-name|mask
-expr_stmt|;
-comment|// update prohibited mask
 if|if
 condition|(
 name|scorer
@@ -899,7 +890,7 @@ name|bucketTable
 operator|.
 name|newCollector
 argument_list|(
-name|mask
+name|PROHIBITED_MASK
 argument_list|)
 argument_list|,
 name|scorers
@@ -978,6 +969,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// Make sure it's only BooleanScorer that calls us:
+assert|assert
+name|firstDocID
+operator|==
+operator|-
+literal|1
+assert|;
 name|boolean
 name|more
 decl_stmt|;
@@ -1025,7 +1023,7 @@ name|current
 operator|.
 name|bits
 operator|&
-name|prohibitedMask
+name|PROHIBITED_MASK
 operator|)
 operator|==
 literal|0
@@ -1034,6 +1032,7 @@ block|{
 comment|// TODO: re-enable this if BQ ever sends us required
 comment|// clauses
 comment|//&& (current.bits& requiredMask) == requiredMask) {
+comment|// TODO: can we remove this?
 if|if
 condition|(
 name|current
@@ -1267,9 +1266,11 @@ name|int
 name|docID
 parameter_list|()
 block|{
-return|return
-name|doc
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
 annotation|@
 name|Override
@@ -1281,149 +1282,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|boolean
-name|more
-decl_stmt|;
-do|do
-block|{
-while|while
-condition|(
-name|bucketTable
-operator|.
-name|first
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// more queued
-name|current
-operator|=
-name|bucketTable
-operator|.
-name|first
-expr_stmt|;
-name|bucketTable
-operator|.
-name|first
-operator|=
-name|current
-operator|.
-name|next
-expr_stmt|;
-comment|// pop the queue
-comment|// check prohibited& required, and minNrShouldMatch
-if|if
-condition|(
-operator|(
-name|current
-operator|.
-name|bits
-operator|&
-name|prohibitedMask
-operator|)
-operator|==
-literal|0
-operator|&&
-name|current
-operator|.
-name|coord
-operator|>=
-name|minNrShouldMatch
-condition|)
-block|{
-comment|// TODO: re-enable this if BQ ever sends us required clauses
-comment|// (current.bits& requiredMask) == requiredMask&&
-return|return
-name|doc
-operator|=
-name|current
-operator|.
-name|doc
-return|;
-block|}
-block|}
-comment|// refill the queue
-name|more
-operator|=
-literal|false
-expr_stmt|;
-name|end
-operator|+=
-name|BucketTable
-operator|.
-name|SIZE
-expr_stmt|;
-for|for
-control|(
-name|SubScorer
-name|sub
-init|=
-name|scorers
-init|;
-name|sub
-operator|!=
-literal|null
-condition|;
-name|sub
-operator|=
-name|sub
-operator|.
-name|next
-control|)
-block|{
-name|int
-name|subScorerDocID
-init|=
-name|sub
-operator|.
-name|scorer
-operator|.
-name|docID
+throw|throw
+operator|new
+name|UnsupportedOperationException
 argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|subScorerDocID
-operator|!=
-name|NO_MORE_DOCS
-condition|)
-block|{
-name|more
-operator||=
-name|sub
-operator|.
-name|scorer
-operator|.
-name|score
-argument_list|(
-name|sub
-operator|.
-name|collector
-argument_list|,
-name|end
-argument_list|,
-name|subScorerDocID
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-do|while
-condition|(
-name|bucketTable
-operator|.
-name|first
-operator|!=
-literal|null
-operator|||
-name|more
-condition|)
-do|;
-return|return
-name|doc
-operator|=
-name|NO_MORE_DOCS
-return|;
+throw|;
 block|}
 annotation|@
 name|Override
@@ -1433,18 +1296,11 @@ name|float
 name|score
 parameter_list|()
 block|{
-return|return
-name|current
-operator|.
-name|score
-operator|*
-name|coordFactors
-index|[
-name|current
-operator|.
-name|coord
-index|]
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
 annotation|@
 name|Override
@@ -1467,8 +1323,8 @@ name|Integer
 operator|.
 name|MAX_VALUE
 argument_list|,
-name|nextDoc
-argument_list|()
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
