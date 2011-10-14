@@ -154,6 +154,13 @@ name|Object
 name|clone
 parameter_list|()
 block|{
+name|dir
+operator|.
+name|inputCloneCount
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 name|IndexInput
 name|iiclone
 init|=

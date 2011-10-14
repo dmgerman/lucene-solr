@@ -1445,6 +1445,10 @@ operator|)
 operator|.
 name|canReuse
 argument_list|(
+name|SimpleTextFieldsReader
+operator|.
+name|this
+operator|.
 name|in
 argument_list|)
 condition|)
@@ -1534,6 +1538,10 @@ operator|)
 operator|.
 name|canReuse
 argument_list|(
+name|SimpleTextFieldsReader
+operator|.
+name|this
+operator|.
 name|in
 argument_list|)
 condition|)
@@ -1613,6 +1621,9 @@ DECL|field|docID
 specifier|private
 name|int
 name|docID
+init|=
+operator|-
+literal|1
 decl_stmt|;
 DECL|field|tf
 specifier|private
@@ -1728,6 +1739,11 @@ operator|.
 name|omitTF
 operator|=
 name|omitTF
+expr_stmt|;
+name|docID
+operator|=
+operator|-
+literal|1
 expr_stmt|;
 if|if
 condition|(
