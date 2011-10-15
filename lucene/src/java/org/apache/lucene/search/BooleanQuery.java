@@ -1782,11 +1782,6 @@ name|boolean
 name|scoresDocsOutOfOrder
 parameter_list|()
 block|{
-name|int
-name|numProhibited
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|BooleanClause
@@ -1807,19 +1802,6 @@ return|return
 literal|false
 return|;
 comment|// BS2 (in-order) will be used by scorer()
-block|}
-elseif|else
-if|if
-condition|(
-name|c
-operator|.
-name|isProhibited
-argument_list|()
-condition|)
-block|{
-operator|++
-name|numProhibited
-expr_stmt|;
 block|}
 block|}
 comment|// scorer() will return an out-of-order scorer if requested.
