@@ -32,21 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|concurrent
-operator|.
-name|CountDownLatch
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|ExecutorService
+name|ArrayList
 import|;
 end_import
 
@@ -66,7 +52,21 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|concurrent
+operator|.
+name|CountDownLatch
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ExecutorService
 import|;
 end_import
 
@@ -133,6 +133,20 @@ operator|.
 name|document
 operator|.
 name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|ConcurrentMergeScheduler
 import|;
 end_import
 
@@ -376,7 +390,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-comment|// SearcherManager needs to see empty commit:
 specifier|final
 name|SearcherWarmer
 name|warmer
@@ -457,6 +470,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// SearcherManager needs to see empty commit:
 name|writer
 operator|.
 name|commit
@@ -921,6 +935,7 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+comment|// Test can deadlock if we use SMS:
 name|IndexWriter
 name|writer
 init|=
@@ -938,6 +953,13 @@ name|MockAnalyzer
 argument_list|(
 name|random
 argument_list|)
+argument_list|)
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|ConcurrentMergeScheduler
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
