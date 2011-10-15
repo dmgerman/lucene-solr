@@ -616,7 +616,7 @@ block|{
 break|break;
 block|}
 specifier|final
-name|Short
+name|short
 name|termval
 init|=
 name|parser
