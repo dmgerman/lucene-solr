@@ -267,8 +267,6 @@ specifier|protected
 name|SolrParams
 name|invariants
 decl_stmt|;
-annotation|@
-name|Override
 DECL|method|inform
 specifier|public
 name|void
