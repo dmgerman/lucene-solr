@@ -123,14 +123,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Identifies the language of a set of input fields using Tika's  * LanguageIdentifier. The tika-core-x.y.jar must be on the classpath  *<p/>  * The UpdateProcessorChain config entry can take a number of parameters  * which may also be passed as HTTP parameters on the update request  * and override the defaults. Here is the simplest processor config possible:  *   *<pre class="prettyprint">  *&lt;processor class=&quot;org.apache.solr.update.processor.LanguageIdentifierUpdateProcessorFactory&quot;&gt;  *&lt;str name=&quot;langid.fl&quot;&gt;title,text&lt;/str&gt;  *&lt;str name=&quot;langid.langField&quot;&gt;language_s&lt;/str&gt;  *&lt;/processor&gt;  *</pre>  * See<a href="http://wiki.apache.org/solr/LanguageDetection">http://wiki.apache.org/solr/LanguageDetection</a>  * @since 3.5  */
+comment|/**  * Identifies the language of a set of input fields using Tika's  * LanguageIdentifier. The tika-core-x.y.jar must be on the classpath  *<p/>  * The UpdateProcessorChain config entry can take a number of parameters  * which may also be passed as HTTP parameters on the update request  * and override the defaults. Here is the simplest processor config possible:  *   *<pre class="prettyprint">  *&lt;processor class=&quot;org.apache.solr.update.processor.TikaLanguageIdentifierUpdateProcessorFactory&quot;&gt;  *&lt;str name=&quot;langid.fl&quot;&gt;title,text&lt;/str&gt;  *&lt;str name=&quot;langid.langField&quot;&gt;language_s&lt;/str&gt;  *&lt;/processor&gt;  *</pre>  * See<a href="http://wiki.apache.org/solr/LanguageDetection">http://wiki.apache.org/solr/LanguageDetection</a>  * @since 3.5  */
 end_comment
 
 begin_class
-DECL|class|LanguageIdentifierUpdateProcessorFactory
+DECL|class|TikaLanguageIdentifierUpdateProcessorFactory
 specifier|public
 class|class
-name|LanguageIdentifierUpdateProcessorFactory
+name|TikaLanguageIdentifierUpdateProcessorFactory
 extends|extends
 name|UpdateRequestProcessorFactory
 implements|implements
@@ -343,7 +343,7 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|LanguageIdentifierUpdateProcessor
+name|TikaLanguageIdentifierUpdateProcessor
 argument_list|(
 name|req
 argument_list|,
