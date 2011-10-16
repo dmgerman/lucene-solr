@@ -2289,6 +2289,8 @@ operator|.
 name|getVersion
 argument_list|()
 operator|==
+name|segmentInfos
+operator|.
 name|getVersion
 argument_list|()
 condition|)
