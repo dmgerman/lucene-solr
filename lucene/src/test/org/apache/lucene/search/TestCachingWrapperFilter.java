@@ -1377,6 +1377,19 @@ name|reader
 decl_stmt|;
 comment|// make sure we get a cache hit when we reopen reader
 comment|// that had no change to deletions
+name|writer
+operator|.
+name|deleteDocuments
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"foo"
+argument_list|,
+literal|"bar"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|reader
 operator|=
 name|refreshReader
@@ -1387,22 +1400,8 @@ expr_stmt|;
 name|assertTrue
 argument_list|(
 name|reader
-operator|!=
+operator|==
 name|oldReader
-argument_list|)
-expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|searcher
-operator|=
-name|newSearcher
-argument_list|(
-name|reader
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|int

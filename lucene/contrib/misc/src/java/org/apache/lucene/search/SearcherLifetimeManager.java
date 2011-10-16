@@ -444,15 +444,31 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-else|else
-block|{
-assert|assert
+elseif|else
+if|if
+condition|(
 name|tracker
 operator|.
 name|searcher
-operator|==
+operator|!=
 name|searcher
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"the provided searcher has the same underlying reader version yet the searcher instance differs from before (new="
+operator|+
+name|searcher
+operator|+
+literal|" vs old="
+operator|+
+name|tracker
+operator|.
+name|searcher
+argument_list|)
+throw|;
 block|}
 return|return
 name|version

@@ -469,7 +469,7 @@ comment|//   - mix in optimize, addIndexes
 end_comment
 
 begin_comment
-comment|//   - randomoly mix in non-congruent docs
+comment|//   - randomly mix in non-congruent docs
 end_comment
 
 begin_comment
