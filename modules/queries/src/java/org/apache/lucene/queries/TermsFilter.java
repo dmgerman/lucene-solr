@@ -313,6 +313,17 @@ name|field
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|termsC
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|result
+return|;
+block|}
 name|termsEnum
 operator|=
 name|termsC
