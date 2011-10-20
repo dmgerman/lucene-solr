@@ -304,7 +304,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *      * @param liveDocs set bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
+comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
 DECL|method|docs
 specifier|public
 specifier|abstract
@@ -320,7 +320,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link DocsAndPositionsEnum} for the current term.    *  Do not call this when the enum is unpositioned.    *  This method will only return null if positions were    *  not indexed into the postings by this codec. */
+comment|/** Get {@link DocsAndPositionsEnum} for the current term.    *  Do not call this when the enum is unpositioned.    *  This method will only return null if positions were    *  not indexed into the postings by this codec.    *  @param liveDocs unset bits are documents that should not    *  be returned    *  @param reuse pass a prior DocsAndPositionsEnum for possible reuse */
 DECL|method|docsAndPositions
 specifier|public
 specifier|abstract
