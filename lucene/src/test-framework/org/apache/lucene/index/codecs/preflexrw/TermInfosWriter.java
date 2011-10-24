@@ -934,6 +934,27 @@ operator|-
 name|ch2
 return|;
 block|}
+if|if
+condition|(
+name|utf16Result1
+operator|.
+name|length
+operator|==
+literal|0
+operator|&&
+name|lastFieldNumber
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+comment|// If there is a field named "" (empty string) with a term text of "" (empty string) then we
+comment|// will get 0 on this comparison, yet, it's "OK".
+return|return
+operator|-
+literal|1
+return|;
+block|}
 return|return
 name|utf16Result1
 operator|.

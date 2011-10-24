@@ -420,6 +420,11 @@ specifier|private
 name|Directory
 name|dir
 decl_stmt|;
+DECL|field|fieldName
+specifier|protected
+name|String
+name|fieldName
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp
@@ -440,6 +445,18 @@ operator|=
 name|newDirectory
 argument_list|()
 expr_stmt|;
+name|fieldName
+operator|=
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+literal|"field"
+else|:
+literal|""
+expr_stmt|;
+comment|// sometimes use an empty string as field name
 name|RandomIndexWriter
 name|writer
 init|=
@@ -494,7 +511,7 @@ name|field
 init|=
 name|newField
 argument_list|(
-literal|"field"
+name|fieldName
 argument_list|,
 literal|""
 argument_list|,
@@ -925,7 +942,7 @@ argument_list|()
 operator|.
 name|getFieldCodec
 argument_list|(
-literal|"field"
+name|fieldName
 argument_list|)
 operator|.
 name|equals
@@ -1012,7 +1029,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-literal|"field"
+name|fieldName
 argument_list|,
 name|regexp
 argument_list|)
@@ -1031,7 +1048,7 @@ argument_list|(
 operator|new
 name|Term
 argument_list|(
-literal|"field"
+name|fieldName
 argument_list|,
 name|regexp
 argument_list|)

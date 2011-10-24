@@ -3322,6 +3322,25 @@ operator|.
 name|docFreq
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|docFreq
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"docfreq: "
+operator|+
+name|docFreq
+operator|+
+literal|" is out of bounds"
+argument_list|)
+throw|;
+block|}
 name|status
 operator|.
 name|totFreq
@@ -3846,6 +3865,25 @@ condition|(
 name|hasTotalTermFreq
 condition|)
 block|{
+if|if
+condition|(
+name|totalTermFreq2
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"totalTermFreq: "
+operator|+
+name|totalTermFreq2
+operator|+
+literal|" is out of bounds"
+argument_list|)
+throw|;
+block|}
 name|sumTotalTermFreq
 operator|+=
 name|totalTermFreq
