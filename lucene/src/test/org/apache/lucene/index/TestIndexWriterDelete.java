@@ -86,7 +86,7 @@ name|concurrent
 operator|.
 name|atomic
 operator|.
-name|AtomicInteger
+name|AtomicBoolean
 import|;
 end_import
 
@@ -100,7 +100,7 @@ name|concurrent
 operator|.
 name|atomic
 operator|.
-name|AtomicBoolean
+name|AtomicInteger
 import|;
 end_import
 
@@ -171,6 +171,22 @@ operator|.
 name|document
 operator|.
 name|TextField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|CodecProvider
 import|;
 end_import
 
@@ -5184,6 +5200,46 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeFalse
+argument_list|(
+literal|"This test cannot run with Memory codec"
+argument_list|,
+name|CodecProvider
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getFieldCodec
+argument_list|(
+literal|"field"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"Memory"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"This test cannot run with SimpleText codec"
+argument_list|,
+name|CodecProvider
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getFieldCodec
+argument_list|(
+literal|"field"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"SimpleText"
+argument_list|)
+argument_list|)
+expr_stmt|;
 specifier|final
 name|Random
 name|r
