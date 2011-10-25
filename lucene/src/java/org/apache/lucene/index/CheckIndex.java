@@ -4662,11 +4662,15 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Test seeking by ord
+comment|// check unique term count
+name|long
+name|termCount
+init|=
+operator|-
+literal|1
+decl_stmt|;
 if|if
 condition|(
-name|hasOrd
-operator|&&
 name|status
 operator|.
 name|termCount
@@ -4675,11 +4679,6 @@ name|termCountStart
 operator|>
 literal|0
 condition|)
-block|{
-name|long
-name|termCount
-decl_stmt|;
-try|try
 block|{
 name|termCount
 operator|=
@@ -4693,19 +4692,6 @@ operator|.
 name|getUniqueTermCount
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|uoe
-parameter_list|)
-block|{
-name|termCount
-operator|=
-operator|-
-literal|1
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|termCount
@@ -4742,6 +4728,21 @@ operator|)
 argument_list|)
 throw|;
 block|}
+block|}
+comment|// Test seeking by ord
+if|if
+condition|(
+name|hasOrd
+operator|&&
+name|status
+operator|.
+name|termCount
+operator|-
+name|termCountStart
+operator|>
+literal|0
+condition|)
+block|{
 name|int
 name|seekCount
 init|=
@@ -5002,6 +5003,61 @@ block|}
 block|}
 block|}
 block|}
+block|}
+comment|// for most implementations, this is boring (just the sum across all fields)
+comment|// but codecs that don't work per-field like preflex actually implement this,
+comment|// but don't implement it on Terms, so the check isn't redundant.
+name|long
+name|uniqueTermCountAllFields
+init|=
+name|reader
+operator|.
+name|getUniqueTermCount
+argument_list|()
+decl_stmt|;
+comment|// this means something is seriously screwed, e.g. we are somehow getting enclosed in PFCW!!!!!!
+if|if
+condition|(
+name|uniqueTermCountAllFields
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"invalid termCount: -1"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|status
+operator|.
+name|termCount
+operator|!=
+name|uniqueTermCountAllFields
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"termCount mismatch "
+operator|+
+name|uniqueTermCountAllFields
+operator|+
+literal|" vs "
+operator|+
+operator|(
+name|status
+operator|.
+name|termCount
+operator|)
+argument_list|)
+throw|;
 block|}
 name|msg
 argument_list|(

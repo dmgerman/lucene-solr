@@ -4014,13 +4014,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|""
-argument_list|)
-throw|;
+return|return
+operator|-
+literal|1
+return|;
 block|}
 annotation|@
 name|Override

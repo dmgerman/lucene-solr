@@ -154,6 +154,19 @@ decl_stmt|;
 comment|//provider.register(new MemoryCodec());
 if|if
 condition|(
+operator|(
+operator|!
+literal|"PreFlex"
+operator|.
+name|equals
+argument_list|(
+name|provider
+operator|.
+name|getDefaultFieldCodec
+argument_list|()
+argument_list|)
+operator|)
+operator|&&
 name|random
 operator|.
 name|nextBoolean

@@ -2547,6 +2547,13 @@ argument_list|(
 name|r
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|perDocs
+operator|!=
+literal|null
+condition|)
+block|{
 name|fields
 operator|.
 name|put
@@ -2561,6 +2568,7 @@ name|field
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
