@@ -332,6 +332,9 @@ name|getDocIdSet
 parameter_list|(
 name|AtomicReaderContext
 name|context
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -441,15 +444,6 @@ name|termCount
 init|=
 literal|0
 decl_stmt|;
-specifier|final
-name|Bits
-name|liveDocs
-init|=
-name|reader
-operator|.
-name|getLiveDocs
-argument_list|()
-decl_stmt|;
 name|DocsEnum
 name|docsEnum
 init|=
@@ -468,7 +462,7 @@ name|termsEnum
 operator|.
 name|docs
 argument_list|(
-name|liveDocs
+name|acceptDocs
 argument_list|,
 name|docsEnum
 argument_list|)

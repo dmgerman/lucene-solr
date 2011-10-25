@@ -422,6 +422,11 @@ name|reader
 operator|.
 name|getTopReaderContext
 argument_list|()
+argument_list|,
+name|reader
+operator|.
+name|getLiveDocs
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

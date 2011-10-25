@@ -766,6 +766,16 @@ name|leaves
 index|[
 name|i
 index|]
+argument_list|,
+name|leaves
+index|[
+name|i
+index|]
+operator|.
+name|reader
+operator|.
+name|getLiveDocs
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

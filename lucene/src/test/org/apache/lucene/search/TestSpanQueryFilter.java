@@ -397,6 +397,16 @@ name|leaves
 index|[
 name|subIndex
 index|]
+argument_list|,
+name|leaves
+index|[
+name|subIndex
+index|]
+operator|.
+name|reader
+operator|.
+name|getLiveDocs
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|DocIdSet

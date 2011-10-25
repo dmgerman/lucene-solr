@@ -2024,6 +2024,13 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|readerContext
+argument_list|,
+name|readerContext
+operator|.
+name|reader
+operator|.
+name|getLiveDocs
+argument_list|()
 argument_list|)
 operator|.
 name|iterator

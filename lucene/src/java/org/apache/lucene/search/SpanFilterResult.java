@@ -32,6 +32,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -60,6 +70,29 @@ argument_list|>
 name|positions
 decl_stmt|;
 comment|//Spans spans;
+DECL|field|EMPTY_SPAN_FILTER_RESULT
+specifier|public
+specifier|static
+specifier|final
+name|SpanFilterResult
+name|EMPTY_SPAN_FILTER_RESULT
+init|=
+operator|new
+name|SpanFilterResult
+argument_list|(
+name|DocIdSet
+operator|.
+name|EMPTY_DOCIDSET
+argument_list|,
+name|Collections
+operator|.
+expr|<
+name|PositionInfo
+operator|>
+name|emptyList
+argument_list|()
+argument_list|)
+decl_stmt|;
 comment|/**   *   * @param docIdSet The DocIdSet for the Filter   * @param positions A List of {@link org.apache.lucene.search.SpanFilterResult.PositionInfo} objects   */
 DECL|method|SpanFilterResult
 specifier|public

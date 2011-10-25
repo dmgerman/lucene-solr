@@ -184,6 +184,18 @@ name|wlen
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|bits
+specifier|public
+name|Bits
+name|bits
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
 comment|/** This DocIdSet implementation is cacheable. */
 annotation|@
 name|Override

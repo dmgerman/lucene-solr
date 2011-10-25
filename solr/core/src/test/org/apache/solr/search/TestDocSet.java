@@ -1968,6 +1968,8 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|readerContext
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|db
@@ -1977,6 +1979,8 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|readerContext
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doTestIteratorEqual
@@ -2041,6 +2045,8 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|readerContext
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|db
@@ -2050,6 +2056,8 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|readerContext
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|doTestIteratorEqual

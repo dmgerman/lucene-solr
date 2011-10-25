@@ -1487,8 +1487,11 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|context
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
+comment|// this set only includes live docs
 name|DocIdSetIterator
 name|iter
 init|=

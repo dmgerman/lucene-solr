@@ -459,6 +459,8 @@ argument_list|,
 name|this
 argument_list|,
 name|queryWeight
+argument_list|,
+name|acceptDocs
 argument_list|)
 return|;
 block|}
@@ -489,6 +491,13 @@ argument_list|,
 name|this
 argument_list|,
 name|queryWeight
+argument_list|,
+name|context
+operator|.
+name|reader
+operator|.
+name|getLiveDocs
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -626,6 +635,11 @@ specifier|final
 name|float
 name|theScore
 decl_stmt|;
+DECL|field|acceptDocs
+specifier|final
+name|Bits
+name|acceptDocs
+decl_stmt|;
 DECL|field|doc
 name|int
 name|doc
@@ -645,6 +659,9 @@ name|w
 parameter_list|,
 name|float
 name|theScore
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -659,6 +676,12 @@ operator|.
 name|theScore
 operator|=
 name|theScore
+expr_stmt|;
+name|this
+operator|.
+name|acceptDocs
+operator|=
+name|acceptDocs
 expr_stmt|;
 name|DocIdSet
 name|docIdSet
@@ -681,6 +704,8 @@ operator|.
 name|context
 argument_list|,
 name|context
+argument_list|,
+name|acceptDocs
 argument_list|)
 else|:
 name|filter
@@ -688,6 +713,8 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|context
+argument_list|,
+name|acceptDocs
 argument_list|)
 decl_stmt|;
 if|if

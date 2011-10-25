@@ -688,6 +688,7 @@ argument_list|(
 name|maxDoc
 argument_list|)
 decl_stmt|;
+comment|// ignore livedocs here, as we filter them later:
 specifier|final
 name|DocIdSet
 name|docs
@@ -703,6 +704,8 @@ name|in
 operator|.
 name|getTopReaderContext
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 if|if

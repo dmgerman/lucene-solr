@@ -96,6 +96,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|BitsFilteredDocIdSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|BooleanClause
 operator|.
 name|Occur
@@ -141,6 +155,20 @@ operator|.
 name|search
 operator|.
 name|Filter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
 import|;
 end_import
 
@@ -201,6 +229,9 @@ name|getDocIdSet
 parameter_list|(
 name|AtomicReaderContext
 name|context
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -464,7 +495,14 @@ name|res
 operator|!=
 literal|null
 condition|?
+name|BitsFilteredDocIdSet
+operator|.
+name|wrap
+argument_list|(
 name|res
+argument_list|,
+name|acceptDocs
+argument_list|)
 else|:
 name|DocIdSet
 operator|.
@@ -486,6 +524,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// we dont pass acceptDocs, we will filter at the end using an additional filter
 specifier|final
 name|DocIdSet
 name|set
@@ -495,6 +534,8 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|context
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 return|return

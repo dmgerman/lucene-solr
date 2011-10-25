@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -64,6 +78,9 @@ name|bitSpans
 parameter_list|(
 name|AtomicReaderContext
 name|context
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException

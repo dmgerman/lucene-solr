@@ -648,6 +648,9 @@ name|getDocIdSet
 parameter_list|(
 name|AtomicReaderContext
 name|context
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -1142,6 +1145,9 @@ name|bitSpans
 parameter_list|(
 name|AtomicReaderContext
 name|context
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -1163,6 +1169,9 @@ name|getDocIdSet
 parameter_list|(
 name|AtomicReaderContext
 name|context
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException

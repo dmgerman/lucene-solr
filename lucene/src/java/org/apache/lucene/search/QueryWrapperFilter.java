@@ -42,6 +42,20 @@ name|AtomicReaderContext
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
 begin_comment
 comment|/**   * Constrains search results to only match those which also match a provided  * query.    *  *<p> This could be used, for example, with a {@link TermRangeQuery} on a suitably  * formatted date field to implement date filtering.  One could re-use a single  * QueryFilter that matches, e.g., only documents modified within the last  * week.  The QueryFilter and TermRangeQuery would only need to be reconstructed  * once per day.  */
 end_comment
@@ -98,6 +112,10 @@ parameter_list|(
 specifier|final
 name|AtomicReaderContext
 name|context
+parameter_list|,
+specifier|final
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -167,12 +185,7 @@ literal|true
 argument_list|,
 literal|false
 argument_list|,
-name|privateContext
-operator|.
-name|reader
-operator|.
-name|getLiveDocs
-argument_list|()
+name|acceptDocs
 argument_list|)
 return|;
 block|}

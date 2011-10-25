@@ -3124,6 +3124,16 @@ name|leaf
 operator|.
 name|reader
 decl_stmt|;
+specifier|final
+name|Bits
+name|liveDocs
+init|=
+name|reader
+operator|.
+name|getLiveDocs
+argument_list|()
+decl_stmt|;
+comment|// TODO: the filter may already only have liveDocs...
 name|DocIdSet
 name|idSet
 init|=
@@ -3147,6 +3157,8 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|leaf
+argument_list|,
+name|liveDocs
 argument_list|)
 expr_stmt|;
 if|if
@@ -3191,14 +3203,6 @@ argument_list|(
 name|leaf
 argument_list|)
 expr_stmt|;
-name|Bits
-name|liveDocs
-init|=
-name|reader
-operator|.
-name|getLiveDocs
-argument_list|()
-decl_stmt|;
 name|int
 name|max
 init|=
@@ -10118,6 +10122,9 @@ name|getDocIdSet
 parameter_list|(
 name|AtomicReaderContext
 name|context
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -10136,6 +10143,8 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|context
+argument_list|,
+name|acceptDocs
 argument_list|)
 decl_stmt|;
 if|if
@@ -10383,6 +10392,21 @@ index|]
 argument_list|)
 argument_list|)
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|bits
+specifier|public
+name|Bits
+name|bits
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+literal|null
+return|;
+comment|// don't use random access
 block|}
 block|}
 DECL|class|FilterIterator

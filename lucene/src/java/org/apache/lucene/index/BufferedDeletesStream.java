@@ -2101,6 +2101,13 @@ operator|.
 name|getDocIdSet
 argument_list|(
 name|readerContext
+argument_list|,
+name|readerContext
+operator|.
+name|reader
+operator|.
+name|getLiveDocs
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -2153,11 +2160,8 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-comment|// TODO: we could/should change
-comment|// reader.deleteDocument to return boolean
-comment|// true if it did in fact delete, because here
-comment|// we could be deleting an already-deleted doc
-comment|// which makes this an upper bound:
+comment|// as we use getLiveDocs() to filter out already deleted documents,
+comment|// we only delete live documents, so the counting is right:
 name|delCount
 operator|++
 expr_stmt|;
