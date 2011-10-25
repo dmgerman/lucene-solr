@@ -223,7 +223,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * New deletes are ignored by default, which gives higher    * cache hit rate on reopened readers.    * @param filter Filter to cache results of    */
+comment|/** Wraps another filter's result and caches it.    * @param filter Filter to cache results of    */
 DECL|method|CachingWrapperFilter
 specifier|public
 name|CachingWrapperFilter

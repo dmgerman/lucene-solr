@@ -133,7 +133,7 @@ name|SpanFilterResult
 argument_list|>
 name|cache
 decl_stmt|;
-comment|/**    * New deletions always result in a cache miss, by default    * ({@link CachingWrapperFilter.DeletesMode#RECACHE}.    * @param filter Filter to cache results of    */
+comment|/** Wraps another SpanFilter's result and caches it.    * @param filter Filter to cache results of    */
 DECL|method|CachingSpanFilter
 specifier|public
 name|CachingSpanFilter
