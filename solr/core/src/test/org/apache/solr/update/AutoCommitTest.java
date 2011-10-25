@@ -238,6 +238,16 @@ name|RefCounted
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_class
 DECL|class|NewSearcherListener
 class|class
@@ -540,6 +550,11 @@ block|}
 end_class
 
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"fix me"
+argument_list|)
 DECL|class|AutoCommitTest
 specifier|public
 class|class
