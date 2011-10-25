@@ -2517,6 +2517,15 @@ name|testsFailed
 operator|=
 literal|false
 expr_stmt|;
+comment|// verify assertions are enabled (do last, for smooth cleanup)
+name|assertTrue
+argument_list|(
+literal|"assertions are not enabled!"
+argument_list|,
+name|assertionsEnabled
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|AfterClass
@@ -7787,6 +7796,40 @@ name|void
 name|alwaysIgnoredTestMethod
 parameter_list|()
 block|{}
+comment|/** check if assertions are enabled */
+DECL|method|assertionsEnabled
+specifier|private
+specifier|static
+name|boolean
+name|assertionsEnabled
+parameter_list|()
+block|{
+try|try
+block|{
+assert|assert
+name|Boolean
+operator|.
+name|FALSE
+operator|.
+name|booleanValue
+argument_list|()
+assert|;
+return|return
+literal|false
+return|;
+comment|// should never get here
+block|}
+catch|catch
+parameter_list|(
+name|AssertionError
+name|e
+parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+block|}
 block|}
 end_class
 

@@ -973,6 +973,11 @@ name|random
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|boolean
+name|doFail
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 name|sm
@@ -996,11 +1001,11 @@ name|random
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should not have been able to create a .cfs with .del and .s* files"
-argument_list|)
+name|doFail
+operator|=
+literal|true
 expr_stmt|;
+comment|// should never get here
 block|}
 catch|catch
 parameter_list|(
@@ -1010,6 +1015,13 @@ parameter_list|)
 block|{
 comment|// expected
 block|}
+name|assertFalse
+argument_list|(
+literal|"should not have been able to create a .cfs with .del and .s* files"
+argument_list|,
+name|doFail
+argument_list|)
+expr_stmt|;
 comment|// Create an index w/ .s*
 name|w
 operator|=
@@ -1101,6 +1113,20 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// Assert that SM fails if .s* exists
+name|SegmentInfos
+name|sis
+init|=
+operator|new
+name|SegmentInfos
+argument_list|()
+decl_stmt|;
+name|sis
+operator|.
+name|read
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|sm
@@ -1109,9 +1135,7 @@ name|createCompoundFile
 argument_list|(
 literal|"b2"
 argument_list|,
-name|w
-operator|.
-name|segmentInfos
+name|sis
 operator|.
 name|info
 argument_list|(
@@ -1124,11 +1148,11 @@ name|random
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should not have been able to create a .cfs with .del and .s* files"
-argument_list|)
+name|doFail
+operator|=
+literal|true
 expr_stmt|;
+comment|// should never get here
 block|}
 catch|catch
 parameter_list|(
@@ -1138,6 +1162,13 @@ parameter_list|)
 block|{
 comment|// expected
 block|}
+name|assertFalse
+argument_list|(
+literal|"should not have been able to create a .cfs with .del and .s* files"
+argument_list|,
+name|doFail
+argument_list|)
+expr_stmt|;
 name|dir
 operator|.
 name|close
