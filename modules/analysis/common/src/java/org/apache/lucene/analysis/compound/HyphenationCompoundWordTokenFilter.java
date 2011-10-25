@@ -48,20 +48,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|Token
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenFilter
 import|;
 end_import
@@ -143,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that decomposes compound words found in many Germanic languages.  *<p>  * "Donaudampfschiff" becomes Donau, dampf, schiff so that you can find  * "Donaudampfschiff" even when you only enter "schiff". It uses a hyphenation  * grammar and a word dictionary to achieve this.  *</p>  */
+comment|/**  * A {@link TokenFilter} that decomposes compound words found in many Germanic languages.  *<p>  * "Donaudampfschiff" becomes Donau, dampf, schiff so that you can find  * "Donaudampfschiff" even when you only enter "schiff". It uses a hyphenation  * grammar and a word dictionary to achieve this.  *<p>  * You must specify the required {@link Version} compatibility when creating  * CompoundWordTokenFilterBase:  *<ul>  *<li>As of 3.1, CompoundWordTokenFilterBase correctly handles Unicode 4.0  * supplementary characters in strings and char arrays provided as compound word  * dictionaries.  *</ul>  *<p>If you pass in a {@link org.apache.lucene.analysis.util.CharArraySet} as dictionary,  * it should be case-insensitive unless it contains only lowercased entries and you  * have {@link org.apache.lucene.analysis.core.LowerCaseFilter} before this filter in your analysis chain.  * For optional performance (as this filter does lots of lookups to the dictionary,  * you should use the latter analysis chain/CharArraySet). Be aware: If you supply arbitrary  * {@link Set Sets} to the ctors or {@code String[]} dictionaries, they will be automatically  * transformed to case-insensitive!  */
 end_comment
 
 begin_class
@@ -159,7 +145,9 @@ specifier|private
 name|HyphenationTree
 name|hyphenator
 decl_stmt|;
-comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *      * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
+comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *      * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    * @deprecated Use the constructors taking {@link Set}    */
+annotation|@
+name|Deprecated
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
@@ -214,7 +202,9 @@ operator|=
 name|hyphenator
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *      * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against    */
+comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *      * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against    * @deprecated Use the constructors taking {@link Set}    */
+annotation|@
+name|Deprecated
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
@@ -243,6 +233,8 @@ name|hyphenator
 argument_list|,
 name|makeDictionary
 argument_list|(
+name|matchVersion
+argument_list|,
 name|dictionary
 argument_list|)
 argument_list|,
@@ -256,7 +248,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.     *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against. If this is a    *          {@link org.apache.lucene.analysis.util.CharArraySet CharArraySet} it    *          must have set ignoreCase=false and only contain lower case    *          strings.    */
+comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.     *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against.    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
@@ -297,7 +289,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against. If this is a    *          {@link org.apache.lucene.analysis.util.CharArraySet CharArraySet} it    *          must have set ignoreCase=false and only contain lower case    *          strings.    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
+comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against.    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
@@ -522,15 +514,11 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|decomposeInternal
+DECL|method|decompose
 specifier|protected
 name|void
-name|decomposeInternal
-parameter_list|(
-specifier|final
-name|Token
-name|token
-parameter_list|)
+name|decompose
+parameter_list|()
 block|{
 comment|// get the hyphenation points
 name|Hyphenation
@@ -540,14 +528,14 @@ name|hyphenator
 operator|.
 name|hyphenate
 argument_list|(
-name|token
+name|termAtt
 operator|.
 name|buffer
 argument_list|()
 argument_list|,
 literal|0
 argument_list|,
-name|token
+name|termAtt
 operator|.
 name|length
 argument_list|()
@@ -576,18 +564,6 @@ name|hyphens
 operator|.
 name|getHyphenationPoints
 argument_list|()
-decl_stmt|;
-name|char
-index|[]
-name|lowerCaseTermBuffer
-init|=
-name|makeLowerCaseCopy
-argument_list|(
-name|token
-operator|.
-name|buffer
-argument_list|()
-argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -623,7 +599,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
-name|Token
+name|CompoundToken
 name|longestMatchToken
 init|=
 literal|null
@@ -692,7 +668,10 @@ name|dictionary
 operator|.
 name|contains
 argument_list|(
-name|lowerCaseTermBuffer
+name|termAtt
+operator|.
+name|buffer
+argument_list|()
 argument_list|,
 name|start
 argument_list|,
@@ -718,6 +697,8 @@ if|if
 condition|(
 name|longestMatchToken
 operator|.
+name|txt
+operator|.
 name|length
 argument_list|()
 operator|<
@@ -726,13 +707,12 @@ condition|)
 block|{
 name|longestMatchToken
 operator|=
-name|createToken
+operator|new
+name|CompoundToken
 argument_list|(
 name|start
 argument_list|,
 name|partLength
-argument_list|,
-name|token
 argument_list|)
 expr_stmt|;
 block|}
@@ -741,13 +721,12 @@ else|else
 block|{
 name|longestMatchToken
 operator|=
-name|createToken
+operator|new
+name|CompoundToken
 argument_list|(
 name|start
 argument_list|,
 name|partLength
-argument_list|,
-name|token
 argument_list|)
 expr_stmt|;
 block|}
@@ -758,13 +737,12 @@ name|tokens
 operator|.
 name|add
 argument_list|(
-name|createToken
+operator|new
+name|CompoundToken
 argument_list|(
 name|start
 argument_list|,
 name|partLength
-argument_list|,
-name|token
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -777,7 +755,10 @@ name|dictionary
 operator|.
 name|contains
 argument_list|(
-name|lowerCaseTermBuffer
+name|termAtt
+operator|.
+name|buffer
+argument_list|()
 argument_list|,
 name|start
 argument_list|,
@@ -809,6 +790,8 @@ if|if
 condition|(
 name|longestMatchToken
 operator|.
+name|txt
+operator|.
 name|length
 argument_list|()
 operator|<
@@ -819,15 +802,14 @@ condition|)
 block|{
 name|longestMatchToken
 operator|=
-name|createToken
+operator|new
+name|CompoundToken
 argument_list|(
 name|start
 argument_list|,
 name|partLength
 operator|-
 literal|1
-argument_list|,
-name|token
 argument_list|)
 expr_stmt|;
 block|}
@@ -836,15 +818,14 @@ else|else
 block|{
 name|longestMatchToken
 operator|=
-name|createToken
+operator|new
+name|CompoundToken
 argument_list|(
 name|start
 argument_list|,
 name|partLength
 operator|-
 literal|1
-argument_list|,
-name|token
 argument_list|)
 expr_stmt|;
 block|}
@@ -855,15 +836,14 @@ name|tokens
 operator|.
 name|add
 argument_list|(
-name|createToken
+operator|new
+name|CompoundToken
 argument_list|(
 name|start
 argument_list|,
 name|partLength
 operator|-
 literal|1
-argument_list|,
-name|token
 argument_list|)
 argument_list|)
 expr_stmt|;
