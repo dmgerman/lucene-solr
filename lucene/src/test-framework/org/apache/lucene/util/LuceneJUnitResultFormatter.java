@@ -323,7 +323,14 @@ name|System
 operator|.
 name|getProperty
 argument_list|(
+literal|"tests.lockdir"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
 literal|"java.io.tmpdir"
+argument_list|)
 argument_list|)
 argument_list|,
 literal|"lucene_junit_lock"
