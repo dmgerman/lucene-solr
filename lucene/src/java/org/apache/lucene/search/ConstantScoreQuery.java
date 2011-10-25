@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A query that wraps another query or a filter and simply returns a constant score equal to the  * query boost for every document that matches the filter or query.  * For queries it therefore simply strips of all scores and returns a constant one.  *  *<p><b>NOTE</b>: if the wrapped filter is an instance of  * {@link CachingWrapperFilter}, you'll likely want to  * enforce deletions in the filter (using either {@link  * CachingWrapperFilter.DeletesMode#RECACHE} or {@link  * CachingWrapperFilter.DeletesMode#DYNAMIC}).  */
+comment|/**  * A query that wraps another query or a filter and simply returns a constant score equal to the  * query boost for every document that matches the filter or query.  * For queries it therefore simply strips of all scores and returns a constant one.  */
 end_comment
 
 begin_class
