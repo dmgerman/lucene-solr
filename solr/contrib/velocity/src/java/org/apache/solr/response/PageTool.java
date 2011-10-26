@@ -100,6 +100,10 @@ name|SolrException
 import|;
 end_import
 
+begin_comment
+comment|/**  * This class is used by the Velocity response writer to provide a consistent paging tool for use by templates.  *  * TODO: add more details  */
+end_comment
+
 begin_class
 DECL|class|PageTool
 specifier|public
