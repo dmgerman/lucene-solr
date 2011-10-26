@@ -3175,7 +3175,7 @@ name|core
 operator|.
 name|getRequestHandler
 argument_list|(
-literal|"/udate/json"
+literal|"/update/json"
 argument_list|)
 decl_stmt|;
 if|if
