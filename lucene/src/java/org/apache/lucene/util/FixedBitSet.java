@@ -615,6 +615,7 @@ name|index
 operator|>>
 literal|6
 decl_stmt|;
+specifier|final
 name|int
 name|subIndex
 init|=
@@ -703,6 +704,7 @@ operator|-
 literal|1
 return|;
 block|}
+comment|/** Returns the index of the last set bit before or on the index specified.    *  -1 is returned if there are no more set bits.    */
 DECL|method|prevSetBit
 specifier|public
 name|int
