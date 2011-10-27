@@ -274,16 +274,6 @@ name|ExternalPaths
 operator|.
 name|WEBAPP_HOME
 decl_stmt|;
-comment|// disable VelocityResponseWriter from example configuration
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"solr.velocity.enabled"
-argument_list|,
-literal|"false"
-argument_list|)
-expr_stmt|;
 name|server
 operator|=
 operator|new
