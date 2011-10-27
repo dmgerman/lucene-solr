@@ -1527,6 +1527,11 @@ operator|.
 name|getContentStreams
 argument_list|()
 decl_stmt|;
+name|String
+name|exceptionMsg
+init|=
+literal|"DocumentAnalysisRequestHandler expects a single content stream with documents to analyze"
+decl_stmt|;
 if|if
 condition|(
 name|streams
@@ -1544,7 +1549,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"DocumentAnlysisRequestHandler expects a single content stream with documents to analyze"
+name|exceptionMsg
 argument_list|)
 throw|;
 block|}
@@ -1578,7 +1583,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"DocumentAnlysisRequestHandler expects a single content stream with documents to analyze"
+name|exceptionMsg
 argument_list|)
 throw|;
 block|}
@@ -1608,7 +1613,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"DocumentAnlysisRequestHandler expects a single content stream with documents to analyze"
+name|exceptionMsg
 argument_list|)
 throw|;
 block|}
