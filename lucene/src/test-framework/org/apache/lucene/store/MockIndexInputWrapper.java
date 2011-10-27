@@ -68,6 +68,11 @@ specifier|private
 name|boolean
 name|isClone
 decl_stmt|;
+DECL|field|closed
+specifier|private
+name|boolean
+name|closed
+decl_stmt|;
 comment|/** Construct an empty output buffer. */
 DECL|method|MockIndexInputWrapper
 specifier|public
@@ -120,6 +125,10 @@ comment|// dir.maybeThrowDeterministicException();
 block|}
 finally|finally
 block|{
+name|closed
+operator|=
+literal|true
+expr_stmt|;
 name|delegate
 operator|.
 name|close
@@ -146,6 +155,26 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|method|ensureOpen
+specifier|private
+name|void
+name|ensureOpen
+parameter_list|()
+block|{
+if|if
+condition|(
+name|closed
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Abusing closed IndexInput!"
+argument_list|)
+throw|;
+block|}
+block|}
 annotation|@
 name|Override
 DECL|method|clone
@@ -154,6 +183,9 @@ name|Object
 name|clone
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|dir
 operator|.
 name|inputCloneCount
@@ -207,6 +239,9 @@ name|long
 name|getFilePointer
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|delegate
 operator|.
@@ -227,6 +262,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|delegate
 operator|.
 name|seek
@@ -243,6 +281,9 @@ name|long
 name|length
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|delegate
 operator|.
@@ -260,6 +301,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|delegate
 operator|.
@@ -287,6 +331,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|delegate
 operator|.
 name|readBytes
@@ -315,6 +362,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|delegate
 operator|.
 name|copyBytes
@@ -348,6 +398,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|delegate
 operator|.
 name|readBytes
@@ -372,6 +425,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|delegate
 operator|.
@@ -389,6 +445,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|delegate
 operator|.
@@ -406,6 +465,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|delegate
 operator|.
@@ -423,6 +485,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|delegate
 operator|.
@@ -445,6 +510,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|delegate
 operator|.
@@ -462,6 +530,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|delegate
 operator|.
@@ -479,6 +550,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|delegate
 operator|.
