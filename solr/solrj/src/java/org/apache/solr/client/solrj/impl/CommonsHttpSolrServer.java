@@ -1237,7 +1237,7 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// Note: since we aren't do intermittent time keeping
+comment|// Note: since we aren't doing intermittent time keeping
 comment|// ourselves, the potential non-timeout latency could be as
 comment|// much as tries-times (plus scheduling effects) the given
 comment|// timeAllowed.
