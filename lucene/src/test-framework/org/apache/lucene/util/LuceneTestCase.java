@@ -2518,6 +2518,24 @@ operator|=
 literal|false
 expr_stmt|;
 comment|// verify assertions are enabled (do last, for smooth cleanup)
+if|if
+condition|(
+operator|!
+name|Boolean
+operator|.
+name|parseBoolean
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.asserts.gracious"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|)
+condition|)
+block|{
 name|assertTrue
 argument_list|(
 literal|"assertions are not enabled!"
@@ -2526,6 +2544,7 @@ name|assertionsEnabled
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|AfterClass
