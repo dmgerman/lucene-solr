@@ -918,7 +918,7 @@ name|e
 throw|;
 block|}
 block|}
-comment|// we've now registered all handlers, time ot init them in the same order
+comment|// we've now registered all handlers, time to init them in the same order
 for|for
 control|(
 name|Map
