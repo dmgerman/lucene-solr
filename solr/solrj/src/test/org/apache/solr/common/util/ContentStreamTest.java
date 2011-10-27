@@ -525,6 +525,14 @@ argument_list|(
 name|url
 argument_list|)
 decl_stmt|;
+name|in
+operator|=
+name|stream
+operator|.
+name|getStream
+argument_list|()
+expr_stmt|;
+comment|// getStream is needed before getSize is valid
 name|assertEquals
 argument_list|(
 name|content
@@ -539,14 +547,6 @@ operator|.
 name|intValue
 argument_list|()
 argument_list|)
-expr_stmt|;
-comment|// Test the stream
-name|in
-operator|=
-name|stream
-operator|.
-name|getStream
-argument_list|()
 expr_stmt|;
 try|try
 block|{
