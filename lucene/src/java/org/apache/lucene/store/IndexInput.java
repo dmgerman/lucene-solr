@@ -53,14 +53,6 @@ name|Cloneable
 implements|,
 name|Closeable
 block|{
-DECL|field|copyBuf
-specifier|protected
-name|byte
-index|[]
-name|copyBuf
-init|=
-literal|null
-decl_stmt|;
 comment|/** Closes the stream to further operations. */
 DECL|method|close
 specifier|public
@@ -124,15 +116,10 @@ literal|"numBytes="
 operator|+
 name|numBytes
 assert|;
-if|if
-condition|(
+name|byte
 name|copyBuf
-operator|==
-literal|null
-condition|)
-block|{
-name|copyBuf
-operator|=
+index|[]
+init|=
 operator|new
 name|byte
 index|[
@@ -140,8 +127,7 @@ name|BufferedIndexInput
 operator|.
 name|BUFFER_SIZE
 index|]
-expr_stmt|;
-block|}
+decl_stmt|;
 while|while
 condition|(
 name|numBytes
