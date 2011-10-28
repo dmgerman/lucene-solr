@@ -948,6 +948,11 @@ name|String
 name|getIndexDir
 parameter_list|()
 block|{
+synchronized|synchronized
+init|(
+name|searcherLock
+init|)
+block|{
 if|if
 condition|(
 name|_searcher
@@ -984,6 +989,7 @@ operator|.
 name|getIndexDir
 argument_list|()
 return|;
+block|}
 block|}
 comment|/**    * Returns the indexdir as given in index.properties. If index.properties exists in dataDir and    * there is a property<i>index</i> available and it points to a valid directory    * in dataDir that is returned Else dataDir/index is returned. Only called for creating new indexSearchers    * and indexwriters. Use the getIndexDir() method to know the active index directory    *    * @return the indexdir as given in index.properties    */
 DECL|method|getNewIndexDir
@@ -4526,7 +4532,8 @@ comment|// Searcher Control
 comment|////////////////////////////////////////////////////////////////////////////////
 comment|// The current searcher used to service queries.
 comment|// Don't access this directly!!!! use getSearcher() to
-comment|// get it (and it will increment the ref count at the same time)
+comment|// get it (and it will increment the ref count at the same time).
+comment|// This reference is protected by searcherLock.
 DECL|field|_searcher
 specifier|private
 name|RefCounted
