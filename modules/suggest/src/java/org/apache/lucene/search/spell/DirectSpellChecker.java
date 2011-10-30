@@ -277,29 +277,8 @@ name|StringDistance
 name|INTERNAL_LEVENSHTEIN
 init|=
 operator|new
-name|StringDistance
+name|LuceneLevenshteinDistance
 argument_list|()
-block|{
-specifier|public
-name|float
-name|getDistance
-parameter_list|(
-name|String
-name|s1
-parameter_list|,
-name|String
-name|s2
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"Not for external use."
-argument_list|)
-throw|;
-block|}
-block|}
 decl_stmt|;
 comment|/** maximum edit distance for candidate terms */
 DECL|field|maxEdits
