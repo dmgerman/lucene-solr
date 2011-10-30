@@ -271,12 +271,12 @@ init|=
 literal|"inject"
 decl_stmt|;
 comment|// boolean
-DECL|field|PACKAGE_CONTAINIG_ENCODERS
+DECL|field|PACKAGE_CONTAINING_ENCODERS
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|PACKAGE_CONTAINIG_ENCODERS
+name|PACKAGE_CONTAINING_ENCODERS
 init|=
 literal|"org.apache.commons.codec.language."
 decl_stmt|;
@@ -691,7 +691,7 @@ name|clazz
 operator|=
 name|lookupEncoder
 argument_list|(
-name|PACKAGE_CONTAINIG_ENCODERS
+name|PACKAGE_CONTAINING_ENCODERS
 operator|+
 name|name
 argument_list|)
