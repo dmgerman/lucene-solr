@@ -2249,6 +2249,13 @@ name|applyFlushTickets
 argument_list|()
 expr_stmt|;
 block|}
+assert|assert
+operator|!
+name|flushingDeleteQueue
+operator|.
+name|anyChanges
+argument_list|()
+assert|;
 block|}
 finally|finally
 block|{
