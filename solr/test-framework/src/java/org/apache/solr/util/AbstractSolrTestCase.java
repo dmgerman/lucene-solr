@@ -326,11 +326,6 @@ operator|.
 name|startTrackingSearchers
 argument_list|()
 expr_stmt|;
-name|SolrTestCaseJ4
-operator|.
-name|startTrackingWriters
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|AfterClass
@@ -346,11 +341,6 @@ block|{
 name|SolrTestCaseJ4
 operator|.
 name|endTrackingSearchers
-argument_list|()
-expr_stmt|;
-name|SolrTestCaseJ4
-operator|.
-name|endTrackingWriters
 argument_list|()
 expr_stmt|;
 block|}
