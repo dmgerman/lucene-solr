@@ -591,7 +591,7 @@ name|Test
 annotation|@
 name|Ignore
 argument_list|(
-literal|"fix me"
+literal|"timing problem? https://issues.apache.org/jira/browse/SOLR-2715"
 argument_list|)
 DECL|method|testJmxOnCoreReload
 specifier|public
