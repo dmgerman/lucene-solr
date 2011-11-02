@@ -170,6 +170,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|core
+operator|.
+name|SolrCore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|SolrQueryRequest
@@ -854,6 +868,7 @@ name|get
 argument_list|()
 expr_stmt|;
 block|}
+comment|// SolrCore.verbose("RealTimeGet using searcher ", searcher);
 name|int
 name|docid
 init|=

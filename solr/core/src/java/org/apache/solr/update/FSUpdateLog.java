@@ -798,7 +798,7 @@ argument_list|,
 name|ptr
 argument_list|)
 expr_stmt|;
-comment|// System.out.println("TLOG: added id " + cmd.getPrintableId() + " to " + tlog + " " + ptr + " map=" + System.identityHashCode(map));
+comment|// SolrCore.verbose("TLOG: added id " + cmd.getPrintableId() + " to " + tlog + " " + ptr + " map=" + System.identityHashCode(map));
 block|}
 block|}
 annotation|@
@@ -856,7 +856,7 @@ argument_list|,
 name|ptr
 argument_list|)
 expr_stmt|;
-comment|// System.out.println("TLOG: added delete for id " + cmd.id + " to " + tlog + " " + ptr + " map=" + System.identityHashCode(map));
+comment|// SolrCore.verbose("TLOG: added delete for id " + cmd.id + " to " + tlog + " " + ptr + " map=" + System.identityHashCode(map));
 block|}
 block|}
 annotation|@
@@ -901,7 +901,7 @@ argument_list|(
 name|pos
 argument_list|)
 decl_stmt|;
-comment|// System.out.println("TLOG: added deleteByQuery " + cmd.query + " to " + tlog + " " + ptr + " map=" + System.identityHashCode(map));
+comment|// SolrCore.verbose("TLOG: added deleteByQuery " + cmd.query + " to " + tlog + " " + ptr + " map=" + System.identityHashCode(map));
 block|}
 block|}
 DECL|method|newMap
@@ -1082,7 +1082,7 @@ name|LogPtr
 argument_list|>
 argument_list|()
 expr_stmt|;
-comment|// System.out.println("TLOG: preSoftCommit: prevMap="+ System.identityHashCode(prevMap) + " new map=" + System.identityHashCode(map));
+comment|// SolrCore.verbose("TLOG: preSoftCommit: prevMap="+ System.identityHashCode(prevMap) + " new map=" + System.identityHashCode(map));
 block|}
 block|}
 annotation|@
@@ -1109,7 +1109,7 @@ comment|// record what old maps were created and only remove those.
 name|clearOldMaps
 argument_list|()
 expr_stmt|;
-comment|// System.out.println("TLOG: postSoftCommit: disposing of prevMap="+ System.identityHashCode(prevMap));
+comment|// SolrCore.verbose("TLOG: postSoftCommit: disposing of prevMap="+ System.identityHashCode(prevMap));
 block|}
 block|}
 annotation|@
@@ -1148,7 +1148,7 @@ operator|=
 name|tlog
 expr_stmt|;
 comment|// something found in "map" will always be in "tlog"
-comment|// System.out.println("TLOG: lookup: for id " + indexedId.utf8ToString() + " in map " +  System.identityHashCode(map) + " got " + entry + " lookupLog=" + lookupLog);
+comment|// SolrCore.verbose("TLOG: lookup: for id " + indexedId.utf8ToString() + " in map " +  System.identityHashCode(map) + " got " + entry + " lookupLog=" + lookupLog);
 if|if
 condition|(
 name|entry
@@ -1174,7 +1174,7 @@ name|lookupLog
 operator|=
 name|prevMapLog
 expr_stmt|;
-comment|// System.out.println("TLOG: lookup: for id " + indexedId.utf8ToString() + " in prevMap " +  System.identityHashCode(prevMap) + " got " + entry + " lookupLog="+lookupLog);
+comment|// SolrCore.verbose("TLOG: lookup: for id " + indexedId.utf8ToString() + " in prevMap " +  System.identityHashCode(prevMap) + " got " + entry + " lookupLog="+lookupLog);
 block|}
 if|if
 condition|(
@@ -1201,7 +1201,7 @@ name|lookupLog
 operator|=
 name|prevMapLog2
 expr_stmt|;
-comment|// System.out.println("TLOG: lookup: for id " + indexedId.utf8ToString() + " in prevMap2 " +  System.identityHashCode(prevMap) + " got " + entry + " lookupLog="+lookupLog);
+comment|// SolrCore.verbose("TLOG: lookup: for id " + indexedId.utf8ToString() + " in prevMap2 " +  System.identityHashCode(prevMap) + " got " + entry + " lookupLog="+lookupLog);
 block|}
 if|if
 condition|(
@@ -1744,6 +1744,7 @@ operator|.
 name|length
 argument_list|()
 expr_stmt|;
+comment|// System.out.println("###start= "+start);
 name|channel
 operator|=
 name|raf
@@ -2036,6 +2037,7 @@ name|size
 argument_list|()
 expr_stmt|;
 block|}
+comment|/***         System.out.println("###writing at " + pos + " fos.size()=" + fos.size() + " raf.length()=" + raf.length());          if (pos != fos.size()) {           throw new RuntimeException("ERROR" + "###writing at " + pos + " fos.size()=" + fos.size() + " raf.length()=" + raf.length());         }          ***/
 name|codec
 operator|.
 name|init
@@ -2405,6 +2407,7 @@ operator|.
 name|flushBuffer
 argument_list|()
 expr_stmt|;
+comment|/***          System.out.println("###flushBuffer to " + fos.size() + " raf.length()=" + raf.length() + " pos="+pos);         if (fos.size() != raf.length() || pos>= fos.size() ) {           throw new RuntimeException("ERROR" + "###flushBuffer to " + fos.size() + " raf.length()=" + raf.length() + " pos="+pos);         }         ***/
 block|}
 name|ChannelFastInputStream
 name|fis

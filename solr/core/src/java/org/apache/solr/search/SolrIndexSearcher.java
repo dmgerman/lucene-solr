@@ -1323,6 +1323,12 @@ parameter_list|()
 block|{
 return|return
 name|name
+operator|+
+literal|"{"
+operator|+
+name|reader
+operator|+
+literal|"}"
 return|;
 block|}
 DECL|method|getCore

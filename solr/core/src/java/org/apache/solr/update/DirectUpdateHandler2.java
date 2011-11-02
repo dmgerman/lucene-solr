@@ -128,6 +128,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|IndexReader
@@ -991,18 +1005,25 @@ operator|.
 name|updateTerm
 expr_stmt|;
 block|}
+name|Document
+name|luceneDocument
+init|=
+name|cmd
+operator|.
+name|getLuceneDocument
+argument_list|()
+decl_stmt|;
+comment|// SolrCore.verbose("updateDocument",updateTerm,luceneDocument,writer);
 name|writer
 operator|.
 name|updateDocument
 argument_list|(
 name|updateTerm
 argument_list|,
-name|cmd
-operator|.
-name|getLuceneDocument
-argument_list|()
+name|luceneDocument
 argument_list|)
 expr_stmt|;
+comment|// SolrCore.verbose("updateDocument",updateTerm,"DONE");
 if|if
 condition|(
 name|del
@@ -1150,15 +1171,19 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
+name|IndexWriter
+name|writer
+init|=
 name|solrCoreState
 operator|.
 name|getIndexWriter
 argument_list|(
 name|core
 argument_list|)
-operator|.
-name|deleteDocuments
-argument_list|(
+decl_stmt|;
+name|Term
+name|deleteTerm
+init|=
 operator|new
 name|Term
 argument_list|(
@@ -1172,8 +1197,16 @@ operator|.
 name|getIndexedId
 argument_list|()
 argument_list|)
+decl_stmt|;
+comment|// SolrCore.verbose("deleteDocuments",deleteTerm,writer);
+name|writer
+operator|.
+name|deleteDocuments
+argument_list|(
+name|deleteTerm
 argument_list|)
 expr_stmt|;
+comment|// SolrCore.verbose("deleteDocuments",deleteTerm,"DONE");
 name|ulog
 operator|.
 name|delete
@@ -1716,11 +1749,13 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
+comment|// SolrCore.verbose("writer.commit() start writer=",writer);
 name|writer
 operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+comment|// SolrCore.verbose("writer.commit() end");
 name|numDocsPending
 operator|.
 name|set
@@ -2002,6 +2037,17 @@ decl_stmt|;
 name|IndexReader
 name|newReader
 decl_stmt|;
+name|IndexWriter
+name|writer
+init|=
+name|solrCoreState
+operator|.
+name|getIndexWriter
+argument_list|(
+name|core
+argument_list|)
+decl_stmt|;
+comment|// SolrCore.verbose("start reopen from",previousSearcher,"writer=",writer);
 name|newReader
 operator|=
 name|IndexReader
@@ -2010,16 +2056,12 @@ name|openIfChanged
 argument_list|(
 name|currentReader
 argument_list|,
-name|solrCoreState
-operator|.
-name|getIndexWriter
-argument_list|(
-name|core
-argument_list|)
+name|writer
 argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+comment|// SolrCore.verbose("reopen result", newReader);
 if|if
 condition|(
 name|newReader
