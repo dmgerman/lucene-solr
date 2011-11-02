@@ -144,18 +144,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|DocumentBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|facet
 operator|.
 name|example
@@ -347,7 +335,7 @@ argument_list|)
 decl_stmt|;
 comment|// we do not alter indexing parameters!
 comment|// a category document builder will add the categories to a document once build() is called
-name|DocumentBuilder
+name|CategoryDocumentBuilder
 name|categoryDocBuilder
 init|=
 operator|new

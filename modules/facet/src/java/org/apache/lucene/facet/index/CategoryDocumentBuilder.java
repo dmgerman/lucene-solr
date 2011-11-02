@@ -154,18 +154,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|DocumentBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|facet
 operator|.
 name|index
@@ -401,8 +389,6 @@ DECL|class|CategoryDocumentBuilder
 specifier|public
 class|class
 name|CategoryDocumentBuilder
-implements|implements
-name|DocumentBuilder
 block|{
 comment|/**    * A {@link TaxonomyWriter} for adding categories and retrieving their    * ordinals.    */
 DECL|field|taxonomyWriter
@@ -885,7 +871,7 @@ name|indexingParams
 argument_list|)
 return|;
 block|}
-comment|/**    * Adds the fields created in one of the "set" methods to the document    */
+comment|/** Adds the fields created in one of the "set" methods to the document */
 DECL|method|build
 specifier|public
 name|Document
