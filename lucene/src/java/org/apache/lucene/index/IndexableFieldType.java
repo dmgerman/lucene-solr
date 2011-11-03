@@ -32,6 +32,10 @@ name|IndexOptions
 import|;
 end_import
 
+begin_comment
+comment|/** @lucene.experimental */
+end_comment
+
 begin_interface
 DECL|interface|IndexableFieldType
 specifier|public
