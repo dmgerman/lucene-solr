@@ -436,9 +436,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 import|;
 end_import
 
@@ -454,9 +454,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 import|;
 end_import
 
@@ -608,7 +608,7 @@ name|TaxonomyWriter
 name|taxoWriter
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|taxoDir
 argument_list|)
@@ -810,11 +810,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 name|taxo
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|taxoDir
 argument_list|)
@@ -987,11 +987,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 name|taxo
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|taxoDir
 argument_list|)
@@ -1171,11 +1171,11 @@ block|{
 comment|// Same category list cannot be aggregated by two different aggregators. If
 comment|// you want to do that, you need to separate the categories into two
 comment|// category list (you'll still have one association list).
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 name|taxo
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|taxoDir
 argument_list|)

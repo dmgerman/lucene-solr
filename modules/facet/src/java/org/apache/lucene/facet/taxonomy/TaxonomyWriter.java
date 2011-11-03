@@ -36,25 +36,15 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|IndexWriter
+name|TwoPhaseCommit
 import|;
 end_import
 
@@ -73,6 +63,8 @@ interface|interface
 name|TaxonomyWriter
 extends|extends
 name|Closeable
+extends|,
+name|TwoPhaseCommit
 block|{
 comment|/**    * addCategory() adds a category with a given path name to the taxonomy,    * and returns its ordinal. If the category was already present in    * the taxonomy, its existing ordinal is returned.    *<P>    * Before adding a category, addCategory() makes sure that all its    * ancestor categories exist in the taxonomy as well. As result, the    * ordinal of a category is guaranteed to be smaller then the ordinal of    * any of its descendants.     */
 DECL|method|addCategory
@@ -86,59 +78,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Calling commit() ensures that all the categories written so far are    * visible to a reader that is opened (or reopened) after that call.    * When the index is closed(), commit() is also implicitly done.     */
-DECL|method|commit
-specifier|public
-name|void
-name|commit
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Like commit(), but also store properties with the index. These properties    * are retrievable by {@link TaxonomyReader#getCommitUserData}.    * See {@link IndexWriter#commit(Map)}.     */
-DECL|method|commit
-specifier|public
-name|void
-name|commit
-parameter_list|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|commitUserData
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * prepare most of the work needed for a two-phase commit.    * See {@link IndexWriter#prepareCommit}.    */
-DECL|method|prepareCommit
-specifier|public
-name|void
-name|prepareCommit
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Like above, and also prepares to store user data with the index.    * See {@link IndexWriter#prepareCommit(Map)}    */
-DECL|method|prepareCommit
-specifier|public
-name|void
-name|prepareCommit
-parameter_list|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|commitUserData
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * getParent() returns the ordinal of the parent category of the category    * with the given ordinal.    *<P>    * When a category is specified as a path name, finding the path of its    * parent is as trivial as dropping the last component of the path.    * getParent() is functionally equivalent to calling getPath() on the    * given ordinal, dropping the last component of the path, and then calling    * getOrdinal() to get an ordinal back.     *<P>    * If the given ordinal is the ROOT_ORDINAL, an INVALID_ORDINAL is returned.    * If the given ordinal is a top-level category, the ROOT_ORDINAL is returned.    * If an invalid ordinal is given (negative or beyond the last available    * ordinal), an ArrayIndexOutOfBoundsException is thrown. However, it is    * expected that getParent will only be called for ordinals which are    * already known to be in the taxonomy.    *<P>    * TODO (Facet): instead of a getParent(ordinal) method, consider having a    * getCategory(categorypath, prefixlen) which is similar to addCategory    * except it doesn't add new categories; This method can be used to get    * the ordinals of all prefixes of the given category, and it can use    * exactly the same code and cache used by addCategory() so it means less code.    */
+comment|/**    * getParent() returns the ordinal of the parent category of the category    * with the given ordinal.    *<P>    * When a category is specified as a path name, finding the path of its    * parent is as trivial as dropping the last component of the path.    * getParent() is functionally equivalent to calling getPath() on the    * given ordinal, dropping the last component of the path, and then calling    * getOrdinal() to get an ordinal back.     *<P>    * If the given ordinal is the ROOT_ORDINAL, an INVALID_ORDINAL is returned.    * If the given ordinal is a top-level category, the ROOT_ORDINAL is returned.    * If an invalid ordinal is given (negative or beyond the last available    * ordinal), an ArrayIndexOutOfBoundsException is thrown. However, it is    * expected that getParent will only be called for ordinals which are    * already known to be in the taxonomy.    * TODO (Facet): instead of a getParent(ordinal) method, consider having a    *<P>    * getCategory(categorypath, prefixlen) which is similar to addCategory    * except it doesn't add new categories; This method can be used to get    * the ordinals of all prefixes of the given category, and it can use    * exactly the same code and cache used by addCategory() so it means less code.    */
 DECL|method|getParent
 specifier|public
 name|int

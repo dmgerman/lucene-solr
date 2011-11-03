@@ -494,9 +494,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 import|;
 end_import
 
@@ -512,9 +512,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 import|;
 end_import
 
@@ -601,7 +601,7 @@ decl_stmt|;
 DECL|field|tr
 specifier|private
 specifier|final
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 name|tr
 decl_stmt|;
 DECL|field|iParams
@@ -621,7 +621,7 @@ parameter_list|(
 name|IndexReader
 name|r
 parameter_list|,
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 name|tr
 parameter_list|,
 name|FacetIndexingParams
@@ -1105,7 +1105,7 @@ name|TaxonomyReader
 name|slowTaxoReader
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|taxoDir
 argument_list|)
@@ -2772,11 +2772,11 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|taxoDir
 argument_list|)
@@ -2857,11 +2857,11 @@ argument_list|(
 name|indexDir
 argument_list|)
 decl_stmt|;
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|taxoDir
 argument_list|)

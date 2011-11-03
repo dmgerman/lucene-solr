@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.facet.taxonomy.lucene
+DECL|package|org.apache.lucene.facet.taxonomy.directory
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 package|;
 end_package
 
@@ -154,7 +154,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
 name|Consts
 operator|.
@@ -309,14 +309,14 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**   * LuceneTaxonomyReader is a {@link TaxonomyReader} which retrieves stored  * taxonomy information from a separate Lucene index. By using a Lucene index,  * rather than some specialized file format, we get for "free" its correctness  * (especially regarding concurrency), and the ability to save it on any  * implementation of Directory (and not just the file system).  *<P>  * Reading from the on-disk index on every method call is too slow, so this  * implementation employs caching: Some methods cache recent requests and  * their results, while other methods prefetch all the data into memory  * and then provide answers directly from in-memory tables. See the  * documentation of individual methods for comments on their performance.  *   * @lucene.experimental  */
+comment|/**  * A {@link TaxonomyReader} which retrieves stored taxonomy information from a  * {@link Directory}.  *<P>  * Reading from the on-disk index on every method call is too slow, so this  * implementation employs caching: Some methods cache recent requests and their  * results, while other methods prefetch all the data into memory and then  * provide answers directly from in-memory tables. See the documentation of  * individual methods for comments on their performance.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|LuceneTaxonomyReader
+DECL|class|DirectoryTaxonomyReader
 specifier|public
 class|class
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 implements|implements
 name|TaxonomyReader
 block|{
@@ -331,7 +331,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 operator|.
 name|class
 operator|.
@@ -428,16 +428,14 @@ init|=
 literal|false
 decl_stmt|;
 comment|/**    * Open for reading a taxonomy stored in a given {@link Directory}.    * @param directory    *    The {@link Directory} in which to the taxonomy lives. Note that    *    the taxonomy is read directly to that directory (not from a    *    subdirectory of it).    * @throws CorruptIndexException if the Taxonomy is corrupted.    * @throws IOException if another error occurred.    */
-DECL|method|LuceneTaxonomyReader
+DECL|method|DirectoryTaxonomyReader
 specifier|public
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 parameter_list|(
 name|Directory
 name|directory
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|this

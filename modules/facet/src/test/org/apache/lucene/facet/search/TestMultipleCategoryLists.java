@@ -552,9 +552,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 import|;
 end_import
 
@@ -570,9 +570,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 import|;
 end_import
 
@@ -646,7 +646,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|dirs
 index|[
@@ -696,7 +696,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|dirs
 index|[
@@ -867,7 +867,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|dirs
 index|[
@@ -939,7 +939,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|dirs
 index|[
@@ -1091,7 +1091,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|dirs
 index|[
@@ -1186,7 +1186,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|dirs
 index|[
@@ -1397,7 +1397,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|dirs
 index|[
@@ -1492,7 +1492,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|dirs
 index|[
@@ -1653,7 +1653,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|dirs
 index|[
@@ -1771,7 +1771,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|dirs
 index|[

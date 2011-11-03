@@ -174,9 +174,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 import|;
 end_import
 
@@ -228,7 +228,7 @@ name|TaxonomyReader
 name|taxo
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|taxoDir
 argument_list|)
@@ -318,7 +318,7 @@ name|TaxonomyReader
 name|taxo
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|taxoDir
 argument_list|)

@@ -306,9 +306,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 import|;
 end_import
 
@@ -856,11 +856,11 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// create and open a taxonomy writer
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 name|taxo
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|taxoDir
 argument_list|,
@@ -895,7 +895,7 @@ parameter_list|(
 name|IndexWriter
 name|iw
 parameter_list|,
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 name|taxo
 parameter_list|,
 name|FacetIndexingParams

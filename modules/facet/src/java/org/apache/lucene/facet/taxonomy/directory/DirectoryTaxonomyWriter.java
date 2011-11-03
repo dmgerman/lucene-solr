@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.facet.taxonomy.lucene
+DECL|package|org.apache.lucene.facet.taxonomy.directory
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 package|;
 end_package
 
@@ -613,14 +613,14 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * {@link TaxonomyWriter} which uses a Lucene index to store the taxonomy  * information on disk, and keeps an additional in-memory cache of some or all  * categories.  *<P>  * By using a Lucene index to store the information on disk, rather than some  * specialized file format, we get for "free" Lucene's correctness (especially  * regarding multi-process concurrency), and the ability to write to any  * implementation of Directory (and not just the file system).  *<P>  * In addition to the permanently-stored Lucene index, efficiency dictates that  * we also keep an in-memory cache of<B>recently seen</B> or<B>all</B>  * categories, so that we do not need to go back to disk for every category  * addition to see which ordinal this category already has, if any. A  * {@link TaxonomyWriterCache} object determines the specific caching algorithm  * used.  *<p>  * This class offers some hooks for extending classes to control the  * {@link IndexWriter} instance that is used. See {@link #openLuceneIndex} and  * {@link #closeLuceneIndex()} .  *   * @lucene.experimental  */
+comment|/**  * {@link TaxonomyWriter} which uses a {@link Directory} to store the taxonomy  * information on disk, and keeps an additional in-memory cache of some or all  * categories.  *<p>  * In addition to the permanently-stored information in the {@link Directory},  * efficiency dictates that we also keep an in-memory cache of<B>recently  * seen</B> or<B>all</B> categories, so that we do not need to go back to disk  * for every category addition to see which ordinal this category already has,  * if any. A {@link TaxonomyWriterCache} object determines the specific caching  * algorithm used.  *<p>  * This class offers some hooks for extending classes to control the  * {@link IndexWriter} instance that is used. See {@link #openIndexWriter} and  * {@link #closeIndexWriter()} .  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|LuceneTaxonomyWriter
+DECL|class|DirectoryTaxonomyWriter
 specifier|public
 class|class
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 implements|implements
 name|TaxonomyWriter
 block|{
@@ -726,9 +726,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Construct a Taxonomy writer.    *     * @param directory    *    The {@link Directory} in which to store the taxonomy. Note that    *    the taxonomy is written directly to that directory (not to a    *    subdirectory of it).    * @param openMode    *    Specifies how to open a taxonomy for writing:<code>APPEND</code>    *    means open an existing index for append (failing if the index does    *    not yet exist).<code>CREATE</code> means create a new index (first    *    deleting the old one if it already existed).    *<code>APPEND_OR_CREATE</code> appends to an existing index if there    *    is one, otherwise it creates a new index.    * @param cache    *    A {@link TaxonomyWriterCache} implementation which determines    *    the in-memory caching policy. See for example    *    {@link LruTaxonomyWriterCache} and {@link Cl2oTaxonomyWriterCache}.    *    If null or missing, {@link #defaultTaxonomyWriterCache()} is used.    * @throws CorruptIndexException    *     if the taxonomy is corrupted.    * @throws LockObtainFailedException    *     if the taxonomy is locked by another writer. If it is known    *     that no other concurrent writer is active, the lock might    *     have been left around by an old dead process, and should be    *     removed using {@link #unlock(Directory)}.    * @throws IOException    *     if another error occurred.    */
-DECL|method|LuceneTaxonomyWriter
+DECL|method|DirectoryTaxonomyWriter
 specifier|public
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 parameter_list|(
 name|Directory
 name|directory
@@ -746,7 +746,7 @@ name|LockObtainFailedException
 throws|,
 name|IOException
 block|{
-name|openLuceneIndex
+name|openIndexWriter
 argument_list|(
 name|directory
 argument_list|,
@@ -875,11 +875,11 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**    * A hook for extensions of this class to provide their own    * {@link IndexWriter} implementation or instance. Extending classes can    * instantiate and configure the {@link IndexWriter} as they see fit,    * including setting a {@link org.apache.lucene.index.MergeScheduler}, or    * {@link org.apache.lucene.index.IndexDeletionPolicy}, different RAM size    * etc.<br>    *<b>NOTE:</b> the instance this method returns will be closed upon calling    * to {@link #close()}. If you wish to do something different, you should    * override {@link #closeLuceneIndex()}.    *     * @param directory the {@link Directory} on top of wich an    *        {@link IndexWriter} should be opened.    * @param openMode see {@link OpenMode}    */
-DECL|method|openLuceneIndex
+comment|/**    * A hook for extensions of this class to provide their own    * {@link IndexWriter} implementation or instance. Extending classes can    * instantiate and configure the {@link IndexWriter} as they see fit,    * including setting a {@link org.apache.lucene.index.MergeScheduler}, or    * {@link org.apache.lucene.index.IndexDeletionPolicy}, different RAM size    * etc.<br>    *<b>NOTE:</b> the instance this method returns will be closed upon calling    * to {@link #close()}. If you wish to do something different, you should    * override {@link #closeIndexWriter()}.    *     * @param directory    *          the {@link Directory} on top of which an {@link IndexWriter}    *          should be opened.    * @param openMode    *          see {@link OpenMode}    */
+DECL|method|openIndexWriter
 specifier|protected
 name|void
-name|openLuceneIndex
+name|openIndexWriter
 parameter_list|(
 name|Directory
 name|directory
@@ -888,10 +888,6 @@ name|OpenMode
 name|openMode
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
-name|LockObtainFailedException
-throws|,
 name|IOException
 block|{
 comment|// Make sure we use a MergePolicy which merges segments in-order and thus
@@ -905,7 +901,7 @@ name|IndexWriterConfig
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_30
+name|LUCENE_40
 argument_list|,
 operator|new
 name|KeywordAnalyzer
@@ -958,9 +954,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a new instance with a default cached as defined by    * {@link #defaultTaxonomyWriterCache()}.    */
-DECL|method|LuceneTaxonomyWriter
+DECL|method|DirectoryTaxonomyWriter
 specifier|public
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 parameter_list|(
 name|Directory
 name|directory
@@ -1007,9 +1003,9 @@ argument_list|)
 return|;
 block|}
 comment|// convenience constructors:
-DECL|method|LuceneTaxonomyWriter
+DECL|method|DirectoryTaxonomyWriter
 specifier|public
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 parameter_list|(
 name|Directory
 name|d
@@ -1032,6 +1028,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Frees used resources as well as closes the underlying {@link IndexWriter},    * which commits whatever changes made to it to the underlying    * {@link Directory}.    */
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|synchronized
@@ -1043,7 +1041,7 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-name|closeLuceneIndex
+name|closeIndexWriter
 argument_list|()
 expr_stmt|;
 name|closeResources
@@ -1138,11 +1136,11 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A hook for extending classes to control closing the {@link IndexWriter}    * returned by {@link #openLuceneIndex}.    */
-DECL|method|closeLuceneIndex
+comment|/**    * A hook for extending classes to control closing the {@link IndexWriter}    * returned by {@link #openIndexWriter}.    */
+DECL|method|closeIndexWriter
 specifier|protected
 name|void
-name|closeLuceneIndex
+name|closeIndexWriter
 parameter_list|()
 throws|throws
 name|CorruptIndexException
@@ -1503,6 +1501,8 @@ comment|// multi-threaded, a new category that needs to be written to disk (and
 comment|// potentially even trigger a lengthy merge) locks out other addCategory()
 comment|// calls - even those which could immediately return a cached value.
 comment|// We definitely need to fix this situation!
+annotation|@
+name|Override
 DECL|method|addCategory
 specifier|public
 specifier|synchronized
@@ -2023,6 +2023,8 @@ block|}
 block|}
 block|}
 comment|/**    * Calling commit() ensures that all the categories written so far are    * visible to a reader that is opened (or reopened) after that call.    * When the index is closed(), commit() is also implicitly done.    * See {@link TaxonomyWriter#commit()}    */
+annotation|@
+name|Override
 DECL|method|commit
 specifier|public
 specifier|synchronized
@@ -2043,7 +2045,9 @@ name|refreshReader
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Like commit(), but also store properties with the index. These properties    * are retrievable by {@link LuceneTaxonomyReader#getCommitUserData}.    * See {@link TaxonomyWriter#commit(Map)}.     */
+comment|/**    * Like commit(), but also store properties with the index. These properties    * are retrievable by {@link DirectoryTaxonomyReader#getCommitUserData}.    * See {@link TaxonomyWriter#commit(Map)}.     */
+annotation|@
+name|Override
 DECL|method|commit
 specifier|public
 specifier|synchronized
@@ -2075,6 +2079,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * prepare most of the work needed for a two-phase commit.    * See {@link IndexWriter#prepareCommit}.    */
+annotation|@
+name|Override
 DECL|method|prepareCommit
 specifier|public
 specifier|synchronized
@@ -2093,6 +2099,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Like above, and also prepares to store user data with the index.    * See {@link IndexWriter#prepareCommit(Map)}    */
+annotation|@
+name|Override
 DECL|method|prepareCommit
 specifier|public
 specifier|synchronized
@@ -2121,6 +2129,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * getSize() returns the number of categories in the taxonomy.    *<P>    * Because categories are numbered consecutively starting with 0, it means    * the taxonomy contains ordinals 0 through getSize()-1.    *<P>    * Note that the number returned by getSize() is often slightly higher than    * the number of categories inserted into the taxonomy; This is because when    * a category is added to the taxonomy, its ancestors are also added    * automatically (including the root, which always get ordinal 0).    */
+annotation|@
+name|Override
 DECL|method|getSize
 specifier|synchronized
 specifier|public
@@ -2431,6 +2441,8 @@ return|return
 name|parentArray
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getParent
 specifier|public
 name|int
@@ -3304,6 +3316,8 @@ name|int
 index|[]
 name|map
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|setSize
 specifier|public
 name|void
@@ -3322,6 +3336,8 @@ name|taxonomySize
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|addMapping
 specifier|public
 name|void
@@ -3342,6 +3358,8 @@ operator|=
 name|newOrdinal
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|addDone
 specifier|public
 name|void
@@ -3350,6 +3368,8 @@ parameter_list|()
 block|{
 comment|/* nothing to do */
 block|}
+annotation|@
+name|Override
 DECL|method|getMap
 specifier|public
 name|int
@@ -3413,6 +3433,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|addMapping
 specifier|public
 name|void
@@ -3442,6 +3464,8 @@ name|newOrdinal
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|setSize
 specifier|public
 name|void
@@ -3461,6 +3485,8 @@ name|taxonomySize
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|addDone
 specifier|public
 name|void
@@ -3494,6 +3520,8 @@ name|map
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getMap
 specifier|public
 name|int
@@ -3653,6 +3681,25 @@ block|}
 return|return
 literal|null
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|rollback
+specifier|public
+name|void
+name|rollback
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|indexWriter
+operator|.
+name|rollback
+argument_list|()
+expr_stmt|;
+name|refreshReader
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -170,9 +170,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 import|;
 end_import
 
@@ -188,9 +188,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 import|;
 end_import
 
@@ -829,7 +829,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -885,7 +885,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -949,7 +949,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -967,7 +967,7 @@ expr_stmt|;
 name|tw
 operator|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1026,7 +1026,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1050,7 +1050,7 @@ comment|// reference to null).
 name|tw
 operator|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1127,7 +1127,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1426,7 +1426,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1452,7 +1452,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1542,7 +1542,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1556,7 +1556,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1651,7 +1651,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1670,7 +1670,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1978,7 +1978,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -1997,7 +1997,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -2252,7 +2252,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -2270,7 +2270,7 @@ expr_stmt|;
 name|tw
 operator|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -2279,7 +2279,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -2327,7 +2327,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -2346,7 +2346,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -2629,7 +2629,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -2648,7 +2648,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -2740,7 +2740,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -2759,7 +2759,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -3097,7 +3097,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -3116,7 +3116,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -3524,7 +3524,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -3551,7 +3551,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -3879,7 +3879,7 @@ name|TaxonomyWriter
 name|twBase
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDirBase
 argument_list|)
@@ -3925,7 +3925,7 @@ name|TaxonomyReader
 name|trBase
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDirBase
 argument_list|)
@@ -4112,7 +4112,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -4147,7 +4147,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -4580,7 +4580,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -4594,7 +4594,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -4949,7 +4949,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -4963,7 +4963,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -5166,7 +5166,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -5196,7 +5196,7 @@ name|TaxonomyReader
 name|tr
 init|=
 operator|new
-name|LuceneTaxonomyReader
+name|DirectoryTaxonomyReader
 argument_list|(
 name|indexDir
 argument_list|)
@@ -5224,7 +5224,7 @@ comment|// We expect to get a LockObtainFailedException.
 try|try
 block|{
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -5245,7 +5245,7 @@ comment|// this is what we expect to happen.
 block|}
 comment|// Remove the lock, and now the open should succeed, and we can
 comment|// write to the new writer.
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 operator|.
 name|unlock
 argument_list|(
@@ -5256,7 +5256,7 @@ name|TaxonomyWriter
 name|tw2
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -5692,7 +5692,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -5748,7 +5748,7 @@ name|TaxonomyWriter
 name|tw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)
@@ -5781,7 +5781,7 @@ expr_stmt|;
 name|tw
 operator|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|indexDir
 argument_list|)

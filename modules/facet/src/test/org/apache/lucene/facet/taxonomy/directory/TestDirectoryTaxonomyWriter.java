@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.facet.taxonomy.lucene
+DECL|package|org.apache.lucene.facet.taxonomy.directory
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 package|;
 end_package
 
@@ -132,9 +132,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|lucene
+name|directory
 operator|.
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 import|;
 end_import
 
@@ -161,10 +161,10 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_class
-DECL|class|TestLuceneTaxonomyWriter
+DECL|class|TestDirectoryTaxonomyWriter
 specifier|public
 class|class
-name|TestLuceneTaxonomyWriter
+name|TestDirectoryTaxonomyWriter
 extends|extends
 name|LuceneTestCase
 block|{
@@ -288,11 +288,11 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 name|ltw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|dir
 argument_list|,
@@ -387,11 +387,11 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 name|ltw
 init|=
 operator|new
-name|LuceneTaxonomyWriter
+name|DirectoryTaxonomyWriter
 argument_list|(
 name|dir
 argument_list|,
