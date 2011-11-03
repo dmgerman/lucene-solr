@@ -613,7 +613,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * {@link TaxonomyWriter} which uses a {@link Directory} to store the taxonomy  * information on disk, and keeps an additional in-memory cache of some or all  * categories.  *<p>  * In addition to the permanently-stored information in the {@link Directory},  * efficiency dictates that we also keep an in-memory cache of<B>recently  * seen</B> or<B>all</B> categories, so that we do not need to go back to disk  * for every category addition to see which ordinal this category already has,  * if any. A {@link TaxonomyWriterCache} object determines the specific caching  * algorithm used.  *<p>  * This class offers some hooks for extending classes to control the  * {@link IndexWriter} instance that is used. See {@link #openIndexWriter} and  * {@link #closeIndexWriter()} .  *   * @lucene.experimental  */
+comment|/**  * {@link TaxonomyWriter} which uses a {@link Directory} to store the taxonomy  * information on disk, and keeps an additional in-memory cache of some or all  * categories.  *<p>  * In addition to the permanently-stored information in the {@link Directory},  * efficiency dictates that we also keep an in-memory cache of<B>recently  * seen</B> or<B>all</B> categories, so that we do not need to go back to disk  * for every category addition to see which ordinal this category already has,  * if any. A {@link TaxonomyWriterCache} object determines the specific caching  * algorithm used.  *<p>  * This class offers some hooks for extending classes to control the  * {@link IndexWriter} instance that is used. See {@link #openIndexWriter}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -625,7 +625,7 @@ implements|implements
 name|TaxonomyWriter
 block|{
 DECL|field|indexWriter
-specifier|protected
+specifier|private
 name|IndexWriter
 name|indexWriter
 decl_stmt|;
@@ -746,6 +746,8 @@ name|LockObtainFailedException
 throws|,
 name|IOException
 block|{
+name|indexWriter
+operator|=
 name|openIndexWriter
 argument_list|(
 name|directory
@@ -875,10 +877,10 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**    * A hook for extensions of this class to provide their own    * {@link IndexWriter} implementation or instance. Extending classes can    * instantiate and configure the {@link IndexWriter} as they see fit,    * including setting a {@link org.apache.lucene.index.MergeScheduler}, or    * {@link org.apache.lucene.index.IndexDeletionPolicy}, different RAM size    * etc.<br>    *<b>NOTE:</b> the instance this method returns will be closed upon calling    * to {@link #close()}. If you wish to do something different, you should    * override {@link #closeIndexWriter()}.    *     * @param directory    *          the {@link Directory} on top of which an {@link IndexWriter}    *          should be opened.    * @param openMode    *          see {@link OpenMode}    */
+comment|/**    * A hook for extensions of this class to provide their own    * {@link IndexWriter} implementation or instance. Extending classes can    * instantiate and configure the {@link IndexWriter} as they see fit,    * including setting a {@link org.apache.lucene.index.MergeScheduler}, or    * {@link org.apache.lucene.index.IndexDeletionPolicy}, different RAM size    * etc.<br>    *<b>NOTE:</b> the instance this method returns will be closed upon calling    * to {@link #close()}.    *     * @param directory    *          the {@link Directory} on top of which an {@link IndexWriter}    *          should be opened.    * @param openMode    *          see {@link OpenMode}    */
 DECL|method|openIndexWriter
 specifier|protected
-name|void
+name|IndexWriter
 name|openIndexWriter
 parameter_list|(
 name|Directory
@@ -920,8 +922,7 @@ name|LogByteSizeMergePolicy
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|indexWriter
-operator|=
+return|return
 operator|new
 name|IndexWriter
 argument_list|(
@@ -929,7 +930,7 @@ name|directory
 argument_list|,
 name|config
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 comment|// Currently overridden by a unit test that verifies that every index we open
 comment|// is close()ed.
@@ -1041,9 +1042,23 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-name|closeIndexWriter
+if|if
+condition|(
+name|indexWriter
+operator|!=
+literal|null
+condition|)
+block|{
+name|indexWriter
+operator|.
+name|close
 argument_list|()
 expr_stmt|;
+name|indexWriter
+operator|=
+literal|null
+expr_stmt|;
+block|}
 name|closeResources
 argument_list|()
 expr_stmt|;
@@ -1131,35 +1146,6 @@ name|close
 argument_list|()
 expr_stmt|;
 name|cache
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
-comment|/**    * A hook for extending classes to control closing the {@link IndexWriter}    * returned by {@link #openIndexWriter}.    */
-DECL|method|closeIndexWriter
-specifier|protected
-name|void
-name|closeIndexWriter
-parameter_list|()
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-if|if
-condition|(
-name|indexWriter
-operator|!=
-literal|null
-condition|)
-block|{
-name|indexWriter
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|indexWriter
 operator|=
 literal|null
 expr_stmt|;
