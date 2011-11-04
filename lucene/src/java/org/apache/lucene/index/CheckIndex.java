@@ -144,7 +144,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|CodecProvider
+name|Codec
 import|;
 end_import
 
@@ -572,10 +572,10 @@ specifier|public
 name|String
 name|name
 decl_stmt|;
-comment|/** CodecInfo used to read this segment. */
+comment|/** Codec used to read this segment. */
 DECL|field|codec
 specifier|public
-name|SegmentCodecs
+name|Codec
 name|codec
 decl_stmt|;
 comment|/** Document count (does not take deletions into account). */
@@ -981,32 +981,6 @@ literal|null
 argument_list|)
 return|;
 block|}
-DECL|method|checkIndex
-specifier|public
-name|Status
-name|checkIndex
-parameter_list|(
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|onlySegments
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|checkIndex
-argument_list|(
-name|onlySegments
-argument_list|,
-name|CodecProvider
-operator|.
-name|getDefault
-argument_list|()
-argument_list|)
-return|;
-block|}
 comment|/** Returns a {@link Status} instance detailing    *  the state of the index.    *     *  @param onlySegments list of specific segment names to check    *    *<p>As this method checks every byte in the specified    *  segments, on a large index it can take quite a long    *  time to run.    *    *<p><b>WARNING</b>: make sure    *  you only call this when the index is not opened by any    *  writer. */
 DECL|method|checkIndex
 specifier|public
@@ -1018,9 +992,6 @@ argument_list|<
 name|String
 argument_list|>
 name|onlySegments
-parameter_list|,
-name|CodecProvider
-name|codecs
 parameter_list|)
 throws|throws
 name|IOException
@@ -1038,9 +1009,7 @@ name|sis
 init|=
 operator|new
 name|SegmentInfos
-argument_list|(
-name|codecs
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|Status
 name|result
@@ -1062,8 +1031,6 @@ operator|.
 name|read
 argument_list|(
 name|dir
-argument_list|,
-name|codecs
 argument_list|)
 expr_stmt|;
 block|}
@@ -1239,6 +1206,7 @@ operator|.
 name|getCurrentSegmentFileName
 argument_list|()
 decl_stmt|;
+comment|// note: we only read the format byte (required preamble) here!
 name|IndexInput
 name|input
 init|=
@@ -1910,12 +1878,12 @@ decl_stmt|;
 try|try
 block|{
 specifier|final
-name|SegmentCodecs
+name|Codec
 name|codec
 init|=
 name|info
 operator|.
-name|getSegmentCodecs
+name|getCodec
 argument_list|()
 decl_stmt|;
 name|msg
@@ -5946,6 +5914,9 @@ name|fixIndex
 parameter_list|(
 name|Status
 name|result
+parameter_list|,
+name|Codec
+name|codec
 parameter_list|)
 throws|throws
 name|IOException
@@ -5979,6 +5950,8 @@ argument_list|(
 name|result
 operator|.
 name|dir
+argument_list|,
+name|codec
 argument_list|)
 expr_stmt|;
 block|}
@@ -6039,6 +6012,15 @@ name|doFix
 init|=
 literal|false
 decl_stmt|;
+name|Codec
+name|codec
+init|=
+name|Codec
+operator|.
+name|getDefault
+argument_list|()
+decl_stmt|;
+comment|// only used when fixing
 name|boolean
 name|verbose
 init|=
@@ -6095,6 +6077,67 @@ literal|true
 expr_stmt|;
 name|i
 operator|++
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|args
+index|[
+name|i
+index|]
+operator|.
+name|equals
+argument_list|(
+literal|"-codec"
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|i
+operator|==
+name|args
+operator|.
+name|length
+operator|-
+literal|1
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ERROR: missing name for -codec option"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|exit
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+name|codec
+operator|=
+name|Codec
+operator|.
+name|forName
+argument_list|(
+name|args
+index|[
+name|i
+operator|+
+literal|1
+index|]
+argument_list|)
+expr_stmt|;
+name|i
+operator|+=
+literal|2
 expr_stmt|;
 block|}
 elseif|else
@@ -6250,6 +6293,8 @@ operator|+
 literal|"\n"
 operator|+
 literal|"  -fix: actually write a new segments_N file, removing any problematic segments\n"
+operator|+
+literal|"  -codec X: when fixing, codec to write the new segments_N file with\n"
 operator|+
 literal|"  -verbose: print additional details\n"
 operator|+
@@ -6578,6 +6623,8 @@ operator|.
 name|fixIndex
 argument_list|(
 name|result
+argument_list|,
+name|codec
 argument_list|)
 expr_stmt|;
 name|System

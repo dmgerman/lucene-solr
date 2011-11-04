@@ -38,7 +38,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|CodecProvider
+name|Codec
 import|;
 end_import
 
@@ -134,10 +134,10 @@ operator|.
 name|DocState
 name|docState
 decl_stmt|;
-DECL|field|codecProvider
+DECL|field|codec
 specifier|final
-name|CodecProvider
-name|codecProvider
+name|Codec
+name|codec
 decl_stmt|;
 DECL|method|StoredFieldsWriter
 specifier|public
@@ -163,11 +163,11 @@ name|docState
 expr_stmt|;
 name|this
 operator|.
-name|codecProvider
+name|codec
 operator|=
 name|docWriter
 operator|.
-name|codecProvider
+name|codec
 expr_stmt|;
 block|}
 DECL|field|numStoredFields
@@ -386,7 +386,10 @@ condition|)
 block|{
 name|fieldsWriter
 operator|=
-name|codecProvider
+name|codec
+operator|.
+name|fieldsFormat
+argument_list|()
 operator|.
 name|fieldsWriter
 argument_list|(

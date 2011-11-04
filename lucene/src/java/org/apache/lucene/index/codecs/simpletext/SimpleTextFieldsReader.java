@@ -495,7 +495,7 @@ name|dir
 operator|.
 name|openInput
 argument_list|(
-name|SimpleTextCodec
+name|SimpleTextPostingsFormat
 operator|.
 name|getPostingsFileName
 argument_list|(
@@ -507,7 +507,7 @@ name|name
 argument_list|,
 name|state
 operator|.
-name|codecId
+name|segmentSuffix
 argument_list|)
 argument_list|,
 name|state

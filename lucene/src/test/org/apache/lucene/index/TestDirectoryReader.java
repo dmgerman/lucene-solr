@@ -620,6 +620,11 @@ operator|.
 name|commit
 argument_list|(
 name|dir
+argument_list|,
+name|sis
+operator|.
+name|codecFormat
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|sis
@@ -684,6 +689,11 @@ operator|.
 name|commit
 argument_list|(
 name|dir
+argument_list|,
+name|sis
+operator|.
+name|codecFormat
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|sis

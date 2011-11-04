@@ -329,7 +329,7 @@ specifier|final
 name|String
 name|fileName
 init|=
-name|SimpleTextCodec
+name|SimpleTextPostingsFormat
 operator|.
 name|getPostingsFileName
 argument_list|(
@@ -339,7 +339,7 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecId
+name|segmentSuffix
 argument_list|)
 decl_stmt|;
 name|out

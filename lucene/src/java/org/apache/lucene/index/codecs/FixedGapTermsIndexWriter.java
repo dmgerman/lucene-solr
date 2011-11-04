@@ -294,7 +294,7 @@ name|segmentName
 argument_list|,
 name|state
 operator|.
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|TERMS_INDEX_EXTENSION
 argument_list|)

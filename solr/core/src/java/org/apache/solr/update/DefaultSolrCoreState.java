@@ -342,7 +342,7 @@ argument_list|()
 argument_list|,
 name|core
 operator|.
-name|getCodecProvider
+name|getCodec
 argument_list|()
 argument_list|,
 name|forceNewDirectory

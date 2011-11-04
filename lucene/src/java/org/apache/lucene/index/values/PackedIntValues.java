@@ -879,7 +879,9 @@ name|segmentFileName
 argument_list|(
 name|id
 argument_list|,
-literal|""
+name|Bytes
+operator|.
+name|DV_SEGMENT_SUFFIX
 argument_list|,
 name|Writer
 operator|.

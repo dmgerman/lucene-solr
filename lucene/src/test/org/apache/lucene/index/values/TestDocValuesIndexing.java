@@ -310,7 +310,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|CodecProvider
+name|Codec
 import|;
 end_import
 
@@ -488,17 +488,17 @@ name|assumeFalse
 argument_list|(
 literal|"cannot work with preflex codec"
 argument_list|,
-name|CodecProvider
+name|Codec
 operator|.
 name|getDefault
 argument_list|()
 operator|.
-name|getDefaultFieldCodec
+name|getName
 argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"PreFlex"
+literal|"Lucene3x"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1091,14 +1091,6 @@ operator|.
 name|checkIndex
 argument_list|(
 name|d_1
-argument_list|,
-name|w_1
-operator|.
-name|getConfig
-argument_list|()
-operator|.
-name|getCodecProvider
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// index second index
@@ -1160,14 +1152,6 @@ operator|.
 name|checkIndex
 argument_list|(
 name|d_2
-argument_list|,
-name|w_2
-operator|.
-name|getConfig
-argument_list|()
-operator|.
-name|getCodecProvider
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|Directory
@@ -1264,14 +1248,6 @@ operator|.
 name|checkIndex
 argument_list|(
 name|target
-argument_list|,
-name|w
-operator|.
-name|getConfig
-argument_list|()
-operator|.
-name|getCodecProvider
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3726,24 +3702,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeFalse
-argument_list|(
-literal|"cannot work with preflex codec"
-argument_list|,
-name|CodecProvider
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getDefaultFieldCodec
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"PreFlex"
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Directory
 name|d
 init|=
@@ -3909,24 +3867,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeFalse
-argument_list|(
-literal|"cannot work with preflex codec"
-argument_list|,
-name|CodecProvider
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getDefaultFieldCodec
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"PreFlex"
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Directory
 name|d
 init|=

@@ -108,6 +108,9 @@ parameter_list|,
 name|String
 name|segmentsFileName
 parameter_list|,
+name|String
+name|codecID
+parameter_list|,
 name|SegmentInfos
 name|infos
 parameter_list|,
@@ -117,7 +120,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * First phase of the two-phase commit - ensure that all output can be    * successfully written out.    * @param out an instance of {@link IndexOutput} returned from a previous    * call to {@link #writeInfos(Directory, String, SegmentInfos, IOContext)}.    * @throws IOException    */
+comment|/**    * First phase of the two-phase commit - ensure that all output can be    * successfully written out.    * @param out an instance of {@link IndexOutput} returned from a previous    * call to {@link #writeInfos(Directory, String, String, SegmentInfos, IOContext)}.    * @throws IOException    */
 DECL|method|prepareCommit
 specifier|public
 specifier|abstract
@@ -130,7 +133,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Second phase of the two-phase commit. In this step the output should be    * finalized and closed.    * @param out an instance of {@link IndexOutput} returned from a previous    * call to {@link #writeInfos(Directory, String, SegmentInfos, IOContext)}.    * @throws IOException    */
+comment|/**    * Second phase of the two-phase commit. In this step the output should be    * finalized and closed.    * @param out an instance of {@link IndexOutput} returned from a previous    * call to {@link #writeInfos(Directory, String, String, SegmentInfos, IOContext)}.    * @throws IOException    */
 DECL|method|finishCommit
 specifier|public
 specifier|abstract

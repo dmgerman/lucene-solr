@@ -373,9 +373,6 @@ parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
-name|int
-name|codecId
-parameter_list|,
 name|IOContext
 name|context
 parameter_list|)
@@ -416,13 +413,6 @@ control|)
 block|{
 if|if
 condition|(
-name|codecId
-operator|==
-name|fieldInfo
-operator|.
-name|getCodecId
-argument_list|()
-operator|&&
 name|fieldInfo
 operator|.
 name|hasDocValues
@@ -448,8 +438,6 @@ operator|.
 name|docValuesId
 argument_list|(
 name|segment
-argument_list|,
-name|codecId
 argument_list|,
 name|fieldInfo
 operator|.

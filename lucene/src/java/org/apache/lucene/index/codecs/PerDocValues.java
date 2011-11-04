@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract API that provides access to one or more per-document storage  * features. The concrete implementations provide access to the underlying  * storage on a per-document basis corresponding to their actual  * {@link PerDocConsumer} counterpart.  *<p>  * The {@link PerDocValues} API is accessible through the  * {@link Codec} - API providing per field consumers and producers for inverted  * data (terms, postings) as well as per-document data.  *   * @lucene.experimental  */
+comment|/**  * Abstract API that provides access to one or more per-document storage  * features. The concrete implementations provide access to the underlying  * storage on a per-document basis corresponding to their actual  * {@link PerDocConsumer} counterpart.  *<p>  * The {@link PerDocValues} API is accessible through the  * {@link PostingsFormat} - API providing per field consumers and producers for inverted  * data (terms, postings) as well as per-document data.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

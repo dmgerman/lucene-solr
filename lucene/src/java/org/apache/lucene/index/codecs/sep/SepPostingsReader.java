@@ -361,8 +361,8 @@ parameter_list|,
 name|IntStreamFactory
 name|intFactory
 parameter_list|,
-name|int
-name|codecId
+name|String
+name|segmentSuffix
 parameter_list|)
 throws|throws
 name|IOException
@@ -386,7 +386,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|SepPostingsWriter
 operator|.
@@ -420,7 +420,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|SepPostingsWriter
 operator|.
@@ -457,7 +457,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|SepPostingsWriter
 operator|.
@@ -499,7 +499,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|SepPostingsWriter
 operator|.
@@ -523,7 +523,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|SepPostingsWriter
 operator|.
@@ -573,8 +573,8 @@ parameter_list|(
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
-name|int
-name|codecId
+name|String
+name|segmentSuffix
 parameter_list|,
 name|Collection
 argument_list|<
@@ -597,7 +597,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|SepPostingsWriter
 operator|.
@@ -617,7 +617,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|SepPostingsWriter
 operator|.
@@ -648,7 +648,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|SepPostingsWriter
 operator|.
@@ -677,7 +677,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|SepPostingsWriter
 operator|.
@@ -697,7 +697,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|SepPostingsWriter
 operator|.

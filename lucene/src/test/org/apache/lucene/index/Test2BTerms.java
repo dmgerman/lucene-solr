@@ -130,7 +130,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|CodecProvider
+name|Codec
 import|;
 end_import
 
@@ -677,16 +677,16 @@ name|IOException
 block|{
 if|if
 condition|(
-literal|"PreFlex"
+literal|"Lucene3x"
 operator|.
 name|equals
 argument_list|(
-name|CodecProvider
+name|Codec
 operator|.
 name|getDefault
 argument_list|()
 operator|.
-name|getDefaultFieldCodec
+name|getName
 argument_list|()
 argument_list|)
 condition|)

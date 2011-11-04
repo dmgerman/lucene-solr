@@ -197,8 +197,8 @@ parameter_list|,
 name|int
 name|termsCacheSize
 parameter_list|,
-name|int
-name|codecId
+name|String
+name|segmentSuffix
 parameter_list|)
 throws|throws
 name|IOException
@@ -219,7 +219,7 @@ name|context
 argument_list|,
 name|termsCacheSize
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|)
 expr_stmt|;
 block|}

@@ -110,7 +110,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|CodecProvider
+name|Codec
 import|;
 end_import
 
@@ -715,39 +715,40 @@ comment|// "additive", ie if you add up N small FSTs, then merge
 comment|// them, the merged result can easily be larger than the
 comment|// sum because the merged FST may use array encoding for
 comment|// some arcs (which uses more space):
+specifier|final
+name|String
+name|idFormat
+init|=
+name|_TestUtil
+operator|.
+name|getPostingsFormat
+argument_list|(
+literal|"id"
+argument_list|)
+decl_stmt|;
+specifier|final
+name|String
+name|contentFormat
+init|=
+name|_TestUtil
+operator|.
+name|getPostingsFormat
+argument_list|(
+literal|"content"
+argument_list|)
+decl_stmt|;
 name|assumeFalse
 argument_list|(
 literal|"This test cannot run with Memory codec"
 argument_list|,
-name|CodecProvider
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getFieldCodec
-argument_list|(
-literal|"id"
-argument_list|)
+name|idFormat
 operator|.
 name|equals
 argument_list|(
 literal|"Memory"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"This test cannot run with Memory codec"
-argument_list|,
-name|CodecProvider
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getFieldCodec
-argument_list|(
-literal|"content"
-argument_list|)
+operator|||
+name|contentFormat
 operator|.
 name|equals
 argument_list|(

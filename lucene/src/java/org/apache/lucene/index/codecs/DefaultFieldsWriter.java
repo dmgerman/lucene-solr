@@ -279,6 +279,29 @@ name|FORMAT_MINIMUM
 init|=
 name|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
 decl_stmt|;
+comment|// TODO: remove from IndexFileNames
+DECL|field|FIELDS_EXTENSION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FIELDS_EXTENSION
+init|=
+name|IndexFileNames
+operator|.
+name|FIELDS_EXTENSION
+decl_stmt|;
+DECL|field|FIELDS_INDEX_EXTENSION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FIELDS_INDEX_EXTENSION
+init|=
+name|IndexFileNames
+operator|.
+name|FIELDS_INDEX_EXTENSION
+decl_stmt|;
 comment|// If null - we were supplied with streams, if notnull - we manage them ourselves
 DECL|field|directory
 specifier|private
@@ -348,8 +371,6 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
-operator|.
 name|FIELDS_EXTENSION
 argument_list|)
 argument_list|,
@@ -370,8 +391,6 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
-operator|.
 name|FIELDS_INDEX_EXTENSION
 argument_list|)
 argument_list|,
@@ -589,8 +608,6 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
-operator|.
 name|FIELDS_EXTENSION
 argument_list|)
 argument_list|)
@@ -616,8 +633,6 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
-operator|.
 name|FIELDS_INDEX_EXTENSION
 argument_list|)
 argument_list|)

@@ -328,6 +328,9 @@ operator|.
 name|clearIndex
 argument_list|()
 expr_stmt|;
+comment|// TODO: you should be able to specify the IWC params?
+comment|// TODO: if we enable this, codec gets angry since field won't exist in the schema
+comment|// config.setCodec(core.getCodec());
 name|spellChecker
 operator|.
 name|indexDictionary
@@ -493,6 +496,8 @@ name|OpenMode
 operator|.
 name|CREATE
 argument_list|)
+comment|// TODO: if we enable this, codec gets angry since field won't exist in the schema
+comment|// .setCodec(core.getCodec())
 argument_list|)
 decl_stmt|;
 name|List
@@ -569,6 +574,8 @@ operator|.
 name|open
 argument_list|(
 name|ramDir
+argument_list|,
+literal|true
 argument_list|)
 argument_list|,
 name|WORD_FIELD_NAME

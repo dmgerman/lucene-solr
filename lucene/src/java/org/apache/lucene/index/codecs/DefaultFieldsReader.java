@@ -403,7 +403,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
+name|DefaultFieldsWriter
 operator|.
 name|FIELDS_INDEX_EXTENSION
 argument_list|)
@@ -671,7 +671,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
+name|DefaultFieldsWriter
 operator|.
 name|FIELDS_EXTENSION
 argument_list|)
@@ -691,7 +691,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
+name|DefaultFieldsWriter
 operator|.
 name|FIELDS_INDEX_EXTENSION
 argument_list|)

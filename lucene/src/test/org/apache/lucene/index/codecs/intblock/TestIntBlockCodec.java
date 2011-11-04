@@ -110,7 +110,7 @@ name|IntStreamFactory
 name|f
 init|=
 operator|new
-name|MockFixedIntBlockCodec
+name|MockFixedIntBlockPostingsFormat
 argument_list|(
 literal|128
 argument_list|)
@@ -245,7 +245,7 @@ name|IntStreamFactory
 name|f
 init|=
 operator|new
-name|MockFixedIntBlockCodec
+name|MockFixedIntBlockPostingsFormat
 argument_list|(
 literal|128
 argument_list|)

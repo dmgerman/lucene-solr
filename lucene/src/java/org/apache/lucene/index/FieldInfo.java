@@ -43,16 +43,6 @@ specifier|final
 class|class
 name|FieldInfo
 block|{
-DECL|field|UNASSIGNED_CODEC_ID
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|UNASSIGNED_CODEC_ID
-init|=
-operator|-
-literal|1
-decl_stmt|;
 DECL|field|name
 specifier|public
 specifier|final
@@ -107,14 +97,6 @@ name|boolean
 name|storePayloads
 decl_stmt|;
 comment|// whether this field stores payloads together with term positions
-DECL|field|codecId
-specifier|private
-name|int
-name|codecId
-init|=
-name|UNASSIGNED_CODEC_ID
-decl_stmt|;
-comment|// set inside SegmentCodecs#build() during segment flush - this is used to identify the codec used to write this field
 comment|/**    * Controls how much information is stored in the postings lists.    * @lucene.experimental    */
 DECL|enum|IndexOptions
 specifier|public
@@ -282,40 +264,6 @@ operator|!
 name|storePayloads
 assert|;
 block|}
-DECL|method|setCodecId
-name|void
-name|setCodecId
-parameter_list|(
-name|int
-name|codecId
-parameter_list|)
-block|{
-assert|assert
-name|this
-operator|.
-name|codecId
-operator|==
-name|UNASSIGNED_CODEC_ID
-operator|:
-literal|"CodecId can only be set once."
-assert|;
-name|this
-operator|.
-name|codecId
-operator|=
-name|codecId
-expr_stmt|;
-block|}
-DECL|method|getCodecId
-specifier|public
-name|int
-name|getCodecId
-parameter_list|()
-block|{
-return|return
-name|codecId
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|clone
@@ -351,14 +299,6 @@ argument_list|,
 name|docValues
 argument_list|)
 decl_stmt|;
-name|clone
-operator|.
-name|codecId
-operator|=
-name|this
-operator|.
-name|codecId
-expr_stmt|;
 return|return
 name|clone
 return|;

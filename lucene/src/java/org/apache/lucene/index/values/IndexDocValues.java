@@ -116,23 +116,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|CodecProvider
+name|DocValuesFormat
 import|;
 end_import
 
@@ -151,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link IndexDocValues} provides a dense per-document typed storage for fast  * value access based on the lucene internal document id. {@link IndexDocValues}  * exposes two distinct APIs:  *<ul>  *<li>via {@link #getSource()} providing RAM resident random access</li>  *<li>via {@link #getDirectSource()} providing on disk random access</li>  *</ul> {@link IndexDocValues} are exposed via  * {@link IndexReader#perDocValues()} on a per-segment basis. For best  * performance {@link IndexDocValues} should be consumed per-segment just like  * IndexReader.  *<p>  * {@link IndexDocValues} are fully integrated into the {@link Codec} API.  * Custom implementations can be exposed on a per field basis via  * {@link CodecProvider}.  *   * @see ValueType for limitations and default implementation documentation  * @see IndexDocValuesField for adding values to the index  * @see Codec#docsConsumer(org.apache.lucene.index.PerDocWriteState) for  *      customization  * @lucene.experimental  */
+comment|/**  * {@link IndexDocValues} provides a dense per-document typed storage for fast  * value access based on the lucene internal document id. {@link IndexDocValues}  * exposes two distinct APIs:  *<ul>  *<li>via {@link #getSource()} providing RAM resident random access</li>  *<li>via {@link #getDirectSource()} providing on disk random access</li>  *</ul> {@link IndexDocValues} are exposed via  * {@link IndexReader#perDocValues()} on a per-segment basis. For best  * performance {@link IndexDocValues} should be consumed per-segment just like  * IndexReader.  *<p>  * {@link IndexDocValues} are fully integrated into the {@link DocValuesFormat} API.  *   * @see ValueType for limitations and default implementation documentation  * @see IndexDocValuesField for adding values to the index  * @see DocValuesFormat#docsConsumer(org.apache.lucene.index.PerDocWriteState) for  *      customization  * @lucene.experimental  */
 end_comment
 
 begin_class

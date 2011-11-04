@@ -270,25 +270,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentCodecs
-operator|.
-name|SegmentCodecsBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|codecs
 operator|.
-name|CodecProvider
+name|Codec
 import|;
 end_import
 
@@ -983,8 +967,6 @@ argument_list|(
 name|this
 argument_list|,
 name|segmentInfos
-argument_list|,
-name|codecs
 argument_list|,
 name|applyAllDeletes
 argument_list|)
@@ -2878,10 +2860,12 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-DECL|field|codecs
-name|CodecProvider
-name|codecs
+DECL|field|codec
+specifier|final
+name|Codec
+name|codec
 decl_stmt|;
+comment|// for writing new segments
 comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is    * privately cloned; if you need to make subsequent "live"    * changes to the configuration use {@link #getConfig}.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws CorruptIndexException    *           if the index is corrupt    * @throws LockObtainFailedException    *           if another writer has this index open (<code>write.lock</code>    *           could not be obtained)    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
 DECL|method|IndexWriter
 specifier|public
@@ -2946,11 +2930,11 @@ operator|.
 name|getMergeScheduler
 argument_list|()
 expr_stmt|;
-name|codecs
+name|codec
 operator|=
 name|conf
 operator|.
-name|getCodecProvider
+name|getCodec
 argument_list|()
 expr_stmt|;
 name|bufferedDeletesStream
@@ -3072,9 +3056,7 @@ name|segmentInfos
 operator|=
 operator|new
 name|SegmentInfos
-argument_list|(
-name|codecs
-argument_list|)
+argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -3094,8 +3076,6 @@ operator|.
 name|read
 argument_list|(
 name|directory
-argument_list|,
-name|codecs
 argument_list|)
 expr_stmt|;
 name|segmentInfos
@@ -3130,8 +3110,6 @@ operator|.
 name|read
 argument_list|(
 name|directory
-argument_list|,
-name|codecs
 argument_list|)
 expr_stmt|;
 name|IndexCommit
@@ -3175,9 +3153,7 @@ name|oldInfos
 init|=
 operator|new
 name|SegmentInfos
-argument_list|(
-name|codecs
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|oldInfos
 operator|.
@@ -3189,8 +3165,6 @@ name|commit
 operator|.
 name|getSegmentsFileName
 argument_list|()
-argument_list|,
-name|codecs
 argument_list|)
 expr_stmt|;
 name|segmentInfos
@@ -3252,6 +3226,8 @@ operator|=
 operator|new
 name|DocumentsWriter
 argument_list|(
+name|codec
+argument_list|,
 name|config
 argument_list|,
 name|directory
@@ -3292,8 +3268,6 @@ argument_list|,
 name|segmentInfos
 argument_list|,
 name|infoStream
-argument_list|,
-name|codecs
 argument_list|,
 name|this
 argument_list|)
@@ -6193,6 +6167,11 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 comment|// Abort any running merges
@@ -6243,6 +6222,10 @@ operator|.
 name|changed
 argument_list|()
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -6262,6 +6245,9 @@ finally|finally
 block|{
 if|if
 condition|(
+operator|!
+name|success
+operator|&&
 name|infoStream
 operator|!=
 literal|null
@@ -7296,9 +7282,7 @@ name|sis
 init|=
 operator|new
 name|SegmentInfos
-argument_list|(
-name|codecs
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// read infos from dir
 name|sis
@@ -7306,8 +7290,6 @@ operator|.
 name|read
 argument_list|(
 name|dir
-argument_list|,
-name|codecs
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -7672,17 +7654,13 @@ literal|null
 argument_list|,
 name|payloadProcessorProvider
 argument_list|,
+operator|new
+name|FieldInfos
+argument_list|(
 name|globalFieldNumberMap
-operator|.
-name|newFieldInfos
-argument_list|(
-name|SegmentCodecsBuilder
-operator|.
-name|create
-argument_list|(
-name|codecs
 argument_list|)
-argument_list|)
+argument_list|,
+name|codec
 argument_list|,
 name|context
 argument_list|)
@@ -7736,7 +7714,7 @@ literal|false
 argument_list|,
 name|merger
 operator|.
-name|getSegmentCodecs
+name|getCodec
 argument_list|()
 argument_list|,
 name|fieldInfos
@@ -7800,9 +7778,18 @@ name|merger
 operator|.
 name|createCompoundFile
 argument_list|(
+name|IndexFileNames
+operator|.
+name|segmentFileName
+argument_list|(
 name|mergedName
-operator|+
-literal|".cfs"
+argument_list|,
+literal|""
+argument_list|,
+name|IndexFileNames
+operator|.
+name|COMPOUND_FILE_EXTENSION
+argument_list|)
 argument_list|,
 name|info
 argument_list|,
@@ -8832,6 +8819,8 @@ operator|.
 name|finishCommit
 argument_list|(
 name|directory
+argument_list|,
+name|codec
 argument_list|)
 expr_stmt|;
 if|if
@@ -11092,16 +11081,10 @@ literal|false
 argument_list|,
 literal|null
 argument_list|,
+operator|new
+name|FieldInfos
+argument_list|(
 name|globalFieldNumberMap
-operator|.
-name|newFieldInfos
-argument_list|(
-name|SegmentCodecsBuilder
-operator|.
-name|create
-argument_list|(
-name|codecs
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -12059,6 +12042,8 @@ operator|.
 name|getFieldInfos
 argument_list|()
 argument_list|,
+name|codec
+argument_list|,
 name|context
 argument_list|)
 decl_stmt|;
@@ -12288,11 +12273,11 @@ name|merge
 operator|.
 name|info
 operator|.
-name|setSegmentCodecs
+name|setCodec
 argument_list|(
 name|merger
 operator|.
-name|getSegmentCodecs
+name|getCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -12305,11 +12290,11 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"merge segmentCodecs="
+literal|"merge codecs="
 operator|+
 name|merger
 operator|.
-name|getSegmentCodecs
+name|getCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -13469,6 +13454,8 @@ operator|.
 name|prepareCommit
 argument_list|(
 name|directory
+argument_list|,
+name|codec
 argument_list|)
 expr_stmt|;
 name|pendingCommitSet

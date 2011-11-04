@@ -296,6 +296,8 @@ operator|.
 name|open
 argument_list|(
 name|luceneIndexDir
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -375,11 +377,17 @@ argument_list|,
 name|threshold
 argument_list|)
 expr_stmt|;
+comment|// TODO: maybe whether or not to clear the index should be configurable?
+comment|// an incremental update is faster (just adds new terms), but if you 'expunged'
+comment|// old terms I think they might hang around.
 name|spellChecker
 operator|.
 name|clearIndex
 argument_list|()
 expr_stmt|;
+comment|// TODO: you should be able to specify the IWC params?
+comment|// TODO: if we enable this, codec gets angry since field won't exist in the schema
+comment|// config.setCodec(core.getCodec());
 name|spellChecker
 operator|.
 name|indexDictionary

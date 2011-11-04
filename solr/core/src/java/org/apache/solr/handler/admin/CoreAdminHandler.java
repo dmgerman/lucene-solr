@@ -1201,6 +1201,7 @@ index|]
 operator|=
 name|dir
 expr_stmt|;
+comment|// TODO: why doesn't this use the IR factory? what is going on here?
 name|readersToBeClosed
 index|[
 name|i

@@ -170,8 +170,8 @@ name|BytesRef
 argument_list|>
 name|termComp
 parameter_list|,
-name|int
-name|codecId
+name|String
+name|segmentSuffix
 parameter_list|,
 name|IOContext
 name|context
@@ -191,7 +191,7 @@ name|indexDivisor
 argument_list|,
 name|termComp
 argument_list|,
-name|codecId
+name|segmentSuffix
 argument_list|,
 name|context
 argument_list|)

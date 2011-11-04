@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract API that consumes per document values. Concrete implementations of  * this convert field values into a Codec specific format during indexing.  *<p>  * The {@link PerDocConsumer} API is accessible through the  * {@link Codec} - API providing per field consumers and producers for inverted  * data (terms, postings) as well as per-document data.  *   * @lucene.experimental  */
+comment|/**  * Abstract API that consumes per document values. Concrete implementations of  * this convert field values into a Codec specific format during indexing.  *<p>  * The {@link PerDocConsumer} API is accessible through the  * {@link PostingsFormat} - API providing per field consumers and producers for inverted  * data (terms, postings) as well as per-document data.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

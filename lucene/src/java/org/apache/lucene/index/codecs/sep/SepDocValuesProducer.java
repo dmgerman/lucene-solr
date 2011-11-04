@@ -190,10 +190,6 @@ name|dir
 argument_list|,
 name|state
 operator|.
-name|codecId
-argument_list|,
-name|state
-operator|.
 name|context
 argument_list|)
 expr_stmt|;

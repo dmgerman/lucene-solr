@@ -387,6 +387,14 @@ specifier|final
 class|class
 name|Bytes
 block|{
+DECL|field|DV_SEGMENT_SUFFIX
+specifier|static
+specifier|final
+name|String
+name|DV_SEGMENT_SUFFIX
+init|=
+literal|"dv"
+decl_stmt|;
 comment|// TODO - add bulk copy where possible
 DECL|method|Bytes
 specifier|private
@@ -1178,7 +1186,7 @@ name|segmentFileName
 argument_list|(
 name|id
 argument_list|,
-literal|""
+name|DV_SEGMENT_SUFFIX
 argument_list|,
 name|DATA_EXTENSION
 argument_list|)
@@ -1278,7 +1286,7 @@ name|segmentFileName
 argument_list|(
 name|id
 argument_list|,
-literal|""
+name|DV_SEGMENT_SUFFIX
 argument_list|,
 name|INDEX_EXTENSION
 argument_list|)
@@ -1461,7 +1469,7 @@ name|segmentFileName
 argument_list|(
 name|id
 argument_list|,
-literal|""
+name|DV_SEGMENT_SUFFIX
 argument_list|,
 name|DATA_EXTENSION
 argument_list|)
@@ -1486,7 +1494,7 @@ name|segmentFileName
 argument_list|(
 name|id
 argument_list|,
-literal|""
+name|DV_SEGMENT_SUFFIX
 argument_list|,
 name|INDEX_EXTENSION
 argument_list|)
@@ -1597,7 +1605,7 @@ name|segmentFileName
 argument_list|(
 name|id
 argument_list|,
-literal|""
+name|DV_SEGMENT_SUFFIX
 argument_list|,
 name|Writer
 operator|.
@@ -1639,7 +1647,7 @@ name|segmentFileName
 argument_list|(
 name|id
 argument_list|,
-literal|""
+name|DV_SEGMENT_SUFFIX
 argument_list|,
 name|Writer
 operator|.

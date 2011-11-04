@@ -2462,7 +2462,7 @@ name|random
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/*     CoreCodecProvider cp = new CoreCodecProvider();         cp.unregister(cp.lookup("Standard"));     cp.register(new StandardCodec(minTermsInBlock, maxTermsInBlock));     cp.setDefaultFieldCodec("Standard");     iwc.setCodecProvider(cp);     */
+comment|/*     iwc.setCodec(new StandardCodec(minTermsInBlock, maxTermsInBlock));     */
 specifier|final
 name|RandomIndexWriter
 name|w

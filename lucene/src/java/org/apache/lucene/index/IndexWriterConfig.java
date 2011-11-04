@@ -74,7 +74,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|CodecProvider
+name|Codec
 import|;
 end_import
 
@@ -351,11 +351,11 @@ specifier|volatile
 name|IndexReaderWarmer
 name|mergedSegmentWarmer
 decl_stmt|;
-DECL|field|codecProvider
+DECL|field|codec
 specifier|private
 specifier|volatile
-name|CodecProvider
-name|codecProvider
+name|Codec
+name|codec
 decl_stmt|;
 DECL|field|mergePolicy
 specifier|private
@@ -482,9 +482,9 @@ name|mergedSegmentWarmer
 operator|=
 literal|null
 expr_stmt|;
-name|codecProvider
+name|codec
 operator|=
-name|CodecProvider
+name|Codec
 operator|.
 name|getDefault
 argument_list|()
@@ -1069,35 +1069,35 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Set the CodecProvider. See {@link CodecProvider}.    *    *<p>Only takes effect when IndexWriter is first created. */
-DECL|method|setCodecProvider
+comment|/** Set the Codec. See {@link Codec}.    *    *<p>Only takes effect when IndexWriter is first created. */
+DECL|method|setCodec
 specifier|public
 name|IndexWriterConfig
-name|setCodecProvider
+name|setCodec
 parameter_list|(
-name|CodecProvider
-name|codecProvider
+name|Codec
+name|codec
 parameter_list|)
 block|{
 name|this
 operator|.
-name|codecProvider
+name|codec
 operator|=
-name|codecProvider
+name|codec
 expr_stmt|;
 return|return
 name|this
 return|;
 block|}
-comment|/** Returns the current merged segment warmer. See {@link IndexReaderWarmer}. */
-DECL|method|getCodecProvider
+comment|/** Returns the current Codec. See {@link Codec}. */
+DECL|method|getCodec
 specifier|public
-name|CodecProvider
-name|getCodecProvider
+name|Codec
+name|getCodec
 parameter_list|()
 block|{
 return|return
-name|codecProvider
+name|codec
 return|;
 block|}
 comment|/**    * Returns the current MergePolicy in use by this writer.    *    * @see #setMergePolicy(MergePolicy)    */
@@ -1655,12 +1655,12 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"codecProvider="
+literal|"codec="
 argument_list|)
 operator|.
 name|append
 argument_list|(
-name|codecProvider
+name|codec
 argument_list|)
 operator|.
 name|append

@@ -441,7 +441,7 @@ name|files
 operator|.
 name|remove
 argument_list|(
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|)
 expr_stmt|;
 for|for
@@ -467,7 +467,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|)
 expr_stmt|;
 name|d
@@ -538,7 +538,7 @@ name|files
 operator|.
 name|remove
 argument_list|(
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 for|for
@@ -564,7 +564,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 name|writer
@@ -576,7 +576,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 block|}
@@ -695,7 +695,7 @@ name|files
 operator|.
 name|remove
 argument_list|(
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 for|for
@@ -721,7 +721,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 block|}
@@ -768,7 +768,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 name|dir
@@ -898,7 +898,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|)
 expr_stmt|;
 name|d
@@ -962,7 +962,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 name|writer
@@ -974,7 +974,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1012,7 +1012,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 name|IndexWriter
@@ -1058,7 +1058,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 name|dir
@@ -1190,7 +1190,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|)
 expr_stmt|;
 name|d
@@ -1264,9 +1264,9 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1278,9 +1278,9 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1388,7 +1388,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1435,7 +1435,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 name|dir
@@ -1566,7 +1566,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|)
 expr_stmt|;
 name|d
@@ -1625,7 +1625,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1637,9 +1637,9 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|)
 expr_stmt|;
 comment|// open first commit
@@ -1764,11 +1764,11 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|,
-literal|"3.fnx"
+literal|"_3.fnx"
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1780,11 +1780,11 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|,
-literal|"2.fnx"
+literal|"_2.fnx"
 argument_list|,
-literal|"3.fnx"
+literal|"_3.fnx"
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1834,7 +1834,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"3.fnx"
+literal|"_3.fnx"
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1846,7 +1846,7 @@ name|assertFNXFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"3.fnx"
+literal|"_3.fnx"
 argument_list|)
 expr_stmt|;
 name|dir
@@ -3710,7 +3710,7 @@ name|files
 operator|.
 name|remove
 argument_list|(
-literal|"1.fnx"
+literal|"_1.fnx"
 argument_list|)
 argument_list|)
 expr_stmt|;

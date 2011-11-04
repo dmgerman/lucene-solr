@@ -320,7 +320,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|CodecProvider
+name|Codec
 import|;
 end_import
 
@@ -609,17 +609,17 @@ DECL|field|supportsDocValues
 name|boolean
 name|supportsDocValues
 init|=
-name|CodecProvider
+name|Codec
 operator|.
 name|getDefault
 argument_list|()
 operator|.
-name|getDefaultFieldCodec
+name|getName
 argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"PreFlex"
+literal|"Lucene3x"
 argument_list|)
 operator|==
 literal|false

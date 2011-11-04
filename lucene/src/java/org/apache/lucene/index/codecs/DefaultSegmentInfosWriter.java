@@ -229,6 +229,9 @@ parameter_list|,
 name|String
 name|segmentFileName
 parameter_list|,
+name|String
+name|codecID
+parameter_list|,
 name|SegmentInfos
 name|infos
 parameter_list|,
@@ -281,6 +284,14 @@ name|FORMAT_CURRENT
 argument_list|)
 expr_stmt|;
 comment|// write FORMAT
+name|out
+operator|.
+name|writeString
+argument_list|(
+name|codecID
+argument_list|)
+expr_stmt|;
+comment|// write codecID
 name|out
 operator|.
 name|writeLong
