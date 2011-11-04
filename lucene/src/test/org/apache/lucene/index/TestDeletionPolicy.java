@@ -4098,6 +4098,9 @@ literal|"maxDoc="
 operator|+
 name|searcher
 operator|.
+name|getIndexReader
+argument_list|()
+operator|.
 name|maxDoc
 argument_list|()
 operator|+

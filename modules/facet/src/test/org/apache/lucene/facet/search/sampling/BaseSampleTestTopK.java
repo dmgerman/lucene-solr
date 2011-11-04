@@ -359,7 +359,7 @@ name|ScoredDocIdCollector
 operator|.
 name|create
 argument_list|(
-name|searcher
+name|indexReader
 operator|.
 name|maxDoc
 argument_list|()

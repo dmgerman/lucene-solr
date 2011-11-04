@@ -684,6 +684,9 @@ name|docfreq
 init|=
 name|searcher
 operator|.
+name|getIndexReader
+argument_list|()
+operator|.
 name|docFreq
 argument_list|(
 operator|new

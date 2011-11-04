@@ -903,7 +903,7 @@ name|ScoredDocIdCollector
 operator|.
 name|create
 argument_list|(
-name|is
+name|ir
 operator|.
 name|maxDoc
 argument_list|()

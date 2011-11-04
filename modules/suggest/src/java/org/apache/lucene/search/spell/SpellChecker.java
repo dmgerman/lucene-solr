@@ -1741,8 +1741,13 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+comment|// TODO: we should use ReaderUtil+seekExact, we dont care about the docFreq
+comment|// this is just an existence check
 return|return
 name|indexSearcher
+operator|.
+name|getIndexReader
+argument_list|()
 operator|.
 name|docFreq
 argument_list|(
@@ -1868,9 +1873,18 @@ name|TermsEnum
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
+name|IndexReader
+name|reader
+init|=
+name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
-name|searcher
+name|reader
 operator|.
 name|maxDoc
 argument_list|()
@@ -1883,10 +1897,7 @@ name|ReaderUtil
 operator|.
 name|Gather
 argument_list|(
-name|searcher
-operator|.
-name|getIndexReader
-argument_list|()
+name|reader
 argument_list|)
 block|{
 annotation|@

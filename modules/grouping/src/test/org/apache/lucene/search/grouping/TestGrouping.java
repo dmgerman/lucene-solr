@@ -7031,6 +7031,9 @@ name|docIDX
 operator|<
 name|s
 operator|.
+name|getIndexReader
+argument_list|()
+operator|.
 name|maxDoc
 argument_list|()
 condition|;

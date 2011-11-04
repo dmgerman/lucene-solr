@@ -264,6 +264,9 @@ name|docfreq
 init|=
 name|searcher
 operator|.
+name|getIndexReader
+argument_list|()
+operator|.
 name|docFreq
 argument_list|(
 operator|new
@@ -290,6 +293,9 @@ argument_list|(
 name|docfreq
 argument_list|,
 name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
 operator|.
 name|maxDoc
 argument_list|()
