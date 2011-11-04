@@ -348,7 +348,7 @@ throw|throw
 operator|new
 name|IndexFormatTooOldException
 argument_list|(
-literal|null
+name|input
 argument_list|,
 name|format
 argument_list|,
@@ -367,7 +367,7 @@ throw|throw
 operator|new
 name|IndexFormatTooNewException
 argument_list|(
-literal|null
+name|input
 argument_list|,
 name|format
 argument_list|,

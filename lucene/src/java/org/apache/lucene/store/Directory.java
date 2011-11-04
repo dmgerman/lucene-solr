@@ -494,6 +494,9 @@ specifier|public
 name|IndexInput
 name|openSlice
 parameter_list|(
+name|String
+name|sliceDescription
+parameter_list|,
 name|long
 name|offset
 parameter_list|,
@@ -505,6 +508,16 @@ return|return
 operator|new
 name|SlicedIndexInput
 argument_list|(
+literal|"SlicedIndexInput("
+operator|+
+name|sliceDescription
+operator|+
+literal|" in "
+operator|+
+name|base
+operator|+
+literal|")"
+argument_list|,
 name|base
 argument_list|,
 name|offset
@@ -589,6 +602,9 @@ specifier|abstract
 name|IndexInput
 name|openSlice
 parameter_list|(
+name|String
+name|sliceDescription
+parameter_list|,
 name|long
 name|offset
 parameter_list|,
@@ -635,6 +651,10 @@ DECL|method|SlicedIndexInput
 name|SlicedIndexInput
 parameter_list|(
 specifier|final
+name|String
+name|sliceDescription
+parameter_list|,
+specifier|final
 name|IndexInput
 name|base
 parameter_list|,
@@ -649,6 +669,8 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
+name|sliceDescription
+argument_list|,
 name|base
 argument_list|,
 name|fileOffset
@@ -664,6 +686,10 @@ block|}
 DECL|method|SlicedIndexInput
 name|SlicedIndexInput
 parameter_list|(
+specifier|final
+name|String
+name|sliceDescription
+parameter_list|,
 specifier|final
 name|IndexInput
 name|base
@@ -682,6 +708,28 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+literal|"SlicedIndexInput("
+operator|+
+name|sliceDescription
+operator|+
+literal|" in "
+operator|+
+name|base
+operator|+
+literal|" slice="
+operator|+
+name|fileOffset
+operator|+
+literal|":"
+operator|+
+operator|(
+name|fileOffset
+operator|+
+name|length
+operator|)
+operator|+
+literal|")"
+argument_list|,
 name|readBufferSize
 argument_list|)
 expr_stmt|;

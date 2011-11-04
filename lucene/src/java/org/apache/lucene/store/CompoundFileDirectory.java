@@ -749,6 +749,12 @@ operator|+
 name|CompoundFileWriter
 operator|.
 name|FORMAT_CURRENT
+operator|+
+literal|" (resource: "
+operator|+
+name|stream
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -831,6 +837,12 @@ argument_list|(
 literal|"Invalid CFS entry offset: "
 operator|+
 name|offset
+operator|+
+literal|" (resource: "
+operator|+
+name|stream
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -1085,6 +1097,8 @@ name|handle
 operator|.
 name|openSlice
 argument_list|(
+name|name
+argument_list|,
 name|entry
 operator|.
 name|offset
@@ -1546,6 +1560,9 @@ specifier|public
 name|IndexInput
 name|openSlice
 parameter_list|(
+name|String
+name|sliceDescription
+parameter_list|,
 name|long
 name|offset
 parameter_list|,
@@ -1560,6 +1577,8 @@ name|handle
 operator|.
 name|openSlice
 argument_list|(
+name|sliceDescription
+argument_list|,
 name|entry
 operator|.
 name|offset
@@ -1582,6 +1601,8 @@ block|{
 return|return
 name|openSlice
 argument_list|(
+literal|"full-slice"
+argument_list|,
 literal|0
 argument_list|,
 name|entry

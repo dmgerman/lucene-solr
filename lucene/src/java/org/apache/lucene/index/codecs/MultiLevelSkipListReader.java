@@ -1142,6 +1142,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+literal|"SkipBuffer on "
+operator|+
+name|input
+argument_list|)
+expr_stmt|;
 name|data
 operator|=
 operator|new

@@ -18,29 +18,11 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|DataInput
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|DataOutput
+name|IOException
 import|;
 end_import
 
@@ -88,11 +70,29 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|store
+operator|.
+name|DataInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|DataOutput
 import|;
 end_import
 
@@ -269,6 +269,12 @@ operator|+
 literal|" vs expected header="
 operator|+
 name|CODEC_MAGIC
+operator|+
+literal|" (resource: "
+operator|+
+name|in
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -303,6 +309,12 @@ operator|+
 literal|" vs expected codec="
 operator|+
 name|codec
+operator|+
+literal|" (resource: "
+operator|+
+name|in
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -326,7 +338,7 @@ throw|throw
 operator|new
 name|IndexFormatTooOldException
 argument_list|(
-literal|null
+name|in
 argument_list|,
 name|actualVersion
 argument_list|,
@@ -347,7 +359,7 @@ throw|throw
 operator|new
 name|IndexFormatTooNewException
 argument_list|(
-literal|null
+name|in
 argument_list|,
 name|actualVersion
 argument_list|,

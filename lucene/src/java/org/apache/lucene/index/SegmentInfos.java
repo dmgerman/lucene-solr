@@ -1025,7 +1025,7 @@ throw|throw
 operator|new
 name|IndexFormatTooOldException
 argument_list|(
-name|segmentFileName
+name|input
 argument_list|,
 name|format
 argument_list|,
@@ -1050,7 +1050,7 @@ throw|throw
 operator|new
 name|IndexFormatTooNewException
 argument_list|(
-name|segmentFileName
+name|input
 argument_list|,
 name|format
 argument_list|,
@@ -1153,7 +1153,11 @@ throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"checksum mismatch in segments file"
+literal|"checksum mismatch in segments file (resource: "
+operator|+
+name|input
+operator|+
+literal|")"
 argument_list|)
 throw|;
 name|success
@@ -2358,7 +2362,7 @@ block|}
 block|}
 else|else
 block|{
-comment|/* TODO: Investigate this!                    throw new IndexFormatTooNewException("segments.gen version number invalid: " + version +                     " (must be " + FORMAT_SEGMENTS_GEN_CURRENT + ")");                   */
+comment|/* TODO: Investigate this!                    throw new IndexFormatTooNewException(genInput, version, FORMAT_SEGMENTS_GEN_CURRENT, FORMAT_SEGMENTS_GEN_CURRENT);                   */
 block|}
 block|}
 catch|catch

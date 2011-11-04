@@ -26,6 +26,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|EOFException
+import|;
+end_import
+
 begin_comment
 comment|/** A memory-resident {@link IndexInput} implementation.   *    *  @lucene.internal */
 end_comment
@@ -90,12 +100,24 @@ DECL|method|RAMInputStream
 specifier|public
 name|RAMInputStream
 parameter_list|(
+name|String
+name|name
+parameter_list|,
 name|RAMFile
 name|f
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+literal|"RAMInputStream(name="
+operator|+
+name|name
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
 name|file
 operator|=
 name|f
@@ -121,9 +143,13 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Too large RAMFile! "
+literal|"RAMInputStream too large length="
 operator|+
 name|length
+operator|+
+literal|": "
+operator|+
+name|name
 argument_list|)
 throw|;
 block|}
@@ -324,13 +350,17 @@ if|if
 condition|(
 name|enforceEOF
 condition|)
+block|{
 throw|throw
 operator|new
-name|IOException
+name|EOFException
 argument_list|(
-literal|"Read past EOF"
+literal|"Read past EOF: "
+operator|+
+name|this
 argument_list|)
 throw|;
+block|}
 else|else
 block|{
 comment|// Force EOF if a read takes place at this position

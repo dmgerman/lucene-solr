@@ -88,6 +88,19 @@ name|IndexInput
 name|delegate
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|"MockIndexInputWrapper(name="
+operator|+
+name|name
+operator|+
+literal|" delegate="
+operator|+
+name|delegate
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|name

@@ -137,10 +137,10 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-return|return
-operator|new
-name|SimpleFSIndexInput
-argument_list|(
+specifier|final
+name|File
+name|path
+init|=
 operator|new
 name|File
 argument_list|(
@@ -148,6 +148,21 @@ name|directory
 argument_list|,
 name|name
 argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|SimpleFSIndexInput
+argument_list|(
+literal|"SimpleFSIndexInput(path=\""
+operator|+
+name|path
+operator|.
+name|getPath
+argument_list|()
+operator|+
+literal|"\")"
+argument_list|,
+name|path
 argument_list|,
 name|context
 argument_list|,
@@ -226,6 +241,9 @@ specifier|public
 name|IndexInput
 name|openSlice
 parameter_list|(
+name|String
+name|sliceDescription
+parameter_list|,
 name|long
 name|offset
 parameter_list|,
@@ -239,6 +257,31 @@ return|return
 operator|new
 name|SimpleFSIndexInput
 argument_list|(
+literal|"SimpleFSIndexInput("
+operator|+
+name|sliceDescription
+operator|+
+literal|" in path=\""
+operator|+
+name|file
+operator|.
+name|getPath
+argument_list|()
+operator|+
+literal|"\" slice="
+operator|+
+name|offset
+operator|+
+literal|":"
+operator|+
+operator|(
+name|offset
+operator|+
+name|length
+operator|)
+operator|+
+literal|")"
+argument_list|,
 name|descriptor
 argument_list|,
 name|offset
@@ -269,6 +312,8 @@ block|{
 return|return
 name|openSlice
 argument_list|(
+literal|"full-slice"
+argument_list|,
 literal|0
 argument_list|,
 name|descriptor
@@ -403,6 +448,9 @@ DECL|method|SimpleFSIndexInput
 specifier|public
 name|SimpleFSIndexInput
 parameter_list|(
+name|String
+name|resourceDesc
+parameter_list|,
 name|File
 name|path
 parameter_list|,
@@ -417,6 +465,8 @@ name|IOException
 block|{
 name|super
 argument_list|(
+name|resourceDesc
+argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
@@ -457,6 +507,9 @@ DECL|method|SimpleFSIndexInput
 specifier|public
 name|SimpleFSIndexInput
 parameter_list|(
+name|String
+name|resourceDesc
+parameter_list|,
 name|Descriptor
 name|file
 parameter_list|,
@@ -477,6 +530,8 @@ name|IOException
 block|{
 name|super
 argument_list|(
+name|resourceDesc
+argument_list|,
 name|bufferSize
 argument_list|)
 expr_stmt|;
@@ -589,7 +644,9 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"read past EOF"
+literal|"read past EOF: "
+operator|+
+name|this
 argument_list|)
 throw|;
 block|}
@@ -696,6 +753,29 @@ argument_list|)
 expr_stmt|;
 throw|throw
 name|outOfMemoryError
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+name|ioe
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|this
+argument_list|,
+name|ioe
+argument_list|)
 throw|;
 block|}
 block|}

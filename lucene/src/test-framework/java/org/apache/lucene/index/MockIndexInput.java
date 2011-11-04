@@ -65,6 +65,15 @@ index|[]
 name|bytes
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|"MockIndexInput"
+argument_list|,
+name|BufferedIndexInput
+operator|.
+name|BUFFER_SIZE
+argument_list|)
+expr_stmt|;
 name|buffer
 operator|=
 name|bytes

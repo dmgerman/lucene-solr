@@ -3215,6 +3215,9 @@ specifier|public
 name|IndexInput
 name|openSlice
 parameter_list|(
+name|String
+name|sliceDescription
+parameter_list|,
 name|long
 name|offset
 parameter_list|,
@@ -3243,6 +3246,8 @@ name|delegateHandle
 operator|.
 name|openSlice
 argument_list|(
+name|sliceDescription
+argument_list|,
 name|offset
 argument_list|,
 name|length

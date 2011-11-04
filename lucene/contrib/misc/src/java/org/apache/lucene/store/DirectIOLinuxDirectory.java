@@ -979,6 +979,18 @@ throws|throws
 name|IOException
 block|{
 comment|// TODO make use of IOContext
+name|super
+argument_list|(
+literal|"DirectIOLinuxIndexInput(path=\""
+operator|+
+name|path
+operator|.
+name|getPath
+argument_list|()
+operator|+
+literal|"\")"
+argument_list|)
+expr_stmt|;
 name|FileDescriptor
 name|fd
 init|=
@@ -1054,6 +1066,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+name|other
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|fis
@@ -1259,6 +1279,10 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
+literal|"IOException during length(): "
+operator|+
+name|this
+argument_list|,
 name|ioe
 argument_list|)
 throw|;
@@ -1362,7 +1386,11 @@ assert|;
 comment|//System.out.println("X refill filePos=" + filePos);
 name|int
 name|n
-init|=
+decl_stmt|;
+try|try
+block|{
+name|n
+operator|=
 name|channel
 operator|.
 name|read
@@ -1371,7 +1399,31 @@ name|buffer
 argument_list|,
 name|filePos
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+name|ioe
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|this
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|n
@@ -1383,7 +1435,9 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"eof"
+literal|"eof: "
+operator|+
+name|this
 argument_list|)
 throw|;
 block|}
@@ -1514,6 +1568,10 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
+literal|"IOException during clone: "
+operator|+
+name|this
+argument_list|,
 name|ioe
 argument_list|)
 throw|;

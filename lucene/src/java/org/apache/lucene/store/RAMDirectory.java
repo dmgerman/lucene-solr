@@ -698,6 +698,8 @@ return|return
 operator|new
 name|RAMInputStream
 argument_list|(
+name|name
+argument_list|,
 name|file
 argument_list|)
 return|;

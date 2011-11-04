@@ -16,6 +16,20 @@ name|index
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|DataInput
+import|;
+end_import
+
 begin_comment
 comment|/**  * This exception is thrown when Lucene detects  * an index that is newer than this Lucene version.  */
 end_comment
@@ -28,12 +42,13 @@ name|IndexFormatTooNewException
 extends|extends
 name|CorruptIndexException
 block|{
+comment|/** @lucene.internal */
 DECL|method|IndexFormatTooNewException
 specifier|public
 name|IndexFormatTooNewException
 parameter_list|(
 name|String
-name|filename
+name|resourceDesc
 parameter_list|,
 name|int
 name|version
@@ -47,25 +62,11 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Format version is not supported"
+literal|"Format version is not supported (resource: "
 operator|+
-operator|(
-name|filename
-operator|!=
-literal|null
-condition|?
-operator|(
-literal|" in file '"
+name|resourceDesc
 operator|+
-name|filename
-operator|+
-literal|"'"
-operator|)
-else|:
-literal|""
-operator|)
-operator|+
-literal|": "
+literal|"): "
 operator|+
 name|version
 operator|+
@@ -78,6 +79,44 @@ operator|+
 name|maxVersion
 operator|+
 literal|")"
+argument_list|)
+expr_stmt|;
+assert|assert
+name|resourceDesc
+operator|!=
+literal|null
+assert|;
+block|}
+comment|/** @lucene.internal */
+DECL|method|IndexFormatTooNewException
+specifier|public
+name|IndexFormatTooNewException
+parameter_list|(
+name|DataInput
+name|in
+parameter_list|,
+name|int
+name|version
+parameter_list|,
+name|int
+name|minVersion
+parameter_list|,
+name|int
+name|maxVersion
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|in
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|version
+argument_list|,
+name|minVersion
+argument_list|,
+name|maxVersion
 argument_list|)
 expr_stmt|;
 block|}

@@ -481,6 +481,8 @@ init|=
 operator|new
 name|RAMInputStream
 argument_list|(
+literal|"testcase"
+argument_list|,
 name|f
 argument_list|)
 decl_stmt|;

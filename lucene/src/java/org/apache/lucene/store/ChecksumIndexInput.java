@@ -78,6 +78,15 @@ name|IndexInput
 name|main
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|"ChecksumIndexInput("
+operator|+
+name|main
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|main

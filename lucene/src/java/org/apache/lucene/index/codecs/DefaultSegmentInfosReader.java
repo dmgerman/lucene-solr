@@ -432,9 +432,15 @@ throw|throw
 operator|new
 name|IndexFormatTooOldException
 argument_list|(
+literal|"segment "
+operator|+
 name|si
 operator|.
 name|name
+operator|+
+literal|" in resource "
+operator|+
+name|input
 argument_list|,
 name|si
 operator|.
