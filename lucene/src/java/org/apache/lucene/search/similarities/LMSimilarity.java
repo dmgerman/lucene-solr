@@ -20,11 +20,15 @@ end_comment
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|search
+operator|.
+name|CollectionStatistics
 import|;
 end_import
 
@@ -52,21 +56,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|IndexSearcher
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TermContext
+name|TermStatistics
 import|;
 end_import
 
@@ -150,17 +140,12 @@ parameter_list|(
 name|BasicStats
 name|stats
 parameter_list|,
-name|IndexSearcher
-name|searcher
+name|CollectionStatistics
+name|collectionStats
 parameter_list|,
-name|String
-name|fieldName
-parameter_list|,
-name|TermContext
-name|termContext
+name|TermStatistics
+name|termStats
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 operator|.
@@ -168,11 +153,9 @@ name|fillBasicStats
 argument_list|(
 name|stats
 argument_list|,
-name|searcher
+name|collectionStats
 argument_list|,
-name|fieldName
-argument_list|,
-name|termContext
+name|termStats
 argument_list|)
 expr_stmt|;
 name|LMStats
