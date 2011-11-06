@@ -1380,12 +1380,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// Test doesn't assert deletions until the end, so we
+comment|// can randomize whether dels must be applied
 return|return
 name|nrt
 operator|.
 name|getSearcherManager
 argument_list|(
-literal|false
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
 argument_list|)
 operator|.
 name|acquire
@@ -1405,11 +1410,16 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+comment|// Test doesn't assert deletions until the end, so we
+comment|// can randomize whether dels must be applied
 name|nrt
 operator|.
 name|getSearcherManager
 argument_list|(
-literal|false
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
 argument_list|)
 operator|.
 name|release

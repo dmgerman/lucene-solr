@@ -466,6 +466,9 @@ name|nextBoolean
 argument_list|()
 condition|)
 block|{
+comment|// TODO: can we randomize the applyAllDeletes?  But
+comment|// somehow for final searcher we must apply
+comment|// deletes...
 name|mgr
 operator|=
 operator|new

@@ -3339,6 +3339,14 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
+name|assertFalse
+argument_list|(
+name|failed
+operator|.
+name|get
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|boolean
 name|doFail
 init|=
