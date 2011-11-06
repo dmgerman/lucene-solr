@@ -187,7 +187,7 @@ name|chunk
 init|=
 name|Math
 operator|.
-name|max
+name|min
 argument_list|(
 name|random
 operator|.
@@ -291,7 +291,7 @@ name|chunk
 init|=
 name|Math
 operator|.
-name|max
+name|min
 argument_list|(
 name|random
 operator|.
