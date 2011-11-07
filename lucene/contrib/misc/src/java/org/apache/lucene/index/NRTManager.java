@@ -256,6 +256,17 @@ name|NRTManager
 implements|implements
 name|Closeable
 block|{
+DECL|field|MAX_SEARCHER_GEN
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|MAX_SEARCHER_GEN
+init|=
+name|Long
+operator|.
+name|MAX_VALUE
+decl_stmt|;
 DECL|field|writer
 specifier|private
 specifier|final
@@ -1189,6 +1200,25 @@ literal|false
 decl_stmt|;
 if|if
 condition|(
+name|reference
+operator|.
+name|generation
+operator|==
+name|MAX_SEARCHER_GEN
+condition|)
+block|{
+name|newGeneration
+operator|.
+name|signalAll
+argument_list|()
+expr_stmt|;
+comment|// wake up threads if we have a new generation
+return|return
+literal|false
+return|;
+block|}
+if|if
+condition|(
 operator|!
 operator|(
 name|setSearchGen
@@ -1251,7 +1281,6 @@ block|}
 comment|/**    * Close this NRTManager to future searching. Any searches still in process in    * other threads won't be affected, and they should still call    * {@link SearcherManager#release(IndexSearcher)} after they are done.    *     *<p>    *<b>NOTE</b>: caller must separately close the writer.    */
 DECL|method|close
 specifier|public
-specifier|synchronized
 name|void
 name|close
 parameter_list|()
@@ -1265,6 +1294,8 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+try|try
+block|{
 name|IOUtils
 operator|.
 name|close
@@ -1274,11 +1305,16 @@ argument_list|,
 name|withoutDeletes
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// make sure we signal even if close throws an exception
 name|newGeneration
 operator|.
 name|signalAll
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -1287,6 +1323,19 @@ operator|.
 name|unlock
 argument_list|()
 expr_stmt|;
+assert|assert
+name|withDeletes
+operator|.
+name|generation
+operator|==
+name|MAX_SEARCHER_GEN
+operator|&&
+name|withoutDeletes
+operator|.
+name|generation
+operator|==
+name|MAX_SEARCHER_GEN
+assert|;
 block|}
 block|}
 comment|/**    * Returns a {@link SearcherManager}. If<code>applyAllDeletes</code> is    *<code>true</code> the returned manager is guaranteed to have all deletes    * applied on the last reopen. Otherwise the latest manager with or without deletes    * is returned.    */
@@ -1407,9 +1456,7 @@ name|IOException
 block|{
 name|generation
 operator|=
-name|Long
-operator|.
-name|MAX_VALUE
+name|MAX_SEARCHER_GEN
 expr_stmt|;
 comment|// max it out to make sure nobody can wait on another gen
 name|manager
