@@ -37,6 +37,17 @@ name|HIGHLIGHT
 init|=
 literal|"hl"
 decl_stmt|;
+DECL|field|Q
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|Q
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".q"
+decl_stmt|;
 DECL|field|FIELDS
 specifier|public
 specifier|static
