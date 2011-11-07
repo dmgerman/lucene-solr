@@ -878,6 +878,7 @@ operator|.
 name|length
 expr_stmt|;
 block|}
+comment|// write sentinel
 name|offsetWriter
 operator|.
 name|add
@@ -1192,7 +1193,7 @@ specifier|private
 specifier|final
 name|PackedInts
 operator|.
-name|RandomAccessReaderIterator
+name|Reader
 name|docToOrdIndex
 decl_stmt|;
 DECL|field|ordToOffsetIndex
@@ -1200,7 +1201,7 @@ specifier|private
 specifier|final
 name|PackedInts
 operator|.
-name|RandomAccessReaderIterator
+name|Reader
 name|ordToOffsetIndex
 decl_stmt|;
 DECL|field|datIn
@@ -1258,7 +1259,7 @@ name|ordToOffsetIndex
 operator|=
 name|PackedInts
 operator|.
-name|getRandomAccessReaderIterator
+name|getDirectReader
 argument_list|(
 name|idxIn
 argument_list|)
@@ -1276,7 +1277,7 @@ comment|// the last value here is just a dummy value to get the length of the la
 comment|// advance this iterator to the end and clone the stream once it points to the docToOrdIndex header
 name|ordToOffsetIndex
 operator|.
-name|advance
+name|get
 argument_list|(
 name|valueCount
 argument_list|)
@@ -1285,7 +1286,7 @@ name|docToOrdIndex
 operator|=
 name|PackedInts
 operator|.
-name|getRandomAccessReaderIterator
+name|getDirectReader
 argument_list|(
 operator|(
 name|IndexInput
@@ -1322,8 +1323,6 @@ name|int
 name|docID
 parameter_list|)
 block|{
-try|try
-block|{
 return|return
 operator|(
 name|int
@@ -1335,23 +1334,6 @@ argument_list|(
 name|docID
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ex
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"failed"
-argument_list|,
-name|ex
-argument_list|)
-throw|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -1380,14 +1362,19 @@ argument_list|(
 name|ord
 argument_list|)
 decl_stmt|;
+comment|// 1+ord is safe because we write a sentinel at the end
 specifier|final
 name|long
 name|nextOffset
 init|=
 name|ordToOffsetIndex
 operator|.
-name|next
-argument_list|()
+name|get
+argument_list|(
+literal|1
+operator|+
+name|ord
+argument_list|)
 decl_stmt|;
 name|datIn
 operator|.

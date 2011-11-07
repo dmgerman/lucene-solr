@@ -124,7 +124,6 @@ operator|+
 literal|1
 decl_stmt|;
 DECL|field|FAC_BITPOS
-specifier|private
 specifier|static
 specifier|final
 name|int
@@ -134,7 +133,6 @@ literal|3
 decl_stmt|;
 comment|/*    * In order to make an efficient value-getter, conditionals should be    * avoided. A value can be positioned inside of a block, requiring shifting    * left or right or it can span two blocks, requiring a left-shift on the    * first block and a right-shift on the right block.    *</p><p>    * By always shifting the first block both left and right, we get exactly    * the right bits. By always shifting the second block right and applying    * a mask, we get the right bits there. After that, we | the two bitsets.   */
 DECL|field|SHIFTS
-specifier|private
 specifier|static
 specifier|final
 name|int
@@ -153,9 +151,7 @@ operator|*
 name|FAC_BITPOS
 index|]
 decl_stmt|;
-comment|//new int[BLOCK_SIZE+1][BLOCK_SIZE][BLOCK_SIZE+1];
 DECL|field|MASKS
-specifier|private
 specifier|static
 specifier|final
 name|long

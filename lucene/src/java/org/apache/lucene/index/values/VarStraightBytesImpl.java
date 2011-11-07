@@ -90,22 +90,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|DirectSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|Directory
@@ -1144,6 +1128,7 @@ literal|0
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// docCount+1 so we write sentinel
 for|for
 control|(
 name|int
@@ -1241,6 +1226,7 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+comment|// write sentinel
 name|w
 operator|.
 name|add
@@ -1555,7 +1541,7 @@ specifier|private
 specifier|final
 name|PackedInts
 operator|.
-name|RandomAccessReaderIterator
+name|Reader
 name|index
 decl_stmt|;
 DECL|method|DirectVarStraightSource
@@ -1591,7 +1577,7 @@ name|index
 operator|=
 name|PackedInts
 operator|.
-name|getRandomAccessReaderIterator
+name|getDirectReader
 argument_list|(
 name|index
 argument_list|)
@@ -1630,15 +1616,26 @@ operator|+
 name|offset
 argument_list|)
 expr_stmt|;
+comment|// Safe to do 1+docID because we write sentinel at the end:
+specifier|final
+name|long
+name|nextOffset
+init|=
+name|index
+operator|.
+name|get
+argument_list|(
+literal|1
+operator|+
+name|docID
+argument_list|)
+decl_stmt|;
 return|return
 call|(
 name|int
 call|)
 argument_list|(
-name|index
-operator|.
-name|next
-argument_list|()
+name|nextOffset
 operator|-
 name|offset
 argument_list|)

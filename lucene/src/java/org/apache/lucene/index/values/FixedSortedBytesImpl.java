@@ -1071,7 +1071,7 @@ DECL|field|docToOrdIndex
 specifier|final
 name|PackedInts
 operator|.
-name|RandomAccessReaderIterator
+name|Reader
 name|docToOrdIndex
 decl_stmt|;
 DECL|field|datIn
@@ -1136,7 +1136,7 @@ name|docToOrdIndex
 operator|=
 name|PackedInts
 operator|.
-name|getRandomAccessReaderIterator
+name|getDirectReader
 argument_list|(
 name|idxIn
 argument_list|)
@@ -1178,8 +1178,6 @@ name|int
 name|docID
 parameter_list|)
 block|{
-try|try
-block|{
 return|return
 operator|(
 name|int
@@ -1191,23 +1189,6 @@ argument_list|(
 name|docID
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"failed to get ord"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 annotation|@
 name|Override
