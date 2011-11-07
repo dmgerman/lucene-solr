@@ -1423,10 +1423,6 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-DECL|field|lengthForDebugging
-name|long
-name|lengthForDebugging
-decl_stmt|;
 comment|// write a BytesRef as a byte array
 DECL|field|resolver
 name|JavaBinCodec
@@ -2666,6 +2662,12 @@ operator|.
 name|size
 argument_list|()
 assert|;
+for|for
+control|(
+init|;
+condition|;
+control|)
+block|{
 name|int
 name|ret
 init|=
@@ -2681,7 +2683,7 @@ decl_stmt|;
 if|if
 condition|(
 name|ret
-operator|>=
+operator|>
 literal|0
 condition|)
 block|{
@@ -2689,10 +2691,24 @@ name|chPosition
 operator|+=
 name|ret
 expr_stmt|;
-block|}
 return|return
 name|ret
 return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|ret
+operator|<
+literal|0
+condition|)
+block|{
+return|return
+name|ret
+return|;
+block|}
+comment|// a channel read can return 0 - retry if this happens
+block|}
 block|}
 annotation|@
 name|Override
