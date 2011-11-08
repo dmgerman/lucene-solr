@@ -342,7 +342,9 @@ name|PostingsFormat
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/** memorized field->postingsformat mappings */
+comment|// note: we have to sync this map even though its just for debugging/toString,
+comment|// otherwise DWPT's .toString() calls that iterate over the map can
+comment|// cause concurrentmodificationexception if indexwriter's infostream is on
 DECL|field|previousMappings
 specifier|private
 name|Map
@@ -353,6 +355,10 @@ name|PostingsFormat
 argument_list|>
 name|previousMappings
 init|=
+name|Collections
+operator|.
+name|synchronizedMap
+argument_list|(
 operator|new
 name|HashMap
 argument_list|<
@@ -361,6 +367,7 @@ argument_list|,
 name|PostingsFormat
 argument_list|>
 argument_list|()
+argument_list|)
 decl_stmt|;
 DECL|field|perFieldSeed
 specifier|private
