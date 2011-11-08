@@ -603,6 +603,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// can be null if we force simpletext (funky, some kind of bug in test runner maybe)
+if|if
+condition|(
+name|dir
+operator|!=
+literal|null
+condition|)
 name|dir
 operator|.
 name|close
