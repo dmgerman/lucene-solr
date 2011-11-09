@@ -944,7 +944,7 @@ name|Object
 argument_list|>
 name|kids
 init|=
-name|getAllDescendentReaderKeys
+name|getAllDescendantReaderKeys
 argument_list|(
 name|rf
 operator|.
@@ -1217,13 +1217,13 @@ name|insanity
 return|;
 block|}
 comment|/**    * Checks if the seed is an IndexReader, and if so will walk    * the hierarchy of subReaders building up a list of the objects     * returned by obj.getFieldCacheKey()    */
-DECL|method|getAllDescendentReaderKeys
+DECL|method|getAllDescendantReaderKeys
 specifier|private
 name|List
 argument_list|<
 name|Object
 argument_list|>
-name|getAllDescendentReaderKeys
+name|getAllDescendantReaderKeys
 parameter_list|(
 name|Object
 name|seed
