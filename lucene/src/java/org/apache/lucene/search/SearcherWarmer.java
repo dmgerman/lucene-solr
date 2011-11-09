@@ -34,7 +34,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|search
 operator|.
 name|NRTManager
 import|;

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index
+DECL|package|org.apache.lucene.search
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|search
 package|;
 end_package
 
@@ -152,10 +152,6 @@ name|IndexReader
 import|;
 end_import
 
-begin_comment
-comment|// javadocs
-end_comment
-
 begin_import
 import|import
 name|org
@@ -164,27 +160,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|IndexSearcher
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Query
+name|IndexWriter
 import|;
 end_import
 
@@ -196,9 +174,23 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|SearcherManager
+name|IndexableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
 import|;
 end_import
 
@@ -212,7 +204,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|SearcherWarmer
+name|NRTManagerReopenThread
 import|;
 end_import
 

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index
+DECL|package|org.apache.lucene.search
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|search
 package|;
 end_package
 
@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class that runs a reopen thread to periodically  * reopen the NRT searchers in the provided {@link  * NRTManager}.  *  *<p> Typical usage looks like this:  *  *<pre>  *   ... open your own writer ...  *   *   NRTManager manager = new NRTManager(writer);  *  *   // Refreshes searcher every 5 seconds when nobody is waiting, and up to 100 msec delay  *   // when somebody is waiting:  *   NRTManagerReopenThread reopenThread = new NRTManagerReopenThread(manager, 5.0, 0.1);  *   reopenThread.setName("NRT Reopen Thread");  *   reopenThread.setPriority(Math.min(Thread.currentThread().getPriority()+2, Thread.MAX_PRIORITY));  *   reopenThread.setDaemon(true);  *   reopenThread.start();  *</pre>  *  * Then, for each incoming query, do this:  *  *<pre>  *   // For each incoming query:  *   IndexSearcher searcher = manager.get();  *   try {  *     // Use searcher to search...  *   } finally {  *     manager.release(searcher);  *   }  *</pre>  *  * You should make changes using the<code>NRTManager</code>; if you later need to obtain  * a searcher reflecting those changes:  *  *<pre>  *   // ... or updateDocument, deleteDocuments, etc:  *   long gen = manager.addDocument(...);  *     *   // Returned searcher is guaranteed to reflect the just added document  *   IndexSearcher searcher = manager.get(gen);  *   try {  *     // Use searcher to search...  *   } finally {  *     manager.release(searcher);  *   }  *</pre>  *  *  * When you are done be sure to close both the manager and the reopen thrad:  *<pre>   *   reopenThread.close();         *   manager.close();  *</pre>  */
+comment|/**  * Utility class that runs a reopen thread to periodically  * reopen the NRT searchers in the provided {@link  * NRTManager}.  *  *<p> Typical usage looks like this:  *  *<pre>  *   ... open your own writer ...  *   *   NRTManager manager = new NRTManager(writer);  *  *   // Refreshes searcher every 5 seconds when nobody is waiting, and up to 100 msec delay  *   // when somebody is waiting:  *   NRTManagerReopenThread reopenThread = new NRTManagerReopenThread(manager, 5.0, 0.1);  *   reopenThread.setName("NRT Reopen Thread");  *   reopenThread.setPriority(Math.min(Thread.currentThread().getPriority()+2, Thread.MAX_PRIORITY));  *   reopenThread.setDaemon(true);  *   reopenThread.start();  *</pre>  *  * Then, for each incoming query, do this:  *  *<pre>  *   // For each incoming query:  *   IndexSearcher searcher = manager.get();  *   try {  *     // Use searcher to search...  *   } finally {  *     manager.release(searcher);  *   }  *</pre>  *  * You should make changes using the<code>NRTManager</code>; if you later need to obtain  * a searcher reflecting those changes:  *  *<pre>  *   // ... or updateDocument, deleteDocuments, etc:  *   long gen = manager.addDocument(...);  *     *   // Returned searcher is guaranteed to reflect the just added document  *   IndexSearcher searcher = manager.get(gen);  *   try {  *     // Use searcher to search...  *   } finally {  *     manager.release(searcher);  *   }  *</pre>  *  *  * When you are done be sure to close both the manager and the reopen thrad:  *<pre>   *   reopenThread.close();         *   manager.close();  *</pre>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
