@@ -7125,7 +7125,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|" -Dfile.encoding="
+literal|" -Dargs=\"-Dfile.encoding="
 operator|+
 name|System
 operator|.
@@ -7133,6 +7133,8 @@ name|getProperty
 argument_list|(
 literal|"file.encoding"
 argument_list|)
+operator|+
+literal|"\""
 argument_list|)
 expr_stmt|;
 return|return
