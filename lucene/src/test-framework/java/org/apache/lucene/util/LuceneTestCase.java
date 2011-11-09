@@ -1886,8 +1886,6 @@ name|TEST_CODEC
 argument_list|)
 operator|||
 operator|(
-literal|false
-operator|&&
 literal|"random"
 operator|.
 name|equals
