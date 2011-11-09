@@ -362,9 +362,11 @@ throw|throw
 operator|new
 name|EOFException
 argument_list|(
-literal|"Read past EOF: "
+literal|"Read past EOF (resource: "
 operator|+
 name|this
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
