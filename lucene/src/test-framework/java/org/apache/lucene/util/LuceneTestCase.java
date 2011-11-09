@@ -7119,6 +7119,22 @@ argument_list|(
 literal|" -Dtests.nightly=true"
 argument_list|)
 expr_stmt|;
+comment|// TODO we can't randomize this yet (it drives ant crazy) but this makes tests reproduceable
+comment|// in case machines have different default charsets...
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|" -Dfile.encoding="
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"file.encoding"
+argument_list|)
+argument_list|)
+expr_stmt|;
 return|return
 name|sb
 operator|.
