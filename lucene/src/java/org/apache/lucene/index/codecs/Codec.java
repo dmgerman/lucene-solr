@@ -183,7 +183,18 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-comment|//TODO: not yet fieldsFormat().files(dir, info, files);
+name|storedFieldsFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|dir
+argument_list|,
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
 name|docValuesFormat
 argument_list|()
 operator|.
@@ -213,14 +224,15 @@ name|DocValuesFormat
 name|docValuesFormat
 parameter_list|()
 function_decl|;
-comment|/** Encodes/decodes stored fields, term vectors, fieldinfos */
-DECL|method|fieldsFormat
+comment|/** Encodes/decodes stored fields */
+DECL|method|storedFieldsFormat
 specifier|public
 specifier|abstract
-name|FieldsFormat
-name|fieldsFormat
+name|StoredFieldsFormat
+name|storedFieldsFormat
 parameter_list|()
 function_decl|;
+comment|/** Encodes/decodes segments file */
 DECL|method|segmentInfosFormat
 specifier|public
 specifier|abstract

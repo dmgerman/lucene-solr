@@ -62,6 +62,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|MergeState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|values
 operator|.
 name|IndexDocValues
@@ -215,7 +229,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Merges the given {@link org.apache.lucene.index.codecs.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param docValues docValues array containing one instance per reader (    *          {@link org.apache.lucene.index.codecs.MergeState#readers}) or<code>null</code> if the reader has    *          no {@link IndexDocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Merges the given {@link org.apache.lucene.index.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param docValues docValues array containing one instance per reader (    *          {@link org.apache.lucene.index.MergeState#readers}) or<code>null</code> if the reader has    *          no {@link IndexDocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|merge
 specifier|public
 name|void
@@ -269,8 +283,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|codecs
 operator|.
 name|MergeState
 operator|.

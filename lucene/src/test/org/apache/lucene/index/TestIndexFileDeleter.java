@@ -289,19 +289,6 @@ name|mergePolicy
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|VERBOSE
-condition|?
-name|System
-operator|.
-name|out
-else|:
-literal|null
-argument_list|)
-expr_stmt|;
 name|int
 name|i
 decl_stmt|;
@@ -671,6 +658,7 @@ literal|"segments_1"
 argument_list|)
 expr_stmt|;
 comment|// Create a bogus cfs file shadowing a non-cfs segment:
+comment|// TODO: assert is bogus (relies upon codec-specific filenames)
 name|assertTrue
 argument_list|(
 name|dir
@@ -678,6 +666,13 @@ operator|.
 name|fileExists
 argument_list|(
 literal|"_3.fdt"
+argument_list|)
+operator|||
+name|dir
+operator|.
+name|fileExists
+argument_list|(
+literal|"_3.fld"
 argument_list|)
 argument_list|)
 expr_stmt|;

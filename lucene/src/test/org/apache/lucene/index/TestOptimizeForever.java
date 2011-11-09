@@ -282,19 +282,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|w
-operator|.
-name|setInfoStream
-argument_list|(
-name|VERBOSE
-condition|?
-name|System
-operator|.
-name|out
-else|:
-literal|null
-argument_list|)
-expr_stmt|;
 comment|// Try to make an index that requires optimizing:
 name|w
 operator|.

@@ -62,35 +62,26 @@ name|StoredFieldVisitor
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|IndexInput
-import|;
-end_import
-
 begin_comment
 comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not  * use this file except in compliance with the License. You may obtain a copy of  * the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the  * License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
+begin_comment
+comment|/**  * Codec API for reading stored fields:  *   * You need to implement {@link #visitDocument(int, StoredFieldVisitor)} to  * read the stored fields for a document, implement {@link #clone()} (creating  * clones of any IndexInputs used, etc), and {@link #close()}  * @lucene.experimental  */
+end_comment
+
 begin_class
-DECL|class|FieldsReader
+DECL|class|StoredFieldsReader
 specifier|public
 specifier|abstract
 class|class
-name|FieldsReader
+name|StoredFieldsReader
 implements|implements
 name|Cloneable
 implements|,
 name|Closeable
 block|{
+comment|/** Visit the stored fields for document<code>n</code> */
 DECL|method|visitDocument
 specifier|public
 specifier|abstract
@@ -108,37 +99,10 @@ name|CorruptIndexException
 throws|,
 name|IOException
 function_decl|;
-comment|/** Returns the length in bytes of each raw document in a    *  contiguous range of length numDocs starting with    *  startDocID.  Returns the IndexInput (the fieldStream),    *  already seeked to the starting point for startDocID.*/
-DECL|method|rawDocs
-specifier|public
-specifier|abstract
-name|IndexInput
-name|rawDocs
-parameter_list|(
-name|int
-index|[]
-name|lengths
-parameter_list|,
-name|int
-name|startDocID
-parameter_list|,
-name|int
-name|numDocs
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-DECL|method|size
-specifier|public
-specifier|abstract
-name|int
-name|size
-parameter_list|()
-function_decl|;
 DECL|method|clone
 specifier|public
 specifier|abstract
-name|FieldsReader
+name|StoredFieldsReader
 name|clone
 parameter_list|()
 function_decl|;

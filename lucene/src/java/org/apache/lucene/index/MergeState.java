@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
@@ -9,8 +9,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|codecs
 package|;
 end_package
 
@@ -25,62 +23,6 @@ operator|.
 name|util
 operator|.
 name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInfos
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|MergePolicy
 import|;
 end_import
 
@@ -141,6 +83,20 @@ operator|.
 name|util
 operator|.
 name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|InfoStream
 import|;
 end_import
 
@@ -211,12 +167,6 @@ argument_list|>
 name|readers
 decl_stmt|;
 comment|// Readers& liveDocs being merged
-DECL|field|readerCount
-specifier|public
-name|int
-name|readerCount
-decl_stmt|;
-comment|// Number of readers being merged
 DECL|field|docMaps
 specifier|public
 name|int
@@ -243,6 +193,11 @@ specifier|public
 name|CheckAbort
 name|checkAbort
 decl_stmt|;
+DECL|field|infoStream
+specifier|public
+name|InfoStream
+name|infoStream
+decl_stmt|;
 comment|// Updated per field;
 DECL|field|fieldInfo
 specifier|public
@@ -250,10 +205,12 @@ name|FieldInfo
 name|fieldInfo
 decl_stmt|;
 comment|// Used to process payloads
-DECL|field|hasPayloadProcessorProvider
+comment|// TODO: this is a FactoryFactory here basically
+comment|// and we could make a codec(wrapper) to do all of this privately so IW is uninvolved
+DECL|field|payloadProcessorProvider
 specifier|public
-name|boolean
-name|hasPayloadProcessorProvider
+name|PayloadProcessorProvider
+name|payloadProcessorProvider
 decl_stmt|;
 DECL|field|dirPayloadProcessor
 specifier|public
@@ -266,6 +223,19 @@ specifier|public
 name|PayloadProcessor
 index|[]
 name|currentPayloadProcessor
+decl_stmt|;
+comment|// TODO: get rid of this? it tells you which segments are 'aligned' (e.g. for bulk merging)
+comment|// but is this really so expensive to compute again in different components, versus once in SM?
+DECL|field|matchingSegmentReaders
+specifier|public
+name|SegmentReader
+index|[]
+name|matchingSegmentReaders
+decl_stmt|;
+DECL|field|matchedCount
+specifier|public
+name|int
+name|matchedCount
 decl_stmt|;
 DECL|class|CheckAbort
 specifier|public
@@ -354,6 +324,43 @@ literal|0
 expr_stmt|;
 block|}
 block|}
+comment|/** If you use this: IW.close(false) cannot abort your merge!      * @lucene.internal */
+DECL|field|NONE
+specifier|static
+specifier|final
+name|MergeState
+operator|.
+name|CheckAbort
+name|NONE
+init|=
+operator|new
+name|MergeState
+operator|.
+name|CheckAbort
+argument_list|(
+literal|null
+argument_list|,
+literal|null
+argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|work
+parameter_list|(
+name|double
+name|units
+parameter_list|)
+throws|throws
+name|MergePolicy
+operator|.
+name|MergeAbortedException
+block|{
+comment|// do nothing
+block|}
+block|}
+decl_stmt|;
 block|}
 block|}
 end_class

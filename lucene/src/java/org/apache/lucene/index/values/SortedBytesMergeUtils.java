@@ -78,8 +78,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|codecs
-operator|.
 name|MergeState
 import|;
 end_import
@@ -93,8 +91,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|codecs
 operator|.
 name|MergeState
 operator|.

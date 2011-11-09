@@ -84,6 +84,20 @@ name|Counter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|InfoStream
+import|;
+end_import
+
 begin_comment
 comment|/**  * Encapsulates all necessary state to initiate a {@link PerDocConsumer} and  * create all necessary files in order to consume and merge per-document values.  *   * @lucene.experimental  */
 end_comment
@@ -97,7 +111,7 @@ block|{
 DECL|field|infoStream
 specifier|public
 specifier|final
-name|PrintStream
+name|InfoStream
 name|infoStream
 decl_stmt|;
 DECL|field|directory
@@ -140,7 +154,7 @@ DECL|method|PerDocWriteState
 specifier|public
 name|PerDocWriteState
 parameter_list|(
-name|PrintStream
+name|InfoStream
 name|infoStream
 parameter_list|,
 name|Directory

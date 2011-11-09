@@ -203,7 +203,7 @@ name|consumer
 decl_stmt|;
 DECL|field|fieldsWriter
 specifier|final
-name|StoredFieldsWriter
+name|StoredFieldsConsumer
 name|fieldsWriter
 decl_stmt|;
 comment|// Holds all fields seen in current doc
@@ -287,7 +287,7 @@ expr_stmt|;
 name|fieldsWriter
 operator|=
 operator|new
-name|StoredFieldsWriter
+name|StoredFieldsConsumer
 argument_list|(
 name|docWriter
 argument_list|)

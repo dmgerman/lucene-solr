@@ -610,15 +610,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|w
-operator|.
-name|setInfoStream
-argument_list|(
-name|System
-operator|.
-name|out
-argument_list|)
-expr_stmt|;
 block|}
 comment|/* TODO: find some what to make that random...      * This must be fixed across all fixed bytes       * fields in one index. so if you open another writer      * this might change if I use r.nextInt(x)      * maybe we can peek at the existing files here?       */
 name|fixedBytesLength

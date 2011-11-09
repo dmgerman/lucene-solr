@@ -342,6 +342,7 @@ name|PostingsFormat
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/** memorized field->postingsformat mappings */
 comment|// note: we have to sync this map even though its just for debugging/toString,
 comment|// otherwise DWPT's .toString() calls that iterate over the map can
 comment|// cause concurrentmodificationexception if indexwriter's infostream is on

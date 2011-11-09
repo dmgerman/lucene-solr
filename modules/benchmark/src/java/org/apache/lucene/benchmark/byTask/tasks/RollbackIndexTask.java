@@ -70,6 +70,20 @@ name|IndexWriter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|InfoStream
+import|;
+end_import
+
 begin_comment
 comment|/**  * Rollback the index writer.  */
 end_comment
@@ -129,10 +143,13 @@ literal|null
 condition|)
 block|{
 comment|// If infoStream was set to output to a file, close it.
-name|PrintStream
+name|InfoStream
 name|infoStream
 init|=
 name|iw
+operator|.
+name|getConfig
+argument_list|()
 operator|.
 name|getInfoStream
 argument_list|()
@@ -142,18 +159,6 @@ condition|(
 name|infoStream
 operator|!=
 literal|null
-operator|&&
-name|infoStream
-operator|!=
-name|System
-operator|.
-name|out
-operator|&&
-name|infoStream
-operator|!=
-name|System
-operator|.
-name|err
 condition|)
 block|{
 name|infoStream

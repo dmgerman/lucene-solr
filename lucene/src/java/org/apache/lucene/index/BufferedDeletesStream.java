@@ -30,16 +30,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|PrintStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List
@@ -53,16 +43,6 @@ operator|.
 name|util
 operator|.
 name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
 import|;
 end_import
 
@@ -214,6 +194,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|InfoStream
+import|;
+end_import
+
 begin_comment
 comment|/* Tracks the stream of {@link BufferedDeletes}.  * When DocumentsWriterPerThread flushes, its buffered  * deletes are appended to this stream.  We later  * apply these deletes (resolve them to the actual  * docIDs, per segment) when a merge is started  * (only to the to-be-merged segments).  We  * also apply to all segments when NRT reader is pulled,  * commit/close is called, or when too many deletes are  * buffered and must be flushed (by RAM usage or by count).  *  * Each packet is assigned a generation, and each flushed or  * merged segment is also assigned a generation, so we can  * track which BufferedDeletes packets to apply to any given  * segment. */
 end_comment
@@ -258,7 +252,8 @@ name|lastDeleteTerm
 decl_stmt|;
 DECL|field|infoStream
 specifier|private
-name|PrintStream
+specifier|final
+name|InfoStream
 name|infoStream
 decl_stmt|;
 DECL|field|bytesUsed
@@ -281,82 +276,11 @@ operator|new
 name|AtomicInteger
 argument_list|()
 decl_stmt|;
-DECL|field|messageID
-specifier|private
-specifier|final
-name|int
-name|messageID
-decl_stmt|;
 DECL|method|BufferedDeletesStream
 specifier|public
 name|BufferedDeletesStream
 parameter_list|(
-name|int
-name|messageID
-parameter_list|)
-block|{
-name|this
-operator|.
-name|messageID
-operator|=
-name|messageID
-expr_stmt|;
-block|}
-DECL|method|message
-specifier|private
-specifier|synchronized
-name|void
-name|message
-parameter_list|(
-name|String
-name|message
-parameter_list|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|infoStream
-operator|.
-name|println
-argument_list|(
-literal|"BD "
-operator|+
-name|messageID
-operator|+
-literal|" ["
-operator|+
-operator|new
-name|Date
-argument_list|()
-operator|+
-literal|"; "
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"]: "
-operator|+
-name|message
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-DECL|method|setInfoStream
-specifier|public
-specifier|synchronized
-name|void
-name|setInfoStream
-parameter_list|(
-name|PrintStream
+name|InfoStream
 name|infoStream
 parameter_list|)
 block|{
@@ -466,8 +390,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"BD"
+argument_list|,
 literal|"push deletes "
 operator|+
 name|packet
@@ -786,11 +714,23 @@ name|any
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"BD"
+argument_list|,
 literal|"applyDeletes: no deletes; skipping"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|ApplyDeletesResult
@@ -811,8 +751,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"BD"
+argument_list|,
 literal|"applyDeletes: infos="
 operator|+
 name|infos
@@ -1165,8 +1109,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"BD"
+argument_list|,
 literal|"seg="
 operator|+
 name|info
@@ -1373,8 +1321,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"BD"
+argument_list|,
 literal|"seg="
 operator|+
 name|info
@@ -1433,8 +1385,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"BD"
+argument_list|,
 literal|"applyDeletes took "
 operator|+
 operator|(
@@ -1528,8 +1484,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"BD"
+argument_list|,
 literal|"prune sis="
 operator|+
 name|segmentInfos
@@ -1638,8 +1598,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"BD"
+argument_list|,
 literal|"pruneDeletes: prune "
 operator|+
 name|count

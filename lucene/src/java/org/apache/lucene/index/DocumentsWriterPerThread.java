@@ -252,6 +252,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|InfoStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|RamUsageEstimator
 import|;
 end_import
@@ -549,8 +563,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 literal|"now abort"
 argument_list|)
 expr_stmt|;
@@ -599,8 +617,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 literal|"done abort"
 argument_list|)
 expr_stmt|;
@@ -686,7 +708,8 @@ name|fieldInfos
 decl_stmt|;
 DECL|field|infoStream
 specifier|private
-name|PrintStream
+specifier|final
+name|InfoStream
 name|infoStream
 decl_stmt|;
 DECL|field|numDocsInRAM
@@ -1008,10 +1031,18 @@ assert|;
 if|if
 condition|(
 name|INFO_VERBOSE
+operator|&&
+name|infoStream
+operator|!=
+literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 name|Thread
 operator|.
 name|currentThread
@@ -1034,10 +1065,18 @@ block|}
 if|if
 condition|(
 name|INFO_VERBOSE
+operator|&&
+name|infoStream
+operator|!=
+literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 name|Thread
 operator|.
 name|currentThread
@@ -1235,10 +1274,18 @@ assert|;
 if|if
 condition|(
 name|INFO_VERBOSE
+operator|&&
+name|infoStream
+operator|!=
+literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 name|Thread
 operator|.
 name|currentThread
@@ -1261,10 +1308,18 @@ block|}
 if|if
 condition|(
 name|INFO_VERBOSE
+operator|&&
+name|infoStream
+operator|!=
+literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 name|Thread
 operator|.
 name|currentThread
@@ -1937,8 +1992,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 literal|"flush postings as segment "
 operator|+
 name|flushState
@@ -1963,8 +2022,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 literal|"flush: skip because aborting is set"
 argument_list|)
 expr_stmt|;
@@ -2028,8 +2091,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 literal|"new segment has "
 operator|+
 operator|(
@@ -2058,8 +2125,12 @@ operator|+
 literal|" deleted docs"
 argument_list|)
 expr_stmt|;
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 literal|"new segment has "
 operator|+
 operator|(
@@ -2074,8 +2145,12 @@ literal|"no vectors"
 operator|)
 argument_list|)
 expr_stmt|;
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 literal|"flushedFiles="
 operator|+
 name|newSegment
@@ -2084,8 +2159,12 @@ name|files
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 literal|"flushed codec="
 operator|+
 name|newSegment
@@ -2175,8 +2254,12 @@ literal|1024.
 operator|/
 literal|1024.
 decl_stmt|;
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DWPT"
+argument_list|,
 literal|"flushed: segment="
 operator|+
 name|newSegment
@@ -2333,24 +2416,6 @@ name|get
 argument_list|()
 return|;
 block|}
-DECL|method|message
-name|void
-name|message
-parameter_list|(
-name|String
-name|message
-parameter_list|)
-block|{
-name|writer
-operator|.
-name|message
-argument_list|(
-literal|"DWPT: "
-operator|+
-name|message
-argument_list|)
-expr_stmt|;
-block|}
 comment|/* Initial chunks size of the shared byte[] blocks used to      store postings data */
 DECL|field|BYTE_BLOCK_NOT_MASK
 specifier|final
@@ -2502,27 +2567,6 @@ operator|.
 name|DEFAULT
 argument_list|)
 return|;
-block|}
-DECL|method|setInfoStream
-name|void
-name|setInfoStream
-parameter_list|(
-name|PrintStream
-name|infoStream
-parameter_list|)
-block|{
-name|this
-operator|.
-name|infoStream
-operator|=
-name|infoStream
-expr_stmt|;
-name|docState
-operator|.
-name|infoStream
-operator|=
-name|infoStream
-expr_stmt|;
 block|}
 annotation|@
 name|Override

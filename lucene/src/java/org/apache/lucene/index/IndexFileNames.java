@@ -105,26 +105,6 @@ name|NORMS_EXTENSION
 init|=
 literal|"nrm"
 decl_stmt|;
-comment|/** Extension of stored fields index file */
-DECL|field|FIELDS_INDEX_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|FIELDS_INDEX_EXTENSION
-init|=
-literal|"fdx"
-decl_stmt|;
-comment|/** Extension of stored fields file */
-DECL|field|FIELDS_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|FIELDS_EXTENSION
-init|=
-literal|"fdt"
-decl_stmt|;
 comment|/** Extension of vectors fields file */
 DECL|field|VECTORS_FIELDS_EXTENSION
 specifier|public
@@ -244,10 +224,6 @@ name|COMPOUND_FILE_ENTRIES_EXTENSION
 block|,
 name|FIELD_INFOS_EXTENSION
 block|,
-name|FIELDS_INDEX_EXTENSION
-block|,
-name|FIELDS_EXTENSION
-block|,
 name|DELETES_EXTENSION
 block|,
 name|VECTORS_INDEX_EXTENSION
@@ -282,11 +258,7 @@ block|,
 name|VECTORS_FIELDS_EXTENSION
 block|,
 name|VECTORS_DOCUMENTS_EXTENSION
-block|,
-name|FIELDS_INDEX_EXTENSION
-block|,
-name|FIELDS_EXTENSION
-block|}
+block|,   }
 decl_stmt|;
 DECL|field|NON_STORE_INDEX_EXTENSIONS
 specifier|public
@@ -317,10 +289,6 @@ name|String
 index|[]
 block|{
 name|FIELD_INFOS_EXTENSION
-block|,
-name|FIELDS_INDEX_EXTENSION
-block|,
-name|FIELDS_EXTENSION
 block|,   }
 decl_stmt|;
 comment|/** File extensions for term vector support */
@@ -474,6 +442,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns true if the provided filename is one of the doc store files (ends    * with an extension in {@link #STORE_INDEX_EXTENSIONS}).    */
+comment|// TODO: this method is stupid.
 DECL|method|isDocStoreFile
 specifier|public
 specifier|static

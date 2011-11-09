@@ -3360,9 +3360,6 @@ comment|// ensure field is lazy
 name|assertTrue
 argument_list|(
 operator|(
-operator|(
-name|Field
-operator|)
 name|d
 operator|.
 name|getField
@@ -3386,9 +3383,6 @@ expr_stmt|;
 name|assertFalse
 argument_list|(
 operator|(
-operator|(
-name|Field
-operator|)
 name|d
 operator|.
 name|getField

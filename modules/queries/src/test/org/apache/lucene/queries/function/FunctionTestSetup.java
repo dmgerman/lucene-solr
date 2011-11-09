@@ -623,21 +623,6 @@ argument_list|,
 name|iwc
 argument_list|)
 decl_stmt|;
-name|iw
-operator|.
-name|w
-operator|.
-name|setInfoStream
-argument_list|(
-name|VERBOSE
-condition|?
-name|System
-operator|.
-name|out
-else|:
-literal|null
-argument_list|)
-expr_stmt|;
 comment|// add docs not exactly in natural ID order, to verify we do check the order of docs by scores
 name|int
 name|remaining

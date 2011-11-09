@@ -64,7 +64,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|DefaultFieldsFormat
+name|DefaultStoredFieldsFormat
 import|;
 end_import
 
@@ -112,7 +112,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|FieldsFormat
+name|StoredFieldsFormat
 import|;
 end_import
 
@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the Lucene 4.0 index format, with configurable per-field postings formats  * and using {@link DefaultFieldsFormat} for stored fields and {@link  * DefaultDocValuesFormat} for doc values.  *  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 4.0 index format, with configurable per-field postings formats  * and using {@link DefaultStoredFieldsFormat} for stored fields and {@link  * DefaultDocValuesFormat} for doc values.  *  * @lucene.experimental  */
 end_comment
 
 begin_comment
@@ -193,11 +193,11 @@ block|{
 DECL|field|fieldsFormat
 specifier|private
 specifier|final
-name|FieldsFormat
+name|StoredFieldsFormat
 name|fieldsFormat
 init|=
 operator|new
-name|DefaultFieldsFormat
+name|DefaultStoredFieldsFormat
 argument_list|()
 decl_stmt|;
 DECL|field|docValuesFormat
@@ -266,10 +266,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|fieldsFormat
+DECL|method|storedFieldsFormat
 specifier|public
-name|FieldsFormat
-name|fieldsFormat
+name|StoredFieldsFormat
+name|storedFieldsFormat
 parameter_list|()
 block|{
 return|return

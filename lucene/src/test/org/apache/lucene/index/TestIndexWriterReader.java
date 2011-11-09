@@ -30,16 +30,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|PrintStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -53,16 +43,6 @@ operator|.
 name|util
 operator|.
 name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
 import|;
 end_import
 
@@ -376,19 +356,6 @@ name|TestIndexWriterReader
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|infoStream
-specifier|static
-name|PrintStream
-name|infoStream
-init|=
-name|VERBOSE
-condition|?
-name|System
-operator|.
-name|out
-else|:
-literal|null
-decl_stmt|;
 DECL|field|numThreads
 specifier|private
 specifier|final
@@ -944,19 +911,6 @@ argument_list|,
 name|iwc
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|VERBOSE
-condition|?
-name|System
-operator|.
-name|out
-else|:
-literal|null
-argument_list|)
-expr_stmt|;
 comment|// create the index
 name|createIndexNoClose
 argument_list|(
@@ -1685,13 +1639,6 @@ argument_list|,
 name|iwc
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 comment|// create the index
 name|createIndexNoClose
 argument_list|(
@@ -1739,13 +1686,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|writer2
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 name|createIndexNoClose
 argument_list|(
 operator|!
@@ -1965,13 +1905,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 comment|// create a 2nd index
 name|Directory
 name|dir2
@@ -1999,13 +1932,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|writer2
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 name|createIndexNoClose
 argument_list|(
 operator|!
@@ -2140,13 +2066,6 @@ literal|2
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 comment|// create the index
 name|createIndexNoClose
 argument_list|(
@@ -2469,13 +2388,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 name|IndexReader
 name|w2r1
 init|=
@@ -2574,13 +2486,6 @@ operator|.
 name|reduceOpenFiles
 argument_list|(
 name|mainWriter
-argument_list|)
-expr_stmt|;
-name|mainWriter
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
 argument_list|)
 expr_stmt|;
 name|AddDirectoriesThreads
@@ -3371,13 +3276,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 name|IndexReader
 name|r1
 init|=
@@ -3902,13 +3800,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 comment|// create the index
 name|createIndexNoClose
 argument_list|(
@@ -4111,13 +4002,6 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 comment|// create the index
 name|createIndexNoClose
 argument_list|(
@@ -4302,13 +4186,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 comment|// create the index
 name|createIndexNoClose
 argument_list|(
@@ -4472,13 +4349,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 comment|// create the index
 name|createIndexNoClose
 argument_list|(
@@ -4989,13 +4859,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
 comment|// create the index
 name|createIndexNoClose
 argument_list|(
@@ -6386,19 +6249,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|w
-operator|.
-name|setInfoStream
-argument_list|(
-name|VERBOSE
-condition|?
-name|System
-operator|.
-name|out
-else|:
-literal|null
-argument_list|)
-expr_stmt|;
 name|IndexReader
 name|r
 init|=

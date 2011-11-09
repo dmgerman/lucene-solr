@@ -66,6 +66,20 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|InfoStream
+import|;
+end_import
+
 begin_comment
 comment|/**<p>This class implements a {@link MergePolicy} that tries  *  to merge segments into levels of exponentially  *  increasing size, where each level has fewer segments than  *  the value of the merge factor. Whenever extra segments  *  (beyond the merge factor upper bound) are encountered,  *  all segments within the level are merged. You can get or  *  set the merge factor using {@link #getMergeFactor()} and  *  {@link #setMergeFactor(int)} respectively.</p>  *  *<p>This class is abstract and requires a subclass to  * define the {@link #size} method which specifies how a  * segment's size is determined.  {@link LogDocMergePolicy}  * is one subclass that measures size by document count in  * the segment.  {@link LogByteSizeMergePolicy} is another  * subclass that measures size as the total byte size of the  * file(s) for the segment.</p>  */
 end_comment
@@ -274,18 +288,36 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
+specifier|final
+name|InfoStream
+name|infoStream
+init|=
 name|writer
 operator|.
 name|get
 argument_list|()
 operator|.
+name|infoStream
+decl_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
-literal|"LMP: "
-operator|+
+literal|"LMP"
+argument_list|,
 name|message
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 block|}
 comment|/**<p>Returns the number of segments that are merged at    * once and also controls the total number of segments    * allowed to accumulate in the index.</p> */
 DECL|method|getMergeFactor

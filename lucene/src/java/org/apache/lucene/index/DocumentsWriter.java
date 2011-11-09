@@ -252,8 +252,22 @@ name|Directory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|InfoStream
+import|;
+end_import
+
 begin_comment
-comment|/**  * This class accepts multiple added documents and directly  * writes segment files.  *  * Each added document is passed to the {@link DocConsumer},  * which in turn processes the document and interacts with  * other consumers in the indexing chain.  Certain  * consumers, like {@link StoredFieldsWriter} and {@link  * TermVectorsTermsWriter}, digest a document and  * immediately write bytes to the "doc store" files (ie,  * they do not consume RAM per document, except while they  * are processing the document).  *  * Other consumers, eg {@link FreqProxTermsWriter} and  * {@link NormsWriter}, buffer bytes in RAM and flush only  * when a new segment is produced.   * Once we have used our allowed RAM buffer, or the number  * of added docs is large enough (in the case we are  * flushing by doc count instead of RAM usage), we create a  * real segment and flush it to the Directory.  *  * Threads:  *  * Multiple threads are allowed into addDocument at once.  * There is an initial synchronized call to getThreadState  * which allocates a ThreadState for this thread.  The same  * thread will get the same ThreadState over time (thread  * affinity) so that if there are consistent patterns (for  * example each thread is indexing a different content  * source) then we make better use of RAM.  Then  * processDocument is called on that ThreadState without  * synchronization (most of the "heavy lifting" is in this  * call).  Finally the synchronized "finishDocument" is  * called to flush changes to the directory.  *  * When flush is called by IndexWriter we forcefully idle  * all threads and flush only once they are all idle.  This  * means you can call flush with a given thread even while  * other threads are actively adding/deleting documents.  *  *  * Exceptions:  *  * Because this class directly updates in-memory posting  * lists, and flushes stored fields and term vectors  * directly to files in the directory, there are certain  * limited times when an exception can corrupt this state.  * For example, a disk full while flushing stored fields  * leaves this file in a corrupt state.  Or, an OOM  * exception while appending to the in-memory posting lists  * can corrupt that posting list.  We call such exceptions  * "aborting exceptions".  In these cases we must call  * abort() to discard all docs added since the last flush.  *  * All other exceptions ("non-aborting exceptions") can  * still partially update the index structures.  These  * updates are consistent, but, they represent only a part  * of the document seen up until the exception was hit.  * When this happens, we immediately mark the document as  * deleted so that the document is always atomically ("all  * or none") added to the index.  */
+comment|/**  * This class accepts multiple added documents and directly  * writes segment files.  *  * Each added document is passed to the {@link DocConsumer},  * which in turn processes the document and interacts with  * other consumers in the indexing chain.  Certain  * consumers, like {@link StoredFieldsConsumer} and {@link  * TermVectorsTermsWriter}, digest a document and  * immediately write bytes to the "doc store" files (ie,  * they do not consume RAM per document, except while they  * are processing the document).  *  * Other consumers, eg {@link FreqProxTermsWriter} and  * {@link NormsWriter}, buffer bytes in RAM and flush only  * when a new segment is produced.   * Once we have used our allowed RAM buffer, or the number  * of added docs is large enough (in the case we are  * flushing by doc count instead of RAM usage), we create a  * real segment and flush it to the Directory.  *  * Threads:  *  * Multiple threads are allowed into addDocument at once.  * There is an initial synchronized call to getThreadState  * which allocates a ThreadState for this thread.  The same  * thread will get the same ThreadState over time (thread  * affinity) so that if there are consistent patterns (for  * example each thread is indexing a different content  * source) then we make better use of RAM.  Then  * processDocument is called on that ThreadState without  * synchronization (most of the "heavy lifting" is in this  * call).  Finally the synchronized "finishDocument" is  * called to flush changes to the directory.  *  * When flush is called by IndexWriter we forcefully idle  * all threads and flush only once they are all idle.  This  * means you can call flush with a given thread even while  * other threads are actively adding/deleting documents.  *  *  * Exceptions:  *  * Because this class directly updates in-memory posting  * lists, and flushes stored fields and term vectors  * directly to files in the directory, there are certain  * limited times when an exception can corrupt this state.  * For example, a disk full while flushing stored fields  * leaves this file in a corrupt state.  Or, an OOM  * exception while appending to the in-memory posting lists  * can corrupt that posting list.  We call such exceptions  * "aborting exceptions".  In these cases we must call  * abort() to discard all docs added since the last flush.  *  * All other exceptions ("non-aborting exceptions") can  * still partially update the index structures.  These  * updates are consistent, but, they represent only a part  * of the document seen up until the exception was hit.  * When this happens, we immediately mark the document as  * deleted so that the document is always atomically ("all  * or none") added to the index.  */
 end_comment
 
 begin_class
@@ -273,7 +287,8 @@ name|boolean
 name|closed
 decl_stmt|;
 DECL|field|infoStream
-name|PrintStream
+specifier|final
+name|InfoStream
 name|infoStream
 decl_stmt|;
 DECL|field|similarityProvider
@@ -405,6 +420,15 @@ operator|.
 name|indexWriter
 operator|=
 name|writer
+expr_stmt|;
+name|this
+operator|.
+name|infoStream
+operator|=
+name|config
+operator|.
+name|getInfoStream
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -648,55 +672,6 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|setInfoStream
-specifier|synchronized
-name|void
-name|setInfoStream
-parameter_list|(
-name|PrintStream
-name|infoStream
-parameter_list|)
-block|{
-name|this
-operator|.
-name|infoStream
-operator|=
-name|infoStream
-expr_stmt|;
-specifier|final
-name|Iterator
-argument_list|<
-name|ThreadState
-argument_list|>
-name|it
-init|=
-name|perThreadPool
-operator|.
-name|getAllPerThreadsIterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|it
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|it
-operator|.
-name|next
-argument_list|()
-operator|.
-name|perThread
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 comment|/** Returns how many docs are currently buffered in RAM. */
 DECL|method|getNumDocs
 name|int
@@ -720,36 +695,6 @@ parameter_list|()
 block|{
 return|return
 name|abortedFiles
-return|;
-block|}
-comment|// returns boolean for asserts
-DECL|method|message
-name|boolean
-name|message
-parameter_list|(
-name|String
-name|message
-parameter_list|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
-name|indexWriter
-operator|.
-name|message
-argument_list|(
-literal|"DW: "
-operator|+
-name|message
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-literal|true
 return|;
 block|}
 DECL|method|ensureOpen
@@ -808,9 +753,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
-literal|"DW: abort"
+literal|"DW"
+argument_list|,
+literal|"abort"
 argument_list|)
 expr_stmt|;
 block|}
@@ -925,9 +874,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
-literal|"docWriter: done abort; abortedFiles="
+literal|"DW"
+argument_list|,
+literal|"done abort; abortedFiles="
 operator|+
 name|abortedFiles
 operator|+
@@ -951,9 +904,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
-literal|"docWriter: anyChanges? numDocsInRam="
+literal|"DW"
+argument_list|,
+literal|"anyChanges? numDocsInRam="
 operator|+
 name|numDocsInRAM
 operator|.
@@ -1094,9 +1051,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
-literal|"docWriter: DocumentsWriter has queued dwpt; will hijack this thread to flush pending segment(s)"
+literal|"DW"
+argument_list|,
+literal|"DocumentsWriter has queued dwpt; will hijack this thread to flush pending segment(s)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1141,8 +1102,12 @@ name|anyStalledThreads
 argument_list|()
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DW"
+argument_list|,
 literal|"WARNING DocumentsWriter has stalled threads; waiting"
 argument_list|)
 expr_stmt|;
@@ -1172,9 +1137,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
-literal|"continue indexing after helpling out flushing DocumentsWriter is healthy"
+literal|"DW"
+argument_list|,
+literal|"continue indexing after helping out flushing DocumentsWriter is healthy"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1805,8 +1774,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DW"
+argument_list|,
 literal|"force apply deletes bytesUsed="
 operator|+
 name|flushControl
@@ -1959,8 +1932,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DW"
+argument_list|,
 literal|"flush: push buffered deletes: "
 operator|+
 name|bufferedDeletes
@@ -2067,8 +2044,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DW"
+argument_list|,
 name|Thread
 operator|.
 name|currentThread
@@ -2118,8 +2099,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DW"
+argument_list|,
 literal|"flush: push buffered seg private deletes: "
 operator|+
 name|packet
@@ -2188,8 +2173,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DW"
+argument_list|,
 name|Thread
 operator|.
 name|currentThread
@@ -2298,8 +2287,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DW"
+argument_list|,
 name|Thread
 operator|.
 name|currentThread
@@ -2384,8 +2377,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"DW"
+argument_list|,
 name|Thread
 operator|.
 name|currentThread

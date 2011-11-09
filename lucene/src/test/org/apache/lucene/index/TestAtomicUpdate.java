@@ -654,19 +654,6 @@ argument_list|,
 name|conf
 argument_list|)
 decl_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|VERBOSE
-condition|?
-name|System
-operator|.
-name|out
-else|:
-literal|null
-argument_list|)
-expr_stmt|;
 comment|// Establish a base index of 100 docs:
 for|for
 control|(

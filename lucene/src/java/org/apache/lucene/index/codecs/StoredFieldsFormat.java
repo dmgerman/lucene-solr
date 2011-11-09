@@ -95,39 +95,33 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Controls the format of stored fields/termvectors/...  */
+comment|/**  * Controls the format of stored fields  */
 end_comment
 
 begin_class
-DECL|class|FieldsFormat
+DECL|class|StoredFieldsFormat
 specifier|public
 specifier|abstract
 class|class
-name|FieldsFormat
+name|StoredFieldsFormat
 block|{
 DECL|method|fieldsReader
 specifier|public
 specifier|abstract
-name|FieldsReader
+name|StoredFieldsReader
 name|fieldsReader
 parameter_list|(
 name|Directory
 name|directory
 parameter_list|,
-name|String
-name|segment
+name|SegmentInfo
+name|si
 parameter_list|,
 name|FieldInfos
 name|fn
 parameter_list|,
 name|IOContext
 name|context
-parameter_list|,
-name|int
-name|docStoreOffset
-parameter_list|,
-name|int
-name|size
 parameter_list|)
 throws|throws
 name|IOException
@@ -135,7 +129,7 @@ function_decl|;
 DECL|method|fieldsWriter
 specifier|public
 specifier|abstract
-name|FieldsWriter
+name|StoredFieldsWriter
 name|fieldsWriter
 parameter_list|(
 name|Directory

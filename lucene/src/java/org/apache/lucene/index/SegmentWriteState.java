@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|PrintStream
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -84,6 +74,20 @@ name|BitVector
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|InfoStream
+import|;
+end_import
+
 begin_comment
 comment|/**  * @lucene.experimental  */
 end_comment
@@ -97,7 +101,7 @@ block|{
 DECL|field|infoStream
 specifier|public
 specifier|final
-name|PrintStream
+name|InfoStream
 name|infoStream
 decl_stmt|;
 DECL|field|directory
@@ -170,7 +174,7 @@ DECL|method|SegmentWriteState
 specifier|public
 name|SegmentWriteState
 parameter_list|(
-name|PrintStream
+name|InfoStream
 name|infoStream
 parameter_list|,
 name|Directory

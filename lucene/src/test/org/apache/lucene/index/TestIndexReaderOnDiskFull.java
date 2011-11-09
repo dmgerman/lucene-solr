@@ -291,15 +291,6 @@ argument_list|(
 literal|"TEST: create initial index"
 argument_list|)
 expr_stmt|;
-name|writer
-operator|.
-name|setInfoStream
-argument_list|(
-name|System
-operator|.
-name|out
-argument_list|)
-expr_stmt|;
 block|}
 for|for
 control|(

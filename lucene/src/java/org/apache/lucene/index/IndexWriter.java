@@ -40,16 +40,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|PrintStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -83,16 +73,6 @@ operator|.
 name|util
 operator|.
 name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
 import|;
 end_import
 
@@ -454,6 +434,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|InfoStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|StringHelper
 import|;
 end_import
@@ -528,7 +522,7 @@ name|WRITE_LOCK_NAME
 init|=
 literal|"write.lock"
 decl_stmt|;
-comment|/**    * Absolute hard maximum length for a term, in bytes once    * encoded as UTF8.  If a term arrives from the analyzer    * longer than this length, it is skipped and a message is    * printed to infoStream, if set (see {@link    * #setInfoStream}).    */
+comment|/**    * Absolute hard maximum length for a term, in bytes once    * encoded as UTF8.  If a term arrives from the analyzer    * longer than this length, it is skipped and a message is    * printed to infoStream, if set (see {@link    * IndexWriterConfig#setInfoStream(InfoStream)}).    */
 DECL|field|MAX_TERM_LENGTH
 specifier|public
 specifier|final
@@ -539,28 +533,6 @@ init|=
 name|DocumentsWriterPerThread
 operator|.
 name|MAX_TERM_LENGTH_UTF8
-decl_stmt|;
-comment|// Used for printing messages
-DECL|field|MESSAGE_ID
-specifier|private
-specifier|static
-specifier|final
-name|AtomicInteger
-name|MESSAGE_ID
-init|=
-operator|new
-name|AtomicInteger
-argument_list|()
-decl_stmt|;
-DECL|field|messageID
-specifier|private
-name|int
-name|messageID
-init|=
-name|MESSAGE_ID
-operator|.
-name|getAndIncrement
-argument_list|()
 decl_stmt|;
 DECL|field|hitOOM
 specifier|volatile
@@ -834,11 +806,6 @@ specifier|private
 name|PayloadProcessorProvider
 name|payloadProcessorProvider
 decl_stmt|;
-comment|// for testing
-DECL|field|anyNonBulkMerges
-name|boolean
-name|anyNonBulkMerges
-decl_stmt|;
 DECL|method|getReader
 name|IndexReader
 name|getReader
@@ -883,8 +850,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"flush at getReader"
 argument_list|)
 expr_stmt|;
@@ -978,8 +949,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"return reader version="
 operator|+
 name|r
@@ -1025,8 +1000,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception during NRT reader"
 argument_list|)
 expr_stmt|;
@@ -1060,8 +1039,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"getReader took "
 operator|+
 operator|(
@@ -2814,52 +2797,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Prints a message to the infoStream (if non-null),    * prefixed with the identifying information for this    * writer and the thread that's calling it.    */
-DECL|method|message
-specifier|public
-name|void
-name|message
-parameter_list|(
-name|String
-name|message
-parameter_list|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|infoStream
-operator|.
-name|println
-argument_list|(
-literal|"IW "
-operator|+
-name|messageID
-operator|+
-literal|" ["
-operator|+
-operator|new
-name|Date
-argument_list|()
-operator|+
-literal|"; "
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"]: "
-operator|+
-name|message
-argument_list|)
-expr_stmt|;
-block|}
 DECL|field|codec
 specifier|final
 name|Codec
@@ -2907,7 +2844,10 @@ argument_list|()
 expr_stmt|;
 name|infoStream
 operator|=
-name|defaultInfoStream
+name|conf
+operator|.
+name|getInfoStream
+argument_list|()
 expr_stmt|;
 name|mergePolicy
 operator|=
@@ -2941,13 +2881,6 @@ name|bufferedDeletesStream
 operator|=
 operator|new
 name|BufferedDeletesStream
-argument_list|(
-name|messageID
-argument_list|)
-expr_stmt|;
-name|bufferedDeletesStream
-operator|.
-name|setInfoStream
 argument_list|(
 name|infoStream
 argument_list|)
@@ -3188,8 +3121,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"init: loaded commit \""
 operator|+
 name|commit
@@ -3237,13 +3174,6 @@ argument_list|,
 name|globalFieldNumberMap
 argument_list|,
 name|bufferedDeletesStream
-argument_list|)
-expr_stmt|;
-name|docWriter
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
 argument_list|)
 expr_stmt|;
 comment|// Default deleter (for backwards compatibility) is
@@ -3300,8 +3230,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"init: create="
 operator|+
 name|create
@@ -3331,8 +3265,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"init: hit exception on init; releasing write lock"
 argument_list|)
 expr_stmt|;
@@ -3376,90 +3314,6 @@ return|return
 name|config
 return|;
 block|}
-comment|/** If non-null, this will be the default infoStream used    * by a newly instantiated IndexWriter.    * @see #setInfoStream    */
-DECL|method|setDefaultInfoStream
-specifier|public
-specifier|static
-name|void
-name|setDefaultInfoStream
-parameter_list|(
-name|PrintStream
-name|infoStream
-parameter_list|)
-block|{
-name|IndexWriter
-operator|.
-name|defaultInfoStream
-operator|=
-name|infoStream
-expr_stmt|;
-block|}
-comment|/**    * Returns the current default infoStream for newly    * instantiated IndexWriters.    * @see #setDefaultInfoStream    */
-DECL|method|getDefaultInfoStream
-specifier|public
-specifier|static
-name|PrintStream
-name|getDefaultInfoStream
-parameter_list|()
-block|{
-return|return
-name|IndexWriter
-operator|.
-name|defaultInfoStream
-return|;
-block|}
-comment|/** If non-null, information about merges, deletes and a    * message when maxFieldLength is reached will be printed    * to this.    */
-DECL|method|setInfoStream
-specifier|public
-name|void
-name|setInfoStream
-parameter_list|(
-name|PrintStream
-name|infoStream
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|infoStream
-operator|=
-name|infoStream
-expr_stmt|;
-name|docWriter
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
-name|deleter
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
-name|bufferedDeletesStream
-operator|.
-name|setInfoStream
-argument_list|(
-name|infoStream
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-name|messageState
-argument_list|()
-expr_stmt|;
-block|}
 DECL|method|messageState
 specifier|private
 name|void
@@ -3468,8 +3322,19 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"\ndir="
 operator|+
 name|directory
@@ -3498,19 +3363,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the current infoStream in use by this writer.    * @see #setInfoStream    */
-DECL|method|getInfoStream
-specifier|public
-name|PrintStream
-name|getInfoStream
-parameter_list|()
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-return|return
-name|infoStream
-return|;
 block|}
 comment|/** Returns true if verbosing is enabled (i.e., infoStream != null). */
 DECL|method|verbose
@@ -3654,8 +3506,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"now flush at close waitForMerges="
 operator|+
 name|waitForMerges
@@ -3727,8 +3583,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"now call final commit()"
 argument_list|)
 expr_stmt|;
@@ -3750,8 +3610,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"at close: "
 operator|+
 name|segString
@@ -3860,8 +3724,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception while closing"
 argument_list|)
 expr_stmt|;
@@ -4300,8 +4168,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception updating document"
 argument_list|)
 expr_stmt|;
@@ -4609,8 +4481,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception updating document"
 argument_list|)
 expr_stmt|;
@@ -4813,15 +4689,9 @@ block|}
 block|}
 comment|/** If non-null, information about merges will be printed to this.    */
 DECL|field|infoStream
-specifier|private
-name|PrintStream
+specifier|final
+name|InfoStream
 name|infoStream
-decl_stmt|;
-DECL|field|defaultInfoStream
-specifier|private
-specifier|static
-name|PrintStream
-name|defaultInfoStream
 decl_stmt|;
 comment|/**    * Requests an "optimize" operation on an index, priming the index    * for the fastest available search. Traditionally this has meant    * merging all segments into a single segment as is done in the    * default merge policy, but individual merge policies may implement    * optimize in different ways.    *    *<p> Optimize is a very costly operation, so you    * should only do it if your search performance really    * requires it.  Many search applications do fine never    * calling optimize.</p>    *    *<p>Note that optimize requires 2X the index size free    * space in your Directory (3X if you're using compound    * file format).  For example, if your index size is 10 MB    * then you need 20 MB free for optimize to complete (30    * MB if you're using compound file format).  Also,    * it's best to call {@link #commit()} after the optimize    * completes to allow IndexWriter to free up disk space.</p>    *    *<p>If some but not all readers re-open while an    * optimize is underway, this will cause> 2X temporary    * space to be consumed as those new readers will then    * hold open the partially optimized segments at that    * time.  It is best not to re-open readers while optimize    * is running.</p>    *    *<p>The actual temporary usage could be much less than    * these figures (it depends on many factors).</p>    *    *<p>In general, once the optimize completes, the total size of the    * index will be less than the size of the starting index.    * It could be quite a bit smaller (if there were many    * pending deletes) or just slightly smaller.</p>    *    *<p>If an Exception is hit during optimize(), for example    * due to disk full, the index will not be corrupt and no    * documents will have been lost.  However, it may have    * been partially optimized (some segments were merged but    * not all), and it's possible that one of the segments in    * the index will be in non-compound format even when    * using compound file format.  This will occur when the    * Exception is hit during conversion of the segment into    * compound format.</p>    *    *<p>This call will optimize those segments present in    * the index when the call started.  If other threads are    * still adding documents and flushing segments, those    * newly created segments will not be optimized unless you    * call optimize again.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    *<p><b>NOTE</b>: if you call {@link #close(boolean)}    * with<tt>false</tt>, which aborts all running merges,    * then any thread still running this method might hit a    * {@link MergePolicy.MergeAbortedException}.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @see MergePolicy#findMergesForOptimize   */
 DECL|method|optimize
@@ -4926,16 +4796,24 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"optimize: index now "
 operator|+
 name|segString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"now flush at optimize"
 argument_list|)
 expr_stmt|;
@@ -5304,8 +5182,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"expungeDeletes: index now "
 operator|+
 name|segString
@@ -5937,8 +5819,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"rollback"
 argument_list|)
 expr_stmt|;
@@ -5967,8 +5853,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"rollback: done finish merges"
 argument_list|)
 expr_stmt|;
@@ -6044,8 +5934,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"rollback: infos="
 operator|+
 name|segString
@@ -6140,8 +6034,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception during rollback"
 argument_list|)
 expr_stmt|;
@@ -6253,8 +6151,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception during deleteAll"
 argument_list|)
 expr_stmt|;
@@ -6301,8 +6203,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"now abort pending merge "
 operator|+
 name|merge
@@ -6346,8 +6252,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"now abort running merge "
 operator|+
 name|merge
@@ -6385,8 +6295,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"now wait for "
 operator|+
 name|runningMerges
@@ -6422,8 +6336,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"all running merges have aborted"
 argument_list|)
 expr_stmt|;
@@ -6460,8 +6378,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"waitForMerges"
 argument_list|)
 expr_stmt|;
@@ -6503,8 +6425,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"waitForMerges done"
 argument_list|)
 expr_stmt|;
@@ -6622,13 +6548,25 @@ operator|.
 name|COMPOUND_FILE_EXTENSION
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"creating compound file "
 operator|+
 name|compoundFileName
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Now build compound file
 specifier|final
 name|Directory
@@ -6788,8 +6726,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"flush: write "
 operator|+
 name|delCount
@@ -6880,8 +6822,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception "
 operator|+
 literal|"reating compound file for newly flushed segment "
@@ -6979,8 +6925,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"publishFlushedSegment"
 argument_list|)
 expr_stmt|;
@@ -7052,8 +7002,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"publish sets newSegment delGen="
 operator|+
 name|nextGen
@@ -7248,8 +7202,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"flush at addIndexes(Directory...)"
 argument_list|)
 expr_stmt|;
@@ -7304,8 +7262,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"addIndexes: process directory "
 operator|+
 name|dir
@@ -7415,8 +7377,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"addIndexes: process segment origName="
 operator|+
 name|info
@@ -7613,8 +7579,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"flush at addIndexes(IndexReader...)"
 argument_list|)
 expr_stmt|;
@@ -7676,6 +7646,8 @@ init|=
 operator|new
 name|SegmentMerger
 argument_list|(
+name|infoStream
+argument_list|,
 name|directory
 argument_list|,
 name|config
@@ -7685,7 +7657,11 @@ argument_list|()
 argument_list|,
 name|mergedName
 argument_list|,
-literal|null
+name|MergeState
+operator|.
+name|CheckAbort
+operator|.
+name|NONE
 argument_list|,
 name|payloadProcessorProvider
 argument_list|,
@@ -7715,8 +7691,8 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
-name|int
-name|docCount
+name|MergeState
+name|mergeState
 init|=
 name|merger
 operator|.
@@ -7724,14 +7700,20 @@ name|merge
 argument_list|()
 decl_stmt|;
 comment|// merge 'em
+name|int
+name|docCount
+init|=
+name|mergeState
+operator|.
+name|mergedDocCount
+decl_stmt|;
 specifier|final
 name|FieldInfos
 name|fieldInfos
 init|=
-name|merger
+name|mergeState
 operator|.
 name|fieldInfos
-argument_list|()
 decl_stmt|;
 name|SegmentInfo
 name|info
@@ -7747,10 +7729,7 @@ name|directory
 argument_list|,
 literal|false
 argument_list|,
-name|merger
-operator|.
-name|getCodec
-argument_list|()
+name|codec
 argument_list|,
 name|fieldInfos
 argument_list|)
@@ -8402,13 +8381,21 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"prepareCommit: flush"
 argument_list|)
 expr_stmt|;
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"  index before flush "
 operator|+
 name|segString
@@ -8578,8 +8565,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception during prepareCommit"
 argument_list|)
 expr_stmt|;
@@ -8748,8 +8739,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commit: start"
 argument_list|)
 expr_stmt|;
@@ -8766,8 +8761,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commit: enter lock"
 argument_list|)
 expr_stmt|;
@@ -8786,8 +8785,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commit: now prepare"
 argument_list|)
 expr_stmt|;
@@ -8806,8 +8809,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commit: already prepared"
 argument_list|)
 expr_stmt|;
@@ -8844,8 +8851,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commit: pendingCommit != null"
 argument_list|)
 expr_stmt|;
@@ -8864,8 +8875,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commit: wrote segments file \""
 operator|+
 name|pendingCommit
@@ -8943,8 +8958,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commit: pendingCommit == null; skip"
 argument_list|)
 expr_stmt|;
@@ -8956,8 +8975,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commit: done"
 argument_list|)
 expr_stmt|;
@@ -9069,15 +9092,23 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"  start flush: applyAllDeletes="
 operator|+
 name|applyAllDeletes
 argument_list|)
 expr_stmt|;
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"  index before flush "
 operator|+
 name|segString
@@ -9188,8 +9219,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception during flush"
 argument_list|)
 expr_stmt|;
@@ -9219,8 +9254,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"apply all deletes during flush"
 argument_list|)
 expr_stmt|;
@@ -9237,8 +9276,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"don't apply deletes now delTermCount="
 operator|+
 name|bufferedDeletesStream
@@ -9320,8 +9363,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"drop 100% deleted segments: "
 operator|+
 name|segString
@@ -9560,8 +9607,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commitMergeDeletes "
 operator|+
 name|merge
@@ -10048,8 +10099,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commitMerge: "
 operator|+
 name|merge
@@ -10090,8 +10145,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"commitMerge: skipping merge "
 operator|+
 name|merge
@@ -10150,8 +10209,12 @@ operator|&&
 name|allDeleted
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"merged segment "
 operator|+
 name|merge
@@ -10210,8 +10273,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"after commit: "
 operator|+
 name|segString
@@ -10307,8 +10374,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"handleMergeException: merge="
 operator|+
 name|merge
@@ -10466,8 +10537,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"now merge\n  merge="
 operator|+
 name|merge
@@ -10537,8 +10612,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception during merge"
 argument_list|)
 expr_stmt|;
@@ -10642,8 +10721,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"merge time "
 operator|+
 operator|(
@@ -10835,8 +10918,12 @@ name|infoStream
 operator|!=
 literal|null
 condition|)
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"add merge to pendingMerges: "
 operator|+
 name|merge
@@ -10920,8 +11007,12 @@ argument_list|)
 expr_stmt|;
 comment|// don't call mergingSegments.toString() could lead to ConcurrentModException
 comment|// since merge updates the segments FieldInfos
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 name|builder
 operator|.
 name|toString
@@ -10939,13 +11030,25 @@ operator|.
 name|segments
 control|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|!=
+literal|null
+condition|)
+block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"registerMerge info="
 operator|+
 name|info
 argument_list|)
 expr_stmt|;
+block|}
 name|mergingSegments
 operator|.
 name|add
@@ -11012,8 +11115,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception in mergeInit"
 argument_list|)
 expr_stmt|;
@@ -11172,8 +11279,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"drop 100% deleted segments: "
 operator|+
 name|result
@@ -11339,8 +11450,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"merge seg="
 operator|+
 name|merge
@@ -12052,12 +12167,30 @@ name|getMergeInfo
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
+name|MergeState
+operator|.
+name|CheckAbort
+name|checkAbort
+init|=
+operator|new
+name|MergeState
+operator|.
+name|CheckAbort
+argument_list|(
+name|merge
+argument_list|,
+name|directory
+argument_list|)
+decl_stmt|;
 name|SegmentMerger
 name|merger
 init|=
 operator|new
 name|SegmentMerger
 argument_list|(
+name|infoStream
+argument_list|,
 name|directory
 argument_list|,
 name|config
@@ -12067,7 +12200,7 @@ argument_list|()
 argument_list|,
 name|mergedName
 argument_list|,
-name|merge
+name|checkAbort
 argument_list|,
 name|payloadProcessorProvider
 argument_list|,
@@ -12090,8 +12223,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"merging "
 operator|+
 name|merge
@@ -12273,8 +12410,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"merge: total "
 operator|+
 name|totDocCount
@@ -12291,6 +12432,14 @@ name|directory
 argument_list|)
 expr_stmt|;
 comment|// This is where all the work happens:
+name|MergeState
+name|mergeState
+init|=
+name|merger
+operator|.
+name|merge
+argument_list|()
+decl_stmt|;
 name|mergedDocCount
 operator|=
 name|merge
@@ -12299,10 +12448,9 @@ name|info
 operator|.
 name|docCount
 operator|=
-name|merger
+name|mergeState
 operator|.
-name|merge
-argument_list|()
+name|mergedDocCount
 expr_stmt|;
 comment|// Record which codec was used to write the segment
 name|merge
@@ -12311,10 +12459,7 @@ name|info
 operator|.
 name|setCodec
 argument_list|(
-name|merger
-operator|.
-name|getCodec
-argument_list|()
+name|codec
 argument_list|)
 expr_stmt|;
 if|if
@@ -12324,43 +12469,18 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
-literal|"merge codecs="
+literal|"IW"
+argument_list|,
+literal|"merge codec="
 operator|+
-name|merger
-operator|.
-name|getCodec
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|message
-argument_list|(
-literal|"merge store matchedCount="
-operator|+
-name|merger
-operator|.
-name|getMatchedSubReaderCount
-argument_list|()
-operator|+
-literal|" vs "
-operator|+
-name|merge
-operator|.
-name|readers
-operator|.
-name|size
-argument_list|()
+name|codec
 argument_list|)
 expr_stmt|;
 block|}
-name|anyNonBulkMerges
-operator||=
-name|merger
-operator|.
-name|getAnyNonBulkMerges
-argument_list|()
-expr_stmt|;
 assert|assert
 name|mergedDocCount
 operator|==
@@ -12436,8 +12556,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"create compound file "
 operator|+
 name|compoundFileName
@@ -12533,8 +12657,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception creating compound file during merge"
 argument_list|)
 expr_stmt|;
@@ -12622,8 +12750,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"abort merge after building CFS"
 argument_list|)
 expr_stmt|;
@@ -12657,8 +12789,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 name|String
 operator|.
 name|format
@@ -13337,8 +13473,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"startCommit(): start"
 argument_list|)
 expr_stmt|;
@@ -13367,8 +13507,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"  skip startCommit(): no changes pending"
 argument_list|)
 expr_stmt|;
@@ -13389,8 +13533,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"startCommit index="
 operator|+
 name|segString
@@ -13510,8 +13658,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"done all syncs"
 argument_list|)
 expr_stmt|;
@@ -13554,8 +13706,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit exception committing segments file"
 argument_list|)
 expr_stmt|;
@@ -13684,8 +13840,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"hit OutOfMemoryError inside "
 operator|+
 name|location
@@ -13743,8 +13903,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|infoStream
+operator|.
 name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"nrtIsCurrent: infoVersion matches: "
 operator|+
 operator|(

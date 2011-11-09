@@ -54,20 +54,6 @@ name|DocumentStoredFieldVisitor
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|IndexInput
-import|;
-end_import
-
 begin_comment
 comment|/**  * Expert: provides a low-level means of accessing the stored field  * values in an index.  See {@link IndexReader#document(int,  * StoredFieldVisitor)}.  *  * See {@link DocumentStoredFieldVisitor}, which is a  *<code>StoredFieldVisitor</code> that builds the  * {@link Document} containing all stored fields.  This is  * used by {@link IndexReader#document(int)}.  *  * @lucene.experimental */
 end_comment
@@ -75,81 +61,51 @@ end_comment
 begin_class
 DECL|class|StoredFieldVisitor
 specifier|public
+specifier|abstract
 class|class
 name|StoredFieldVisitor
 block|{
-comment|/** Process a binary field.  Note that if you want to    *  skip the field you must seek the IndexInput    *  (e.g., call<code>in.seek(numUTF8Bytes + in.getFilePointer()</code>)    *    *<p>Return true to stop loading fields. */
+comment|/** Process a binary field. */
 DECL|method|binaryField
 specifier|public
-name|boolean
+name|void
 name|binaryField
 parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|IndexInput
-name|in
+name|byte
+index|[]
+name|value
 parameter_list|,
 name|int
-name|numBytes
+name|offset
+parameter_list|,
+name|int
+name|length
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-name|in
-operator|.
-name|seek
-argument_list|(
-name|in
-operator|.
-name|getFilePointer
-argument_list|()
-operator|+
-name|numBytes
-argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
-block|}
-comment|/** Process a string field by reading numUTF8Bytes.    *  Note that if you want to skip the field you must    *  seek the IndexInput as if you had read numBytes by    *  (e.g., call<code>in.seek(numUTF8Bytes + in.getFilePointer()</code>)    *    *<p>Return true to stop loading fields. */
+block|{   }
+comment|/** Process a string field */
 DECL|method|stringField
 specifier|public
-name|boolean
+name|void
 name|stringField
 parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|IndexInput
-name|in
-parameter_list|,
-name|int
-name|numUTF8Bytes
+name|String
+name|value
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-name|in
-operator|.
-name|seek
-argument_list|(
-name|in
-operator|.
-name|getFilePointer
-argument_list|()
-operator|+
-name|numUTF8Bytes
-argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
-block|}
-comment|/** Process a int numeric field.    *    *<p>Return true to stop loading fields. */
+block|{   }
+comment|/** Process a int numeric field. */
 DECL|method|intField
 specifier|public
-name|boolean
+name|void
 name|intField
 parameter_list|(
 name|FieldInfo
@@ -160,15 +116,11 @@ name|value
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-return|return
-literal|false
-return|;
-block|}
-comment|/** Process a long numeric field.    *    *<p>Return true to stop loading fields. */
+block|{   }
+comment|/** Process a long numeric field. */
 DECL|method|longField
 specifier|public
-name|boolean
+name|void
 name|longField
 parameter_list|(
 name|FieldInfo
@@ -179,15 +131,11 @@ name|value
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-return|return
-literal|false
-return|;
-block|}
-comment|/** Process a float numeric field.    *    *<p>Return true to stop loading fields. */
+block|{   }
+comment|/** Process a float numeric field. */
 DECL|method|floatField
 specifier|public
-name|boolean
+name|void
 name|floatField
 parameter_list|(
 name|FieldInfo
@@ -198,15 +146,11 @@ name|value
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-return|return
-literal|false
-return|;
-block|}
-comment|/** Process a double numeric field.    *    *<p>Return true to stop loading fields. */
+block|{   }
+comment|/** Process a double numeric field. */
 DECL|method|doubleField
 specifier|public
-name|boolean
+name|void
 name|doubleField
 parameter_list|(
 name|FieldInfo
@@ -217,10 +161,36 @@ name|value
 parameter_list|)
 throws|throws
 name|IOException
+block|{   }
+DECL|method|needsField
+specifier|public
+specifier|abstract
+name|Status
+name|needsField
+parameter_list|(
+name|FieldInfo
+name|fieldInfo
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+DECL|enum|Status
+specifier|public
+specifier|static
+enum|enum
+name|Status
 block|{
-return|return
-literal|false
-return|;
+comment|/** yes, i want the field */
+DECL|enum constant|YES
+name|YES
+block|,
+comment|/** no, i do not */
+DECL|enum constant|NO
+name|NO
+block|,
+comment|/** stop loading fields for this document entirely */
+DECL|enum constant|STOP
+name|STOP
 block|}
 block|}
 end_class
