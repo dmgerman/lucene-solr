@@ -650,6 +650,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// Cannot just pass searchers.values() to ArrayList ctor
+comment|// (not thread-safe since the values can change while
+comment|// ArrayList is init'ing itself); must instead iterate
+comment|// ourselves:
 specifier|final
 name|List
 argument_list|<
@@ -662,13 +666,27 @@ name|ArrayList
 argument_list|<
 name|SearcherTracker
 argument_list|>
-argument_list|(
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|SearcherTracker
+name|tracker
+range|:
 name|searchers
 operator|.
 name|values
 argument_list|()
+control|)
+block|{
+name|trackers
+operator|.
+name|add
+argument_list|(
+name|tracker
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 name|Collections
 operator|.
 name|sort
