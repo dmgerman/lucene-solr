@@ -122,20 +122,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|IOUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|Version
 import|;
 end_import
@@ -265,7 +251,7 @@ name|STOP_WORDS_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given file.    * @see WordlistLoader#getWordSet(File)    * @param matchVersion Lucene version to match See {@link    *<a href="#version">above</a>}    * @param stopwords File to read stop words from */
+comment|/** Builds an analyzer with the stop words from the given file.    * @see WordlistLoader#getWordSet(Reader, Version)    * @param matchVersion Lucene version to match See {@link    *<a href="#version">above</a>}    * @param stopwords File to read stop words from */
 DECL|method|StandardAnalyzer
 specifier|public
 name|StandardAnalyzer
@@ -292,7 +278,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given reader.    * @see WordlistLoader#getWordSet(Reader)    * @param matchVersion Lucene version to match See {@link    *<a href="#version">above</a>}    * @param stopwords Reader to read stop words from */
+comment|/** Builds an analyzer with the stop words from the given reader.    * @see WordlistLoader#getWordSet(Reader, Version)    * @param matchVersion Lucene version to match See {@link    *<a href="#version">above</a>}    * @param stopwords Reader to read stop words from */
 DECL|method|StandardAnalyzer
 specifier|public
 name|StandardAnalyzer

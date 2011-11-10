@@ -324,7 +324,7 @@ name|stopWords
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given file.    * @see WordlistLoader#getWordSet(File)    * @param matchVersion See<a href="#version">above</a>    * @param stopwordsFile File to load stop words from */
+comment|/** Builds an analyzer with the stop words from the given file.    * @see WordlistLoader#getWordSet(Reader, Version)    * @param matchVersion See<a href="#version">above</a>    * @param stopwordsFile File to load stop words from */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
@@ -351,7 +351,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the stop words from the given reader.    * @see WordlistLoader#getWordSet(Reader)    * @param matchVersion See<a href="#version">above</a>    * @param stopwords Reader to load stop words from */
+comment|/** Builds an analyzer with the stop words from the given reader.    * @see WordlistLoader#getWordSet(Reader, Version)    * @param matchVersion See<a href="#version">above</a>    * @param stopwords Reader to load stop words from */
 DECL|method|StopAnalyzer
 specifier|public
 name|StopAnalyzer
