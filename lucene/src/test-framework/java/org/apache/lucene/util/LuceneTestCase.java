@@ -6323,12 +6323,11 @@ return|return
 name|d
 return|;
 block|}
-comment|/** Registers a temp file that will be deleted when tests are done. */
-DECL|method|registerTempFile
-specifier|public
+comment|/**    * Registers a temp directory that will be deleted when tests are done. This    * is used by {@link _TestUtil#getTempDir(String)} and    * {@link _TestUtil#unzip(File, File)}, so you should call these methods when    * possible.    */
+DECL|method|registerTempDir
 specifier|static
 name|void
-name|registerTempFile
+name|registerTempDir
 parameter_list|(
 name|File
 name|tmpFile
@@ -6440,34 +6439,21 @@ condition|)
 block|{
 specifier|final
 name|File
-name|tmpFile
+name|dir
 init|=
 name|_TestUtil
 operator|.
-name|createTempFile
+name|getTempDir
 argument_list|(
-literal|"test"
-argument_list|,
-literal|"tmp"
-argument_list|,
-name|TEMP_DIR
+literal|"index"
 argument_list|)
 decl_stmt|;
-name|tmpFile
+name|dir
 operator|.
-name|delete
+name|mkdirs
 argument_list|()
 expr_stmt|;
-name|tmpFile
-operator|.
-name|mkdir
-argument_list|()
-expr_stmt|;
-name|registerTempFile
-argument_list|(
-name|tmpFile
-argument_list|)
-expr_stmt|;
+comment|// ensure it's created so we 'have' it.
 return|return
 name|newFSDirectoryImpl
 argument_list|(
@@ -6480,7 +6466,7 @@ operator|.
 name|class
 argument_list|)
 argument_list|,
-name|tmpFile
+name|dir
 argument_list|)
 return|;
 block|}
