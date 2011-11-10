@@ -1858,8 +1858,8 @@ name|TEST_CODEC
 argument_list|)
 operator|&&
 name|randomVal
-operator|<=
-literal|3
+operator|<
+literal|2
 operator|)
 condition|)
 block|{
