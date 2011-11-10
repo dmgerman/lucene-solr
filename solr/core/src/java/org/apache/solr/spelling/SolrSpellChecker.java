@@ -152,6 +152,22 @@ name|solr
 operator|.
 name|common
 operator|.
+name|params
+operator|.
+name|SpellingParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|NamedList
@@ -494,7 +510,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**    * Integrate spelling suggestions from the various shards in a distributed environment.    *     * @param mergeData    * @param numSug    * @param count    * @param extendedResults    * @return    */
+comment|/**    * Integrate spelling suggestions from the various shards in a distributed environment.    *     * @param mergeData    * @param numSug    * @param count    * @param extendedResults    */
 DECL|method|mergeSuggestions
 specifier|public
 name|SpellingResult
@@ -979,7 +995,7 @@ name|SolrIndexSearcher
 name|searcher
 parameter_list|)
 function_decl|;
-comment|/**    * Get the value of {@link SpellingParams.SPELLCHECK_ACCURACY} if supported.      * Otherwise throws UnsupportedOperationException.    * @return    */
+comment|/**    * Get the value of {@link SpellingParams#SPELLCHECK_ACCURACY} if supported.      * Otherwise throws UnsupportedOperationException.    */
 DECL|method|getAccuracy
 specifier|protected
 name|float
@@ -992,7 +1008,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Get the distance implementation used by this spellchecker, or NULL if not applicable.    * @return    */
+comment|/**    * Get the distance implementation used by this spellchecker, or NULL if not applicable.    */
 DECL|method|getStringDistance
 specifier|protected
 name|StringDistance
