@@ -421,6 +421,18 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+comment|// It's OK to have dup entries, where one is eg
+comment|// float[] and the other is the Bits (from
+comment|// getDocWithField())
+if|if
+condition|(
+name|val
+operator|instanceof
+name|Bits
+condition|)
+block|{
+continue|continue;
+block|}
 if|if
 condition|(
 name|val

@@ -250,6 +250,8 @@ operator|.
 name|reader
 argument_list|,
 name|latField
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -268,6 +270,8 @@ operator|.
 name|reader
 argument_list|,
 name|lngField
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 specifier|final

@@ -7550,6 +7550,8 @@ argument_list|(
 name|r
 argument_list|,
 literal|"number"
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -7609,6 +7611,8 @@ argument_list|(
 name|r2
 argument_list|,
 literal|"number"
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|r2
@@ -7763,6 +7767,8 @@ argument_list|(
 name|r1
 argument_list|,
 literal|"number"
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -7843,6 +7849,8 @@ argument_list|(
 name|sub0
 argument_list|,
 literal|"number"
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|r2
