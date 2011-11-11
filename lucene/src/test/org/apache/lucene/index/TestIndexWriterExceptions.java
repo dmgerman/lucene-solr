@@ -22,27 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|PrintStream
 import|;
 end_import
 
@@ -73,16 +53,6 @@ operator|.
 name|util
 operator|.
 name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
 import|;
 end_import
 
@@ -4012,8 +3982,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -4775,8 +4747,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -5712,10 +5686,10 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|testOptimizeExceptions
+DECL|method|testForceMergeExceptions
 specifier|public
 name|void
-name|testOptimizeExceptions
+name|testForceMergeExceptions
 parameter_list|()
 throws|throws
 name|IOException
@@ -5916,8 +5890,10 @@ try|try
 block|{
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -5937,7 +5913,7 @@ literal|null
 condition|)
 name|fail
 argument_list|(
-literal|"optimize threw IOException without root cause"
+literal|"forceMerge threw IOException without root cause"
 argument_list|)
 expr_stmt|;
 block|}

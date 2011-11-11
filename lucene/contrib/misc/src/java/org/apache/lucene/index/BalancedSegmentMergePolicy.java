@@ -410,10 +410,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|findMergesForOptimize
+DECL|method|findForcedMerges
 specifier|public
 name|MergeSpecification
-name|findMergesForOptimize
+name|findForcedMerges
 parameter_list|(
 name|SegmentInfos
 name|infos
@@ -427,7 +427,7 @@ name|SegmentInfo
 argument_list|,
 name|Boolean
 argument_list|>
-name|segmentsToOptimize
+name|segmentsToMerge
 parameter_list|)
 throws|throws
 name|IOException
@@ -445,19 +445,19 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|isOptimized
+name|isMerged
 argument_list|(
 name|infos
 argument_list|,
 name|maxNumSegments
 argument_list|,
-name|segmentsToOptimize
+name|segmentsToMerge
 argument_list|)
 condition|)
 block|{
 comment|// Find the newest (rightmost) segment that needs to
-comment|// be optimized (other segments may have been flushed
-comment|// since optimize started):
+comment|// be merged (other segments may have been flushed
+comment|// since the merge started):
 name|int
 name|last
 init|=
@@ -487,7 +487,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|segmentsToOptimize
+name|segmentsToMerge
 operator|.
 name|containsKey
 argument_list|(
@@ -515,7 +515,7 @@ operator|==
 literal|1
 condition|)
 block|{
-comment|// Since we must optimize down to 1 segment, the
+comment|// Since we must merge down to 1 segment, the
 comment|// choice is simple:
 if|if
 condition|(
@@ -524,7 +524,7 @@ operator|>
 literal|1
 operator|||
 operator|!
-name|isOptimized
+name|isMerged
 argument_list|(
 name|infos
 operator|.

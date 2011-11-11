@@ -241,10 +241,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|findMergesForOptimize
+DECL|method|findForcedMerges
 specifier|public
 name|MergeSpecification
-name|findMergesForOptimize
+name|findForcedMerges
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
@@ -258,7 +258,7 @@ name|SegmentInfo
 argument_list|,
 name|Boolean
 argument_list|>
-name|segmentsToOptimize
+name|segmentsToMerge
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -289,7 +289,7 @@ control|)
 block|{
 if|if
 condition|(
-name|segmentsToOptimize
+name|segmentsToMerge
 operator|.
 name|containsKey
 argument_list|(
@@ -306,7 +306,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//System.out.println("MRMP: findMergesForOptimize sis=" + segmentInfos + " eligible=" + eligibleSegments);
+comment|//System.out.println("MRMP: findMerges sis=" + segmentInfos + " eligible=" + eligibleSegments);
 name|MergeSpecification
 name|mergeSpec
 init|=
@@ -464,7 +464,7 @@ name|segments
 control|)
 block|{
 assert|assert
-name|segmentsToOptimize
+name|segmentsToMerge
 operator|.
 name|containsKey
 argument_list|(

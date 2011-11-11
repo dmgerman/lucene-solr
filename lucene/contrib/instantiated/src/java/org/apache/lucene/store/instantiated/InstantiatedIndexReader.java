@@ -299,19 +299,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @return always true.    */
-annotation|@
-name|Override
-DECL|method|isOptimized
-specifier|public
-name|boolean
-name|isOptimized
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 comment|/**    * An InstantiatedIndexReader is not a snapshot in time, it is completely in    * sync with the latest commit to the store!    *     * @return output from {@link InstantiatedIndex#getVersion()} in associated instantiated index.    */
 annotation|@
 name|Override

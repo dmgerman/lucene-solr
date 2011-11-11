@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * This is an easy-to-use tool that upgrades all segments of an index from previous Lucene versions   * to the current segment file format. It can be used from command line:   *<pre>   *  java -cp lucene-core.jar org.apache.lucene.index.IndexUpgrader [-delete-prior-commits] [-verbose] indexDir   *</pre>   * Alternatively this class can be instantiated and {@link #upgrade} invoked. It uses {@link UpgradeIndexMergePolicy}   * and triggers the upgrade via an optimize request to {@link IndexWriter}.   *<p>This tool keeps only the last commit in an index; for this   * reason, if the incoming index has more than one commit, the tool   * refuses to run by default. Specify {@code -delete-prior-commits}   * to override this, allowing the tool to delete all but the last commit.   * From Java code this can be enabled by passing {@code true} to   * {@link #IndexUpgrader(Directory,Version,PrintStream,boolean)}.   *<p><b>Warning:</b> This tool may reorder documents if the index was partially   * upgraded before execution (e.g., documents were added). If your application relies   * on&quot;monotonicity&quot; of doc IDs (which means that the order in which the documents   * were added to the index is preserved), do a full optimize instead.   * The {@link MergePolicy} set by {@link IndexWriterConfig} may also reorder   * documents.   */
+comment|/**   * This is an easy-to-use tool that upgrades all segments of an index from previous Lucene versions   * to the current segment file format. It can be used from command line:   *<pre>   *  java -cp lucene-core.jar org.apache.lucene.index.IndexUpgrader [-delete-prior-commits] [-verbose] indexDir   *</pre>   * Alternatively this class can be instantiated and {@link #upgrade} invoked. It uses {@link UpgradeIndexMergePolicy}   * and triggers the upgrade via an forceMerge request to {@link IndexWriter}.   *<p>This tool keeps only the last commit in an index; for this   * reason, if the incoming index has more than one commit, the tool   * refuses to run by default. Specify {@code -delete-prior-commits}   * to override this, allowing the tool to delete all but the last commit.   * From Java code this can be enabled by passing {@code true} to   * {@link #IndexUpgrader(Directory,Version,PrintStream,boolean)}.   *<p><b>Warning:</b> This tool may reorder documents if the index was partially   * upgraded before execution (e.g., documents were added). If your application relies   * on&quot;monotonicity&quot; of doc IDs (which means that the order in which the documents   * were added to the index is preserved), do a full forceMerge instead.   * The {@link MergePolicy} set by {@link IndexWriterConfig} may also reorder   * documents.   */
 end_comment
 
 begin_class
@@ -647,8 +647,10 @@ expr_stmt|;
 block|}
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 if|if
 condition|(

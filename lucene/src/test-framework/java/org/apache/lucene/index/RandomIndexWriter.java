@@ -247,7 +247,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Silly class that randomizes the indexing experience.  EG  *  it may swap in a different merge policy/scheduler; may  *  commit periodically; may or may not optimize in the end,  *  may flush by doc count instead of RAM, etc.   */
+comment|/** Silly class that randomizes the indexing experience.  EG  *  it may swap in a different merge policy/scheduler; may  *  commit periodically; may or may not forceMerge in the end,  *  may flush by doc count instead of RAM, etc.   */
 end_comment
 
 begin_class
@@ -1609,17 +1609,17 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|field|doRandomOptimize
+DECL|field|doRandomForceMerge
 specifier|private
 name|boolean
-name|doRandomOptimize
+name|doRandomForceMerge
 init|=
 literal|true
 decl_stmt|;
-DECL|field|doRandomOptimizeAssert
+DECL|field|doRandomForceMergeAssert
 specifier|private
 name|boolean
-name|doRandomOptimizeAssert
+name|doRandomForceMergeAssert
 init|=
 literal|true
 decl_stmt|;
@@ -1656,45 +1656,45 @@ name|expungeDeletes
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|setDoRandomOptimize
+DECL|method|setDoRandomForceMerge
 specifier|public
 name|void
-name|setDoRandomOptimize
+name|setDoRandomForceMerge
 parameter_list|(
 name|boolean
 name|v
 parameter_list|)
 block|{
-name|doRandomOptimize
+name|doRandomForceMerge
 operator|=
 name|v
 expr_stmt|;
 block|}
-DECL|method|setDoRandomOptimizeAssert
+DECL|method|setDoRandomForceMergeAssert
 specifier|public
 name|void
-name|setDoRandomOptimizeAssert
+name|setDoRandomForceMergeAssert
 parameter_list|(
 name|boolean
 name|v
 parameter_list|)
 block|{
-name|doRandomOptimizeAssert
+name|doRandomForceMergeAssert
 operator|=
 name|v
 expr_stmt|;
 block|}
-DECL|method|doRandomOptimize
+DECL|method|doRandomForceMerge
 specifier|private
 name|void
-name|doRandomOptimize
+name|doRandomForceMerge
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 if|if
 condition|(
-name|doRandomOptimize
+name|doRandomForceMerge
 condition|)
 block|{
 specifier|final
@@ -1718,16 +1718,18 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// full optimize
+comment|// full forceMerge
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
-comment|// partial optimize
+comment|// partial forceMerge
 specifier|final
 name|int
 name|limit
@@ -1745,14 +1747,14 @@ argument_list|)
 decl_stmt|;
 name|w
 operator|.
-name|optimize
+name|forceMerge
 argument_list|(
 name|limit
 argument_list|)
 expr_stmt|;
 assert|assert
 operator|!
-name|doRandomOptimizeAssert
+name|doRandomForceMergeAssert
 operator|||
 name|w
 operator|.
@@ -1805,7 +1807,7 @@ operator|==
 literal|2
 condition|)
 block|{
-name|doRandomOptimize
+name|doRandomForceMerge
 argument_list|()
 expr_stmt|;
 block|}
@@ -1968,7 +1970,7 @@ throws|throws
 name|IOException
 block|{
 comment|// if someone isn't using getReader() API, we want to be sure to
-comment|// maybeOptimize since presumably they might open a reader on the dir.
+comment|// forceMerge since presumably they might open a reader on the dir.
 if|if
 condition|(
 name|getReaderCalled
@@ -1985,7 +1987,7 @@ operator|==
 literal|2
 condition|)
 block|{
-name|doRandomOptimize
+name|doRandomForceMerge
 argument_list|()
 expr_stmt|;
 block|}
@@ -1995,19 +1997,24 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Forces an optimize.    *<p>    * NOTE: this should be avoided in tests unless absolutely necessary,    * as it will result in less test coverage.    * @see IndexWriter#optimize()    */
-DECL|method|optimize
+comment|/**    * Forces a forceMerge.    *<p>    * NOTE: this should be avoided in tests unless absolutely necessary,    * as it will result in less test coverage.    * @see IndexWriter#forceMerge(int)    */
+DECL|method|forceMerge
 specifier|public
 name|void
-name|optimize
-parameter_list|()
+name|forceMerge
+parameter_list|(
+name|int
+name|maxSegmentCount
+parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+name|maxSegmentCount
+argument_list|)
 expr_stmt|;
 block|}
 block|}

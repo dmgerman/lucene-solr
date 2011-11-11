@@ -468,7 +468,7 @@ name|TestDocValuesIndexing
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/*    * - add test for unoptimized case with deletes    * - add multithreaded tests / integrate into stress indexing?    */
+comment|/*    * - add test for multi segment case with deletes    * - add multithreaded tests / integrate into stress indexing?    */
 annotation|@
 name|Before
 DECL|method|setUp
@@ -609,8 +609,10 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
+name|forceMerge
 argument_list|(
+literal|1
+argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
@@ -637,12 +639,16 @@ argument_list|,
 literal|1
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|1
+argument_list|,
 name|reader
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|IndexSearcher
@@ -1233,8 +1239,10 @@ expr_stmt|;
 block|}
 name|w
 operator|.
-name|optimize
+name|forceMerge
 argument_list|(
+literal|1
+argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
@@ -2902,17 +2910,21 @@ throws|throws
 name|IOException
 block|{
 name|boolean
-name|optimized
+name|singleSeg
 init|=
 name|reader
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
+operator|==
+literal|1
 decl_stmt|;
 name|PerDocValues
 name|perDoc
 init|=
-name|optimized
+name|singleSeg
 condition|?
 name|reader
 operator|.
@@ -2938,7 +2950,7 @@ name|random
 operator|.
 name|nextInt
 argument_list|(
-name|optimized
+name|singleSeg
 condition|?
 literal|3
 else|:
@@ -2946,7 +2958,7 @@ literal|2
 argument_list|)
 condition|)
 block|{
-comment|// case 2 only if optimized
+comment|// case 2 only if single seg
 case|case
 literal|0
 case|:
@@ -2994,7 +3006,7 @@ throw|;
 case|case
 literal|2
 case|:
-comment|// this only works if we are on an optimized index!
+comment|// this only works if we are on a single seg index!
 return|return
 name|reader
 operator|.
@@ -3671,7 +3683,7 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-comment|// TODO test unoptimized with deletions
+comment|// TODO test multi seg with deletions
 if|if
 condition|(
 name|withDeletions
@@ -3684,8 +3696,10 @@ condition|)
 block|{
 name|w
 operator|.
-name|optimize
+name|forceMerge
 argument_list|(
+literal|1
+argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
@@ -3803,8 +3817,10 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|IndexReader
 name|r
@@ -3984,8 +4000,10 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|IndexReader
 name|r

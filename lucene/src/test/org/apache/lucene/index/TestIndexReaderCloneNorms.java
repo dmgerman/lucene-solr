@@ -399,7 +399,7 @@ name|random
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test that norms values are preserved as the index is maintained. Including    * separate norms. Including merging indexes with seprate norms. Including    * optimize.    */
+comment|/**    * Test that norms values are preserved as the index is maintained. Including    * separate norms. Including merging indexes with seprate norms. Including    * full merge.    */
 DECL|method|testNorms
 specifier|public
 name|void
@@ -543,7 +543,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: now addIndexes/optimize"
+literal|"TEST: now addIndexes/full merge"
 argument_list|)
 expr_stmt|;
 block|}
@@ -594,8 +594,10 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|iw
 operator|.
@@ -641,7 +643,7 @@ argument_list|,
 name|dir3
 argument_list|)
 expr_stmt|;
-comment|// now with optimize
+comment|// now with full merge
 name|iw
 operator|=
 operator|new
@@ -679,8 +681,10 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|iw
 operator|.

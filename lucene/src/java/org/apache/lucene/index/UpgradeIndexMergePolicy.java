@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** This {@link MergePolicy} is used for upgrading all existing segments of   * an index when calling {@link IndexWriter#optimize()}.   * All other methods delegate to the base {@code MergePolicy} given to the constructor.   * This allows for an as-cheap-as possible upgrade of an older index by only upgrading segments that   * are created by previous Lucene versions. Optimize does no longer really optimize   * it is just used to&quot;optimize&quot; older segment versions away.   *<p>In general one would use {@link IndexUpgrader}, but for a fully customizeable upgrade,   * you can use this like any other {@code MergePolicy} and call {@link IndexWriter#optimize()}:   *<pre class="prettyprint lang-java">   *  IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_XX, new KeywordAnalyzer());   *  iwc.setMergePolicy(new UpgradeIndexMergePolicy(iwc.getMergePolicy()));   *  IndexWriter w = new IndexWriter(dir, iwc);   *  w.optimize();   *  w.close();   *</pre>   *<p><b>Warning:</b> This merge policy may reorder documents if the index was partially   * upgraded before calling optimize (e.g., documents were added). If your application relies   * on&quot;monotonicity&quot; of doc IDs (which means that the order in which the documents   * were added to the index is preserved), do a full optimize instead. Please note, the   * delegate {@code MergePolicy} may also reorder documents.   * @lucene.experimental   * @see IndexUpgrader   */
+comment|/** This {@link MergePolicy} is used for upgrading all existing segments of   * an index when calling {@link IndexWriter#forceMerge(int)}.   * All other methods delegate to the base {@code MergePolicy} given to the constructor.   * This allows for an as-cheap-as possible upgrade of an older index by only upgrading segments that   * are created by previous Lucene versions. forceMerge does no longer really merge;   * it is just used to&quot;forceMerge&quot; older segment versions away.   *<p>In general one would use {@link IndexUpgrader}, but for a fully customizeable upgrade,   * you can use this like any other {@code MergePolicy} and call {@link IndexWriter#forceMerge(int)}:   *<pre class="prettyprint lang-java">   *  IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_XX, new KeywordAnalyzer());   *  iwc.setMergePolicy(new UpgradeIndexMergePolicy(iwc.getMergePolicy()));   *  IndexWriter w = new IndexWriter(dir, iwc);   *  w.forceMerge(1);   *  w.close();   *</pre>   *<p><b>Warning:</b> This merge policy may reorder documents if the index was partially   * upgraded before calling forceMerge (e.g., documents were added). If your application relies   * on&quot;monotonicity&quot; of doc IDs (which means that the order in which the documents   * were added to the index is preserved), do a forceMerge(1) instead. Please note, the   * delegate {@code MergePolicy} may also reorder documents.   * @lucene.experimental   * @see IndexUpgrader   */
 end_comment
 
 begin_class
@@ -112,7 +112,7 @@ specifier|final
 name|MergePolicy
 name|base
 decl_stmt|;
-comment|/** Wrap the given {@link MergePolicy} and intercept optimize requests to    * only upgrade segments written with previous Lucene versions. */
+comment|/** Wrap the given {@link MergePolicy} and intercept forceMerge requests to    * only upgrade segments written with previous Lucene versions. */
 DECL|method|UpgradeIndexMergePolicy
 specifier|public
 name|UpgradeIndexMergePolicy
@@ -205,10 +205,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|findMergesForOptimize
+DECL|method|findForcedMerges
 specifier|public
 name|MergeSpecification
-name|findMergesForOptimize
+name|findForcedMerges
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
@@ -222,7 +222,7 @@ name|SegmentInfo
 argument_list|,
 name|Boolean
 argument_list|>
-name|segmentsToOptimize
+name|segmentsToMerge
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -261,7 +261,7 @@ specifier|final
 name|Boolean
 name|v
 init|=
-name|segmentsToOptimize
+name|segmentsToMerge
 operator|.
 name|get
 argument_list|(
@@ -298,7 +298,7 @@ argument_list|()
 condition|)
 name|message
 argument_list|(
-literal|"findMergesForOptimize: segmentsToUpgrade="
+literal|"findForcedMerges: segmentsToUpgrade="
 operator|+
 name|oldSegments
 argument_list|)
@@ -318,7 +318,7 @@ name|spec
 init|=
 name|base
 operator|.
-name|findMergesForOptimize
+name|findForcedMerges
 argument_list|(
 name|segmentInfos
 argument_list|,
@@ -378,7 +378,7 @@ argument_list|()
 condition|)
 name|message
 argument_list|(
-literal|"findMergesForOptimize: "
+literal|"findForcedMerges: "
 operator|+
 name|base
 operator|.

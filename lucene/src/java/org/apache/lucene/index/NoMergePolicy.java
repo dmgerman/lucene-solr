@@ -128,10 +128,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|findMergesForOptimize
+DECL|method|findForcedMerges
 specifier|public
 name|MergeSpecification
-name|findMergesForOptimize
+name|findForcedMerges
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
@@ -145,7 +145,7 @@ name|SegmentInfo
 argument_list|,
 name|Boolean
 argument_list|>
-name|segmentsToOptimize
+name|segmentsToMerge
 parameter_list|)
 throws|throws
 name|CorruptIndexException

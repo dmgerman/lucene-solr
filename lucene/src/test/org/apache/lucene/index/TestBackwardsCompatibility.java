@@ -459,7 +459,7 @@ comment|// index.<VERSION>.nocfs.zip *".  Then move those 2 zip
 comment|// files to your trunk checkout and add them to the
 comment|// oldNames array.
 comment|/*   public void testCreateCFS() throws IOException {     createIndex("index.cfs", true, false);   }    public void testCreateNoCFS() throws IOException {     createIndex("index.nocfs", false, false);   }   */
-comment|/*   // These are only needed for the special upgrade test to verify   // that also optimized indexes are correctly upgraded by IndexUpgrader.   // You don't need them to be build for non-3.1 (the test is happy with just one   // "old" segment format, version is unimportant:      public void testCreateOptimizedCFS() throws IOException {     createIndex("index.optimized.cfs", true, true);   }    public void testCreateOptimizedNoCFS() throws IOException {     createIndex("index.optimized.nocfs", false, true);   }  */
+comment|/*   // These are only needed for the special upgrade test to verify   // that also single-segment indexes are correctly upgraded by IndexUpgrader.   // You don't need them to be build for non-3.1 (the test is happy with just one   // "old" segment format, version is unimportant:      public void testCreateSingleSegmentCFS() throws IOException {     createIndex("index.singlesegment.cfs", true, true);   }    public void testCreateSingleSegmentNoCFS() throws IOException {     createIndex("index.singlesegment.nocfs", false, true);   }  */
 DECL|field|oldNames
 specifier|final
 name|String
@@ -520,11 +520,11 @@ block|,
 literal|"29.nocfs"
 block|,   }
 decl_stmt|;
-DECL|field|oldOptimizedNames
+DECL|field|oldSingleSegmentNames
 specifier|final
 name|String
 index|[]
-name|oldOptimizedNames
+name|oldSingleSegmentNames
 init|=
 block|{
 literal|"31.optimized.cfs"
@@ -869,10 +869,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testOptimizeOldIndex
+DECL|method|testFullyMergeOldIndex
 specifier|public
 name|void
-name|testOptimizeOldIndex
+name|testFullyMergeOldIndex
 parameter_list|()
 throws|throws
 name|Exception
@@ -977,8 +977,10 @@ argument_list|)
 decl_stmt|;
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|w
 operator|.
@@ -2474,7 +2476,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// optimize
+comment|// fully merge
 name|writer
 operator|=
 operator|new
@@ -2503,8 +2505,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -2877,7 +2881,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// optimize
+comment|// fully merge
 name|IndexWriter
 name|writer
 init|=
@@ -2907,8 +2911,10 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -3024,7 +3030,7 @@ name|boolean
 name|doCFS
 parameter_list|,
 name|boolean
-name|optimized
+name|fullyMerged
 parameter_list|)
 throws|throws
 name|IOException
@@ -3153,13 +3159,15 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|optimized
+name|fullyMerged
 condition|)
 block|{
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
 name|writer
@@ -3170,7 +3178,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-name|optimized
+name|fullyMerged
 condition|)
 block|{
 comment|// open fresh writer so we get no prx file in the added segment
@@ -5006,7 +5014,7 @@ name|oldNames
 operator|.
 name|length
 operator|+
-name|oldOptimizedNames
+name|oldSingleSegmentNames
 operator|.
 name|length
 argument_list|)
@@ -5031,7 +5039,7 @@ name|Arrays
 operator|.
 name|asList
 argument_list|(
-name|oldOptimizedNames
+name|oldSingleSegmentNames
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5131,10 +5139,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testUpgradeOldOptimizedIndexWithAdditions
+DECL|method|testUpgradeOldSingleSegmentIndexWithAdditions
 specifier|public
 name|void
-name|testUpgradeOldOptimizedIndexWithAdditions
+name|testUpgradeOldSingleSegmentIndexWithAdditions
 parameter_list|()
 throws|throws
 name|Exception
@@ -5144,7 +5152,7 @@ control|(
 name|String
 name|name
 range|:
-name|oldOptimizedNames
+name|oldSingleSegmentNames
 control|)
 block|{
 if|if
@@ -5158,7 +5166,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testUpgradeOldOptimizedIndexWithAdditions: index="
+literal|"testUpgradeOldSingleSegmentIndexWithAdditions: index="
 operator|+
 name|name
 argument_list|)
@@ -5200,7 +5208,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Original index must be optimized"
+literal|"Original index must be single segment"
 argument_list|,
 literal|1
 argument_list|,
@@ -5324,7 +5332,8 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|// add dummy segments (which are all in current version) to optimized index
+comment|// add dummy segments (which are all in current
+comment|// version) to single segment index
 name|MergePolicy
 name|mp
 init|=

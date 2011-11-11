@@ -2320,10 +2320,12 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
-comment|// Test optimized single segment
+comment|// Test single segment
 name|r
 operator|=
 name|writer

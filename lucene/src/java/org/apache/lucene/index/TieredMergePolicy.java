@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Merges segments of approximately equal size, subject to  *  an allowed number of segments per tier.  This is similar  *  to {@link LogByteSizeMergePolicy}, except this merge  *  policy is able to merge non-adjacent segment, and  *  separates how many segments are merged at once ({@link  *  #setMaxMergeAtOnce}) from how many segments are allowed  *  per tier ({@link #setSegmentsPerTier}).  This merge  *  policy also does not over-merge (ie, cascade merges).   *  *<p>For normal merging, this policy first computes a  *  "budget" of how many segments are allowed by be in the  *  index.  If the index is over-budget, then the policy  *  sorts segments by decreasing size (pro-rating by percent  *  deletes), and then finds the least-cost merge.  Merge  *  cost is measured by a combination of the "skew" of the  *  merge (size of largest seg divided by smallest seg),  *  total merge size and pct deletes reclaimed,  *  so that merges with lower skew, smaller size  *  and those reclaiming more deletes, are  *  favored.  *  *<p>If a merge will produce a segment that's larger than  *  {@link #setMaxMergedSegmentMB}, then the policy will  *  merge fewer segments (down to 1 at once, if that one has  *  deletions) to keep the segment size under budget.  *        *<p<b>NOTE</b>: this policy freely merges non-adjacent  *  segments; if this is a problem, use {@link  *  LogMergePolicy}.  *  *<p><b>NOTE</b>: This policy always merges by byte size  *  of the segments, always pro-rates by percent deletes,  *  and does not apply any maximum segment size during  *  optimize (unlike {@link LogByteSizeMergePolicy}).  *  *  @lucene.experimental  */
+comment|/**  *  Merges segments of approximately equal size, subject to  *  an allowed number of segments per tier.  This is similar  *  to {@link LogByteSizeMergePolicy}, except this merge  *  policy is able to merge non-adjacent segment, and  *  separates how many segments are merged at once ({@link  *  #setMaxMergeAtOnce}) from how many segments are allowed  *  per tier ({@link #setSegmentsPerTier}).  This merge  *  policy also does not over-merge (ie, cascade merges).   *  *<p>For normal merging, this policy first computes a  *  "budget" of how many segments are allowed by be in the  *  index.  If the index is over-budget, then the policy  *  sorts segments by decreasing size (pro-rating by percent  *  deletes), and then finds the least-cost merge.  Merge  *  cost is measured by a combination of the "skew" of the  *  merge (size of largest seg divided by smallest seg),  *  total merge size and pct deletes reclaimed,  *  so that merges with lower skew, smaller size  *  and those reclaiming more deletes, are  *  favored.  *  *<p>If a merge will produce a segment that's larger than  *  {@link #setMaxMergedSegmentMB}, then the policy will  *  merge fewer segments (down to 1 at once, if that one has  *  deletions) to keep the segment size under budget.  *        *<p<b>NOTE</b>: this policy freely merges non-adjacent  *  segments; if this is a problem, use {@link  *  LogMergePolicy}.  *  *<p><b>NOTE</b>: This policy always merges by byte size  *  of the segments, always pro-rates by percent deletes,  *  and does not apply any maximum segment size during  *  forceMerge (unlike {@link LogByteSizeMergePolicy}).  *  *  @lucene.experimental  */
 end_comment
 
 begin_comment
@@ -215,7 +215,7 @@ name|reclaimDeletesWeight
 init|=
 literal|2.0
 decl_stmt|;
-comment|/** Maximum number of segments to be merged at a time    *  during "normal" merging.  For explicit merging (eg,    *  optimize or expungeDeletes was called), see {@link    *  #setMaxMergeAtOnceExplicit}.  Default is 10. */
+comment|/** Maximum number of segments to be merged at a time    *  during "normal" merging.  For explicit merging (eg,    *  forceMerge or expungeDeletes was called), see {@link    *  #setMaxMergeAtOnceExplicit}.  Default is 10. */
 DECL|method|setMaxMergeAtOnce
 specifier|public
 name|TieredMergePolicy
@@ -265,7 +265,7 @@ return|;
 block|}
 comment|// TODO: should addIndexes do explicit merging, too?  And,
 comment|// if user calls IW.maybeMerge "explicitly"
-comment|/** Maximum number of segments to be merged at a time,    *  during optimize or expungeDeletes. Default is 30. */
+comment|/** Maximum number of segments to be merged at a time,    *  during forceMerge or expungeDeletes. Default is 30. */
 DECL|method|setMaxMergeAtOnceExplicit
 specifier|public
 name|TieredMergePolicy
@@ -1920,10 +1920,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|findMergesForOptimize
+DECL|method|findForcedMerges
 specifier|public
 name|MergeSpecification
-name|findMergesForOptimize
+name|findForcedMerges
 parameter_list|(
 name|SegmentInfos
 name|infos
@@ -1937,7 +1937,7 @@ name|SegmentInfo
 argument_list|,
 name|Boolean
 argument_list|>
-name|segmentsToOptimize
+name|segmentsToMerge
 parameter_list|)
 throws|throws
 name|IOException
@@ -1950,7 +1950,7 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"findMergesForOptimize maxSegmentCount="
+literal|"findForcedMerges maxSegmentCount="
 operator|+
 name|maxSegmentCount
 operator|+
@@ -1966,9 +1966,9 @@ argument_list|(
 name|infos
 argument_list|)
 operator|+
-literal|" segmentsToOptimize="
+literal|" segmentsToMerge="
 operator|+
-name|segmentsToOptimize
+name|segmentsToMerge
 argument_list|)
 expr_stmt|;
 block|}
@@ -1986,7 +1986,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 name|boolean
-name|optimizeMergeRunning
+name|forceMergeRunning
 init|=
 literal|false
 decl_stmt|;
@@ -2022,7 +2022,7 @@ specifier|final
 name|Boolean
 name|isOriginal
 init|=
-name|segmentsToOptimize
+name|segmentsToMerge
 operator|.
 name|get
 argument_list|(
@@ -2061,7 +2061,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|optimizeMergeRunning
+name|forceMergeRunning
 operator|=
 literal|true
 expr_stmt|;
@@ -2113,7 +2113,7 @@ operator|(
 operator|!
 name|segmentIsOriginal
 operator|||
-name|isOptimized
+name|isMerged
 argument_list|(
 name|eligible
 operator|.
@@ -2134,7 +2134,7 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"already optimized"
+literal|"already merged"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2166,9 +2166,9 @@ argument_list|)
 expr_stmt|;
 name|message
 argument_list|(
-literal|"optimizeMergeRunning="
+literal|"forceMergeRunning="
 operator|+
-name|optimizeMergeRunning
+name|forceMergeRunning
 argument_list|)
 expr_stmt|;
 block|}
@@ -2273,7 +2273,7 @@ operator|==
 literal|null
 operator|&&
 operator|!
-name|optimizeMergeRunning
+name|forceMergeRunning
 condition|)
 block|{
 comment|// Do final merge
@@ -2534,7 +2534,7 @@ condition|)
 block|{
 comment|// Don't enforce max merged size here: app is explicitly
 comment|// calling expungeDeletes, and knows this may take a
-comment|// long time / produce big segments (like optimize):
+comment|// long time / produce big segments (like forceMerge):
 specifier|final
 name|int
 name|end
@@ -2713,10 +2713,10 @@ name|void
 name|close
 parameter_list|()
 block|{   }
-DECL|method|isOptimized
+DECL|method|isMerged
 specifier|private
 name|boolean
-name|isOptimized
+name|isMerged
 parameter_list|(
 name|SegmentInfo
 name|info

@@ -154,10 +154,10 @@ name|maxMergeSize
 decl_stmt|;
 comment|// Although the core MPs set it explicitly, we must default in case someone
 comment|// out there wrote his own LMP ...
-DECL|field|maxMergeSizeForOptimize
+DECL|field|maxMergeSizeForForcedMerge
 specifier|protected
 name|long
-name|maxMergeSizeForOptimize
+name|maxMergeSizeForForcedMerge
 init|=
 name|Long
 operator|.
@@ -330,7 +330,7 @@ return|return
 name|mergeFactor
 return|;
 block|}
-comment|/** Determines how often segment indices are merged by    * addDocument().  With smaller values, less RAM is used    * while indexing, and searches on unoptimized indices are    * faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while    * searches on unoptimized indices are slower, indexing is    * faster.  Thus larger values (> 10) are best for batch    * index creation, and smaller values (< 10) for indices    * that are interactively maintained. */
+comment|/** Determines how often segment indices are merged by    * addDocument().  With smaller values, less RAM is used    * while indexing, and searches are    * faster, but indexing speed is slower.  With larger    * values, more RAM is used during indexing, and while    * searches is slower, indexing is    * faster.  Thus larger values (> 10) are best for batch    * index creation, and smaller values (< 10) for indices    * that are interactively maintained. */
 DECL|method|setMergeFactor
 specifier|public
 name|void
@@ -679,10 +679,10 @@ name|byteSize
 return|;
 block|}
 block|}
-DECL|method|isOptimized
+DECL|method|isMerged
 specifier|protected
 name|boolean
-name|isOptimized
+name|isMerged
 parameter_list|(
 name|SegmentInfos
 name|infos
@@ -696,7 +696,7 @@ name|SegmentInfo
 argument_list|,
 name|Boolean
 argument_list|>
-name|segmentsToOptimize
+name|segmentsToMerge
 parameter_list|)
 throws|throws
 name|IOException
@@ -711,12 +711,12 @@ name|size
 argument_list|()
 decl_stmt|;
 name|int
-name|numToOptimize
+name|numToMerge
 init|=
 literal|0
 decl_stmt|;
 name|SegmentInfo
-name|optimizeInfo
+name|mergeInfo
 init|=
 literal|null
 decl_stmt|;
@@ -736,7 +736,7 @@ name|i
 operator|<
 name|numSegments
 operator|&&
-name|numToOptimize
+name|numToMerge
 operator|<=
 name|maxNumSegments
 condition|;
@@ -759,7 +759,7 @@ specifier|final
 name|Boolean
 name|isOriginal
 init|=
-name|segmentsToOptimize
+name|segmentsToMerge
 operator|.
 name|get
 argument_list|(
@@ -777,40 +777,40 @@ name|segmentIsOriginal
 operator|=
 name|isOriginal
 expr_stmt|;
-name|numToOptimize
+name|numToMerge
 operator|++
 expr_stmt|;
-name|optimizeInfo
+name|mergeInfo
 operator|=
 name|info
 expr_stmt|;
 block|}
 block|}
 return|return
-name|numToOptimize
+name|numToMerge
 operator|<=
 name|maxNumSegments
 operator|&&
 operator|(
-name|numToOptimize
+name|numToMerge
 operator|!=
 literal|1
 operator|||
 operator|!
 name|segmentIsOriginal
 operator|||
-name|isOptimized
+name|isMerged
 argument_list|(
-name|optimizeInfo
+name|mergeInfo
 argument_list|)
 operator|)
 return|;
 block|}
-comment|/** Returns true if this single info is optimized (has no    *  pending norms or deletes, is in the same dir as the    *  writer, and matches the current compound file setting */
-DECL|method|isOptimized
+comment|/** Returns true if this single info is already fully merged (has no    *  pending norms or deletes, is in the same dir as the    *  writer, and matches the current compound file setting */
+DECL|method|isMerged
 specifier|protected
 name|boolean
-name|isOptimized
+name|isMerged
 parameter_list|(
 name|SegmentInfo
 name|info
@@ -876,11 +876,11 @@ literal|1.0
 operator|)
 return|;
 block|}
-comment|/**    * Returns the merges necessary to optimize the index, taking the max merge    * size or max merge docs into consideration. This method attempts to respect    * the {@code maxNumSegments} parameter, however it might be, due to size    * constraints, that more than that number of segments will remain in the    * index. Also, this method does not guarantee that exactly {@code    * maxNumSegments} will remain, but&lt;= that number.    */
-DECL|method|findMergesForOptimizeSizeLimit
+comment|/**    * Returns the merges necessary to merge the index, taking the max merge    * size or max merge docs into consideration. This method attempts to respect    * the {@code maxNumSegments} parameter, however it might be, due to size    * constraints, that more than that number of segments will remain in the    * index. Also, this method does not guarantee that exactly {@code    * maxNumSegments} will remain, but&lt;= that number.    */
+DECL|method|findForcedMergesSizeLimit
 specifier|private
 name|MergeSpecification
-name|findMergesForOptimizeSizeLimit
+name|findForcedMergesSizeLimit
 parameter_list|(
 name|SegmentInfos
 name|infos
@@ -944,7 +944,7 @@ argument_list|(
 name|info
 argument_list|)
 operator|>
-name|maxMergeSizeForOptimize
+name|maxMergeSizeForForcedMerge
 operator|||
 name|sizeDocs
 argument_list|(
@@ -962,13 +962,13 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"optimize: skip segment="
+literal|"findForcedMergesSizeLimit: skip segment="
 operator|+
 name|info
 operator|+
 literal|": size is> maxMergeSize ("
 operator|+
-name|maxMergeSizeForOptimize
+name|maxMergeSizeForForcedMerge
 operator|+
 literal|") or sizeDocs is> maxMergeDocs ("
 operator|+
@@ -979,7 +979,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// need to skip that segment + add a merge for the 'right' segments,
-comment|// unless there is only 1 which is optimized.
+comment|// unless there is only 1 which is merged.
 if|if
 condition|(
 name|last
@@ -998,7 +998,7 @@ operator|-
 literal|1
 operator|&&
 operator|!
-name|isOptimized
+name|isMerged
 argument_list|(
 name|infos
 operator|.
@@ -1012,7 +1012,8 @@ argument_list|)
 operator|)
 condition|)
 block|{
-comment|// there is more than 1 segment to the right of this one, or an unoptimized single segment.
+comment|// there is more than 1 segment to the right of
+comment|// this one, or a mergeable single segment.
 name|spec
 operator|.
 name|add
@@ -1077,7 +1078,8 @@ operator|--
 name|start
 expr_stmt|;
 block|}
-comment|// Add any left-over segments, unless there is just 1 already optimized.
+comment|// Add any left-over segments, unless there is just 1
+comment|// already fully merged
 if|if
 condition|(
 name|last
@@ -1093,7 +1095,7 @@ operator|<
 name|last
 operator|||
 operator|!
-name|isOptimized
+name|isMerged
 argument_list|(
 name|infos
 operator|.
@@ -1139,11 +1141,11 @@ else|:
 name|spec
 return|;
 block|}
-comment|/**    * Returns the merges necessary to optimize the index. This method constraints    * the returned merges only by the {@code maxNumSegments} parameter, and    * guaranteed that exactly that number of segments will remain in the index.    */
-DECL|method|findMergesForOptimizeMaxNumSegments
+comment|/**    * Returns the merges necessary to forceMerge the index. This method constraints    * the returned merges only by the {@code maxNumSegments} parameter, and    * guaranteed that exactly that number of segments will remain in the index.    */
+DECL|method|findForcedMergesMaxNumSegments
 specifier|private
 name|MergeSpecification
-name|findMergesForOptimizeMaxNumSegments
+name|findForcedMergesMaxNumSegments
 parameter_list|(
 name|SegmentInfos
 name|infos
@@ -1235,7 +1237,7 @@ operator|==
 literal|1
 condition|)
 block|{
-comment|// Since we must optimize down to 1 segment, the
+comment|// Since we must merge down to 1 segment, the
 comment|// choice is simple:
 if|if
 condition|(
@@ -1244,7 +1246,7 @@ operator|>
 literal|1
 operator|||
 operator|!
-name|isOptimized
+name|isMerged
 argument_list|(
 name|infos
 operator|.
@@ -1290,7 +1292,7 @@ comment|// partial tail then we could produce a highly
 comment|// lopsided index over time:
 comment|// We must merge this many segments to leave
 comment|// maxNumSegments in the index (from when
-comment|// optimize was first kicked off):
+comment|// forceMerge was first kicked off):
 specifier|final
 name|int
 name|finalMergeSize
@@ -1440,13 +1442,13 @@ else|:
 name|spec
 return|;
 block|}
-comment|/** Returns the merges necessary to optimize the index.    *  This merge policy defines "optimized" to mean only the    *  requested number of segments is left in the index, and    *  respects the {@link #maxMergeSizeForOptimize} setting.    *  By default, and assuming {@code maxNumSegments=1}, only    *  one segment will be left in the index, where that segment    *  has no deletions pending nor separate norms, and it is in    *  compound file format if the current useCompoundFile    *  setting is true.  This method returns multiple merges    *  (mergeFactor at a time) so the {@link MergeScheduler}    *  in use may make use of concurrency. */
+comment|/** Returns the merges necessary to merge the index down    *  to a specified number of segments.    *  This respects the {@link #maxMergeSizeForForcedMerge} setting.    *  By default, and assuming {@code maxNumSegments=1}, only    *  one segment will be left in the index, where that segment    *  has no deletions pending nor separate norms, and it is in    *  compound file format if the current useCompoundFile    *  setting is true.  This method returns multiple merges    *  (mergeFactor at a time) so the {@link MergeScheduler}    *  in use may make use of concurrency. */
 annotation|@
 name|Override
-DECL|method|findMergesForOptimize
+DECL|method|findForcedMerges
 specifier|public
 name|MergeSpecification
-name|findMergesForOptimize
+name|findForcedMerges
 parameter_list|(
 name|SegmentInfos
 name|infos
@@ -1460,7 +1462,7 @@ name|SegmentInfo
 argument_list|,
 name|Boolean
 argument_list|>
-name|segmentsToOptimize
+name|segmentsToMerge
 parameter_list|)
 throws|throws
 name|IOException
@@ -1478,27 +1480,27 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"findMergesForOptimize: maxNumSegs="
+literal|"findForcedMerges: maxNumSegs="
 operator|+
 name|maxNumSegments
 operator|+
-literal|" segsToOptimize="
+literal|" segsToMerge="
 operator|+
-name|segmentsToOptimize
+name|segmentsToMerge
 argument_list|)
 expr_stmt|;
 block|}
-comment|// If the segments are already optimized (e.g. there's only 1 segment), or
-comment|// there are<maxNumSegements, all optimized, nothing to do.
+comment|// If the segments are already merged (e.g. there's only 1 segment), or
+comment|// there are<maxNumSegements:.
 if|if
 condition|(
-name|isOptimized
+name|isMerged
 argument_list|(
 name|infos
 argument_list|,
 name|maxNumSegments
 argument_list|,
-name|segmentsToOptimize
+name|segmentsToMerge
 argument_list|)
 condition|)
 block|{
@@ -1510,7 +1512,7 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"already optimized; skip"
+literal|"already merged; skip"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1519,8 +1521,8 @@ literal|null
 return|;
 block|}
 comment|// Find the newest (rightmost) segment that needs to
-comment|// be optimized (other segments may have been flushed
-comment|// since optimize started):
+comment|// be merged (other segments may have been flushed
+comment|// since merging started):
 name|int
 name|last
 init|=
@@ -1550,7 +1552,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|segmentsToOptimize
+name|segmentsToMerge
 operator|.
 name|get
 argument_list|(
@@ -1589,7 +1591,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|// There is only one segment already, and it is optimized
+comment|// There is only one segment already, and it is merged
 if|if
 condition|(
 name|maxNumSegments
@@ -1600,7 +1602,7 @@ name|last
 operator|==
 literal|1
 operator|&&
-name|isOptimized
+name|isMerged
 argument_list|(
 name|infos
 operator|.
@@ -1665,7 +1667,7 @@ argument_list|(
 name|info
 argument_list|)
 operator|>
-name|maxMergeSizeForOptimize
+name|maxMergeSizeForForcedMerge
 operator|||
 name|sizeDocs
 argument_list|(
@@ -1688,7 +1690,7 @@ name|anyTooLarge
 condition|)
 block|{
 return|return
-name|findMergesForOptimizeSizeLimit
+name|findForcedMergesSizeLimit
 argument_list|(
 name|infos
 argument_list|,
@@ -1701,7 +1703,7 @@ block|}
 else|else
 block|{
 return|return
-name|findMergesForOptimizeMaxNumSegments
+name|findForcedMergesMaxNumSegments
 argument_list|(
 name|infos
 argument_list|,
@@ -2963,12 +2965,12 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"maxMergeSizeForOptimize="
+literal|"maxMergeSizeForForcedMerge="
 argument_list|)
 operator|.
 name|append
 argument_list|(
-name|maxMergeSizeForOptimize
+name|maxMergeSizeForForcedMerge
 argument_list|)
 operator|.
 name|append

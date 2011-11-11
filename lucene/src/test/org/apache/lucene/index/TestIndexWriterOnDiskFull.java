@@ -106,22 +106,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|IndexSearcher
@@ -914,7 +898,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// Now, build a starting index that has START_COUNT docs.  We
-comment|// will then try to addIndexesNoOptimize into a copy of this:
+comment|// will then try to addIndexes into a copy of this:
 name|MockDirectoryWrapper
 name|startDir
 init|=
@@ -1194,7 +1178,7 @@ condition|)
 block|{
 name|methodName
 operator|=
-literal|"addIndexes(Directory[]) + optimize()"
+literal|"addIndexes(Directory[]) + forceMerge(1)"
 expr_stmt|;
 block|}
 elseif|else
@@ -1527,8 +1511,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
 elseif|else

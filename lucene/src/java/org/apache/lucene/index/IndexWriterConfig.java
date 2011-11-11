@@ -1092,7 +1092,7 @@ return|return
 name|mergedSegmentWarmer
 return|;
 block|}
-comment|/**    * Expert: {@link MergePolicy} is invoked whenever there are changes to the    * segments in the index. Its role is to select which merges to do, if any,    * and return a {@link MergePolicy.MergeSpecification} describing the merges.    * It also selects merges to do for optimize(). (The default is    * {@link LogByteSizeMergePolicy}.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/**    * Expert: {@link MergePolicy} is invoked whenever there are changes to the    * segments in the index. Its role is to select which merges to do, if any,    * and return a {@link MergePolicy.MergeSpecification} describing the merges.    * It also selects merges to do for forceMerge. (The default is    * {@link LogByteSizeMergePolicy}.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setMergePolicy
 specifier|public
 name|IndexWriterConfig

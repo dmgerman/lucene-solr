@@ -619,12 +619,12 @@ name|docDir
 argument_list|)
 expr_stmt|;
 comment|// NOTE: if you want to maximize search performance,
-comment|// you can optionally call optimize here.  This can be
-comment|// a costly operation, so generally it's only worth
-comment|// it when your index is relatively static (ie you're
-comment|// done adding documents to it):
+comment|// you can optionally call forceMerge here.  This can be
+comment|// a terribly costly operation, so generally it's only
+comment|// worth it when your index is relatively static (ie
+comment|// you're done adding documents to it):
 comment|//
-comment|// writer.optimize();
+comment|// writer.forceMerge(1);
 name|writer
 operator|.
 name|close

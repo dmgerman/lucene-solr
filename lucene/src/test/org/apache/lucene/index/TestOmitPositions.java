@@ -656,8 +656,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// now we add another document which has docs-only for f1, f4, f7, docs/freqs for f2, f5, f8,
 comment|// and docs/freqs/positions for f3, f6, f9
@@ -842,8 +844,10 @@ expr_stmt|;
 comment|// force merge
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// flush
 name|writer
@@ -1311,8 +1315,10 @@ expr_stmt|;
 comment|// force merge
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// flush
 name|writer

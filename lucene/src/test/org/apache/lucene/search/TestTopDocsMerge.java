@@ -411,7 +411,7 @@ argument_list|,
 name|dir
 argument_list|)
 decl_stmt|;
-comment|// w.setDoRandomOptimize(false);
+comment|// w.setDoRandomForceMerge(false);
 comment|// w.w.getConfig().setMaxBufferedDocs(atLeast(100));
 specifier|final
 name|String

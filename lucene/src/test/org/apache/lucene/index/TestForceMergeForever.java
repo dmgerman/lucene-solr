@@ -125,14 +125,14 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestOptimizeForever
+DECL|class|TestForceMergeForever
 specifier|public
 class|class
-name|TestOptimizeForever
+name|TestForceMergeForever
 extends|extends
 name|LuceneTestCase
 block|{
-comment|// Just counts how many merges are done for optimize
+comment|// Just counts how many merges are done
 DECL|class|MyIndexWriter
 specifier|private
 specifier|static
@@ -141,9 +141,9 @@ name|MyIndexWriter
 extends|extends
 name|IndexWriter
 block|{
-DECL|field|optimizeMergeCount
+DECL|field|mergeCount
 name|AtomicInteger
-name|optimizeMergeCount
+name|mergeCount
 init|=
 operator|new
 name|AtomicInteger
@@ -196,7 +196,10 @@ if|if
 condition|(
 name|merge
 operator|.
-name|optimize
+name|maxNumSegments
+operator|!=
+operator|-
+literal|1
 operator|&&
 operator|(
 name|first
@@ -227,11 +230,11 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: optimized merge"
+literal|"TEST: maxNumSegments merge"
 argument_list|)
 expr_stmt|;
 block|}
-name|optimizeMergeCount
+name|mergeCount
 operator|.
 name|incrementAndGet
 argument_list|()
@@ -282,7 +285,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// Try to make an index that requires optimizing:
+comment|// Try to make an index that requires merging:
 name|w
 operator|.
 name|getConfig
@@ -530,8 +533,10 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|doStop
 operator|.
@@ -547,18 +552,18 @@ argument_list|()
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"optimize count is "
+literal|"merge count is "
 operator|+
 name|w
 operator|.
-name|optimizeMergeCount
+name|mergeCount
 operator|.
 name|get
 argument_list|()
 argument_list|,
 name|w
 operator|.
-name|optimizeMergeCount
+name|mergeCount
 operator|.
 name|get
 argument_list|()

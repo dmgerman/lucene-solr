@@ -210,20 +210,6 @@ name|FixedBitSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|_TestUtil
-import|;
-end_import
-
 begin_class
 DECL|class|TestCachingWrapperFilter
 specifier|public
@@ -1489,8 +1475,8 @@ operator|.
 name|missCount
 argument_list|)
 expr_stmt|;
-comment|// NOTE: silliness to make sure JRE does not optimize
-comment|// away our holding onto oldReader to prevent
+comment|// NOTE: silliness to make sure JRE does not eliminate
+comment|// our holding onto oldReader to prevent
 comment|// CachingWrapperFilter's WeakHashMap from dropping the
 comment|// entry:
 name|assertTrue

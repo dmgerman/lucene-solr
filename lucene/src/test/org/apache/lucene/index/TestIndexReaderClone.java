@@ -981,11 +981,11 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// open non-readOnly reader1 on multi-segment index, then
-comment|// optimize the index, then clone to readOnly reader2
-DECL|method|testReadOnlyCloneAfterOptimize
+comment|// fully merge the index, then clone to readOnly reader2
+DECL|method|testReadOnlyCloneAfterFullMerge
 specifier|public
 name|void
-name|testReadOnlyCloneAfterOptimize
+name|testReadOnlyCloneAfterFullMerge
 parameter_list|()
 throws|throws
 name|Exception
@@ -1042,8 +1042,10 @@ argument_list|)
 decl_stmt|;
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|w
 operator|.

@@ -42,16 +42,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|PrintStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|Reader
 import|;
 end_import
@@ -492,20 +482,6 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|FSDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|IndexOutput
 import|;
 end_import
@@ -576,20 +552,6 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|NativeFSLockFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|NoLockFactory
 import|;
 end_import
@@ -605,20 +567,6 @@ operator|.
 name|store
 operator|.
 name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|SimpleFSDirectory
 import|;
 end_import
 
@@ -914,7 +862,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// optimize the index and check that the new doc count is correct
+comment|// merge the index down and check that the new doc count is correct
 name|writer
 operator|=
 operator|new
@@ -946,8 +894,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -5234,8 +5184,10 @@ comment|//LogMergePolicy lmp2 = (LogMergePolicy) writer.getConfig().getMergePoli
 comment|//lmp2.setUseCompoundFile(false);
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -8718,8 +8670,10 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// force segment merge.
 name|w
@@ -9820,8 +9774,10 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -9872,7 +9828,7 @@ argument_list|)
 expr_stmt|;
 comment|// NOTE: here we rely on "Windows" behavior, ie, even
 comment|// though IW wanted to delete _0.cfs since it was
-comment|// optimized away, because we have a reader open
+comment|// merged away, because we have a reader open
 comment|// against this file, it should still be here:
 name|assertTrue
 argument_list|(
@@ -9884,7 +9840,7 @@ literal|"_0.cfs"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// optimize created this
+comment|// forceMerge created this
 comment|//assertTrue(files.contains("_2.cfs"));
 name|w
 operator|.
@@ -11435,8 +11391,10 @@ argument_list|()
 expr_stmt|;
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
 block|}

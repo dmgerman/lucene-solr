@@ -473,7 +473,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instantiated index that looks just like the index in a specific state as represented by a reader.    *    * @param sourceIndexReader the source index this new instantiated index will be copied from.    * @throws IOException if the source index is not optimized, or when accessing the source.    */
+comment|/**    * Creates a new instantiated index that looks just like the index in a specific state as represented by a reader.    *    * @param sourceIndexReader the source index this new instantiated index will be copied from.    * @throws IOException if the source index is not single-segment, or when accessing the source.    */
 DECL|method|InstantiatedIndex
 specifier|public
 name|InstantiatedIndex
@@ -492,7 +492,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instantiated index that looks just like the index in a specific state as represented by a reader.    *    * @param sourceIndexReader the source index this new instantiated index will be copied from.    * @param fields fields to be added, or null for all    * @throws IOException if the source index is not optimized, or when accessing the source.    */
+comment|/**    * Creates a new instantiated index that looks just like the index in a specific state as represented by a reader.    *    * @param sourceIndexReader the source index this new instantiated index will be copied from.    * @param fields fields to be added, or null for all    * @throws IOException if the source index is not single-segment, or when accessing the source.    */
 DECL|method|InstantiatedIndex
 specifier|public
 name|InstantiatedIndex
@@ -511,11 +511,14 @@ name|IOException
 block|{
 if|if
 condition|(
-operator|!
 name|sourceIndexReader
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
+operator|!=
+literal|1
 condition|)
 block|{
 name|System
@@ -525,11 +528,11 @@ operator|.
 name|println
 argument_list|(
 operator|(
-literal|"Source index is not optimized."
+literal|"Source index has more than one segment."
 operator|)
 argument_list|)
 expr_stmt|;
-comment|//throw new IOException("Source index is not optimized.");
+comment|//throw new IOException("Source index has more than one segment.");
 block|}
 name|initialize
 argument_list|()

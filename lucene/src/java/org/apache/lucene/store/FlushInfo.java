@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *<p>A FlushInfo provides information required for a FLUSH context and other optimization operations.  *  It is used as part of an {@link IOContext} in case of FLUSH context.</p>  */
+comment|/**  *<p>A FlushInfo provides information required for a FLUSH context.  *  It is used as part of an {@link IOContext} in case of FLUSH context.</p>  */
 end_comment
 
 begin_class

@@ -772,7 +772,7 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|setDoRandomOptimizeAssert
+name|setDoRandomForceMergeAssert
 argument_list|(
 literal|false
 argument_list|)

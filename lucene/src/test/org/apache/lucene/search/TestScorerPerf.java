@@ -514,8 +514,10 @@ expr_stmt|;
 block|}
 name|iw
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|iw
 operator|.
@@ -698,7 +700,7 @@ name|docBase
 operator|+
 name|doc
 expr_stmt|;
-comment|// use it to avoid any possibility of being optimized away
+comment|// use it to avoid any possibility of being eliminated by hotspot
 block|}
 DECL|method|getCount
 specifier|public

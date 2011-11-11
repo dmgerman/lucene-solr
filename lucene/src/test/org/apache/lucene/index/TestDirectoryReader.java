@@ -1145,7 +1145,7 @@ name|docID
 argument_list|()
 expr_stmt|;
 comment|// really a dummy assert to ensure that we got some docs and to ensure that
-comment|// nothing is optimized out.
+comment|// nothing is eliminated by hotspot
 name|assertTrue
 argument_list|(
 name|ret

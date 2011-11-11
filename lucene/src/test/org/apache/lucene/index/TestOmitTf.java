@@ -576,8 +576,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// now we add another document which has term freq for field f2 and not for f1 and verify if the SegmentMerger
 comment|// keep things constant
@@ -634,8 +636,10 @@ expr_stmt|;
 comment|// force merge
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// flush
 name|writer
@@ -904,8 +908,10 @@ expr_stmt|;
 comment|// force merge
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// flush
 name|writer
@@ -1130,8 +1136,10 @@ expr_stmt|;
 comment|// force merge
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// flush
 name|writer
@@ -1411,7 +1419,8 @@ argument_list|(
 name|ram
 argument_list|)
 expr_stmt|;
-comment|// now add some documents with positions, and check there is no prox after optimization
+comment|// now add some documents with positions, and check
+comment|// there is no prox after full merge
 name|d
 operator|=
 operator|new
@@ -1462,8 +1471,10 @@ expr_stmt|;
 comment|// force merge
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// flush
 name|writer
@@ -1671,8 +1682,10 @@ comment|//System.out.println(d);
 block|}
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// flush
 name|writer
@@ -2304,7 +2317,7 @@ name|doc
 operator|+
 name|docBase
 expr_stmt|;
-comment|// use it to avoid any possibility of being optimized away
+comment|// use it to avoid any possibility of being merged away
 block|}
 DECL|method|getCount
 specifier|public

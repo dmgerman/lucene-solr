@@ -161,10 +161,10 @@ comment|/**  * @since 2009-mar-30 13:15:49  */
 end_comment
 
 begin_class
-DECL|class|TestUnoptimizedReaderOnConstructor
+DECL|class|TestMultiSegmentReaderOnConstructor
 specifier|public
 class|class
-name|TestUnoptimizedReaderOnConstructor
+name|TestMultiSegmentReaderOnConstructor
 extends|extends
 name|LuceneTestCase
 block|{
@@ -315,7 +315,7 @@ name|close
 argument_list|()
 expr_stmt|;
 name|IndexReader
-name|unoptimizedReader
+name|multiSegReader
 init|=
 name|IndexReader
 operator|.
@@ -326,7 +326,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|unoptimizedReader
+name|multiSegReader
 operator|.
 name|deleteDocument
 argument_list|(
@@ -338,7 +338,7 @@ block|{
 operator|new
 name|InstantiatedIndex
 argument_list|(
-name|unoptimizedReader
+name|multiSegReader
 argument_list|)
 expr_stmt|;
 block|}
@@ -359,12 +359,12 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"No exceptions when loading an unoptimized reader!"
+literal|"No exceptions when loading a multi-seg reader!"
 argument_list|)
 expr_stmt|;
 block|}
 comment|// todo some assertations.
-name|unoptimizedReader
+name|multiSegReader
 operator|.
 name|close
 argument_list|()

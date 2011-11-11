@@ -1758,7 +1758,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Indexes the data from the given {@link Dictionary}.    * @param dict Dictionary to index    * @param config {@link IndexWriterConfig} to use    * @param optimize whether or not the spellcheck index should be optimized    * @throws AlreadyClosedException if the Spellchecker is already closed    * @throws IOException    */
+comment|/**    * Indexes the data from the given {@link Dictionary}.    * @param dict Dictionary to index    * @param config {@link IndexWriterConfig} to use    * @param fullMerge whether or not the spellcheck index should be fully merged    * @throws AlreadyClosedException if the Spellchecker is already closed    * @throws IOException    */
 DECL|method|indexDictionary
 specifier|public
 specifier|final
@@ -1772,7 +1772,7 @@ name|IndexWriterConfig
 name|config
 parameter_list|,
 name|boolean
-name|optimize
+name|fullMerge
 parameter_list|)
 throws|throws
 name|IOException
@@ -2040,16 +2040,20 @@ name|indexSearcher
 argument_list|)
 expr_stmt|;
 block|}
-comment|// close writer
 if|if
 condition|(
-name|optimize
+name|fullMerge
 condition|)
+block|{
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
+block|}
+comment|// close writer
 name|writer
 operator|.
 name|close

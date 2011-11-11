@@ -125,7 +125,7 @@ name|assertNull
 argument_list|(
 name|mp
 operator|.
-name|findMergesForOptimize
+name|findForcedMerges
 argument_list|(
 literal|null
 argument_list|,

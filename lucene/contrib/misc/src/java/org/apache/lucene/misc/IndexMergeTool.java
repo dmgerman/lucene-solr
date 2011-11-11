@@ -289,13 +289,15 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Optimizing..."
+literal|"Full merge..."
 argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.

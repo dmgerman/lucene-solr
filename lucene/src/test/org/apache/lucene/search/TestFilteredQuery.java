@@ -469,8 +469,10 @@ comment|// 8239472272678419952L), because SingleDocTestFilter(x)
 comment|// blindly accepts that docID in any sub-segment
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|reader
 operator|=

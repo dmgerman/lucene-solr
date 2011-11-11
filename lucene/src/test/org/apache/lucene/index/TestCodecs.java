@@ -244,24 +244,6 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|lucene3x
-operator|.
-name|Lucene3xPostingsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
 name|mocksep
 operator|.
 name|MockSepPostingsFormat
@@ -2614,8 +2596,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// optimise to merge the segments.
 name|results

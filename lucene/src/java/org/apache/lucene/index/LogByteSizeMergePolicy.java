@@ -58,13 +58,13 @@ name|DEFAULT_MAX_MERGE_MB
 init|=
 literal|2048
 decl_stmt|;
-comment|/** Default maximum segment size.  A segment of this size    *  or larger will never be merged during optimize.  @see setMaxMergeMBForOptimize */
-DECL|field|DEFAULT_MAX_MERGE_MB_FOR_OPTIMIZE
+comment|/** Default maximum segment size.  A segment of this size    *  or larger will never be merged during forceMerge.  @see setMaxMergeMBForForceMerge */
+DECL|field|DEFAULT_MAX_MERGE_MB_FOR_MERGE_IF_NEEDED
 specifier|public
 specifier|static
 specifier|final
 name|double
-name|DEFAULT_MAX_MERGE_MB_FOR_OPTIMIZE
+name|DEFAULT_MAX_MERGE_MB_FOR_MERGE_IF_NEEDED
 init|=
 name|Long
 operator|.
@@ -101,13 +101,13 @@ operator|*
 literal|1024
 argument_list|)
 expr_stmt|;
-name|maxMergeSizeForOptimize
+name|maxMergeSizeForForcedMerge
 operator|=
 call|(
 name|long
 call|)
 argument_list|(
-name|DEFAULT_MAX_MERGE_MB_FOR_OPTIMIZE
+name|DEFAULT_MAX_MERGE_MB_FOR_MERGE_IF_NEEDED
 operator|*
 literal|1024
 operator|*
@@ -179,17 +179,17 @@ operator|/
 literal|1024
 return|;
 block|}
-comment|/**<p>Determines the largest segment (measured by total    *  byte size of the segment's files, in MB) that may be    *  merged with other segments during optimize. Setting    *  it low will leave the index with more than 1 segment,    *  even if {@link IndexWriter#optimize()} is called.*/
-DECL|method|setMaxMergeMBForOptimize
+comment|/**<p>Determines the largest segment (measured by total    *  byte size of the segment's files, in MB) that may be    *  merged with other segments during forceMerge. Setting    *  it low will leave the index with more than 1 segment,    *  even if {@link IndexWriter#forceMerge} is called.*/
+DECL|method|setMaxMergeMBForForcedMerge
 specifier|public
 name|void
-name|setMaxMergeMBForOptimize
+name|setMaxMergeMBForForcedMerge
 parameter_list|(
 name|double
 name|mb
 parameter_list|)
 block|{
-name|maxMergeSizeForOptimize
+name|maxMergeSizeForForcedMerge
 operator|=
 call|(
 name|long
@@ -203,11 +203,11 @@ literal|1024
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns the largest segment (measured by total byte    *  size of the segment's files, in MB) that may be merged    *  with other segments during optimize.    *  @see #setMaxMergeMBForOptimize */
-DECL|method|getMaxMergeMBForOptimize
+comment|/** Returns the largest segment (measured by total byte    *  size of the segment's files, in MB) that may be merged    *  with other segments during forceMerge.    *  @see #setMaxMergeMBForForcedMerge */
+DECL|method|getMaxMergeMBForForcedMerge
 specifier|public
 name|double
-name|getMaxMergeMBForOptimize
+name|getMaxMergeMBForForcedMerge
 parameter_list|()
 block|{
 return|return
@@ -215,7 +215,7 @@ operator|(
 operator|(
 name|double
 operator|)
-name|maxMergeSizeForOptimize
+name|maxMergeSizeForForcedMerge
 operator|)
 operator|/
 literal|1024

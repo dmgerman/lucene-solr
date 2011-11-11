@@ -419,16 +419,16 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|isOptimized
+DECL|method|getSegmentCount
 specifier|public
-name|boolean
-name|isOptimized
+name|int
+name|getSegmentCount
 parameter_list|()
 block|{
 return|return
 name|cp
 operator|.
-name|isOptimized
+name|getSegmentCount
 argument_list|()
 return|;
 block|}
@@ -1203,7 +1203,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Snapshots the last commit. Once a commit is 'snapshotted,' it is protected    * from deletion (as long as this {@link IndexDeletionPolicy} is used). The    * commit can be removed by calling {@link #release(String)} using the same ID    * parameter followed by a call to {@link IndexWriter#deleteUnusedFiles()}.    *<p>    *<b>NOTE:</b> ID must be unique in the system. If the same ID is used twice,    * an {@link IllegalStateException} is thrown.    *<p>    *<b>NOTE:</b> while the snapshot is held, the files it references will not    * be deleted, which will consume additional disk space in your index. If you    * take a snapshot at a particularly bad time (say just before you call    * optimize()) then in the worst case this could consume an extra 1X of your    * total index size, until you release the snapshot.    *     * @param id    *          a unique identifier of the commit that is being snapshotted.    * @throws IllegalStateException    *           if either there is no 'last commit' to snapshot, or if the    *           parameter 'ID' refers to an already snapshotted commit.    * @return the {@link IndexCommit} that was snapshotted.    */
+comment|/**    * Snapshots the last commit. Once a commit is 'snapshotted,' it is protected    * from deletion (as long as this {@link IndexDeletionPolicy} is used). The    * commit can be removed by calling {@link #release(String)} using the same ID    * parameter followed by a call to {@link IndexWriter#deleteUnusedFiles()}.    *<p>    *<b>NOTE:</b> ID must be unique in the system. If the same ID is used twice,    * an {@link IllegalStateException} is thrown.    *<p>    *<b>NOTE:</b> while the snapshot is held, the files it references will not    * be deleted, which will consume additional disk space in your index. If you    * take a snapshot at a particularly bad time (say just before you call    * forceMerge) then in the worst case this could consume an extra 1X of your    * total index size, until you release the snapshot.    *     * @param id    *          a unique identifier of the commit that is being snapshotted.    * @throws IllegalStateException    *           if either there is no 'last commit' to snapshot, or if the    *           parameter 'ID' refers to an already snapshotted commit.    * @return the {@link IndexCommit} that was snapshotted.    */
 DECL|method|snapshot
 specifier|public
 specifier|synchronized

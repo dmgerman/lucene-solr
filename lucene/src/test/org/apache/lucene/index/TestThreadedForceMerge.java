@@ -169,10 +169,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestThreadedOptimize
+DECL|class|TestThreadedForceMerge
 specifier|public
 class|class
-name|TestThreadedOptimize
+name|TestThreadedForceMerge
 extends|extends
 name|LuceneTestCase
 block|{
@@ -504,8 +504,10 @@ control|)
 block|{
 name|writerFinal
 operator|.
-name|optimize
+name|forceMerge
 argument_list|(
+literal|1
+argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
@@ -639,8 +641,10 @@ argument_list|)
 expr_stmt|;
 name|writerFinal
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -889,16 +893,20 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"reader="
 operator|+
 name|reader
 argument_list|,
+literal|1
+argument_list|,
 name|reader
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -924,10 +932,10 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/*     Run above stress test against RAMDirectory and then     FSDirectory.   */
-DECL|method|testThreadedOptimize
+DECL|method|testThreadedForceMerge
 specifier|public
 name|void
-name|testThreadedOptimize
+name|testThreadedForceMerge
 parameter_list|()
 throws|throws
 name|Exception

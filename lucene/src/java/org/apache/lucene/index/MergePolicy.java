@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>Expert: a MergePolicy determines the sequence of  * primitive merge operations to be used for overall merge  * and optimize operations.</p>  *   *<p>Whenever the segments in an index have been altered by  * {@link IndexWriter}, either the addition of a newly  * flushed segment, addition of many segments from  * addIndexes* calls, or a previous merge that may now need  * to cascade, {@link IndexWriter} invokes {@link  * #findMerges} to give the MergePolicy a chance to pick  * merges that are now required.  This method returns a  * {@link MergeSpecification} instance describing the set of  * merges that should be done, or null if no merges are  * necessary.  When IndexWriter.optimize is called, it calls  * {@link #findMergesForOptimize} and the MergePolicy should  * then return the necessary merges.</p>  *  *<p>Note that the policy can return more than one merge at  * a time.  In this case, if the writer is using {@link  * SerialMergeScheduler}, the merges will be run  * sequentially but if it is using {@link  * ConcurrentMergeScheduler} they will be run concurrently.</p>  *   *<p>The default MergePolicy is {@link  * TieredMergePolicy}.</p>  *  * @lucene.experimental  */
+comment|/**  *<p>Expert: a MergePolicy determines the sequence of  * primitive merge operations.</p>  *   *<p>Whenever the segments in an index have been altered by  * {@link IndexWriter}, either the addition of a newly  * flushed segment, addition of many segments from  * addIndexes* calls, or a previous merge that may now need  * to cascade, {@link IndexWriter} invokes {@link  * #findMerges} to give the MergePolicy a chance to pick  * merges that are now required.  This method returns a  * {@link MergeSpecification} instance describing the set of  * merges that should be done, or null if no merges are  * necessary.  When IndexWriter.forceMerge is called, it calls  * {@link #findForcedMerges(SegmentInfos,int,Map)} and the MergePolicy should  * then return the necessary merges.</p>  *  *<p>Note that the policy can return more than one merge at  * a time.  In this case, if the writer is using {@link  * SerialMergeScheduler}, the merges will be run  * sequentially but if it is using {@link  * ConcurrentMergeScheduler} they will be run concurrently.</p>  *   *<p>The default MergePolicy is {@link  * TieredMergePolicy}.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -157,11 +157,6 @@ name|SegmentInfo
 name|info
 decl_stmt|;
 comment|// used by IndexWriter
-DECL|field|optimize
-name|boolean
-name|optimize
-decl_stmt|;
-comment|// used by IndexWriter
 DECL|field|registerDone
 name|boolean
 name|registerDone
@@ -177,9 +172,12 @@ name|boolean
 name|isExternal
 decl_stmt|;
 comment|// used by IndexWriter
-DECL|field|maxNumSegmentsOptimize
+DECL|field|maxNumSegments
 name|int
-name|maxNumSegmentsOptimize
+name|maxNumSegments
+init|=
+operator|-
+literal|1
 decl_stmt|;
 comment|// used by IndexWriter
 DECL|field|estimatedMergeBytes
@@ -564,13 +562,20 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|optimize
+name|maxNumSegments
+operator|!=
+operator|-
+literal|1
 condition|)
 name|b
 operator|.
 name|append
 argument_list|(
-literal|" [optimize]"
+literal|" [maxNumSegments="
+operator|+
+name|maxNumSegments
+operator|+
+literal|"]"
 argument_list|)
 expr_stmt|;
 if|if
@@ -678,7 +683,7 @@ name|estimatedMergeBytes
 argument_list|,
 name|isExternal
 argument_list|,
-name|optimize
+name|maxNumSegments
 argument_list|)
 return|;
 block|}
@@ -978,12 +983,12 @@ name|CorruptIndexException
 throws|,
 name|IOException
 function_decl|;
-comment|/**    * Determine what set of merge operations is necessary in order to optimize    * the index. {@link IndexWriter} calls this when its    * {@link IndexWriter#optimize()} method is called. This call is always    * synchronized on the {@link IndexWriter} instance so only one thread at a    * time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    * @param maxSegmentCount    *          requested maximum number of segments in the index (currently this    *          is always 1)    * @param segmentsToOptimize    *          contains the specific SegmentInfo instances that must be merged    *          away. This may be a subset of all    *          SegmentInfos.  If the value is True for a    *          given SegmentInfo, that means this segment was    *          an original segment present in the    *          to-be-optimized index; else, it was a segment    *          produced by a cascaded merge.    */
-DECL|method|findMergesForOptimize
+comment|/**    * Determine what set of merge operations is necessary in    * order to merge to<= the specified segment count. {@link IndexWriter} calls this when its    * {@link IndexWriter#forceMerge} method is called. This call is always    * synchronized on the {@link IndexWriter} instance so only one thread at a    * time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    * @param maxSegmentCount    *          requested maximum number of segments in the index (currently this    *          is always 1)    * @param segmentsToMerge    *          contains the specific SegmentInfo instances that must be merged    *          away. This may be a subset of all    *          SegmentInfos.  If the value is True for a    *          given SegmentInfo, that means this segment was    *          an original segment present in the    *          to-be-merged index; else, it was a segment    *          produced by a cascaded merge.    */
+DECL|method|findForcedMerges
 specifier|public
 specifier|abstract
 name|MergeSpecification
-name|findMergesForOptimize
+name|findForcedMerges
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
@@ -997,7 +1002,7 @@ name|SegmentInfo
 argument_list|,
 name|Boolean
 argument_list|>
-name|segmentsToOptimize
+name|segmentsToMerge
 parameter_list|)
 throws|throws
 name|CorruptIndexException

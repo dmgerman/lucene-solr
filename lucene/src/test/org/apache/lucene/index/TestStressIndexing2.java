@@ -1127,7 +1127,7 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
-comment|// w.optimize();
+comment|// w.forceMerge(1);
 comment|//w.close();
 for|for
 control|(
@@ -1453,7 +1453,7 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
-comment|//w.optimize();
+comment|//w.forceMerge(1);
 name|w
 operator|.
 name|close

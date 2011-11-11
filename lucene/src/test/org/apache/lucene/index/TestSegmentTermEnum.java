@@ -282,11 +282,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// verify document frequency of terms in an unoptimized index
+comment|// verify document frequency of terms in an multi segment index
 name|verifyDocFreq
 argument_list|()
 expr_stmt|;
-comment|// merge segments by optimizing the index
+comment|// merge segments
 name|writer
 operator|=
 operator|new
@@ -315,15 +315,17 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// verify document frequency of terms in an optimized index
+comment|// verify document frequency of terms in a single segment index
 name|verifyDocFreq
 argument_list|()
 expr_stmt|;

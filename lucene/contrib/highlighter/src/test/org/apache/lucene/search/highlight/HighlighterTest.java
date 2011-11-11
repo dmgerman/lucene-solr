@@ -10698,8 +10698,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -10763,7 +10765,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// To see negative idf, keep comment the following line
-comment|//writer.optimize();
+comment|//writer.forceMerge(1);
 name|writer
 operator|.
 name|close
@@ -11437,8 +11439,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.

@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *<p>A MergeInfo provides information required for a MERGE context and other optimization operations.  *  It is used as part of an {@link IOContext} in case of MERGE context.</p>  */
+comment|/**  *<p>A MergeInfo provides information required for a MERGE context.  *  It is used as part of an {@link IOContext} in case of MERGE context.</p>  */
 end_comment
 
 begin_class
@@ -44,11 +44,11 @@ specifier|final
 name|boolean
 name|isExternal
 decl_stmt|;
-DECL|field|optimize
+DECL|field|mergeMaxNumSegments
 specifier|public
 specifier|final
-name|boolean
-name|optimize
+name|int
+name|mergeMaxNumSegments
 decl_stmt|;
 comment|/**    *<p>Creates a new {@link MergeInfo} instance from    * the values required for a MERGE {@link IOContext} context.    *     * These values are only estimates and are not the actual values.    *     */
 DECL|method|MergeInfo
@@ -64,8 +64,8 @@ parameter_list|,
 name|boolean
 name|isExternal
 parameter_list|,
-name|boolean
-name|optimize
+name|int
+name|mergeMaxNumSegments
 parameter_list|)
 block|{
 name|this
@@ -88,9 +88,9 @@ name|isExternal
 expr_stmt|;
 name|this
 operator|.
-name|optimize
+name|mergeMaxNumSegments
 operator|=
-name|optimize
+name|mergeMaxNumSegments
 expr_stmt|;
 block|}
 annotation|@
@@ -151,13 +151,7 @@ name|prime
 operator|*
 name|result
 operator|+
-operator|(
-name|optimize
-condition|?
-literal|1231
-else|:
-literal|1237
-operator|)
+name|mergeMaxNumSegments
 expr_stmt|;
 name|result
 operator|=
@@ -245,11 +239,11 @@ literal|false
 return|;
 if|if
 condition|(
-name|optimize
+name|mergeMaxNumSegments
 operator|!=
 name|other
 operator|.
-name|optimize
+name|mergeMaxNumSegments
 condition|)
 return|return
 literal|false
@@ -290,9 +284,9 @@ literal|", isExternal="
 operator|+
 name|isExternal
 operator|+
-literal|", optimize="
+literal|", mergeMaxNumSegments="
 operator|+
-name|optimize
+name|mergeMaxNumSegments
 operator|+
 literal|"]"
 return|;

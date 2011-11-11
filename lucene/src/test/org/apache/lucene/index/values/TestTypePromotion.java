@@ -655,8 +655,10 @@ block|{
 comment|// once in a while use addIndexes
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|Directory
 name|dir_2
@@ -799,8 +801,10 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -852,12 +856,16 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|1
+argument_list|,
 name|reader
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|ReaderContext
@@ -1970,7 +1978,7 @@ name|newLogMergePolicy
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// make sure we optimize to one segment (merge everything together)
+comment|// make sure we merge to one segment (merge everything together)
 block|}
 name|writer
 operator|=
@@ -1982,11 +1990,13 @@ argument_list|,
 name|writerConfig
 argument_list|)
 expr_stmt|;
-comment|// now optimize
+comment|// now merge
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -2003,12 +2013,16 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|1
+argument_list|,
 name|reader
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|ReaderContext

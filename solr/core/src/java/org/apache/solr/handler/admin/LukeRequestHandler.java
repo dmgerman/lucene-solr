@@ -4296,12 +4296,14 @@ name|indexInfo
 operator|.
 name|add
 argument_list|(
-literal|"optimized"
+literal|"segmentCount"
 argument_list|,
 name|reader
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|indexInfo

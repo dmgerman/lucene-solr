@@ -1396,8 +1396,10 @@ argument_list|()
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -1490,11 +1492,11 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*    * Verify that calling optimize when writer is open for    * "commit on close" works correctly both for rollback()    * and close().    */
-DECL|method|testCommitOnCloseOptimize
+comment|/*    * Verify that calling forceMerge when writer is open for    * "commit on close" works correctly both for rollback()    * and close().    */
+DECL|method|testCommitOnCloseForceMerge
 specifier|public
 name|void
-name|testCommitOnCloseOptimize
+name|testCommitOnCloseForceMerge
 parameter_list|()
 throws|throws
 name|IOException
@@ -1606,8 +1608,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// Open a reader before closing (commiting) the writer:
 name|IndexReader
@@ -1622,16 +1626,20 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|// Reader should see index as unoptimized at this
+comment|// Reader should see index as multi-seg at this
 comment|// point:
-name|assertFalse
+name|assertTrue
 argument_list|(
-literal|"Reader incorrectly sees that the index is optimized"
+literal|"Reader incorrectly sees one segment"
 argument_list|,
 name|reader
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
+operator|>
+literal|1
 argument_list|)
 expr_stmt|;
 name|reader
@@ -1651,7 +1659,7 @@ name|assertNoUnreferencedFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"aborted writer after optimize"
+literal|"aborted writer after forceMerge"
 argument_list|)
 expr_stmt|;
 comment|// Open a reader after aborting writer:
@@ -1666,15 +1674,19 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-comment|// Reader should still see index as unoptimized:
-name|assertFalse
+comment|// Reader should still see index as multi-segment
+name|assertTrue
 argument_list|(
-literal|"Reader incorrectly sees that the index is optimized"
+literal|"Reader incorrectly sees one segment"
 argument_list|,
 name|reader
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
+operator|>
+literal|1
 argument_list|)
 expr_stmt|;
 name|reader
@@ -1693,7 +1705,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: do real optimize"
+literal|"TEST: do real full merge"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1725,8 +1737,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -1754,7 +1768,7 @@ name|assertNoUnreferencedFiles
 argument_list|(
 name|dir
 argument_list|,
-literal|"aborted writer after optimize"
+literal|"aborted writer after forceMerge"
 argument_list|)
 expr_stmt|;
 comment|// Open a reader after aborting writer:
@@ -1769,15 +1783,19 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-comment|// Reader should still see index as unoptimized:
-name|assertTrue
+comment|// Reader should see index as one segment
+name|assertEquals
 argument_list|(
-literal|"Reader incorrectly sees that the index is unoptimized"
+literal|"Reader incorrectly sees more than one segment"
+argument_list|,
+literal|1
 argument_list|,
 name|reader
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|reader
@@ -3941,8 +3959,10 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|w
 operator|.

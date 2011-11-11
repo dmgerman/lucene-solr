@@ -381,8 +381,10 @@ comment|// Until we fix LUCENE-2348, the index must
 comment|// have only 1 segment:
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|reader
 operator|=

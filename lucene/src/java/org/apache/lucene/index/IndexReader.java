@@ -140,22 +140,6 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|PostingsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
 name|PerDocValues
 import|;
 end_import
@@ -1629,21 +1613,6 @@ throws|throws
 name|CorruptIndexException
 throws|,
 name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This reader does not support this method."
-argument_list|)
-throw|;
-block|}
-comment|/**    * Checks is the index is optimized (if it has a single segment and     * no deletions).  Not implemented in the IndexReader base class.    * @return<code>true</code> if the index is optimized;<code>false</code> otherwise    * @throws UnsupportedOperationException unless overridden in subclass    */
-DECL|method|isOptimized
-specifier|public
-name|boolean
-name|isOptimized
-parameter_list|()
 block|{
 throw|throw
 operator|new

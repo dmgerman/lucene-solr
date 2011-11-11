@@ -608,7 +608,7 @@ literal|"CreateIndex"
 block|,
 literal|"{ AddDoc } : 1000"
 block|,
-literal|"Optimize"
+literal|"ForceMerge(1)"
 block|,
 literal|"CloseIndex"
 block|,
@@ -767,7 +767,7 @@ literal|"CreateIndex"
 block|,
 literal|"{ AddDoc } : 100"
 block|,
-literal|"Optimize"
+literal|"ForceMerge(1)"
 block|,
 literal|"CloseIndex"
 block|,
@@ -848,7 +848,7 @@ literal|"CreateIndex"
 block|,
 literal|"{ AddDoc } : 1000"
 block|,
-literal|"Optimize"
+literal|"ForceMerge(1)"
 block|,
 literal|"CloseIndex"
 block|,
@@ -926,7 +926,7 @@ literal|"CreateIndex"
 block|,
 literal|"{ AddDoc } : 100"
 block|,
-literal|"Optimize"
+literal|"ForceMerge(1)"
 block|,
 literal|"CloseIndex"
 block|,
@@ -1127,7 +1127,7 @@ literal|"CreateIndex"
 block|,
 literal|"{ AddDoc } : 1000"
 block|,
-literal|"Optimize"
+literal|"ForceMerge(1)"
 block|,
 literal|"CloseIndex"
 block|,
@@ -1325,7 +1325,7 @@ literal|"CreateIndex"
 block|,
 literal|"{ AddDoc } : 1000"
 block|,
-literal|"Optimize"
+literal|"ForceMerge(1)"
 block|,
 literal|"CloseIndex"
 block|,
@@ -1424,7 +1424,7 @@ literal|"CreateIndex"
 block|,
 literal|"{ AddDoc } : * "
 block|,
-literal|"Optimize"
+literal|"ForceMerge(1)"
 block|,
 literal|"CloseIndex"
 block|,
@@ -3500,11 +3500,11 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Test that we can call optimize(maxNumSegments).    */
-DECL|method|testOptimizeMaxNumSegments
+comment|/**    * Test that we can call forceMerge(maxNumSegments).    */
+DECL|method|testForceMerge
 specifier|public
 name|void
-name|testOptimizeMaxNumSegments
+name|testForceMerge
 parameter_list|()
 throws|throws
 name|Exception
@@ -3554,7 +3554,7 @@ literal|"  CreateIndex"
 block|,
 literal|"  { \"AddDocs\"  AddDoc> : * "
 block|,
-literal|"  Optimize(3)"
+literal|"  ForceMerge(3)"
 block|,
 literal|"  CloseIndex()"
 block|,

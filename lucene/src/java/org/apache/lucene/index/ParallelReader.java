@@ -2145,46 +2145,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Checks recursively if all subindexes are optimized     */
-annotation|@
-name|Override
-DECL|method|isOptimized
-specifier|public
-name|boolean
-name|isOptimized
-parameter_list|()
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-for|for
-control|(
-specifier|final
-name|IndexReader
-name|reader
-range|:
-name|readers
-control|)
-block|{
-if|if
-condition|(
-operator|!
-name|reader
-operator|.
-name|isOptimized
-argument_list|()
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-block|}
-comment|// all subindexes are optimized
-return|return
-literal|true
-return|;
-block|}
 comment|/** Not implemented.    * @throws UnsupportedOperationException    */
 annotation|@
 name|Override

@@ -268,8 +268,10 @@ else|else
 block|{
 name|w
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
 name|IndexReader

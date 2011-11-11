@@ -10631,7 +10631,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|//w.optimize();
+comment|//w.forceMerge(1);
 comment|// turn writer into reader:
 specifier|final
 name|IndexReader

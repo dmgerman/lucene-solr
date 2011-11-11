@@ -225,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test that norms info is preserved during index life - including  * separate norms, addDocument, addIndexes, optimize.  */
+comment|/**  * Test that norms info is preserved during index life - including  * separate norms, addDocument, addIndexes, forceMerge.  */
 end_comment
 
 begin_class
@@ -371,7 +371,7 @@ name|random
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test that norms values are preserved as the index is maintained.    * Including separate norms.    * Including merging indexes with seprate norms.     * Including optimize.     */
+comment|/**    * Test that norms values are preserved as the index is maintained.    * Including separate norms.    * Including merging indexes with seprate norms.     * Including forceMerge.     */
 DECL|method|testNorms
 specifier|public
 name|void
@@ -543,8 +543,10 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|iw
 operator|.
@@ -590,7 +592,7 @@ argument_list|,
 name|dir3
 argument_list|)
 expr_stmt|;
-comment|// now with optimize
+comment|// now with single segment
 name|iw
 operator|=
 operator|new
@@ -628,8 +630,10 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|iw
 operator|.

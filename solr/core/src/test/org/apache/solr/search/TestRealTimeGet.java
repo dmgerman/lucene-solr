@@ -202,16 +202,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -2264,7 +2254,7 @@ argument_list|)
 decl_stmt|;
 name|writer
 operator|.
-name|setDoRandomOptimizeAssert
+name|setDoRandomForceMergeAssert
 argument_list|(
 literal|false
 argument_list|)

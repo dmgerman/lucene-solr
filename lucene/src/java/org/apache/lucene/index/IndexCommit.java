@@ -120,12 +120,12 @@ name|boolean
 name|isDeleted
 parameter_list|()
 function_decl|;
-comment|/** Returns true if this commit is an optimized index. */
-DECL|method|isOptimized
+comment|/** Returns number of segments referenced by this commit. */
+DECL|method|getSegmentCount
 specifier|public
 specifier|abstract
-name|boolean
-name|isOptimized
+name|int
+name|getSegmentCount
 parameter_list|()
 function_decl|;
 comment|/** Two IndexCommits are equal if both their Directory and versions are equal. */

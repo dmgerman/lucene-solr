@@ -505,28 +505,32 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"lastCommit.isOptimized()="
+literal|"lastCommit.segmentCount()="
 operator|+
 name|lastCommit
 operator|.
-name|isOptimized
+name|getSegmentCount
 argument_list|()
 operator|+
-literal|" vs IndexReader.isOptimized="
+literal|" vs IndexReader.segmentCount="
 operator|+
 name|r
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|,
 name|r
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|,
 name|lastCommit
 operator|.
-name|isOptimized
+name|getSegmentCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1741,7 +1745,7 @@ argument_list|()
 expr_stmt|;
 specifier|final
 name|boolean
-name|isOptimized
+name|needsMerging
 decl_stmt|;
 block|{
 name|IndexReader
@@ -1754,12 +1758,16 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|isOptimized
+name|needsMerging
 operator|=
 name|r
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
+operator|!=
+literal|1
 expr_stmt|;
 name|r
 operator|.
@@ -1769,8 +1777,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-operator|!
-name|isOptimized
+name|needsMerging
 condition|)
 block|{
 name|conf
@@ -1836,7 +1843,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: open writer for optimize"
+literal|"TEST: open writer for forceMerge"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1852,8 +1859,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -1863,11 +1872,11 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
-name|isOptimized
+name|needsMerging
 condition|?
-literal|0
-else|:
 literal|1
+else|:
+literal|0
 argument_list|,
 name|policy
 operator|.
@@ -1881,11 +1890,11 @@ argument_list|(
 literal|1
 operator|+
 operator|(
-name|isOptimized
+name|needsMerging
 condition|?
-literal|0
-else|:
 literal|1
+else|:
+literal|0
 operator|)
 argument_list|,
 name|policy
@@ -1913,11 +1922,11 @@ argument_list|(
 literal|1
 operator|+
 operator|(
-name|isOptimized
+name|needsMerging
 condition|?
-literal|0
-else|:
 literal|1
+else|:
+literal|0
 operator|)
 argument_list|,
 name|commits
@@ -2280,7 +2289,7 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-comment|// Now add 1 doc and optimize
+comment|// Now add 1 doc and merge
 name|writer
 operator|=
 operator|new
@@ -2322,8 +2331,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -2345,7 +2356,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Now open writer on the commit just before optimize:
+comment|// Now open writer on the commit just before merge:
 name|writer
 operator|=
 operator|new
@@ -2403,13 +2414,17 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-comment|// Still optimized, still 11 docs
-name|assertTrue
+comment|// Still merged, still 11 docs
+name|assertEquals
 argument_list|(
+literal|1
+argument_list|,
 name|r
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2499,15 +2514,18 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-comment|// Not optimized because we rolled it back, and now only
+comment|// Not fully merged because we rolled it back, and now only
 comment|// 10 docs
 name|assertTrue
 argument_list|(
-operator|!
 name|r
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
+operator|>
+literal|1
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2525,7 +2543,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Reoptimize
+comment|// Re-merge
 name|writer
 operator|=
 operator|new
@@ -2552,8 +2570,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -2571,12 +2591,16 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|1
+argument_list|,
 name|r
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2594,7 +2618,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now open writer on the commit just before optimize,
+comment|// Now open writer on the commit just before merging,
 comment|// but this time keeping only the last commit:
 name|writer
 operator|=
@@ -2630,7 +2654,7 @@ name|numDocs
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Reader still sees optimized index, because writer
+comment|// Reader still sees fully merged index, because writer
 comment|// opened on the prior commit has not yet committed:
 name|r
 operator|=
@@ -2643,12 +2667,16 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|1
+argument_list|,
 name|r
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2671,7 +2699,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now reader sees unoptimized index:
+comment|// Now reader sees not-fully-merged index:
 name|r
 operator|=
 name|IndexReader
@@ -2685,11 +2713,14 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-operator|!
 name|r
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
 argument_list|()
+operator|.
+name|length
+operator|>
+literal|1
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2921,8 +2952,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -3141,8 +3174,10 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 name|writer
 operator|.
@@ -3807,11 +3842,21 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|boolean
-name|wasOptimized
+name|wasFullyMerged
 init|=
 name|r
 operator|.
-name|isOptimized
+name|getSequentialSubReaders
+argument_list|()
+operator|.
+name|length
+operator|==
+literal|1
+operator|&&
+operator|!
+name|r
+operator|.
+name|hasDeletions
 argument_list|()
 decl_stmt|;
 name|r
@@ -3831,8 +3876,10 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// this is a commit
 name|writer
@@ -3868,7 +3915,7 @@ literal|2
 operator|)
 operator|-
 operator|(
-name|wasOptimized
+name|wasFullyMerged
 condition|?
 literal|1
 else|:

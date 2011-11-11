@@ -2013,7 +2013,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|//writer.optimize ();
+comment|//writer.forceMerge(1);
 comment|//System.out.println(writer.getSegmentCount());
 name|writer
 operator|.
@@ -9320,8 +9320,10 @@ expr_stmt|;
 block|}
 name|writer
 operator|.
-name|optimize
-argument_list|()
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 comment|// enforce one segment to have a higher unique term count in all cases
 name|writer
