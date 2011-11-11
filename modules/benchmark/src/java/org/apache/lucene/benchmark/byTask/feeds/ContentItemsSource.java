@@ -498,6 +498,14 @@ name|String
 name|itemsName
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|verbose
+condition|)
+block|{
+return|return;
+block|}
 name|boolean
 name|print
 init|=
