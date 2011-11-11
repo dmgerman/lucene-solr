@@ -793,6 +793,16 @@ operator|.
 name|finishDocument
 argument_list|()
 expr_stmt|;
+name|perFields
+index|[
+literal|0
+index|]
+operator|.
+name|fieldInfo
+operator|.
+name|commitVectors
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int
