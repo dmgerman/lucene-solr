@@ -777,6 +777,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// NOTE: must do this before calling super otherwise
+comment|// we compute the docsWithField Bits twice!
 name|currentReaderValues
 operator|=
 name|FieldCache
@@ -1141,6 +1143,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// NOTE: must do this before calling super otherwise
+comment|// we compute the docsWithField Bits twice!
 name|currentReaderValues
 operator|=
 name|FieldCache
@@ -1803,6 +1807,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// NOTE: must do this before calling super otherwise
+comment|// we compute the docsWithField Bits twice!
 name|currentReaderValues
 operator|=
 name|FieldCache
@@ -2105,6 +2111,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// NOTE: must do this before calling super otherwise
+comment|// we compute the docsWithField Bits twice!
 name|currentReaderValues
 operator|=
 name|FieldCache
@@ -2478,6 +2486,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// NOTE: must do this before calling super otherwise
+comment|// we compute the docsWithField Bits twice!
 name|currentReaderValues
 operator|=
 name|FieldCache
@@ -3144,6 +3154,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// NOTE: must do this before calling super otherwise
+comment|// we compute the docsWithField Bits twice!
 name|currentReaderValues
 operator|=
 name|FieldCache
