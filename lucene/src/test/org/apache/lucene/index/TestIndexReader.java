@@ -745,6 +745,12 @@ name|getSegmentCount
 argument_list|()
 operator|==
 literal|1
+operator|&&
+operator|!
+name|r2
+operator|.
+name|hasDeletions
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|r3
