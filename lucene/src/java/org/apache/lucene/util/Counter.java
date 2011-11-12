@@ -156,8 +156,13 @@ name|Counter
 block|{
 DECL|field|count
 specifier|private
+specifier|final
 name|AtomicLong
 name|count
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
