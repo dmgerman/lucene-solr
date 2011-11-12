@@ -59,12 +59,12 @@ init|=
 literal|2048
 decl_stmt|;
 comment|/** Default maximum segment size.  A segment of this size    *  or larger will never be merged during forceMerge.  @see setMaxMergeMBForForceMerge */
-DECL|field|DEFAULT_MAX_MERGE_MB_FOR_MERGE_IF_NEEDED
+DECL|field|DEFAULT_MAX_MERGE_MB_FOR_FORCED_MERGE
 specifier|public
 specifier|static
 specifier|final
 name|double
-name|DEFAULT_MAX_MERGE_MB_FOR_MERGE_IF_NEEDED
+name|DEFAULT_MAX_MERGE_MB_FOR_FORCED_MERGE
 init|=
 name|Long
 operator|.
@@ -107,7 +107,7 @@ call|(
 name|long
 call|)
 argument_list|(
-name|DEFAULT_MAX_MERGE_MB_FOR_MERGE_IF_NEEDED
+name|DEFAULT_MAX_MERGE_MB_FOR_FORCED_MERGE
 operator|*
 literal|1024
 operator|*
