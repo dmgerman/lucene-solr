@@ -239,7 +239,7 @@ specifier|private
 name|int
 name|docBase
 decl_stmt|;
-comment|/**    * Create a TimeLimitedCollector wrapper over another {@link Collector} with a specified timeout.    * @param collector the wrapped {@link Collector}    * @param timeAllowed max time allowed for collecting hits after which {@link TimeExceededException} is thrown    */
+comment|/**    * Create a TimeLimitedCollector wrapper over another {@link Collector} with a specified timeout.    * @param collector the wrapped {@link Collector}    * @param clock the timer clock    * @param ticksAllowed max time allowed for collecting    * hits after which {@link TimeExceededException} is thrown    */
 DECL|method|TimeLimitingCollector
 specifier|public
 name|TimeLimitingCollector
@@ -275,7 +275,7 @@ operator|=
 name|ticksAllowed
 expr_stmt|;
 block|}
-comment|/**    * Sets the baseline for this collector. By default the collectors baseline is     * initialized once the first reader is passed to    * {@link #setNextReader(AtomicReaderContext)}. To include operations executed    * in prior to the actual document collection set the baseline through this method    * in your prelude.    *<p>    * Example usage:    *<pre>    *   Counter clock = ...;    *   long baseline = clock.get();    *   // ... prepare search    *   TimeLimitingCollector collector = new TimeLimitingCollector(c, clock, numTicks);    *   collector.setBaseline(baseline);    *   indexSearcher.search(query, collector);    *</pre>    *</p>    * @see #setBaseline()     * @param clockTime    */
+comment|/**    * Sets the baseline for this collector. By default the collectors baseline is     * initialized once the first reader is passed to the collector.     * To include operations executed in prior to the actual document collection    * set the baseline through this method in your prelude.    *<p>    * Example usage:    *<pre>    *   Counter clock = ...;    *   long baseline = clock.get();    *   // ... prepare search    *   TimeLimitingCollector collector = new TimeLimitingCollector(c, clock, numTicks);    *   collector.setBaseline(baseline);    *   indexSearcher.search(query, collector);    *</pre>    *</p>    * @see #setBaseline()     * @param clockTime    */
 DECL|method|setBaseline
 specifier|public
 name|void
