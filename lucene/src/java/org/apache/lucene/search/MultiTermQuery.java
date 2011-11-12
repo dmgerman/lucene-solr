@@ -172,13 +172,6 @@ name|rewriteMethod
 init|=
 name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
 decl_stmt|;
-DECL|field|numberOfTerms
-specifier|transient
-name|int
-name|numberOfTerms
-init|=
-literal|0
-decl_stmt|;
 comment|/** Abstract class that defines how the query is rewritten. */
 DECL|class|RewriteMethod
 specifier|public
@@ -660,43 +653,6 @@ name|AttributeSource
 argument_list|()
 argument_list|)
 return|;
-block|}
-comment|/**    * Expert: Return the number of unique terms visited during execution of the query.    * If there are many of them, you may consider using another query type    * or reduce your total term count in index.    *<p>This method is not thread safe, be sure to only call it when no query is running!    * If you re-use the same query instance for another    * search, be sure to first reset the term counter    * with {@link #clearTotalNumberOfTerms}.    *<p>On single-segment indexes / no MultiReaders, you get the correct number of    * unique terms for the whole index. Use this number to compare different queries.    * For multi-segment indexes this number can also be achieved in    * non-constant-score mode. In constant-score mode you get the total number of    * terms seeked for all segments / sub-readers.    * @see #clearTotalNumberOfTerms    */
-DECL|method|getTotalNumberOfTerms
-specifier|public
-name|int
-name|getTotalNumberOfTerms
-parameter_list|()
-block|{
-return|return
-name|numberOfTerms
-return|;
-block|}
-comment|/**    * Expert: Resets the counting of unique terms.    * Do this before executing the query/filter.    * @see #getTotalNumberOfTerms    */
-DECL|method|clearTotalNumberOfTerms
-specifier|public
-name|void
-name|clearTotalNumberOfTerms
-parameter_list|()
-block|{
-name|numberOfTerms
-operator|=
-literal|0
-expr_stmt|;
-block|}
-DECL|method|incTotalNumberOfTerms
-specifier|protected
-name|void
-name|incTotalNumberOfTerms
-parameter_list|(
-name|int
-name|inc
-parameter_list|)
-block|{
-name|numberOfTerms
-operator|+=
-name|inc
-expr_stmt|;
 block|}
 comment|/**    * To rewrite to a simpler form, instead return a simpler    * enum from {@link #getTermsEnum(Terms, AttributeSource)}.  For example,    * to rewrite to a single term, return a {@link SingleTermsEnum}    */
 annotation|@

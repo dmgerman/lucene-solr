@@ -581,13 +581,6 @@ name|getBoost
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|query
-operator|.
-name|incTotalNumberOfTerms
-argument_list|(
-name|size
-argument_list|)
-expr_stmt|;
 return|return
 name|result
 return|;
