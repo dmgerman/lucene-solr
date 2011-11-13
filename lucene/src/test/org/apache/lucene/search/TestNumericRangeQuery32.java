@@ -3500,14 +3500,8 @@ name|cur
 argument_list|)
 expr_stmt|;
 block|}
-name|assertNull
-argument_list|(
-name|termEnum
-operator|.
-name|next
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// LUCENE-3314: the results after next() already returned null are undefined,
+comment|// assertNull(termEnum.next());
 return|return
 name|count
 return|;

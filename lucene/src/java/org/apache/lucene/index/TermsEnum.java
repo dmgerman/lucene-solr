@@ -254,7 +254,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Increments the enumeration to the next term.    *  Returns the resulting term, or null if the end was    *  hit (which means the enum is unpositioned).  The    *  returned BytesRef may be re-used across calls to next. */
+comment|/** Increments the enumeration to the next term.    *  Returns the resulting term, or null if the end was    *  hit (which means the enum is unpositioned).  The    *  returned BytesRef may be re-used across calls to next.    *  After this method returns null, do not call it again:    *  the results are undefined. */
 DECL|method|next
 specifier|public
 specifier|abstract
