@@ -530,7 +530,6 @@ argument_list|(
 literal|"indexed"
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|tokenized
@@ -688,6 +687,7 @@ argument_list|(
 name|indexOptions
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result

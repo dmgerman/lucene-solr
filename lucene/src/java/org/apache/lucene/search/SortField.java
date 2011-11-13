@@ -707,6 +707,15 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+name|String
+name|dv
+init|=
+name|useIndexValues
+condition|?
+literal|" [dv]"
+else|:
+literal|""
+decl_stmt|;
 switch|switch
 condition|(
 name|type
@@ -741,7 +750,11 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-literal|"<string: \""
+literal|"<string"
+operator|+
+name|dv
+operator|+
+literal|": \""
 argument_list|)
 operator|.
 name|append
@@ -762,7 +775,11 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-literal|"<string_val: \""
+literal|"<string_val"
+operator|+
+name|dv
+operator|+
+literal|": \""
 argument_list|)
 operator|.
 name|append
@@ -825,7 +842,11 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-literal|"<int: \""
+literal|"<int"
+operator|+
+name|dv
+operator|+
+literal|": \""
 argument_list|)
 operator|.
 name|append
@@ -867,7 +888,11 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-literal|"<float: \""
+literal|"<float"
+operator|+
+name|dv
+operator|+
+literal|": \""
 argument_list|)
 operator|.
 name|append
@@ -888,7 +913,11 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-literal|"<double: \""
+literal|"<double"
+operator|+
+name|dv
+operator|+
+literal|": \""
 argument_list|)
 operator|.
 name|append
@@ -1464,6 +1493,25 @@ return|;
 case|case
 name|STRING
 case|:
+if|if
+condition|(
+name|useIndexValues
+condition|)
+block|{
+return|return
+operator|new
+name|FieldComparator
+operator|.
+name|TermOrdValDocValuesComparator
+argument_list|(
+name|numHits
+argument_list|,
+name|field
+argument_list|)
+return|;
+block|}
+else|else
+block|{
 return|return
 operator|new
 name|FieldComparator
@@ -1473,15 +1521,31 @@ argument_list|(
 name|numHits
 argument_list|,
 name|field
-argument_list|,
-name|sortPos
-argument_list|,
-name|reverse
 argument_list|)
 return|;
+block|}
 case|case
 name|STRING_VAL
 case|:
+if|if
+condition|(
+name|useIndexValues
+condition|)
+block|{
+return|return
+operator|new
+name|FieldComparator
+operator|.
+name|TermValDocValuesComparator
+argument_list|(
+name|numHits
+argument_list|,
+name|field
+argument_list|)
+return|;
+block|}
+else|else
+block|{
 return|return
 operator|new
 name|FieldComparator
@@ -1493,6 +1557,7 @@ argument_list|,
 name|field
 argument_list|)
 return|;
+block|}
 case|case
 name|REWRITEABLE
 case|:
