@@ -60,51 +60,6 @@ argument_list|(
 literal|"java.version"
 argument_list|)
 decl_stmt|;
-comment|/** True iff this is Java version 1.1. */
-DECL|field|JAVA_1_1
-specifier|public
-specifier|static
-specifier|final
-name|boolean
-name|JAVA_1_1
-init|=
-name|JAVA_VERSION
-operator|.
-name|startsWith
-argument_list|(
-literal|"1.1."
-argument_list|)
-decl_stmt|;
-comment|/** True iff this is Java version 1.2. */
-DECL|field|JAVA_1_2
-specifier|public
-specifier|static
-specifier|final
-name|boolean
-name|JAVA_1_2
-init|=
-name|JAVA_VERSION
-operator|.
-name|startsWith
-argument_list|(
-literal|"1.2."
-argument_list|)
-decl_stmt|;
-comment|/** True iff this is Java version 1.3. */
-DECL|field|JAVA_1_3
-specifier|public
-specifier|static
-specifier|final
-name|boolean
-name|JAVA_1_3
-init|=
-name|JAVA_VERSION
-operator|.
-name|startsWith
-argument_list|(
-literal|"1.3."
-argument_list|)
-decl_stmt|;
 comment|/** The value of<tt>System.getProperty("os.name")<tt>. **/
 DECL|field|OS_NAME
 specifier|public
@@ -222,8 +177,18 @@ argument_list|(
 literal|"java.vendor"
 argument_list|)
 decl_stmt|;
-comment|// NOTE: this logic may not be correct; if you know of a
-comment|// more reliable approach please raise it on java-dev!
+comment|/** @deprecated With Lucene 4.0, we are always on Java 6 */
+annotation|@
+name|Deprecated
+DECL|field|JRE_IS_MINIMUM_JAVA6
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|JRE_IS_MINIMUM_JAVA6
+init|=
+literal|true
+decl_stmt|;
 DECL|field|JRE_IS_64BIT
 specifier|public
 specifier|static
@@ -231,8 +196,18 @@ specifier|final
 name|boolean
 name|JRE_IS_64BIT
 decl_stmt|;
+DECL|field|JRE_IS_MINIMUM_JAVA7
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|JRE_IS_MINIMUM_JAVA7
+decl_stmt|;
 static|static
 block|{
+comment|// NOTE: this logic may not be correct; if you know of a
+comment|// more reliable approach please raise it on java-dev!
+specifier|final
 name|String
 name|x
 init|=
@@ -295,6 +270,39 @@ literal|false
 expr_stmt|;
 block|}
 block|}
+comment|// this method only exists in Java 7:
+name|boolean
+name|v7
+init|=
+literal|true
+decl_stmt|;
+try|try
+block|{
+name|Throwable
+operator|.
+name|class
+operator|.
+name|getMethod
+argument_list|(
+literal|"getSuppressed"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchMethodException
+name|nsme
+parameter_list|)
+block|{
+name|v7
+operator|=
+literal|false
+expr_stmt|;
+block|}
+name|JRE_IS_MINIMUM_JAVA7
+operator|=
+name|v7
+expr_stmt|;
 block|}
 comment|// this method prevents inlining the final version constant in compiled classes,
 comment|// see: http://www.javaworld.com/community/node/3400
