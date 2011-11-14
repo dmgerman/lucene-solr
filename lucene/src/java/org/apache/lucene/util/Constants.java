@@ -187,8 +187,16 @@ specifier|final
 name|boolean
 name|JRE_IS_MINIMUM_JAVA6
 init|=
+operator|new
+name|Boolean
+argument_list|(
 literal|true
+argument_list|)
+operator|.
+name|booleanValue
+argument_list|()
 decl_stmt|;
+comment|// prevent inlining in foreign class files
 DECL|field|JRE_IS_64BIT
 specifier|public
 specifier|static
