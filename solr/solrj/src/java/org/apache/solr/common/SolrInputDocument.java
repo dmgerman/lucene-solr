@@ -135,6 +135,24 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|SolrInputDocument
+specifier|public
+name|SolrInputDocument
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|SolrInputField
+argument_list|>
+name|fields
+parameter_list|)
+block|{
+name|_fields
+operator|=
+name|fields
+expr_stmt|;
+block|}
 comment|/**    * Remove all fields and boosts from the document    */
 DECL|method|clear
 specifier|public
