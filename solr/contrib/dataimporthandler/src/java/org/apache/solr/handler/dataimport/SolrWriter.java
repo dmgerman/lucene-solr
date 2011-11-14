@@ -177,6 +177,8 @@ DECL|class|SolrWriter
 specifier|public
 class|class
 name|SolrWriter
+extends|extends
+name|DIHWriterBase
 implements|implements
 name|DIHWriter
 block|{

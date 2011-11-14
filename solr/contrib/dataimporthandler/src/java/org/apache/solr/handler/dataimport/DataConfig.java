@@ -498,6 +498,13 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
+DECL|field|initalized
+specifier|public
+name|boolean
+name|initalized
+init|=
+literal|false
+decl_stmt|;
 DECL|method|Entity
 specifier|public
 name|Entity
