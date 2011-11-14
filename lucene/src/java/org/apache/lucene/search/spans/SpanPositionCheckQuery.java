@@ -92,6 +92,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TermContext
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -117,6 +131,16 @@ operator|.
 name|util
 operator|.
 name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -256,6 +280,14 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
+parameter_list|,
+name|Map
+argument_list|<
+name|Term
+argument_list|,
+name|TermContext
+argument_list|>
+name|termContexts
 parameter_list|)
 throws|throws
 name|IOException
@@ -267,6 +299,8 @@ argument_list|(
 name|context
 argument_list|,
 name|acceptDocs
+argument_list|,
+name|termContexts
 argument_list|)
 return|;
 block|}
@@ -366,6 +400,14 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
+parameter_list|,
+name|Map
+argument_list|<
+name|Term
+argument_list|,
+name|TermContext
+argument_list|>
+name|termContexts
 parameter_list|)
 throws|throws
 name|IOException
@@ -379,6 +421,8 @@ argument_list|(
 name|context
 argument_list|,
 name|acceptDocs
+argument_list|,
+name|termContexts
 argument_list|)
 expr_stmt|;
 block|}

@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -337,6 +347,14 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
+parameter_list|,
+name|Map
+argument_list|<
+name|Term
+argument_list|,
+name|TermContext
+argument_list|>
+name|termContexts
 parameter_list|)
 throws|throws
 name|IOException
@@ -642,6 +660,9 @@ name|TermContext
 name|states
 parameter_list|)
 block|{
+comment|// TODO: would be nice to not lose term-state here.
+comment|// we could add a hack option to SpanOrQuery, but the hack would only work if this is the top-level Span
+comment|// (if you put this thing in another span query, it would extractTerms/double-seek anyway)
 specifier|final
 name|SpanTermQuery
 name|q

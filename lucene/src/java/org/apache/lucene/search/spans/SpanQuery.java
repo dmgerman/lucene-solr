@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -41,6 +51,20 @@ operator|.
 name|IndexReader
 operator|.
 name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
 import|;
 end_import
 
@@ -100,6 +124,20 @@ name|Bits
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TermContext
+import|;
+end_import
+
 begin_comment
 comment|/** Base class for span-based queries. */
 end_comment
@@ -125,6 +163,14 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
+parameter_list|,
+name|Map
+argument_list|<
+name|Term
+argument_list|,
+name|TermContext
+argument_list|>
+name|termContexts
 parameter_list|)
 throws|throws
 name|IOException
