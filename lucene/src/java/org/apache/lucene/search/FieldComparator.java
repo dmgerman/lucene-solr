@@ -7091,6 +7091,9 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// This may mean entire segment had no docs with
+comment|// this DV field; use default field value (empty
+comment|// byte[]) in this case:
 name|termsIndex
 operator|=
 name|IndexDocValues
@@ -7129,24 +7132,34 @@ operator|==
 literal|null
 condition|)
 block|{
-name|termsIndex
-operator|=
-name|IndexDocValues
-operator|.
-name|getDefaultSortedSource
+comment|// This means segment has doc values, but they are
+comment|// not able to provide a sorted source; consider
+comment|// this a hard error:
+throw|throw
+operator|new
+name|IllegalStateException
 argument_list|(
-name|ValueType
+literal|"DocValues exist for field \""
+operator|+
+name|field
+operator|+
+literal|"\", but not as a sorted source: type="
+operator|+
+name|dv
 operator|.
-name|BYTES_VAR_SORTED
-argument_list|,
+name|getSource
+argument_list|()
+operator|.
+name|type
+argument_list|()
+operator|+
+literal|" reader="
+operator|+
 name|context
 operator|.
 name|reader
-operator|.
-name|maxDoc
-argument_list|()
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 block|}
 name|comp
