@@ -1030,8 +1030,9 @@ range|:
 name|segmentFieldInfos
 control|)
 block|{
-name|same
-operator|=
+if|if
+condition|(
+operator|!
 name|mergeState
 operator|.
 name|fieldInfos
@@ -1049,7 +1050,14 @@ name|fi
 operator|.
 name|name
 argument_list|)
+condition|)
+block|{
+name|same
+operator|=
+literal|false
 expr_stmt|;
+break|break;
+block|}
 block|}
 if|if
 condition|(
