@@ -832,6 +832,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|// TODO: this is dup of IndexDocValues.getDefaultSource()?
 DECL|class|EmptySource
 specifier|private
 specifier|static
