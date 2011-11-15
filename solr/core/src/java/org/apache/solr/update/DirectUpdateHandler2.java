@@ -914,15 +914,6 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|commitTracker
-operator|.
-name|addedDocument
-argument_list|(
-name|cmd
-operator|.
-name|commitWithin
-argument_list|)
-expr_stmt|;
 name|softCommitTracker
 operator|.
 name|addedDocument
@@ -1084,6 +1075,15 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|commitTracker
+operator|.
+name|addedDocument
+argument_list|(
+name|cmd
+operator|.
+name|commitWithin
+argument_list|)
+expr_stmt|;
 comment|// Add to the transaction log *after* successfully adding to the index, if there was no error.
 comment|// This ordering ensures that if we log it, it's definitely been added to the the index.
 comment|// This also ensures that if a commit sneaks in-between, that we know everything in a particular
