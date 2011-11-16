@@ -7253,7 +7253,6 @@ name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//doc.add(newField("f7", "doc1 field7", StringField.TYPE_STORED));
 name|w
 operator|.
 name|addDocument
@@ -7328,7 +7327,6 @@ name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//doc.add(newField("f7", "doc2 field7", StringField.TYPE_STORED));
 name|w
 operator|.
 name|addDocument
@@ -7406,39 +7404,6 @@ name|w
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"r1="
-operator|+
-name|r1
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"r2="
-operator|+
-name|r2
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"r3="
-operator|+
-name|r3
-argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
