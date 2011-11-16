@@ -882,7 +882,9 @@ return|return
 name|terms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 return|;
 case|case
 name|SINGLE
@@ -894,7 +896,9 @@ argument_list|(
 name|terms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 argument_list|,
 name|term
 argument_list|)
@@ -911,7 +915,9 @@ argument_list|(
 name|terms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 argument_list|,
 name|term
 argument_list|)

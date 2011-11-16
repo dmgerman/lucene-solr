@@ -1214,9 +1214,7 @@ operator|+=
 name|info
 operator|.
 name|sizeInBytes
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 elseif|else
@@ -1762,9 +1760,7 @@ operator|+=
 name|info
 operator|.
 name|sizeInBytes
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 comment|// Measure "skew" of the merge, which can range
@@ -2801,9 +2797,7 @@ init|=
 name|info
 operator|.
 name|sizeInBytes
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|int

@@ -595,7 +595,9 @@ literal|"body"
 argument_list|)
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 name|te
 operator|.

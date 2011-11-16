@@ -40,7 +40,7 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|PostingsFormat
+name|Codec
 import|;
 end_import
 
@@ -53,7 +53,7 @@ comment|// TODO: put all files under codec and remove all the static extensions 
 end_comment
 
 begin_comment
-comment|/**  * This class contains useful constants representing filenames and extensions  * used by lucene, as well as convenience methods for querying whether a file  * name matches an extension ({@link #matchesExtension(String, String)  * matchesExtension}), as well as generating file names from a segment name,  * generation and extension (  * {@link #fileNameFromGeneration(String, String, long) fileNameFromGeneration},  * {@link #segmentFileName(String, String, String) segmentFileName}).  *  *<p><b>NOTE</b>: extensions used by codecs are not  * listed here.  You must interact with the {@link PostingsFormat}  * directly.  *  * @lucene.internal  */
+comment|/**  * This class contains useful constants representing filenames and extensions  * used by lucene, as well as convenience methods for querying whether a file  * name matches an extension ({@link #matchesExtension(String, String)  * matchesExtension}), as well as generating file names from a segment name,  * generation and extension (  * {@link #fileNameFromGeneration(String, String, long) fileNameFromGeneration},  * {@link #segmentFileName(String, String, String) segmentFileName}).  *  *<p><b>NOTE</b>: extensions used by codecs are not  * listed here.  You must interact with the {@link Codec}  * directly.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -105,36 +105,6 @@ name|NORMS_EXTENSION
 init|=
 literal|"nrm"
 decl_stmt|;
-comment|/** Extension of vectors fields file */
-DECL|field|VECTORS_FIELDS_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|VECTORS_FIELDS_EXTENSION
-init|=
-literal|"tvf"
-decl_stmt|;
-comment|/** Extension of vectors documents file */
-DECL|field|VECTORS_DOCUMENTS_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|VECTORS_DOCUMENTS_EXTENSION
-init|=
-literal|"tvd"
-decl_stmt|;
-comment|/** Extension of vectors index file */
-DECL|field|VECTORS_INDEX_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|VECTORS_INDEX_EXTENSION
-init|=
-literal|"tvx"
-decl_stmt|;
 comment|/** Extension of compound file */
 DECL|field|COMPOUND_FILE_EXTENSION
 specifier|public
@@ -175,16 +145,6 @@ name|DELETES_EXTENSION
 init|=
 literal|"del"
 decl_stmt|;
-comment|/** Extension of field infos */
-DECL|field|FIELD_INFOS_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|FIELD_INFOS_EXTENSION
-init|=
-literal|"fnm"
-decl_stmt|;
 comment|/** Extension of separate norms */
 DECL|field|SEPARATE_NORMS_EXTENSION
 specifier|public
@@ -222,15 +182,7 @@ name|COMPOUND_FILE_EXTENSION
 block|,
 name|COMPOUND_FILE_ENTRIES_EXTENSION
 block|,
-name|FIELD_INFOS_EXTENSION
-block|,
 name|DELETES_EXTENSION
-block|,
-name|VECTORS_INDEX_EXTENSION
-block|,
-name|VECTORS_DOCUMENTS_EXTENSION
-block|,
-name|VECTORS_FIELDS_EXTENSION
 block|,
 name|GEN_EXTENSION
 block|,
@@ -239,25 +191,6 @@ block|,
 name|COMPOUND_FILE_STORE_EXTENSION
 block|,
 name|GLOBAL_FIELD_NUM_MAP_EXTENSION
-block|,   }
-decl_stmt|;
-DECL|field|STORE_INDEX_EXTENSIONS
-specifier|public
-specifier|static
-specifier|final
-name|String
-index|[]
-name|STORE_INDEX_EXTENSIONS
-init|=
-operator|new
-name|String
-index|[]
-block|{
-name|VECTORS_INDEX_EXTENSION
-block|,
-name|VECTORS_FIELDS_EXTENSION
-block|,
-name|VECTORS_DOCUMENTS_EXTENSION
 block|,   }
 decl_stmt|;
 DECL|field|NON_STORE_INDEX_EXTENSIONS
@@ -272,43 +205,7 @@ operator|new
 name|String
 index|[]
 block|{
-name|FIELD_INFOS_EXTENSION
-block|,
 name|NORMS_EXTENSION
-block|}
-decl_stmt|;
-DECL|field|COMPOUND_EXTENSIONS_NOT_CODEC
-specifier|static
-specifier|final
-name|String
-name|COMPOUND_EXTENSIONS_NOT_CODEC
-index|[]
-init|=
-operator|new
-name|String
-index|[]
-block|{
-name|FIELD_INFOS_EXTENSION
-block|,   }
-decl_stmt|;
-comment|/** File extensions for term vector support */
-DECL|field|VECTOR_EXTENSIONS
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|VECTOR_EXTENSIONS
-index|[]
-init|=
-operator|new
-name|String
-index|[]
-block|{
-name|VECTORS_INDEX_EXTENSION
-block|,
-name|VECTORS_DOCUMENTS_EXTENSION
-block|,
-name|VECTORS_FIELDS_EXTENSION
 block|}
 decl_stmt|;
 comment|/**    * Computes the full file name from base, extension and generation. If the    * generation is -1, the file name is null. If it's 0, the file name is    *&lt;base&gt;.&lt;ext&gt;. If it's> 0, the file name is    *&lt;base&gt;_&lt;gen&gt;.&lt;ext&gt;.<br>    *<b>NOTE:</b> .&lt;ext&gt; is added to the name only if<code>ext</code> is    * not an empty string.    *     * @param base main part of the file name    * @param ext extension of the filename    * @param gen generation    */
@@ -440,55 +337,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-comment|/**    * Returns true if the provided filename is one of the doc store files (ends    * with an extension in {@link #STORE_INDEX_EXTENSIONS}).    */
-comment|// TODO: this method is stupid.
-DECL|method|isDocStoreFile
-specifier|public
-specifier|static
-name|boolean
-name|isDocStoreFile
-parameter_list|(
-name|String
-name|fileName
-parameter_list|)
-block|{
-if|if
-condition|(
-name|fileName
-operator|.
-name|endsWith
-argument_list|(
-name|COMPOUND_FILE_STORE_EXTENSION
-argument_list|)
-condition|)
-return|return
-literal|true
-return|;
-for|for
-control|(
-name|String
-name|ext
-range|:
-name|STORE_INDEX_EXTENSIONS
-control|)
-block|{
-if|if
-condition|(
-name|fileName
-operator|.
-name|endsWith
-argument_list|(
-name|ext
-argument_list|)
-condition|)
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
-return|;
 block|}
 comment|/**    * Returns a file name that includes the given segment name, your own custom    * name and extension. The format of the filename is:    *&lt;segmentName&gt;(_&lt;name&gt;)(.&lt;ext&gt;).    *<p>    *<b>NOTE:</b> .&lt;ext&gt; is added to the result file name only if    *<code>ext</code> is not empty.    *<p>    *<b>NOTE:</b> _&lt;segmentSuffix&gt; is added to the result file name only if    * it's not the empty string    *<p>    *<b>NOTE:</b> all custom files should be named using this method, or    * otherwise some structures may fail to handle them properly (such as if they    * are added to compound files).    */
 DECL|method|segmentFileName

@@ -95,16 +95,22 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link TermsEnum} for the current field.  You    *  should not call {@link #next} until you're done using    *  this {@link TermsEnum}.  After {@link #next} returns    *  null this method should not be called. This method    *  will not return null. */
+comment|// TODO: would be nice to require/fix all impls so they
+comment|// never return null here... we have to fix the writers to
+comment|// never write 0-terms fields... or maybe allow a non-null
+comment|// Terms instance in just this case
+comment|/** Get {@link Terms} for the current field.  After {@link #next} returns    *  null this method should not be called. This method may    *  return null in some cases, which means the provided    *  field does not have any terms. */
 DECL|method|terms
 specifier|public
 specifier|abstract
-name|TermsEnum
+name|Terms
 name|terms
 parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|// TODO: should we allow pulling Terms as well?  not just
+comment|// the iterator?
 DECL|field|EMPTY_ARRAY
 specifier|public
 specifier|final
@@ -145,7 +151,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|TermsEnum
+name|Terms
 name|terms
 parameter_list|()
 block|{

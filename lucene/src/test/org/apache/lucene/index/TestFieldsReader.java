@@ -355,7 +355,13 @@ name|fieldInfos
 operator|=
 operator|new
 name|FieldInfos
+argument_list|(
+operator|new
+name|FieldInfos
+operator|.
+name|FieldNumberBiMap
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|DocHelper
 operator|.

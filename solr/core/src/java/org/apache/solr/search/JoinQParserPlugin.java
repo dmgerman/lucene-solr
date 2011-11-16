@@ -1607,7 +1607,9 @@ init|=
 name|terms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 name|TermsEnum
 name|toTermsEnum
@@ -1615,7 +1617,9 @@ init|=
 name|toTerms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 name|SolrIndexSearcher
 operator|.

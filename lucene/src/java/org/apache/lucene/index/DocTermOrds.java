@@ -570,7 +570,9 @@ return|return
 name|terms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 return|;
 block|}
 else|else
@@ -739,7 +741,9 @@ init|=
 name|terms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 specifier|final
 name|BytesRef
@@ -2625,7 +2629,9 @@ name|field
 argument_list|)
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@

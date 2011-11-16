@@ -425,7 +425,10 @@ name|Override
 specifier|public
 name|TermsEnum
 name|iterator
-parameter_list|()
+parameter_list|(
+name|TermsEnum
+name|reuse
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -509,11 +512,6 @@ literal|null
 condition|)
 block|{
 comment|// fill into a OpenBitSet
-name|int
-name|termCount
-init|=
-literal|0
-decl_stmt|;
 do|do
 block|{
 name|long
@@ -537,9 +535,6 @@ name|set
 argument_list|(
 name|ord
 argument_list|)
-expr_stmt|;
-name|termCount
-operator|++
 expr_stmt|;
 block|}
 block|}

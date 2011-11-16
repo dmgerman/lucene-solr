@@ -123,13 +123,16 @@ name|TermsEnum
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/** Returns an iterator that will step through all    *  terms. This method will not return null.*/
+comment|/** Returns an iterator that will step through all    *  terms. This method will not return null.  If you have    *  a previous TermsEnum, for example from a different    *  field, you can pass it for possible reuse if the    *  implementation can do so. */
 DECL|method|iterator
 specifier|public
 specifier|abstract
 name|TermsEnum
 name|iterator
-parameter_list|()
+parameter_list|(
+name|TermsEnum
+name|reuse
+parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
@@ -185,7 +188,9 @@ operator|new
 name|AutomatonTermsEnum
 argument_list|(
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 argument_list|,
 name|compiled
 argument_list|)
@@ -198,7 +203,9 @@ operator|new
 name|AutomatonTermsEnum
 argument_list|(
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 argument_list|,
 name|compiled
 argument_list|)
@@ -589,7 +596,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a thread-private {@link TermsEnum} instance. Obtaining    * {@link TermsEnum} from this method might be more efficient than using    * {@link #iterator()} directly since this method doesn't necessarily create a    * new {@link TermsEnum} instance.    *<p>    * NOTE: {@link TermsEnum} instances obtained from this method must not be    * shared across threads. The enum should only be used within a local context    * where other threads can't access it.    *     * @return a thread-private {@link TermsEnum} instance    * @throws IOException    *           if an IOException occurs    * @lucene.internal    */
+comment|/**    * Returns a thread-private {@link TermsEnum} instance. Obtaining    * {@link TermsEnum} from this method might be more efficient than using    * {@link #iterator(TermsEnum)} directly since this method doesn't necessarily create a    * new {@link TermsEnum} instance.    *<p>    * NOTE: {@link TermsEnum} instances obtained from this method must not be    * shared across threads. The enum should only be used within a local context    * where other threads can't access it.    *     * @return a thread-private {@link TermsEnum} instance    * @throws IOException    *           if an IOException occurs    * @lucene.internal    */
 DECL|method|getThreadTermsEnum
 specifier|public
 name|TermsEnum
@@ -616,7 +623,9 @@ block|{
 name|termsEnum
 operator|=
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 name|threadEnums
 operator|.

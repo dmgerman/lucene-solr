@@ -2592,7 +2592,9 @@ init|=
 name|terms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 name|Bits
 name|liveDocs
@@ -2851,7 +2853,9 @@ init|=
 name|terms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 name|DocsEnum
 name|mainde
@@ -2957,7 +2961,9 @@ operator|=
 name|terms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 comment|// Also tell the ordinal maps their expected sizes:
 name|ordinalMaps

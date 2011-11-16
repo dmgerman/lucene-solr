@@ -319,7 +319,7 @@ name|TermsHashConsumer
 name|termVectorsWriter
 init|=
 operator|new
-name|TermVectorsTermsWriter
+name|TermVectorsConsumer
 argument_list|(
 name|documentsWriterPerThread
 argument_list|)
@@ -1757,8 +1757,9 @@ argument_list|()
 expr_stmt|;
 name|fieldInfos
 operator|=
-operator|new
 name|FieldInfos
+operator|.
+name|from
 argument_list|(
 name|fieldInfos
 argument_list|)

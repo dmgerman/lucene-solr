@@ -195,6 +195,32 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
+name|termVectorsFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|dir
+argument_list|,
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
+name|fieldInfosFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|dir
+argument_list|,
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
+comment|// TODO: segmentInfosFormat should be allowed to declare additional files
+comment|// if it wants, in addition to segments_N
 name|docValuesFormat
 argument_list|()
 operator|.
@@ -230,6 +256,22 @@ specifier|public
 specifier|abstract
 name|StoredFieldsFormat
 name|storedFieldsFormat
+parameter_list|()
+function_decl|;
+comment|/** Encodes/decodes term vectors */
+DECL|method|termVectorsFormat
+specifier|public
+specifier|abstract
+name|TermVectorsFormat
+name|termVectorsFormat
+parameter_list|()
+function_decl|;
+comment|/** Encodes/decodes field infos file */
+DECL|method|fieldInfosFormat
+specifier|public
+specifier|abstract
+name|FieldInfosFormat
+name|fieldInfosFormat
 parameter_list|()
 function_decl|;
 comment|/** Encodes/decodes segments file */

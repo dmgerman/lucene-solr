@@ -397,7 +397,10 @@ DECL|method|iterator
 specifier|public
 name|TermsEnum
 name|iterator
-parameter_list|()
+parameter_list|(
+name|TermsEnum
+name|reuse
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -446,7 +449,9 @@ name|i
 index|]
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
 if|if
 condition|(

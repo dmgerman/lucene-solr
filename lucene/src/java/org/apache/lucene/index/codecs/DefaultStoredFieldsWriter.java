@@ -66,6 +66,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|FieldInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexFileNames
 import|;
 end_import
@@ -373,11 +387,13 @@ literal|"fdx"
 decl_stmt|;
 DECL|field|directory
 specifier|private
+specifier|final
 name|Directory
 name|directory
 decl_stmt|;
 DECL|field|segment
 specifier|private
+specifier|final
 name|String
 name|segment
 decl_stmt|;
@@ -584,7 +600,7 @@ parameter_list|(
 name|IOException
 name|ignored
 parameter_list|)
-block|{     }
+block|{}
 try|try
 block|{
 name|directory
@@ -609,7 +625,7 @@ parameter_list|(
 name|IOException
 name|ignored
 parameter_list|)
-block|{     }
+block|{}
 try|try
 block|{
 name|directory
@@ -634,7 +650,7 @@ parameter_list|(
 name|IOException
 name|ignored
 parameter_list|)
-block|{     }
+block|{}
 block|}
 DECL|method|writeField
 specifier|public
@@ -642,8 +658,8 @@ specifier|final
 name|void
 name|writeField
 parameter_list|(
-name|int
-name|fieldNumber
+name|FieldInfo
+name|info
 parameter_list|,
 name|IndexableField
 name|field
@@ -655,7 +671,9 @@ name|fieldsStream
 operator|.
 name|writeVInt
 argument_list|(
-name|fieldNumber
+name|info
+operator|.
+name|number
 argument_list|)
 expr_stmt|;
 name|int

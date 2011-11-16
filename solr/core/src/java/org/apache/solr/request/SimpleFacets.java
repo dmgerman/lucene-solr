@@ -3758,7 +3758,9 @@ operator|=
 name|terms
 operator|.
 name|iterator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 comment|// TODO: OPT: if seek(ord) is supported for this termsEnum, then we could use it for
 comment|// facet.offset when sorting by index order.
