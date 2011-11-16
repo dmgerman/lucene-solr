@@ -264,6 +264,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexWriter
 import|;
 end_import
@@ -1016,14 +1030,23 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|//open searcher
+comment|// this example never closes it reader!
+name|IndexReader
+name|reader
+init|=
+name|IndexReader
+operator|.
+name|open
+argument_list|(
+name|rd
+argument_list|)
+decl_stmt|;
 name|searcher
 operator|=
 operator|new
 name|IndexSearcher
 argument_list|(
-name|rd
-argument_list|,
-literal|true
+name|reader
 argument_list|)
 expr_stmt|;
 block|}
