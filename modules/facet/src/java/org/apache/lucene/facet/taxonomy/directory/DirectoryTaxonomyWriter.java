@@ -414,6 +414,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|AlreadyClosedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|Directory
 import|;
 end_import
@@ -697,6 +711,9 @@ name|char
 name|delimiter
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|delimiter
@@ -1070,6 +1087,9 @@ name|int
 name|getCacheMemoryUsage
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|this
@@ -1501,6 +1521,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 comment|// If the category is already in the cache and/or the taxonomy, we
 comment|// should return its existing ordinal:
 name|int
@@ -1642,6 +1665,30 @@ decl_stmt|;
 return|return
 name|id
 return|;
+block|}
+comment|/**    * Verifies that this instance wasn't closed, or throws    * {@link AlreadyClosedException} if it is.    */
+DECL|method|ensureOpen
+specifier|protected
+specifier|final
+name|void
+name|ensureOpen
+parameter_list|()
+block|{
+if|if
+condition|(
+name|indexWriter
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|AlreadyClosedException
+argument_list|(
+literal|"The taxonomy writer has already been closed"
+argument_list|)
+throw|;
+block|}
 block|}
 comment|// Note that the methods calling addCategoryDocument() are synchornized,
 comment|// so this method is effectively synchronized as well, but we'll add
@@ -2022,6 +2069,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|indexWriter
 operator|.
 name|commit
@@ -2053,6 +2103,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|indexWriter
 operator|.
 name|commit
@@ -2078,6 +2131,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|indexWriter
 operator|.
 name|prepareCommit
@@ -2106,6 +2162,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|indexWriter
 operator|.
 name|prepareCommit
@@ -2124,6 +2183,9 @@ name|int
 name|getSize
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|indexWriter
 operator|.
@@ -2148,6 +2210,9 @@ name|int
 name|i
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|cacheMissesUntilFill
 operator|=
 name|i
@@ -2440,6 +2505,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 comment|// Note: the following if() just enforces that a user can never ask
 comment|// for the parent of a nonexistant category - even if the parent array
 comment|// was allocated bigger than it really needs to be.
@@ -2485,6 +2553,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 comment|// To prevent us stepping on the rest of this class's decisions on when
 comment|// to open a reader, and when not, we'll be opening a new reader instead
 comment|// of using the existing "reader" object:
@@ -3668,6 +3739,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**    * Rollback changes to the taxonomy writer and closes the instance. Following    * this method the instance becomes unusable (calling any of its API methods    * will yield an {@link AlreadyClosedException}).    */
 annotation|@
 name|Override
 DECL|method|rollback
@@ -3678,12 +3750,15 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|indexWriter
 operator|.
 name|rollback
 argument_list|()
 expr_stmt|;
-name|refreshReader
+name|close
 argument_list|()
 expr_stmt|;
 block|}
