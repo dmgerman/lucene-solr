@@ -429,6 +429,8 @@ argument_list|,
 name|len
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 switch|switch
 condition|(
 name|type
@@ -531,6 +533,29 @@ operator|.
 name|SERVER_ERROR
 argument_list|,
 literal|"Unknown type for trie field"
+argument_list|)
+throw|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|nfe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Invalid Number: "
+operator|+
+name|v
 argument_list|)
 throw|;
 block|}
