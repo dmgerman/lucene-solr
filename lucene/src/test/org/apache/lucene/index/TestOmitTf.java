@@ -2510,10 +2510,14 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|terms
+name|MultiFields
 operator|.
 name|totalTermFreq
 argument_list|(
+name|ir
+argument_list|,
+literal|"foo"
+argument_list|,
 operator|new
 name|BytesRef
 argument_list|(

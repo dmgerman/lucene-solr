@@ -34,16 +34,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|Closeable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -1103,23 +1093,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-for|for
-control|(
-name|FieldReader
-name|field
-range|:
-name|fields
-operator|.
-name|values
-argument_list|()
-control|)
-block|{
-name|field
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
 comment|// Clear so refs to terms index is GCable even if
 comment|// app hangs onto us:
 name|fields
@@ -2310,8 +2283,6 @@ class|class
 name|FieldReader
 extends|extends
 name|Terms
-implements|implements
-name|Closeable
 block|{
 DECL|field|numTerms
 specifier|final
@@ -2552,20 +2523,6 @@ operator|.
 name|getUTF8SortedAsUnicodeComparator
 argument_list|()
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|close
-specifier|public
-name|void
-name|close
-parameter_list|()
-block|{
-name|super
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -3802,7 +3759,6 @@ block|}
 block|}
 DECL|field|savedStartTerm
 specifier|private
-specifier|final
 name|BytesRef
 name|savedStartTerm
 decl_stmt|;
@@ -4007,20 +3963,12 @@ name|rootCode
 argument_list|)
 expr_stmt|;
 comment|// for assert:
-name|savedStartTerm
-operator|=
-name|startTerm
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
-operator|new
-name|BytesRef
+assert|assert
+name|setSavedStartTerm
 argument_list|(
 name|startTerm
 argument_list|)
-expr_stmt|;
+assert|;
 name|currentFrame
 operator|=
 name|f
@@ -4038,6 +3986,34 @@ name|startTerm
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|// only for assert:
+DECL|method|setSavedStartTerm
+specifier|private
+name|boolean
+name|setSavedStartTerm
+parameter_list|(
+name|BytesRef
+name|startTerm
+parameter_list|)
+block|{
+name|savedStartTerm
+operator|=
+name|startTerm
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+operator|new
+name|BytesRef
+argument_list|(
+name|startTerm
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 annotation|@
 name|Override
@@ -5891,7 +5867,6 @@ name|TermsEnum
 block|{
 DECL|field|in
 specifier|private
-specifier|final
 name|IndexInput
 name|in
 decl_stmt|;
@@ -5974,7 +5949,7 @@ name|FST
 operator|.
 name|Arc
 index|[
-literal|5
+literal|1
 index|]
 decl_stmt|;
 DECL|method|SegmentTermsEnum
@@ -5985,57 +5960,14 @@ throws|throws
 name|IOException
 block|{
 comment|//if (DEBUG) System.out.println("BTTR.init seg=" + segment);
-name|in
-operator|=
-operator|(
-name|IndexInput
-operator|)
-name|BlockTreeTermsReader
-operator|.
-name|this
-operator|.
-name|in
-operator|.
-name|clone
-argument_list|()
-expr_stmt|;
 name|stack
 operator|=
 operator|new
 name|Frame
 index|[
-literal|5
-index|]
-expr_stmt|;
-for|for
-control|(
-name|int
-name|stackOrd
-init|=
 literal|0
-init|;
-name|stackOrd
-operator|<
-name|stack
-operator|.
-name|length
-condition|;
-name|stackOrd
-operator|++
-control|)
-block|{
-name|stack
-index|[
-name|stackOrd
 index|]
-operator|=
-operator|new
-name|Frame
-argument_list|(
-name|stackOrd
-argument_list|)
 expr_stmt|;
-block|}
 comment|// Used to hold seek by TermState, or cached seek
 name|staticFrame
 operator|=
@@ -6046,6 +5978,8 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+comment|// Init w/ root block; don't use index since it may
+comment|// not (and need not) have been loaded
 for|for
 control|(
 name|int
@@ -6078,11 +6012,6 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Init w/ root block; don't use index since it may
-comment|// not (and need not) have been loaded
-comment|//final FST.Arc<BytesRef> arc = index.getFirstArc(arcs[0]);
-comment|// Empty string prefix must have an output in the index!
-comment|//assert arc.isFinal();
 name|currentFrame
 operator|=
 name|staticFrame
@@ -6132,20 +6061,10 @@ expr_stmt|;
 block|}
 name|currentFrame
 operator|=
-name|pushFrame
-argument_list|(
-name|arc
-argument_list|,
-name|rootCode
-argument_list|,
-literal|0
-argument_list|)
+name|staticFrame
 expr_stmt|;
-name|currentFrame
-operator|.
-name|loadBlock
-argument_list|()
-expr_stmt|;
+comment|//currentFrame = pushFrame(arc, rootCode, 0);
+comment|//currentFrame.loadBlock();
 name|validIndexPrefix
 operator|=
 literal|0
@@ -6156,6 +6075,39 @@ comment|//   printSeekState();
 comment|// }
 comment|//System.out.println();
 comment|// computeBlockStats().print(System.out);
+block|}
+DECL|method|initIndexInput
+specifier|private
+name|void
+name|initIndexInput
+parameter_list|()
+block|{
+if|if
+condition|(
+name|this
+operator|.
+name|in
+operator|==
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|in
+operator|=
+operator|(
+name|IndexInput
+operator|)
+name|BlockTreeTermsReader
+operator|.
+name|this
+operator|.
+name|in
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/** Runs next() through the entire terms dict,        *  computing aggregate statistics. */
 DECL|method|computeBlockStats
@@ -9642,6 +9594,74 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|in
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Fresh TermsEnum; seek to first term:
+specifier|final
+name|FST
+operator|.
+name|Arc
+argument_list|<
+name|BytesRef
+argument_list|>
+name|arc
+decl_stmt|;
+if|if
+condition|(
+name|index
+operator|!=
+literal|null
+condition|)
+block|{
+name|arc
+operator|=
+name|index
+operator|.
+name|getFirstArc
+argument_list|(
+name|arcs
+index|[
+literal|0
+index|]
+argument_list|)
+expr_stmt|;
+comment|// Empty string prefix must have an output in the index!
+assert|assert
+name|arc
+operator|.
+name|isFinal
+argument_list|()
+assert|;
+block|}
+else|else
+block|{
+name|arc
+operator|=
+literal|null
+expr_stmt|;
+block|}
+name|currentFrame
+operator|=
+name|pushFrame
+argument_list|(
+name|arc
+argument_list|,
+name|rootCode
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|currentFrame
+operator|.
+name|loadBlock
+argument_list|()
+expr_stmt|;
+block|}
 name|targetBeforeCurrentLength
 operator|=
 name|currentFrame
@@ -10611,6 +10631,12 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// Clone the IndexInput lazily, so that consumers
+comment|// that just pull a TermsEnum to
+comment|// seekExact(TermState) don't pay this cost:
+name|initIndexInput
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|nextEnt

@@ -424,10 +424,11 @@ name|termsEnum
 init|=
 name|terms
 operator|.
-name|getThreadTermsEnum
-argument_list|()
+name|iterator
+argument_list|(
+literal|null
+argument_list|)
 decl_stmt|;
-comment|// thread-private don't share!
 if|if
 condition|(
 name|termsEnum
