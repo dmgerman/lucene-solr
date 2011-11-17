@@ -568,8 +568,6 @@ name|next
 expr_stmt|;
 block|}
 block|}
-try|try
-block|{
 name|IOUtils
 operator|.
 name|closeWhileHandlingException
@@ -581,15 +579,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// TODO add abort to PerDocConsumer!
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|// ignore on abort!
-block|}
 try|try
 block|{
 name|fieldsWriter
