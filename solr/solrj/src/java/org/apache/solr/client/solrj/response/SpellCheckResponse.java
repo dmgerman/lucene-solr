@@ -302,12 +302,7 @@ argument_list|(
 operator|(
 name|String
 operator|)
-name|sugg
-operator|.
-name|getVal
-argument_list|(
-name|i
-argument_list|)
+name|o
 argument_list|)
 argument_list|)
 expr_stmt|;
