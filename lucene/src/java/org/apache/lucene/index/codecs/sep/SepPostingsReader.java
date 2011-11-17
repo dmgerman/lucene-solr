@@ -1763,6 +1763,13 @@ decl_stmt|;
 DECL|field|doc
 name|int
 name|doc
+init|=
+operator|-
+literal|1
+decl_stmt|;
+DECL|field|accum
+name|int
+name|accum
 decl_stmt|;
 DECL|field|count
 name|int
@@ -2049,6 +2056,11 @@ literal|0
 expr_stmt|;
 name|doc
 operator|=
+operator|-
+literal|1
+expr_stmt|;
+name|accum
+operator|=
 literal|0
 expr_stmt|;
 name|skipped
@@ -2092,7 +2104,7 @@ operator|++
 expr_stmt|;
 comment|// Decode next doc
 comment|//System.out.println("decode docDelta:");
-name|doc
+name|accum
 operator|+=
 name|docReader
 operator|.
@@ -2124,7 +2136,7 @@ name|liveDocs
 operator|.
 name|get
 argument_list|(
-name|doc
+name|accum
 argument_list|)
 condition|)
 block|{
@@ -2132,7 +2144,11 @@ break|break;
 block|}
 block|}
 return|return
+operator|(
 name|doc
+operator|=
+name|accum
+operator|)
 return|;
 block|}
 annotation|@
@@ -2198,7 +2214,7 @@ operator|++
 expr_stmt|;
 comment|// manually inlined call to next() for speed
 comment|//System.out.println("decode doc");
-name|doc
+name|accum
 operator|+=
 name|docReader
 operator|.
@@ -2230,7 +2246,7 @@ name|liveDocs
 operator|.
 name|get
 argument_list|(
-name|doc
+name|accum
 argument_list|)
 condition|)
 block|{
@@ -2240,6 +2256,8 @@ name|i
 index|]
 operator|=
 name|doc
+operator|=
+name|accum
 expr_stmt|;
 name|freqs
 index|[
@@ -2435,6 +2453,8 @@ name|newCount
 expr_stmt|;
 name|doc
 operator|=
+name|accum
+operator|=
 name|skipper
 operator|.
 name|getDoc
@@ -2483,6 +2503,13 @@ decl_stmt|;
 DECL|field|doc
 name|int
 name|doc
+init|=
+operator|-
+literal|1
+decl_stmt|;
+DECL|field|accum
+name|int
+name|accum
 decl_stmt|;
 DECL|field|count
 name|int
@@ -2791,6 +2818,11 @@ literal|0
 expr_stmt|;
 name|doc
 operator|=
+operator|-
+literal|1
+expr_stmt|;
+name|accum
+operator|=
 literal|0
 expr_stmt|;
 name|pendingPosCount
@@ -2844,7 +2876,7 @@ comment|// TODO: maybe we should do the 1-bit trick for encoding
 comment|// freq=1 case?
 comment|// Decode next doc
 comment|//System.out.println("  sep d&p read doc");
-name|doc
+name|accum
 operator|+=
 name|docReader
 operator|.
@@ -2873,7 +2905,7 @@ name|liveDocs
 operator|.
 name|get
 argument_list|(
-name|doc
+name|accum
 argument_list|)
 condition|)
 block|{
@@ -2885,7 +2917,11 @@ operator|=
 literal|0
 expr_stmt|;
 return|return
+operator|(
 name|doc
+operator|=
+name|accum
+operator|)
 return|;
 block|}
 annotation|@
@@ -3081,6 +3117,8 @@ operator|=
 name|newCount
 expr_stmt|;
 name|doc
+operator|=
+name|accum
 operator|=
 name|skipper
 operator|.

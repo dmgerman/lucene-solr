@@ -1692,6 +1692,14 @@ DECL|field|docID
 specifier|private
 name|int
 name|docID
+init|=
+operator|-
+literal|1
+decl_stmt|;
+DECL|field|accum
+specifier|private
+name|int
+name|accum
 decl_stmt|;
 DECL|field|freq
 specifier|private
@@ -1861,6 +1869,11 @@ name|liveDocs
 expr_stmt|;
 name|docID
 operator|=
+operator|-
+literal|1
+expr_stmt|;
+name|accum
+operator|=
 literal|0
 expr_stmt|;
 name|docUpto
@@ -1964,7 +1977,7 @@ operator|.
 name|DOCS_ONLY
 condition|)
 block|{
-name|docID
+name|accum
 operator|+=
 name|in
 operator|.
@@ -1987,7 +2000,7 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
-name|docID
+name|accum
 operator|+=
 name|code
 operator|>>>
@@ -2005,7 +2018,7 @@ name|println
 argument_list|(
 literal|"  docID="
 operator|+
-name|docID
+name|accum
 operator|+
 literal|" code="
 operator|+
@@ -2131,7 +2144,7 @@ name|liveDocs
 operator|.
 name|get
 argument_list|(
-name|docID
+name|accum
 argument_list|)
 condition|)
 block|{
@@ -2147,7 +2160,7 @@ name|println
 argument_list|(
 literal|"    return docID="
 operator|+
-name|docID
+name|accum
 operator|+
 literal|" freq="
 operator|+
@@ -2155,7 +2168,11 @@ name|freq
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|docID
+operator|=
+name|accum
+operator|)
 return|;
 block|}
 block|}
@@ -2266,6 +2283,14 @@ DECL|field|docID
 specifier|private
 name|int
 name|docID
+init|=
+operator|-
+literal|1
+decl_stmt|;
+DECL|field|accum
+specifier|private
+name|int
+name|accum
 decl_stmt|;
 DECL|field|freq
 specifier|private
@@ -2502,6 +2527,11 @@ name|liveDocs
 expr_stmt|;
 name|docID
 operator|=
+operator|-
+literal|1
+expr_stmt|;
+name|accum
+operator|=
 literal|0
 expr_stmt|;
 name|docUpto
@@ -2628,7 +2658,7 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
-name|docID
+name|accum
 operator|+=
 name|code
 operator|>>>
@@ -2675,7 +2705,7 @@ name|liveDocs
 operator|.
 name|get
 argument_list|(
-name|docID
+name|accum
 argument_list|)
 condition|)
 block|{
@@ -2699,7 +2729,7 @@ name|println
 argument_list|(
 literal|"    return docID="
 operator|+
-name|docID
+name|accum
 operator|+
 literal|" freq="
 operator|+
@@ -2707,7 +2737,11 @@ name|freq
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|docID
+operator|=
+name|accum
+operator|)
 return|;
 block|}
 comment|// Skip positions

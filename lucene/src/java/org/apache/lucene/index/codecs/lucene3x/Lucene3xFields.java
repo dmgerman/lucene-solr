@@ -4673,6 +4673,11 @@ argument_list|(
 name|termEnum
 argument_list|)
 expr_stmt|;
+name|docID
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 return|return
 name|this
 return|;
@@ -4928,6 +4933,11 @@ name|seek
 argument_list|(
 name|termEnum
 argument_list|)
+expr_stmt|;
+name|docID
+operator|=
+operator|-
+literal|1
 expr_stmt|;
 return|return
 name|this
