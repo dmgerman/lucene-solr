@@ -1709,7 +1709,7 @@ condition|)
 block|{
 name|writer
 operator|.
-name|expungeDeletes
+name|forceMergeDeletes
 argument_list|()
 expr_stmt|;
 block|}

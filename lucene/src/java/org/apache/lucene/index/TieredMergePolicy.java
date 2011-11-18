@@ -187,10 +187,10 @@ name|segsPerTier
 init|=
 literal|10.0
 decl_stmt|;
-DECL|field|expungeDeletesPctAllowed
+DECL|field|forceMergeDeletesPctAllowed
 specifier|private
 name|double
-name|expungeDeletesPctAllowed
+name|forceMergeDeletesPctAllowed
 init|=
 literal|10.0
 decl_stmt|;
@@ -215,7 +215,7 @@ name|reclaimDeletesWeight
 init|=
 literal|2.0
 decl_stmt|;
-comment|/** Maximum number of segments to be merged at a time    *  during "normal" merging.  For explicit merging (eg,    *  forceMerge or expungeDeletes was called), see {@link    *  #setMaxMergeAtOnceExplicit}.  Default is 10. */
+comment|/** Maximum number of segments to be merged at a time    *  during "normal" merging.  For explicit merging (eg,    *  forceMerge or forceMergeDeletes was called), see {@link    *  #setMaxMergeAtOnceExplicit}.  Default is 10. */
 DECL|method|setMaxMergeAtOnce
 specifier|public
 name|TieredMergePolicy
@@ -265,7 +265,7 @@ return|;
 block|}
 comment|// TODO: should addIndexes do explicit merging, too?  And,
 comment|// if user calls IW.maybeMerge "explicitly"
-comment|/** Maximum number of segments to be merged at a time,    *  during forceMerge or expungeDeletes. Default is 30. */
+comment|/** Maximum number of segments to be merged at a time,    *  during forceMerge or forceMergeDeletes. Default is 30. */
 DECL|method|setMaxMergeAtOnceExplicit
 specifier|public
 name|TieredMergePolicy
@@ -464,11 +464,11 @@ operator|*
 literal|1024.
 return|;
 block|}
-comment|/** When expungeDeletes is called, we only merge away a    *  segment if its delete percentage is over this    *  threshold.  Default is 10%. */
-DECL|method|setExpungeDeletesPctAllowed
+comment|/** When forceMergeDeletes is called, we only merge away a    *  segment if its delete percentage is over this    *  threshold.  Default is 10%. */
+DECL|method|setForceMergeDeletesPctAllowed
 specifier|public
 name|TieredMergePolicy
-name|setExpungeDeletesPctAllowed
+name|setForceMergeDeletesPctAllowed
 parameter_list|(
 name|double
 name|v
@@ -489,7 +489,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"expungeDeletesPctAllowed must be between 0.0 and 100.0 inclusive (got "
+literal|"forceMergeDeletesPctAllowed must be between 0.0 and 100.0 inclusive (got "
 operator|+
 name|v
 operator|+
@@ -497,7 +497,7 @@ literal|")"
 argument_list|)
 throw|;
 block|}
-name|expungeDeletesPctAllowed
+name|forceMergeDeletesPctAllowed
 operator|=
 name|v
 expr_stmt|;
@@ -505,15 +505,15 @@ return|return
 name|this
 return|;
 block|}
-comment|/** @see #setExpungeDeletesPctAllowed */
-DECL|method|getExpungeDeletesPctAllowed
+comment|/** @see #setForceMergeDeletesPctAllowed */
+DECL|method|getForceMergeDeletesPctAllowed
 specifier|public
 name|double
-name|getExpungeDeletesPctAllowed
+name|getForceMergeDeletesPctAllowed
 parameter_list|()
 block|{
 return|return
-name|expungeDeletesPctAllowed
+name|forceMergeDeletesPctAllowed
 return|;
 block|}
 comment|/** Sets the allowed number of segments per tier.  Smaller    *  values mean more merging but fewer segments.    *    *<p><b>NOTE</b>: this value should be>= the {@link    *  #setMaxMergeAtOnce} otherwise you'll force too much    *  merging to occur.</p>    *    *<p>Default is 10.0.</p> */
@@ -2347,10 +2347,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|findMergesToExpungeDeletes
+DECL|method|findForcedDeletesMerges
 specifier|public
 name|MergeSpecification
-name|findMergesToExpungeDeletes
+name|findForcedDeletesMerges
 parameter_list|(
 name|SegmentInfos
 name|infos
@@ -2368,7 +2368,7 @@ condition|)
 block|{
 name|message
 argument_list|(
-literal|"findMergesToExpungeDeletes infos="
+literal|"findForcedDeletesMerges infos="
 operator|+
 name|writer
 operator|.
@@ -2380,9 +2380,9 @@ argument_list|(
 name|infos
 argument_list|)
 operator|+
-literal|" expungeDeletesPctAllowed="
+literal|" forceMergeDeletesPctAllowed="
 operator|+
-name|expungeDeletesPctAllowed
+name|forceMergeDeletesPctAllowed
 argument_list|)
 expr_stmt|;
 block|}
@@ -2451,7 +2451,7 @@ if|if
 condition|(
 name|pctDeletes
 operator|>
-name|expungeDeletesPctAllowed
+name|forceMergeDeletesPctAllowed
 operator|&&
 operator|!
 name|merging
@@ -2529,7 +2529,7 @@ argument_list|()
 condition|)
 block|{
 comment|// Don't enforce max merged size here: app is explicitly
-comment|// calling expungeDeletes, and knows this may take a
+comment|// calling forceMergeDeletes, and knows this may take a
 comment|// long time / produce big segments (like forceMerge):
 specifier|final
 name|int
@@ -3056,12 +3056,12 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"expungeDeletesPctAllowed="
+literal|"forceMergeDeletesPctAllowed="
 argument_list|)
 operator|.
 name|append
 argument_list|(
-name|expungeDeletesPctAllowed
+name|forceMergeDeletesPctAllowed
 argument_list|)
 operator|.
 name|append

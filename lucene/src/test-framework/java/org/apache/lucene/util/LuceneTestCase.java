@@ -1067,20 +1067,6 @@ name|Throttling
 operator|.
 name|NEVER
 decl_stmt|;
-DECL|field|codecWithParam
-specifier|private
-specifier|static
-specifier|final
-name|Pattern
-name|codecWithParam
-init|=
-name|Pattern
-operator|.
-name|compile
-argument_list|(
-literal|"(.*)\\(\\s*(\\d+)\\s*\\)"
-argument_list|)
-decl_stmt|;
 comment|/**    * A random multiplier which you should use when writing random tests:    * multiply it by the number of iterations    */
 DECL|field|RANDOM_MULTIPLIER
 specifier|public
@@ -5040,7 +5026,7 @@ argument_list|)
 expr_stmt|;
 name|tmp
 operator|.
-name|setExpungeDeletesPctAllowed
+name|setForceMergeDeletesPctAllowed
 argument_list|(
 literal|0.0
 operator|+

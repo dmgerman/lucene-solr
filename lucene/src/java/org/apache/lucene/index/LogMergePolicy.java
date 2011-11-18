@@ -1712,13 +1712,13 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Finds merges necessary to expunge all deletes from the    * index.  We simply merge adjacent segments that have    * deletes, up to mergeFactor at a time.    */
+comment|/**    * Finds merges necessary to force-merge all deletes from the    * index.  We simply merge adjacent segments that have    * deletes, up to mergeFactor at a time.    */
 annotation|@
 name|Override
-DECL|method|findMergesToExpungeDeletes
+DECL|method|findForcedDeletesMerges
 specifier|public
 name|MergeSpecification
-name|findMergesToExpungeDeletes
+name|findForcedDeletesMerges
 parameter_list|(
 name|SegmentInfos
 name|segmentInfos
@@ -1756,7 +1756,7 @@ argument_list|()
 condition|)
 name|message
 argument_list|(
-literal|"findMergesToExpungeDeletes: "
+literal|"findForcedDeleteMerges: "
 operator|+
 name|numSegments
 operator|+

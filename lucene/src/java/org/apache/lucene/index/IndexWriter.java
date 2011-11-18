@@ -5123,11 +5123,11 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** Just like {@link #expungeDeletes()}, except you can    *  specify whether the call should block until the    *  operation completes.  This is only meaningful with a    *  {@link MergeScheduler} that is able to run merges in    *  background threads.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    *<p><b>NOTE</b>: if you call {@link #close(boolean)}    * with<tt>false</tt>, which aborts all running merges,    * then any thread still running this method might hit a    * {@link MergePolicy.MergeAbortedException}.    */
-DECL|method|expungeDeletes
+comment|/** Just like {@link #forceMergeDeletes()}, except you can    *  specify whether the call should block until the    *  operation completes.  This is only meaningful with a    *  {@link MergeScheduler} that is able to run merges in    *  background threads.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    *<p><b>NOTE</b>: if you call {@link #close(boolean)}    * with<tt>false</tt>, which aborts all running merges,    * then any thread still running this method might hit a    * {@link MergePolicy.MergeAbortedException}.    */
+DECL|method|forceMergeDeletes
 specifier|public
 name|void
-name|expungeDeletes
+name|forceMergeDeletes
 parameter_list|(
 name|boolean
 name|doWait
@@ -5159,7 +5159,7 @@ name|message
 argument_list|(
 literal|"IW"
 argument_list|,
-literal|"expungeDeletes: index now "
+literal|"forceMergeDeletes: index now "
 operator|+
 name|segString
 argument_list|()
@@ -5179,7 +5179,7 @@ name|spec
 operator|=
 name|mergePolicy
 operator|.
-name|findMergesToExpungeDeletes
+name|findForcedDeletesMerges
 argument_list|(
 name|segmentInfos
 argument_list|)
@@ -5281,7 +5281,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"this writer hit an OutOfMemoryError; cannot complete expungeDeletes"
+literal|"this writer hit an OutOfMemoryError; cannot complete forceMergeDeletes"
 argument_list|)
 throw|;
 block|}
@@ -5400,18 +5400,18 @@ comment|// NOTE: in the ConcurrentMergeScheduler case, when
 comment|// doWait is false, we can return immediately while
 comment|// background threads accomplish the merging
 block|}
-comment|/** Requests an expungeDeletes operation, by invoking    *  {@link MergePolicy#findMergesToExpungeDeletes}.    *  The MergePolicy determines what merges should be done.    *  For example, the default {@link TieredMergePolicy}    *  will only expunge deletes from a segment if the    *  percentage of deleted docs is over 10%.    *    *<p>When an index    *  has many document deletions (or updates to existing    *  documents), it's best to either call forceMerge or    *  expungeDeletes to remove all unused data in the index    *  associated with the deleted documents.  To see how    *  many deletions you have pending in your index, call    *  {@link IndexReader#numDeletedDocs}    *  This saves disk space and memory usage while    *  searching.  expungeDeletes should be somewhat faster    *  than forceMerge since it does not insist on reducing the    *  index to a single segment (though, this depends on the    *  {@link MergePolicy}; see {@link    *  MergePolicy#findMergesToExpungeDeletes}.). Note that    *  this call does not first commit any buffered    *  documents, so you must do so yourself if necessary.    *  See also {@link #expungeDeletes(boolean)}    *    *<p><b>NOTE</b>: this method first flushes a new    *  segment (if there are indexed documents), and applies    *  all buffered deletes.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    */
-DECL|method|expungeDeletes
+comment|/**    *  Forces merging of all segments that have deleted    *  documents.  The actual merges to be executed are    *  determined by the {@link MergePolicy}.  For example,    *  the default {@link TieredMergePolicy} will only    *  pick a segment if the percentage of    *  deleted docs is over 10%.    *    *<p>This is often a horribly costly operation; rarely    *  is it warranted.</p>    *    *<p>To see how    *  many deletions you have pending in your index, call    *  {@link IndexReader#numDeletedDocs}.</p>    *    *<p><b>NOTE</b>: this method first flushes a new    *  segment (if there are indexed documents), and applies    *  all buffered deletes.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    */
+DECL|method|forceMergeDeletes
 specifier|public
 name|void
-name|expungeDeletes
+name|forceMergeDeletes
 parameter_list|()
 throws|throws
 name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-name|expungeDeletes
+name|forceMergeDeletes
 argument_list|(
 literal|true
 argument_list|)
@@ -5993,7 +5993,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Delete all documents in the index.    *    *<p>This method will drop all buffered documents and will    *    remove all segments from the index. This change will not be    *    visible until a {@link #commit()} has been called. This method    *    can be rolled back using {@link #rollback()}.</p>    *    *<p>NOTE: this method is much faster than using deleteDocuments( new MatchAllDocsQuery() ).</p>    *    *<p>NOTE: this method will forcefully abort all merges    *    in progress.  If other threads are running {@link    *    #forceMerge}, {@link #addIndexes(IndexReader[])} or    *    {@link #expungeDeletes} methods, they may receive    *    {@link MergePolicy.MergeAbortedException}s.    */
+comment|/**    * Delete all documents in the index.    *    *<p>This method will drop all buffered documents and will    *    remove all segments from the index. This change will not be    *    visible until a {@link #commit()} has been called. This method    *    can be rolled back using {@link #rollback()}.</p>    *    *<p>NOTE: this method is much faster than using deleteDocuments( new MatchAllDocsQuery() ).</p>    *    *<p>NOTE: this method will forcefully abort all merges    *    in progress.  If other threads are running {@link    *    #forceMerge}, {@link #addIndexes(IndexReader[])} or    *    {@link #forceMergeDeletes} methods, they may receive    *    {@link MergePolicy.MergeAbortedException}s.    */
 DECL|method|deleteAll
 specifier|public
 specifier|synchronized

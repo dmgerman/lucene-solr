@@ -1227,10 +1227,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|findMergesToExpungeDeletes
+DECL|method|findForcedDeletesMerges
 specifier|public
 name|MergeSpecification
-name|findMergesToExpungeDeletes
+name|findForcedDeletesMerges
 parameter_list|(
 name|SegmentInfos
 name|infos
@@ -1306,7 +1306,7 @@ name|spec
 operator|=
 name|super
 operator|.
-name|findMergesToExpungeDeletes
+name|findForcedDeletesMerges
 argument_list|(
 name|smallSegments
 argument_list|)

@@ -5356,10 +5356,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testExpungeDeletes
+DECL|method|testForceMergeDeletes
 specifier|public
 name|void
-name|testExpungeDeletes
+name|testForceMergeDeletes
 parameter_list|()
 throws|throws
 name|Throwable
@@ -5492,7 +5492,7 @@ argument_list|()
 decl_stmt|;
 name|w
 operator|.
-name|expungeDeletes
+name|forceMergeDeletes
 argument_list|()
 expr_stmt|;
 name|w

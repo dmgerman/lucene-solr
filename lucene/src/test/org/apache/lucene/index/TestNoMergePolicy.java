@@ -139,7 +139,7 @@ name|assertNull
 argument_list|(
 name|mp
 operator|.
-name|findMergesToExpungeDeletes
+name|findForcedDeletesMerges
 argument_list|(
 literal|null
 argument_list|)

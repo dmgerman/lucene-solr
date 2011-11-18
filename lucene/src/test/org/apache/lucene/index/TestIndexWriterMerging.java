@@ -601,12 +601,12 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// LUCENE-325: test expungeDeletes, when 2 singular merges
+comment|// LUCENE-325: test forceMergeDeletes, when 2 singular merges
 comment|// are required
-DECL|method|testExpungeDeletes
+DECL|method|testForceMergeDeletes
 specifier|public
 name|void
-name|testExpungeDeletes
+name|testForceMergeDeletes
 parameter_list|()
 throws|throws
 name|IOException
@@ -887,7 +887,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|expungeDeletes
+name|forceMergeDeletes
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -947,11 +947,11 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// LUCENE-325: test expungeDeletes, when many adjacent merges are required
-DECL|method|testExpungeDeletes2
+comment|// LUCENE-325: test forceMergeDeletes, when many adjacent merges are required
+DECL|method|testForceMergeDeletes2
 specifier|public
 name|void
-name|testExpungeDeletes2
+name|testForceMergeDeletes2
 parameter_list|()
 throws|throws
 name|IOException
@@ -1234,7 +1234,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|expungeDeletes
+name|forceMergeDeletes
 argument_list|()
 expr_stmt|;
 name|writer
@@ -1284,12 +1284,12 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// LUCENE-325: test expungeDeletes without waiting, when
+comment|// LUCENE-325: test forceMergeDeletes without waiting, when
 comment|// many adjacent merges are required
-DECL|method|testExpungeDeletes3
+DECL|method|testForceMergeDeletes3
 specifier|public
 name|void
-name|testExpungeDeletes3
+name|testForceMergeDeletes3
 parameter_list|()
 throws|throws
 name|IOException
@@ -1562,7 +1562,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|expungeDeletes
+name|forceMergeDeletes
 argument_list|(
 literal|false
 argument_list|)
