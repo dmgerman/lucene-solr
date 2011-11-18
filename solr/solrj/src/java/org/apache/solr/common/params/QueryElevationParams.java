@@ -46,6 +46,13 @@ name|FORCE_ELEVATION
 init|=
 literal|"forceElevation"
 decl_stmt|;
+comment|/**    * The name of the field that editorial results will be written out as when using the QueryElevationComponent, which    * automatically configures the EditorialMarkerFactory.  The default name is "elevated"    *<br/>    * See http://wiki.apache.org/solr/DocTransformers    */
+DECL|field|EDITORIAL_MARKER_FIELD_NAME
+name|String
+name|EDITORIAL_MARKER_FIELD_NAME
+init|=
+literal|"editorialMarkerFieldName"
+decl_stmt|;
 block|}
 end_interface
 

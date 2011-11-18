@@ -42,8 +42,22 @@ name|SolrDocument
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
 begin_comment
-comment|/**  * New instance for each request  *  *  */
+comment|/**  * A DocTransformer can add, remove or alter a Document before it is written out to the Response.  For instance, there are implementations  * that can put explanations inline with a document, add constant values and mark items as being artificially boosted (see {@link org.apache.solr.handler.component.QueryElevationComponent})  *  *<p/>  * New instance for each request  *  * @see TransformerFactory  *  */
 end_comment
 
 begin_class
@@ -53,6 +67,7 @@ specifier|abstract
 class|class
 name|DocTransformer
 block|{
+comment|/**    *    * @return The name of the transformer    */
 DECL|method|getName
 specifier|public
 specifier|abstract
@@ -60,6 +75,7 @@ name|String
 name|getName
 parameter_list|()
 function_decl|;
+comment|/**    * This is called before transform and sets    * @param context The {@link org.apache.solr.response.transform.TransformContext} stores information about the current state of things in Solr that may be    * useful for doing transformations.    */
 DECL|method|setContext
 specifier|public
 name|void
@@ -69,6 +85,7 @@ name|TransformContext
 name|context
 parameter_list|)
 block|{}
+comment|/**    * This is where implementations do the actual work    *    *    * @param doc The document to alter    * @param docid The Lucene internal doc id    * @throws IOException    */
 DECL|method|transform
 specifier|public
 specifier|abstract

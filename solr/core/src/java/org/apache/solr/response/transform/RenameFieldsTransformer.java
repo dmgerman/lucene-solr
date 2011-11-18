@@ -48,6 +48,20 @@ name|NamedList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
 begin_comment
 comment|/**  * Return a field with a name that is different that what is indexed  *  *  * @since solr 4.0  */
 end_comment

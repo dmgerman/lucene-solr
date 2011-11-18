@@ -1298,6 +1298,7 @@ name|entrySet
 argument_list|()
 return|;
 block|}
+comment|//TODO: Shouldn't the input parameter here be a String?  The _fields map requires a String.
 DECL|method|get
 specifier|public
 name|Object
