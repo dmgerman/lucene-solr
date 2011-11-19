@@ -855,7 +855,7 @@ operator|^
 literal|0x80000000
 return|;
 block|}
-comment|/**    * Converts a<code>double</code> value to a sortable signed<code>long</code>.    * The value is converted by getting their IEEE 754 floating-point&quot;double format&quot;    * bit layout and then some bits are swapped, to be able to compare the result as long.    * By this the precision is not reduced, but the value can easily used as a long.    * @see #sortableLongToDouble    */
+comment|/**    * Converts a<code>double</code> value to a sortable signed<code>long</code>.    * The value is converted by getting their IEEE 754 floating-point&quot;double format&quot;    * bit layout and then some bits are swapped, to be able to compare the result as long.    * By this the precision is not reduced, but the value can easily used as a long.    * The sort order (including {@link Double#NaN}) is defined by    * {@link Double#compareTo}; {@code NaN} is greater than positive infinity.    * @see #sortableLongToDouble    */
 DECL|method|doubleToSortableLong
 specifier|public
 specifier|static
@@ -920,7 +920,7 @@ name|val
 argument_list|)
 return|;
 block|}
-comment|/**    * Converts a<code>float</code> value to a sortable signed<code>int</code>.    * The value is converted by getting their IEEE 754 floating-point&quot;float format&quot;    * bit layout and then some bits are swapped, to be able to compare the result as int.    * By this the precision is not reduced, but the value can easily used as an int.    * @see #sortableIntToFloat    */
+comment|/**    * Converts a<code>float</code> value to a sortable signed<code>int</code>.    * The value is converted by getting their IEEE 754 floating-point&quot;float format&quot;    * bit layout and then some bits are swapped, to be able to compare the result as int.    * By this the precision is not reduced, but the value can easily used as an int.    * The sort order (including {@link Float#NaN}) is defined by    * {@link Float#compareTo}; {@code NaN} is greater than positive infinity.    * @see #sortableIntToFloat    */
 DECL|method|floatToSortableInt
 specifier|public
 specifier|static
