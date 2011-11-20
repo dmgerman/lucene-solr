@@ -215,7 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This codec extends {@link Lucene40Codec} to work on append-only outputs, such  * as plain output streams and append-only filesystems.  *  *<p>Note: compound file format feature is not compatible with  * this codec.  You must call both  * LogMergePolicy.setUseCompoundFile(false) and  * LogMergePolicy.setUseCompoundDocStore(false) to disable  * compound file format.</p>  * @lucene.experimental  */
+comment|/**  * This codec extends {@link Lucene40Codec} to work on append-only outputs, such  * as plain output streams and append-only filesystems.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
