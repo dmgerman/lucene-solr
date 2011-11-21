@@ -881,6 +881,15 @@ operator|.
 name|words
 argument_list|)
 expr_stmt|;
+comment|// advance after last doc that would be accepted if standard
+comment|// iteration is used (to exhaust it):
+name|obs
+operator|.
+name|advance
+argument_list|(
+name|numBits
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -1036,6 +1045,15 @@ argument_list|,
 name|obs
 operator|.
 name|words
+argument_list|)
+expr_stmt|;
+comment|// advance after last doc that would be accepted if standard
+comment|// iteration is used (to exhaust it):
+name|obs
+operator|.
+name|advance
+argument_list|(
+name|numBits
 argument_list|)
 expr_stmt|;
 block|}
@@ -1276,6 +1294,15 @@ argument_list|,
 name|obs
 operator|.
 name|words
+argument_list|)
+expr_stmt|;
+comment|// advance after last doc that would be accepted if standard
+comment|// iteration is used (to exhaust it):
+name|obs
+operator|.
+name|advance
+argument_list|(
+name|numBits
 argument_list|)
 expr_stmt|;
 block|}
