@@ -231,7 +231,12 @@ specifier|static
 name|String
 name|CONTENT_TYPE_JSON_UTF8
 init|=
-literal|"text/x-json; charset=UTF-8"
+literal|"application/json; charset=UTF-8"
+decl_stmt|;
+DECL|field|contentType
+specifier|private
+name|String
+name|contentType
 decl_stmt|;
 DECL|method|init
 specifier|public
@@ -239,9 +244,37 @@ name|void
 name|init
 parameter_list|(
 name|NamedList
-name|n
+name|namedList
 parameter_list|)
-block|{   }
+block|{
+name|String
+name|contentType
+init|=
+operator|(
+name|String
+operator|)
+name|namedList
+operator|.
+name|get
+argument_list|(
+literal|"content-type"
+argument_list|)
+decl_stmt|;
+name|this
+operator|.
+name|contentType
+operator|=
+operator|(
+name|contentType
+operator|!=
+literal|null
+operator|)
+condition|?
+name|contentType
+else|:
+name|CONTENT_TYPE_JSON_UTF8
+expr_stmt|;
+block|}
 DECL|method|write
 specifier|public
 name|void
@@ -301,9 +334,8 @@ name|SolrQueryResponse
 name|response
 parameter_list|)
 block|{
-comment|// using the text/plain allows this to be viewed in the browser easily
 return|return
-name|CONTENT_TYPE_TEXT_UTF8
+name|contentType
 return|;
 block|}
 block|}
