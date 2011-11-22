@@ -493,7 +493,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Sets the maximum chunk size (default is {@link Integer#MAX_VALUE} for    * 64 bit JVMs and 256 MiBytes for 32 bit JVMs) used for memory mapping.    * Especially on 32 bit platform, the address space can be very fragmented,    * so large index files cannot be mapped.    * Using a lower chunk size makes the directory implementation a little    * bit slower (as the correct chunk may be resolved on lots of seeks)    * but the chance is higher that mmap does not fail. On 64 bit    * Java platforms, this parameter should always be {@code 1<< 30},    * as the address space is big enough.    *<b>Please note:</b> This method always rounds down the chunk size    * to a power of 2.    */
+comment|/**    * Sets the maximum chunk size (default is 1 GiBytes for    * 64 bit JVMs and 256 MiBytes for 32 bit JVMs) used for memory mapping.    * Especially on 32 bit platform, the address space can be very fragmented,    * so large index files cannot be mapped.    * Using a lower chunk size makes the directory implementation a little    * bit slower (as the correct chunk may be resolved on lots of seeks)    * but the chance is higher that mmap does not fail. On 64 bit    * Java platforms, this parameter should always be {@code 1<< 30},    * as the address space is big enough.    *<b>Please note:</b> This method always rounds down the chunk size    * to a power of 2.    */
 DECL|method|setMaxChunkSize
 specifier|public
 specifier|final
