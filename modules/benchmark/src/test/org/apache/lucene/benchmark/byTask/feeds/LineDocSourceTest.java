@@ -1096,6 +1096,11 @@ operator|.
 name|doLogic
 argument_list|()
 expr_stmt|;
+name|tasks
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|IndexReader
 name|reader
 init|=
