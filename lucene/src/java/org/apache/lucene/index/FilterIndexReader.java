@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  A<code>FilterIndexReader</code> contains another IndexReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality. The class  *<code>FilterIndexReader</code> itself simply implements all abstract methods  * of<code>IndexReader</code> with versions that pass all requests to the  * contained index reader. Subclasses of<code>FilterIndexReader</code> may  * further override some of these methods and may also provide additional  * methods and fields.  */
+comment|/**  A<code>FilterIndexReader</code> contains another IndexReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality. The class  *<code>FilterIndexReader</code> itself simply implements all abstract methods  * of<code>IndexReader</code> with versions that pass all requests to the  * contained index reader. Subclasses of<code>FilterIndexReader</code> may  * further override some of these methods and may also provide additional  * methods and fields.  *<p><b>Note:</b> The default implementation of {@link FilterIndexReader#doOpenIfChanged}  * throws {@link UnsupportedOperationException} (like the base class),  * so it's not possible to reopen a<code>FilterIndexReader</code>.  * To reopen, you have to first reopen the underlying reader  * and wrap it again with the custom filter.  */
 end_comment
 
 begin_class
