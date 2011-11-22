@@ -26,6 +26,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|File
 import|;
 end_import
@@ -106,6 +116,8 @@ specifier|public
 specifier|abstract
 class|class
 name|ContentItemsSource
+implements|implements
+name|Closeable
 block|{
 DECL|field|bytesCount
 specifier|private
