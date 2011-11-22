@@ -1659,6 +1659,14 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|curBuf
+operator|=
+literal|null
+expr_stmt|;
+name|curBufIndex
+operator|=
+literal|0
+expr_stmt|;
 try|try
 block|{
 if|if
