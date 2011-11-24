@@ -795,10 +795,10 @@ literal|0
 expr_stmt|;
 block|}
 comment|/**    * Copies the given long value and encodes it as 8 byte Big-Endian.    *<p>    * NOTE: this method resets the offset to 0, length to 8 and resizes the reference array    * if needed.    */
-DECL|method|copy
+DECL|method|copyLong
 specifier|public
 name|void
-name|copy
+name|copyLong
 parameter_list|(
 name|long
 name|value
@@ -854,10 +854,10 @@ literal|8
 expr_stmt|;
 block|}
 comment|/**    * Copies the given int value and encodes it as 4 byte Big-Endian.    *<p>    * NOTE: this method resets the offset to 0, length to 4 and resizes the reference array    * if needed.    */
-DECL|method|copy
+DECL|method|copyInt
 specifier|public
 name|void
-name|copy
+name|copyInt
 parameter_list|(
 name|int
 name|value
@@ -896,10 +896,10 @@ literal|4
 expr_stmt|;
 block|}
 comment|/**    * Copies the given short value and encodes it as a 2 byte Big-Endian.    *<p>    * NOTE: this method resets the offset to 0, length to 2 and resizes the reference array    * if needed.    */
-DECL|method|copy
+DECL|method|copyShort
 specifier|public
 name|void
-name|copy
+name|copyShort
 parameter_list|(
 name|short
 name|value

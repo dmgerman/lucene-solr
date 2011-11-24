@@ -421,7 +421,7 @@ name|docID
 expr_stmt|;
 name|bytesRef
 operator|.
-name|copy
+name|copyLong
 argument_list|(
 name|v
 argument_list|)
@@ -1399,7 +1399,7 @@ argument_list|)
 expr_stmt|;
 name|ref
 operator|.
-name|copy
+name|copyLong
 argument_list|(
 name|getInt
 argument_list|(
