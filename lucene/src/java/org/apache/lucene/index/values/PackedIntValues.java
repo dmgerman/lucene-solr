@@ -419,10 +419,12 @@ name|lastDocId
 operator|=
 name|docID
 expr_stmt|;
-name|bytesRef
+name|BytesRefUtils
 operator|.
 name|copyLong
 argument_list|(
+name|bytesRef
+argument_list|,
 name|v
 argument_list|)
 expr_stmt|;
@@ -1397,10 +1399,12 @@ argument_list|(
 literal|8
 argument_list|)
 expr_stmt|;
-name|ref
+name|BytesRefUtils
 operator|.
 name|copyLong
 argument_list|(
+name|ref
+argument_list|,
 name|getInt
 argument_list|(
 name|docID
