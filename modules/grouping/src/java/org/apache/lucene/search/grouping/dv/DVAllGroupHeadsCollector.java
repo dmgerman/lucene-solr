@@ -1214,8 +1214,9 @@ name|value
 parameter_list|)
 block|{
 return|return
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 operator|(
 name|BytesRef
@@ -1351,8 +1352,9 @@ name|value
 parameter_list|)
 block|{
 return|return
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 operator|(
 name|BytesRef

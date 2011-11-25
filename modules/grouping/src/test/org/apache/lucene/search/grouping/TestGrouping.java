@@ -5851,8 +5851,9 @@ name|idvGroupField
 operator|.
 name|setBytes
 argument_list|(
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|groupDoc
 operator|.
