@@ -1076,8 +1076,9 @@ name|bytesRefs
 operator|.
 name|add
 argument_list|(
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|bytesRef
 argument_list|)

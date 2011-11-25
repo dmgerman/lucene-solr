@@ -246,7 +246,7 @@ condition|)
 block|{
 name|reuse
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|groupValue
 argument_list|)
@@ -258,8 +258,9 @@ block|}
 else|else
 block|{
 return|return
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|groupValue
 argument_list|)

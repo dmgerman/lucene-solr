@@ -1975,7 +1975,7 @@ block|{
 comment|// we have a non-empty index, check if the term exists
 name|currentTerm
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|word
 argument_list|)

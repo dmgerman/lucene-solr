@@ -606,8 +606,9 @@ name|topTerm
 operator|.
 name|term
 operator|=
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|term
 argument_list|)

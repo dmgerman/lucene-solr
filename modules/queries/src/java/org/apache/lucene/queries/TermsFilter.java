@@ -346,7 +346,7 @@ block|{
 comment|// TODO this check doesn't make sense, decide which variable its supposed to be for
 name|br
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|term
 operator|.

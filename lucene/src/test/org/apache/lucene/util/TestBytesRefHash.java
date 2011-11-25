@@ -372,7 +372,7 @@ condition|)
 do|;
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|str
 argument_list|)
@@ -569,7 +569,7 @@ condition|)
 do|;
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|str
 argument_list|)
@@ -683,7 +683,7 @@ control|)
 block|{
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|entry
 operator|.
@@ -837,7 +837,7 @@ condition|)
 do|;
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|str
 argument_list|)
@@ -1107,7 +1107,7 @@ condition|)
 do|;
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|str
 argument_list|)
@@ -1177,7 +1177,7 @@ control|)
 block|{
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|string
 argument_list|)
@@ -1331,7 +1331,7 @@ condition|)
 do|;
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|str
 argument_list|)
@@ -1753,7 +1753,7 @@ condition|)
 do|;
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|str
 argument_list|)
@@ -1989,7 +1989,7 @@ control|)
 block|{
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|string
 argument_list|)
@@ -2119,7 +2119,7 @@ control|)
 block|{
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|string
 argument_list|)

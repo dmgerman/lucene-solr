@@ -451,7 +451,7 @@ else|else
 block|{
 name|seekBytesRef
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|term
 argument_list|)

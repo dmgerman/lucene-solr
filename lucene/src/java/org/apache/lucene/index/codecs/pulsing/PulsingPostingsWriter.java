@@ -830,8 +830,9 @@ name|pos
 operator|.
 name|payload
 operator|=
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|payload
 argument_list|)
@@ -843,7 +844,7 @@ name|pos
 operator|.
 name|payload
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|payload
 argument_list|)

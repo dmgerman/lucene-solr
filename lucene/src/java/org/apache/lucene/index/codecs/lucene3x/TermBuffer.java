@@ -376,7 +376,7 @@ return|return;
 block|}
 name|bytes
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|term
 operator|.
@@ -435,7 +435,7 @@ literal|null
 expr_stmt|;
 name|bytes
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|other
 operator|.
@@ -493,8 +493,9 @@ name|Term
 argument_list|(
 name|field
 argument_list|,
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|bytes
 argument_list|)
@@ -541,8 +542,9 @@ name|clone
 operator|.
 name|bytes
 operator|=
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|bytes
 argument_list|)

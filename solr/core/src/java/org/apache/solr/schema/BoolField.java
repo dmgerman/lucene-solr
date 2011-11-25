@@ -837,7 +837,7 @@ condition|)
 block|{
 name|charsRef
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|TRUE
 argument_list|)
@@ -847,7 +847,7 @@ else|else
 block|{
 name|charsRef
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|FALSE
 argument_list|)

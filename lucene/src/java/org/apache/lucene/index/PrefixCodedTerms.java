@@ -561,7 +561,7 @@ name|lastTerm
 operator|.
 name|bytes
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|term
 operator|.

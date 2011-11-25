@@ -1220,8 +1220,9 @@ name|t
 operator|.
 name|bytes
 operator|=
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|bytes
 argument_list|)
@@ -1383,8 +1384,9 @@ name|class
 argument_list|,
 literal|"bytes"
 argument_list|,
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|bytes
 argument_list|)

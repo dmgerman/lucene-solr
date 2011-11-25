@@ -381,7 +381,7 @@ argument_list|)
 decl_stmt|;
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|charArray
 argument_list|,

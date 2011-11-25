@@ -1038,7 +1038,7 @@ else|else
 block|{
 name|lastTerm
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|text
 argument_list|)
@@ -1131,7 +1131,7 @@ expr_stmt|;
 block|}
 name|lastTerm
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|text
 argument_list|)

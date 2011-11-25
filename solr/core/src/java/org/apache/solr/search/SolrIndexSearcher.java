@@ -4537,8 +4537,9 @@ name|deState
 operator|.
 name|fieldName
 argument_list|,
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|deState
 operator|.

@@ -658,8 +658,9 @@ literal|null
 condition|?
 literal|null
 else|:
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|termPrefix
 argument_list|)

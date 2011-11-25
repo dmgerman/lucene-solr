@@ -911,7 +911,7 @@ argument_list|)
 expr_stmt|;
 name|lastTerm
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|term
 argument_list|)

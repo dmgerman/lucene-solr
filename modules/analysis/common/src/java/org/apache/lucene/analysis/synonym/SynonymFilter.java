@@ -680,7 +680,7 @@ index|[
 name|count
 index|]
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|output
 argument_list|,
@@ -937,7 +937,7 @@ name|input
 operator|.
 name|term
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|termAtt
 operator|.

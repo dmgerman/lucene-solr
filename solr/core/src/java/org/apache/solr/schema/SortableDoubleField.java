@@ -461,7 +461,7 @@ argument_list|()
 decl_stmt|;
 name|charsRef
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|indexedToReadable
 argument_list|,

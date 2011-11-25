@@ -2101,8 +2101,9 @@ name|put
 argument_list|(
 name|term
 argument_list|,
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|bytes
 argument_list|)

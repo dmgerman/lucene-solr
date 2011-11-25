@@ -921,8 +921,9 @@ name|tokens
 operator|.
 name|add
 argument_list|(
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|bytes
 argument_list|)

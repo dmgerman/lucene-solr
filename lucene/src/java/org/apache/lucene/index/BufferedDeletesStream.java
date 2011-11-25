@@ -2196,8 +2196,9 @@ operator|.
 name|field
 argument_list|()
 argument_list|,
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|term
 operator|.

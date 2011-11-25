@@ -3909,8 +3909,9 @@ argument_list|(
 operator|new
 name|PendingTerm
 argument_list|(
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|text
 argument_list|)

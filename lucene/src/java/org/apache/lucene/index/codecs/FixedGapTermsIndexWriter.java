@@ -716,7 +716,7 @@ comment|// save last term just before next index term so we
 comment|// can compute wasted suffix
 name|lastTerm
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|text
 argument_list|)
@@ -856,7 +856,7 @@ name|indexedTermLength
 expr_stmt|;
 name|lastTerm
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|text
 argument_list|)

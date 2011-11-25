@@ -74,8 +74,9 @@ name|this
 operator|.
 name|termtext
 operator|=
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|termtext
 argument_list|)
@@ -113,8 +114,9 @@ name|this
 operator|.
 name|termtext
 operator|=
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|termtext
 argument_list|)

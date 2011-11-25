@@ -558,7 +558,7 @@ argument_list|()
 decl_stmt|;
 name|bytesRef
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|t
 operator|.
@@ -1489,7 +1489,7 @@ argument_list|()
 decl_stmt|;
 name|bytesRef
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|t
 operator|.

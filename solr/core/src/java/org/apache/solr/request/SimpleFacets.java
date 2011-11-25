@@ -4265,8 +4265,9 @@ block|{
 name|BytesRef
 name|termCopy
 init|=
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|term
 argument_list|)

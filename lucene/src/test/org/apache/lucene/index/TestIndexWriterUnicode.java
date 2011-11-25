@@ -951,7 +951,7 @@ argument_list|)
 expr_stmt|;
 name|last
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|term
 argument_list|)

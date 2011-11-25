@@ -1374,8 +1374,9 @@ comment|// clone the term before potentially doing something with it
 comment|// this is a rare but wonderful occurrence anyway
 name|queuedBottom
 operator|=
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|term
 argument_list|)

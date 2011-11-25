@@ -1132,7 +1132,7 @@ name|te
 operator|.
 name|term
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|text
 argument_list|)
@@ -1595,7 +1595,7 @@ argument_list|)
 expr_stmt|;
 name|lastPrevTerm
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|pendingTerms
 index|[

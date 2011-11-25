@@ -1019,7 +1019,7 @@ expr_stmt|;
 block|}
 name|lastSeekScratch
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|term
 argument_list|)

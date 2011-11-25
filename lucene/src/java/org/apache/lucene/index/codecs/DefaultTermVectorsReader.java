@@ -2148,7 +2148,7 @@ return|;
 block|}
 name|term
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|lastTerm
 argument_list|)
@@ -2334,7 +2334,7 @@ block|}
 block|}
 name|lastTerm
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|term
 argument_list|)

@@ -43,6 +43,8 @@ name|CharsRef
 argument_list|>
 implements|,
 name|CharSequence
+implements|,
+name|Cloneable
 block|{
 DECL|field|EMPTY_ARRAY
 specifier|private
@@ -190,26 +192,11 @@ operator|.
 name|length
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link CharsRef} and copies the contents of the source into    * the new instance.    * @see #copy(CharsRef)    */
-DECL|method|CharsRef
-specifier|public
-name|CharsRef
-parameter_list|(
-name|CharsRef
-name|other
-parameter_list|)
-block|{
-name|copy
-argument_list|(
-name|other
-argument_list|)
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|CharsRef
 name|clone
 parameter_list|()
 block|{
@@ -217,7 +204,11 @@ return|return
 operator|new
 name|CharsRef
 argument_list|(
-name|this
+name|chars
+argument_list|,
+name|offset
+argument_list|,
+name|length
 argument_list|)
 return|;
 block|}
@@ -617,10 +608,11 @@ name|length
 return|;
 block|}
 comment|/**    * Copies the given {@link CharsRef} referenced content into this instance    * starting at offset 0.    *     * @param other    *          the {@link CharsRef} to copy    */
-DECL|method|copy
+comment|// TODO: why does this behave differently/not invoke copyChars(char[], int, int) ???
+DECL|method|copyChars
 specifier|public
 name|void
-name|copy
+name|copyChars
 parameter_list|(
 name|CharsRef
 name|other
@@ -724,10 +716,10 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Copies the given array into this CharsRef starting at offset 0    */
-DECL|method|copy
+DECL|method|copyChars
 specifier|public
 name|void
-name|copy
+name|copyChars
 parameter_list|(
 name|char
 index|[]
@@ -1143,6 +1135,35 @@ operator|.
 name|length
 return|;
 block|}
+block|}
+comment|/**    * Creates a new CharsRef that points to a copy of the chars from     *<code>other</code>    *<p>    * The returned CharsRef will have a length of other.length    * and an offset of zero.    */
+DECL|method|deepCopyOf
+specifier|public
+specifier|static
+name|CharsRef
+name|deepCopyOf
+parameter_list|(
+name|CharsRef
+name|other
+parameter_list|)
+block|{
+name|CharsRef
+name|clone
+init|=
+operator|new
+name|CharsRef
+argument_list|()
+decl_stmt|;
+name|clone
+operator|.
+name|copyChars
+argument_list|(
+name|other
+argument_list|)
+expr_stmt|;
+return|return
+name|clone
+return|;
 block|}
 block|}
 end_class

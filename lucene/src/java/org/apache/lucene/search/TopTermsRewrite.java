@@ -434,8 +434,9 @@ condition|)
 block|{
 name|lastTerm
 operator|=
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|t
 argument_list|)
@@ -481,7 +482,7 @@ name|t
 assert|;
 name|lastTerm
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|t
 argument_list|)
@@ -649,7 +650,7 @@ name|st
 operator|.
 name|bytes
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|bytes
 argument_list|)

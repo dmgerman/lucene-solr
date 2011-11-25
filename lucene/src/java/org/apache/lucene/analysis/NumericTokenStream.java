@@ -645,8 +645,9 @@ name|class
 argument_list|,
 literal|"bytes"
 argument_list|,
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|bytes
 argument_list|)

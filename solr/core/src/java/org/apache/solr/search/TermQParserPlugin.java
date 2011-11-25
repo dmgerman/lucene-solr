@@ -284,7 +284,7 @@ else|else
 block|{
 name|term
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|val
 argument_list|)

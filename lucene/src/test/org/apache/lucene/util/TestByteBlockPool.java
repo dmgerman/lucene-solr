@@ -196,7 +196,7 @@ argument_list|)
 expr_stmt|;
 name|ref
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|value
 argument_list|)
@@ -303,7 +303,7 @@ control|)
 block|{
 name|expected
 operator|.
-name|copy
+name|copyChars
 argument_list|(
 name|string
 argument_list|)

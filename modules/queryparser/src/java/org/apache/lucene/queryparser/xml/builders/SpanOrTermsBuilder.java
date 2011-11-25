@@ -371,8 +371,9 @@ name|Term
 argument_list|(
 name|fieldName
 argument_list|,
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|bytes
 argument_list|)

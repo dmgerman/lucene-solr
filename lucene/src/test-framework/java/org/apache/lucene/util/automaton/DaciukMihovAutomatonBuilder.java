@@ -1211,8 +1211,9 @@ comment|// don't need to copy, once we fix https://issues.apache.org/jira/browse
 comment|// still, called only from assert
 name|previous
 operator|=
-operator|new
 name|CharsRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|current
 argument_list|)

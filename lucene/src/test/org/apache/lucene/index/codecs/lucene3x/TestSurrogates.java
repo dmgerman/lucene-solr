@@ -772,8 +772,9 @@ condition|)
 block|{
 name|lastText
 operator|=
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|text
 argument_list|)
@@ -795,7 +796,7 @@ argument_list|)
 expr_stmt|;
 name|lastText
 operator|.
-name|copy
+name|copyBytes
 argument_list|(
 name|text
 argument_list|)

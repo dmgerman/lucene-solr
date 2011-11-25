@@ -1151,8 +1151,9 @@ name|workingSet
 operator|.
 name|put
 argument_list|(
-operator|new
 name|CharsRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|input
 argument_list|)
@@ -1758,8 +1759,9 @@ name|add
 argument_list|(
 name|input
 argument_list|,
-operator|new
 name|BytesRef
+operator|.
+name|deepCopyOf
 argument_list|(
 name|scratch
 argument_list|)
