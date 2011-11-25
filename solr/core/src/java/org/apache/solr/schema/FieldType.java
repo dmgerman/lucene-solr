@@ -1916,6 +1916,14 @@ name|queryAnalyzer
 init|=
 name|analyzer
 decl_stmt|;
+comment|/**    * Analyzer set by schema for text types to use when searching fields    * of this type, subclasses can set analyzer themselves or override    * getAnalyzer()    * This analyzer is used to process wildcard, prefix, regex and other multiterm queries. It    * assembles a list of tokenizer +filters that "make sense" for this, primarily accent folding and    * lowercasing filters, and charfilters.    *    * If users require old-style behavior, they can specify 'legacyMultiterm="true" ' in the schema file    * @see #getMultiTermAnalyzer    * @see #setMultiTermAnalyzer    */
+DECL|field|multiTermAnalyzer
+specifier|protected
+name|Analyzer
+name|multiTermAnalyzer
+init|=
+literal|null
+decl_stmt|;
 comment|/**    * Returns the Analyzer to be used when indexing fields of this type.    *<p>    * This method may be called many times, at any time.    *</p>    * @see #getQueryAnalyzer    */
 DECL|method|getAnalyzer
 specifier|public
@@ -1936,6 +1944,17 @@ parameter_list|()
 block|{
 return|return
 name|queryAnalyzer
+return|;
+block|}
+comment|/**    * Returns the Analyzer to be used when searching fields of this type when mult-term queries are specified.    *<p>    * This method may be called many times, at any time.    *</p>    * @see #getAnalyzer    */
+DECL|method|getMultiTermAnalyzer
+specifier|public
+name|Analyzer
+name|getMultiTermAnalyzer
+parameter_list|()
+block|{
+return|return
+name|multiTermAnalyzer
 return|;
 block|}
 DECL|field|analyzerError
@@ -2017,6 +2036,58 @@ DECL|method|setQueryAnalyzer
 specifier|public
 name|void
 name|setQueryAnalyzer
+parameter_list|(
+name|Analyzer
+name|analyzer
+parameter_list|)
+block|{
+name|SolrException
+name|e
+init|=
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"FieldType: "
+operator|+
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|" ("
+operator|+
+name|typeName
+operator|+
+literal|") does not support specifying an analyzer"
+argument_list|)
+decl_stmt|;
+name|SolrException
+operator|.
+name|logOnce
+argument_list|(
+name|log
+argument_list|,
+literal|null
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
+comment|/**    * Sets the Analyzer to be used when querying fields of this type.    *    *<p>    *    * Subclasses that override this method need to ensure the behavior    * of the analyzer is consistent with the implementation of toInternal.    *</p>    *    * @see #toInternal    * @see #setAnalyzer    * @see #getQueryAnalyzer    */
+DECL|method|setMultiTermAnalyzer
+specifier|public
+name|void
+name|setMultiTermAnalyzer
 parameter_list|(
 name|Analyzer
 name|analyzer
