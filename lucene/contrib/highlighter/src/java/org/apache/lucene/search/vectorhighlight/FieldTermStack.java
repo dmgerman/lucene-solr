@@ -172,6 +172,20 @@ name|CharsRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|UnicodeUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  *<code>FieldTermStack</code> is a stack that keeps query terms in the specified field  * of the document to be highlighted.  */
 end_comment
@@ -353,16 +367,20 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|UnicodeUtil
+operator|.
+name|UTF8toUTF16
+argument_list|(
+name|text
+argument_list|,
+name|spare
+argument_list|)
+expr_stmt|;
 specifier|final
 name|String
 name|term
 init|=
-name|text
-operator|.
-name|utf8ToChars
-argument_list|(
 name|spare
-argument_list|)
 operator|.
 name|toString
 argument_list|()

@@ -1612,10 +1612,12 @@ name|CharsRef
 name|output
 parameter_list|)
 block|{
-name|input
+name|UnicodeUtil
 operator|.
-name|utf8ToChars
+name|UTF8toUTF16
 argument_list|(
+name|input
+argument_list|,
 name|output
 argument_list|)
 expr_stmt|;

@@ -2144,6 +2144,15 @@ block|{
 comment|// NOTE: we use c>min rather than c>=min as an optimization because we are going in
 comment|// index order, so we already know that the keys are ordered.  This can be very
 comment|// important if a lot of the counts are repeated (like zero counts would be).
+name|UnicodeUtil
+operator|.
+name|UTF8toUTF16
+argument_list|(
+name|term
+argument_list|,
+name|spare
+argument_list|)
+expr_stmt|;
 name|queue
 operator|.
 name|add
@@ -2158,12 +2167,7 @@ argument_list|,
 name|Integer
 argument_list|>
 argument_list|(
-name|term
-operator|.
-name|utf8ToChars
-argument_list|(
 name|spare
-argument_list|)
 operator|.
 name|toString
 argument_list|()
@@ -2426,16 +2430,20 @@ operator|>
 literal|0
 condition|)
 block|{
+name|UnicodeUtil
+operator|.
+name|UTF8toUTF16
+argument_list|(
+name|term
+argument_list|,
+name|spare
+argument_list|)
+expr_stmt|;
 name|res
 operator|.
 name|add
 argument_list|(
-name|term
-operator|.
-name|utf8ToChars
-argument_list|(
 name|spare
-argument_list|)
 operator|.
 name|toString
 argument_list|()

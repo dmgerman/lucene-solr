@@ -598,33 +598,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** Interprets stored bytes as UTF8 bytes into the given {@link CharsRef} */
-DECL|method|utf8ToChars
-specifier|public
-name|CharsRef
-name|utf8ToChars
-parameter_list|(
-name|CharsRef
-name|ref
-parameter_list|)
-block|{
-name|UnicodeUtil
-operator|.
-name|UTF8toUTF16
-argument_list|(
-name|bytes
-argument_list|,
-name|offset
-argument_list|,
-name|length
-argument_list|,
-name|ref
-argument_list|)
-expr_stmt|;
-return|return
-name|ref
-return|;
-block|}
 comment|/** Returns hex encoded bytes, eg [0x6c 0x75 0x63 0x65 0x6e 0x65] */
 annotation|@
 name|Override
