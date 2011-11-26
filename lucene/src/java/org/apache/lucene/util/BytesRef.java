@@ -1177,6 +1177,9 @@ name|length
 return|;
 block|}
 block|}
+comment|/** @deprecated */
+annotation|@
+name|Deprecated
 DECL|field|utf8SortedAsUTF16SortOrder
 specifier|private
 specifier|final
@@ -1191,6 +1194,9 @@ operator|new
 name|UTF8SortedAsUTF16Comparator
 argument_list|()
 decl_stmt|;
+comment|/** @deprecated This comparator is only a transition mechanism */
+annotation|@
+name|Deprecated
 DECL|method|getUTF8SortedAsUTF16Comparator
 specifier|public
 specifier|static
@@ -1205,6 +1211,9 @@ return|return
 name|utf8SortedAsUTF16SortOrder
 return|;
 block|}
+comment|/** @deprecated */
+annotation|@
+name|Deprecated
 DECL|class|UTF8SortedAsUTF16Comparator
 specifier|private
 specifier|static

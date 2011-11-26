@@ -907,6 +907,9 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/** @deprecated */
+annotation|@
+name|Deprecated
 DECL|field|utf16SortedAsUTF8SortOrder
 specifier|private
 specifier|final
@@ -921,6 +924,9 @@ operator|new
 name|UTF16SortedAsUTF8Comparator
 argument_list|()
 decl_stmt|;
+comment|/** @deprecated This comparator is only a transition mechanism */
+annotation|@
+name|Deprecated
 DECL|method|getUTF16SortedAsUTF8Comparator
 specifier|public
 specifier|static
@@ -935,6 +941,9 @@ return|return
 name|utf16SortedAsUTF8SortOrder
 return|;
 block|}
+comment|/** @deprecated */
+annotation|@
+name|Deprecated
 DECL|class|UTF16SortedAsUTF8Comparator
 specifier|private
 specifier|static
