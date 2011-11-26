@@ -27,7 +27,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Represents char[], as a slice (offset + length) into an existing char[].  * The {@link #chars} member should never be null; use  * {@link #EMPTY_ARRAY} if necessary.  * @lucene.internal  */
+comment|/**  * Represents char[], as a slice (offset + length) into an existing char[].  * The {@link #chars} member should never be null; use  * {@link #EMPTY_CHARS} if necessary.  * @lucene.internal  */
 end_comment
 
 begin_class
