@@ -858,25 +858,6 @@ argument_list|,
 name|unicode
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|cRef
-argument_list|,
-name|unicode
-argument_list|)
-expr_stmt|;
-comment|// CharSeq
-name|assertEquals
-argument_list|(
-name|cRef
-argument_list|,
-name|ref
-operator|.
-name|utf8ToString
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// CharSeq
 block|}
 block|}
 block|}
