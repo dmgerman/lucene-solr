@@ -130,20 +130,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BooleanClause
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|DocIdSet
 import|;
 end_import
@@ -863,6 +849,9 @@ DECL|field|parentDoc
 specifier|private
 name|int
 name|parentDoc
+init|=
+operator|-
+literal|1
 decl_stmt|;
 DECL|field|parentScore
 specifier|private
@@ -1371,12 +1360,24 @@ operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
-comment|// Every parent must have at least one child:
-assert|assert
+if|if
+condition|(
 name|parentTarget
-operator|!=
+operator|==
 literal|0
-assert|;
+condition|)
+block|{
+comment|// Callers should only be passing in a docID from
+comment|// the parent space, so this means this parent
+comment|// has no children (it got docID 0), so it cannot
+comment|// possibly match.  We must handle this case
+comment|// separately otherwise we pass invalid -1 to
+comment|// prevSetBit below:
+return|return
+name|nextDoc
+argument_list|()
+return|;
+block|}
 specifier|final
 name|int
 name|prevParentDoc
