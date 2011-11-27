@@ -1248,6 +1248,24 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"FAIL: unexpected exc"
+argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 name|exc
 index|[
 literal|0
