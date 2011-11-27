@@ -176,15 +176,6 @@ name|OMIT_POSITIONS
 init|=
 literal|0x00002000
 decl_stmt|;
-DECL|field|LEGACY_MULTITERM
-specifier|protected
-specifier|final
-specifier|static
-name|int
-name|LEGACY_MULTITERM
-init|=
-literal|0x00004000
-decl_stmt|;
 DECL|field|propertyNames
 specifier|static
 specifier|final
@@ -220,8 +211,6 @@ block|,
 literal|"required"
 block|,
 literal|"omitPositions"
-block|,
-literal|"legacyMultiTerm"
 block|}
 decl_stmt|;
 DECL|field|propertyMap
