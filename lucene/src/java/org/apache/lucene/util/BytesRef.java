@@ -44,6 +44,7 @@ argument_list|>
 implements|,
 name|Cloneable
 block|{
+comment|/** An empty byte array for convenience */
 DECL|field|EMPTY_BYTES
 specifier|public
 specifier|static
@@ -77,14 +78,16 @@ specifier|public
 name|int
 name|length
 decl_stmt|;
+comment|/** Create a BytesRef with {@link #EMPTY_BYTES} */
 DECL|method|BytesRef
 specifier|public
 name|BytesRef
 parameter_list|()
 block|{
-name|bytes
-operator|=
+name|this
+argument_list|(
 name|EMPTY_BYTES
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** This instance will directly reference bytes w/o making a copy.    * bytes should not be null.    */
@@ -137,32 +140,19 @@ index|[]
 name|bytes
 parameter_list|)
 block|{
-assert|assert
-name|bytes
-operator|!=
-literal|null
-assert|;
 name|this
-operator|.
+argument_list|(
 name|bytes
-operator|=
-name|bytes
-expr_stmt|;
-name|this
-operator|.
-name|offset
-operator|=
+argument_list|,
 literal|0
-expr_stmt|;
-name|this
-operator|.
-name|length
-operator|=
+argument_list|,
 name|bytes
 operator|.
 name|length
+argument_list|)
 expr_stmt|;
 block|}
+comment|/**     * Create a BytesRef pointing to a new array of size<code>capacity</code>.    * Offset and length will both be zero.    */
 DECL|method|BytesRef
 specifier|public
 name|BytesRef
@@ -182,7 +172,7 @@ name|capacity
 index|]
 expr_stmt|;
 block|}
-comment|/**    * @param text Initialize the byte[] from the UTF8 bytes    * for the provided String.  This must be well-formed    * unicode text, with no unpaired surrogates or U+FFFF.    */
+comment|/**    * Initialize the byte[] from the UTF8 bytes    * for the provided String.      *     * @param text This must be well-formed    * unicode text, with no unpaired surrogates.    */
 DECL|method|BytesRef
 specifier|public
 name|BytesRef
@@ -201,6 +191,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Copies the UTF8 bytes for this string.    *     * @param text Must be well-formed unicode text, with no    * unpaired surrogates or invalid UTF16 code units.    */
+comment|// TODO broken if offset != 0
 DECL|method|copyChars
 specifier|public
 name|void
@@ -227,6 +218,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Expert: compares the bytes against another BytesRef,    * returning true if the bytes are equal.    *     * @param other Another BytesRef, should not be null.    * @lucene.internal    */
 DECL|method|bytesEquals
 specifier|public
 name|boolean
@@ -236,6 +228,11 @@ name|BytesRef
 name|other
 parameter_list|)
 block|{
+assert|assert
+name|other
+operator|!=
+literal|null
+assert|;
 if|if
 condition|(
 name|length
@@ -694,7 +691,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Copies the bytes from the given {@link BytesRef}    *<p>    * NOTE: this method resets the offset to 0 and resizes the reference array    * if needed.    */
+comment|/**    * Copies the bytes from the given {@link BytesRef}    *<p>    * NOTE: if this would exceed the array size, this method creates a     * new reference array.    */
 DECL|method|copyBytes
 specifier|public
 name|void
@@ -725,6 +722,10 @@ operator|.
 name|length
 index|]
 expr_stmt|;
+name|offset
+operator|=
+literal|0
+expr_stmt|;
 block|}
 name|System
 operator|.
@@ -740,7 +741,7 @@ name|offset
 argument_list|,
 name|bytes
 argument_list|,
-literal|0
+name|offset
 argument_list|,
 name|other
 operator|.
@@ -753,11 +754,8 @@ name|other
 operator|.
 name|length
 expr_stmt|;
-name|offset
-operator|=
-literal|0
-expr_stmt|;
 block|}
+comment|/**    * Appends the bytes from the given {@link BytesRef}    *<p>    * NOTE: if this would exceed the array size, this method creates a     * new reference array.    */
 DECL|method|append
 specifier|public
 name|void
@@ -847,6 +845,8 @@ operator|=
 name|newLen
 expr_stmt|;
 block|}
+comment|// TODO: stupid if existing offset is non-zero.
+comment|/** @lucene.internal */
 DECL|method|grow
 specifier|public
 name|void
@@ -878,121 +878,15 @@ name|BytesRef
 name|other
 parameter_list|)
 block|{
-if|if
-condition|(
-name|this
-operator|==
-name|other
-condition|)
 return|return
-literal|0
-return|;
-specifier|final
-name|byte
-index|[]
-name|aBytes
-init|=
-name|this
+name|utf8SortedAsUnicodeSortOrder
 operator|.
-name|bytes
-decl_stmt|;
-name|int
-name|aUpto
-init|=
-name|this
-operator|.
-name|offset
-decl_stmt|;
-specifier|final
-name|byte
-index|[]
-name|bBytes
-init|=
-name|other
-operator|.
-name|bytes
-decl_stmt|;
-name|int
-name|bUpto
-init|=
-name|other
-operator|.
-name|offset
-decl_stmt|;
-specifier|final
-name|int
-name|aStop
-init|=
-name|aUpto
-operator|+
-name|Math
-operator|.
-name|min
+name|compare
 argument_list|(
 name|this
-operator|.
-name|length
 argument_list|,
 name|other
-operator|.
-name|length
 argument_list|)
-decl_stmt|;
-while|while
-condition|(
-name|aUpto
-operator|<
-name|aStop
-condition|)
-block|{
-name|int
-name|aByte
-init|=
-name|aBytes
-index|[
-name|aUpto
-operator|++
-index|]
-operator|&
-literal|0xff
-decl_stmt|;
-name|int
-name|bByte
-init|=
-name|bBytes
-index|[
-name|bUpto
-operator|++
-index|]
-operator|&
-literal|0xff
-decl_stmt|;
-name|int
-name|diff
-init|=
-name|aByte
-operator|-
-name|bByte
-decl_stmt|;
-if|if
-condition|(
-name|diff
-operator|!=
-literal|0
-condition|)
-return|return
-name|diff
-return|;
-block|}
-comment|// One is a prefix of the other, or, they are equal:
-return|return
-name|this
-operator|.
-name|length
-operator|-
-name|other
-operator|.
-name|length
 return|;
 block|}
 DECL|field|utf8SortedAsUnicodeSortOrder
