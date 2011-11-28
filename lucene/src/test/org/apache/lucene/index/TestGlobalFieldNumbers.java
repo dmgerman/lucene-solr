@@ -574,13 +574,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|assertFNXFiles
-argument_list|(
-name|dir
-argument_list|,
-literal|"_2.fnx"
-argument_list|)
-expr_stmt|;
 name|writer
 operator|.
 name|close
@@ -971,13 +964,6 @@ name|writer
 operator|.
 name|commit
 argument_list|()
-expr_stmt|;
-name|assertFNXFiles
-argument_list|(
-name|dir
-argument_list|,
-literal|"_2.fnx"
-argument_list|)
 expr_stmt|;
 name|writer
 operator|.

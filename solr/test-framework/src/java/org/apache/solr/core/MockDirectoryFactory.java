@@ -58,6 +58,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|MockDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|LuceneTestCase
@@ -89,7 +103,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
+name|MockDirectoryWrapper
+name|dir
+init|=
 name|LuceneTestCase
 operator|.
 name|newFSDirectory
@@ -100,6 +116,20 @@ argument_list|(
 name|path
 argument_list|)
 argument_list|)
+decl_stmt|;
+comment|// Somehow removing unref'd files in Solr tests causes
+comment|// problems... there's some interaction w/
+comment|// CachingDirectoryFactory.  Once we track down where Solr
+comment|// isn't closing an IW, we can re-enable this:
+name|dir
+operator|.
+name|setAssertNoUnrefencedFilesOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+return|return
+name|dir
 return|;
 block|}
 block|}
