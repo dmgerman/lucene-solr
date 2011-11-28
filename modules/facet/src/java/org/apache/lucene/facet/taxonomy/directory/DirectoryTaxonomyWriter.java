@@ -408,6 +408,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|TieredMergePolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|DocIdSetIterator
@@ -821,15 +835,40 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|IndexWriterConfig
+name|config
+init|=
+name|createIndexWriterConfig
+argument_list|(
+name|openMode
+argument_list|)
+decl_stmt|;
 name|indexWriter
 operator|=
 name|openIndexWriter
 argument_list|(
 name|directory
 argument_list|,
-name|openMode
+name|config
 argument_list|)
 expr_stmt|;
+comment|// verify (to some extent) that merge policy in effect would preserve category docids
+assert|assert
+operator|!
+operator|(
+name|indexWriter
+operator|.
+name|getConfig
+argument_list|()
+operator|.
+name|getMergePolicy
+argument_list|()
+operator|instanceof
+name|TieredMergePolicy
+operator|)
+operator|:
+literal|"for preserving category docids, merging none-adjacent segments is not allowed"
+assert|;
 name|reader
 operator|=
 literal|null
@@ -952,7 +991,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**    * A hook for extensions of this class to provide their own    * {@link IndexWriter} implementation or instance. Extending classes can    * instantiate and configure the {@link IndexWriter} as they see fit,    * including setting a {@link org.apache.lucene.index.MergeScheduler}, or    * {@link org.apache.lucene.index.IndexDeletionPolicy}, different RAM size    * etc.<br>    *<b>NOTE:</b> the instance this method returns will be closed upon calling    * to {@link #close()}.    *     * @param directory    *          the {@link Directory} on top of which an {@link IndexWriter}    *          should be opened.    * @param openMode    *          see {@link OpenMode}    */
+comment|/**    * Open internal index writer, which contains the taxonomy data.    *<p>    * Extensions may provide their own {@link IndexWriter} implementation or instance.     *<br><b>NOTE:</b> the instance this method returns will be closed upon calling    * to {@link #close()}.    *<br><b>NOTE:</b> the merge policy in effect must not merge none adjacent segments. See    * comment in {@link #createIndexWriterConfig(IndexWriterConfig.OpenMode)} for the logic behind this.    *      * @see #createIndexWriterConfig(IndexWriterConfig.OpenMode)    *     * @param directory    *          the {@link Directory} on top of which an {@link IndexWriter}    *          should be opened.    * @param config    *          configuration for the internal index writer.    */
 DECL|method|openIndexWriter
 specifier|protected
 name|IndexWriter
@@ -961,18 +1000,35 @@ parameter_list|(
 name|Directory
 name|directory
 parameter_list|,
-name|OpenMode
-name|openMode
+name|IndexWriterConfig
+name|config
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Make sure we use a MergePolicy which merges segments in-order and thus
-comment|// keeps the doc IDs ordered as well (this is crucial for the taxonomy
-comment|// index).
-name|IndexWriterConfig
+return|return
+operator|new
+name|IndexWriter
+argument_list|(
+name|directory
+argument_list|,
 name|config
-init|=
+argument_list|)
+return|;
+block|}
+comment|/**    * Create the {@link IndexWriterConfig} that would be used for opening the internal index writer.    *<br>Extensions can configure the {@link IndexWriter} as they see fit,    * including setting a {@link org.apache.lucene.index.MergeScheduler merge-scheduler}, or    * {@link org.apache.lucene.index.IndexDeletionPolicy deletion-policy}, different RAM size    * etc.<br>    *<br><b>NOTE:</b> internal docids of the configured index must not be altered.    * For that, categories are never deleted from the taxonomy index.    * In addition, merge policy in effect must not merge none adjacent segments.    *     * @see #openIndexWriter(Directory, IndexWriterConfig)    *     * @param openMode see {@link OpenMode}    */
+DECL|method|createIndexWriterConfig
+specifier|protected
+name|IndexWriterConfig
+name|createIndexWriterConfig
+parameter_list|(
+name|OpenMode
+name|openMode
+parameter_list|)
+block|{
+comment|// Make sure we use a MergePolicy which always merges adjacent segments and thus
+comment|// keeps the doc IDs ordered as well (this is crucial for the taxonomy index).
+return|return
 operator|new
 name|IndexWriterConfig
 argument_list|(
@@ -996,20 +1052,10 @@ operator|new
 name|LogByteSizeMergePolicy
 argument_list|()
 argument_list|)
-decl_stmt|;
-return|return
-operator|new
-name|IndexWriter
-argument_list|(
-name|directory
-argument_list|,
-name|config
-argument_list|)
 return|;
 block|}
-comment|// Currently overridden by a unit test that verifies that every index we open
-comment|// is close()ed.
-comment|/**    * Open an {@link IndexReader} from the {@link #indexWriter} member, by    * calling {@link IndexWriter#getReader()}. Extending classes can override    * this method to return their own {@link IndexReader}.    */
+comment|// Currently overridden by a unit test that verifies that every index we open is close()ed.
+comment|/**    * Open an {@link IndexReader} from the internal {@link IndexWriter}, by    * calling {@link IndexReader#open(IndexWriter, boolean)}. Extending classes can override    * this method to return their own {@link IndexReader}.    */
 DECL|method|openReader
 specifier|protected
 name|IndexReader
