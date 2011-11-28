@@ -192,6 +192,8 @@ name|CollationKeyFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
 implements|implements
+name|MultiTermAwareComponent
+implements|,
 name|ResourceLoaderAware
 block|{
 DECL|field|collator
@@ -753,6 +755,18 @@ name|input
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|getMultiTermComponent
+specifier|public
+name|Object
+name|getMultiTermComponent
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
 block|}
 block|}
 end_class
