@@ -3855,10 +3855,12 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-name|term
+name|StringHelper
 operator|.
 name|startsWith
 argument_list|(
+name|term
+argument_list|,
 name|startTermBytes
 argument_list|)
 condition|)

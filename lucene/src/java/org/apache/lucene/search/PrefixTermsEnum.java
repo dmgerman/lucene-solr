@@ -68,6 +68,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  * Subclass of FilteredTermEnum for enumerating all terms that match the  * specified prefix filter term.  *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than all that precede it.</p>  */
 end_comment
@@ -127,10 +141,12 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|term
+name|StringHelper
 operator|.
 name|startsWith
 argument_list|(
+name|term
+argument_list|,
 name|prefixRef
 argument_list|)
 condition|)

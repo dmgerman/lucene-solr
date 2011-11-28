@@ -78,6 +78,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -196,10 +210,12 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|term
+name|StringHelper
 operator|.
 name|startsWith
 argument_list|(
+name|term
+argument_list|,
 name|prefixRef
 argument_list|)
 condition|)
