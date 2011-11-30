@@ -80,6 +80,12 @@ specifier|public
 class|class
 name|MultiNorms
 block|{
+comment|// no need to instantiate this
+DECL|method|MultiNorms
+specifier|private
+name|MultiNorms
+parameter_list|()
+block|{ }
 comment|/**    * Warning: this is heavy! Do not use in a loop, or implement norms()    * in your own reader with this (you should likely cache the result).    */
 DECL|method|norms
 specifier|public
