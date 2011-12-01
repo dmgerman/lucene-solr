@@ -142,21 +142,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
+name|*
 import|;
 end_import
 
@@ -190,7 +176,7 @@ name|suggest
 operator|.
 name|fst
 operator|.
-name|FSTLookup
+name|FSTCompletionLookup
 import|;
 end_import
 
@@ -298,7 +284,7 @@ name|TSTLookup
 operator|.
 name|class
 argument_list|,
-name|FSTLookup
+name|FSTCompletionLookup
 operator|.
 name|class
 argument_list|)

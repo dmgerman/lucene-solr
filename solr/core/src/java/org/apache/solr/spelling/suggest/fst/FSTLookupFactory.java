@@ -50,7 +50,7 @@ name|suggest
 operator|.
 name|fst
 operator|.
-name|FSTLookup
+name|*
 import|;
 end_import
 
@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link FSTLookup}  */
+comment|/**  * Factory for {@link FSTCompletionLookup}  */
 end_comment
 
 begin_class
@@ -206,7 +206,7 @@ literal|true
 decl_stmt|;
 return|return
 operator|new
-name|FSTLookup
+name|FSTCompletionLookup
 argument_list|(
 name|buckets
 argument_list|,
