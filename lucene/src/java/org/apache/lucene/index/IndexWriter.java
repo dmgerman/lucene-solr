@@ -3154,9 +3154,7 @@ operator|=
 name|segmentInfos
 operator|.
 name|getOrLoadGlobalFieldNumberMap
-argument_list|(
-name|directory
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|docWriter
 operator|=

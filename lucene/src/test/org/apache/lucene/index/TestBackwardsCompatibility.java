@@ -3783,8 +3783,6 @@ block|,
 literal|"segments_2"
 block|,
 literal|"segments.gen"
-block|,
-literal|"_1.fnx"
 block|}
 decl_stmt|;
 name|String
