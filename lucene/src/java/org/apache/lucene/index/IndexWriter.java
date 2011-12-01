@@ -843,13 +843,6 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -859,7 +852,6 @@ argument_list|,
 literal|"flush at getReader"
 argument_list|)
 expr_stmt|;
-block|}
 comment|// Do this up front before flushing so that the readers
 comment|// obtained during this flush are pooled, the first time
 comment|// this method is called:
@@ -945,8 +937,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -990,16 +985,6 @@ return|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-operator|!
-name|success
-operator|&&
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -1009,7 +994,6 @@ argument_list|,
 literal|"hit exception during NRT reader"
 argument_list|)
 expr_stmt|;
-block|}
 comment|// Done: finish the full flush!
 name|docWriter
 operator|.
@@ -1035,8 +1019,11 @@ block|}
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -3118,8 +3105,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -3224,8 +3214,11 @@ block|}
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -3256,13 +3249,6 @@ operator|!
 name|success
 condition|)
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -3272,7 +3258,6 @@ argument_list|,
 literal|"init: hit exception on init; releasing write lock"
 argument_list|)
 expr_stmt|;
-block|}
 try|try
 block|{
 name|writeLock
@@ -3323,8 +3308,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -3361,19 +3349,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|/** Returns true if verbosing is enabled (i.e., infoStream != null). */
-DECL|method|verbose
-specifier|public
-name|boolean
-name|verbose
-parameter_list|()
-block|{
-return|return
-name|infoStream
-operator|!=
-literal|null
-return|;
 block|}
 comment|/**    * Commits all changes to an index and closes all    * associated files.  Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit()} for    * caveats about write caching done by some IO devices.    *    *<p> If an Exception is hit during close, eg due to disk    * full or some other reason, then both the on-disk index    * and the internal state of the IndexWriter instance will    * be consistent.  However, the close will not be complete    * even though part of it (flushing buffered documents)    * may have succeeded, so the write lock will still be    * held.</p>    *    *<p> If you can correct the underlying cause (eg free up    * some disk space) then you can call close() again.    * Failing that, if you want to force the write lock to be    * released (dangerous, because you may then lose buffered    * docs in the IndexWriter instance) then you can do    * something like this:</p>    *    *<pre>    * try {    *   writer.close();    * } finally {    *   if (IndexWriter.isLocked(directory)) {    *     IndexWriter.unlock(directory);    *   }    * }    *</pre>    *    * after which, you must be certain not to use the writer    * instance anymore.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer, again.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|close
@@ -3500,8 +3475,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -3575,12 +3553,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
 name|infoStream
 operator|.
 name|message
@@ -3605,8 +3577,11 @@ block|}
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -3716,12 +3691,6 @@ operator|!
 name|closed
 condition|)
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
 name|infoStream
 operator|.
 name|message
@@ -4156,16 +4125,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-operator|!
-name|success
-operator|&&
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -4175,7 +4134,6 @@ argument_list|,
 literal|"hit exception updating document"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(
@@ -4470,15 +4428,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-operator|!
-name|success
-operator|&&
-name|infoStream
-operator|!=
-literal|null
-condition|)
 name|infoStream
 operator|.
 name|message
@@ -4751,8 +4700,11 @@ throw|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -5132,8 +5084,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -5735,13 +5690,6 @@ name|success
 init|=
 literal|false
 decl_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -5751,7 +5699,6 @@ argument_list|,
 literal|"rollback"
 argument_list|)
 expr_stmt|;
-block|}
 try|try
 block|{
 synchronized|synchronized
@@ -5769,13 +5716,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -5785,7 +5725,6 @@ argument_list|,
 literal|"rollback: done finish merges"
 argument_list|)
 expr_stmt|;
-block|}
 comment|// Must pre-close these two, in case they increment
 comment|// changeCount so that we can then set it to false
 comment|// before calling closeInternal
@@ -5853,8 +5792,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -5951,12 +5893,6 @@ expr_stmt|;
 name|notifyAll
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
 name|infoStream
 operator|.
 name|message
@@ -6064,16 +6000,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-operator|!
-name|success
-operator|&&
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -6083,7 +6009,6 @@ argument_list|,
 literal|"hit exception during deleteAll"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 DECL|method|finishMerges
@@ -6123,8 +6048,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -6172,8 +6100,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -6215,8 +6146,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -6253,12 +6187,6 @@ operator|.
 name|size
 argument_list|()
 assert|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
 name|infoStream
 operator|.
 name|message
@@ -6294,13 +6222,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -6310,7 +6231,6 @@ argument_list|,
 literal|"waitForMerges"
 argument_list|)
 expr_stmt|;
-block|}
 while|while
 condition|(
 name|pendingMerges
@@ -6341,13 +6261,6 @@ operator|.
 name|size
 argument_list|()
 assert|;
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -6357,7 +6270,6 @@ argument_list|,
 literal|"waitForMerges done"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|/**    * Called whenever the SegmentInfos has been updated and    * the index files referenced exist (correctly) in the    * index directory.    */
 DECL|method|checkpoint
@@ -6472,8 +6384,11 @@ decl_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -6643,8 +6558,11 @@ decl_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -6739,8 +6657,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -6839,13 +6760,6 @@ init|(
 name|bufferedDeletesStream
 init|)
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -6855,7 +6769,6 @@ argument_list|,
 literal|"publishFlushedSegment"
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|globalPacket
@@ -6919,8 +6832,11 @@ block|}
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -7117,12 +7033,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
 name|infoStream
 operator|.
 name|message
@@ -7163,8 +7073,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -7272,8 +7185,11 @@ decl_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -7409,12 +7325,6 @@ literal|0
 decl_stmt|;
 try|try
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
 name|infoStream
 operator|.
 name|message
@@ -8053,8 +7963,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -8244,10 +8157,6 @@ if|if
 condition|(
 operator|!
 name|success
-operator|&&
-name|infoStream
-operator|!=
-literal|null
 condition|)
 block|{
 name|infoStream
@@ -8421,13 +8330,6 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -8437,18 +8339,10 @@ argument_list|,
 literal|"commit: start"
 argument_list|)
 expr_stmt|;
-block|}
 synchronized|synchronized
 init|(
 name|commitLock
 init|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
 block|{
 name|infoStream
 operator|.
@@ -8459,18 +8353,10 @@ argument_list|,
 literal|"commit: enter lock"
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|pendingCommit
 operator|==
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
 literal|null
 condition|)
 block|{
@@ -8483,20 +8369,13 @@ argument_list|,
 literal|"commit: now prepare"
 argument_list|)
 expr_stmt|;
-block|}
 name|prepareCommit
 argument_list|(
 name|commitUserData
 argument_list|)
 expr_stmt|;
 block|}
-elseif|else
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
+else|else
 block|{
 name|infoStream
 operator|.
@@ -8534,12 +8413,6 @@ condition|)
 block|{
 try|try
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
 name|infoStream
 operator|.
 name|message
@@ -8561,8 +8434,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -8643,13 +8519,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-elseif|else
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
+else|else
 block|{
 name|infoStream
 operator|.
@@ -8661,13 +8531,6 @@ literal|"commit: pendingCommit == null; skip"
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -8677,7 +8540,6 @@ argument_list|,
 literal|"commit: done"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|// Ensures only one flush() is actually flushing segments
 comment|// at a time:
@@ -8781,8 +8643,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -8907,10 +8772,6 @@ if|if
 condition|(
 operator|!
 name|success
-operator|&&
-name|infoStream
-operator|!=
-literal|null
 condition|)
 name|infoStream
 operator|.
@@ -8940,13 +8801,6 @@ condition|(
 name|applyAllDeletes
 condition|)
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -8956,7 +8810,6 @@ argument_list|,
 literal|"apply all deletes during flush"
 argument_list|)
 expr_stmt|;
-block|}
 name|applyAllDeletes
 argument_list|()
 expr_stmt|;
@@ -8965,8 +8818,11 @@ elseif|else
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -9052,8 +8908,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -9297,8 +9156,11 @@ decl_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -9789,8 +9651,11 @@ block|}
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -9835,8 +9700,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -9895,11 +9763,14 @@ literal|0
 decl_stmt|;
 if|if
 condition|(
-name|infoStream
-operator|!=
-literal|null
-operator|&&
 name|allDeleted
+operator|&&
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -9962,8 +9833,11 @@ block|}
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -10066,8 +9940,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -10230,8 +10107,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -10302,12 +10182,6 @@ operator|!
 name|success
 condition|)
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
 name|infoStream
 operator|.
 name|message
@@ -10405,15 +10279,18 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|infoStream
-operator|!=
-literal|null
-operator|&&
 name|merge
 operator|.
 name|info
 operator|!=
 literal|null
+operator|&&
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -10604,8 +10481,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 name|infoStream
 operator|.
@@ -10651,8 +10531,11 @@ comment|// threads, start
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|StringBuilder
@@ -10722,8 +10605,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -10797,13 +10683,6 @@ operator|!
 name|success
 condition|)
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -10813,7 +10692,6 @@ argument_list|,
 literal|"hit exception in mergeInit"
 argument_list|)
 expr_stmt|;
-block|}
 name|mergeFinish
 argument_list|(
 name|merge
@@ -10966,8 +10844,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -11134,8 +11015,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -11905,8 +11789,11 @@ decl_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -12092,8 +11979,11 @@ block|}
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -12151,8 +12041,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -12238,8 +12131,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -12338,13 +12234,6 @@ operator|!
 name|success
 condition|)
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -12354,7 +12243,6 @@ argument_list|,
 literal|"hit exception creating compound file during merge"
 argument_list|)
 expr_stmt|;
-block|}
 synchronized|synchronized
 init|(
 name|this
@@ -12431,13 +12319,6 @@ name|isAborted
 argument_list|()
 condition|)
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -12447,7 +12328,6 @@ argument_list|,
 literal|"abort merge after building CFS"
 argument_list|)
 expr_stmt|;
-block|}
 name|deleter
 operator|.
 name|deleteFile
@@ -12473,8 +12353,11 @@ block|}
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -13152,13 +13035,6 @@ throw|;
 block|}
 try|try
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -13168,7 +13044,6 @@ argument_list|,
 literal|"startCommit(): start"
 argument_list|)
 expr_stmt|;
-block|}
 synchronized|synchronized
 init|(
 name|this
@@ -13186,13 +13061,6 @@ operator|==
 name|lastCommitChangeCount
 condition|)
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -13202,7 +13070,6 @@ argument_list|,
 literal|"  skip startCommit(): no changes pending"
 argument_list|)
 expr_stmt|;
-block|}
 name|deleter
 operator|.
 name|decRef
@@ -13219,8 +13086,11 @@ block|}
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -13341,13 +13211,6 @@ operator|=
 name|toSync
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -13357,7 +13220,6 @@ argument_list|,
 literal|"done all syncs"
 argument_list|)
 expr_stmt|;
-block|}
 assert|assert
 name|testPoint
 argument_list|(
@@ -13389,13 +13251,6 @@ operator|!
 name|pendingCommitSet
 condition|)
 block|{
-if|if
-condition|(
-name|infoStream
-operator|!=
-literal|null
-condition|)
-block|{
 name|infoStream
 operator|.
 name|message
@@ -13405,7 +13260,6 @@ argument_list|,
 literal|"hit exception committing segments file"
 argument_list|)
 expr_stmt|;
-block|}
 comment|// Hit exception
 name|deleter
 operator|.
@@ -13530,8 +13384,11 @@ block|{
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -13593,8 +13450,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream

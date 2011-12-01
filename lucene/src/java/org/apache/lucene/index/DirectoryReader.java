@@ -238,6 +238,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|InfoStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|MapBackedSet
 import|;
 end_import
@@ -3413,6 +3427,7 @@ argument_list|)
 expr_stmt|;
 comment|// Default deleter (for backwards compatibility) is
 comment|// KeepOnlyLastCommitDeleter:
+comment|// nocommit: Decide what to do with InfoStream here? Use default or keep NO_OUTPUT?
 name|IndexFileDeleter
 name|deleter
 init|=
@@ -3433,7 +3448,9 @@ name|deletionPolicy
 argument_list|,
 name|segmentInfos
 argument_list|,
-literal|null
+name|InfoStream
+operator|.
+name|NO_OUTPUT
 argument_list|,
 literal|null
 argument_list|)

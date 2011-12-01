@@ -54,6 +54,21 @@ name|IOException
 block|{      }
 annotation|@
 name|Override
+DECL|method|isEnabled
+specifier|public
+name|boolean
+name|isEnabled
+parameter_list|(
+name|String
+name|component
+parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|message
 specifier|public
 name|void

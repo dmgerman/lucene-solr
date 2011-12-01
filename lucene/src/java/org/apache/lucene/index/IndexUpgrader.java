@@ -615,8 +615,11 @@ decl_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IndexUpgrader"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -655,8 +658,11 @@ expr_stmt|;
 if|if
 condition|(
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IndexUpgrader"
+argument_list|)
 condition|)
 block|{
 name|infoStream

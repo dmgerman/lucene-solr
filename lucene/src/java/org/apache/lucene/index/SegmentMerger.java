@@ -965,8 +965,11 @@ condition|(
 name|mergeState
 operator|.
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"SM"
+argument_list|)
 condition|)
 block|{
 name|mergeState

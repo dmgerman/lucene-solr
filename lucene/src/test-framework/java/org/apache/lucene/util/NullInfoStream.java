@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Prints nothing. Just to make sure tests pass w/ and without infostream  * without actually making noise.  * @lucene.experimental  */
+comment|/**  * Prints nothing. Just to make sure tests pass w/ and without enabled InfoStream  * without actually making noise.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -62,6 +62,27 @@ name|message
 operator|!=
 literal|null
 assert|;
+block|}
+annotation|@
+name|Override
+DECL|method|isEnabled
+specifier|public
+name|boolean
+name|isEnabled
+parameter_list|(
+name|String
+name|component
+parameter_list|)
+block|{
+assert|assert
+name|component
+operator|!=
+literal|null
+assert|;
+return|return
+literal|true
+return|;
+comment|// to actually enable logging, we just ignore on message()
 block|}
 annotation|@
 name|Override
