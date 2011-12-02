@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the Lucene 4.0 index format, with configurable per-field postings formats  * and using {@link DefaultStoredFieldsFormat} for stored fields and {@link  * DefaultDocValuesFormat} for doc values.  *  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 4.0 index format, with configurable per-field postings formats.  *  * @lucene.experimental  */
 end_comment
 
 begin_comment
