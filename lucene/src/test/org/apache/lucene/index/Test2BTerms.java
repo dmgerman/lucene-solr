@@ -898,7 +898,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_STORED
+name|TYPE_UNSTORED
 argument_list|)
 decl_stmt|;
 name|customType
