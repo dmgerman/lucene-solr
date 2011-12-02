@@ -75,10 +75,10 @@ comment|/**  * Implements the skip list reader for the default posting list form
 end_comment
 
 begin_class
-DECL|class|DefaultSkipListReader
+DECL|class|Lucene40SkipListReader
 specifier|public
 class|class
-name|DefaultSkipListReader
+name|Lucene40SkipListReader
 extends|extends
 name|MultiLevelSkipListReader
 block|{
@@ -120,9 +120,9 @@ specifier|private
 name|int
 name|lastPayloadLength
 decl_stmt|;
-DECL|method|DefaultSkipListReader
+DECL|method|Lucene40SkipListReader
 specifier|public
-name|DefaultSkipListReader
+name|Lucene40SkipListReader
 parameter_list|(
 name|IndexInput
 name|skipStream

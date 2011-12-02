@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs
+DECL|package|org.apache.lucene.index.codecs.lucene40
 package|package
 name|org
 operator|.
@@ -11,6 +11,8 @@ operator|.
 name|index
 operator|.
 name|codecs
+operator|.
+name|lucene40
 package|;
 end_package
 
@@ -116,6 +118,22 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|codecs
+operator|.
+name|DocValuesReaderBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|values
 operator|.
 name|IndexDocValues
@@ -169,10 +187,10 @@ comment|/**  * Default PerDocValues implementation that uses compound file.  * @
 end_comment
 
 begin_class
-DECL|class|DefaultDocValuesProducer
+DECL|class|Lucene40DocValuesProducer
 specifier|public
 class|class
-name|DefaultDocValuesProducer
+name|Lucene40DocValuesProducer
 extends|extends
 name|DocValuesReaderBase
 block|{
@@ -193,10 +211,10 @@ specifier|final
 name|Directory
 name|cfs
 decl_stmt|;
-comment|/**    * Creates a new {@link DefaultDocValuesProducer} instance and loads all    * {@link IndexDocValues} instances for this segment and codec.    */
-DECL|method|DefaultDocValuesProducer
+comment|/**    * Creates a new {@link Lucene40DocValuesProducer} instance and loads all    * {@link IndexDocValues} instances for this segment and codec.    */
+DECL|method|Lucene40DocValuesProducer
 specifier|public
-name|DefaultDocValuesProducer
+name|Lucene40DocValuesProducer
 parameter_list|(
 name|SegmentReadState
 name|state
@@ -233,7 +251,7 @@ name|segmentInfo
 operator|.
 name|name
 argument_list|,
-name|DefaultDocValuesConsumer
+name|Lucene40DocValuesConsumer
 operator|.
 name|DOC_VALUES_SEGMENT_SUFFIX
 argument_list|,

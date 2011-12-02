@@ -42,7 +42,9 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|DefaultSegmentInfosWriter
+name|lucene40
+operator|.
+name|Lucene40SegmentInfosWriter
 import|;
 end_import
 
@@ -66,7 +68,7 @@ specifier|public
 class|class
 name|AppendingSegmentInfosWriter
 extends|extends
-name|DefaultSegmentInfosWriter
+name|Lucene40SegmentInfosWriter
 block|{
 annotation|@
 name|Override

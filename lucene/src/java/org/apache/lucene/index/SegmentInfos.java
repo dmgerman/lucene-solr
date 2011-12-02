@@ -190,22 +190,6 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|DefaultSegmentInfosWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
 name|SegmentInfosReader
 import|;
 end_import
@@ -357,6 +341,77 @@ name|SegmentInfo
 argument_list|>
 block|{
 comment|/*     * The file format version, a negative number.    *      * NOTE: future format numbers must always be one smaller     * than the latest. With time, support for old formats will    * be removed, however the numbers should continue to decrease.     */
+comment|// TODO: i don't think we need *all* these version numbers here?
+comment|// most codecs only need FORMAT_CURRENT? and we should rename it
+comment|// to FORMAT_FLEX? because the 'preamble' is just FORMAT_CURRENT + codecname
+comment|// after that the codec takes over.
+comment|// also i think this class should write this, somehow we let
+comment|// preflexrw hackishly override this (like seek backwards and overwrite it)
+comment|/** This format adds optional per-segment String    *  diagnostics storage, and switches userData to Map */
+DECL|field|FORMAT_DIAGNOSTICS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_DIAGNOSTICS
+init|=
+operator|-
+literal|9
+decl_stmt|;
+comment|/** Each segment records whether it has term vectors */
+DECL|field|FORMAT_HAS_VECTORS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_HAS_VECTORS
+init|=
+operator|-
+literal|10
+decl_stmt|;
+comment|/** Each segment records the Lucene version that created it. */
+DECL|field|FORMAT_3_1
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_3_1
+init|=
+operator|-
+literal|11
+decl_stmt|;
+comment|/** Each segment records whether its postings are written    *  in the new flex format */
+DECL|field|FORMAT_4_0
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_4_0
+init|=
+operator|-
+literal|12
+decl_stmt|;
+comment|/** This must always point to the most recent file format.    * whenever you add a new format, make it 1 smaller (negative version logic)! */
+comment|// TODO: move this, as its currently part of required preamble
+DECL|field|FORMAT_CURRENT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_CURRENT
+init|=
+name|FORMAT_4_0
+decl_stmt|;
+comment|/** This must always point to the first supported file format. */
+DECL|field|FORMAT_MINIMUM
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_MINIMUM
+init|=
+name|FORMAT_DIAGNOSTICS
+decl_stmt|;
 comment|/** Used for the segments.gen file only!    * Whenever you add a new format, make it 1 smaller (negative version logic)! */
 DECL|field|FORMAT_SEGMENTS_GEN_CURRENT
 specifier|public
@@ -964,8 +1019,6 @@ if|if
 condition|(
 name|format
 operator|>
-name|DefaultSegmentInfosWriter
-operator|.
 name|FORMAT_MINIMUM
 condition|)
 throw|throw
@@ -976,12 +1029,8 @@ name|input
 argument_list|,
 name|format
 argument_list|,
-name|DefaultSegmentInfosWriter
-operator|.
 name|FORMAT_MINIMUM
 argument_list|,
-name|DefaultSegmentInfosWriter
-operator|.
 name|FORMAT_CURRENT
 argument_list|)
 throw|;
@@ -989,8 +1038,6 @@ if|if
 condition|(
 name|format
 operator|<
-name|DefaultSegmentInfosWriter
-operator|.
 name|FORMAT_CURRENT
 condition|)
 throw|throw
@@ -1001,12 +1048,8 @@ name|input
 argument_list|,
 name|format
 argument_list|,
-name|DefaultSegmentInfosWriter
-operator|.
 name|FORMAT_MINIMUM
 argument_list|,
-name|DefaultSegmentInfosWriter
-operator|.
 name|FORMAT_CURRENT
 argument_list|)
 throw|;
@@ -1014,8 +1057,6 @@ if|if
 condition|(
 name|format
 operator|<=
-name|DefaultSegmentInfosWriter
-operator|.
 name|FORMAT_4_0
 condition|)
 block|{

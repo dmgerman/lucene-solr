@@ -150,22 +150,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|DefaultSegmentInfosWriter
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -1339,7 +1323,7 @@ if|if
 condition|(
 name|format
 operator|==
-name|DefaultSegmentInfosWriter
+name|SegmentInfos
 operator|.
 name|FORMAT_DIAGNOSTICS
 condition|)
@@ -1354,7 +1338,7 @@ if|if
 condition|(
 name|format
 operator|==
-name|DefaultSegmentInfosWriter
+name|SegmentInfos
 operator|.
 name|FORMAT_HAS_VECTORS
 condition|)
@@ -1369,7 +1353,7 @@ if|if
 condition|(
 name|format
 operator|==
-name|DefaultSegmentInfosWriter
+name|SegmentInfos
 operator|.
 name|FORMAT_3_1
 condition|)
@@ -1384,7 +1368,7 @@ if|if
 condition|(
 name|format
 operator|==
-name|DefaultSegmentInfosWriter
+name|SegmentInfos
 operator|.
 name|FORMAT_4_0
 condition|)
@@ -1399,7 +1383,7 @@ if|if
 condition|(
 name|format
 operator|==
-name|DefaultSegmentInfosWriter
+name|SegmentInfos
 operator|.
 name|FORMAT_CURRENT
 condition|)
@@ -1417,7 +1401,7 @@ if|if
 condition|(
 name|format
 operator|<
-name|DefaultSegmentInfosWriter
+name|SegmentInfos
 operator|.
 name|FORMAT_CURRENT
 condition|)
@@ -1440,7 +1424,7 @@ if|if
 condition|(
 name|format
 operator|>
-name|DefaultSegmentInfosWriter
+name|SegmentInfos
 operator|.
 name|FORMAT_MINIMUM
 condition|)

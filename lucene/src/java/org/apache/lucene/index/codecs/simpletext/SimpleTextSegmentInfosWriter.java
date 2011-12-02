@@ -92,22 +92,6 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|DefaultSegmentInfosWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
 name|SegmentInfosWriter
 import|;
 end_import
@@ -581,12 +565,12 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-comment|// required preamble
+comment|// required preamble:
 name|out
 operator|.
 name|writeInt
 argument_list|(
-name|DefaultSegmentInfosWriter
+name|SegmentInfos
 operator|.
 name|FORMAT_CURRENT
 argument_list|)

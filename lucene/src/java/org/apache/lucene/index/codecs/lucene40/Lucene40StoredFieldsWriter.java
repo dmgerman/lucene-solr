@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs
+DECL|package|org.apache.lucene.index.codecs.lucene40
 package|package
 name|org
 operator|.
@@ -11,6 +11,8 @@ operator|.
 name|index
 operator|.
 name|codecs
+operator|.
+name|lucene40
 package|;
 end_package
 
@@ -150,6 +152,38 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|StoredFieldsReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|StoredFieldsWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -245,11 +279,11 @@ comment|/** @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|DefaultStoredFieldsWriter
+DECL|class|Lucene40StoredFieldsWriter
 specifier|public
 specifier|final
 class|class
-name|DefaultStoredFieldsWriter
+name|Lucene40StoredFieldsWriter
 extends|extends
 name|StoredFieldsWriter
 block|{
@@ -407,9 +441,9 @@ specifier|private
 name|IndexOutput
 name|indexStream
 decl_stmt|;
-DECL|method|DefaultStoredFieldsWriter
+DECL|method|Lucene40StoredFieldsWriter
 specifier|public
-name|DefaultStoredFieldsWriter
+name|Lucene40StoredFieldsWriter
 parameter_list|(
 name|Directory
 name|directory
@@ -1175,7 +1209,7 @@ name|idx
 operator|++
 index|]
 decl_stmt|;
-name|DefaultStoredFieldsReader
+name|Lucene40StoredFieldsReader
 name|matchingFieldsReader
 init|=
 literal|null
@@ -1196,7 +1230,7 @@ operator|.
 name|getFieldsReader
 argument_list|()
 decl_stmt|;
-comment|// we can only bulk-copy if the matching reader is also a DefaultFieldsReader
+comment|// we can only bulk-copy if the matching reader is also a Lucene40FieldsReader
 if|if
 condition|(
 name|fieldsReader
@@ -1205,13 +1239,13 @@ literal|null
 operator|&&
 name|fieldsReader
 operator|instanceof
-name|DefaultStoredFieldsReader
+name|Lucene40StoredFieldsReader
 condition|)
 block|{
 name|matchingFieldsReader
 operator|=
 operator|(
-name|DefaultStoredFieldsReader
+name|Lucene40StoredFieldsReader
 operator|)
 name|fieldsReader
 expr_stmt|;
@@ -1291,7 +1325,7 @@ name|IndexReaderAndLiveDocs
 name|reader
 parameter_list|,
 specifier|final
-name|DefaultStoredFieldsReader
+name|Lucene40StoredFieldsReader
 name|matchingFieldsReader
 parameter_list|,
 name|int
@@ -1553,7 +1587,7 @@ name|IndexReaderAndLiveDocs
 name|reader
 parameter_list|,
 specifier|final
-name|DefaultStoredFieldsReader
+name|Lucene40StoredFieldsReader
 name|matchingFieldsReader
 parameter_list|,
 name|int

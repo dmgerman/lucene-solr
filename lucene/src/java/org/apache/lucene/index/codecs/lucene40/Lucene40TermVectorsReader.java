@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs
+DECL|package|org.apache.lucene.index.codecs.lucene40
 package|package
 name|org
 operator|.
@@ -11,6 +11,8 @@ operator|.
 name|index
 operator|.
 name|codecs
+operator|.
+name|lucene40
 package|;
 end_package
 
@@ -284,6 +286,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|TermVectorsReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -361,10 +379,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|DefaultTermVectorsReader
+DECL|class|Lucene40TermVectorsReader
 specifier|public
 class|class
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 extends|extends
 name|TermVectorsReader
 block|{
@@ -442,7 +460,9 @@ init|=
 literal|"tvd"
 decl_stmt|;
 comment|/** Extension of vectors index file */
+comment|// TODO: shouldnt be visible to segments reader, preflex should do this itself somehow
 DECL|field|VECTORS_INDEX_EXTENSION
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -494,8 +514,8 @@ name|int
 name|format
 decl_stmt|;
 comment|// used by clone
-DECL|method|DefaultTermVectorsReader
-name|DefaultTermVectorsReader
+DECL|method|Lucene40TermVectorsReader
+name|Lucene40TermVectorsReader
 parameter_list|(
 name|FieldInfos
 name|fieldInfos
@@ -571,9 +591,9 @@ operator|=
 name|format
 expr_stmt|;
 block|}
-DECL|method|DefaultTermVectorsReader
+DECL|method|Lucene40TermVectorsReader
 specifier|public
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 parameter_list|(
 name|Directory
 name|d
@@ -1899,7 +1919,7 @@ name|this
 operator|.
 name|origTVF
 operator|=
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|this
 operator|.
@@ -3347,7 +3367,7 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 argument_list|(
 name|fieldInfos
 argument_list|,

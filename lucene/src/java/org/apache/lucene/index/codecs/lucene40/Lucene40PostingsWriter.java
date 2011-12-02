@@ -293,7 +293,7 @@ name|proxOut
 decl_stmt|;
 DECL|field|skipListWriter
 specifier|final
-name|DefaultSkipListWriter
+name|Lucene40SkipListWriter
 name|skipListWriter
 decl_stmt|;
 comment|/** Expert: The fraction of TermDocs entries stored in skip tables,    * used to accelerate {@link DocsEnum#advance(int)}.  Larger values result in    * smaller indexes, greater acceleration, but fewer accelerable cases, while    * smaller values result in bigger indexes, less acceleration and more    * accelerable cases. More detailed experiments would be useful here. */
@@ -539,7 +539,7 @@ expr_stmt|;
 name|skipListWriter
 operator|=
 operator|new
-name|DefaultSkipListWriter
+name|Lucene40SkipListWriter
 argument_list|(
 name|skipInterval
 argument_list|,

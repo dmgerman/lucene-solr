@@ -90,20 +90,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexFileNames
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -178,7 +164,9 @@ name|index
 operator|.
 name|codecs
 operator|.
-name|DefaultStoredFieldsWriter
+name|lucene40
+operator|.
+name|Lucene40StoredFieldsWriter
 import|;
 end_import
 
@@ -244,7 +232,7 @@ name|fileExtensions
 operator|.
 name|add
 argument_list|(
-name|DefaultStoredFieldsWriter
+name|Lucene40StoredFieldsWriter
 operator|.
 name|FIELDS_EXTENSION
 argument_list|)
@@ -253,7 +241,7 @@ name|fileExtensions
 operator|.
 name|add
 argument_list|(
-name|DefaultStoredFieldsWriter
+name|Lucene40StoredFieldsWriter
 operator|.
 name|FIELDS_INDEX_EXTENSION
 argument_list|)

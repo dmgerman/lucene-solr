@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs
+DECL|package|org.apache.lucene.index.codecs.lucene40
 package|package
 name|org
 operator|.
@@ -11,6 +11,8 @@ operator|.
 name|index
 operator|.
 name|codecs
+operator|.
+name|lucene40
 package|;
 end_package
 
@@ -111,6 +113,38 @@ operator|.
 name|index
 operator|.
 name|SegmentReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|TermVectorsReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|TermVectorsWriter
 import|;
 end_import
 
@@ -273,11 +307,11 @@ comment|//     saves a byte in tvd)
 end_comment
 
 begin_class
-DECL|class|DefaultTermVectorsWriter
+DECL|class|Lucene40TermVectorsWriter
 specifier|public
 specifier|final
 class|class
-name|DefaultTermVectorsWriter
+name|Lucene40TermVectorsWriter
 extends|extends
 name|TermVectorsWriter
 block|{
@@ -310,9 +344,9 @@ name|tvf
 init|=
 literal|null
 decl_stmt|;
-DECL|method|DefaultTermVectorsWriter
+DECL|method|Lucene40TermVectorsWriter
 specifier|public
-name|DefaultTermVectorsWriter
+name|Lucene40TermVectorsWriter
 parameter_list|(
 name|Directory
 name|directory
@@ -360,7 +394,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|VECTORS_INDEX_EXTENSION
 argument_list|)
@@ -372,7 +406,7 @@ name|tvx
 operator|.
 name|writeInt
 argument_list|(
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|FORMAT_CURRENT
 argument_list|)
@@ -391,7 +425,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|VECTORS_DOCUMENTS_EXTENSION
 argument_list|)
@@ -403,7 +437,7 @@ name|tvd
 operator|.
 name|writeInt
 argument_list|(
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|FORMAT_CURRENT
 argument_list|)
@@ -422,7 +456,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|VECTORS_FIELDS_EXTENSION
 argument_list|)
@@ -434,7 +468,7 @@ name|tvf
 operator|.
 name|writeInt
 argument_list|(
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|FORMAT_CURRENT
 argument_list|)
@@ -668,7 +702,7 @@ name|positions
 condition|)
 name|bits
 operator||=
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|STORE_POSITIONS_WITH_TERMVECTOR
 expr_stmt|;
@@ -678,7 +712,7 @@ name|offsets
 condition|)
 name|bits
 operator||=
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|STORE_OFFSET_WITH_TERMVECTOR
 expr_stmt|;
@@ -1249,7 +1283,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|VECTORS_INDEX_EXTENSION
 argument_list|)
@@ -1276,7 +1310,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|VECTORS_DOCUMENTS_EXTENSION
 argument_list|)
@@ -1303,7 +1337,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|.
 name|VECTORS_FIELDS_EXTENSION
 argument_list|)
@@ -1323,7 +1357,7 @@ specifier|private
 name|void
 name|addRawDocuments
 parameter_list|(
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 name|reader
 parameter_list|,
 name|int
@@ -1525,7 +1559,7 @@ name|idx
 operator|++
 index|]
 decl_stmt|;
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 name|matchingVectorsReader
 init|=
 literal|null
@@ -1553,7 +1587,7 @@ literal|null
 operator|&&
 name|vectorsReader
 operator|instanceof
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 condition|)
 block|{
 comment|// If the TV* files are an older format then they cannot read raw docs:
@@ -1561,7 +1595,7 @@ if|if
 condition|(
 operator|(
 operator|(
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|)
 name|vectorsReader
 operator|)
@@ -1573,7 +1607,7 @@ block|{
 name|matchingVectorsReader
 operator|=
 operator|(
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 operator|)
 name|vectorsReader
 expr_stmt|;
@@ -1652,7 +1686,7 @@ name|MergeState
 name|mergeState
 parameter_list|,
 specifier|final
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 name|matchingVectorsReader
 parameter_list|,
 specifier|final
@@ -1908,7 +1942,7 @@ name|MergeState
 name|mergeState
 parameter_list|,
 specifier|final
-name|DefaultTermVectorsReader
+name|Lucene40TermVectorsReader
 name|matchingVectorsReader
 parameter_list|,
 specifier|final

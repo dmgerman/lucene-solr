@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs
+DECL|package|org.apache.lucene.index.codecs.lucene40
 package|package
 name|org
 operator|.
@@ -11,6 +11,8 @@ operator|.
 name|index
 operator|.
 name|codecs
+operator|.
+name|lucene40
 package|;
 end_package
 
@@ -116,6 +118,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|DocValuesWriterBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|CompoundFileDirectory
@@ -141,10 +159,10 @@ comment|/**  * Default PerDocConsumer implementation that uses compound file.  *
 end_comment
 
 begin_class
-DECL|class|DefaultDocValuesConsumer
+DECL|class|Lucene40DocValuesConsumer
 specifier|public
 class|class
-name|DefaultDocValuesConsumer
+name|Lucene40DocValuesConsumer
 extends|extends
 name|DocValuesWriterBase
 block|{
@@ -167,9 +185,9 @@ name|DOC_VALUES_SEGMENT_SUFFIX
 init|=
 literal|"dv"
 decl_stmt|;
-DECL|method|DefaultDocValuesConsumer
+DECL|method|Lucene40DocValuesConsumer
 specifier|public
-name|DefaultDocValuesConsumer
+name|Lucene40DocValuesConsumer
 parameter_list|(
 name|PerDocWriteState
 name|state
