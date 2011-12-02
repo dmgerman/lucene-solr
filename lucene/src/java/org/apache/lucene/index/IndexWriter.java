@@ -985,6 +985,19 @@ return|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+operator|!
+name|success
+operator|&&
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -994,6 +1007,7 @@ argument_list|,
 literal|"hit exception during NRT reader"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Done: finish the full flush!
 name|docWriter
 operator|.
@@ -4125,6 +4139,19 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+operator|!
+name|success
+operator|&&
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -4134,6 +4161,7 @@ argument_list|,
 literal|"hit exception updating document"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -4428,6 +4456,19 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+operator|!
+name|success
+operator|&&
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -4437,6 +4478,7 @@ argument_list|,
 literal|"hit exception updating document"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -6000,6 +6042,19 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+operator|!
+name|success
+operator|&&
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -6009,6 +6064,7 @@ argument_list|,
 literal|"hit exception during deleteAll"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|finishMerges
