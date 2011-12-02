@@ -759,6 +759,32 @@ name|newLine
 argument_list|()
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|field
+operator|.
+name|stringValue
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"field "
+operator|+
+name|field
+operator|.
+name|name
+argument_list|()
+operator|+
+literal|" is stored but does not have binaryValue, stringValue nor numericValue"
+argument_list|)
+throw|;
+block|}
 else|else
 block|{
 name|write
