@@ -3038,57 +3038,6 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|doSetNorm
-specifier|protected
-name|void
-name|doSetNorm
-parameter_list|(
-name|int
-name|n
-parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|byte
-name|value
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-name|int
-name|i
-init|=
-name|readerIndex
-argument_list|(
-name|n
-argument_list|)
-decl_stmt|;
-comment|// find segment num
-name|subReaders
-index|[
-name|i
-index|]
-operator|.
-name|setNorm
-argument_list|(
-name|n
-operator|-
-name|starts
-index|[
-name|i
-index|]
-argument_list|,
-name|field
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
-comment|// dispatch
-block|}
-annotation|@
-name|Override
 DECL|method|docFreq
 specifier|public
 name|int
@@ -3271,7 +3220,7 @@ throw|throw
 operator|new
 name|StaleReaderException
 argument_list|(
-literal|"IndexReader out of date and no longer valid for delete, undelete, or setNorm operations"
+literal|"IndexReader out of date and no longer valid for delete, undelete operations"
 argument_list|)
 throw|;
 if|if
@@ -3356,14 +3305,14 @@ throw|throw
 operator|new
 name|StaleReaderException
 argument_list|(
-literal|"IndexReader out of date and no longer valid for delete, undelete, or setNorm operations"
+literal|"IndexReader out of date and no longer valid for delete, undelete operations"
 argument_list|)
 throw|;
 block|}
 block|}
 block|}
 block|}
-comment|/**    * Commit changes resulting from delete, undeleteAll, or setNorm operations    *<p/>    * If an exception is hit, then either no changes or all changes will have been committed to the index (transactional    * semantics).    *    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Commit changes resulting from delete, undeleteAll operations    *<p/>    * If an exception is hit, then either no changes or all changes will have been committed to the index (transactional    * semantics).    *    * @throws IOException if there is a low-level IO error    */
 annotation|@
 name|Override
 DECL|method|doCommit

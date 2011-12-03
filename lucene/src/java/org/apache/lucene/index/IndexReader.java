@@ -1885,72 +1885,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  By default, the norm represents the product of the field's {@link    * org.apache.lucene.document.Field#setBoost(float) boost} and its    * length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    *<b>NOTE:</b> If this field does not index norms, then    * this method throws {@link IllegalStateException}.    *    * @see #norms(String)    * @see Similarity#computeNorm(FieldInvertState)    * @see org.apache.lucene.search.similarities.DefaultSimilarity#decodeNormValue(byte)    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    * @throws IllegalStateException if the field does not index norms    */
-DECL|method|setNorm
-specifier|public
-specifier|synchronized
-name|void
-name|setNorm
-parameter_list|(
-name|int
-name|doc
-parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|byte
-name|value
-parameter_list|)
-throws|throws
-name|StaleReaderException
-throws|,
-name|CorruptIndexException
-throws|,
-name|LockObtainFailedException
-throws|,
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|acquireWriteLock
-argument_list|()
-expr_stmt|;
-name|hasChanges
-operator|=
-literal|true
-expr_stmt|;
-name|doSetNorm
-argument_list|(
-name|doc
-argument_list|,
-name|field
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Implements setNorm in subclass.*/
-DECL|method|doSetNorm
-specifier|protected
-specifier|abstract
-name|void
-name|doSetNorm
-parameter_list|(
-name|int
-name|doc
-parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|byte
-name|value
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-function_decl|;
 comment|/**    * Returns {@link Fields} for this reader.    * This method may return null if the reader has no    * postings.    *    *<p><b>NOTE</b>: if this is a multi reader ({@link    * #getSequentialSubReaders} is not null) then this    * method will throw UnsupportedOperationException.  If    * you really need a {@link Fields} for such a reader,    * use {@link MultiFields#getFields}.  However, for    * performance reasons, it's best to get all sub-readers    * using {@link ReaderUtil#gatherSubReaders} and iterate    * through them yourself. */
 DECL|method|fields
 specifier|public
@@ -2862,7 +2796,7 @@ name|commitUserData
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Commit changes resulting from delete, undeleteAll, or    * setNorm operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Commit changes resulting from delete, undeleteAll operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    * @throws IOException if there is a low-level IO error    */
 DECL|method|commit
 specifier|protected
 specifier|final
@@ -2879,7 +2813,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Commit changes resulting from delete, undeleteAll, or    * setNorm operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Commit changes resulting from delete, undeleteAll operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    * @throws IOException if there is a low-level IO error    */
 DECL|method|commit
 specifier|public
 specifier|final
@@ -3446,7 +3380,7 @@ name|dir
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns the sequential sub readers that this    *  reader is logically composed of. If this reader is not composed    *  of sequential child readers, it should return null.    *  If this method returns an empty array, that means this    *  reader is a null reader (for example a MultiReader    *  that has no sub readers).    *<p>    *  NOTE: You should not try using sub-readers returned by    *  this method to make any changes (setNorm, deleteDocument,    *  etc.). While this might succeed for one composite reader    *  (like MultiReader), it will most likely lead to index    *  corruption for other readers (like DirectoryReader obtained    *  through {@link #open}. Use the parent reader directly. */
+comment|/** Expert: returns the sequential sub readers that this    *  reader is logically composed of. If this reader is not composed    *  of sequential child readers, it should return null.    *  If this method returns an empty array, that means this    *  reader is a null reader (for example a MultiReader    *  that has no sub readers).    *<p>    *  NOTE: You should not try using sub-readers returned by    *  this method to make any changes (deleteDocument,    *  etc.). While this might succeed for one composite reader    *  (like MultiReader), it will most likely lead to index    *  corruption for other readers (like DirectoryReader obtained    *  through {@link #open}. Use the parent reader directly. */
 DECL|method|getSequentialSubReaders
 specifier|public
 name|IndexReader
@@ -3461,7 +3395,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Expert: Returns a the root {@link ReaderContext} for this    * {@link IndexReader}'s sub-reader tree. Iff this reader is composed of sub    * readers ,ie. this reader being a composite reader, this method returns a    * {@link CompositeReaderContext} holding the reader's direct children as well as a    * view of the reader tree's atomic leaf contexts. All sub-    * {@link ReaderContext} instances referenced from this readers top-level    * context are private to this reader and are not shared with another context    * tree. For example, IndexSearcher uses this API to drive searching by one    * atomic leaf reader at a time. If this reader is not composed of child    * readers, this method returns an {@link AtomicReaderContext}.    *<p>    * Note: Any of the sub-{@link CompositeReaderContext} instances reference from this    * top-level context holds a<code>null</code> {@link CompositeReaderContext#leaves}    * reference. Only the top-level context maintains the convenience leaf-view    * for performance reasons.    *<p>    * NOTE: You should not try using sub-readers returned by this method to make    * any changes (setNorm, deleteDocument, etc.). While this might succeed for    * one composite reader (like MultiReader), it will most likely lead to index    * corruption for other readers (like DirectoryReader obtained through    * {@link #open}. Use the top-level context's reader directly.    *     * @lucene.experimental    */
+comment|/**    * Expert: Returns a the root {@link ReaderContext} for this    * {@link IndexReader}'s sub-reader tree. Iff this reader is composed of sub    * readers ,ie. this reader being a composite reader, this method returns a    * {@link CompositeReaderContext} holding the reader's direct children as well as a    * view of the reader tree's atomic leaf contexts. All sub-    * {@link ReaderContext} instances referenced from this readers top-level    * context are private to this reader and are not shared with another context    * tree. For example, IndexSearcher uses this API to drive searching by one    * atomic leaf reader at a time. If this reader is not composed of child    * readers, this method returns an {@link AtomicReaderContext}.    *<p>    * Note: Any of the sub-{@link CompositeReaderContext} instances reference from this    * top-level context holds a<code>null</code> {@link CompositeReaderContext#leaves}    * reference. Only the top-level context maintains the convenience leaf-view    * for performance reasons.    *<p>    * NOTE: You should not try using sub-readers returned by this method to make    * any changes (deleteDocument, etc.). While this might succeed for    * one composite reader (like MultiReader), it will most likely lead to index    * corruption for other readers (like DirectoryReader obtained through    * {@link #open}. Use the top-level context's reader directly.    *     * @lucene.experimental    */
 DECL|method|getTopReaderContext
 specifier|public
 specifier|abstract

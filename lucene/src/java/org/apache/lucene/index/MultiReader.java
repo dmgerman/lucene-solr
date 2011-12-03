@@ -192,7 +192,7 @@ name|hasDeletions
 init|=
 literal|false
 decl_stmt|;
-comment|/**   *<p>Construct a MultiReader aggregating the named set of (sub)readers.   * Directory locking for delete, undeleteAll, and setNorm operations is   * left to the subreaders.</p>   *<p>Note that all subreaders are closed if this Multireader is closed.</p>   * @param subReaders set of (sub)readers   */
+comment|/**   *<p>Construct a MultiReader aggregating the named set of (sub)readers.   * Directory locking for delete, undeleteAll operations is   * left to the subreaders.</p>   *<p>Note that all subreaders are closed if this Multireader is closed.</p>   * @param subReaders set of (sub)readers   */
 DECL|method|MultiReader
 specifier|public
 name|MultiReader
@@ -214,7 +214,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<p>Construct a MultiReader aggregating the named set of (sub)readers.    * Directory locking for delete, undeleteAll, and setNorm operations is    * left to the subreaders.</p>    * @param closeSubReaders indicates whether the subreaders should be closed    * when this MultiReader is closed    * @param subReaders set of (sub)readers    */
+comment|/**    *<p>Construct a MultiReader aggregating the named set of (sub)readers.    * Directory locking for delete, undeleteAll operations is    * left to the subreaders.</p>    * @param closeSubReaders indicates whether the subreaders should be closed    * when this MultiReader is closed    * @param subReaders set of (sub)readers    */
 DECL|method|MultiReader
 specifier|public
 name|MultiReader
@@ -1189,57 +1189,6 @@ argument_list|(
 literal|"please use MultiNorms.norms, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level norms"
 argument_list|)
 throw|;
-block|}
-annotation|@
-name|Override
-DECL|method|doSetNorm
-specifier|protected
-name|void
-name|doSetNorm
-parameter_list|(
-name|int
-name|n
-parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|byte
-name|value
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-name|int
-name|i
-init|=
-name|readerIndex
-argument_list|(
-name|n
-argument_list|)
-decl_stmt|;
-comment|// find segment num
-name|subReaders
-index|[
-name|i
-index|]
-operator|.
-name|setNorm
-argument_list|(
-name|n
-operator|-
-name|starts
-index|[
-name|i
-index|]
-argument_list|,
-name|field
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
-comment|// dispatch
 block|}
 annotation|@
 name|Override
