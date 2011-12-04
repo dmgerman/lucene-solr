@@ -4790,30 +4790,6 @@ operator|!=
 name|r
 argument_list|)
 expr_stmt|;
-comment|// Reader should be readOnly
-try|try
-block|{
-name|r2
-operator|.
-name|deleteDocument
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"no exception hit"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|uoe
-parameter_list|)
-block|{
-comment|// expected
-block|}
 specifier|final
 name|Map
 argument_list|<
