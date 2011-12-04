@@ -274,14 +274,6 @@ specifier|protected
 name|Directory
 name|directory
 decl_stmt|;
-DECL|field|readOnly
-specifier|protected
-name|boolean
-name|readOnly
-init|=
-literal|true
-decl_stmt|;
-comment|// nocommit: remove this
 DECL|field|writer
 name|IndexWriter
 name|writer
@@ -338,14 +330,6 @@ name|hasDeletions
 init|=
 literal|false
 decl_stmt|;
-comment|// Max version in index as of when we opened; this can be
-comment|//> our current segmentInfos version in case we were
-comment|// opened on a past IndexCommit:
-DECL|field|maxIndexVersion
-specifier|private
-name|long
-name|maxIndexVersion
-decl_stmt|;
 DECL|field|applyAllDeletes
 specifier|private
 specifier|final
@@ -364,10 +348,6 @@ parameter_list|,
 specifier|final
 name|IndexCommit
 name|commit
-parameter_list|,
-specifier|final
-name|boolean
-name|readOnly
 parameter_list|,
 specifier|final
 name|int
@@ -428,8 +408,6 @@ name|directory
 argument_list|,
 name|infos
 argument_list|,
-name|readOnly
-argument_list|,
 name|termInfosIndexDivisor
 argument_list|)
 return|;
@@ -452,9 +430,6 @@ parameter_list|,
 name|SegmentInfos
 name|sis
 parameter_list|,
-name|boolean
-name|readOnly
-parameter_list|,
 name|int
 name|termInfosIndexDivisor
 parameter_list|)
@@ -467,13 +442,6 @@ name|directory
 operator|=
 name|directory
 expr_stmt|;
-name|this
-operator|.
-name|readOnly
-operator|=
-literal|true
-expr_stmt|;
-comment|// nocommit: remove readOnly at all
 name|this
 operator|.
 name|segmentInfos
@@ -561,7 +529,8 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
-name|readOnly
+literal|true
+comment|/** nocommit: remove readOnly */
 argument_list|,
 name|sis
 operator|.
@@ -669,12 +638,6 @@ name|writer
 operator|.
 name|getDirectory
 argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|readOnly
-operator|=
-literal|true
 expr_stmt|;
 name|this
 operator|.
@@ -936,9 +899,6 @@ index|[]
 name|oldReaders
 parameter_list|,
 name|boolean
-name|readOnly
-parameter_list|,
-name|boolean
 name|doClone
 parameter_list|,
 name|int
@@ -958,12 +918,6 @@ operator|.
 name|directory
 operator|=
 name|directory
-expr_stmt|;
-name|this
-operator|.
-name|readOnly
-operator|=
-name|readOnly
 expr_stmt|;
 name|this
 operator|.
@@ -1205,7 +1159,7 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
-name|readOnly
+literal|true
 argument_list|,
 name|infos
 operator|.
@@ -1262,7 +1216,8 @@ argument_list|)
 argument_list|,
 name|doClone
 argument_list|,
-name|readOnly
+literal|true
+comment|/* nocommit: remove readOnly */
 argument_list|)
 expr_stmt|;
 if|if
@@ -1729,22 +1684,6 @@ index|]
 operator|=
 name|maxDoc
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|readOnly
-condition|)
-block|{
-name|maxIndexVersion
-operator|=
-name|SegmentInfos
-operator|.
-name|readCurrentVersion
-argument_list|(
-name|directory
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -1777,10 +1716,9 @@ block|{
 return|return
 name|clone
 argument_list|(
-name|readOnly
+literal|true
 argument_list|)
 return|;
-comment|// Preserve current readOnly
 block|}
 catch|catch
 parameter_list|(
@@ -1814,6 +1752,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+assert|assert
+name|openReadOnly
+assert|;
 comment|// doOpenIfChanged calls ensureOpen
 name|DirectoryReader
 name|newReader
@@ -1869,11 +1810,10 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-comment|// Preserve current readOnly
 return|return
 name|doOpenIfChanged
 argument_list|(
-name|readOnly
+literal|true
 argument_list|,
 literal|null
 argument_list|)
@@ -2001,22 +1941,8 @@ throws|,
 name|IOException
 block|{
 assert|assert
-name|readOnly
-assert|;
-if|if
-condition|(
-operator|!
 name|openReadOnly
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"a reader obtained from IndexWriter.getReader() can only be reopened with openReadOnly=true (got false)"
-argument_list|)
-throw|;
-block|}
+assert|;
 if|if
 condition|(
 name|commit
@@ -2110,10 +2036,6 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 assert|assert
-name|commit
-operator|==
-literal|null
-operator|||
 name|openReadOnly
 assert|;
 comment|// If we were obtained by writer.getReader(), re-ask the
@@ -2309,6 +2231,9 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+assert|assert
+name|openReadOnly
+assert|;
 return|return
 operator|new
 name|DirectoryReader
@@ -2318,8 +2243,6 @@ argument_list|,
 name|infos
 argument_list|,
 name|subReaders
-argument_list|,
-name|openReadOnly
 argument_list|,
 name|doClone
 argument_list|,

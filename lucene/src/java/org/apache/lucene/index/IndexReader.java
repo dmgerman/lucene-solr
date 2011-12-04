@@ -1118,7 +1118,7 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
-comment|// nocommit: deletionPolicy is ignored -> remove it
+comment|// nocommit: deletionPolicy is ignored -> remove it, same for readonly
 return|return
 name|DirectoryReader
 operator|.
@@ -1127,8 +1127,6 @@ argument_list|(
 name|directory
 argument_list|,
 name|commit
-argument_list|,
-name|readOnly
 argument_list|,
 name|termInfosIndexDivisor
 argument_list|)
