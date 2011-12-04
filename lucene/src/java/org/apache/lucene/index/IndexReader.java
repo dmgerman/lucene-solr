@@ -1385,29 +1385,6 @@ literal|"This reader does not implement clone()"
 argument_list|)
 throw|;
 block|}
-comment|/**    * Clones the IndexReader and optionally changes readOnly.  A readOnly     * reader cannot open a writeable reader.      * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|clone
-specifier|public
-specifier|synchronized
-name|IndexReader
-name|clone
-parameter_list|(
-name|boolean
-name|openReadOnly
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This reader does not implement clone()"
-argument_list|)
-throw|;
-block|}
 comment|/**     * Returns the directory associated with this index.  The Default     * implementation returns the directory specified by subclasses when     * delegating to the IndexReader(Directory) constructor, or throws an     * UnsupportedOperationException if one was not specified.    * @throws UnsupportedOperationException if no directory    */
 DECL|method|directory
 specifier|public

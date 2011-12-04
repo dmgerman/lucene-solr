@@ -874,10 +874,8 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|// nocommit: is this needed anymore by IndexWriter?
 DECL|method|clone
-specifier|public
 specifier|final
 specifier|synchronized
 name|IndexReader
