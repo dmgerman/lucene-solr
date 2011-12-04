@@ -1163,42 +1163,6 @@ return|return
 name|newReader
 return|;
 block|}
-comment|/**    * If the index has changed since the provided reader was    * opened, open and return a new reader, with the    * specified<code>readOnly</code>; else, return    * null.    *    * @see #openIfChanged(IndexReader)    */
-DECL|method|openIfChanged
-specifier|public
-specifier|static
-name|IndexReader
-name|openIfChanged
-parameter_list|(
-name|IndexReader
-name|oldReader
-parameter_list|,
-name|boolean
-name|readOnly
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-specifier|final
-name|IndexReader
-name|newReader
-init|=
-name|oldReader
-operator|.
-name|doOpenIfChanged
-argument_list|(
-name|readOnly
-argument_list|)
-decl_stmt|;
-assert|assert
-name|newReader
-operator|!=
-name|oldReader
-assert|;
-return|return
-name|newReader
-return|;
-block|}
 comment|/**    * If the IndexCommit differs from what the    * provided reader is searching, or the provided reader is    * not already read-only, open and return a new    *<code>readOnly=true</code> reader; else, return null.    *    * @see #openIfChanged(IndexReader)    */
 comment|// TODO: should you be able to specify readOnly?
 DECL|method|openIfChanged
@@ -1283,28 +1247,6 @@ specifier|protected
 name|IndexReader
 name|doOpenIfChanged
 parameter_list|()
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This reader does not support reopen()."
-argument_list|)
-throw|;
-block|}
-comment|/**    * If the index has changed since it was opened, open and return a new reader;    * else, return {@code null}.    *     * @see #openIfChanged(IndexReader, boolean)    */
-DECL|method|doOpenIfChanged
-specifier|protected
-name|IndexReader
-name|doOpenIfChanged
-parameter_list|(
-name|boolean
-name|openReadOnly
-parameter_list|)
 throws|throws
 name|CorruptIndexException
 throws|,
