@@ -227,7 +227,7 @@ comment|//
 end_comment
 
 begin_comment
-comment|//   ant test -Dtest.weekly=true -Dtest.slow=true -Dtests.heapsize=8g
+comment|//   ant test -Dtest.slow=true -Dtests.heapsize=8g
 end_comment
 
 begin_comment
