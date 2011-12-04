@@ -232,6 +232,16 @@ name|FSTCompletionLookup
 extends|extends
 name|Lookup
 block|{
+comment|/**     * An invalid bucket count if we're creating an object    * of this class from an existing FST.    *     * @see #FSTCompletionLookup(FSTCompletion, boolean)    */
+DECL|field|INVALID_BUCKETS_COUNT
+specifier|private
+specifier|static
+name|int
+name|INVALID_BUCKETS_COUNT
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|/**    * Shared tail length for conflating in the created automaton. Setting this    * to larger values ({@link Integer#MAX_VALUE}) will create smaller (or minimal)     * automata at the cost of RAM for keeping nodes hash in the {@link FST}.     *      *<p>Empirical pick.    */
 DECL|field|sharedTailLength
 specifier|private
@@ -274,7 +284,7 @@ specifier|private
 name|FSTCompletion
 name|normalCompletion
 decl_stmt|;
-comment|/*    *     */
+comment|/**    * This constructor prepares for creating a suggested FST using the    * {@link #build(TermFreqIterator)} method. The number of weight    * discretization buckets is set to {@link FSTCompletion#DEFAULT_BUCKETS} and    * exact matches are promoted to the top of the suggestions list.    */
 DECL|method|FSTCompletionLookup
 specifier|public
 name|FSTCompletionLookup
@@ -290,14 +300,11 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    *     */
+comment|/**    * This constructor prepares for creating a suggested FST using the    * {@link #build(TermFreqIterator)} method.    *     * @param buckets    *          The number of weight discretization buckets (see    *          {@link FSTCompletion} for details).    *     * @param exactMatchFirst    *          If<code>true</code> exact matches are promoted to the top of the    *          suggestions list. Otherwise they appear in the order of    *          discretized weight and alphabetical within the bucket.    */
 DECL|method|FSTCompletionLookup
 specifier|public
 name|FSTCompletionLookup
 parameter_list|(
-name|FSTCompletion
-name|completion
-parameter_list|,
 name|int
 name|buckets
 parameter_list|,
@@ -306,8 +313,33 @@ name|exactMatchFirst
 parameter_list|)
 block|{
 name|this
-argument_list|(
+operator|.
 name|buckets
+operator|=
+name|buckets
+expr_stmt|;
+name|this
+operator|.
+name|exactMatchFirst
+operator|=
+name|exactMatchFirst
+expr_stmt|;
+block|}
+comment|/**    * This constructor takes a pre-built automaton.    *     *  @param completion     *          An instance of {@link FSTCompletion}.    *  @param exactMatchFirst    *          If<code>true</code> exact matches are promoted to the top of the    *          suggestions list. Otherwise they appear in the order of    *          discretized weight and alphabetical within the bucket.    */
+DECL|method|FSTCompletionLookup
+specifier|public
+name|FSTCompletionLookup
+parameter_list|(
+name|FSTCompletion
+name|completion
+parameter_list|,
+name|boolean
+name|exactMatchFirst
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|INVALID_BUCKETS_COUNT
 argument_list|,
 name|exactMatchFirst
 argument_list|)
@@ -347,32 +379,7 @@ name|exactMatchFirst
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    *     */
-DECL|method|FSTCompletionLookup
-specifier|public
-name|FSTCompletionLookup
-parameter_list|(
-name|int
-name|buckets
-parameter_list|,
-name|boolean
-name|exactMatchFirst
-parameter_list|)
-block|{
-name|this
-operator|.
-name|buckets
-operator|=
-name|buckets
-expr_stmt|;
-name|this
-operator|.
-name|exactMatchFirst
-operator|=
-name|exactMatchFirst
-expr_stmt|;
-block|}
-comment|/*    *     */
+comment|/**    * {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|build
