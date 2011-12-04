@@ -4252,19 +4252,8 @@ operator|instanceof
 name|SegmentReader
 condition|)
 block|{
-name|assertTrue
-argument_list|(
-operator|(
-operator|(
-name|SegmentReader
-operator|)
-name|reader
-operator|)
-operator|.
-name|normsClosed
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// TODO: should we really assert something here? we check for open files and this is obselete...
+comment|// assertTrue(((SegmentReader) reader).normsClosed());
 block|}
 if|if
 condition|(

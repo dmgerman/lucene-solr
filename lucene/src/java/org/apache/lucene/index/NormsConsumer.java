@@ -236,6 +236,8 @@ name|upto
 init|=
 literal|0
 decl_stmt|;
+comment|// we must check the final value of omitNorms for the fieldinfo, it could have
+comment|// changed for this field since the first time we added it.
 if|if
 condition|(
 operator|!
