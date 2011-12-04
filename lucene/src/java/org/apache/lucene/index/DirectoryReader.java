@@ -3427,7 +3427,7 @@ argument_list|)
 expr_stmt|;
 comment|// Default deleter (for backwards compatibility) is
 comment|// KeepOnlyLastCommitDeleter:
-comment|// nocommit: Decide what to do with InfoStream here? Use default or keep NO_OUTPUT?
+comment|// TODO: Decide what to do with InfoStream here? Use default or keep NO_OUTPUT?
 name|IndexFileDeleter
 name|deleter
 init|=
