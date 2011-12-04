@@ -202,6 +202,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|lucene40
+operator|.
+name|Lucene40NormsWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -1993,6 +2011,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// TODO: implement merge in normsformat instead.
 DECL|method|mergeNorms
 specifier|private
 name|void
@@ -2068,11 +2087,11 @@ name|output
 operator|.
 name|writeBytes
 argument_list|(
-name|SegmentNorms
+name|Lucene40NormsWriter
 operator|.
 name|NORMS_HEADER
 argument_list|,
-name|SegmentNorms
+name|Lucene40NormsWriter
 operator|.
 name|NORMS_HEADER
 operator|.

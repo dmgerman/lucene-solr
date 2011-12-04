@@ -233,6 +233,8 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
+comment|// nocommit: not yet
+comment|//normsFormat().files(dir, info, files);
 block|}
 comment|/** Encodes/decodes postings */
 DECL|method|postingsFormat
@@ -280,6 +282,14 @@ specifier|public
 specifier|abstract
 name|SegmentInfosFormat
 name|segmentInfosFormat
+parameter_list|()
+function_decl|;
+comment|/** Encodes/decodes document normalization values */
+DECL|method|normsFormat
+specifier|public
+specifier|abstract
+name|NormsFormat
+name|normsFormat
 parameter_list|()
 function_decl|;
 comment|/** looks up a codec by name */

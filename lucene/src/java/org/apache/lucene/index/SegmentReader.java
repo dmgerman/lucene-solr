@@ -210,6 +210,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|lucene40
+operator|.
+name|Lucene40NormsWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|IOContext
@@ -2657,10 +2675,19 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|boolean
+name|normsInitiallyEmpty
+init|=
+name|norms
+operator|.
+name|isEmpty
+argument_list|()
+decl_stmt|;
+comment|// only used for assert
 name|long
 name|nextNormSeek
 init|=
-name|SegmentNorms
+name|Lucene40NormsWriter
 operator|.
 name|NORMS_HEADER
 operator|.
@@ -2893,7 +2920,7 @@ else|else
 block|{
 name|normSeek
 operator|=
-name|SegmentNorms
+name|Lucene40NormsWriter
 operator|.
 name|NORMS_HEADER
 operator|.
@@ -2931,6 +2958,22 @@ expr_stmt|;
 comment|// increment also if some norms are separate
 block|}
 block|}
+comment|// nocommit: change to a real check? see LUCENE-3619
+assert|assert
+name|singleNormStream
+operator|==
+literal|null
+operator|||
+operator|!
+name|normsInitiallyEmpty
+operator|||
+name|nextNormSeek
+operator|==
+name|singleNormStream
+operator|.
+name|length
+argument_list|()
+assert|;
 block|}
 comment|// for testing only
 DECL|method|normsClosed
