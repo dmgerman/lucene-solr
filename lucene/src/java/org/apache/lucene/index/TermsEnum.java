@@ -304,7 +304,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
+comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  may return null (if needsFreqs is true but freqs were    *  not indexed for this field).    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse    * @param needsFreqs true if the caller intends to call    * {@link DocsEnum#freq}.  If you pass false you must not    * call {@link DocsEnum#freq} in the returned DocsEnum. */
 DECL|method|docs
 specifier|public
 specifier|abstract
@@ -316,6 +316,9 @@ name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsFreqs
 parameter_list|)
 throws|throws
 name|IOException
@@ -502,6 +505,9 @@ name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsFreqs
 parameter_list|)
 block|{
 throw|throw

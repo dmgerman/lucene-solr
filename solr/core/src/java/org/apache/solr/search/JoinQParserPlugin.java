@@ -1870,6 +1870,8 @@ argument_list|,
 name|fromDeState
 operator|.
 name|docsEnum
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|DocsEnum
@@ -2270,6 +2272,8 @@ argument_list|,
 name|toDeState
 operator|.
 name|docsEnum
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|DocsEnum

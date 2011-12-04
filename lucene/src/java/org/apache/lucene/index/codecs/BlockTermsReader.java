@@ -107,6 +107,8 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|IndexOptions
 import|;
 end_import
 
@@ -121,8 +123,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
-operator|.
-name|IndexOptions
 import|;
 end_import
 
@@ -2850,6 +2850,9 @@ name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsFreqs
 parameter_list|)
 throws|throws
 name|IOException
@@ -2859,10 +2862,7 @@ name|decodeMetaData
 argument_list|()
 expr_stmt|;
 comment|//System.out.println("BTR.docs:  state.docFreq=" + state.docFreq);
-specifier|final
-name|DocsEnum
-name|docsEnum
-init|=
+return|return
 name|postingsReader
 operator|.
 name|docs
@@ -2874,16 +2874,9 @@ argument_list|,
 name|liveDocs
 argument_list|,
 name|reuse
+argument_list|,
+name|needsFreqs
 argument_list|)
-decl_stmt|;
-assert|assert
-name|docsEnum
-operator|!=
-literal|null
-assert|;
-comment|//System.out.println("BTR.docs:  return docsEnum=" + docsEnum);
-return|return
-name|docsEnum
 return|;
 block|}
 annotation|@

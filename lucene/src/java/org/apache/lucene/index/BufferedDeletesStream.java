@@ -1918,6 +1918,8 @@ name|getLiveDocs
 argument_list|()
 argument_list|,
 name|docs
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|//System.out.println("BDS: got docsEnum=" + docsEnum);

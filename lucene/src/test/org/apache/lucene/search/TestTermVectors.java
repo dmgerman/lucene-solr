@@ -248,6 +248,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestTermVectors
 specifier|public
@@ -2068,10 +2082,14 @@ argument_list|()
 decl_stmt|;
 name|docs
 operator|=
-name|termsEnum
+name|_TestUtil
 operator|.
 name|docs
 argument_list|(
+name|random
+argument_list|,
+name|termsEnum
+argument_list|,
 name|MultiFields
 operator|.
 name|getLiveDocs
@@ -2082,6 +2100,8 @@ name|reader
 argument_list|)
 argument_list|,
 name|docs
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 while|while

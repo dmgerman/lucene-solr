@@ -105,6 +105,7 @@ enum|enum
 name|IndexOptions
 block|{
 comment|/** only documents are indexed: term frequencies and positions are omitted */
+comment|// TODO: maybe rename to just DOCS?
 DECL|enum constant|DOCS_ONLY
 name|DOCS_ONLY
 block|,

@@ -2428,6 +2428,10 @@ name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsFreqs
+comment|/* ignored */
 parameter_list|)
 throws|throws
 name|IOException

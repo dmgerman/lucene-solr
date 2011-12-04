@@ -1708,6 +1708,9 @@ name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsFreqs
 parameter_list|)
 throws|throws
 name|IOException
@@ -1971,6 +1974,8 @@ name|entry
 operator|.
 name|index
 index|]
+argument_list|,
+name|needsFreqs
 argument_list|)
 decl_stmt|;
 if|if
@@ -2014,6 +2019,16 @@ expr_stmt|;
 name|upto
 operator|++
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// One of our subs cannot provide freqs:
+assert|assert
+name|needsFreqs
+assert|;
+return|return
+literal|null
+return|;
 block|}
 block|}
 if|if
@@ -2383,6 +2398,8 @@ argument_list|(
 name|b
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 operator|!=
 literal|null
