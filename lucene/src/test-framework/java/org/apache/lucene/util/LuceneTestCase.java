@@ -993,7 +993,7 @@ argument_list|,
 literal|"random"
 argument_list|)
 decl_stmt|;
-comment|/** whether or not nightly tests should run */
+comment|/** whether or not @nightly tests should run */
 DECL|field|TEST_NIGHTLY
 specifier|public
 specifier|static
@@ -1010,6 +1010,50 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"tests.nightly"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|/** whether or not @weekly tests should run */
+DECL|field|TEST_WEEKLY
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|TEST_WEEKLY
+init|=
+name|Boolean
+operator|.
+name|parseBoolean
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.weekly"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|/** whether or not @slow tests should run */
+DECL|field|TEST_SLOW
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|TEST_SLOW
+init|=
+name|Boolean
+operator|.
+name|parseBoolean
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.slow"
 argument_list|,
 literal|"false"
 argument_list|)
@@ -7138,6 +7182,40 @@ DECL|interface|Nightly
 specifier|public
 annotation_defn|@interface
 name|Nightly
+block|{}
+comment|/**    * Annotation for tests that should only be run during weekly builds    */
+annotation|@
+name|Documented
+annotation|@
+name|Inherited
+annotation|@
+name|Retention
+argument_list|(
+name|RetentionPolicy
+operator|.
+name|RUNTIME
+argument_list|)
+DECL|interface|Weekly
+specifier|public
+annotation_defn|@interface
+name|Weekly
+block|{}
+comment|/**    * Annotation for tests that are slow and should be run only when specifically asked to run    */
+annotation|@
+name|Documented
+annotation|@
+name|Inherited
+annotation|@
+name|Retention
+argument_list|(
+name|RetentionPolicy
+operator|.
+name|RUNTIME
+argument_list|)
+DECL|interface|Slow
+specifier|public
+annotation_defn|@interface
+name|Slow
 block|{}
 comment|/**    * Annotation for test classes that should only use codecs that are not memory expensive (avoid SimpleText, MemoryCodec).    */
 annotation|@

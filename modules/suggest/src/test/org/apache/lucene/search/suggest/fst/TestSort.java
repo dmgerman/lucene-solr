@@ -578,35 +578,8 @@ argument_list|,
 name|sorted
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Input size [MB]: "
-operator|+
-name|unsorted
-operator|.
-name|length
-argument_list|()
-operator|/
-operator|(
-literal|1024
-operator|*
-literal|1024
-operator|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|sortInfo
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("Input size [MB]: " + unsorted.length() / (1024 * 1024));
+comment|//System.out.println(sortInfo);
 name|assertFilesIdentical
 argument_list|(
 name|golden
