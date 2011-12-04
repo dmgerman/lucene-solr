@@ -1524,7 +1524,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns true if this field for this segment has saved a separate norms file (_<segment>_N.sX).    *    * @param fieldNumber the field index to check    */
+comment|/**    * @deprecated separate norms are not supported in>= 4.0    */
 DECL|method|hasSeparateNorms
 specifier|public
 name|boolean
@@ -1568,9 +1568,8 @@ operator|!=
 name|NO
 return|;
 block|}
-comment|/**    * Returns true if any fields in this segment have separate norms.    */
+comment|/**    * @deprecated separate norms are not supported in>= 4.0    */
 DECL|method|hasSeparateNorms
-specifier|public
 name|boolean
 name|hasSeparateNorms
 parameter_list|()
