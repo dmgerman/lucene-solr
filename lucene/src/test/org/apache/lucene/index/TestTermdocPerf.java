@@ -158,6 +158,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LuceneTestCase
 import|;
 end_import
@@ -172,7 +186,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|_TestUtil
 import|;
 end_import
 
@@ -691,10 +705,14 @@ argument_list|)
 expr_stmt|;
 name|tdocs
 operator|=
-name|tenum
+name|_TestUtil
 operator|.
 name|docs
 argument_list|(
+name|random
+argument_list|,
+name|tenum
+argument_list|,
 name|MultiFields
 operator|.
 name|getLiveDocs
@@ -703,6 +721,8 @@ name|reader
 argument_list|)
 argument_list|,
 name|tdocs
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 while|while

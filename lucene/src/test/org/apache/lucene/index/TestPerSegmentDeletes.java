@@ -52,7 +52,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Random
+name|Map
 import|;
 end_import
 
@@ -62,7 +62,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
+name|Random
 import|;
 end_import
 
@@ -175,6 +175,20 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
 import|;
 end_import
 
@@ -919,13 +933,19 @@ block|{
 name|DocsEnum
 name|docsEnum
 init|=
-name|ctermsEnum
+name|_TestUtil
 operator|.
 name|docs
 argument_list|(
+name|random
+argument_list|,
+name|ctermsEnum
+argument_list|,
 name|bits
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 return|return

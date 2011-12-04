@@ -4565,6 +4565,9 @@ name|skipDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsFreqs
 parameter_list|)
 throws|throws
 name|IOException
@@ -4588,6 +4591,8 @@ argument_list|,
 name|skipDocs
 argument_list|,
 name|reuse
+argument_list|,
+name|needsFreqs
 argument_list|)
 return|;
 block|}
@@ -10004,6 +10009,9 @@ name|skipDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsFreqs
 parameter_list|)
 throws|throws
 name|IOException
@@ -10023,10 +10031,7 @@ expr_stmt|;
 comment|//if (DEBUG) {
 comment|//System.out.println("  state=" + currentFrame.state);
 comment|//}
-specifier|final
-name|DocsEnum
-name|docsEnum
-init|=
+return|return
 name|postingsReader
 operator|.
 name|docs
@@ -10040,15 +10045,9 @@ argument_list|,
 name|skipDocs
 argument_list|,
 name|reuse
+argument_list|,
+name|needsFreqs
 argument_list|)
-decl_stmt|;
-assert|assert
-name|docsEnum
-operator|!=
-literal|null
-assert|;
-return|return
-name|docsEnum
 return|;
 block|}
 annotation|@

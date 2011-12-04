@@ -1927,6 +1927,9 @@ name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsFreqs
 parameter_list|)
 block|{
 return|return

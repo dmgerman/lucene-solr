@@ -129,6 +129,8 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|IndexOptions
 import|;
 end_import
 
@@ -143,8 +145,6 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
-operator|.
-name|IndexOptions
 import|;
 end_import
 
@@ -4433,6 +4433,9 @@ name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsFreqs
 parameter_list|)
 throws|throws
 name|IOException
@@ -4440,6 +4443,24 @@ block|{
 name|PreDocsEnum
 name|docsEnum
 decl_stmt|;
+if|if
+condition|(
+name|needsFreqs
+operator|&&
+name|fieldInfo
+operator|.
+name|indexOptions
+operator|==
+name|IndexOptions
+operator|.
+name|DOCS_ONLY
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+elseif|else
 if|if
 condition|(
 name|reuse

@@ -172,6 +172,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  *   * @lucene.experimental  */
 end_comment
@@ -314,13 +328,13 @@ expr_stmt|;
 name|DocsEnum
 name|de
 init|=
-name|MultiFields
+name|_TestUtil
 operator|.
-name|getTermDocsEnum
+name|docs
 argument_list|(
-name|reader
+name|random
 argument_list|,
-literal|null
+name|reader
 argument_list|,
 literal|"foo"
 argument_list|,
@@ -329,6 +343,12 @@ name|BytesRef
 argument_list|(
 literal|"test"
 argument_list|)
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 while|while

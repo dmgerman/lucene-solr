@@ -1049,6 +1049,8 @@ argument_list|(
 name|liveDocs
 argument_list|,
 name|docsEnum
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// dF, but takes deletions into account
@@ -2659,6 +2661,9 @@ name|liveDocs
 parameter_list|,
 name|DocsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsFreqs
 parameter_list|)
 throws|throws
 name|IOException
@@ -2671,6 +2676,8 @@ argument_list|(
 name|liveDocs
 argument_list|,
 name|reuse
+argument_list|,
+name|needsFreqs
 argument_list|)
 return|;
 block|}

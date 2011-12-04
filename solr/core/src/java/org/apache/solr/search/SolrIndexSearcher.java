@@ -3096,6 +3096,8 @@ name|reader
 argument_list|)
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 if|if
@@ -4657,6 +4659,8 @@ argument_list|,
 name|deState
 operator|.
 name|docsEnum
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 if|if
@@ -5220,6 +5224,8 @@ name|reader
 argument_list|)
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

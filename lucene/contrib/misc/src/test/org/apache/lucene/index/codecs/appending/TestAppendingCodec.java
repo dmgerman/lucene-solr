@@ -176,20 +176,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TieredMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|MultiFields
 import|;
 end_import
@@ -219,6 +205,8 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
+operator|.
+name|SeekStatus
 import|;
 end_import
 
@@ -233,8 +221,20 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|SeekStatus
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|TieredMergePolicy
 import|;
 end_import
 
@@ -991,6 +991,8 @@ argument_list|(
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|assertTrue
