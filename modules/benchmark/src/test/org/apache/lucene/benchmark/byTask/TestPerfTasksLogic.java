@@ -751,8 +751,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1092,8 +1090,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1293,8 +1289,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1567,8 +1561,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1663,8 +1655,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|DocTermsIndex
@@ -1813,8 +1803,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|int
@@ -2093,8 +2081,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -2261,8 +2247,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -2521,8 +2505,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|int
@@ -2630,8 +2612,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|int
@@ -2739,8 +2719,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|int
@@ -2873,8 +2851,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|int
@@ -3022,8 +2998,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|int
@@ -3198,8 +3172,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|int
@@ -3403,8 +3375,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|Fields
@@ -3638,8 +3608,6 @@ argument_list|()
 operator|.
 name|getDirectory
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|int
