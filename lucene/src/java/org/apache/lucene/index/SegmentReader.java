@@ -2826,6 +2826,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|boolean
+name|normsInitiallyEmpty
+init|=
+name|norms
+operator|.
+name|isEmpty
+argument_list|()
+decl_stmt|;
+comment|// only used for assert
 name|long
 name|nextNormSeek
 init|=
@@ -3100,6 +3109,21 @@ expr_stmt|;
 comment|// increment also if some norms are separate
 block|}
 block|}
+assert|assert
+name|singleNormStream
+operator|==
+literal|null
+operator|||
+operator|!
+name|normsInitiallyEmpty
+operator|||
+name|nextNormSeek
+operator|==
+name|singleNormStream
+operator|.
+name|length
+argument_list|()
+assert|;
 block|}
 comment|// for testing only
 DECL|method|normsClosed
