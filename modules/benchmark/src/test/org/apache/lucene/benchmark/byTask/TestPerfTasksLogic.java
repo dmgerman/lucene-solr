@@ -956,7 +956,7 @@ literal|"ForceMerge(1)"
 block|,
 literal|"CloseIndex"
 block|,
-literal|"OpenReader(true)"
+literal|"OpenReader"
 block|,
 literal|"{ CountingHighlighterTest(size[1],highlight[1],mergeContiguous[true],maxFrags[1],fields[body]) } : 200"
 block|,
@@ -1155,7 +1155,7 @@ literal|"ForceMerge(1)"
 block|,
 literal|"CloseIndex"
 block|,
-literal|"OpenReader(false)"
+literal|"OpenReader"
 block|,
 literal|"{ CountingHighlighterTest(size[1],highlight[1],mergeContiguous[true],maxFrags[1],fields[body]) } : 200"
 block|,
@@ -2770,112 +2770,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-block|}
-DECL|method|testDeleteByPercent
-specifier|public
-name|void
-name|testDeleteByPercent
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// 1. alg definition (required in every "logic" test)
-name|String
-name|algLines
-index|[]
-init|=
-block|{
-literal|"# ----- properties "
-block|,
-literal|"content.source=org.apache.lucene.benchmark.byTask.feeds.LineDocSource"
-block|,
-literal|"docs.file="
-operator|+
-name|getReuters20LinesFile
-argument_list|()
-block|,
-literal|"ram.flush.mb=-1"
-block|,
-literal|"max.buffered=2"
-block|,
-literal|"content.source.log.step=3"
-block|,
-literal|"doc.term.vector=false"
-block|,
-literal|"content.source.forever=false"
-block|,
-literal|"directory=RAMDirectory"
-block|,
-literal|"doc.stored=false"
-block|,
-literal|"doc.tokenized=false"
-block|,
-literal|"debug.level=1"
-block|,
-literal|"# ----- alg "
-block|,
-literal|"CreateIndex"
-block|,
-literal|"{ \"AddDocs\"  AddDoc> : * "
-block|,
-literal|"CloseIndex()"
-block|,
-literal|"OpenReader(false)"
-block|,
-literal|"DeleteByPercent(20)"
-block|,
-literal|"CloseReader"
-block|}
-decl_stmt|;
-comment|// 2. execute the algorithm  (required in every "logic" test)
-name|Benchmark
-name|benchmark
-init|=
-name|execBenchmark
-argument_list|(
-name|algLines
-argument_list|)
-decl_stmt|;
-comment|// 3. test number of docs in the index
-name|IndexReader
-name|ir
-init|=
-name|IndexReader
-operator|.
-name|open
-argument_list|(
-name|benchmark
-operator|.
-name|getRunData
-argument_list|()
-operator|.
-name|getDirectory
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|int
-name|ndocsExpected
-init|=
-literal|16
-decl_stmt|;
-comment|// first 20 reuters docs, minus 20%
-name|assertEquals
-argument_list|(
-literal|"wrong number of docs in the index!"
-argument_list|,
-name|ndocsExpected
-argument_list|,
-name|ir
-operator|.
-name|numDocs
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|ir
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**    * Test that we can set merge scheduler".    */
 DECL|method|testMergeScheduler

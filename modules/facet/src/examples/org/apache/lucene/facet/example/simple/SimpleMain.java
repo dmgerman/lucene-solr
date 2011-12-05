@@ -263,8 +263,6 @@ operator|.
 name|open
 argument_list|(
 name|indexDir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|ExampleUtils
@@ -376,8 +374,6 @@ operator|.
 name|open
 argument_list|(
 name|indexDir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|ExampleUtils
