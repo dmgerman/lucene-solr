@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  * A numeric field that can contain 16-bit signed two's complement integer  * values, encoded as simple Strings.  *  *<p>  * Field values will sort numerically, but Range Queries (and other features   * that rely on numeric ranges) will not work as expected: values will be   * evaluated in unicode String order, not numeric order.  *</p>  *  *<ul>  *<li>Min Value Allowed: -32768</li>  *<li>Max Value Allowed: 32767</li>  *</ul>  *  * @see Short  **/
 end_comment
 
 begin_class
