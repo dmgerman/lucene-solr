@@ -260,7 +260,17 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit: hairy calculations involving .s files, etc
+name|Lucene40NormsReader
+operator|.
+name|files
+argument_list|(
+name|dir
+argument_list|,
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -233,8 +233,18 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-comment|// nocommit: not yet
-comment|//normsFormat().files(dir, info, files);
+name|normsFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|dir
+argument_list|,
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Encodes/decodes postings */
 DECL|method|postingsFormat
