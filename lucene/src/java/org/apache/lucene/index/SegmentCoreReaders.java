@@ -485,7 +485,9 @@ name|fields
 operator|!=
 literal|null
 assert|;
-comment|// ask codec for its Norms
+comment|// ask codec for its Norms:
+comment|// TODO: since we don't write any norms file if there are no norms,
+comment|// kinda jaky to assume the codec handles the case of no norms file at all gracefully?!
 name|norms
 operator|=
 name|codec

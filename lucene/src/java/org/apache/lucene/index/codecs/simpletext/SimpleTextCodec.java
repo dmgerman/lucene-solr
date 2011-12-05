@@ -166,24 +166,6 @@ name|Lucene40DocValuesFormat
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|Lucene40NormsFormat
-import|;
-end_import
-
 begin_comment
 comment|/**  * plain text index format.  *<p>  *<b><font color="red">FOR RECREATIONAL USE ONLY</font></B>  * @lucene.experimental  */
 end_comment
@@ -266,7 +248,7 @@ name|NormsFormat
 name|normsFormat
 init|=
 operator|new
-name|Lucene40NormsFormat
+name|SimpleTextNormsFormat
 argument_list|()
 decl_stmt|;
 DECL|method|SimpleTextCodec
