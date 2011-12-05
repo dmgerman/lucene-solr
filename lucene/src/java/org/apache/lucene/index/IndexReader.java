@@ -186,22 +186,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|similarities
-operator|.
-name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|*
@@ -269,7 +253,7 @@ comment|// for javadocs
 end_comment
 
 begin_comment
-comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link  #open(Directory, boolean)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p><b>NOTE</b>: for backwards API compatibility, several methods are not listed   as abstract, but have no useful implementations in this base class and   instead always throw UnsupportedOperationException.  Subclasses are   strongly encouraged to override these methods, but in many cases may not   need to.</p><p><b>NOTE</b>: as of 2.4, it's possible to open a read-only  IndexReader using the static open methods that accept the   boolean readOnly parameter.  Such a reader may have better   concurrency.  You must specify false if you want to   make changes with the resulting IndexReader.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  IndexReader} instances are completely thread  safe, meaning multiple threads can call any of its methods,  concurrently.  If your application requires external  synchronization, you should<b>not</b> synchronize on the<code>IndexReader</code> instance; use your own  (non-Lucene) objects instead. */
+comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link  #open(Directory)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p><b>NOTE</b>: for backwards API compatibility, several methods are not listed   as abstract, but have no useful implementations in this base class and   instead always throw UnsupportedOperationException.  Subclasses are   strongly encouraged to override these methods, but in many cases may not   need to.</p><p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  IndexReader} instances are completely thread  safe, meaning multiple threads can call any of its methods,  concurrently.  If your application requires external  synchronization, you should<b>not</b> synchronize on the<code>IndexReader</code> instance; use your own  (non-Lucene) objects instead. */
 end_comment
 
 begin_class
@@ -798,7 +782,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns a IndexReader reading the index in the given    *  Directory, with readOnly=true.    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns a IndexReader reading the index in the given    *  Directory    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -825,7 +809,7 @@ name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
-comment|/** Returns a IndexReader reading the index in the given    *  Directory, with readOnly=true.    * @param directory the index directory    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns a IndexReader reading the index in the given    *  Directory    * @param directory the index directory    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -883,7 +867,7 @@ name|applyAllDeletes
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit}.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the reader.    * @param commit the commit point to open    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit}.    * @param commit the commit point to open    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -948,7 +932,7 @@ name|termInfosIndexDivisor
 argument_list|)
 return|;
 block|}
-comment|/**    * If the index has changed since the provided reader was    * opened, open and return a new reader; else, return    * null.  The new reader, if not null, will be the same    * type of reader as the previous one, ie an NRT reader    * will open a new NRT reader, a MultiReader will open a    * new MultiReader,  etc.    *    *<p>This method is typically far less costly than opening a    * fully new<code>IndexReader</code> as it shares    * resources (for example sub-readers) with the provided    *<code>IndexReader</code>, when possible.    *    *<p>The provided reader is not closed (you are responsible    * for doing so); if a new reader is returned you also    * must eventually close it.  Be sure to never close a    * reader while other threads are still using it; see    *<code>SearcherManager</code> in    *<code>contrib/misc</code> to simplify managing this.    *    *<p>If a new reader is returned, it's safe to make changes    * (deletions, norms) with it.  All shared mutable state    * with the old reader uses "copy on write" semantics to    * ensure the changes are not seen by other readers.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * IndexReader instance which you must eventually close    */
+comment|/**    * If the index has changed since the provided reader was    * opened, open and return a new reader; else, return    * null.  The new reader, if not null, will be the same    * type of reader as the previous one, ie an NRT reader    * will open a new NRT reader, a MultiReader will open a    * new MultiReader,  etc.    *    *<p>This method is typically far less costly than opening a    * fully new<code>IndexReader</code> as it shares    * resources (for example sub-readers) with the provided    *<code>IndexReader</code>, when possible.    *    *<p>The provided reader is not closed (you are responsible    * for doing so); if a new reader is returned you also    * must eventually close it.  Be sure to never close a    * reader while other threads are still using it; see    *<code>SearcherManager</code> in    *<code>contrib/misc</code> to simplify managing this.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * IndexReader instance which you must eventually close    */
 DECL|method|openIfChanged
 specifier|public
 specifier|static
@@ -979,8 +963,7 @@ return|return
 name|newReader
 return|;
 block|}
-comment|/**    * If the IndexCommit differs from what the    * provided reader is searching, or the provided reader is    * not already read-only, open and return a new    *<code>readOnly=true</code> reader; else, return null.    *    * @see #openIfChanged(IndexReader)    */
-comment|// TODO: should you be able to specify readOnly?
+comment|/**    * If the IndexCommit differs from what the    * provided reader is searching, open and return a new    * reader; else, return null.    *    * @see #openIfChanged(IndexReader)    */
 DECL|method|openIfChanged
 specifier|public
 specifier|static
@@ -1016,7 +999,7 @@ return|return
 name|newReader
 return|;
 block|}
-comment|/**    * Expert: If there changes (committed or not) in the    * {@link IndexWriter} versus what the provided reader is    * searching, then open and return a new read-only    * IndexReader searching both committed and uncommitted    * changes from the writer; else, return null (though, the    * current implementation never returns null).    *    *<p>This provides "near real-time" searching, in that    * changes made during an {@link IndexWriter} session can be    * quickly made available for searching without closing    * the writer nor calling {@link #commit}.    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link IndexWriterConfig#setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far.</p>    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance, or    * null if there are no new changes    *    * @param writer The IndexWriter to open from    *    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    *    * @throws IOException    *    * @lucene.experimental    */
+comment|/**    * Expert: If there changes (committed or not) in the    * {@link IndexWriter} versus what the provided reader is    * searching, then open and return a new    * IndexReader searching both committed and uncommitted    * changes from the writer; else, return null (though, the    * current implementation never returns null).    *    *<p>This provides "near real-time" searching, in that    * changes made during an {@link IndexWriter} session can be    * quickly made available for searching without closing    * the writer nor calling {@link IndexWriter#commit}.    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link IndexWriterConfig#setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far.</p>    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance, or    * null if there are no new changes    *    * @param writer The IndexWriter to open from    *    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    *    * @throws IOException    *    * @lucene.experimental    */
 DECL|method|openIfChanged
 specifier|public
 specifier|static
@@ -1125,7 +1108,7 @@ name|applyAllDeletes
 argument_list|)
 return|;
 block|}
-comment|/**    * Efficiently clones the IndexReader (sharing most    * internal state).    *<p>    * On cloning a reader with pending changes (deletions,    * norms), the original reader transfers its write lock to    * the cloned reader.  This means only the cloned reader    * may make further changes to the index, and commit the    * changes to the index on close, but the old reader still    * reflects all changes made up until it was cloned.    *<p>    * Like {@link #openIfChanged(IndexReader)}, it's safe to make changes to    * either the original or the cloned reader: all shared    * mutable state obeys "copy on write" semantics to ensure    * the changes are not seen by other readers.    *<p>    */
+comment|/**    * Efficiently clones the IndexReader (sharing most    * internal state).    */
 annotation|@
 name|Override
 DECL|method|clone
@@ -2767,7 +2750,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Returns all commit points that exist in the Directory.    *  Normally, because the default is {@link    *  KeepOnlyLastCommitDeletionPolicy}, there would be only    *  one commit point.  But if you're using a custom {@link    *  IndexDeletionPolicy} then there could be many commits.    *  Once you have a given commit, you can open a reader on    *  it by calling {@link IndexReader#open(IndexCommit,boolean)}    *  There must be at least one commit in    *  the Directory, else this method throws {@link    *  IndexNotFoundException}.  Note that if a commit is in    *  progress while this method is running, that commit    *  may or may not be returned.    *      *  @return a sorted list of {@link IndexCommit}s, from oldest     *  to latest. */
+comment|/** Returns all commit points that exist in the Directory.    *  Normally, because the default is {@link    *  KeepOnlyLastCommitDeletionPolicy}, there would be only    *  one commit point.  But if you're using a custom {@link    *  IndexDeletionPolicy} then there could be many commits.    *  Once you have a given commit, you can open a reader on    *  it by calling {@link IndexReader#open(IndexCommit)}    *  There must be at least one commit in    *  the Directory, else this method throws {@link    *  IndexNotFoundException}.  Note that if a commit is in    *  progress while this method is running, that commit    *  may or may not be returned.    *      *  @return a sorted list of {@link IndexCommit}s, from oldest     *  to latest. */
 DECL|method|listCommits
 specifier|public
 specifier|static
