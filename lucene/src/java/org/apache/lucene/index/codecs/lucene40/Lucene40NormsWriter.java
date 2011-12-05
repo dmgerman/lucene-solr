@@ -219,6 +219,17 @@ name|NORMS_EXTENSION
 init|=
 literal|"nrm"
 decl_stmt|;
+comment|/** Extension of separate norms file    * @deprecated */
+annotation|@
+name|Deprecated
+DECL|field|SEPARATE_NORMS_EXTENSION
+specifier|static
+specifier|final
+name|String
+name|SEPARATE_NORMS_EXTENSION
+init|=
+literal|"s"
+decl_stmt|;
 DECL|method|Lucene40NormsWriter
 specifier|public
 name|Lucene40NormsWriter

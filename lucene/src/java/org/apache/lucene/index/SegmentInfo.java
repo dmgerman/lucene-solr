@@ -1526,6 +1526,8 @@ return|;
 block|}
 block|}
 comment|/**    * @deprecated separate norms are not supported in>= 4.0    */
+annotation|@
+name|Deprecated
 DECL|method|hasSeparateNorms
 name|boolean
 name|hasSeparateNorms
@@ -2078,7 +2080,9 @@ name|delFileName
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: push this to codec?
+comment|// because separate norm files are unconditionally stored outside cfs,
+comment|// we must explicitly ask for their filenames if we might have separate norms:
+comment|// remove this when 3.x indexes are no longer supported
 if|if
 condition|(
 name|normGen
@@ -2086,63 +2090,20 @@ operator|!=
 literal|null
 condition|)
 block|{
-for|for
-control|(
-name|Entry
-argument_list|<
-name|Integer
+name|codec
+operator|.
+name|normsFormat
+argument_list|()
+operator|.
+name|separateFiles
+argument_list|(
+name|dir
 argument_list|,
-name|Long
-argument_list|>
-name|entry
-range|:
-name|normGen
-operator|.
-name|entrySet
-argument_list|()
-control|)
-block|{
-name|long
-name|gen
-init|=
-name|entry
-operator|.
-name|getValue
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|gen
-operator|>=
-name|YES
-condition|)
-block|{
-comment|// Definitely a separate norm file, with generation:
+name|this
+argument_list|,
 name|fileSet
-operator|.
-name|add
-argument_list|(
-name|IndexFileNames
-operator|.
-name|fileNameFromGeneration
-argument_list|(
-name|name
-argument_list|,
-name|IndexFileNames
-operator|.
-name|SEPARATE_NORMS_EXTENSION
-operator|+
-name|entry
-operator|.
-name|getKey
-argument_list|()
-argument_list|,
-name|gen
-argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-block|}
 block|}
 name|files
 operator|=
