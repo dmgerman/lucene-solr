@@ -315,8 +315,6 @@ operator|.
 name|open
 argument_list|(
 name|commit
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 try|try
@@ -1217,8 +1215,6 @@ name|getSnapshot
 argument_list|(
 literal|"snapshot0"
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 operator|.
 name|close

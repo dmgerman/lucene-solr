@@ -270,8 +270,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|IndexSearcher

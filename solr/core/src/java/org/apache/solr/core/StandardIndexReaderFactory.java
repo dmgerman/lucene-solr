@@ -83,16 +83,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|readOnly
+assert|;
+comment|// nocommit: readOnly is ignored - remove
 return|return
 name|IndexReader
 operator|.
 name|open
 argument_list|(
 name|indexDir
-argument_list|,
-literal|null
-argument_list|,
-name|readOnly
 argument_list|,
 name|termInfosIndexDivisor
 argument_list|)

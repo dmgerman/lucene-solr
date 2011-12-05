@@ -228,8 +228,6 @@ operator|.
 name|open
 argument_list|(
 name|rd1
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -242,8 +240,6 @@ operator|.
 name|open
 argument_list|(
 name|rd2
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -284,7 +280,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * This method creates an empty index (numFields=0, numDocs=0) but is marked    * to have TermVectors. Adding this index to another index should not throw    * any exception.    */
-comment|/* nocommit: Fix tests to use an id and delete by term   public void testEmptyIndexWithVectors() throws IOException {     Directory rd1 = newDirectory();     {       IndexWriter iw = new IndexWriter(rd1, newIndexWriterConfig( TEST_VERSION_CURRENT, new MockAnalyzer(random)));       Document doc = new Document();       FieldType customType = new FieldType(TextField.TYPE_UNSTORED);       customType.setStoreTermVectors(true);       doc.add(newField("test", "", customType));       iw.addDocument(doc);       doc.add(newField("test", "", TextField.TYPE_UNSTORED));       iw.addDocument(doc);       iw.close();        IndexReader ir = IndexReader.open(rd1,false);       ir.deleteDocument(0);       ir.close();        iw = new IndexWriter(rd1, newIndexWriterConfig( TEST_VERSION_CURRENT, new MockAnalyzer(random)).setOpenMode(OpenMode.APPEND));       iw.forceMerge(1);       iw.close();     }      Directory rd2 = newDirectory();     {       IndexWriter iw = new IndexWriter(rd2, newIndexWriterConfig( TEST_VERSION_CURRENT, new MockAnalyzer(random)));       Document doc = new Document();       iw.addDocument(doc);       iw.close();     }      Directory rdOut = newDirectory();      IndexWriter iwOut = new IndexWriter(rdOut, newIndexWriterConfig( TEST_VERSION_CURRENT, new MockAnalyzer(random)));     ParallelReader pr = new ParallelReader();     pr.add(IndexReader.open(rd1,true));     pr.add(IndexReader.open(rd2,true));      // When unpatched, Lucene crashes here with an ArrayIndexOutOfBoundsException (caused by TermVectorsWriter)     iwOut.addIndexes(pr);      // ParallelReader closes any IndexReader you added to it:     pr.close();      rd1.close();     rd2.close(); 		     iwOut.forceMerge(1);     iwOut.close();          rdOut.close();   }   */
+comment|/* nocommit: Fix tests to use an id and delete by term   public void testEmptyIndexWithVectors() throws IOException {     Directory rd1 = newDirectory();     {       IndexWriter iw = new IndexWriter(rd1, newIndexWriterConfig( TEST_VERSION_CURRENT, new MockAnalyzer(random)));       Document doc = new Document();       FieldType customType = new FieldType(TextField.TYPE_UNSTORED);       customType.setStoreTermVectors(true);       doc.add(newField("test", "", customType));       iw.addDocument(doc);       doc.add(newField("test", "", TextField.TYPE_UNSTORED));       iw.addDocument(doc);       iw.close();        IndexReader ir = IndexReader.open(rd1);       ir.deleteDocument(0);       ir.close();        iw = new IndexWriter(rd1, newIndexWriterConfig( TEST_VERSION_CURRENT, new MockAnalyzer(random)).setOpenMode(OpenMode.APPEND));       iw.forceMerge(1);       iw.close();     }      Directory rd2 = newDirectory();     {       IndexWriter iw = new IndexWriter(rd2, newIndexWriterConfig( TEST_VERSION_CURRENT, new MockAnalyzer(random)));       Document doc = new Document();       iw.addDocument(doc);       iw.close();     }      Directory rdOut = newDirectory();      IndexWriter iwOut = new IndexWriter(rdOut, newIndexWriterConfig( TEST_VERSION_CURRENT, new MockAnalyzer(random)));     ParallelReader pr = new ParallelReader();     pr.add(IndexReader.open(rd1));     pr.add(IndexReader.open(rd2));      // When unpatched, Lucene crashes here with an ArrayIndexOutOfBoundsException (caused by TermVectorsWriter)     iwOut.addIndexes(pr);      // ParallelReader closes any IndexReader you added to it:     pr.close();      rd1.close();     rd2.close(); 		     iwOut.forceMerge(1);     iwOut.close();          rdOut.close();   }   */
 block|}
 end_class
 

@@ -352,8 +352,6 @@ operator|.
 name|open
 argument_list|(
 name|ram
-argument_list|,
-literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -634,8 +632,6 @@ operator|.
 name|open
 argument_list|(
 name|ram
-argument_list|,
-literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -878,8 +874,6 @@ operator|.
 name|open
 argument_list|(
 name|ram
-argument_list|,
-literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;

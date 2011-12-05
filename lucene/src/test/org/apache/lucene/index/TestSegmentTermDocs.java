@@ -727,10 +727,6 @@ name|open
 argument_list|(
 name|dir
 argument_list|,
-literal|null
-argument_list|,
-literal|true
-argument_list|,
 name|indexDivisor
 argument_list|)
 decl_stmt|;

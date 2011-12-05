@@ -330,8 +330,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -392,8 +390,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|writer
@@ -461,8 +457,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|searcher
@@ -548,8 +542,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|searcher
@@ -698,8 +690,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|IndexSearcher
@@ -822,8 +812,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|searcher
@@ -896,8 +884,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|searcher
@@ -1036,8 +1022,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|searcher
@@ -1102,8 +1086,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|searcher
@@ -1528,8 +1510,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 operator|.
 name|close
@@ -1739,8 +1719,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 comment|// Reader should see index as multi-seg at this
@@ -1787,8 +1765,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 comment|// Reader should still see index as multi-segment
@@ -1896,8 +1872,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 comment|// Reader should see index as one segment
@@ -2413,8 +2387,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -2515,8 +2487,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2546,8 +2516,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3038,8 +3006,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -3065,8 +3031,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -3182,8 +3146,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3213,8 +3175,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3244,8 +3204,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3363,8 +3321,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -3390,8 +3346,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -3501,8 +3455,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3532,8 +3484,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3563,8 +3513,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3651,8 +3599,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -3765,8 +3711,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 comment|// commit(Map) never called for this index
@@ -3895,8 +3839,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals

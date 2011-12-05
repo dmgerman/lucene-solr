@@ -2610,7 +2610,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* nocommit: reactivate these tests   // case 4: tail segments, invariants hold, copy, invariants not hold   public void testMergeAfterCopy() throws IOException {     // main directory     Directory dir = newDirectory();     // auxiliary directory     Directory aux = newDirectory();      setUpDirs(dir, aux);      IndexReader reader = IndexReader.open(aux, false);     for (int i = 0; i< 20; i++) {       reader.deleteDocument(i);     }     assertEquals(10, reader.numDocs());     reader.close();      IndexWriter writer = newWriter(         dir,         newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random)).             setOpenMode(OpenMode.APPEND).             setMaxBufferedDocs(4).             setMergePolicy(newLogMergePolicy(4))     );      writer.addIndexes(aux, new MockDirectoryWrapper(random, new RAMDirectory(aux, newIOContext(random))));     assertEquals(1020, writer.maxDoc());     assertEquals(1000, writer.getDocCount(0));     writer.close();     dir.close();     aux.close();   }    // case 5: tail segments, invariants not hold   public void testMoreMerges() throws IOException {     // main directory     Directory dir = newDirectory();     // auxiliary directory     Directory aux = newDirectory();     Directory aux2 = newDirectory();      setUpDirs(dir, aux);      IndexWriter writer = newWriter(         aux2,         newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random)).             setOpenMode(OpenMode.CREATE).             setMaxBufferedDocs(100).             setMergePolicy(newLogMergePolicy(10))     );     writer.addIndexes(aux);     assertEquals(30, writer.maxDoc());     assertEquals(3, writer.getSegmentCount());     writer.close();      IndexReader reader = IndexReader.open(aux, false);     for (int i = 0; i< 27; i++) {       reader.deleteDocument(i);     }     assertEquals(3, reader.numDocs());     reader.close();      reader = IndexReader.open(aux2, false);     for (int i = 0; i< 8; i++) {       reader.deleteDocument(i);     }     assertEquals(22, reader.numDocs());     reader.close();      writer = newWriter(         dir,         newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random)).             setOpenMode(OpenMode.APPEND).             setMaxBufferedDocs(6).             setMergePolicy(newLogMergePolicy(4))     );      writer.addIndexes(aux, aux2);     assertEquals(1040, writer.maxDoc());     assertEquals(1000, writer.getDocCount(0));     writer.close();     dir.close();     aux.close();     aux2.close();   }   */
+comment|/* nocommit: reactivate these tests   // case 4: tail segments, invariants hold, copy, invariants not hold   public void testMergeAfterCopy() throws IOException {     // main directory     Directory dir = newDirectory();     // auxiliary directory     Directory aux = newDirectory();      setUpDirs(dir, aux);      IndexReader reader = IndexReader.open(aux);     for (int i = 0; i< 20; i++) {       reader.deleteDocument(i);     }     assertEquals(10, reader.numDocs());     reader.close();      IndexWriter writer = newWriter(         dir,         newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random)).             setOpenMode(OpenMode.APPEND).             setMaxBufferedDocs(4).             setMergePolicy(newLogMergePolicy(4))     );      writer.addIndexes(aux, new MockDirectoryWrapper(random, new RAMDirectory(aux, newIOContext(random))));     assertEquals(1020, writer.maxDoc());     assertEquals(1000, writer.getDocCount(0));     writer.close();     dir.close();     aux.close();   }    // case 5: tail segments, invariants not hold   public void testMoreMerges() throws IOException {     // main directory     Directory dir = newDirectory();     // auxiliary directory     Directory aux = newDirectory();     Directory aux2 = newDirectory();      setUpDirs(dir, aux);      IndexWriter writer = newWriter(         aux2,         newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random)).             setOpenMode(OpenMode.CREATE).             setMaxBufferedDocs(100).             setMergePolicy(newLogMergePolicy(10))     );     writer.addIndexes(aux);     assertEquals(30, writer.maxDoc());     assertEquals(3, writer.getSegmentCount());     writer.close();      IndexReader reader = IndexReader.open(aux);     for (int i = 0; i< 27; i++) {       reader.deleteDocument(i);     }     assertEquals(3, reader.numDocs());     reader.close();      reader = IndexReader.open(aux2);     for (int i = 0; i< 8; i++) {       reader.deleteDocument(i);     }     assertEquals(22, reader.numDocs());     reader.close();      writer = newWriter(         dir,         newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random)).             setOpenMode(OpenMode.APPEND).             setMaxBufferedDocs(6).             setMergePolicy(newLogMergePolicy(4))     );      writer.addIndexes(aux, aux2);     assertEquals(1040, writer.maxDoc());     assertEquals(1000, writer.getDocCount(0));     writer.close();     dir.close();     aux.close();     aux2.close();   }   */
 DECL|method|newWriter
 specifier|private
 name|IndexWriter
@@ -2794,8 +2794,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -2849,8 +2847,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|DocsEnum
@@ -3716,8 +3712,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -4396,8 +4390,6 @@ argument_list|(
 name|c
 operator|.
 name|dir2
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals

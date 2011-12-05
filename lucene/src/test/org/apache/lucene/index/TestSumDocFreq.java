@@ -347,7 +347,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|/* nocommit: fix this to use IW to delete documents     ir = IndexReader.open(dir, false);     int numDeletions = atLeast(20);     for (int i = 0; i< numDeletions; i++) {       ir.deleteDocument(random.nextInt(ir.maxDoc()));     }     ir.close();          IndexWriter w = new IndexWriter(dir, newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random)));     w.forceMerge(1);     w.close();          ir = IndexReader.open(dir, true);     assertSumDocFreq(ir);     ir.close();     */
+comment|/* nocommit: fix this to use IW to delete documents     ir = IndexReader.open(dir);     int numDeletions = atLeast(20);     for (int i = 0; i< numDeletions; i++) {       ir.deleteDocument(random.nextInt(ir.maxDoc()));     }     ir.close();          IndexWriter w = new IndexWriter(dir, newIndexWriterConfig(TEST_VERSION_CURRENT, new MockAnalyzer(random)));     w.forceMerge(1);     w.close();          ir = IndexReader.open(dir);     assertSumDocFreq(ir);     ir.close();     */
 name|dir
 operator|.
 name|close
