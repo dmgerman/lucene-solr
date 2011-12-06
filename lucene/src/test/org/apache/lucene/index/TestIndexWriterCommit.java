@@ -2835,10 +2835,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testNoCommits
+DECL|method|testZeroCommits
 specifier|public
 name|void
-name|testNoCommits
+name|testZeroCommits
 parameter_list|()
 throws|throws
 name|Exception
