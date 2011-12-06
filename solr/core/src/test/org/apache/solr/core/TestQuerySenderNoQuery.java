@@ -342,8 +342,6 @@ name|mainIndexConfig
 argument_list|,
 literal|"testQuerySenderNoQuery"
 argument_list|,
-literal|true
-argument_list|,
 literal|false
 argument_list|,
 name|core

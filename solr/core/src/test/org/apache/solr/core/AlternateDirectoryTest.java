@@ -243,17 +243,10 @@ name|newReader
 parameter_list|(
 name|Directory
 name|indexDir
-parameter_list|,
-name|boolean
-name|readOnly
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
-name|readOnly
-assert|;
-comment|// nocommit: readOnly is ignored - remove
 name|TestIndexReaderFactory
 operator|.
 name|newReaderCalled

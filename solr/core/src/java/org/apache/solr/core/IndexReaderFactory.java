@@ -157,7 +157,7 @@ return|return
 name|termInfosIndexDivisor
 return|;
 block|}
-comment|/**    * Creates a new IndexReader instance using the given Directory.    *     * @param indexDir indexDir index location    * @param readOnly return readOnly IndexReader    * @return An IndexReader instance    * @throws IOException    */
+comment|/**    * Creates a new IndexReader instance using the given Directory.    *     * @param indexDir indexDir index location    * @return An IndexReader instance    * @throws IOException    */
 DECL|method|newReader
 specifier|public
 specifier|abstract
@@ -166,9 +166,6 @@ name|newReader
 parameter_list|(
 name|Directory
 name|indexDir
-parameter_list|,
-name|boolean
-name|readOnly
 parameter_list|)
 throws|throws
 name|IOException

@@ -66,7 +66,6 @@ name|StandardIndexReaderFactory
 extends|extends
 name|IndexReaderFactory
 block|{
-comment|/* (non-Javadoc)    * @see org.apache.solr.core.IndexReaderFactory#newReader(org.apache.lucene.store.Directory, boolean)    */
 annotation|@
 name|Override
 DECL|method|newReader
@@ -76,17 +75,10 @@ name|newReader
 parameter_list|(
 name|Directory
 name|indexDir
-parameter_list|,
-name|boolean
-name|readOnly
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
-name|readOnly
-assert|;
-comment|// nocommit: readOnly is ignored - remove
 return|return
 name|IndexReader
 operator|.
