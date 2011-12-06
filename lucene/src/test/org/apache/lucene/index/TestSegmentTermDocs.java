@@ -260,8 +260,6 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
-literal|true
-argument_list|,
 name|info
 argument_list|,
 name|indexDivisor
@@ -424,8 +422,6 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
-literal|true
-argument_list|,
 name|info
 argument_list|,
 name|indexDivisor
@@ -492,8 +488,6 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
-literal|true
-argument_list|,
 name|info
 argument_list|,
 name|indexDivisor
