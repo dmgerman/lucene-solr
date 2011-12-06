@@ -16,6 +16,10 @@ name|schema
 package|;
 end_package
 
+begin_comment
+comment|/**  * A numeric field that can contain 32-bit signed two's complement integer values.  *  *<ul>  *<li>Min Value Allowed: -2147483648</li>  *<li>Max Value Allowed: 2147483647</li>  *</ul>  *   * @see Integer  */
+end_comment
+
 begin_class
 DECL|class|TrieIntField
 specifier|public

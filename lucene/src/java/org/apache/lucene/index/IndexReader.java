@@ -186,6 +186,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|SearcherManager
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|*
@@ -932,7 +950,7 @@ name|termInfosIndexDivisor
 argument_list|)
 return|;
 block|}
-comment|/**    * If the index has changed since the provided reader was    * opened, open and return a new reader; else, return    * null.  The new reader, if not null, will be the same    * type of reader as the previous one, ie an NRT reader    * will open a new NRT reader, a MultiReader will open a    * new MultiReader,  etc.    *    *<p>This method is typically far less costly than opening a    * fully new<code>IndexReader</code> as it shares    * resources (for example sub-readers) with the provided    *<code>IndexReader</code>, when possible.    *    *<p>The provided reader is not closed (you are responsible    * for doing so); if a new reader is returned you also    * must eventually close it.  Be sure to never close a    * reader while other threads are still using it; see    *<code>SearcherManager</code> in    *<code>contrib/misc</code> to simplify managing this.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * IndexReader instance which you must eventually close    */
+comment|/**    * If the index has changed since the provided reader was    * opened, open and return a new reader; else, return    * null.  The new reader, if not null, will be the same    * type of reader as the previous one, ie an NRT reader    * will open a new NRT reader, a MultiReader will open a    * new MultiReader,  etc.    *    *<p>This method is typically far less costly than opening a    * fully new<code>IndexReader</code> as it shares    * resources (for example sub-readers) with the provided    *<code>IndexReader</code>, when possible.    *    *<p>The provided reader is not closed (you are responsible    * for doing so); if a new reader is returned you also    * must eventually close it.  Be sure to never close a    * reader while other threads are still using it; see    * {@link SearcherManager} to simplify managing this.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * IndexReader instance which you must eventually close    */
 DECL|method|openIfChanged
 specifier|public
 specifier|static

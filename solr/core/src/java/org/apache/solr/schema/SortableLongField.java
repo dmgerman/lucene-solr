@@ -265,7 +265,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *   * @deprecated use {@link LongField} or {@link TrieLongField} - will be removed in 5.x  */
+comment|/**  * A legacy numeric field type that encodes "Long" values as Strings such   * that Term enumeration order matches the natural numeric order.  This class   * should not be used except by people with existing indexes that already   * contain fields of this type.  New schemas should use {@link TrieLongField}.  *  *<p>  * The naming convention "Sortable" comes from the fact that both the numeric   * values and encoded String representations Sort identically (as opposed to   * a direct String representation where values such as "11" sort before values   * such as "2").  *</p>  *   * @see TrieLongField  * @deprecated use {@link LongField} or {@link TrieLongField} - will be removed in 5.x  */
 end_comment
 
 begin_class
