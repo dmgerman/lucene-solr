@@ -482,6 +482,7 @@ decl_stmt|;
 comment|/** Expert: returns the current refCount for this reader */
 DECL|method|getRefCount
 specifier|public
+specifier|final
 name|int
 name|getRefCount
 parameter_list|()
@@ -496,6 +497,7 @@ block|}
 comment|/**    * Expert: increments the refCount of this IndexReader    * instance.  RefCounts are used to determine when a    * reader can be closed safely, i.e. as soon as there are    * no more references.  Be sure to always call a    * corresponding {@link #decRef}, in a finally clause;    * otherwise the reader may never be closed.  Note that    * {@link #close} simply calls decRef(), which means that    * the IndexReader will not really be closed until {@link    * #decRef} has been called for all outstanding    * references.    *    * @see #decRef    * @see #tryIncRef    */
 DECL|method|incRef
 specifier|public
+specifier|final
 name|void
 name|incRef
 parameter_list|()
@@ -512,6 +514,7 @@ block|}
 comment|/**    * Expert: increments the refCount of this IndexReader    * instance only if the IndexReader has not been closed yet    * and returns<code>true</code> iff the refCount was    * successfully incremented, otherwise<code>false</code>.    * If this method returns<code>false</code> the reader is either    * already closed or is currently been closed. Either way this    * reader instance shouldn't be used by an application unless    *<code>true</code> is returned.    *<p>    * RefCounts are used to determine when a    * reader can be closed safely, i.e. as soon as there are    * no more references.  Be sure to always call a    * corresponding {@link #decRef}, in a finally clause;    * otherwise the reader may never be closed.  Note that    * {@link #close} simply calls decRef(), which means that    * the IndexReader will not really be closed until {@link    * #decRef} has been called for all outstanding    * references.    *    * @see #decRef    * @see #incRef    */
 DECL|method|tryIncRef
 specifier|public
+specifier|final
 name|boolean
 name|tryIncRef
 parameter_list|()
@@ -677,6 +680,7 @@ block|}
 comment|/**    * Expert: decreases the refCount of this IndexReader    * instance.  If the refCount drops to 0, then pending    * changes (if any) are committed to the index and this    * reader is closed.  If an exception is hit, the refCount    * is unchanged.    *    * @throws IOException in case an IOException occurs in commit() or doClose()    *    * @see #incRef    */
 DECL|method|decRef
 specifier|public
+specifier|final
 name|void
 name|decRef
 parameter_list|()
@@ -1337,8 +1341,8 @@ throw|;
 block|}
 comment|/** Retrieve term vectors for this document, or null if    *  term vectors were not indexed.  The returned Fields    *  instance acts like a single-document inverted index    *  (the docID will be 0). */
 DECL|method|getTermVectors
-specifier|abstract
 specifier|public
+specifier|abstract
 name|Fields
 name|getTermVectors
 parameter_list|(
@@ -1351,6 +1355,7 @@ function_decl|;
 comment|/** Retrieve term vector for this document and field, or    *  null if term vectors were not indexed.  The returned    *  Fields instance acts like a single-document inverted    *  index (the docID will be 0). */
 DECL|method|getTermVector
 specifier|public
+specifier|final
 name|Terms
 name|getTermVector
 parameter_list|(
@@ -1449,6 +1454,7 @@ function_decl|;
 comment|/** Returns the number of deleted documents. */
 DECL|method|numDeletedDocs
 specifier|public
+specifier|final
 name|int
 name|numDeletedDocs
 parameter_list|()
@@ -1485,6 +1491,7 @@ comment|// Document returned here contains that class not
 comment|// IndexableField
 DECL|method|document
 specifier|public
+specifier|final
 name|Document
 name|document
 parameter_list|(
@@ -1620,6 +1627,7 @@ name|IOException
 function_decl|;
 DECL|method|docFreq
 specifier|public
+specifier|final
 name|int
 name|docFreq
 parameter_list|(
@@ -1739,6 +1747,7 @@ block|}
 comment|/** Returns the number of documents containing the term    *<code>t</code>.  This method returns 0 if the term or    * field does not exists.  This method does not take into    * account deleted documents that have not yet been merged    * away. */
 DECL|method|totalTermFreq
 specifier|public
+specifier|final
 name|long
 name|totalTermFreq
 parameter_list|(
@@ -1831,6 +1840,7 @@ block|}
 comment|/** This may return null if the field does not exist.*/
 DECL|method|terms
 specifier|public
+specifier|final
 name|Terms
 name|terms
 parameter_list|(
@@ -1870,6 +1880,7 @@ block|}
 comment|/** Returns {@link DocsEnum} for the specified field&    *  term.  This may return null, if either the field or    *  term does not exist. */
 DECL|method|termDocsEnum
 specifier|public
+specifier|final
 name|DocsEnum
 name|termDocsEnum
 parameter_list|(
@@ -1975,6 +1986,7 @@ block|}
 comment|/** Returns {@link DocsAndPositionsEnum} for the specified    *  field& term.  This may return null, if either the    *  field or term does not exist, or, positions were not    *  indexed for this field. */
 DECL|method|termPositionsEnum
 specifier|public
+specifier|final
 name|DocsAndPositionsEnum
 name|termPositionsEnum
 parameter_list|(
@@ -2075,6 +2087,7 @@ block|}
 comment|/**    * Returns {@link DocsEnum} for the specified field and    * {@link TermState}. This may return null, if either the field or the term    * does not exists or the {@link TermState} is invalid for the underlying    * implementation.*/
 DECL|method|termDocsEnum
 specifier|public
+specifier|final
 name|DocsEnum
 name|termDocsEnum
 parameter_list|(
@@ -2179,6 +2192,7 @@ block|}
 comment|/**    * Returns {@link DocsAndPositionsEnum} for the specified field and    * {@link TermState}. This may return null, if either the field or the term    * does not exists, the {@link TermState} is invalid for the underlying    * implementation, or positions were not indexed for this field. */
 DECL|method|termPositionsEnum
 specifier|public
+specifier|final
 name|DocsAndPositionsEnum
 name|termPositionsEnum
 parameter_list|(
@@ -2809,7 +2823,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Expert: Returns a the root {@link ReaderContext} for this    * {@link IndexReader}'s sub-reader tree. Iff this reader is composed of sub    * readers ,ie. this reader being a composite reader, this method returns a    * {@link CompositeReaderContext} holding the reader's direct children as well as a    * view of the reader tree's atomic leaf contexts. All sub-    * {@link ReaderContext} instances referenced from this readers top-level    * context are private to this reader and are not shared with another context    * tree. For example, IndexSearcher uses this API to drive searching by one    * atomic leaf reader at a time. If this reader is not composed of child    * readers, this method returns an {@link AtomicReaderContext}.    *<p>    * Note: Any of the sub-{@link CompositeReaderContext} instances reference from this    * top-level context holds a<code>null</code> {@link CompositeReaderContext#leaves}    * reference. Only the top-level context maintains the convenience leaf-view    * for performance reasons.    *<p>    * NOTE: You should not try using sub-readers returned by this method to make    * any changes (deleteDocument, etc.). While this might succeed for    * one composite reader (like MultiReader), it will most likely lead to index    * corruption for other readers (like DirectoryReader obtained through    * {@link #open}. Use the top-level context's reader directly.    *     * @lucene.experimental    */
+comment|/**    * Expert: Returns a the root {@link ReaderContext} for this    * {@link IndexReader}'s sub-reader tree. Iff this reader is composed of sub    * readers ,ie. this reader being a composite reader, this method returns a    * {@link CompositeReaderContext} holding the reader's direct children as well as a    * view of the reader tree's atomic leaf contexts. All sub-    * {@link ReaderContext} instances referenced from this readers top-level    * context are private to this reader and are not shared with another context    * tree. For example, IndexSearcher uses this API to drive searching by one    * atomic leaf reader at a time. If this reader is not composed of child    * readers, this method returns an {@link AtomicReaderContext}.    *<p>    * Note: Any of the sub-{@link CompositeReaderContext} instances reference from this    * top-level context holds a<code>null</code> {@link CompositeReaderContext#leaves}    * reference. Only the top-level context maintains the convenience leaf-view    * for performance reasons.    *     * @lucene.experimental    */
 DECL|method|getTopReaderContext
 specifier|public
 specifier|abstract
@@ -2833,12 +2847,27 @@ block|}
 comment|/** Returns the number of unique terms (across all fields)    *  in this reader.    *    *  @return number of unique terms or -1 if this count    *  cannot be easily determined (eg Multi*Readers).    *  Instead, you should call {@link    *  #getSequentialSubReaders} and ask each sub reader for    *  its unique term count. */
 DECL|method|getUniqueTermCount
 specifier|public
+specifier|final
 name|long
 name|getUniqueTermCount
 parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+operator|!
+name|getTopReaderContext
+argument_list|()
+operator|.
+name|isAtomic
+condition|)
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
 specifier|final
 name|Fields
 name|fields
