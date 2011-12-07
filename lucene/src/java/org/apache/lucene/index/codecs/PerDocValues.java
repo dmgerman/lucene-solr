@@ -40,16 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -104,17 +94,6 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|/**    * Returns all fields this {@link PerDocValues} contains values for.    */
-DECL|method|fields
-specifier|public
-specifier|abstract
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|fields
-parameter_list|()
-function_decl|;
 block|}
 end_class
 
