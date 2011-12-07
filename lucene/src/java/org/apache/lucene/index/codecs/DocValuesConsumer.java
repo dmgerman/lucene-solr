@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -193,22 +183,6 @@ name|finish
 parameter_list|(
 name|int
 name|docCount
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Gathers files associated with this {@link DocValuesConsumer}    *     * @param files    *          the of files to add the consumers files to.    */
-DECL|method|files
-specifier|public
-specifier|abstract
-name|void
-name|files
-parameter_list|(
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|files
 parameter_list|)
 throws|throws
 name|IOException
