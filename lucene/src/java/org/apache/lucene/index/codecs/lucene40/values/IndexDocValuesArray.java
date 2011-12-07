@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.values
+DECL|package|org.apache.lucene.index.codecs.lucene40.values
 package|package
 name|org
 operator|.
@@ -9,6 +9,10 @@ operator|.
 name|lucene
 operator|.
 name|index
+operator|.
+name|codecs
+operator|.
+name|lucene40
 operator|.
 name|values
 package|;
@@ -51,6 +55,22 @@ operator|.
 name|util
 operator|.
 name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|values
+operator|.
+name|ValueType
 import|;
 end_import
 

@@ -116,6 +116,10 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|codecs
+operator|.
+name|lucene40
+operator|.
 name|values
 operator|.
 name|Bytes
@@ -131,6 +135,10 @@ operator|.
 name|lucene
 operator|.
 name|index
+operator|.
+name|codecs
+operator|.
+name|lucene40
 operator|.
 name|values
 operator|.
@@ -148,9 +156,13 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|codecs
+operator|.
+name|lucene40
+operator|.
 name|values
 operator|.
-name|IndexDocValues
+name|Ints
 import|;
 end_import
 
@@ -166,7 +178,7 @@ name|index
 operator|.
 name|values
 operator|.
-name|Ints
+name|IndexDocValues
 import|;
 end_import
 
