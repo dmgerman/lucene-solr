@@ -453,7 +453,7 @@ name|id
 argument_list|,
 name|fieldInfo
 operator|.
-name|getDocValues
+name|getDocValuesType
 argument_list|()
 argument_list|,
 name|context

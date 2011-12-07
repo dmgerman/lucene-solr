@@ -282,7 +282,7 @@ switch|switch
 condition|(
 name|fieldInfo
 operator|.
-name|getDocValues
+name|getDocValuesType
 argument_list|()
 condition|)
 block|{

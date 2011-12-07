@@ -1618,7 +1618,7 @@ argument_list|)
 decl_stmt|;
 name|merged
 operator|.
-name|setDocValues
+name|setDocValuesType
 argument_list|(
 name|docValues
 operator|.
@@ -1697,7 +1697,7 @@ condition|)
 block|{
 name|fi
 operator|.
-name|resetDocValues
+name|resetDocValuesType
 argument_list|(
 literal|null
 argument_list|)
@@ -1717,7 +1717,7 @@ if|if
 condition|(
 name|fi
 operator|.
-name|getDocValues
+name|getDocValuesType
 argument_list|()
 operator|!=
 name|promoter
@@ -1729,7 +1729,7 @@ block|{
 comment|// reset the type if we got promoted
 name|fi
 operator|.
-name|resetDocValues
+name|resetDocValuesType
 argument_list|(
 name|promoter
 operator|.

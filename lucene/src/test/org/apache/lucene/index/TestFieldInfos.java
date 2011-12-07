@@ -166,16 +166,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -504,15 +494,6 @@ argument_list|(
 name|info
 operator|!=
 literal|null
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|info
-operator|.
-name|storeTermVector
-operator|==
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertTrue
