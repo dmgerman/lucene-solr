@@ -102,20 +102,6 @@ name|Bits
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Counter
-import|;
-end_import
-
 begin_comment
 comment|/**  * Abstract API that consumes {@link PerDocFieldValues}.  * {@link DocValuesConsumer} are always associated with a specific field and  * segments. Concrete implementations of this API write the given  * {@link PerDocFieldValues} into a implementation specific format depending on  * the fields meta-data.  *   * @lucene.experimental  */
 end_comment
@@ -127,37 +113,6 @@ specifier|abstract
 class|class
 name|DocValuesConsumer
 block|{
-DECL|field|bytesUsed
-specifier|protected
-specifier|final
-name|Counter
-name|bytesUsed
-decl_stmt|;
-comment|/**    * Creates a new {@link DocValuesConsumer}.    *     * @param bytesUsed    *          bytes-usage tracking reference used by implementation to track    *          internally allocated memory. All tracked bytes must be released    *          once {@link #finish(int)} has been called.    */
-DECL|method|DocValuesConsumer
-specifier|protected
-name|DocValuesConsumer
-parameter_list|(
-name|Counter
-name|bytesUsed
-parameter_list|)
-block|{
-name|this
-operator|.
-name|bytesUsed
-operator|=
-name|bytesUsed
-operator|==
-literal|null
-condition|?
-name|Counter
-operator|.
-name|newCounter
-argument_list|()
-else|:
-name|bytesUsed
-expr_stmt|;
-block|}
 comment|/**    * Adds the given {@link PerDocFieldValues} instance to this    * {@link DocValuesConsumer}    *     * @param docID    *          the document ID to add the value for. The docID must always    *          increase or be<tt>0</tt> if it is the first call to this method.    * @param docValues    *          the values to add    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|add
 specifier|public

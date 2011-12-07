@@ -180,6 +180,12 @@ specifier|protected
 name|Source
 name|currentMergeSource
 decl_stmt|;
+DECL|field|bytesUsed
+specifier|protected
+specifier|final
+name|Counter
+name|bytesUsed
+decl_stmt|;
 comment|/**    * Creates a new {@link Writer}.    *     * @param bytesUsed    *          bytes-usage tracking reference used by implementation to track    *          internally allocated memory. All tracked bytes must be released    *          once {@link #finish(int)} has been called.    */
 DECL|method|Writer
 specifier|protected
@@ -189,10 +195,11 @@ name|Counter
 name|bytesUsed
 parameter_list|)
 block|{
-name|super
-argument_list|(
+name|this
+operator|.
 name|bytesUsed
-argument_list|)
+operator|=
+name|bytesUsed
 expr_stmt|;
 block|}
 comment|/**    * Filename extension for index files    */
