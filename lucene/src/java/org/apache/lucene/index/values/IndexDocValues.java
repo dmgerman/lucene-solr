@@ -576,6 +576,17 @@ name|BytesRef
 name|bytesRef
 parameter_list|)
 function_decl|;
+comment|/** Return true if it's safe to call {@link      *  #getDocToOrd}. */
+DECL|method|hasPackedDocToOrd
+specifier|public
+name|boolean
+name|hasPackedDocToOrd
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/**      * Returns the PackedInts.Reader impl that maps document to ord.      */
 DECL|method|getDocToOrd
 specifier|public
@@ -1003,6 +1014,17 @@ literal|0
 expr_stmt|;
 return|return
 name|bytesRef
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|hasPackedDocToOrd
+parameter_list|()
+block|{
+return|return
+literal|true
 return|;
 block|}
 annotation|@
