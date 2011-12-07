@@ -313,7 +313,7 @@ name|liveDocsDirty
 init|=
 literal|false
 decl_stmt|;
-comment|// nocommit: move the whole modification stuff to IW
+comment|// TODO: remove deletions from SR
 DECL|field|pendingDeleteCount
 specifier|private
 name|int
@@ -343,7 +343,7 @@ specifier|private
 name|int
 name|rollbackPendingDeleteCount
 decl_stmt|;
-comment|// end nocommit
+comment|// end TODO
 DECL|field|core
 name|SegmentCoreReaders
 name|core
@@ -414,7 +414,7 @@ name|context
 argument_list|)
 return|;
 block|}
-comment|// nocommit: remove deletions from SR
+comment|// TODO: remove deletions from SR
 DECL|method|getRW
 specifier|static
 name|SegmentReader
@@ -821,7 +821,7 @@ literal|0
 assert|;
 block|}
 comment|/**    * Clones the deleteDocs BitVector.  May be overridden by subclasses. New and experimental.    * @param bv BitVector to clone    * @return New BitVector    */
-comment|// nocommit: remove deletions from SR
+comment|// TODO: remove deletions from SR
 DECL|method|cloneDeletedDocs
 name|BitVector
 name|cloneDeletedDocs
@@ -878,7 +878,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// nocommit: is this needed anymore by IndexWriter?
+comment|// TODO: is this needed anymore by IndexWriter?
 DECL|method|clone
 specifier|final
 specifier|synchronized
@@ -1196,7 +1196,7 @@ return|return
 name|clone
 return|;
 block|}
-comment|// nocommit: remove deletions from SR
+comment|// TODO: remove deletions from SR
 DECL|method|doCommit
 name|void
 name|doCommit
@@ -1239,7 +1239,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// nocommit: remove deletions from SR
+comment|// TODO: remove deletions from SR
 DECL|method|startCommit
 specifier|private
 name|void
@@ -1269,7 +1269,7 @@ operator|=
 name|pendingDeleteCount
 expr_stmt|;
 block|}
-comment|// nocommit: remove deletions from SR
+comment|// TODO: remove deletions from SR
 DECL|method|rollbackCommit
 specifier|private
 name|void
@@ -1296,7 +1296,7 @@ operator|=
 name|rollbackPendingDeleteCount
 expr_stmt|;
 block|}
-comment|// nocommit: remove deletions from SR
+comment|// TODO: remove deletions from SR
 DECL|method|commitChanges
 specifier|private
 specifier|synchronized
@@ -1554,7 +1554,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|// nocommit: remove deletions from SR
+comment|// TODO: remove deletions from SR
 DECL|method|deleteDocument
 specifier|synchronized
 name|void
@@ -1579,7 +1579,7 @@ name|docNum
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit: remove deletions from SR
+comment|// TODO: remove deletions from SR
 DECL|method|doDelete
 name|void
 name|doDelete
