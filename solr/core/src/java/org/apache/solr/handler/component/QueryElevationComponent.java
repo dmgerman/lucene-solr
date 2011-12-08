@@ -1451,6 +1451,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//in other words, we think this is in the data dir, not the conf dir
 if|if
 condition|(
 operator|!
@@ -1532,10 +1533,13 @@ argument_list|,
 literal|"Error initializing QueryElevationComponent."
 argument_list|,
 name|ex
+argument_list|,
+literal|false
 argument_list|)
 throw|;
 block|}
 block|}
+comment|//get the elevation map from the data dir
 DECL|method|getElevationMap
 name|Map
 argument_list|<
@@ -1700,6 +1704,7 @@ name|map
 return|;
 block|}
 block|}
+comment|//load up the elevation map
 DECL|method|loadElevationMap
 specifier|private
 name|Map
