@@ -120,6 +120,14 @@ name|CARROT_PREFIX
 operator|+
 literal|"fragSize"
 decl_stmt|;
+DECL|field|SUMMARY_SNIPPETS
+name|String
+name|SUMMARY_SNIPPETS
+init|=
+name|CARROT_PREFIX
+operator|+
+literal|"summarySnippets"
+decl_stmt|;
 DECL|field|LEXICAL_RESOURCES_DIR
 name|String
 name|LEXICAL_RESOURCES_DIR
