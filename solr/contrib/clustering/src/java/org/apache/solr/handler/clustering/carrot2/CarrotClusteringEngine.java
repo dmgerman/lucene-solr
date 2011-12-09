@@ -696,7 +696,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** 	 * The subdirectory in Solr config dir to read customized Carrot2 resources from. 	 */
+comment|/**    * The subdirectory in Solr config dir to read customized Carrot2 resources from.    */
 DECL|field|CARROT_RESOURCES_PREFIX
 specifier|private
 specifier|static
@@ -1683,7 +1683,7 @@ return|return
 name|fields
 return|;
 block|}
-comment|/** 	 * Returns the names of fields that will be delivering the actual 	 * content for clustering. Currently, there are two such fields: document 	 * title and document content. 	 */
+comment|/**    * Returns the names of fields that will be delivering the actual    * content for clustering. Currently, there are two such fields: document    * title and document content.    */
 DECL|method|getFieldsForClustering
 specifier|private
 name|Set

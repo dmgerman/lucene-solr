@@ -254,7 +254,7 @@ operator|.
 name|createTokenizer
 argument_list|()
 return|;
-comment|/* 			 * We use our own analyzer for Arabic. Lucene's version has special 			 * support for Nonspacing-Mark characters (see 			 * http://www.fileformat.info/info/unicode/category/Mn/index.htm), but we 			 * have them included as letters in the parser. 			 */
+comment|/*        * We use our own analyzer for Arabic. Lucene's version has special        * support for Nonspacing-Mark characters (see        * http://www.fileformat.info/info/unicode/category/Mn/index.htm), but we        * have them included as letters in the parser.        */
 case|case
 name|ARABIC
 case|:
@@ -267,7 +267,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** 	 * Creates tokenizers that adapt Lucene's Smart Chinese Tokenizer to Carrot2's 	 * {@link ITokenizer}. If Smart Chinese is not available in the classpath, the 	 * factory will fall back to the default white space tokenizer. 	 */
+comment|/**    * Creates tokenizers that adapt Lucene's Smart Chinese Tokenizer to Carrot2's    * {@link ITokenizer}. If Smart Chinese is not available in the classpath, the    * factory will fall back to the default white space tokenizer.    */
 DECL|class|ChineseTokenizerFactory
 specifier|private
 specifier|static
