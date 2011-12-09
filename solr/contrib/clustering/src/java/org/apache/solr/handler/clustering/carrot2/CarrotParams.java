@@ -96,6 +96,14 @@ name|CARROT_PREFIX
 operator|+
 literal|"lang"
 decl_stmt|;
+DECL|field|CUSTOM_FIELD_NAME
+name|String
+name|CUSTOM_FIELD_NAME
+init|=
+name|CARROT_PREFIX
+operator|+
+literal|"custom"
+decl_stmt|;
 DECL|field|PRODUCE_SUMMARY
 name|String
 name|PRODUCE_SUMMARY
