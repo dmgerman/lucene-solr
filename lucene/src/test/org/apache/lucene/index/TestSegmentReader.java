@@ -217,8 +217,6 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
-literal|true
-argument_list|,
 name|info
 argument_list|,
 name|IndexReader
@@ -462,11 +460,11 @@ name|deleteReader
 init|=
 name|SegmentReader
 operator|.
-name|get
+name|getRW
 argument_list|(
-literal|false
-argument_list|,
 name|info
+argument_list|,
+literal|true
 argument_list|,
 name|IndexReader
 operator|.

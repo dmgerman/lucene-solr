@@ -243,9 +243,6 @@ name|newReader
 parameter_list|(
 name|Directory
 name|indexDir
-parameter_list|,
-name|boolean
-name|readOnly
 parameter_list|)
 throws|throws
 name|IOException
@@ -262,8 +259,6 @@ operator|.
 name|open
 argument_list|(
 name|indexDir
-argument_list|,
-name|readOnly
 argument_list|)
 return|;
 block|}

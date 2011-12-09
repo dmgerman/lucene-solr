@@ -392,18 +392,32 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// Delete one doc so we get a .del file:
-name|IndexReader
-name|reader
-init|=
-name|IndexReader
-operator|.
-name|open
+name|writer
+operator|=
+operator|new
+name|IndexWriter
 argument_list|(
 name|dir
 argument_list|,
-literal|false
+name|newIndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+operator|new
+name|MockAnalyzer
+argument_list|(
+name|random
 argument_list|)
-decl_stmt|;
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|NoMergePolicy
+operator|.
+name|NO_COMPOUND_FILES
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Term
 name|searchTerm
 init|=
@@ -415,50 +429,14 @@ argument_list|,
 literal|"7"
 argument_list|)
 decl_stmt|;
-name|int
-name|delCount
-init|=
-name|reader
+name|writer
 operator|.
 name|deleteDocuments
 argument_list|(
 name|searchTerm
 argument_list|)
-decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"didn't delete the right number of documents"
-argument_list|,
-literal|1
-argument_list|,
-name|delCount
-argument_list|)
 expr_stmt|;
-name|DefaultSimilarity
-name|sim
-init|=
-operator|new
-name|DefaultSimilarity
-argument_list|()
-decl_stmt|;
-comment|// Set one norm so we get a .s0 file:
-name|reader
-operator|.
-name|setNorm
-argument_list|(
-literal|21
-argument_list|,
-literal|"content"
-argument_list|,
-name|sim
-operator|.
-name|encodeNormValue
-argument_list|(
-literal|1.5f
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|reader
+name|writer
 operator|.
 name|close
 argument_list|()
@@ -475,181 +453,6 @@ name|listAll
 argument_list|()
 decl_stmt|;
 comment|/*     for(int j=0;j<files.length;j++) {       System.out.println(j + ": " + files[j]);     }     */
-comment|// The numbering of fields can vary depending on which
-comment|// JRE is in use.  On some JREs we see content bound to
-comment|// field 0; on others, field 1.  So, here we have to
-comment|// figure out which field number corresponds to
-comment|// "content", and then set our expected file names below
-comment|// accordingly:
-name|CompoundFileDirectory
-name|cfsReader
-init|=
-operator|new
-name|CompoundFileDirectory
-argument_list|(
-name|dir
-argument_list|,
-literal|"_2.cfs"
-argument_list|,
-name|newIOContext
-argument_list|(
-name|random
-argument_list|)
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-name|FieldInfosReader
-name|infosReader
-init|=
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|fieldInfosFormat
-argument_list|()
-operator|.
-name|getFieldInfosReader
-argument_list|()
-decl_stmt|;
-name|FieldInfos
-name|fieldInfos
-init|=
-name|infosReader
-operator|.
-name|read
-argument_list|(
-name|cfsReader
-argument_list|,
-literal|"2"
-argument_list|,
-name|IOContext
-operator|.
-name|READONCE
-argument_list|)
-decl_stmt|;
-name|int
-name|contentFieldIndex
-init|=
-operator|-
-literal|1
-decl_stmt|;
-for|for
-control|(
-name|FieldInfo
-name|fi
-range|:
-name|fieldInfos
-control|)
-block|{
-if|if
-condition|(
-name|fi
-operator|.
-name|name
-operator|.
-name|equals
-argument_list|(
-literal|"content"
-argument_list|)
-condition|)
-block|{
-name|contentFieldIndex
-operator|=
-name|fi
-operator|.
-name|number
-expr_stmt|;
-break|break;
-block|}
-block|}
-name|cfsReader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"could not locate the 'content' field number in the _2.cfs segment"
-argument_list|,
-name|contentFieldIndex
-operator|!=
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-name|String
-name|normSuffix
-init|=
-literal|"s"
-operator|+
-name|contentFieldIndex
-decl_stmt|;
-comment|// Create a bogus separate norms file for a
-comment|// segment/field that actually has a separate norms file
-comment|// already:
-name|copyFile
-argument_list|(
-name|dir
-argument_list|,
-literal|"_2_1."
-operator|+
-name|normSuffix
-argument_list|,
-literal|"_2_2."
-operator|+
-name|normSuffix
-argument_list|)
-expr_stmt|;
-comment|// Create a bogus separate norms file for a
-comment|// segment/field that actually has a separate norms file
-comment|// already, using the "not compound file" extension:
-name|copyFile
-argument_list|(
-name|dir
-argument_list|,
-literal|"_2_1."
-operator|+
-name|normSuffix
-argument_list|,
-literal|"_2_2.f"
-operator|+
-name|contentFieldIndex
-argument_list|)
-expr_stmt|;
-comment|// Create a bogus separate norms file for a
-comment|// segment/field that does not have a separate norms
-comment|// file already:
-name|copyFile
-argument_list|(
-name|dir
-argument_list|,
-literal|"_2_1."
-operator|+
-name|normSuffix
-argument_list|,
-literal|"_1_1."
-operator|+
-name|normSuffix
-argument_list|)
-expr_stmt|;
-comment|// Create a bogus separate norms file for a
-comment|// segment/field that does not have a separate norms
-comment|// file already using the "not compound file" extension:
-name|copyFile
-argument_list|(
-name|dir
-argument_list|,
-literal|"_2_1."
-operator|+
-name|normSuffix
-argument_list|,
-literal|"_1_1.f"
-operator|+
-name|contentFieldIndex
-argument_list|)
-expr_stmt|;
 comment|// Create a bogus separate del file for a
 comment|// segment that already has a separate del file:
 name|copyFile

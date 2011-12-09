@@ -204,22 +204,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|similarities
-operator|.
-name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|*
@@ -287,7 +271,7 @@ comment|// for javadocs
 end_comment
 
 begin_comment
-comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link  #open(Directory, boolean)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p> An IndexReader can be opened on a directory for which an IndexWriter is  opened already, but it cannot be used to delete documents from the index then.<p><b>NOTE</b>: for backwards API compatibility, several methods are not listed   as abstract, but have no useful implementations in this base class and   instead always throw UnsupportedOperationException.  Subclasses are   strongly encouraged to override these methods, but in many cases may not   need to.</p><p><b>NOTE</b>: as of 2.4, it's possible to open a read-only  IndexReader using the static open methods that accept the   boolean readOnly parameter.  Such a reader may have better   concurrency.  You must specify false if you want to   make changes with the resulting IndexReader.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  IndexReader} instances are completely thread  safe, meaning multiple threads can call any of its methods,  concurrently.  If your application requires external  synchronization, you should<b>not</b> synchronize on the<code>IndexReader</code> instance; use your own  (non-Lucene) objects instead. */
+comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p> Concrete subclasses of IndexReader are usually constructed with a call to  one of the static<code>open()</code> methods, e.g. {@link  #open(Directory)}.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral--they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p><b>NOTE</b>: for backwards API compatibility, several methods are not listed   as abstract, but have no useful implementations in this base class and   instead always throw UnsupportedOperationException.  Subclasses are   strongly encouraged to override these methods, but in many cases may not   need to.</p><p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  IndexReader} instances are completely thread  safe, meaning multiple threads can call any of its methods,  concurrently.  If your application requires external  synchronization, you should<b>not</b> synchronize on the<code>IndexReader</code> instance; use your own  (non-Lucene) objects instead. */
 end_comment
 
 begin_class
@@ -478,11 +462,6 @@ specifier|volatile
 name|boolean
 name|closed
 decl_stmt|;
-DECL|field|hasChanges
-specifier|protected
-name|boolean
-name|hasChanges
-decl_stmt|;
 DECL|field|refCount
 specifier|private
 specifier|final
@@ -503,6 +482,7 @@ decl_stmt|;
 comment|/** Expert: returns the current refCount for this reader */
 DECL|method|getRefCount
 specifier|public
+specifier|final
 name|int
 name|getRefCount
 parameter_list|()
@@ -517,6 +497,7 @@ block|}
 comment|/**    * Expert: increments the refCount of this IndexReader    * instance.  RefCounts are used to determine when a    * reader can be closed safely, i.e. as soon as there are    * no more references.  Be sure to always call a    * corresponding {@link #decRef}, in a finally clause;    * otherwise the reader may never be closed.  Note that    * {@link #close} simply calls decRef(), which means that    * the IndexReader will not really be closed until {@link    * #decRef} has been called for all outstanding    * references.    *    * @see #decRef    * @see #tryIncRef    */
 DECL|method|incRef
 specifier|public
+specifier|final
 name|void
 name|incRef
 parameter_list|()
@@ -533,6 +514,7 @@ block|}
 comment|/**    * Expert: increments the refCount of this IndexReader    * instance only if the IndexReader has not been closed yet    * and returns<code>true</code> iff the refCount was    * successfully incremented, otherwise<code>false</code>.    * If this method returns<code>false</code> the reader is either    * already closed or is currently been closed. Either way this    * reader instance shouldn't be used by an application unless    *<code>true</code> is returned.    *<p>    * RefCounts are used to determine when a    * reader can be closed safely, i.e. as soon as there are    * no more references.  Be sure to always call a    * corresponding {@link #decRef}, in a finally clause;    * otherwise the reader may never be closed.  Note that    * {@link #close} simply calls decRef(), which means that    * the IndexReader will not really be closed until {@link    * #decRef} has been called for all outstanding    * references.    *    * @see #decRef    * @see #incRef    */
 DECL|method|tryIncRef
 specifier|public
+specifier|final
 name|boolean
 name|tryIncRef
 parameter_list|()
@@ -594,19 +576,6 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|hasChanges
-condition|)
-block|{
-name|buffer
-operator|.
-name|append
-argument_list|(
-literal|'*'
-argument_list|)
-expr_stmt|;
-block|}
 name|buffer
 operator|.
 name|append
@@ -711,6 +680,7 @@ block|}
 comment|/**    * Expert: decreases the refCount of this IndexReader    * instance.  If the refCount drops to 0, then pending    * changes (if any) are committed to the index and this    * reader is closed.  If an exception is hit, the refCount    * is unchanged.    *    * @throws IOException in case an IOException occurs in commit() or doClose()    *    * @see #incRef    */
 DECL|method|decRef
 specifier|public
+specifier|final
 name|void
 name|decRef
 parameter_list|()
@@ -743,9 +713,6 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|commit
-argument_list|()
-expr_stmt|;
 name|doClose
 argument_list|()
 expr_stmt|;
@@ -837,7 +804,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns a IndexReader reading the index in the given    *  Directory, with readOnly=true.    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns a IndexReader reading the index in the given    *  Directory    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -860,15 +827,11 @@ name|directory
 argument_list|,
 literal|null
 argument_list|,
-literal|null
-argument_list|,
-literal|true
-argument_list|,
 name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
-comment|/** Returns an IndexReader reading the index in the given    *  Directory.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the reader.    * @param directory the index directory    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns a IndexReader reading the index in the given    *  Directory    * @param directory the index directory    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -879,8 +842,8 @@ specifier|final
 name|Directory
 name|directory
 parameter_list|,
-name|boolean
-name|readOnly
+name|int
+name|termInfosIndexDivisor
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -894,11 +857,7 @@ name|directory
 argument_list|,
 literal|null
 argument_list|,
-literal|null
-argument_list|,
-name|readOnly
-argument_list|,
-name|DEFAULT_TERMS_INDEX_DIVISOR
+name|termInfosIndexDivisor
 argument_list|)
 return|;
 block|}
@@ -930,7 +889,7 @@ name|applyAllDeletes
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit}.  You should pass readOnly=true, since it    *  gives much better concurrent performance, unless you    *  intend to do write operations (delete documents or    *  change norms) with the reader.    * @param commit the commit point to open    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit}.    * @param commit the commit point to open    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -940,9 +899,6 @@ parameter_list|(
 specifier|final
 name|IndexCommit
 name|commit
-parameter_list|,
-name|boolean
-name|readOnly
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -957,17 +913,13 @@ operator|.
 name|getDirectory
 argument_list|()
 argument_list|,
-literal|null
-argument_list|,
 name|commit
-argument_list|,
-name|readOnly
 argument_list|,
 name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns an IndexReader reading the index in    *  the given Directory, with a custom {@link    *  IndexDeletionPolicy}.  You should pass readOnly=true,    *  since it gives much better concurrent performance,    *  unless you intend to do write operations (delete    *  documents or change norms) with the reader.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit}.    * @param directory the index directory    * @param commit the commit point to open    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -978,176 +930,9 @@ specifier|final
 name|Directory
 name|directory
 parameter_list|,
-name|IndexDeletionPolicy
-name|deletionPolicy
-parameter_list|,
-name|boolean
-name|readOnly
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-return|return
-name|open
-argument_list|(
-name|directory
-argument_list|,
-name|deletionPolicy
-argument_list|,
-literal|null
-argument_list|,
-name|readOnly
-argument_list|,
-name|DEFAULT_TERMS_INDEX_DIVISOR
-argument_list|)
-return|;
-block|}
-comment|/** Expert: returns an IndexReader reading the index in    *  the given Directory, with a custom {@link    *  IndexDeletionPolicy}.  You should pass readOnly=true,    *  since it gives much better concurrent performance,    *  unless you intend to do write operations (delete    *  documents or change norms) with the reader.    * @param directory the index directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|open
-specifier|public
-specifier|static
-name|IndexReader
-name|open
-parameter_list|(
-specifier|final
-name|Directory
-name|directory
-parameter_list|,
-name|IndexDeletionPolicy
-name|deletionPolicy
-parameter_list|,
-name|boolean
-name|readOnly
-parameter_list|,
-name|int
-name|termInfosIndexDivisor
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-return|return
-name|open
-argument_list|(
-name|directory
-argument_list|,
-name|deletionPolicy
-argument_list|,
-literal|null
-argument_list|,
-name|readOnly
-argument_list|,
-name|termInfosIndexDivisor
-argument_list|)
-return|;
-block|}
-comment|/** Expert: returns an IndexReader reading the index in    *  the given Directory, using a specific commit and with    *  a custom {@link IndexDeletionPolicy}.  You should pass    *  readOnly=true, since it gives much better concurrent    *  performance, unless you intend to do write operations    *  (delete documents or change norms) with the reader.    * @param commit the specific {@link IndexCommit} to open;    * see {@link IndexReader#listCommits} to list all commits    * in a directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|open
-specifier|public
-specifier|static
-name|IndexReader
-name|open
-parameter_list|(
 specifier|final
 name|IndexCommit
 name|commit
-parameter_list|,
-name|IndexDeletionPolicy
-name|deletionPolicy
-parameter_list|,
-name|boolean
-name|readOnly
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-return|return
-name|open
-argument_list|(
-name|commit
-operator|.
-name|getDirectory
-argument_list|()
-argument_list|,
-name|deletionPolicy
-argument_list|,
-name|commit
-argument_list|,
-name|readOnly
-argument_list|,
-name|DEFAULT_TERMS_INDEX_DIVISOR
-argument_list|)
-return|;
-block|}
-comment|/** Expert: returns an IndexReader reading the index in    *  the given Directory, using a specific commit and with    *  a custom {@link IndexDeletionPolicy}.  You should pass    *  readOnly=true, since it gives much better concurrent    *  performance, unless you intend to do write operations    *  (delete documents or change norms) with the reader.    * @param commit the specific {@link IndexCommit} to open;    * see {@link IndexReader#listCommits} to list all commits    * in a directory    * @param deletionPolicy a custom deletion policy (only used    *  if you use this reader to perform deletes or to set    *  norms); see {@link IndexWriter} for details.    * @param readOnly true if no changes (deletions, norms) will be made with this IndexReader    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely. This is only useful in     *  advanced situations when you will only .next() through all terms;     *  attempts to seek will hit an exception.    *      * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|open
-specifier|public
-specifier|static
-name|IndexReader
-name|open
-parameter_list|(
-specifier|final
-name|IndexCommit
-name|commit
-parameter_list|,
-name|IndexDeletionPolicy
-name|deletionPolicy
-parameter_list|,
-name|boolean
-name|readOnly
-parameter_list|,
-name|int
-name|termInfosIndexDivisor
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-return|return
-name|open
-argument_list|(
-name|commit
-operator|.
-name|getDirectory
-argument_list|()
-argument_list|,
-name|deletionPolicy
-argument_list|,
-name|commit
-argument_list|,
-name|readOnly
-argument_list|,
-name|termInfosIndexDivisor
-argument_list|)
-return|;
-block|}
-DECL|method|open
-specifier|private
-specifier|static
-name|IndexReader
-name|open
-parameter_list|(
-specifier|final
-name|Directory
-name|directory
-parameter_list|,
-specifier|final
-name|IndexDeletionPolicy
-name|deletionPolicy
-parameter_list|,
-specifier|final
-name|IndexCommit
-name|commit
-parameter_list|,
-specifier|final
-name|boolean
-name|readOnly
 parameter_list|,
 name|int
 name|termInfosIndexDivisor
@@ -1164,17 +949,13 @@ name|open
 argument_list|(
 name|directory
 argument_list|,
-name|deletionPolicy
-argument_list|,
 name|commit
-argument_list|,
-name|readOnly
 argument_list|,
 name|termInfosIndexDivisor
 argument_list|)
 return|;
 block|}
-comment|/**    * If the index has changed since the provided reader was    * opened, open and return a new reader; else, return    * null.  The new reader, if not null, will be the same    * type of reader as the previous one, ie an NRT reader    * will open a new NRT reader, a MultiReader will open a    * new MultiReader,  etc.    *    *<p>This method is typically far less costly than opening a    * fully new<code>IndexReader</code> as it shares    * resources (for example sub-readers) with the provided    *<code>IndexReader</code>, when possible.    *    *<p>The provided reader is not closed (you are responsible    * for doing so); if a new reader is returned you also    * must eventually close it.  Be sure to never close a    * reader while other threads are still using it; see    * {@link SearcherManager} to simplify managing this.    *    *<p>If a new reader is returned, it's safe to make changes    * (deletions, norms) with it.  All shared mutable state    * with the old reader uses "copy on write" semantics to    * ensure the changes are not seen by other readers.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * IndexReader instance which you must eventually close    */
+comment|/**    * If the index has changed since the provided reader was    * opened, open and return a new reader; else, return    * null.  The new reader, if not null, will be the same    * type of reader as the previous one, ie an NRT reader    * will open a new NRT reader, a MultiReader will open a    * new MultiReader,  etc.    *    *<p>This method is typically far less costly than opening a    * fully new<code>IndexReader</code> as it shares    * resources (for example sub-readers) with the provided    *<code>IndexReader</code>, when possible.    *    *<p>The provided reader is not closed (you are responsible    * for doing so); if a new reader is returned you also    * must eventually close it.  Be sure to never close a    * reader while other threads are still using it; see    * {@link SearcherManager} to simplify managing this.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * IndexReader instance which you must eventually close    */
 DECL|method|openIfChanged
 specifier|public
 specifier|static
@@ -1205,44 +986,7 @@ return|return
 name|newReader
 return|;
 block|}
-comment|/**    * If the index has changed since the provided reader was    * opened, open and return a new reader, with the    * specified<code>readOnly</code>; else, return    * null.    *    * @see #openIfChanged(IndexReader)    */
-DECL|method|openIfChanged
-specifier|public
-specifier|static
-name|IndexReader
-name|openIfChanged
-parameter_list|(
-name|IndexReader
-name|oldReader
-parameter_list|,
-name|boolean
-name|readOnly
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-specifier|final
-name|IndexReader
-name|newReader
-init|=
-name|oldReader
-operator|.
-name|doOpenIfChanged
-argument_list|(
-name|readOnly
-argument_list|)
-decl_stmt|;
-assert|assert
-name|newReader
-operator|!=
-name|oldReader
-assert|;
-return|return
-name|newReader
-return|;
-block|}
-comment|/**    * If the IndexCommit differs from what the    * provided reader is searching, or the provided reader is    * not already read-only, open and return a new    *<code>readOnly=true</code> reader; else, return null.    *    * @see #openIfChanged(IndexReader)    */
-comment|// TODO: should you be able to specify readOnly?
+comment|/**    * If the IndexCommit differs from what the    * provided reader is searching, open and return a new    * reader; else, return null.    *    * @see #openIfChanged(IndexReader)    */
 DECL|method|openIfChanged
 specifier|public
 specifier|static
@@ -1278,7 +1022,7 @@ return|return
 name|newReader
 return|;
 block|}
-comment|/**    * Expert: If there changes (committed or not) in the    * {@link IndexWriter} versus what the provided reader is    * searching, then open and return a new read-only    * IndexReader searching both committed and uncommitted    * changes from the writer; else, return null (though, the    * current implementation never returns null).    *    *<p>This provides "near real-time" searching, in that    * changes made during an {@link IndexWriter} session can be    * quickly made available for searching without closing    * the writer nor calling {@link IndexWriter#commit}.    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link IndexWriterConfig#setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far.</p>    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance, or    * null if there are no new changes    *    * @param writer The IndexWriter to open from    *    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    *    * @throws IOException    *    * @lucene.experimental    */
+comment|/**    * Expert: If there changes (committed or not) in the    * {@link IndexWriter} versus what the provided reader is    * searching, then open and return a new    * IndexReader searching both committed and uncommitted    * changes from the writer; else, return null (though, the    * current implementation never returns null).    *    *<p>This provides "near real-time" searching, in that    * changes made during an {@link IndexWriter} session can be    * quickly made available for searching without closing    * the writer nor calling {@link IndexWriter#commit}.    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link IndexWriterConfig#setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far.</p>    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance, or    * null if there are no new changes    *    * @param writer The IndexWriter to open from    *    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    *    * @throws IOException    *    * @lucene.experimental    */
 DECL|method|openIfChanged
 specifier|public
 specifier|static
@@ -1325,28 +1069,6 @@ specifier|protected
 name|IndexReader
 name|doOpenIfChanged
 parameter_list|()
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This reader does not support reopen()."
-argument_list|)
-throw|;
-block|}
-comment|/**    * If the index has changed since it was opened, open and return a new reader;    * else, return {@code null}.    *     * @see #openIfChanged(IndexReader, boolean)    */
-DECL|method|doOpenIfChanged
-specifier|protected
-name|IndexReader
-name|doOpenIfChanged
-parameter_list|(
-name|boolean
-name|openReadOnly
-parameter_list|)
 throws|throws
 name|CorruptIndexException
 throws|,
@@ -1409,7 +1131,7 @@ name|applyAllDeletes
 argument_list|)
 return|;
 block|}
-comment|/**    * Efficiently clones the IndexReader (sharing most    * internal state).    *<p>    * On cloning a reader with pending changes (deletions,    * norms), the original reader transfers its write lock to    * the cloned reader.  This means only the cloned reader    * may make further changes to the index, and commit the    * changes to the index on close, but the old reader still    * reflects all changes made up until it was cloned.    *<p>    * Like {@link #openIfChanged(IndexReader)}, it's safe to make changes to    * either the original or the cloned reader: all shared    * mutable state obeys "copy on write" semantics to ensure    * the changes are not seen by other readers.    *<p>    */
+comment|/**    * Efficiently clones the IndexReader (sharing most    * internal state).    */
 annotation|@
 name|Override
 DECL|method|clone
@@ -1418,29 +1140,6 @@ specifier|synchronized
 name|Object
 name|clone
 parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This reader does not implement clone()"
-argument_list|)
-throw|;
-block|}
-comment|/**    * Clones the IndexReader and optionally changes readOnly.  A readOnly     * reader cannot open a writeable reader.      * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|clone
-specifier|public
-specifier|synchronized
-name|IndexReader
-name|clone
-parameter_list|(
-name|boolean
-name|openReadOnly
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -1642,8 +1341,8 @@ throw|;
 block|}
 comment|/** Retrieve term vectors for this document, or null if    *  term vectors were not indexed.  The returned Fields    *  instance acts like a single-document inverted index    *  (the docID will be 0). */
 DECL|method|getTermVectors
-specifier|abstract
 specifier|public
+specifier|abstract
 name|Fields
 name|getTermVectors
 parameter_list|(
@@ -1656,6 +1355,7 @@ function_decl|;
 comment|/** Retrieve term vector for this document and field, or    *  null if term vectors were not indexed.  The returned    *  Fields instance acts like a single-document inverted    *  index (the docID will be 0). */
 DECL|method|getTermVector
 specifier|public
+specifier|final
 name|Terms
 name|getTermVector
 parameter_list|(
@@ -1754,6 +1454,7 @@ function_decl|;
 comment|/** Returns the number of deleted documents. */
 DECL|method|numDeletedDocs
 specifier|public
+specifier|final
 name|int
 name|numDeletedDocs
 parameter_list|()
@@ -1790,6 +1491,7 @@ comment|// Document returned here contains that class not
 comment|// IndexableField
 DECL|method|document
 specifier|public
+specifier|final
 name|Document
 name|document
 parameter_list|(
@@ -1903,72 +1605,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Expert: Resets the normalization factor for the named field of the named    * document.  By default, the norm represents the product of the field's {@link    * org.apache.lucene.document.Field#setBoost(float) boost} and its    * length normalization}.  Thus, to preserve the length normalization    * values when resetting this, one should base the new value upon the old.    *    *<b>NOTE:</b> If this field does not index norms, then    * this method throws {@link IllegalStateException}.    *    * @see #norms(String)    * @see Similarity#computeNorm(FieldInvertState)    * @see org.apache.lucene.search.similarities.DefaultSimilarity#decodeNormValue(byte)    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    * @throws IllegalStateException if the field does not index norms    */
-DECL|method|setNorm
-specifier|public
-specifier|synchronized
-name|void
-name|setNorm
-parameter_list|(
-name|int
-name|doc
-parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|byte
-name|value
-parameter_list|)
-throws|throws
-name|StaleReaderException
-throws|,
-name|CorruptIndexException
-throws|,
-name|LockObtainFailedException
-throws|,
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|acquireWriteLock
-argument_list|()
-expr_stmt|;
-name|hasChanges
-operator|=
-literal|true
-expr_stmt|;
-name|doSetNorm
-argument_list|(
-name|doc
-argument_list|,
-name|field
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Implements setNorm in subclass.*/
-DECL|method|doSetNorm
-specifier|protected
-specifier|abstract
-name|void
-name|doSetNorm
-parameter_list|(
-name|int
-name|doc
-parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|byte
-name|value
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-function_decl|;
 comment|/**    * Returns {@link Fields} for this reader.    * This method may return null if the reader has no    * postings.    *    *<p><b>NOTE</b>: if this is a multi reader ({@link    * #getSequentialSubReaders} is not null) then this    * method will throw UnsupportedOperationException.  If    * you really need a {@link Fields} for such a reader,    * use {@link MultiFields#getFields}.  However, for    * performance reasons, it's best to get all sub-readers    * using {@link ReaderUtil#gatherSubReaders} and iterate    * through them yourself. */
 DECL|method|fields
 specifier|public
@@ -1991,6 +1627,7 @@ name|IOException
 function_decl|;
 DECL|method|docFreq
 specifier|public
+specifier|final
 name|int
 name|docFreq
 parameter_list|(
@@ -2110,6 +1747,7 @@ block|}
 comment|/** Returns the number of documents containing the term    *<code>t</code>.  This method returns 0 if the term or    * field does not exists.  This method does not take into    * account deleted documents that have not yet been merged    * away. */
 DECL|method|totalTermFreq
 specifier|public
+specifier|final
 name|long
 name|totalTermFreq
 parameter_list|(
@@ -2202,6 +1840,7 @@ block|}
 comment|/** This may return null if the field does not exist.*/
 DECL|method|terms
 specifier|public
+specifier|final
 name|Terms
 name|terms
 parameter_list|(
@@ -2241,6 +1880,7 @@ block|}
 comment|/** Returns {@link DocsEnum} for the specified field&    *  term.  This may return null, if either the field or    *  term does not exist. */
 DECL|method|termDocsEnum
 specifier|public
+specifier|final
 name|DocsEnum
 name|termDocsEnum
 parameter_list|(
@@ -2346,6 +1986,7 @@ block|}
 comment|/** Returns {@link DocsAndPositionsEnum} for the specified    *  field& term.  This may return null, if either the    *  field or term does not exist, or, positions were not    *  indexed for this field. */
 DECL|method|termPositionsEnum
 specifier|public
+specifier|final
 name|DocsAndPositionsEnum
 name|termPositionsEnum
 parameter_list|(
@@ -2446,6 +2087,7 @@ block|}
 comment|/**    * Returns {@link DocsEnum} for the specified field and    * {@link TermState}. This may return null, if either the field or the term    * does not exists or the {@link TermState} is invalid for the underlying    * implementation.*/
 DECL|method|termDocsEnum
 specifier|public
+specifier|final
 name|DocsEnum
 name|termDocsEnum
 parameter_list|(
@@ -2550,6 +2192,7 @@ block|}
 comment|/**    * Returns {@link DocsAndPositionsEnum} for the specified field and    * {@link TermState}. This may return null, if either the field or the term    * does not exists, the {@link TermState} is invalid for the underlying    * implementation, or positions were not indexed for this field. */
 DECL|method|termPositionsEnum
 specifier|public
+specifier|final
 name|DocsAndPositionsEnum
 name|termPositionsEnum
 parameter_list|(
@@ -2646,319 +2289,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Deletes the document numbered<code>docNum</code>.  Once a document is    * deleted it will not appear in TermDocs or TermPositions enumerations.    * Attempts to read its field with the {@link #document}    * method will result in an error.  The presence of this document may still be    * reflected in the {@link #docFreq} statistic, though    * this will be corrected eventually as the index is further modified.    *    * @throws StaleReaderException if the index has changed    * since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
-DECL|method|deleteDocument
-specifier|public
-specifier|synchronized
-name|void
-name|deleteDocument
-parameter_list|(
-name|int
-name|docNum
-parameter_list|)
-throws|throws
-name|StaleReaderException
-throws|,
-name|CorruptIndexException
-throws|,
-name|LockObtainFailedException
-throws|,
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|acquireWriteLock
-argument_list|()
-expr_stmt|;
-name|hasChanges
-operator|=
-literal|true
-expr_stmt|;
-name|doDelete
-argument_list|(
-name|docNum
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Implements deletion of the document numbered<code>docNum</code>.    * Applications should call {@link #deleteDocument(int)} or {@link #deleteDocuments(Term)}.    */
-DECL|method|doDelete
-specifier|protected
-specifier|abstract
-name|void
-name|doDelete
-parameter_list|(
-name|int
-name|docNum
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-function_decl|;
-comment|/** Deletes all documents that have a given<code>term</code> indexed.    * This is useful if one uses a document field to hold a unique ID string for    * the document.  Then to delete such a document, one merely constructs a    * term with the appropriate field and the unique ID string as its text and    * passes it to this method.    * See {@link #deleteDocument(int)} for information about when this deletion will     * become effective.    *    * @return the number of documents deleted    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws CorruptIndexException if the index is corrupt    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws IOException if there is a low-level IO error    */
-DECL|method|deleteDocuments
-specifier|public
-name|int
-name|deleteDocuments
-parameter_list|(
-name|Term
-name|term
-parameter_list|)
-throws|throws
-name|StaleReaderException
-throws|,
-name|CorruptIndexException
-throws|,
-name|LockObtainFailedException
-throws|,
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|DocsEnum
-name|docs
-init|=
-name|MultiFields
-operator|.
-name|getTermDocsEnum
-argument_list|(
-name|this
-argument_list|,
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|this
-argument_list|)
-argument_list|,
-name|term
-operator|.
-name|field
-argument_list|()
-argument_list|,
-name|term
-operator|.
-name|bytes
-argument_list|()
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|docs
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|0
-return|;
-block|}
-name|int
-name|n
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|doc
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|doc
-operator|=
-name|docs
-operator|.
-name|nextDoc
-argument_list|()
-operator|)
-operator|!=
-name|DocsEnum
-operator|.
-name|NO_MORE_DOCS
-condition|)
-block|{
-name|deleteDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|n
-operator|++
-expr_stmt|;
-block|}
-return|return
-name|n
-return|;
-block|}
-comment|/** Undeletes all documents currently marked as deleted in    * this index.    *    *<p>NOTE: this method can only recover documents marked    * for deletion but not yet removed from the index; when    * and how Lucene removes deleted documents is an    * implementation detail, subject to change from release    * to release.  However, you can use {@link    * #numDeletedDocs} on the current IndexReader instance to    * see how many documents will be un-deleted.    *    * @throws StaleReaderException if the index has changed    *  since this reader was opened    * @throws LockObtainFailedException if another writer    *  has this index open (<code>write.lock</code> could not    *  be obtained)    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|undeleteAll
-specifier|public
-specifier|synchronized
-name|void
-name|undeleteAll
-parameter_list|()
-throws|throws
-name|StaleReaderException
-throws|,
-name|CorruptIndexException
-throws|,
-name|LockObtainFailedException
-throws|,
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|acquireWriteLock
-argument_list|()
-expr_stmt|;
-name|hasChanges
-operator|=
-literal|true
-expr_stmt|;
-name|doUndeleteAll
-argument_list|()
-expr_stmt|;
-block|}
-comment|/** Implements actual undeleteAll() in subclass. */
-DECL|method|doUndeleteAll
-specifier|protected
-specifier|abstract
-name|void
-name|doUndeleteAll
-parameter_list|()
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-function_decl|;
-comment|/** Does nothing by default. Subclasses that require a write lock for    *  index modifications must implement this method. */
-DECL|method|acquireWriteLock
-specifier|protected
-specifier|synchronized
-name|void
-name|acquireWriteLock
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-comment|/* NOOP */
-block|}
-comment|/**    *     * @throws IOException    */
-DECL|method|flush
-specifier|public
-specifier|final
-specifier|synchronized
-name|void
-name|flush
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|commit
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * @param commitUserData Opaque Map (String -> String)    *  that's recorded into the segments file in the index,    *  and retrievable by {@link    *  IndexReader#getCommitUserData}.    * @throws IOException    */
-DECL|method|flush
-specifier|public
-specifier|final
-specifier|synchronized
-name|void
-name|flush
-parameter_list|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|commitUserData
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|commit
-argument_list|(
-name|commitUserData
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Commit changes resulting from delete, undeleteAll, or    * setNorm operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    * @throws IOException if there is a low-level IO error    */
-DECL|method|commit
-specifier|protected
-specifier|final
-specifier|synchronized
-name|void
-name|commit
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|commit
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Commit changes resulting from delete, undeleteAll, or    * setNorm operations    *    * If an exception is hit, then either no changes or all    * changes will have been committed to the index    * (transactional semantics).    * @throws IOException if there is a low-level IO error    */
-DECL|method|commit
-specifier|public
-specifier|final
-specifier|synchronized
-name|void
-name|commit
-parameter_list|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|commitUserData
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-comment|// Don't call ensureOpen since we commit() on close
-name|doCommit
-argument_list|(
-name|commitUserData
-argument_list|)
-expr_stmt|;
-name|hasChanges
-operator|=
-literal|false
-expr_stmt|;
-block|}
-comment|/** Implements commit.  */
-DECL|method|doCommit
-specifier|protected
-specifier|abstract
-name|void
-name|doCommit
-parameter_list|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|commitUserData
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/**    * Closes files associated with this index.    * Also saves any new deletions to disk.    * No other methods should be called after this has been called.    * @throws IOException if there is a low-level IO error    */
 DECL|method|close
 specifier|public
@@ -3453,7 +2783,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Returns all commit points that exist in the Directory.    *  Normally, because the default is {@link    *  KeepOnlyLastCommitDeletionPolicy}, there would be only    *  one commit point.  But if you're using a custom {@link    *  IndexDeletionPolicy} then there could be many commits.    *  Once you have a given commit, you can open a reader on    *  it by calling {@link IndexReader#open(IndexCommit,boolean)}    *  There must be at least one commit in    *  the Directory, else this method throws {@link    *  IndexNotFoundException}.  Note that if a commit is in    *  progress while this method is running, that commit    *  may or may not be returned.    *      *  @return a sorted list of {@link IndexCommit}s, from oldest     *  to latest. */
+comment|/** Returns all commit points that exist in the Directory.    *  Normally, because the default is {@link    *  KeepOnlyLastCommitDeletionPolicy}, there would be only    *  one commit point.  But if you're using a custom {@link    *  IndexDeletionPolicy} then there could be many commits.    *  Once you have a given commit, you can open a reader on    *  it by calling {@link IndexReader#open(IndexCommit)}    *  There must be at least one commit in    *  the Directory, else this method throws {@link    *  IndexNotFoundException}.  Note that if a commit is in    *  progress while this method is running, that commit    *  may or may not be returned.    *      *  @return a sorted list of {@link IndexCommit}s, from oldest     *  to latest. */
 DECL|method|listCommits
 specifier|public
 specifier|static
@@ -3478,7 +2808,7 @@ name|dir
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns the sequential sub readers that this    *  reader is logically composed of. If this reader is not composed    *  of sequential child readers, it should return null.    *  If this method returns an empty array, that means this    *  reader is a null reader (for example a MultiReader    *  that has no sub readers).    *<p>    *  NOTE: You should not try using sub-readers returned by    *  this method to make any changes (setNorm, deleteDocument,    *  etc.). While this might succeed for one composite reader    *  (like MultiReader), it will most likely lead to index    *  corruption for other readers (like DirectoryReader obtained    *  through {@link #open}. Use the parent reader directly. */
+comment|/** Expert: returns the sequential sub readers that this    *  reader is logically composed of. If this reader is not composed    *  of sequential child readers, it should return null.    *  If this method returns an empty array, that means this    *  reader is a null reader (for example a MultiReader    *  that has no sub readers).    *<p>    *  NOTE: You should not try using sub-readers returned by    *  this method to make any changes (deleteDocument,    *  etc.). While this might succeed for one composite reader    *  (like MultiReader), it will most likely lead to index    *  corruption for other readers (like DirectoryReader obtained    *  through {@link #open}. Use the parent reader directly. */
 DECL|method|getSequentialSubReaders
 specifier|public
 name|IndexReader
@@ -3493,7 +2823,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Expert: Returns a the root {@link ReaderContext} for this    * {@link IndexReader}'s sub-reader tree. Iff this reader is composed of sub    * readers ,ie. this reader being a composite reader, this method returns a    * {@link CompositeReaderContext} holding the reader's direct children as well as a    * view of the reader tree's atomic leaf contexts. All sub-    * {@link ReaderContext} instances referenced from this readers top-level    * context are private to this reader and are not shared with another context    * tree. For example, IndexSearcher uses this API to drive searching by one    * atomic leaf reader at a time. If this reader is not composed of child    * readers, this method returns an {@link AtomicReaderContext}.    *<p>    * Note: Any of the sub-{@link CompositeReaderContext} instances reference from this    * top-level context holds a<code>null</code> {@link CompositeReaderContext#leaves}    * reference. Only the top-level context maintains the convenience leaf-view    * for performance reasons.    *<p>    * NOTE: You should not try using sub-readers returned by this method to make    * any changes (setNorm, deleteDocument, etc.). While this might succeed for    * one composite reader (like MultiReader), it will most likely lead to index    * corruption for other readers (like DirectoryReader obtained through    * {@link #open}. Use the top-level context's reader directly.    *     * @lucene.experimental    */
+comment|/**    * Expert: Returns a the root {@link ReaderContext} for this    * {@link IndexReader}'s sub-reader tree. Iff this reader is composed of sub    * readers ,ie. this reader being a composite reader, this method returns a    * {@link CompositeReaderContext} holding the reader's direct children as well as a    * view of the reader tree's atomic leaf contexts. All sub-    * {@link ReaderContext} instances referenced from this readers top-level    * context are private to this reader and are not shared with another context    * tree. For example, IndexSearcher uses this API to drive searching by one    * atomic leaf reader at a time. If this reader is not composed of child    * readers, this method returns an {@link AtomicReaderContext}.    *<p>    * Note: Any of the sub-{@link CompositeReaderContext} instances reference from this    * top-level context holds a<code>null</code> {@link CompositeReaderContext#leaves}    * reference. Only the top-level context maintains the convenience leaf-view    * for performance reasons.    *     * @lucene.experimental    */
 DECL|method|getTopReaderContext
 specifier|public
 specifier|abstract
@@ -3517,12 +2847,27 @@ block|}
 comment|/** Returns the number of unique terms (across all fields)    *  in this reader.    *    *  @return number of unique terms or -1 if this count    *  cannot be easily determined (eg Multi*Readers).    *  Instead, you should call {@link    *  #getSequentialSubReaders} and ask each sub reader for    *  its unique term count. */
 DECL|method|getUniqueTermCount
 specifier|public
+specifier|final
 name|long
 name|getUniqueTermCount
 parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+operator|!
+name|getTopReaderContext
+argument_list|()
+operator|.
+name|isAtomic
+condition|)
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
 specifier|final
 name|Fields
 name|fields

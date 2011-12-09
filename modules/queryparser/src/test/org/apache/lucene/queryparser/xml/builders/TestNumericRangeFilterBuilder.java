@@ -402,8 +402,6 @@ operator|.
 name|open
 argument_list|(
 name|ramDir
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 decl_stmt|;

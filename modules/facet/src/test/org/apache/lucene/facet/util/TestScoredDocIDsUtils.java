@@ -1480,25 +1480,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|writer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 comment|// Delete documents marked for deletion
-name|IndexReader
-name|reader
-init|=
-name|IndexReader
-operator|.
-name|open
-argument_list|(
-name|dir
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-name|reader
+name|writer
 operator|.
 name|deleteDocuments
 argument_list|(
@@ -1515,7 +1498,7 @@ name|delTxt
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|reader
+name|writer
 operator|.
 name|close
 argument_list|()
@@ -1527,8 +1510,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 return|;
 block|}

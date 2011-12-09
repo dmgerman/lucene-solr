@@ -233,6 +233,18 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
+name|normsFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|dir
+argument_list|,
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Encodes/decodes postings */
 DECL|method|postingsFormat
@@ -280,6 +292,14 @@ specifier|public
 specifier|abstract
 name|SegmentInfosFormat
 name|segmentInfosFormat
+parameter_list|()
+function_decl|;
+comment|/** Encodes/decodes document normalization values */
+DECL|method|normsFormat
+specifier|public
+specifier|abstract
+name|NormsFormat
+name|normsFormat
 parameter_list|()
 function_decl|;
 comment|/** looks up a codec by name */
