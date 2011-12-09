@@ -38,6 +38,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -65,24 +79,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|values
-operator|.
-name|IndexDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
 operator|.
 name|PerDocFieldValues
 import|;
@@ -142,7 +138,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Merges the given {@link org.apache.lucene.index.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param docValues docValues array containing one instance per reader (    *          {@link org.apache.lucene.index.MergeState#readers}) or<code>null</code> if the reader has    *          no {@link IndexDocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Merges the given {@link org.apache.lucene.index.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param docValues docValues array containing one instance per reader (    *          {@link org.apache.lucene.index.MergeState#readers}) or<code>null</code> if the reader has    *          no {@link DocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|merge
 specifier|public
 name|void
@@ -151,7 +147,7 @@ parameter_list|(
 name|MergeState
 name|mergeState
 parameter_list|,
-name|IndexDocValues
+name|DocValues
 index|[]
 name|docValues
 parameter_list|)
@@ -299,7 +295,7 @@ comment|/**      * the source reader for this MergeState - merged values should 
 DECL|field|reader
 specifier|public
 specifier|final
-name|IndexDocValues
+name|DocValues
 name|reader
 decl_stmt|;
 comment|/** the absolute docBase for this MergeState within the resulting segment */
@@ -327,7 +323,7 @@ DECL|method|SingleSubMergeState
 specifier|public
 name|SingleSubMergeState
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 name|reader
 parameter_list|,
 name|int

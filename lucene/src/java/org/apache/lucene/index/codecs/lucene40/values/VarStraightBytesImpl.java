@@ -108,9 +108,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
+name|DocValues
 operator|.
-name|ValueType
+name|Type
 import|;
 end_import
 
@@ -1384,7 +1384,7 @@ literal|true
 argument_list|,
 name|context
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|BYTES_VAR_STRAIGHT
 argument_list|)
@@ -1491,7 +1491,7 @@ operator|.
 name|readVLong
 argument_list|()
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|BYTES_VAR_STRAIGHT
 argument_list|)
@@ -1585,7 +1585,7 @@ parameter_list|,
 name|IndexInput
 name|index
 parameter_list|,
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 throws|throws

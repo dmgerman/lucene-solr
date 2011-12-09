@@ -22,9 +22,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|ValueType
+name|DocValues
 import|;
 end_import
 
@@ -62,7 +60,9 @@ name|isIndexed
 decl_stmt|;
 DECL|field|docValues
 specifier|private
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|docValues
 decl_stmt|;
 comment|// true if term vector for this field should be stored
@@ -151,7 +151,9 @@ parameter_list|,
 name|IndexOptions
 name|indexOptions
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|docValues
 parameter_list|)
 block|{
@@ -505,7 +507,9 @@ DECL|method|setDocValuesType
 name|void
 name|setDocValuesType
 parameter_list|(
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|v
 parameter_list|)
 block|{
@@ -527,7 +531,9 @@ specifier|public
 name|void
 name|resetDocValuesType
 parameter_list|(
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|v
 parameter_list|)
 block|{
@@ -558,7 +564,9 @@ return|;
 block|}
 DECL|method|getDocValuesType
 specifier|public
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|getDocValuesType
 parameter_list|()
 block|{

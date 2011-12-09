@@ -30,39 +30,41 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
+operator|.
+name|Type
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|IndexDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|ValueType
 import|;
 end_import
 
@@ -181,7 +183,7 @@ argument_list|<
 name|GROUP_VALUE
 argument_list|>
 block|{
-comment|/**    * Constructs a {@link DVSecondPassGroupingCollector}.    * Selects and constructs the most optimal second pass collector implementation for grouping by {@link IndexDocValues}.    *    * @param groupField      The field to group by    * @param diskResident    Whether the values to group by should be disk resident    * @param type            The {@link org.apache.lucene.index.values.ValueType} which is used to select a concrete implementation.    * @param searchGroups    The groups from the first phase search    * @param groupSort       The sort used for the groups    * @param withinGroupSort The sort used for documents inside a group    * @param maxDocsPerGroup The maximum number of documents to collect per group    * @param getScores       Whether to include scores for the documents inside a group    * @param getMaxScores    Whether to keep track of the higest score per group    * @param fillSortFields  Whether to include the sort values    * @return the most optimal second pass collector implementation for grouping by {@link IndexDocValues}    * @throws IOException    If I/O related errors occur    */
+comment|/**    * Constructs a {@link DVSecondPassGroupingCollector}.    * Selects and constructs the most optimal second pass collector implementation for grouping by {@link DocValues}.    *    * @param groupField      The field to group by    * @param diskResident    Whether the values to group by should be disk resident    * @param type            The {@link Type} which is used to select a concrete implementation.    * @param searchGroups    The groups from the first phase search    * @param groupSort       The sort used for the groups    * @param withinGroupSort The sort used for documents inside a group    * @param maxDocsPerGroup The maximum number of documents to collect per group    * @param getScores       Whether to include scores for the documents inside a group    * @param getMaxScores    Whether to keep track of the higest score per group    * @param fillSortFields  Whether to include the sort values    * @return the most optimal second pass collector implementation for grouping by {@link DocValues}    * @throws IOException    If I/O related errors occur    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -199,7 +201,9 @@ parameter_list|,
 name|boolean
 name|diskResident
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|type
 parameter_list|,
 name|Collection
@@ -413,7 +417,9 @@ name|groupField
 decl_stmt|;
 DECL|field|valueType
 specifier|final
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 decl_stmt|;
 DECL|field|diskResident
@@ -427,7 +433,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|boolean
@@ -522,7 +530,7 @@ name|readerContext
 argument_list|)
 expr_stmt|;
 specifier|final
-name|IndexDocValues
+name|DocValues
 name|dv
 init|=
 name|readerContext
@@ -535,7 +543,7 @@ name|groupField
 argument_list|)
 decl_stmt|;
 specifier|final
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|dvSource
@@ -587,7 +595,7 @@ specifier|abstract
 name|void
 name|setDocValuesSources
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -601,7 +609,7 @@ function_decl|;
 comment|/**    * @return The default source when no doc values are available.    * @param readerContext The current reader context    */
 DECL|method|getDefaultSource
 specifier|protected
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|getDefaultSource
@@ -613,7 +621,7 @@ name|readerContext
 parameter_list|)
 block|{
 return|return
-name|IndexDocValues
+name|DocValues
 operator|.
 name|getDefaultSource
 argument_list|(
@@ -633,7 +641,7 @@ argument_list|>
 block|{
 DECL|field|source
 specifier|private
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -644,7 +652,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|boolean
@@ -737,7 +747,7 @@ specifier|protected
 name|void
 name|setDocValuesSources
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -768,7 +778,7 @@ argument_list|>
 block|{
 DECL|field|source
 specifier|private
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -779,7 +789,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|boolean
@@ -872,7 +884,7 @@ specifier|protected
 name|void
 name|setDocValuesSources
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -903,7 +915,7 @@ argument_list|>
 block|{
 DECL|field|source
 specifier|private
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -924,7 +936,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|boolean
@@ -1021,7 +1035,7 @@ specifier|protected
 name|void
 name|setDocValuesSources
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -1052,7 +1066,7 @@ argument_list|>
 block|{
 DECL|field|source
 specifier|private
-name|IndexDocValues
+name|DocValues
 operator|.
 name|SortedSource
 name|source
@@ -1084,7 +1098,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|boolean
@@ -1231,7 +1247,7 @@ specifier|protected
 name|void
 name|setDocValuesSources
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -1312,7 +1328,7 @@ annotation|@
 name|Override
 DECL|method|getDefaultSource
 specifier|protected
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|getDefaultSource
@@ -1324,7 +1340,7 @@ name|readerContext
 parameter_list|)
 block|{
 return|return
-name|IndexDocValues
+name|DocValues
 operator|.
 name|getDefaultSortedSource
 argument_list|(

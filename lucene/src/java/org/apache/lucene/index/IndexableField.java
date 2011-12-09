@@ -88,25 +88,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|PerDocFieldValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|ValueType
+name|DocValues
 import|;
 end_import
 
@@ -221,7 +203,9 @@ function_decl|;
 comment|/** DocValues type; only used if docValues is non-null */
 DECL|method|docValuesType
 specifier|public
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|docValuesType
 parameter_list|()
 function_decl|;

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.codecs
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
@@ -9,8 +9,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|codecs
 package|;
 end_package
 
@@ -48,9 +46,25 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
+name|codecs
 operator|.
-name|IndexDocValues
+name|PerDocConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|PostingsFormat
 import|;
 end_import
 
@@ -67,11 +81,11 @@ name|PerDocValues
 implements|implements
 name|Closeable
 block|{
-comment|/**    * Returns {@link IndexDocValues} for the current field.    *     * @param field    *          the field name    * @return the {@link IndexDocValues} for this field or<code>null</code> if not    *         applicable.    * @throws IOException    */
+comment|/**    * Returns {@link DocValues} for the current field.    *     * @param field    *          the field name    * @return the {@link DocValues} for this field or<code>null</code> if not    *         applicable.    * @throws IOException    */
 DECL|method|docValues
 specifier|public
 specifier|abstract
-name|IndexDocValues
+name|DocValues
 name|docValues
 parameter_list|(
 name|String

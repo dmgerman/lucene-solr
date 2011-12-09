@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.values
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
@@ -9,8 +9,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|values
 package|;
 end_package
 
@@ -67,16 +65,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for compound IndexReader providing access to per segment  * {@link IndexDocValues}  *   * @lucene.experimental  * @lucene.internal  */
+comment|/**  * A wrapper for compound IndexReader providing access to per segment  * {@link DocValues}  *   * @lucene.experimental  * @lucene.internal  */
 end_comment
 
 begin_class
-DECL|class|MultiIndexDocValues
+DECL|class|MultiDocValues
 specifier|public
 class|class
-name|MultiIndexDocValues
+name|MultiDocValues
 extends|extends
-name|IndexDocValues
+name|DocValues
 block|{
 DECL|class|DocValuesIndex
 specifier|public
@@ -110,14 +108,14 @@ name|length
 decl_stmt|;
 DECL|field|docValues
 specifier|final
-name|IndexDocValues
+name|DocValues
 name|docValues
 decl_stmt|;
 DECL|method|DocValuesIndex
 specifier|public
 name|DocValuesIndex
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 name|docValues
 parameter_list|,
 name|int
@@ -161,7 +159,7 @@ name|starts
 decl_stmt|;
 DECL|field|type
 specifier|private
-name|ValueType
+name|Type
 name|type
 decl_stmt|;
 DECL|field|valueSize
@@ -169,9 +167,9 @@ specifier|private
 name|int
 name|valueSize
 decl_stmt|;
-DECL|method|MultiIndexDocValues
+DECL|method|MultiDocValues
 specifier|public
-name|MultiIndexDocValues
+name|MultiDocValues
 parameter_list|()
 block|{
 name|starts
@@ -191,9 +189,9 @@ literal|0
 index|]
 expr_stmt|;
 block|}
-DECL|method|MultiIndexDocValues
+DECL|method|MultiDocValues
 specifier|public
-name|MultiIndexDocValues
+name|MultiDocValues
 parameter_list|(
 name|DocValuesIndex
 index|[]
@@ -230,7 +228,7 @@ return|;
 block|}
 DECL|method|reset
 specifier|public
-name|IndexDocValues
+name|DocValues
 name|reset
 parameter_list|(
 name|DocValuesIndex
@@ -401,7 +399,7 @@ specifier|static
 class|class
 name|EmptyDocValues
 extends|extends
-name|IndexDocValues
+name|DocValues
 block|{
 DECL|field|maxDoc
 specifier|final
@@ -420,7 +418,7 @@ parameter_list|(
 name|int
 name|maxDoc
 parameter_list|,
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -459,7 +457,7 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|ValueType
+name|Type
 name|type
 parameter_list|()
 block|{
@@ -832,7 +830,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|// TODO: this is dup of IndexDocValues.getDefaultSource()?
+comment|// TODO: this is dup of DocValues.getDefaultSource()?
 DECL|class|EmptySource
 specifier|private
 specifier|static
@@ -845,7 +843,7 @@ DECL|method|EmptySource
 specifier|public
 name|EmptySource
 parameter_list|(
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -914,7 +912,7 @@ annotation|@
 name|Override
 DECL|method|type
 specifier|public
-name|ValueType
+name|Type
 name|type
 parameter_list|()
 block|{

@@ -30,39 +30,41 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
+operator|.
+name|Type
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|IndexDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|ValueType
 import|;
 end_import
 
@@ -189,7 +191,9 @@ name|diskResident
 decl_stmt|;
 DECL|field|valueType
 specifier|final
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 decl_stmt|;
 DECL|field|scratchBytesRef
@@ -217,7 +221,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|int
@@ -251,7 +257,7 @@ operator|=
 name|diskResident
 expr_stmt|;
 block|}
-comment|/**    * Creates an<code>AbstractAllGroupHeadsCollector</code> instance based on the supplied arguments.    * This factory method decides with implementation is best suited.    *    * @param groupField      The field to group by    * @param sortWithinGroup The sort within each group    * @param type The {@link ValueType} which is used to select a concrete implementation.    * @param diskResident Whether the values to group by should be disk resident    * @return an<code>AbstractAllGroupHeadsCollector</code> instance based on the supplied arguments    * @throws IOException If I/O related errors occur    */
+comment|/**    * Creates an<code>AbstractAllGroupHeadsCollector</code> instance based on the supplied arguments.    * This factory method decides with implementation is best suited.    *    * @param groupField      The field to group by    * @param sortWithinGroup The sort within each group    * @param type The {@link Type} which is used to select a concrete implementation.    * @param diskResident Whether the values to group by should be disk resident    * @return an<code>AbstractAllGroupHeadsCollector</code> instance based on the supplied arguments    * @throws IOException If I/O related errors occur    */
 DECL|method|create
 specifier|public
 specifier|static
@@ -264,7 +270,9 @@ parameter_list|,
 name|Sort
 name|sortWithinGroup
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|type
 parameter_list|,
 name|boolean
@@ -657,7 +665,7 @@ operator|=
 name|readerContext
 expr_stmt|;
 specifier|final
-name|IndexDocValues
+name|DocValues
 name|dv
 init|=
 name|readerContext
@@ -670,7 +678,7 @@ name|groupField
 argument_list|)
 decl_stmt|;
 specifier|final
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|dvSource
@@ -720,7 +728,7 @@ specifier|abstract
 name|void
 name|setDocValuesSources
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -729,7 +737,7 @@ function_decl|;
 comment|/**    * @return The default source when no doc values are available.    * @param readerContext The current reader context    */
 DECL|method|getDefaultSource
 specifier|protected
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|getDefaultSource
@@ -741,7 +749,7 @@ name|readerContext
 parameter_list|)
 block|{
 return|return
-name|IndexDocValues
+name|DocValues
 operator|.
 name|getDefaultSource
 argument_list|(
@@ -786,7 +794,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|Sort
@@ -1149,7 +1159,7 @@ name|GeneralAllGroupHeadsCollector
 block|{
 DECL|field|source
 specifier|private
-name|IndexDocValues
+name|DocValues
 operator|.
 name|SortedSource
 name|source
@@ -1160,7 +1170,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|Sort
@@ -1230,7 +1242,7 @@ specifier|protected
 name|void
 name|setDocValuesSources
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -1250,7 +1262,7 @@ annotation|@
 name|Override
 DECL|method|getDefaultSource
 specifier|protected
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|getDefaultSource
@@ -1262,7 +1274,7 @@ name|readerContext
 parameter_list|)
 block|{
 return|return
-name|IndexDocValues
+name|DocValues
 operator|.
 name|getDefaultSortedSource
 argument_list|(
@@ -1287,7 +1299,7 @@ name|GeneralAllGroupHeadsCollector
 block|{
 DECL|field|source
 specifier|private
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -1298,7 +1310,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|Sort
@@ -1368,7 +1382,7 @@ specifier|protected
 name|void
 name|setDocValuesSources
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -1391,7 +1405,7 @@ name|GeneralAllGroupHeadsCollector
 block|{
 DECL|field|source
 specifier|private
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -1402,7 +1416,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|Sort
@@ -1462,7 +1478,7 @@ specifier|protected
 name|void
 name|setDocValuesSources
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -1485,7 +1501,7 @@ name|GeneralAllGroupHeadsCollector
 block|{
 DECL|field|source
 specifier|private
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source
@@ -1496,7 +1512,9 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|valueType
 parameter_list|,
 name|Sort
@@ -1556,7 +1574,7 @@ specifier|protected
 name|void
 name|setDocValuesSources
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
 name|source

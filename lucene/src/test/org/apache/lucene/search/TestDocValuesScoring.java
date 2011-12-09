@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IndexDocValuesField
+name|DocValuesField
 import|;
 end_import
 
@@ -148,6 +148,22 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+operator|.
+name|Source
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 operator|.
 name|AtomicReaderContext
@@ -167,24 +183,6 @@ operator|.
 name|codecs
 operator|.
 name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|IndexDocValues
-operator|.
-name|Source
 import|;
 end_import
 
@@ -324,7 +322,7 @@ name|Exception
 block|{
 name|assumeFalse
 argument_list|(
-literal|"PreFlex codec cannot work with IndexDocValues!"
+literal|"PreFlex codec cannot work with DocValues!"
 argument_list|,
 literal|"Lucene3x"
 operator|.
@@ -385,11 +383,11 @@ argument_list|(
 name|field
 argument_list|)
 expr_stmt|;
-name|IndexDocValuesField
+name|DocValuesField
 name|dvField
 init|=
 operator|new
-name|IndexDocValuesField
+name|DocValuesField
 argument_list|(
 literal|"foo_boost"
 argument_list|)

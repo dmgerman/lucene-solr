@@ -42,9 +42,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|IndexDocValues
+name|DocValues
 import|;
 end_import
 
@@ -57,8 +55,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|values
 operator|.
 name|PerDocFieldValues
 import|;
@@ -74,9 +70,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
+name|DocValues
 operator|.
-name|ValueType
+name|Source
 import|;
 end_import
 
@@ -90,11 +86,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
+name|DocValues
 operator|.
-name|IndexDocValues
-operator|.
-name|Source
+name|Type
 import|;
 end_import
 
@@ -237,7 +231,7 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|,
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 throws|throws
@@ -262,7 +256,7 @@ block|}
 DECL|method|getValues
 specifier|public
 specifier|static
-name|IndexDocValues
+name|DocValues
 name|getValues
 parameter_list|(
 name|Directory
@@ -277,7 +271,7 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|,
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 throws|throws
@@ -305,7 +299,7 @@ specifier|static
 name|int
 name|typeToSize
 parameter_list|(
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -357,7 +351,7 @@ decl_stmt|;
 DECL|field|template
 specifier|private
 specifier|final
-name|IndexDocValuesArray
+name|DocValuesArray
 name|template
 decl_stmt|;
 DECL|method|FloatsWriter
@@ -376,7 +370,7 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|,
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 throws|throws
@@ -422,7 +416,7 @@ name|size
 expr_stmt|;
 name|template
 operator|=
-name|IndexDocValuesArray
+name|DocValuesArray
 operator|.
 name|TEMPLATES
 operator|.
@@ -502,7 +496,7 @@ specifier|protected
 name|boolean
 name|tryBulkMerge
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 name|docValues
 parameter_list|)
 block|{
@@ -571,7 +565,7 @@ name|FixedStraightReader
 block|{
 DECL|field|arrayTemplate
 specifier|final
-name|IndexDocValuesArray
+name|DocValuesArray
 name|arrayTemplate
 decl_stmt|;
 DECL|method|FloatsReader
@@ -589,7 +583,7 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|,
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 throws|throws
@@ -614,7 +608,7 @@ argument_list|)
 expr_stmt|;
 name|arrayTemplate
 operator|=
-name|IndexDocValuesArray
+name|DocValuesArray
 operator|.
 name|TEMPLATES
 operator|.

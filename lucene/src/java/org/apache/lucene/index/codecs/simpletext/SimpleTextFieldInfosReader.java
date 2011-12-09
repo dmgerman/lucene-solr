@@ -136,9 +136,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|codecs
-operator|.
-name|FieldInfosReader
+name|DocValues
 import|;
 end_import
 
@@ -152,9 +150,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
+name|codecs
 operator|.
-name|ValueType
+name|FieldInfosReader
 import|;
 end_import
 
@@ -722,7 +720,9 @@ name|scratch
 argument_list|)
 decl_stmt|;
 specifier|final
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|docValuesType
 decl_stmt|;
 if|if
@@ -744,7 +744,9 @@ else|else
 block|{
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|valueOf
 argument_list|(

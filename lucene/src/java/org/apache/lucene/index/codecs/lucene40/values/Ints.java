@@ -42,9 +42,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|IndexDocValues
+name|DocValues
 import|;
 end_import
 
@@ -58,25 +56,23 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
+name|DocValues
+operator|.
+name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
 operator|.
 name|PerDocFieldValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|ValueType
 import|;
 end_import
 
@@ -222,7 +218,7 @@ parameter_list|,
 name|Counter
 name|bytesUsed
 parameter_list|,
-name|ValueType
+name|Type
 name|type
 parameter_list|,
 name|IOContext
@@ -234,7 +230,7 @@ block|{
 return|return
 name|type
 operator|==
-name|ValueType
+name|Type
 operator|.
 name|VAR_INTS
 condition|?
@@ -270,7 +266,7 @@ block|}
 DECL|method|getValues
 specifier|public
 specifier|static
-name|IndexDocValues
+name|DocValues
 name|getValues
 parameter_list|(
 name|Directory
@@ -282,7 +278,7 @@ parameter_list|,
 name|int
 name|numDocs
 parameter_list|,
-name|ValueType
+name|Type
 name|type
 parameter_list|,
 name|IOContext
@@ -294,7 +290,7 @@ block|{
 return|return
 name|type
 operator|==
-name|ValueType
+name|Type
 operator|.
 name|VAR_INTS
 condition|?
@@ -330,7 +326,7 @@ block|}
 DECL|method|sizeToType
 specifier|private
 specifier|static
-name|ValueType
+name|Type
 name|sizeToType
 parameter_list|(
 name|int
@@ -346,7 +342,7 @@ case|case
 literal|1
 case|:
 return|return
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_8
 return|;
@@ -354,7 +350,7 @@ case|case
 literal|2
 case|:
 return|return
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_16
 return|;
@@ -362,7 +358,7 @@ case|case
 literal|4
 case|:
 return|return
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_32
 return|;
@@ -370,7 +366,7 @@ case|case
 literal|8
 case|:
 return|return
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_64
 return|;
@@ -392,7 +388,7 @@ specifier|static
 name|int
 name|typeToSize
 parameter_list|(
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -449,7 +445,7 @@ block|{
 DECL|field|template
 specifier|private
 specifier|final
-name|IndexDocValuesArray
+name|DocValuesArray
 name|template
 decl_stmt|;
 DECL|method|IntsWriter
@@ -468,7 +464,7 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|,
-name|ValueType
+name|Type
 name|valueType
 parameter_list|)
 throws|throws
@@ -514,7 +510,7 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|,
-name|ValueType
+name|Type
 name|valueType
 parameter_list|)
 throws|throws
@@ -560,7 +556,7 @@ name|size
 expr_stmt|;
 name|template
 operator|=
-name|IndexDocValuesArray
+name|DocValuesArray
 operator|.
 name|TEMPLATES
 operator|.
@@ -669,7 +665,7 @@ specifier|protected
 name|boolean
 name|tryBulkMerge
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 name|docValues
 parameter_list|)
 block|{
@@ -707,7 +703,7 @@ block|{
 DECL|field|arrayTemplate
 specifier|private
 specifier|final
-name|IndexDocValuesArray
+name|DocValuesArray
 name|arrayTemplate
 decl_stmt|;
 DECL|method|IntsReader
@@ -725,7 +721,7 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|,
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 throws|throws
@@ -750,7 +746,7 @@ argument_list|)
 expr_stmt|;
 name|arrayTemplate
 operator|=
-name|IndexDocValuesArray
+name|DocValuesArray
 operator|.
 name|TEMPLATES
 operator|.

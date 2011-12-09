@@ -60,8 +60,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
 name|PerDocFieldValues
 import|;
 end_import
@@ -76,11 +74,29 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|ValueType
+name|DocValues
 import|;
 end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
+operator|.
+name|Type
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -97,18 +113,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This class provides a {@link Field} that enables storing of typed  * per-document values for scoring, sorting or value retrieval. Here's an  * example usage, adding an int value:  *   *<pre>  * document.add(new IndexDocValuesField(name).setInt(value));  *</pre>  *   * For optimal performance, re-use the<code>DocValuesField</code> and  * {@link Document} instance for more than one document:  *   *<pre>  *  IndexDocValuesField field = new IndexDocValuesField(name);  *  Document document = new Document();  *  document.add(field);  *   *  for(all documents) {  *    ...  *    field.setInt(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   *<p>  * If doc values are stored in addition to an indexed ({@link FieldType#setIndexed(boolean)}) or stored  * ({@link FieldType#setStored(boolean)}) value it's recommended to pass the appropriate {@link FieldType}  * when creating the field:  *   *<pre>  *  IndexDocValuesField field = new IndexDocValuesField(name, StringField.TYPE_STORED);  *  Document document = new Document();  *  document.add(field);  *  for(all documents) {  *    ...  *    field.setInt(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   * */
-end_comment
-
-begin_comment
-comment|// TODO: maybe rename to DocValuesField?
+comment|/**  *<p>  * This class provides a {@link Field} that enables storing of typed  * per-document values for scoring, sorting or value retrieval. Here's an  * example usage, adding an int value:  *   *<pre>  * document.add(new DocValuesField(name).setInt(value));  *</pre>  *   * For optimal performance, re-use the<code>DocValuesField</code> and  * {@link Document} instance for more than one document:  *   *<pre>  *  DocValuesField field = new DocValuesField(name);  *  Document document = new Document();  *  document.add(field);  *   *  for(all documents) {  *    ...  *    field.setInt(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   *<p>  * If doc values are stored in addition to an indexed ({@link FieldType#setIndexed(boolean)}) or stored  * ({@link FieldType#setStored(boolean)}) value it's recommended to pass the appropriate {@link FieldType}  * when creating the field:  *   *<pre>  *  DocValuesField field = new DocValuesField(name, StringField.TYPE_STORED);  *  Document document = new Document();  *  document.add(field);  *  for(all documents) {  *    ...  *    field.setInt(value)  *    writer.addDocument(document);  *    ...  *  }  *</pre>  *   * */
 end_comment
 
 begin_class
-DECL|class|IndexDocValuesField
+DECL|class|DocValuesField
 specifier|public
 class|class
-name|IndexDocValuesField
+name|DocValuesField
 extends|extends
 name|Field
 implements|implements
@@ -131,7 +143,9 @@ name|longValue
 decl_stmt|;
 DECL|field|type
 specifier|protected
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|type
 decl_stmt|;
 DECL|field|bytesComparator
@@ -142,10 +156,10 @@ name|BytesRef
 argument_list|>
 name|bytesComparator
 decl_stmt|;
-comment|/**    * Creates a new {@link IndexDocValuesField} with the given name.    */
-DECL|method|IndexDocValuesField
+comment|/**    * Creates a new {@link DocValuesField} with the given name.    */
+DECL|method|DocValuesField
 specifier|public
-name|IndexDocValuesField
+name|DocValuesField
 parameter_list|(
 name|String
 name|name
@@ -161,9 +175,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|IndexDocValuesField
+DECL|method|DocValuesField
 specifier|public
-name|IndexDocValuesField
+name|DocValuesField
 parameter_list|(
 name|String
 name|name
@@ -182,9 +196,9 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|IndexDocValuesField
+DECL|method|DocValuesField
 specifier|public
-name|IndexDocValuesField
+name|DocValuesField
 parameter_list|(
 name|String
 name|name
@@ -220,7 +234,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets the given<code>long</code> value and sets the field's {@link ValueType} to    * {@link ValueType#VAR_INTS} unless already set. If you want to change the    * default type use {@link #setDocValuesType(ValueType)}.    */
+comment|/**    * Sets the given<code>long</code> value and sets the field's {@link Type} to    * {@link Type#VAR_INTS} unless already set. If you want to change the    * default type use {@link #setDocValuesType(DocValues.Type)}.    */
 DECL|method|setInt
 specifier|public
 name|void
@@ -238,7 +252,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>long</code> value as a 64 bit signed integer.    *     * @param value    *          the value to set    * @param fixed    *          if<code>true</code> {@link ValueType#FIXED_INTS_64} is used    *          otherwise {@link ValueType#VAR_INTS}    */
+comment|/**    * Sets the given<code>long</code> value as a 64 bit signed integer.    *     * @param value    *          the value to set    * @param fixed    *          if<code>true</code> {@link Type#FIXED_INTS_64} is used    *          otherwise {@link Type#VAR_INTS}    */
 DECL|method|setInt
 specifier|public
 name|void
@@ -262,11 +276,15 @@ name|type
 operator|=
 name|fixed
 condition|?
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FIXED_INTS_64
 else|:
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|VAR_INTS
 expr_stmt|;
@@ -276,7 +294,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>int</code> value and sets the field's {@link ValueType} to    * {@link ValueType#VAR_INTS} unless already set. If you want to change the    * default type use {@link #setDocValuesType(ValueType)}.    */
+comment|/**    * Sets the given<code>int</code> value and sets the field's {@link Type} to    * {@link Type#VAR_INTS} unless already set. If you want to change the    * default type use {@link #setDocValuesType(DocValues.Type)}.    */
 DECL|method|setInt
 specifier|public
 name|void
@@ -294,7 +312,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>int</code> value as a 32 bit signed integer.    *     * @param value    *          the value to set    * @param fixed    *          if<code>true</code> {@link ValueType#FIXED_INTS_32} is used    *          otherwise {@link ValueType#VAR_INTS}    */
+comment|/**    * Sets the given<code>int</code> value as a 32 bit signed integer.    *     * @param value    *          the value to set    * @param fixed    *          if<code>true</code> {@link Type#FIXED_INTS_32} is used    *          otherwise {@link Type#VAR_INTS}    */
 DECL|method|setInt
 specifier|public
 name|void
@@ -318,11 +336,15 @@ name|type
 operator|=
 name|fixed
 condition|?
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FIXED_INTS_32
 else|:
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|VAR_INTS
 expr_stmt|;
@@ -332,7 +354,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>short</code> value and sets the field's {@link ValueType} to    * {@link ValueType#VAR_INTS} unless already set. If you want to change the    * default type use {@link #setDocValuesType(ValueType)}.    */
+comment|/**    * Sets the given<code>short</code> value and sets the field's {@link Type} to    * {@link Type#VAR_INTS} unless already set. If you want to change the    * default type use {@link #setDocValuesType(DocValues.Type)}.    */
 DECL|method|setInt
 specifier|public
 name|void
@@ -350,7 +372,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>short</code> value as a 16 bit signed integer.    *     * @param value    *          the value to set    * @param fixed    *          if<code>true</code> {@link ValueType#FIXED_INTS_16} is used    *          otherwise {@link ValueType#VAR_INTS}    */
+comment|/**    * Sets the given<code>short</code> value as a 16 bit signed integer.    *     * @param value    *          the value to set    * @param fixed    *          if<code>true</code> {@link Type#FIXED_INTS_16} is used    *          otherwise {@link Type#VAR_INTS}    */
 DECL|method|setInt
 specifier|public
 name|void
@@ -374,11 +396,15 @@ name|type
 operator|=
 name|fixed
 condition|?
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FIXED_INTS_16
 else|:
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|VAR_INTS
 expr_stmt|;
@@ -388,7 +414,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>byte</code> value and sets the field's {@link ValueType} to    * {@link ValueType#VAR_INTS} unless already set. If you want to change the    * default type use {@link #setDocValuesType(ValueType)}.    */
+comment|/**    * Sets the given<code>byte</code> value and sets the field's {@link Type} to    * {@link Type#VAR_INTS} unless already set. If you want to change the    * default type use {@link #setDocValuesType(DocValues.Type)}.    */
 DECL|method|setInt
 specifier|public
 name|void
@@ -406,7 +432,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>byte</code> value as a 8 bit signed integer.    *     * @param value    *          the value to set    * @param fixed    *          if<code>true</code> {@link ValueType#FIXED_INTS_8} is used    *          otherwise {@link ValueType#VAR_INTS}    */
+comment|/**    * Sets the given<code>byte</code> value as a 8 bit signed integer.    *     * @param value    *          the value to set    * @param fixed    *          if<code>true</code> {@link Type#FIXED_INTS_8} is used    *          otherwise {@link Type#VAR_INTS}    */
 DECL|method|setInt
 specifier|public
 name|void
@@ -430,11 +456,15 @@ name|type
 operator|=
 name|fixed
 condition|?
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FIXED_INTS_8
 else|:
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|VAR_INTS
 expr_stmt|;
@@ -444,7 +474,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>float</code> value and sets the field's {@link ValueType}    * to {@link ValueType#FLOAT_32} unless already set. If you want to    * change the type use {@link #setDocValuesType(ValueType)}.    */
+comment|/**    * Sets the given<code>float</code> value and sets the field's {@link Type}    * to {@link Type#FLOAT_32} unless already set. If you want to    * change the type use {@link #setDocValuesType(DocValues.Type)}.    */
 DECL|method|setFloat
 specifier|public
 name|void
@@ -463,7 +493,9 @@ condition|)
 block|{
 name|type
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FLOAT_32
 expr_stmt|;
@@ -473,7 +505,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Sets the given<code>double</code> value and sets the field's {@link ValueType}    * to {@link ValueType#FLOAT_64} unless already set. If you want to    * change the default type use {@link #setDocValuesType(ValueType)}.    */
+comment|/**    * Sets the given<code>double</code> value and sets the field's {@link Type}    * to {@link Type#FLOAT_64} unless already set. If you want to    * change the default type use {@link #setDocValuesType(DocValues.Type)}.    */
 DECL|method|setFloat
 specifier|public
 name|void
@@ -492,7 +524,9 @@ condition|)
 block|{
 name|type
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FLOAT_64
 expr_stmt|;
@@ -502,7 +536,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Sets the given {@link BytesRef} value and the field's {@link ValueType}. The    * comparator for this field is set to<code>null</code>. If a    *<code>null</code> comparator is set the default comparator for the given    * {@link ValueType} is used.    */
+comment|/**    * Sets the given {@link BytesRef} value and the field's {@link Type}. The    * comparator for this field is set to<code>null</code>. If a    *<code>null</code> comparator is set the default comparator for the given    * {@link Type} is used.    */
 DECL|method|setBytes
 specifier|public
 name|void
@@ -511,7 +545,9 @@ parameter_list|(
 name|BytesRef
 name|value
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -525,7 +561,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the given {@link BytesRef} value, the field's {@link ValueType} and the    * field's comparator. If the {@link Comparator} is set to<code>null</code>    * the default for the given {@link ValueType} is used instead.    *     * @throws IllegalArgumentException    *           if the value or the type are null    */
+comment|/**    * Sets the given {@link BytesRef} value, the field's {@link Type} and the    * field's comparator. If the {@link Comparator} is set to<code>null</code>    * the default for the given {@link Type} is used instead.    *     * @throws IllegalArgumentException    *           if the value or the type are null    */
 DECL|method|setBytes
 specifier|public
 name|void
@@ -534,7 +570,9 @@ parameter_list|(
 name|BytesRef
 name|value
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|type
 parameter_list|,
 name|Comparator
@@ -643,7 +681,7 @@ return|return
 name|longValue
 return|;
 block|}
-comment|/**    * Sets the {@link BytesRef} comparator for this field. If the field has a    * numeric {@link ValueType} the comparator will be ignored.    */
+comment|/**    * Sets the {@link BytesRef} comparator for this field. If the field has a    * numeric {@link Type} the comparator will be ignored.    */
 DECL|method|setBytesComparator
 specifier|public
 name|void
@@ -663,13 +701,15 @@ operator|=
 name|comp
 expr_stmt|;
 block|}
-comment|/**    * Sets the {@link ValueType} for this field.    */
+comment|/**    * Sets the {@link Type} for this field.    */
 DECL|method|setDocValuesType
 specifier|public
 name|void
 name|setDocValuesType
 parameter_list|(
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -710,7 +750,9 @@ annotation|@
 name|Override
 DECL|method|docValuesType
 specifier|public
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|docValuesType
 parameter_list|()
 block|{
@@ -851,24 +893,26 @@ operator|+
 name|name
 argument_list|()
 operator|+
-literal|": IndexDocValuesField "
+literal|": DocValuesField "
 operator|+
 name|value
 operator|+
 literal|">"
 return|;
 block|}
-comment|/**    * Returns an IndexDocValuesField holding the value from    * the provided string field, as the specified type.  The    * incoming field must have a string value.  The name, {@link    * FieldType} and string value are carried over from the    * incoming Field.    */
+comment|/**    * Returns an DocValuesField holding the value from    * the provided string field, as the specified type.  The    * incoming field must have a string value.  The name, {@link    * FieldType} and string value are carried over from the    * incoming Field.    */
 DECL|method|build
 specifier|public
 specifier|static
-name|IndexDocValuesField
+name|DocValuesField
 name|build
 parameter_list|(
 name|Field
 name|field
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -876,22 +920,22 @@ if|if
 condition|(
 name|field
 operator|instanceof
-name|IndexDocValuesField
+name|DocValuesField
 condition|)
 block|{
 return|return
 operator|(
-name|IndexDocValuesField
+name|DocValuesField
 operator|)
 name|field
 return|;
 block|}
 specifier|final
-name|IndexDocValuesField
+name|DocValuesField
 name|valField
 init|=
 operator|new
-name|IndexDocValuesField
+name|DocValuesField
 argument_list|(
 name|field
 operator|.

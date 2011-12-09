@@ -102,9 +102,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|ValueType
+name|DocValues
 import|;
 end_import
 
@@ -1114,7 +1112,9 @@ parameter_list|,
 name|IndexOptions
 name|indexOptions
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|docValues
 parameter_list|)
 block|{
@@ -1234,7 +1234,9 @@ parameter_list|,
 name|IndexOptions
 name|indexOptions
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|docValues
 parameter_list|)
 block|{
@@ -1431,7 +1433,9 @@ parameter_list|,
 name|IndexOptions
 name|indexOptions
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|docValuesType
 parameter_list|)
 block|{

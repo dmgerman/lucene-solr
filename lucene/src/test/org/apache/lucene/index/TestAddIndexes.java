@@ -132,7 +132,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IndexDocValuesField
+name|DocValuesField
 import|;
 end_import
 
@@ -449,22 +449,6 @@ operator|.
 name|pulsing
 operator|.
 name|Pulsing40PostingsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|IndexDocValues
 import|;
 end_import
 
@@ -7541,11 +7525,11 @@ name|TYPE_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|IndexDocValuesField
+name|DocValuesField
 name|dv
 init|=
 operator|new
-name|IndexDocValuesField
+name|DocValuesField
 argument_list|(
 literal|"dv"
 argument_list|)
@@ -7625,7 +7609,7 @@ expr_stmt|;
 name|dv
 operator|=
 operator|new
-name|IndexDocValuesField
+name|DocValuesField
 argument_list|(
 literal|"dv"
 argument_list|)
@@ -7755,7 +7739,7 @@ name|numDocs
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|IndexDocValues
+name|DocValues
 name|docValues
 init|=
 name|sr
