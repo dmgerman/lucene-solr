@@ -337,7 +337,6 @@ name|boolean
 name|applyAllDeletes
 decl_stmt|;
 DECL|method|open
-specifier|public
 specifier|static
 name|IndexReader
 name|open

@@ -821,6 +821,8 @@ throws|,
 name|IOException
 block|{
 return|return
+name|DirectoryReader
+operator|.
 name|open
 argument_list|(
 name|directory
@@ -831,7 +833,7 @@ name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
-comment|/** Returns a IndexReader reading the index in the given    *  Directory    * @param directory the index directory    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: Returns a IndexReader reading the index in the given    *  Directory with the given termInfosIndexDivisor.    * @param directory the index directory    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -851,6 +853,8 @@ throws|,
 name|IOException
 block|{
 return|return
+name|DirectoryReader
+operator|.
 name|open
 argument_list|(
 name|directory
@@ -906,6 +910,8 @@ throws|,
 name|IOException
 block|{
 return|return
+name|DirectoryReader
+operator|.
 name|open
 argument_list|(
 name|commit
@@ -919,17 +925,13 @@ name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit}.    * @param directory the index directory    * @param commit the commit point to open    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit} and termInfosIndexDivisor.    * @param commit the commit point to open    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
 name|IndexReader
 name|open
 parameter_list|(
-specifier|final
-name|Directory
-name|directory
-parameter_list|,
 specifier|final
 name|IndexCommit
 name|commit
@@ -947,7 +949,10 @@ name|DirectoryReader
 operator|.
 name|open
 argument_list|(
-name|directory
+name|commit
+operator|.
+name|getDirectory
+argument_list|()
 argument_list|,
 name|commit
 argument_list|,
