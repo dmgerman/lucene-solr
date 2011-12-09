@@ -46,6 +46,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collection
 import|;
 end_import
@@ -1705,7 +1715,7 @@ name|getParams
 argument_list|()
 decl_stmt|;
 name|String
-name|titleField
+name|titleFieldSpec
 init|=
 name|solrParams
 operator|.
@@ -1719,7 +1729,7 @@ literal|"title"
 argument_list|)
 decl_stmt|;
 name|String
-name|snippetField
+name|snippetFieldSpec
 init|=
 name|solrParams
 operator|.
@@ -1729,7 +1739,7 @@ name|CarrotParams
 operator|.
 name|SNIPPET_FIELD_NAME
 argument_list|,
-name|titleField
+name|titleFieldSpec
 argument_list|)
 decl_stmt|;
 if|if
@@ -1738,7 +1748,7 @@ name|StringUtils
 operator|.
 name|isBlank
 argument_list|(
-name|snippetField
+name|snippetFieldSpec
 argument_list|)
 condition|)
 block|{
@@ -1760,15 +1770,54 @@ literal|" must not be blank."
 argument_list|)
 throw|;
 block|}
-return|return
+specifier|final
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|fields
+init|=
 name|Sets
 operator|.
 name|newHashSet
+argument_list|()
+decl_stmt|;
+name|fields
+operator|.
+name|addAll
 argument_list|(
-name|titleField
-argument_list|,
-name|snippetField
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|titleFieldSpec
+operator|.
+name|split
+argument_list|(
+literal|"[, ]"
 argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|fields
+operator|.
+name|addAll
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|snippetFieldSpec
+operator|.
+name|split
+argument_list|(
+literal|"[, ]"
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|fields
 return|;
 block|}
 comment|/**    * Prepares Carrot2 documents for clustering.    */
@@ -1837,7 +1886,7 @@ literal|"url"
 argument_list|)
 decl_stmt|;
 name|String
-name|titleField
+name|titleFieldSpec
 init|=
 name|solrParams
 operator|.
@@ -1851,7 +1900,7 @@ literal|"title"
 argument_list|)
 decl_stmt|;
 name|String
-name|snippetField
+name|snippetFieldSpec
 init|=
 name|solrParams
 operator|.
@@ -1861,7 +1910,7 @@ name|CarrotParams
 operator|.
 name|SNIPPET_FIELD_NAME
 argument_list|,
-name|titleField
+name|titleFieldSpec
 argument_list|)
 decl_stmt|;
 comment|// Get the documents
@@ -1926,12 +1975,12 @@ argument_list|()
 decl_stmt|;
 name|snippetFieldAry
 operator|=
-operator|new
-name|String
-index|[]
-block|{
-name|snippetField
-block|}
+name|snippetFieldSpec
+operator|.
+name|split
+argument_list|(
+literal|"[, ]"
+argument_list|)
 expr_stmt|;
 name|args
 operator|.
@@ -2160,12 +2209,7 @@ decl_stmt|;
 name|String
 name|snippet
 init|=
-name|getValue
-argument_list|(
-name|sdoc
-argument_list|,
-name|snippetField
-argument_list|)
+literal|null
 decl_stmt|;
 comment|// TODO: docIds will be null when running distributed search.
 comment|// See comment in ClusteringComponent#finishStage().
@@ -2246,7 +2290,7 @@ literal|1
 condition|)
 block|{
 comment|//should only be one value given our setup
-comment|//should only be one document with one field
+comment|//should only be one document
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2273,6 +2317,33 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
+name|StringBuilder
+name|sb
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|j
+init|=
+literal|0
+init|;
+name|j
+operator|<
+name|snippetFieldAry
+operator|.
+name|length
+condition|;
+name|j
+operator|++
+control|)
+block|{
+comment|// Join fragments with a period, so that Carrot2 does not create
+comment|// cross-fragment phrases, such phrases rarely make sense.
 name|String
 index|[]
 name|highlt
@@ -2281,11 +2352,12 @@ name|tmp
 operator|.
 name|get
 argument_list|(
-name|snippetField
+name|snippetFieldAry
+index|[
+name|j
+index|]
 argument_list|)
 decl_stmt|;
-comment|// Join fragments with a period, so that Carrot2 does not create
-comment|// cross-fragment phrases, such phrases rarely make sense.
 if|if
 condition|(
 name|highlt
@@ -2299,25 +2371,12 @@ operator|>
 literal|0
 condition|)
 block|{
-specifier|final
-name|StringBuilder
-name|sb
-init|=
-operator|new
-name|StringBuilder
-argument_list|(
-name|highlt
-index|[
-literal|0
-index|]
-argument_list|)
-decl_stmt|;
 for|for
 control|(
 name|int
 name|i
 init|=
-literal|1
+literal|0
 init|;
 name|i
 operator|<
@@ -2333,19 +2392,21 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|" . "
-argument_list|)
-expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
 name|highlt
 index|[
 name|i
 index|]
 argument_list|)
 expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|" . "
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 name|snippet
 operator|=
@@ -2356,6 +2417,23 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// If summaries not enabled or summary generation failed, use full content.
+if|if
+condition|(
+name|snippet
+operator|==
+literal|null
+condition|)
+block|{
+name|snippet
+operator|=
+name|getConcatenated
+argument_list|(
+name|sdoc
+argument_list|,
+name|snippetFieldSpec
+argument_list|)
+expr_stmt|;
 block|}
 name|Document
 name|carrotDocument
@@ -2363,11 +2441,11 @@ init|=
 operator|new
 name|Document
 argument_list|(
-name|getValue
+name|getConcatenated
 argument_list|(
 name|sdoc
 argument_list|,
-name|titleField
+name|titleFieldSpec
 argument_list|)
 argument_list|,
 name|snippet
@@ -2409,16 +2487,16 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|getValue
-specifier|protected
+DECL|method|getConcatenated
+specifier|private
 name|String
-name|getValue
+name|getConcatenated
 parameter_list|(
 name|SolrDocument
 name|sdoc
 parameter_list|,
 name|String
-name|field
+name|fieldsSpec
 parameter_list|)
 block|{
 name|StringBuilder
@@ -2428,6 +2506,19 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+for|for
+control|(
+name|String
+name|field
+range|:
+name|fieldsSpec
+operator|.
+name|split
+argument_list|(
+literal|"[, ]"
+argument_list|)
+control|)
+block|{
 name|Collection
 argument_list|<
 name|Object
@@ -2447,9 +2538,7 @@ name|vals
 operator|==
 literal|null
 condition|)
-return|return
-literal|""
-return|;
+continue|continue;
 name|Iterator
 argument_list|<
 name|Object
@@ -2490,6 +2579,7 @@ argument_list|(
 literal|" . "
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
