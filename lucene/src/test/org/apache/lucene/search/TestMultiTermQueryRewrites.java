@@ -462,8 +462,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|searcher
@@ -487,8 +485,6 @@ operator|.
 name|open
 argument_list|(
 name|sdir1
-argument_list|,
-literal|true
 argument_list|)
 block|,
 name|IndexReader
@@ -496,8 +492,6 @@ operator|.
 name|open
 argument_list|(
 name|sdir2
-argument_list|,
-literal|true
 argument_list|)
 block|}
 argument_list|,
@@ -525,8 +519,6 @@ operator|.
 name|open
 argument_list|(
 name|sdir1
-argument_list|,
-literal|true
 argument_list|)
 block|,
 name|IndexReader
@@ -534,8 +526,6 @@ operator|.
 name|open
 argument_list|(
 name|dir
-argument_list|,
-literal|true
 argument_list|)
 block|}
 argument_list|,

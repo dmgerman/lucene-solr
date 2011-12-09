@@ -1699,6 +1699,10 @@ control|)
 block|{
 if|if
 condition|(
+name|fi
+operator|.
+name|isIndexed
+operator|&&
 operator|!
 name|fi
 operator|.

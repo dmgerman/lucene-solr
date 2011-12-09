@@ -232,7 +232,7 @@ comment|//  doc.add( new Field( "f", ft, "a a a b b c a b b c d e f" ) );
 comment|//  doc.add( new Field( "f", ft, "b a b a f" ) );
 comment|//  writer.addDocument( doc );
 comment|//  writer.close();
-comment|//  IndexReader reader = IndexReader.open( dir, true );
+comment|//  IndexReader reader = IndexReader.open(dir1);
 comment|//  new FieldTermStack( reader, 0, "f", fieldQuery );
 comment|//  reader.close();
 comment|//}

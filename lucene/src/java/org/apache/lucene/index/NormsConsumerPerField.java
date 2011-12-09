@@ -51,16 +51,16 @@ comment|/** Taps into DocInverter, as an InvertedDocEndConsumer,  *  which is ca
 end_comment
 
 begin_class
-DECL|class|NormsWriterPerField
+DECL|class|NormsConsumerPerField
 specifier|final
 class|class
-name|NormsWriterPerField
+name|NormsConsumerPerField
 extends|extends
 name|InvertedDocEndConsumerPerField
 implements|implements
 name|Comparable
 argument_list|<
-name|NormsWriterPerField
+name|NormsConsumerPerField
 argument_list|>
 block|{
 DECL|field|fieldInfo
@@ -146,9 +146,9 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-DECL|method|NormsWriterPerField
+DECL|method|NormsConsumerPerField
 specifier|public
-name|NormsWriterPerField
+name|NormsConsumerPerField
 parameter_list|(
 specifier|final
 name|DocInverterPerField
@@ -208,7 +208,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|NormsWriterPerField
+name|NormsConsumerPerField
 name|other
 parameter_list|)
 block|{

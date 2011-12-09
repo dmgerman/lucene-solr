@@ -1641,30 +1641,6 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|newSearcher
-argument_list|(
-name|name
-argument_list|,
-literal|false
-argument_list|)
-return|;
-block|}
-comment|// gets a non-caching searcher
-DECL|method|newSearcher
-specifier|public
-name|SolrIndexSearcher
-name|newSearcher
-parameter_list|(
-name|String
-name|name
-parameter_list|,
-name|boolean
-name|readOnly
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
 operator|new
 name|SolrIndexSearcher
 argument_list|(
@@ -1681,8 +1657,6 @@ operator|.
 name|mainIndexConfig
 argument_list|,
 name|name
-argument_list|,
-name|readOnly
 argument_list|,
 literal|false
 argument_list|,
@@ -3288,7 +3262,7 @@ comment|// last call before the latch is released.
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|Throwable
 name|e
 parameter_list|)
 block|{
@@ -3296,10 +3270,20 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|""
+literal|"Error in constructing the core"
 argument_list|,
 name|e
 argument_list|)
+expr_stmt|;
+name|latch
+operator|.
+name|countDown
+argument_list|()
+expr_stmt|;
+comment|//release the latch, otherwise we block trying to do the close.  This should be fine, since counting down on a latch of 0 is still fine
+comment|//close down the searcher and any other resources, if it exists, as this is not recoverable
+name|close
+argument_list|()
 expr_stmt|;
 throw|throw
 operator|new
@@ -3321,7 +3305,7 @@ throw|;
 block|}
 finally|finally
 block|{
-comment|// allow firstSearcher events to fire
+comment|// allow firstSearcher events to fire and make sure it is released
 name|latch
 operator|.
 name|countDown
@@ -5256,8 +5240,6 @@ operator|.
 name|mainIndexConfig
 argument_list|,
 literal|"main"
-argument_list|,
-literal|true
 argument_list|,
 literal|true
 argument_list|,

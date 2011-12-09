@@ -68,6 +68,22 @@ name|index
 operator|.
 name|codecs
 operator|.
+name|NormsReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
 name|PostingsFormat
 import|;
 end_import
@@ -239,6 +255,11 @@ DECL|field|perDocProducer
 specifier|final
 name|PerDocValues
 name|perDocProducer
+decl_stmt|;
+DECL|field|norms
+specifier|final
+name|NormsReader
+name|norms
 decl_stmt|;
 DECL|field|dir
 specifier|final
@@ -464,6 +485,29 @@ name|fields
 operator|!=
 literal|null
 assert|;
+comment|// ask codec for its Norms:
+comment|// TODO: since we don't write any norms file if there are no norms,
+comment|// kinda jaky to assume the codec handles the case of no norms file at all gracefully?!
+name|norms
+operator|=
+name|codec
+operator|.
+name|normsFormat
+argument_list|()
+operator|.
+name|normsReader
+argument_list|(
+name|cfsDir
+argument_list|,
+name|si
+argument_list|,
+name|fieldInfos
+argument_list|,
+name|context
+argument_list|,
+name|dir
+argument_list|)
+expr_stmt|;
 name|perDocProducer
 operator|=
 name|codec
@@ -580,6 +624,8 @@ argument_list|,
 name|cfsReader
 argument_list|,
 name|storeCFSReader
+argument_list|,
+name|norms
 argument_list|)
 expr_stmt|;
 comment|// Now, notify any ReaderFinished listeners:

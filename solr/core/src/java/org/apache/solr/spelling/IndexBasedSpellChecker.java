@@ -296,8 +296,6 @@ operator|.
 name|open
 argument_list|(
 name|luceneIndexDir
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}

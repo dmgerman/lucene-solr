@@ -605,8 +605,6 @@ operator|.
 name|open
 argument_list|(
 name|directory
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -861,8 +859,6 @@ operator|.
 name|open
 argument_list|(
 name|directory
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 comment|// Verify that we did not lose any deletes...
@@ -1283,8 +1279,6 @@ operator|.
 name|open
 argument_list|(
 name|directory
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertEquals

@@ -66,7 +66,6 @@ name|StandardIndexReaderFactory
 extends|extends
 name|IndexReaderFactory
 block|{
-comment|/* (non-Javadoc)    * @see org.apache.solr.core.IndexReaderFactory#newReader(org.apache.lucene.store.Directory, boolean)    */
 annotation|@
 name|Override
 DECL|method|newReader
@@ -76,9 +75,6 @@ name|newReader
 parameter_list|(
 name|Directory
 name|indexDir
-parameter_list|,
-name|boolean
-name|readOnly
 parameter_list|)
 throws|throws
 name|IOException
@@ -89,10 +85,6 @@ operator|.
 name|open
 argument_list|(
 name|indexDir
-argument_list|,
-literal|null
-argument_list|,
-name|readOnly
 argument_list|,
 name|termInfosIndexDivisor
 argument_list|)

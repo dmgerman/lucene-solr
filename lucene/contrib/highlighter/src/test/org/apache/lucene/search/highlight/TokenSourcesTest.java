@@ -883,8 +883,6 @@ operator|.
 name|open
 argument_list|(
 name|directory
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 try|try
@@ -1188,8 +1186,6 @@ operator|.
 name|open
 argument_list|(
 name|directory
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 try|try
@@ -1486,8 +1482,6 @@ operator|.
 name|open
 argument_list|(
 name|directory
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 try|try
@@ -1781,8 +1775,6 @@ operator|.
 name|open
 argument_list|(
 name|directory
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 try|try

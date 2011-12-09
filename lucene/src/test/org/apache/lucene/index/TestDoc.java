@@ -1055,8 +1055,6 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
-literal|true
-argument_list|,
 name|si1
 argument_list|,
 name|IndexReader
@@ -1073,8 +1071,6 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
-literal|true
-argument_list|,
 name|si2
 argument_list|,
 name|IndexReader
@@ -1290,8 +1286,6 @@ name|SegmentReader
 operator|.
 name|get
 argument_list|(
-literal|true
-argument_list|,
 name|si
 argument_list|,
 name|IndexReader

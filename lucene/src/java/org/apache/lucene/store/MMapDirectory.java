@@ -114,7 +114,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
+name|Set
 import|;
 end_import
 
@@ -167,6 +167,20 @@ operator|.
 name|reflect
 operator|.
 name|Method
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|MapBackedSet
 import|;
 end_import
 
@@ -858,14 +872,18 @@ decl_stmt|;
 DECL|field|clones
 specifier|private
 specifier|final
-name|Map
+name|Set
 argument_list|<
 name|MMapIndexInput
-argument_list|,
-name|Boolean
 argument_list|>
 name|clones
 init|=
+operator|new
+name|MapBackedSet
+argument_list|<
+name|MMapIndexInput
+argument_list|>
+argument_list|(
 operator|new
 name|WeakHashMap
 argument_list|<
@@ -874,6 +892,7 @@ argument_list|,
 name|Boolean
 argument_list|>
 argument_list|()
+argument_list|)
 decl_stmt|;
 DECL|method|MMapIndexInput
 name|MMapIndexInput
@@ -1820,13 +1839,9 @@ name|this
 operator|.
 name|clones
 operator|.
-name|put
+name|add
 argument_list|(
 name|clone
-argument_list|,
-name|Boolean
-operator|.
-name|TRUE
 argument_list|)
 expr_stmt|;
 block|}
@@ -1891,9 +1906,6 @@ range|:
 name|this
 operator|.
 name|clones
-operator|.
-name|keySet
-argument_list|()
 control|)
 block|{
 assert|assert

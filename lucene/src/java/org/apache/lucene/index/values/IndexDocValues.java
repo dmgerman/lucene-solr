@@ -432,27 +432,35 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Returns the internal array representation iff this {@link Source} uses an      * array as its inner representation, otherwise<code>null</code>.      */
+comment|/**      * Returns the internal array representation iff this {@link Source} uses an      * array as its inner representation, otherwise<code>UOE</code>.      */
 DECL|method|getArray
 specifier|public
 name|Object
 name|getArray
 parameter_list|()
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"getArray is not supported"
+argument_list|)
+throw|;
 block|}
-comment|/**      * If this {@link Source} is sorted this method will return an instance of      * {@link SortedSource} otherwise<code>null</code>      */
+comment|/**      * If this {@link Source} is sorted this method will return an instance of      * {@link SortedSource} otherwise<code>UOE</code>      */
 DECL|method|asSortedSource
 specifier|public
 name|SortedSource
 name|asSortedSource
 parameter_list|()
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"asSortedSource is not supported"
+argument_list|)
+throw|;
 block|}
 block|}
 comment|/**    * A sorted variant of {@link Source} for<tt>byte[]</tt> values per document.    *<p>    */

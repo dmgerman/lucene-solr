@@ -809,7 +809,7 @@ literal|"true"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"pixma-a-b-c-d-e-f-g"
+literal|"pixma"
 argument_list|,
 name|SpellCheckComponent
 operator|.

@@ -576,8 +576,6 @@ operator|.
 name|open
 argument_list|(
 name|ramDir
-argument_list|,
-literal|true
 argument_list|)
 argument_list|,
 name|WORD_FIELD_NAME

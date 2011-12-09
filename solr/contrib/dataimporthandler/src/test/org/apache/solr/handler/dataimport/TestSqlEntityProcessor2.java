@@ -403,10 +403,10 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|testCompositePk_FullImportNoCommit
+DECL|method|testCompositePk_FullImportWithoutCommit
 specifier|public
 name|void
-name|testCompositePk_FullImportNoCommit
+name|testCompositePk_FullImportWithoutCommit
 parameter_list|()
 throws|throws
 name|Exception

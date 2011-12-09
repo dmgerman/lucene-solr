@@ -154,6 +154,28 @@ operator|=
 name|negate
 expr_stmt|;
 block|}
+comment|/**    * Returns the field this filter is applied on.    * @return the field this filter is applied on.    */
+DECL|method|field
+specifier|public
+name|String
+name|field
+parameter_list|()
+block|{
+return|return
+name|field
+return|;
+block|}
+comment|/**    * Returns<code>true</code> iff this filter is negated, otherwise<code>false</code>     * @return<code>true</code> iff this filter is negated, otherwise<code>false</code>    */
+DECL|method|negate
+specifier|public
+name|boolean
+name|negate
+parameter_list|()
+block|{
+return|return
+name|negate
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|getDocIdSet

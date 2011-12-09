@@ -798,9 +798,6 @@ name|String
 name|name
 parameter_list|,
 name|boolean
-name|readOnly
-parameter_list|,
-name|boolean
 name|enableCache
 parameter_list|,
 name|DirectoryFactory
@@ -835,8 +832,6 @@ name|config
 operator|.
 name|lockType
 argument_list|)
-argument_list|,
-name|readOnly
 argument_list|)
 argument_list|,
 literal|true
