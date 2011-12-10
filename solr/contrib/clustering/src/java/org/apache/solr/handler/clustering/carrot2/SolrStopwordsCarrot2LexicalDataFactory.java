@@ -384,7 +384,7 @@ name|String
 argument_list|>
 name|fieldNames
 decl_stmt|;
-comment|/** 	 * A lazily-built cache of stop words per field. 	 */
+comment|/**    * A lazily-built cache of stop words per field.    */
 DECL|field|solrStopWords
 specifier|private
 name|Multimap
@@ -400,7 +400,7 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Carrot2's default lexical resources to use in addition to Solr's stop 	 * words. 	 */
+comment|/**    * Carrot2's default lexical resources to use in addition to Solr's stop    * words.    */
 DECL|field|carrot2LexicalDataFactory
 specifier|private
 name|DefaultLexicalDataFactory
@@ -410,7 +410,7 @@ operator|new
 name|DefaultLexicalDataFactory
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Obtains stop words for a field from the associated 	 * {@link StopFilterFactory}, if any. 	 */
+comment|/**    * Obtains stop words for a field from the associated    * {@link StopFilterFactory}, if any.    */
 DECL|method|getSolrStopWordsForField
 specifier|private
 name|Collection
