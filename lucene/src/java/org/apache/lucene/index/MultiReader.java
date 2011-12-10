@@ -66,6 +66,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|PerDocProducer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Bits
@@ -1381,11 +1397,14 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|perDocValues
+DECL|method|docValues
 specifier|public
-name|PerDocValues
-name|perDocValues
-parameter_list|()
+name|DocValues
+name|docValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -1393,7 +1412,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"please use MultiPerDocValues#getPerDocs, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Fields"
+literal|"please use MultiDocValues#getDocValues, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level DocValues"
 argument_list|)
 throw|;
 block|}

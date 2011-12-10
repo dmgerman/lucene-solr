@@ -115,7 +115,7 @@ comment|// javadoc
 end_comment
 
 begin_comment
-comment|/**  * This class forces a composite reader (eg a {@link  * MultiReader} or {@link DirectoryReader} or any other  * IndexReader subclass that returns non-null from {@link  * IndexReader#getSequentialSubReaders}) to emulate an  * atomic reader.  This requires implementing the postings  * APIs on-the-fly, using the static methods in {@link  * MultiFields}, by stepping through the sub-readers to  * merge fields/terms, appending docs, etc.  *  *<p>If you ever hit an UnsupportedOperationException saying  * "please use MultiFields.XXX instead", the simple  * but non-performant workaround is to wrap your reader  * using this class.</p>  *  *<p><b>NOTE</b>: this class almost always results in a  * performance hit.  If this is important to your use case,  * it's better to get the sequential sub readers (see {@link  * ReaderUtil#gatherSubReaders}, instead, and iterate through them  * yourself.</p>  */
+comment|/**  * This class forces a composite reader (eg a {@link  * MultiReader} or {@link DirectoryReader} or any other  * IndexReader subclass that returns non-null from {@link  * IndexReader#getSequentialSubReaders}) to emulate an  * atomic reader.  This requires implementing the postings  * APIs on-the-fly, using the static methods in {@link  * MultiFields}, {@link MultiNorms}, {@link MultiDocValues},   * by stepping through the sub-readers to merge fields/terms,   * appending docs, etc.  *  *<p>If you ever hit an UnsupportedOperationException saying  * "please use MultiXXX.YYY instead", the simple  * but non-performant workaround is to wrap your reader  * using this class.</p>  *  *<p><b>NOTE</b>: this class almost always results in a  * performance hit.  If this is important to your use case,  * it's better to get the sequential sub readers (see {@link  * ReaderUtil#gatherSubReaders}, instead, and iterate through them  * yourself.</p>  */
 end_comment
 
 begin_class
@@ -218,11 +218,14 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|perDocValues
+DECL|method|docValues
 specifier|public
-name|PerDocValues
-name|perDocValues
-parameter_list|()
+name|DocValues
+name|docValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -230,11 +233,13 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 return|return
-name|MultiPerDocValues
+name|MultiDocValues
 operator|.
-name|getPerDocs
+name|getDocValues
 argument_list|(
 name|in
+argument_list|,
+name|field
 argument_list|)
 return|;
 block|}

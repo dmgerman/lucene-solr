@@ -304,7 +304,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|PerDocValues
+name|IndexReader
+operator|.
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -318,9 +320,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|AtomicReaderContext
+name|DocValues
 import|;
 end_import
 
@@ -5130,11 +5130,14 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|perDocValues
+DECL|method|docValues
 specifier|public
-name|PerDocValues
-name|perDocValues
-parameter_list|()
+name|DocValues
+name|docValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
 throws|throws
 name|IOException
 block|{

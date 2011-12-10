@@ -181,7 +181,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default PerDocValues implementation that uses compound file.  * @lucene.experimental  */
+comment|/**  * Default PerDocProducer implementation that uses compound file.  * @lucene.experimental  */
 end_comment
 
 begin_class

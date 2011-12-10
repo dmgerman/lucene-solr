@@ -150,20 +150,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|PerDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|lucene40
@@ -257,7 +243,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for PerDocValues implementations  * @lucene.experimental  */
+comment|/**  * Abstract base class for PerDocProducer implementations  * @lucene.experimental  */
 end_comment
 
 begin_comment
@@ -271,7 +257,7 @@ specifier|abstract
 class|class
 name|DocValuesReaderBase
 extends|extends
-name|PerDocValues
+name|PerDocProducer
 block|{
 DECL|method|closeInternal
 specifier|protected

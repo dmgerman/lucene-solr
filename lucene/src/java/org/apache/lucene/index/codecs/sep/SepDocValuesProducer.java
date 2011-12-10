@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of PerDocValues that uses separate files.  * @lucene.experimental  */
+comment|/**  * Implementation of PerDocProducer that uses separate files.  * @lucene.experimental  */
 end_comment
 
 begin_class

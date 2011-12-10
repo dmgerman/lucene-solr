@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index
+DECL|package|org.apache.lucene.index.codecs
 package|package
 name|org
 operator|.
@@ -9,6 +9,8 @@ operator|.
 name|lucene
 operator|.
 name|index
+operator|.
+name|codecs
 package|;
 end_package
 
@@ -46,38 +48,20 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|codecs
-operator|.
-name|PerDocConsumer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|PostingsFormat
+name|DocValues
 import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract API that provides access to one or more per-document storage  * features. The concrete implementations provide access to the underlying  * storage on a per-document basis corresponding to their actual  * {@link PerDocConsumer} counterpart.  *<p>  * The {@link PerDocValues} API is accessible through the  * {@link PostingsFormat} - API providing per field consumers and producers for inverted  * data (terms, postings) as well as per-document data.  *   * @lucene.experimental  */
+comment|/**  * Abstract API that provides access to one or more per-document storage  * features. The concrete implementations provide access to the underlying  * storage on a per-document basis corresponding to their actual  * {@link PerDocConsumer} counterpart.  *<p>  * The {@link PerDocProducer} API is accessible through the  * {@link PostingsFormat} - API providing per field consumers and producers for inverted  * data (terms, postings) as well as per-document data.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|PerDocValues
+DECL|class|PerDocProducer
 specifier|public
 specifier|abstract
 class|class
-name|PerDocValues
+name|PerDocProducer
 implements|implements
 name|Closeable
 block|{
@@ -98,12 +82,12 @@ DECL|field|EMPTY_ARRAY
 specifier|public
 specifier|static
 specifier|final
-name|PerDocValues
+name|PerDocProducer
 index|[]
 name|EMPTY_ARRAY
 init|=
 operator|new
-name|PerDocValues
+name|PerDocProducer
 index|[
 literal|0
 index|]
