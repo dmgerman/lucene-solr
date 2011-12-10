@@ -1967,6 +1967,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// TODO: I suspect this is completely untested!!!!!
 annotation|@
 name|Override
 DECL|method|docValues
@@ -1997,10 +1998,12 @@ literal|null
 condition|?
 literal|null
 else|:
-name|reader
+name|MultiDocValues
 operator|.
-name|docValues
+name|getDocValues
 argument_list|(
+name|reader
+argument_list|,
 name|field
 argument_list|)
 return|;
