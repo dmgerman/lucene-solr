@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|PerDocFieldValues
+name|DocValue
 import|;
 end_import
 
@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract API that consumes {@link PerDocFieldValues}.  * {@link DocValuesConsumer} are always associated with a specific field and  * segments. Concrete implementations of this API write the given  * {@link PerDocFieldValues} into a implementation specific format depending on  * the fields meta-data.  *   * @lucene.experimental  */
+comment|/**  * Abstract API that consumes {@link DocValue}s.  * {@link DocValuesConsumer} are always associated with a specific field and  * segments. Concrete implementations of this API write the given  * {@link DocValue} into a implementation specific format depending on  * the fields meta-data.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -109,7 +109,7 @@ specifier|abstract
 class|class
 name|DocValuesConsumer
 block|{
-comment|/**    * Adds the given {@link PerDocFieldValues} instance to this    * {@link DocValuesConsumer}    *     * @param docID    *          the document ID to add the value for. The docID must always    *          increase or be<tt>0</tt> if it is the first call to this method.    * @param docValues    *          the values to add    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Adds the given {@link DocValue} instance to this    * {@link DocValuesConsumer}    *     * @param docID    *          the document ID to add the value for. The docID must always    *          increase or be<tt>0</tt> if it is the first call to this method.    * @param docValue    *          the value to add    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|add
 specifier|public
 specifier|abstract
@@ -119,13 +119,13 @@ parameter_list|(
 name|int
 name|docID
 parameter_list|,
-name|PerDocFieldValues
-name|docValues
+name|DocValue
+name|docValue
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Called when the consumer of this API is doc with adding    * {@link PerDocFieldValues} to this {@link DocValuesConsumer}    *     * @param docCount    *          the total number of documents in this {@link DocValuesConsumer}.    *          Must be greater than or equal the last given docID to    *          {@link #add(int, PerDocFieldValues)}.    * @throws IOException    */
+comment|/**    * Called when the consumer of this API is doc with adding    * {@link DocValue} to this {@link DocValuesConsumer}    *     * @param docCount    *          the total number of documents in this {@link DocValuesConsumer}.    *          Must be greater than or equal the last given docID to    *          {@link #add(int, DocValue)}.    * @throws IOException    */
 DECL|method|finish
 specifier|public
 specifier|abstract

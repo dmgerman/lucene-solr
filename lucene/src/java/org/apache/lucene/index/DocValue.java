@@ -113,10 +113,10 @@ comment|/**  * Per document and field values consumed by {@link DocValuesConsume
 end_comment
 
 begin_interface
-DECL|interface|PerDocFieldValues
+DECL|interface|DocValue
 specifier|public
 interface|interface
-name|PerDocFieldValues
+name|DocValue
 block|{
 comment|/**    * Sets the given<code>long</code> value.    */
 DECL|method|setInt
@@ -241,12 +241,12 @@ name|type
 parameter_list|)
 function_decl|;
 comment|/**   * Returns the {@link Type}   */
-DECL|method|docValuesType
+DECL|method|docValueType
 specifier|public
 name|DocValues
 operator|.
 name|Type
-name|docValuesType
+name|docValueType
 parameter_list|()
 function_decl|;
 block|}
