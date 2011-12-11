@@ -66,18 +66,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ExecutorService
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|TimeUnit
 import|;
 end_import
@@ -238,6 +226,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|SearcherFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -273,7 +275,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class to manage sharing near-real-time searchers  * across multiple searching threads.  *  *<p>NOTE: to use this class, you must call {@link #maybeReopen(boolean)}  * periodically.  The {@link NRTManagerReopenThread} is a  * simple class to do this on a periodic basis.  If you  * implement your own reopener, be sure to call {@link  * #addWaitingListener} so your reopener is notified when a  * caller is waiting for a specific generation searcher.</p>  *  * @lucene.experimental  */
+comment|/**  * Utility class to manage sharing near-real-time searchers  * across multiple searching threads.  *  *<p>NOTE: to use this class, you must call {@link #maybeReopen(boolean)}  * periodically.  The {@link NRTManagerReopenThread} is a  * simple class to do this on a periodic basis.  If you  * implement your own reopener, be sure to call {@link  * #addWaitingListener} so your reopener is notified when a  * caller is waiting for a specific generation searcher.</p>  *  * @see SearcherFactory  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -356,7 +358,7 @@ operator|.
 name|newCondition
 argument_list|()
 decl_stmt|;
-comment|/**    * Create new NRTManager.    *     *  @param writer IndexWriter to open near-real-time    *         readers    *  @param warmer optional {@link SearcherWarmer}.  Pass    *         null if you don't require the searcher to warmed    *         before going live.  If this is non-null then a    *         merged segment warmer is installed on the    *         provided IndexWriter's config.    *    *<p><b>NOTE</b>: the provided {@link SearcherWarmer} is    *  not invoked for the initial searcher; you should    *  warm it yourself if necessary.    */
+comment|/**    * Create new NRTManager.    *     * @param writer IndexWriter to open near-real-time    *        readers    * @param searcherFactory An optional {@link SearcherFactory}. Pass    *<code>null</code> if you don't require the searcher to be warmed    *        before going live or other custom behavior.    */
 DECL|method|NRTManager
 specifier|public
 name|NRTManager
@@ -364,8 +366,8 @@ parameter_list|(
 name|IndexWriter
 name|writer
 parameter_list|,
-name|SearcherWarmer
-name|warmer
+name|SearcherFactory
+name|searcherFactory
 parameter_list|)
 throws|throws
 name|IOException
@@ -374,15 +376,13 @@ name|this
 argument_list|(
 name|writer
 argument_list|,
-literal|null
-argument_list|,
-name|warmer
+name|searcherFactory
 argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create new NRTManager.    *     *  @param writer IndexWriter to open near-real-time    *         readers    *  @param es optional ExecutorService so different segments can    *         be searched concurrently (see {@link IndexSearcher#IndexSearcher(IndexReader, ExecutorService)}.    *         Pass<code>null</code> to search segments sequentially.    *  @param warmer optional {@link SearcherWarmer}.  Pass    *         null if you don't require the searcher to warmed    *         before going live.  If this is non-null then a    *         merged segment warmer is installed on the    *         provided IndexWriter's config.    *    *<p><b>NOTE</b>: the provided {@link SearcherWarmer} is    *  not invoked for the initial searcher; you should    *  warm it yourself if necessary.    */
+comment|/**    * Expert: just like {@link    * #NRTManager(IndexWriter,SearcherFactory)},    * but you can also specify whether every searcher must    * apply deletes.  This is useful for cases where certain    * uses can tolerate seeing some deleted docs, since    * reopen time is faster if deletes need not be applied. */
 DECL|method|NRTManager
 specifier|public
 name|NRTManager
@@ -390,40 +390,8 @@ parameter_list|(
 name|IndexWriter
 name|writer
 parameter_list|,
-name|ExecutorService
-name|es
-parameter_list|,
-name|SearcherWarmer
-name|warmer
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|this
-argument_list|(
-name|writer
-argument_list|,
-name|es
-argument_list|,
-name|warmer
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Expert: just like {@link    * #NRTManager(IndexWriter,ExecutorService,SearcherWarmer)},    * but you can also specify whether every searcher must    * apply deletes.  This is useful for cases where certain    * uses can tolerate seeing some deleted docs, since    * reopen time is faster if deletes need not be applied. */
-DECL|method|NRTManager
-specifier|public
-name|NRTManager
-parameter_list|(
-name|IndexWriter
-name|writer
-parameter_list|,
-name|ExecutorService
-name|es
-parameter_list|,
-name|SearcherWarmer
-name|warmer
+name|SearcherFactory
+name|searcherFactory
 parameter_list|,
 name|boolean
 name|alwaysApplyDeletes
@@ -460,9 +428,7 @@ name|writer
 argument_list|,
 literal|true
 argument_list|,
-name|warmer
-argument_list|,
-name|es
+name|searcherFactory
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -485,9 +451,7 @@ name|writer
 argument_list|,
 literal|true
 argument_list|,
-name|warmer
-argument_list|,
-name|es
+name|searcherFactory
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -507,9 +471,7 @@ name|writer
 argument_list|,
 literal|false
 argument_list|,
-name|warmer
-argument_list|,
-name|es
+name|searcherFactory
 argument_list|)
 argument_list|)
 expr_stmt|;
