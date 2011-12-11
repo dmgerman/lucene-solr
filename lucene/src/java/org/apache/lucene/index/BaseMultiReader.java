@@ -384,6 +384,7 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|i
 init|=
@@ -428,6 +429,7 @@ annotation|@
 name|Override
 DECL|method|maxDoc
 specifier|public
+specifier|final
 name|int
 name|maxDoc
 parameter_list|()
@@ -458,6 +460,7 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|i
 init|=
@@ -494,9 +497,7 @@ name|boolean
 name|hasDeletions
 parameter_list|()
 block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
+comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|hasDeletions
 return|;
@@ -769,9 +770,6 @@ name|ReaderContext
 name|getTopReaderContext
 parameter_list|()
 block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
 return|return
 name|topLevelContext
 return|;
@@ -790,7 +788,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"please use MultiPerDocValues#getPerDocs, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Fields"
+literal|"please use MultiPerDocValues.getPerDocs, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Fields"
 argument_list|)
 throw|;
 block|}
