@@ -677,7 +677,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Expert: decreases the refCount of this IndexReader    * instance.  If the refCount drops to 0, then pending    * changes (if any) are committed to the index and this    * reader is closed.  If an exception is hit, the refCount    * is unchanged.    *    * @throws IOException in case an IOException occurs in commit() or doClose()    *    * @see #incRef    */
+comment|/**    * Expert: decreases the refCount of this IndexReader    * instance.  If the refCount drops to 0, then this    * reader is closed.  If an exception is hit, the refCount    * is unchanged.    *    * @throws IOException in case an IOException occurs in  doClose()    *    * @see #incRef    */
 DECL|method|decRef
 specifier|public
 specifier|final
