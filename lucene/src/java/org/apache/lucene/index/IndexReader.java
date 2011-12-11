@@ -696,14 +696,14 @@ name|rc
 init|=
 name|refCount
 operator|.
-name|getAndDecrement
+name|decrementAndGet
 argument_list|()
 decl_stmt|;
 if|if
 condition|(
 name|rc
 operator|==
-literal|1
+literal|0
 condition|)
 block|{
 name|boolean
@@ -745,7 +745,7 @@ elseif|else
 if|if
 condition|(
 name|rc
-operator|<=
+operator|<
 literal|0
 condition|)
 block|{
@@ -753,11 +753,11 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"too many decRef calls: refCount was "
+literal|"too many decRef calls: refCount is "
 operator|+
 name|rc
 operator|+
-literal|" before decrement"
+literal|" after decrement"
 argument_list|)
 throw|;
 block|}
