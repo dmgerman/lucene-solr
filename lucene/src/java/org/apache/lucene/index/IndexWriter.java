@@ -855,6 +855,16 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -864,6 +874,7 @@ argument_list|,
 literal|"flush at getReader"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Do this up front before flushing so that the readers
 comment|// obtained during this flush are pooled, the first time
 comment|// this method is called:
@@ -1002,7 +1013,10 @@ if|if
 condition|(
 operator|!
 name|success
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|infoStream
 operator|.
 name|isEnabled
@@ -1020,6 +1034,7 @@ argument_list|,
 literal|"hit exception during NRT reader"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Done: finish the full flush!
 name|docWriter
@@ -3128,6 +3143,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -3144,6 +3160,7 @@ operator|+
 literal|"\""
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|rollbackSegments
@@ -3266,6 +3283,16 @@ operator|!
 name|success
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -3275,6 +3302,7 @@ argument_list|,
 literal|"init: hit exception on init; releasing write lock"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|writeLock
@@ -3570,6 +3598,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -3579,6 +3617,7 @@ argument_list|,
 literal|"now call final commit()"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -3600,6 +3639,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -3612,6 +3652,7 @@ name|segString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// used by assert below
 specifier|final
 name|DocumentsWriter
@@ -3708,6 +3749,16 @@ operator|!
 name|closed
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -3717,6 +3768,7 @@ argument_list|,
 literal|"hit exception while closing"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -4146,7 +4198,10 @@ if|if
 condition|(
 operator|!
 name|success
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|infoStream
 operator|.
 name|isEnabled
@@ -4164,6 +4219,7 @@ argument_list|,
 literal|"hit exception updating document"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -4463,7 +4519,10 @@ if|if
 condition|(
 operator|!
 name|success
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|infoStream
 operator|.
 name|isEnabled
@@ -4481,6 +4540,7 @@ argument_list|,
 literal|"hit exception updating document"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -5135,6 +5195,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -5147,6 +5208,7 @@ name|segString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|MergePolicy
 operator|.
 name|MergeSpecification
@@ -5735,6 +5797,16 @@ name|success
 init|=
 literal|false
 decl_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -5744,6 +5816,7 @@ argument_list|,
 literal|"rollback"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 synchronized|synchronized
@@ -5761,6 +5834,16 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -5770,6 +5853,7 @@ argument_list|,
 literal|"rollback: done finish merges"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Must pre-close these two, in case they increment
 comment|// changeCount so that we can then set it to false
 comment|// before calling closeInternal
@@ -5938,6 +6022,16 @@ expr_stmt|;
 name|notifyAll
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -5947,6 +6041,7 @@ argument_list|,
 literal|"hit exception during rollback"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -6049,7 +6144,10 @@ if|if
 condition|(
 operator|!
 name|success
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|infoStream
 operator|.
 name|isEnabled
@@ -6067,6 +6165,7 @@ argument_list|,
 literal|"hit exception during deleteAll"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -6113,6 +6212,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -6129,6 +6229,7 @@ name|directory
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|merge
 operator|.
 name|abort
@@ -6165,6 +6266,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -6181,6 +6283,7 @@ name|directory
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|merge
 operator|.
 name|abort
@@ -6211,6 +6314,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -6227,6 +6331,7 @@ operator|+
 literal|" running merge to abort"
 argument_list|)
 expr_stmt|;
+block|}
 name|doWait
 argument_list|()
 expr_stmt|;
@@ -6246,6 +6351,16 @@ operator|.
 name|size
 argument_list|()
 assert|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -6255,6 +6370,7 @@ argument_list|,
 literal|"all running merges have aborted"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -6281,6 +6397,16 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -6290,6 +6416,7 @@ argument_list|,
 literal|"waitForMerges"
 argument_list|)
 expr_stmt|;
+block|}
 while|while
 condition|(
 name|pendingMerges
@@ -6320,6 +6447,16 @@ operator|.
 name|size
 argument_list|()
 assert|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -6329,6 +6466,7 @@ argument_list|,
 literal|"waitForMerges done"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**    * Called whenever the SegmentInfos has been updated and    * the index files referenced exist (correctly) in the    * index directory.    */
 DECL|method|checkpoint
@@ -6819,6 +6957,16 @@ init|(
 name|bufferedDeletesStream
 init|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -6828,6 +6976,7 @@ argument_list|,
 literal|"publishFlushedSegment"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|globalPacket
@@ -7092,6 +7241,16 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -7101,6 +7260,7 @@ argument_list|,
 literal|"flush at addIndexes(Directory...)"
 argument_list|)
 expr_stmt|;
+block|}
 name|flush
 argument_list|(
 literal|false
@@ -7384,6 +7544,16 @@ literal|0
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -7393,6 +7563,7 @@ argument_list|,
 literal|"flush at addIndexes(IndexReader...)"
 argument_list|)
 expr_stmt|;
+block|}
 name|flush
 argument_list|(
 literal|false
@@ -8218,6 +8389,16 @@ operator|!
 name|success
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -8227,6 +8408,7 @@ argument_list|,
 literal|"hit exception during prepareCommit"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Done: finish the full flush!
 name|docWriter
@@ -8389,6 +8571,16 @@ name|CorruptIndexException
 throws|,
 name|IOException
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -8398,10 +8590,21 @@ argument_list|,
 literal|"commit: start"
 argument_list|)
 expr_stmt|;
+block|}
 synchronized|synchronized
 init|(
 name|commitLock
 init|)
+block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
 block|{
 name|infoStream
 operator|.
@@ -8412,11 +8615,22 @@ argument_list|,
 literal|"commit: enter lock"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|pendingCommit
 operator|==
 literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|infoStream
@@ -8428,6 +8642,7 @@ argument_list|,
 literal|"commit: now prepare"
 argument_list|)
 expr_stmt|;
+block|}
 name|prepareCommit
 argument_list|(
 name|commitUserData
@@ -8435,6 +8650,16 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
 block|{
 name|infoStream
 operator|.
@@ -8445,6 +8670,7 @@ argument_list|,
 literal|"commit: already prepared"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|finishCommit
 argument_list|()
@@ -8472,6 +8698,16 @@ condition|)
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -8481,6 +8717,7 @@ argument_list|,
 literal|"commit: pendingCommit != null"
 argument_list|)
 expr_stmt|;
+block|}
 name|pendingCommit
 operator|.
 name|finishCommit
@@ -8499,6 +8736,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -8515,6 +8753,7 @@ operator|+
 literal|"\""
 argument_list|)
 expr_stmt|;
+block|}
 name|lastCommitChangeCount
 operator|=
 name|pendingCommitChangeCount
@@ -8580,6 +8819,16 @@ block|}
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -8590,6 +8839,17 @@ literal|"commit: pendingCommit == null; skip"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -8599,6 +8859,7 @@ argument_list|,
 literal|"commit: done"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Ensures only one flush() is actually flushing segments
 comment|// at a time:
@@ -8832,6 +9093,17 @@ condition|(
 operator|!
 name|success
 condition|)
+block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -8841,6 +9113,8 @@ argument_list|,
 literal|"hit exception during flush"
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 DECL|method|maybeApplyDeletes
@@ -8860,6 +9134,16 @@ condition|(
 name|applyAllDeletes
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -8869,6 +9153,7 @@ argument_list|,
 literal|"apply all deletes during flush"
 argument_list|)
 expr_stmt|;
+block|}
 name|applyAllDeletes
 argument_list|()
 expr_stmt|;
@@ -9221,6 +9506,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -9237,6 +9523,7 @@ name|directory
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Carefully merge deletes that occurred after we
 comment|// started merging:
 name|int
@@ -9716,6 +10003,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -9737,6 +10025,7 @@ name|segString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 assert|assert
 name|merge
 operator|.
@@ -9765,6 +10054,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -9783,6 +10073,7 @@ operator|+
 literal|": it was aborted"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -9823,7 +10114,10 @@ decl_stmt|;
 if|if
 condition|(
 name|allDeleted
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|infoStream
 operator|.
 name|isEnabled
@@ -9855,6 +10149,7 @@ literal|"; skipping insert"
 operator|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|final
 name|boolean
@@ -10172,6 +10467,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -10193,6 +10489,7 @@ name|segString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|mergeMiddle
 argument_list|(
 name|merge
@@ -10241,6 +10538,16 @@ operator|!
 name|success
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -10250,6 +10557,7 @@ argument_list|,
 literal|"hit exception during merge"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|merge
@@ -10268,6 +10576,7 @@ operator|.
 name|info
 argument_list|)
 condition|)
+block|{
 name|deleter
 operator|.
 name|refresh
@@ -10279,6 +10588,7 @@ operator|.
 name|name
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// This merge (and, generally, any change to the
 comment|// segments) may now enable new merges, so we call
@@ -10343,7 +10653,10 @@ operator|.
 name|info
 operator|!=
 literal|null
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|infoStream
 operator|.
 name|isEnabled
@@ -10380,6 +10693,7 @@ operator|+
 literal|" docs"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//System.out.println(Thread.currentThread().getName() + ": merge end");
 block|}
@@ -10546,6 +10860,7 @@ argument_list|(
 literal|"IW"
 argument_list|)
 condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -10571,6 +10886,7 @@ operator|+
 literal|" pending]"
 argument_list|)
 expr_stmt|;
+block|}
 name|merge
 operator|.
 name|mergeGen
@@ -10638,6 +10954,16 @@ argument_list|)
 expr_stmt|;
 comment|// don't call mergingSegments.toString() could lead to ConcurrentModException
 comment|// since merge updates the segments FieldInfos
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -10650,6 +10976,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 for|for
 control|(
@@ -10742,6 +11069,16 @@ operator|!
 name|success
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -10751,6 +11088,7 @@ argument_list|,
 literal|"hit exception in mergeInit"
 argument_list|)
 expr_stmt|;
+block|}
 name|mergeFinish
 argument_list|(
 name|merge
@@ -12293,6 +12631,16 @@ operator|!
 name|success
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -12302,6 +12650,7 @@ argument_list|,
 literal|"hit exception creating compound file during merge"
 argument_list|)
 expr_stmt|;
+block|}
 synchronized|synchronized
 init|(
 name|this
@@ -12378,6 +12727,16 @@ name|isAborted
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -12387,6 +12746,7 @@ argument_list|,
 literal|"abort merge after building CFS"
 argument_list|)
 expr_stmt|;
+block|}
 name|deleter
 operator|.
 name|deleteFile
@@ -13094,6 +13454,16 @@ throw|;
 block|}
 try|try
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -13103,6 +13473,7 @@ argument_list|,
 literal|"startCommit(): start"
 argument_list|)
 expr_stmt|;
+block|}
 synchronized|synchronized
 init|(
 name|this
@@ -13120,6 +13491,16 @@ operator|==
 name|lastCommitChangeCount
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -13129,6 +13510,7 @@ argument_list|,
 literal|"  skip startCommit(): no changes pending"
 argument_list|)
 expr_stmt|;
+block|}
 name|deleter
 operator|.
 name|decRef
@@ -13270,6 +13652,16 @@ operator|=
 name|toSync
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -13279,6 +13671,7 @@ argument_list|,
 literal|"done all syncs"
 argument_list|)
 expr_stmt|;
+block|}
 assert|assert
 name|testPoint
 argument_list|(
@@ -13310,6 +13703,16 @@ operator|!
 name|pendingCommitSet
 condition|)
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -13319,6 +13722,7 @@ argument_list|,
 literal|"hit exception committing segments file"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Hit exception
 name|deleter
 operator|.

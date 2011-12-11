@@ -1361,16 +1361,21 @@ operator|&&
 name|docState
 operator|.
 name|infoStream
-operator|!=
-literal|null
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
 condition|)
 block|{
 name|docState
 operator|.
 name|infoStream
 operator|.
-name|println
+name|message
 argument_list|(
+literal|"IW"
+argument_list|,
 literal|"WARNING: document contains at least one immense term (whose UTF8 encoding is longer than the max length "
 operator|+
 name|DocumentsWriterPerThread

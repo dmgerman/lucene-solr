@@ -66,20 +66,6 @@ name|Map
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|InfoStream
-import|;
-end_import
-
 begin_comment
 comment|/**<p>This class implements a {@link MergePolicy} that tries  *  to merge segments into levels of exponentially  *  increasing size, where each level has fewer segments than  *  the value of the merge factor. Whenever extra segments  *  (beyond the merge factor upper bound) are encountered,  *  all segments within the level are merged. You can get or  *  set the merge factor using {@link #getMergeFactor()} and  *  {@link #setMergeFactor(int)} respectively.</p>  *  *<p>This class is abstract and requires a subclass to  * define the {@link #size} method which specifies how a  * segment's size is determined.  {@link LogDocMergePolicy}  * is one subclass that measures size by document count in  * the segment.  {@link LogByteSizeMergePolicy} is another  * subclass that measures size as the total byte size of the  * file(s) for the segment.</p>  */
 end_comment
@@ -1745,6 +1731,7 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"findForcedDeleteMerges: "
@@ -1754,6 +1741,7 @@ operator|+
 literal|" segments"
 argument_list|)
 expr_stmt|;
+block|}
 name|MergeSpecification
 name|spec
 init|=
@@ -1828,6 +1816,7 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"  segment "
@@ -1839,6 +1828,7 @@ operator|+
 literal|" has deletions"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|firstSegmentWithDeletions
@@ -1867,6 +1857,7 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"  add merge "
@@ -1884,6 +1875,7 @@ operator|+
 literal|" inclusive"
 argument_list|)
 expr_stmt|;
+block|}
 name|spec
 operator|.
 name|add
@@ -1925,6 +1917,7 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"  add merge "
@@ -1942,6 +1935,7 @@ operator|+
 literal|" inclusive"
 argument_list|)
 expr_stmt|;
+block|}
 name|spec
 operator|.
 name|add
@@ -1980,6 +1974,7 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"  add merge "
@@ -1997,6 +1992,7 @@ operator|+
 literal|" inclusive"
 argument_list|)
 expr_stmt|;
+block|}
 name|spec
 operator|.
 name|add
@@ -2144,6 +2140,7 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"findMerges: "
@@ -2153,6 +2150,7 @@ operator|+
 literal|" segments"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Compute levels, which is just log (base mergeFactor)
 comment|// of the size of each segment
 specifier|final
@@ -2563,6 +2561,7 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"  level "
@@ -2586,6 +2585,7 @@ operator|+
 literal|" segments"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Finally, record all merges that are viable at this level:
 name|int
 name|end
