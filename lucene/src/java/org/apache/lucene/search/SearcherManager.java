@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -154,6 +164,8 @@ specifier|public
 specifier|final
 class|class
 name|SearcherManager
+implements|implements
+name|Closeable
 block|{
 DECL|field|currentSearcher
 specifier|private
