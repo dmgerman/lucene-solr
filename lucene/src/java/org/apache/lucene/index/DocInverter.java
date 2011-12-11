@@ -216,16 +216,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Used to read a string value for a field
-DECL|field|stringReader
-specifier|final
-name|ReusableStringReader
-name|stringReader
-init|=
-operator|new
-name|ReusableStringReader
-argument_list|()
-decl_stmt|;
 DECL|method|DocInverter
 specifier|public
 name|DocInverter
