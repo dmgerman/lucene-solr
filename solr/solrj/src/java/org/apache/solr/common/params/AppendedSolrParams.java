@@ -30,6 +30,9 @@ name|AppendedSolrParams
 extends|extends
 name|DefaultSolrParams
 block|{
+comment|/**    * @deprecated (3.6) Use {@link SolrParams#wrapAppended(SolrParams, SolrParams)} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|AppendedSolrParams
 specifier|public
 name|AppendedSolrParams
