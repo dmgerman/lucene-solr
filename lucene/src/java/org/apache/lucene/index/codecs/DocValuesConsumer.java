@@ -269,7 +269,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Merges the given {@link SingleSubMergeState} into this {@link DocValuesConsumer}.    *     * @param mergeState    *          the {@link SingleSubMergeState} to merge    * @throws IOException    *           if an {@link IOException} occurs    */
-comment|// nocommit: can't we have a default implementation here that merges naively with our apis?
+comment|// TODO: can't we have a default implementation here that merges naively with our apis?
 comment|// this is how stored fields and term vectors work. its a pain to have to impl merging
 comment|// (should be an optimization to override it)
 DECL|method|merge
