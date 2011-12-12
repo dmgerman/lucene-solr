@@ -900,11 +900,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|r
 operator|.
 name|close

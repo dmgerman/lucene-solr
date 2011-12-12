@@ -473,11 +473,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|r
 operator|.
 name|close

@@ -1075,11 +1075,6 @@ literal|0.0001
 argument_list|)
 expr_stmt|;
 block|}
-name|s
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|r
 operator|.
 name|close
@@ -1324,11 +1319,6 @@ argument_list|)
 operator|.
 name|totalHits
 argument_list|)
-expr_stmt|;
-name|s
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|r
 operator|.
@@ -1749,11 +1739,6 @@ name|q4CustomAdd
 argument_list|,
 name|q5CustomMulAdd
 argument_list|)
-expr_stmt|;
-name|s
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|r
 operator|.

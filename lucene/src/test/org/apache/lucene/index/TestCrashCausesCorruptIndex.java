@@ -544,11 +544,6 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-name|indexSearcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|indexReader
 operator|.
 name|close

@@ -516,11 +516,6 @@ literal|"one"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|is
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|ir
 operator|.
 name|close
@@ -571,11 +566,6 @@ name|length
 argument_list|)
 expr_stmt|;
 name|iw
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|is
 operator|.
 name|close
 argument_list|()

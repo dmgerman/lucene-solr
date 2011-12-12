@@ -2060,11 +2060,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close
@@ -2875,11 +2870,6 @@ parameter_list|)
 block|{
 comment|// expecting exception
 block|}
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close
@@ -3082,11 +3072,6 @@ name|totalHits
 argument_list|)
 expr_stmt|;
 comment|// 5 docs, from the a and b's
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|mr
 operator|.
 name|close
@@ -3352,11 +3337,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close
@@ -3556,11 +3536,6 @@ argument_list|(
 literal|"field"
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|reader
 operator|.
@@ -3783,11 +3758,6 @@ argument_list|(
 literal|"field"
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|r
 operator|.
@@ -4199,11 +4169,6 @@ argument_list|(
 literal|"field"
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|reader
 operator|.

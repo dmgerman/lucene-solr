@@ -569,11 +569,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|indexSearcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close

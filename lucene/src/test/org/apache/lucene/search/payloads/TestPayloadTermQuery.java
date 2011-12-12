@@ -1003,11 +1003,6 @@ throws|throws
 name|Exception
 block|{
 name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|searcher
 operator|=
 literal|null
 expr_stmt|;
@@ -1872,11 +1867,6 @@ name|count
 operator|++
 expr_stmt|;
 block|}
-name|theSearcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close

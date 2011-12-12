@@ -1225,8 +1225,6 @@ name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|searcher
-argument_list|,
 name|reader
 argument_list|,
 name|runData

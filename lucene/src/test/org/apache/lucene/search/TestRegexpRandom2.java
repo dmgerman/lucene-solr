@@ -685,16 +685,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|searcher1
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|searcher2
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|dir
 operator|.
 name|close

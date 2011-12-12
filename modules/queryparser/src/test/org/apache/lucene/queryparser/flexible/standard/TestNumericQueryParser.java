@@ -3429,11 +3429,6 @@ throws|throws
 name|Exception
 block|{
 name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|searcher
 operator|=
 literal|null
 expr_stmt|;

@@ -853,17 +853,6 @@ finally|finally
 block|{
 if|if
 condition|(
-name|searcher
-operator|!=
-literal|null
-condition|)
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
 name|reader
 operator|!=
 literal|null

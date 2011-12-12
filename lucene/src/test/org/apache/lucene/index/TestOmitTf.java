@@ -2230,11 +2230,6 @@ name|getCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close

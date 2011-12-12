@@ -3009,11 +3009,6 @@ argument_list|)
 operator|.
 name|totalHits
 expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|VERBOSE

@@ -502,11 +502,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|dir
 operator|.
 name|close

@@ -995,17 +995,7 @@ name|totalHits
 argument_list|)
 expr_stmt|;
 block|}
-name|ram
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|mem
 operator|.
 name|close
 argument_list|()
