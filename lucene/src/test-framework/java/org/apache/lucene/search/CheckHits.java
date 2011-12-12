@@ -533,11 +533,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// our wrapping can create insanity otherwise
-name|s
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 DECL|class|SetCollector

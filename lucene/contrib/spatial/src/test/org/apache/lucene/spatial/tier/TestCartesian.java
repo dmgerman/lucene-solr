@@ -1724,11 +1724,6 @@ operator|=
 name|geo_distance
 expr_stmt|;
 block|}
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close
@@ -2239,11 +2234,6 @@ operator|=
 name|geo_distance
 expr_stmt|;
 block|}
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close
@@ -2771,11 +2761,6 @@ name|geo_distance
 expr_stmt|;
 block|}
 block|}
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close
@@ -3271,11 +3256,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close

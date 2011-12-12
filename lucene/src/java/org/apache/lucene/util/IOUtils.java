@@ -355,6 +355,8 @@ name|priorException
 parameter_list|,
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|Closeable
 argument_list|>
 name|objects

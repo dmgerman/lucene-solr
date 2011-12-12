@@ -645,7 +645,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Expert: decreases the refCount of this IndexReader    * instance.  If the refCount drops to 0, then pending    * changes (if any) are committed to the index and this    * reader is closed.  If an exception is hit, the refCount    * is unchanged.    *    * @throws IOException in case an IOException occurs in commit() or doClose()    *    * @see #incRef    */
+comment|/**    * Expert: decreases the refCount of this IndexReader    * instance.  If the refCount drops to 0, then this    * reader is closed.  If an exception is hit, the refCount    * is unchanged.    *    * @throws IOException in case an IOException occurs in  doClose()    *    * @see #incRef    */
 DECL|method|decRef
 specifier|public
 specifier|final
@@ -664,14 +664,14 @@ name|rc
 init|=
 name|refCount
 operator|.
-name|getAndDecrement
+name|decrementAndGet
 argument_list|()
 decl_stmt|;
 if|if
 condition|(
 name|rc
 operator|==
-literal|1
+literal|0
 condition|)
 block|{
 name|boolean
@@ -713,7 +713,7 @@ elseif|else
 if|if
 condition|(
 name|rc
-operator|<=
+operator|<
 literal|0
 condition|)
 block|{
@@ -721,11 +721,11 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"too many decRef calls: refCount was "
+literal|"too many decRef calls: refCount is "
 operator|+
 name|rc
 operator|+
-literal|" before decrement"
+literal|" after decrement"
 argument_list|)
 throw|;
 block|}
@@ -1479,35 +1479,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|docID
-operator|<
-literal|0
-operator|||
-name|docID
-operator|>=
-name|maxDoc
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"docID must be>= 0 and< maxDoc="
-operator|+
-name|maxDoc
-argument_list|()
-operator|+
-literal|" (got docID="
-operator|+
-name|docID
-operator|+
-literal|")"
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|DocumentStoredFieldVisitor
 name|visitor

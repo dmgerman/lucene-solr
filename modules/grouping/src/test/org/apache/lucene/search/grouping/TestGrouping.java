@@ -8652,16 +8652,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-name|s
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|sBlocks
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 finally|finally
 block|{

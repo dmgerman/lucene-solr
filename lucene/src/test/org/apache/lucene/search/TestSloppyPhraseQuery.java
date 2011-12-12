@@ -984,11 +984,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|reader
 operator|.
 name|close
@@ -1609,11 +1604,6 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-name|is
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|ir
 operator|.
 name|close
@@ -1762,11 +1752,6 @@ name|pq
 argument_list|,
 name|is
 argument_list|)
-expr_stmt|;
-name|is
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|ir
 operator|.
@@ -1972,11 +1957,6 @@ name|pq
 argument_list|,
 name|is
 argument_list|)
-expr_stmt|;
-name|is
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|ir
 operator|.

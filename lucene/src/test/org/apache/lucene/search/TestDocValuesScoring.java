@@ -924,16 +924,6 @@ argument_list|,
 name|SCORE_EPSILON
 argument_list|)
 expr_stmt|;
-name|searcher1
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|searcher2
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|ir
 operator|.
 name|close

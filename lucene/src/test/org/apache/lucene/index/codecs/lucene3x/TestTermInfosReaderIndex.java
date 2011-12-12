@@ -1056,11 +1056,6 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|sample
 specifier|private

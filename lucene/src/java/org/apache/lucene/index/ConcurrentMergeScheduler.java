@@ -40,20 +40,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|InfoStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|ThreadInterruptedException
 import|;
 end_import
@@ -1194,11 +1180,13 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"  no more merges pending; now return"
 argument_list|)
 expr_stmt|;
+block|}
 return|return;
 block|}
 comment|// We do this w/ the primary thread to keep
@@ -1222,6 +1210,12 @@ init|(
 name|this
 init|)
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
 name|message
 argument_list|(
 literal|"  consider merge "
@@ -1234,6 +1228,7 @@ name|dir
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// OK to spawn a new merge thread to handle this
 comment|// merge:
 specifier|final
@@ -1575,11 +1570,13 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"  merge thread: start"
 argument_list|)
 expr_stmt|;
+block|}
 while|while
 condition|(
 literal|true
@@ -1626,6 +1623,7 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"  merge thread: do another merge "
@@ -1639,6 +1637,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
 break|break;
@@ -1649,11 +1648,13 @@ condition|(
 name|verbose
 argument_list|()
 condition|)
+block|{
 name|message
 argument_list|(
 literal|"  merge thread: done"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(

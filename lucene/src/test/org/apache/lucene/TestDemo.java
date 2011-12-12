@@ -449,11 +449,6 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-name|isearcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|ireader
 operator|.
 name|close

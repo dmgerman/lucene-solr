@@ -369,11 +369,6 @@ name|close
 argument_list|()
 expr_stmt|;
 name|s
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|s
 operator|=
 literal|null
 expr_stmt|;

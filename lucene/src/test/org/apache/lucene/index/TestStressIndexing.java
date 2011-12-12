@@ -558,11 +558,6 @@ argument_list|(
 name|ir
 argument_list|)
 decl_stmt|;
-name|is
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|ir
 operator|.
 name|close

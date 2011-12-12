@@ -73,7 +73,13 @@ parameter_list|,
 name|String
 name|message
 parameter_list|)
-block|{}
+block|{
+assert|assert
+literal|false
+operator|:
+literal|"message() should not be called when isEnabled returns false"
+assert|;
+block|}
 annotation|@
 name|Override
 DECL|method|isEnabled

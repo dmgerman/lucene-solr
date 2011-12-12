@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -520,6 +530,8 @@ name|SolrIndexSearcher
 extends|extends
 name|IndexSearcher
 implements|implements
+name|Closeable
+implements|,
 name|SolrInfoMBean
 block|{
 comment|// These should *only* be used for debugging or monitoring purposes
@@ -1489,8 +1501,6 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Free's resources associated with this searcher.    *    * In particular, the underlying reader and any cache's in use are closed.    */
-annotation|@
-name|Override
 DECL|method|close
 specifier|public
 name|void

@@ -1492,6 +1492,7 @@ name|int
 name|maxDoc
 parameter_list|)
 block|{
+comment|// TODO FIXME: THIS IS HEAVY BROKEN AND ILLEGAL TO DO (null delegate):
 name|IndexReader
 name|r
 init|=
@@ -1506,6 +1507,17 @@ name|Override
 specifier|public
 name|int
 name|maxDoc
+parameter_list|()
+block|{
+return|return
+name|maxDoc
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|numDocs
 parameter_list|()
 block|{
 return|return

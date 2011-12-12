@@ -62,16 +62,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|PrintStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|text
 operator|.
 name|NumberFormat
@@ -411,7 +401,7 @@ name|Analyzer
 name|analyzer
 decl_stmt|;
 DECL|field|infoStream
-name|PrintStream
+name|InfoStream
 name|infoStream
 decl_stmt|;
 DECL|field|similarityProvider
@@ -440,6 +430,9 @@ name|DocState
 parameter_list|(
 name|DocumentsWriterPerThread
 name|docWriter
+parameter_list|,
+name|InfoStream
+name|infoStream
 parameter_list|)
 block|{
 name|this
@@ -447,6 +440,12 @@ operator|.
 name|docWriter
 operator|=
 name|docWriter
+expr_stmt|;
+name|this
+operator|.
+name|infoStream
+operator|=
+name|infoStream
 expr_stmt|;
 block|}
 comment|// Only called by asserts
@@ -558,6 +557,16 @@ literal|true
 expr_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"DWPT"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -567,6 +576,7 @@ argument_list|,
 literal|"now abort"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|consumer
@@ -604,6 +614,16 @@ name|aborting
 operator|=
 literal|false
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"DWPT"
+argument_list|)
+condition|)
+block|{
 name|infoStream
 operator|.
 name|message
@@ -613,6 +633,7 @@ argument_list|,
 literal|"done abort"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|field|INFO_VERBOSE
@@ -799,6 +820,8 @@ operator|new
 name|DocState
 argument_list|(
 name|this
+argument_list|,
+name|infoStream
 argument_list|)
 expr_stmt|;
 name|this

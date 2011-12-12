@@ -476,11 +476,6 @@ operator|=
 name|text
 expr_stmt|;
 block|}
-name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 comment|// Set up the expected order (i.e. Document 5, 4, 3, 2, 1).
 name|String
 index|[]

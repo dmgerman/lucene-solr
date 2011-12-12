@@ -1090,11 +1090,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|search
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -1737,11 +1732,6 @@ name|result
 operator|.
 name|length
 argument_list|)
-expr_stmt|;
-name|search
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 block|}
 comment|// byte-ranges cannot be tested, because all ranges are too big for bytes, need an extra range for that
@@ -2836,11 +2826,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|search
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -3923,11 +3908,6 @@ name|result
 operator|.
 name|length
 argument_list|)
-expr_stmt|;
-name|search
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -5012,11 +4992,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|search
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 comment|// float and double tests are a bit minimalistic, but its complicated, because missing precision
 annotation|@
@@ -5358,11 +5333,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|search
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -5702,11 +5672,6 @@ name|result
 operator|.
 name|length
 argument_list|)
-expr_stmt|;
-name|search
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 block|}
 comment|// test using a sparse index (with deleted docs).
@@ -6162,11 +6127,6 @@ name|result
 operator|.
 name|length
 argument_list|)
-expr_stmt|;
-name|search
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|reader
 operator|.

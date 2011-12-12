@@ -1095,11 +1095,6 @@ name|reader
 argument_list|)
 expr_stmt|;
 name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|searcher
 operator|=
 name|newSearcher
 argument_list|(
@@ -1265,11 +1260,6 @@ name|reader
 argument_list|)
 expr_stmt|;
 name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|searcher
 operator|=
 name|newSearcher
 argument_list|(
@@ -1388,11 +1378,6 @@ name|reader
 argument_list|)
 expr_stmt|;
 name|searcher
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|searcher
 operator|=
 name|newSearcher
 argument_list|(
@@ -1484,11 +1469,6 @@ name|oldReader2
 operator|!=
 literal|null
 argument_list|)
-expr_stmt|;
-name|searcher
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 name|reader
 operator|.
