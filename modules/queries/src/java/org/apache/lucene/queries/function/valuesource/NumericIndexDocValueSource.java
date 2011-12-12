@@ -100,7 +100,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: obtains numeric field values from a {@link DocValues} field.  * This {@link ValueSource} is compatible with all numerical  * {@link DocValues}  *   * @lucene.experimental  *   */
+comment|/**  * Expert: obtains numeric field values from a {@link FunctionValues} field.  * This {@link ValueSource} is compatible with all numerical  * {@link FunctionValues}  *   * @lucene.experimental  *   */
 end_comment
 
 begin_class
@@ -157,7 +157,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map
@@ -207,7 +207,7 @@ case|:
 comment|// TODO (chrism) Change to use FloatDocValues and IntDocValues
 return|return
 operator|new
-name|DocValues
+name|FunctionValues
 argument_list|()
 block|{
 annotation|@
@@ -260,7 +260,7 @@ name|VAR_INTS
 case|:
 return|return
 operator|new
-name|DocValues
+name|FunctionValues
 argument_list|()
 block|{
 annotation|@
@@ -477,7 +477,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"DocValues float("
+literal|"FunctionValues float("
 operator|+
 name|field
 operator|+

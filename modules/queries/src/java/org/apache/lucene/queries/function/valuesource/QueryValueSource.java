@@ -48,7 +48,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -270,7 +270,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map
@@ -952,8 +952,8 @@ parameter_list|()
 block|{
 comment|//
 comment|// TODO: if we want to support more than one value-filler or a value-filler in conjunction with
-comment|// the DocValues, then members like "scorer" should be per ValueFiller instance.
-comment|// Or we can say that the user should just instantiate multiple DocValues.
+comment|// the FunctionValues, then members like "scorer" should be per ValueFiller instance.
+comment|// Or we can say that the user should just instantiate multiple FunctionValues.
 comment|//
 return|return
 operator|new

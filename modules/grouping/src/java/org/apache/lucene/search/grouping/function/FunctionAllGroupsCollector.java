@@ -46,7 +46,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -149,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collector that collects all groups that match the  * query. Only the group value is collected, and the order  * is undefined.  This collector does not determine  * the most relevant document of a group.  *  *<p/>  * Implementation detail: Uses {@link ValueSource} and {@link DocValues} to retrieve the  * field values to group by.  *  * @lucene.experimental  */
+comment|/**  * A collector that collects all groups that match the  * query. Only the group value is collected, and the order  * is undefined.  This collector does not determine  * the most relevant document of a group.  *  *<p/>  * Implementation detail: Uses {@link ValueSource} and {@link FunctionValues} to retrieve the  * field values to group by.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -193,7 +193,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|filler
 specifier|private
-name|DocValues
+name|FunctionValues
 operator|.
 name|ValueFiller
 name|filler
@@ -297,7 +297,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|DocValues
+name|FunctionValues
 name|docValues
 init|=
 name|groupBy

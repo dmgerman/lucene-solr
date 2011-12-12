@@ -42,7 +42,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -618,7 +618,7 @@ operator|.
 name|maxDoc
 argument_list|()
 expr_stmt|;
-name|DocValues
+name|FunctionValues
 name|dv
 init|=
 name|rangeFilt

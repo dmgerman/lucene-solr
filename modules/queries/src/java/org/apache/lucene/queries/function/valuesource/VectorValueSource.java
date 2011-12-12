@@ -48,7 +48,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Converts individual ValueSource instances to leverage the DocValues *Val functions that work with multiple values,  * i.e. {@link org.apache.lucene.queries.function.DocValues#doubleVal(int, double[])}  */
+comment|/**  * Converts individual ValueSource instances to leverage the FunctionValues *Val functions that work with multiple values,  * i.e. {@link org.apache.lucene.queries.function.FunctionValues#doubleVal(int, double[])}  */
 end_comment
 
 begin_comment
@@ -197,7 +197,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map
@@ -226,7 +226,7 @@ literal|2
 condition|)
 block|{
 specifier|final
-name|DocValues
+name|FunctionValues
 name|x
 init|=
 name|sources
@@ -244,7 +244,7 @@ name|readerContext
 argument_list|)
 decl_stmt|;
 specifier|final
-name|DocValues
+name|FunctionValues
 name|y
 init|=
 name|sources
@@ -263,7 +263,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|DocValues
+name|FunctionValues
 argument_list|()
 block|{
 annotation|@
@@ -578,12 +578,12 @@ block|}
 return|;
 block|}
 specifier|final
-name|DocValues
+name|FunctionValues
 index|[]
 name|valsArr
 init|=
 operator|new
-name|DocValues
+name|FunctionValues
 index|[
 name|size
 index|]
@@ -625,7 +625,7 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|DocValues
+name|FunctionValues
 argument_list|()
 block|{
 annotation|@
@@ -1001,7 +1001,7 @@ literal|true
 decl_stmt|;
 for|for
 control|(
-name|DocValues
+name|FunctionValues
 name|vals
 range|:
 name|valsArr

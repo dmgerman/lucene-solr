@@ -48,7 +48,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -302,7 +302,7 @@ operator|.
 name|maxDoc
 argument_list|()
 decl_stmt|;
-name|DocValues
+name|FunctionValues
 name|vals
 init|=
 name|source
@@ -446,7 +446,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map
@@ -539,7 +539,7 @@ operator|.
 name|maxVal
 decl_stmt|;
 specifier|final
-name|DocValues
+name|FunctionValues
 name|vals
 init|=
 name|source

@@ -48,7 +48,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -177,7 +177,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map
@@ -214,7 +214,7 @@ operator|-
 literal|1
 decl_stmt|;
 specifier|private
-name|DocValues
+name|FunctionValues
 name|get
 parameter_list|(
 name|int
@@ -236,7 +236,7 @@ name|i
 operator|++
 control|)
 block|{
-name|DocValues
+name|FunctionValues
 name|vals
 init|=
 name|valsArr
@@ -504,7 +504,7 @@ block|{
 comment|// return true if any source is exists?
 for|for
 control|(
-name|DocValues
+name|FunctionValues
 name|vals
 range|:
 name|valsArr

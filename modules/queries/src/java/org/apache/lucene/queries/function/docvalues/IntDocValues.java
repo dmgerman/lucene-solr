@@ -28,7 +28,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -87,7 +87,7 @@ specifier|abstract
 class|class
 name|IntDocValues
 extends|extends
-name|DocValues
+name|FunctionValues
 block|{
 DECL|field|vs
 specifier|protected

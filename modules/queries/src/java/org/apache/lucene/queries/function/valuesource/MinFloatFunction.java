@@ -32,7 +32,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -101,7 +101,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 index|[]
 name|valsArr
 parameter_list|)
@@ -118,7 +118,7 @@ literal|0.0f
 decl_stmt|;
 for|for
 control|(
-name|DocValues
+name|FunctionValues
 name|vals
 range|:
 name|valsArr
