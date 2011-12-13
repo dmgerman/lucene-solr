@@ -46,7 +46,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -161,12 +161,12 @@ name|vsContext
 decl_stmt|;
 DECL|field|docValues
 specifier|private
-name|DocValues
+name|FunctionValues
 name|docValues
 decl_stmt|;
 DECL|field|filler
 specifier|private
-name|DocValues
+name|FunctionValues
 operator|.
 name|ValueFiller
 name|filler

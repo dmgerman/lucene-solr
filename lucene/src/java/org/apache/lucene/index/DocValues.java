@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.values
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
@@ -9,8 +9,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|values
 package|;
 end_package
 
@@ -58,49 +56,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IndexDocValuesField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Fields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
+name|DocValuesField
 import|;
 end_import
 
@@ -151,15 +107,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link IndexDocValues} provides a dense per-document typed storage for fast  * value access based on the lucene internal document id. {@link IndexDocValues}  * exposes two distinct APIs:  *<ul>  *<li>via {@link #getSource()} providing RAM resident random access</li>  *<li>via {@link #getDirectSource()} providing on disk random access</li>  *</ul> {@link IndexDocValues} are exposed via  * {@link IndexReader#perDocValues()} on a per-segment basis. For best  * performance {@link IndexDocValues} should be consumed per-segment just like  * IndexReader.  *<p>  * {@link IndexDocValues} are fully integrated into the {@link DocValuesFormat} API.  *   * @see ValueType for limitations and default implementation documentation  * @see IndexDocValuesField for adding values to the index  * @see DocValuesFormat#docsConsumer(org.apache.lucene.index.PerDocWriteState) for  *      customization  * @lucene.experimental  */
+comment|/**  * {@link DocValues} provides a dense per-document typed storage for fast  * value access based on the lucene internal document id. {@link DocValues}  * exposes two distinct APIs:  *<ul>  *<li>via {@link #getSource()} providing RAM resident random access</li>  *<li>via {@link #getDirectSource()} providing on disk random access</li>  *</ul> {@link DocValues} are exposed via  * {@link IndexReader#perDocValues()} on a per-segment basis. For best  * performance {@link DocValues} should be consumed per-segment just like  * IndexReader.  *<p>  * {@link DocValues} are fully integrated into the {@link DocValuesFormat} API.  *   * @see Type for limitations and default implementation documentation  * @see DocValuesField for adding values to the index  * @see DocValuesFormat#docsConsumer(org.apache.lucene.index.PerDocWriteState) for  *      customization  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|IndexDocValues
+DECL|class|DocValues
 specifier|public
 specifier|abstract
 class|class
-name|IndexDocValues
+name|DocValues
 implements|implements
 name|Closeable
 block|{
@@ -167,12 +123,12 @@ DECL|field|EMPTY_ARRAY
 specifier|public
 specifier|static
 specifier|final
-name|IndexDocValues
+name|DocValues
 index|[]
 name|EMPTY_ARRAY
 init|=
 operator|new
-name|IndexDocValues
+name|DocValues
 index|[
 literal|0
 index|]
@@ -199,7 +155,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-comment|/**    * Loads a new {@link Source} instance for this {@link IndexDocValues} field    * instance. Source instances returned from this method are not cached. It is    * the callers responsibility to maintain the instance and release its    * resources once the source is not needed anymore.    *<p>    * For managed {@link Source} instances see {@link #getSource()}.    *     * @see #getSource()    * @see #setCache(SourceCache)    */
+comment|/**    * Loads a new {@link Source} instance for this {@link DocValues} field    * instance. Source instances returned from this method are not cached. It is    * the callers responsibility to maintain the instance and release its    * resources once the source is not needed anymore.    *<p>    * For managed {@link Source} instances see {@link #getSource()}.    *     * @see #getSource()    * @see #setCache(SourceCache)    */
 DECL|method|load
 specifier|public
 specifier|abstract
@@ -209,7 +165,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a {@link Source} instance through the current {@link SourceCache}.    * Iff no {@link Source} has been loaded into the cache so far the source will    * be loaded through {@link #load()} and passed to the {@link SourceCache}.    * The caller of this method should not close the obtained {@link Source}    * instance unless it is not needed for the rest of its life time.    *<p>    * {@link Source} instances obtained from this method are closed / released    * from the cache once this {@link IndexDocValues} instance is closed by the    * {@link IndexReader}, {@link Fields} or {@link FieldsEnum} the    * {@link IndexDocValues} was created from.    */
+comment|/**    * Returns a {@link Source} instance through the current {@link SourceCache}.    * Iff no {@link Source} has been loaded into the cache so far the source will    * be loaded through {@link #load()} and passed to the {@link SourceCache}.    * The caller of this method should not close the obtained {@link Source}    * instance unless it is not needed for the rest of its life time.    *<p>    * {@link Source} instances obtained from this method are closed / released    * from the cache once this {@link DocValues} instance is closed by the    * {@link IndexReader}, {@link Fields} or {@link FieldsEnum} the    * {@link DocValues} was created from.    */
 DECL|method|getSource
 specifier|public
 name|Source
@@ -237,15 +193,15 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns the {@link ValueType} of this {@link IndexDocValues} instance    */
+comment|/**    * Returns the {@link Type} of this {@link DocValues} instance    */
 DECL|method|type
 specifier|public
 specifier|abstract
-name|ValueType
+name|Type
 name|type
 parameter_list|()
 function_decl|;
-comment|/**    * Closes this {@link IndexDocValues} instance. This method should only be called    * by the creator of this {@link IndexDocValues} instance. API users should not    * close {@link IndexDocValues} instances.    */
+comment|/**    * Closes this {@link DocValues} instance. This method should only be called    * by the creator of this {@link DocValues} instance. API users should not    * close {@link DocValues} instances.    */
 DECL|method|close
 specifier|public
 name|void
@@ -274,7 +230,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Sets the {@link SourceCache} used by this {@link IndexDocValues} instance. This    * method should be called before {@link #load()} is called. All {@link Source} instances in the currently used cache will be closed    * before the new cache is installed.    *<p>    * Note: All instances previously obtained from {@link #load()} will be lost.    *     * @throws IllegalArgumentException    *           if the given cache is<code>null</code>    *     */
+comment|/**    * Sets the {@link SourceCache} used by this {@link DocValues} instance. This    * method should be called before {@link #load()} is called. All {@link Source} instances in the currently used cache will be closed    * before the new cache is installed.    *<p>    * Note: All instances previously obtained from {@link #load()} will be lost.    *     * @throws IllegalArgumentException    *           if the given cache is<code>null</code>    *     */
 DECL|method|setCache
 specifier|public
 name|void
@@ -324,7 +280,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Source of per document values like long, double or {@link BytesRef}    * depending on the {@link IndexDocValues} fields {@link ValueType}. Source    * implementations provide random access semantics similar to array lookups    *<p>    * @see IndexDocValues#getSource()    * @see IndexDocValues#getDirectSource()    */
+comment|/**    * Source of per document values like long, double or {@link BytesRef}    * depending on the {@link DocValues} fields {@link Type}. Source    * implementations provide random access semantics similar to array lookups    *<p>    * @see DocValues#getSource()    * @see DocValues#getDirectSource()    */
 DECL|class|Source
 specifier|public
 specifier|static
@@ -335,14 +291,14 @@ block|{
 DECL|field|type
 specifier|protected
 specifier|final
-name|ValueType
+name|Type
 name|type
 decl_stmt|;
 DECL|method|Source
 specifier|protected
 name|Source
 parameter_list|(
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -410,10 +366,10 @@ literal|"bytes are not supported"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Returns the {@link ValueType} of this source.      *       * @return the {@link ValueType} of this source.      */
+comment|/**      * Returns the {@link Type} of this source.      *       * @return the {@link Type} of this source.      */
 DECL|method|type
 specifier|public
-name|ValueType
+name|Type
 name|type
 parameter_list|()
 block|{
@@ -486,7 +442,7 @@ DECL|method|SortedSource
 specifier|protected
 name|SortedSource
 parameter_list|(
-name|ValueType
+name|Type
 name|type
 parameter_list|,
 name|Comparator
@@ -584,6 +540,17 @@ name|BytesRef
 name|bytesRef
 parameter_list|)
 function_decl|;
+comment|/** Return true if it's safe to call {@link      *  #getDocToOrd}. */
+DECL|method|hasPackedDocToOrd
+specifier|public
+name|boolean
+name|hasPackedDocToOrd
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/**      * Returns the PackedInts.Reader impl that maps document to ord.      */
 DECL|method|getDocToOrd
 specifier|public
@@ -783,7 +750,7 @@ name|Source
 name|getDefaultSource
 parameter_list|(
 specifier|final
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -856,7 +823,7 @@ name|SortedSource
 name|getDefaultSortedSource
 parameter_list|(
 specifier|final
-name|ValueType
+name|Type
 name|type
 parameter_list|,
 specifier|final
@@ -1016,6 +983,17 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|boolean
+name|hasPackedDocToOrd
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|PackedInts
 operator|.
 name|Reader
@@ -1073,6 +1051,179 @@ return|;
 block|}
 block|}
 return|;
+block|}
+comment|/**    *<code>Type</code> specifies the {@link DocValues} type for a    * certain field. A<code>Type</code> only defines the data type for a field    * while the actual implementation used to encode and decode the values depends    * on the the {@link DocValuesFormat#docsConsumer} and {@link DocValuesFormat#docsProducer} methods.    *     * @lucene.experimental    */
+DECL|enum|Type
+specifier|public
+specifier|static
+enum|enum
+name|Type
+block|{
+comment|/**      * A variable bit signed integer value. By default this type uses      * {@link PackedInts} to compress the values, as an offset      * from the minimum value, as long as the value range      * fits into 2<sup>63</sup>-1. Otherwise,      * the default implementation falls back to fixed size 64bit      * integers ({@link #FIXED_INTS_64}).      *<p>      * NOTE: this type uses<tt>0</tt> as the default value without any      * distinction between provided<tt>0</tt> values during indexing. All      * documents without an explicit value will use<tt>0</tt> instead.      * Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|VAR_INTS
+name|VAR_INTS
+block|,
+comment|/**      * A 8 bit signed integer value. {@link Source} instances of      * this type return a<tt>byte</tt> array from {@link Source#getArray()}      *<p>      * NOTE: this type uses<tt>0</tt> as the default value without any      * distinction between provided<tt>0</tt> values during indexing. All      * documents without an explicit value will use<tt>0</tt> instead.      * Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|FIXED_INTS_8
+name|FIXED_INTS_8
+block|,
+comment|/**      * A 16 bit signed integer value. {@link Source} instances of      * this type return a<tt>short</tt> array from {@link Source#getArray()}      *<p>      * NOTE: this type uses<tt>0</tt> as the default value without any      * distinction between provided<tt>0</tt> values during indexing. All      * documents without an explicit value will use<tt>0</tt> instead.      * Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|FIXED_INTS_16
+name|FIXED_INTS_16
+block|,
+comment|/**      * A 32 bit signed integer value. {@link Source} instances of      * this type return a<tt>int</tt> array from {@link Source#getArray()}      *<p>      * NOTE: this type uses<tt>0</tt> as the default value without any      * distinction between provided<tt>0</tt> values during indexing. All      * documents without an explicit value will use<tt>0</tt> instead.       * Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|FIXED_INTS_32
+name|FIXED_INTS_32
+block|,
+comment|/**      * A 64 bit signed integer value. {@link Source} instances of      * this type return a<tt>long</tt> array from {@link Source#getArray()}      *<p>      * NOTE: this type uses<tt>0</tt> as the default value without any      * distinction between provided<tt>0</tt> values during indexing. All      * documents without an explicit value will use<tt>0</tt> instead.      * Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|FIXED_INTS_64
+name|FIXED_INTS_64
+block|,
+comment|/**      * A 32 bit floating point value. By default there is no compression      * applied. To fit custom float values into less than 32bit either a custom      * implementation is needed or values must be encoded into a      * {@link #BYTES_FIXED_STRAIGHT} type. {@link Source} instances of      * this type return a<tt>float</tt> array from {@link Source#getArray()}      *<p>      * NOTE: this type uses<tt>0.0f</tt> as the default value without any      * distinction between provided<tt>0.0f</tt> values during indexing. All      * documents without an explicit value will use<tt>0.0f</tt> instead.      * Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|FLOAT_32
+name|FLOAT_32
+block|,
+comment|/**      *       * A 64 bit floating point value. By default there is no compression      * applied. To fit custom float values into less than 64bit either a custom      * implementation is needed or values must be encoded into a      * {@link #BYTES_FIXED_STRAIGHT} type. {@link Source} instances of      * this type return a<tt>double</tt> array from {@link Source#getArray()}      *<p>      * NOTE: this type uses<tt>0.0d</tt> as the default value without any      * distinction between provided<tt>0.0d</tt> values during indexing. All      * documents without an explicit value will use<tt>0.0d</tt> instead.      * Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|FLOAT_64
+name|FLOAT_64
+block|,
+comment|// TODO(simonw): -- shouldn't lucene decide/detect straight vs
+comment|// deref, as well fixed vs var?
+comment|/**      * A fixed length straight byte[]. All values added to      * such a field must be of the same length. All bytes are stored sequentially      * for fast offset access.      *<p>      * NOTE: this type uses<tt>0 byte</tt> filled byte[] based on the length of the first seen      * value as the default value without any distinction between explicitly      * provided values during indexing. All documents without an explicit value      * will use the default instead.Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|BYTES_FIXED_STRAIGHT
+name|BYTES_FIXED_STRAIGHT
+block|,
+comment|/**      * A fixed length dereferenced byte[] variant. Fields with      * this type only store distinct byte values and store an additional offset      * pointer per document to dereference the shared byte[].      * Use this type if your documents may share the same byte[].      *<p>      * NOTE: Fields of this type will not store values for documents without and      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference. Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|BYTES_FIXED_DEREF
+name|BYTES_FIXED_DEREF
+block|,
+comment|/**      * Variable length straight stored byte[] variant. All bytes are      * stored sequentially for compactness. Usage of this type via the      * disk-resident API might yield performance degradation since no additional      * index is used to advance by more than one document value at a time.      *<p>      * NOTE: Fields of this type will not store values for documents without an      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * byte[] reference. Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|BYTES_VAR_STRAIGHT
+name|BYTES_VAR_STRAIGHT
+block|,
+comment|/**      * A variable length dereferenced byte[]. Just like      * {@link #BYTES_FIXED_DEREF}, but allowing each      * document's value to be a different length.      *<p>      * NOTE: Fields of this type will not store values for documents without and      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference. Custom default values must be assigned explicitly.      *</p>      */
+DECL|enum constant|BYTES_VAR_DEREF
+name|BYTES_VAR_DEREF
+block|,
+comment|/**      * A variable length pre-sorted byte[] variant. Just like      * {@link #BYTES_FIXED_SORTED}, but allowing each      * document's value to be a different length.      *<p>      * NOTE: Fields of this type will not store values for documents without and      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference.Custom default values must be assigned explicitly.      *</p>      *       * @see SortedSource      */
+DECL|enum constant|BYTES_VAR_SORTED
+name|BYTES_VAR_SORTED
+block|,
+comment|/**      * A fixed length pre-sorted byte[] variant. Fields with this type only      * store distinct byte values and store an additional offset pointer per      * document to dereference the shared byte[]. The stored      * byte[] is presorted, by default by unsigned byte order,      * and allows access via document id, ordinal and by-value.      * Use this type if your documents may share the same byte[].      *<p>      * NOTE: Fields of this type will not store values for documents without and      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference. Custom default values must be assigned      * explicitly.      *</p>      *       * @see SortedSource      */
+DECL|enum constant|BYTES_FIXED_SORTED
+name|BYTES_FIXED_SORTED
+block|}
+comment|/**    * Abstract base class for {@link DocValues} {@link Source} cache.    *<p>    * {@link Source} instances loaded via {@link DocValues#load()} are entirely memory resident    * and need to be maintained by the caller. Each call to    * {@link DocValues#load()} will cause an entire reload of    * the underlying data. Source instances obtained from    * {@link DocValues#getSource()} and {@link DocValues#getSource()}    * respectively are maintained by a {@link SourceCache} that is closed (    * {@link #close(DocValues)}) once the {@link IndexReader} that created the    * {@link DocValues} instance is closed.    *<p>    * Unless {@link Source} instances are managed by another entity it is    * recommended to use the cached variants to obtain a source instance.    *<p>    * Implementation of this API must be thread-safe.    *     * @see DocValues#setCache(SourceCache)    * @see DocValues#getSource()    *     * @lucene.experimental    */
+DECL|class|SourceCache
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|SourceCache
+block|{
+comment|/**      * Atomically loads a {@link Source} into the cache from the given      * {@link DocValues} and returns it iff no other {@link Source} has already      * been cached. Otherwise the cached source is returned.      *<p>      * This method will not return<code>null</code>      */
+DECL|method|load
+specifier|public
+specifier|abstract
+name|Source
+name|load
+parameter_list|(
+name|DocValues
+name|values
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**      * Atomically invalidates the cached {@link Source}       * instances if any and empties the cache.      */
+DECL|method|invalidate
+specifier|public
+specifier|abstract
+name|void
+name|invalidate
+parameter_list|(
+name|DocValues
+name|values
+parameter_list|)
+function_decl|;
+comment|/**      * Atomically closes the cache and frees all resources.      */
+DECL|method|close
+specifier|public
+specifier|synchronized
+name|void
+name|close
+parameter_list|(
+name|DocValues
+name|values
+parameter_list|)
+block|{
+name|invalidate
+argument_list|(
+name|values
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Simple per {@link DocValues} instance cache implementation that holds a      * {@link Source} a member variable.      *<p>      * If a {@link DirectSourceCache} instance is closed or invalidated the cached      * reference are simply set to<code>null</code>      */
+DECL|class|DirectSourceCache
+specifier|public
+specifier|static
+specifier|final
+class|class
+name|DirectSourceCache
+extends|extends
+name|SourceCache
+block|{
+DECL|field|ref
+specifier|private
+name|Source
+name|ref
+decl_stmt|;
+DECL|method|load
+specifier|public
+specifier|synchronized
+name|Source
+name|load
+parameter_list|(
+name|DocValues
+name|values
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|ref
+operator|==
+literal|null
+condition|)
+block|{
+name|ref
+operator|=
+name|values
+operator|.
+name|load
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|ref
+return|;
+block|}
+DECL|method|invalidate
+specifier|public
+specifier|synchronized
+name|void
+name|invalidate
+parameter_list|(
+name|DocValues
+name|values
+parameter_list|)
+block|{
+name|ref
+operator|=
+literal|null
+expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 end_class

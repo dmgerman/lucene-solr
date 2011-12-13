@@ -50,41 +50,41 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+operator|.
+name|Source
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
+operator|.
+name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 operator|.
 name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|IndexDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|ValueType
 import|;
 end_import
 
@@ -100,7 +100,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: obtains numeric field values from a {@link IndexDocValues} field.  * This {@link ValueSource} is compatible with all numerical  * {@link IndexDocValues}  *   * @lucene.experimental  *   */
+comment|/**  * Expert: obtains numeric field values from a {@link FunctionValues} field.  * This {@link ValueSource} is compatible with all numerical  * {@link FunctionValues}  *   * @lucene.experimental  *   */
 end_comment
 
 begin_class
@@ -157,7 +157,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map
@@ -170,8 +170,6 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|IndexDocValues
-operator|.
 name|Source
 name|source
 init|=
@@ -187,7 +185,7 @@ operator|.
 name|getSource
 argument_list|()
 decl_stmt|;
-name|ValueType
+name|Type
 name|type
 init|=
 name|source
@@ -209,7 +207,7 @@ case|:
 comment|// TODO (chrism) Change to use FloatDocValues and IntDocValues
 return|return
 operator|new
-name|DocValues
+name|FunctionValues
 argument_list|()
 block|{
 annotation|@
@@ -262,7 +260,7 @@ name|VAR_INTS
 case|:
 return|return
 operator|new
-name|DocValues
+name|FunctionValues
 argument_list|()
 block|{
 annotation|@
@@ -479,7 +477,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"DocValues float("
+literal|"FunctionValues float("
 operator|+
 name|field
 operator|+

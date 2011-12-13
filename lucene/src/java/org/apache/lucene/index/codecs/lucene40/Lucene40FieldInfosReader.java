@@ -176,9 +176,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|ValueType
+name|DocValues
 import|;
 end_import
 
@@ -641,7 +639,9 @@ name|IndexOptions
 operator|.
 name|DOCS_ONLY
 expr_stmt|;
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|docValuesType
 init|=
 literal|null
@@ -682,7 +682,9 @@ literal|1
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|VAR_INTS
 expr_stmt|;
@@ -692,7 +694,9 @@ literal|2
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FLOAT_32
 expr_stmt|;
@@ -702,7 +706,9 @@ literal|3
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FLOAT_64
 expr_stmt|;
@@ -712,7 +718,9 @@ literal|4
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|BYTES_FIXED_STRAIGHT
 expr_stmt|;
@@ -722,7 +730,9 @@ literal|5
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|BYTES_FIXED_DEREF
 expr_stmt|;
@@ -732,7 +742,9 @@ literal|6
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|BYTES_VAR_STRAIGHT
 expr_stmt|;
@@ -742,7 +754,9 @@ literal|7
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|BYTES_VAR_DEREF
 expr_stmt|;
@@ -752,7 +766,9 @@ literal|8
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FIXED_INTS_16
 expr_stmt|;
@@ -762,7 +778,9 @@ literal|9
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FIXED_INTS_32
 expr_stmt|;
@@ -772,7 +790,9 @@ literal|10
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FIXED_INTS_64
 expr_stmt|;
@@ -782,7 +802,9 @@ literal|11
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|FIXED_INTS_8
 expr_stmt|;
@@ -792,7 +814,9 @@ literal|12
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|BYTES_FIXED_SORTED
 expr_stmt|;
@@ -802,7 +826,9 @@ literal|13
 case|:
 name|docValuesType
 operator|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|BYTES_VAR_SORTED
 expr_stmt|;

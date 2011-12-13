@@ -88,25 +88,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|PerDocFieldValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|ValueType
+name|DocValues
 import|;
 end_import
 
@@ -212,17 +194,19 @@ name|fieldType
 parameter_list|()
 function_decl|;
 comment|/** Non-null if doc values should be indexed */
-DECL|method|docValues
+DECL|method|docValue
 specifier|public
-name|PerDocFieldValues
-name|docValues
+name|DocValue
+name|docValue
 parameter_list|()
 function_decl|;
-comment|/** DocValues type; only used if docValues is non-null */
-DECL|method|docValuesType
+comment|/** DocValues type; only used if docValue is non-null */
+DECL|method|docValueType
 specifier|public
-name|ValueType
-name|docValuesType
+name|DocValues
+operator|.
+name|Type
+name|docValueType
 parameter_list|()
 function_decl|;
 comment|/**    * Creates the TokenStream used for indexing this field.  If appropriate,    * implementations should use the given Analyzer to create the TokenStreams.    *    * @param analyzer Analyzer that should be used to create the TokenStreams from    * @return TokenStream value for indexing the document.  Should always return    *         a non-null value if the field is to be indexed    * @throws IOException Can be thrown while creating the TokenStream    */

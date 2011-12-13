@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.values
+DECL|package|org.apache.lucene.index.codecs.lucene40.values
 package|package
 name|org
 operator|.
@@ -9,6 +9,10 @@ operator|.
 name|lucene
 operator|.
 name|index
+operator|.
+name|codecs
+operator|.
+name|lucene40
 operator|.
 name|values
 package|;
@@ -64,11 +68,25 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|IndexDocValues
+name|DocValues
 operator|.
 name|Source
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
+operator|.
+name|Type
 import|;
 end_import
 
@@ -123,10 +141,10 @@ comment|/**  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|IndexDocValuesArray
+DECL|class|DocValuesArray
 specifier|abstract
 class|class
-name|IndexDocValuesArray
+name|DocValuesArray
 extends|extends
 name|Source
 block|{
@@ -135,9 +153,9 @@ specifier|static
 specifier|final
 name|Map
 argument_list|<
-name|ValueType
+name|Type
 argument_list|,
-name|IndexDocValuesArray
+name|DocValuesArray
 argument_list|>
 name|TEMPLATES
 decl_stmt|;
@@ -145,21 +163,21 @@ static|static
 block|{
 name|EnumMap
 argument_list|<
-name|ValueType
+name|Type
 argument_list|,
-name|IndexDocValuesArray
+name|DocValuesArray
 argument_list|>
 name|templates
 init|=
 operator|new
 name|EnumMap
 argument_list|<
-name|ValueType
+name|Type
 argument_list|,
-name|IndexDocValuesArray
+name|DocValuesArray
 argument_list|>
 argument_list|(
-name|ValueType
+name|Type
 operator|.
 name|class
 argument_list|)
@@ -168,7 +186,7 @@ name|templates
 operator|.
 name|put
 argument_list|(
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_16
 argument_list|,
@@ -181,7 +199,7 @@ name|templates
 operator|.
 name|put
 argument_list|(
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_32
 argument_list|,
@@ -194,7 +212,7 @@ name|templates
 operator|.
 name|put
 argument_list|(
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_64
 argument_list|,
@@ -207,7 +225,7 @@ name|templates
 operator|.
 name|put
 argument_list|(
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_8
 argument_list|,
@@ -220,7 +238,7 @@ name|templates
 operator|.
 name|put
 argument_list|(
-name|ValueType
+name|Type
 operator|.
 name|FLOAT_32
 argument_list|,
@@ -233,7 +251,7 @@ name|templates
 operator|.
 name|put
 argument_list|(
-name|ValueType
+name|Type
 operator|.
 name|FLOAT_64
 argument_list|,
@@ -258,13 +276,13 @@ specifier|final
 name|int
 name|bytesPerValue
 decl_stmt|;
-DECL|method|IndexDocValuesArray
-name|IndexDocValuesArray
+DECL|method|DocValuesArray
+name|DocValuesArray
 parameter_list|(
 name|int
 name|bytesPerValue
 parameter_list|,
-name|ValueType
+name|Type
 name|type
 parameter_list|)
 block|{
@@ -283,7 +301,7 @@ block|}
 DECL|method|newFromInput
 specifier|public
 specifier|abstract
-name|IndexDocValuesArray
+name|DocValuesArray
 name|newFromInput
 parameter_list|(
 name|IndexInput
@@ -361,7 +379,7 @@ specifier|static
 class|class
 name|ByteValues
 extends|extends
-name|IndexDocValuesArray
+name|DocValuesArray
 block|{
 DECL|field|values
 specifier|private
@@ -378,7 +396,7 @@ name|super
 argument_list|(
 literal|1
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_8
 argument_list|)
@@ -409,7 +427,7 @@ name|super
 argument_list|(
 literal|1
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_8
 argument_list|)
@@ -484,7 +502,7 @@ annotation|@
 name|Override
 DECL|method|newFromInput
 specifier|public
-name|IndexDocValuesArray
+name|DocValuesArray
 name|newFromInput
 parameter_list|(
 name|IndexInput
@@ -542,7 +560,7 @@ specifier|static
 class|class
 name|ShortValues
 extends|extends
-name|IndexDocValuesArray
+name|DocValuesArray
 block|{
 DECL|field|values
 specifier|private
@@ -561,7 +579,7 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_SHORT
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_16
 argument_list|)
@@ -594,7 +612,7 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_SHORT
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_16
 argument_list|)
@@ -682,7 +700,7 @@ annotation|@
 name|Override
 DECL|method|newFromInput
 specifier|public
-name|IndexDocValuesArray
+name|DocValuesArray
 name|newFromInput
 parameter_list|(
 name|IndexInput
@@ -740,7 +758,7 @@ specifier|static
 class|class
 name|IntValues
 extends|extends
-name|IndexDocValuesArray
+name|DocValuesArray
 block|{
 DECL|field|values
 specifier|private
@@ -759,7 +777,7 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_INT
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_32
 argument_list|)
@@ -792,7 +810,7 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_INT
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_32
 argument_list|)
@@ -882,7 +900,7 @@ annotation|@
 name|Override
 DECL|method|newFromInput
 specifier|public
-name|IndexDocValuesArray
+name|DocValuesArray
 name|newFromInput
 parameter_list|(
 name|IndexInput
@@ -940,7 +958,7 @@ specifier|static
 class|class
 name|LongValues
 extends|extends
-name|IndexDocValuesArray
+name|DocValuesArray
 block|{
 DECL|field|values
 specifier|private
@@ -959,7 +977,7 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_LONG
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_64
 argument_list|)
@@ -992,7 +1010,7 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_LONG
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FIXED_INTS_64
 argument_list|)
@@ -1080,7 +1098,7 @@ annotation|@
 name|Override
 DECL|method|newFromInput
 specifier|public
-name|IndexDocValuesArray
+name|DocValuesArray
 name|newFromInput
 parameter_list|(
 name|IndexInput
@@ -1110,7 +1128,7 @@ specifier|static
 class|class
 name|FloatValues
 extends|extends
-name|IndexDocValuesArray
+name|DocValuesArray
 block|{
 DECL|field|values
 specifier|private
@@ -1129,7 +1147,7 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_FLOAT
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FLOAT_32
 argument_list|)
@@ -1162,7 +1180,7 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_FLOAT
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FLOAT_32
 argument_list|)
@@ -1287,7 +1305,7 @@ annotation|@
 name|Override
 DECL|method|newFromInput
 specifier|public
-name|IndexDocValuesArray
+name|DocValuesArray
 name|newFromInput
 parameter_list|(
 name|IndexInput
@@ -1317,7 +1335,7 @@ specifier|static
 class|class
 name|DoubleValues
 extends|extends
-name|IndexDocValuesArray
+name|DocValuesArray
 block|{
 DECL|field|values
 specifier|private
@@ -1336,7 +1354,7 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_DOUBLE
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FLOAT_64
 argument_list|)
@@ -1369,7 +1387,7 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_DOUBLE
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|FLOAT_64
 argument_list|)
@@ -1463,7 +1481,7 @@ annotation|@
 name|Override
 DECL|method|newFromInput
 specifier|public
-name|IndexDocValuesArray
+name|DocValuesArray
 name|newFromInput
 parameter_list|(
 name|IndexInput

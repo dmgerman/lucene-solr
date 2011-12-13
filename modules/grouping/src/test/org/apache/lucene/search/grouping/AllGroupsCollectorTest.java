@@ -84,9 +84,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
+name|DocValues
 operator|.
-name|ValueType
+name|Type
 import|;
 end_import
 
@@ -943,11 +943,11 @@ condition|(
 name|canUseIDV
 condition|)
 block|{
-name|IndexDocValuesField
+name|DocValuesField
 name|valuesField
 init|=
 operator|new
-name|IndexDocValuesField
+name|DocValuesField
 argument_list|(
 name|groupField
 argument_list|)
@@ -962,7 +962,7 @@ argument_list|(
 name|value
 argument_list|)
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|BYTES_VAR_SORTED
 argument_list|)
@@ -1019,7 +1019,7 @@ name|create
 argument_list|(
 name|groupField
 argument_list|,
-name|ValueType
+name|Type
 operator|.
 name|BYTES_VAR_SORTED
 argument_list|,

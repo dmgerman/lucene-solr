@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IndexDocValuesField
+name|DocValuesField
 import|;
 end_import
 
@@ -156,9 +156,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|ValueType
+name|DocValues
 import|;
 end_import
 
@@ -829,16 +827,22 @@ name|Document
 name|doc
 parameter_list|)
 block|{
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 index|[]
 name|values
 init|=
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 operator|.
 name|values
 argument_list|()
 decl_stmt|;
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|type
 init|=
 name|values
@@ -889,11 +893,11 @@ operator|!=
 literal|null
 condition|)
 return|return;
-name|IndexDocValuesField
+name|DocValuesField
 name|docValuesField
 init|=
 operator|new
-name|IndexDocValuesField
+name|DocValuesField
 argument_list|(
 name|name
 argument_list|)

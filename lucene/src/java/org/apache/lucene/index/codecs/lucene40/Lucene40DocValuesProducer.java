@@ -90,6 +90,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexFileNames
 import|;
 end_import
@@ -121,22 +135,6 @@ operator|.
 name|codecs
 operator|.
 name|DocValuesReaderBase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|IndexDocValues
 import|;
 end_import
 
@@ -183,7 +181,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default PerDocValues implementation that uses compound file.  * @lucene.experimental  */
+comment|/**  * Default PerDocProducer implementation that uses compound file.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -201,7 +199,7 @@ name|TreeMap
 argument_list|<
 name|String
 argument_list|,
-name|IndexDocValues
+name|DocValues
 argument_list|>
 name|docValues
 decl_stmt|;
@@ -211,7 +209,7 @@ specifier|final
 name|Directory
 name|cfs
 decl_stmt|;
-comment|/**    * Creates a new {@link Lucene40DocValuesProducer} instance and loads all    * {@link IndexDocValues} instances for this segment and codec.    */
+comment|/**    * Creates a new {@link Lucene40DocValuesProducer} instance and loads all    * {@link DocValues} instances for this segment and codec.    */
 DECL|method|Lucene40DocValuesProducer
 specifier|public
 name|Lucene40DocValuesProducer
@@ -308,7 +306,7 @@ name|TreeMap
 argument_list|<
 name|String
 argument_list|,
-name|IndexDocValues
+name|DocValues
 argument_list|>
 argument_list|()
 expr_stmt|;
@@ -322,7 +320,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|IndexDocValues
+name|DocValues
 argument_list|>
 name|docValues
 parameter_list|()

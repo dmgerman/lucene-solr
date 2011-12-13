@@ -166,9 +166,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|PerDocFieldValues
+name|DocValue
 import|;
 end_import
 
@@ -182,9 +180,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|ValueType
+name|DocValues
 import|;
 end_import
 
@@ -781,10 +777,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|docValues
+DECL|method|docValue
 specifier|public
-name|PerDocFieldValues
-name|docValues
+name|DocValue
+name|docValue
 parameter_list|()
 block|{
 if|if
@@ -803,7 +799,7 @@ argument_list|(
 name|name
 argument_list|)
 operator|.
-name|docValues
+name|docValue
 argument_list|()
 return|;
 block|}
@@ -821,17 +817,19 @@ index|[
 name|num
 index|]
 operator|.
-name|docValues
+name|docValue
 argument_list|()
 return|;
 block|}
 block|}
 annotation|@
 name|Override
-DECL|method|docValuesType
+DECL|method|docValueType
 specifier|public
-name|ValueType
-name|docValuesType
+name|DocValues
+operator|.
+name|Type
+name|docValueType
 parameter_list|()
 block|{
 if|if
@@ -850,7 +848,7 @@ argument_list|(
 name|name
 argument_list|)
 operator|.
-name|docValuesType
+name|docValueType
 argument_list|()
 return|;
 block|}
@@ -868,7 +866,7 @@ index|[
 name|num
 index|]
 operator|.
-name|docValuesType
+name|docValueType
 argument_list|()
 return|;
 block|}

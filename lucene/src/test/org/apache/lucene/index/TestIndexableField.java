@@ -152,25 +152,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|PerDocFieldValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|ValueType
+name|DocValues
 import|;
 end_import
 
@@ -756,10 +738,10 @@ block|}
 comment|// TODO: randomly enable doc values
 annotation|@
 name|Override
-DECL|method|docValues
+DECL|method|docValue
 specifier|public
-name|PerDocFieldValues
-name|docValues
+name|DocValue
+name|docValue
 parameter_list|()
 block|{
 return|return
@@ -768,10 +750,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|docValuesType
+DECL|method|docValueType
 specifier|public
-name|ValueType
-name|docValuesType
+name|DocValues
+operator|.
+name|Type
+name|docValueType
 parameter_list|()
 block|{
 return|return

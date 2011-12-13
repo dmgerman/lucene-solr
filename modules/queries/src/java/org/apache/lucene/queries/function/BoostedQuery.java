@@ -532,7 +532,7 @@ return|return
 name|subQueryExpl
 return|;
 block|}
-name|DocValues
+name|FunctionValues
 name|vals
 init|=
 name|boostVal
@@ -633,7 +633,7 @@ decl_stmt|;
 DECL|field|vals
 specifier|private
 specifier|final
-name|DocValues
+name|FunctionValues
 name|vals
 decl_stmt|;
 DECL|field|readerContext

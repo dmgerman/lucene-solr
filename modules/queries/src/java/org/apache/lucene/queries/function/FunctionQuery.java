@@ -436,7 +436,7 @@ literal|1
 decl_stmt|;
 DECL|field|vals
 specifier|final
-name|DocValues
+name|FunctionValues
 name|vals
 decl_stmt|;
 DECL|field|liveDocs

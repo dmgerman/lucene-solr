@@ -116,6 +116,44 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
+operator|.
+name|Type
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|codecs
+operator|.
+name|lucene40
+operator|.
 name|values
 operator|.
 name|Bytes
@@ -131,6 +169,10 @@ operator|.
 name|lucene
 operator|.
 name|index
+operator|.
+name|codecs
+operator|.
+name|lucene40
 operator|.
 name|values
 operator|.
@@ -148,41 +190,13 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
+name|codecs
 operator|.
-name|IndexDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
+name|lucene40
 operator|.
 name|values
 operator|.
 name|Ints
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|ValueType
 import|;
 end_import
 
@@ -229,7 +243,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for PerDocValues implementations  * @lucene.experimental  */
+comment|/**  * Abstract base class for PerDocProducer implementations  * @lucene.experimental  */
+end_comment
+
+begin_comment
+comment|// TODO: this needs to go under lucene40 codec (its specific to its impl)
 end_comment
 
 begin_class
@@ -239,7 +257,7 @@ specifier|abstract
 class|class
 name|DocValuesReaderBase
 extends|extends
-name|PerDocValues
+name|PerDocProducer
 block|{
 DECL|method|closeInternal
 specifier|protected
@@ -265,7 +283,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|IndexDocValues
+name|DocValues
 argument_list|>
 name|docValues
 parameter_list|()
@@ -294,7 +312,7 @@ annotation|@
 name|Override
 DECL|method|docValues
 specifier|public
-name|IndexDocValues
+name|DocValues
 name|docValues
 parameter_list|(
 name|String
@@ -311,25 +329,6 @@ name|get
 argument_list|(
 name|field
 argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|fields
-specifier|public
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|fields
-parameter_list|()
-block|{
-return|return
-name|docValues
-argument_list|()
-operator|.
-name|keySet
-argument_list|()
 return|;
 block|}
 DECL|method|getComparator
@@ -357,7 +356,7 @@ name|TreeMap
 argument_list|<
 name|String
 argument_list|,
-name|IndexDocValues
+name|DocValues
 argument_list|>
 name|load
 parameter_list|(
@@ -383,7 +382,7 @@ name|TreeMap
 argument_list|<
 name|String
 argument_list|,
-name|IndexDocValues
+name|DocValues
 argument_list|>
 name|values
 init|=
@@ -392,7 +391,7 @@ name|TreeMap
 argument_list|<
 name|String
 argument_list|,
-name|IndexDocValues
+name|DocValues
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -460,7 +459,7 @@ name|id
 argument_list|,
 name|fieldInfo
 operator|.
-name|getDocValues
+name|getDocValuesType
 argument_list|()
 argument_list|,
 name|context
@@ -497,10 +496,10 @@ return|return
 name|values
 return|;
 block|}
-comment|/**    * Loads a {@link IndexDocValues} instance depending on the given {@link ValueType}.    * Codecs that use different implementations for a certain {@link ValueType} can    * simply override this method and return their custom implementations.    *     * @param docCount    *          number of documents in the segment    * @param dir    *          the {@link Directory} to load the {@link IndexDocValues} from    * @param id    *          the unique file ID within the segment    * @param type    *          the type to load    * @return a {@link IndexDocValues} instance for the given type    * @throws IOException    *           if an {@link IOException} occurs    * @throws IllegalArgumentException    *           if the given {@link ValueType} is not supported    */
+comment|/**    * Loads a {@link DocValues} instance depending on the given {@link Type}.    * Codecs that use different implementations for a certain {@link Type} can    * simply override this method and return their custom implementations.    *     * @param docCount    *          number of documents in the segment    * @param dir    *          the {@link Directory} to load the {@link DocValues} from    * @param id    *          the unique file ID within the segment    * @param type    *          the type to load    * @return a {@link DocValues} instance for the given type    * @throws IOException    *           if an {@link IOException} occurs    * @throws IllegalArgumentException    *           if the given {@link Type} is not supported    */
 DECL|method|loadDocValues
 specifier|protected
-name|IndexDocValues
+name|DocValues
 name|loadDocValues
 parameter_list|(
 name|int
@@ -512,7 +511,9 @@ parameter_list|,
 name|String
 name|id
 parameter_list|,
-name|ValueType
+name|DocValues
+operator|.
+name|Type
 name|type
 parameter_list|,
 name|IOContext

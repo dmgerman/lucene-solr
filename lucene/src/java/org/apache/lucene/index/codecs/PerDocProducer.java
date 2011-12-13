@@ -40,16 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -58,30 +48,28 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|IndexDocValues
+name|DocValues
 import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract API that provides access to one or more per-document storage  * features. The concrete implementations provide access to the underlying  * storage on a per-document basis corresponding to their actual  * {@link PerDocConsumer} counterpart.  *<p>  * The {@link PerDocValues} API is accessible through the  * {@link PostingsFormat} - API providing per field consumers and producers for inverted  * data (terms, postings) as well as per-document data.  *   * @lucene.experimental  */
+comment|/**  * Abstract API that provides access to one or more per-document storage  * features. The concrete implementations provide access to the underlying  * storage on a per-document basis corresponding to their actual  * {@link PerDocConsumer} counterpart.  *<p>  * The {@link PerDocProducer} API is accessible through the  * {@link PostingsFormat} - API providing per field consumers and producers for inverted  * data (terms, postings) as well as per-document data.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|PerDocValues
+DECL|class|PerDocProducer
 specifier|public
 specifier|abstract
 class|class
-name|PerDocValues
+name|PerDocProducer
 implements|implements
 name|Closeable
 block|{
-comment|/**    * Returns {@link IndexDocValues} for the current field.    *     * @param field    *          the field name    * @return the {@link IndexDocValues} for this field or<code>null</code> if not    *         applicable.    * @throws IOException    */
+comment|/**    * Returns {@link DocValues} for the current field.    *     * @param field    *          the field name    * @return the {@link DocValues} for this field or<code>null</code> if not    *         applicable.    * @throws IOException    */
 DECL|method|docValues
 specifier|public
 specifier|abstract
-name|IndexDocValues
+name|DocValues
 name|docValues
 parameter_list|(
 name|String
@@ -94,27 +82,16 @@ DECL|field|EMPTY_ARRAY
 specifier|public
 specifier|static
 specifier|final
-name|PerDocValues
+name|PerDocProducer
 index|[]
 name|EMPTY_ARRAY
 init|=
 operator|new
-name|PerDocValues
+name|PerDocProducer
 index|[
 literal|0
 index|]
 decl_stmt|;
-comment|/**    * Returns all fields this {@link PerDocValues} contains values for.    */
-DECL|method|fields
-specifier|public
-specifier|abstract
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|fields
-parameter_list|()
-function_decl|;
 block|}
 end_class
 

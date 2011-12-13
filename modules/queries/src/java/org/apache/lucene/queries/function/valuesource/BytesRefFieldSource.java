@@ -46,7 +46,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation for retrieving {@link DocValues} instances for string based fields.  */
+comment|/**  * An implementation for retrieving {@link FunctionValues} instances for string based fields.  */
 end_comment
 
 begin_class
@@ -138,7 +138,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map

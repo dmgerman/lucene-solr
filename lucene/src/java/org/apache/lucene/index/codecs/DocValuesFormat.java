@@ -116,7 +116,7 @@ function_decl|;
 DECL|method|docsProducer
 specifier|public
 specifier|abstract
-name|PerDocValues
+name|PerDocProducer
 name|docsProducer
 parameter_list|(
 name|SegmentReadState

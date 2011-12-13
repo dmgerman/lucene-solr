@@ -30,11 +30,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Collection
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
 import|;
 end_import
 
@@ -76,41 +80,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|values
-operator|.
-name|IndexDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|PerDocFieldValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|values
-operator|.
-name|Writer
+name|DocValue
 import|;
 end_import
 
@@ -128,22 +98,8 @@ name|Bits
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Counter
-import|;
-end_import
-
 begin_comment
-comment|/**  * Abstract API that consumes {@link PerDocFieldValues}.  * {@link DocValuesConsumer} are always associated with a specific field and  * segments. Concrete implementations of this API write the given  * {@link PerDocFieldValues} into a implementation specific format depending on  * the fields meta-data.  *   * @lucene.experimental  */
+comment|/**  * Abstract API that consumes {@link DocValue}s.  * {@link DocValuesConsumer} are always associated with a specific field and  * segments. Concrete implementations of this API write the given  * {@link DocValue} into a implementation specific format depending on  * the fields meta-data.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -153,38 +109,7 @@ specifier|abstract
 class|class
 name|DocValuesConsumer
 block|{
-DECL|field|bytesUsed
-specifier|protected
-specifier|final
-name|Counter
-name|bytesUsed
-decl_stmt|;
-comment|/**    * Creates a new {@link DocValuesConsumer}.    *     * @param bytesUsed    *          bytes-usage tracking reference used by implementation to track    *          internally allocated memory. All tracked bytes must be released    *          once {@link #finish(int)} has been called.    */
-DECL|method|DocValuesConsumer
-specifier|protected
-name|DocValuesConsumer
-parameter_list|(
-name|Counter
-name|bytesUsed
-parameter_list|)
-block|{
-name|this
-operator|.
-name|bytesUsed
-operator|=
-name|bytesUsed
-operator|==
-literal|null
-condition|?
-name|Counter
-operator|.
-name|newCounter
-argument_list|()
-else|:
-name|bytesUsed
-expr_stmt|;
-block|}
-comment|/**    * Adds the given {@link PerDocFieldValues} instance to this    * {@link DocValuesConsumer}    *     * @param docID    *          the document ID to add the value for. The docID must always    *          increase or be<tt>0</tt> if it is the first call to this method.    * @param docValues    *          the values to add    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Adds the given {@link DocValue} instance to this    * {@link DocValuesConsumer}    *     * @param docID    *          the document ID to add the value for. The docID must always    *          increase or be<tt>0</tt> if it is the first call to this method.    * @param docValue    *          the value to add    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|add
 specifier|public
 specifier|abstract
@@ -194,13 +119,13 @@ parameter_list|(
 name|int
 name|docID
 parameter_list|,
-name|PerDocFieldValues
-name|docValues
+name|DocValue
+name|docValue
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Called when the consumer of this API is doc with adding    * {@link PerDocFieldValues} to this {@link DocValuesConsumer}    *     * @param docCount    *          the total number of documents in this {@link DocValuesConsumer}.    *          Must be greater than or equal the last given docID to    *          {@link #add(int, PerDocFieldValues)}.    * @throws IOException    */
+comment|/**    * Called when the consumer of this API is doc with adding    * {@link DocValue} to this {@link DocValuesConsumer}    *     * @param docCount    *          the total number of documents in this {@link DocValuesConsumer}.    *          Must be greater than or equal the last given docID to    *          {@link #add(int, DocValue)}.    * @throws IOException    */
 DECL|method|finish
 specifier|public
 specifier|abstract
@@ -213,23 +138,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Gathers files associated with this {@link DocValuesConsumer}    *     * @param files    *          the of files to add the consumers files to.    */
-DECL|method|files
-specifier|public
-specifier|abstract
-name|void
-name|files
-parameter_list|(
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Merges the given {@link org.apache.lucene.index.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param docValues docValues array containing one instance per reader (    *          {@link org.apache.lucene.index.MergeState#readers}) or<code>null</code> if the reader has    *          no {@link IndexDocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Merges the given {@link org.apache.lucene.index.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param docValues docValues array containing one instance per reader (    *          {@link org.apache.lucene.index.MergeState#readers}) or<code>null</code> if the reader has    *          no {@link DocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|merge
 specifier|public
 name|void
@@ -238,7 +147,7 @@ parameter_list|(
 name|MergeState
 name|mergeState
 parameter_list|,
-name|IndexDocValues
+name|DocValues
 index|[]
 name|docValues
 parameter_list|)
@@ -315,8 +224,6 @@ expr_stmt|;
 name|merge
 argument_list|(
 operator|new
-name|Writer
-operator|.
 name|SingleSubMergeState
 argument_list|(
 name|docValues
@@ -362,6 +269,9 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Merges the given {@link SingleSubMergeState} into this {@link DocValuesConsumer}.    *     * @param mergeState    *          the {@link SingleSubMergeState} to merge    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|// TODO: can't we have a default implementation here that merges naively with our apis?
+comment|// this is how stored fields and term vectors work. its a pain to have to impl merging
+comment|// (should be an optimization to override it)
 DECL|method|merge
 specifier|protected
 specifier|abstract
@@ -385,7 +295,7 @@ comment|/**      * the source reader for this MergeState - merged values should 
 DECL|field|reader
 specifier|public
 specifier|final
-name|IndexDocValues
+name|DocValues
 name|reader
 decl_stmt|;
 comment|/** the absolute docBase for this MergeState within the resulting segment */
@@ -413,7 +323,7 @@ DECL|method|SingleSubMergeState
 specifier|public
 name|SingleSubMergeState
 parameter_list|(
-name|IndexDocValues
+name|DocValues
 name|reader
 parameter_list|,
 name|int

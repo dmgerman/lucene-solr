@@ -504,7 +504,7 @@ switch|switch
 condition|(
 name|fi
 operator|.
-name|getDocValues
+name|getDocValuesType
 argument_list|()
 condition|)
 block|{
@@ -621,7 +621,7 @@ literal|"unhandled indexValues type "
 operator|+
 name|fi
 operator|.
-name|getDocValues
+name|getDocValuesType
 argument_list|()
 argument_list|)
 throw|;

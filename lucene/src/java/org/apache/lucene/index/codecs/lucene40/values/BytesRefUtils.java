@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index.values
+DECL|package|org.apache.lucene.index.codecs.lucene40.values
 package|package
 name|org
 operator|.
@@ -9,6 +9,10 @@ operator|.
 name|lucene
 operator|.
 name|index
+operator|.
+name|codecs
+operator|.
+name|lucene40
 operator|.
 name|values
 package|;
@@ -38,6 +42,7 @@ end_comment
 
 begin_class
 DECL|class|BytesRefUtils
+specifier|public
 specifier|final
 class|class
 name|BytesRefUtils

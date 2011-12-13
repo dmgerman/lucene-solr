@@ -74,7 +74,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -1090,7 +1090,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -1301,10 +1301,10 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|aVals
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|bVals
 parameter_list|)
 block|{
@@ -2116,7 +2116,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2153,7 +2153,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2190,7 +2190,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2228,7 +2228,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2266,7 +2266,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2304,7 +2304,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2342,7 +2342,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2380,7 +2380,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2418,7 +2418,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2456,7 +2456,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2494,7 +2494,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2532,7 +2532,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2570,7 +2570,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2608,7 +2608,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2646,7 +2646,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2684,7 +2684,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2722,7 +2722,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2760,7 +2760,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2798,7 +2798,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -2836,10 +2836,10 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|a
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|b
 parameter_list|)
 block|{
@@ -2884,10 +2884,10 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|a
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|b
 parameter_list|)
 block|{
@@ -2932,10 +2932,10 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|a
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|b
 parameter_list|)
 block|{
@@ -3800,7 +3800,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -3863,7 +3863,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 block|{
@@ -3952,14 +3952,14 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 index|[]
 name|vals
 parameter_list|)
 block|{
 for|for
 control|(
-name|DocValues
+name|FunctionValues
 name|dv
 range|:
 name|vals
@@ -4045,14 +4045,14 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 index|[]
 name|vals
 parameter_list|)
 block|{
 for|for
 control|(
-name|DocValues
+name|FunctionValues
 name|dv
 range|:
 name|vals
@@ -4137,7 +4137,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 index|[]
 name|vals
 parameter_list|)
@@ -4153,7 +4153,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|DocValues
+name|FunctionValues
 name|dv
 range|:
 name|vals
@@ -5274,10 +5274,10 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|aVals
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|bVals
 parameter_list|)
 block|{
@@ -5338,10 +5338,10 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|aVals
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|bVals
 parameter_list|)
 block|{
@@ -5398,10 +5398,10 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|aVals
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|bVals
 parameter_list|)
 block|{
@@ -5504,7 +5504,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map
@@ -5820,7 +5820,7 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|vals
 parameter_list|)
 function_decl|;
@@ -5889,7 +5889,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map
@@ -5902,7 +5902,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|DocValues
+name|FunctionValues
 name|vals
 init|=
 name|source
@@ -6004,10 +6004,10 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|a
 parameter_list|,
-name|DocValues
+name|FunctionValues
 name|b
 parameter_list|)
 function_decl|;
@@ -6116,7 +6116,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map
@@ -6129,7 +6129,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|DocValues
+name|FunctionValues
 name|aVals
 init|=
 name|a
@@ -6142,7 +6142,7 @@ name|readerContext
 argument_list|)
 decl_stmt|;
 specifier|final
-name|DocValues
+name|FunctionValues
 name|bVals
 init|=
 name|b
@@ -6408,7 +6408,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map

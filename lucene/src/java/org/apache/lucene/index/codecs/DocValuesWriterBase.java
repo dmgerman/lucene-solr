@@ -76,9 +76,27 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|codecs
+operator|.
+name|lucene40
+operator|.
 name|values
 operator|.
 name|Writer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
 import|;
 end_import
 
@@ -140,6 +158,10 @@ end_import
 
 begin_comment
 comment|/**  * Abstract base class for PerDocConsumer implementations  * @lucene.experimental  */
+end_comment
+
+begin_comment
+comment|//TODO: this needs to go under lucene40 codec (its specific to its impl)
 end_comment
 
 begin_class
@@ -242,6 +264,11 @@ specifier|public
 name|DocValuesConsumer
 name|addValuesField
 parameter_list|(
+name|DocValues
+operator|.
+name|Type
+name|valueType
+parameter_list|,
 name|FieldInfo
 name|field
 parameter_list|)
@@ -253,10 +280,7 @@ name|Writer
 operator|.
 name|create
 argument_list|(
-name|field
-operator|.
-name|getDocValues
-argument_list|()
+name|valueType
 argument_list|,
 name|docValuesId
 argument_list|(

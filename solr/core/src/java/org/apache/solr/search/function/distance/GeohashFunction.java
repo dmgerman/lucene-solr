@@ -48,7 +48,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|DocValues
+name|FunctionValues
 import|;
 end_import
 
@@ -162,7 +162,7 @@ annotation|@
 name|Override
 DECL|method|getValues
 specifier|public
-name|DocValues
+name|FunctionValues
 name|getValues
 parameter_list|(
 name|Map
@@ -175,7 +175,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|DocValues
+name|FunctionValues
 name|latDV
 init|=
 name|lat
@@ -188,7 +188,7 @@ name|readerContext
 argument_list|)
 decl_stmt|;
 specifier|final
-name|DocValues
+name|FunctionValues
 name|lonDV
 init|=
 name|lon
@@ -202,7 +202,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|DocValues
+name|FunctionValues
 argument_list|()
 block|{
 annotation|@

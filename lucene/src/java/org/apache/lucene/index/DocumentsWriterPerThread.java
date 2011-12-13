@@ -1171,11 +1171,6 @@ expr_stmt|;
 name|numDocsInRAM
 operator|++
 expr_stmt|;
-name|fieldInfos
-operator|.
-name|revertUncommitted
-argument_list|()
-expr_stmt|;
 block|}
 else|else
 block|{
@@ -1474,11 +1469,6 @@ comment|// Incr here because finishDocument will not
 comment|// be called (because an exc is being thrown):
 name|numDocsInRAM
 operator|++
-expr_stmt|;
-name|fieldInfos
-operator|.
-name|revertUncommitted
-argument_list|()
 expr_stmt|;
 block|}
 else|else
