@@ -192,6 +192,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|FixedBitSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LuceneTestCase
 import|;
 end_import
@@ -206,7 +220,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|FixedBitSet
+name|_TestUtil
 import|;
 end_import
 
@@ -1027,6 +1041,15 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|_TestUtil
+operator|.
+name|keepFullyDeletedSegments
+argument_list|(
+name|writer
+operator|.
+name|w
+argument_list|)
+expr_stmt|;
 comment|// NOTE: cannot use writer.getReader because RIW (on
 comment|// flipping a coin) may give us a newly opened reader,
 comment|// but we use .reopen on this reader below and expect to
@@ -1056,7 +1079,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-comment|// add a doc, refresh the reader, and check that its there
+comment|// add a doc, refresh the reader, and check that it's there
 name|Document
 name|doc
 init|=
@@ -1148,6 +1171,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// force cache to regenerate after deletions:
 name|CachingWrapperFilter
 name|filter
 init|=
@@ -1155,6 +1179,8 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|startFilter
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|docs
@@ -1181,20 +1207,6 @@ argument_list|,
 name|docs
 operator|.
 name|totalHits
-argument_list|)
-expr_stmt|;
-name|int
-name|missCount
-init|=
-name|filter
-operator|.
-name|missCount
-decl_stmt|;
-name|assertTrue
-argument_list|(
-name|missCount
-operator|>
-literal|0
 argument_list|)
 expr_stmt|;
 name|Query
@@ -1228,6 +1240,71 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
+comment|// make sure we get a cache hit when we reopen reader
+comment|// that had no change to deletions
+comment|// fake delete (deletes nothing):
+name|writer
+operator|.
+name|deleteDocuments
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"foo"
+argument_list|,
+literal|"bar"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|IndexReader
+name|oldReader
+init|=
+name|reader
+decl_stmt|;
+name|reader
+operator|=
+name|refreshReader
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|reader
+operator|==
+name|oldReader
+argument_list|)
+expr_stmt|;
+name|int
+name|missCount
+init|=
+name|filter
+operator|.
+name|missCount
+decl_stmt|;
+name|docs
+operator|=
+name|searcher
+operator|.
+name|search
+argument_list|(
+name|constantScore
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"[just filter] Should find a hit..."
+argument_list|,
+literal|1
+argument_list|,
+name|docs
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+comment|// cache hit:
 name|assertEquals
 argument_list|(
 name|missCount
@@ -1237,20 +1314,233 @@ operator|.
 name|missCount
 argument_list|)
 expr_stmt|;
+comment|// now delete the doc, refresh the reader, and see that it's not there
+name|writer
+operator|.
+name|deleteDocuments
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"1"
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// NOTE: important to hold ref here so GC doesn't clear
 comment|// the cache entry!  Else the assert below may sometimes
 comment|// fail:
-name|IndexReader
 name|oldReader
-init|=
+operator|=
 name|reader
-decl_stmt|;
+expr_stmt|;
+name|reader
+operator|=
+name|refreshReader
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
+name|searcher
+operator|=
+name|newSearcher
+argument_list|(
+name|reader
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|missCount
+operator|=
+name|filter
+operator|.
+name|missCount
+expr_stmt|;
+name|docs
+operator|=
+name|searcher
+operator|.
+name|search
+argument_list|(
+operator|new
+name|MatchAllDocsQuery
+argument_list|()
+argument_list|,
+name|filter
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"[query + filter] Should *not* find a hit..."
+argument_list|,
+literal|0
+argument_list|,
+name|docs
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+comment|// cache miss, because we asked CWF to recache when
+comment|// deletes changed:
+name|assertEquals
+argument_list|(
+name|missCount
+operator|+
+literal|1
+argument_list|,
+name|filter
+operator|.
+name|missCount
+argument_list|)
+expr_stmt|;
+name|docs
+operator|=
+name|searcher
+operator|.
+name|search
+argument_list|(
+name|constantScore
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"[just filter] Should *not* find a hit..."
+argument_list|,
+literal|0
+argument_list|,
+name|docs
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+comment|// apply deletes dynamically:
+name|filter
+operator|=
+operator|new
+name|CachingWrapperFilter
+argument_list|(
+name|startFilter
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|addDocument
 argument_list|(
 name|doc
 argument_list|)
+expr_stmt|;
+name|reader
+operator|=
+name|refreshReader
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
+name|searcher
+operator|=
+name|newSearcher
+argument_list|(
+name|reader
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|docs
+operator|=
+name|searcher
+operator|.
+name|search
+argument_list|(
+operator|new
+name|MatchAllDocsQuery
+argument_list|()
+argument_list|,
+name|filter
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"[query + filter] Should find a hit..."
+argument_list|,
+literal|1
+argument_list|,
+name|docs
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+name|missCount
+operator|=
+name|filter
+operator|.
+name|missCount
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|missCount
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+name|constantScore
+operator|=
+operator|new
+name|ConstantScoreQuery
+argument_list|(
+name|filter
+argument_list|)
+expr_stmt|;
+name|docs
+operator|=
+name|searcher
+operator|.
+name|search
+argument_list|(
+name|constantScore
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"[just filter] Should find a hit..."
+argument_list|,
+literal|1
+argument_list|,
+name|docs
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|missCount
+argument_list|,
+name|filter
+operator|.
+name|missCount
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|addDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+comment|// NOTE: important to hold ref here so GC doesn't clear
+comment|// the cache entry!  Else the assert below may sometimes
+comment|// fail:
+name|oldReader
+operator|=
+name|reader
 expr_stmt|;
 name|reader
 operator|=
@@ -1348,14 +1638,6 @@ operator|.
 name|missCount
 argument_list|)
 expr_stmt|;
-comment|// NOTE: important to hold ref here so GC doesn't clear
-comment|// the cache entry!  Else the assert below may sometimes
-comment|// fail:
-name|IndexReader
-name|oldReader2
-init|=
-name|reader
-decl_stmt|;
 comment|// now delete the doc, refresh the reader, and see that it's not there
 name|writer
 operator|.
@@ -1412,6 +1694,7 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
+comment|// CWF reused the same entry (it dynamically applied the deletes):
 name|assertEquals
 argument_list|(
 name|missCount
@@ -1443,6 +1726,7 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
+comment|// CWF reused the same entry (it dynamically applied the deletes):
 name|assertEquals
 argument_list|(
 name|missCount
@@ -1459,13 +1743,6 @@ comment|// entry:
 name|assertTrue
 argument_list|(
 name|oldReader
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|oldReader2
 operator|!=
 literal|null
 argument_list|)

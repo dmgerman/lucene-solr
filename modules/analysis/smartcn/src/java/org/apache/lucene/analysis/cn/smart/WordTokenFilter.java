@@ -219,6 +219,24 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+DECL|field|tokStart
+specifier|private
+name|int
+name|tokStart
+decl_stmt|;
+comment|// only used if the length changed before this filter
+DECL|field|tokEnd
+specifier|private
+name|int
+name|tokEnd
+decl_stmt|;
+comment|// only used if the length changed before this filter
+DECL|field|hasIllegalOffsets
+specifier|private
+name|boolean
+name|hasIllegalOffsets
+decl_stmt|;
+comment|// only if the length changed before this filter
 comment|/**    * Construct a new WordTokenizer.    *     * @param in {@link TokenStream} of sentences     */
 DECL|method|WordTokenFilter
 specifier|public
@@ -274,6 +292,35 @@ name|incrementToken
 argument_list|()
 condition|)
 block|{
+name|tokStart
+operator|=
+name|offsetAtt
+operator|.
+name|startOffset
+argument_list|()
+expr_stmt|;
+name|tokEnd
+operator|=
+name|offsetAtt
+operator|.
+name|endOffset
+argument_list|()
+expr_stmt|;
+comment|// if length by start + end offsets doesn't match the term text then assume
+comment|// this is a synonym and don't adjust the offsets.
+name|hasIllegalOffsets
+operator|=
+operator|(
+name|tokStart
+operator|+
+name|termAtt
+operator|.
+name|length
+argument_list|()
+operator|)
+operator|!=
+name|tokEnd
+expr_stmt|;
 comment|// a new sentence is available: process it.
 name|tokenBuffer
 operator|=
@@ -350,6 +397,23 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|hasIllegalOffsets
+condition|)
+block|{
+name|offsetAtt
+operator|.
+name|setOffset
+argument_list|(
+name|tokStart
+argument_list|,
+name|tokEnd
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|offsetAtt
 operator|.
 name|setOffset
@@ -363,6 +427,7 @@ operator|.
 name|endOffset
 argument_list|)
 expr_stmt|;
+block|}
 name|typeAtt
 operator|.
 name|setType

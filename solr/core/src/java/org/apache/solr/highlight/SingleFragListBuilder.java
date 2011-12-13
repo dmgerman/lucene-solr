@@ -44,22 +44,6 @@ name|common
 operator|.
 name|params
 operator|.
-name|DefaultSolrParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
 name|SolrParams
 import|;
 end_import
@@ -83,27 +67,12 @@ name|SolrParams
 name|params
 parameter_list|)
 block|{
+comment|// NOTE: This class (currently) makes no use of params
+comment|// If that ever changes, it should wrap them with defaults...
+comment|// params = SolrParams.wrapDefaults(params, defaults)
 name|numRequests
 operator|++
 expr_stmt|;
-if|if
-condition|(
-name|defaults
-operator|!=
-literal|null
-condition|)
-block|{
-name|params
-operator|=
-operator|new
-name|DefaultSolrParams
-argument_list|(
-name|params
-argument_list|,
-name|defaults
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 operator|new
 name|org
