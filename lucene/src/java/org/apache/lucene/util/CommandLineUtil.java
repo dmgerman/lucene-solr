@@ -94,7 +94,7 @@ specifier|private
 name|CommandLineUtil
 parameter_list|()
 block|{        }
-comment|/**    * Creates a specific FSDirectory instance starting from its class name    * @param className The name of the FSDirectory class to load    * @param file The file to be used as parameter constructor    * @return the new FSDirectory instance    */
+comment|/**    * Creates a specific FSDirectory instance starting from its class name    * @param clazzName The name of the FSDirectory class to load    * @param file The file to be used as parameter constructor    * @return the new FSDirectory instance    */
 DECL|method|newFSDirectory
 specifier|public
 specifier|static
@@ -233,7 +233,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Loads a specific Directory implementation     * @param className The name of the Directory class to load    * @return The Directory class loaded    * @throws ClassNotFoundException    */
+comment|/**    * Loads a specific Directory implementation     * @param clazzName The name of the Directory class to load    * @return The Directory class loaded    * @throws ClassNotFoundException    */
 DECL|method|loadDirectoryClass
 specifier|public
 specifier|static
@@ -270,7 +270,7 @@ name|class
 argument_list|)
 return|;
 block|}
-comment|/**    * Loads a specific FSDirectory implementation    * @param className The name of the FSDirectory class to load    * @return The FSDirectory class loaded    * @throws ClassNotFoundException    */
+comment|/**    * Loads a specific FSDirectory implementation    * @param clazzName The name of the FSDirectory class to load    * @return The FSDirectory class loaded    * @throws ClassNotFoundException    */
 DECL|method|loadFSDirectoryClass
 specifier|public
 specifier|static
