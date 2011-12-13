@@ -176,6 +176,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|FieldCache
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|IOContext
@@ -1929,21 +1947,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|readerFinished
-specifier|protected
-name|void
-name|readerFinished
-parameter_list|()
-block|{
-comment|// Do nothing here -- we have more careful control on
-comment|// when to notify that a SegmentReader has finished,
-comment|// because a given core is shared across many cloned
-comment|// SegmentReaders.  We only notify once that core is no
-comment|// longer used (all SegmentReaders sharing it have been
-comment|// closed).
-block|}
-annotation|@
-name|Override
 DECL|method|docValues
 specifier|public
 name|DocValues
@@ -2162,12 +2165,6 @@ operator|.
 name|pendingDeleteCount
 operator|=
 name|pendingDeleteCount
-expr_stmt|;
-name|clone
-operator|.
-name|readerFinishedListeners
-operator|=
-name|readerFinishedListeners
 expr_stmt|;
 if|if
 condition|(
@@ -2694,6 +2691,69 @@ name|pendingDeleteCount
 operator|++
 expr_stmt|;
 block|}
+block|}
+comment|/**    * Called when the shared core for this SegmentReader    * is closed.    *<p>    * This listener is called only once all SegmentReaders     * sharing the same core are closed.  At this point it     * is safe for apps to evict this reader from any caches     * keyed on {@link #getCoreCacheKey}.  This is the same     * interface that {@link FieldCache} uses, internally,     * to evict entries.</p>    *     * @lucene.experimental    */
+DECL|interface|CoreClosedListener
+specifier|public
+specifier|static
+interface|interface
+name|CoreClosedListener
+block|{
+DECL|method|onClose
+specifier|public
+name|void
+name|onClose
+parameter_list|(
+name|SegmentReader
+name|owner
+parameter_list|)
+function_decl|;
+block|}
+comment|/** Expert: adds a CoreClosedListener to this reader's shared core */
+DECL|method|addCoreClosedListener
+specifier|public
+name|void
+name|addCoreClosedListener
+parameter_list|(
+name|CoreClosedListener
+name|listener
+parameter_list|)
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+name|core
+operator|.
+name|coreClosedListeners
+operator|.
+name|add
+argument_list|(
+name|listener
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Expert: removes a CoreClosedListener from this reader's shared core */
+DECL|method|removeCoreClosedListener
+specifier|public
+name|void
+name|removeCoreClosedListener
+parameter_list|(
+name|CoreClosedListener
+name|listener
+parameter_list|)
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+name|core
+operator|.
+name|coreClosedListeners
+operator|.
+name|remove
+argument_list|(
+name|listener
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

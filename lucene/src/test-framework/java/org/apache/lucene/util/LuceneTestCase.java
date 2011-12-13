@@ -244,7 +244,7 @@ name|index
 operator|.
 name|IndexReader
 operator|.
-name|ReaderFinishedListener
+name|ReaderClosedListener
 import|;
 end_import
 
@@ -6465,45 +6465,29 @@ literal|" threads"
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
-name|IndexReader
-name|r0
-init|=
-name|r
-decl_stmt|;
 name|r
 operator|.
-name|addReaderFinishedListener
+name|addReaderClosedListener
 argument_list|(
 operator|new
-name|ReaderFinishedListener
+name|ReaderClosedListener
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
 name|void
-name|finished
+name|onClose
 parameter_list|(
 name|IndexReader
 name|reader
 parameter_list|)
-block|{
-comment|// readerFinishedListener bogusly calls us with other random readers
-comment|// so we must check that its *actually* the one we registered it on.
-if|if
-condition|(
-name|reader
-operator|==
-name|r0
-condition|)
 block|{
 name|shutdownExecutorService
 argument_list|(
 name|ex
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 argument_list|)
