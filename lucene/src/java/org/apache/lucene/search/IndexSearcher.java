@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|Closeable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -53,6 +43,16 @@ operator|.
 name|util
 operator|.
 name|NoSuchElementException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
 import|;
 end_import
 
@@ -650,7 +650,7 @@ return|return
 name|reader
 return|;
 block|}
-comment|/* Sugar for<code>.getIndexReader().document(docID)</code> */
+comment|/** Sugar for<code>.getIndexReader().document(docID)</code> */
 DECL|method|doc
 specifier|public
 name|Document
@@ -673,7 +673,7 @@ name|docID
 argument_list|)
 return|;
 block|}
-comment|/* Sugar for<code>.getIndexReader().document(docID, fieldVisitor)</code> */
+comment|/** Sugar for<code>.getIndexReader().document(docID, fieldVisitor)</code> */
 DECL|method|doc
 specifier|public
 name|void
@@ -699,6 +699,38 @@ argument_list|,
 name|fieldVisitor
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** Sugar for<code>.getIndexReader().document(docID, fieldsToLoad)</code> */
+DECL|method|document
+specifier|public
+specifier|final
+name|Document
+name|document
+parameter_list|(
+name|int
+name|docID
+parameter_list|,
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|fieldsToLoad
+parameter_list|)
+throws|throws
+name|CorruptIndexException
+throws|,
+name|IOException
+block|{
+return|return
+name|reader
+operator|.
+name|document
+argument_list|(
+name|docID
+argument_list|,
+name|fieldsToLoad
+argument_list|)
+return|;
 block|}
 comment|/** Expert: Set the SimilarityProvider implementation used by this Searcher.    *    */
 DECL|method|setSimilarityProvider
