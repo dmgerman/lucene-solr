@@ -97,7 +97,7 @@ name|OMIT_TF
 argument_list|(
 literal|'F'
 argument_list|,
-literal|"Omit Tf"
+literal|"Omit Term Frequencies& Positions"
 argument_list|)
 block|,
 DECL|enum constant|OMIT_POSITIONS
