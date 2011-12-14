@@ -339,6 +339,32 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// because the first page has a null 'after', we get a normal collector.
+comment|// so we need to run the test a few times to ensure we will collect multiple
+comment|// pages.
+name|int
+name|n
+init|=
+name|atLeast
+argument_list|(
+literal|10
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|n
+condition|;
+name|i
+operator|++
+control|)
+block|{
 name|Filter
 name|odd
 init|=
@@ -470,6 +496,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|assertQuery
 name|void
