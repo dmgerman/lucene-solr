@@ -2923,11 +2923,24 @@ name|ReaderContext
 name|getTopReaderContext
 parameter_list|()
 function_decl|;
-comment|/** Expert */
+comment|/** Expert: Returns a key for this IndexReader, so FieldCache/CachingWrapperFilter can find    * it again.    * This key must not have equals()/hashCode() methods, so&quot;equals&quot; means&quot;identical&quot;. */
 DECL|method|getCoreCacheKey
 specifier|public
 name|Object
 name|getCoreCacheKey
+parameter_list|()
+block|{
+comment|// Don't can ensureOpen since FC calls this (to evict)
+comment|// on close
+return|return
+name|this
+return|;
+block|}
+comment|/** Expert: Returns a key for this IndexReader that also includes deletions,    * so FieldCache/CachingWrapperFilter can find it again.    * This key must not have equals()/hashCode() methods, so&quot;equals&quot; means&quot;identical&quot;. */
+DECL|method|getCombinedCoreAndDeletesKey
+specifier|public
+name|Object
+name|getCombinedCoreAndDeletesKey
 parameter_list|()
 block|{
 comment|// Don't can ensureOpen since FC calls this (to evict)
