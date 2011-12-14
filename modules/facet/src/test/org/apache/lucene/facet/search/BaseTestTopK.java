@@ -499,12 +499,7 @@ name|Arrays
 operator|.
 name|asList
 argument_list|(
-operator|new
-name|CategoryPath
-index|[]
-block|{
 name|cp
-block|}
 argument_list|)
 return|;
 block|}

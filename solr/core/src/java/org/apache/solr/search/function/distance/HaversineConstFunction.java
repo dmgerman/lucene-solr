@@ -1009,12 +1009,11 @@ name|VectorValueSource
 argument_list|(
 name|Arrays
 operator|.
+expr|<
+name|ValueSource
+operator|>
 name|asList
 argument_list|(
-operator|new
-name|ValueSource
-index|[]
-block|{
 operator|new
 name|DoubleConstValueSource
 argument_list|(
@@ -1023,7 +1022,7 @@ index|[
 literal|0
 index|]
 argument_list|)
-block|,
+argument_list|,
 operator|new
 name|DoubleConstValueSource
 argument_list|(
@@ -1032,7 +1031,6 @@ index|[
 literal|1
 index|]
 argument_list|)
-block|}
 argument_list|)
 argument_list|)
 return|;

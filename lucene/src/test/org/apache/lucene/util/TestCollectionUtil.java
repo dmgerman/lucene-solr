@@ -606,6 +606,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
+comment|// LUCENE-2989
 name|CollectionUtil
 operator|.
 name|quickSort
