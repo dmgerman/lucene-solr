@@ -110,22 +110,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|UseNoMemoryExpensiveCodec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|Test
@@ -133,8 +117,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|UseNoMemoryExpensiveCodec
 DECL|class|TestRollingUpdates
 specifier|public
 class|class
