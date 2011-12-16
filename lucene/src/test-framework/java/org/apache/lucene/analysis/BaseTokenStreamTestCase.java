@@ -1855,6 +1855,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// simple utility method for blasting tokenstreams with data to make sure they don't do anything crazy
+comment|// TODO: add a MockCharStream, and use it here too, to ensure that correctOffset etc is being done by tokenizers.
 DECL|method|checkRandomData
 specifier|public
 specifier|static
@@ -1934,7 +1935,7 @@ name|random
 argument_list|,
 literal|0
 argument_list|,
-literal|3
+literal|4
 argument_list|)
 condition|)
 block|{
@@ -1959,6 +1960,21 @@ operator|=
 name|_TestUtil
 operator|.
 name|randomRealisticUnicodeString
+argument_list|(
+name|random
+argument_list|,
+name|maxWordLength
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+literal|2
+case|:
+name|text
+operator|=
+name|_TestUtil
+operator|.
+name|randomHtmlishString
 argument_list|(
 name|random
 argument_list|,
