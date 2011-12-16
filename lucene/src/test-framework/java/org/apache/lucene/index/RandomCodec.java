@@ -94,8 +94,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|PostingsFormat
@@ -109,8 +107,6 @@ operator|.
 name|apache
 operator|.
 name|lucene
-operator|.
-name|index
 operator|.
 name|codecs
 operator|.
@@ -128,8 +124,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|lucene40
@@ -145,8 +139,6 @@ operator|.
 name|apache
 operator|.
 name|lucene
-operator|.
-name|index
 operator|.
 name|codecs
 operator|.
@@ -164,8 +156,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|memory
@@ -181,8 +171,6 @@ operator|.
 name|apache
 operator|.
 name|lucene
-operator|.
-name|index
 operator|.
 name|codecs
 operator|.
@@ -200,8 +188,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|mockintblock
@@ -217,8 +203,6 @@ operator|.
 name|apache
 operator|.
 name|lucene
-operator|.
-name|index
 operator|.
 name|codecs
 operator|.
@@ -236,8 +220,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|mocksep
@@ -253,8 +235,6 @@ operator|.
 name|apache
 operator|.
 name|lucene
-operator|.
-name|index
 operator|.
 name|codecs
 operator|.
@@ -272,8 +252,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|pulsing
@@ -289,8 +267,6 @@ operator|.
 name|apache
 operator|.
 name|lucene
-operator|.
-name|index
 operator|.
 name|codecs
 operator|.

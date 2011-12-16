@@ -52,9 +52,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|codecs
 operator|.
-name|*
+name|lucene40
+operator|.
+name|Lucene40PostingsFormat
 import|;
 end_import
 
@@ -66,13 +68,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|Lucene40PostingsFormat
+name|*
 import|;
 end_import
 

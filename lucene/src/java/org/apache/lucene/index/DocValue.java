@@ -34,6 +34,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|DocValuesConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|DocValuesField
@@ -67,26 +81,6 @@ operator|.
 name|DocValues
 operator|.
 name|Type
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|codecs
-operator|.
-name|DocValuesConsumer
 import|;
 end_import
 

@@ -54,9 +54,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|codecs
 operator|.
-name|DocValuesField
+name|DocValuesFormat
 import|;
 end_import
 
@@ -68,11 +68,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|codecs
-operator|.
-name|DocValuesFormat
+name|DocValuesField
 import|;
 end_import
 

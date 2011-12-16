@@ -64,11 +64,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|codecs
 operator|.
-name|FieldInfo
-operator|.
-name|IndexOptions
+name|FieldsConsumer
 import|;
 end_import
 
@@ -82,9 +80,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|codecs
+name|FieldInfo
 operator|.
-name|FieldsConsumer
+name|IndexOptions
 import|;
 end_import
 

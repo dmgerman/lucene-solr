@@ -24,8 +24,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|Codec
@@ -40,8 +38,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|PostingsFormat
@@ -55,8 +51,6 @@ operator|.
 name|apache
 operator|.
 name|lucene
-operator|.
-name|index
 operator|.
 name|codecs
 operator|.

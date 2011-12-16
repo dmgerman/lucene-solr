@@ -30,8 +30,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|Codec

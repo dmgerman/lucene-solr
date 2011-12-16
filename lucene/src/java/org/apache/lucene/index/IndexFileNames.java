@@ -24,17 +24,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
 name|codecs
 operator|.
 name|Codec
 import|;
 end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
 
 begin_comment
 comment|// TODO: put all files under codec and remove all the static extensions here
