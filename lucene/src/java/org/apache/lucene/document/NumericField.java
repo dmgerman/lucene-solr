@@ -413,6 +413,19 @@ argument_list|,
 name|type
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|precisionStep
+operator|<
+literal|1
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"precisionStep must be>=1"
+argument_list|)
+throw|;
 name|this
 operator|.
 name|precisionStep
