@@ -1139,16 +1139,6 @@ condition|(
 name|sf
 operator|==
 literal|null
-operator|||
-name|sf
-operator|.
-name|getType
-argument_list|()
-operator|.
-name|isTokenized
-argument_list|()
-operator|==
-literal|true
 condition|)
 block|{
 throw|throw
@@ -1161,7 +1151,7 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"QueryElevationComponent requires the schema to have a uniqueKeyField implemented using a non-tokenized field"
+literal|"QueryElevationComponent requires the schema to have a uniqueKeyField."
 argument_list|)
 throw|;
 block|}
