@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Error class with NLS support  *   * @see org.apache.lucene.messages.NLS  * @see org.apache.lucene.messages.Message  */
+comment|/**  * Error class with NLS support  *   * @see org.apache.lucene.queryparser.flexible.messages.NLS  * @see org.apache.lucene.queryparser.flexible.messages.Message  */
 end_comment
 
 begin_class
