@@ -34,6 +34,10 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
 name|messages
 operator|.
 name|Message
@@ -47,6 +51,10 @@ operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
 operator|.
 name|messages
 operator|.
@@ -783,7 +791,7 @@ block|}
 end_class
 
 begin_comment
-comment|/* JavaCC - OriginalChecksum=0f25f4245374bbf9920c9a82efecadd2 (do not edit this line) */
+comment|/* JavaCC - OriginalChecksum=7601d49d11bc059457ae5850628ebc8a (do not edit this line) */
 end_comment
 
 end_unit

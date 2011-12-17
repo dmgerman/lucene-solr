@@ -28,6 +28,10 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
 name|messages
 operator|.
 name|Message
@@ -41,6 +45,10 @@ operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
 operator|.
 name|messages
 operator|.

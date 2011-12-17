@@ -38,6 +38,10 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
 name|messages
 operator|.
 name|MessageImpl
