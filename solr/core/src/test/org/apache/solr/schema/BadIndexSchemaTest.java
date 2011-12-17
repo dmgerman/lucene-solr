@@ -144,13 +144,33 @@ name|SolrException
 name|e
 parameter_list|)
 block|{
-comment|// short circut out if we found what we expected
+comment|// short circuit out if we found what we expected
 if|if
 condition|(
 operator|-
 literal|1
 operator|!=
 name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|indexOf
+argument_list|(
+name|errString
+argument_list|)
+condition|)
+return|return;
+comment|// Test the cause too in case the expected error is wrapped
+if|if
+condition|(
+operator|-
+literal|1
+operator|!=
+name|e
+operator|.
+name|getCause
+argument_list|()
 operator|.
 name|getMessage
 argument_list|()
@@ -185,6 +205,9 @@ operator|.
 name|severeErrors
 operator|.
 name|clear
+argument_list|()
+expr_stmt|;
+name|deleteCore
 argument_list|()
 expr_stmt|;
 block|}
@@ -304,6 +327,24 @@ argument_list|(
 literal|"bad-schema-nontext-analyzer.xml"
 argument_list|,
 literal|"StrField (bad_type)"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testBadExternalFileField
+specifier|public
+name|void
+name|testBadExternalFileField
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-external-filefield.xml"
+argument_list|,
+literal|"Only float and pfloat"
 argument_list|)
 expr_stmt|;
 block|}
