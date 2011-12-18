@@ -80,18 +80,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -166,6 +154,14 @@ name|SearcherLifetimeManager
 implements|implements
 name|Closeable
 block|{
+DECL|field|NANOS_PER_SEC
+specifier|static
+specifier|final
+name|double
+name|NANOS_PER_SEC
+init|=
+literal|1000000000.0
+decl_stmt|;
 DECL|class|SearcherTracker
 specifier|private
 specifier|static
@@ -188,7 +184,7 @@ decl_stmt|;
 DECL|field|recordTimeSec
 specifier|public
 specifier|final
-name|long
+name|double
 name|recordTimeSec
 decl_stmt|;
 DECL|field|version
@@ -233,17 +229,12 @@ comment|// Use nanoTime not currentTimeMillis since it [in
 comment|// theory] reduces risk from clock shift
 name|recordTimeSec
 operator|=
-name|TimeUnit
-operator|.
-name|NANOSECONDS
-operator|.
-name|toSeconds
-argument_list|(
 name|System
 operator|.
 name|nanoTime
 argument_list|()
-argument_list|)
+operator|/
+name|NANOS_PER_SEC
 expr_stmt|;
 block|}
 comment|// Newer searchers are sort before older ones:
@@ -413,6 +404,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//System.out.println("RECORD version=" + version + " ms=" + System.currentTimeMillis());
 name|tracker
 operator|=
 operator|new
@@ -552,13 +544,13 @@ specifier|public
 interface|interface
 name|Pruner
 block|{
-comment|/** Return true if this searcher should be removed.       *  @param ageSec how long ago this searcher was      *         recorded vs the most recently recorded      *         searcher      *  @param searcher Searcher      **/
+comment|/** Return true if this searcher should be removed.       *  @param ageSec how much time has passed since this      *         searcher was the current (live) searcher      *  @param searcher Searcher      **/
 DECL|method|doPrune
 specifier|public
 name|boolean
 name|doPrune
 parameter_list|(
-name|int
+name|double
 name|ageSec
 parameter_list|,
 name|IndexSearcher
@@ -579,14 +571,14 @@ block|{
 DECL|field|maxAgeSec
 specifier|private
 specifier|final
-name|int
+name|double
 name|maxAgeSec
 decl_stmt|;
 DECL|method|PruneByAge
 specifier|public
 name|PruneByAge
 parameter_list|(
-name|int
+name|double
 name|maxAgeSec
 parameter_list|)
 block|{
@@ -594,7 +586,7 @@ if|if
 condition|(
 name|maxAgeSec
 operator|<
-literal|1
+literal|0
 condition|)
 block|{
 throw|throw
@@ -623,7 +615,7 @@ specifier|public
 name|boolean
 name|doPrune
 parameter_list|(
-name|int
+name|double
 name|ageSec
 parameter_list|,
 name|IndexSearcher
@@ -694,25 +686,21 @@ argument_list|(
 name|trackers
 argument_list|)
 expr_stmt|;
-specifier|final
-name|long
-name|newestSec
+name|double
+name|lastRecordTimeSec
 init|=
-name|trackers
+literal|0.0
+decl_stmt|;
+specifier|final
+name|double
+name|now
+init|=
+name|System
 operator|.
-name|isEmpty
+name|nanoTime
 argument_list|()
-condition|?
-literal|0L
-else|:
-name|trackers
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|recordTimeSec
+operator|/
+name|NANOS_PER_SEC
 decl_stmt|;
 for|for
 control|(
@@ -723,25 +711,34 @@ name|trackers
 control|)
 block|{
 specifier|final
-name|int
+name|double
 name|ageSec
-init|=
-call|(
-name|int
-call|)
-argument_list|(
-name|newestSec
-operator|-
-name|tracker
-operator|.
-name|recordTimeSec
-argument_list|)
 decl_stmt|;
-assert|assert
+if|if
+condition|(
+name|lastRecordTimeSec
+operator|==
+literal|0.0
+condition|)
+block|{
 name|ageSec
-operator|>=
-literal|0
-assert|;
+operator|=
+literal|0.0
+expr_stmt|;
+block|}
+else|else
+block|{
+name|ageSec
+operator|=
+name|now
+operator|-
+name|lastRecordTimeSec
+expr_stmt|;
+block|}
+comment|// First tracker is always age 0.0 sec, since it's
+comment|// still "live"; second tracker's age (= seconds since
+comment|// it was "live") is now minus first tracker's
+comment|// recordTime, etc:
 if|if
 condition|(
 name|pruner
@@ -756,6 +753,7 @@ name|searcher
 argument_list|)
 condition|)
 block|{
+comment|//System.out.println("PRUNE version=" + tracker.version + " age=" + ageSec + " ms=" + System.currentTimeMillis());
 name|searchers
 operator|.
 name|remove
@@ -771,6 +769,12 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+name|lastRecordTimeSec
+operator|=
+name|tracker
+operator|.
+name|recordTimeSec
+expr_stmt|;
 block|}
 block|}
 comment|/** Close this to future searching; any searches still in    *  process in other threads won't be affected, and they    *  should still call {@link #release} after they are    *  done.    *    *<p><b>NOTE: you must ensure no other threads are    *  calling {@link #record} while you call close();    *  otherwise it's possible not all searcher references    *  will be freed. */
