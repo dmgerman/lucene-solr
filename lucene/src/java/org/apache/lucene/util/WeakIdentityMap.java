@@ -262,7 +262,7 @@ name|IdentityWeakReference
 argument_list|(
 name|key
 argument_list|,
-name|queue
+literal|null
 argument_list|)
 argument_list|)
 return|;
@@ -289,7 +289,7 @@ name|IdentityWeakReference
 argument_list|(
 name|key
 argument_list|,
-name|queue
+literal|null
 argument_list|)
 argument_list|)
 return|;
@@ -361,7 +361,7 @@ name|IdentityWeakReference
 argument_list|(
 name|key
 argument_list|,
-name|queue
+literal|null
 argument_list|)
 argument_list|)
 return|;
