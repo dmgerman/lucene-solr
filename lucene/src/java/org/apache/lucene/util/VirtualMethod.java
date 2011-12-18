@@ -54,16 +54,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|WeakHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Set
 import|;
 end_import
@@ -132,7 +122,7 @@ decl_stmt|;
 DECL|field|cache
 specifier|private
 specifier|final
-name|WeakHashMap
+name|WeakIdentityMap
 argument_list|<
 name|Class
 argument_list|<
@@ -145,18 +135,9 @@ name|Integer
 argument_list|>
 name|cache
 init|=
-operator|new
-name|WeakHashMap
-argument_list|<
-name|Class
-argument_list|<
-name|?
-extends|extends
-name|C
-argument_list|>
-argument_list|,
-name|Integer
-argument_list|>
+name|WeakIdentityMap
+operator|.
+name|newConcurrentHashMap
 argument_list|()
 decl_stmt|;
 comment|/**    * Creates a new instance for the given {@code baseClass} and method declaration.    * @throws UnsupportedOperationException if you create a second instance of the same    *  {@code baseClass} and method declaration combination. This enforces the singleton status.    * @throws IllegalArgumentException if {@code baseClass} does not declare the given method.    */
@@ -256,7 +237,6 @@ block|}
 comment|/**    * Returns the distance from the {@code baseClass} in which this method is overridden/implemented    * in the inheritance path between {@code baseClass} and the given subclass {@code subclazz}.    * @return 0 iff not overridden, else the distance to the base class    */
 DECL|method|getImplementationDistance
 specifier|public
-specifier|synchronized
 name|int
 name|getImplementationDistance
 parameter_list|(
@@ -287,6 +267,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// we have the slight chance that another thread may do the same, but who cares?
 name|cache
 operator|.
 name|put
