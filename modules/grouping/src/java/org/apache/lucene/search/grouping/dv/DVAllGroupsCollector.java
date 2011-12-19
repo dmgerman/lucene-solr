@@ -92,9 +92,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|grouping
+name|util
 operator|.
 name|SentinelIntSet
 import|;
