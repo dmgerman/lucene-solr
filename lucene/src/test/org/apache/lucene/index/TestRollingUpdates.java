@@ -224,10 +224,6 @@ name|SIZE
 init|=
 name|atLeast
 argument_list|(
-name|TEST_NIGHTLY
-condition|?
-literal|100
-else|:
 literal|20
 argument_list|)
 decl_stmt|;
@@ -261,6 +257,23 @@ argument_list|()
 operator|)
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: numUpdates="
+operator|+
+name|numUpdates
+argument_list|)
+expr_stmt|;
+block|}
 for|for
 control|(
 name|int
