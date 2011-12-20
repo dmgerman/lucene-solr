@@ -2600,9 +2600,7 @@ argument_list|()
 expr_stmt|;
 name|core
 operator|.
-name|coreClosedListeners
-operator|.
-name|add
+name|addCoreClosedListener
 argument_list|(
 name|listener
 argument_list|)
@@ -2623,9 +2621,7 @@ argument_list|()
 expr_stmt|;
 name|core
 operator|.
-name|coreClosedListeners
-operator|.
-name|remove
+name|removeCoreClosedListener
 argument_list|(
 name|listener
 argument_list|)
