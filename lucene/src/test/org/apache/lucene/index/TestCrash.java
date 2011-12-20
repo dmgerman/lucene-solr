@@ -142,8 +142,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// note: we pass 'false' here so our crashing/deleting won't trigger assertions in NRTCachingDir
-comment|// TODO: don't remember why this is ok... maybe we should check again that it really actually is.
 return|return
 name|initIndex
 argument_list|(
@@ -152,8 +150,6 @@ argument_list|,
 name|newDirectory
 argument_list|(
 name|random
-argument_list|,
-literal|false
 argument_list|)
 argument_list|,
 name|initialCommit

@@ -588,6 +588,10 @@ name|fileExists
 argument_list|(
 name|name
 argument_list|)
+operator|:
+literal|"name="
+operator|+
+name|name
 assert|;
 name|cache
 operator|.
@@ -725,6 +729,24 @@ literal|"  to cache"
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
+name|delegate
+operator|.
+name|deleteFile
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+comment|// This is fine: file may not exist
+block|}
 return|return
 name|cache
 operator|.
@@ -738,6 +760,24 @@ return|;
 block|}
 else|else
 block|{
+try|try
+block|{
+name|cache
+operator|.
+name|deleteFile
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+comment|// This is fine: file may not exist
+block|}
 return|return
 name|delegate
 operator|.
@@ -987,6 +1027,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// NOTE: technically we shouldn't have to do this, ie,
+comment|// IndexWriter should have sync'd all files, but we do
+comment|// it for defensive reasons... or in case the app is
+comment|// doing something custom (creating outputs directly w/o
+comment|// using IndexWriter):
 for|for
 control|(
 name|String
@@ -1068,6 +1113,16 @@ operator|<=
 name|maxCachedBytes
 return|;
 block|}
+DECL|field|uncacheLock
+specifier|private
+specifier|final
+name|Object
+name|uncacheLock
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
 DECL|method|unCache
 specifier|private
 name|void
@@ -1079,10 +1134,56 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-specifier|final
+comment|// Only let one thread uncache at a time; this only
+comment|// happens during commit() or close():
 name|IndexOutput
 name|out
+init|=
+literal|null
 decl_stmt|;
+name|IndexInput
+name|in
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+synchronized|synchronized
+init|(
+name|uncacheLock
+init|)
+block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"nrtdir.unCache name="
+operator|+
+name|fileName
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|cache
+operator|.
+name|fileExists
+argument_list|(
+name|fileName
+argument_list|)
+condition|)
+block|{
+comment|// Another thread beat us...
+return|return;
+block|}
 name|IOContext
 name|context
 init|=
@@ -1090,14 +1191,8 @@ name|IOContext
 operator|.
 name|DEFAULT
 decl_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 if|if
 condition|(
-operator|!
 name|delegate
 operator|.
 name|fileExists
@@ -1106,14 +1201,18 @@ name|fileName
 argument_list|)
 condition|)
 block|{
-assert|assert
-name|cache
-operator|.
-name|fileExists
+throw|throw
+operator|new
+name|IOException
 argument_list|(
+literal|"cannot uncache file=\""
+operator|+
 name|fileName
+operator|+
+literal|"\": it was separately also created in the delegate directory"
 argument_list|)
-assert|;
+throw|;
+block|}
 name|out
 operator|=
 name|delegate
@@ -1125,29 +1224,6 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|out
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-name|out
-operator|!=
-literal|null
-condition|)
-block|{
-name|IndexInput
-name|in
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
 name|in
 operator|=
 name|cache
@@ -1171,6 +1247,23 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Lock order: uncacheLock -> this
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+comment|// Must sync here because other sync methods have
+comment|// if (cache.fileExists(name)) { ... } else { ... }:
+name|cache
+operator|.
+name|deleteFile
+argument_list|(
+name|fileName
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 finally|finally
 block|{
@@ -1183,20 +1276,6 @@ argument_list|,
 name|out
 argument_list|)
 expr_stmt|;
-block|}
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-name|cache
-operator|.
-name|deleteFile
-argument_list|(
-name|fileName
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 block|}
