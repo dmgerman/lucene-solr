@@ -275,8 +275,6 @@ specifier|abstract
 class|class
 name|IndexReader
 implements|implements
-name|Cloneable
-implements|,
 name|Closeable
 block|{
 comment|/**    * A custom listener that's invoked when the IndexReader    * is closed.    *    * @lucene.experimental    */
@@ -481,6 +479,8 @@ name|int
 name|getRefCount
 parameter_list|()
 block|{
+comment|// NOTE: don't ensureOpen, so that callers can see
+comment|// refCount is 0 (reader is closed)
 return|return
 name|refCount
 operator|.
@@ -1129,24 +1129,6 @@ argument_list|(
 name|applyAllDeletes
 argument_list|)
 return|;
-block|}
-comment|/**    * Efficiently clones the IndexReader (sharing most    * internal state).    */
-annotation|@
-name|Override
-DECL|method|clone
-specifier|public
-specifier|synchronized
-name|Object
-name|clone
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"This reader does not implement clone()"
-argument_list|)
-throw|;
 block|}
 comment|/**     * Returns the directory associated with this index.  The Default     * implementation returns the directory specified by subclasses when     * delegating to the IndexReader(Directory) constructor, or throws an     * UnsupportedOperationException if one was not specified.    * @throws UnsupportedOperationException if no directory    */
 DECL|method|directory

@@ -893,6 +893,21 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: delete doc"
+argument_list|)
+expr_stmt|;
+block|}
 name|w
 operator|.
 name|deleteDocuments

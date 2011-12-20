@@ -114,9 +114,8 @@ expr_stmt|;
 name|SegmentReader
 name|reader1
 init|=
+operator|new
 name|SegmentReader
-operator|.
-name|get
 argument_list|(
 name|sis
 operator|.
@@ -138,9 +137,8 @@ decl_stmt|;
 name|SegmentReader
 name|reader2
 init|=
+operator|new
 name|SegmentReader
-operator|.
-name|get
 argument_list|(
 name|sis
 operator|.

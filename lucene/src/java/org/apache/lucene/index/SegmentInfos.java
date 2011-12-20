@@ -1437,13 +1437,20 @@ operator|.
 name|remove
 argument_list|()
 expr_stmt|;
+specifier|final
+name|boolean
+name|didRemove
+init|=
 name|segmentSet
 operator|.
 name|remove
 argument_list|(
 name|info
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+assert|assert
+name|didRemove
+assert|;
 block|}
 block|}
 assert|assert
@@ -3650,8 +3657,24 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+comment|// the rest of the segments in list are duplicates, so don't remove from map, only list!
+name|segments
+operator|.
+name|subList
+argument_list|(
+name|newSegIdx
+argument_list|,
+name|segments
+operator|.
+name|size
+argument_list|()
+argument_list|)
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 comment|// Either we found place to insert segment, or, we did
-comment|// not, but only because all segments we merged became
+comment|// not, but only because all segments we merged becamee
 comment|// deleted while we are merging, in which case it should
 comment|// be the case that the new segment is also all deleted,
 comment|// we insert it at the beginning if it should not be dropped:
@@ -3676,22 +3699,6 @@ name|info
 argument_list|)
 expr_stmt|;
 block|}
-comment|// the rest of the segments in list are duplicates, so don't remove from map, only list!
-name|segments
-operator|.
-name|subList
-argument_list|(
-name|newSegIdx
-argument_list|,
-name|segments
-operator|.
-name|size
-argument_list|()
-argument_list|)
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 comment|// update the Set
 if|if
 condition|(

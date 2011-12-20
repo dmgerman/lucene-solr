@@ -1220,11 +1220,13 @@ name|message
 argument_list|(
 literal|"  consider merge "
 operator|+
-name|merge
+name|writer
 operator|.
 name|segString
 argument_list|(
-name|dir
+name|merge
+operator|.
+name|segments
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1628,11 +1630,13 @@ name|message
 argument_list|(
 literal|"  merge thread: do another merge "
 operator|+
-name|merge
+name|tWriter
 operator|.
 name|segString
 argument_list|(
-name|dir
+name|merge
+operator|.
+name|segments
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1741,20 +1745,41 @@ name|merge
 operator|==
 literal|null
 condition|)
+block|{
 name|merge
 operator|=
 name|startMerge
 expr_stmt|;
+block|}
+try|try
+block|{
 return|return
 literal|"merge thread: "
 operator|+
-name|merge
+name|tWriter
 operator|.
 name|segString
 argument_list|(
-name|dir
+name|merge
+operator|.
+name|segments
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ioe
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 comment|/** Called when an exception is hit in a background merge    *  thread */
