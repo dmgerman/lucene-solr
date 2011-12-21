@@ -59,6 +59,7 @@ name|int
 name|rehashCount
 decl_stmt|;
 comment|// the count at which a rehash should be done
+comment|/**    *    * @param size  The minimum number of elements this set should be able to hold without re-hashing (i.e. the slots are guaranteed not to change)    * @param emptyVal The integer value to use for EMPTY    */
 DECL|method|SentinelIntSet
 specifier|public
 name|SentinelIntSet
