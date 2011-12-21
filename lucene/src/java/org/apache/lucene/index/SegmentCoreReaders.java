@@ -818,15 +818,6 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|getCFSReader
-name|Directory
-name|getCFSReader
-parameter_list|()
-block|{
-return|return
-name|cfsReader
-return|;
-block|}
 DECL|method|decRef
 name|void
 name|decRef
