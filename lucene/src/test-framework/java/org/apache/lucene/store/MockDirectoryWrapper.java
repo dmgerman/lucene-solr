@@ -2832,14 +2832,6 @@ literal|"\nNOTE: MockDirectoryWrapper: now crash"
 argument_list|)
 expr_stmt|;
 block|}
-name|unSyncedFiles
-operator|.
-name|remove
-argument_list|(
-literal|"segments.gen"
-argument_list|)
-expr_stmt|;
-comment|// otherwise we add minutes to the tests: LUCENE-3605
 name|crash
 argument_list|()
 expr_stmt|;

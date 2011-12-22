@@ -1728,22 +1728,6 @@ name|infoStream
 expr_stmt|;
 block|}
 comment|/* Advanced configuration of retry logic in loading      segments_N file */
-DECL|field|defaultGenFileRetryCount
-specifier|private
-specifier|static
-name|int
-name|defaultGenFileRetryCount
-init|=
-literal|10
-decl_stmt|;
-DECL|field|defaultGenFileRetryPauseMsec
-specifier|private
-specifier|static
-name|int
-name|defaultGenFileRetryPauseMsec
-init|=
-literal|50
-decl_stmt|;
 DECL|field|defaultGenLookaheadCount
 specifier|private
 specifier|static
@@ -1752,63 +1736,7 @@ name|defaultGenLookaheadCount
 init|=
 literal|10
 decl_stmt|;
-comment|/**    * Advanced: set how many times to try loading the    * segments.gen file contents to determine current segment    * generation.  This file is only referenced when the    * primary method (listing the directory) fails.    */
-DECL|method|setDefaultGenFileRetryCount
-specifier|public
-specifier|static
-name|void
-name|setDefaultGenFileRetryCount
-parameter_list|(
-name|int
-name|count
-parameter_list|)
-block|{
-name|defaultGenFileRetryCount
-operator|=
-name|count
-expr_stmt|;
-block|}
-comment|/**    * @see #setDefaultGenFileRetryCount    */
-DECL|method|getDefaultGenFileRetryCount
-specifier|public
-specifier|static
-name|int
-name|getDefaultGenFileRetryCount
-parameter_list|()
-block|{
-return|return
-name|defaultGenFileRetryCount
-return|;
-block|}
-comment|/**    * Advanced: set how many milliseconds to pause in between    * attempts to load the segments.gen file.    */
-DECL|method|setDefaultGenFileRetryPauseMsec
-specifier|public
-specifier|static
-name|void
-name|setDefaultGenFileRetryPauseMsec
-parameter_list|(
-name|int
-name|msec
-parameter_list|)
-block|{
-name|defaultGenFileRetryPauseMsec
-operator|=
-name|msec
-expr_stmt|;
-block|}
-comment|/**    * @see #setDefaultGenFileRetryPauseMsec    */
-DECL|method|getDefaultGenFileRetryPauseMsec
-specifier|public
-specifier|static
-name|int
-name|getDefaultGenFileRetryPauseMsec
-parameter_list|()
-block|{
-return|return
-name|defaultGenFileRetryPauseMsec
-return|;
-block|}
-comment|/**    * Advanced: set how many times to try incrementing the    * gen when loading the segments file.  This only runs if    * the primary (listing directory) and secondary (opening    * segments.gen file) methods fail to find the segments    * file.    */
+comment|/**    * Advanced: set how many times to try incrementing the    * gen when loading the segments file.  This only runs if    * the primary (listing directory) and secondary (opening    * segments.gen file) methods fail to find the segments    * file.    *    * @lucene.experimental    */
 DECL|method|setDefaultGenLookaheadCount
 specifier|public
 specifier|static
@@ -1824,7 +1752,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/**    * @see #setDefaultGenLookaheadCount    */
+comment|/**    * @see #setDefaultGenLookaheadCount    *    * @lucene.experimental    */
 DECL|method|getDefaultGenLookahedCount
 specifier|public
 specifier|static
@@ -2095,21 +2023,6 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|defaultGenFileRetryCount
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|IndexInput
 name|genInput
 init|=
@@ -2154,7 +2067,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-break|break;
 block|}
 catch|catch
 parameter_list|(
@@ -2249,12 +2161,23 @@ name|genB
 operator|=
 name|gen0
 expr_stmt|;
-break|break;
 block|}
 block|}
 else|else
 block|{
-comment|/* TODO: Investigate this!                    throw new IndexFormatTooNewException(genInput, version, FORMAT_SEGMENTS_GEN_CURRENT, FORMAT_SEGMENTS_GEN_CURRENT);                   */
+throw|throw
+operator|new
+name|IndexFormatTooNewException
+argument_list|(
+name|genInput
+argument_list|,
+name|version
+argument_list|,
+name|FORMAT_SEGMENTS_GEN_CURRENT
+argument_list|,
+name|FORMAT_SEGMENTS_GEN_CURRENT
+argument_list|)
+throw|;
 block|}
 block|}
 catch|catch
@@ -2273,7 +2196,6 @@ condition|)
 throw|throw
 name|err2
 throw|;
-comment|// else will retry
 block|}
 finally|finally
 block|{
@@ -2282,31 +2204,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
-block|}
-try|try
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-name|defaultGenFileRetryPauseMsec
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ie
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|ThreadInterruptedException
-argument_list|(
-name|ie
-argument_list|)
-throw|;
 block|}
 block|}
 if|if
@@ -3162,6 +3059,20 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|dir
+operator|.
+name|sync
+argument_list|(
+name|Collections
+operator|.
+name|singleton
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS_GEN
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 catch|catch
@@ -3182,6 +3093,27 @@ parameter_list|)
 block|{
 comment|// It's OK if we fail to write this file since it's
 comment|// used only as one of the retry fallbacks.
+try|try
+block|{
+name|dir
+operator|.
+name|deleteFile
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS_GEN
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t2
+parameter_list|)
+block|{
+comment|// Ignore; this file is only used in a retry
+comment|// fallback on init.
+block|}
 block|}
 block|}
 comment|/** Writes& syncs to the Directory dir, taking care to    *  remove the segments file on exception    *<p>    *  Note: {@link #changed()} should be called prior to this    *  method if changes have been made to this {@link SegmentInfos} instance    *</p>      **/
