@@ -53,6 +53,20 @@ name|EDITORIAL_MARKER_FIELD_NAME
 init|=
 literal|"editorialMarkerFieldName"
 decl_stmt|;
+comment|/**    * The name of the field that excluded editorial results will be written out as when using the QueryElevationComponent, which    * automatically configures the EditorialMarkerFactory.  The default name is "excluded".  This is only used    * when {@link #MARK_EXCLUDES} is set to true at query time.    *<br/>    * See http://wiki.apache.org/solr/DocTransformers    */
+DECL|field|EXCLUDE_MARKER_FIELD_NAME
+name|String
+name|EXCLUDE_MARKER_FIELD_NAME
+init|=
+literal|"excludeMarkerFieldName"
+decl_stmt|;
+comment|/**    * Instead of removing excluded items from the results, passing in this parameter allows you to get back the excluded items, but to mark them    * as excluded.    */
+DECL|field|MARK_EXCLUDES
+name|String
+name|MARK_EXCLUDES
+init|=
+literal|"markExcludes"
+decl_stmt|;
 block|}
 end_interface
 
