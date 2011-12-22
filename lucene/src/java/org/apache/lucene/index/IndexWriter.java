@@ -2761,6 +2761,13 @@ operator|+
 name|writeLock
 argument_list|)
 throw|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 name|OpenMode
 name|mode
 init|=
@@ -2815,11 +2822,6 @@ name|directory
 argument_list|)
 expr_stmt|;
 block|}
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
 comment|// If index is too old, reading the segments will throw
 comment|// IndexFormatTooOldException.
 name|segmentInfos
@@ -2828,8 +2830,6 @@ operator|new
 name|SegmentInfos
 argument_list|()
 expr_stmt|;
-try|try
-block|{
 if|if
 condition|(
 name|create
