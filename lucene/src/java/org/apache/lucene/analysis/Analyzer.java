@@ -310,7 +310,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * This class encapsulates the outer components of a token stream. It provides    * access to the source ({@link Tokenizer}) and the outer end (sink), an    * instance of {@link TokenFilter} which also serves as the    * {@link TokenStream} returned by    * {@link Analyzer#tokenStream(String, Reader)} and    * {@link Analyzer#tokenStream(String, Reader)}.    */
+comment|/**    * This class encapsulates the outer components of a token stream. It provides    * access to the source ({@link Tokenizer}) and the outer end (sink), an    * instance of {@link TokenFilter} which also serves as the    * {@link TokenStream} returned by    * {@link Analyzer#tokenStream(String, Reader)}.    */
 DECL|class|TokenStreamComponents
 specifier|public
 specifier|static
