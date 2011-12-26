@@ -492,6 +492,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|// TODO: should we expose the transpositions option to this query?
+comment|// maybe move the old/slowish stuff (lev without transpositions, n> 2, etc) all to contrib,
+comment|// deprecate it, and just have a faster/simpler/better one in core?
 return|return
 operator|new
 name|FuzzyTermsEnum
@@ -506,6 +509,8 @@ argument_list|,
 name|minimumSimilarity
 argument_list|,
 name|prefixLength
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}

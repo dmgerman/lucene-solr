@@ -111,13 +111,16 @@ name|ParametricDescription
 name|descriptions
 index|[]
 decl_stmt|;
-comment|/**    * Create a new LevenshteinAutomata for some input String.    */
+comment|/**    * Create a new LevenshteinAutomata for some input String.    * Optionally count transpositions as a primitive edit.    */
 DECL|method|LevenshteinAutomata
 specifier|public
 name|LevenshteinAutomata
 parameter_list|(
 name|String
 name|input
+parameter_list|,
+name|boolean
+name|withTranspositions
 parameter_list|)
 block|{
 name|this
@@ -416,6 +419,16 @@ block|{
 literal|null
 block|,
 comment|/* for n=0, we do not need to go through the trouble */
+name|withTranspositions
+condition|?
+operator|new
+name|Lev1TParametricDescription
+argument_list|(
+name|word
+operator|.
+name|length
+argument_list|)
+else|:
 operator|new
 name|Lev1ParametricDescription
 argument_list|(
@@ -424,6 +437,16 @@ operator|.
 name|length
 argument_list|)
 block|,
+name|withTranspositions
+condition|?
+operator|new
+name|Lev2TParametricDescription
+argument_list|(
+name|word
+operator|.
+name|length
+argument_list|)
+else|:
 operator|new
 name|Lev2ParametricDescription
 argument_list|(

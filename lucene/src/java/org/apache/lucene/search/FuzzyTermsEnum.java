@@ -492,6 +492,12 @@ specifier|final
 name|int
 name|realPrefixLength
 decl_stmt|;
+DECL|field|transpositions
+specifier|private
+specifier|final
+name|boolean
+name|transpositions
+decl_stmt|;
 comment|/**    * Constructor for enumeration of all terms from specified<code>reader</code> which share a prefix of    * length<code>prefixLength</code> with<code>term</code> and which have a fuzzy similarity&gt;    *<code>minSimilarity</code>.    *<p>    * After calling the constructor the enumeration is already pointing to the first     * valid term if such a term exists.     *     * @param terms Delivers terms.    * @param atts {@link AttributeSource} created by the rewrite method of {@link MultiTermQuery}    * thats contains information about competitive boosts during rewrite. It is also used    * to cache DFAs between segment transitions.    * @param term Pattern term.    * @param minSimilarity Minimum required similarity for terms from the reader.    * @param prefixLength Length of required common prefix. Default value is 0.    * @throws IOException    */
 DECL|method|FuzzyTermsEnum
 specifier|public
@@ -513,6 +519,9 @@ parameter_list|,
 specifier|final
 name|int
 name|prefixLength
+parameter_list|,
+name|boolean
+name|transpositions
 parameter_list|)
 throws|throws
 name|IOException
@@ -745,6 +754,37 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|transpositions
+operator|&&
+name|maxEdits
+operator|>
+name|LevenshteinAutomata
+operator|.
+name|MAXIMUM_SUPPORTED_DISTANCE
+condition|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"with transpositions enabled, distances> "
+operator|+
+name|LevenshteinAutomata
+operator|.
+name|MAXIMUM_SUPPORTED_DISTANCE
+operator|+
+literal|" are not supported "
+argument_list|)
+throw|;
+block|}
+name|this
+operator|.
+name|transpositions
+operator|=
+name|transpositions
+expr_stmt|;
 name|this
 operator|.
 name|scale_factor
@@ -964,6 +1004,8 @@ name|length
 operator|-
 name|realPrefixLength
 argument_list|)
+argument_list|,
+name|transpositions
 argument_list|)
 decl_stmt|;
 for|for

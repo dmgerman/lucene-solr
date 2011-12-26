@@ -49,13 +49,13 @@ import|;
 end_import
 
 begin_comment
-comment|/** Parametric description for generating a Levenshtein automaton of degree 1 */
+comment|/** Parametric description for generating a Levenshtein automaton of degree 1,      with transpositions as primitive edits */
 end_comment
 
 begin_class
-DECL|class|Lev1ParametricDescription
+DECL|class|Lev1TParametricDescription
 class|class
-name|Lev1ParametricDescription
+name|Lev1TParametricDescription
 extends|extends
 name|ParametricDescription
 block|{
@@ -227,7 +227,7 @@ if|if
 condition|(
 name|state
 operator|<
-literal|5
+literal|6
 condition|)
 block|{
 specifier|final
@@ -236,7 +236,7 @@ name|loc
 init|=
 name|vector
 operator|*
-literal|5
+literal|6
 operator|+
 name|state
 decl_stmt|;
@@ -272,7 +272,7 @@ if|if
 condition|(
 name|state
 operator|<
-literal|5
+literal|6
 condition|)
 block|{
 specifier|final
@@ -281,7 +281,7 @@ name|loc
 init|=
 name|vector
 operator|*
-literal|5
+literal|6
 operator|+
 name|state
 decl_stmt|;
@@ -407,7 +407,7 @@ block|{
 literal|0x38L
 block|}
 decl_stmt|;
-comment|// 4 vectors; 5 states per vector; array length = 20
+comment|// 4 vectors; 6 states per vector; array length = 24
 DECL|field|toStates2
 specifier|private
 specifier|final
@@ -421,7 +421,9 @@ name|long
 index|[]
 comment|/*3 bits per value */
 block|{
-literal|0x69a292450428003L
+literal|0x3453491482140003L
+block|,
+literal|0x6dL
 block|}
 decl_stmt|;
 DECL|field|offsetIncrs2
@@ -437,10 +439,10 @@ name|long
 index|[]
 comment|/*2 bits per value */
 block|{
-literal|0x5555588000L
+literal|0x555555a20000L
 block|}
 decl_stmt|;
-comment|// 8 vectors; 5 states per vector; array length = 40
+comment|// 8 vectors; 6 states per vector; array length = 48
 DECL|field|toStates3
 specifier|private
 specifier|final
@@ -454,9 +456,11 @@ name|long
 index|[]
 comment|/*3 bits per value */
 block|{
-literal|0x1690a82152018003L
+literal|0x21520854900c0003L
 block|,
-literal|0xb1a2d346448a49L
+literal|0x5b4d19a24534916dL
+block|,
+literal|0xda34L
 block|}
 decl_stmt|;
 DECL|field|offsetIncrs3
@@ -472,9 +476,9 @@ name|long
 index|[]
 comment|/*2 bits per value */
 block|{
-literal|0x555555b8220f0000L
+literal|0x5555ae0a20fc0000L
 block|,
-literal|0x5555L
+literal|0x55555555L
 block|}
 decl_stmt|;
 comment|// state map
@@ -482,10 +486,11 @@ comment|//   0 -> [(0, 0)]
 comment|//   1 -> [(0, 1)]
 comment|//   2 -> [(0, 1), (1, 1)]
 comment|//   3 -> [(0, 1), (2, 1)]
-comment|//   4 -> [(0, 1), (1, 1), (2, 1)]
-DECL|method|Lev1ParametricDescription
+comment|//   4 -> [t(0, 1), (0, 1), (1, 1), (2, 1)]
+comment|//   5 -> [(0, 1), (1, 1), (2, 1)]
+DECL|method|Lev1TParametricDescription
 specifier|public
-name|Lev1ParametricDescription
+name|Lev1TParametricDescription
 parameter_list|(
 name|int
 name|w
@@ -506,6 +511,9 @@ block|,
 literal|1
 block|,
 literal|0
+block|,
+operator|-
+literal|1
 block|,
 operator|-
 literal|1
