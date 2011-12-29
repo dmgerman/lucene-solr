@@ -43,10 +43,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Factory for {@link CJKTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.CJKTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  */
+comment|/**   * Factory for {@link CJKTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.CJKTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  * @deprecated  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|CJKTokenizerFactory
 specifier|public
 class|class

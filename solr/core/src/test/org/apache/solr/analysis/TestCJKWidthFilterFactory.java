@@ -46,29 +46,40 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|MockTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenStream
 import|;
 end_import
 
 begin_comment
-comment|/**  * Simple tests to ensure the CJK tokenizer factory is working.  * @deprecated  */
+comment|/**  * Simple tests to ensure the CJKWidthFilterFactory is working  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
-DECL|class|TestCJKTokenizerFactory
+DECL|class|TestCJKWidthFilterFactory
 specifier|public
 class|class
-name|TestCJKTokenizerFactory
+name|TestCJKWidthFilterFactory
 extends|extends
 name|BaseTokenTestCase
 block|{
-comment|/**    * Ensure the tokenizer actually tokenizes CJK text correctly    */
-DECL|method|testTokenizer
+DECL|method|test
 specifier|public
 name|void
-name|testTokenizer
+name|test
 parameter_list|()
 throws|throws
 name|Exception
@@ -79,14 +90,14 @@ init|=
 operator|new
 name|StringReader
 argument_list|(
-literal|"ææ¯ä¸­å½äºº"
+literal|"ï¼´ï½ï½ï½ ï¼ï¼ï¼ï¼"
 argument_list|)
 decl_stmt|;
-name|CJKTokenizerFactory
+name|CJKWidthFilterFactory
 name|factory
 init|=
 operator|new
-name|CJKTokenizerFactory
+name|CJKWidthFilterFactory
 argument_list|()
 decl_stmt|;
 name|TokenStream
@@ -96,7 +107,17 @@ name|factory
 operator|.
 name|create
 argument_list|(
+operator|new
+name|MockTokenizer
+argument_list|(
 name|reader
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertTokenStreamContents
@@ -107,13 +128,9 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"ææ¯"
+literal|"Test"
 block|,
-literal|"æ¯ä¸­"
-block|,
-literal|"ä¸­å½"
-block|,
-literal|"å½äºº"
+literal|"1234"
 block|}
 argument_list|)
 expr_stmt|;
