@@ -725,6 +725,8 @@ block|}
 comment|// Verify: do stress test, by opening IndexReaders and
 comment|// IndexWriters over& over in 2 threads and making sure
 comment|// no unexpected exceptions are raised:
+annotation|@
+name|Nightly
 DECL|method|testStressLocks
 specifier|public
 name|void
@@ -750,6 +752,8 @@ comment|// Verify: do stress test, by opening IndexReaders and
 comment|// IndexWriters over& over in 2 threads and making sure
 comment|// no unexpected exceptions are raised, but use
 comment|// NativeFSLockFactory:
+annotation|@
+name|Nightly
 DECL|method|testStressLocksNativeFSLockFactory
 specifier|public
 name|void

@@ -598,7 +598,7 @@ name|NUM_STRINGS
 operator|=
 name|atLeast
 argument_list|(
-literal|6000
+literal|500
 argument_list|)
 expr_stmt|;
 block|}
@@ -1956,8 +1956,7 @@ name|IndexWriter
 argument_list|(
 name|indexStore
 argument_list|,
-operator|new
-name|IndexWriterConfig
+name|newIndexWriterConfig
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -1966,11 +1965,6 @@ name|MockAnalyzer
 argument_list|(
 name|random
 argument_list|)
-argument_list|)
-operator|.
-name|setMaxBufferedDocs
-argument_list|(
-literal|4
 argument_list|)
 operator|.
 name|setMergePolicy

@@ -481,7 +481,11 @@ specifier|protected
 name|int
 name|stress
 init|=
+name|TEST_NIGHTLY
+condition|?
 literal|2
+else|:
+literal|0
 decl_stmt|;
 DECL|field|verifyStress
 specifier|protected

@@ -779,6 +779,22 @@ expr_stmt|;
 comment|// done with this partition
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|numDocsToIndex
+specifier|protected
+name|int
+name|numDocsToIndex
+parameter_list|()
+block|{
+return|return
+name|TEST_NIGHTLY
+condition|?
+literal|20000
+else|:
+literal|1000
+return|;
+block|}
 block|}
 end_class
 

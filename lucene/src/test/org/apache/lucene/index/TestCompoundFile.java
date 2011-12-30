@@ -4621,7 +4621,10 @@ specifier|final
 name|int
 name|FILE_COUNT
 init|=
-literal|10000
+name|atLeast
+argument_list|(
+literal|500
+argument_list|)
 decl_stmt|;
 for|for
 control|(

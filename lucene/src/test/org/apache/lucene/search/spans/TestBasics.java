@@ -664,7 +664,7 @@ name|nextInt
 argument_list|(
 name|random
 argument_list|,
-literal|50
+literal|100
 argument_list|,
 literal|1000
 argument_list|)

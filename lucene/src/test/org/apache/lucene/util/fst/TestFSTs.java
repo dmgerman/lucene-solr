@@ -10480,22 +10480,9 @@ specifier|final
 name|int
 name|NUM_IDS
 init|=
-call|(
-name|int
-call|)
+name|atLeast
 argument_list|(
-literal|1000
-operator|*
-name|RANDOM_MULTIPLIER
-operator|*
-operator|(
-literal|1.0
-operator|+
-name|random
-operator|.
-name|nextDouble
-argument_list|()
-operator|)
+literal|200
 argument_list|)
 decl_stmt|;
 comment|//final int NUM_IDS = (int) (377 * (1.0+random.nextDouble()));

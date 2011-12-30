@@ -315,6 +315,10 @@ comment|/**  * Pulses 10k terms/docs,   * originally designed to find JRE bugs (
 end_comment
 
 begin_class
+annotation|@
+name|LuceneTestCase
+operator|.
+name|Nightly
 DECL|class|Test10KPulsings
 specifier|public
 class|class

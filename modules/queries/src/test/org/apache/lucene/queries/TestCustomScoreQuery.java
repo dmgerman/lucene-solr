@@ -1896,6 +1896,9 @@ argument_list|,
 name|q1
 argument_list|,
 name|s
+argument_list|,
+name|rarely
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|QueryUtils
@@ -1907,6 +1910,9 @@ argument_list|,
 name|q2
 argument_list|,
 name|s
+argument_list|,
+name|rarely
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|QueryUtils
@@ -1918,6 +1924,9 @@ argument_list|,
 name|q3
 argument_list|,
 name|s
+argument_list|,
+name|rarely
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|QueryUtils
@@ -1929,6 +1938,9 @@ argument_list|,
 name|q4
 argument_list|,
 name|s
+argument_list|,
+name|rarely
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|QueryUtils
@@ -1940,6 +1952,9 @@ argument_list|,
 name|q5
 argument_list|,
 name|s
+argument_list|,
+name|rarely
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// verify scores ratios

@@ -362,10 +362,8 @@ name|runTimeSec
 init|=
 name|atLeast
 argument_list|(
-literal|5
+literal|3
 argument_list|)
-operator|*
-name|RANDOM_MULTIPLIER
 decl_stmt|;
 specifier|final
 name|int
@@ -394,7 +392,7 @@ name|random
 argument_list|,
 literal|1
 argument_list|,
-literal|4
+literal|3
 argument_list|)
 decl_stmt|;
 if|if

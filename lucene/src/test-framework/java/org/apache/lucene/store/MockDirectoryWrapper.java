@@ -725,6 +725,21 @@ argument_list|(
 name|names
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|rarely
+argument_list|(
+name|randomState
+argument_list|)
+operator|||
+name|delegate
+operator|instanceof
+name|NRTCachingDirectory
+condition|)
+block|{
+comment|// don't wear out our hardware so much in tests.
 name|delegate
 operator|.
 name|sync
@@ -732,6 +747,7 @@ argument_list|(
 name|names
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

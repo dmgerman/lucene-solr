@@ -5810,7 +5810,7 @@ name|TEST_NIGHTLY
 condition|?
 literal|200
 else|:
-literal|20
+literal|10
 decl_stmt|;
 for|for
 control|(
@@ -7369,7 +7369,7 @@ name|num
 init|=
 name|atLeast
 argument_list|(
-literal|3
+literal|1
 argument_list|)
 decl_stmt|;
 for|for

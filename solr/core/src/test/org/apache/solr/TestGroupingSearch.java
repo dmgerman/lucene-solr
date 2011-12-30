@@ -3463,17 +3463,19 @@ comment|/**      updateJ("{\"add\":{\"doc\":{\"id\":\"77\"}}}", params("commit",
 name|int
 name|indexIter
 init|=
-literal|50
-operator|*
-name|RANDOM_MULTIPLIER
+name|atLeast
+argument_list|(
+literal|10
+argument_list|)
 decl_stmt|;
 comment|// make>0 to enable test
 name|int
 name|queryIter
 init|=
-literal|100
-operator|*
-name|RANDOM_MULTIPLIER
+name|atLeast
+argument_list|(
+literal|50
+argument_list|)
 decl_stmt|;
 while|while
 condition|(

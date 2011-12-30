@@ -120,6 +120,20 @@ name|Directory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_class
 DECL|class|CheckHits
 specifier|public
@@ -806,6 +820,13 @@ argument_list|,
 name|query
 argument_list|,
 name|searcher
+argument_list|,
+name|LuceneTestCase
+operator|.
+name|rarely
+argument_list|(
+name|random
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
