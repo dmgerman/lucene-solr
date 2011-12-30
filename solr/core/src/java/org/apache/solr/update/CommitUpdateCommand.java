@@ -68,6 +68,13 @@ name|softCommit
 init|=
 literal|false
 decl_stmt|;
+DECL|field|prepareCommit
+specifier|public
+name|boolean
+name|prepareCommit
+init|=
+literal|false
+decl_stmt|;
 comment|/**    * During optimize, optimize down to<= this many segments.  Must be>= 1    *    * @see org.apache.lucene.index.IndexWriter#forceMerge(int)    */
 DECL|field|maxOptimizeSegments
 specifier|public
@@ -110,6 +117,11 @@ name|toString
 parameter_list|()
 block|{
 return|return
+name|prepareCommit
+condition|?
+literal|"prepareCommit"
+else|:
+operator|(
 literal|"commit(optimize="
 operator|+
 name|optimize
@@ -127,6 +139,7 @@ operator|+
 name|softCommit
 operator|+
 literal|')'
+operator|)
 return|;
 block|}
 block|}

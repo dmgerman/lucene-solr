@@ -81,6 +81,15 @@ name|OPTIMIZE
 init|=
 literal|"optimize"
 decl_stmt|;
+comment|/** @expert calls IndexWriter.prepareCommit */
+DECL|field|PREPARE_COMMIT
+specifier|public
+specifier|static
+name|String
+name|PREPARE_COMMIT
+init|=
+literal|"prepareCommit"
+decl_stmt|;
 comment|/** Rollback update commands */
 DECL|field|ROLLBACK
 specifier|public
