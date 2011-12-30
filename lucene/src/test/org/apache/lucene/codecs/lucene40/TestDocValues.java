@@ -442,6 +442,11 @@ name|newIOContext
 argument_list|(
 name|random
 argument_list|)
+argument_list|,
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|int

@@ -414,6 +414,9 @@ name|bytesUsed
 parameter_list|,
 name|IOContext
 name|context
+parameter_list|,
+name|boolean
+name|fasterButMoreRam
 parameter_list|)
 throws|throws
 name|IOException
@@ -431,6 +434,8 @@ argument_list|,
 name|bytesUsed
 argument_list|,
 name|context
+argument_list|,
+name|fasterButMoreRam
 argument_list|)
 expr_stmt|;
 name|this
@@ -828,8 +833,6 @@ name|count
 operator|+
 literal|1
 argument_list|,
-name|PackedInts
-operator|.
 name|bitsRequired
 argument_list|(
 name|maxBytes
