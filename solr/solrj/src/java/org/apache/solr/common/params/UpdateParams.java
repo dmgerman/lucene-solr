@@ -81,7 +81,7 @@ name|OPTIMIZE
 init|=
 literal|"optimize"
 decl_stmt|;
-comment|/** @expert calls IndexWriter.prepareCommit */
+comment|/** expert: calls IndexWriter.prepareCommit */
 DECL|field|PREPARE_COMMIT
 specifier|public
 specifier|static
