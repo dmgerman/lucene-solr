@@ -3396,9 +3396,8 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
-name|ScoreDoc
-index|[]
-name|hits
+name|int
+name|totalHits
 init|=
 name|searcher
 operator|.
@@ -3418,10 +3417,10 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|,
-literal|1000
+literal|1
 argument_list|)
 operator|.
-name|scoreDocs
+name|totalHits
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -3429,9 +3428,7 @@ name|n
 operator|*
 literal|100
 argument_list|,
-name|hits
-operator|.
-name|length
+name|totalHits
 argument_list|)
 expr_stmt|;
 name|reader
