@@ -3077,16 +3077,6 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|ThreadInterruptedException
-name|t
-parameter_list|)
-block|{
-throw|throw
-name|t
-throw|;
-block|}
-catch|catch
-parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
@@ -3113,6 +3103,20 @@ parameter_list|)
 block|{
 comment|// Ignore; this file is only used in a retry
 comment|// fallback on init.
+block|}
+if|if
+condition|(
+name|t
+operator|instanceof
+name|ThreadInterruptedException
+condition|)
+block|{
+throw|throw
+operator|(
+name|ThreadInterruptedException
+operator|)
+name|t
+throw|;
 block|}
 block|}
 block|}
