@@ -498,12 +498,11 @@ begin_comment
 comment|/**  * Test for ReplicationHandler  *  *  * @since 1.4  */
 end_comment
 
-begin_class
-annotation|@
-name|LuceneTestCase
-operator|.
-name|Nightly
+begin_comment
 comment|// TODO: can this test be sped up? it used to not be so slow...
+end_comment
+
+begin_class
 DECL|class|TestReplicationHandler
 specifier|public
 class|class
