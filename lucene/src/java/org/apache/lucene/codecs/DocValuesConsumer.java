@@ -343,7 +343,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Merges the given {@link SingleSubMergeState} into this {@link DocValuesConsumer}.    *     * @param mergeState    *          the {@link SingleSubMergeState} to merge    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Merges the given {@link SingleSubMergeState} into this {@link DocValuesConsumer}.    *     * @param state    *          the {@link SingleSubMergeState} to merge    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|merge
 specifier|protected
 name|void
