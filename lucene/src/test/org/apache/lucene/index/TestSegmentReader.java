@@ -1110,13 +1110,12 @@ argument_list|)
 condition|)
 block|{
 comment|// test for norms of null
-name|byte
-index|[]
+name|DocValues
 name|norms
 init|=
-name|MultiNorms
+name|MultiDocValues
 operator|.
-name|norms
+name|getNormDocValues
 argument_list|(
 name|reader
 argument_list|,
