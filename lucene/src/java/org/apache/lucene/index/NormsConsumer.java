@@ -305,6 +305,8 @@ argument_list|(
 name|fi
 argument_list|)
 decl_stmt|;
+comment|// we must check the final value of omitNorms for the fieldinfo, it could have
+comment|// changed for this field since the first time we added it.
 if|if
 condition|(
 operator|!
@@ -318,6 +320,11 @@ condition|(
 name|toWrite
 operator|!=
 literal|null
+operator|&&
+name|toWrite
+operator|.
+name|initialized
+argument_list|()
 condition|)
 block|{
 name|anythingFlushed
@@ -346,8 +353,6 @@ name|anythingFlushed
 operator|=
 literal|true
 expr_stmt|;
-comment|// we must check the final value of omitNorms for the fieldinfo, it could have
-comment|// changed for this field since the first time we added it.
 specifier|final
 name|DocValuesConsumer
 name|valuesConsumer
