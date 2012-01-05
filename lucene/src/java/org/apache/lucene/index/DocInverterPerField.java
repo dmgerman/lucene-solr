@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -94,12 +84,6 @@ name|DocInverterPerField
 extends|extends
 name|DocFieldConsumerPerField
 block|{
-DECL|field|parent
-specifier|final
-specifier|private
-name|DocInverter
-name|parent
-decl_stmt|;
 DECL|field|fieldInfo
 specifier|final
 name|FieldInfo
@@ -138,12 +122,6 @@ name|FieldInfo
 name|fieldInfo
 parameter_list|)
 block|{
-name|this
-operator|.
-name|parent
-operator|=
-name|parent
-expr_stmt|;
 name|this
 operator|.
 name|fieldInfo

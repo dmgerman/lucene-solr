@@ -66,6 +66,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|DocValuesConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|DocValues
@@ -459,7 +473,7 @@ comment|/**    * Creates a new<tt>byte[]</tt> {@link Writer} instances for the g
 DECL|method|getWriter
 specifier|public
 specifier|static
-name|Writer
+name|DocValuesConsumer
 name|getWriter
 parameter_list|(
 name|Directory
@@ -1374,8 +1388,8 @@ block|}
 comment|/**      * Must be called only with increasing docIDs. It's OK for some docIDs to be      * skipped; they will be filled with 0 bytes.      */
 annotation|@
 name|Override
+specifier|protected
 DECL|method|add
-specifier|public
 specifier|abstract
 name|void
 name|add
@@ -2124,7 +2138,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|add
-specifier|public
+specifier|protected
 name|void
 name|add
 parameter_list|(

@@ -581,29 +581,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|norms
-specifier|public
-specifier|synchronized
-name|byte
-index|[]
-name|norms
-parameter_list|(
-name|String
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"please use MultiNorms.norms, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level norms"
-argument_list|)
-throw|;
-block|}
-annotation|@
-name|Override
 DECL|method|docFreq
 specifier|public
 name|int
@@ -765,6 +742,27 @@ operator|new
 name|UnsupportedOperationException
 argument_list|(
 literal|"please use MultiDocValues#getDocValues, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level DocValues"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|normValues
+specifier|public
+name|DocValues
+name|normValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"please use MultiDocValues#getNormValues, or wrap your IndexReader with SlowMultiReaderWrapper, if you really need a top level Norm DocValues "
 argument_list|)
 throw|;
 block|}
