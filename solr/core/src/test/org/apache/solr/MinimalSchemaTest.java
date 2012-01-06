@@ -271,8 +271,6 @@ argument_list|)
 argument_list|,
 literal|"//int[@name='numDocs'][.='2']"
 argument_list|,
-literal|"//int[@name='numTerms'][.='5']"
-argument_list|,
 literal|"//null[@name='uniqueKeyField']"
 argument_list|,
 literal|"//null[@name='defaultSearchField']"
