@@ -503,6 +503,11 @@ name|CharsRef
 index|[]
 name|outputs
 decl_stmt|;
+DECL|field|endOffsets
+name|int
+index|[]
+name|endOffsets
+decl_stmt|;
 DECL|field|upto
 name|int
 name|upto
@@ -517,6 +522,10 @@ name|posIncr
 init|=
 literal|1
 decl_stmt|;
+DECL|field|lastEndOffset
+name|int
+name|lastEndOffset
+decl_stmt|;
 DECL|method|PendingOutputs
 specifier|public
 name|PendingOutputs
@@ -526,6 +535,14 @@ name|outputs
 operator|=
 operator|new
 name|CharsRef
+index|[
+literal|1
+index|]
+expr_stmt|;
+name|endOffsets
+operator|=
+operator|new
+name|int
 index|[
 literal|1
 index|]
@@ -559,6 +576,13 @@ name|upto
 operator|<
 name|count
 assert|;
+name|lastEndOffset
+operator|=
+name|endOffsets
+index|[
+name|upto
+index|]
+expr_stmt|;
 specifier|final
 name|CharsRef
 name|result
@@ -588,6 +612,16 @@ return|return
 name|result
 return|;
 block|}
+DECL|method|getLastEndOffset
+specifier|public
+name|int
+name|getLastEndOffset
+parameter_list|()
+block|{
+return|return
+name|lastEndOffset
+return|;
+block|}
 DECL|method|add
 specifier|public
 name|void
@@ -602,6 +636,9 @@ name|offset
 parameter_list|,
 name|int
 name|len
+parameter_list|,
+name|int
+name|endOffset
 parameter_list|)
 block|{
 if|if
@@ -657,6 +694,57 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|count
+operator|==
+name|endOffsets
+operator|.
+name|length
+condition|)
+block|{
+specifier|final
+name|int
+index|[]
+name|next
+init|=
+operator|new
+name|int
+index|[
+name|ArrayUtil
+operator|.
+name|oversize
+argument_list|(
+literal|1
+operator|+
+name|count
+argument_list|,
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_INT
+argument_list|)
+index|]
+decl_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|endOffsets
+argument_list|,
+literal|0
+argument_list|,
+name|next
+argument_list|,
+literal|0
+argument_list|,
+name|count
+argument_list|)
+expr_stmt|;
+name|endOffsets
+operator|=
+name|next
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|outputs
 index|[
 name|count
@@ -688,6 +776,16 @@ name|offset
 argument_list|,
 name|len
 argument_list|)
+expr_stmt|;
+comment|// endOffset can be -1, in which case we should simply
+comment|// use the endOffset of the input token, or X>= 0, in
+comment|// which case we use X as the endOffset for this output
+name|endOffsets
+index|[
+name|count
+index|]
+operator|=
+name|endOffset
 expr_stmt|;
 name|count
 operator|++
@@ -997,6 +1095,12 @@ name|matchInputLength
 init|=
 literal|0
 decl_stmt|;
+name|int
+name|matchEndOffset
+init|=
+operator|-
+literal|1
+decl_stmt|;
 name|BytesRef
 name|pendingOutput
 init|=
@@ -1049,6 +1153,11 @@ name|int
 name|bufferLen
 decl_stmt|;
 comment|//System.out.println("  cycle nextRead=" + curNextRead + " nextWrite=" + nextWrite);
+name|int
+name|inputEndOffset
+init|=
+literal|0
+decl_stmt|;
 if|if
 condition|(
 name|curNextRead
@@ -1129,6 +1238,12 @@ operator|.
 name|endOffset
 argument_list|()
 expr_stmt|;
+name|inputEndOffset
+operator|=
+name|input
+operator|.
+name|endOffset
+expr_stmt|;
 comment|//System.out.println("  new token=" + new String(buffer, 0, bufferLen));
 if|if
 condition|(
@@ -1187,6 +1302,15 @@ operator|.
 name|term
 operator|.
 name|length
+expr_stmt|;
+name|inputEndOffset
+operator|=
+name|futureInputs
+index|[
+name|curNextRead
+index|]
+operator|.
+name|endOffset
 expr_stmt|;
 comment|//System.out.println("  old token=" + new String(buffer, 0, bufferLen));
 block|}
@@ -1307,6 +1431,10 @@ name|matchInputLength
 operator|=
 name|tokenCount
 expr_stmt|;
+name|matchEndOffset
+operator|=
+name|inputEndOffset
+expr_stmt|;
 comment|//System.out.println("  found matchLength=" + matchInputLength + " output=" + matchOutput);
 block|}
 comment|// See if the FST wants to continue matching (ie, needs to
@@ -1409,6 +1537,8 @@ argument_list|(
 name|matchOutput
 argument_list|,
 name|matchInputLength
+argument_list|,
+name|matchEndOffset
 argument_list|)
 expr_stmt|;
 block|}
@@ -1447,6 +1577,9 @@ name|bytes
 parameter_list|,
 name|int
 name|matchInputLength
+parameter_list|,
+name|int
+name|matchEndOffset
 parameter_list|)
 block|{
 name|bytesReader
@@ -1609,6 +1742,44 @@ literal|"output contains empty string: "
 operator|+
 name|scratchChars
 assert|;
+specifier|final
+name|int
+name|endOffset
+decl_stmt|;
+if|if
+condition|(
+name|chIDX
+operator|==
+name|chEnd
+operator|&&
+name|lastStart
+operator|==
+name|scratchChars
+operator|.
+name|offset
+condition|)
+block|{
+comment|// This rule had a single output token, so, we set
+comment|// this output's endOffset to the current
+comment|// endOffset (ie, endOffset of the last input
+comment|// token it matched):
+name|endOffset
+operator|=
+name|matchEndOffset
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// This rule has more than one output token; we
+comment|// can't pick any particular endOffset for this
+comment|// case, so, we inherit the endOffset for the
+comment|// input token which this output overlaps:
+name|endOffset
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+block|}
 name|futureOutputs
 index|[
 name|outputUpto
@@ -1623,6 +1794,8 @@ argument_list|,
 name|lastStart
 argument_list|,
 name|outputLen
+argument_list|,
+name|endOffset
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("      " + new String(scratchChars.chars, lastStart, outputLen) + " outputUpto=" + outputUpto);
@@ -1955,6 +2128,29 @@ argument_list|(
 name|TYPE_SYNONYM
 argument_list|)
 expr_stmt|;
+name|int
+name|endOffset
+init|=
+name|outputs
+operator|.
+name|getLastEndOffset
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|endOffset
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+name|endOffset
+operator|=
+name|input
+operator|.
+name|endOffset
+expr_stmt|;
+block|}
 name|offsetAtt
 operator|.
 name|setOffset
@@ -1963,8 +2159,6 @@ name|input
 operator|.
 name|startOffset
 argument_list|,
-name|input
-operator|.
 name|endOffset
 argument_list|)
 expr_stmt|;
