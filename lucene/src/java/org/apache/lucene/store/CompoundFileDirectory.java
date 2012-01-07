@@ -1071,7 +1071,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IOException
+name|FileNotFoundException
 argument_list|(
 literal|"No sub-file with id "
 operator|+
@@ -1519,7 +1519,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IOException
+name|FileNotFoundException
 argument_list|(
 literal|"No sub-file with id "
 operator|+
