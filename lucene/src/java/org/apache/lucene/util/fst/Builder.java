@@ -502,7 +502,7 @@ operator|.
 name|nodeCount
 return|;
 block|}
-comment|/** Pass false to disable the array arc optimization    *  while building the FST.  This is necessary if    *  encoding a single arc may take more than 255 bytes. */
+comment|/** Pass false to disable the array arc optimization    *  while building the FST; this will make the resulting    *  FST smaller but slower to traverse. */
 DECL|method|setAllowArrayArcs
 specifier|public
 name|void
