@@ -422,6 +422,16 @@ name|VERSION_INT_NUM_BYTES_PER_ARC
 init|=
 literal|1
 decl_stmt|;
+comment|/** Write BYTE2 labels as 2-byte short, not vInt. */
+DECL|field|VERSION_SHORT_BYTE2_LABELS
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|VERSION_SHORT_BYTE2_LABELS
+init|=
+literal|2
+decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|private
 specifier|final
@@ -429,7 +439,7 @@ specifier|static
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_INT_NUM_BYTES_PER_ARC
+name|VERSION_SHORT_BYTE2_LABELS
 decl_stmt|;
 comment|// Never serialized; just used to represent the virtual
 comment|// final node w/ no arcs:
@@ -855,6 +865,8 @@ name|writer
 operator|=
 literal|null
 expr_stmt|;
+comment|// NOTE: only reads most recent format; we don't have
+comment|// back-compat promise for FSTs (they are experimental):
 name|CodecUtil
 operator|.
 name|checkHeader
@@ -863,9 +875,9 @@ name|in
 argument_list|,
 name|FILE_FORMAT_NAME
 argument_list|,
-name|VERSION_INT_NUM_BYTES_PER_ARC
+name|VERSION_SHORT_BYTE2_LABELS
 argument_list|,
-name|VERSION_INT_NUM_BYTES_PER_ARC
+name|VERSION_SHORT_BYTE2_LABELS
 argument_list|)
 expr_stmt|;
 if|if
@@ -1918,8 +1930,11 @@ name|v
 assert|;
 name|writer
 operator|.
-name|writeVInt
+name|writeShort
 argument_list|(
+operator|(
+name|short
+operator|)
 name|v
 argument_list|)
 expr_stmt|;
@@ -1959,6 +1974,7 @@ operator|.
 name|BYTE1
 condition|)
 block|{
+comment|// Unsigned byte:
 name|v
 operator|=
 name|in
@@ -1967,6 +1983,27 @@ name|readByte
 argument_list|()
 operator|&
 literal|0xFF
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|inputType
+operator|==
+name|INPUT_TYPE
+operator|.
+name|BYTE2
+condition|)
+block|{
+comment|// Unsigned short:
+name|v
+operator|=
+name|in
+operator|.
+name|readShort
+argument_list|()
+operator|&
+literal|0xFFFF
 expr_stmt|;
 block|}
 else|else
