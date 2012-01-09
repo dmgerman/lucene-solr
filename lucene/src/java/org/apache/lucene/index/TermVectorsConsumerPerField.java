@@ -649,11 +649,7 @@ comment|// commit the termVectors once successful success - FI will otherwise re
 name|fieldInfo
 operator|.
 name|setStoreTermVectors
-argument_list|(
-name|doVectorPositions
-argument_list|,
-name|doVectorOffsets
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|shrinkHash

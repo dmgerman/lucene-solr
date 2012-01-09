@@ -42,16 +42,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collections
 import|;
 end_import
@@ -135,22 +125,6 @@ operator|.
 name|document
 operator|.
 name|DocumentStoredFieldVisitor
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocValues
-operator|.
-name|Source
 import|;
 end_import
 
@@ -356,65 +330,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-comment|/**    * Constants describing field properties, for example used for    * {@link IndexReader#getFieldNames(FieldOption)}.    */
-DECL|enum|FieldOption
-specifier|public
-specifier|static
-enum|enum
-name|FieldOption
-block|{
-comment|/** All fields */
-DECL|enum constant|ALL
-name|ALL
-block|,
-comment|/** All indexed fields */
-DECL|enum constant|INDEXED
-name|INDEXED
-block|,
-comment|/** All fields that store payloads */
-DECL|enum constant|STORES_PAYLOADS
-name|STORES_PAYLOADS
-block|,
-comment|/** All fields that omit tf */
-DECL|enum constant|OMIT_TERM_FREQ_AND_POSITIONS
-name|OMIT_TERM_FREQ_AND_POSITIONS
-block|,
-comment|/** All fields that omit positions */
-DECL|enum constant|OMIT_POSITIONS
-name|OMIT_POSITIONS
-block|,
-comment|/** All fields which are not indexed */
-DECL|enum constant|UNINDEXED
-name|UNINDEXED
-block|,
-comment|/** All fields which are indexed with termvectors enabled */
-DECL|enum constant|INDEXED_WITH_TERMVECTOR
-name|INDEXED_WITH_TERMVECTOR
-block|,
-comment|/** All fields which are indexed but don't have termvectors enabled */
-DECL|enum constant|INDEXED_NO_TERMVECTOR
-name|INDEXED_NO_TERMVECTOR
-block|,
-comment|/** All fields with termvectors enabled. Please note that only standard termvector fields are returned */
-DECL|enum constant|TERMVECTOR
-name|TERMVECTOR
-block|,
-comment|/** All fields with termvectors with position values enabled */
-DECL|enum constant|TERMVECTOR_WITH_POSITION
-name|TERMVECTOR_WITH_POSITION
-block|,
-comment|/** All fields with termvectors with offset values enabled */
-DECL|enum constant|TERMVECTOR_WITH_OFFSET
-name|TERMVECTOR_WITH_OFFSET
-block|,
-comment|/** All fields with termvectors with offset values and position values enabled */
-DECL|enum constant|TERMVECTOR_WITH_POSITION_OFFSET
-name|TERMVECTOR_WITH_POSITION_OFFSET
-block|,
-comment|/** All fields holding doc values */
-DECL|enum constant|DOC_VALUES
-name|DOC_VALUES
 block|}
 DECL|field|closed
 specifier|private
@@ -2266,19 +2181,13 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Get a list of unique field names that exist in this index and have the specified    * field option information.    * @param fldOption specifies which field option should be available for the returned fields    * @return Collection of Strings indicating the names of the fields.    * @see IndexReader.FieldOption    */
-DECL|method|getFieldNames
+comment|/**    * Get the {@link FieldInfos} describing all fields in    * this reader.  NOTE: do not make any changes to the    * returned FieldInfos!    *    * @lucene.experimental    */
+DECL|method|getFieldInfos
 specifier|public
 specifier|abstract
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|getFieldNames
-parameter_list|(
-name|FieldOption
-name|fldOption
-parameter_list|)
+name|FieldInfos
+name|getFieldInfos
+parameter_list|()
 function_decl|;
 comment|/** Returns the {@link Bits} representing live (not    *  deleted) docs.  A set bit indicates the doc ID has not    *  been deleted.  If this method returns null it means    *  there are no deleted documents (all documents are    *  live).    *    *  The returned instance has been safely published for    *  use by multiple threads without additional    *  synchronization.    * @lucene.experimental */
 DECL|method|getLiveDocs

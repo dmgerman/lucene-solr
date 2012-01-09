@@ -720,7 +720,7 @@ name|fi
 init|=
 name|reader
 operator|.
-name|fieldInfos
+name|getFieldInfos
 argument_list|()
 decl_stmt|;
 name|assertFalse
@@ -941,7 +941,7 @@ name|fi
 operator|=
 name|reader
 operator|.
-name|fieldInfos
+name|getFieldInfos
 argument_list|()
 expr_stmt|;
 name|assertFalse

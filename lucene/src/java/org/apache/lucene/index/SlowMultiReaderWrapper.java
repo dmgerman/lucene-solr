@@ -348,6 +348,23 @@ return|return
 name|readerContext
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getFieldInfos
+specifier|public
+name|FieldInfos
+name|getFieldInfos
+parameter_list|()
+block|{
+return|return
+name|ReaderUtil
+operator|.
+name|getMergedFieldInfos
+argument_list|(
+name|in
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

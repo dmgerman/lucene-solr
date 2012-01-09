@@ -84,16 +84,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Comparator
 import|;
 end_import
@@ -2412,7 +2402,7 @@ operator|.
 name|docCount
 argument_list|)
 throw|;
-comment|// Test getFieldNames()
+comment|// Test getFieldInfos()
 if|if
 condition|(
 name|infoStream
@@ -2428,28 +2418,19 @@ literal|"    test: fields.............."
 argument_list|)
 expr_stmt|;
 block|}
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|fieldNames
+name|FieldInfos
+name|fieldInfos
 init|=
 name|reader
 operator|.
-name|getFieldNames
-argument_list|(
-name|IndexReader
-operator|.
-name|FieldOption
-operator|.
-name|ALL
-argument_list|)
+name|getFieldInfos
+argument_list|()
 decl_stmt|;
 name|msg
 argument_list|(
 literal|"OK ["
 operator|+
-name|fieldNames
+name|fieldInfos
 operator|.
 name|size
 argument_list|()
@@ -2461,7 +2442,7 @@ name|segInfoStat
 operator|.
 name|numFields
 operator|=
-name|fieldNames
+name|fieldInfos
 operator|.
 name|size
 argument_list|()
@@ -2473,7 +2454,7 @@ name|fieldNormStatus
 operator|=
 name|testFieldNorms
 argument_list|(
-name|fieldNames
+name|fieldInfos
 argument_list|,
 name|reader
 argument_list|)
@@ -2836,11 +2817,8 @@ operator|.
 name|FieldNormStatus
 name|testFieldNorms
 parameter_list|(
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|fieldNames
+name|FieldInfos
+name|fieldInfos
 parameter_list|,
 name|SegmentReader
 name|reader
@@ -2876,43 +2854,26 @@ literal|"    test: field norms........."
 argument_list|)
 expr_stmt|;
 block|}
-name|FieldInfos
-name|infos
-init|=
-name|reader
-operator|.
-name|fieldInfos
-argument_list|()
-decl_stmt|;
 name|DocValues
 name|dv
 decl_stmt|;
 for|for
 control|(
-specifier|final
-name|String
-name|fieldName
-range|:
-name|fieldNames
-control|)
-block|{
 name|FieldInfo
 name|info
-init|=
-name|infos
-operator|.
-name|fieldInfo
-argument_list|(
-name|fieldName
-argument_list|)
-decl_stmt|;
+range|:
+name|fieldInfos
+control|)
+block|{
 if|if
 condition|(
 name|reader
 operator|.
 name|hasNorms
 argument_list|(
-name|fieldName
+name|info
+operator|.
+name|name
 argument_list|)
 condition|)
 block|{
@@ -2922,7 +2883,9 @@ name|reader
 operator|.
 name|normValues
 argument_list|(
-name|fieldName
+name|info
+operator|.
+name|name
 argument_list|)
 expr_stmt|;
 assert|assert
@@ -2973,7 +2936,9 @@ name|RuntimeException
 argument_list|(
 literal|"norms for field: "
 operator|+
-name|fieldName
+name|info
+operator|.
+name|name
 operator|+
 literal|" are of the wrong size"
 argument_list|)
@@ -2998,7 +2963,9 @@ name|RuntimeException
 argument_list|(
 literal|"field: "
 operator|+
-name|fieldName
+name|info
+operator|.
+name|name
 operator|+
 literal|" should omit norms but has them!"
 argument_list|)
@@ -3018,7 +2985,9 @@ name|reader
 operator|.
 name|normValues
 argument_list|(
-name|fieldName
+name|info
+operator|.
+name|name
 argument_list|)
 operator|!=
 literal|null
@@ -3030,7 +2999,9 @@ name|RuntimeException
 argument_list|(
 literal|"field: "
 operator|+
-name|fieldName
+name|info
+operator|.
+name|name
 operator|+
 literal|" should omit norms but has them!"
 argument_list|)
@@ -3054,7 +3025,9 @@ name|RuntimeException
 argument_list|(
 literal|"field: "
 operator|+
-name|fieldName
+name|info
+operator|.
+name|name
 operator|+
 literal|" should have norms but omits them!"
 argument_list|)
