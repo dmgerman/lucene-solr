@@ -202,7 +202,7 @@ init|=
 literal|"no"
 decl_stmt|;
 DECL|field|DEFAULT_DATA_TYPE
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -429,6 +429,19 @@ name|out
 init|=
 literal|null
 decl_stmt|;
+specifier|final
+name|String
+name|type
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"type"
+argument_list|,
+name|DEFAULT_DATA_TYPE
+argument_list|)
+decl_stmt|;
 name|URL
 name|u
 init|=
@@ -571,6 +584,8 @@ argument_list|,
 literal|0
 argument_list|,
 name|out
+argument_list|,
+name|type
 argument_list|)
 expr_stmt|;
 block|}
@@ -634,6 +649,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|out
+argument_list|,
+name|type
 argument_list|)
 expr_stmt|;
 block|}
@@ -670,6 +687,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|out
+argument_list|,
+name|type
 argument_list|)
 expr_stmt|;
 block|}
@@ -750,6 +769,50 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * @deprecated use {@link #postData(InputStream, Integer, OutputStream, String)} instead    */
+annotation|@
+name|Deprecated
+DECL|method|postFiles
+name|int
+name|postFiles
+parameter_list|(
+name|String
+index|[]
+name|args
+parameter_list|,
+name|int
+name|startIndexInArgs
+parameter_list|,
+name|OutputStream
+name|out
+parameter_list|)
+block|{
+specifier|final
+name|String
+name|type
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"type"
+argument_list|,
+name|DEFAULT_DATA_TYPE
+argument_list|)
+decl_stmt|;
+return|return
+name|postFiles
+argument_list|(
+name|args
+argument_list|,
+name|startIndexInArgs
+argument_list|,
+name|out
+argument_list|,
+name|type
+argument_list|)
+return|;
+block|}
 comment|/** Post all filenames provided in args, return the number of files posted*/
 DECL|method|postFiles
 name|int
@@ -764,6 +827,9 @@ name|startIndexInArgs
 parameter_list|,
 name|OutputStream
 name|out
+parameter_list|,
+name|String
+name|type
 parameter_list|)
 block|{
 name|int
@@ -823,6 +889,8 @@ argument_list|(
 name|srcFile
 argument_list|,
 name|out
+argument_list|,
+name|type
 argument_list|)
 expr_stmt|;
 name|filesPosted
@@ -1005,6 +1073,42 @@ operator|+
 name|param
 return|;
 block|}
+comment|/**    * @deprecated use {@link #postFile(File, OutputStream, String)} instead    */
+DECL|method|postFile
+specifier|public
+name|void
+name|postFile
+parameter_list|(
+name|File
+name|file
+parameter_list|,
+name|OutputStream
+name|output
+parameter_list|)
+block|{
+specifier|final
+name|String
+name|type
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"type"
+argument_list|,
+name|DEFAULT_DATA_TYPE
+argument_list|)
+decl_stmt|;
+name|postFile
+argument_list|(
+name|file
+argument_list|,
+name|output
+argument_list|,
+name|type
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Opens the file and posts it's contents to the solrUrl,    * writes to response to output.    * @throws UnsupportedEncodingException     */
 DECL|method|postFile
 specifier|public
@@ -1016,6 +1120,9 @@ name|file
 parameter_list|,
 name|OutputStream
 name|output
+parameter_list|,
+name|String
+name|type
 parameter_list|)
 block|{
 name|InputStream
@@ -1046,6 +1153,8 @@ name|length
 argument_list|()
 argument_list|,
 name|output
+argument_list|,
+name|type
 argument_list|)
 expr_stmt|;
 block|}
@@ -1098,6 +1207,7 @@ block|}
 comment|/**    * Performs a simple get on the given URL    * @param url    */
 DECL|method|doGet
 specifier|public
+specifier|static
 name|void
 name|doGet
 parameter_list|(
@@ -1137,6 +1247,7 @@ block|}
 comment|/**    * Performs a simple get on the given URL    * @param url    */
 DECL|method|doGet
 specifier|public
+specifier|static
 name|void
 name|doGet
 parameter_list|(
@@ -1205,7 +1316,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Reads data from the data stream and posts it to solr,    * writes to the response to output    */
+comment|/**    * @deprecated use {@link #postData(InputStream, Integer, OutputStream, String)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|postData
 specifier|public
 name|void
@@ -1234,6 +1347,37 @@ argument_list|,
 name|DEFAULT_DATA_TYPE
 argument_list|)
 decl_stmt|;
+name|postData
+argument_list|(
+name|data
+argument_list|,
+name|length
+argument_list|,
+name|output
+argument_list|,
+name|type
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Reads data from the data stream and posts it to solr,    * writes to the response to output    */
+DECL|method|postData
+specifier|public
+name|void
+name|postData
+parameter_list|(
+name|InputStream
+name|data
+parameter_list|,
+name|Integer
+name|length
+parameter_list|,
+name|OutputStream
+name|output
+parameter_list|,
+name|String
+name|type
+parameter_list|)
+block|{
 name|HttpURLConnection
 name|urlc
 init|=
@@ -1515,7 +1659,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|stringToStream
-specifier|private
+specifier|public
 specifier|static
 name|InputStream
 name|stringToStream
@@ -1561,7 +1705,7 @@ return|return
 name|is
 return|;
 block|}
-comment|/**    * Pipes everything from the source to the dest.  If dest is null,     * then everything is read fro msource and thrown away.    */
+comment|/**    * Pipes everything from the source to the dest.  If dest is null,     * then everything is read from source and thrown away.    */
 DECL|method|pipe
 specifier|private
 specifier|static
