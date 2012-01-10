@@ -287,6 +287,8 @@ argument_list|,
 name|inputObj
 argument_list|,
 name|expectObj
+argument_list|,
+name|delta
 argument_list|)
 return|;
 block|}
@@ -319,6 +321,8 @@ operator|new
 name|CollectionTester
 argument_list|(
 name|input
+argument_list|,
+name|delta
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -836,16 +840,18 @@ condition|(
 operator|(
 name|expected
 operator|instanceof
-name|Float
-operator|&&
-name|val
-operator|instanceof
 name|Double
 operator|||
 name|expected
 operator|instanceof
-name|Double
+name|Float
+operator|)
 operator|&&
+operator|(
+name|val
+operator|instanceof
+name|Double
+operator|||
 name|val
 operator|instanceof
 name|Float
@@ -910,12 +916,7 @@ condition|)
 return|return
 literal|true
 return|;
-return|return
-literal|false
-return|;
 block|}
-else|else
-block|{
 name|setErr
 argument_list|(
 literal|"mismatch: '"
@@ -932,7 +933,6 @@ expr_stmt|;
 return|return
 literal|false
 return|;
-block|}
 block|}
 comment|// setErr("unknown expected type " + expected.getClass().getName());
 return|return
