@@ -237,10 +237,7 @@ argument_list|()
 operator|.
 name|append
 argument_list|(
-name|basicFormAtt
-operator|.
-name|getBaseForm
-argument_list|()
+name|baseForm
 argument_list|)
 expr_stmt|;
 block|}
