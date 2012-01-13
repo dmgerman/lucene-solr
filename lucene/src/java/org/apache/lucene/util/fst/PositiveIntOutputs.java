@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Output is a long, for each input term.  NOTE: the  * resulting FST is not guaranteed to be minimal!  See  * {@link Builder}.  You cannot store 0 output with this  * (that's reserved to mean "no output")!  *  * @lucene.experimental  */
+comment|/**  * Output is a long, for each input term.  NOTE: the  * resulting FST is not guaranteed to be minimal!  See  * {@link Builder}.  You must use {@link #get} to obtain the  * output for a given long value -- do not use autoboxing  * nor create your own Long instance (the value 0  * must map to the {@link #getNoOutput} singleton).  *  * @lucene.experimental  */
 end_comment
 
 begin_class
