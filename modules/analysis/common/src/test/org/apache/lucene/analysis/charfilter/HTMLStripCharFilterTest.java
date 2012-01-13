@@ -1761,11 +1761,6 @@ literal|"X<&zz>X&#< X><&l>&g< X"
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Ignore
-argument_list|(
-literal|"broken offsets: see LUCENE-2208"
-argument_list|)
 DECL|method|testRandom
 specifier|public
 name|void
