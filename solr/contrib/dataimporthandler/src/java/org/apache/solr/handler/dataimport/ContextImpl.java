@@ -734,7 +734,7 @@ name|name
 argument_list|)
 expr_stmt|;
 else|else
-name|entitySession
+name|map
 operator|.
 name|put
 argument_list|(
