@@ -6096,8 +6096,8 @@ comment|// }
 comment|//System.out.println();
 comment|// computeBlockStats().print(System.out);
 block|}
+comment|// Not private to avoid synthetic access$NNN methods
 DECL|method|initIndexInput
-specifier|private
 name|void
 name|initIndexInput
 parameter_list|()

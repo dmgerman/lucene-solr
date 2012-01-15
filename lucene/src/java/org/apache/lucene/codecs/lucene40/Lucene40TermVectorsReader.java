@@ -880,8 +880,8 @@ return|return
 name|tvf
 return|;
 block|}
+comment|// Not private to avoid synthetic access$NNN methods
 DECL|method|seekTvx
-specifier|private
 name|void
 name|seekTvx
 parameter_list|(
