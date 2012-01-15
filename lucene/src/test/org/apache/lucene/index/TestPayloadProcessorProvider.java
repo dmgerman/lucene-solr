@@ -931,6 +931,8 @@ argument_list|,
 name|field
 argument_list|,
 name|text
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 while|while

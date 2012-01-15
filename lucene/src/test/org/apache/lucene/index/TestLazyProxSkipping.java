@@ -938,6 +938,8 @@ name|BytesRef
 argument_list|(
 literal|"b"
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 for|for
@@ -1005,6 +1007,8 @@ name|BytesRef
 argument_list|(
 literal|"a"
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 for|for

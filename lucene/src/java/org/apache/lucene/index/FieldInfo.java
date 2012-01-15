@@ -81,6 +81,9 @@ specifier|static
 enum|enum
 name|IndexOptions
 block|{
+comment|// NOTE: order is important here; FieldInfo uses this
+comment|// order to merge two conflicting IndexOptions (always
+comment|// "downgrades" by picking the lowest).
 comment|/** only documents are indexed: term frequencies and positions are omitted */
 comment|// TODO: maybe rename to just DOCS?
 DECL|enum constant|DOCS_ONLY
@@ -90,10 +93,14 @@ comment|/** only documents and term frequencies are indexed: positions are omitt
 DECL|enum constant|DOCS_AND_FREQS
 name|DOCS_AND_FREQS
 block|,
-comment|/** full postings: documents, frequencies, and positions */
+comment|/** documents, frequencies and positions */
 DECL|enum constant|DOCS_AND_FREQS_AND_POSITIONS
 name|DOCS_AND_FREQS_AND_POSITIONS
-block|}
+block|,
+comment|/** documents, frequencies, positions and offsets */
+DECL|enum constant|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
+name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
+block|,   }
 empty_stmt|;
 comment|/**    * @lucene.experimental    */
 DECL|method|FieldInfo
@@ -213,10 +220,15 @@ expr_stmt|;
 block|}
 assert|assert
 name|indexOptions
-operator|==
+operator|.
+name|compareTo
+argument_list|(
 name|IndexOptions
 operator|.
 name|DOCS_AND_FREQS_AND_POSITIONS
+argument_list|)
+operator|>=
+literal|0
 operator|||
 operator|!
 name|storePayloads
@@ -377,6 +389,23 @@ name|indexOptions
 else|:
 name|indexOptions
 expr_stmt|;
+if|if
+condition|(
+name|this
+operator|.
+name|indexOptions
+operator|.
+name|compareTo
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
+argument_list|)
+operator|<
+literal|0
+condition|)
+block|{
+comment|// cannot store payloads if we don't store positions:
 name|this
 operator|.
 name|storePayloads
@@ -385,14 +414,20 @@ literal|false
 expr_stmt|;
 block|}
 block|}
+block|}
 assert|assert
 name|this
 operator|.
 name|indexOptions
-operator|==
+operator|.
+name|compareTo
+argument_list|(
 name|IndexOptions
 operator|.
 name|DOCS_AND_FREQS_AND_POSITIONS
+argument_list|)
+operator|>=
+literal|0
 operator|||
 operator|!
 name|this

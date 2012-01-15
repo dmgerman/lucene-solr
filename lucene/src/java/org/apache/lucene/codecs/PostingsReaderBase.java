@@ -212,6 +212,9 @@ name|skipDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsOffsets
 parameter_list|)
 throws|throws
 name|IOException

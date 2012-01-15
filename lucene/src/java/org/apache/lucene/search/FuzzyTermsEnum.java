@@ -1521,6 +1521,9 @@ name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsOffsets
 parameter_list|)
 throws|throws
 name|IOException
@@ -1533,6 +1536,8 @@ argument_list|(
 name|liveDocs
 argument_list|,
 name|reuse
+argument_list|,
+name|needsOffsets
 argument_list|)
 return|;
 block|}

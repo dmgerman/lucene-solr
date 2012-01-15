@@ -1422,6 +1422,8 @@ name|BytesRef
 argument_list|(
 literal|"bar"
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|int
@@ -1499,6 +1501,8 @@ argument_list|(
 literal|null
 argument_list|,
 name|disi
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|docid

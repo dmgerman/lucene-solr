@@ -674,6 +674,28 @@ name|fieldInfo
 operator|.
 name|indexOptions
 expr_stmt|;
+if|if
+condition|(
+name|indexOptions
+operator|.
+name|compareTo
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
+argument_list|)
+operator|>=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"this codec cannot index offsets"
+argument_list|)
+throw|;
+block|}
 name|storePayloads
 operator|=
 name|fieldInfo
@@ -878,6 +900,12 @@ name|position
 parameter_list|,
 name|BytesRef
 name|payload
+parameter_list|,
+name|int
+name|startOffset
+parameter_list|,
+name|int
+name|endOffset
 parameter_list|)
 throws|throws
 name|IOException
@@ -899,6 +927,13 @@ name|proxOut
 operator|!=
 literal|null
 assert|;
+comment|// TODO: when we add offsets... often
+comment|// endOffset-startOffset will be constant or near
+comment|// constant for all docs (eg if the term wasn't stemmed
+comment|// then this will usually be the utf16 length of the
+comment|// term); would be nice to write that length once up
+comment|// front and then not encode endOffset for each
+comment|// position..
 specifier|final
 name|int
 name|delta

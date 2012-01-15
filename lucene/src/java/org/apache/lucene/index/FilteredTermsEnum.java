@@ -485,6 +485,9 @@ name|bits
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsOffsets
 parameter_list|)
 throws|throws
 name|IOException
@@ -497,6 +500,8 @@ argument_list|(
 name|bits
 argument_list|,
 name|reuse
+argument_list|,
+name|needsOffsets
 argument_list|)
 return|;
 block|}

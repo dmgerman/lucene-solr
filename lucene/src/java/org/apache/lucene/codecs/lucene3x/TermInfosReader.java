@@ -1008,6 +1008,9 @@ operator|new
 name|CloneableTerm
 argument_list|(
 name|term
+operator|.
+name|deepCopyOf
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|,
@@ -1218,6 +1221,9 @@ operator|new
 name|CloneableTerm
 argument_list|(
 name|term
+operator|.
+name|deepCopyOf
+argument_list|()
 argument_list|)
 argument_list|,
 operator|new
@@ -1379,6 +1385,9 @@ operator|new
 name|CloneableTerm
 argument_list|(
 name|term
+operator|.
+name|deepCopyOf
+argument_list|()
 argument_list|)
 argument_list|,
 operator|new

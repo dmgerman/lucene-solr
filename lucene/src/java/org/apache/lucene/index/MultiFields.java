@@ -811,6 +811,9 @@ name|field
 parameter_list|,
 name|BytesRef
 name|term
+parameter_list|,
+name|boolean
+name|needsOffsets
 parameter_list|)
 throws|throws
 name|IOException
@@ -874,6 +877,8 @@ argument_list|(
 name|liveDocs
 argument_list|,
 literal|null
+argument_list|,
+name|needsOffsets
 argument_list|)
 return|;
 block|}

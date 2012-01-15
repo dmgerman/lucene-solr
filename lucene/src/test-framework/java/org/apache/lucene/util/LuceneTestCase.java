@@ -5883,6 +5883,9 @@ name|type
 argument_list|)
 return|;
 block|}
+comment|// TODO: once all core& test codecs can index
+comment|// offsets, sometimes randomly turn on offsets if we are
+comment|// already indexing positions...
 name|FieldType
 name|newType
 init|=

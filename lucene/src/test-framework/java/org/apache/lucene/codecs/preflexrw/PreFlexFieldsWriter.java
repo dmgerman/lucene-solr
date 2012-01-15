@@ -519,6 +519,30 @@ operator|!=
 operator|-
 literal|1
 assert|;
+if|if
+condition|(
+name|field
+operator|.
+name|indexOptions
+operator|.
+name|compareTo
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
+argument_list|)
+operator|>=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"this codec cannot index offsets"
+argument_list|)
+throw|;
+block|}
 comment|//System.out.println("w field=" + field.name + " storePayload=" + field.storePayloads + " number=" + field.number);
 return|return
 operator|new
@@ -862,6 +886,12 @@ name|position
 parameter_list|,
 name|BytesRef
 name|payload
+parameter_list|,
+name|int
+name|startOffset
+parameter_list|,
+name|int
+name|endOffset
 parameter_list|)
 throws|throws
 name|IOException
@@ -870,6 +900,18 @@ assert|assert
 name|proxOut
 operator|!=
 literal|null
+assert|;
+assert|assert
+name|startOffset
+operator|==
+operator|-
+literal|1
+assert|;
+assert|assert
+name|endOffset
+operator|==
+operator|-
+literal|1
 assert|;
 comment|//System.out.println("      w pos=" + position + " payl=" + payload);
 specifier|final

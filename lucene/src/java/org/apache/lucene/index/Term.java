@@ -440,6 +440,27 @@ name|utf8ToString
 argument_list|()
 return|;
 block|}
+DECL|method|deepCopyOf
+specifier|public
+name|Term
+name|deepCopyOf
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Term
+argument_list|(
+name|field
+argument_list|,
+name|BytesRef
+operator|.
+name|deepCopyOf
+argument_list|(
+name|bytes
+argument_list|)
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

@@ -323,7 +323,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link DocsAndPositionsEnum} for the current term.    *  Do not call this when the enum is unpositioned.    *  This method will only return null if positions were    *  not indexed into the postings by this codec.    *  @param liveDocs unset bits are documents that should not    *  be returned    *  @param reuse pass a prior DocsAndPositionsEnum for possible reuse */
+comment|/** Get {@link DocsAndPositionsEnum} for the current term.    *  Do not call this when the enum is unpositioned.    *  This method will only return null if needsOffsets is    *  true but offsets were not indexed.    *  @param liveDocs unset bits are documents that should not    *  be returned    *  @param reuse pass a prior DocsAndPositionsEnum for possible reuse    *  @param needsOffsets true if offsets are required */
 DECL|method|docsAndPositions
 specifier|public
 specifier|abstract
@@ -335,6 +335,9 @@ name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsOffsets
 parameter_list|)
 throws|throws
 name|IOException
@@ -529,6 +532,9 @@ name|liveDocs
 parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
+parameter_list|,
+name|boolean
+name|needsOffsets
 parameter_list|)
 block|{
 throw|throw

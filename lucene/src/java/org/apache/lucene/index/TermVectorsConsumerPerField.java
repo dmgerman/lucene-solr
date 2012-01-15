@@ -152,8 +152,6 @@ decl_stmt|;
 DECL|field|offsetAttribute
 name|OffsetAttribute
 name|offsetAttribute
-init|=
-literal|null
 decl_stmt|;
 DECL|method|TermVectorsConsumerPerField
 specifier|public

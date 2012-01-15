@@ -53,12 +53,32 @@ name|DocsAndPositionsEnum
 extends|extends
 name|DocsEnum
 block|{
-comment|/** Returns the next position.  You should only call this    *  up to {@link DocsEnum#freq()} times else    *  the behavior is not defined. */
+comment|/** Returns the next position.  You should only call this    *  up to {@link DocsEnum#freq()} times else    *  the behavior is not defined.  If positions were not    *  indexed this will return -1; this only happens if    *  offsets were indexed and you passed needsOffset=true    *  when pulling the enum.  */
 DECL|method|nextPosition
 specifier|public
 specifier|abstract
 name|int
 name|nextPosition
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns start offset for the current position, or -1    *  if offsets were not indexed. */
+DECL|method|startOffset
+specifier|public
+specifier|abstract
+name|int
+name|startOffset
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns end offset for the current position, or -1 if    *  offsets were not indexed. */
+DECL|method|endOffset
+specifier|public
+specifier|abstract
+name|int
+name|endOffset
 parameter_list|()
 throws|throws
 name|IOException

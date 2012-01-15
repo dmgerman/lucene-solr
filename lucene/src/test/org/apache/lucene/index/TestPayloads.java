@@ -1420,6 +1420,8 @@ operator|.
 name|text
 argument_list|()
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -1644,6 +1646,8 @@ operator|.
 name|text
 argument_list|()
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|tp
@@ -1800,6 +1804,8 @@ operator|.
 name|text
 argument_list|()
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|tp
@@ -2064,6 +2070,8 @@ name|BytesRef
 argument_list|(
 name|singleTerm
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|tp
@@ -3359,6 +3367,8 @@ argument_list|(
 name|liveDocs
 argument_list|,
 name|tp
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 while|while

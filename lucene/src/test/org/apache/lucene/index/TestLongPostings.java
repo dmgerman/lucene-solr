@@ -920,6 +920,8 @@ name|BytesRef
 argument_list|(
 name|term
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|int
