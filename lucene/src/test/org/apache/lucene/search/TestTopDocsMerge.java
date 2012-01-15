@@ -594,10 +594,7 @@ operator|new
 name|NumericField
 argument_list|(
 literal|"float"
-argument_list|)
-operator|.
-name|setFloatValue
-argument_list|(
+argument_list|,
 name|random
 operator|.
 name|nextFloat
@@ -666,10 +663,7 @@ operator|new
 name|NumericField
 argument_list|(
 literal|"int"
-argument_list|)
-operator|.
-name|setIntValue
-argument_list|(
+argument_list|,
 name|intValue
 argument_list|)
 argument_list|)

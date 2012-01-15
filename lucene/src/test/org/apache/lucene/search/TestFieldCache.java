@@ -669,10 +669,7 @@ operator|new
 name|NumericField
 argument_list|(
 literal|"numInt"
-argument_list|)
-operator|.
-name|setIntValue
-argument_list|(
+argument_list|,
 name|i
 argument_list|)
 argument_list|)

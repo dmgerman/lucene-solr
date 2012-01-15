@@ -559,6 +559,16 @@ name|stringValue
 argument_list|()
 operator|!=
 literal|null
+operator|||
+name|fields
+index|[
+name|i
+index|]
+operator|.
+name|numericValue
+argument_list|()
+operator|!=
+literal|null
 decl_stmt|;
 name|assertTrue
 argument_list|(

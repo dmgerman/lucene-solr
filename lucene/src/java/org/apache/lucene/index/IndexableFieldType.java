@@ -98,6 +98,15 @@ name|IndexOptions
 name|indexOptions
 parameter_list|()
 function_decl|;
+comment|/** DocValues type; if non-null then the field's value    *  will be indexed into docValues */
+DECL|method|docValueType
+specifier|public
+name|DocValues
+operator|.
+name|Type
+name|docValueType
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

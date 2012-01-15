@@ -3145,36 +3145,6 @@ name|numericValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|info
-argument_list|,
-name|leftField
-operator|.
-name|numeric
-argument_list|()
-argument_list|,
-name|rightField
-operator|.
-name|numeric
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|info
-argument_list|,
-name|leftField
-operator|.
-name|numericDataType
-argument_list|()
-argument_list|,
-name|rightField
-operator|.
-name|numericDataType
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// TODO: should we check the FT at all?
 block|}
 comment|/**     * checks that term vectors across all fields are equivalent     */

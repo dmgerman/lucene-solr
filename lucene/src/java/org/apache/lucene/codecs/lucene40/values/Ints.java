@@ -55,6 +55,8 @@ operator|.
 name|index
 operator|.
 name|DocValues
+operator|.
+name|Source
 import|;
 end_import
 
@@ -84,7 +86,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValue
+name|DocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexableField
 import|;
 end_import
 
@@ -578,8 +594,6 @@ name|valueType
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|add
 specifier|protected
 name|void
@@ -621,7 +635,7 @@ parameter_list|(
 name|int
 name|docID
 parameter_list|,
-name|DocValue
+name|IndexableField
 name|docValue
 parameter_list|)
 throws|throws
@@ -633,7 +647,10 @@ name|docID
 argument_list|,
 name|docValue
 operator|.
-name|getInt
+name|numericValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -645,6 +662,9 @@ specifier|protected
 name|void
 name|setMergeBytes
 parameter_list|(
+name|Source
+name|source
+parameter_list|,
 name|int
 name|sourceDoc
 parameter_list|)
@@ -653,7 +673,7 @@ specifier|final
 name|long
 name|value
 init|=
-name|currentMergeSource
+name|source
 operator|.
 name|getInt
 argument_list|(

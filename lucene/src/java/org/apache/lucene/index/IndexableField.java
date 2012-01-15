@@ -72,34 +72,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|NumericField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -124,7 +96,6 @@ specifier|public
 interface|interface
 name|IndexableField
 block|{
-comment|// TODO: add attrs to this API?
 comment|/** Field name */
 DECL|method|name
 specifier|public
@@ -132,8 +103,13 @@ name|String
 name|name
 parameter_list|()
 function_decl|;
-comment|// NOTE: if doc/field impl has the notion of "doc level boost"
-comment|// it must be multiplied in w/ this field's boost
+comment|/** {@link IndexableFieldType} describing the properties    * of this field. */
+DECL|method|fieldType
+specifier|public
+name|IndexableFieldType
+name|fieldType
+parameter_list|()
+function_decl|;
 comment|/** Field boost (you must pre-multiply in any doc boost). */
 DECL|method|boost
 specifier|public
@@ -162,51 +138,11 @@ name|Reader
 name|readerValue
 parameter_list|()
 function_decl|;
-comment|// Numeric field:
-comment|/** True if this field is numeric */
-DECL|method|numeric
-specifier|public
-name|boolean
-name|numeric
-parameter_list|()
-function_decl|;
-comment|/** Numeric {@link org.apache.lucene.document.NumericField.DataType}; only used if    * the field is numeric */
-DECL|method|numericDataType
-specifier|public
-name|NumericField
-operator|.
-name|DataType
-name|numericDataType
-parameter_list|()
-function_decl|;
-comment|/** Numeric value; only used if the field is numeric */
+comment|/** Non-null if this field hasa numeric value */
 DECL|method|numericValue
 specifier|public
 name|Number
 name|numericValue
-parameter_list|()
-function_decl|;
-comment|/**    * Returns the IndexableFieldType describing the properties of this field    *    * @return IndexableFieldType for this field    */
-DECL|method|fieldType
-specifier|public
-name|IndexableFieldType
-name|fieldType
-parameter_list|()
-function_decl|;
-comment|/** Non-null if doc values should be indexed */
-DECL|method|docValue
-specifier|public
-name|DocValue
-name|docValue
-parameter_list|()
-function_decl|;
-comment|/** DocValues type; only used if docValue is non-null */
-DECL|method|docValueType
-specifier|public
-name|DocValues
-operator|.
-name|Type
-name|docValueType
 parameter_list|()
 function_decl|;
 comment|/**    * Creates the TokenStream used for indexing this field.  If appropriate,    * implementations should use the given Analyzer to create the TokenStreams.    *    * @param analyzer Analyzer that should be used to create the TokenStreams from    * @return TokenStream value for indexing the document.  Should always return    *         a non-null value if the field is to be indexed    * @throws IOException Can be thrown while creating the TokenStream    */

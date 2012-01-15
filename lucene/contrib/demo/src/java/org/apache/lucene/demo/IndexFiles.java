@@ -843,30 +843,20 @@ comment|// is often too fine.  You could instead create a number based on
 comment|// year/month/day/hour/minutes/seconds, down the resolution you require.
 comment|// For example the long value 2011021714 would mean
 comment|// February 17, 2011, 2-3 PM.
-name|NumericField
-name|modifiedField
-init|=
+name|doc
+operator|.
+name|add
+argument_list|(
 operator|new
 name|NumericField
 argument_list|(
 literal|"modified"
-argument_list|)
-decl_stmt|;
-name|modifiedField
-operator|.
-name|setLongValue
-argument_list|(
+argument_list|,
 name|file
 operator|.
 name|lastModified
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|doc
-operator|.
-name|add
-argument_list|(
-name|modifiedField
 argument_list|)
 expr_stmt|;
 comment|// Add the contents of the file to a field named "contents".  Specify a Reader,

@@ -21,22 +21,6 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ByteBlockPool
-operator|.
-name|BYTE_BLOCK_SIZE
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -114,9 +98,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|DocValues
+name|Field
 import|;
 end_import
 
@@ -149,6 +133,20 @@ operator|.
 name|DocValues
 operator|.
 name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
 import|;
 end_import
 
@@ -218,7 +216,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ByteBlockPool
+name|Bits
 import|;
 end_import
 
@@ -235,6 +233,20 @@ operator|.
 name|ByteBlockPool
 operator|.
 name|DirectTrackingAllocator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ByteBlockPool
 import|;
 end_import
 
@@ -291,6 +303,22 @@ operator|.
 name|util
 operator|.
 name|PagedBytes
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ByteBlockPool
+operator|.
+name|BYTE_BLOCK_SIZE
 import|;
 end_import
 
@@ -476,9 +504,7 @@ name|IllegalArgumentException
 argument_list|(
 literal|"bytes arrays> "
 operator|+
-name|Short
-operator|.
-name|MAX_VALUE
+name|BYTE_BLOCK_SIZE
 operator|+
 literal|" are not supported"
 argument_list|)
@@ -505,11 +531,11 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"expected bytes size="
+literal|"byte[] length changed for BYTES_FIXED_STRAIGHT type (before="
 operator|+
 name|size
 operator|+
-literal|" but got "
+literal|" now="
 operator|+
 name|bytes
 operator|.
@@ -855,8 +881,17 @@ specifier|protected
 name|void
 name|merge
 parameter_list|(
-name|SingleSubMergeState
-name|state
+name|DocValues
+name|readerIn
+parameter_list|,
+name|int
+name|docBase
+parameter_list|,
+name|int
+name|docCount
+parameter_list|,
+name|Bits
+name|liveDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -894,17 +929,13 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|state
-operator|.
 name|liveDocs
 operator|==
 literal|null
 operator|&&
 name|tryBulkMerge
 argument_list|(
-name|state
-operator|.
-name|reader
+name|readerIn
 argument_list|)
 condition|)
 block|{
@@ -914,9 +945,7 @@ init|=
 operator|(
 name|FixedStraightReader
 operator|)
-name|state
-operator|.
-name|reader
+name|readerIn
 decl_stmt|;
 specifier|final
 name|int
@@ -989,8 +1018,6 @@ name|lastDocID
 operator|+
 literal|1
 operator|<
-name|state
-operator|.
 name|docBase
 condition|)
 block|{
@@ -998,15 +1025,11 @@ name|fill
 argument_list|(
 name|datOut
 argument_list|,
-name|state
-operator|.
 name|docBase
 argument_list|)
 expr_stmt|;
 name|lastDocID
 operator|=
-name|state
-operator|.
 name|docBase
 operator|-
 literal|1
@@ -1057,7 +1080,13 @@ name|super
 operator|.
 name|merge
 argument_list|(
-name|state
+name|readerIn
+argument_list|,
+name|docBase
+argument_list|,
+name|docCount
+argument_list|,
+name|liveDocs
 argument_list|)
 expr_stmt|;
 block|}
@@ -1110,6 +1139,12 @@ specifier|protected
 name|void
 name|mergeDoc
 parameter_list|(
+name|Field
+name|scratchField
+parameter_list|,
+name|Source
+name|source
+parameter_list|,
 name|int
 name|docID
 parameter_list|,
@@ -1126,6 +1161,8 @@ name|docID
 assert|;
 name|setMergeBytes
 argument_list|(
+name|source
+argument_list|,
 name|sourceDoc
 argument_list|)
 expr_stmt|;
@@ -1212,11 +1249,14 @@ specifier|protected
 name|void
 name|setMergeBytes
 parameter_list|(
+name|Source
+name|source
+parameter_list|,
 name|int
 name|sourceDoc
 parameter_list|)
 block|{
-name|currentMergeSource
+name|source
 operator|.
 name|getBytes
 argument_list|(

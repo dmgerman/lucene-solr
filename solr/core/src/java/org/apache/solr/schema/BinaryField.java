@@ -466,7 +466,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|BinaryField
+name|StoredField
 argument_list|(
 name|field
 operator|.

@@ -125,6 +125,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|// TODO: add sugar for term vectors...?
 comment|/** Creates a new un-stored TextField */
 DECL|method|TextField
 specifier|public
