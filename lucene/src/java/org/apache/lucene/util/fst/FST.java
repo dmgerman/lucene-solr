@@ -476,8 +476,8 @@ name|byte
 index|[]
 name|emptyOutputBytes
 decl_stmt|;
+comment|// Not private to avoid synthetic access$NNN methods:
 DECL|field|bytes
-specifier|private
 name|byte
 index|[]
 name|bytes
