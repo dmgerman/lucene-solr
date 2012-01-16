@@ -367,17 +367,6 @@ name|ByteBuffer
 name|byteBuf
 decl_stmt|;
 comment|// wraps the buffer for NIO
-DECL|field|otherBuffer
-specifier|private
-name|byte
-index|[]
-name|otherBuffer
-decl_stmt|;
-DECL|field|otherByteBuf
-specifier|private
-name|ByteBuffer
-name|otherByteBuf
-decl_stmt|;
 DECL|field|channel
 specifier|final
 name|FileChannel
@@ -626,59 +615,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|offset
-operator|==
-literal|0
-condition|)
-block|{
-if|if
-condition|(
-name|otherBuffer
-operator|!=
-name|b
-condition|)
-block|{
-comment|// Now wrap this other buffer; with compound
-comment|// file, we are repeatedly called with its
-comment|// buffer, so we wrap it once and then re-use it
-comment|// on subsequent calls
-name|otherBuffer
-operator|=
-name|b
-expr_stmt|;
-name|otherByteBuf
-operator|=
-name|ByteBuffer
-operator|.
-name|wrap
-argument_list|(
-name|b
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-name|otherByteBuf
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|otherByteBuf
-operator|.
-name|limit
-argument_list|(
-name|len
-argument_list|)
-expr_stmt|;
-name|bb
-operator|=
-name|otherByteBuf
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// Always wrap when offset != 0
 name|bb
 operator|=
 name|ByteBuffer
@@ -692,7 +628,6 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|int
 name|readOffset
