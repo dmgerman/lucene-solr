@@ -257,9 +257,9 @@ import|;
 end_import
 
 begin_class
-DECL|class|PreFlexFieldsWriter
+DECL|class|PreFlexRWFieldsWriter
 class|class
-name|PreFlexFieldsWriter
+name|PreFlexRWFieldsWriter
 extends|extends
 name|FieldsConsumer
 block|{
@@ -293,9 +293,9 @@ specifier|final
 name|int
 name|totalNumDocs
 decl_stmt|;
-DECL|method|PreFlexFieldsWriter
+DECL|method|PreFlexRWFieldsWriter
 specifier|public
-name|PreFlexFieldsWriter
+name|PreFlexRWFieldsWriter
 parameter_list|(
 name|SegmentWriteState
 name|state
@@ -537,7 +537,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|UnsupportedOperationException
+name|IllegalArgumentException
 argument_list|(
 literal|"this codec cannot index offsets"
 argument_list|)

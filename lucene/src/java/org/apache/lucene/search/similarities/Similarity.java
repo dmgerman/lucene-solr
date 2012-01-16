@@ -104,6 +104,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|Norm
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Terms
 import|;
 end_import
@@ -276,22 +290,8 @@ begin_comment
 comment|// javadoc
 end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TermContext
-import|;
-end_import
-
 begin_comment
-comment|/**   * Similarity defines the components of Lucene scoring.  *<p>  * Expert: Scoring API.  *<p>  * This is a low-level API, you should only extend this API if you want to implement   * an information retrieval<i>model</i>.  If you are instead looking for a convenient way   * to alter Lucene's scoring, consider extending a higher-level implementation  * such as {@link TFIDFSimilarity}, which implements the vector space model with this API, or   * just tweaking the default implementation: {@link DefaultSimilarity}.  *<p>  * Similarity determines how Lucene weights terms, and Lucene interacts with  * this class at both<a href="#indextime">index-time</a> and   *<a href="#querytime">query-time</a>.  *<p>  *<a name="indextime"/>  * At indexing time, the indexer calls {@link #computeNorm(FieldInvertState)}, allowing  * the Similarity implementation to return a per-document byte for the field that will   * be later accessible via {@link IndexReader#normValues(String)}.  Lucene makes no assumption  * about what is in this byte, but it is most useful for encoding length normalization   * information.  *<p>  * Implementations should carefully consider how the normalization byte is encoded: while  * Lucene's classical {@link TFIDFSimilarity} encodes a combination of index-time boost  * and length normalization information with {@link SmallFloat}, this might not be suitable  * for all purposes.  *<p>  * Many formulas require the use of average document length, which can be computed via a   * combination of {@link Terms#getSumTotalTermFreq()} and {@link IndexReader#maxDoc()},  *<p>  * Because index-time boost is handled entirely at the application level anyway,  * an application can alternatively store the index-time boost separately using an   * {@link DocValuesField}, and access this at query-time with   * {@link IndexReader#docValues(String)}.  *<p>  * Finally, using index-time boosts (either via folding into the normalization byte or  * via DocValues), is an inefficient way to boost the scores of different fields if the  * boost will be the same for every document, instead the Similarity can simply take a constant  * boost parameter<i>C</i>, and the SimilarityProvider can return different instances with  * different boosts depending upon field name.  *<p>  *<a name="querytime"/>  * At query-time, Queries interact with the Similarity via these steps:  *<ol>  *<li>The {@link #computeStats(CollectionStatistics, float, TermStatistics...)} method is called a single time,  *       allowing the implementation to compute any statistics (such as IDF, average document length, etc)  *       across<i>the entire collection</i>. The {@link TermStatistics} passed in already contain  *       the raw statistics involved, so a Similarity can freely use any combination  *       of term statistics without causing any additional I/O. Lucene makes no assumption about what is   *       stored in the returned {@link Similarity.Stats} object.  *<li>The query normalization process occurs a single time: {@link Similarity.Stats#getValueForNormalization()}  *       is called for each query leaf node, {@link SimilarityProvider#queryNorm(float)} is called for the top-level  *       query, and finally {@link Similarity.Stats#normalize(float, float)} passes down the normalization value  *       and any top-level boosts (e.g. from enclosing {@link BooleanQuery}s).  *<li>For each segment in the index, the Query creates a {@link #exactDocScorer(Stats, String, IndexReader.AtomicReaderContext)}  *       (for queries with exact frequencies such as TermQuerys and exact PhraseQueries) or a   *       {@link #sloppyDocScorer(Stats, String, IndexReader.AtomicReaderContext)} (for queries with sloppy frequencies such as  *       SpanQuerys and sloppy PhraseQueries). The score() method is called for each matching document.  *</ol>  *<p>  *<a name="explaintime"/>  * When {@link IndexSearcher#explain(Query, int)} is called, queries consult the Similarity's DocScorer for an   * explanation of how it computed its score. The query passes in a the document id and an explanation of how the frequency  * was computed.  *  * @see org.apache.lucene.index.IndexWriterConfig#setSimilarityProvider(SimilarityProvider)  * @see IndexSearcher#setSimilarityProvider(SimilarityProvider)  * @lucene.experimental  */
+comment|/**   * Similarity defines the components of Lucene scoring.  *<p>  * Expert: Scoring API.  *<p>  * This is a low-level API, you should only extend this API if you want to implement   * an information retrieval<i>model</i>.  If you are instead looking for a convenient way   * to alter Lucene's scoring, consider extending a higher-level implementation  * such as {@link TFIDFSimilarity}, which implements the vector space model with this API, or   * just tweaking the default implementation: {@link DefaultSimilarity}.  *<p>  * Similarity determines how Lucene weights terms, and Lucene interacts with  * this class at both<a href="#indextime">index-time</a> and   *<a href="#querytime">query-time</a>.  *<p>  *<a name="indextime"/>  * At indexing time, the indexer calls {@link #computeNorm(FieldInvertState, Norm)}, allowing  * the Similarity implementation to set a per-document value for the field that will   * be later accessible via {@link IndexReader#normValues(String)}.  Lucene makes no assumption  * about what is in this byte, but it is most useful for encoding length normalization   * information.  *<p>  * Implementations should carefully consider how the normalization byte is encoded: while  * Lucene's classical {@link TFIDFSimilarity} encodes a combination of index-time boost  * and length normalization information with {@link SmallFloat}, this might not be suitable  * for all purposes.  *<p>  * Many formulas require the use of average document length, which can be computed via a   * combination of {@link Terms#getSumTotalTermFreq()} and {@link IndexReader#maxDoc()},  *<p>  * Because index-time boost is handled entirely at the application level anyway,  * an application can alternatively store the index-time boost separately using an   * {@link DocValuesField}, and access this at query-time with   * {@link IndexReader#docValues(String)}.  *<p>  * Finally, using index-time boosts (either via folding into the normalization byte or  * via DocValues), is an inefficient way to boost the scores of different fields if the  * boost will be the same for every document, instead the Similarity can simply take a constant  * boost parameter<i>C</i>, and the SimilarityProvider can return different instances with  * different boosts depending upon field name.  *<p>  *<a name="querytime"/>  * At query-time, Queries interact with the Similarity via these steps:  *<ol>  *<li>The {@link #computeStats(CollectionStatistics, float, TermStatistics...)} method is called a single time,  *       allowing the implementation to compute any statistics (such as IDF, average document length, etc)  *       across<i>the entire collection</i>. The {@link TermStatistics} passed in already contain  *       the raw statistics involved, so a Similarity can freely use any combination  *       of term statistics without causing any additional I/O. Lucene makes no assumption about what is   *       stored in the returned {@link Similarity.Stats} object.  *<li>The query normalization process occurs a single time: {@link Similarity.Stats#getValueForNormalization()}  *       is called for each query leaf node, {@link SimilarityProvider#queryNorm(float)} is called for the top-level  *       query, and finally {@link Similarity.Stats#normalize(float, float)} passes down the normalization value  *       and any top-level boosts (e.g. from enclosing {@link BooleanQuery}s).  *<li>For each segment in the index, the Query creates a {@link #exactDocScorer(Stats, String, IndexReader.AtomicReaderContext)}  *       (for queries with exact frequencies such as TermQuerys and exact PhraseQueries) or a   *       {@link #sloppyDocScorer(Stats, String, IndexReader.AtomicReaderContext)} (for queries with sloppy frequencies such as  *       SpanQuerys and sloppy PhraseQueries). The score() method is called for each matching document.  *</ol>  *<p>  *<a name="explaintime"/>  * When {@link IndexSearcher#explain(Query, int)} is called, queries consult the Similarity's DocScorer for an   * explanation of how it computed its score. The query passes in a the document id and an explanation of how the frequency  * was computed.  *  * @see org.apache.lucene.index.IndexWriterConfig#setSimilarityProvider(SimilarityProvider)  * @see IndexSearcher#setSimilarityProvider(SimilarityProvider)  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -301,15 +301,18 @@ specifier|abstract
 class|class
 name|Similarity
 block|{
-comment|/**    * Computes the normalization value for a field, given the accumulated    * state of term processing for this field (see {@link FieldInvertState}).    *     *<p>Implementations should calculate a byte value based on the field    * state and then return that value.    *    *<p>Matches in longer fields are less precise, so implementations of this    * method usually return smaller values when<code>state.getLength()</code> is large,    * and larger values when<code>state.getLength()</code> is small.    *     * @lucene.experimental    *     * @param state current processing state for this field    * @return the calculated byte norm    */
+comment|/**    * Computes the normalization value for a field, given the accumulated    * state of term processing for this field (see {@link FieldInvertState}).    *     *<p>Implementations should calculate a norm value based on the field    * state and set that value to the given {@link Norm}.    *    *<p>Matches in longer fields are less precise, so implementations of this    * method usually set smaller values when<code>state.getLength()</code> is large,    * and larger values when<code>state.getLength()</code> is small.    *     * @lucene.experimental    *     * @param state current processing state for this field    * @param norm holds the computed norm value when this method returns    */
 DECL|method|computeNorm
 specifier|public
 specifier|abstract
-name|byte
+name|void
 name|computeNorm
 parameter_list|(
 name|FieldInvertState
 name|state
+parameter_list|,
+name|Norm
+name|norm
 parameter_list|)
 function_decl|;
 comment|/**    * Compute any collection-level stats (e.g. IDF, average document length, etc) needed for scoring a query.    */

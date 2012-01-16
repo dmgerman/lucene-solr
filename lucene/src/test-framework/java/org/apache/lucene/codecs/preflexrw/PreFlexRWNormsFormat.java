@@ -72,6 +72,10 @@ name|PerDocWriteState
 import|;
 end_import
 
+begin_comment
+comment|/**  * @lucene.internal  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|PreFlexRWNormsFormat
 specifier|public
@@ -95,7 +99,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|PreFlexNormsConsumer
+name|PreFlexRWNormsConsumer
 argument_list|(
 name|state
 operator|.

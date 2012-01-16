@@ -46,6 +46,20 @@ name|FieldInvertState
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Norm
+import|;
+end_import
+
 begin_comment
 comment|/**  * A similarity with a lengthNorm that provides for a "plateau" of  * equally good lengths, and tf helper functions.  *  *<p>  * For lengthNorm, A global min/max can be specified to define the  * plateau of lengths that should all have a norm of 1.0.  * Below the min, and above the max the lengthNorm drops off in a  * sqrt function.  *</p>  *<p>  * A per field min/max can be specified if different fields have  * different sweet spots.  *</p>  *  *<p>  * For tf, baselineTf and hyperbolicTf functions are provided, which  * subclasses can choose between.  *</p>  *  */
 end_comment
@@ -237,11 +251,14 @@ annotation|@
 name|Override
 DECL|method|computeNorm
 specifier|public
-name|byte
+name|void
 name|computeNorm
 parameter_list|(
 name|FieldInvertState
 name|state
+parameter_list|,
+name|Norm
+name|norm
 parameter_list|)
 block|{
 specifier|final
@@ -272,7 +289,10 @@ operator|.
 name|getLength
 argument_list|()
 expr_stmt|;
-return|return
+name|norm
+operator|.
+name|setByte
+argument_list|(
 name|encodeNormValue
 argument_list|(
 name|state
@@ -285,7 +305,8 @@ argument_list|(
 name|numTokens
 argument_list|)
 argument_list|)
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimization is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    */
 DECL|method|computeLengthNorm

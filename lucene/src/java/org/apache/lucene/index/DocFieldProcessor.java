@@ -1650,6 +1650,8 @@ operator|.
 name|setDocValuesType
 argument_list|(
 name|valueType
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|docValuesConsumerAndDocID
