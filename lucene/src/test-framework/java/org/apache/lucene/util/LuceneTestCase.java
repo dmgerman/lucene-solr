@@ -4769,22 +4769,14 @@ name|nextBoolean
 argument_list|()
 condition|)
 block|{
-if|if
-condition|(
+name|int
+name|maxNumThreadStates
+init|=
 name|rarely
 argument_list|(
 name|r
 argument_list|)
-condition|)
-block|{
-comment|// crazy value
-name|c
-operator|.
-name|setIndexerThreadPool
-argument_list|(
-operator|new
-name|ThreadAffinityDocumentsWriterThreadPool
-argument_list|(
+condition|?
 name|_TestUtil
 operator|.
 name|nextInt
@@ -4795,20 +4787,8 @@ literal|5
 argument_list|,
 literal|20
 argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// reasonable value
-name|c
-operator|.
-name|setIndexerThreadPool
-argument_list|(
-operator|new
-name|ThreadAffinityDocumentsWriterThreadPool
-argument_list|(
+comment|// crazy value
+else|:
 name|_TestUtil
 operator|.
 name|nextInt
@@ -4819,6 +4799,42 @@ literal|1
 argument_list|,
 literal|4
 argument_list|)
+decl_stmt|;
+comment|// reasonable value
+if|if
+condition|(
+name|rarely
+argument_list|(
+name|r
+argument_list|)
+condition|)
+block|{
+comment|// random thread pool
+name|c
+operator|.
+name|setIndexerThreadPool
+argument_list|(
+operator|new
+name|RandomDocumentsWriterPerThreadPool
+argument_list|(
+name|maxNumThreadStates
+argument_list|,
+name|r
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// random thread pool
+name|c
+operator|.
+name|setIndexerThreadPool
+argument_list|(
+operator|new
+name|ThreadAffinityDocumentsWriterThreadPool
+argument_list|(
+name|maxNumThreadStates
 argument_list|)
 argument_list|)
 expr_stmt|;
