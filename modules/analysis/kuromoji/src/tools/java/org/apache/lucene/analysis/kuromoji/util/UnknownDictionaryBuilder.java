@@ -177,7 +177,7 @@ specifier|final
 name|String
 name|NGRAM_DICTIONARY_ENTRY
 init|=
-literal|"NGRAM,5,5,-32768,-,*,*,*,*,*,*,*,*"
+literal|"NGRAM,5,5,-32768,è¨å·,ä¸è¬,*,*,*,*,*,*,*"
 decl_stmt|;
 DECL|field|encoding
 specifier|private
@@ -422,21 +422,7 @@ argument_list|(
 name|parsed
 argument_list|)
 expr_stmt|;
-name|dictionary
-operator|.
-name|noteInflection
-argument_list|(
-name|parsed
-argument_list|)
-expr_stmt|;
-comment|// for completeness; I think unk.def has no inflections...
 block|}
-name|dictionary
-operator|.
-name|finalizeInflections
-argument_list|()
-expr_stmt|;
-comment|// should also be no-op
 name|Collections
 operator|.
 name|sort
