@@ -1304,19 +1304,6 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|SolrException
-operator|.
-name|logOnce
-argument_list|(
-name|SolrCore
-operator|.
-name|log
-argument_list|,
-literal|"Exception during facet counts"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|SolrException
@@ -1335,19 +1322,6 @@ name|ParseException
 name|e
 parameter_list|)
 block|{
-name|SolrException
-operator|.
-name|logOnce
-argument_list|(
-name|SolrCore
-operator|.
-name|log
-argument_list|,
-literal|"Exception during facet counts"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|SolrException

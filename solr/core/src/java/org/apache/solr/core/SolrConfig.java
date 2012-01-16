@@ -461,26 +461,6 @@ name|DEFAULT_CONF_FILE
 init|=
 literal|"solrconfig.xml"
 decl_stmt|;
-comment|/**    * Singleton keeping track of configuration errors    *    * @deprecated All exceptions encountered during config parsing are now thrown by the respective constructors, preventing initialization.    */
-annotation|@
-name|Deprecated
-DECL|field|severeErrors
-specifier|public
-specifier|static
-specifier|final
-name|Collection
-argument_list|<
-name|Throwable
-argument_list|>
-name|severeErrors
-init|=
-operator|new
-name|HashSet
-argument_list|<
-name|Throwable
-argument_list|>
-argument_list|()
-decl_stmt|;
 comment|/** Creates a default instance from the solrconfig.xml. */
 DECL|method|SolrConfig
 specifier|public

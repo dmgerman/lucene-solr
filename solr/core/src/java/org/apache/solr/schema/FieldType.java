@@ -1190,8 +1190,6 @@ operator|+
 literal|"'"
 argument_list|,
 name|e
-argument_list|,
-literal|false
 argument_list|)
 throw|;
 block|}
@@ -1948,9 +1946,7 @@ name|Analyzer
 name|analyzer
 parameter_list|)
 block|{
-name|SolrException
-name|e
-init|=
+throw|throw
 operator|new
 name|SolrException
 argument_list|(
@@ -1974,20 +1970,6 @@ name|typeName
 operator|+
 literal|") does not support specifying an analyzer"
 argument_list|)
-decl_stmt|;
-name|SolrException
-operator|.
-name|logOnce
-argument_list|(
-name|log
-argument_list|,
-literal|null
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-throw|throw
-name|e
 throw|;
 block|}
 comment|/**    * Sets the Analyzer to be used when querying fields of this type.    *    *<p>    * The default implementation throws a SolrException.      * Subclasses that override this method need to ensure the behavior     * of the analyzer is consistent with the implementation of toInternal.    *</p>    *     * @see #toInternal    * @see #setAnalyzer    * @see #getQueryAnalyzer    */
@@ -2000,9 +1982,7 @@ name|Analyzer
 name|analyzer
 parameter_list|)
 block|{
-name|SolrException
-name|e
-init|=
+throw|throw
 operator|new
 name|SolrException
 argument_list|(
@@ -2026,20 +2006,6 @@ name|typeName
 operator|+
 literal|") does not support specifying an analyzer"
 argument_list|)
-decl_stmt|;
-name|SolrException
-operator|.
-name|logOnce
-argument_list|(
-name|log
-argument_list|,
-literal|null
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-throw|throw
-name|e
 throw|;
 block|}
 comment|/** @lucene.internal */

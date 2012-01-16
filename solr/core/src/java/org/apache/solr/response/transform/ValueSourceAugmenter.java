@@ -500,8 +500,6 @@ operator|+
 name|valueSource
 argument_list|,
 name|e
-argument_list|,
-literal|false
 argument_list|)
 throw|;
 block|}

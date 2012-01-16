@@ -224,8 +224,6 @@ operator|.
 name|SERVICE_UNAVAILABLE
 argument_list|,
 literal|"Service disabled"
-argument_list|,
-literal|true
 argument_list|)
 throw|;
 block|}

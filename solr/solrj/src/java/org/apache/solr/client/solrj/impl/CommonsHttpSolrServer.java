@@ -2028,7 +2028,14 @@ throw|throw
 operator|new
 name|SolrException
 argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|getErrorCode
+argument_list|(
 name|statusCode
+argument_list|)
 argument_list|,
 name|java
 operator|.

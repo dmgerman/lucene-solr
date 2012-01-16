@@ -1788,13 +1788,6 @@ argument_list|(
 literal|"CLOUD_UPDATE_DELAY"
 argument_list|)
 expr_stmt|;
-name|SolrConfig
-operator|.
-name|severeErrors
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|addShardToZk
 specifier|private

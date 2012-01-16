@@ -765,15 +765,6 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
-name|SolrConfig
-operator|.
-name|severeErrors
-operator|.
-name|add
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 name|LOG
 operator|.
 name|error

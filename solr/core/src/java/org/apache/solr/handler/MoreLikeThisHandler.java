@@ -1627,7 +1627,7 @@ parameter_list|)
 block|{
 name|SolrException
 operator|.
-name|logOnce
+name|log
 argument_list|(
 name|SolrCore
 operator|.

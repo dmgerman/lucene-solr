@@ -200,13 +200,6 @@ throw|;
 block|}
 finally|finally
 block|{
-name|SolrConfig
-operator|.
-name|severeErrors
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 name|deleteCore
 argument_list|()
 expr_stmt|;

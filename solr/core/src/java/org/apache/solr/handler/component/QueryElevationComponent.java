@@ -1635,8 +1635,6 @@ argument_list|,
 literal|"Error initializing QueryElevationComponent."
 argument_list|,
 name|ex
-argument_list|,
-literal|false
 argument_list|)
 throw|;
 block|}
