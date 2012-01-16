@@ -1632,7 +1632,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|UnsupportedOperationException
 argument_list|(
 literal|"this codec cannot index offsets"
 argument_list|)
