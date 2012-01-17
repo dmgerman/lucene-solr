@@ -83,6 +83,16 @@ name|getReading
 parameter_list|(
 name|int
 name|wordId
+parameter_list|,
+name|char
+name|surface
+index|[]
+parameter_list|,
+name|int
+name|off
+parameter_list|,
+name|int
+name|len
 parameter_list|)
 function_decl|;
 comment|/**    * Get base form of word    * @param wordId word ID of token    * @return Base form (only different for inflected words, otherwise null)    */
@@ -93,6 +103,16 @@ name|getBaseForm
 parameter_list|(
 name|int
 name|wordId
+parameter_list|,
+name|char
+name|surface
+index|[]
+parameter_list|,
+name|int
+name|off
+parameter_list|,
+name|int
+name|len
 parameter_list|)
 function_decl|;
 comment|/**    * Get pronunciation of tokens    * @param wordId word ID of token    * @return Pronunciation of the token    */
@@ -103,6 +123,16 @@ name|getPronunciation
 parameter_list|(
 name|int
 name|wordId
+parameter_list|,
+name|char
+name|surface
+index|[]
+parameter_list|,
+name|int
+name|off
+parameter_list|,
+name|int
+name|len
 parameter_list|)
 function_decl|;
 comment|/**    * Get inflection type of tokens    * @param wordId word ID of token    * @return inflection type, or null    */

@@ -178,6 +178,16 @@ name|getReading
 parameter_list|(
 name|int
 name|wordId
+parameter_list|,
+name|char
+name|surface
+index|[]
+parameter_list|,
+name|int
+name|off
+parameter_list|,
+name|int
+name|len
 parameter_list|)
 block|{
 return|return
