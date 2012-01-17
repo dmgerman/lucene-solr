@@ -326,7 +326,6 @@ operator|new
 name|Lucene40StoredFieldsFormat
 argument_list|()
 decl_stmt|;
-comment|// TODO: this should really be a different impl
 DECL|field|vectorsFormat
 specifier|private
 specifier|final
@@ -334,7 +333,7 @@ name|TermVectorsFormat
 name|vectorsFormat
 init|=
 operator|new
-name|Lucene40TermVectorsFormat
+name|Lucene3xTermVectorsFormat
 argument_list|()
 decl_stmt|;
 DECL|field|fieldInfosFormat
