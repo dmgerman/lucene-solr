@@ -263,7 +263,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<b>a</b> "
+literal|"<b>a</b>"
 argument_list|,
 name|sfb
 operator|.
@@ -302,7 +302,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"[a] "
+literal|"[a]"
 argument_list|,
 name|sfb
 operator|.
@@ -395,7 +395,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"b b<b>a</b> b<b>a</b> b "
+literal|"b b<b>a</b> b<b>a</b> b"
 argument_list|,
 name|f
 index|[
@@ -532,7 +532,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<b>c</b><b>a</b><b>a</b> b b "
+literal|"<b>c</b><b>a</b><b>a</b> b b"
 argument_list|,
 name|f
 index|[
@@ -594,7 +594,7 @@ block|}
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"&lt;h1&gt; [a]&lt;/h1&gt; "
+literal|"&lt;h1&gt; [a]&lt;/h1&gt;"
 argument_list|,
 name|sfb
 operator|.
@@ -771,7 +771,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"a b c<b>d</b> e "
+literal|"a b c<b>d</b> e"
 argument_list|,
 name|sfb
 operator|.
@@ -976,7 +976,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"processing<b>speed</b>, the "
+literal|"processing<b>speed</b>, the"
 argument_list|,
 name|sfb
 operator|.
@@ -1297,7 +1297,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"abc/<b>defg</b>/hijkl/"
+literal|"abc/<b>defg</b>/hijkl"
 argument_list|,
 name|sfb
 operator|.
@@ -1402,7 +1402,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|" b c//<b>d</b> e/"
+literal|" b c//<b>d</b> e"
 argument_list|,
 name|sfb
 operator|.
