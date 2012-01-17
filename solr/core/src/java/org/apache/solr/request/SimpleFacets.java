@@ -2341,10 +2341,14 @@ name|DEFAULT
 operator|.
 name|getTermsIndex
 argument_list|(
+operator|new
+name|SlowMultiReaderWrapper
+argument_list|(
 name|searcher
 operator|.
 name|getIndexReader
 argument_list|()
+argument_list|)
 argument_list|,
 name|fieldName
 argument_list|)

@@ -58,6 +58,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|SlowMultiReaderWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queries
 operator|.
 name|function
@@ -228,6 +242,7 @@ operator|+
 literal|')'
 return|;
 block|}
+comment|// TODO: this is trappy? perhaps this query instead should make you pass a slow reader yourself?
 annotation|@
 name|Override
 DECL|method|getValues
@@ -277,7 +292,11 @@ name|DEFAULT
 operator|.
 name|getTermsIndex
 argument_list|(
+operator|new
+name|SlowMultiReaderWrapper
+argument_list|(
 name|topReader
+argument_list|)
 argument_list|,
 name|field
 argument_list|)
