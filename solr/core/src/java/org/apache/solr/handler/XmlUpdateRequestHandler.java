@@ -150,15 +150,6 @@ argument_list|(
 name|log
 argument_list|)
 decl_stmt|;
-DECL|field|UPDATE_PROCESSOR
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|UPDATE_PROCESSOR
-init|=
-literal|"update.processor"
-decl_stmt|;
 comment|// XML Constants
 DECL|field|ADD
 specifier|public

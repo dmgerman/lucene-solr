@@ -109,16 +109,6 @@ name|UPDATE_CHAIN
 init|=
 literal|"update.chain"
 decl_stmt|;
-comment|// TODO: Include the old deprecated param, for removal in Solr 4.0
-DECL|field|UPDATE_CHAIN_DEPRECATED
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|UPDATE_CHAIN_DEPRECATED
-init|=
-literal|"update.processor"
-decl_stmt|;
 comment|/**    * If optimizing, set the maximum number of segments left in the index after optimization.  1 is the default (and is equivalent to calling IndexWriter.optimize() in Lucene).    */
 DECL|field|MAX_OPTIMIZE_SEGMENTS
 specifier|public
