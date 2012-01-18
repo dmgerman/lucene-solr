@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -197,10 +207,6 @@ operator|.
 name|StringHelper
 import|;
 end_import
-
-begin_comment
-comment|// TODO: surrogates dance!
-end_comment
 
 begin_class
 DECL|class|PreFlexRWTermVectorsWriter
@@ -1306,6 +1312,26 @@ name|tvf
 operator|=
 literal|null
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getComparator
+specifier|public
+name|Comparator
+argument_list|<
+name|BytesRef
+argument_list|>
+name|getComparator
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|BytesRef
+operator|.
+name|getUTF8SortedAsUTF16Comparator
+argument_list|()
+return|;
 block|}
 block|}
 end_class

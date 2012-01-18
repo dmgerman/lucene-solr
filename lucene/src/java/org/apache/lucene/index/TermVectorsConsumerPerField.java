@@ -459,8 +459,6 @@ name|termsWriter
 operator|.
 name|writer
 decl_stmt|;
-comment|// TODO: we may want to make this sort in same order
-comment|// as Codec's terms dict?
 specifier|final
 name|int
 index|[]
@@ -470,9 +468,9 @@ name|termsHashPerField
 operator|.
 name|sortPostings
 argument_list|(
-name|BytesRef
+name|tv
 operator|.
-name|getUTF8SortedAsUnicodeComparator
+name|getComparator
 argument_list|()
 argument_list|)
 decl_stmt|;
