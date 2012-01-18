@@ -1395,6 +1395,11 @@ argument_list|(
 literal|"response"
 argument_list|)
 decl_stmt|;
+name|boolean
+name|returnOnlyStored
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|fields
@@ -1482,6 +1487,10 @@ literal|"score"
 argument_list|)
 expr_stmt|;
 block|}
+name|returnOnlyStored
+operator|=
+literal|true
+expr_stmt|;
 block|}
 name|CSVSharedBufPrinter
 name|csvPrinterMV
@@ -1571,12 +1580,10 @@ name|ft
 argument_list|)
 expr_stmt|;
 block|}
-comment|// if we got the list of fields from the index, only list stored fields
+comment|// Return only stored fields, unless an explicit field list is specified
 if|if
 condition|(
-name|returnFields
-operator|==
-literal|null
+name|returnOnlyStored
 operator|&&
 name|sf
 operator|!=
