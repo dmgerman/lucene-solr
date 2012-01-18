@@ -1402,7 +1402,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|" b c//<b>d</b> e"
+literal|"//a b c//<b>d</b> e"
 argument_list|,
 name|sfb
 operator|.
