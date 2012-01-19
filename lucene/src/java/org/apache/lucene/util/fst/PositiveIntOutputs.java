@@ -527,6 +527,22 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"PositiveIntOutputs(doShare="
+operator|+
+name|doShare
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 
