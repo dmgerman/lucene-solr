@@ -109,10 +109,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Lucene3x ReadOnly FieldInfosFromat implementation  * @deprecated (4.0) This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene3xFieldInfosFormat
 specifier|public
 class|class
@@ -156,7 +158,7 @@ name|IOException
 block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|UnsupportedOperationException
 argument_list|(
 literal|"this codec can only be used for reading"
 argument_list|)

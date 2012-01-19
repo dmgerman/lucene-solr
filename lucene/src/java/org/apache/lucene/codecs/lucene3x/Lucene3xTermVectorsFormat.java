@@ -136,7 +136,13 @@ name|IOContext
 import|;
 end_import
 
+begin_comment
+comment|/**  * Lucene3x ReadOnly TermVectorsFormat implementation  * @deprecated (4.0) This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene3xTermVectorsFormat
 specifier|public
 class|class
@@ -199,10 +205,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO all these IAEs in preflex should be UOEs?
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|UnsupportedOperationException
 argument_list|(
 literal|"this codec can only be used for reading"
 argument_list|)

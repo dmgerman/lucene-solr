@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene40
+DECL|package|org.apache.lucene.codecs.preflexrw
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|preflexrw
 package|;
 end_package
 
@@ -177,14 +177,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default implementation of {@link SegmentInfosWriter}.  * @lucene.experimental  */
+comment|/**  * PreFlex implementation of {@link SegmentInfosWriter}.  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|Lucene40SegmentInfosWriter
+DECL|class|PreFlexRWSegmentInfosWriter
 specifier|public
 class|class
-name|Lucene40SegmentInfosWriter
+name|PreFlexRWSegmentInfosWriter
 extends|extends
 name|SegmentInfosWriter
 block|{
@@ -248,25 +248,17 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-comment|/*        * TODO its not ideal that we write the format and the codecID inside the        * codec private classes but we read it in SegmentInfos.        */
 name|out
 operator|.
 name|writeInt
 argument_list|(
 name|SegmentInfos
 operator|.
-name|FORMAT_CURRENT
+name|FORMAT_3_1
 argument_list|)
 expr_stmt|;
 comment|// write FORMAT
-name|out
-operator|.
-name|writeString
-argument_list|(
-name|codecID
-argument_list|)
-expr_stmt|;
-comment|// write codecID
+comment|// we don't write a codec - this is 3.x
 name|out
 operator|.
 name|writeLong
@@ -432,7 +424,6 @@ name|getDelGen
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// we still need to write this in 4.0 since we can open a 3.x with shared docStores
 name|output
 operator|.
 name|writeInt
@@ -484,6 +475,17 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// pre-4.0 indexes write a byte if there is a single norms file
+name|output
+operator|.
+name|writeByte
+argument_list|(
+operator|(
+name|byte
+operator|)
+literal|1
+argument_list|)
+expr_stmt|;
 name|Map
 argument_list|<
 name|Integer
@@ -544,16 +546,6 @@ control|)
 block|{
 name|output
 operator|.
-name|writeInt
-argument_list|(
-name|entry
-operator|.
-name|getKey
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|output
-operator|.
 name|writeLong
 argument_list|(
 name|entry
@@ -610,19 +602,6 @@ operator|.
 name|getHasProxInternal
 argument_list|()
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|output
-operator|.
-name|writeString
-argument_list|(
-name|si
-operator|.
-name|getCodec
-argument_list|()
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|output
