@@ -269,7 +269,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|BitVector
 name|clone
 parameter_list|()
 block|{

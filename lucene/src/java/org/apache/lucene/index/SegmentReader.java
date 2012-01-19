@@ -98,6 +98,10 @@ name|BitVector
 import|;
 end_import
 
+begin_comment
+comment|// nocommit: move asserts/checks to codec
+end_comment
+
 begin_import
 import|import
 name|org
@@ -141,6 +145,20 @@ operator|.
 name|util
 operator|.
 name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|MutableBits
 import|;
 end_import
 
@@ -390,17 +408,21 @@ assert|;
 comment|// ... but load our own deleted docs:
 name|liveDocs
 operator|=
-operator|new
-name|BitVector
+name|si
+operator|.
+name|getCodec
+argument_list|()
+operator|.
+name|liveDocsFormat
+argument_list|()
+operator|.
+name|readLiveDocs
 argument_list|(
 name|si
 operator|.
 name|dir
 argument_list|,
 name|si
-operator|.
-name|getDelFileName
-argument_list|()
 argument_list|,
 name|context
 argument_list|)
@@ -447,7 +469,7 @@ parameter_list|(
 name|SegmentReader
 name|parent
 parameter_list|,
-name|BitVector
+name|MutableBits
 name|liveDocs
 parameter_list|,
 name|int

@@ -198,22 +198,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|BitVector
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|DocumentsWriterPerThread
@@ -451,6 +435,20 @@ operator|.
 name|util
 operator|.
 name|InfoStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|MutableBits
 import|;
 end_import
 
@@ -1115,7 +1113,7 @@ comment|// to change it but it's been shared to an external NRT
 comment|// reader).
 DECL|field|liveDocs
 specifier|public
-name|BitVector
+name|MutableBits
 name|liveDocs
 decl_stmt|;
 comment|// How many further deletions we've done against
@@ -1403,10 +1401,11 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// nocommit: nuke cast
 name|liveDocs
 operator|=
 operator|(
-name|BitVector
+name|MutableBits
 operator|)
 name|reader
 operator|.
@@ -1494,7 +1493,7 @@ block|{
 name|liveDocs
 operator|=
 operator|(
-name|BitVector
+name|MutableBits
 operator|)
 name|mergeReader
 operator|.
@@ -1700,6 +1699,8 @@ specifier|synchronized
 name|void
 name|initWritableLiveDocs
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 assert|assert
 name|Thread
@@ -1731,27 +1732,26 @@ block|{
 comment|//System.out.println("create BV seg=" + info);
 name|liveDocs
 operator|=
-operator|new
-name|BitVector
+name|info
+operator|.
+name|getCodec
+argument_list|()
+operator|.
+name|liveDocsFormat
+argument_list|()
+operator|.
+name|newLiveDocs
 argument_list|(
 name|info
 operator|.
 name|docCount
 argument_list|)
 expr_stmt|;
-name|liveDocs
-operator|.
-name|setAll
-argument_list|()
-expr_stmt|;
 block|}
 else|else
 block|{
 name|liveDocs
 operator|=
-operator|(
-name|BitVector
-operator|)
 name|liveDocs
 operator|.
 name|clone
@@ -1772,10 +1772,11 @@ literal|null
 assert|;
 block|}
 block|}
+comment|// nocommit: if this is read-only live docs, why doesn't it return Bits?!
 DECL|method|getReadOnlyLiveDocs
 specifier|public
 specifier|synchronized
-name|BitVector
+name|MutableBits
 name|getReadOnlyLiveDocs
 parameter_list|()
 block|{
@@ -1876,13 +1877,21 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|liveDocs
+name|info
 operator|.
-name|write
+name|getCodec
+argument_list|()
+operator|.
+name|liveDocsFormat
+argument_list|()
+operator|.
+name|writeLiveDocs
 argument_list|(
+name|liveDocs
+argument_list|,
 name|dir
 argument_list|,
-name|delFileName
+name|info
 argument_list|,
 name|IOContext
 operator|.
@@ -9433,7 +9442,7 @@ operator|.
 name|docCount
 decl_stmt|;
 specifier|final
-name|BitVector
+name|MutableBits
 name|prevLiveDocs
 init|=
 name|merge
@@ -9446,7 +9455,7 @@ name|i
 argument_list|)
 decl_stmt|;
 specifier|final
-name|BitVector
+name|MutableBits
 name|currentLiveDocs
 decl_stmt|;
 name|ReadersAndLiveDocs
@@ -12053,7 +12062,7 @@ operator|=
 operator|new
 name|ArrayList
 argument_list|<
-name|BitVector
+name|MutableBits
 argument_list|>
 argument_list|()
 expr_stmt|;
@@ -12130,7 +12139,7 @@ literal|null
 assert|;
 comment|// Carefully pull the most recent live docs:
 specifier|final
-name|BitVector
+name|MutableBits
 name|liveDocs
 decl_stmt|;
 synchronized|synchronized
