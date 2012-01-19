@@ -4271,13 +4271,22 @@ argument_list|)
 operator|.
 name|setMergePolicy
 argument_list|(
-name|newLogMergePolicy
-argument_list|(
-literal|10
-argument_list|)
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+name|NoMergePolicy
+operator|.
+name|COMPOUND_FILES
+else|:
+name|NoMergePolicy
+operator|.
+name|NO_COMPOUND_FILES
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// don't use a merge policy here they depend on the DWPThreadPool and its max thread states etc.
 specifier|final
 name|int
 name|finalI
