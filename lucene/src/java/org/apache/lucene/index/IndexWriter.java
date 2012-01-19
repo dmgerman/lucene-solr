@@ -6614,15 +6614,35 @@ comment|// this del vector over to the
 comment|// shortly-to-be-opened SegmentReader and let it
 comment|// carry the changes; there's no reason to use
 comment|// filesystem as intermediary here.
+name|SegmentInfo
+name|info
+init|=
+name|flushedSegment
+operator|.
+name|segmentInfo
+decl_stmt|;
+name|Codec
+name|codec
+init|=
+name|info
+operator|.
+name|getCodec
+argument_list|()
+decl_stmt|;
+name|codec
+operator|.
+name|liveDocsFormat
+argument_list|()
+operator|.
+name|writeLiveDocs
+argument_list|(
 name|flushedSegment
 operator|.
 name|liveDocs
-operator|.
-name|write
-argument_list|(
+argument_list|,
 name|directory
 argument_list|,
-name|delFileName
+name|info
 argument_list|,
 name|context
 argument_list|)

@@ -38,22 +38,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|BitVector
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|Directory
@@ -85,6 +69,20 @@ operator|.
 name|util
 operator|.
 name|InfoStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|MutableBits
 import|;
 end_import
 
@@ -142,7 +140,7 @@ decl_stmt|;
 comment|// Lazily created:
 DECL|field|liveDocs
 specifier|public
-name|BitVector
+name|MutableBits
 name|liveDocs
 decl_stmt|;
 DECL|field|codec

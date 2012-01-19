@@ -23,7 +23,24 @@ interface|interface
 name|MutableBits
 extends|extends
 name|Bits
-block|{    }
+block|{
+DECL|method|clear
+specifier|public
+name|void
+name|clear
+parameter_list|(
+name|int
+name|bit
+parameter_list|)
+function_decl|;
+comment|// nocommit: remove this from this interface somehow? (used by DWPT infostream at least)
+DECL|method|count
+specifier|public
+name|int
+name|count
+parameter_list|()
+function_decl|;
+block|}
 end_interface
 
 end_unit
