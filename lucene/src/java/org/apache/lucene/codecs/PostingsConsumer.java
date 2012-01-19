@@ -137,7 +137,7 @@ specifier|abstract
 class|class
 name|PostingsConsumer
 block|{
-comment|/** Adds a new doc in this term.  If this field omits term    *  freqs& positions then termDocFreq should be ignored,    *  and, finishDoc will not be called. */
+comment|/** Adds a new doc in this term. */
 DECL|method|startDoc
 specifier|public
 specifier|abstract
@@ -195,7 +195,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Called when we are done adding positions& payloads    *  for each doc.  Not called  when the field omits term    *  freq and positions. */
+comment|/** Called when we are done adding positions& payloads    *  for each doc. */
 DECL|method|finishDoc
 specifier|public
 specifier|abstract

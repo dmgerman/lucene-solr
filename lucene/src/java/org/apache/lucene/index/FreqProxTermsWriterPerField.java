@@ -2743,12 +2743,12 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 name|postingsConsumer
 operator|.
 name|finishDoc
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 name|termsConsumer
 operator|.
