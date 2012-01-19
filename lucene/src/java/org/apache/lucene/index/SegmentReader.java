@@ -90,6 +90,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|lucene40
+operator|.
+name|BitVector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|FieldCache
@@ -111,20 +127,6 @@ operator|.
 name|store
 operator|.
 name|IOContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BitVector
 import|;
 end_import
 
@@ -176,7 +178,7 @@ decl_stmt|;
 DECL|field|liveDocs
 specifier|private
 specifier|final
-name|BitVector
+name|Bits
 name|liveDocs
 decl_stmt|;
 comment|// Normally set to si.docCount - si.delDocCount, unless we
@@ -253,16 +255,20 @@ block|{
 comment|// NOTE: the bitvector is stored using the regular directory, not cfs
 name|liveDocs
 operator|=
-operator|new
-name|BitVector
+name|si
+operator|.
+name|getCodec
+argument_list|()
+operator|.
+name|liveDocsFormat
+argument_list|()
+operator|.
+name|readLiveDocs
 argument_list|(
 name|directory
 argument_list|()
 argument_list|,
 name|si
-operator|.
-name|getDelFileName
-argument_list|()
 argument_list|,
 operator|new
 name|IOContext
@@ -512,6 +518,7 @@ return|return
 name|liveDocs
 return|;
 block|}
+comment|// nocommit
 DECL|method|checkLiveCounts
 specifier|private
 name|boolean
@@ -523,6 +530,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|BitVector
+name|liveDocs
+init|=
+operator|(
+name|BitVector
+operator|)
+name|this
+operator|.
+name|liveDocs
+decl_stmt|;
 if|if
 condition|(
 name|liveDocs

@@ -300,6 +300,14 @@ name|NormsFormat
 name|normsFormat
 parameter_list|()
 function_decl|;
+comment|/** Encodes/decodes live docs */
+DECL|method|liveDocsFormat
+specifier|public
+specifier|abstract
+name|LiveDocsFormat
+name|liveDocsFormat
+parameter_list|()
+function_decl|;
 comment|/** looks up a codec by name */
 DECL|method|forName
 specifier|public

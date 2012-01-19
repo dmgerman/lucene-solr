@@ -142,11 +142,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|codecs
 operator|.
-name|FieldInfo
+name|lucene40
 operator|.
-name|IndexOptions
+name|BitVector
 import|;
 end_import
 
@@ -158,9 +158,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|index
 operator|.
-name|BitVector
+name|FieldInfo
+operator|.
+name|IndexOptions
 import|;
 end_import
 
