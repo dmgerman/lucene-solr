@@ -653,7 +653,7 @@ block|}
 block|}
 block|}
 decl_stmt|;
-comment|/** Resolves the buffered deleted Term/Query/docIDs, into    *  actual deleted docIDs in the liveDocs BitVector for    *  each SegmentReader. */
+comment|/** Resolves the buffered deleted Term/Query/docIDs, into    *  actual deleted docIDs in the liveDocs MutableBits for    *  each SegmentReader. */
 DECL|method|applyDeletes
 specifier|public
 specifier|synchronized

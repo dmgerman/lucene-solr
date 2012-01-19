@@ -1969,7 +1969,7 @@ operator|.
 name|getDelCount
 argument_list|()
 operator|+
-literal|" vs BitVector="
+literal|" vs MutableBits="
 operator|+
 operator|(
 name|info
@@ -6328,7 +6328,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Prepares the {@link SegmentInfo} for the new flushed segment and persists    * the deleted documents {@link BitVector}. Use    * {@link #publishFlushedSegment(SegmentInfo, FrozenBufferedDeletes)} to    * publish the returned {@link SegmentInfo} together with its segment private    * delete packet.    *     * @see #publishFlushedSegment(SegmentInfo, FrozenBufferedDeletes)    */
+comment|/**    * Prepares the {@link SegmentInfo} for the new flushed segment and persists    * the deleted documents {@link MutableBits}. Use    * {@link #publishFlushedSegment(SegmentInfo, FrozenBufferedDeletes)} to    * publish the returned {@link SegmentInfo} together with its segment private    * delete packet.    *     * @see #publishFlushedSegment(SegmentInfo, FrozenBufferedDeletes)    */
 DECL|method|prepareFlushedSegment
 name|SegmentInfo
 name|prepareFlushedSegment
