@@ -3028,7 +3028,8 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// Now verify file names:
+comment|// Now verify file names... TODO: fix this test better, we could populate from
+comment|// separateFiles() or something.
 name|String
 index|[]
 name|expected
@@ -3042,6 +3043,25 @@ block|,
 literal|"_0.cfe"
 block|,
 literal|"_0_1.del"
+block|,
+literal|"segments_2"
+block|,
+literal|"segments.gen"
+block|}
+decl_stmt|;
+name|String
+index|[]
+name|expectedSimpleText
+init|=
+operator|new
+name|String
+index|[]
+block|{
+literal|"_0.cfs"
+block|,
+literal|"_0.cfe"
+block|,
+literal|"_0_1.liv"
 block|,
 literal|"segments_2"
 block|,
@@ -3068,6 +3088,13 @@ name|Arrays
 operator|.
 name|sort
 argument_list|(
+name|expectedSimpleText
+argument_list|)
+expr_stmt|;
+name|Arrays
+operator|.
+name|sort
+argument_list|(
 name|actual
 argument_list|)
 expr_stmt|;
@@ -3082,6 +3109,16 @@ name|expected
 argument_list|,
 name|actual
 argument_list|)
+operator|&&
+operator|!
+name|Arrays
+operator|.
+name|equals
+argument_list|(
+name|expectedSimpleText
+argument_list|,
+name|actual
+argument_list|)
 condition|)
 block|{
 name|fail
@@ -3093,7 +3130,14 @@ argument_list|(
 name|expected
 argument_list|)
 operator|+
-literal|"\n  actual:\n    "
+literal|"\n or "
+operator|+
+name|asString
+argument_list|(
+name|expectedSimpleText
+argument_list|)
+operator|+
+literal|"\n actual:\n    "
 operator|+
 name|asString
 argument_list|(
