@@ -164,11 +164,11 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-DECL|method|files
+DECL|method|separateFiles
 specifier|public
 specifier|abstract
 name|void
-name|files
+name|separateFiles
 parameter_list|(
 name|Directory
 name|dir
