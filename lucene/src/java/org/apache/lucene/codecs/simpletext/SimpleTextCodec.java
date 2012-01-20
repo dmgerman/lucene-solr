@@ -160,22 +160,6 @@ name|Lucene40DocValuesFormat
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|Lucene40LiveDocsFormat
-import|;
-end_import
-
 begin_comment
 comment|/**  * plain text index format.  *<p>  *<b><font color="red">FOR RECREATIONAL USE ONLY</font></B>  * @lucene.experimental  */
 end_comment
@@ -261,7 +245,6 @@ operator|new
 name|SimpleTextNormsFormat
 argument_list|()
 decl_stmt|;
-comment|// TODO: need a plain-text impl
 DECL|field|liveDocs
 specifier|private
 specifier|final
@@ -269,7 +252,7 @@ name|LiveDocsFormat
 name|liveDocs
 init|=
 operator|new
-name|Lucene40LiveDocsFormat
+name|SimpleTextLiveDocsFormat
 argument_list|()
 decl_stmt|;
 DECL|method|SimpleTextCodec
