@@ -43,15 +43,6 @@ name|count
 parameter_list|()
 function_decl|;
 comment|// nocommit: are these truly necessary?
-DECL|method|getAndSet
-specifier|public
-name|boolean
-name|getAndSet
-parameter_list|(
-name|int
-name|bit
-parameter_list|)
-function_decl|;
 DECL|method|getAndClear
 specifier|public
 name|boolean
