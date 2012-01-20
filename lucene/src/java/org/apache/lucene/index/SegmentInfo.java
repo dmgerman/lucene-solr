@@ -1484,43 +1484,6 @@ return|return
 name|si
 return|;
 block|}
-DECL|method|getDelFileName
-specifier|public
-name|String
-name|getDelFileName
-parameter_list|()
-block|{
-if|if
-condition|(
-name|delGen
-operator|==
-name|NO
-condition|)
-block|{
-comment|// In this case we know there is no deletion filename
-comment|// against this segment
-return|return
-literal|null
-return|;
-block|}
-else|else
-block|{
-return|return
-name|IndexFileNames
-operator|.
-name|fileNameFromGeneration
-argument_list|(
-name|name
-argument_list|,
-name|IndexFileNames
-operator|.
-name|DELETES_EXTENSION
-argument_list|,
-name|delGen
-argument_list|)
-return|;
-block|}
-block|}
 comment|/**    * @deprecated separate norms are not supported in>= 4.0    */
 annotation|@
 name|Deprecated
