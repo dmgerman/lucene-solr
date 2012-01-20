@@ -1954,6 +1954,18 @@ name|fileSet
 argument_list|)
 expr_stmt|;
 block|}
+comment|// regardless of compound file setting: these files are always in the directory
+name|codec
+operator|.
+name|separateFiles
+argument_list|(
+name|dir
+argument_list|,
+name|this
+argument_list|,
+name|fileSet
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|docStoreOffset
@@ -1994,54 +2006,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|// because deletions are stored outside CFS, we must check deletes here
-comment|// note: before the WTF logic was: delFileName != null&& (hasDeletions() || fileExists(delFileName))...
-if|if
-condition|(
-name|hasDeletions
-argument_list|()
-condition|)
-block|{
-name|codec
-operator|.
-name|liveDocsFormat
-argument_list|()
-operator|.
-name|separateFiles
-argument_list|(
-name|dir
-argument_list|,
-name|this
-argument_list|,
-name|fileSet
-argument_list|)
-expr_stmt|;
-block|}
-comment|// because separate norm files are unconditionally stored outside cfs,
-comment|// we must explicitly ask for their filenames if we might have separate norms:
-comment|// remove this when 3.x indexes are no longer supported
-if|if
-condition|(
-name|normGen
-operator|!=
-literal|null
-condition|)
-block|{
-name|codec
-operator|.
-name|normsFormat
-argument_list|()
-operator|.
-name|separateFiles
-argument_list|(
-name|dir
-argument_list|,
-name|this
-argument_list|,
-name|fileSet
-argument_list|)
-expr_stmt|;
 block|}
 name|files
 operator|=

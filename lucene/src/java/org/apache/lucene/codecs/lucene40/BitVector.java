@@ -140,9 +140,16 @@ begin_comment
 comment|/** Optimized implementation of a vector of bits.  This is more-or-less like  *  java.util.BitSet, but also includes the following:  *<ul>  *<li>a count() method, which efficiently computes the number of one bits;</li>  *<li>optimized read from and write to disk;</li>  *<li>inlinable get() method;</li>  *<li>store and load, as bit set or d-gaps, depending on sparseness;</li>   *</ul>  *  *  @lucene.internal  */
 end_comment
 
+begin_comment
+comment|// pkg-private: if this thing is generally useful then it can go back in .util,
+end_comment
+
+begin_comment
+comment|// but the serialization must be here underneath the codec.
+end_comment
+
 begin_class
 DECL|class|BitVector
-specifier|public
 specifier|final
 class|class
 name|BitVector
