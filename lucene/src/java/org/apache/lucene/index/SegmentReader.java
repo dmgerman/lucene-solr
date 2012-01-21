@@ -153,7 +153,7 @@ specifier|final
 class|class
 name|SegmentReader
 extends|extends
-name|IndexReader
+name|AtomicIndexReader
 block|{
 DECL|field|si
 specifier|private
@@ -164,7 +164,7 @@ decl_stmt|;
 DECL|field|readerContext
 specifier|private
 specifier|final
-name|ReaderContext
+name|AtomicReaderContext
 name|readerContext
 init|=
 operator|new
@@ -950,7 +950,7 @@ annotation|@
 name|Override
 DECL|method|getTopReaderContext
 specifier|public
-name|ReaderContext
+name|AtomicReaderContext
 name|getTopReaderContext
 parameter_list|()
 block|{

@@ -139,11 +139,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * An IndexReader which reads indexes with multiple segments.  */
+comment|/**   * An IndexReader which reads indexes with multiple segments.  * To get an instance of this reader use {@link IndexReader.open(Directory)}.  */
 end_comment
 
 begin_class
 DECL|class|DirectoryReader
+specifier|public
 specifier|final
 class|class
 name|DirectoryReader
@@ -246,7 +247,7 @@ expr_stmt|;
 block|}
 DECL|method|open
 specifier|static
-name|IndexReader
+name|DirectoryReader
 name|open
 parameter_list|(
 specifier|final
@@ -268,7 +269,7 @@ name|IOException
 block|{
 return|return
 operator|(
-name|IndexReader
+name|DirectoryReader
 operator|)
 operator|new
 name|SegmentInfos
@@ -1322,7 +1323,7 @@ name|Override
 DECL|method|doOpenIfChanged
 specifier|protected
 specifier|final
-name|IndexReader
+name|CompositeIndexReader
 name|doOpenIfChanged
 parameter_list|()
 throws|throws
@@ -1342,7 +1343,7 @@ name|Override
 DECL|method|doOpenIfChanged
 specifier|protected
 specifier|final
-name|IndexReader
+name|CompositeIndexReader
 name|doOpenIfChanged
 parameter_list|(
 specifier|final
@@ -1388,7 +1389,7 @@ name|Override
 DECL|method|doOpenIfChanged
 specifier|protected
 specifier|final
-name|IndexReader
+name|CompositeIndexReader
 name|doOpenIfChanged
 parameter_list|(
 name|IndexWriter
@@ -1445,7 +1446,7 @@ block|}
 DECL|method|doOpenFromWriter
 specifier|private
 specifier|final
-name|IndexReader
+name|CompositeIndexReader
 name|doOpenFromWriter
 parameter_list|(
 name|IndexCommit
@@ -1485,7 +1486,7 @@ return|return
 literal|null
 return|;
 block|}
-name|IndexReader
+name|CompositeIndexReader
 name|reader
 init|=
 name|writer
@@ -1525,7 +1526,7 @@ block|}
 DECL|method|doOpenNoWriter
 specifier|private
 specifier|synchronized
-name|IndexReader
+name|CompositeIndexReader
 name|doOpenNoWriter
 parameter_list|(
 name|IndexCommit
@@ -1601,7 +1602,7 @@ block|}
 block|}
 return|return
 operator|(
-name|IndexReader
+name|CompositeIndexReader
 operator|)
 operator|new
 name|SegmentInfos

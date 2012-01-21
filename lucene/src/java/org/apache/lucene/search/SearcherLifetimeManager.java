@@ -106,6 +106,24 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|CompositeIndexReader
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -207,12 +225,18 @@ name|searcher
 operator|=
 name|searcher
 expr_stmt|;
+comment|// nocommit: fix getVersion() usage for atomic readers
 name|version
 operator|=
+operator|(
+operator|(
+name|CompositeIndexReader
+operator|)
 name|searcher
 operator|.
 name|getIndexReader
 argument_list|()
+operator|)
 operator|.
 name|getVersion
 argument_list|()
@@ -375,14 +399,20 @@ expr_stmt|;
 comment|// TODO: we don't have to use IR.getVersion to track;
 comment|// could be risky (if it's buggy); we could get better
 comment|// bug isolation if we assign our own private ID:
+comment|// nocommit: fix getVersion() usage for atomic readers
 specifier|final
 name|long
 name|version
 init|=
+operator|(
+operator|(
+name|CompositeIndexReader
+operator|)
 name|searcher
 operator|.
 name|getIndexReader
 argument_list|()
+operator|)
 operator|.
 name|getVersion
 argument_list|()

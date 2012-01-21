@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for compound IndexReader providing access to per segment  * {@link DocValues}  *   * @lucene.experimental  * @lucene.internal  */
+comment|/**  * A wrapper for CompositeIndexReader providing access to per segment  * {@link DocValues}  *   * @lucene.experimental  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -237,7 +237,7 @@ specifier|public
 name|DocValues
 name|pull
 parameter_list|(
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 parameter_list|,
 name|String
@@ -259,7 +259,7 @@ specifier|public
 name|boolean
 name|stopLoadingOnNull
 parameter_list|(
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 parameter_list|,
 name|String
@@ -378,7 +378,7 @@ specifier|public
 name|DocValues
 name|pull
 parameter_list|(
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 parameter_list|,
 name|String
@@ -401,7 +401,7 @@ specifier|public
 name|boolean
 name|stopLoadingOnNull
 parameter_list|(
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 parameter_list|,
 name|String
@@ -560,21 +560,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-specifier|final
-name|IndexReader
-index|[]
-name|subs
-init|=
-name|r
-operator|.
-name|getSequentialSubReaders
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
-name|subs
-operator|==
-literal|null
+name|r
+operator|instanceof
+name|AtomicIndexReader
 condition|)
 block|{
 comment|// already an atomic reader
@@ -583,13 +573,35 @@ name|puller
 operator|.
 name|pull
 argument_list|(
+operator|(
+name|AtomicIndexReader
+operator|)
 name|r
 argument_list|,
 name|field
 argument_list|)
 return|;
 block|}
-elseif|else
+assert|assert
+name|r
+operator|instanceof
+name|CompositeIndexReader
+assert|;
+specifier|final
+name|IndexReader
+index|[]
+name|subs
+init|=
+operator|(
+operator|(
+name|CompositeIndexReader
+operator|)
+name|r
+operator|)
+operator|.
+name|getSequentialSubReaders
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|subs
@@ -689,7 +701,7 @@ parameter_list|(
 name|int
 name|base
 parameter_list|,
-name|IndexReader
+name|AtomicIndexReader
 name|r
 parameter_list|)
 throws|throws

@@ -121,16 +121,6 @@ throws|throws
 name|IOException
 block|{
 comment|// get a private context that is used to rewrite, createWeight and score eventually
-assert|assert
-name|context
-operator|.
-name|reader
-operator|.
-name|getTopReaderContext
-argument_list|()
-operator|.
-name|isAtomic
-assert|;
 specifier|final
 name|AtomicReaderContext
 name|privateContext

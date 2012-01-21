@@ -162,7 +162,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicIndexReader
 import|;
 end_import
 
@@ -466,7 +466,7 @@ specifier|protected
 name|DocValues
 name|getDocValuesForMerge
 parameter_list|(
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 parameter_list|,
 name|FieldInfo
