@@ -64,20 +64,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderUtil
-import|;
-end_import
-
 begin_comment
 comment|/** An AtomicIndexReader which reads multiple, parallel indexes.  Each index added  * must have the same number of documents, but typically each contains  * different fields.  Each document contains the union of the fields of all  * documents with the same document number.  When searching, matches for a  * query term are from the first index added that has the field.  *  *<p>This is useful, e.g., with collections that have large fields which  * change rarely and small fields that change more frequently.  The smaller  * fields may be re-indexed in a new index and both indexes may be searched  * together.  *  *<p><strong>Warning:</strong> It is up to you to make sure all indexes  * are created and modified the same way. For example, if you add  * documents to one index, you need to add the same documents in the  * same order to the other indexes.<em>Failure to do so will result in  * undefined behavior</em>.  */
 end_comment
@@ -512,7 +498,7 @@ specifier|final
 name|FieldInfos
 name|readerFieldInfos
 init|=
-name|ReaderUtil
+name|MultiFields
 operator|.
 name|getMergedFieldInfos
 argument_list|(

@@ -602,7 +602,22 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// nocommit: reenable this: assert reader.docFreq(term) == termStates[pos].docFreq();
+assert|assert
+name|reader
+operator|.
+name|docFreq
+argument_list|(
+name|term
+argument_list|)
+operator|==
+name|termStates
+index|[
+name|pos
+index|]
+operator|.
+name|docFreq
+argument_list|()
+assert|;
 name|addClause
 argument_list|(
 name|result
