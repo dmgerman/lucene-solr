@@ -194,7 +194,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicIndexReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -518,12 +518,14 @@ operator|+
 name|context
 operator|.
 name|reader
+argument_list|()
 assert|;
 name|reader
 operator|=
 name|context
 operator|.
 name|reader
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -1820,6 +1822,7 @@ name|i
 index|]
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()

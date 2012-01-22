@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicIndexReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -523,6 +523,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|)
@@ -794,6 +795,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|,
@@ -1160,6 +1162,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|,
@@ -1451,6 +1454,7 @@ init|=
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|docValues
 argument_list|(
@@ -1842,6 +1846,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|,
@@ -2146,6 +2151,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|,
@@ -2521,6 +2527,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|,
@@ -2815,6 +2822,7 @@ init|=
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|docValues
 argument_list|(
@@ -3207,6 +3215,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|,
@@ -5367,6 +5376,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|)
@@ -7240,6 +7250,7 @@ init|=
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|docValues
 argument_list|(
@@ -7271,6 +7282,7 @@ argument_list|,
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|maxDoc
 argument_list|()
@@ -7322,6 +7334,7 @@ operator|+
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -7966,6 +7979,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|)
@@ -8289,6 +8303,7 @@ init|=
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|docValues
 argument_list|(

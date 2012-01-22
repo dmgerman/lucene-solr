@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicIndexReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -125,12 +125,10 @@ specifier|final
 name|AtomicReaderContext
 name|privateContext
 init|=
-operator|(
-name|AtomicReaderContext
-operator|)
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getTopReaderContext
 argument_list|()
