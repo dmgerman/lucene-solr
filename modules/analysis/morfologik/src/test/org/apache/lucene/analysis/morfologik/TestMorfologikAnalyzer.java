@@ -650,6 +650,28 @@ literal|"subst:sg:dat.loc:f"
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** blast some random strings through the analyzer */
+DECL|method|testRandom
+specifier|public
+name|void
+name|testRandom
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkRandomData
+argument_list|(
+name|random
+argument_list|,
+name|getTestAnalyzer
+argument_list|()
+argument_list|,
+literal|10000
+operator|*
+name|RANDOM_MULTIPLIER
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

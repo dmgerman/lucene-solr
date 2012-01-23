@@ -135,6 +135,13 @@ name|exhausted
 init|=
 literal|false
 decl_stmt|;
+DECL|field|lastEndOffset
+specifier|private
+name|int
+name|lastEndOffset
+init|=
+literal|0
+decl_stmt|;
 comment|/**    * Creates a new HyphenatedWordsFilter    *    * @param in TokenStream that will be filtered    */
 DECL|method|HyphenatedWordsFilter
 specifier|public
@@ -189,6 +196,13 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
+name|lastEndOffset
+operator|=
+name|offsetAttribute
+operator|.
+name|endOffset
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|termLength
@@ -331,6 +345,10 @@ name|exhausted
 operator|=
 literal|false
 expr_stmt|;
+name|lastEndOffset
+operator|=
+literal|0
+expr_stmt|;
 block|}
 comment|// ================================================= Helper Methods ================================================
 comment|/**    * Writes the joined unhyphenated term    */
@@ -340,14 +358,6 @@ name|void
 name|unhyphenate
 parameter_list|()
 block|{
-name|int
-name|endOffset
-init|=
-name|offsetAttribute
-operator|.
-name|endOffset
-argument_list|()
-decl_stmt|;
 name|restoreState
 argument_list|(
 name|savedState
@@ -423,7 +433,7 @@ operator|.
 name|startOffset
 argument_list|()
 argument_list|,
-name|endOffset
+name|lastEndOffset
 argument_list|)
 expr_stmt|;
 name|hyphenated
