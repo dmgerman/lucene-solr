@@ -2814,7 +2814,7 @@ comment|// CREATE_OR_APPEND - create only if an index does not exist
 name|create
 operator|=
 operator|!
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(

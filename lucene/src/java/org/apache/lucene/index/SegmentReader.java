@@ -985,8 +985,6 @@ name|si
 return|;
 block|}
 comment|/** Returns the directory this index resides in. */
-annotation|@
-name|Override
 DECL|method|directory
 specifier|public
 name|Directory
@@ -1029,8 +1027,6 @@ return|return
 name|this
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|getTermInfosIndexDivisor
 specifier|public
 name|int

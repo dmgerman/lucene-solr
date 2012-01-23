@@ -1788,6 +1788,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// nocommit: this was original, is the change correct:
+comment|// mergeState.dirPayloadProcessor[i] = mergeState.payloadProcessorProvider.getDirProcessor(reader.reader.directory());
 name|mergeState
 operator|.
 name|dirPayloadProcessor
@@ -1801,12 +1803,7 @@ name|payloadProcessorProvider
 operator|.
 name|getDirProcessor
 argument_list|(
-name|reader
-operator|.
-name|reader
-operator|.
 name|directory
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
