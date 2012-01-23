@@ -353,6 +353,14 @@ name|hasMoreTokensInClone
 init|=
 literal|false
 decl_stmt|;
+DECL|field|hasIllegalOffsets
+specifier|private
+name|boolean
+name|hasIllegalOffsets
+init|=
+literal|false
+decl_stmt|;
+comment|// only if the length changed before this filter
 comment|/** Creates a new ThaiWordFilter with the specified match version. */
 DECL|method|ThaiWordFilter
 specifier|public
@@ -474,6 +482,29 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|hasIllegalOffsets
+condition|)
+block|{
+name|offsetAtt
+operator|.
+name|setOffset
+argument_list|(
+name|clonedOffsetAtt
+operator|.
+name|startOffset
+argument_list|()
+argument_list|,
+name|clonedOffsetAtt
+operator|.
+name|endOffset
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|offsetAtt
 operator|.
 name|setOffset
@@ -493,6 +524,7 @@ operator|+
 name|end
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|handlePosIncr
@@ -559,6 +591,25 @@ block|}
 name|hasMoreTokensInClone
 operator|=
 literal|true
+expr_stmt|;
+comment|// if length by start + end offsets doesn't match the term text then assume
+comment|// this is a synonym and don't adjust the offsets.
+name|hasIllegalOffsets
+operator|=
+name|offsetAtt
+operator|.
+name|endOffset
+argument_list|()
+operator|-
+name|offsetAtt
+operator|.
+name|startOffset
+argument_list|()
+operator|!=
+name|termAtt
+operator|.
+name|length
+argument_list|()
 expr_stmt|;
 comment|// we lazy init the cloned token, as in ctor not all attributes may be added
 if|if
@@ -655,6 +706,29 @@ argument_list|(
 name|end
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|hasIllegalOffsets
+condition|)
+block|{
+name|offsetAtt
+operator|.
+name|setOffset
+argument_list|(
+name|clonedOffsetAtt
+operator|.
+name|startOffset
+argument_list|()
+argument_list|,
+name|clonedOffsetAtt
+operator|.
+name|endOffset
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|offsetAtt
 operator|.
 name|setOffset
@@ -672,6 +746,7 @@ operator|+
 name|end
 argument_list|)
 expr_stmt|;
+block|}
 comment|// position increment keeps as it is for first token
 return|return
 literal|true

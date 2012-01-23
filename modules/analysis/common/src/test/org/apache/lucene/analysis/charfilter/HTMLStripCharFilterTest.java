@@ -2565,11 +2565,7 @@ name|CharReader
 operator|.
 name|get
 argument_list|(
-operator|new
-name|BufferedReader
-argument_list|(
 name|reader
-argument_list|)
 argument_list|)
 argument_list|)
 return|;
