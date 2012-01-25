@@ -154,6 +154,13 @@ specifier|private
 name|int
 name|inLen
 decl_stmt|;
+comment|// length of the input AFTER trim()
+DECL|field|charsRead
+specifier|private
+name|int
+name|charsRead
+decl_stmt|;
+comment|// length of the input
 DECL|field|inStr
 specifier|private
 name|String
@@ -399,6 +406,8 @@ index|[
 literal|1024
 index|]
 decl_stmt|;
+name|charsRead
+operator|=
 name|input
 operator|.
 name|read
@@ -406,6 +415,23 @@ argument_list|(
 name|chars
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|charsRead
+operator|<
+literal|0
+condition|)
+block|{
+name|charsRead
+operator|=
+name|inLen
+operator|=
+literal|0
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
 name|inStr
 operator|=
 operator|new
@@ -526,7 +552,10 @@ specifier|final
 name|int
 name|finalOffset
 init|=
-name|inLen
+name|correctOffset
+argument_list|(
+name|charsRead
+argument_list|)
 decl_stmt|;
 name|this
 operator|.
@@ -584,6 +613,10 @@ operator|=
 literal|false
 expr_stmt|;
 name|pos
+operator|=
+literal|0
+expr_stmt|;
+name|charsRead
 operator|=
 literal|0
 expr_stmt|;

@@ -347,6 +347,26 @@ name|TermStatistics
 name|termStats
 parameter_list|)
 block|{
+comment|// #positions(field) must be>= #positions(term)
+assert|assert
+name|collectionStats
+operator|.
+name|sumTotalTermFreq
+argument_list|()
+operator|==
+operator|-
+literal|1
+operator|||
+name|collectionStats
+operator|.
+name|sumTotalTermFreq
+argument_list|()
+operator|>=
+name|termStats
+operator|.
+name|totalTermFreq
+argument_list|()
+assert|;
 name|int
 name|numberOfDocuments
 init|=

@@ -592,9 +592,8 @@ if|if
 condition|(
 name|cmd
 operator|.
-name|id
-operator|!=
-literal|null
+name|isDeleteById
+argument_list|()
 condition|)
 block|{
 if|if
@@ -639,7 +638,8 @@ name|add
 argument_list|(
 name|cmd
 operator|.
-name|id
+name|getId
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -656,7 +656,8 @@ literal|"delete {}"
 argument_list|,
 name|cmd
 operator|.
-name|id
+name|getId
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -698,7 +699,8 @@ literal|"deleteByQuery {}"
 argument_list|,
 name|cmd
 operator|.
-name|query
+name|getQuery
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

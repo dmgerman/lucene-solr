@@ -1010,6 +1010,27 @@ operator|||
 name|deleteQ
 condition|)
 block|{
+if|if
+condition|(
+name|commitWithin
+operator|>
+literal|0
+condition|)
+block|{
+name|writer
+operator|.
+name|append
+argument_list|(
+literal|"<delete commitWithin=\""
+operator|+
+name|commitWithin
+operator|+
+literal|"\">"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|writer
 operator|.
 name|append
@@ -1017,6 +1038,7 @@ argument_list|(
 literal|"<delete>"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|deleteI

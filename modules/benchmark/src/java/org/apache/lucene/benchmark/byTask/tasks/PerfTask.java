@@ -701,7 +701,6 @@ name|c
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)    * @see java.lang.Object#toString()    */
 annotation|@
 name|Override
 DECL|method|toString
@@ -837,7 +836,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Task setup work that should not be measured for that specific task.    * By default it does nothing, but tasks can implement this, moving work from     * doLogic() to this method. Only the work done in doLogicis measured for this task.    * Notice that higher level (sequence) tasks containing this task would then     * measure larger time than the sum of their contained tasks.    * @throws Exception     */
+comment|/**    * Task setup work that should not be measured for that specific task. By    * default it does nothing, but tasks can implement this, moving work from    * {@link #doLogic()} to this method. Only the work done in {@link #doLogic()}    * is measured for this task. Notice that higher level (sequence) tasks    * containing this task would then measure larger time than the sum of their    * contained tasks.    */
 DECL|method|setup
 specifier|public
 name|void
@@ -846,7 +845,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{   }
-comment|/**    * Task tearDown work that should not be measured for that specific task.    * By default it does nothing, but tasks can implement this, moving work from     * doLogic() to this method. Only the work done in doLogicis measured for this task.    * Notice that higher level (sequence) tasks containing this task would then     * measure larger time than the sum of their contained tasks.    */
+comment|/**    * Task tearDown work that should not be measured for that specific task. By    * default it does nothing, but tasks can implement this, moving work from    * {@link #doLogic()} to this method. Only the work done in {@link #doLogic()}    * is measured for this task. Notice that higher level (sequence) tasks    * containing this task would then measure larger time than the sum of their    * contained tasks.    */
 DECL|method|tearDown
 specifier|public
 name|void
@@ -917,7 +916,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Sub classes that supports parameters must override this method to return true.    * @return true iff this task supports command line params.    */
+comment|/**    * Sub classes that support parameters must override this method to return    * true.    *     * @return true iff this task supports command line params.    */
 DECL|method|supportsParams
 specifier|public
 name|boolean
@@ -928,7 +927,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Set the params of this task.    * @exception UnsupportedOperationException for tasks supporting command line parameters.    */
+comment|/**    * Set the params of this task.    *     * @exception UnsupportedOperationException    *              for tasks supporting command line parameters.    */
 DECL|method|setParams
 specifier|public
 name|void

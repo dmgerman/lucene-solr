@@ -143,7 +143,7 @@ operator|=
 name|reuseStrategy
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link TokenStreamComponents} instance for this analyzer.    *     * @param fieldName    *          the name of the fields content passed to the    *          {@link TokenStreamComponents} sink as a reader    * @param aReader    *          the reader passed to the {@link Tokenizer} constructor    * @return the {@link TokenStreamComponents} for this analyzer.    */
+comment|/**    * Creates a new {@link TokenStreamComponents} instance for this analyzer.    *     * @param fieldName    *          the name of the fields content passed to the    *          {@link TokenStreamComponents} sink as a reader    * @param reader    *          the reader passed to the {@link Tokenizer} constructor    * @return the {@link TokenStreamComponents} for this analyzer.    */
 DECL|method|createComponents
 specifier|protected
 specifier|abstract
@@ -154,7 +154,7 @@ name|String
 name|fieldName
 parameter_list|,
 name|Reader
-name|aReader
+name|reader
 parameter_list|)
 function_decl|;
 comment|/**    * Creates a TokenStream that is allowed to be re-use from the previous time    * that the same thread called this method.  Callers that do not need to use    * more than one TokenStream at the same time from this analyzer should use    * this method for better performance.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#reset(Reader)}.    *</p>    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    */

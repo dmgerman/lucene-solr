@@ -223,6 +223,15 @@ name|OVERWRITE
 init|=
 literal|"overwrite"
 decl_stmt|;
+DECL|field|VERSION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|VERSION
+init|=
+literal|"version"
+decl_stmt|;
 comment|// NOTE: This constant is for use with the<add> XML tag, not the HTTP param with same name
 DECL|field|COMMIT_WITHIN
 specifier|public
