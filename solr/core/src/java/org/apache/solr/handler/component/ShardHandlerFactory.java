@@ -32,6 +32,13 @@ name|ShardHandler
 name|getShardHandler
 parameter_list|()
 function_decl|;
+DECL|method|close
+specifier|public
+specifier|abstract
+name|void
+name|close
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

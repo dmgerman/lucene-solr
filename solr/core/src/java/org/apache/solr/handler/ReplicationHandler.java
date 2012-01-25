@@ -322,6 +322,20 @@ name|solr
 operator|.
 name|common
 operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|params
 operator|.
 name|CommonParams
@@ -871,6 +885,7 @@ init|=
 name|indexCommitPoint
 decl_stmt|;
 comment|// make a copy so it won't change
+comment|//System.out.println("The latest index gen is:" + commitPoint.getGeneration() + " " + core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName());
 if|if
 condition|(
 name|commitPoint
@@ -1100,6 +1115,8 @@ block|{
 name|doFetch
 argument_list|(
 name|paramsCopy
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -1875,11 +1892,15 @@ name|SnapPuller
 name|tempSnapPuller
 decl_stmt|;
 DECL|method|doFetch
-name|void
+specifier|public
+name|boolean
 name|doFetch
 parameter_list|(
 name|SolrParams
 name|solrParams
+parameter_list|,
+name|boolean
+name|force
 parameter_list|)
 block|{
 name|String
@@ -1906,7 +1927,9 @@ operator|.
 name|tryLock
 argument_list|()
 condition|)
-return|return;
+return|return
+literal|false
+return|;
 try|try
 block|{
 name|tempSnapPuller
@@ -1953,13 +1976,16 @@ name|core
 argument_list|)
 expr_stmt|;
 block|}
+return|return
 name|tempSnapPuller
 operator|.
 name|fetchLatestIndex
 argument_list|(
 name|core
+argument_list|,
+name|force
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -1967,10 +1993,12 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
+name|SolrException
 operator|.
-name|error
+name|log
 argument_list|(
+name|LOG
+argument_list|,
 literal|"SnapPull failed "
 argument_list|,
 name|e
@@ -1989,6 +2017,9 @@ name|unlock
 argument_list|()
 expr_stmt|;
 block|}
+return|return
+literal|false
+return|;
 block|}
 DECL|method|isReplicating
 name|boolean
@@ -2235,6 +2266,7 @@ argument_list|(
 name|version
 argument_list|)
 decl_stmt|;
+comment|//System.out.println("ask for files for gen:" + commit.getGeneration() + core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName());
 if|if
 condition|(
 name|commit
@@ -5293,44 +5325,12 @@ return|return
 name|props
 return|;
 block|}
-DECL|method|refreshCommitpoint
-name|void
-name|refreshCommitpoint
-parameter_list|()
-block|{
-name|IndexCommit
-name|commitPoint
-init|=
-name|core
-operator|.
-name|getDeletionPolicy
-argument_list|()
-operator|.
-name|getLatestCommit
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|replicateOnCommit
-operator|||
-operator|(
-name|replicateOnOptimize
-operator|&&
-name|commitPoint
-operator|.
-name|getSegmentCount
-argument_list|()
-operator|==
-literal|1
-operator|)
-condition|)
-block|{
-name|indexCommitPoint
-operator|=
-name|commitPoint
-expr_stmt|;
-block|}
-block|}
+comment|//  void refreshCommitpoint() {
+comment|//    IndexCommit commitPoint = core.getDeletionPolicy().getLatestCommit();
+comment|//    if(replicateOnCommit || (replicateOnOptimize&& commitPoint.getSegmentCount() == 1)) {
+comment|//      indexCommitPoint = commitPoint;
+comment|//    }
+comment|//  }
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -5423,6 +5423,29 @@ argument_list|(
 name|master
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|enableSlave
+operator|&&
+operator|!
+name|enableMaster
+condition|)
+block|{
+name|enableMaster
+operator|=
+literal|true
+expr_stmt|;
+name|master
+operator|=
+operator|new
+name|NamedList
+argument_list|<
+name|Object
+argument_list|>
+argument_list|()
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|enableMaster
@@ -5606,6 +5629,20 @@ argument_list|(
 literal|"optimize"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|replicateOnCommit
+operator|&&
+operator|!
+name|replicateOnOptimize
+condition|)
+block|{
+name|replicateOnCommit
+operator|=
+literal|true
+expr_stmt|;
+block|}
 comment|// if we only want to replicate on optimize, we need the deletion policy to
 comment|// save the last optimized commit point.
 if|if

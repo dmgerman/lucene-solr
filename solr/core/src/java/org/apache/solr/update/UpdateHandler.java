@@ -496,38 +496,18 @@ condition|)
 block|{
 name|ulog
 operator|=
-name|core
-operator|.
-name|createInitInstance
-argument_list|(
-name|ulogPluginInfo
-argument_list|,
-name|UpdateLog
-operator|.
-name|class
-argument_list|,
-literal|"update log"
-argument_list|,
-literal|"solr.NullUpdateLog"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|ulog
-operator|=
 operator|new
-name|NullUpdateLog
+name|UpdateLog
 argument_list|()
 expr_stmt|;
 name|ulog
 operator|.
 name|init
 argument_list|(
-literal|null
+name|ulogPluginInfo
 argument_list|)
 expr_stmt|;
-block|}
+comment|// ulog = core.createInitInstance(ulogPluginInfo, UpdateLog.class, "update log", "solr.NullUpdateLog");
 name|ulog
 operator|.
 name|init
@@ -537,6 +517,7 @@ argument_list|,
 name|core
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|callPostCommitCallbacks
 specifier|protected
@@ -649,19 +630,6 @@ name|initLog
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Allows the UpdateHandler to create the SolrIndexSearcher after it    * has issued a 'softCommit'.     *     * @param previousSearcher    * @throws IOException    */
-DECL|method|reopenSearcher
-specifier|public
-specifier|abstract
-name|SolrIndexSearcher
-name|reopenSearcher
-parameter_list|(
-name|SolrIndexSearcher
-name|previousSearcher
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/**    * Called when the Writer should be opened again - eg when replication replaces    * all of the index files.    *     * @throws IOException    */
 DECL|method|newIndexWriter
 specifier|public
@@ -672,11 +640,11 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-DECL|method|getIndexWriterProvider
+DECL|method|getSolrCoreState
 specifier|public
 specifier|abstract
 name|SolrCoreState
-name|getIndexWriterProvider
+name|getSolrCoreState
 parameter_list|()
 function_decl|;
 DECL|method|addDoc

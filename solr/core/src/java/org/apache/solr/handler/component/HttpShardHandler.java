@@ -128,6 +128,24 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|util
+operator|.
+name|ClientUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|cloud
 operator|.
 name|CloudDescriptor
@@ -191,6 +209,22 @@ operator|.
 name|cloud
 operator|.
 name|Slice
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkCoreNodeProps
 import|;
 end_import
 
@@ -1351,7 +1385,19 @@ name|getBool
 argument_list|(
 literal|"distrib"
 argument_list|,
-literal|false
+name|req
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|isZooKeeperAware
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|String
@@ -1592,10 +1638,110 @@ operator|.
 name|getCloudState
 argument_list|()
 expr_stmt|;
-comment|// TODO: check "collection" for which collection(s) to search.. but for now, just default
-comment|// to the collection for this core.
-comment|// This can be more efficient... we only record the name, even though we have the
-comment|// shard info we need in the next step of mapping slice->shards
+comment|// This can be more efficient... we only record the name, even though we
+comment|// have the shard info we need in the next step of mapping slice->shards
+comment|// Stores the comma-separated list of specified collections.
+comment|// Eg: "collection1,collection2,collection3"
+name|String
+name|collections
+init|=
+name|params
+operator|.
+name|get
+argument_list|(
+literal|"collection"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|collections
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// If there were one or more collections specified in the query, split
+comment|// each parameter and store as a seperate member of a List.
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|collectionList
+init|=
+name|StrUtils
+operator|.
+name|splitSmart
+argument_list|(
+name|collections
+argument_list|,
+literal|","
+argument_list|,
+literal|true
+argument_list|)
+decl_stmt|;
+comment|// First create an empty HashMap to add the slice info to.
+name|slices
+operator|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Slice
+argument_list|>
+argument_list|()
+expr_stmt|;
+comment|// In turn, retrieve the slices that cover each collection from the
+comment|// cloud state and add them to the Map 'slices'.
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|collectionList
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|String
+name|collection
+init|=
+name|collectionList
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+name|ClientUtils
+operator|.
+name|appendMap
+argument_list|(
+name|collection
+argument_list|,
+name|slices
+argument_list|,
+name|cloudState
+operator|.
+name|getSlices
+argument_list|(
+name|collection
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+comment|// If no collections were specified, default to the collection for
+comment|// this core.
 name|slices
 operator|=
 name|cloudState
@@ -1608,6 +1754,10 @@ name|getCollectionName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+comment|// Store the logical slices in the ResponseBuilder and create a new
+comment|// String array to hold the physical shards (which will be mapped
+comment|// later).
 name|rb
 operator|.
 name|slices
@@ -1802,6 +1952,15 @@ name|values
 argument_list|()
 control|)
 block|{
+name|ZkCoreNodeProps
+name|coreNodeProps
+init|=
+operator|new
+name|ZkCoreNodeProps
+argument_list|(
+name|nodeProps
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -1809,14 +1968,23 @@ name|liveNodes
 operator|.
 name|contains
 argument_list|(
-name|nodeProps
+name|coreNodeProps
 operator|.
-name|get
+name|getNodeName
+argument_list|()
+argument_list|)
+operator|||
+operator|!
+name|coreNodeProps
+operator|.
+name|getState
+argument_list|()
+operator|.
+name|equals
 argument_list|(
 name|ZkStateReader
 operator|.
-name|NODE_NAME
-argument_list|)
+name|ACTIVE
 argument_list|)
 condition|)
 continue|continue;
@@ -1843,12 +2011,10 @@ block|}
 name|String
 name|url
 init|=
-name|nodeProps
+name|coreNodeProps
 operator|.
-name|get
-argument_list|(
-literal|"url"
-argument_list|)
+name|getCoreUrl
+argument_list|()
 decl_stmt|;
 if|if
 condition|(

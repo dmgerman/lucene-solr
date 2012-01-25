@@ -130,6 +130,16 @@ name|Watcher
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|AfterClass
+import|;
+end_import
+
 begin_class
 DECL|class|ZkSolrClientTest
 specifier|public
@@ -287,6 +297,8 @@ operator|.
 name|exists
 argument_list|(
 literal|"/solr"
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -383,6 +395,10 @@ operator|.
 name|makePath
 argument_list|(
 name|shardsPath
+argument_list|,
+literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|zkClient
@@ -390,6 +406,10 @@ operator|.
 name|makePath
 argument_list|(
 literal|"collections/collection1"
+argument_list|,
+literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|int
@@ -420,6 +440,8 @@ operator|.
 name|makePath
 argument_list|(
 literal|"collections/collection2"
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|TestCase
@@ -470,6 +492,8 @@ operator|.
 name|makePath
 argument_list|(
 literal|"collections/collection3"
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -494,6 +518,8 @@ operator|.
 name|makePath
 argument_list|(
 literal|"collections/collection3"
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -517,6 +543,8 @@ argument_list|(
 literal|"/collections/collection3"
 argument_list|,
 literal|null
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -529,6 +557,8 @@ argument_list|(
 literal|"/collections/collection1"
 argument_list|,
 literal|null
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -585,6 +615,8 @@ operator|.
 name|makePath
 argument_list|(
 literal|"collections/collection4"
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 break|break;
@@ -637,6 +669,8 @@ argument_list|(
 literal|"/collections/collection4"
 argument_list|,
 literal|null
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -756,6 +790,8 @@ operator|.
 name|makePath
 argument_list|(
 literal|"/collections"
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|zkClient
@@ -806,6 +842,8 @@ argument_list|(
 literal|"/collections"
 argument_list|,
 name|this
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -839,6 +877,8 @@ throw|;
 block|}
 block|}
 block|}
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|zkClient
@@ -846,6 +886,8 @@ operator|.
 name|makePath
 argument_list|(
 literal|"/collections/collection99/shards"
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|zkClient
@@ -853,6 +895,8 @@ operator|.
 name|makePath
 argument_list|(
 literal|"collections/collection99/config=collection1"
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|zkClient
@@ -860,6 +904,8 @@ operator|.
 name|makePath
 argument_list|(
 literal|"collections/collection99/config=collection3"
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|zkClient
@@ -867,6 +913,8 @@ operator|.
 name|makePath
 argument_list|(
 literal|"/collections/collection97/shards"
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -888,6 +936,25 @@ argument_list|(
 literal|700
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|cnt
+operator|.
+name|intValue
+argument_list|()
+operator|<
+literal|2
+condition|)
+block|{
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|4000
+argument_list|)
+expr_stmt|;
+comment|// wait a bit more
+block|}
 if|if
 condition|(
 name|cnt
@@ -986,6 +1053,26 @@ name|super
 operator|.
 name|tearDown
 argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|AfterClass
+DECL|method|afterClass
+specifier|public
+specifier|static
+name|void
+name|afterClass
+parameter_list|()
+throws|throws
+name|InterruptedException
+block|{
+comment|// wait just a bit for any zk client threads to outlast timeout
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|2000
+argument_list|)
 expr_stmt|;
 block|}
 block|}

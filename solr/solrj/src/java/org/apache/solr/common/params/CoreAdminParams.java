@@ -235,6 +235,15 @@ name|ALIAS
 block|,
 DECL|enum constant|MERGEINDEXES
 name|MERGEINDEXES
+block|,
+DECL|enum constant|PREPRECOVERY
+name|PREPRECOVERY
+block|,
+DECL|enum constant|REQUESTRECOVERY
+name|REQUESTRECOVERY
+block|,
+DECL|enum constant|DISTRIBURL
+name|DISTRIBURL
 block|;
 DECL|method|get
 specifier|public
