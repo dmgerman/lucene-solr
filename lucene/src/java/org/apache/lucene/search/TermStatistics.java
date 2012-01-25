@@ -90,6 +90,22 @@ name|long
 name|totalTermFreq
 parameter_list|)
 block|{
+assert|assert
+name|docFreq
+operator|>=
+literal|0
+assert|;
+assert|assert
+name|totalTermFreq
+operator|==
+operator|-
+literal|1
+operator|||
+name|totalTermFreq
+operator|>=
+name|docFreq
+assert|;
+comment|// #positions must be>= #postings
 name|this
 operator|.
 name|term

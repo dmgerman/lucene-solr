@@ -740,15 +740,6 @@ modifier|...
 name|termStats
 parameter_list|)
 block|{
-assert|assert
-name|collectionStats
-operator|.
-name|sumTotalTermFreq
-argument_list|()
-operator|>=
-operator|-
-literal|1
-assert|;
 name|Explanation
 name|idf
 init|=
