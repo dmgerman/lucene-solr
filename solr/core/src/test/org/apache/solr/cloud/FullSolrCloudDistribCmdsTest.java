@@ -338,11 +338,23 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Super basic testing, no shard restarting or anything.  */
 end_comment
 
 begin_class
+annotation|@
+name|Ignore
 DECL|class|FullSolrCloudDistribCmdsTest
 specifier|public
 class|class
