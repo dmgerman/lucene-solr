@@ -4908,7 +4908,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"  whÃ¡tÃ«vÃªr  "
+literal|"\n\nwhÃ¡tÃ«vÃªr\n\n"
 argument_list|,
 name|indexPart
 operator|.
@@ -4920,7 +4920,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"  whatever  "
+literal|"\n\nwhatever\n\n"
 argument_list|,
 name|indexPart
 operator|.

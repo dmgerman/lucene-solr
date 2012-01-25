@@ -1102,6 +1102,9 @@ name|out
 decl_stmt|;
 if|if
 condition|(
+operator|(
+name|outputLocked
+operator|=
 name|outputTaken
 operator|.
 name|compareAndSet
@@ -1110,6 +1113,7 @@ literal|false
 argument_list|,
 literal|true
 argument_list|)
+operator|)
 condition|)
 block|{
 name|out
@@ -1124,14 +1128,6 @@ name|entry
 argument_list|,
 literal|false
 argument_list|)
-expr_stmt|;
-name|outputLocked
-operator|=
-literal|true
-expr_stmt|;
-name|success
-operator|=
-literal|true
 expr_stmt|;
 block|}
 else|else

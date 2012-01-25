@@ -362,6 +362,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|util
+operator|.
+name|DefaultSolrThreadFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|handler
 operator|.
 name|component
@@ -1962,6 +1976,12 @@ name|Runnable
 argument_list|>
 argument_list|()
 comment|// directly hand off tasks
+argument_list|,
+operator|new
+name|DefaultSolrThreadFactory
+argument_list|(
+literal|"facetExectutor"
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|/**    * Returns a list of value constraints and the associated facet counts     * for each facet field specified in the params.    *    * @see FacetParams#FACET_FIELD    * @see #getFieldMissingCount    * @see #getFacetTermEnumCounts    */

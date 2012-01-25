@@ -405,12 +405,13 @@ argument_list|)
 decl_stmt|;
 name|delCmd
 operator|.
-name|id
-operator|=
+name|setId
+argument_list|(
 name|id
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|processor
 operator|.

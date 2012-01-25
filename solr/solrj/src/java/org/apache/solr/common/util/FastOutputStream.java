@@ -60,7 +60,7 @@ specifier|private
 name|long
 name|written
 decl_stmt|;
-comment|// how many bytes written
+comment|// how many bytes written to the underlying stream
 DECL|field|pos
 specifier|private
 name|int
@@ -1000,6 +1000,34 @@ name|written
 operator|+
 name|pos
 return|;
+block|}
+comment|/** Returns the number of bytes actually written to the underlying OutputStream, not including    * anything currently buffered by this class itself.    */
+DECL|method|written
+specifier|public
+name|long
+name|written
+parameter_list|()
+block|{
+return|return
+name|written
+return|;
+block|}
+comment|/** Resets the count returned by written() */
+DECL|method|setWritten
+specifier|public
+name|void
+name|setWritten
+parameter_list|(
+name|long
+name|written
+parameter_list|)
+block|{
+name|this
+operator|.
+name|written
+operator|=
+name|written
+expr_stmt|;
 block|}
 block|}
 end_class

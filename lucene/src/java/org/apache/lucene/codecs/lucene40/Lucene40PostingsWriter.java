@@ -335,6 +335,10 @@ DECL|field|storePayloads
 name|boolean
 name|storePayloads
 decl_stmt|;
+DECL|field|storeOffsets
+name|boolean
+name|storeOffsets
+decl_stmt|;
 comment|// Starts a new term
 DECL|field|freqStart
 name|long
@@ -352,9 +356,17 @@ DECL|field|lastPayloadLength
 name|int
 name|lastPayloadLength
 decl_stmt|;
+DECL|field|lastOffsetLength
+name|int
+name|lastOffsetLength
+decl_stmt|;
 DECL|field|lastPosition
 name|int
 name|lastPosition
+decl_stmt|;
+DECL|field|lastOffset
+name|int
+name|lastOffset
 decl_stmt|;
 comment|// private String segment;
 DECL|method|Lucene40PostingsWriter
@@ -640,6 +652,12 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
+comment|// force first offset to write its length
+name|lastOffsetLength
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 block|}
 name|skipListWriter
 operator|.
@@ -674,8 +692,8 @@ name|fieldInfo
 operator|.
 name|indexOptions
 expr_stmt|;
-if|if
-condition|(
+name|storeOffsets
+operator|=
 name|indexOptions
 operator|.
 name|compareTo
@@ -686,16 +704,7 @@ name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
 argument_list|)
 operator|>=
 literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"this codec cannot index offsets"
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|storePayloads
 operator|=
 name|fieldInfo
@@ -797,6 +806,10 @@ argument_list|,
 name|storePayloads
 argument_list|,
 name|lastPayloadLength
+argument_list|,
+name|storeOffsets
+argument_list|,
+name|lastOffsetLength
 argument_list|)
 expr_stmt|;
 name|skipListWriter
@@ -886,6 +899,10 @@ name|lastPosition
 operator|=
 literal|0
 expr_stmt|;
+name|lastOffset
+operator|=
+literal|0
+expr_stmt|;
 block|}
 comment|/** Add a new position& payload */
 annotation|@
@@ -913,10 +930,15 @@ block|{
 comment|//if (DEBUG) System.out.println("SPW:     addPos pos=" + position + " payload=" + (payload == null ? "null" : (payload.length + " bytes")) + " proxFP=" + proxOut.getFilePointer());
 assert|assert
 name|indexOptions
-operator|==
+operator|.
+name|compareTo
+argument_list|(
 name|IndexOptions
 operator|.
 name|DOCS_AND_FREQS_AND_POSITIONS
+argument_list|)
+operator|>=
+literal|0
 operator|:
 literal|"invalid indexOptions: "
 operator|+
@@ -927,13 +949,6 @@ name|proxOut
 operator|!=
 literal|null
 assert|;
-comment|// TODO: when we add offsets... often
-comment|// endOffset-startOffset will be constant or near
-comment|// constant for all docs (eg if the term wasn't stemmed
-comment|// then this will usually be the utf16 length of the
-comment|// term); would be nice to write that length once up
-comment|// front and then not encode endOffset for each
-comment|// position..
 specifier|final
 name|int
 name|delta
@@ -960,15 +975,18 @@ name|lastPosition
 operator|=
 name|position
 expr_stmt|;
+name|int
+name|payloadLength
+init|=
+literal|0
+decl_stmt|;
 if|if
 condition|(
 name|storePayloads
 condition|)
 block|{
-specifier|final
-name|int
 name|payloadLength
-init|=
+operator|=
 name|payload
 operator|==
 literal|null
@@ -978,7 +996,7 @@ else|:
 name|payload
 operator|.
 name|length
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|payloadLength
@@ -1023,6 +1041,85 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+name|proxOut
+operator|.
+name|writeVInt
+argument_list|(
+name|delta
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|storeOffsets
+condition|)
+block|{
+comment|// don't use startOffset - lastEndOffset, because this creates lots of negative vints for synonyms,
+comment|// and the numbers aren't that much smaller anyways.
+name|int
+name|offsetDelta
+init|=
+name|startOffset
+operator|-
+name|lastOffset
+decl_stmt|;
+name|int
+name|offsetLength
+init|=
+name|endOffset
+operator|-
+name|startOffset
+decl_stmt|;
+if|if
+condition|(
+name|offsetLength
+operator|!=
+name|lastOffsetLength
+condition|)
+block|{
+name|proxOut
+operator|.
+name|writeVInt
+argument_list|(
+name|offsetDelta
+operator|<<
+literal|1
+operator||
+literal|1
+argument_list|)
+expr_stmt|;
+name|proxOut
+operator|.
+name|writeVInt
+argument_list|(
+name|offsetLength
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|proxOut
+operator|.
+name|writeVInt
+argument_list|(
+name|offsetDelta
+operator|<<
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+name|lastOffset
+operator|=
+name|startOffset
+expr_stmt|;
+name|lastOffsetLength
+operator|=
+name|offsetLength
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|payloadLength
@@ -1043,17 +1140,6 @@ operator|.
 name|offset
 argument_list|,
 name|payloadLength
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-name|proxOut
-operator|.
-name|writeVInt
-argument_list|(
-name|delta
 argument_list|)
 expr_stmt|;
 block|}
@@ -1356,10 +1442,15 @@ block|}
 if|if
 condition|(
 name|indexOptions
-operator|==
+operator|.
+name|compareTo
+argument_list|(
 name|IndexOptions
 operator|.
 name|DOCS_AND_FREQS_AND_POSITIONS
+argument_list|)
+operator|>=
+literal|0
 condition|)
 block|{
 name|bytesWriter
@@ -1465,10 +1556,15 @@ block|}
 if|if
 condition|(
 name|indexOptions
-operator|==
+operator|.
+name|compareTo
+argument_list|(
 name|IndexOptions
 operator|.
 name|DOCS_AND_FREQS_AND_POSITIONS
+argument_list|)
+operator|>=
+literal|0
 condition|)
 block|{
 name|bytesWriter

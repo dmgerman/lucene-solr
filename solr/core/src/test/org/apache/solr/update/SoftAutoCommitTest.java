@@ -385,7 +385,7 @@ operator|.
 name|assertSaneOffers
 argument_list|()
 expr_stmt|;
-comment|// check for the searcher, should have happend right after soft commit
+comment|// check for the searcher, should have happened right after soft commit
 name|Long
 name|searcher529
 init|=
@@ -396,6 +396,8 @@ operator|.
 name|poll
 argument_list|(
 name|softCommitWaitMillis
+operator|*
+literal|3
 argument_list|,
 name|MILLISECONDS
 argument_list|)
@@ -507,9 +509,9 @@ name|Math
 operator|.
 name|max
 argument_list|(
-literal|100
+literal|200
 argument_list|,
-literal|6
+literal|12
 operator|*
 operator|(
 name|soft529
@@ -907,12 +909,12 @@ literal|"forced manCommit didn't happen when it should have: "
 operator|+
 name|manCommit
 operator|+
-literal|" !< "
+literal|" !<= "
 operator|+
 name|postAdd529
 argument_list|,
 name|manCommit
-operator|<
+operator|<=
 name|postAdd529
 argument_list|)
 expr_stmt|;
@@ -926,6 +928,8 @@ operator|.
 name|poll
 argument_list|(
 name|hardCommitWaitMillis
+operator|*
+literal|2
 argument_list|,
 name|MILLISECONDS
 argument_list|)

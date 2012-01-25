@@ -88,10 +88,9 @@ block|{
 comment|/** Position increment to assign to all but the first token - default = 0 */
 DECL|field|positionIncrement
 specifier|private
+specifier|final
 name|int
 name|positionIncrement
-init|=
-literal|0
 decl_stmt|;
 comment|/** The first token must have non-zero positionIncrement **/
 DECL|field|firstTokenPositioned
@@ -123,9 +122,11 @@ name|TokenStream
 name|input
 parameter_list|)
 block|{
-name|super
+name|this
 argument_list|(
 name|input
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 block|}
@@ -143,7 +144,7 @@ name|int
 name|positionIncrement
 parameter_list|)
 block|{
-name|this
+name|super
 argument_list|(
 name|input
 argument_list|)

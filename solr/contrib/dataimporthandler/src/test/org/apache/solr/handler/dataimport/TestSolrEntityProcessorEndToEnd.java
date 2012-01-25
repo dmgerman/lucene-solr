@@ -295,15 +295,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-DECL|field|SOLR_SOURCE_URL
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|SOLR_SOURCE_URL
-init|=
-literal|"http://localhost:8983/solr"
-decl_stmt|;
+comment|//rivate static final String SOLR_SOURCE_URL = "http://localhost:8983/solr";
 DECL|field|SOLR_CONFIG
 specifier|private
 specifier|static
@@ -498,13 +490,29 @@ name|solrDoc
 argument_list|)
 expr_stmt|;
 block|}
-DECL|field|DIH_CONFIG_TAGS_INNER_ENTITY
+DECL|field|instance
+specifier|private
+name|SolrInstance
+name|instance
+init|=
+literal|null
+decl_stmt|;
+DECL|field|jetty
+specifier|private
+name|JettySolrRunner
+name|jetty
+decl_stmt|;
+DECL|method|getDihConfigTagsInnerEntity
 specifier|private
 specifier|static
-specifier|final
 name|String
-name|DIH_CONFIG_TAGS_INNER_ENTITY
-init|=
+name|getDihConfigTagsInnerEntity
+parameter_list|(
+name|int
+name|port
+parameter_list|)
+block|{
+return|return
 literal|"<dataConfig>\r\n"
 operator|+
 literal|"<dataSource type='MockDataSource' />\r\n"
@@ -521,7 +529,10 @@ literal|"<entity name='se' processor='SolrEntityProcessor' query='id:${db.dbid_s
 operator|+
 literal|"     url='"
 operator|+
-name|SOLR_SOURCE_URL
+name|getSourceUrl
+argument_list|(
+name|port
+argument_list|)
 operator|+
 literal|"' fields='id,desc'>\r\n"
 operator|+
@@ -536,19 +547,8 @@ operator|+
 literal|"</document>\r\n"
 operator|+
 literal|"</dataConfig>\r\n"
-decl_stmt|;
-DECL|field|instance
-specifier|private
-name|SolrInstance
-name|instance
-init|=
-literal|null
-decl_stmt|;
-DECL|field|jetty
-specifier|private
-name|JettySolrRunner
-name|jetty
-decl_stmt|;
+return|;
+block|}
 DECL|method|generateDIHConfig
 specifier|private
 specifier|static
@@ -557,6 +557,9 @@ name|generateDIHConfig
 parameter_list|(
 name|String
 name|options
+parameter_list|,
+name|int
+name|port
 parameter_list|)
 block|{
 return|return
@@ -568,7 +571,10 @@ literal|"<entity name='se' processor='SolrEntityProcessor'"
 operator|+
 literal|"   url='"
 operator|+
-name|SOLR_SOURCE_URL
+name|getSourceUrl
+argument_list|(
+name|port
+argument_list|)
 operator|+
 literal|"' "
 operator|+
@@ -579,6 +585,24 @@ operator|+
 literal|"</document>\r\n"
 operator|+
 literal|"</dataConfig>\r\n"
+return|;
+block|}
+DECL|method|getSourceUrl
+specifier|private
+specifier|static
+name|String
+name|getSourceUrl
+parameter_list|(
+name|int
+name|port
+parameter_list|)
+block|{
+return|return
+literal|"http://localhost:"
+operator|+
+name|port
+operator|+
+literal|"/solr"
 return|;
 block|}
 comment|//TODO: fix this test to close its directories
@@ -781,6 +805,11 @@ argument_list|(
 name|generateDIHConfig
 argument_list|(
 literal|"query='*:*' rows='2' fields='id,desc' onError='skip'"
+argument_list|,
+name|jetty
+operator|.
+name|getLocalPort
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -892,6 +921,11 @@ argument_list|(
 name|generateDIHConfig
 argument_list|(
 literal|"query='*:*' fq='desc:Description1*,desc:Description*2' rows='2'"
+argument_list|,
+name|jetty
+operator|.
+name|getLocalPort
+argument_list|()
 argument_list|)
 argument_list|,
 name|map
@@ -979,6 +1013,11 @@ argument_list|(
 name|generateDIHConfig
 argument_list|(
 literal|"query='*:*' fields='id' rows='2'"
+argument_list|,
+name|jetty
+operator|.
+name|getLocalPort
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1093,7 +1132,13 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|DIH_CONFIG_TAGS_INNER_ENTITY
+name|getDihConfigTagsInnerEntity
+argument_list|(
+name|jetty
+operator|.
+name|getLocalPort
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1214,6 +1259,11 @@ argument_list|(
 name|generateDIHConfig
 argument_list|(
 literal|"query='*:*' rows='2' fields='id,desc' onError='skip'"
+argument_list|,
+name|jetty
+operator|.
+name|getLocalPort
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1279,6 +1329,11 @@ argument_list|(
 name|generateDIHConfig
 argument_list|(
 literal|"query='bogus:3' rows='2' fields='id,desc' onError='abort'"
+argument_list|,
+name|jetty
+operator|.
+name|getLocalPort
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1396,6 +1451,11 @@ argument_list|(
 name|generateDIHConfig
 argument_list|(
 literal|"query='*:*' rows='6' numThreads='4'"
+argument_list|,
+name|jetty
+operator|.
+name|getLocalPort
+argument_list|()
 argument_list|)
 argument_list|,
 name|map
@@ -1660,7 +1720,13 @@ init|=
 operator|new
 name|URL
 argument_list|(
-name|SOLR_SOURCE_URL
+name|getSourceUrl
+argument_list|(
+name|jetty
+operator|.
+name|getLocalPort
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|CommonsHttpSolrServer
@@ -1932,18 +1998,6 @@ name|System
 operator|.
 name|setProperty
 argument_list|(
-literal|"solr.solr.home"
-argument_list|,
-name|instance
-operator|.
-name|getHomeDir
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
 literal|"solr.data.dir"
 argument_list|,
 name|instance
@@ -1958,9 +2012,14 @@ init|=
 operator|new
 name|JettySolrRunner
 argument_list|(
+name|instance
+operator|.
+name|getHomeDir
+argument_list|()
+argument_list|,
 literal|"/solr"
 argument_list|,
-literal|8983
+literal|0
 argument_list|)
 decl_stmt|;
 name|jetty

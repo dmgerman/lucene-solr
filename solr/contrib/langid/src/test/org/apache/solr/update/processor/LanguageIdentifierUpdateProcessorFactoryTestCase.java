@@ -405,11 +405,11 @@ literal|"4es"
 argument_list|,
 literal|"name"
 argument_list|,
-literal|"Lucene"
+literal|"EspaÃ±ol"
 argument_list|,
 literal|"subject"
 argument_list|,
-literal|"Lucene es un API de cÃ³digo abierto para recuperaciÃ³n de informaciÃ³n, originalmente implementada en Java por Doug Cutting. EstÃ¡ apoyado por el Apache Software Foundation y se distribuye bajo la Apache Software License. Lucene tiene versiones para otros lenguajes incluyendo Delphi, Perl, C#, C++, Python, Ruby y PHP."
+literal|"El espaÃ±ol, como las otras lenguas romances, es una continuaciÃ³n moderna del latÃ­n hablado (denominado latÃ­n vulgar), desde el siglo III, que tras el desmembramiento del Imperio romano fue divergiendo de las otras variantes del latÃ­n que se hablaban en las distintas provincias del antiguo Imperio, dando lugar mediante una lenta evoluciÃ³n a las distintas lenguas romances. Debido a su propagaciÃ³n por AmÃ©rica, el espaÃ±ol es, con diferencia, la lengua romance que ha logrado mayor difusiÃ³n."
 argument_list|)
 expr_stmt|;
 name|assertLang
@@ -546,6 +546,143 @@ argument_list|,
 literal|"subject"
 argument_list|,
 literal|"Apache Lucene, ou simplesmente Lucene, Ã© um software de busca e uma API de indexaÃ§Ã£o de documentos, escrito na linguagem de programaÃ§Ã£o Java. Ã um software de cÃ³digo aberto da Apache Software Foundation licenciado atravÃ©s da licenÃ§a Apache."
+argument_list|)
+expr_stmt|;
+comment|// New in Tika1.0
+name|assertLang
+argument_list|(
+literal|"ca"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"13ca"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"Catalan"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"El catalÃ  posseeix dos estÃ ndards principals: el regulat per l'Institut d'Estudis Catalans, o estÃ ndard general, que pren com a base l'ortografia establerta per Pompeu Fabra amb els trets gramaticals i ortogrÃ fics caracterÃ­stics del catalÃ  central; i el regulat per l'AcadÃ¨mia Valenciana de la Llengua, estÃ ndard d'Ã mbit restringit, centrat en l'estandarditzaciÃ³ del valenciÃ  i que pren com a base les Normes de CastellÃ³, Ã©s a dir, l'ortografia de Pompeu Fabra perÃ² mÃ©s adaptada a la pronÃºncia del catalÃ  occidental i als trets que caracteritzen els dialectes valencians."
+argument_list|)
+expr_stmt|;
+name|assertLang
+argument_list|(
+literal|"be"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"14be"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"Belarusian"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ÐÐ°ÑÑÑÐ¿Ð½Ð°Ð¹ Ð±ÑÐ¹Ð½Ð¾Ð¹ Ð´Ð·ÑÑÐ¶Ð°Ð²Ð°Ð¹ Ð½Ð° Ð±ÐµÐ»Ð°ÑÑÑÐºÐ°Ð¹ Ð·ÑÐ¼Ð»Ñ Ð±ÑÐ»Ð¾ ÐÑÐ»ÑÐºÐ°Ðµ ÐºÐ½ÑÑÑÐ²Ð° ÐÑÑÐ¾ÑÑÐºÐ°Ðµ, Ð ÑÑÐºÐ°Ðµ Ñ ÐÐ°Ð¼Ð¾Ð¹ÑÐºÐ°Ðµ (ÐÐÐ). ÐÐ°Ð´ÑÐ°Ñ ÑÑÐ²Ð°ÑÑÐ½Ð½Ñ Ñ Ð¿Ð°ÑÐ°ÑÐºÐ¾Ð²Ð°Ð³Ð° ÑÐ°Ð·Ð²ÑÑÑÑ Ð³ÑÑÐ°Ð¹ Ð´Ð·ÑÑÐ¶Ð°Ð²Ñ Ð½Ð°Ð¹Ð±ÑÐ¹Ð½ÐµÐ¹ÑÑÐ¼ Ñ Ð°ÑÐ½Ð¾ÑÐ½ÑÐ¼ ÑÐµ ÑÑÐ½ÑÑÐ°Ð¼ Ð±ÑÑ ÐÐ¾Ð²Ð°Ð³Ð°ÑÐ¾Ð´Ð°Ðº. ÐÐºÑÐ°Ð¼Ñ ÑÑÑÐ°ÑÐ½ÑÑ Ð·ÐµÐ¼Ð»ÑÑ ÐÐµÐ»Ð°ÑÑÑÑ, Ñ ÑÐºÐ»Ð°Ð´ Ð³ÑÑÐ°Ð¹ Ð´Ð·ÑÑÐ¶Ð°Ð²Ñ ÑÐ²Ð°ÑÐ¾Ð´Ð·ÑÐ»Ñ ÑÐ°ÐºÑÐ°Ð¼Ð° Ð·ÐµÐ¼Ð»Ñ ÑÑÑÐ°ÑÐ½Ð°Ð¹ ÐÑÑÐ²Ñ, Ð¿Ð°ÑÐ½Ð¾ÑÐ½Ð°Ñ ÑÐ°ÑÑÐºÐ° ÑÑÑÐ°ÑÐ½Ð°Ð¹ Ð£ÐºÑÐ°ÑÐ½Ñ Ñ ÑÐ°ÑÑÐºÐ° ÑÑÑÐ°ÑÐ½Ð°Ð¹ Ð Ð°ÑÑÑ."
+argument_list|)
+expr_stmt|;
+name|assertLang
+argument_list|(
+literal|"eo"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"15eo"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"Esperanto"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"La vortprovizo de Esperanto devenas plejparte el la okcidenteÅ­ropaj lingvoj, dum Äia sintakso kaj morfologio montras ankaÅ­ slavlingvan influon. La morfemoj ne ÅanÄiÄas kaj oni povas ilin preskaÅ­ senlime kombini, kreante diverssignifajn vortojn, Esperanto do havas multajn kunaÄµojn kun la analizaj lingvoj, al kiuj apartenas ekzemple la Äina; kontraÅ­e la interna strukturo de Esperanto certagrade respegulas la aglutinajn lingvojn, kiel la japanan, svahilan aÅ­ turkan."
+argument_list|)
+expr_stmt|;
+name|assertLang
+argument_list|(
+literal|"gl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"16gl"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"Galician"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"A cifra de falantes medrou axiÃ±a durante as dÃ©cadas seguintes, nun principio no Imperio ruso e na Europa oriental, logo na Europa occidental, AmÃ©rica, China e no XapÃ³n. Nos primeiros anos do movemento, os esperantistas mantiÃ±an contacto por correspondencia, pero en 1905 o primeiro Congreso Universal de Esperanto levouse a cabo na cidade francesa de Boulogne-sur-Mer. Dende entÃ³n, os congresos mundiais organizÃ¡ronse nos cinco continentes ano tras ano agÃ¡s durante as dÃºas Guerras Mundiais."
+argument_list|)
+expr_stmt|;
+name|assertLang
+argument_list|(
+literal|"ro"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"17ro"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"Romanian"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"La momentul destrÄmÄrii Uniunii Sovietice Èi a Ã®nlÄturÄrii regimului comunist instalat Ã®n RomÃ¢nia (1989), Èara a iniÈiat o serie de reforme economice Èi politice. DupÄ un deceniu de probleme economice, RomÃ¢nia a introdus noi reforme economice de ordin general (precum cota unicÄ de impozitare, Ã®n 2005) Èi a aderat la Uniunea EuropeanÄ la 1 ianuarie 2007."
+argument_list|)
+expr_stmt|;
+name|assertLang
+argument_list|(
+literal|"sk"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"18sk"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"Slovakian"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"Boli vytvorenÃ© dva nÃ¡rodnÃ© parlamenty - ÄeskÃ¡ nÃ¡rodnÃ¡ rada a SlovenskÃ¡ nÃ¡rodnÃ¡ rada a spoloÄnÃ½ jednokomorovÃ½ Äesko-slovenskÃ½ parlament bol premenovanÃ½ z NÃ¡rodnÃ©ho zhromaÅ¾denia na FederÃ¡lne zhromaÅ¾denie s dvoma komorami - SnemovÅou Ä¾udu a SnemovÅu nÃ¡rodov."
+argument_list|)
+expr_stmt|;
+name|assertLang
+argument_list|(
+literal|"sl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"19sl"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"Slovenian"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"Slovenska Wikipedija je razliÄica spletne enciklopedije Wikipedije v slovenskem jeziku. Projekt slovenske Wikipedije se je zaÄel 26. februarja 2002 z ustanovitvijo njene spletne strani, njen pobudnik pa je bil uporabnik Jani Melik."
+argument_list|)
+expr_stmt|;
+name|assertLang
+argument_list|(
+literal|"uk"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"20uk"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"Ukrainian"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ÐÐ°ÑÐ¾Ð´Ð½Ð¾-Ð³Ð¾ÑÐ¿Ð¾Ð´Ð°ÑÑÑÐºÐ¸Ð¹ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑ ÐºÑÐ°ÑÐ½Ð¸ Ð²ÐºÐ»ÑÑÐ°Ñ ÑÐ°ÐºÑ Ð²Ð¸Ð´Ð¸ Ð¿ÑÐ¾Ð¼Ð¸ÑÐ»Ð¾Ð²Ð¾ÑÑÑ ÑÐº Ð²Ð°Ð¶ÐºÐµ Ð¼Ð°ÑÐ¸Ð½Ð¾Ð±ÑÐ´ÑÐ²Ð°Ð½Ð½Ñ, ÑÐ¾ÑÐ½Ð° ÑÐ° ÐºÐ¾Ð»ÑÐ¾ÑÐ¾Ð²Ð° Ð¼ÐµÑÐ°Ð»ÑÑÐ³ÑÑ, ÑÑÐ´Ð½Ð¾Ð±ÑÐ´ÑÐ²Ð°Ð½Ð½Ñ, Ð²Ð¸ÑÐ¾Ð±Ð½Ð¸ÑÑÐ²Ð¾ Ð°Ð²ÑÐ¾Ð±ÑÑÑÐ², Ð»ÐµÐ³ÐºÐ¾Ð²Ð¸Ñ ÑÐ° Ð²Ð°Ð½ÑÐ°Ð¶Ð½Ð¸Ñ Ð°Ð²ÑÐ¾Ð¼Ð¾Ð±ÑÐ»ÑÐ², ÑÑÐ°ÐºÑÐ¾ÑÑÐ² ÑÐ° ÑÐ½ÑÐ¾Ñ ÑÑÐ»ÑÑÑÐºÐ¾Ð³Ð¾ÑÐ¿Ð¾Ð´Ð°ÑÑÑÐºÐ¾Ñ ÑÐµÑÐ½ÑÐºÐ¸, ÑÐµÐ¿Ð»Ð¾Ð²Ð¾Ð·ÑÐ², Ð²ÐµÑÑÑÐ°ÑÑÐ², ÑÑÑÐ±ÑÐ½, Ð°Ð²ÑÐ°ÑÑÐ¹Ð½Ð¸Ñ Ð´Ð²Ð¸Ð³ÑÐ½ÑÐ² ÑÐ° Ð»ÑÑÐ°ÐºÑÐ², Ð¾Ð±Ð»Ð°Ð´Ð½Ð°Ð½Ð½Ñ Ð´Ð»Ñ ÐµÐ»ÐµÐºÑÑÐ¾ÑÑÐ°Ð½ÑÑÐ¹, Ð½Ð°ÑÑÐ¾-Ð³Ð°Ð·Ð¾Ð²Ð¾Ñ ÑÐ° ÑÑÐ¼ÑÑÐ½Ð¾Ñ Ð¿ÑÐ¾Ð¼Ð¸ÑÐ»Ð¾Ð²Ð¾ÑÑÑ ÑÐ¾ÑÐ¾. ÐÑÑÐ¼ ÑÐ¾Ð³Ð¾, Ð£ÐºÑÐ°ÑÐ½Ð° Ñ Ð¿Ð¾ÑÑÐ¶Ð½Ð¸Ð¼ Ð²Ð¸ÑÐ¾Ð±Ð½Ð¸ÐºÐ¾Ð¼ ÐµÐ»ÐµÐºÑÑÐ¾ÐµÐ½ÐµÑÐ³ÑÑ. Ð£ÐºÑÐ°ÑÐ½Ð° Ð¼Ð°Ñ ÑÐ¾Ð·Ð²Ð¸Ð½ÑÑÐµ ÑÑÐ»ÑÑÑÐºÐµ Ð³Ð¾ÑÐ¿Ð¾Ð´Ð°ÑÑÑÐ²Ð¾ Ñ Ð·Ð°Ð¹Ð¼Ð°Ñ Ð¾Ð´Ð½Ðµ Ð· Ð¿ÑÐ¾Ð²ÑÐ´Ð½Ð¸Ñ Ð¼ÑÑÑÑ ÑÐµÑÐµÐ´ ÐµÐºÑÐ¿Ð¾ÑÑÐµÑÑÐ² Ð´ÐµÑÐºÐ¸Ñ Ð²Ð¸Ð´ÑÐ² ÑÑÐ»ÑÑÑÐºÐ¾Ð³Ð¾ÑÐ¿Ð¾Ð´Ð°ÑÑÑÐºÐ¾Ñ Ð¿ÑÐ¾Ð´ÑÐºÑÑÑ Ñ Ð¿ÑÐ¾Ð´Ð¾Ð²Ð¾Ð»ÑÑÑÐ²Ð° (Ð·Ð¾ÐºÑÐµÐ¼Ð°, ÑÐ¾Ð½ÑÑÐ½Ð¸ÐºÐ¾Ð²Ð¾Ñ Ð¾Ð»ÑÑ)."
 argument_list|)
 expr_stmt|;
 block|}

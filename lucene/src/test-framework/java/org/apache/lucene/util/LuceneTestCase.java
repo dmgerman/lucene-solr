@@ -1734,10 +1734,22 @@ block|{
 comment|// preflex-only setup
 name|codec
 operator|=
-operator|new
-name|PreFlexRWCodec
-argument_list|()
+name|Codec
+operator|.
+name|forName
+argument_list|(
+literal|"Lucene3x"
+argument_list|)
 expr_stmt|;
+assert|assert
+operator|(
+name|codec
+operator|instanceof
+name|PreFlexRWCodec
+operator|)
+operator|:
+literal|"fix your classpath to have tests-framework.jar before lucene-core.jar"
+assert|;
 name|PREFLEX_IMPERSONATION_IS_ACTIVE
 operator|=
 literal|true

@@ -1677,12 +1677,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|isIndexed
-operator|&&
-operator|!
-name|fi
-operator|.
-name|omitNorms
+name|normsPresent
+argument_list|()
 condition|)
 block|{
 return|return

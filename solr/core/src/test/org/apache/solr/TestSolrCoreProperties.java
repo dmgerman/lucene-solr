@@ -245,16 +245,6 @@ name|System
 operator|.
 name|setProperty
 argument_list|(
-literal|"solr.solr.home"
-argument_list|,
-name|getHomeDir
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
 literal|"solr.data.dir"
 argument_list|,
 name|getDataDir
@@ -266,6 +256,9 @@ operator|=
 operator|new
 name|JettySolrRunner
 argument_list|(
+name|getHomeDir
+argument_list|()
+argument_list|,
 literal|"/solr"
 argument_list|,
 literal|0
