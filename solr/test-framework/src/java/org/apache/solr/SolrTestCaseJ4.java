@@ -767,7 +767,7 @@ condition|(
 name|retries
 operator|++
 operator|>
-literal|15
+literal|30
 condition|)
 block|{
 break|break;
