@@ -7395,7 +7395,7 @@ name|s
 operator|.
 name|setSoTimeout
 argument_list|(
-literal|30000
+literal|45000
 argument_list|)
 expr_stmt|;
 name|s
