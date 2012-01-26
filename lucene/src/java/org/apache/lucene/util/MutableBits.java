@@ -42,16 +42,6 @@ name|int
 name|count
 parameter_list|()
 function_decl|;
-comment|// nocommit: are these truly necessary?
-DECL|method|getAndClear
-specifier|public
-name|boolean
-name|getAndClear
-parameter_list|(
-name|int
-name|bit
-parameter_list|)
-function_decl|;
 DECL|method|clone
 specifier|public
 name|MutableBits
