@@ -786,7 +786,7 @@ name|stop
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @param coreContainer if null, recovery will not be enabled    * @param zkServerAddress    * @param zkClientTimeout    * @param zkClientConnectTimeout    * @param localHost    * @param locaHostPort    * @param localHostContext    * @param numShards     * @throws InterruptedException    * @throws TimeoutException    * @throws IOException    */
+comment|/**    * @param cc if null, recovery will not be enabled    * @param zkServerAddress    * @param zkClientTimeout    * @param zkClientConnectTimeout    * @param localHost    * @param locaHostPort    * @param localHostContext    * @param registerOnReconnect    * @throws InterruptedException    * @throws TimeoutException    * @throws IOException    */
 DECL|method|ZkController
 specifier|public
 name|ZkController
@@ -2013,7 +2013,7 @@ return|return
 name|configName
 return|;
 block|}
-comment|/**    * Register shard with ZooKeeper.    *     * @param coreName    * @param cloudDesc    * @return    * @throws Exception     */
+comment|/**    * Register shard with ZooKeeper.    *     * @param coreName    * @param desc    * @return the shardId for the SolrCore    * @throws Exception    */
 DECL|method|register
 specifier|public
 name|String
@@ -2040,7 +2040,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Register shard with ZooKeeper.    *     * @param coreName    * @param desc    * @param recoverReloadedCores    * @return    * @throws Exception    */
+comment|/**    * Register shard with ZooKeeper.    *     * @param coreName    * @param desc    * @param recoverReloadedCores    * @return the shardId for the SolrCore    * @throws Exception    */
 DECL|method|register
 specifier|public
 name|String

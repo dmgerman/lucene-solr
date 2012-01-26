@@ -142,7 +142,7 @@ specifier|public
 class|class
 name|AssignShard
 block|{
-comment|/**    * Assign a new unique id up to slices count - then add replicas evenly.    *     * @param collection    *     * @param slices    * @return    * @throws InterruptedException    * @throws KeeperException    */
+comment|/**    * Assign a new unique id up to slices count - then add replicas evenly.    *     * @param collection    * @param state    * @return    */
 DECL|method|assignShard
 specifier|public
 specifier|static

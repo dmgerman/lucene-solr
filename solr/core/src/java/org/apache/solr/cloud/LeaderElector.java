@@ -851,7 +851,7 @@ return|return
 name|intSeqs
 return|;
 block|}
-comment|/**    * Begin participating in the election process. Gets a new sequential number    * and begins watching the node with the sequence number before it, unless it    * is the lowest number, in which case, initiates the leader process. If the    * node that is watched goes down, check if we are the new lowest node, else    * watch the next lowest numbered node.    *     * @param context    * @param SolrCore - optional - sometimes null    * @return sequential node number    * @throws KeeperException    * @throws InterruptedException    * @throws IOException     * @throws UnsupportedEncodingException    */
+comment|/**    * Begin participating in the election process. Gets a new sequential number    * and begins watching the node with the sequence number before it, unless it    * is the lowest number, in which case, initiates the leader process. If the    * node that is watched goes down, check if we are the new lowest node, else    * watch the next lowest numbered node.    *     * @param context    * @return sequential node number    * @throws KeeperException    * @throws InterruptedException    * @throws IOException     * @throws UnsupportedEncodingException    */
 DECL|method|joinElection
 specifier|public
 name|int
@@ -1095,7 +1095,7 @@ return|return
 name|seq
 return|;
 block|}
-comment|/**    * Set up any ZooKeeper nodes needed for leader election.    *     * @param shardId    * @param collection    * @throws InterruptedException    * @throws KeeperException    */
+comment|/**    * Set up any ZooKeeper nodes needed for leader election.    *     * @param context    * @throws InterruptedException    * @throws KeeperException    */
 DECL|method|setup
 specifier|public
 name|void
