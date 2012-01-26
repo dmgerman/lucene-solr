@@ -1450,7 +1450,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|150
+literal|90
 condition|;
 name|i
 operator|++
@@ -1504,7 +1504,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|200
+literal|500
 argument_list|)
 expr_stmt|;
 block|}
