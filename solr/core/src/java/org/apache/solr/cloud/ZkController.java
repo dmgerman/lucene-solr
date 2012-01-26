@@ -2483,6 +2483,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|didRecovery
 condition|)
 block|{
@@ -2604,6 +2605,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * @param coreName    * @param desc    * @param recoverReloadedCores    * @param isLeader    * @param cloudDesc    * @param collection    * @param shardZkNodeName    * @param shardId    * @param leaderProps    * @param core    * @param cc    * @return whether or not a recovery was started    * @throws InterruptedException    * @throws KeeperException    * @throws IOException    * @throws ExecutionException    */
 DECL|method|checkRecovery
 specifier|private
 name|boolean
