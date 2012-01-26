@@ -10111,6 +10111,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// Must close before checkpoint, otherwise IFD won't be
+comment|// able to delete the held-open files from the merge
+comment|// readers:
+name|closeMergeReaders
+argument_list|(
+name|merge
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 comment|// Must note the change to segmentInfos so any commits
 comment|// in-flight don't lose it:
 name|checkpoint
@@ -10139,13 +10149,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|closeMergeReaders
-argument_list|(
-name|merge
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|merge
@@ -13043,13 +13046,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StringBuilder
-name|buffer
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
 return|return
 name|info
 operator|.
