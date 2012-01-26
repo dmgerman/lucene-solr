@@ -89,7 +89,7 @@ name|max
 expr_stmt|;
 block|}
 block|}
-comment|/**    * works up to 65537 before requested num of ranges is one short    *     * @param partitions    * @return    */
+comment|/**    * works up to 65537 before requested num of ranges is one short    *     * @param partitions    * @return Range for each partition    */
 DECL|method|partitionRange
 specifier|public
 name|List
