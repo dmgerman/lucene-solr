@@ -168,6 +168,16 @@ name|Tokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/** Tests {@link BeiderMorseFilter} */
 end_comment
@@ -663,6 +673,11 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Ignore
+argument_list|(
+literal|"broken: causes OOM on some strings (https://issues.apache.org/jira/browse/CODEC-132)"
+argument_list|)
 DECL|method|testRandom
 specifier|public
 name|void
