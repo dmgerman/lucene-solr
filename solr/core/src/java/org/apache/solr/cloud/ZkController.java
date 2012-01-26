@@ -2377,8 +2377,84 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isLeader
+condition|)
+block|{
+comment|// recover from local transaction log and wait for it to complete before
+comment|// going active
+comment|// TODO: should this be moved to another thread? To recoveryStrat?
+comment|// TODO: should this actually be done earlier, before (or as part of)
+comment|// leader election perhaps?
+comment|// TODO: ensure that a replica that is trying to recover waits until I'm
+comment|// active (or don't make me the
+comment|// leader until my local replay is done. But this replay is only needed
+comment|// on the leader - replicas
+comment|// will do recovery anyway
+name|UpdateLog
+name|ulog
+init|=
+name|core
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getUpdateLog
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|core
+operator|.
+name|isReloaded
+argument_list|()
+operator|&&
+name|ulog
+operator|!=
+literal|null
+condition|)
+block|{
+name|Future
+argument_list|<
+name|UpdateLog
+operator|.
+name|RecoveryInfo
+argument_list|>
+name|recoveryFuture
+init|=
+name|core
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getUpdateLog
+argument_list|()
+operator|.
+name|recoverFromLog
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|recoveryFuture
+operator|!=
+literal|null
+condition|)
+block|{
+name|recoveryFuture
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
+comment|// NOTE: this could potentially block for
+comment|// minutes or more!
+comment|// TODO: public as recovering in the mean time?
+block|}
+block|}
+block|}
 name|boolean
-name|startRecovery
+name|didRecovery
 init|=
 name|checkRecovery
 argument_list|(
@@ -2407,8 +2483,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-operator|!
-name|startRecovery
+name|didRecovery
 condition|)
 block|{
 name|publishAsActive
@@ -2588,88 +2663,9 @@ literal|true
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|isLeader
 condition|)
-block|{
-name|doRecovery
-operator|=
-literal|false
-expr_stmt|;
-comment|// recover from local transaction log and wait for it to complete before
-comment|// going active
-comment|// TODO: should this be moved to another thread? To recoveryStrat?
-comment|// TODO: should this actually be done earlier, before (or as part of)
-comment|// leader election perhaps?
-comment|// TODO: ensure that a replica that is trying to recover waits until I'm
-comment|// active (or don't make me the
-comment|// leader until my local replay is done. But this replay is only needed
-comment|// on the leader - replicas
-comment|// will do recovery anyway
-name|UpdateLog
-name|ulog
-init|=
-name|core
-operator|.
-name|getUpdateHandler
-argument_list|()
-operator|.
-name|getUpdateLog
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|core
-operator|.
-name|isReloaded
-argument_list|()
-operator|&&
-name|ulog
-operator|!=
-literal|null
-condition|)
-block|{
-name|Future
-argument_list|<
-name|UpdateLog
-operator|.
-name|RecoveryInfo
-argument_list|>
-name|recoveryFuture
-init|=
-name|core
-operator|.
-name|getUpdateHandler
-argument_list|()
-operator|.
-name|getUpdateLog
-argument_list|()
-operator|.
-name|recoverFromLog
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|recoveryFuture
-operator|!=
-literal|null
-condition|)
-block|{
-name|recoveryFuture
-operator|.
-name|get
-argument_list|()
-expr_stmt|;
-comment|// NOTE: this could potentially block for
-comment|// minutes or more!
-comment|// TODO: public as recovering in the mean time?
-block|}
-block|}
-return|return
-literal|false
-return|;
-block|}
-else|else
 block|{
 if|if
 condition|(
@@ -2686,7 +2682,6 @@ name|doRecovery
 operator|=
 literal|false
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(
@@ -2724,6 +2719,7 @@ expr_stmt|;
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
