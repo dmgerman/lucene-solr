@@ -6528,16 +6528,7 @@ name|delCount
 init|=
 name|flushedSegment
 operator|.
-name|segmentInfo
-operator|.
-name|docCount
-operator|-
-name|flushedSegment
-operator|.
-name|liveDocs
-operator|.
-name|count
-argument_list|()
+name|delCount
 decl_stmt|;
 assert|assert
 name|delCount

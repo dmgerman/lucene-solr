@@ -126,6 +126,11 @@ specifier|final
 name|int
 name|numDocs
 decl_stmt|;
+DECL|field|delCountOnFlush
+specifier|public
+name|int
+name|delCountOnFlush
+decl_stmt|;
 comment|// Deletes to apply while we are flushing the segment.  A
 comment|// Term is enrolled in here if it was deleted at one
 comment|// point, and it's mapped to the docIDUpto, meaning any
@@ -330,6 +335,12 @@ operator|=
 name|state
 operator|.
 name|segDeletes
+expr_stmt|;
+name|delCountOnFlush
+operator|=
+name|state
+operator|.
+name|delCountOnFlush
 expr_stmt|;
 block|}
 block|}
