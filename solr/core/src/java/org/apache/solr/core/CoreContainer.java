@@ -2751,6 +2751,19 @@ init|(
 name|cores
 init|)
 block|{
+if|if
+condition|(
+name|isShutDown
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"This CoreContainer has been shutdown"
+argument_list|)
+throw|;
+block|}
 name|old
 operator|=
 name|cores
