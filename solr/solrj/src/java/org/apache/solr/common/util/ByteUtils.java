@@ -472,7 +472,7 @@ name|n
 argument_list|)
 return|;
 block|}
-comment|/** Writes UTF8 into the byte array, starting at offset.  The caller should ensure that    * there is enough space for the worst-case scenario.    * @returns the number of bytes written    */
+comment|/** Writes UTF8 into the byte array, starting at offset.  The caller should ensure that    * there is enough space for the worst-case scenario.    * @return the number of bytes written    */
 DECL|method|UTF16toUTF8
 specifier|public
 specifier|static
