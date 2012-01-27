@@ -753,9 +753,20 @@ argument_list|(
 name|VERBOSE
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|commit
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// we don't care if this commit fails on some nodes
+block|}
 name|updateMappingsFromZk
 argument_list|(
 name|jettys
