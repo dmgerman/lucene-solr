@@ -1403,7 +1403,7 @@ name|term
 operator|!=
 literal|null
 assert|;
-name|int
+name|long
 name|docFreq
 init|=
 literal|0
@@ -1489,7 +1489,7 @@ operator|!=
 literal|null
 assert|;
 block|}
-name|int
+name|long
 name|nodeDocFreq
 init|=
 name|subStats
@@ -1585,7 +1585,7 @@ block|{
 comment|// TODO: we could compute this on init and cache,
 comment|// since we are re-inited whenever any nodes have a
 comment|// new reader
-name|int
+name|long
 name|docCount
 init|=
 literal|0
@@ -1600,7 +1600,7 @@ name|sumDocFreq
 init|=
 literal|0
 decl_stmt|;
-name|int
+name|long
 name|maxDoc
 init|=
 literal|0
@@ -1724,7 +1724,7 @@ literal|" field="
 operator|+
 name|field
 assert|;
-name|int
+name|long
 name|nodeDocCount
 init|=
 name|nodeStats

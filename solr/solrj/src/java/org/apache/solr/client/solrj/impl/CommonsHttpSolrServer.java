@@ -2275,6 +2275,9 @@ throw|throw
 operator|new
 name|SolrServerException
 argument_list|(
+name|getBaseURL
+argument_list|()
+argument_list|,
 name|e
 argument_list|)
 throw|;
@@ -2289,6 +2292,9 @@ throw|throw
 operator|new
 name|SolrServerException
 argument_list|(
+name|getBaseURL
+argument_list|()
+argument_list|,
 name|e
 argument_list|)
 throw|;

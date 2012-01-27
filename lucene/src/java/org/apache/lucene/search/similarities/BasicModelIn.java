@@ -77,7 +77,7 @@ name|float
 name|tfn
 parameter_list|)
 block|{
-name|int
+name|long
 name|N
 init|=
 name|stats
@@ -85,7 +85,7 @@ operator|.
 name|getNumberOfDocuments
 argument_list|()
 decl_stmt|;
-name|int
+name|long
 name|n
 init|=
 name|stats

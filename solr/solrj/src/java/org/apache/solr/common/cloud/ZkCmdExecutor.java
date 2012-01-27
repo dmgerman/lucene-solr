@@ -199,7 +199,7 @@ operator|=
 name|retryDelay
 expr_stmt|;
 block|}
-comment|/**    * Perform the given operation, retrying if the connection fails    *     * @return    * @throws IOException     */
+comment|/**    * Perform the given operation, retrying if the connection fails    *     * @throws IOException     */
 annotation|@
 name|SuppressWarnings
 argument_list|(

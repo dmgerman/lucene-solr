@@ -1507,6 +1507,25 @@ operator|==
 name|method
 condition|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: now addIndexes count="
+operator|+
+name|dirs
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+block|}
 name|writer
 operator|.
 name|addIndexes
@@ -1514,6 +1533,21 @@ argument_list|(
 name|dirs
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: now forceMerge"
+argument_list|)
+expr_stmt|;
+block|}
 name|writer
 operator|.
 name|forceMerge

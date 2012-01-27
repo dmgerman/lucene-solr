@@ -709,15 +709,7 @@ name|leaderProps
 argument_list|)
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"there is a better leader candidate it appears"
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("there is a better leader candidate it appears");
 name|rejoinLeaderElection
 argument_list|(
 name|leaderSeqPath

@@ -382,10 +382,10 @@ specifier|public
 name|float
 name|idf
 parameter_list|(
-name|int
+name|long
 name|docFreq
 parameter_list|,
-name|int
+name|long
 name|numDocs
 parameter_list|)
 block|{

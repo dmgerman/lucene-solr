@@ -870,7 +870,7 @@ name|poll
 argument_list|(
 name|softCommitWaitMillis
 operator|*
-literal|2
+literal|3
 argument_list|,
 name|MILLISECONDS
 argument_list|)

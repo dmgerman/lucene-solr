@@ -454,7 +454,11 @@ init|=
 operator|new
 name|DocTermOrds
 argument_list|(
+operator|new
+name|SlowMultiReaderWrapper
+argument_list|(
 name|r
+argument_list|)
 argument_list|,
 literal|"field"
 argument_list|)

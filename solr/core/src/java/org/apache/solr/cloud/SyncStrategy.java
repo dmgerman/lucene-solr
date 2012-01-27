@@ -365,17 +365,8 @@ name|ZkNodeProps
 name|leaderProps
 parameter_list|)
 block|{
-name|zkController
-operator|.
-name|publish
-argument_list|(
-name|core
-argument_list|,
-name|ZkStateReader
-operator|.
-name|SYNC
-argument_list|)
-expr_stmt|;
+comment|// TODO: look at our state usage of sync
+comment|// zkController.publish(core, ZkStateReader.SYNC);
 comment|// solrcloud_debug
 comment|// System.out.println("SYNC UP");
 name|boolean
