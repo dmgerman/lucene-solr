@@ -696,19 +696,44 @@ operator|!=
 literal|0
 condition|)
 block|{
+comment|// NOTE: some other tests don't use this base class and hence won't reset the counts.
 name|log
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"startTrackingSearchers: numOpens="
 operator|+
 name|numOpens
 operator|+
-literal|"numCloses="
+literal|" numCloses="
 operator|+
 name|numCloses
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|()
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|""
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 name|numOpens
 operator|=
 name|numCloses
