@@ -1129,7 +1129,7 @@ comment|// to change it but it's been shared to an external NRT
 comment|// reader).
 DECL|field|liveDocs
 specifier|public
-name|MutableBits
+name|Bits
 name|liveDocs
 decl_stmt|;
 comment|// How many further deletions we've done against
@@ -1453,12 +1453,8 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// nocommit: still don't like this cast, gotta be a cleaner way.
 name|liveDocs
 operator|=
-operator|(
-name|MutableBits
-operator|)
 name|reader
 operator|.
 name|getLiveDocs
@@ -1544,9 +1540,6 @@ condition|)
 block|{
 name|liveDocs
 operator|=
-operator|(
-name|MutableBits
-operator|)
 name|mergeReader
 operator|.
 name|getLiveDocs
@@ -1612,7 +1605,12 @@ condition|(
 name|didDelete
 condition|)
 block|{
+operator|(
+operator|(
+name|MutableBits
+operator|)
 name|liveDocs
+operator|)
 operator|.
 name|clear
 argument_list|(
@@ -1958,6 +1956,9 @@ argument_list|()
 operator|.
 name|writeLiveDocs
 argument_list|(
+operator|(
+name|MutableBits
+operator|)
 name|liveDocs
 argument_list|,
 name|dir
