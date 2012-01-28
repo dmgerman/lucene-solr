@@ -1504,7 +1504,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|4000
+literal|2000
 argument_list|)
 expr_stmt|;
 name|Thread
@@ -1521,6 +1521,14 @@ name|void
 name|run
 parameter_list|()
 block|{
+name|int
+name|count
+init|=
+name|atLeast
+argument_list|(
+literal|5
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1530,10 +1538,7 @@ literal|1
 init|;
 name|i
 operator|<
-name|atLeast
-argument_list|(
-literal|15
-argument_list|)
+name|count
 condition|;
 name|i
 operator|++
@@ -1820,7 +1825,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|6000
+literal|4000
 argument_list|)
 expr_stmt|;
 name|stopStress
@@ -1876,16 +1881,7 @@ operator|.
 name|getSeq
 argument_list|()
 decl_stmt|;
-name|assertFalse
-argument_list|(
-literal|"seq is -1 and we may have a zombie leader"
-argument_list|,
-name|seq
-operator|==
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
+comment|// we have a leader we know, TODO: lets check some other things
 comment|// cleanup any threads still running
 for|for
 control|(
