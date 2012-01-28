@@ -2537,6 +2537,18 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// make sure we wait for any recoveries to stop
+name|core
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getSolrCoreState
+argument_list|()
+operator|.
+name|cancelRecovery
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
