@@ -72,6 +72,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|lucene3x
+operator|.
+name|Lucene3xCodec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|SegmentInfo
@@ -356,6 +372,18 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// we are about to write this SI in 3.x format, dropping all codec information, etc.
+comment|// so it had better be a 3.x segment or you will get very confusing errors later.
+assert|assert
+name|si
+operator|.
+name|getCodec
+argument_list|()
+operator|instanceof
+name|Lucene3xCodec
+operator|:
+literal|"broken test, trying to mix preflex with other codecs"
+assert|;
 assert|assert
 name|si
 operator|.
