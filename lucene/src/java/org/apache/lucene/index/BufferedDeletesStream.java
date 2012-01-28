@@ -961,7 +961,9 @@ name|packet
 operator|.
 name|isSegmentPrivate
 operator|:
-literal|"Packet and Segments deletegen can only match on a segment private del packet"
+literal|"Packet and Segments deletegen can only match on a segment private del packet gen="
+operator|+
+name|segGen
 assert|;
 comment|//System.out.println("  eq");
 comment|// Lock order: IW -> BD -> RP

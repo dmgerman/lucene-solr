@@ -9431,6 +9431,11 @@ comment|// deletes, but, if new deletes were flushed since
 comment|// the merge started, we must now carefully keep any
 comment|// newly flushed deletes but mapping them to the new
 comment|// docIDs.
+comment|// Since we copy-on-write, if any new deletes were
+comment|// applied after merging has started, we can just
+comment|// check if the before/after liveDocs have changed.
+comment|// If so, we must carefully merge the liveDocs one
+comment|// doc at a time:
 if|if
 condition|(
 name|currentLiveDocs
@@ -9441,6 +9446,12 @@ block|{
 comment|// This means this segment received new deletes
 comment|// since we started the merge, so we
 comment|// must merge them:
+specifier|final
+name|int
+name|startDocUpto
+init|=
+name|docUpto
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -9532,60 +9543,30 @@ block|}
 block|}
 else|else
 block|{
-specifier|final
-name|int
-name|readerDocCount
-decl_stmt|;
-if|if
-condition|(
-name|i
-operator|==
-name|sourceSegments
-operator|.
-name|size
-argument_list|()
-operator|-
-literal|1
-condition|)
-block|{
-name|readerDocCount
-operator|=
+assert|assert
 name|mergeState
 operator|.
-name|mergedDocCount
-operator|-
+name|readers
+operator|!=
+literal|null
+assert|;
+assert|assert
 name|mergeState
 operator|.
-name|docBase
-index|[
-name|i
-index|]
-expr_stmt|;
-block|}
-else|else
-block|{
-name|readerDocCount
-operator|=
-name|mergeState
-operator|.
-name|docBase
-index|[
-name|i
-operator|+
-literal|1
-index|]
-operator|-
-name|mergeState
-operator|.
-name|docBase
-index|[
-name|i
-index|]
-expr_stmt|;
-block|}
+name|segmentDocCounts
+operator|!=
+literal|null
+assert|;
 name|docUpto
 operator|+=
-name|readerDocCount
+name|mergeState
+operator|.
+name|segmentDocCounts
+operator|.
+name|get
+argument_list|(
+name|info
+argument_list|)
 expr_stmt|;
 block|}
 block|}
