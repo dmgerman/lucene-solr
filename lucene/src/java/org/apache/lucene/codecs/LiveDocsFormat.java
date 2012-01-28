@@ -106,6 +106,10 @@ name|MutableBits
 import|;
 end_import
 
+begin_comment
+comment|/** Format for live/deleted documents  * @lucene.experimental */
+end_comment
+
 begin_class
 DECL|class|LiveDocsFormat
 specifier|public
@@ -113,6 +117,7 @@ specifier|abstract
 class|class
 name|LiveDocsFormat
 block|{
+comment|/** creates a new mutablebits, with all bits set, for the specified size */
 DECL|method|newLiveDocs
 specifier|public
 specifier|abstract
@@ -125,6 +130,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** creates a new mutablebits of the same bits set and size of existing */
 DECL|method|newLiveDocs
 specifier|public
 specifier|abstract
@@ -137,6 +143,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** reads bits from a file */
 DECL|method|readLiveDocs
 specifier|public
 specifier|abstract
@@ -155,6 +162,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** writes bits to a file */
 DECL|method|writeLiveDocs
 specifier|public
 specifier|abstract
