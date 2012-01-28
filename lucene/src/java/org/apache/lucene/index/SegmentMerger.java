@@ -504,6 +504,10 @@ comment|// method that will spend alot of time.  The frequency
 comment|// of this check impacts how long
 comment|// IndexWriter.close(false) takes to actually stop the
 comment|// threads.
+name|mergeState
+operator|.
+name|mergedDocCount
+operator|=
 name|setDocMaps
 argument_list|()
 expr_stmt|;
@@ -513,13 +517,19 @@ expr_stmt|;
 name|setMatchingSegmentReaders
 argument_list|()
 expr_stmt|;
+name|int
+name|numMerged
+init|=
+name|mergeFields
+argument_list|()
+decl_stmt|;
+assert|assert
+name|numMerged
+operator|==
 name|mergeState
 operator|.
 name|mergedDocCount
-operator|=
-name|mergeFields
-argument_list|()
-expr_stmt|;
+assert|;
 specifier|final
 name|SegmentWriteState
 name|segmentWriteState
@@ -588,12 +598,11 @@ name|hasVectors
 argument_list|()
 condition|)
 block|{
-name|int
 name|numMerged
-init|=
+operator|=
 name|mergeVectors
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 assert|assert
 name|numMerged
 operator|==
@@ -1516,7 +1525,7 @@ block|}
 comment|// NOTE: removes any "all deleted" readers from mergeState.readers
 DECL|method|setDocMaps
 specifier|private
-name|void
+name|int
 name|setDocMaps
 parameter_list|()
 throws|throws
@@ -1629,8 +1638,6 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-comment|// nocommit -- assert that final doc count ==
-comment|// mergedDocCount from stored fields and term vectors
 name|mergeState
 operator|.
 name|docBase
@@ -1908,6 +1915,9 @@ name|numReadersLeft
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|docBase
+return|;
 block|}
 DECL|method|mergeTerms
 specifier|private
