@@ -1616,6 +1616,13 @@ operator|new
 name|SegmentReader
 argument_list|(
 name|reader
+operator|.
+name|getSegmentInfo
+argument_list|()
+argument_list|,
+name|reader
+operator|.
+name|core
 argument_list|,
 name|liveDocs
 argument_list|,

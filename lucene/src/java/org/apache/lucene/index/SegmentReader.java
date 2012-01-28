@@ -175,7 +175,6 @@ name|int
 name|numDocs
 decl_stmt|;
 DECL|field|core
-specifier|private
 specifier|final
 name|SegmentCoreReaders
 name|core
@@ -318,9 +317,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// TODO: really these next 2 ctors could take
-comment|// SegmentCoreReaders... that's all we do w/ the parent
-comment|// SR:
 comment|// Create new SegmentReader sharing core from a previous
 comment|// SegmentReader and loading new live docs from a new
 comment|// deletes file.  Used by openIfChanged.
@@ -330,8 +326,8 @@ parameter_list|(
 name|SegmentInfo
 name|si
 parameter_list|,
-name|SegmentReader
-name|parent
+name|SegmentCoreReaders
+name|core
 parameter_list|,
 name|IOContext
 name|context
@@ -339,35 +335,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
-name|si
-operator|.
-name|dir
-operator|==
-name|parent
-operator|.
-name|getSegmentInfo
-argument_list|()
-operator|.
-name|dir
-assert|;
 name|this
-operator|.
+argument_list|(
 name|si
-operator|=
-name|si
-expr_stmt|;
-comment|// It's no longer possible to unDeleteAll, so, we can
-comment|// only be created if we have deletions:
-assert|assert
-name|si
-operator|.
-name|hasDeletions
-argument_list|()
-assert|;
-comment|// ... but load our own deleted docs:
-name|liveDocs
-operator|=
+argument_list|,
+name|core
+argument_list|,
 name|si
 operator|.
 name|getCodec
@@ -386,9 +359,7 @@ name|si
 argument_list|,
 name|context
 argument_list|)
-expr_stmt|;
-name|numDocs
-operator|=
+argument_list|,
 name|si
 operator|.
 name|docCount
@@ -397,20 +368,7 @@ name|si
 operator|.
 name|getDelCount
 argument_list|()
-expr_stmt|;
-comment|// We share core w/ parent:
-name|parent
-operator|.
-name|core
-operator|.
-name|incRef
-argument_list|()
-expr_stmt|;
-name|core
-operator|=
-name|parent
-operator|.
-name|core
+argument_list|)
 expr_stmt|;
 block|}
 comment|// Create new SegmentReader sharing core from a previous
@@ -420,8 +378,11 @@ comment|// reader:
 DECL|method|SegmentReader
 name|SegmentReader
 parameter_list|(
-name|SegmentReader
-name|parent
+name|SegmentInfo
+name|si
+parameter_list|,
+name|SegmentCoreReaders
+name|core
 parameter_list|,
 name|Bits
 name|liveDocs
@@ -436,24 +397,18 @@ name|this
 operator|.
 name|si
 operator|=
-name|parent
-operator|.
 name|si
-expr_stmt|;
-name|parent
-operator|.
-name|core
-operator|.
-name|incRef
-argument_list|()
 expr_stmt|;
 name|this
 operator|.
 name|core
 operator|=
-name|parent
-operator|.
 name|core
+expr_stmt|;
+name|core
+operator|.
+name|incRef
+argument_list|()
 expr_stmt|;
 assert|assert
 name|liveDocs
