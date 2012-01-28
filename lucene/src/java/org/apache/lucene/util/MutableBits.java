@@ -35,13 +35,6 @@ name|int
 name|bit
 parameter_list|)
 function_decl|;
-comment|// nocommit: remove this from this interface somehow? (used by DWPT infostream at least)
-DECL|method|count
-specifier|public
-name|int
-name|count
-parameter_list|()
-function_decl|;
 DECL|method|clone
 specifier|public
 name|MutableBits

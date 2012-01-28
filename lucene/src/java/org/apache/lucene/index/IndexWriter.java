@@ -1292,74 +1292,6 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|// Called only from assert
-DECL|method|countsMatch
-specifier|private
-name|boolean
-name|countsMatch
-parameter_list|()
-block|{
-if|if
-condition|(
-name|liveDocs
-operator|==
-literal|null
-condition|)
-block|{
-assert|assert
-name|pendingDeleteCount
-operator|==
-literal|0
-assert|;
-block|}
-else|else
-block|{
-assert|assert
-name|liveDocs
-operator|.
-name|count
-argument_list|()
-operator|==
-name|info
-operator|.
-name|docCount
-operator|-
-name|info
-operator|.
-name|getDelCount
-argument_list|()
-operator|-
-name|pendingDeleteCount
-operator|:
-literal|"liveDocs.count()="
-operator|+
-name|liveDocs
-operator|.
-name|count
-argument_list|()
-operator|+
-literal|" info.docCount="
-operator|+
-name|info
-operator|.
-name|docCount
-operator|+
-literal|" info.delCount="
-operator|+
-name|info
-operator|.
-name|getDelCount
-argument_list|()
-operator|+
-literal|" pendingDelCount="
-operator|+
-name|pendingDeleteCount
-assert|;
-block|}
-return|return
-literal|true
-return|;
-block|}
 comment|// Get reader for searching/deleting
 DECL|method|getReader
 specifier|public
@@ -1654,10 +1586,6 @@ operator|!=
 literal|null
 assert|;
 block|}
-assert|assert
-name|countsMatch
-argument_list|()
-assert|;
 name|shared
 operator|=
 literal|true
@@ -1803,10 +1731,6 @@ name|shared
 operator|=
 literal|true
 expr_stmt|;
-assert|assert
-name|countsMatch
-argument_list|()
-assert|;
 comment|//if (liveDocs != null) {
 comment|//System.out.println("  liveCount=" + liveDocs.count());
 comment|//}
@@ -1866,6 +1790,18 @@ operator|.
 name|advanceDelGen
 argument_list|()
 expr_stmt|;
+name|info
+operator|.
+name|setDelCount
+argument_list|(
+name|info
+operator|.
+name|getDelCount
+argument_list|()
+operator|+
+name|pendingDeleteCount
+argument_list|)
+expr_stmt|;
 comment|// We can write directly to the actual name (vs to a
 comment|// .tmp& renaming it) because the file is not live
 comment|// until segments file is written:
@@ -1919,65 +1855,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-assert|assert
-operator|(
-name|info
-operator|.
-name|docCount
-operator|-
-name|liveDocs
-operator|.
-name|count
-argument_list|()
-operator|)
-operator|==
-name|info
-operator|.
-name|getDelCount
-argument_list|()
-operator|+
-name|pendingDeleteCount
-operator|:
-literal|"delete count mismatch during commit: seg="
-operator|+
-name|info
-operator|+
-literal|" info.delCount="
-operator|+
-name|info
-operator|.
-name|getDelCount
-argument_list|()
-operator|+
-literal|" vs MutableBits="
-operator|+
-operator|(
-name|info
-operator|.
-name|docCount
-operator|-
-name|liveDocs
-operator|.
-name|count
-argument_list|()
-operator|+
-literal|" pendingDelCount="
-operator|+
-name|pendingDeleteCount
-operator|)
-assert|;
-name|info
-operator|.
-name|setDelCount
-argument_list|(
-name|info
-operator|.
-name|getDelCount
-argument_list|()
-operator|+
-name|pendingDeleteCount
-argument_list|)
-expr_stmt|;
 name|pendingDeleteCount
 operator|=
 literal|0
@@ -9446,12 +9323,6 @@ block|{
 comment|// This means this segment received new deletes
 comment|// since we started the merge, so we
 comment|// must merge them:
-specifier|final
-name|int
-name|startDocUpto
-init|=
-name|docUpto
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -9543,20 +9414,6 @@ block|}
 block|}
 else|else
 block|{
-assert|assert
-name|mergeState
-operator|.
-name|readers
-operator|!=
-literal|null
-assert|;
-assert|assert
-name|mergeState
-operator|.
-name|segmentDocCounts
-operator|!=
-literal|null
-assert|;
 name|docUpto
 operator|+=
 name|mergeState

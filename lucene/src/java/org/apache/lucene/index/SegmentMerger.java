@@ -1629,6 +1629,8 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+comment|// nocommit -- assert that final doc count ==
+comment|// mergedDocCount from stored fields and term vectors
 name|mergeState
 operator|.
 name|docBase
