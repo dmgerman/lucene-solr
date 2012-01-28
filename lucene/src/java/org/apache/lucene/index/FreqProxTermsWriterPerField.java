@@ -2455,7 +2455,7 @@ block|{
 comment|// Mark it deleted.  TODO: we could also skip
 comment|// writing its postings; this would be
 comment|// deterministic (just for this Term's docs).
-comment|// nocommit: totally wrong to do this reach-around here, and this way
+comment|// TODO: can we do this reach-around in a cleaner way????
 if|if
 condition|(
 name|state
