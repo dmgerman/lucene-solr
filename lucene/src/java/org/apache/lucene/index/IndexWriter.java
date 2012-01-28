@@ -1349,6 +1349,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// nocommit: still don't like this cast, gotta be a cleaner way.
 name|liveDocs
 operator|=
 operator|(
