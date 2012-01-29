@@ -482,7 +482,7 @@ name|saveCommitPoint
 argument_list|(
 name|indexCommit
 operator|.
-name|getVersion
+name|getGeneration
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -783,7 +783,7 @@ name|releaseCommitPoint
 argument_list|(
 name|indexCommit
 operator|.
-name|getVersion
+name|getGeneration
 argument_list|()
 argument_list|)
 expr_stmt|;

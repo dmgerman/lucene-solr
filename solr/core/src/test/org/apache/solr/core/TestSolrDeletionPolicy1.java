@@ -407,7 +407,7 @@ decl_stmt|;
 for|for
 control|(
 name|Long
-name|version
+name|gen
 range|:
 name|commits
 operator|.
@@ -421,7 +421,7 @@ name|commits
 operator|.
 name|get
 argument_list|(
-name|version
+name|gen
 argument_list|)
 operator|==
 name|latest
@@ -435,7 +435,7 @@ name|commits
 operator|.
 name|get
 argument_list|(
-name|version
+name|gen
 argument_list|)
 operator|.
 name|getSegmentCount
@@ -657,7 +657,7 @@ name|containsKey
 argument_list|(
 name|ic
 operator|.
-name|getVersion
+name|getGeneration
 argument_list|()
 argument_list|)
 argument_list|)
