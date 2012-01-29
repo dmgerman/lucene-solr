@@ -124,7 +124,7 @@ argument_list|(
 literal|0
 argument_list|)
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|,
@@ -147,7 +147,7 @@ argument_list|(
 literal|1
 argument_list|)
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|,

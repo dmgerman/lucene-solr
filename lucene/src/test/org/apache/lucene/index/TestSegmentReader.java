@@ -218,7 +218,7 @@ name|SegmentReader
 argument_list|(
 name|info
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|,
@@ -1005,7 +1005,7 @@ specifier|static
 name|void
 name|checkNorms
 parameter_list|(
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 parameter_list|)
 throws|throws
