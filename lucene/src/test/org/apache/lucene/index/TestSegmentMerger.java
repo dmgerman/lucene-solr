@@ -296,7 +296,7 @@ name|SegmentReader
 argument_list|(
 name|info1
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|,
@@ -313,7 +313,7 @@ name|SegmentReader
 argument_list|(
 name|info2
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|,
@@ -536,7 +536,7 @@ argument_list|,
 name|fieldInfos
 argument_list|)
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|,
