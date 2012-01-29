@@ -30,7 +30,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicIndexReader
 import|;
 end_import
 
@@ -45,6 +45,20 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|AtomicIndexReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -74,7 +88,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 import|;
 end_import
 
@@ -391,11 +405,11 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 init|=
 operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 argument_list|(
 name|IndexReader
 operator|.
