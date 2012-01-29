@@ -725,7 +725,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(
@@ -770,7 +770,7 @@ name|indexes
 operator|.
 name|add
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1006,7 +1006,7 @@ block|}
 DECL|method|initSubReaders
 specifier|private
 specifier|static
-name|IndexReader
+name|AtomicIndexReader
 index|[]
 name|initSubReaders
 parameter_list|(
@@ -1019,14 +1019,14 @@ block|{
 specifier|final
 name|ArrayList
 argument_list|<
-name|IndexReader
+name|AtomicIndexReader
 argument_list|>
 name|subs
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|IndexReader
+name|AtomicIndexReader
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1047,7 +1047,7 @@ parameter_list|(
 name|int
 name|base
 parameter_list|,
-name|IndexReader
+name|AtomicIndexReader
 name|r
 parameter_list|)
 block|{
@@ -1074,7 +1074,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|IndexReader
+name|AtomicIndexReader
 index|[
 name|subs
 operator|.
@@ -1232,7 +1232,7 @@ DECL|method|FakeDeleteAtomicIndexReader
 specifier|public
 name|FakeDeleteAtomicIndexReader
 parameter_list|(
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 parameter_list|)
 block|{
