@@ -71,13 +71,13 @@ decl_stmt|;
 DECL|field|maxDoc
 specifier|private
 specifier|final
-name|int
+name|long
 name|maxDoc
 decl_stmt|;
 DECL|field|docCount
 specifier|private
 specifier|final
-name|int
+name|long
 name|docCount
 decl_stmt|;
 DECL|field|sumTotalTermFreq
@@ -99,10 +99,10 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|int
+name|long
 name|maxDoc
 parameter_list|,
-name|int
+name|long
 name|docCount
 parameter_list|,
 name|long
@@ -192,7 +192,7 @@ comment|/** returns the total number of documents, regardless of     * whether t
 DECL|method|maxDoc
 specifier|public
 specifier|final
-name|int
+name|long
 name|maxDoc
 parameter_list|()
 block|{
@@ -204,7 +204,7 @@ comment|/** returns the total number of documents that    * have at least one te
 DECL|method|docCount
 specifier|public
 specifier|final
-name|int
+name|long
 name|docCount
 parameter_list|()
 block|{

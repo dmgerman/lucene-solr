@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A callback object which can be used for implementing retry-able operations in the   * {@link org.apache.solr.common.cloud.ZkCmdExecutor.lock.ProtocolSupport} class  *  */
+comment|/**  * A callback object which can be used for implementing retry-able operations.  *  */
 end_comment
 
 begin_class

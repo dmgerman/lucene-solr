@@ -69,7 +69,7 @@ argument_list|()
 operator|+
 literal|1
 decl_stmt|;
-name|int
+name|long
 name|n
 init|=
 name|stats

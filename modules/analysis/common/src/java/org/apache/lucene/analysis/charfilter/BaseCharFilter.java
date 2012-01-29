@@ -358,6 +358,8 @@ operator|>=
 name|offsets
 index|[
 name|size
+operator|-
+literal|1
 index|]
 operator|)
 operator|:
@@ -374,6 +376,8 @@ operator|+
 name|offsets
 index|[
 name|size
+operator|-
+literal|1
 index|]
 operator|+
 literal|"\n"

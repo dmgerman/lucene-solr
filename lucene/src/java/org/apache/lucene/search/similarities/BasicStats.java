@@ -49,7 +49,7 @@ block|{
 comment|/** The number of documents. */
 DECL|field|numberOfDocuments
 specifier|protected
-name|int
+name|long
 name|numberOfDocuments
 decl_stmt|;
 comment|/** The total number of tokens in the field. */
@@ -67,7 +67,7 @@ decl_stmt|;
 comment|/** The document frequency. */
 DECL|field|docFreq
 specifier|protected
-name|int
+name|long
 name|docFreq
 decl_stmt|;
 comment|/** The total number of occurrences of this term across all documents. */
@@ -122,7 +122,7 @@ comment|// ------------------------- Getter/setter methods ---------------------
 comment|/** Returns the number of documents. */
 DECL|method|getNumberOfDocuments
 specifier|public
-name|int
+name|long
 name|getNumberOfDocuments
 parameter_list|()
 block|{
@@ -136,7 +136,7 @@ specifier|public
 name|void
 name|setNumberOfDocuments
 parameter_list|(
-name|int
+name|long
 name|numberOfDocuments
 parameter_list|)
 block|{
@@ -206,7 +206,7 @@ block|}
 comment|/** Returns the document frequency. */
 DECL|method|getDocFreq
 specifier|public
-name|int
+name|long
 name|getDocFreq
 parameter_list|()
 block|{
@@ -220,7 +220,7 @@ specifier|public
 name|void
 name|setDocFreq
 parameter_list|(
-name|int
+name|long
 name|docFreq
 parameter_list|)
 block|{

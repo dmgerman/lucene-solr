@@ -230,10 +230,10 @@ specifier|protected
 name|float
 name|idf
 parameter_list|(
-name|int
+name|long
 name|docFreq
 parameter_list|,
-name|int
+name|long
 name|numDocs
 parameter_list|)
 block|{
@@ -567,7 +567,7 @@ name|termStats
 parameter_list|)
 block|{
 specifier|final
-name|int
+name|long
 name|df
 init|=
 name|termStats
@@ -576,7 +576,7 @@ name|docFreq
 argument_list|()
 decl_stmt|;
 specifier|final
-name|int
+name|long
 name|max
 init|=
 name|collectionStats
@@ -627,7 +627,7 @@ index|[]
 parameter_list|)
 block|{
 specifier|final
-name|int
+name|long
 name|max
 init|=
 name|collectionStats
@@ -665,7 +665,7 @@ name|termStats
 control|)
 block|{
 specifier|final
-name|int
+name|long
 name|df
 init|=
 name|stat

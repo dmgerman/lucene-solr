@@ -449,15 +449,40 @@ name|listAll
 argument_list|()
 decl_stmt|;
 comment|/*     for(int j=0;j<files.length;j++) {       System.out.println(j + ": " + files[j]);     }     */
+comment|// TODO: fix this test better
+name|String
+name|ext
+init|=
+name|Codec
+operator|.
+name|getDefault
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"SimpleText"
+argument_list|)
+condition|?
+literal|".liv"
+else|:
+literal|".del"
+decl_stmt|;
 comment|// Create a bogus separate del file for a
 comment|// segment that already has a separate del file:
 name|copyFile
 argument_list|(
 name|dir
 argument_list|,
-literal|"_0_1.del"
+literal|"_0_1"
+operator|+
+name|ext
 argument_list|,
-literal|"_0_2.del"
+literal|"_0_2"
+operator|+
+name|ext
 argument_list|)
 expr_stmt|;
 comment|// Create a bogus separate del file for a
@@ -466,9 +491,13 @@ name|copyFile
 argument_list|(
 name|dir
 argument_list|,
-literal|"_0_1.del"
+literal|"_0_1"
+operator|+
+name|ext
 argument_list|,
-literal|"_1_1.del"
+literal|"_1_1"
+operator|+
+name|ext
 argument_list|)
 expr_stmt|;
 comment|// Create a bogus separate del file for a
@@ -477,9 +506,13 @@ name|copyFile
 argument_list|(
 name|dir
 argument_list|,
-literal|"_0_1.del"
+literal|"_0_1"
+operator|+
+name|ext
 argument_list|,
-literal|"_188_1.del"
+literal|"_188_1"
+operator|+
+name|ext
 argument_list|)
 expr_stmt|;
 comment|// Create a bogus segment file:
