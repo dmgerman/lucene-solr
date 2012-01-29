@@ -82,7 +82,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicIndexReader
 import|;
 end_import
 
@@ -96,7 +96,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicIndexReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -126,7 +126,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 import|;
 end_import
 
@@ -213,20 +213,6 @@ operator|.
 name|search
 operator|.
 name|DocIdSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DocIdSetIterator
 import|;
 end_import
 
@@ -339,7 +325,7 @@ name|directory
 decl_stmt|;
 DECL|field|reader
 specifier|private
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 decl_stmt|;
 annotation|@
@@ -454,7 +440,7 @@ expr_stmt|;
 name|reader
 operator|=
 operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 argument_list|(
 name|writer
 operator|.
@@ -730,6 +716,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|maxDoc
 argument_list|()
