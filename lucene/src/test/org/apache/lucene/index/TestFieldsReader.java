@@ -1854,7 +1854,7 @@ operator|.
 name|getInts
 argument_list|(
 operator|(
-name|AtomicIndexReader
+name|AtomicReader
 operator|)
 name|sub
 argument_list|,

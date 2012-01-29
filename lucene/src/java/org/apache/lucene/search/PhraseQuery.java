@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -116,7 +116,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -1246,7 +1246,7 @@ name|isEmpty
 argument_list|()
 assert|;
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 init|=
 name|context
@@ -1588,7 +1588,7 @@ specifier|private
 name|boolean
 name|termNotInReader
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|String

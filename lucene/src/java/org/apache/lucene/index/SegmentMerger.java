@@ -410,7 +410,7 @@ parameter_list|(
 name|int
 name|base
 parameter_list|,
-name|AtomicIndexReader
+name|AtomicReader
 name|r
 parameter_list|)
 block|{
@@ -1037,7 +1037,7 @@ name|readers
 control|)
 block|{
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 init|=
 name|readerAndLiveDocs

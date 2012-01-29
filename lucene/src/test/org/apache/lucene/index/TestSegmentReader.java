@@ -1005,7 +1005,7 @@ specifier|static
 name|void
 name|checkNorms
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|)
 throws|throws

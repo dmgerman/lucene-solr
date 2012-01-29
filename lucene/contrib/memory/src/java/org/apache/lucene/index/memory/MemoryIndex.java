@@ -214,7 +214,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -340,7 +340,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -3288,7 +3288,7 @@ specifier|final
 class|class
 name|MemoryIndexReader
 extends|extends
-name|AtomicIndexReader
+name|AtomicReader
 block|{
 DECL|field|searcher
 specifier|private

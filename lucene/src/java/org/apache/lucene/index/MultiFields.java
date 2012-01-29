@@ -230,14 +230,14 @@ if|if
 condition|(
 name|r
 operator|instanceof
-name|AtomicIndexReader
+name|AtomicReader
 condition|)
 block|{
 comment|// already an atomic reader
 return|return
 operator|(
 operator|(
-name|AtomicIndexReader
+name|AtomicReader
 operator|)
 name|r
 operator|)
@@ -249,7 +249,7 @@ block|}
 assert|assert
 name|r
 operator|instanceof
-name|CompositeIndexReader
+name|CompositeReader
 assert|;
 specifier|final
 name|IndexReader
@@ -258,7 +258,7 @@ name|subs
 init|=
 operator|(
 operator|(
-name|CompositeIndexReader
+name|CompositeReader
 operator|)
 name|r
 operator|)
@@ -331,7 +331,7 @@ parameter_list|(
 name|int
 name|base
 parameter_list|,
-name|AtomicIndexReader
+name|AtomicReader
 name|r
 parameter_list|)
 throws|throws
@@ -523,7 +523,7 @@ parameter_list|(
 name|int
 name|base
 parameter_list|,
-name|AtomicIndexReader
+name|AtomicReader
 name|r
 parameter_list|)
 throws|throws
@@ -1301,14 +1301,14 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|AtomicIndexReader
+name|AtomicReader
 argument_list|>
 name|subReaders
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|AtomicIndexReader
+name|AtomicReader
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1331,7 +1331,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|AtomicIndexReader
+name|AtomicReader
 name|subReader
 range|:
 name|subReaders

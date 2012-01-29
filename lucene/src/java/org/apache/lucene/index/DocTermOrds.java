@@ -355,7 +355,7 @@ DECL|method|DocTermOrds
 specifier|public
 name|DocTermOrds
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|String
@@ -383,7 +383,7 @@ DECL|method|DocTermOrds
 specifier|public
 name|DocTermOrds
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|String
@@ -414,7 +414,7 @@ DECL|method|DocTermOrds
 specifier|public
 name|DocTermOrds
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|String
@@ -455,7 +455,7 @@ DECL|method|DocTermOrds
 specifier|public
 name|DocTermOrds
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|String
@@ -549,7 +549,7 @@ specifier|public
 name|TermsEnum
 name|getOrdTermsEnum
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|)
 throws|throws
@@ -676,7 +676,7 @@ name|void
 name|uninvert
 parameter_list|(
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 specifier|final
@@ -2599,7 +2599,7 @@ block|{
 DECL|field|reader
 specifier|private
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 decl_stmt|;
 DECL|field|termsEnum
@@ -2628,7 +2628,7 @@ DECL|method|OrdWrappedTermsEnum
 specifier|public
 name|OrdWrappedTermsEnum
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|)
 throws|throws

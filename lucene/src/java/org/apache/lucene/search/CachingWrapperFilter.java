@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -217,7 +217,7 @@ parameter_list|(
 name|DocIdSet
 name|docIdSet
 parameter_list|,
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|)
 throws|throws
@@ -331,7 +331,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 init|=
 name|context

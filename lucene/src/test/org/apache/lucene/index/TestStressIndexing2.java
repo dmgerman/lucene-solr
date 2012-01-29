@@ -1837,7 +1837,7 @@ name|liveDocs
 init|=
 operator|(
 operator|(
-name|AtomicIndexReader
+name|AtomicReader
 operator|)
 name|sub
 operator|)

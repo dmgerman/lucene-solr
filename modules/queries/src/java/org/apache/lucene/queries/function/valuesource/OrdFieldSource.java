@@ -30,7 +30,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -44,7 +44,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CompositeIndexReader
+name|CompositeReader
 import|;
 end_import
 
@@ -72,7 +72,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -310,24 +310,24 @@ name|reader
 argument_list|()
 decl_stmt|;
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|r
 init|=
 name|topReader
 operator|instanceof
-name|CompositeIndexReader
+name|CompositeReader
 condition|?
 operator|new
 name|SlowCompositeReaderWrapper
 argument_list|(
 operator|(
-name|CompositeIndexReader
+name|CompositeReader
 operator|)
 name|topReader
 argument_list|)
 else|:
 operator|(
-name|AtomicIndexReader
+name|AtomicReader
 operator|)
 name|topReader
 decl_stmt|;

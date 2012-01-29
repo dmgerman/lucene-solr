@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CompositeIndexReader
+name|CompositeReader
 import|;
 end_import
 
@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CompositeIndexReader
+name|CompositeReader
 operator|.
 name|CompositeReaderContext
 import|;
@@ -114,7 +114,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -285,7 +285,7 @@ parameter_list|(
 specifier|final
 name|List
 argument_list|<
-name|AtomicIndexReader
+name|AtomicReader
 argument_list|>
 name|allSubReaders
 parameter_list|,
@@ -310,7 +310,7 @@ parameter_list|(
 name|int
 name|base
 parameter_list|,
-name|AtomicIndexReader
+name|AtomicReader
 name|r
 parameter_list|)
 block|{
@@ -426,7 +426,7 @@ if|if
 condition|(
 name|reader
 operator|instanceof
-name|AtomicIndexReader
+name|AtomicReader
 condition|)
 block|{
 comment|// atomic reader
@@ -435,7 +435,7 @@ argument_list|(
 name|base
 argument_list|,
 operator|(
-name|AtomicIndexReader
+name|AtomicReader
 operator|)
 name|reader
 argument_list|)
@@ -453,7 +453,7 @@ block|{
 assert|assert
 name|reader
 operator|instanceof
-name|CompositeIndexReader
+name|CompositeReader
 operator|:
 literal|"must be a composite reader"
 assert|;
@@ -463,7 +463,7 @@ name|subReaders
 init|=
 operator|(
 operator|(
-name|CompositeIndexReader
+name|CompositeReader
 operator|)
 name|reader
 operator|)
@@ -515,7 +515,7 @@ parameter_list|(
 name|int
 name|base
 parameter_list|,
-name|AtomicIndexReader
+name|AtomicReader
 name|r
 parameter_list|)
 throws|throws
@@ -643,7 +643,7 @@ if|if
 condition|(
 name|reader
 operator|instanceof
-name|AtomicIndexReader
+name|AtomicReader
 condition|)
 block|{
 name|AtomicReaderContext
@@ -655,7 +655,7 @@ argument_list|(
 name|parent
 argument_list|,
 operator|(
-name|AtomicIndexReader
+name|AtomicReader
 operator|)
 name|reader
 argument_list|,
@@ -689,11 +689,11 @@ return|;
 block|}
 else|else
 block|{
-name|CompositeIndexReader
+name|CompositeReader
 name|cr
 init|=
 operator|(
-name|CompositeIndexReader
+name|CompositeReader
 operator|)
 name|reader
 decl_stmt|;
@@ -855,7 +855,7 @@ parameter_list|(
 name|int
 name|base
 parameter_list|,
-name|AtomicIndexReader
+name|AtomicReader
 name|r
 parameter_list|)
 block|{

@@ -134,12 +134,12 @@ name|LuceneTestCase
 block|{
 DECL|field|ir1
 specifier|private
-name|AtomicIndexReader
+name|AtomicReader
 name|ir1
 decl_stmt|;
 DECL|field|ir2
 specifier|private
-name|AtomicIndexReader
+name|AtomicReader
 name|ir2
 decl_stmt|;
 DECL|field|rd1

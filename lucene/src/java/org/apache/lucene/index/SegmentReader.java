@@ -139,7 +139,7 @@ specifier|final
 class|class
 name|SegmentReader
 extends|extends
-name|AtomicIndexReader
+name|AtomicReader
 block|{
 DECL|field|si
 specifier|private

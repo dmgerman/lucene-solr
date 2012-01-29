@@ -2247,11 +2247,11 @@ argument_list|()
 control|)
 block|{
 comment|// TODO: improve this
-name|AtomicIndexReader
+name|AtomicReader
 name|sub
 init|=
 operator|(
-name|AtomicIndexReader
+name|AtomicReader
 operator|)
 name|reader
 decl_stmt|;

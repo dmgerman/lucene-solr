@@ -156,7 +156,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -1546,7 +1546,7 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|AtomicIndexReader
+name|AtomicReader
 name|r
 init|=
 name|SlowCompositeReaderWrapper

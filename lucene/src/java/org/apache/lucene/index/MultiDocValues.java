@@ -237,7 +237,7 @@ specifier|public
 name|DocValues
 name|pull
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|String
@@ -259,7 +259,7 @@ specifier|public
 name|boolean
 name|stopLoadingOnNull
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|String
@@ -378,7 +378,7 @@ specifier|public
 name|DocValues
 name|pull
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|String
@@ -401,7 +401,7 @@ specifier|public
 name|boolean
 name|stopLoadingOnNull
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|String
@@ -564,7 +564,7 @@ if|if
 condition|(
 name|r
 operator|instanceof
-name|AtomicIndexReader
+name|AtomicReader
 condition|)
 block|{
 comment|// already an atomic reader
@@ -574,7 +574,7 @@ operator|.
 name|pull
 argument_list|(
 operator|(
-name|AtomicIndexReader
+name|AtomicReader
 operator|)
 name|r
 argument_list|,
@@ -585,7 +585,7 @@ block|}
 assert|assert
 name|r
 operator|instanceof
-name|CompositeIndexReader
+name|CompositeReader
 assert|;
 specifier|final
 name|IndexReader
@@ -594,7 +594,7 @@ name|subs
 init|=
 operator|(
 operator|(
-name|CompositeIndexReader
+name|CompositeReader
 operator|)
 name|r
 operator|)
@@ -701,7 +701,7 @@ parameter_list|(
 name|int
 name|base
 parameter_list|,
-name|AtomicIndexReader
+name|AtomicReader
 name|r
 parameter_list|)
 throws|throws

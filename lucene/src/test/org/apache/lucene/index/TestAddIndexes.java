@@ -7743,7 +7743,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|AtomicIndexReader
+name|AtomicReader
 name|sr
 init|=
 name|getOnlySegmentReader

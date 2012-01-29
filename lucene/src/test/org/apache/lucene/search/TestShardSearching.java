@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CompositeIndexReader
+name|CompositeReader
 import|;
 end_import
 
@@ -1748,7 +1748,7 @@ name|subs
 init|=
 operator|(
 operator|(
-name|CompositeIndexReader
+name|CompositeReader
 operator|)
 name|mockSearcher
 operator|.

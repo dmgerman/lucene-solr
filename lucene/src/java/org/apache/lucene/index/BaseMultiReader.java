@@ -79,7 +79,7 @@ extends|extends
 name|IndexReader
 parameter_list|>
 extends|extends
-name|CompositeIndexReader
+name|CompositeReader
 block|{
 DECL|field|subReaders
 specifier|protected

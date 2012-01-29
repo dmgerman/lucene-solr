@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -126,7 +126,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -1388,7 +1388,7 @@ init|=
 literal|1e-5f
 decl_stmt|;
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|lastReader
 index|[]
 init|=
@@ -1844,7 +1844,7 @@ literal|null
 condition|)
 block|{
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|previousReader
 init|=
 name|lastReader
@@ -2034,7 +2034,7 @@ block|{
 comment|// confirm that skipping beyond the last doc, on the
 comment|// previous reader, hits NO_MORE_DOCS
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|previousReader
 init|=
 name|lastReader
@@ -2192,7 +2192,7 @@ literal|1
 block|}
 decl_stmt|;
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|lastReader
 index|[]
 init|=
@@ -2520,7 +2520,7 @@ literal|null
 condition|)
 block|{
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|previousReader
 init|=
 name|lastReader
@@ -2692,7 +2692,7 @@ block|{
 comment|// confirm that skipping beyond the last doc, on the
 comment|// previous reader, hits NO_MORE_DOCS
 specifier|final
-name|AtomicIndexReader
+name|AtomicReader
 name|previousReader
 init|=
 name|lastReader

@@ -74,7 +74,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicIndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -272,13 +272,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a {@link DocValues} instance for merging from the given reader for the given    * {@link FieldInfo}. This method is used for merging and uses    * {@link AtomicIndexReader#docValues(String)} by default.    *<p>    * To enable {@link DocValues} merging for different {@link DocValues} than    * the default override this method accordingly.    *<p>    */
+comment|/**    * Returns a {@link DocValues} instance for merging from the given reader for the given    * {@link FieldInfo}. This method is used for merging and uses    * {@link AtomicReader#docValues(String)} by default.    *<p>    * To enable {@link DocValues} merging for different {@link DocValues} than    * the default override this method accordingly.    *<p>    */
 DECL|method|getDocValuesForMerge
 specifier|protected
 name|DocValues
 name|getDocValuesForMerge
 parameter_list|(
-name|AtomicIndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|FieldInfo

@@ -125,12 +125,12 @@ specifier|final
 class|class
 name|SlowCompositeReaderWrapper
 extends|extends
-name|AtomicIndexReader
+name|AtomicReader
 block|{
 DECL|field|in
 specifier|private
 specifier|final
-name|CompositeIndexReader
+name|CompositeReader
 name|in
 decl_stmt|;
 DECL|field|normsCache
@@ -165,11 +165,11 @@ specifier|final
 name|Bits
 name|liveDocs
 decl_stmt|;
-comment|/** This method is sugar for getting an {@link AtomicIndexReader} from    * an {@link IndexReader} of any kind. If the reader is already atomic,    * it is returned unchanged, otherwise wrapped by this class.    */
+comment|/** This method is sugar for getting an {@link AtomicReader} from    * an {@link IndexReader} of any kind. If the reader is already atomic,    * it is returned unchanged, otherwise wrapped by this class.    */
 DECL|method|wrap
 specifier|public
 specifier|static
-name|AtomicIndexReader
+name|AtomicReader
 name|wrap
 parameter_list|(
 name|IndexReader
@@ -182,7 +182,7 @@ if|if
 condition|(
 name|reader
 operator|instanceof
-name|CompositeIndexReader
+name|CompositeReader
 condition|)
 block|{
 return|return
@@ -190,7 +190,7 @@ operator|new
 name|SlowCompositeReaderWrapper
 argument_list|(
 operator|(
-name|CompositeIndexReader
+name|CompositeReader
 operator|)
 name|reader
 argument_list|)
@@ -201,11 +201,11 @@ block|{
 assert|assert
 name|reader
 operator|instanceof
-name|AtomicIndexReader
+name|AtomicReader
 assert|;
 return|return
 operator|(
-name|AtomicIndexReader
+name|AtomicReader
 operator|)
 name|reader
 return|;
@@ -215,7 +215,7 @@ DECL|method|SlowCompositeReaderWrapper
 specifier|public
 name|SlowCompositeReaderWrapper
 parameter_list|(
-name|CompositeIndexReader
+name|CompositeReader
 name|reader
 parameter_list|)
 throws|throws
