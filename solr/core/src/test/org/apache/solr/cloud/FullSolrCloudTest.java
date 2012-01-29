@@ -477,8 +477,6 @@ comment|/**  *   * TODO: we should still test this works as a custom update chai
 end_comment
 
 begin_class
-annotation|@
-name|Ignore
 DECL|class|FullSolrCloudTest
 specifier|public
 class|class
