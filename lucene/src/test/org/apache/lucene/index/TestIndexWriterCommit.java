@@ -322,7 +322,7 @@ argument_list|,
 literal|"aaa"
 argument_list|)
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
 name|IndexReader
@@ -1671,7 +1671,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 comment|// Open a reader before closing (commiting) the writer:
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
 name|IndexReader
@@ -2018,7 +2018,7 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|IndexReader
@@ -2114,10 +2114,10 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -2339,7 +2339,7 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
 name|IndexReader
@@ -2364,10 +2364,10 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -2958,7 +2958,7 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
 name|IndexReader
@@ -3011,7 +3011,7 @@ expr_stmt|;
 name|IndexReader
 name|reader3
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -3273,7 +3273,7 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
 name|IndexReader
@@ -3326,7 +3326,7 @@ expr_stmt|;
 name|IndexReader
 name|reader3
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -3663,7 +3663,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|IndexReader
