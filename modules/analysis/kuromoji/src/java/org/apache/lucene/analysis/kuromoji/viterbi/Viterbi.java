@@ -1174,6 +1174,19 @@ argument_list|,
 name|endSizeArr
 argument_list|)
 expr_stmt|;
+specifier|final
+name|FST
+operator|.
+name|BytesReader
+name|fstReader
+init|=
+name|fst
+operator|.
+name|getBytesReader
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
 comment|// Process user dictionary;
 if|if
 condition|(
@@ -1320,6 +1333,8 @@ argument_list|,
 name|endIndex
 operator|==
 literal|1
+argument_list|,
+name|fstReader
 argument_list|)
 operator|==
 literal|null

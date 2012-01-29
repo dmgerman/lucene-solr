@@ -296,6 +296,16 @@ operator|new
 name|AtomicLong
 argument_list|()
 decl_stmt|;
+comment|/** Stored into each Lucene commit to record the    *  System.currentTimeMillis() when commit was called. */
+DECL|field|COMMIT_TIME_MSEC_KEY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|COMMIT_TIME_MSEC_KEY
+init|=
+literal|"commitTimeMSec"
+decl_stmt|;
 DECL|field|name
 name|String
 name|name

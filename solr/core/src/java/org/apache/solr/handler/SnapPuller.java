@@ -199,6 +199,20 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|IndexDeletionPolicyWrapper
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -1347,7 +1361,7 @@ name|void
 name|fetchFileList
 parameter_list|(
 name|long
-name|version
+name|gen
 parameter_list|)
 throws|throws
 name|IOException
@@ -1374,13 +1388,13 @@ name|post
 operator|.
 name|addParameter
 argument_list|(
-name|CMD_INDEX_VERSION
+name|GENERATION
 argument_list|,
 name|String
 operator|.
 name|valueOf
 argument_list|(
-name|version
+name|gen
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1477,9 +1491,9 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"No files to download for indexversion: "
+literal|"No files to download for index generation: "
 operator|+
-name|version
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -1697,7 +1711,7 @@ name|force
 operator|&&
 name|commit
 operator|.
-name|getVersion
+name|getGeneration
 argument_list|()
 operator|!=
 literal|0
@@ -1765,19 +1779,14 @@ condition|(
 operator|!
 name|force
 operator|&&
-name|commit
+name|IndexDeletionPolicyWrapper
 operator|.
-name|getVersion
-argument_list|()
+name|getCommitTimestamp
+argument_list|(
+name|commit
+argument_list|)
 operator|==
 name|latestVersion
-operator|&&
-name|commit
-operator|.
-name|getGeneration
-argument_list|()
-operator|==
-name|latestGeneration
 condition|)
 block|{
 comment|//master and slave are already in sync just return
@@ -1800,11 +1809,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Master's version: "
-operator|+
-name|latestVersion
-operator|+
-literal|", generation: "
+literal|"Master's generation: "
 operator|+
 name|latestGeneration
 argument_list|)
@@ -1813,14 +1818,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Slave's version: "
-operator|+
-name|commit
-operator|.
-name|getVersion
-argument_list|()
-operator|+
-literal|", generation: "
+literal|"Slave's generation: "
 operator|+
 name|commit
 operator|.
@@ -1838,7 +1836,7 @@ expr_stmt|;
 comment|// get the list of files first
 name|fetchFileList
 argument_list|(
-name|latestVersion
+name|latestGeneration
 argument_list|)
 expr_stmt|;
 comment|// this can happen if the commit point is deleted before we fetch the file list.
@@ -1897,10 +1895,12 @@ comment|// then a new index direcory to be created and all the files need to be 
 name|boolean
 name|isFullCopyNeeded
 init|=
-name|commit
+name|IndexDeletionPolicyWrapper
 operator|.
-name|getVersion
-argument_list|()
+name|getCommitTimestamp
+argument_list|(
+name|commit
+argument_list|)
 operator|>=
 name|latestVersion
 operator|||
@@ -1956,7 +1956,7 @@ name|isFullCopyNeeded
 argument_list|,
 name|tmpIndexDir
 argument_list|,
-name|latestVersion
+name|latestGeneration
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -2010,7 +2010,7 @@ name|downloadConfFiles
 argument_list|(
 name|confFilesToDownload
 argument_list|,
-name|latestVersion
+name|latestGeneration
 argument_list|)
 expr_stmt|;
 if|if
@@ -3284,7 +3284,7 @@ argument_list|>
 name|confFilesToDownload
 parameter_list|,
 name|long
-name|latestVersion
+name|latestGeneration
 parameter_list|)
 throws|throws
 name|Exception
@@ -3433,7 +3433,7 @@ name|saveAs
 argument_list|,
 literal|true
 argument_list|,
-name|latestVersion
+name|latestGeneration
 argument_list|)
 expr_stmt|;
 name|currentFile
@@ -3482,7 +3482,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Download the index files. If a new index is needed, download all the files.    *    * @param downloadCompleteIndex is it a fresh index copy    * @param tmpIdxDir               the directory to which files need to be downloadeed to    * @param latestVersion         the version number    */
+comment|/**    * Download the index files. If a new index is needed, download all the files.    *    * @param downloadCompleteIndex is it a fresh index copy    * @param tmpIdxDir               the directory to which files need to be downloadeed to    * @param latestGeneration         the version number    */
 DECL|method|downloadIndexFiles
 specifier|private
 name|void
@@ -3495,7 +3495,7 @@ name|File
 name|tmpIdxDir
 parameter_list|,
 name|long
-name|latestVersion
+name|latestGeneration
 parameter_list|)
 throws|throws
 name|Exception
@@ -3567,7 +3567,7 @@ argument_list|)
 argument_list|,
 literal|false
 argument_list|,
-name|latestVersion
+name|latestGeneration
 argument_list|)
 expr_stmt|;
 name|currentFile
@@ -3610,7 +3610,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * All the files which are common between master and slave must have same timestamp and size else we assume they are    * not compatible (stale).    *    * @return true if the index stale and we need to download a fresh copy, false otherwise.    */
+comment|/**    * All the files which are common between master and slave must have same size else we assume they are    * not compatible (stale).    *    * @return true if the index stale and we need to download a fresh copy, false otherwise.    */
 DECL|method|isIndexStale
 specifier|private
 name|boolean
@@ -5247,10 +5247,10 @@ name|aborted
 init|=
 literal|false
 decl_stmt|;
-DECL|field|indexVersion
+DECL|field|indexGen
 specifier|private
 name|Long
-name|indexVersion
+name|indexGen
 decl_stmt|;
 DECL|method|FileFetcher
 name|FileFetcher
@@ -5273,7 +5273,7 @@ name|boolean
 name|isConf
 parameter_list|,
 name|long
-name|latestVersion
+name|latestGen
 parameter_list|)
 throws|throws
 name|IOException
@@ -5349,9 +5349,9 @@ name|LAST_MODIFIED
 argument_list|)
 expr_stmt|;
 block|}
-name|indexVersion
+name|indexGen
 operator|=
-name|latestVersion
+name|latestGen
 expr_stmt|;
 name|this
 operator|.
@@ -6178,9 +6178,9 @@ name|post
 operator|.
 name|addParameter
 argument_list|(
-name|CMD_INDEX_VERSION
+name|GENERATION
 argument_list|,
-name|indexVersion
+name|indexGen
 operator|.
 name|toString
 argument_list|()

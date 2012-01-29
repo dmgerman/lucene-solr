@@ -1007,12 +1007,7 @@ operator|new
 name|IntsRef
 argument_list|()
 argument_list|,
-name|fstOutputs
-operator|.
-name|get
-argument_list|(
 name|termsFilePointer
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|startTermsFilePointer
@@ -1156,12 +1151,7 @@ argument_list|,
 name|scratchIntsRef
 argument_list|)
 argument_list|,
-name|fstOutputs
-operator|.
-name|get
-argument_list|(
 name|termsFilePointer
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

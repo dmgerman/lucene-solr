@@ -1262,32 +1262,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Returns the time the compound file was last modified. */
-annotation|@
-name|Override
-DECL|method|fileModified
-specifier|public
-name|long
-name|fileModified
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-return|return
-name|directory
-operator|.
-name|fileModified
-argument_list|(
-name|fileName
-argument_list|)
-return|;
-block|}
 comment|/** Not implemented    * @throws UnsupportedOperationException */
 annotation|@
 name|Override

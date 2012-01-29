@@ -421,35 +421,24 @@ DECL|field|counter
 specifier|public
 name|int
 name|counter
-init|=
-literal|0
 decl_stmt|;
 comment|// used to name new segments
-comment|/**    * counts how often the index has been changed by adding or deleting docs.    * starting with the current time in milliseconds forces to create unique version numbers.    */
+comment|/**    * counts how often the index has been changed    */
 DECL|field|version
 specifier|public
 name|long
 name|version
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
 decl_stmt|;
 DECL|field|generation
 specifier|private
 name|long
 name|generation
-init|=
-literal|0
 decl_stmt|;
 comment|// generation of the "segments_N" for the next commit
 DECL|field|lastGeneration
 specifier|private
 name|long
 name|lastGeneration
-init|=
-literal|0
 decl_stmt|;
 comment|// generation of the "segments_N" file we last successfully read
 comment|// or wrote; this is normally the same as generation except if

@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents the outputs for an FST, providing the basic  * algebra needed for the FST.  *  * @lucene.experimental  */
+comment|/**  * Represents the outputs for an FST, providing the basic  * algebra needed for the FST.  *  *<p>Note that any operation that returns NO_OUTPUT must  * return the same singleton object from {@link  * #getNoOutput}.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -161,6 +161,7 @@ name|T
 name|output
 parameter_list|)
 function_decl|;
+comment|// TODO: maybe make valid(T output) public...?  for asserts
 DECL|method|merge
 specifier|public
 name|T

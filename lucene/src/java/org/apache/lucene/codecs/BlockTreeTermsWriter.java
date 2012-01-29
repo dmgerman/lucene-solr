@@ -1469,6 +1469,8 @@ argument_list|,
 name|outputs
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|//if (DEBUG) {
@@ -3845,6 +3847,8 @@ argument_list|,
 operator|new
 name|FindBlocks
 argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|postingsWriter

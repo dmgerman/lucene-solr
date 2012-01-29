@@ -572,6 +572,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|update
+operator|.
+name|SolrIndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|NumberUtils
@@ -913,7 +927,7 @@ name|setReserveDuration
 argument_list|(
 name|commitPoint
 operator|.
-name|getVersion
+name|getGeneration
 argument_list|()
 argument_list|,
 name|reserveCommitDuration
@@ -925,10 +939,15 @@ name|add
 argument_list|(
 name|CMD_INDEX_VERSION
 argument_list|,
-name|commitPoint
+name|core
 operator|.
-name|getVersion
+name|getDeletionPolicy
 argument_list|()
+operator|.
+name|getCommitTimestamp
+argument_list|(
+name|commitPoint
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|rsp
@@ -1521,10 +1540,15 @@ name|add
 argument_list|(
 literal|"indexVersion"
 argument_list|,
-name|c
+name|core
 operator|.
-name|getVersion
+name|getDeletionPolicy
 argument_list|()
+operator|.
+name|getCommitTimestamp
+argument_list|(
+name|c
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|nl
@@ -2222,7 +2246,7 @@ name|solrParams
 operator|.
 name|get
 argument_list|(
-name|CMD_INDEX_VERSION
+name|GENERATION
 argument_list|)
 decl_stmt|;
 if|if
@@ -2238,13 +2262,13 @@ name|add
 argument_list|(
 literal|"status"
 argument_list|,
-literal|"no indexversion specified"
+literal|"no index generation specified"
 argument_list|)
 expr_stmt|;
 return|return;
 block|}
 name|long
-name|version
+name|gen
 init|=
 name|Long
 operator|.
@@ -2263,7 +2287,7 @@ argument_list|()
 operator|.
 name|getCommitPoint
 argument_list|(
-name|version
+name|gen
 argument_list|)
 decl_stmt|;
 comment|//System.out.println("ask for files for gen:" + commit.getGeneration() + core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName());
@@ -2280,7 +2304,7 @@ name|add
 argument_list|(
 literal|"status"
 argument_list|,
-literal|"invalid indexversion"
+literal|"invalid index generation"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -2293,7 +2317,7 @@ argument_list|()
 operator|.
 name|setReserveDuration
 argument_list|(
-name|version
+name|gen
 argument_list|,
 name|reserveCommitDuration
 argument_list|)
@@ -2409,7 +2433,7 @@ name|add
 argument_list|(
 literal|"status"
 argument_list|,
-literal|"unable to get file names for given indexversion"
+literal|"unable to get file names for given index generation"
 argument_list|)
 expr_stmt|;
 name|rsp
@@ -2425,9 +2449,9 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Unable to get file names for indexCommit version: "
+literal|"Unable to get file names for indexCommit generation: "
 operator|+
-name|version
+name|gen
 argument_list|,
 name|e
 argument_list|)
@@ -3103,40 +3127,73 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
+name|IndexCommit
+name|commit
+init|=
+name|searcher
+operator|.
+name|get
+argument_list|()
+operator|.
+name|getIndexReader
+argument_list|()
+operator|.
+name|getIndexCommit
+argument_list|()
+decl_stmt|;
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|commitData
+init|=
+name|commit
+operator|.
+name|getUserData
+argument_list|()
+decl_stmt|;
+name|String
+name|commitTime
+init|=
+name|commitData
+operator|.
+name|get
+argument_list|(
+name|SolrIndexWriter
+operator|.
+name|COMMIT_TIME_MSEC_KEY
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|commitTime
+operator|!=
+literal|null
+condition|)
+block|{
 name|version
 index|[
 literal|0
 index|]
 operator|=
-name|searcher
+name|Long
 operator|.
-name|get
-argument_list|()
-operator|.
-name|getIndexReader
-argument_list|()
-operator|.
-name|getIndexCommit
-argument_list|()
-operator|.
-name|getVersion
-argument_list|()
+name|parseLong
+argument_list|(
+name|commitTime
+argument_list|)
 expr_stmt|;
+block|}
 name|version
 index|[
 literal|1
 index|]
 operator|=
-name|searcher
-operator|.
-name|get
-argument_list|()
-operator|.
-name|getIndexReader
-argument_list|()
-operator|.
-name|getIndexCommit
-argument_list|()
+name|commit
 operator|.
 name|getGeneration
 argument_list|()
@@ -3824,18 +3881,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|master
-operator|.
-name|add
-argument_list|(
-literal|"replicatableIndexVersion"
-argument_list|,
-name|commit
-operator|.
-name|getVersion
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|master
 operator|.
 name|add
@@ -5888,12 +5933,12 @@ literal|null
 operator|||
 name|indexCommitPoint
 operator|.
-name|getVersion
+name|getGeneration
 argument_list|()
 operator|<
 name|ic
 operator|.
-name|getVersion
+name|getGeneration
 argument_list|()
 condition|)
 name|indexCommitPoint
@@ -5918,7 +5963,7 @@ finally|finally
 block|{
 comment|// We don't need to save commit points for replication, the SolrDeletionPolicy
 comment|// always saves the last commit point (and the last optimized commit point, if needed)
-comment|/***               if(indexCommitPoint != null){                 core.getDeletionPolicy().saveCommitPoint(indexCommitPoint.getVersion());               }               ***/
+comment|/***               if(indexCommitPoint != null){                 core.getDeletionPolicy().saveCommitPoint(indexCommitPoint.getGeneration());               }               ***/
 block|}
 block|}
 comment|// reboot the writer on the new index
@@ -6306,7 +6351,7 @@ name|currentCommitPoint
 expr_stmt|;
 comment|// We don't need to save commit points for replication, the SolrDeletionPolicy
 comment|// always saves the last commit point (and the last optimized commit point, if needed)
-comment|/***           if (indexCommitPoint != null) {             core.getDeletionPolicy().saveCommitPoint(indexCommitPoint.getVersion());           }           if(oldCommitPoint != null){             core.getDeletionPolicy().releaseCommitPoint(oldCommitPoint.getVersion());           }           ***/
+comment|/***           if (indexCommitPoint != null) {             core.getDeletionPolicy().saveCommitPoint(indexCommitPoint.getGeneration());           }           if(oldCommitPoint != null){             core.getDeletionPolicy().releaseCommitPoint(oldCommitPoint.getGeneration());           }           ***/
 block|}
 if|if
 condition|(
@@ -6394,10 +6439,10 @@ specifier|private
 name|FastOutputStream
 name|fos
 decl_stmt|;
-DECL|field|indexVersion
+DECL|field|indexGen
 specifier|private
 name|Long
-name|indexVersion
+name|indexGen
 decl_stmt|;
 DECL|field|delPolicy
 specifier|private
@@ -6496,28 +6541,28 @@ name|CHECKSUM
 argument_list|)
 decl_stmt|;
 name|String
-name|sindexVersion
+name|sGen
 init|=
 name|params
 operator|.
 name|get
 argument_list|(
-name|CMD_INDEX_VERSION
+name|GENERATION
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|sindexVersion
+name|sGen
 operator|!=
 literal|null
 condition|)
-name|indexVersion
+name|indexGen
 operator|=
 name|Long
 operator|.
 name|parseLong
 argument_list|(
-name|sindexVersion
+name|sGen
 argument_list|)
 expr_stmt|;
 if|if
@@ -6877,7 +6922,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|indexVersion
+name|indexGen
 operator|!=
 literal|null
 operator|&&
@@ -6895,7 +6940,7 @@ name|delPolicy
 operator|.
 name|setReserveDuration
 argument_list|(
-name|indexVersion
+name|indexGen
 argument_list|,
 name|reserveCommitDuration
 argument_list|)

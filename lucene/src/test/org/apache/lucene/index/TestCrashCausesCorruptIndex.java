@@ -869,29 +869,6 @@ block|}
 comment|/**      * {@inheritDoc}      */
 annotation|@
 name|Override
-DECL|method|fileModified
-specifier|public
-name|long
-name|fileModified
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|realDirectory
-operator|.
-name|fileModified
-argument_list|(
-name|name
-argument_list|)
-return|;
-block|}
-comment|/**      * {@inheritDoc}      */
-annotation|@
-name|Override
 DECL|method|listAll
 specifier|public
 name|String

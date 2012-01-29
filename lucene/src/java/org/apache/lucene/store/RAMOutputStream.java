@@ -678,16 +678,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|file
-operator|.
-name|setLastModified
-argument_list|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|setFileLength
 argument_list|()
 expr_stmt|;
