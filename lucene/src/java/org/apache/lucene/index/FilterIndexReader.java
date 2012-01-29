@@ -24,20 +24,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|Bits
@@ -74,22 +60,12 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Comparator
 import|;
 end_import
 
 begin_comment
-comment|/**  A<code>FilterIndexReader</code> contains another IndexReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality. The class  *<code>FilterIndexReader</code> itself simply implements all abstract methods  * of<code>IndexReader</code> with versions that pass all requests to the  * contained index reader. Subclasses of<code>FilterIndexReader</code> may  * further override some of these methods and may also provide additional  * methods and fields.  *<p><b>Note:</b> The default implementation of {@link FilterIndexReader#doOpenIfChanged}  * throws {@link UnsupportedOperationException} (like the base class),  * so it's not possible to reopen a<code>FilterIndexReader</code>.  * To reopen, you have to first reopen the underlying reader  * and wrap it again with the custom filter.  */
+comment|/**  A<code>FilterIndexReader</code> contains another IndexReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality. The class  *<code>FilterIndexReader</code> itself simply implements all abstract methods  * of<code>IndexReader</code> with versions that pass all requests to the  * contained index reader. Subclasses of<code>FilterIndexReader</code> may  * further override some of these methods and may also provide additional  * methods and fields.  */
 end_comment
 
 begin_class
@@ -1289,7 +1265,7 @@ init|=
 operator|new
 name|StringBuilder
 argument_list|(
-literal|"FilterReader("
+literal|"FilterIndexReader("
 argument_list|)
 decl_stmt|;
 name|buffer

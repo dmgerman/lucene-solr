@@ -1722,14 +1722,14 @@ return|;
 block|}
 else|else
 block|{
-comment|// fail by calling supers impl throwing UOE
-throw|throw
-operator|new
-name|UnsupportedOperationException
+return|return
+name|writer
+operator|.
+name|getReader
 argument_list|(
-literal|"This reader cannot be reopened from the given IndexWriter, as they don't match."
+name|applyAllDeletes
 argument_list|)
-throw|;
+return|;
 block|}
 block|}
 DECL|method|doOpenFromWriter
