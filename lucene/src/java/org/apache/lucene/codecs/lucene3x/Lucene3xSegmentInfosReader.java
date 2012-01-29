@@ -209,10 +209,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 3x implementation of {@link SegmentInfosReader}.  * @lucene.experimental  */
+comment|/**  * Lucene 3x implementation of {@link SegmentInfosReader}.  * @lucene.experimental  * @deprecated  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene3xSegmentInfosReader
 specifier|public
 class|class

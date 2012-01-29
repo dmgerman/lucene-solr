@@ -323,10 +323,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Supports the Lucene 3.x index format (readonly)  */
+comment|/**  * Supports the Lucene 3.x index format (readonly)  * @deprecated  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene3xCodec
 specifier|public
 class|class

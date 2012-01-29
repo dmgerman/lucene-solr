@@ -358,7 +358,13 @@ name|IOUtils
 import|;
 end_import
 
+begin_comment
+comment|/** @deprecated */
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene3xTermVectorsReader
 specifier|public
 class|class

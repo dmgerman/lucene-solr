@@ -295,10 +295,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reads Lucene 3.x norms format and exposes it via DocValues API  * @lucene.experimental  */
+comment|/**  * Reads Lucene 3.x norms format and exposes it via DocValues API  * @lucene.experimental  * @deprecated  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene3xNormsProducer
 class|class
 name|Lucene3xNormsProducer
@@ -336,9 +338,7 @@ name|NORMS_EXTENSION
 init|=
 literal|"nrm"
 decl_stmt|;
-comment|/** Extension of separate norms file    * @deprecated */
-annotation|@
-name|Deprecated
+comment|/** Extension of separate norms file */
 DECL|field|SEPARATE_NORMS_EXTENSION
 specifier|static
 specifier|final
@@ -1101,9 +1101,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** @deprecated */
-annotation|@
-name|Deprecated
 DECL|method|separateFiles
 specifier|static
 name|void
