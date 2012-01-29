@@ -192,20 +192,6 @@ name|SegmentWriteState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
 begin_comment
 comment|/** This postings format "inlines" the postings for terms that have  *  low docFreq.  It wraps another postings format, which is used for  *  writing the non-inlined terms.  *  *  @lucene.experimental */
 end_comment
@@ -556,9 +542,6 @@ specifier|public
 name|void
 name|files
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
@@ -578,8 +561,6 @@ name|wrappedPostingsBaseFormat
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|segmentInfo
 argument_list|,
 name|segmentSuffix
@@ -591,8 +572,6 @@ name|BlockTreeTermsReader
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|segmentInfo
 argument_list|,
 name|segmentSuffix

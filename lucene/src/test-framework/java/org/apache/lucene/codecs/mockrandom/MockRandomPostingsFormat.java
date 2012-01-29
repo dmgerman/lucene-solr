@@ -2566,9 +2566,6 @@ specifier|public
 name|void
 name|files
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
@@ -2623,8 +2620,6 @@ name|Lucene40PostingsReader
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|segmentInfo
 argument_list|,
 name|segmentSuffix
@@ -2636,8 +2631,6 @@ name|BlockTermsReader
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|segmentInfo
 argument_list|,
 name|segmentSuffix
@@ -2649,8 +2642,6 @@ name|BlockTreeTermsReader
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|segmentInfo
 argument_list|,
 name|segmentSuffix
@@ -2662,8 +2653,6 @@ name|FixedGapTermsIndexReader
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|segmentInfo
 argument_list|,
 name|segmentSuffix
@@ -2675,8 +2664,6 @@ name|VariableGapTermsIndexReader
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|segmentInfo
 argument_list|,
 name|segmentSuffix
@@ -2716,6 +2703,8 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
+name|segmentInfo
+operator|.
 name|dir
 operator|.
 name|fileExists

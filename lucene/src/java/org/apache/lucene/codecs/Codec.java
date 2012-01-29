@@ -78,20 +78,6 @@ name|NamedSPILoader
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
 begin_comment
 comment|/**  * Encodes/decodes an inverted index segment  */
 end_comment
@@ -167,9 +153,6 @@ specifier|public
 name|void
 name|files
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
@@ -238,8 +221,6 @@ argument_list|()
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|info
 argument_list|,
 literal|""
@@ -252,8 +233,6 @@ argument_list|()
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|info
 argument_list|,
 name|files
@@ -264,8 +243,6 @@ argument_list|()
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|info
 argument_list|,
 name|files
@@ -276,8 +253,6 @@ argument_list|()
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|info
 argument_list|,
 name|files
@@ -290,8 +265,6 @@ argument_list|()
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|info
 argument_list|,
 name|files
@@ -302,8 +275,6 @@ argument_list|()
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|info
 argument_list|,
 name|files
@@ -318,9 +289,6 @@ specifier|public
 name|void
 name|separateFiles
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
@@ -338,8 +306,6 @@ argument_list|()
 operator|.
 name|separateFiles
 argument_list|(
-name|dir
-argument_list|,
 name|info
 argument_list|,
 name|files

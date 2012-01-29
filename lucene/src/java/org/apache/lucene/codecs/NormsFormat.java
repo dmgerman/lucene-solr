@@ -78,20 +78,6 @@ name|SegmentReadState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
 begin_comment
 comment|/**  * format for normalization factors  */
 end_comment
@@ -133,9 +119,6 @@ specifier|abstract
 name|void
 name|files
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,

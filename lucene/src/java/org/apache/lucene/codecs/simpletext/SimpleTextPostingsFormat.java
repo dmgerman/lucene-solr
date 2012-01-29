@@ -136,20 +136,6 @@ name|IndexFileNames
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
 begin_comment
 comment|/** For debugging, curiosity, transparency only!!  Do not  *  use this codec in production.  *  *<p>This codec stores all postings data in a single  *  human-readable text file (_N.pst).  You can view this in  *  any text editor, and even edit it to alter your index.  *  *  @lucene.experimental */
 end_comment
@@ -256,9 +242,6 @@ specifier|public
 name|void
 name|files
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,

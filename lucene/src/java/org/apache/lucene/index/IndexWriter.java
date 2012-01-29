@@ -13923,8 +13923,6 @@ argument_list|()
 operator|.
 name|separateFiles
 argument_list|(
-name|dir
-argument_list|,
 name|info
 argument_list|,
 name|separateFiles

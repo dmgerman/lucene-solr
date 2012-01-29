@@ -1114,6 +1114,8 @@ name|sizeInBytesNoStore
 return|;
 block|}
 block|}
+comment|// nocommit: wrong to call this if (compoundFile)
+comment|// wrong to call this at all... nuke it
 DECL|method|codecDocStoreFiles
 name|Set
 argument_list|<
@@ -1144,8 +1146,6 @@ argument_list|()
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|this
 argument_list|,
 name|docStoreFiles
@@ -1158,8 +1158,6 @@ argument_list|()
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|this
 argument_list|,
 name|docStoreFiles
@@ -1860,8 +1858,6 @@ name|codec
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|this
 argument_list|,
 name|fileSet
@@ -1872,8 +1868,6 @@ name|codec
 operator|.
 name|separateFiles
 argument_list|(
-name|dir
-argument_list|,
 name|this
 argument_list|,
 name|fileSet

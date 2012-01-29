@@ -434,9 +434,6 @@ specifier|static
 name|void
 name|files
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
