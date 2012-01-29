@@ -454,7 +454,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|IndexReader
@@ -539,10 +539,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|IndexReader
+name|DirectoryReader
 name|r2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
