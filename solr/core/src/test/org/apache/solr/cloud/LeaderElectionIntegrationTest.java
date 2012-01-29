@@ -584,6 +584,11 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+name|reader
+operator|.
+name|createClusterStateWatchersAndUpdate
+argument_list|()
+expr_stmt|;
 name|log
 operator|.
 name|info
@@ -1201,13 +1206,6 @@ name|InterruptedException
 throws|,
 name|KeeperException
 block|{
-name|reader
-operator|.
-name|updateCloudState
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|ZkNodeProps
 name|props
 init|=
@@ -1219,7 +1217,7 @@ literal|"collection1"
 argument_list|,
 literal|"shard1"
 argument_list|,
-literal|15000
+literal|30000
 argument_list|)
 decl_stmt|;
 name|String
