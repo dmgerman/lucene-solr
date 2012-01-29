@@ -2864,7 +2864,7 @@ specifier|public
 name|void
 name|warm
 parameter_list|(
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 parameter_list|)
 throws|throws

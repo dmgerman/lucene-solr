@@ -534,19 +534,8 @@ argument_list|,
 name|actual
 argument_list|)
 expr_stmt|;
-name|FieldCache
-operator|.
-name|DEFAULT
-operator|.
-name|purge
-argument_list|(
-name|s
-operator|.
-name|getIndexReader
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// our wrapping can create insanity otherwise
+comment|// nocommit: I removed that as we can never get insanity by composite readers anymore... Is this ok?
+comment|//FieldCache.DEFAULT.purge(s.getIndexReader()); // our wrapping can create insanity otherwise
 block|}
 block|}
 DECL|class|SetCollector

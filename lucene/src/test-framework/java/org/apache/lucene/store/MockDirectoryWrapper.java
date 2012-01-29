@@ -180,7 +180,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|DirectoryReader
 import|;
 end_import
 
@@ -2855,7 +2855,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(
@@ -2998,10 +2998,10 @@ name|endFiles
 argument_list|)
 assert|;
 block|}
-name|IndexReader
+name|DirectoryReader
 name|ir1
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3040,10 +3040,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|ir2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
