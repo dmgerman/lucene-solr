@@ -638,7 +638,7 @@ return|return
 name|liveDocsFormat
 return|;
 block|}
-comment|// overrides the default implementation in codec.java to handle CFS without CFE, and shared docstores
+comment|// overrides the default implementation in codec.java to handle CFS without CFE
 annotation|@
 name|Override
 DECL|method|files
@@ -661,7 +661,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: shared doc stores
 if|if
 condition|(
 name|info
@@ -707,7 +706,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// override the default implementation in codec.java to handle separate norms files
+comment|// override the default implementation in codec.java to handle separate norms files, and shared compound docstores
 annotation|@
 name|Override
 DECL|method|separateFiles
@@ -753,6 +752,59 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|info
+operator|.
+name|getDocStoreOffset
+argument_list|()
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+comment|// We are sharing doc stores (stored fields, term
+comment|// vectors) with other segments
+assert|assert
+name|info
+operator|.
+name|getDocStoreSegment
+argument_list|()
+operator|!=
+literal|null
+assert|;
+if|if
+condition|(
+name|info
+operator|.
+name|getDocStoreIsCompoundFile
+argument_list|()
+condition|)
+block|{
+name|files
+operator|.
+name|add
+argument_list|(
+name|IndexFileNames
+operator|.
+name|segmentFileName
+argument_list|(
+name|info
+operator|.
+name|getDocStoreSegment
+argument_list|()
+argument_list|,
+literal|""
+argument_list|,
+name|IndexFileNames
+operator|.
+name|COMPOUND_FILE_STORE_EXTENSION
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// otherwise, if its not a compound docstore, storedfieldsformat/termvectorsformat are each adding their relevant files
+block|}
 block|}
 block|}
 end_class

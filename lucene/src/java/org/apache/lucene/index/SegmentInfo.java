@@ -1879,47 +1879,6 @@ argument_list|,
 name|fileSet
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|docStoreOffset
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-comment|// We are sharing doc stores (stored fields, term
-comment|// vectors) with other segments
-assert|assert
-name|docStoreSegment
-operator|!=
-literal|null
-assert|;
-comment|// TODO: push this out into preflex fieldsFormat?
-if|if
-condition|(
-name|docStoreIsCompoundFile
-condition|)
-block|{
-name|fileSet
-operator|.
-name|add
-argument_list|(
-name|IndexFileNames
-operator|.
-name|segmentFileName
-argument_list|(
-name|docStoreSegment
-argument_list|,
-literal|""
-argument_list|,
-name|IndexFileNames
-operator|.
-name|COMPOUND_FILE_STORE_EXTENSION
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 name|files
 operator|=
 operator|new
