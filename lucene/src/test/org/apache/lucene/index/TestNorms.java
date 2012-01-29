@@ -620,7 +620,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|AtomicIndexReader
 name|open
 init|=
 name|SlowCompositeReaderWrapper
@@ -810,7 +810,7 @@ argument_list|,
 name|secondWriteNorm
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|AtomicIndexReader
 name|reader
 init|=
 name|SlowCompositeReaderWrapper
@@ -916,7 +916,7 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|AtomicIndexReader
 name|mergedReader
 init|=
 name|SlowCompositeReaderWrapper
