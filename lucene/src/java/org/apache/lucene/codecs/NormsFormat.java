@@ -172,30 +172,6 @@ throws|throws
 name|IOException
 block|{}
 empty_stmt|;
-comment|/**    * Note: this should not be overridden!    * @deprecated    */
-annotation|@
-name|Deprecated
-DECL|method|docsProducer
-specifier|public
-name|PerDocProducer
-name|docsProducer
-parameter_list|(
-name|SegmentReadState
-name|state
-parameter_list|,
-name|Directory
-name|separateNormsDir
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|docsProducer
-argument_list|(
-name|state
-argument_list|)
-return|;
-block|}
 block|}
 end_class
 

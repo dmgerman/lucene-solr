@@ -632,8 +632,6 @@ operator|.
 name|docsProducer
 argument_list|(
 name|segmentReadState
-argument_list|,
-name|dir
 argument_list|)
 expr_stmt|;
 name|perDocProducer

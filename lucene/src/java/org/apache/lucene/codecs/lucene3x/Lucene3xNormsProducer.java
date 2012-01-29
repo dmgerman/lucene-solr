@@ -419,13 +419,18 @@ name|fields
 parameter_list|,
 name|IOContext
 name|context
-parameter_list|,
-name|Directory
-name|separateNormsDir
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|Directory
+name|separateNormsDir
+init|=
+name|info
+operator|.
+name|dir
+decl_stmt|;
+comment|// separate norms are never inside CFS
 name|maxdoc
 operator|=
 name|info
