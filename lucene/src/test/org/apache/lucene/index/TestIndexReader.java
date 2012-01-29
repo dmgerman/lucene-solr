@@ -439,10 +439,10 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// set up reader:
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -690,10 +690,10 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// set up reader
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -703,7 +703,7 @@ decl_stmt|;
 name|FieldInfos
 name|fieldInfos
 init|=
-name|ReaderUtil
+name|MultiFields
 operator|.
 name|getMergedFieldInfos
 argument_list|(
@@ -1212,7 +1212,7 @@ expr_stmt|;
 comment|// verify fields again
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1221,7 +1221,7 @@ argument_list|)
 expr_stmt|;
 name|fieldInfos
 operator|=
-name|ReaderUtil
+name|MultiFields
 operator|.
 name|getMergedFieldInfos
 argument_list|(
@@ -2241,10 +2241,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2417,7 +2417,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2544,7 +2544,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* ??? public void testOpenEmptyDirectory() throws IOException{       String dirName = "test.empty";       File fileDirName = new File(dirName);       if (!fileDirName.exists()) {         fileDirName.mkdir();       }       try {         IndexReader.open(fileDirName);         fail("opening IndexReader on empty directory failed to produce FileNotFoundException");       } catch (FileNotFoundException e) {         // GOOD       }       rmDir(fileDirName);     }*/
+comment|/* ??? public void testOpenEmptyDirectory() throws IOException{       String dirName = "test.empty";       File fileDirName = new File(dirName);       if (!fileDirName.exists()) {         fileDirName.mkdir();       }       try {         DirectoryReader.open(fileDirName);         fail("opening DirectoryReader on empty directory failed to produce FileNotFoundException");       } catch (FileNotFoundException e) {         // GOOD       }       rmDir(fileDirName);     }*/
 DECL|method|testFilesOpenClose
 specifier|public
 name|void
@@ -2676,10 +2676,10 @@ argument_list|(
 name|dirFile
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader1
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2804,10 +2804,10 @@ name|dir
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2912,7 +2912,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2936,7 +2936,7 @@ argument_list|)
 argument_list|,
 name|version
 operator|<=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|lastModified
 argument_list|(
@@ -3031,10 +3031,10 @@ name|dir
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3107,7 +3107,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3131,7 +3131,7 @@ argument_list|)
 argument_list|,
 name|version
 operator|<
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|getCurrentVersion
 argument_list|(
@@ -3178,7 +3178,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3207,7 +3207,7 @@ expr_stmt|;
 comment|// Make sure we still get a CorruptIndexException (not NPE):
 try|try
 block|{
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3682,10 +3682,10 @@ specifier|static
 name|void
 name|assertIndexEquals
 parameter_list|(
-name|IndexReader
+name|DirectoryReader
 name|index1
 parameter_list|,
-name|IndexReader
+name|DirectoryReader
 name|index2
 parameter_list|)
 throws|throws
@@ -3736,16 +3736,6 @@ name|hasDeletions
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|index1
-operator|instanceof
-name|ParallelReader
-operator|)
-condition|)
-block|{
 name|assertEquals
 argument_list|(
 literal|"Single segment test differs."
@@ -3769,12 +3759,11 @@ operator|==
 literal|1
 argument_list|)
 expr_stmt|;
-block|}
 comment|// check field names
 name|FieldInfos
 name|fieldInfos1
 init|=
-name|ReaderUtil
+name|MultiFields
 operator|.
 name|getMergedFieldInfos
 argument_list|(
@@ -3784,7 +3773,7 @@ decl_stmt|;
 name|FieldInfos
 name|fieldInfos2
 init|=
-name|ReaderUtil
+name|MultiFields
 operator|.
 name|getMergedFieldInfos
 argument_list|(
@@ -4654,10 +4643,10 @@ argument_list|(
 name|d
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -4762,10 +4751,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -4848,7 +4837,7 @@ argument_list|()
 expr_stmt|;
 name|r2
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -4862,7 +4851,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -4959,7 +4948,7 @@ name|doc
 return|;
 block|}
 comment|// LUCENE-1468 -- make sure on attempting to open an
-comment|// IndexReader on a non-existent directory, you get a
+comment|// DirectoryReader on a non-existent directory, you get a
 comment|// good exception
 DECL|method|testNoDir
 specifier|public
@@ -4984,7 +4973,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -5254,17 +5243,17 @@ name|commit
 argument_list|()
 expr_stmt|;
 comment|// Open reader1
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|IndexReader
+name|AtomicIndexReader
 name|r1
 init|=
 name|getOnlySegmentReader
@@ -5323,10 +5312,10 @@ name|commit
 argument_list|()
 expr_stmt|;
 comment|// Reopen reader1 --> reader2
-name|IndexReader
+name|DirectoryReader
 name|r2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -5343,9 +5332,12 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|AtomicIndexReader
 name|sub0
 init|=
+operator|(
+name|AtomicIndexReader
+operator|)
 name|r2
 operator|.
 name|getSequentialSubReaders
@@ -5488,17 +5480,17 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|IndexReader
+name|AtomicIndexReader
 name|r1
 init|=
 name|getOnlySegmentReader
@@ -5528,10 +5520,10 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -5547,17 +5539,6 @@ name|r
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-operator|-
-literal|1
-argument_list|,
-name|r2
-operator|.
-name|getUniqueTermCount
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|IndexReader
 index|[]
@@ -5589,10 +5570,15 @@ name|assertEquals
 argument_list|(
 literal|36
 argument_list|,
+operator|(
+operator|(
+name|AtomicIndexReader
+operator|)
 name|subs
 index|[
 name|i
 index|]
+operator|)
 operator|.
 name|getUniqueTermCount
 argument_list|()
@@ -5720,10 +5706,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -5836,10 +5822,10 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// LUCENE-1718: ensure re-open carries over no terms index:
-name|IndexReader
+name|DirectoryReader
 name|r2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -5853,7 +5839,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -5997,10 +5983,10 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -6035,10 +6021,10 @@ name|isCurrent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -6393,7 +6379,7 @@ argument_list|(
 name|d
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|writer
@@ -6595,7 +6581,7 @@ name|commit
 argument_list|()
 expr_stmt|;
 specifier|final
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
 name|writer
@@ -6671,10 +6657,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -6759,7 +6745,7 @@ name|Document
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|writer
@@ -6865,10 +6851,10 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -6966,10 +6952,10 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -7282,7 +7268,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|writer
