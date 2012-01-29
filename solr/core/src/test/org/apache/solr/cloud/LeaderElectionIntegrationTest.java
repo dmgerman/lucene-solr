@@ -1219,7 +1219,7 @@ literal|"collection1"
 argument_list|,
 literal|"shard1"
 argument_list|,
-literal|15000
+literal|30000
 argument_list|)
 decl_stmt|;
 name|String
