@@ -184,8 +184,6 @@ name|files
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|separateFiles
 specifier|public
 name|void

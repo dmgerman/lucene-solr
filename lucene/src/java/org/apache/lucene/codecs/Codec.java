@@ -312,6 +312,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Populates<code>files</code> with any filenames that are    * stored outside of CFS for the<code>info</code> segment.    */
+comment|// TODO: can we somehow totally remove this?
 DECL|method|separateFiles
 specifier|public
 name|void
@@ -333,18 +334,6 @@ throws|throws
 name|IOException
 block|{
 name|liveDocsFormat
-argument_list|()
-operator|.
-name|separateFiles
-argument_list|(
-name|dir
-argument_list|,
-name|info
-argument_list|,
-name|files
-argument_list|)
-expr_stmt|;
-name|normsFormat
 argument_list|()
 operator|.
 name|separateFiles

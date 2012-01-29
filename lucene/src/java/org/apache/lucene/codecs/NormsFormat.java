@@ -148,30 +148,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**     * Note: this should not be overridden!     * @deprecated     */
-annotation|@
-name|Deprecated
-DECL|method|separateFiles
-specifier|public
-name|void
-name|separateFiles
-parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
-name|SegmentInfo
-name|info
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-throws|throws
-name|IOException
-block|{}
-empty_stmt|;
 block|}
 end_class
 
