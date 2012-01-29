@@ -653,7 +653,7 @@ block|}
 block|}
 block|}
 decl_stmt|;
-comment|/** Resolves the buffered deleted Term/Query/docIDs, into    *  actual deleted docIDs in the liveDocs BitVector for    *  each SegmentReader. */
+comment|/** Resolves the buffered deleted Term/Query/docIDs, into    *  actual deleted docIDs in the liveDocs MutableBits for    *  each SegmentReader. */
 DECL|method|applyDeletes
 specifier|public
 specifier|synchronized
@@ -961,7 +961,9 @@ name|packet
 operator|.
 name|isSegmentPrivate
 operator|:
-literal|"Packet and Segments deletegen can only match on a segment private del packet"
+literal|"Packet and Segments deletegen can only match on a segment private del packet gen="
+operator|+
+name|segGen
 assert|;
 comment|//System.out.println("  eq");
 comment|// Lock order: IW -> BD -> RP

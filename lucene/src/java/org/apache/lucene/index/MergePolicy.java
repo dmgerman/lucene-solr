@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BitVector
+name|Bits
 import|;
 end_import
 
@@ -197,7 +197,7 @@ comment|// used by IndexWriter
 DECL|field|readerLiveDocs
 name|List
 argument_list|<
-name|BitVector
+name|Bits
 argument_list|>
 name|readerLiveDocs
 decl_stmt|;

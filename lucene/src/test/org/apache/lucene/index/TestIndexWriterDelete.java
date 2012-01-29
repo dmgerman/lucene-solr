@@ -5557,6 +5557,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 comment|// Eventually segment 0 should get a del docs:
+comment|// TODO: fix this test
 if|if
 condition|(
 name|dir
@@ -5564,6 +5565,13 @@ operator|.
 name|fileExists
 argument_list|(
 literal|"_0_1.del"
+argument_list|)
+operator|||
+name|dir
+operator|.
+name|fileExists
+argument_list|(
+literal|"_0_1.liv"
 argument_list|)
 condition|)
 block|{
@@ -5778,6 +5786,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 comment|// Eventually segment 0 should get a del docs:
+comment|// TODO: fix this test
 if|if
 condition|(
 name|dir
@@ -5785,6 +5794,13 @@ operator|.
 name|fileExists
 argument_list|(
 literal|"_0_1.del"
+argument_list|)
+operator|||
+name|dir
+operator|.
+name|fileExists
+argument_list|(
+literal|"_0_1.liv"
 argument_list|)
 condition|)
 block|{
@@ -6092,6 +6108,7 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
+comment|// TODO: fix this test
 if|if
 condition|(
 name|dir
@@ -6099,6 +6116,13 @@ operator|.
 name|fileExists
 argument_list|(
 literal|"_0_1.del"
+argument_list|)
+operator|||
+name|dir
+operator|.
+name|fileExists
+argument_list|(
+literal|"_0_1.liv"
 argument_list|)
 condition|)
 block|{

@@ -107,16 +107,6 @@ name|COMPOUND_FILE_STORE_EXTENSION
 init|=
 literal|"cfx"
 decl_stmt|;
-comment|/** Extension of deletes */
-DECL|field|DELETES_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|DELETES_EXTENSION
-init|=
-literal|"del"
-decl_stmt|;
 comment|/**    * This array contains all filename extensions used by    * Lucene's index files, with one exception, namely the    * extension made up from<code>.s</code> + a number.    * Also note that Lucene's<code>segments_N</code> files    * do not have any filename extension.    */
 DECL|field|INDEX_EXTENSIONS
 specifier|public
@@ -133,8 +123,6 @@ block|{
 name|COMPOUND_FILE_EXTENSION
 block|,
 name|COMPOUND_FILE_ENTRIES_EXTENSION
-block|,
-name|DELETES_EXTENSION
 block|,
 name|GEN_EXTENSION
 block|,

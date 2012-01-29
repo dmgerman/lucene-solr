@@ -160,20 +160,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BitVector
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|BytesRef
 import|;
 end_import
@@ -2469,6 +2455,7 @@ block|{
 comment|// Mark it deleted.  TODO: we could also skip
 comment|// writing its postings; this would be
 comment|// deterministic (just for this Term's docs).
+comment|// TODO: can we do this reach-around in a cleaner way????
 if|if
 condition|(
 name|state
@@ -2482,22 +2469,40 @@ name|state
 operator|.
 name|liveDocs
 operator|=
-operator|new
-name|BitVector
+name|docState
+operator|.
+name|docWriter
+operator|.
+name|codec
+operator|.
+name|liveDocsFormat
+argument_list|()
+operator|.
+name|newLiveDocs
 argument_list|(
 name|state
 operator|.
 name|numDocs
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
 name|state
 operator|.
 name|liveDocs
 operator|.
-name|invertAll
-argument_list|()
+name|get
+argument_list|(
+name|docID
+argument_list|)
+condition|)
+block|{
+name|state
+operator|.
+name|delCountOnFlush
+operator|++
 expr_stmt|;
-block|}
 name|state
 operator|.
 name|liveDocs
@@ -2507,6 +2512,7 @@ argument_list|(
 name|docID
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|totTF
 operator|+=
