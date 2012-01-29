@@ -3610,7 +3610,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * All the files which are common between master and slave must have same timestamp and size else we assume they are    * not compatible (stale).    *    * @return true if the index stale and we need to download a fresh copy, false otherwise.    */
+comment|/**    * All the files which are common between master and slave must have same size else we assume they are    * not compatible (stale).    *    * @return true if the index stale and we need to download a fresh copy, false otherwise.    */
 DECL|method|isIndexStale
 specifier|private
 name|boolean
