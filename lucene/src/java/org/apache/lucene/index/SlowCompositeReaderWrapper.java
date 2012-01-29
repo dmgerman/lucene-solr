@@ -119,11 +119,11 @@ comment|/**  * This class forces a composite reader (eg a {@link  * MultiReader}
 end_comment
 
 begin_class
-DECL|class|SlowMultiReaderWrapper
+DECL|class|SlowCompositeReaderWrapper
 specifier|public
 specifier|final
 class|class
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 extends|extends
 name|AtomicIndexReader
 block|{
@@ -187,7 +187,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 argument_list|(
 operator|(
 name|CompositeIndexReader
@@ -211,9 +211,9 @@ name|reader
 return|;
 block|}
 block|}
-DECL|method|SlowMultiReaderWrapper
+DECL|method|SlowCompositeReaderWrapper
 specifier|public
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 parameter_list|(
 name|CompositeIndexReader
 name|reader
@@ -256,7 +256,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"SlowMultiReaderWrapper("
+literal|"SlowCompositeReaderWrapper("
 operator|+
 name|in
 operator|+
