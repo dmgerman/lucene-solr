@@ -1626,8 +1626,9 @@ name|DEFAULT
 operator|.
 name|getInts
 argument_list|(
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|r
 argument_list|)

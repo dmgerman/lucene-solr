@@ -693,8 +693,9 @@ name|writer
 operator|.
 name|addIndexes
 argument_list|(
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|open
 argument_list|)

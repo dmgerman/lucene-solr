@@ -623,8 +623,9 @@ expr_stmt|;
 name|IndexReader
 name|open
 init|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|IndexReader
 operator|.
@@ -812,8 +813,9 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|IndexReader
 operator|.
@@ -917,8 +919,9 @@ expr_stmt|;
 name|IndexReader
 name|mergedReader
 init|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|writer
 operator|.

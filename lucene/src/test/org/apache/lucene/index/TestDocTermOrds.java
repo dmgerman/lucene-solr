@@ -454,8 +454,9 @@ init|=
 operator|new
 name|DocTermOrds
 argument_list|(
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|r
 argument_list|)
@@ -1138,8 +1139,9 @@ expr_stmt|;
 block|}
 name|verify
 argument_list|(
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|r
 argument_list|)
@@ -1931,8 +1933,9 @@ expr_stmt|;
 block|}
 name|verify
 argument_list|(
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|r
 argument_list|)

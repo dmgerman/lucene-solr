@@ -814,8 +814,9 @@ argument_list|()
 decl_stmt|;
 name|reader
 operator|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|r
 argument_list|)
@@ -2777,11 +2778,12 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|SlowMultiReaderWrapper
+name|AtomicIndexReader
 name|reader
 init|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|r
 argument_list|)

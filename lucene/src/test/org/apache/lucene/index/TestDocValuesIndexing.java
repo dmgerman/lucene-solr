@@ -5451,8 +5451,9 @@ expr_stmt|;
 block|}
 name|reader
 operator|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|reader
 argument_list|)

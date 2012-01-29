@@ -136,7 +136,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 import|;
 end_import
 
@@ -265,8 +265,9 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|IndexReader
 operator|.
@@ -423,8 +424,9 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|IndexReader
 operator|.
@@ -548,8 +550,9 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|IndexReader
 operator|.
@@ -846,8 +849,9 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|IndexReader
 operator|.
