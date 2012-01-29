@@ -94,6 +94,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DirectoryReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -682,8 +696,8 @@ name|reader
 operator|.
 name|getTopReaderContext
 argument_list|()
-operator|.
-name|isAtomic
+operator|instanceof
+name|AtomicReaderContext
 argument_list|)
 expr_stmt|;
 name|AtomicReaderContext
@@ -1069,7 +1083,7 @@ comment|// NOTE: cannot use writer.getReader because RIW (on
 comment|// flipping a coin) may give us a newly opened reader,
 comment|// but we use .reopen on this reader below and expect to
 comment|// (must) get an NRT reader:
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
 name|IndexReader
@@ -1781,23 +1795,23 @@ block|}
 DECL|method|refreshReader
 specifier|private
 specifier|static
-name|IndexReader
+name|DirectoryReader
 name|refreshReader
 parameter_list|(
-name|IndexReader
+name|DirectoryReader
 name|reader
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|IndexReader
+name|DirectoryReader
 name|oldReader
 init|=
 name|reader
 decl_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(

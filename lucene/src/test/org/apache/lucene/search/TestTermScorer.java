@@ -469,8 +469,8 @@ name|indexSearcher
 operator|.
 name|getTopReaderContext
 argument_list|()
-operator|.
-name|isAtomic
+operator|instanceof
+name|AtomicReaderContext
 argument_list|)
 expr_stmt|;
 name|AtomicReaderContext
@@ -787,8 +787,8 @@ name|indexSearcher
 operator|.
 name|getTopReaderContext
 argument_list|()
-operator|.
-name|isAtomic
+operator|instanceof
+name|AtomicReaderContext
 argument_list|)
 expr_stmt|;
 name|AtomicReaderContext
@@ -935,8 +935,8 @@ name|indexSearcher
 operator|.
 name|getTopReaderContext
 argument_list|()
-operator|.
-name|isAtomic
+operator|instanceof
+name|AtomicReaderContext
 argument_list|)
 expr_stmt|;
 name|AtomicReaderContext

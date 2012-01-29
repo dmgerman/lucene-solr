@@ -649,11 +649,6 @@ argument_list|,
 name|acceptDocs
 argument_list|)
 expr_stmt|;
-assert|assert
-name|context
-operator|.
-name|isAtomic
-assert|;
 specifier|final
 name|FixedBitSet
 name|set
