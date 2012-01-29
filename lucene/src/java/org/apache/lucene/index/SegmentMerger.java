@@ -1685,24 +1685,15 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// nocommit: this was original, is the change correct:
+comment|// nocommit: this does not work anymore as SR/AtomicIndexReader does not know the directory anymore:
 comment|// mergeState.dirPayloadProcessor[i] = mergeState.payloadProcessorProvider.getDirProcessor(reader.reader.directory());
-name|mergeState
-operator|.
-name|dirPayloadProcessor
-index|[
-name|i
-index|]
-operator|=
-name|mergeState
-operator|.
-name|payloadProcessorProvider
-operator|.
-name|getDirProcessor
+throw|throw
+operator|new
+name|UnsupportedOperationException
 argument_list|(
-name|directory
+literal|"PayloadProcessorProvider is not supported at the moment :("
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 name|i
 operator|++
