@@ -7730,7 +7730,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r3
 init|=
 name|w
@@ -7743,7 +7743,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|AtomicIndexReader
 name|sr
 init|=
 name|getOnlySegmentReader

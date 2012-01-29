@@ -526,14 +526,14 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|AtomicIndexReader
 name|open
 init|=
 name|SlowCompositeReaderWrapper
 operator|.
 name|wrap
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
