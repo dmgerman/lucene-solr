@@ -2338,6 +2338,7 @@ name|rootCode
 decl_stmt|;
 DECL|field|index
 specifier|private
+specifier|final
 name|FST
 argument_list|<
 name|BytesRef
@@ -2497,6 +2498,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|/*         if (false) {           final String dotFileName = segment + "_" + fieldInfo.name + ".dot";           Writer w = new OutputStreamWriter(new FileOutputStream(dotFileName));           Util.toDot(index, w, false, false);           System.out.println("FST INDEX: SAVED to " + dotFileName);           w.close();         }         */
+block|}
+else|else
+block|{
+name|index
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 comment|/** For debugging -- used by CheckIndex too*/
@@ -2723,6 +2731,14 @@ init|=
 operator|new
 name|BytesRef
 argument_list|()
+decl_stmt|;
+DECL|field|fstReader
+specifier|private
+specifier|final
+name|FST
+operator|.
+name|BytesReader
+name|fstReader
 decl_stmt|;
 comment|// TODO: can we share this with the frame in STE?
 DECL|class|Frame
@@ -3885,6 +3901,30 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|index
+operator|==
+literal|null
+condition|)
+block|{
+name|fstReader
+operator|=
+literal|null
+expr_stmt|;
+block|}
+else|else
+block|{
+name|fstReader
+operator|=
+name|index
+operator|.
+name|getBytesReader
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 comment|// TODO: if the automaton is "smallish" we really
 comment|// should use the terms index to seek at least to
 comment|// the initial term and likely to subsequent terms
@@ -4427,6 +4467,8 @@ literal|1
 operator|+
 name|idx
 argument_list|)
+argument_list|,
+name|fstReader
 argument_list|)
 expr_stmt|;
 assert|assert
@@ -5979,6 +6021,14 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+DECL|field|fstReader
+specifier|private
+specifier|final
+name|FST
+operator|.
+name|BytesReader
+name|fstReader
+decl_stmt|;
 DECL|field|arcs
 annotation|@
 name|SuppressWarnings
@@ -6029,6 +6079,30 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|index
+operator|==
+literal|null
+condition|)
+block|{
+name|fstReader
+operator|=
+literal|null
+expr_stmt|;
+block|}
+else|else
+block|{
+name|fstReader
+operator|=
+name|index
+operator|.
+name|getBytesReader
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Init w/ root block; don't use index since it may
 comment|// not (and need not) have been loaded
 for|for
@@ -7753,6 +7827,8 @@ literal|1
 operator|+
 name|targetUpto
 argument_list|)
+argument_list|,
+name|fstReader
 argument_list|)
 decl_stmt|;
 if|if
@@ -8675,6 +8751,8 @@ literal|1
 operator|+
 name|targetUpto
 argument_list|)
+argument_list|,
+name|fstReader
 argument_list|)
 decl_stmt|;
 if|if

@@ -20,15 +20,11 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ArrayUtil
+name|IOException
 import|;
 end_import
 
@@ -42,7 +38,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|RamUsageEstimator
+name|ArrayUtil
 import|;
 end_import
 
@@ -70,6 +66,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|fst
 operator|.
 name|FST
@@ -82,18 +92,8 @@ begin_comment
 comment|// javadoc
 end_comment
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
-comment|/**  * Builds a compact FST (maps an IntsRef term to an arbitrary  * output) from pre-sorted terms with outputs (the FST  * becomes an FSA if you use NoOutputs).  The FST is written  * on-the-fly into a compact serialized format byte array, which can  * be saved to / loaded from a Directory or used directly  * for traversal.  The FST is always finite (no cycles).  *  *<p>NOTE: The algorithm is described at  * http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.24.3698</p>  *  * If your outputs are ByteSequenceOutput then the final FST  * will be minimal, but if you use PositiveIntOutput then  * it's only "near minimal".  For example, aa/0, aab/1, bbb/2  * will produce 6 states when a 5 state fst is also  * possible.  *  * The parameterized type T is the output type.  See the  * subclasses of {@link Outputs}.  *  * @lucene.experimental  */
+comment|/**  * Builds a minimal FST (maps an IntsRef term to an arbitrary  * output) from pre-sorted terms with outputs (the FST  * becomes an FSA if you use NoOutputs).  The FST is written  * on-the-fly into a compact serialized format byte array, which can  * be saved to / loaded from a Directory or used directly  * for traversal.  The FST is always finite (no cycles).  *  *<p>NOTE: The algorithm is described at  * http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.24.3698</p>  *  * The parameterized type T is the output type.  See the  * subclasses of {@link Outputs}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -129,7 +129,7 @@ specifier|final
 name|T
 name|NO_OUTPUT
 decl_stmt|;
-comment|// private static final boolean DEBUG = false;
+comment|// private static final boolean DEBUG = true;
 comment|// simplistic pruning: we prune node (and all following
 comment|// nodes) if less than this number of terms go through it:
 DECL|field|minSuffixCount1
@@ -263,10 +263,12 @@ argument_list|,
 name|outputs
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Instantiates an FST/FSA builder with all the possible tuning and construction    * tweaks. Read parameter documentation carefully.    *     * @param inputType     *    The input type (transition labels). Can be anything from {@link INPUT_TYPE}    *    enumeration. Shorter types will consume less memory. Strings (character sequences) are     *    represented as {@link INPUT_TYPE#BYTE4} (full unicode codepoints).     *         * @param minSuffixCount1    *    If pruning the input graph during construction, this threshold is used for telling    *    if a node is kept or pruned. If transition_count(node)&gt;= minSuffixCount1, the node    *    is kept.     *        * @param minSuffixCount2    *    (Note: only Mike McCandless knows what this one is really doing...)     *     * @param doShareSuffix     *    If<code>true</code>, the shared suffixes will be compacted into unique paths.    *    This requires an additional hash map for lookups in memory. Setting this parameter to    *<code>false</code> creates a single path for all input sequences. This will result in a larger    *    graph, but may require less memory and will speed up construction.      *    * @param doShareNonSingletonNodes    *    Only used if doShareSuffix is true.  Set this to    *    true to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param shareMaxTailLength    *    Only used if doShareSuffix is true.  Set this to    *    Integer.MAX_VALUE to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param outputs The output type for each input sequence. Applies only if building an FST. For    *    FSA, use {@link NoOutputs#getSingleton()} and {@link NoOutputs#getNoOutput()} as the    *    singleton output object.    */
+comment|/**    * Instantiates an FST/FSA builder with all the possible tuning and construction    * tweaks. Read parameter documentation carefully.    *     * @param inputType     *    The input type (transition labels). Can be anything from {@link INPUT_TYPE}    *    enumeration. Shorter types will consume less memory. Strings (character sequences) are     *    represented as {@link INPUT_TYPE#BYTE4} (full unicode codepoints).     *         * @param minSuffixCount1    *    If pruning the input graph during construction, this threshold is used for telling    *    if a node is kept or pruned. If transition_count(node)&gt;= minSuffixCount1, the node    *    is kept.     *        * @param minSuffixCount2    *    (Note: only Mike McCandless knows what this one is really doing...)     *     * @param doShareSuffix     *    If<code>true</code>, the shared suffixes will be compacted into unique paths.    *    This requires an additional hash map for lookups in memory. Setting this parameter to    *<code>false</code> creates a single path for all input sequences. This will result in a larger    *    graph, but may require less memory and will speed up construction.      *    * @param doShareNonSingletonNodes    *    Only used if doShareSuffix is true.  Set this to    *    true to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param shareMaxTailLength    *    Only used if doShareSuffix is true.  Set this to    *    Integer.MAX_VALUE to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param outputs The output type for each input sequence. Applies only if building an FST. For    *    FSA, use {@link NoOutputs#getSingleton()} and {@link NoOutputs#getNoOutput()} as the    *    singleton output object.    *    * @param willPackFST Pass true if you will rewrite (compact) the FST before saving.  This    *    causes the FST to create additional data structures intenrally to facilitate rewriting, but    *    it means the resulting FST cannot be saved: it must first be rewritten using {@link FST#FST(FST,int[])}}    */
 DECL|method|Builder
 specifier|public
 name|Builder
@@ -302,6 +304,9 @@ argument_list|<
 name|T
 argument_list|>
 name|freezeTail
+parameter_list|,
+name|boolean
+name|willPackFST
 parameter_list|)
 block|{
 name|this
@@ -345,6 +350,8 @@ argument_list|(
 name|inputType
 argument_list|,
 name|outputs
+argument_list|,
+name|willPackFST
 argument_list|)
 expr_stmt|;
 if|if
@@ -515,7 +522,7 @@ name|UnCompiledNode
 argument_list|<
 name|T
 argument_list|>
-name|n
+name|nodeIn
 parameter_list|,
 name|int
 name|tailLength
@@ -525,7 +532,7 @@ name|IOException
 block|{
 specifier|final
 name|int
-name|address
+name|node
 decl_stmt|;
 if|if
 condition|(
@@ -536,7 +543,7 @@ operator|&&
 operator|(
 name|doShareNonSingletonNodes
 operator|||
-name|n
+name|nodeIn
 operator|.
 name|numArcs
 operator|<=
@@ -550,55 +557,55 @@ condition|)
 block|{
 if|if
 condition|(
-name|n
+name|nodeIn
 operator|.
 name|numArcs
 operator|==
 literal|0
 condition|)
 block|{
-name|address
+name|node
 operator|=
 name|fst
 operator|.
 name|addNode
 argument_list|(
-name|n
+name|nodeIn
 argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
-name|address
+name|node
 operator|=
 name|dedupHash
 operator|.
 name|add
 argument_list|(
-name|n
+name|nodeIn
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 else|else
 block|{
-name|address
+name|node
 operator|=
 name|fst
 operator|.
 name|addNode
 argument_list|(
-name|n
+name|nodeIn
 argument_list|)
 expr_stmt|;
 block|}
 assert|assert
-name|address
+name|node
 operator|!=
 operator|-
 literal|2
 assert|;
-name|n
+name|nodeIn
 operator|.
 name|clear
 argument_list|()
@@ -613,9 +620,9 @@ argument_list|()
 decl_stmt|;
 name|fn
 operator|.
-name|address
+name|node
 operator|=
-name|address
+name|node
 expr_stmt|;
 return|return
 name|fn
@@ -1091,6 +1098,22 @@ throws|throws
 name|IOException
 block|{
 comment|/*     if (DEBUG) {       BytesRef b = new BytesRef(input.length);       for(int x=0;x<input.length;x++) {         b.bytes[x] = (byte) input.ints[x];       }       b.length = input.length;       if (output == NO_OUTPUT) {         System.out.println("\nFST ADD: input=" + toString(b) + " " + b);       } else {         System.out.println("\nFST ADD: input=" + toString(b) + " " + b + " output=" + fst.outputs.outputToString(output));       }     }     */
+comment|// De-dup NO_OUTPUT since it must be a singleton:
+if|if
+condition|(
+name|output
+operator|.
+name|equals
+argument_list|(
+name|NO_OUTPUT
+argument_list|)
+condition|)
+block|{
+name|output
+operator|=
+name|NO_OUTPUT
+expr_stmt|;
+block|}
 assert|assert
 name|lastInput
 operator|.
@@ -1834,7 +1857,7 @@ operator|.
 name|length
 argument_list|)
 operator|.
-name|address
+name|node
 argument_list|)
 expr_stmt|;
 return|return
@@ -2018,9 +2041,9 @@ name|CompiledNode
 implements|implements
 name|Node
 block|{
-DECL|field|address
+DECL|field|node
 name|int
-name|address
+name|node
 decl_stmt|;
 DECL|method|isCompiled
 specifier|public
@@ -2480,7 +2503,7 @@ name|target
 operator|=
 name|target
 expr_stmt|;
-comment|//assert target.address != -2;
+comment|//assert target.node != -2;
 name|arc
 operator|.
 name|nextFinalOutput

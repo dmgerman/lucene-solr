@@ -721,12 +721,7 @@ name|add
 argument_list|(
 name|scratch
 argument_list|,
-name|fstOutput
-operator|.
-name|get
-argument_list|(
 name|ord
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|segmentations
@@ -841,6 +836,19 @@ init|=
 literal|false
 decl_stmt|;
 comment|// true if we found any results
+specifier|final
+name|FST
+operator|.
+name|BytesReader
+name|fstReader
+init|=
+name|fst
+operator|.
+name|getBytesReader
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
 name|FST
 operator|.
 name|Arc
@@ -941,6 +949,8 @@ argument_list|,
 name|i
 operator|==
 literal|0
+argument_list|,
+name|fstReader
 argument_list|)
 operator|==
 literal|null

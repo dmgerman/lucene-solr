@@ -320,6 +320,10 @@ operator|&&
 name|index
 operator|<
 name|numBits
+operator|:
+literal|"index="
+operator|+
+name|index
 assert|;
 name|int
 name|i
