@@ -9603,7 +9603,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|listCommits
 argument_list|(
@@ -9659,7 +9659,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|listCommits
 argument_list|(
@@ -9687,7 +9687,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|listCommits
 argument_list|(

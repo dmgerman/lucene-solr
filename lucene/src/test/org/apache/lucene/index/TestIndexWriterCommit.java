@@ -2633,7 +2633,7 @@ control|(
 name|IndexCommit
 name|c
 range|:
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|listCommits
 argument_list|(
@@ -2751,7 +2751,7 @@ control|(
 name|IndexCommit
 name|c
 range|:
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|listCommits
 argument_list|(
@@ -2834,7 +2834,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|listCommits
 argument_list|(
@@ -2867,7 +2867,7 @@ literal|"expected 1 commits!"
 argument_list|,
 literal|1
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|listCommits
 argument_list|(
@@ -3652,7 +3652,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|getCommitUserData
 argument_list|(
@@ -3779,7 +3779,7 @@ name|assertEquals
 argument_list|(
 literal|"test1"
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|getCommitUserData
 argument_list|(
@@ -3856,7 +3856,7 @@ name|assertEquals
 argument_list|(
 literal|"test1"
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|getCommitUserData
 argument_list|(
