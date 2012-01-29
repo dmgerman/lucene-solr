@@ -322,6 +322,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DirectoryReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|DocsEnum
 import|;
 end_import
@@ -492,7 +506,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 import|;
 end_import
 
@@ -697,7 +711,7 @@ name|assertTrue
 argument_list|(
 literal|"Index does not exist?...!"
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(
@@ -1036,7 +1050,7 @@ name|assertTrue
 argument_list|(
 literal|"Index does not exist?...!"
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(
@@ -1235,7 +1249,7 @@ name|assertTrue
 argument_list|(
 literal|"Index does not exist?...!"
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(
@@ -1507,7 +1521,7 @@ name|assertTrue
 argument_list|(
 literal|"Index does not exist?...!"
 argument_list|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(
@@ -1655,7 +1669,7 @@ argument_list|(
 name|algLines
 argument_list|)
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|IndexReader
@@ -1681,7 +1695,7 @@ operator|.
 name|getTermsIndex
 argument_list|(
 operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 argument_list|(
 name|r
 argument_list|)
