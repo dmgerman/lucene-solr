@@ -92,7 +92,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CorruptIndexException
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -106,9 +106,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-operator|.
-name|AtomicReaderContext
+name|CorruptIndexException
 import|;
 end_import
 

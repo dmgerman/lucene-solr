@@ -48,7 +48,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -62,9 +62,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-operator|.
-name|AtomicReaderContext
+name|DocsEnum
 import|;
 end_import
 

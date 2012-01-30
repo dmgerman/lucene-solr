@@ -180,22 +180,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CorruptIndexException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -210,9 +194,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|ReaderContext
+name|CorruptIndexException
 import|;
 end_import
 
@@ -241,6 +223,20 @@ operator|.
 name|index
 operator|.
 name|MultiFields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReaderContext
 import|;
 end_import
 
@@ -399,7 +395,7 @@ comment|// in the next release
 DECL|field|readerContext
 specifier|protected
 specifier|final
-name|ReaderContext
+name|IndexReaderContext
 name|readerContext
 decl_stmt|;
 DECL|field|leafContexts
@@ -496,12 +492,12 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a searcher searching the provided top-level {@link ReaderContext}.    *<p>    * Given a non-<code>null</code> {@link ExecutorService} this method runs    * searches for each segment separately, using the provided ExecutorService.    * IndexSearcher will not shutdown/awaitTermination this ExecutorService on    * close; you must do so, eventually, on your own. NOTE: if you are using    * {@link NIOFSDirectory}, do not use the shutdownNow method of    * ExecutorService as this uses Thread.interrupt under-the-hood which can    * silently close file descriptors (see<a    * href="https://issues.apache.org/jira/browse/LUCENE-2239">LUCENE-2239</a>).    *     * @see ReaderContext    * @see IndexReader#getTopReaderContext()    * @lucene.experimental    */
+comment|/**    * Creates a searcher searching the provided top-level {@link IndexReaderContext}.    *<p>    * Given a non-<code>null</code> {@link ExecutorService} this method runs    * searches for each segment separately, using the provided ExecutorService.    * IndexSearcher will not shutdown/awaitTermination this ExecutorService on    * close; you must do so, eventually, on your own. NOTE: if you are using    * {@link NIOFSDirectory}, do not use the shutdownNow method of    * ExecutorService as this uses Thread.interrupt under-the-hood which can    * silently close file descriptors (see<a    * href="https://issues.apache.org/jira/browse/LUCENE-2239">LUCENE-2239</a>).    *     * @see IndexReaderContext    * @see IndexReader#getTopReaderContext()    * @lucene.experimental    */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher
 parameter_list|(
-name|ReaderContext
+name|IndexReaderContext
 name|context
 parameter_list|,
 name|ExecutorService
@@ -564,12 +560,12 @@ name|leafContexts
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a searcher searching the provided top-level {@link ReaderContext}.    *    * @see ReaderContext    * @see IndexReader#getTopReaderContext()    * @lucene.experimental    */
+comment|/**    * Creates a searcher searching the provided top-level {@link IndexReaderContext}.    *    * @see IndexReaderContext    * @see IndexReader#getTopReaderContext()    * @lucene.experimental    */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher
 parameter_list|(
-name|ReaderContext
+name|IndexReaderContext
 name|context
 parameter_list|)
 block|{
@@ -2090,11 +2086,11 @@ return|return
 name|weight
 return|;
 block|}
-comment|/**    * Returns this searchers the top-level {@link ReaderContext}.    * @see IndexReader#getTopReaderContext()    */
+comment|/**    * Returns this searchers the top-level {@link IndexReaderContext}.    * @see IndexReader#getTopReaderContext()    */
 comment|/* sugar for #getReader().getTopReaderContext() */
 DECL|method|getTopReaderContext
 specifier|public
-name|ReaderContext
+name|IndexReaderContext
 name|getTopReaderContext
 parameter_list|()
 block|{

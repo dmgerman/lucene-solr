@@ -70,8 +70,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -86,7 +84,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CompositeReader
+name|CompositeReaderContext
 import|;
 end_import
 
@@ -130,7 +128,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -144,7 +142,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|RandomIndexWriter
+name|IndexReaderContext
 import|;
 end_import
 
@@ -4976,9 +4974,7 @@ argument_list|()
 index|]
 expr_stmt|;
 specifier|final
-name|IndexReader
-operator|.
-name|ReaderContext
+name|IndexReaderContext
 name|ctx
 init|=
 name|s
@@ -5020,14 +5016,10 @@ block|}
 else|else
 block|{
 specifier|final
-name|CompositeReader
-operator|.
 name|CompositeReaderContext
 name|compCTX
 init|=
 operator|(
-name|CompositeReader
-operator|.
 name|CompositeReaderContext
 operator|)
 name|ctx
@@ -10038,9 +10030,7 @@ parameter_list|(
 name|AtomicReaderContext
 name|ctx
 parameter_list|,
-name|IndexReader
-operator|.
-name|ReaderContext
+name|IndexReaderContext
 name|parent
 parameter_list|)
 block|{

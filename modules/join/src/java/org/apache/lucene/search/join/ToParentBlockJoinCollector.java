@@ -88,8 +88,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import

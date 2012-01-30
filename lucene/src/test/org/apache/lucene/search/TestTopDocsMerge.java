@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -126,7 +126,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CompositeReader
+name|CompositeReaderContext
 import|;
 end_import
 
@@ -155,6 +155,20 @@ operator|.
 name|index
 operator|.
 name|RandomIndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReaderContext
 import|;
 end_import
 
@@ -247,8 +261,6 @@ block|{
 DECL|field|ctx
 specifier|private
 specifier|final
-name|AtomicReader
-operator|.
 name|AtomicReaderContext
 index|[]
 name|ctx
@@ -257,13 +269,9 @@ DECL|method|ShardSearcher
 specifier|public
 name|ShardSearcher
 parameter_list|(
-name|AtomicReader
-operator|.
 name|AtomicReaderContext
 name|ctx
 parameter_list|,
-name|CompositeReader
-operator|.
 name|CompositeReaderContext
 name|parent
 parameter_list|)
@@ -278,8 +286,6 @@ operator|.
 name|ctx
 operator|=
 operator|new
-name|AtomicReader
-operator|.
 name|AtomicReaderContext
 index|[]
 block|{
@@ -746,9 +752,7 @@ name|reader
 argument_list|)
 decl_stmt|;
 specifier|final
-name|IndexReader
-operator|.
-name|ReaderContext
+name|IndexReaderContext
 name|ctx
 init|=
 name|searcher
@@ -770,8 +774,6 @@ if|if
 condition|(
 name|ctx
 operator|instanceof
-name|AtomicReader
-operator|.
 name|AtomicReaderContext
 condition|)
 block|{
@@ -800,8 +802,6 @@ operator|new
 name|ShardSearcher
 argument_list|(
 operator|(
-name|AtomicReader
-operator|.
 name|AtomicReaderContext
 operator|)
 name|ctx
@@ -820,14 +820,10 @@ block|}
 else|else
 block|{
 specifier|final
-name|CompositeReader
-operator|.
 name|CompositeReaderContext
 name|compCTX
 init|=
 operator|(
-name|CompositeReader
-operator|.
 name|CompositeReaderContext
 operator|)
 name|ctx

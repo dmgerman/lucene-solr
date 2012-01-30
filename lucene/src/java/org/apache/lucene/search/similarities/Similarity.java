@@ -56,6 +56,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|FieldInvertState
 import|;
 end_import
@@ -77,22 +91,6 @@ end_import
 begin_comment
 comment|// javadoc
 end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReader
-operator|.
-name|AtomicReaderContext
-import|;
-end_import
 
 begin_import
 import|import

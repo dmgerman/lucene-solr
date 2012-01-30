@@ -46,6 +46,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|DocsAndPositionsEnum
 import|;
 end_import
@@ -88,9 +102,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-operator|.
-name|AtomicReaderContext
+name|IndexReader
 import|;
 end_import
 
@@ -104,23 +116,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|ReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
+name|IndexReaderContext
 import|;
 end_import
 
@@ -745,7 +741,7 @@ name|field
 argument_list|)
 expr_stmt|;
 specifier|final
-name|ReaderContext
+name|IndexReaderContext
 name|context
 init|=
 name|searcher

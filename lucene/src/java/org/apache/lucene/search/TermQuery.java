@@ -46,6 +46,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|DocsEnum
 import|;
 end_import
@@ -61,8 +75,6 @@ operator|.
 name|index
 operator|.
 name|AtomicReader
-operator|.
-name|AtomicReaderContext
 import|;
 end_import
 
@@ -76,23 +88,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|ReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReader
+name|IndexReaderContext
 import|;
 end_import
 
@@ -1027,7 +1023,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|ReaderContext
+name|IndexReaderContext
 name|context
 init|=
 name|searcher

@@ -108,9 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-operator|.
-name|IndexOptions
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -124,9 +122,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|FieldInfo
 operator|.
-name|AtomicReaderContext
+name|IndexOptions
 import|;
 end_import
 

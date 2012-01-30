@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -40,9 +40,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-operator|.
-name|AtomicReaderContext
+name|IndexReader
 import|;
 end_import
 
