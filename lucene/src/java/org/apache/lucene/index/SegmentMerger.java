@@ -1685,15 +1685,58 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// nocommit: this does not work anymore as SR/AtomicIndexReader does not know the directory anymore:
-comment|// mergeState.dirPayloadProcessor[i] = mergeState.payloadProcessorProvider.getDirProcessor(reader.reader.directory());
+comment|// TODO: the PayloadProcessorProvider should take AtomicReader as parameter
+comment|// and find out by itself if it can provide a processor:
+if|if
+condition|(
+operator|!
+operator|(
+name|reader
+operator|.
+name|reader
+operator|instanceof
+name|SegmentReader
+operator|)
+condition|)
 throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"PayloadProcessorProvider is not supported at the moment :("
+literal|"Payload processing currently requires exclusively SegmentReaders to be merged."
 argument_list|)
 throw|;
+specifier|final
+name|Directory
+name|dir
+init|=
+operator|(
+operator|(
+name|SegmentReader
+operator|)
+name|reader
+operator|.
+name|reader
+operator|)
+operator|.
+name|directory
+argument_list|()
+decl_stmt|;
+name|mergeState
+operator|.
+name|dirPayloadProcessor
+index|[
+name|i
+index|]
+operator|=
+name|mergeState
+operator|.
+name|payloadProcessorProvider
+operator|.
+name|getDirProcessor
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
 block|}
 name|i
 operator|++
