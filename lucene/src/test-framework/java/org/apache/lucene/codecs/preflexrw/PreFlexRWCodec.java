@@ -304,6 +304,16 @@ operator|new
 name|PreFlexRWSegmentInfosFormat
 argument_list|()
 decl_stmt|;
+DECL|field|storedFields
+specifier|private
+specifier|final
+name|StoredFieldsFormat
+name|storedFields
+init|=
+operator|new
+name|PreFlexRWStoredFieldsFormat
+argument_list|()
+decl_stmt|;
 comment|// TODO: this should really be a different impl
 DECL|field|liveDocs
 specifier|private
@@ -313,17 +323,6 @@ name|liveDocs
 init|=
 operator|new
 name|Lucene40LiveDocsFormat
-argument_list|()
-decl_stmt|;
-comment|// TODO: this should really be a different impl
-DECL|field|storedFields
-specifier|private
-specifier|final
-name|StoredFieldsFormat
-name|storedFields
-init|=
-operator|new
-name|Lucene40StoredFieldsFormat
 argument_list|()
 decl_stmt|;
 annotation|@

@@ -413,7 +413,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|Lucene40StoredFieldsReader
+name|Lucene3xStoredFieldsReader
 operator|.
 name|checkCodeVersion
 argument_list|(
