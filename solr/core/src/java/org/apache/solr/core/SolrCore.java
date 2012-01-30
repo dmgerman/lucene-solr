@@ -54,7 +54,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|DirectoryReader
 import|;
 end_import
 
@@ -3799,6 +3799,12 @@ expr_stmt|;
 block|}
 try|try
 block|{
+if|if
+condition|(
+name|updateHandler
+operator|!=
+literal|null
+condition|)
 name|updateHandler
 operator|.
 name|close
@@ -5059,10 +5065,10 @@ argument_list|)
 operator|)
 condition|)
 block|{
-name|IndexReader
+name|DirectoryReader
 name|newReader
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|currentReader
 init|=
 name|newestSearcher
@@ -5095,7 +5101,7 @@ argument_list|)
 decl_stmt|;
 name|newReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -5112,7 +5118,7 @@ block|{
 comment|// verbose("start reopen without writer, reader=", currentReader);
 name|newReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(

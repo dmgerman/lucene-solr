@@ -40,6 +40,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexableField
 import|;
 end_import
@@ -956,8 +970,6 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|readerContext
 parameter_list|)
@@ -979,6 +991,7 @@ argument_list|(
 name|readerContext
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|)

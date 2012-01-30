@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|DirectoryReader
 import|;
 end_import
 
@@ -1362,7 +1362,7 @@ argument_list|,
 literal|"foo"
 argument_list|)
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|sr
@@ -1370,10 +1370,8 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getTopReaderContext
+name|getIndexReader
 argument_list|()
-operator|.
-name|reader
 decl_stmt|;
 name|assertTrue
 argument_list|(
@@ -1389,17 +1387,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// should have deletions
-name|assertFalse
-argument_list|(
-name|r
-operator|.
-name|getTopReaderContext
-argument_list|()
-operator|.
-name|isAtomic
-argument_list|)
-expr_stmt|;
-comment|// more than 1 segment
 name|sr
 operator|.
 name|close
@@ -1426,15 +1413,15 @@ argument_list|)
 expr_stmt|;
 name|r
 operator|=
+name|r
+operator|=
 name|sr
 operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getTopReaderContext
+name|getIndexReader
 argument_list|()
-operator|.
-name|reader
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1461,17 +1448,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// no dups
-name|assertFalse
-argument_list|(
-name|r
-operator|.
-name|getTopReaderContext
-argument_list|()
-operator|.
-name|isAtomic
-argument_list|)
-expr_stmt|;
-comment|//still more than 1 segment
 name|sr
 operator|.
 name|close
@@ -1518,7 +1494,7 @@ init|=
 name|req
 argument_list|()
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|sr
@@ -1526,10 +1502,8 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getTopReaderContext
+name|getIndexReader
 argument_list|()
-operator|.
-name|reader
 decl_stmt|;
 name|Directory
 name|d

@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|DirectoryReader
 import|;
 end_import
 
@@ -73,8 +73,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|IndexReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -290,9 +288,12 @@ name|context
 parameter_list|)
 block|{
 specifier|final
-name|IndexReader
+name|DirectoryReader
 name|top
 init|=
+operator|(
+name|DirectoryReader
+operator|)
 name|ReaderUtil
 operator|.
 name|getTopLevelContext
@@ -301,6 +302,7 @@ name|context
 argument_list|)
 operator|.
 name|reader
+argument_list|()
 decl_stmt|;
 comment|// calling getVersion() on a segment will currently give you a null pointer exception, so
 comment|// we use the top-level reader.

@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|DirectoryReader
 import|;
 end_import
 
@@ -1268,7 +1268,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|// stores readers created from indexDir param values
-name|IndexReader
+name|DirectoryReader
 index|[]
 name|readersToBeClosed
 init|=
@@ -1433,7 +1433,7 @@ block|{
 name|readersToBeClosed
 operator|=
 operator|new
-name|IndexReader
+name|DirectoryReader
 index|[
 name|dirNames
 operator|.
@@ -1510,7 +1510,7 @@ index|[
 name|i
 index|]
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1519,7 +1519,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|IndexReader
+name|DirectoryReader
 index|[]
 name|readers
 init|=
@@ -1542,7 +1542,7 @@ block|{
 name|readers
 operator|=
 operator|new
-name|IndexReader
+name|DirectoryReader
 index|[
 name|sourceCores
 operator|.

@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|DirectoryReader
 import|;
 end_import
 
@@ -238,7 +238,7 @@ annotation|@
 name|Override
 DECL|method|newReader
 specifier|public
-name|IndexReader
+name|DirectoryReader
 name|newReader
 parameter_list|(
 name|Directory
@@ -254,7 +254,7 @@ operator|=
 literal|true
 expr_stmt|;
 return|return
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

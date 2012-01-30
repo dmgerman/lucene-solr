@@ -112,8 +112,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -1545,18 +1543,6 @@ parameter_list|()
 block|{
 return|return
 literal|false
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|IndexReader
-index|[]
-name|getSequentialSubReaders
-parameter_list|()
-block|{
-return|return
-literal|null
 return|;
 block|}
 annotation|@

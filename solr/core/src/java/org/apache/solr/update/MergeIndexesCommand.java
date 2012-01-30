@@ -26,21 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
+name|DirectoryReader
 import|;
 end_import
 
@@ -72,7 +58,7 @@ name|UpdateCommand
 block|{
 DECL|field|readers
 specifier|public
-name|IndexReader
+name|DirectoryReader
 index|[]
 name|readers
 decl_stmt|;
@@ -80,7 +66,7 @@ DECL|method|MergeIndexesCommand
 specifier|public
 name|MergeIndexesCommand
 parameter_list|(
-name|IndexReader
+name|DirectoryReader
 index|[]
 name|readers
 parameter_list|,
