@@ -2114,7 +2114,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"mergeVectors produced an invalid result: mergedDocs is "
+literal|"tvx size mismatch: mergedDocs is "
 operator|+
 name|numDocs
 operator|+
