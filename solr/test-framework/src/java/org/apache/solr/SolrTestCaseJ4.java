@@ -803,7 +803,7 @@ condition|(
 name|retries
 operator|++
 operator|>
-literal|60
+literal|120
 condition|)
 block|{
 break|break;
