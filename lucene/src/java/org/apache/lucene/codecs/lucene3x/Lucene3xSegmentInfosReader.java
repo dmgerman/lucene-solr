@@ -362,7 +362,7 @@ argument_list|()
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
+name|Lucene3xCodec
 operator|.
 name|COMPOUND_FILE_STORE_EXTENSION
 argument_list|)
@@ -846,7 +846,7 @@ name|docStoreIsCompoundFile
 expr_stmt|;
 name|ext
 operator|=
-name|IndexFileNames
+name|Lucene3xCodec
 operator|.
 name|COMPOUND_FILE_STORE_EXTENSION
 expr_stmt|;

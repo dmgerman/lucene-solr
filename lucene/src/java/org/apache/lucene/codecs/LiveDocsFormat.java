@@ -184,11 +184,11 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-DECL|method|separateFiles
+DECL|method|files
 specifier|public
 specifier|abstract
 name|void
-name|separateFiles
+name|files
 parameter_list|(
 name|SegmentInfo
 name|info

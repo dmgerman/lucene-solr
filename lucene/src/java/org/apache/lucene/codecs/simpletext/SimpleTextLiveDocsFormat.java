@@ -893,10 +893,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|separateFiles
+DECL|method|files
 specifier|public
 name|void
-name|separateFiles
+name|files
 parameter_list|(
 name|SegmentInfo
 name|info

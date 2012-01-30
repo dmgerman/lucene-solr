@@ -561,27 +561,7 @@ condition|)
 block|{
 comment|// because we don't fully emulate 3.x codec, PreFlexRW actually writes 4.x format CFS files.
 comment|// so we must check segment version here to see if its a "real" 3.x segment or a "fake"
-comment|// one that we wrote with a 4.x-format CFS+CFE
-name|files
-operator|.
-name|add
-argument_list|(
-name|IndexFileNames
-operator|.
-name|segmentFileName
-argument_list|(
-name|info
-operator|.
-name|name
-argument_list|,
-literal|""
-argument_list|,
-name|IndexFileNames
-operator|.
-name|COMPOUND_FILE_EXTENSION
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|// one that we wrote with a 4.x-format CFS+CFE, in this case we must add the .CFE
 name|String
 name|version
 init|=
@@ -633,8 +613,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-else|else
-block|{
 name|super
 operator|.
 name|files
@@ -644,7 +622,6 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 end_class

@@ -1649,16 +1649,6 @@ argument_list|,
 name|fileSet
 argument_list|)
 expr_stmt|;
-comment|// regardless of compound file setting: these files are always in the directory
-name|codec
-operator|.
-name|separateFiles
-argument_list|(
-name|this
-argument_list|,
-name|fileSet
-argument_list|)
-expr_stmt|;
 name|files
 operator|=
 operator|new

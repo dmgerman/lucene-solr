@@ -281,30 +281,11 @@ name|files
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|/** Populates<code>files</code> with any filenames that are    * stored outside of CFS for the<code>info</code> segment.    */
-comment|// TODO: can we somehow totally remove this?
-DECL|method|separateFiles
-specifier|public
-name|void
-name|separateFiles
-parameter_list|(
-name|SegmentInfo
-name|info
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-throws|throws
-name|IOException
-block|{
+comment|// never inside CFS
 name|liveDocsFormat
 argument_list|()
 operator|.
-name|separateFiles
+name|files
 argument_list|(
 name|info
 argument_list|,

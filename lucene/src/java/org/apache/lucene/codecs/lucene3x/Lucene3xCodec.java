@@ -377,6 +377,15 @@ operator|new
 name|Lucene3xNormsFormat
 argument_list|()
 decl_stmt|;
+comment|/** Extension of compound file for doc store files*/
+DECL|field|COMPOUND_FILE_STORE_EXTENSION
+specifier|static
+specifier|final
+name|String
+name|COMPOUND_FILE_STORE_EXTENSION
+init|=
+literal|"cfx"
+decl_stmt|;
 comment|// TODO: this should really be a different impl
 DECL|field|liveDocsFormat
 specifier|private
@@ -578,7 +587,8 @@ return|return
 name|liveDocsFormat
 return|;
 block|}
-comment|// overrides the default implementation in codec.java to handle CFS without CFE
+comment|// overrides the default implementation in codec.java to handle CFS without CFE,
+comment|// shared doc stores, compound doc stores, separate norms, etc
 annotation|@
 name|Override
 DECL|method|files
@@ -626,11 +636,65 @@ name|COMPOUND_FILE_EXTENSION
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// NOTE: we don't add the CFE extension: because 3.x format doesn't use it.
 block|}
 else|else
 block|{
-name|super
+name|postingsFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|info
+argument_list|,
+literal|""
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
+name|storedFieldsFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
+name|termVectorsFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
+name|fieldInfosFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
+comment|// TODO: segmentInfosFormat should be allowed to declare additional files
+comment|// if it wants, in addition to segments_N
+name|docValuesFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
+name|normsFormat
+argument_list|()
 operator|.
 name|files
 argument_list|(
@@ -640,30 +704,11 @@ name|files
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|// override the default implementation in codec.java to handle separate norms files, and shared compound docstores
-annotation|@
-name|Override
-DECL|method|separateFiles
-specifier|public
-name|void
-name|separateFiles
-parameter_list|(
-name|SegmentInfo
-name|info
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|super
+comment|// never inside CFS
+name|liveDocsFormat
+argument_list|()
 operator|.
-name|separateFiles
+name|files
 argument_list|(
 name|info
 argument_list|,
@@ -680,6 +725,7 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
+comment|// shared docstores: these guys check the hair
 if|if
 condition|(
 name|info
@@ -691,47 +737,26 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|// We are sharing doc stores (stored fields, term
-comment|// vectors) with other segments
-assert|assert
-name|info
-operator|.
-name|getDocStoreSegment
+name|storedFieldsFormat
 argument_list|()
-operator|!=
-literal|null
-assert|;
-if|if
-condition|(
-name|info
 operator|.
-name|getDocStoreIsCompoundFile
-argument_list|()
-condition|)
-block|{
 name|files
-operator|.
-name|add
-argument_list|(
-name|IndexFileNames
-operator|.
-name|segmentFileName
 argument_list|(
 name|info
-operator|.
-name|getDocStoreSegment
-argument_list|()
 argument_list|,
-literal|""
-argument_list|,
-name|IndexFileNames
-operator|.
-name|COMPOUND_FILE_STORE_EXTENSION
-argument_list|)
+name|files
 argument_list|)
 expr_stmt|;
-block|}
-comment|// otherwise, if its not a compound docstore, storedfieldsformat/termvectorsformat are each adding their relevant files
+name|termVectorsFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
