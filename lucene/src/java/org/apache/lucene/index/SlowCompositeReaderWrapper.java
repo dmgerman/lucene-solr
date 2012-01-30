@@ -546,7 +546,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// nocommit: as this is a wrapper, should we really close the delegate?
+comment|// TODO: as this is a wrapper, should we really close the delegate?
 name|in
 operator|.
 name|close

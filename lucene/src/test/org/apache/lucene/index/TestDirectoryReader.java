@@ -524,7 +524,7 @@ argument_list|(
 name|vector
 argument_list|)
 expr_stmt|;
-comment|// nocommit: pretty sure this check makes zero sense TestSegmentReader.checkNorms(reader);
+comment|// TODO: pretty sure this check makes zero sense TestSegmentReader.checkNorms(reader);
 name|reader
 operator|.
 name|close

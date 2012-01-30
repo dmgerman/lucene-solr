@@ -661,7 +661,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// nocommit: I removed that as we can never get insanity by composite readers anymore... Is this ok?
+comment|// TODO: I removed that as we can never get insanity by composite readers anymore... Is this ok?
 comment|//FieldCache.DEFAULT.purge(wrapped.getIndexReader()); // our wrapping can create insanity otherwise
 name|check
 argument_list|(
@@ -683,7 +683,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// nocommit: I removed that as we can never get insanity by composite readers anymore... Is this ok?
+comment|// TODO: I removed that as we can never get insanity by composite readers anymore... Is this ok?
 comment|//FieldCache.DEFAULT.purge(wrapped.getIndexReader()); // our wrapping can create insanity otherwise
 name|check
 argument_list|(
@@ -706,7 +706,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// nocommit: I removed that as we can never get insanity by composite readers anymore... Is this ok?
+comment|// TODO: I removed that as we can never get insanity by composite readers anymore... Is this ok?
 comment|//FieldCache.DEFAULT.purge(wrapped.getIndexReader()); // our wrapping can create insanity otherwise
 block|}
 name|checkExplanations

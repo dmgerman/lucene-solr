@@ -203,7 +203,6 @@ name|searcher
 operator|=
 name|searcher
 expr_stmt|;
-comment|// nocommit: what happens if this is no DirectoryReader?
 name|version
 operator|=
 operator|(
@@ -377,7 +376,6 @@ expr_stmt|;
 comment|// TODO: we don't have to use IR.getVersion to track;
 comment|// could be risky (if it's buggy); we could get better
 comment|// bug isolation if we assign our own private ID:
-comment|// nocommit: fix getVersion() usage for atomic readers
 specifier|final
 name|long
 name|version
