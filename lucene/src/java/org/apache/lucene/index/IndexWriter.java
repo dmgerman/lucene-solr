@@ -7705,9 +7705,6 @@ comment|// Determine if the doc store of this segment needs to be copied. It's
 comment|// only relevant for segments that share doc store with others,
 comment|// because the DS might have been copied already, in which case we
 comment|// just want to update the DS name of this SegmentInfo.
-comment|// NOTE: pre-3x segments include a null DSName if they don't share doc
-comment|// store. The following code ensures we don't accidentally insert
-comment|// 'null' to the map.
 name|String
 name|dsName
 init|=
@@ -7716,17 +7713,15 @@ operator|.
 name|getDocStoreSegment
 argument_list|()
 decl_stmt|;
+assert|assert
+name|dsName
+operator|!=
+literal|null
+assert|;
 specifier|final
 name|String
 name|newDsName
 decl_stmt|;
-if|if
-condition|(
-name|dsName
-operator|!=
-literal|null
-condition|)
-block|{
 if|if
 condition|(
 name|dsNames
@@ -7763,25 +7758,44 @@ operator|=
 name|segName
 expr_stmt|;
 block|}
-block|}
-else|else
-block|{
-name|newDsName
-operator|=
-name|segName
-expr_stmt|;
-block|}
+comment|// nocommit: remove this
 name|Set
 argument_list|<
 name|String
 argument_list|>
 name|codecDocStoreFiles
 init|=
-name|info
-operator|.
-name|codecDocStoreFiles
+operator|new
+name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
+name|codec
+operator|.
+name|storedFieldsFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|info
+argument_list|,
+name|codecDocStoreFiles
+argument_list|)
+expr_stmt|;
+name|codec
+operator|.
+name|termVectorsFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|info
+argument_list|,
+name|codecDocStoreFiles
+argument_list|)
+expr_stmt|;
 comment|// Copy the segment files
 for|for
 control|(
