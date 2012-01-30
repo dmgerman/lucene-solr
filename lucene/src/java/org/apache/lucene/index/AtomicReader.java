@@ -180,7 +180,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/**    * Returns {@link Fields} for this reader.    * This method may return null if the reader has no    * postings.    *    *<p><b>NOTE</b>: if this is a multi reader ({@link    * #getSequentialSubReaders} is not null) then this    * method will throw UnsupportedOperationException.  If    * you really need a {@link Fields} for such a reader,    * use {@link MultiFields#getFields}.  However, for    * performance reasons, it's best to get all sub-readers    * using {@link ReaderUtil#gatherSubReaders} and iterate    * through them yourself. */
+comment|/**    * Returns {@link Fields} for this reader.    * This method may return null if the reader has no    * postings.    */
 DECL|method|fields
 specifier|public
 specifier|abstract
@@ -194,6 +194,7 @@ annotation|@
 name|Override
 DECL|method|docFreq
 specifier|public
+specifier|final
 name|int
 name|docFreq
 parameter_list|(
@@ -838,7 +839,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Returns the number of unique terms (across all fields)    *  in this reader.    *    *  @return number of unique terms or -1 if this count    *  cannot be easily determined (eg Multi*Readers).    *  Instead, you should call {@link    *  #getSequentialSubReaders} and ask each sub reader for    *  its unique term count. */
+comment|/** Returns the number of unique terms (across all fields)    *  in this reader.    */
 DECL|method|getUniqueTermCount
 specifier|public
 specifier|final
@@ -873,7 +874,7 @@ name|getUniqueTermCount
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns {@link DocValues} for this field.    * This method may return null if the reader has no per-document    * values stored.    *    *<p><b>NOTE</b>: if this is a multi reader ({@link    * #getSequentialSubReaders} is not null) then this    * method will throw UnsupportedOperationException.  If    * you really need {@link DocValues} for such a reader,    * use {@link MultiDocValues#getDocValues(IndexReader,String)}.  However, for    * performance reasons, it's best to get all sub-readers    * using {@link ReaderUtil#gatherSubReaders} and iterate    * through them yourself. */
+comment|/**    * Returns {@link DocValues} for this field.    * This method may return null if the reader has no per-document    * values stored.    */
 DECL|method|docValues
 specifier|public
 specifier|abstract
