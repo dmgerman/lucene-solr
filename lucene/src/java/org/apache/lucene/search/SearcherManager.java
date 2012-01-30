@@ -205,7 +205,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-comment|/**    * Creates and returns a new SearcherManager from the given {@link IndexWriter}.     * @param writer the IndexWriter to open the IndexReader from.    * @param applyAllDeletes If<code>true</code>, all buffered deletes will    *        be applied (made visible) in the {@link IndexSearcher} / {@link IndexReader}.    *        If<code>false</code>, the deletes may or may not be applied, but remain buffered     *        (in IndexWriter) so that they will be applied in the future.    *        Applying deletes can be costly, so if your app can tolerate deleted documents    *        being returned you might gain some performance by passing<code>false</code>.    *        See {@link IndexReader#openIfChanged(IndexReader, IndexWriter, boolean)}.    * @param searcherFactory An optional {@link SearcherFactory}. Pass    *<code>null</code> if you don't require the searcher to be warmed    *        before going live or other custom behavior.    *            * @throws IOException    */
+comment|/**    * Creates and returns a new SearcherManager from the given {@link IndexWriter}.     * @param writer the IndexWriter to open the IndexReader from.    * @param applyAllDeletes If<code>true</code>, all buffered deletes will    *        be applied (made visible) in the {@link IndexSearcher} / {@link DirectoryReader}.    *        If<code>false</code>, the deletes may or may not be applied, but remain buffered     *        (in IndexWriter) so that they will be applied in the future.    *        Applying deletes can be costly, so if your app can tolerate deleted documents    *        being returned you might gain some performance by passing<code>false</code>.    *        See {@link DirectoryReader#openIfChanged(DirectoryReader, IndexWriter, boolean)}.    * @param searcherFactory An optional {@link SearcherFactory}. Pass    *<code>null</code> if you don't require the searcher to be warmed    *        before going live or other custom behavior.    *            * @throws IOException    */
 DECL|method|SearcherManager
 specifier|public
 name|SearcherManager
@@ -259,7 +259,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates and returns a new SearcherManager from the given {@link Directory}.     * @param dir the directory to open the IndexReader on.    * @param searcherFactory An optional {@link SearcherFactory}. Pass    *<code>null</code> if you don't require the searcher to be warmed    *        before going live or other custom behavior.    *            * @throws IOException    */
+comment|/**    * Creates and returns a new SearcherManager from the given {@link Directory}.     * @param dir the directory to open the DirectoryReader on.    * @param searcherFactory An optional {@link SearcherFactory}. Pass    *<code>null</code> if you don't require the searcher to be warmed    *        before going live or other custom behavior.    *            * @throws IOException    */
 DECL|method|SearcherManager
 specifier|public
 name|SearcherManager
@@ -308,7 +308,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * You must call this, periodically, to perform a reopen. This calls    * {@link IndexReader#openIfChanged(IndexReader)} with the underlying reader, and if that returns a    * new reader, it's warmed (if you provided a {@link SearcherFactory} and then    * swapped into production.    *     *<p>    *<b>Threads</b>: it's fine for more than one thread to call this at once.    * Only the first thread will attempt the reopen; subsequent threads will see    * that another thread is already handling reopen and will return immediately.    * Note that this means if another thread is already reopening then subsequent    * threads will return right away without waiting for the reader reopen to    * complete.    *</p>    *     *<p>    * This method returns true if a new reader was in fact opened or     * if the current searcher has no pending changes.    *</p>    */
+comment|/**    * You must call this, periodically, to perform a reopen. This calls    * {@link DirectoryReader#openIfChanged(DirectoryReader)} with the underlying reader, and if that returns a    * new reader, it's warmed (if you provided a {@link SearcherFactory} and then    * swapped into production.    *     *<p>    *<b>Threads</b>: it's fine for more than one thread to call this at once.    * Only the first thread will attempt the reopen; subsequent threads will see    * that another thread is already handling reopen and will return immediately.    * Note that this means if another thread is already reopening then subsequent    * threads will return right away without waiting for the reader reopen to    * complete.    *</p>    *     *<p>    * This method returns true if a new reader was in fact opened or     * if the current searcher has no pending changes.    *</p>    */
 DECL|method|maybeReopen
 specifier|public
 name|boolean

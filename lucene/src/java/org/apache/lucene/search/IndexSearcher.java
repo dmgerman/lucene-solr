@@ -208,6 +208,24 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DirectoryReader
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -375,7 +393,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements search over a single IndexReader.  *  *<p>Applications usually need only call the inherited  * {@link #search(Query,int)}  * or {@link #search(Query,Filter,int)} methods. For  * performance reasons, if your index is unchanging, you  * should share a single IndexSearcher instance across  * multiple searches instead of creating a new one  * per-search.  If your index has changed and you wish to  * see the changes reflected in searching, you should  * use {@link IndexReader#openIfChanged} to obtain a new reader and  * then create a new IndexSearcher from that.  Also, for  * low-latency turnaround it's best to use a near-real-time  * reader ({@link IndexReader#open(IndexWriter,boolean)}).  * Once you have a new {@link IndexReader}, it's relatively  * cheap to create a new IndexSearcher from it.  *   *<a name="thread-safety"></a><p><b>NOTE</b>:<code>{@link  * IndexSearcher}</code> instances are completely  * thread safe, meaning multiple threads can call any of its  * methods, concurrently.  If your application requires  * external synchronization, you should<b>not</b>  * synchronize on the<code>IndexSearcher</code> instance;  * use your own (non-Lucene) objects instead.</p>  */
+comment|/** Implements search over a single IndexReader.  *  *<p>Applications usually need only call the inherited  * {@link #search(Query,int)}  * or {@link #search(Query,Filter,int)} methods. For  * performance reasons, if your index is unchanging, you  * should share a single IndexSearcher instance across  * multiple searches instead of creating a new one  * per-search.  If your index has changed and you wish to  * see the changes reflected in searching, you should  * use {@link DirectoryReader#openIfChanged(DirectoryReader)}  * to obtain a new reader and  * then create a new IndexSearcher from that.  Also, for  * low-latency turnaround it's best to use a near-real-time  * reader ({@link DirectoryReader#open(IndexWriter,boolean)}).  * Once you have a new {@link IndexReader}, it's relatively  * cheap to create a new IndexSearcher from it.  *   *<a name="thread-safety"></a><p><b>NOTE</b>:<code>{@link  * IndexSearcher}</code> instances are completely  * thread safe, meaning multiple threads can call any of its  * methods, concurrently.  If your application requires  * external synchronization, you should<b>not</b>  * synchronize on the<code>IndexSearcher</code> instance;  * use your own (non-Lucene) objects instead.</p>  */
 end_comment
 
 begin_class
@@ -1409,7 +1427,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Just like {@link #search(Weight, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(IndexReader.AtomicReaderContext[], Weight,    * Collector)}.</p>    */
+comment|/**    * Just like {@link #search(Weight, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(AtomicReaderContext[], Weight,    * Collector)}.</p>    */
 DECL|method|search
 specifier|protected
 name|TopFieldDocs
@@ -1642,7 +1660,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Just like {@link #search(Weight, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(IndexReader.AtomicReaderContext[], Weight,     * Collector)}.</p>    */
+comment|/**    * Just like {@link #search(Weight, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(AtomicReaderContext[], Weight,     * Collector)}.</p>    */
 DECL|method|search
 specifier|protected
 name|TopFieldDocs
