@@ -92,20 +92,6 @@ name|NamedSPILoader
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
 begin_comment
 comment|/** @lucene.experimental */
 end_comment
@@ -216,16 +202,13 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Gathers files associated with this segment    *     * @param dir the {@link Directory} this segment was written to    * @param segmentInfo the {@link SegmentInfo} for this segment     * @param segmentSuffix the format's suffix within this segment    * @param files the of files to add the codec files to.    */
+comment|/**    * Gathers files associated with this segment    *     * @param segmentInfo the {@link SegmentInfo} for this segment     * @param segmentSuffix the format's suffix within this segment    * @param files the of files to add the codec files to.    */
 DECL|method|files
 specifier|public
 specifier|abstract
 name|void
 name|files
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,

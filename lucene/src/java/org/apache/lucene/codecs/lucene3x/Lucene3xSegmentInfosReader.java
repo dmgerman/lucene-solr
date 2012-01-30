@@ -209,10 +209,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 3x implementation of {@link SegmentInfosReader}.  * @lucene.experimental  */
+comment|/**  * Lucene 3x implementation of {@link SegmentInfosReader}.  * @lucene.experimental  * @deprecated  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene3xSegmentInfosReader
 specifier|public
 class|class
@@ -360,7 +362,7 @@ argument_list|()
 argument_list|,
 literal|""
 argument_list|,
-name|IndexFileNames
+name|Lucene3xCodec
 operator|.
 name|COMPOUND_FILE_STORE_EXTENSION
 argument_list|)
@@ -411,7 +413,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|Lucene40StoredFieldsReader
+name|Lucene3xStoredFieldsReader
 operator|.
 name|checkCodeVersion
 argument_list|(
@@ -844,7 +846,7 @@ name|docStoreIsCompoundFile
 expr_stmt|;
 name|ext
 operator|=
-name|IndexFileNames
+name|Lucene3xCodec
 operator|.
 name|COMPOUND_FILE_STORE_EXTENSION
 expr_stmt|;

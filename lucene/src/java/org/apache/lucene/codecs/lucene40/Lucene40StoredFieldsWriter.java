@@ -355,16 +355,7 @@ decl_stmt|;
 comment|// the next possible bits are: 1<< 6; 1<< 7
 comment|// currently unused: static final int FIELD_IS_NUMERIC_SHORT = 5<< _NUMERIC_BIT_SHIFT;
 comment|// currently unused: static final int FIELD_IS_NUMERIC_BYTE = 6<< _NUMERIC_BIT_SHIFT;
-comment|// Lucene 3.0: Removal of compressed fields
-DECL|field|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
-specifier|static
-specifier|final
-name|int
-name|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
-init|=
-literal|2
-decl_stmt|;
-comment|// Lucene 3.2: NumericFields are stored in binary format
+comment|// (Happens to be the same as for now) Lucene 3.2: NumericFields are stored in binary format
 DECL|field|FORMAT_LUCENE_3_2_NUMERIC_FIELDS
 specifier|static
 specifier|final
@@ -391,7 +382,7 @@ specifier|final
 name|int
 name|FORMAT_MINIMUM
 init|=
-name|FORMAT_LUCENE_3_0_NO_COMPRESSED_FIELDS
+name|FORMAT_LUCENE_3_2_NUMERIC_FIELDS
 decl_stmt|;
 comment|/** Extension of stored fields file */
 DECL|field|FIELDS_EXTENSION
@@ -1143,7 +1134,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"mergeFields produced an invalid result: docCount is "
+literal|"fdx size mismatch: docCount is "
 operator|+
 name|numDocs
 operator|+

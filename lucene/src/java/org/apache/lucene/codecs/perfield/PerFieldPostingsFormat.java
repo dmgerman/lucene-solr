@@ -1655,10 +1655,6 @@ name|void
 name|files
 parameter_list|(
 specifier|final
-name|Directory
-name|dir
-parameter_list|,
-specifier|final
 name|SegmentInfo
 name|info
 parameter_list|,
@@ -1675,6 +1671,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
+name|Directory
+name|dir
+init|=
+name|info
+operator|.
+name|dir
+decl_stmt|;
 specifier|final
 name|String
 name|mapFileName
@@ -1732,8 +1736,6 @@ name|format
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|info
 argument_list|,
 name|segmentSuffix

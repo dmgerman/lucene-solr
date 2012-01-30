@@ -1243,9 +1243,6 @@ specifier|public
 name|void
 name|files
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
@@ -1276,8 +1273,6 @@ name|BlockTermsReader
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|segmentInfo
 argument_list|,
 name|segmentSuffix
@@ -1289,8 +1284,6 @@ name|FixedGapTermsIndexReader
 operator|.
 name|files
 argument_list|(
-name|dir
-argument_list|,
 name|segmentInfo
 argument_list|,
 name|segmentSuffix
