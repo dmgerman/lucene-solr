@@ -720,7 +720,7 @@ name|si
 operator|.
 name|toString
 argument_list|(
-name|core
+name|si
 operator|.
 name|dir
 argument_list|,
@@ -760,9 +760,9 @@ name|getSegmentName
 parameter_list|()
 block|{
 return|return
-name|core
+name|si
 operator|.
-name|segment
+name|name
 return|;
 block|}
 comment|/**    * Return the SegmentInfo of the segment this reader is reading.    */
@@ -788,7 +788,7 @@ comment|// Don't ensureOpen here -- in certain cases, when a
 comment|// cloned/reopened reader needs to commit, it may call
 comment|// this method on the closed original reader
 return|return
-name|core
+name|si
 operator|.
 name|dir
 return|;
