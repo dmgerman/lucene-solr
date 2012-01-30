@@ -30,7 +30,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -144,8 +144,6 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|readerContext
 parameter_list|)

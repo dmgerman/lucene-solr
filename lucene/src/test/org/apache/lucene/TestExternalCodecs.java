@@ -507,15 +507,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|IndexReader
-index|[]
-name|subs
-init|=
-name|r
-operator|.
-name|getSequentialSubReaders
-argument_list|()
-decl_stmt|;
 name|assertEquals
 argument_list|(
 name|NUM_DOCS

@@ -7165,7 +7165,7 @@ block|}
 block|}
 comment|// The purpose of this test is to roughly model how solr uses lucene
 DECL|field|reader
-name|IndexReader
+name|DirectoryReader
 name|reader
 decl_stmt|;
 annotation|@
@@ -7560,7 +7560,7 @@ comment|// make this reader an NRT reader from the start to avoid the first non-
 comment|// to only opening at the last commit point.
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -7666,7 +7666,7 @@ decl_stmt|;
 name|long
 name|version
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|oldReader
 decl_stmt|;
 name|boolean
@@ -7774,7 +7774,7 @@ argument_list|,
 name|oldReader
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|newReader
 decl_stmt|;
 if|if
@@ -7784,7 +7784,7 @@ condition|)
 block|{
 name|newReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -7803,7 +7803,7 @@ block|{
 comment|// will only open to last commit
 name|newReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(

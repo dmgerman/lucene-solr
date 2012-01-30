@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -43,8 +43,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-operator|.
-name|AtomicReaderContext
 import|;
 end_import
 
@@ -129,20 +127,6 @@ operator|.
 name|util
 operator|.
 name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|MultiFields
 import|;
 end_import
 
@@ -306,7 +290,7 @@ block|}
 comment|//
 comment|// Sorting by function
 comment|//
-comment|/**    * EXPERIMENTAL: This method is subject to change.    *<p>    * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, IndexReader.AtomicReaderContext)}    * to populate the SortField.    *    * @param reverse true if this is a reverse sort.    * @return The {@link org.apache.lucene.search.SortField} for the ValueSource    * @throws IOException if there was a problem reading the values.    */
+comment|/**    * EXPERIMENTAL: This method is subject to change.    *<p>    * Get the SortField for this ValueSource.  Uses the {@link #getValues(java.util.Map, AtomicReaderContext)}    * to populate the SortField.    *    * @param reverse true if this is a reverse sort.    * @return The {@link org.apache.lucene.search.SortField} for the ValueSource    * @throws IOException if there was a problem reading the values.    */
 DECL|method|getSortField
 specifier|public
 name|SortField

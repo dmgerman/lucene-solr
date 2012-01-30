@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInvertState
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -52,9 +52,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|AtomicReaderContext
+name|FieldInvertState
 import|;
 end_import
 

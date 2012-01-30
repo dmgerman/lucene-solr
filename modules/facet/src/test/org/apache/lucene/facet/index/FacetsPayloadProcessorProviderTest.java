@@ -96,7 +96,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|DirectoryReader
 import|;
 end_import
 
@@ -480,10 +480,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|IndexReader
+name|DirectoryReader
 name|reader1
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

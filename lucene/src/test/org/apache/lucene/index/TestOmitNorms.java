@@ -1704,7 +1704,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|ir2
 init|=
 name|riw
@@ -1715,13 +1715,10 @@ decl_stmt|;
 name|DocValues
 name|dv2
 init|=
+name|getOnlySegmentReader
+argument_list|(
 name|ir2
-operator|.
-name|getSequentialSubReaders
-argument_list|()
-index|[
-literal|0
-index|]
+argument_list|)
 operator|.
 name|normValues
 argument_list|(

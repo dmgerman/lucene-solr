@@ -139,25 +139,13 @@ specifier|final
 class|class
 name|SegmentReader
 extends|extends
-name|IndexReader
+name|AtomicReader
 block|{
 DECL|field|si
 specifier|private
 specifier|final
 name|SegmentInfo
 name|si
-decl_stmt|;
-DECL|field|readerContext
-specifier|private
-specifier|final
-name|ReaderContext
-name|readerContext
-init|=
-operator|new
-name|AtomicReaderContext
-argument_list|(
-name|this
-argument_list|)
 decl_stmt|;
 DECL|field|liveDocs
 specifier|private
@@ -737,21 +725,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getTopReaderContext
-specifier|public
-name|ReaderContext
-name|getTopReaderContext
-parameter_list|()
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-return|return
-name|readerContext
-return|;
-block|}
 comment|/**    * Return the name of the segment this reader is reading.    */
 DECL|method|getSegmentName
 specifier|public
@@ -776,8 +749,6 @@ name|si
 return|;
 block|}
 comment|/** Returns the directory this index resides in. */
-annotation|@
-name|Override
 DECL|method|directory
 specifier|public
 name|Directory
@@ -820,8 +791,6 @@ return|return
 name|this
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|getTermInfosIndexDivisor
 specifier|public
 name|int

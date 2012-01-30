@@ -409,7 +409,7 @@ argument_list|,
 name|dir
 argument_list|)
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
 name|dw
@@ -1707,7 +1707,7 @@ parameter_list|(
 name|Random
 name|r
 parameter_list|,
-name|IndexReader
+name|DirectoryReader
 name|r1
 parameter_list|,
 name|Directory
@@ -1719,7 +1719,7 @@ parameter_list|)
 throws|throws
 name|Throwable
 block|{
-name|IndexReader
+name|DirectoryReader
 name|r2
 init|=
 name|IndexReader
@@ -1762,7 +1762,7 @@ parameter_list|)
 throws|throws
 name|Throwable
 block|{
-name|IndexReader
+name|DirectoryReader
 name|r1
 init|=
 name|IndexReader
@@ -1772,7 +1772,7 @@ argument_list|(
 name|dir1
 argument_list|)
 decl_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r2
 init|=
 name|IndexReader
@@ -1808,7 +1808,7 @@ specifier|static
 name|void
 name|printDocs
 parameter_list|(
-name|IndexReader
+name|DirectoryReader
 name|r
 parameter_list|)
 throws|throws
@@ -1831,10 +1831,16 @@ range|:
 name|subs
 control|)
 block|{
+comment|// TODO: improve this
 name|Bits
 name|liveDocs
 init|=
+operator|(
+operator|(
+name|AtomicReader
+operator|)
 name|sub
+operator|)
 operator|.
 name|getLiveDocs
 argument_list|()
@@ -1953,10 +1959,10 @@ specifier|static
 name|void
 name|verifyEquals
 parameter_list|(
-name|IndexReader
+name|DirectoryReader
 name|r1
 parameter_list|,
-name|IndexReader
+name|DirectoryReader
 name|r2
 parameter_list|,
 name|String

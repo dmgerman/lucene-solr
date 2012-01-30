@@ -342,7 +342,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|final
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|w
@@ -434,13 +434,10 @@ specifier|final
 name|TermsEnum
 name|te
 init|=
+name|getOnlySegmentReader
+argument_list|(
 name|r
-operator|.
-name|getSequentialSubReaders
-argument_list|()
-index|[
-literal|0
-index|]
+argument_list|)
 operator|.
 name|fields
 argument_list|()

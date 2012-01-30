@@ -817,7 +817,7 @@ name|PayloadProcessorProvider
 name|payloadProcessorProvider
 decl_stmt|;
 DECL|method|getReader
-name|IndexReader
+name|DirectoryReader
 name|getReader
 parameter_list|()
 throws|throws
@@ -832,7 +832,7 @@ return|;
 block|}
 comment|/**    * Expert: returns a readonly reader, covering all    * committed as well as un-committed changes to the index.    * This provides "near real-time" searching, in that    * changes made during an IndexWriter session can be    * quickly made available for searching without closing    * the writer nor calling {@link #commit}.    *    *<p>Note that this is functionally equivalent to calling    * {#flush} and then using {@link IndexReader#open} to    * open a new reader.  But the turnaround time of this    * method should be faster since it avoids the potentially    * costly {@link #commit}.</p>    *    *<p>You must close the {@link IndexReader} returned by    * this method once you are done using it.</p>    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The resulting reader supports {@link    * IndexReader#reopen}, but that call will simply forward    * back to this method (though this may change in the    * future).</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link #setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far</p>.    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link AlreadyClosedException}.</p>    *    * @lucene.experimental    *    * @return IndexReader that covers entire index plus all    * changes made so far by this IndexWriter instance    *    * @throws IOException    */
 DECL|method|getReader
-name|IndexReader
+name|DirectoryReader
 name|getReader
 parameter_list|(
 name|boolean
@@ -881,7 +881,7 @@ operator|=
 literal|true
 expr_stmt|;
 specifier|final
-name|IndexReader
+name|DirectoryReader
 name|r
 decl_stmt|;
 name|doBeforeFlush
@@ -2819,7 +2819,7 @@ comment|// CREATE_OR_APPEND - create only if an index does not exist
 name|create
 operator|=
 operator|!
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(
@@ -7979,7 +7979,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**<p>Expert: prepare for commit, specifying    *  commitUserData Map (String -> String).  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *  You can also just call {@link #commit(Map)} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    *    *  @param commitUserData Opaque Map (String->String)    *  that's recorded into the segments file in the index,    *  and retrievable by {@link    *  IndexReader#getCommitUserData}.  Note that when    *  IndexWriter commits itself during {@link #close}, the    *  commitUserData is unchanged (just carried over from    *  the prior commit).  If this is null then the previous    *  commitUserData is kept.  Also, the commitUserData will    *  only "stick" if there are actually changes in the    *  index to commit.    */
+comment|/**<p>Expert: prepare for commit, specifying    *  commitUserData Map (String -> String).  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *  You can also just call {@link #commit(Map)} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    *    *  @param commitUserData Opaque Map (String->String)    *  that's recorded into the segments file in the index,    *  and retrievable by {@link    *  DirectoryReader#getCommitUserData}.  Note that when    *  IndexWriter commits itself during {@link #close}, the    *  commitUserData is unchanged (just carried over from    *  the prior commit).  If this is null then the previous    *  commitUserData is kept.  Also, the commitUserData will    *  only "stick" if there are actually changes in the    *  index to commit.    */
 DECL|method|prepareCommit
 specifier|public
 specifier|final
@@ -13548,7 +13548,7 @@ specifier|abstract
 name|void
 name|warm
 parameter_list|(
-name|IndexReader
+name|AtomicReader
 name|reader
 parameter_list|)
 throws|throws

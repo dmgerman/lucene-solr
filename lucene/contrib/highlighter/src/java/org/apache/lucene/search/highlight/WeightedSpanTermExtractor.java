@@ -156,6 +156,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -171,22 +185,6 @@ operator|.
 name|index
 operator|.
 name|Term
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-operator|.
-name|AtomicReaderContext
 import|;
 end_import
 
@@ -503,6 +501,7 @@ block|{
 name|ctx
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|close
 argument_list|()
@@ -1012,6 +1011,7 @@ argument_list|()
 argument_list|)
 operator|.
 name|reader
+argument_list|()
 decl_stmt|;
 name|extract
 argument_list|(
@@ -1590,6 +1590,7 @@ name|field
 argument_list|)
 operator|.
 name|reader
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|queries
@@ -1746,6 +1747,7 @@ init|=
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()

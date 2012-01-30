@@ -46,6 +46,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DirectoryReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -321,7 +335,7 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(
@@ -420,7 +434,7 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(
@@ -494,7 +508,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|IndexReader

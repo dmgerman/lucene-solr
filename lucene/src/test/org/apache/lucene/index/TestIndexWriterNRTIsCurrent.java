@@ -176,7 +176,7 @@ name|ReaderHolder
 block|{
 DECL|field|reader
 specifier|volatile
-name|IndexReader
+name|DirectoryReader
 name|reader
 decl_stmt|;
 DECL|field|stop
@@ -528,7 +528,7 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|IndexReader
+name|DirectoryReader
 name|currentReader
 init|=
 literal|null
@@ -730,10 +730,10 @@ name|commit
 argument_list|()
 expr_stmt|;
 specifier|final
-name|IndexReader
+name|DirectoryReader
 name|newReader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -929,7 +929,7 @@ name|e
 expr_stmt|;
 return|return;
 block|}
-name|IndexReader
+name|DirectoryReader
 name|reader
 decl_stmt|;
 while|while

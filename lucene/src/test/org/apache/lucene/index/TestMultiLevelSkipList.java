@@ -487,7 +487,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|AtomicReader
 name|reader
 init|=
 name|getOnlySegmentReader

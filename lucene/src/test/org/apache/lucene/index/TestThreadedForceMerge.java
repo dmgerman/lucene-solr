@@ -881,7 +881,7 @@ literal|2
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
 name|IndexReader

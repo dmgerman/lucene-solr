@@ -36,9 +36,13 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReader
 import|;
 end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -49,8 +53,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|IndexReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -66,11 +68,13 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|ReaderContext
+name|IndexReaderContext
 import|;
 end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -103,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Calculate query weights and build query scorers.  *<p>  * The purpose of {@link Weight} is to ensure searching does not modify a  * {@link Query}, so that a {@link Query} instance can be reused.<br>  * {@link IndexSearcher} dependent state of the query should reside in the  * {@link Weight}.<br>  * {@link IndexReader} dependent state should reside in the {@link Scorer}.  *<p>  * Since {@link Weight} creates {@link Scorer} instances for a given  * {@link AtomicReaderContext} ({@link #scorer(IndexReader.AtomicReaderContext,   * boolean, boolean, Bits)})  * callers must maintain the relationship between the searcher's top-level  * {@link ReaderContext} and the context used to create a {@link Scorer}.   *<p>  * A<code>Weight</code> is used in the following way:  *<ol>  *<li>A<code>Weight</code> is constructed by a top-level query, given a  *<code>IndexSearcher</code> ({@link Query#createWeight(IndexSearcher)}).  *<li>The {@link #getValueForNormalization()} method is called on the  *<code>Weight</code> to compute the query normalization factor  * {@link SimilarityProvider#queryNorm(float)} of the query clauses contained in the  * query.  *<li>The query normalization factor is passed to {@link #normalize(float, float)}. At  * this point the weighting is complete.  *<li>A<code>Scorer</code> is constructed by  * {@link #scorer(IndexReader.AtomicReaderContext, boolean, boolean, Bits)}.  *</ol>  *   * @since 2.9  */
+comment|/**  * Expert: Calculate query weights and build query scorers.  *<p>  * The purpose of {@link Weight} is to ensure searching does not modify a  * {@link Query}, so that a {@link Query} instance can be reused.<br>  * {@link IndexSearcher} dependent state of the query should reside in the  * {@link Weight}.<br>  * {@link AtomicReader} dependent state should reside in the {@link Scorer}.  *<p>  * Since {@link Weight} creates {@link Scorer} instances for a given  * {@link AtomicReaderContext} ({@link #scorer(AtomicReaderContext,   * boolean, boolean, Bits)})  * callers must maintain the relationship between the searcher's top-level  * {@link IndexReaderContext} and the context used to create a {@link Scorer}.   *<p>  * A<code>Weight</code> is used in the following way:  *<ol>  *<li>A<code>Weight</code> is constructed by a top-level query, given a  *<code>IndexSearcher</code> ({@link Query#createWeight(IndexSearcher)}).  *<li>The {@link #getValueForNormalization()} method is called on the  *<code>Weight</code> to compute the query normalization factor  * {@link SimilarityProvider#queryNorm(float)} of the query clauses contained in the  * query.  *<li>The query normalization factor is passed to {@link #normalize(float, float)}. At  * this point the weighting is complete.  *<li>A<code>Scorer</code> is constructed by  * {@link #scorer(AtomicReaderContext, boolean, boolean, Bits)}.  *</ol>  *   * @since 2.9  */
 end_comment
 
 begin_class
@@ -183,7 +187,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns true iff this implementation scores docs only out of order. This    * method is used in conjunction with {@link Collector}'s    * {@link Collector#acceptsDocsOutOfOrder() acceptsDocsOutOfOrder} and    * {@link #scorer(IndexReader.AtomicReaderContext, boolean, boolean, Bits)} to    * create a matching {@link Scorer} instance for a given {@link Collector}, or    * vice versa.    *<p>    *<b>NOTE:</b> the default implementation returns<code>false</code>, i.e.    * the<code>Scorer</code> scores documents in-order.    */
+comment|/**    * Returns true iff this implementation scores docs only out of order. This    * method is used in conjunction with {@link Collector}'s    * {@link Collector#acceptsDocsOutOfOrder() acceptsDocsOutOfOrder} and    * {@link #scorer(AtomicReaderContext, boolean, boolean, Bits)} to    * create a matching {@link Scorer} instance for a given {@link Collector}, or    * vice versa.    *<p>    *<b>NOTE:</b> the default implementation returns<code>false</code>, i.e.    * the<code>Scorer</code> scores documents in-order.    */
 DECL|method|scoresDocsOutOfOrder
 specifier|public
 name|boolean

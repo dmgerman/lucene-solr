@@ -1708,7 +1708,7 @@ expr_stmt|;
 block|}
 DECL|method|getReader
 specifier|public
-name|IndexReader
+name|DirectoryReader
 name|getReader
 parameter_list|()
 throws|throws
@@ -1894,7 +1894,7 @@ expr_stmt|;
 block|}
 DECL|method|getReader
 specifier|public
-name|IndexReader
+name|DirectoryReader
 name|getReader
 parameter_list|(
 name|boolean

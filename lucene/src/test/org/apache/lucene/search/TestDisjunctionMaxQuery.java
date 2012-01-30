@@ -96,7 +96,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -111,8 +111,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-operator|.
-name|AtomicReaderContext
 import|;
 end_import
 
@@ -140,7 +138,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 import|;
 end_import
 
@@ -820,8 +818,9 @@ expr_stmt|;
 block|}
 name|r
 operator|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|writer
 operator|.
@@ -934,8 +933,8 @@ name|s
 operator|.
 name|getTopReaderContext
 argument_list|()
-operator|.
-name|isAtomic
+operator|instanceof
+name|AtomicReaderContext
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -977,6 +976,7 @@ argument_list|,
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
@@ -1072,8 +1072,8 @@ name|s
 operator|.
 name|getTopReaderContext
 argument_list|()
-operator|.
-name|isAtomic
+operator|instanceof
+name|AtomicReaderContext
 argument_list|)
 expr_stmt|;
 name|QueryUtils
@@ -1126,6 +1126,7 @@ argument_list|,
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()

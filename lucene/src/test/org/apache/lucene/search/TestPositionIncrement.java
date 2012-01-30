@@ -156,6 +156,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|MultiFields
 import|;
 end_import
@@ -212,7 +226,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 import|;
 end_import
 
@@ -1532,11 +1546,12 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|SlowMultiReaderWrapper
+name|AtomicReader
 name|r
 init|=
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|readerFromWriter
 argument_list|)

@@ -314,6 +314,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DirectoryReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -490,7 +504,7 @@ name|qmkrClass
 decl_stmt|;
 DECL|field|indexReader
 specifier|private
-name|IndexReader
+name|DirectoryReader
 name|indexReader
 decl_stmt|;
 DECL|field|indexSearcher
@@ -1249,7 +1263,7 @@ comment|/**    * @return Returns the indexReader.  NOTE: this returns a    * ref
 DECL|method|getIndexReader
 specifier|public
 specifier|synchronized
-name|IndexReader
+name|DirectoryReader
 name|getIndexReader
 parameter_list|()
 block|{
@@ -1302,7 +1316,7 @@ specifier|synchronized
 name|void
 name|setIndexReader
 parameter_list|(
-name|IndexReader
+name|DirectoryReader
 name|indexReader
 parameter_list|)
 throws|throws

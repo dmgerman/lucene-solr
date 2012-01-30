@@ -410,7 +410,7 @@ parameter_list|(
 name|int
 name|base
 parameter_list|,
-name|IndexReader
+name|AtomicReader
 name|r
 parameter_list|)
 block|{
@@ -1037,7 +1037,7 @@ name|readers
 control|)
 block|{
 specifier|final
-name|IndexReader
+name|AtomicReader
 name|reader
 init|=
 name|readerAndLiveDocs
@@ -1685,6 +1685,42 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// TODO: the PayloadProcessorProvider should take AtomicReader as parameter
+comment|// and find out by itself if it can provide a processor:
+if|if
+condition|(
+operator|!
+operator|(
+name|reader
+operator|.
+name|reader
+operator|instanceof
+name|SegmentReader
+operator|)
+condition|)
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Payload processing currently requires exclusively SegmentReaders to be merged."
+argument_list|)
+throw|;
+specifier|final
+name|Directory
+name|dir
+init|=
+operator|(
+operator|(
+name|SegmentReader
+operator|)
+name|reader
+operator|.
+name|reader
+operator|)
+operator|.
+name|directory
+argument_list|()
+decl_stmt|;
 name|mergeState
 operator|.
 name|dirPayloadProcessor
@@ -1698,12 +1734,7 @@ name|payloadProcessorProvider
 operator|.
 name|getDirProcessor
 argument_list|(
-name|reader
-operator|.
-name|reader
-operator|.
-name|directory
-argument_list|()
+name|dir
 argument_list|)
 expr_stmt|;
 block|}

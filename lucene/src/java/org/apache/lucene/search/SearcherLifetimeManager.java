@@ -106,13 +106,9 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|DirectoryReader
 import|;
 end_import
-
-begin_comment
-comment|// javadocs
-end_comment
 
 begin_import
 import|import
@@ -143,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Keeps track of current plus old IndexSearchers, closing  * the old ones once they have timed out.  *  * Use it like this:  *  *<pre>  *   SearcherLifetimeManager mgr = new SearcherLifetimeManager();  *</pre>  *  * Per search-request, if it's a "new" search request, then  * obtain the latest searcher you have (for example, by  * using {@link SearcherManager} or {@link NRTManager}), and  * then record this searcher:  *  *<pre>  *   // Record the current searcher, and save the returend  *   // token into user's search results (eg as a  hidden  *   // HTML form field):  *   long token = mgr.record(searcher);  *</pre>  *  * When a follow-up search arrives, for example the user  * clicks next page, drills down/up, etc., take the token  * that you saved from the previous search and:  *  *<pre>  *   // If possible, obtain the same searcher as the last  *   // search:  *   IndexSearcher searcher = mgr.acquire(token);  *   if (searcher != null) {  *     // Searcher is still here  *     try {  *       // do searching...  *     } finally {  *       mgr.release(searcher);  *       // Do not use searcher after this!  *       searcher = null;  *     }  *   } else {  *     // Searcher was pruned -- notify user session timed  *     // out, or, pull fresh searcher again  *   }  *</pre>  *  * Finally, in a separate thread, ideally the same thread  * that's periodically reopening your searchers, you should  * periodically prune old searchers:  *  *<pre>  *   mgr.prune(new PruneByAge(600.0));  *</pre>  *  *<p><b>NOTE</b>: keeping many searchers around means  * you'll use more resources (open files, RAM) than a single  * searcher.  However, as long as you are using {@link  * IndexReader#openIfChanged}, the searchers will usually  * share almost all segments and the added resource usage is  * contained.  When a large merge has completed, and  * you reopen, because that is a large change, the new  * searcher will use higher additional RAM than other  * searchers; but large merges don't complete very often and  * it's unlikely you'll hit two of them in your expiration  * window.  Still you should budget plenty of heap in the  * JVM to have a good safety margin.  *   * @lucene.experimental  */
+comment|/**  * Keeps track of current plus old IndexSearchers, closing  * the old ones once they have timed out.  *  * Use it like this:  *  *<pre>  *   SearcherLifetimeManager mgr = new SearcherLifetimeManager();  *</pre>  *  * Per search-request, if it's a "new" search request, then  * obtain the latest searcher you have (for example, by  * using {@link SearcherManager} or {@link NRTManager}), and  * then record this searcher:  *  *<pre>  *   // Record the current searcher, and save the returend  *   // token into user's search results (eg as a  hidden  *   // HTML form field):  *   long token = mgr.record(searcher);  *</pre>  *  * When a follow-up search arrives, for example the user  * clicks next page, drills down/up, etc., take the token  * that you saved from the previous search and:  *  *<pre>  *   // If possible, obtain the same searcher as the last  *   // search:  *   IndexSearcher searcher = mgr.acquire(token);  *   if (searcher != null) {  *     // Searcher is still here  *     try {  *       // do searching...  *     } finally {  *       mgr.release(searcher);  *       // Do not use searcher after this!  *       searcher = null;  *     }  *   } else {  *     // Searcher was pruned -- notify user session timed  *     // out, or, pull fresh searcher again  *   }  *</pre>  *  * Finally, in a separate thread, ideally the same thread  * that's periodically reopening your searchers, you should  * periodically prune old searchers:  *  *<pre>  *   mgr.prune(new PruneByAge(600.0));  *</pre>  *  *<p><b>NOTE</b>: keeping many searchers around means  * you'll use more resources (open files, RAM) than a single  * searcher.  However, as long as you are using {@link  * DirectoryReader#openIfChanged(DirectoryReader)}, the searchers  * will usually share almost all segments and the added resource usage  * is contained.  When a large merge has completed, and  * you reopen, because that is a large change, the new  * searcher will use higher additional RAM than other  * searchers; but large merges don't complete very often and  * it's unlikely you'll hit two of them in your expiration  * window.  Still you should budget plenty of heap in the  * JVM to have a good safety margin.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -209,10 +205,15 @@ name|searcher
 expr_stmt|;
 name|version
 operator|=
+operator|(
+operator|(
+name|DirectoryReader
+operator|)
 name|searcher
 operator|.
 name|getIndexReader
 argument_list|()
+operator|)
 operator|.
 name|getVersion
 argument_list|()
@@ -379,10 +380,15 @@ specifier|final
 name|long
 name|version
 init|=
+operator|(
+operator|(
+name|DirectoryReader
+operator|)
 name|searcher
 operator|.
 name|getIndexReader
 argument_list|()
+operator|)
 operator|.
 name|getVersion
 argument_list|()

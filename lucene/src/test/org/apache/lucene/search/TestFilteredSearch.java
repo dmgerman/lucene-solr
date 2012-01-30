@@ -92,7 +92,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CorruptIndexException
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -106,9 +106,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|AtomicReaderContext
+name|CorruptIndexException
 import|;
 end_import
 
@@ -649,11 +647,6 @@ argument_list|,
 name|acceptDocs
 argument_list|)
 expr_stmt|;
-assert|assert
-name|context
-operator|.
-name|isAtomic
-assert|;
 specifier|final
 name|FixedBitSet
 name|set
@@ -664,6 +657,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|maxDoc
 argument_list|()
@@ -685,6 +679,7 @@ operator|+
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|maxDoc
 argument_list|()

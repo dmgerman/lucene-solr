@@ -30,7 +30,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Fields
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -44,7 +44,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|Fields
 import|;
 end_import
 
@@ -231,8 +231,6 @@ parameter_list|(
 name|Map
 name|context
 parameter_list|,
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|readerContext
 parameter_list|)
@@ -274,8 +272,6 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|readerContext
 range|:
@@ -294,6 +290,7 @@ init|=
 name|readerContext
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|fields
 argument_list|()

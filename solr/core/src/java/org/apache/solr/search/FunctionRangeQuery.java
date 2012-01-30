@@ -26,6 +26,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -273,8 +287,6 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|context
 parameter_list|)
@@ -286,6 +298,7 @@ operator|=
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|maxDoc
 argument_list|()
@@ -314,6 +327,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|rangeFilt
 operator|.

@@ -82,8 +82,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -140,7 +138,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
 import|;
 end_import
 
@@ -1404,11 +1402,9 @@ block|{
 name|AtomicReaderContext
 name|context
 init|=
-operator|(
-name|AtomicReaderContext
-operator|)
-operator|new
-name|SlowMultiReaderWrapper
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
 argument_list|(
 name|searcher
 operator|.
@@ -1460,6 +1456,7 @@ argument_list|,
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
@@ -1504,6 +1501,7 @@ argument_list|,
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
@@ -1548,6 +1546,7 @@ argument_list|,
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()

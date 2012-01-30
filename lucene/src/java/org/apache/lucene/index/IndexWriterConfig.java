@@ -266,7 +266,7 @@ specifier|final
 name|int
 name|DEFAULT_READER_TERMS_INDEX_DIVISOR
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
 decl_stmt|;

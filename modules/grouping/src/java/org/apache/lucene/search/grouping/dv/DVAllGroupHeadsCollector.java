@@ -30,6 +30,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|DocValues
 import|;
 end_import
@@ -206,8 +220,6 @@ name|BytesRef
 argument_list|()
 decl_stmt|;
 DECL|field|readerContext
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|readerContext
 decl_stmt|;
@@ -421,8 +433,6 @@ index|[]
 name|comparators
 decl_stmt|;
 DECL|field|readerContext
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|readerContext
 decl_stmt|;
@@ -442,8 +452,6 @@ parameter_list|,
 name|int
 name|doc
 parameter_list|,
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|readerContext
 parameter_list|,
@@ -650,8 +658,6 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|readerContext
 parameter_list|)
@@ -671,6 +677,7 @@ init|=
 name|readerContext
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|docValues
 argument_list|(
@@ -742,8 +749,6 @@ operator|.
 name|Source
 name|getDefaultSource
 parameter_list|(
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|readerContext
 parameter_list|)
@@ -1023,8 +1028,6 @@ specifier|public
 name|void
 name|setNextReader
 parameter_list|(
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|context
 parameter_list|)
@@ -1267,8 +1270,6 @@ operator|.
 name|Source
 name|getDefaultSource
 parameter_list|(
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 name|readerContext
 parameter_list|)
@@ -1283,6 +1284,7 @@ argument_list|,
 name|readerContext
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|maxDoc
 argument_list|()

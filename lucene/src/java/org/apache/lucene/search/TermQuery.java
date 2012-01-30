@@ -46,22 +46,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -76,9 +60,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|ReaderContext
+name|DocsEnum
 import|;
 end_import
 
@@ -92,7 +74,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReaderContext
 import|;
 end_import
 
@@ -652,6 +648,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|term
 operator|.
@@ -680,6 +677,7 @@ init|=
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|terms
 argument_list|(
@@ -715,7 +713,7 @@ specifier|private
 name|boolean
 name|termNotInReader
 parameter_list|(
-name|IndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|String
@@ -772,6 +770,7 @@ argument_list|,
 name|context
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
@@ -1024,7 +1023,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|ReaderContext
+name|IndexReaderContext
 name|context
 init|=
 name|searcher

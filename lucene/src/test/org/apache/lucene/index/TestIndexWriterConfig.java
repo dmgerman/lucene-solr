@@ -957,7 +957,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|,

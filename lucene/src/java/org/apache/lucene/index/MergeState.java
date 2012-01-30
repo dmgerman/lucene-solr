@@ -119,7 +119,7 @@ block|{
 DECL|field|reader
 specifier|public
 specifier|final
-name|IndexReader
+name|AtomicReader
 name|reader
 decl_stmt|;
 DECL|field|liveDocs
@@ -132,7 +132,7 @@ DECL|method|IndexReaderAndLiveDocs
 specifier|public
 name|IndexReaderAndLiveDocs
 parameter_list|(
-name|IndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|Bits

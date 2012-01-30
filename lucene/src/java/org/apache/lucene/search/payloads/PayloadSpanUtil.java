@@ -108,22 +108,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -139,8 +123,20 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|ReaderContext
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReaderContext
 import|;
 end_import
 
@@ -390,7 +386,7 @@ name|PayloadSpanUtil
 block|{
 DECL|field|context
 specifier|private
-name|ReaderContext
+name|IndexReaderContext
 name|context
 decl_stmt|;
 comment|/**    * @param context    *          that contains doc with payloads to extract    *              * @see IndexReader#getTopReaderContext()    */
@@ -398,7 +394,7 @@ DECL|method|PayloadSpanUtil
 specifier|public
 name|PayloadSpanUtil
 parameter_list|(
-name|ReaderContext
+name|IndexReaderContext
 name|context
 parameter_list|)
 block|{
@@ -1275,6 +1271,7 @@ argument_list|,
 name|atomicReaderContext
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()

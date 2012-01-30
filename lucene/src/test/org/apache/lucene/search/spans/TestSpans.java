@@ -204,9 +204,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|ReaderContext
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -248,22 +246,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexWriterConfig
 import|;
 end_import
@@ -279,6 +261,20 @@ operator|.
 name|index
 operator|.
 name|RandomIndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReaderContext
 import|;
 end_import
 
@@ -2775,7 +2771,7 @@ name|slop
 init|=
 literal|1
 decl_stmt|;
-name|ReaderContext
+name|IndexReaderContext
 name|topReaderContext
 init|=
 name|searcher
@@ -2936,6 +2932,7 @@ name|i
 index|]
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()

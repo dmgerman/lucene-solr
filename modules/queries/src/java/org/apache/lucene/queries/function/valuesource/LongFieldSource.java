@@ -50,8 +50,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -315,6 +313,7 @@ argument_list|(
 name|readerContext
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|,
@@ -334,6 +333,7 @@ argument_list|(
 name|readerContext
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|field
 argument_list|)

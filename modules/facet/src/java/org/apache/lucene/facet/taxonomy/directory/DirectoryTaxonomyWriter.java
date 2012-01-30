@@ -282,6 +282,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DirectoryReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|DocsEnum
 import|;
 end_import
@@ -727,7 +741,7 @@ name|cacheIsComplete
 decl_stmt|;
 DECL|field|reader
 specifier|private
-name|IndexReader
+name|DirectoryReader
 name|reader
 decl_stmt|;
 DECL|field|cacheMisses
@@ -808,7 +822,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|indexExists
 argument_list|(
@@ -1058,14 +1072,14 @@ comment|// Currently overridden by a unit test that verifies that every index we
 comment|/**    * Open an {@link IndexReader} from the internal {@link IndexWriter}, by    * calling {@link IndexReader#open(IndexWriter, boolean)}. Extending classes can override    * this method to return their own {@link IndexReader}.    */
 DECL|method|openReader
 specifier|protected
-name|IndexReader
+name|DirectoryReader
 name|openReader
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 return|return
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2155,7 +2169,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|refreshReader
-specifier|private
+specifier|protected
 specifier|synchronized
 name|void
 name|refreshReader
@@ -2170,10 +2184,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|IndexReader
+name|DirectoryReader
 name|r2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
@@ -3627,6 +3641,21 @@ name|addDone
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+comment|/**    * Expert:  This method is only for expert use.    * Note also that any call to refresh() will invalidate the returned reader,    * so the caller needs to take care of appropriate locking.    *     * @return lucene indexReader    */
+DECL|method|getInternalIndexReader
+name|DirectoryReader
+name|getInternalIndexReader
+parameter_list|()
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+return|return
+name|this
+operator|.
+name|reader
+return|;
 block|}
 comment|/**    * Mapping from old ordinal to new ordinals, used when merging indexes     * wit separate taxonomies.    *<p>     * addToTaxonomies() merges one or more taxonomies into the given taxonomy    * (this). An OrdinalMap is filled for each of the added taxonomies,    * containing the new ordinal (in the merged taxonomy) of each of the    * categories in the old taxonomy.    *<P>      * There exist two implementations of OrdinalMap: MemoryOrdinalMap and    * DiskOrdinalMap. As their names suggest, the former keeps the map in    * memory and the latter in a temporary disk file. Because these maps will    * later be needed one by one (to remap the counting lists), not all at the    * same time, it is recommended to put the first taxonomy's map in memory,    * and all the rest on disk (later to be automatically read into memory one    * by one, when needed).    */
 DECL|interface|OrdinalMap

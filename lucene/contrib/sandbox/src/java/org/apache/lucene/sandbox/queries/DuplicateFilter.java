@@ -40,22 +40,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexReader
-operator|.
-name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|DocIdSet
@@ -263,6 +247,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|acceptDocs
 argument_list|)
@@ -276,6 +261,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|acceptDocs
 argument_list|)
@@ -287,7 +273,7 @@ specifier|private
 name|FixedBitSet
 name|correctBits
 parameter_list|(
-name|IndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|Bits
@@ -474,7 +460,7 @@ specifier|private
 name|FixedBitSet
 name|fastBits
 parameter_list|(
-name|IndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|Bits

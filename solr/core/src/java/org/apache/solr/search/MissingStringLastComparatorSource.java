@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -39,8 +39,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|IndexReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -533,6 +531,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|this
 argument_list|)
@@ -732,6 +731,7 @@ argument_list|(
 name|context
 operator|.
 name|reader
+argument_list|()
 argument_list|,
 name|parent
 argument_list|)
@@ -2002,7 +2002,7 @@ specifier|static
 name|FieldComparator
 name|createComparator
 parameter_list|(
-name|IndexReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|TermOrdValComparator_SML

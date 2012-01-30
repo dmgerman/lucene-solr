@@ -152,8 +152,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -1261,6 +1259,7 @@ return|return
 name|leaf
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|document
 argument_list|(

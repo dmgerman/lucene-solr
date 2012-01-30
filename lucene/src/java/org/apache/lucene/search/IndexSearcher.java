@@ -180,22 +180,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CorruptIndexException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
@@ -210,11 +194,27 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|ReaderContext
+name|CorruptIndexException
 import|;
 end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DirectoryReader
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -241,6 +241,20 @@ operator|.
 name|index
 operator|.
 name|MultiFields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReaderContext
 import|;
 end_import
 
@@ -379,7 +393,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements search over a single IndexReader.  *  *<p>Applications usually need only call the inherited  * {@link #search(Query,int)}  * or {@link #search(Query,Filter,int)} methods. For  * performance reasons, if your index is unchanging, you  * should share a single IndexSearcher instance across  * multiple searches instead of creating a new one  * per-search.  If your index has changed and you wish to  * see the changes reflected in searching, you should  * use {@link IndexReader#openIfChanged} to obtain a new reader and  * then create a new IndexSearcher from that.  Also, for  * low-latency turnaround it's best to use a near-real-time  * reader ({@link IndexReader#open(IndexWriter,boolean)}).  * Once you have a new {@link IndexReader}, it's relatively  * cheap to create a new IndexSearcher from it.  *   *<a name="thread-safety"></a><p><b>NOTE</b>:<code>{@link  * IndexSearcher}</code> instances are completely  * thread safe, meaning multiple threads can call any of its  * methods, concurrently.  If your application requires  * external synchronization, you should<b>not</b>  * synchronize on the<code>IndexSearcher</code> instance;  * use your own (non-Lucene) objects instead.</p>  */
+comment|/** Implements search over a single IndexReader.  *  *<p>Applications usually need only call the inherited  * {@link #search(Query,int)}  * or {@link #search(Query,Filter,int)} methods. For  * performance reasons, if your index is unchanging, you  * should share a single IndexSearcher instance across  * multiple searches instead of creating a new one  * per-search.  If your index has changed and you wish to  * see the changes reflected in searching, you should  * use {@link DirectoryReader#openIfChanged(DirectoryReader)}  * to obtain a new reader and  * then create a new IndexSearcher from that.  Also, for  * low-latency turnaround it's best to use a near-real-time  * reader ({@link DirectoryReader#open(IndexWriter,boolean)}).  * Once you have a new {@link IndexReader}, it's relatively  * cheap to create a new IndexSearcher from it.  *   *<a name="thread-safety"></a><p><b>NOTE</b>:<code>{@link  * IndexSearcher}</code> instances are completely  * thread safe, meaning multiple threads can call any of its  * methods, concurrently.  If your application requires  * external synchronization, you should<b>not</b>  * synchronize on the<code>IndexSearcher</code> instance;  * use your own (non-Lucene) objects instead.</p>  */
 end_comment
 
 begin_class
@@ -399,7 +413,7 @@ comment|// in the next release
 DECL|field|readerContext
 specifier|protected
 specifier|final
-name|ReaderContext
+name|IndexReaderContext
 name|readerContext
 decl_stmt|;
 DECL|field|leafContexts
@@ -496,12 +510,12 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a searcher searching the provided top-level {@link ReaderContext}.    *<p>    * Given a non-<code>null</code> {@link ExecutorService} this method runs    * searches for each segment separately, using the provided ExecutorService.    * IndexSearcher will not shutdown/awaitTermination this ExecutorService on    * close; you must do so, eventually, on your own. NOTE: if you are using    * {@link NIOFSDirectory}, do not use the shutdownNow method of    * ExecutorService as this uses Thread.interrupt under-the-hood which can    * silently close file descriptors (see<a    * href="https://issues.apache.org/jira/browse/LUCENE-2239">LUCENE-2239</a>).    *     * @see ReaderContext    * @see IndexReader#getTopReaderContext()    * @lucene.experimental    */
+comment|/**    * Creates a searcher searching the provided top-level {@link IndexReaderContext}.    *<p>    * Given a non-<code>null</code> {@link ExecutorService} this method runs    * searches for each segment separately, using the provided ExecutorService.    * IndexSearcher will not shutdown/awaitTermination this ExecutorService on    * close; you must do so, eventually, on your own. NOTE: if you are using    * {@link NIOFSDirectory}, do not use the shutdownNow method of    * ExecutorService as this uses Thread.interrupt under-the-hood which can    * silently close file descriptors (see<a    * href="https://issues.apache.org/jira/browse/LUCENE-2239">LUCENE-2239</a>).    *     * @see IndexReaderContext    * @see IndexReader#getTopReaderContext()    * @lucene.experimental    */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher
 parameter_list|(
-name|ReaderContext
+name|IndexReaderContext
 name|context
 parameter_list|,
 name|ExecutorService
@@ -518,12 +532,14 @@ operator|+
 name|context
 operator|.
 name|reader
+argument_list|()
 assert|;
 name|reader
 operator|=
 name|context
 operator|.
 name|reader
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -562,12 +578,12 @@ name|leafContexts
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a searcher searching the provided top-level {@link ReaderContext}.    *    * @see ReaderContext    * @see IndexReader#getTopReaderContext()    * @lucene.experimental    */
+comment|/**    * Creates a searcher searching the provided top-level {@link IndexReaderContext}.    *    * @see IndexReaderContext    * @see IndexReader#getTopReaderContext()    * @lucene.experimental    */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher
 parameter_list|(
-name|ReaderContext
+name|IndexReaderContext
 name|context
 parameter_list|)
 block|{
@@ -1411,7 +1427,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Just like {@link #search(Weight, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(IndexReader.AtomicReaderContext[], Weight,    * Collector)}.</p>    */
+comment|/**    * Just like {@link #search(Weight, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(AtomicReaderContext[], Weight,    * Collector)}.</p>    */
 DECL|method|search
 specifier|protected
 name|TopFieldDocs
@@ -1644,7 +1660,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Just like {@link #search(Weight, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(IndexReader.AtomicReaderContext[], Weight,     * Collector)}.</p>    */
+comment|/**    * Just like {@link #search(Weight, int, Sort)}, but you choose    * whether or not the fields in the returned {@link FieldDoc} instances should    * be set by specifying fillFields.    *    *<p>NOTE: this does not compute scores by default.  If you    * need scores, create a {@link TopFieldCollector}    * instance by calling {@link TopFieldCollector#create} and    * then pass that to {@link #search(AtomicReaderContext[], Weight,     * Collector)}.</p>    */
 DECL|method|search
 specifier|protected
 name|TopFieldDocs
@@ -1820,6 +1836,7 @@ name|i
 index|]
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|getLiveDocs
 argument_list|()
@@ -2087,11 +2104,11 @@ return|return
 name|weight
 return|;
 block|}
-comment|/**    * Returns this searchers the top-level {@link ReaderContext}.    * @see IndexReader#getTopReaderContext()    */
+comment|/**    * Returns this searchers the top-level {@link IndexReaderContext}.    * @see IndexReader#getTopReaderContext()    */
 comment|/* sugar for #getReader().getTopReaderContext() */
 DECL|method|getTopReaderContext
 specifier|public
-name|ReaderContext
+name|IndexReaderContext
 name|getTopReaderContext
 parameter_list|()
 block|{

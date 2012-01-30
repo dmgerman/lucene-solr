@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -39,8 +39,6 @@ operator|.
 name|lucene
 operator|.
 name|index
-operator|.
-name|IndexReader
 operator|.
 name|AtomicReaderContext
 import|;
@@ -505,12 +503,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|IndexReader
+name|AtomicReader
 name|reader
 init|=
 name|context
 operator|.
 name|reader
+argument_list|()
 decl_stmt|;
 name|OpenBitSetDISI
 name|result

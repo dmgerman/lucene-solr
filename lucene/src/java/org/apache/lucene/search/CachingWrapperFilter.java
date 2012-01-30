@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|AtomicReader
 import|;
 end_import
 
@@ -80,11 +80,27 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
 name|AtomicReaderContext
 import|;
 end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DirectoryReader
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -183,7 +199,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Wraps another filter's result and caches it. If    * {@code recacheDeletes} is {@code true}, then new deletes (for example    * after {@link IndexReader#openIfChanged}) will cause the filter    * {@link DocIdSet} to be recached.    *    *<p>If your index changes seldom, it is recommended to use {@code recacheDeletes=true},    * as recaching will only occur when the index is reopened.    * For near-real-time indexes or indexes that are often    * reopened with (e.g., {@link IndexReader#openIfChanged} is used), you should    * pass {@code recacheDeletes=false}. This will cache the filter results omitting    * deletions and will AND them in while scoring.    * @param filter Filter to cache results of    * @param recacheDeletes if deletions on the underlying index should recache    */
+comment|/** Wraps another filter's result and caches it. If    * {@code recacheDeletes} is {@code true}, then new deletes (for example    * after {@link DirectoryReader#openIfChanged}) will cause the filter    * {@link DocIdSet} to be recached.    *    *<p>If your index changes seldom, it is recommended to use {@code recacheDeletes=true},    * as recaching will only occur when the index is reopened.    * For near-real-time indexes or indexes that are often    * reopened with (e.g., {@link DirectoryReader#openIfChanged} is used), you should    * pass {@code recacheDeletes=false}. This will cache the filter results omitting    * deletions and will AND them in while scoring.    * @param filter Filter to cache results of    * @param recacheDeletes if deletions on the underlying index should recache    */
 DECL|method|CachingWrapperFilter
 specifier|public
 name|CachingWrapperFilter
@@ -217,7 +233,7 @@ parameter_list|(
 name|DocIdSet
 name|docIdSet
 parameter_list|,
-name|IndexReader
+name|AtomicReader
 name|reader
 parameter_list|)
 throws|throws
@@ -331,12 +347,13 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|IndexReader
+name|AtomicReader
 name|reader
 init|=
 name|context
 operator|.
 name|reader
+argument_list|()
 decl_stmt|;
 comment|// Only cache if incoming acceptDocs is == live docs;
 comment|// if Lucene passes in more interesting acceptDocs in

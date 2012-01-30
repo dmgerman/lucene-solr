@@ -30,7 +30,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -44,9 +44,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|AtomicReaderContext
+name|DocValues
 import|;
 end_import
 
@@ -324,6 +322,7 @@ init|=
 name|readerContext
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|normValues
 argument_list|(

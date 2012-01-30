@@ -46,6 +46,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Fields
 import|;
 end_import
@@ -61,8 +75,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-operator|.
-name|AtomicReaderContext
 import|;
 end_import
 
@@ -76,23 +88,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-operator|.
-name|ReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
+name|IndexReaderContext
 import|;
 end_import
 
@@ -166,7 +162,7 @@ block|{
 DECL|field|topReaderContext
 specifier|public
 specifier|final
-name|ReaderContext
+name|IndexReaderContext
 name|topReaderContext
 decl_stmt|;
 comment|// for asserting!
@@ -188,12 +184,12 @@ name|long
 name|totalTermFreq
 decl_stmt|;
 comment|//public static boolean DEBUG = BlockTreeTermsWriter.DEBUG;
-comment|/**    * Creates an empty {@link TermContext} from a {@link ReaderContext}    */
+comment|/**    * Creates an empty {@link TermContext} from a {@link IndexReaderContext}    */
 DECL|method|TermContext
 specifier|public
 name|TermContext
 parameter_list|(
-name|ReaderContext
+name|IndexReaderContext
 name|context
 parameter_list|)
 block|{
@@ -259,7 +255,7 @@ DECL|method|TermContext
 specifier|public
 name|TermContext
 parameter_list|(
-name|ReaderContext
+name|IndexReaderContext
 name|context
 parameter_list|,
 name|TermState
@@ -292,14 +288,14 @@ name|totalTermFreq
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a {@link TermContext} from a top-level {@link ReaderContext} and the    * given {@link Term}. This method will lookup the given term in all context's leaf readers     * and register each of the readers containing the term in the returned {@link TermContext}    * using the leaf reader's ordinal.    *<p>    * Note: the given context must be a top-level context.    */
+comment|/**    * Creates a {@link TermContext} from a top-level {@link IndexReaderContext} and the    * given {@link Term}. This method will lookup the given term in all context's leaf readers     * and register each of the readers containing the term in the returned {@link TermContext}    * using the leaf reader's ordinal.    *<p>    * Note: the given context must be a top-level context.    */
 DECL|method|build
 specifier|public
 specifier|static
 name|TermContext
 name|build
 parameter_list|(
-name|ReaderContext
+name|IndexReaderContext
 name|context
 parameter_list|,
 name|Term
@@ -389,6 +385,7 @@ name|i
 index|]
 operator|.
 name|reader
+argument_list|()
 operator|.
 name|fields
 argument_list|()
@@ -504,7 +501,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Registers and associates a {@link TermState} with an leaf ordinal. The leaf ordinal    * should be derived from a {@link ReaderContext}'s leaf ord.    */
+comment|/**    * Registers and associates a {@link TermState} with an leaf ordinal. The leaf ordinal    * should be derived from a {@link IndexReaderContext}'s leaf ord.    */
 DECL|method|register
 specifier|public
 name|void

@@ -2204,7 +2204,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|final
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|w
@@ -2238,7 +2238,7 @@ decl_stmt|;
 for|for
 control|(
 name|IndexReader
-name|sub
+name|reader
 range|:
 name|r
 operator|.
@@ -2246,6 +2246,15 @@ name|getSequentialSubReaders
 argument_list|()
 control|)
 block|{
+comment|// TODO: improve this
+name|AtomicReader
+name|sub
+init|=
+operator|(
+name|AtomicReader
+operator|)
+name|reader
+decl_stmt|;
 comment|//System.out.println("\nsub=" + sub);
 specifier|final
 name|TermsEnum
