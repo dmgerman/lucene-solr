@@ -887,6 +887,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Returns {@link DocValues} for this field's normalization values.    * This method may return null if the field has no norms.    */
 DECL|method|normValues
 specifier|public
 specifier|abstract
