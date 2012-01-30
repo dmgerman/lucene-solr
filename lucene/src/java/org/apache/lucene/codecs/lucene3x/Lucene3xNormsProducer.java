@@ -295,10 +295,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reads Lucene 3.x norms format and exposes it via DocValues API  * @lucene.experimental  */
+comment|/**  * Reads Lucene 3.x norms format and exposes it via DocValues API  * @lucene.experimental  * @deprecated  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene3xNormsProducer
 class|class
 name|Lucene3xNormsProducer
@@ -336,9 +338,7 @@ name|NORMS_EXTENSION
 init|=
 literal|"nrm"
 decl_stmt|;
-comment|/** Extension of separate norms file    * @deprecated */
-annotation|@
-name|Deprecated
+comment|/** Extension of separate norms file */
 DECL|field|SEPARATE_NORMS_EXTENSION
 specifier|static
 specifier|final
@@ -419,13 +419,18 @@ name|fields
 parameter_list|,
 name|IOContext
 name|context
-parameter_list|,
-name|Directory
-name|separateNormsDir
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|Directory
+name|separateNormsDir
+init|=
+name|info
+operator|.
+name|dir
+decl_stmt|;
+comment|// separate norms are never inside CFS
 name|maxdoc
 operator|=
 name|info
@@ -1043,9 +1048,6 @@ specifier|static
 name|void
 name|files
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
@@ -1079,6 +1081,8 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|info
+operator|.
 name|dir
 operator|.
 name|fileExists
@@ -1097,17 +1101,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** @deprecated */
-annotation|@
-name|Deprecated
 DECL|method|separateFiles
 specifier|static
 name|void
 name|separateFiles
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,

@@ -78,20 +78,6 @@ name|SegmentReadState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
 begin_comment
 comment|/**  * format for normalization factors  */
 end_comment
@@ -133,9 +119,6 @@ specifier|abstract
 name|void
 name|files
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
@@ -148,54 +131,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**     * Note: this should not be overridden!     * @deprecated     */
-annotation|@
-name|Deprecated
-DECL|method|separateFiles
-specifier|public
-name|void
-name|separateFiles
-parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
-name|SegmentInfo
-name|info
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-throws|throws
-name|IOException
-block|{}
-empty_stmt|;
-comment|/**    * Note: this should not be overridden!    * @deprecated    */
-annotation|@
-name|Deprecated
-DECL|method|docsProducer
-specifier|public
-name|PerDocProducer
-name|docsProducer
-parameter_list|(
-name|SegmentReadState
-name|state
-parameter_list|,
-name|Directory
-name|separateNormsDir
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|docsProducer
-argument_list|(
-name|state
-argument_list|)
-return|;
-block|}
 block|}
 end_class
 
