@@ -999,7 +999,7 @@ name|b
 operator|.
 name|append
 argument_list|(
-literal|" hasOutput"
+literal|" hasFinalOutput"
 argument_list|)
 expr_stmt|;
 block|}
@@ -6209,6 +6209,7 @@ argument_list|(
 name|topN
 argument_list|)
 decl_stmt|;
+comment|// TODO: we could use more RAM efficient selection algo here...
 name|NodeAndInCount
 name|bottom
 init|=
@@ -6555,6 +6556,7 @@ name|addressError
 init|=
 literal|0
 decl_stmt|;
+comment|//int totWasted = 0;
 comment|// Since we re-reverse the bytes, we now write the
 comment|// nodes backwards, so that BIT_TARGET_NEXT is
 comment|// unchanged:
@@ -6715,12 +6717,14 @@ argument_list|(
 name|bytesPerArc
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("node " + node + ": " + arc.numArcs + " arcs");
 block|}
 name|int
 name|maxBytesPerArc
 init|=
 literal|0
 decl_stmt|;
+comment|//int wasted = 0;
 while|while
 condition|(
 literal|true
@@ -7196,6 +7200,7 @@ comment|// more bytesPerArc in this rewrite than the
 comment|// incoming FST did... but in this case we
 comment|// will retry (below) so it's OK to ovewrite
 comment|// bytes:
+comment|//wasted += bytesPerArc - arcBytes;
 name|writer
 operator|.
 name|setPosWrite
@@ -7245,6 +7250,8 @@ operator|)
 condition|)
 block|{
 comment|// converged
+comment|//System.out.println("  bba=" + bytesPerArc + " wasted=" + wasted);
+comment|//totWasted += wasted;
 break|break;
 block|}
 block|}
@@ -7302,6 +7309,7 @@ assert|assert
 operator|!
 name|negDelta
 assert|;
+comment|//System.out.println("TOT wasted=" + totWasted);
 comment|// Converged!
 break|break;
 block|}
@@ -7351,7 +7359,7 @@ index|[
 name|startNode
 index|]
 expr_stmt|;
-comment|//System.out.println("new startNode=" + startNode);
+comment|//System.out.println("new startNode=" + fst.startNode + " old startNode=" + startNode);
 if|if
 condition|(
 name|emptyOutput
