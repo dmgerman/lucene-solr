@@ -135,19 +135,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns the time the named file was last modified. */
-DECL|method|fileModified
-specifier|public
-specifier|abstract
-name|long
-name|fileModified
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Removes an existing file in the directory. */
 DECL|method|deleteFile
 specifier|public
