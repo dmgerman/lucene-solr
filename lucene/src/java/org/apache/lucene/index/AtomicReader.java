@@ -962,7 +962,6 @@ name|reader
 decl_stmt|;
 comment|/**      * Creates a new {@link AtomicReaderContext}       */
 DECL|method|AtomicReaderContext
-specifier|public
 name|AtomicReaderContext
 parameter_list|(
 name|CompositeReaderContext
@@ -1013,7 +1012,6 @@ name|reader
 expr_stmt|;
 block|}
 DECL|method|AtomicReaderContext
-specifier|public
 name|AtomicReaderContext
 parameter_list|(
 name|AtomicReader

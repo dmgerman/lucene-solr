@@ -839,11 +839,10 @@ name|filt
 operator|.
 name|getDocIdSet
 argument_list|(
-operator|new
-name|AtomicReaderContext
-argument_list|(
 name|reader
-argument_list|)
+operator|.
+name|getTopReaderContext
+argument_list|()
 argument_list|,
 name|reader
 operator|.
