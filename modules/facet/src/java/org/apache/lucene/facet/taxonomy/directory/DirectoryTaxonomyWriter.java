@@ -1079,7 +1079,7 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2169,7 +2169,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|refreshReader
-specifier|private
+specifier|protected
 specifier|synchronized
 name|void
 name|refreshReader
@@ -3641,6 +3641,21 @@ name|addDone
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+comment|/**    * Expert:  This method is only for expert use.    * Note also that any call to refresh() will invalidate the returned reader,    * so the caller needs to take care of appropriate locking.    *     * @return lucene indexReader    */
+DECL|method|getInternalIndexReader
+name|DirectoryReader
+name|getInternalIndexReader
+parameter_list|()
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+return|return
+name|this
+operator|.
+name|reader
+return|;
 block|}
 comment|/**    * Mapping from old ordinal to new ordinals, used when merging indexes     * wit separate taxonomies.    *<p>     * addToTaxonomies() merges one or more taxonomies into the given taxonomy    * (this). An OrdinalMap is filled for each of the added taxonomies,    * containing the new ordinal (in the merged taxonomy) of each of the    * categories in the old taxonomy.    *<P>      * There exist two implementations of OrdinalMap: MemoryOrdinalMap and    * DiskOrdinalMap. As their names suggest, the former keeps the map in    * memory and the latter in a temporary disk file. Because these maps will    * later be needed one by one (to remap the counting lists), not all at the    * same time, it is recommended to put the first taxonomy's map in memory,    * and all the rest on disk (later to be automatically read into memory one    * by one, when needed).    */
 DECL|interface|OrdinalMap

@@ -561,7 +561,7 @@ throws|,
 name|IOException
 block|{
 return|return
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2053,7 +2053,7 @@ block|}
 block|}
 comment|/**    * Expert:  This method is only for expert use.    * Note also that any call to refresh() will invalidate the returned reader,    * so the caller needs to take care of appropriate locking.    *     * @return lucene indexReader    */
 DECL|method|getInternalIndexReader
-name|IndexReader
+name|DirectoryReader
 name|getInternalIndexReader
 parameter_list|()
 block|{

@@ -281,13 +281,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|Ignore
-argument_list|(
-literal|"This test does not work, as PerDirPayloadProcessor is currently broken (see nocommit in SegmentMerger): "
-operator|+
-literal|"SegmentReader/AtomicReader does not know its directory. This is borken, it should be a PayLoadProcessorProvider per AtomicReader!"
-argument_list|)
 DECL|class|TestPayloadProcessorProvider
 specifier|public
 class|class
@@ -1338,6 +1331,13 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
+name|Ignore
+argument_list|(
+literal|"This test does not work, as PerDirPayloadProcessor is currently broken (see nocommit in SegmentMerger): "
+operator|+
+literal|"SegmentReader/AtomicReader does not know its directory. This is broken, it should be a PayLoadProcessorProvider per AtomicReader!"
+argument_list|)
+annotation|@
 name|Test
 DECL|method|testAddIndexes
 specifier|public
@@ -1373,6 +1373,13 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|Ignore
+argument_list|(
+literal|"This test does not work, as PerDirPayloadProcessor is currently broken (see nocommit in SegmentMerger): "
+operator|+
+literal|"SegmentReader/AtomicReader does not know its directory. This is broken, it should be a PayLoadProcessorProvider per AtomicReader!"
+argument_list|)
+annotation|@
 name|Test
 DECL|method|testAddIndexesIntoExisting
 specifier|public
@@ -1407,6 +1414,13 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Ignore
+argument_list|(
+literal|"This test does not work, as PerDirPayloadProcessor is currently broken (see nocommit in SegmentMerger): "
+operator|+
+literal|"SegmentReader/AtomicReader does not know its directory. This is broken, it should be a PayLoadProcessorProvider per AtomicReader!"
+argument_list|)
 annotation|@
 name|Test
 DECL|method|testRegularMerges
