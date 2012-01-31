@@ -2047,6 +2047,37 @@ name|NodeExistsException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|failOnExists
+condition|)
+block|{
+comment|// TODO: version ? for now, don't worry about race
+name|setData
+argument_list|(
+name|currentPath
+argument_list|,
+name|data
+argument_list|,
+operator|-
+literal|1
+argument_list|,
+name|retryOnConnLoss
+argument_list|)
+expr_stmt|;
+comment|// set new watch
+name|exists
+argument_list|(
+name|currentPath
+argument_list|,
+name|watcher
+argument_list|,
+name|retryOnConnLoss
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 comment|// ignore unless it's the last node in the path
 if|if
 condition|(
@@ -2740,6 +2771,12 @@ parameter_list|()
 throws|throws
 name|InterruptedException
 block|{
+if|if
+condition|(
+name|isClosed
+condition|)
+return|return;
+comment|// it's okay if we over close - same as solrcore
 name|isClosed
 operator|=
 literal|true
