@@ -2960,11 +2960,6 @@ operator|.
 name|DOWN
 argument_list|)
 expr_stmt|;
-name|zkController
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|log
 operator|.
 name|error
