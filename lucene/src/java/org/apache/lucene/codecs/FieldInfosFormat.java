@@ -46,12 +46,30 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|FieldInfos
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SegmentInfo
 import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Encodes/decodes {@link FieldInfos}  * @lucene.experimental  */
 end_comment
 
 begin_class

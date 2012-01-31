@@ -2939,7 +2939,7 @@ operator|+
 literal|")"
 return|;
 block|}
-comment|/**    * Returns {@link TermStatistics} for a term    * @lucene.experimental    */
+comment|/**    * Returns {@link TermStatistics} for a term.    *     * This can be overridden for example, to return a term's statistics    * across a distributed collection.    * @lucene.experimental    */
 DECL|method|termStatistics
 specifier|public
 name|TermStatistics
@@ -2976,7 +2976,7 @@ argument_list|)
 return|;
 block|}
 empty_stmt|;
-comment|/**    * Returns {@link CollectionStatistics} for a field    * @lucene.experimental    */
+comment|/**    * Returns {@link CollectionStatistics} for a field.    *     * This can be overridden for example, to return a field's statistics    * across a distributed collection.    * @lucene.experimental    */
 DECL|method|collectionStatistics
 specifier|public
 name|CollectionStatistics

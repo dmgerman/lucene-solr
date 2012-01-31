@@ -46,6 +46,24 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|PerDocWriteState
 import|;
 end_import
@@ -77,6 +95,10 @@ operator|.
 name|SegmentReadState
 import|;
 end_import
+
+begin_comment
+comment|/**  * Encodes/decodes {@link DocValues}  * @lucene.experimental  */
+end_comment
 
 begin_class
 DECL|class|DocValuesFormat

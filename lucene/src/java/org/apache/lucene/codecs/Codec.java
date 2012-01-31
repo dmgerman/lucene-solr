@@ -60,6 +60,24 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexWriterConfig
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SegmentInfo
 import|;
 end_import
@@ -135,6 +153,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
+comment|/** Returns this codec's name */
 annotation|@
 name|Override
 DECL|method|getName
@@ -408,6 +427,7 @@ argument_list|(
 literal|"Lucene40"
 argument_list|)
 decl_stmt|;
+comment|/** expert: returns the default codec used for newly created    *  {@link IndexWriterConfig}s.    */
 comment|// TODO: should we use this, or maybe a system property is better?
 DECL|method|getDefault
 specifier|public
@@ -420,6 +440,7 @@ return|return
 name|defaultCodec
 return|;
 block|}
+comment|/** expert: sets the default codec used for newly created    *  {@link IndexWriterConfig}s.    */
 DECL|method|setDefault
 specifier|public
 specifier|static
