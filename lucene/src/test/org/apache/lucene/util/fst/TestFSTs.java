@@ -9221,6 +9221,9 @@ name|limit
 parameter_list|,
 name|boolean
 name|verify
+parameter_list|,
+name|boolean
+name|verifyByOutput
 parameter_list|)
 throws|throws
 name|IOException
@@ -9627,6 +9630,21 @@ condition|(
 literal|true
 condition|)
 block|{
+for|for
+control|(
+name|int
+name|iter
+init|=
+literal|0
+init|;
+name|iter
+operator|<
+literal|2
+condition|;
+name|iter
+operator|++
+control|)
+block|{
 name|is
 operator|.
 name|close
@@ -9694,6 +9712,13 @@ argument_list|,
 name|intsRef
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|iter
+operator|==
+literal|0
+condition|)
+block|{
 name|T
 name|expected
 init|=
@@ -9772,6 +9797,98 @@ name|w
 argument_list|)
 throw|;
 block|}
+block|}
+else|else
+block|{
+comment|// Get by output
+specifier|final
+name|Long
+name|output
+init|=
+operator|(
+name|Long
+operator|)
+name|getOutput
+argument_list|(
+name|intsRef
+argument_list|,
+name|ord
+argument_list|)
+decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+specifier|final
+name|IntsRef
+name|actual
+init|=
+name|Util
+operator|.
+name|getByOutput
+argument_list|(
+operator|(
+name|FST
+argument_list|<
+name|Long
+argument_list|>
+operator|)
+name|fst
+argument_list|,
+name|output
+operator|.
+name|longValue
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|actual
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"unexpected null input from output="
+operator|+
+name|output
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+operator|!
+name|actual
+operator|.
+name|equals
+argument_list|(
+name|intsRef
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"wrong input (got "
+operator|+
+name|actual
+operator|+
+literal|" but expected "
+operator|+
+name|intsRef
+operator|+
+literal|" from output="
+operator|+
+name|output
+argument_list|)
+throw|;
+block|}
+block|}
 name|ord
 operator|++
 expr_stmt|;
@@ -9843,7 +9960,19 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Verify took "
+literal|"Verify "
+operator|+
+operator|(
+name|iter
+operator|==
+literal|1
+condition|?
+literal|"(by output) "
+else|:
+literal|""
+operator|)
+operator|+
+literal|"took "
 operator|+
 name|totSec
 operator|+
@@ -9865,6 +9994,15 @@ operator|+
 literal|" nsec per lookup)"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|verifyByOutput
+condition|)
+block|{
+break|break;
+block|}
+block|}
 comment|// NOTE: comment out to profile lookup...
 break|break;
 block|}
@@ -10429,6 +10567,8 @@ argument_list|(
 name|limit
 argument_list|,
 name|verify
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -10498,6 +10638,8 @@ argument_list|(
 name|limit
 argument_list|,
 name|verify
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -10595,6 +10737,8 @@ argument_list|(
 name|limit
 argument_list|,
 name|verify
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -10664,6 +10808,8 @@ argument_list|(
 name|limit
 argument_list|,
 name|verify
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
