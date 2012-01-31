@@ -2018,6 +2018,7 @@ name|getVersion
 argument_list|()
 return|;
 block|}
+comment|/**    * Retrieve the String userData optionally passed to    * IndexWriter#commit.  This will return null if {@link    * IndexWriter#commit(Map)} has never been called for    * this index.    */
 DECL|method|getCommitUserData
 specifier|public
 name|Map
@@ -2039,6 +2040,7 @@ name|getUserData
 argument_list|()
 return|;
 block|}
+comment|/**    * Check whether any new changes have occurred to the    * index since this reader was opened.    *    *<p>If this reader was created by calling {@link #open},      * then this method checks if any further commits     * (see {@link IndexWriter#commit}) have occurred in the     * directory.</p>    *    *<p>If instead this reader is a near real-time reader    * (ie, obtained by a call to {@link    * IndexWriter#getReader}, or by calling {@link #openIfChanged}    * on a near real-time reader), then this method checks if    * either a new commmit has occurred, or any new    * uncommitted changes have taken place via the writer.    * Note that even if the writer has only performed    * merging, this method will still return false.</p>    *    *<p>In any event, if this returns false, you should call    * {@link #openIfChanged} to get a new reader that sees the    * changes.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException           if there is a low-level IO error    */
 DECL|method|isCurrent
 specifier|public
 name|boolean
@@ -2194,6 +2196,7 @@ return|return
 name|directory
 return|;
 block|}
+comment|/** This returns the current indexDivisor as     * specified when the reader was opened.    */
 DECL|method|getTermInfosIndexDivisor
 specifier|public
 name|int
