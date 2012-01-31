@@ -190,6 +190,22 @@ name|solr
 operator|.
 name|common
 operator|.
+name|SolrException
+operator|.
+name|ErrorCode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|cloud
 operator|.
 name|CloudState
@@ -1754,6 +1770,30 @@ name|getCollectionName
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|slices
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Could not find collection:"
+operator|+
+name|cloudDescriptor
+operator|.
+name|getCollectionName
+argument_list|()
+argument_list|)
+throw|;
+block|}
 block|}
 comment|// Store the logical slices in the ResponseBuilder and create a new
 comment|// String array to hold the physical shards (which will be mapped
