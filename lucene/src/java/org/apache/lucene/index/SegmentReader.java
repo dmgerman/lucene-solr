@@ -471,6 +471,9 @@ name|FieldInfos
 name|getFieldInfos
 parameter_list|()
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|core
 operator|.

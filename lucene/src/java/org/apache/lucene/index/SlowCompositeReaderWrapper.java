@@ -276,6 +276,12 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+name|in
+operator|.
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+comment|// as we cached the fields, we better check the original reader
 return|return
 name|fields
 return|;
@@ -465,6 +471,12 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+name|in
+operator|.
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+comment|// as we cached the liveDocs, we better check the original reader
 return|return
 name|liveDocs
 return|;
