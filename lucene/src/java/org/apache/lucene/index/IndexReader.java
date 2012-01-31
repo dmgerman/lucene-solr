@@ -978,6 +978,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/** Returns the number of documents containing the     *<code>term</code>.  This method returns 0 if the term or    * field does not exists.  This method does not take into    * account deleted documents that have not yet been merged    * away. */
 DECL|method|docFreq
 specifier|public
 specifier|final
@@ -1005,7 +1006,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Returns the number of documents containing the term    *<code>t</code>.  This method returns 0 if the term or    * field does not exists.  This method does not take into    * account deleted documents that have not yet been merged    * away. */
+comment|/** Returns the number of documents containing the    *<code>term</code>.  This method returns 0 if the term or    * field does not exists.  This method does not take into    * account deleted documents that have not yet been merged    * away. */
 DECL|method|docFreq
 specifier|public
 specifier|abstract
