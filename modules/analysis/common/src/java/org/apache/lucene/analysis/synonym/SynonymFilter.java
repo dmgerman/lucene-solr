@@ -1084,6 +1084,16 @@ name|nextRead
 assert|;
 block|}
 comment|/*    This is the core of this TokenFilter: it locates the    synonym matches and buffers up the results into    futureInputs/Outputs.     NOTE: this calls input.incrementToken and does not    capture the state if no further tokens were checked.  So    caller must then forward state to our caller, or capture:   */
+DECL|field|lastStartOffset
+specifier|private
+name|int
+name|lastStartOffset
+decl_stmt|;
+DECL|field|lastEndOffset
+specifier|private
+name|int
+name|lastEndOffset
+decl_stmt|;
 DECL|method|parse
 specifier|private
 name|void
@@ -1239,6 +1249,8 @@ index|[
 name|nextWrite
 index|]
 decl_stmt|;
+name|lastStartOffset
+operator|=
 name|input
 operator|.
 name|startOffset
@@ -1248,6 +1260,8 @@ operator|.
 name|startOffset
 argument_list|()
 expr_stmt|;
+name|lastEndOffset
+operator|=
 name|input
 operator|.
 name|endOffset
@@ -2317,6 +2331,16 @@ expr_stmt|;
 block|}
 name|clearAttributes
 argument_list|()
+expr_stmt|;
+comment|// Keep offset from last input token:
+name|offsetAtt
+operator|.
+name|setOffset
+argument_list|(
+name|lastStartOffset
+argument_list|,
+name|lastEndOffset
+argument_list|)
 expr_stmt|;
 name|termAtt
 operator|.
