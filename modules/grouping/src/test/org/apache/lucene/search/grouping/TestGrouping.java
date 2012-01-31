@@ -8699,7 +8699,13 @@ block|}
 block|}
 finally|finally
 block|{
-comment|// TODO: FieldCache.DEFAULT.purge(r);
+name|QueryUtils
+operator|.
+name|purgeFieldCache
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|rBlocks
@@ -8707,7 +8713,13 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// TODO: FieldCache.DEFAULT.purge(rBlocks);
+name|QueryUtils
+operator|.
+name|purgeFieldCache
+argument_list|(
+name|rBlocks
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 name|r

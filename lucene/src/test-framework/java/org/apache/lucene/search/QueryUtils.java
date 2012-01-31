@@ -180,6 +180,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|SlowCompositeReaderWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -661,8 +675,15 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// TODO: I removed that as we can never get insanity by composite readers anymore... Is this ok?
-comment|//FieldCache.DEFAULT.purge(wrapped.getIndexReader()); // our wrapping can create insanity otherwise
+name|purgeFieldCache
+argument_list|(
+name|wrapped
+operator|.
+name|getIndexReader
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// our wrapping can create insanity otherwise
 name|check
 argument_list|(
 name|random
@@ -683,8 +704,15 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// TODO: I removed that as we can never get insanity by composite readers anymore... Is this ok?
-comment|//FieldCache.DEFAULT.purge(wrapped.getIndexReader()); // our wrapping can create insanity otherwise
+name|purgeFieldCache
+argument_list|(
+name|wrapped
+operator|.
+name|getIndexReader
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// our wrapping can create insanity otherwise
 name|check
 argument_list|(
 name|random
@@ -706,8 +734,15 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// TODO: I removed that as we can never get insanity by composite readers anymore... Is this ok?
-comment|//FieldCache.DEFAULT.purge(wrapped.getIndexReader()); // our wrapping can create insanity otherwise
+name|purgeFieldCache
+argument_list|(
+name|wrapped
+operator|.
+name|getIndexReader
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// our wrapping can create insanity otherwise
 block|}
 name|checkExplanations
 argument_list|(
@@ -760,6 +795,34 @@ name|e
 argument_list|)
 throw|;
 block|}
+block|}
+DECL|method|purgeFieldCache
+specifier|public
+specifier|static
+name|void
+name|purgeFieldCache
+parameter_list|(
+name|IndexReader
+name|r
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// this is just a hack, to get an atomic reader that contains all subreaders for insanity checks
+name|FieldCache
+operator|.
+name|DEFAULT
+operator|.
+name|purge
+argument_list|(
+name|SlowCompositeReaderWrapper
+operator|.
+name|wrap
+argument_list|(
+name|r
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Given an IndexSearcher, returns a new IndexSearcher whose IndexReader     * is a MultiReader containing the Reader of the original IndexSearcher,     * as well as several "empty" IndexReaders -- some of which will have     * deleted documents in them.  This new IndexSearcher should     * behave exactly the same as the original IndexSearcher.    * @param s the searcher to wrap    * @param edge if negative, s will be the first sub; if 0, s will be in the middle, if positive s will be the last sub    */
 DECL|method|wrapUnderlyingReader

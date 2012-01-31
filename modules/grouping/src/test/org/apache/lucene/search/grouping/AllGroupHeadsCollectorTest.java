@@ -3074,7 +3074,13 @@ block|}
 block|}
 finally|finally
 block|{
-comment|// TODO: FieldCache.DEFAULT.purge(r);
+name|QueryUtils
+operator|.
+name|purgeFieldCache
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
 block|}
 name|r
 operator|.
