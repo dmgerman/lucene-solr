@@ -66,12 +66,12 @@ class|class
 name|PayloadProcessorProvider
 block|{
 comment|/**    * Returns a {@link PayloadProcessor} for a given {@link Term} which allows    * processing the payloads of different terms differently. If you intent to    * process all your payloads the same way, then you can ignore the given term.    *<p>    *<b>NOTE:</b> if you protect your {@link DirPayloadProcessor} from    * concurrency issues, then you shouldn't worry about any such issues when    * {@link PayloadProcessor}s are requested for different terms.    */
-DECL|class|DirPayloadProcessor
+DECL|class|ReaderPayloadProcessor
 specifier|public
 specifier|static
 specifier|abstract
 class|class
-name|DirPayloadProcessor
+name|ReaderPayloadProcessor
 block|{
 comment|/** Returns a {@link PayloadProcessor} for the given term. */
 DECL|method|getProcessor
@@ -113,14 +113,14 @@ name|IOException
 function_decl|;
 block|}
 comment|/**    * Returns a {@link DirPayloadProcessor} for the given {@link Directory},    * through which {@link PayloadProcessor}s can be obtained for each    * {@link Term}, or<code>null</code> if none should be used.    */
-DECL|method|getDirProcessor
+DECL|method|getReaderProcessor
 specifier|public
 specifier|abstract
-name|DirPayloadProcessor
-name|getDirProcessor
+name|ReaderPayloadProcessor
+name|getReaderProcessor
 parameter_list|(
-name|Directory
-name|dir
+name|AtomicReader
+name|reader
 parameter_list|)
 throws|throws
 name|IOException

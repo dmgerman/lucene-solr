@@ -38,7 +38,7 @@ name|index
 operator|.
 name|PayloadProcessorProvider
 operator|.
-name|DirPayloadProcessor
+name|ReaderPayloadProcessor
 import|;
 end_import
 
@@ -212,11 +212,11 @@ specifier|public
 name|PayloadProcessorProvider
 name|payloadProcessorProvider
 decl_stmt|;
-DECL|field|dirPayloadProcessor
+DECL|field|readerPayloadProcessor
 specifier|public
-name|DirPayloadProcessor
+name|ReaderPayloadProcessor
 index|[]
-name|dirPayloadProcessor
+name|readerPayloadProcessor
 decl_stmt|;
 DECL|field|currentPayloadProcessor
 specifier|public
