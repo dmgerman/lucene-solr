@@ -442,11 +442,15 @@ operator|+
 literal|" ..."
 argument_list|)
 expr_stmt|;
+comment|// pass the subreaders directly, as our wrapper's numDocs/hasDeletetions are not up-to-date
 name|w
 operator|.
 name|addIndexes
 argument_list|(
 name|input
+operator|.
+name|getSequentialSubReaders
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|w
@@ -1149,71 +1153,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|// override this as MultiReader precalculates the number of deletions
-comment|// (this method is never used by MultiPassIndexSplitter)
-annotation|@
-name|Override
-DECL|method|numDocs
-specifier|public
-name|int
-name|numDocs
-parameter_list|()
-block|{
-name|int
-name|n
-init|=
-literal|0
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|subReaders
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-name|n
-operator|+=
-name|subReaders
-index|[
-name|i
-index|]
-operator|.
-name|numDocs
-argument_list|()
-expr_stmt|;
-return|return
-name|n
-return|;
-block|}
-comment|// override this as MultiReader precalculates the number of deletions
-comment|// (this method is never used by MultiPassIndexSplitter)
-annotation|@
-name|Override
-DECL|method|hasDeletions
-specifier|public
-name|boolean
-name|hasDeletions
-parameter_list|()
-block|{
-return|return
-operator|(
-name|maxDoc
-argument_list|()
-operator|!=
-name|numDocs
-argument_list|()
-operator|)
-return|;
-block|}
+comment|// no need to override numDocs/hasDeletions,
+comment|// as we pass the subreaders directly to IW.addIndexes().
 block|}
 DECL|class|FakeDeleteAtomicIndexReader
 specifier|private

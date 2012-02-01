@@ -36,20 +36,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|BytesRef
 import|;
 end_import
@@ -95,7 +81,7 @@ name|int
 index|[]
 name|starts
 decl_stmt|;
-comment|// 1st docno for each segment
+comment|// 1st docno for each reader
 DECL|field|maxDoc
 specifier|private
 specifier|final
@@ -253,6 +239,7 @@ annotation|@
 name|Override
 DECL|method|getTermVectors
 specifier|public
+specifier|final
 name|Fields
 name|getTermVectors
 parameter_list|(
@@ -297,6 +284,7 @@ annotation|@
 name|Override
 DECL|method|numDocs
 specifier|public
+specifier|final
 name|int
 name|numDocs
 parameter_list|()
@@ -324,6 +312,7 @@ annotation|@
 name|Override
 DECL|method|document
 specifier|public
+specifier|final
 name|void
 name|document
 parameter_list|(
@@ -374,6 +363,7 @@ annotation|@
 name|Override
 DECL|method|hasDeletions
 specifier|public
+specifier|final
 name|boolean
 name|hasDeletions
 parameter_list|()
@@ -387,6 +377,7 @@ annotation|@
 name|Override
 DECL|method|docFreq
 specifier|public
+specifier|final
 name|int
 name|docFreq
 parameter_list|(
@@ -499,7 +490,8 @@ annotation|@
 name|Override
 DECL|method|getSequentialSubReaders
 specifier|public
-name|IndexReader
+specifier|final
+name|R
 index|[]
 name|getSequentialSubReaders
 parameter_list|()
