@@ -187,8 +187,6 @@ expr_stmt|;
 name|addOffCorrectMap
 argument_list|(
 name|currentOffset
-operator|+
-name|delta
 argument_list|,
 name|delta
 operator|-
