@@ -468,6 +468,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -4310,6 +4320,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Ignore
+argument_list|(
+literal|"See SOLR-1726"
+argument_list|)
 annotation|@
 name|Test
 DECL|method|testDeepPaging
