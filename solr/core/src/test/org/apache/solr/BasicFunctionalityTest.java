@@ -589,6 +589,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|clearIndex
+argument_list|()
+expr_stmt|;
 comment|// test merge factor picked up
 name|SolrCore
 name|core
