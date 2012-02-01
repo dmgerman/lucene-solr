@@ -735,6 +735,28 @@ argument_list|,
 name|davesDepartments
 argument_list|)
 expr_stmt|;
+comment|// find people that develop stuff - but limit via filter query to a name of "john"
+comment|// this tests filters being pushed down to queries (SOLR-3062)
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!join from=dept_id_s to=dept_s}text:develop"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"name:john"
+argument_list|)
+argument_list|,
+literal|"/response=={'numFound':1,'start':0,'docs':[{'id':'1'}]}"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
