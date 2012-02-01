@@ -1176,6 +1176,16 @@ argument_list|(
 name|parser
 argument_list|)
 expr_stmt|;
+name|rb
+operator|.
+name|setScoreDoc
+argument_list|(
+name|parser
+operator|.
+name|getPaging
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|String
 index|[]
 name|fqs
