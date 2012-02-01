@@ -192,7 +192,12 @@ name|alwaysPostingsFormat
 argument_list|(
 operator|new
 name|MemoryPostingsFormat
+argument_list|(
+name|random
+operator|.
+name|nextBoolean
 argument_list|()
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
