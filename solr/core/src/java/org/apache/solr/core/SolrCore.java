@@ -7446,10 +7446,6 @@ name|isDefault
 argument_list|()
 condition|)
 block|{
-name|defaultResponseWriter
-operator|=
-name|writer
-expr_stmt|;
 if|if
 condition|(
 name|defaultResponseWriter
@@ -7460,16 +7456,16 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Multiple default queryResponseWriter registered ignoring: "
+literal|"Multiple default queryResponseWriter registered, using: "
 operator|+
-name|old
+name|info
 operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
+name|name
 argument_list|)
+expr_stmt|;
+name|defaultResponseWriter
+operator|=
+name|writer
 expr_stmt|;
 block|}
 name|log
