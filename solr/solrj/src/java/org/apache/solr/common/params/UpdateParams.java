@@ -28,7 +28,16 @@ specifier|public
 interface|interface
 name|UpdateParams
 block|{
-comment|/** wait for the search to warm up */
+comment|/** Open up a new searcher as part of a commit */
+DECL|field|OPEN_SEARCHER
+specifier|public
+specifier|static
+name|String
+name|OPEN_SEARCHER
+init|=
+literal|"openSearcher"
+decl_stmt|;
+comment|/** wait for the searcher to be registered/visible */
 DECL|field|WAIT_SEARCHER
 specifier|public
 specifier|static

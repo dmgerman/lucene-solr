@@ -739,7 +739,7 @@ name|tracker
 init|=
 name|updateHandler
 operator|.
-name|commitTracker
+name|softCommitTracker
 decl_stmt|;
 name|tracker
 operator|.
@@ -1050,7 +1050,7 @@ name|tracker
 init|=
 name|updater
 operator|.
-name|commitTracker
+name|softCommitTracker
 decl_stmt|;
 comment|// too low of a number can cause a slow host to commit before the test code checks that it
 comment|// isn't there... causing a failure at "shouldn't find any"
@@ -1516,7 +1516,7 @@ name|tracker
 init|=
 name|updater
 operator|.
-name|commitTracker
+name|softCommitTracker
 decl_stmt|;
 name|tracker
 operator|.

@@ -47,6 +47,14 @@ specifier|public
 name|boolean
 name|optimize
 decl_stmt|;
+DECL|field|openSearcher
+specifier|public
+name|boolean
+name|openSearcher
+init|=
+literal|true
+decl_stmt|;
+comment|// open a new searcher as part of a hard commit
 DECL|field|waitSearcher
 specifier|public
 name|boolean
@@ -135,6 +143,10 @@ operator|+
 literal|",optimize="
 operator|+
 name|optimize
+operator|+
+literal|",openSearcher="
+operator|+
+name|openSearcher
 operator|+
 literal|",waitSearcher="
 operator|+

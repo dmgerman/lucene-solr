@@ -269,7 +269,7 @@ literal|"\n"
 operator|+
 literal|"'commit': {},\n"
 operator|+
-literal|"'optimize': { 'waitSearcher':false },\n"
+literal|"'optimize': { 'waitSearcher':false, 'openSearcher':false },\n"
 operator|+
 literal|"\n"
 operator|+
@@ -536,6 +536,13 @@ operator|.
 name|waitSearcher
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+name|commit
+operator|.
+name|openSearcher
+argument_list|)
+expr_stmt|;
 name|commit
 operator|=
 name|p
@@ -559,6 +566,13 @@ argument_list|(
 name|commit
 operator|.
 name|waitSearcher
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|commit
+operator|.
+name|openSearcher
 argument_list|)
 expr_stmt|;
 comment|// DELETE COMMANDS
