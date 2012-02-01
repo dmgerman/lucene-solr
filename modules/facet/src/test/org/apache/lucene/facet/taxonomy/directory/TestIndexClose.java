@@ -750,14 +750,16 @@ range|:
 name|readers
 control|)
 block|{
-try|try
-block|{
-comment|// this should throw ex, if already closed!
+if|if
+condition|(
 name|r
 operator|.
-name|getTopReaderContext
+name|getRefCount
 argument_list|()
-expr_stmt|;
+operator|>
+literal|0
+condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -774,14 +776,6 @@ expr_stmt|;
 name|ret
 operator|++
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|AlreadyClosedException
-name|e
-parameter_list|)
-block|{
-comment|// fine
 block|}
 block|}
 for|for
