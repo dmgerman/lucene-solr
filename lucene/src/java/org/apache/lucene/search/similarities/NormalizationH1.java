@@ -19,7 +19,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Normalization model that assumes a uniform distribution of the term frequency.  * @lucene.experimental  */
+comment|/**  * Normalization model that assumes a uniform distribution of the term frequency.  *<p>While this model is parameterless in the  *<a href="http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.101.742">  * original article</a>,<a href="http://dl.acm.org/citation.cfm?id=1835490">  * information-based models</a> (see {@link IBSimilarity}) introduced a  * multiplying factor.  * The default value for the {@code c} parameter is {@code 1}.</p>  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -30,6 +30,38 @@ name|NormalizationH1
 extends|extends
 name|Normalization
 block|{
+DECL|field|c
+specifier|private
+specifier|final
+name|float
+name|c
+decl_stmt|;
+DECL|method|NormalizationH1
+specifier|public
+name|NormalizationH1
+parameter_list|(
+name|float
+name|c
+parameter_list|)
+block|{
+name|this
+operator|.
+name|c
+operator|=
+name|c
+expr_stmt|;
+block|}
+DECL|method|NormalizationH1
+specifier|public
+name|NormalizationH1
+parameter_list|()
+block|{
+name|this
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|tfn
@@ -69,6 +101,16 @@ parameter_list|()
 block|{
 return|return
 literal|"1"
+return|;
+block|}
+DECL|method|getC
+specifier|public
+name|float
+name|getC
+parameter_list|()
+block|{
+return|return
+name|c
 return|;
 block|}
 block|}
