@@ -438,10 +438,10 @@ specifier|final
 name|FunctionValues
 name|vals
 decl_stmt|;
-DECL|field|liveDocs
+DECL|field|acceptDocs
 specifier|final
 name|Bits
-name|liveDocs
+name|acceptDocs
 decl_stmt|;
 DECL|method|AllScorer
 specifier|public
@@ -499,7 +499,7 @@ argument_list|()
 expr_stmt|;
 name|this
 operator|.
-name|liveDocs
+name|acceptDocs
 operator|=
 name|acceptDocs
 expr_stmt|;
@@ -567,12 +567,12 @@ return|;
 block|}
 if|if
 condition|(
-name|liveDocs
+name|acceptDocs
 operator|!=
 literal|null
 operator|&&
 operator|!
-name|liveDocs
+name|acceptDocs
 operator|.
 name|get
 argument_list|(

@@ -137,6 +137,16 @@ name|EXPUNGE_DELETES
 init|=
 literal|"expungeDeletes"
 decl_stmt|;
+comment|/** Return versions of updates? */
+DECL|field|VERSIONS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|VERSIONS
+init|=
+literal|"versions"
+decl_stmt|;
 block|}
 end_interface
 
