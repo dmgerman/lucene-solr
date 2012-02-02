@@ -2717,7 +2717,9 @@ condition|)
 name|ulog
 operator|.
 name|close
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 return|return;
 block|}
@@ -2735,9 +2737,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// if the writer hits an exception, it's OK (and perhaps desirable)
-comment|// to not close the ulog?
-comment|// Closing the log currently deletes the log file.
-comment|// If this changes, we should record this as a "commit".
+comment|// to not close the ulog.
 if|if
 condition|(
 name|ulog
@@ -2747,7 +2747,9 @@ condition|)
 name|ulog
 operator|.
 name|close
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 finally|finally
