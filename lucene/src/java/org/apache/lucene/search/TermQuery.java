@@ -148,7 +148,7 @@ name|similarities
 operator|.
 name|Similarity
 operator|.
-name|ExactDocScorer
+name|ExactSimScorer
 import|;
 end_import
 
@@ -286,7 +286,7 @@ specifier|private
 specifier|final
 name|Similarity
 operator|.
-name|Stats
+name|SimWeight
 name|stats
 decl_stmt|;
 DECL|field|termStates
@@ -344,8 +344,11 @@ name|stats
 operator|=
 name|similarity
 operator|.
-name|computeStats
+name|computeWeight
 argument_list|(
+name|getBoost
+argument_list|()
+argument_list|,
 name|searcher
 operator|.
 name|collectionStatistics
@@ -355,9 +358,6 @@ operator|.
 name|field
 argument_list|()
 argument_list|)
-argument_list|,
-name|getBoost
-argument_list|()
 argument_list|,
 name|searcher
 operator|.
@@ -583,9 +583,9 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Creates an {@link ExactDocScorer} for this {@link TermWeight}*/
+comment|/**      * Creates an {@link ExactSimScorer} for this {@link TermWeight}*/
 DECL|method|createDocScorer
-name|ExactDocScorer
+name|ExactSimScorer
 name|createDocScorer
 parameter_list|(
 name|AtomicReaderContext
@@ -597,14 +597,9 @@ block|{
 return|return
 name|similarity
 operator|.
-name|exactDocScorer
+name|exactSimScorer
 argument_list|(
 name|stats
-argument_list|,
-name|term
-operator|.
-name|field
-argument_list|()
 argument_list|,
 name|context
 argument_list|)
@@ -808,19 +803,14 @@ operator|.
 name|freq
 argument_list|()
 decl_stmt|;
-name|ExactDocScorer
+name|ExactSimScorer
 name|docScorer
 init|=
 name|similarity
 operator|.
-name|exactDocScorer
+name|exactSimScorer
 argument_list|(
 name|stats
-argument_list|,
-name|term
-operator|.
-name|field
-argument_list|()
 argument_list|,
 name|context
 argument_list|)

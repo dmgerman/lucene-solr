@@ -44,8 +44,13 @@ name|BasicStats
 extends|extends
 name|Similarity
 operator|.
-name|Stats
+name|SimWeight
 block|{
+DECL|field|field
+specifier|final
+name|String
+name|field
+decl_stmt|;
 comment|/** The number of documents. */
 DECL|field|numberOfDocuments
 specifier|protected
@@ -101,10 +106,19 @@ DECL|method|BasicStats
 specifier|public
 name|BasicStats
 parameter_list|(
+name|String
+name|field
+parameter_list|,
 name|float
 name|queryBoost
 parameter_list|)
 block|{
+name|this
+operator|.
+name|field
+operator|=
+name|field
+expr_stmt|;
 name|this
 operator|.
 name|queryBoost

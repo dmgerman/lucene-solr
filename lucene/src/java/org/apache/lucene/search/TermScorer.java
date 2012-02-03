@@ -79,10 +79,10 @@ specifier|private
 specifier|final
 name|Similarity
 operator|.
-name|ExactDocScorer
+name|ExactSimScorer
 name|docScorer
 decl_stmt|;
-comment|/**    * Construct a<code>TermScorer</code>.    *     * @param weight    *          The weight of the<code>Term</code> in the query.    * @param td    *          An iterator over the documents matching the<code>Term</code>.    * @param docScorer    *          The</code>Similarity.ExactDocScorer</code> implementation     *          to be used for score computations.    */
+comment|/**    * Construct a<code>TermScorer</code>.    *     * @param weight    *          The weight of the<code>Term</code> in the query.    * @param td    *          An iterator over the documents matching the<code>Term</code>.    * @param docScorer    *          The</code>Similarity.ExactSimScorer</code> implementation     *          to be used for score computations.    */
 DECL|method|TermScorer
 name|TermScorer
 parameter_list|(
@@ -94,7 +94,7 @@ name|td
 parameter_list|,
 name|Similarity
 operator|.
-name|ExactDocScorer
+name|ExactSimScorer
 name|docScorer
 parameter_list|)
 throws|throws

@@ -64,7 +64,7 @@ name|similarities
 operator|.
 name|Similarity
 operator|.
-name|ExactDocScorer
+name|ExactSimScorer
 import|;
 end_import
 
@@ -483,7 +483,7 @@ name|docFreq
 decl_stmt|;
 DECL|field|docScorer
 specifier|final
-name|ExactDocScorer
+name|ExactSimScorer
 name|docScorer
 decl_stmt|;
 DECL|field|doc
@@ -505,7 +505,7 @@ parameter_list|,
 name|int
 name|docFreq
 parameter_list|,
-name|ExactDocScorer
+name|ExactSimScorer
 name|docScorer
 parameter_list|)
 block|{

@@ -117,6 +117,9 @@ specifier|protected
 name|BasicStats
 name|newStats
 parameter_list|(
+name|String
+name|field
+parameter_list|,
 name|float
 name|queryBoost
 parameter_list|)
@@ -125,6 +128,8 @@ return|return
 operator|new
 name|LMStats
 argument_list|(
+name|field
+argument_list|,
 name|queryBoost
 argument_list|)
 return|;
@@ -301,12 +306,17 @@ DECL|method|LMStats
 specifier|public
 name|LMStats
 parameter_list|(
+name|String
+name|field
+parameter_list|,
 name|float
 name|queryBoost
 parameter_list|)
 block|{
 name|super
 argument_list|(
+name|field
+argument_list|,
 name|queryBoost
 argument_list|)
 expr_stmt|;

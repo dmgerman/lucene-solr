@@ -111,7 +111,7 @@ specifier|protected
 specifier|final
 name|Similarity
 operator|.
-name|SloppyDocScorer
+name|SloppySimScorer
 name|docScorer
 decl_stmt|;
 DECL|method|SpanScorer
@@ -126,7 +126,7 @@ name|weight
 parameter_list|,
 name|Similarity
 operator|.
-name|SloppyDocScorer
+name|SloppySimScorer
 name|docScorer
 parameter_list|)
 throws|throws

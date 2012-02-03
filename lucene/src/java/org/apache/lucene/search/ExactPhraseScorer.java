@@ -221,7 +221,7 @@ specifier|private
 specifier|final
 name|Similarity
 operator|.
-name|ExactDocScorer
+name|ExactSimScorer
 name|docScorer
 decl_stmt|;
 DECL|method|ExactPhraseScorer
@@ -238,7 +238,7 @@ name|postings
 parameter_list|,
 name|Similarity
 operator|.
-name|ExactDocScorer
+name|ExactSimScorer
 name|docScorer
 parameter_list|)
 throws|throws
