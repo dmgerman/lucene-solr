@@ -913,7 +913,26 @@ init|=
 name|indexCommitPoint
 decl_stmt|;
 comment|// make a copy so it won't change
-comment|//System.out.println("The latest index gen is:" + commitPoint.getGeneration() + " " + core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName());
+if|if
+condition|(
+name|commitPoint
+operator|==
+literal|null
+condition|)
+block|{
+comment|// if this handler is 'lazy', we may not have tracked the last commit
+comment|// because our commit listener is registered on inform
+name|commitPoint
+operator|=
+name|core
+operator|.
+name|getDeletionPolicy
+argument_list|()
+operator|.
+name|getLatestCommit
+argument_list|()
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|commitPoint
