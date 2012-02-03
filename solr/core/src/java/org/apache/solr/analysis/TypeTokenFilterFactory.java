@@ -142,22 +142,12 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Set
 import|;
 end_import
 
 begin_comment
-comment|/**  * Factory class for {@link TypeTokenFilter}  *<pre class="prettyprint">  *&lt;fieldType name="chars" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.TypeTokenFilterFactory" types="stoptypes.txt" enablePositionIncrements="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**  * Factory class for {@link TypeTokenFilter}  *<pre class="prettyprint">  *&lt;fieldType name="chars" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.TypeTokenFilterFactory" types="stoptypes.txt" enablePositionIncrements="true"  * useWhiteList="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -170,30 +160,6 @@ name|BaseTokenFilterFactory
 implements|implements
 name|ResourceLoaderAware
 block|{
-annotation|@
-name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|args
-parameter_list|)
-block|{
-name|super
-operator|.
-name|init
-argument_list|(
-name|args
-argument_list|)
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|inform
@@ -220,6 +186,15 @@ operator|=
 name|getBoolean
 argument_list|(
 literal|"enablePositionIncrements"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|useWhitelist
+operator|=
+name|getBoolean
+argument_list|(
+literal|"useWhitelist"
 argument_list|,
 literal|false
 argument_list|)
@@ -331,6 +306,11 @@ argument_list|)
 throw|;
 block|}
 block|}
+DECL|field|useWhitelist
+specifier|private
+name|boolean
+name|useWhitelist
+decl_stmt|;
 DECL|field|stopTypes
 specifier|private
 name|Set
@@ -387,6 +367,8 @@ argument_list|,
 name|input
 argument_list|,
 name|stopTypes
+argument_list|,
+name|useWhitelist
 argument_list|)
 return|;
 block|}
