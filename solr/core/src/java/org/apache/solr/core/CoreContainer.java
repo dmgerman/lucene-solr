@@ -853,6 +853,13 @@ argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|zkRun
+operator|!=
+literal|null
+condition|)
+block|{
 name|zkServer
 operator|=
 operator|new
@@ -892,6 +899,7 @@ operator|.
 name|getClientString
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|int
 name|zkClientConnectTimeout
