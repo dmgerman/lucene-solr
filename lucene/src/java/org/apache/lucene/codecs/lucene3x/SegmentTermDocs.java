@@ -138,7 +138,6 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|SegmentTermDocs
-specifier|public
 class|class
 name|SegmentTermDocs
 block|{

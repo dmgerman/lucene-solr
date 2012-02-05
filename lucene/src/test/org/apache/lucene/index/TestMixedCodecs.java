@@ -74,7 +74,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|preflexrw
+name|lucene3x
 operator|.
 name|PreFlexRWCodec
 import|;

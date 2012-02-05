@@ -266,7 +266,6 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene3xStoredFieldsReader
-specifier|public
 specifier|final
 class|class
 name|Lucene3xStoredFieldsReader

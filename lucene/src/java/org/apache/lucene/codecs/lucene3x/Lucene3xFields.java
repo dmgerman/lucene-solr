@@ -350,7 +350,6 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene3xFields
-specifier|public
 class|class
 name|Lucene3xFields
 extends|extends

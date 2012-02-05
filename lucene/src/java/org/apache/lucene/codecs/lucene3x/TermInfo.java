@@ -26,7 +26,6 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|TermInfo
-specifier|public
 class|class
 name|TermInfo
 block|{

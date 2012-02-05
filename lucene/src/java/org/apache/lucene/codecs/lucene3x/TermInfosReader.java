@@ -172,7 +172,6 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|TermInfosReader
-specifier|public
 specifier|final
 class|class
 name|TermInfosReader

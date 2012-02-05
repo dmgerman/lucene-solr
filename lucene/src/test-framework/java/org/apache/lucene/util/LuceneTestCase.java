@@ -244,9 +244,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene3x
 operator|.
-name|Lucene40Codec
+name|PreFlexRWCodec
 import|;
 end_import
 
@@ -260,9 +260,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|preflexrw
+name|lucene40
 operator|.
-name|PreFlexRWCodec
+name|Lucene40Codec
 import|;
 end_import
 

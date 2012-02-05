@@ -380,7 +380,6 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene3xTermVectorsReader
-specifier|public
 class|class
 name|Lucene3xTermVectorsReader
 extends|extends

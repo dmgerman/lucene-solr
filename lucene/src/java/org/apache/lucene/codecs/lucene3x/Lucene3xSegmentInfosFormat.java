@@ -68,7 +68,6 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene3xSegmentInfosFormat
-specifier|public
 class|class
 name|Lucene3xSegmentInfosFormat
 extends|extends

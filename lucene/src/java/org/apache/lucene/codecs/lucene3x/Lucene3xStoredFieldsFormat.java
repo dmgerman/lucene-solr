@@ -144,7 +144,6 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene3xStoredFieldsFormat
-specifier|public
 class|class
 name|Lucene3xStoredFieldsFormat
 extends|extends

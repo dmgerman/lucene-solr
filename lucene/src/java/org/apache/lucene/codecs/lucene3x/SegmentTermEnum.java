@@ -120,7 +120,6 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|SegmentTermEnum
-specifier|public
 specifier|final
 class|class
 name|SegmentTermEnum

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.preflexrw
+DECL|package|org.apache.lucene.codecs.lucene3x
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|preflexrw
+name|lucene3x
 package|;
 end_package
 
@@ -39,22 +39,6 @@ operator|.
 name|codecs
 operator|.
 name|StoredFieldsWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene3x
-operator|.
-name|Lucene3xStoredFieldsReader
 import|;
 end_import
 
@@ -176,7 +160,6 @@ end_comment
 
 begin_class
 DECL|class|PreFlexRWStoredFieldsWriter
-specifier|public
 specifier|final
 class|class
 name|PreFlexRWStoredFieldsWriter
