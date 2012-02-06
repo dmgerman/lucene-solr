@@ -1023,6 +1023,20 @@ name|getCoreUrl
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|server
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|15000
+argument_list|)
+expr_stmt|;
+name|server
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|15000
+argument_list|)
+expr_stmt|;
 comment|//System.out.println("ask " + node.getCoreUrl() + " to sync");
 name|NamedList
 name|rsp
