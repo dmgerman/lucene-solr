@@ -1351,6 +1351,30 @@ name|rsp
 argument_list|)
 return|;
 block|}
+comment|/**    * Shutdown all cores within the EmbeddedSolrServer instance    */
+DECL|method|shutdown
+specifier|public
+name|void
+name|shutdown
+parameter_list|()
+block|{
+name|coreContainer
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * Getter method for the CoreContainer    * @return the core container    */
+DECL|method|getCoreContainer
+specifier|public
+name|CoreContainer
+name|getCoreContainer
+parameter_list|()
+block|{
+return|return
+name|coreContainer
+return|;
+block|}
 block|}
 end_class
 
