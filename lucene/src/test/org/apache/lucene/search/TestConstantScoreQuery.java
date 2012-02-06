@@ -112,7 +112,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 import|;
 end_import
 
@@ -617,10 +617,10 @@ expr_stmt|;
 comment|// set a similarity that does not normalize our boost away
 name|searcher
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 operator|new
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 argument_list|()
 block|{
 annotation|@

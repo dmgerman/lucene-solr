@@ -136,9 +136,13 @@ name|docState
 expr_stmt|;
 name|fieldState
 operator|=
-name|parent
+operator|new
+name|FieldInvertState
+argument_list|(
+name|fieldInfo
 operator|.
-name|fieldState
+name|name
+argument_list|)
 expr_stmt|;
 name|this
 operator|.

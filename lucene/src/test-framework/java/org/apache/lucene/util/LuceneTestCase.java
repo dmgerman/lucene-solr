@@ -438,7 +438,23 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|SimilarityProvider
+name|DefaultSimilarity
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|similarities
+operator|.
+name|Similarity
 import|;
 end_import
 
@@ -1344,11 +1360,11 @@ specifier|static
 name|InfoStream
 name|savedInfoStream
 decl_stmt|;
-DECL|field|similarityProvider
+DECL|field|similarity
 specifier|private
 specifier|static
-name|SimilarityProvider
-name|similarityProvider
+name|Similarity
+name|similarity
 decl_stmt|;
 DECL|field|locale
 specifier|private
@@ -2034,8 +2050,17 @@ argument_list|(
 name|timeZone
 argument_list|)
 expr_stmt|;
-name|similarityProvider
+name|similarity
 operator|=
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+operator|new
+name|DefaultSimilarity
+argument_list|()
+else|:
 operator|new
 name|RandomSimilarityProvider
 argument_list|(
@@ -2362,7 +2387,7 @@ name|codecDescription
 operator|+
 literal|", sim="
 operator|+
-name|similarityProvider
+name|similarity
 operator|+
 literal|", locale="
 operator|+
@@ -4759,9 +4784,9 @@ argument_list|)
 decl_stmt|;
 name|c
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
-name|similarityProvider
+name|similarity
 argument_list|)
 expr_stmt|;
 if|if
@@ -6705,9 +6730,9 @@ argument_list|)
 decl_stmt|;
 name|ret
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
-name|similarityProvider
+name|similarity
 argument_list|)
 expr_stmt|;
 return|return
@@ -6845,9 +6870,9 @@ argument_list|)
 decl_stmt|;
 name|ret
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
-name|similarityProvider
+name|similarity
 argument_list|)
 expr_stmt|;
 return|return

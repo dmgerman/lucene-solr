@@ -571,8 +571,8 @@ operator|.
 name|NODE
 argument_list|)
 expr_stmt|;
-name|Similarity
-name|similarity
+name|SimilarityFactory
+name|simFactory
 init|=
 name|IndexSchema
 operator|.
@@ -660,7 +660,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|similarity
+name|simFactory
 operator|!=
 literal|null
 condition|)
@@ -669,7 +669,10 @@ name|ft
 operator|.
 name|setSimilarity
 argument_list|(
-name|similarity
+name|simFactory
+operator|.
+name|getSimilarity
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

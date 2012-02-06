@@ -2014,7 +2014,7 @@ specifier|protected
 name|Similarity
 name|similarity
 decl_stmt|;
-comment|/**    * Gets the Similarity used when scoring fields of this type    *     *<p>    * The default implementation returns null, which means this type    * has no custom similarity associated with it.    *</p>    *     * This method exists to internally support SolrSimilarityProvider.     * Custom application code interested in a field's Similarity should    * instead query via the searcher's SimilarityProvider.    * @lucene.internal    */
+comment|/**    * Gets the Similarity used when scoring fields of this type    *     *<p>    * The default implementation returns null, which means this type    * has no custom similarity associated with it.    *</p>    *     * @lucene.internal    */
 DECL|method|getSimilarity
 specifier|public
 name|Similarity

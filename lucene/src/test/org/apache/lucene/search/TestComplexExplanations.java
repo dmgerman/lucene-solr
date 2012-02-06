@@ -58,7 +58,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 import|;
 end_import
 
@@ -108,7 +108,7 @@ argument_list|()
 expr_stmt|;
 name|searcher
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 name|createQnorm1Similarity
 argument_list|()
@@ -127,11 +127,11 @@ name|Exception
 block|{
 name|searcher
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 name|IndexSearcher
 operator|.
-name|getDefaultSimilarityProvider
+name|getDefaultSimilarity
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -145,13 +145,13 @@ comment|// must be static for weight serialization tests
 DECL|method|createQnorm1Similarity
 specifier|private
 specifier|static
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 name|createQnorm1Similarity
 parameter_list|()
 block|{
 return|return
 operator|new
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 argument_list|()
 block|{
 annotation|@

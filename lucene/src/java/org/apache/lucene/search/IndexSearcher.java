@@ -312,7 +312,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 import|;
 end_import
 
@@ -328,7 +328,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|SimilarityProvider
+name|Similarity
 import|;
 end_import
 
@@ -438,37 +438,37 @@ specifier|final
 name|ExecutorService
 name|executor
 decl_stmt|;
-comment|// the default SimilarityProvider
-DECL|field|defaultProvider
+comment|// the default Similarity
+DECL|field|defaultSimilarity
 specifier|private
 specifier|static
 specifier|final
-name|SimilarityProvider
-name|defaultProvider
+name|Similarity
+name|defaultSimilarity
 init|=
 operator|new
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 argument_list|()
 decl_stmt|;
-comment|/**    * Expert: returns a default SimilarityProvider instance.    * In general, this method is only called to initialize searchers and writers.    * User code and query implementations should respect    * {@link IndexSearcher#getSimilarityProvider()}.    * @lucene.internal    */
-DECL|method|getDefaultSimilarityProvider
+comment|/**    * Expert: returns a default Similarity instance.    * In general, this method is only called to initialize searchers and writers.    * User code and query implementations should respect    * {@link IndexSearcher#getSimilarity()}.    * @lucene.internal    */
+DECL|method|getDefaultSimilarity
 specifier|public
 specifier|static
-name|SimilarityProvider
-name|getDefaultSimilarityProvider
+name|Similarity
+name|getDefaultSimilarity
 parameter_list|()
 block|{
 return|return
-name|defaultProvider
+name|defaultSimilarity
 return|;
 block|}
-comment|/** The SimilarityProvider implementation used by this searcher. */
-DECL|field|similarityProvider
+comment|/** The Similarity implementation used by this searcher. */
+DECL|field|similarity
 specifier|private
-name|SimilarityProvider
-name|similarityProvider
+name|Similarity
+name|similarity
 init|=
-name|defaultProvider
+name|defaultSimilarity
 decl_stmt|;
 comment|/** Creates a searcher searching the provided index. */
 DECL|method|IndexSearcher
@@ -748,31 +748,31 @@ name|fieldsToLoad
 argument_list|)
 return|;
 block|}
-comment|/** Expert: Set the SimilarityProvider implementation used by this Searcher.    *    */
-DECL|method|setSimilarityProvider
+comment|/** Expert: Set the Similarity implementation used by this Searcher.    *    */
+DECL|method|setSimilarity
 specifier|public
 name|void
-name|setSimilarityProvider
+name|setSimilarity
 parameter_list|(
-name|SimilarityProvider
-name|similarityProvider
+name|Similarity
+name|similarity
 parameter_list|)
 block|{
 name|this
 operator|.
-name|similarityProvider
+name|similarity
 operator|=
-name|similarityProvider
+name|similarity
 expr_stmt|;
 block|}
-DECL|method|getSimilarityProvider
+DECL|method|getSimilarity
 specifier|public
-name|SimilarityProvider
-name|getSimilarityProvider
+name|Similarity
+name|getSimilarity
 parameter_list|()
 block|{
 return|return
-name|similarityProvider
+name|similarity
 return|;
 block|}
 comment|/** @lucene.internal */
@@ -2063,7 +2063,7 @@ decl_stmt|;
 name|float
 name|norm
 init|=
-name|getSimilarityProvider
+name|getSimilarity
 argument_list|()
 operator|.
 name|queryNorm

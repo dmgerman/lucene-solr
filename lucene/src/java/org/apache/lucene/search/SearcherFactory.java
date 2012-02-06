@@ -104,7 +104,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|SimilarityProvider
+name|Similarity
 import|;
 end_import
 
@@ -113,7 +113,7 @@ comment|// javadocs
 end_comment
 
 begin_comment
-comment|/**  * Factory class used by {@link SearcherManager} and {@link NRTManager} to  * create new IndexSearchers. The default implementation just creates   * an IndexSearcher with no custom behavior:  *   *<pre class="prettyprint">  *   public IndexSearcher newSearcher(IndexReader r) throws IOException {  *     return new IndexSearcher(r);  *   }  *</pre>  *   * You can pass your own factory instead if you want custom behavior, such as:  *<ul>  *<li>Setting a custom scoring model: {@link IndexSearcher#setSimilarityProvider(SimilarityProvider)}  *<li>Parallel per-segment search: {@link IndexSearcher#IndexSearcher(IndexReader, ExecutorService)}  *<li>Return custom subclasses of IndexSearcher (for example that implement distributed scoring)  *<li>Run queries to warm your IndexSearcher before it is used. Note: when using near-realtime search  *       you may want to also {@link IndexWriterConfig#setMergedSegmentWarmer(IndexWriter.IndexReaderWarmer)} to warm  *       newly merged segments in the background, outside of the reopen path.  *</ul>  * @lucene.experimental  */
+comment|/**  * Factory class used by {@link SearcherManager} and {@link NRTManager} to  * create new IndexSearchers. The default implementation just creates   * an IndexSearcher with no custom behavior:  *   *<pre class="prettyprint">  *   public IndexSearcher newSearcher(IndexReader r) throws IOException {  *     return new IndexSearcher(r);  *   }  *</pre>  *   * You can pass your own factory instead if you want custom behavior, such as:  *<ul>  *<li>Setting a custom scoring model: {@link IndexSearcher#setSimilarity(Similarity)}  *<li>Parallel per-segment search: {@link IndexSearcher#IndexSearcher(IndexReader, ExecutorService)}  *<li>Return custom subclasses of IndexSearcher (for example that implement distributed scoring)  *<li>Run queries to warm your IndexSearcher before it is used. Note: when using near-realtime search  *       you may want to also {@link IndexWriterConfig#setMergedSegmentWarmer(IndexWriter.IndexReaderWarmer)} to warm  *       newly merged segments in the background, outside of the reopen path.  *</ul>  * @lucene.experimental  */
 end_comment
 
 begin_class

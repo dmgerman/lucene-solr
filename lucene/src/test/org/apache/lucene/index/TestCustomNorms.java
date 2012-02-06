@@ -166,7 +166,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarityProvider
+name|PerFieldSimilarityWrapper
 import|;
 end_import
 
@@ -183,22 +183,6 @@ operator|.
 name|similarities
 operator|.
 name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|similarities
-operator|.
-name|SimilarityProvider
 import|;
 end_import
 
@@ -382,7 +366,7 @@ name|random
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|SimilarityProvider
+name|Similarity
 name|provider
 init|=
 operator|new
@@ -391,7 +375,7 @@ argument_list|()
 decl_stmt|;
 name|config
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 name|provider
 argument_list|)
@@ -700,7 +684,7 @@ name|random
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|SimilarityProvider
+name|Similarity
 name|provider
 init|=
 operator|new
@@ -709,7 +693,7 @@ argument_list|()
 decl_stmt|;
 name|config
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 name|provider
 argument_list|)
@@ -870,15 +854,15 @@ DECL|class|MySimProvider
 specifier|public
 class|class
 name|MySimProvider
-implements|implements
-name|SimilarityProvider
+extends|extends
+name|PerFieldSimilarityWrapper
 block|{
 DECL|field|delegate
-name|SimilarityProvider
+name|Similarity
 name|delegate
 init|=
 operator|new
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -951,11 +935,6 @@ else|else
 block|{
 return|return
 name|delegate
-operator|.
-name|get
-argument_list|(
-name|field
-argument_list|)
 return|;
 block|}
 block|}

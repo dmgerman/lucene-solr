@@ -1017,13 +1017,8 @@ name|similarity
 operator|=
 name|searcher
 operator|.
-name|getSimilarityProvider
+name|getSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-name|field
-argument_list|)
 expr_stmt|;
 specifier|final
 name|IndexReaderContext

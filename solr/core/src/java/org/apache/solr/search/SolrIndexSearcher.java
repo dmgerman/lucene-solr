@@ -1054,11 +1054,11 @@ name|closeReader
 operator|=
 name|closeReader
 expr_stmt|;
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 name|schema
 operator|.
-name|getSimilarityProvider
+name|getSimilarity
 argument_list|()
 argument_list|)
 expr_stmt|;

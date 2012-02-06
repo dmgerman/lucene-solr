@@ -194,7 +194,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 import|;
 end_import
 
@@ -321,10 +321,10 @@ name|newLogMergePolicy
 argument_list|()
 argument_list|)
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 operator|new
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 argument_list|()
 argument_list|)
 argument_list|)
@@ -386,10 +386,10 @@ argument_list|)
 expr_stmt|;
 name|searcher
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 operator|new
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 argument_list|()
 argument_list|)
 expr_stmt|;

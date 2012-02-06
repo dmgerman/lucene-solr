@@ -112,7 +112,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|SimilarityProvider
+name|Similarity
 import|;
 end_import
 
@@ -332,11 +332,11 @@ specifier|volatile
 name|OpenMode
 name|openMode
 decl_stmt|;
-DECL|field|similarityProvider
+DECL|field|similarity
 specifier|private
 specifier|volatile
-name|SimilarityProvider
-name|similarityProvider
+name|Similarity
+name|similarity
 decl_stmt|;
 DECL|field|termIndexInterval
 specifier|private
@@ -480,11 +480,11 @@ name|OpenMode
 operator|.
 name|CREATE_OR_APPEND
 expr_stmt|;
-name|similarityProvider
+name|similarity
 operator|=
 name|IndexSearcher
 operator|.
-name|getDefaultSimilarityProvider
+name|getDefaultSimilarity
 argument_list|()
 expr_stmt|;
 name|termIndexInterval
@@ -738,44 +738,44 @@ return|return
 name|commit
 return|;
 block|}
-comment|/**    * Expert: set the {@link SimilarityProvider} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity provider cannot be null. If<code>null</code> is passed,    * the similarity provider will be set to the default implementation (unspecified).    *    *<p>Only takes effect when IndexWriter is first created. */
-DECL|method|setSimilarityProvider
+comment|/**    * Expert: set the {@link Similarity} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity cannot be null. If<code>null</code> is passed,    * the similarity will be set to the default implementation (unspecified).    *    *<p>Only takes effect when IndexWriter is first created. */
+DECL|method|setSimilarity
 specifier|public
 name|IndexWriterConfig
-name|setSimilarityProvider
+name|setSimilarity
 parameter_list|(
-name|SimilarityProvider
-name|similarityProvider
+name|Similarity
+name|similarity
 parameter_list|)
 block|{
 name|this
 operator|.
-name|similarityProvider
+name|similarity
 operator|=
-name|similarityProvider
+name|similarity
 operator|==
 literal|null
 condition|?
 name|IndexSearcher
 operator|.
-name|getDefaultSimilarityProvider
+name|getDefaultSimilarity
 argument_list|()
 else|:
-name|similarityProvider
+name|similarity
 expr_stmt|;
 return|return
 name|this
 return|;
 block|}
-comment|/**    * Expert: returns the {@link SimilarityProvider} implementation used by this    * IndexWriter.    */
-DECL|method|getSimilarityProvider
+comment|/**    * Expert: returns the {@link Similarity} implementation used by this    * IndexWriter.    */
+DECL|method|getSimilarity
 specifier|public
-name|SimilarityProvider
-name|getSimilarityProvider
+name|Similarity
+name|getSimilarity
 parameter_list|()
 block|{
 return|return
-name|similarityProvider
+name|similarity
 return|;
 block|}
 comment|/**    * Expert: set the interval between indexed terms. Large values cause less    * memory to be used by IndexReader, but slow random-access to terms. Small    * values cause more memory to be used by an IndexReader, and speed    * random-access to terms.    *<p>    * This parameter determines the amount of computation required per query    * term, regardless of the number of documents that contain that term. In    * particular, it is the maximum number of other terms that must be scanned    * before a term is located and its frequency and position information may be    * processed. In a large index with user-entered query terms, query processing    * time is likely to be dominated not by term lookup but rather by the    * processing of frequency and positional data. In a small index or when many    * uncommon query terms are generated (e.g., by wildcard queries) term lookup    * may become a dominant cost.    *<p>    * In particular,<code>numUniqueTerms/interval</code> terms are read into    * memory by an IndexReader, and, on average,<code>interval/2</code> terms    * must be scanned for each random term access.    *    * @see #DEFAULT_TERM_INDEX_INTERVAL    *    *<p>Takes effect immediately, but only applies to newly    *  flushed/merged segments. */
@@ -1615,12 +1615,12 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"similarityProvider="
+literal|"similarity="
 argument_list|)
 operator|.
 name|append
 argument_list|(
-name|similarityProvider
+name|similarity
 operator|.
 name|getClass
 argument_list|()

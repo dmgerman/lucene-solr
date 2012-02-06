@@ -327,16 +327,8 @@ name|similarity
 operator|=
 name|searcher
 operator|.
-name|getSimilarityProvider
+name|getSimilarity
 argument_list|()
-operator|.
-name|get
-argument_list|(
-name|term
-operator|.
-name|field
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|this
 operator|.

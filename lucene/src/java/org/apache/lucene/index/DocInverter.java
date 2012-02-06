@@ -121,15 +121,6 @@ operator|.
 name|DocState
 name|docState
 decl_stmt|;
-DECL|field|fieldState
-specifier|final
-name|FieldInvertState
-name|fieldState
-init|=
-operator|new
-name|FieldInvertState
-argument_list|()
-decl_stmt|;
 DECL|field|singleToken
 specifier|final
 name|SingleTokenAttributeSource

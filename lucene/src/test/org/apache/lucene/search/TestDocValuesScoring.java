@@ -222,7 +222,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|Similarity
+name|PerFieldSimilarityWrapper
 import|;
 end_import
 
@@ -238,7 +238,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|SimilarityProvider
+name|Similarity
 import|;
 end_import
 
@@ -503,12 +503,12 @@ name|ir
 argument_list|)
 decl_stmt|;
 specifier|final
-name|SimilarityProvider
+name|Similarity
 name|base
 init|=
 name|searcher1
 operator|.
-name|getSimilarityProvider
+name|getSimilarity
 argument_list|()
 decl_stmt|;
 comment|// boosting
@@ -522,10 +522,10 @@ argument_list|)
 decl_stmt|;
 name|searcher2
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 operator|new
-name|SimilarityProvider
+name|PerFieldSimilarityWrapper
 argument_list|()
 block|{
 specifier|final
@@ -536,15 +536,12 @@ operator|new
 name|BoostingSimilarity
 argument_list|(
 name|base
-operator|.
-name|get
-argument_list|(
-literal|"foo"
-argument_list|)
 argument_list|,
 literal|"foo_boost"
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|Similarity
 name|get
@@ -564,11 +561,6 @@ condition|?
 name|fooSim
 else|:
 name|base
-operator|.
-name|get
-argument_list|(
-name|field
-argument_list|)
 return|;
 block|}
 annotation|@

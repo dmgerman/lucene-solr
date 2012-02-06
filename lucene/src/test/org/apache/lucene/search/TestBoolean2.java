@@ -122,7 +122,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 import|;
 end_import
 
@@ -138,7 +138,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|SimilarityProvider
+name|Similarity
 import|;
 end_import
 
@@ -1844,22 +1844,22 @@ block|,
 literal|3
 block|}
 decl_stmt|;
-name|SimilarityProvider
+name|Similarity
 name|oldSimilarity
 init|=
 name|searcher
 operator|.
-name|getSimilarityProvider
+name|getSimilarity
 argument_list|()
 decl_stmt|;
 try|try
 block|{
 name|searcher
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 operator|new
-name|DefaultSimilarityProvider
+name|DefaultSimilarity
 argument_list|()
 block|{
 annotation|@
@@ -1903,7 +1903,7 @@ finally|finally
 block|{
 name|searcher
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 name|oldSimilarity
 argument_list|)

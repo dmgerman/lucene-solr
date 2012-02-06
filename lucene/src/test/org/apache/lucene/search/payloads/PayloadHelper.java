@@ -200,7 +200,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|SimilarityProvider
+name|Similarity
 import|;
 end_import
 
@@ -630,7 +630,7 @@ parameter_list|(
 name|Random
 name|random
 parameter_list|,
-name|SimilarityProvider
+name|Similarity
 name|similarity
 parameter_list|,
 name|int
@@ -676,7 +676,7 @@ argument_list|,
 name|analyzer
 argument_list|)
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 name|similarity
 argument_list|)
@@ -816,7 +816,7 @@ argument_list|)
 decl_stmt|;
 name|searcher
 operator|.
-name|setSimilarityProvider
+name|setSimilarity
 argument_list|(
 name|similarity
 argument_list|)

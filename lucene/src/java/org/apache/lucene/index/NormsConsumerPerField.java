@@ -219,14 +219,7 @@ name|similarity
 operator|=
 name|docState
 operator|.
-name|similarityProvider
-operator|.
-name|get
-argument_list|(
-name|fieldInfo
-operator|.
-name|name
-argument_list|)
+name|similarity
 expr_stmt|;
 name|norm
 operator|=
