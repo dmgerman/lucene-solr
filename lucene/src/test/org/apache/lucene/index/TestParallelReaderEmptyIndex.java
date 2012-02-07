@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Some tests for {@link ParallelAtomicReader}s with empty indexes  *   * @author Christian Kohlschuetter  */
+comment|/**  * Some tests for {@link ParallelReader}s with empty indexes  *   * @author Christian Kohlschuetter  */
 end_comment
 
 begin_class
@@ -226,14 +226,14 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ParallelAtomicReader
+name|ParallelReader
 name|pr
 init|=
 operator|new
-name|ParallelAtomicReader
-operator|.
-name|Builder
+name|ParallelReader
 argument_list|()
+decl_stmt|;
+name|pr
 operator|.
 name|add
 argument_list|(
@@ -249,6 +249,8 @@ name|rd1
 argument_list|)
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|pr
 operator|.
 name|add
 argument_list|(
@@ -264,10 +266,7 @@ name|rd2
 argument_list|)
 argument_list|)
 argument_list|)
-operator|.
-name|build
-argument_list|()
-decl_stmt|;
+expr_stmt|;
 comment|// When unpatched, Lucene crashes here with a NoSuchElementException (caused by ParallelTermEnum)
 name|iwOut
 operator|.
@@ -647,20 +646,14 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-specifier|final
-name|DirectoryReader
-name|reader1
-decl_stmt|,
-name|reader2
-decl_stmt|;
-name|ParallelAtomicReader
+name|ParallelReader
 name|pr
 init|=
 operator|new
-name|ParallelAtomicReader
-operator|.
-name|Builder
+name|ParallelReader
 argument_list|()
+decl_stmt|;
+name|pr
 operator|.
 name|add
 argument_list|(
@@ -668,8 +661,6 @@ name|SlowCompositeReaderWrapper
 operator|.
 name|wrap
 argument_list|(
-name|reader1
-operator|=
 name|DirectoryReader
 operator|.
 name|open
@@ -678,6 +669,8 @@ name|rd1
 argument_list|)
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|pr
 operator|.
 name|add
 argument_list|(
@@ -685,8 +678,6 @@ name|SlowCompositeReaderWrapper
 operator|.
 name|wrap
 argument_list|(
-name|reader2
-operator|=
 name|DirectoryReader
 operator|.
 name|open
@@ -695,10 +686,7 @@ name|rd2
 argument_list|)
 argument_list|)
 argument_list|)
-operator|.
-name|build
-argument_list|()
-decl_stmt|;
+expr_stmt|;
 comment|// When unpatched, Lucene crashes here with an ArrayIndexOutOfBoundsException (caused by TermVectorsWriter)
 name|iwOut
 operator|.
@@ -712,27 +700,6 @@ name|pr
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-comment|// assert subreaders were closed
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|reader1
-operator|.
-name|getRefCount
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|reader2
-operator|.
-name|getRefCount
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|rd1
 operator|.

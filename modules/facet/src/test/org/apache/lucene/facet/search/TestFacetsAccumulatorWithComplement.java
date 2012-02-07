@@ -72,7 +72,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|ParallelAtomicReader
+name|ParallelReader
 import|;
 end_import
 
@@ -388,16 +388,16 @@ name|origReader
 init|=
 name|indexReader
 decl_stmt|;
-name|ParallelAtomicReader
+name|ParallelReader
 name|pr
 init|=
 operator|new
-name|ParallelAtomicReader
-operator|.
-name|Builder
+name|ParallelReader
 argument_list|(
 literal|true
 argument_list|)
+decl_stmt|;
+name|pr
 operator|.
 name|add
 argument_list|(
@@ -408,10 +408,7 @@ argument_list|(
 name|origReader
 argument_list|)
 argument_list|)
-operator|.
-name|build
-argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|indexReader
 operator|=
 name|pr
