@@ -131,6 +131,27 @@ name|MIN_BUFFER_SIZE_MB
 init|=
 literal|32
 decl_stmt|;
+comment|/**    * Absolute minimum required buffer size for sorting.    */
+DECL|field|ABSOLUTE_MIN_SORT_BUFFER_SIZE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|ABSOLUTE_MIN_SORT_BUFFER_SIZE
+init|=
+name|MB
+operator|/
+literal|2
+decl_stmt|;
+DECL|field|MIN_BUFFER_SIZE_MSG
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|MIN_BUFFER_SIZE_MSG
+init|=
+literal|"At least 0.5MB RAM buffer is needed"
+decl_stmt|;
 comment|/**    * Maximum number of temporary files before doing an intermediate merge.    */
 DECL|field|MAX_TEMPFILES
 specifier|public
@@ -231,7 +252,7 @@ name|MB
 argument_list|)
 return|;
 block|}
-comment|/**       * Approximately half of the currently available free heap, but no less      * than {@link #MIN_BUFFER_SIZE_MB}.      */
+comment|/**       * Approximately half of the currently available free heap, but no less      * than {@link #MIN_BUFFER_SIZE_MB}. However if current heap allocation       * is insufficient for sorting consult with max allowed heap size.       */
 DECL|method|automatic
 specifier|public
 specifier|static
@@ -239,17 +260,54 @@ name|BufferSize
 name|automatic
 parameter_list|()
 block|{
-name|long
-name|freeHeap
+name|Runtime
+name|rt
 init|=
 name|Runtime
 operator|.
 name|getRuntime
 argument_list|()
+decl_stmt|;
+comment|// take sizes in "conservative" order
+name|long
+name|max
+init|=
+name|rt
+operator|.
+name|maxMemory
+argument_list|()
+decl_stmt|;
+name|long
+name|total
+init|=
+name|rt
+operator|.
+name|totalMemory
+argument_list|()
+decl_stmt|;
+name|long
+name|free
+init|=
+name|rt
 operator|.
 name|freeMemory
 argument_list|()
 decl_stmt|;
+comment|// by free mem (attempting to not grow the heap for this)
+name|long
+name|half
+init|=
+name|free
+operator|/
+literal|2
+decl_stmt|;
+if|if
+condition|(
+name|half
+operator|>=
+name|ABSOLUTE_MIN_SORT_BUFFER_SIZE
+condition|)
+block|{
 return|return
 operator|new
 name|BufferSize
@@ -262,9 +320,35 @@ name|MIN_BUFFER_SIZE_MB
 operator|*
 name|MB
 argument_list|,
-name|freeHeap
+name|half
+argument_list|)
+argument_list|)
+return|;
+block|}
+comment|// by max mem (heap will grow)
+name|half
+operator|=
+operator|(
+name|max
+operator|-
+name|total
+operator|)
 operator|/
 literal|2
+expr_stmt|;
+return|return
+operator|new
+name|BufferSize
+argument_list|(
+name|Math
+operator|.
+name|min
+argument_list|(
+name|MIN_BUFFER_SIZE_MB
+operator|*
+name|MB
+argument_list|,
+name|half
 argument_list|)
 argument_list|)
 return|;
@@ -581,19 +665,16 @@ name|ramBufferSize
 operator|.
 name|bytes
 operator|<
-literal|1024
-operator|*
-literal|1024
-operator|/
-literal|2
+name|ABSOLUTE_MIN_SORT_BUFFER_SIZE
 condition|)
 block|{
-comment|// Half-meg buffer is the absolute minimum.
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"At least 0.5MB RAM buffer is needed: "
+name|MIN_BUFFER_SIZE_MSG
+operator|+
+literal|": "
 operator|+
 name|ramBufferSize
 operator|.
