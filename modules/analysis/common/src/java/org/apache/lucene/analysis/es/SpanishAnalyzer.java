@@ -277,7 +277,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for Spanish.  */
+comment|/**  * {@link Analyzer} for Spanish.  *<p>  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating SpanishAnalyzer:  *<ul>  *<li> As of 3.6, SpanishLightStemFilter is used for less aggressive stemming.  *</ul>  */
 end_comment
 
 begin_class
@@ -483,7 +483,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided and {@link SnowballFilter}.    */
+comment|/**    * Creates a    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided and {@link SpanishLightStemFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -561,6 +561,29 @@ argument_list|,
 name|stemExclusionSet
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_36
+argument_list|)
+condition|)
+block|{
+name|result
+operator|=
+operator|new
+name|SpanishLightStemFilter
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -573,6 +596,7 @@ name|SpanishStemmer
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|TokenStreamComponents

@@ -137,7 +137,7 @@ name|a
 argument_list|,
 literal|"abbandonata"
 argument_list|,
-literal|"abbandon"
+literal|"abbandonat"
 argument_list|)
 expr_stmt|;
 name|checkOneTermReuse
@@ -146,7 +146,7 @@ name|a
 argument_list|,
 literal|"abbandonati"
 argument_list|,
-literal|"abbandon"
+literal|"abbandonat"
 argument_list|)
 expr_stmt|;
 comment|// stopword
@@ -223,7 +223,7 @@ name|a
 argument_list|,
 literal|"abbandonati"
 argument_list|,
-literal|"abbandon"
+literal|"abbandonat"
 argument_list|)
 expr_stmt|;
 block|}
@@ -294,7 +294,7 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"ital"
+literal|"italian"
 block|}
 argument_list|)
 expr_stmt|;

@@ -123,7 +123,7 @@ name|a
 argument_list|,
 literal|"quilomÃ©tricas"
 argument_list|,
-literal|"quilomÃ©tr"
+literal|"quilometric"
 argument_list|)
 expr_stmt|;
 name|checkOneTermReuse
@@ -132,7 +132,7 @@ name|a
 argument_list|,
 literal|"quilomÃ©tricos"
 argument_list|,
-literal|"quilomÃ©tr"
+literal|"quilometric"
 argument_list|)
 expr_stmt|;
 comment|// stopword
@@ -209,7 +209,7 @@ name|a
 argument_list|,
 literal|"quilomÃ©tricos"
 argument_list|,
-literal|"quilomÃ©tr"
+literal|"quilometric"
 argument_list|)
 expr_stmt|;
 block|}

@@ -293,7 +293,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for French language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating FrenchAnalyzer:  *<ul>  *<li> As of 3.1, Snowball stemming is done with SnowballFilter,   *        LowerCaseFilter is used prior to StopFilter, and ElisionFilter and   *        Snowball stopwords are used by default.  *<li> As of 2.9, StopFilter preserves position  *        increments  *</ul>  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
+comment|/**  * {@link Analyzer} for French language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating FrenchAnalyzer:  *<ul>  *<li> As of 3.6, FrenchLightStemFilter is used for less aggressive stemming.  *<li> As of 3.1, Snowball stemming is done with SnowballFilter,   *        LowerCaseFilter is used prior to StopFilter, and ElisionFilter and   *        Snowball stopwords are used by default.  *<li> As of 2.9, StopFilter preserves position  *        increments  *</ul>  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
 end_comment
 
 begin_class
@@ -993,7 +993,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link ElisionFilter},    *         {@link LowerCaseFilter}, {@link StopFilter},    *         {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided, and {@link SnowballFilter}    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link ElisionFilter},    *         {@link LowerCaseFilter}, {@link StopFilter},    *         {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided, and {@link FrenchLightStemFilter}    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -1093,6 +1093,29 @@ argument_list|,
 name|excltable
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_36
+argument_list|)
+condition|)
+block|{
+name|result
+operator|=
+operator|new
+name|FrenchLightStemFilter
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -1113,6 +1136,7 @@ name|FrenchStemmer
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|TokenStreamComponents

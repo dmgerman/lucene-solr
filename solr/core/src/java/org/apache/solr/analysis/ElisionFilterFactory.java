@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link ElisionFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_elsn" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;filter class="solr.ElisionFilterFactory" articles="stopwordarticles.txt"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  */
+comment|/**  * Factory for {@link ElisionFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_elsn" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;filter class="solr.ElisionFilterFactory"   *       articles="stopwordarticles.txt" ignoreCase="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  */
 end_comment
 
 begin_class
@@ -140,6 +140,16 @@ argument_list|(
 literal|"articles"
 argument_list|)
 decl_stmt|;
+name|boolean
+name|ignoreCase
+init|=
+name|getBoolean
+argument_list|(
+literal|"ignoreCase"
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|articlesFile
@@ -157,7 +167,7 @@ name|loader
 argument_list|,
 name|articlesFile
 argument_list|,
-literal|false
+name|ignoreCase
 argument_list|)
 expr_stmt|;
 block|}

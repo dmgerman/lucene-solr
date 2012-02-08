@@ -74,6 +74,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|standard
+operator|.
+name|StandardTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|util
 operator|.
 name|CharArraySet
@@ -203,7 +219,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Hindi.  */
+comment|/**  * Analyzer for Hindi.  *<p>  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating HindiAnalyzer:  *<ul>  *<li> As of 3.6, StandardTokenizer is used for tokenization  *</ul>  */
 end_comment
 
 begin_class
@@ -407,7 +423,7 @@ name|DEFAULT_STOP_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from a {@link IndicTokenizer} filtered with    *         {@link LowerCaseFilter}, {@link IndicNormalizationFilter},    *         {@link HindiNormalizationFilter}, {@link KeywordMarkerFilter}    *         if a stem exclusion set is provided, {@link HindiStemFilter}, and    *         Hindi Stop words    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link LowerCaseFilter}, {@link IndicNormalizationFilter},    *         {@link HindiNormalizationFilter}, {@link KeywordMarkerFilter}    *         if a stem exclusion set is provided, {@link HindiStemFilter}, and    *         Hindi Stop words    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -425,7 +441,34 @@ block|{
 specifier|final
 name|Tokenizer
 name|source
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_36
+argument_list|)
+condition|)
+block|{
+name|source
+operator|=
+operator|new
+name|StandardTokenizer
+argument_list|(
+name|matchVersion
+argument_list|,
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|source
+operator|=
 operator|new
 name|IndicTokenizer
 argument_list|(
@@ -433,7 +476,8 @@ name|matchVersion
 argument_list|,
 name|reader
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 name|TokenStream
 name|result
 init|=
