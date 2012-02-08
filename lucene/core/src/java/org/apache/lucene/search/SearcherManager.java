@@ -650,26 +650,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-comment|// Don't allow un-closing!
-if|if
-condition|(
-name|currentSearcher
-operator|==
-literal|null
-operator|&&
-name|newSearcher
-operator|!=
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|AlreadyClosedException
-argument_list|(
-literal|"this SearcherManager is closed"
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|IndexSearcher
 name|oldSearcher
