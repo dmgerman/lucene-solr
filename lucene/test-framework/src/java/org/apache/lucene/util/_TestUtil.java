@@ -2940,6 +2940,7 @@ argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
+break|break;
 case|case
 literal|22
 case|:
@@ -2962,6 +2963,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+break|break;
 default|default:
 name|sb
 operator|.
