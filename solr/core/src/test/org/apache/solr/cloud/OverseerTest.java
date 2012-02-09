@@ -559,6 +559,9 @@ name|coreName
 parameter_list|,
 name|String
 name|stateName
+parameter_list|,
+name|int
+name|numShards
 parameter_list|)
 throws|throws
 name|KeeperException
@@ -626,6 +629,8 @@ argument_list|,
 literal|"collection1"
 argument_list|,
 name|coreProps
+argument_list|,
+name|numShards
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2483,17 +2488,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
-name|ZkStateReader
-operator|.
-name|NUM_SHARDS_PROP
-argument_list|,
-literal|"2"
-argument_list|)
-expr_stmt|;
 comment|//live node
 name|String
 name|nodePath
@@ -2636,6 +2630,8 @@ argument_list|,
 literal|"collection1"
 argument_list|,
 name|coreProps
+argument_list|,
+literal|2
 argument_list|)
 decl_stmt|;
 name|nodePath
@@ -2790,6 +2786,8 @@ argument_list|,
 literal|"collection1"
 argument_list|,
 name|coreProps
+argument_list|,
+literal|2
 argument_list|)
 expr_stmt|;
 name|zkClient
@@ -3129,6 +3127,8 @@ argument_list|,
 name|ZkStateReader
 operator|.
 name|RECOVERING
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 comment|// wait overseer assignment
@@ -3167,6 +3167,8 @@ argument_list|,
 name|ZkStateReader
 operator|.
 name|ACTIVE
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 while|while
@@ -3217,6 +3219,8 @@ argument_list|,
 name|ZkStateReader
 operator|.
 name|RECOVERING
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 name|version
@@ -3520,6 +3524,8 @@ argument_list|,
 name|ZkStateReader
 operator|.
 name|RECOVERING
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 comment|// wait overseer assignment
@@ -3576,6 +3582,8 @@ argument_list|,
 name|ZkStateReader
 operator|.
 name|RECOVERING
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 while|while
