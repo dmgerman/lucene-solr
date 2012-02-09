@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Removes tokens that match a set of POS tags.  */
+comment|/**  * Removes tokens that match a set of part-of-speech tags.  */
 end_comment
 
 begin_class

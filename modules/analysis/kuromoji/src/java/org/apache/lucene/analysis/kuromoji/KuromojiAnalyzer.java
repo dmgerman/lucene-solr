@@ -328,7 +328,7 @@ name|DEFAULT_STOP_SET
 operator|=
 name|loadStopwordSet
 argument_list|(
-literal|false
+literal|true
 argument_list|,
 name|KuromojiAnalyzer
 operator|.
@@ -339,6 +339,7 @@ argument_list|,
 literal|"#"
 argument_list|)
 expr_stmt|;
+comment|// ignore case
 specifier|final
 name|CharArraySet
 name|tagset
@@ -402,13 +403,12 @@ name|IOException
 name|ex
 parameter_list|)
 block|{
-comment|// default set should always be present as it is part of the
-comment|// distribution (JAR)
+comment|// default set should always be present as it is part of the distribution (JAR)
 throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Unable to load default stopword set"
+literal|"Unable to load default stopword or stoptag set"
 argument_list|)
 throw|;
 block|}
@@ -445,21 +445,11 @@ name|TokenStream
 name|stream
 init|=
 operator|new
-name|LowerCaseFilter
+name|KuromojiBaseFormFilter
 argument_list|(
-name|matchVersion
-argument_list|,
 name|tokenizer
 argument_list|)
 decl_stmt|;
-name|stream
-operator|=
-operator|new
-name|CJKWidthFilter
-argument_list|(
-name|stream
-argument_list|)
-expr_stmt|;
 name|stream
 operator|=
 operator|new
@@ -470,6 +460,14 @@ argument_list|,
 name|stream
 argument_list|,
 name|stoptags
+argument_list|)
+expr_stmt|;
+name|stream
+operator|=
+operator|new
+name|CJKWidthFilter
+argument_list|(
+name|stream
 argument_list|)
 expr_stmt|;
 name|stream
@@ -487,8 +485,10 @@ expr_stmt|;
 name|stream
 operator|=
 operator|new
-name|KuromojiBaseFormFilter
+name|LowerCaseFilter
 argument_list|(
+name|matchVersion
+argument_list|,
 name|stream
 argument_list|)
 expr_stmt|;
