@@ -2474,7 +2474,10 @@ argument_list|()
 operator|+
 literal|"_"
 operator|+
-name|coreName
+name|nodeProps
+operator|.
+name|getCoreName
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
