@@ -40,16 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -234,10 +224,7 @@ block|{
 DECL|field|stemExclusionSet
 specifier|private
 specifier|final
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stemExclusionSet
 decl_stmt|;
 comment|/**    * File containing default Hindi stopwords.    *     * Default stopword list is from http://members.unine.ch/jacques.savoy/clef/index.html    * The stopword list is BSD-Licensed.    */
@@ -263,10 +250,7 @@ comment|/**    * Returns an unmodifiable instance of the default stop-words set.
 DECL|method|getDefaultStopSet
 specifier|public
 specifier|static
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|getDefaultStopSet
 parameter_list|()
 block|{
@@ -286,10 +270,7 @@ block|{
 DECL|field|DEFAULT_STOP_SET
 specifier|static
 specifier|final
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|DEFAULT_STOP_SET
 decl_stmt|;
 static|static
@@ -338,16 +319,10 @@ parameter_list|(
 name|Version
 name|version
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stopwords
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stemExclusionSet
 parameter_list|)
 block|{
@@ -385,10 +360,7 @@ parameter_list|(
 name|Version
 name|version
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stopwords
 parameter_list|)
 block|{

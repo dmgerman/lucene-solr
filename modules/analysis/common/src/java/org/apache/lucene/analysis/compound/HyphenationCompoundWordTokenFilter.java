@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -110,6 +100,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharArraySet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Version
@@ -129,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link TokenFilter} that decomposes compound words found in many Germanic languages.  *<p>  * "Donaudampfschiff" becomes Donau, dampf, schiff so that you can find  * "Donaudampfschiff" even when you only enter "schiff". It uses a hyphenation  * grammar and a word dictionary to achieve this.  *<p>  * You must specify the required {@link Version} compatibility when creating  * CompoundWordTokenFilterBase:  *<ul>  *<li>As of 3.1, CompoundWordTokenFilterBase correctly handles Unicode 4.0  * supplementary characters in strings and char arrays provided as compound word  * dictionaries.  *</ul>  *<p>If you pass in a {@link org.apache.lucene.analysis.util.CharArraySet} as dictionary,  * it should be case-insensitive unless it contains only lowercased entries and you  * have {@link org.apache.lucene.analysis.core.LowerCaseFilter} before this filter in your analysis chain.  * For optional performance (as this filter does lots of lookups to the dictionary,  * you should use the latter analysis chain/CharArraySet). Be aware: If you supply arbitrary  * {@link Set Sets} to the ctors, they will be automatically  * transformed to case-insensitive!  */
+comment|/**  * A {@link TokenFilter} that decomposes compound words found in many Germanic languages.  *<p>  * "Donaudampfschiff" becomes Donau, dampf, schiff so that you can find  * "Donaudampfschiff" even when you only enter "schiff". It uses a hyphenation  * grammar and a word dictionary to achieve this.  *<p>  * You must specify the required {@link Version} compatibility when creating  * CompoundWordTokenFilterBase:  *<ul>  *<li>As of 3.1, CompoundWordTokenFilterBase correctly handles Unicode 4.0  * supplementary characters in strings and char arrays provided as compound word  * dictionaries.  *</ul>  */
 end_comment
 
 begin_class
@@ -159,10 +165,7 @@ parameter_list|,
 name|HyphenationTree
 name|hyphenator
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|dictionary
 parameter_list|)
 block|{
@@ -200,10 +203,7 @@ parameter_list|,
 name|HyphenationTree
 name|hyphenator
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|dictionary
 parameter_list|,
 name|int
@@ -243,7 +243,7 @@ operator|=
 name|hyphenator
 expr_stmt|;
 block|}
-comment|/**    * Create a HyphenationCompoundWordTokenFilter with no dictionary.    *<p>    * Calls {@link #HyphenationCompoundWordTokenFilter(Version, TokenStream, HyphenationTree, Set, int, int, int, boolean)    * HyphenationCompoundWordTokenFilter(matchVersion, input, hyphenator,    * null, minWordSize, minSubwordSize, maxSubwordSize }    */
+comment|/**    * Create a HyphenationCompoundWordTokenFilter with no dictionary.    *<p>    * Calls {@link #HyphenationCompoundWordTokenFilter(Version, TokenStream, HyphenationTree, CharArraySet, int, int, int, boolean)    * HyphenationCompoundWordTokenFilter(matchVersion, input, hyphenator,    * null, minWordSize, minSubwordSize, maxSubwordSize }    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
@@ -275,12 +275,6 @@ name|input
 argument_list|,
 name|hyphenator
 argument_list|,
-operator|(
-name|Set
-argument_list|<
-name|?
-argument_list|>
-operator|)
 literal|null
 argument_list|,
 name|minWordSize

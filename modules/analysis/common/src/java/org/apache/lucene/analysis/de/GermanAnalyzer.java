@@ -54,16 +54,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -443,10 +433,7 @@ DECL|method|getDefaultStopSet
 specifier|public
 specifier|static
 specifier|final
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|getDefaultStopSet
 parameter_list|()
 block|{
@@ -469,10 +456,7 @@ DECL|field|DEFAULT_SET_30
 specifier|private
 specifier|static
 specifier|final
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|DEFAULT_SET_30
 init|=
 name|CharArraySet
@@ -501,10 +485,7 @@ DECL|field|DEFAULT_SET
 specifier|private
 specifier|static
 specifier|final
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|DEFAULT_SET
 decl_stmt|;
 static|static
@@ -561,10 +542,7 @@ comment|/**    * Contains words that should be indexed but not stemmed.    */
 DECL|field|exclusionSet
 specifier|private
 specifier|final
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|exclusionSet
 decl_stmt|;
 comment|/**    * Builds an analyzer with the default stop words:    * {@link #getDefaultStopSet()}.    */
@@ -607,10 +585,7 @@ parameter_list|(
 name|Version
 name|matchVersion
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stopwords
 parameter_list|)
 block|{
@@ -634,16 +609,10 @@ parameter_list|(
 name|Version
 name|matchVersion
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stopwords
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stemExclusionSet
 parameter_list|)
 block|{

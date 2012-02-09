@@ -40,16 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -73,22 +63,6 @@ operator|.
 name|analysis
 operator|.
 name|TokenStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|standard
-operator|.
-name|StandardTokenizer
 import|;
 end_import
 
@@ -260,10 +234,7 @@ parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|articles
 parameter_list|)
 block|{

@@ -282,16 +282,6 @@ name|Arrays
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
 begin_comment
 comment|/**  * {@link Analyzer} for French language.   *<p>  * Supports an external list of stopwords (words that  * will not be indexed at all) and an external list of exclusions (word that will  * not be stemmed, but indexed).  * A default set of stopwords is used unless an alternative list is specified, but the  * exclusion list is empty by default.  *</p>  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating FrenchAnalyzer:  *<ul>  *<li> As of 3.6, FrenchLightStemFilter is used for less aggressive stemming.  *<li> As of 3.1, Snowball stemming is done with SnowballFilter,   *        LowerCaseFilter is used prior to StopFilter, and ElisionFilter and   *        Snowball stopwords are used by default.  *<li> As of 2.9, StopFilter preserves position  *        increments  *</ul>  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
 end_comment
@@ -766,20 +756,14 @@ comment|/**    * Contains words that should be indexed but not stemmed.    */
 DECL|field|excltable
 specifier|private
 specifier|final
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|excltable
 decl_stmt|;
 comment|/**    * Returns an unmodifiable instance of the default stop-words set.    * @return an unmodifiable instance of the default stop-words set.    */
 DECL|method|getDefaultStopSet
 specifier|public
 specifier|static
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|getDefaultStopSet
 parameter_list|()
 block|{
@@ -801,10 +785,7 @@ name|Deprecated
 DECL|field|DEFAULT_STOP_SET_30
 specifier|static
 specifier|final
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|DEFAULT_STOP_SET_30
 init|=
 name|CharArraySet
@@ -832,10 +813,7 @@ decl_stmt|;
 DECL|field|DEFAULT_STOP_SET
 specifier|static
 specifier|final
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|DEFAULT_STOP_SET
 decl_stmt|;
 static|static
@@ -927,10 +905,7 @@ parameter_list|(
 name|Version
 name|matchVersion
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stopwords
 parameter_list|)
 block|{
@@ -954,16 +929,10 @@ parameter_list|(
 name|Version
 name|matchVersion
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stopwords
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stemExclutionSet
 parameter_list|)
 block|{

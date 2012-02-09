@@ -152,16 +152,6 @@ name|Reader
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
 begin_comment
 comment|/** Filters {@link StandardTokenizer} with {@link StandardFilter}, {@link  * LowerCaseFilter}, {@link StopFilter} and {@link SnowballFilter}.  *  * Available stemmers are listed in org.tartarus.snowball.ext.  The name of a  * stemmer is the part of the class name before "Stemmer", e.g., the stemmer in  * {@link org.tartarus.snowball.ext.EnglishStemmer} is named "English".  *  *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}, with the following addition:  *<ul>  *<li> As of 3.1, uses {@link TurkishLowerCaseFilter} for Turkish language.  *</ul>  *</p>  * @deprecated (3.1) Use the language-specific analyzer in modules/analysis instead.   * This analyzer will be removed in Lucene 5.0  */
 end_comment
@@ -184,10 +174,7 @@ name|name
 decl_stmt|;
 DECL|field|stopSet
 specifier|private
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stopSet
 decl_stmt|;
 DECL|field|matchVersion
@@ -232,10 +219,7 @@ parameter_list|,
 name|String
 name|name
 parameter_list|,
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stopWords
 parameter_list|)
 block|{

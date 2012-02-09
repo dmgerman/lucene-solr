@@ -46,6 +46,22 @@ name|BaseTokenStreamTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharArraySet
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test the Persian Analyzer  *   */
 end_comment
@@ -1156,6 +1172,11 @@ name|PersianAnalyzer
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
+operator|new
+name|CharArraySet
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
 name|asSet
 argument_list|(
 literal|"the"
@@ -1163,6 +1184,9 @@ argument_list|,
 literal|"and"
 argument_list|,
 literal|"a"
+argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;

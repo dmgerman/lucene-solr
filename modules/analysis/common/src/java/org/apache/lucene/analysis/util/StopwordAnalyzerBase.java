@@ -50,16 +50,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -129,10 +119,7 @@ decl_stmt|;
 comment|/**    * Returns the analyzer's stopword set or an empty set if the analyzer has no    * stopwords    *     * @return the analyzer's stopword set or an empty set if the analyzer has no    *         stopwords    */
 DECL|method|getStopwordSet
 specifier|public
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|getStopwordSet
 parameter_list|()
 block|{
@@ -150,10 +137,7 @@ name|Version
 name|version
 parameter_list|,
 specifier|final
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|stopwords
 parameter_list|)
 block|{

@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -276,10 +266,7 @@ return|;
 block|}
 DECL|method|getCommonWords
 specifier|public
-name|Set
-argument_list|<
-name|?
-argument_list|>
+name|CharArraySet
 name|getCommonWords
 parameter_list|()
 block|{
@@ -307,8 +294,6 @@ argument_list|,
 name|input
 argument_list|,
 name|commonWords
-argument_list|,
-name|ignoreCase
 argument_list|)
 decl_stmt|;
 return|return

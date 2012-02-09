@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -170,10 +160,9 @@ name|BulgarianAnalyzer
 argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|,
-name|Collections
+name|CharArraySet
 operator|.
-name|emptySet
-argument_list|()
+name|EMPTY_SET
 argument_list|)
 decl_stmt|;
 name|assertAnalyzesTo

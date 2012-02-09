@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -187,10 +177,8 @@ parameter_list|,
 name|TokenStream
 name|input
 parameter_list|,
-name|Map
+name|CharArrayMap
 argument_list|<
-name|?
-argument_list|,
 name|String
 argument_list|>
 name|dictionary
@@ -205,18 +193,6 @@ name|this
 operator|.
 name|dictionary
 operator|=
-name|dictionary
-operator|instanceof
-name|CharArrayMap
-condition|?
-operator|(
-name|CharArrayMap
-argument_list|<
-name|String
-argument_list|>
-operator|)
-name|dictionary
-else|:
 name|CharArrayMap
 operator|.
 name|copy
