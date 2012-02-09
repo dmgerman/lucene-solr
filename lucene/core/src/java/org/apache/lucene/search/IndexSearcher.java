@@ -555,12 +555,10 @@ name|context
 expr_stmt|;
 name|leafContexts
 operator|=
-name|ReaderUtil
+name|context
 operator|.
 name|leaves
-argument_list|(
-name|context
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|this
 operator|.

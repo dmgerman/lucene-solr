@@ -49,6 +49,13 @@ specifier|final
 name|AtomicReader
 name|reader
 decl_stmt|;
+DECL|field|leaves
+specifier|private
+specifier|final
+name|AtomicReaderContext
+index|[]
+name|leaves
+decl_stmt|;
 comment|/**    * Creates a new {@link AtomicReaderContext}     */
 DECL|method|AtomicReaderContext
 name|AtomicReaderContext
@@ -99,6 +106,21 @@ name|reader
 operator|=
 name|reader
 expr_stmt|;
+name|this
+operator|.
+name|leaves
+operator|=
+name|isTopLevel
+condition|?
+operator|new
+name|AtomicReaderContext
+index|[]
+block|{
+name|this
+block|}
+else|:
+literal|null
+expr_stmt|;
 block|}
 DECL|method|AtomicReaderContext
 name|AtomicReaderContext
@@ -133,7 +155,7 @@ name|leaves
 parameter_list|()
 block|{
 return|return
-literal|null
+name|leaves
 return|;
 block|}
 annotation|@

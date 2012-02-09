@@ -176,20 +176,6 @@ name|TermContext
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderUtil
-import|;
-end_import
-
 begin_class
 DECL|class|TermCollectingRewrite
 specifier|abstract
@@ -314,12 +300,10 @@ name|AtomicReaderContext
 index|[]
 name|leaves
 init|=
-name|ReaderUtil
+name|topReaderContext
 operator|.
 name|leaves
-argument_list|(
-name|topReaderContext
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(

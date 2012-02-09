@@ -152,20 +152,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ReaderUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|UnicodeUtil
 import|;
 end_import
@@ -512,15 +498,13 @@ name|AtomicReaderContext
 index|[]
 name|leaves
 init|=
-name|ReaderUtil
-operator|.
-name|leaves
-argument_list|(
 name|searcher
 operator|.
 name|getTopReaderContext
 argument_list|()
-argument_list|)
+operator|.
+name|leaves
+argument_list|()
 decl_stmt|;
 comment|// The list of pending tasks that aren't immediately submitted
 comment|// TODO: Is there a completion service, or a delegating executor that can

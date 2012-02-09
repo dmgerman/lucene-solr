@@ -122,7 +122,7 @@ name|IndexReader
 name|reader
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the context's leaves if this context is a top-level context    * otherwise<code>null</code>.    *<p>    * Note: this is convenience method since leaves can always be obtained by    * walking the context tree.    */
+comment|/**    * Returns the context's leaves if this context is a top-level context    * otherwise<code>null</code>. For convenience, if this is an    * {@link AtomicReaderContext} this returns itsself as the only leaf.    *<p>    * Note: this is convenience method since leaves can always be obtained by    * walking the context tree.    */
 DECL|method|leaves
 specifier|public
 specifier|abstract
