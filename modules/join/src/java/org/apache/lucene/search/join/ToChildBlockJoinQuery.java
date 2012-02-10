@@ -565,6 +565,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// NOTE: acceptDocs applies (and is checked) only in the
+comment|// child document space
 annotation|@
 name|Override
 DECL|method|scorer
@@ -602,7 +604,7 @@ literal|true
 argument_list|,
 literal|false
 argument_list|,
-name|acceptDocs
+literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -617,6 +619,11 @@ return|return
 literal|null
 return|;
 block|}
+comment|// NOTE: we cannot pass acceptDocs here because this
+comment|// will (most likely, justifiably) cause the filter to
+comment|// not return a FixedBitSet but rather a
+comment|// BitsFilteredDocIdSet.  Instead, we filter by
+comment|// acceptDocs when we score:
 specifier|final
 name|DocIdSet
 name|parents
@@ -627,17 +634,9 @@ name|getDocIdSet
 argument_list|(
 name|readerContext
 argument_list|,
-name|readerContext
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
+literal|null
 argument_list|)
 decl_stmt|;
-comment|// TODO: once we do random-access filters we can
-comment|// generalize this:
 if|if
 condition|(
 name|parents
@@ -684,6 +683,8 @@ operator|)
 name|parents
 argument_list|,
 name|doScores
+argument_list|,
+name|acceptDocs
 argument_list|)
 return|;
 block|}
@@ -756,6 +757,12 @@ specifier|final
 name|boolean
 name|doScores
 decl_stmt|;
+DECL|field|acceptDocs
+specifier|private
+specifier|final
+name|Bits
+name|acceptDocs
+decl_stmt|;
 DECL|field|parentScore
 specifier|private
 name|float
@@ -789,6 +796,9 @@ name|parentBits
 parameter_list|,
 name|boolean
 name|doScores
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 block|{
 name|super
@@ -813,6 +823,12 @@ operator|.
 name|parentScorer
 operator|=
 name|parentScorer
+expr_stmt|;
+name|this
+operator|.
+name|acceptDocs
+operator|=
+name|acceptDocs
 expr_stmt|;
 block|}
 annotation|@
@@ -852,6 +868,12 @@ throws|throws
 name|IOException
 block|{
 comment|//System.out.println("Q.nextDoc() parentDoc=" + parentDoc + " childDoc=" + childDoc);
+comment|// Loop until we hit a childDoc that's accepted
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 if|if
 condition|(
 name|childDoc
@@ -929,6 +951,23 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|acceptDocs
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|acceptDocs
+operator|.
+name|get
+argument_list|(
+name|childDoc
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
+if|if
+condition|(
 name|childDoc
 operator|<
 name|parentDoc
@@ -976,10 +1015,28 @@ assert|;
 name|childDoc
 operator|++
 expr_stmt|;
+if|if
+condition|(
+name|acceptDocs
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|acceptDocs
+operator|.
+name|get
+argument_list|(
+name|childDoc
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
 comment|//System.out.println("  " + childDoc);
 return|return
 name|childDoc
 return|;
+block|}
 block|}
 block|}
 annotation|@

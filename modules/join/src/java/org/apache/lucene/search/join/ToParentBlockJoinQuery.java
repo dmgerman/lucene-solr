@@ -634,6 +634,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// NOTE: acceptDocs applies (and is checked) only in the
+comment|// parent document space
 annotation|@
 name|Override
 DECL|method|scorer
@@ -671,7 +673,7 @@ literal|true
 argument_list|,
 literal|false
 argument_list|,
-name|acceptDocs
+literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -709,6 +711,11 @@ return|return
 literal|null
 return|;
 block|}
+comment|// NOTE: we cannot pass acceptDocs here because this
+comment|// will (most likely, justifiably) cause the filter to
+comment|// not return a FixedBitSet but rather a
+comment|// BitsFilteredDocIdSet.  Instead, we filter by
+comment|// acceptDocs when we score:
 specifier|final
 name|DocIdSet
 name|parents
@@ -719,17 +726,9 @@ name|getDocIdSet
 argument_list|(
 name|readerContext
 argument_list|,
-name|readerContext
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
+literal|null
 argument_list|)
 decl_stmt|;
-comment|// TODO: once we do random-access filters we can
-comment|// generalize this:
 if|if
 condition|(
 name|parents
@@ -778,6 +777,8 @@ argument_list|,
 name|firstChildDoc
 argument_list|,
 name|scoreMode
+argument_list|,
+name|acceptDocs
 argument_list|)
 return|;
 block|}
@@ -850,6 +851,12 @@ specifier|final
 name|ScoreMode
 name|scoreMode
 decl_stmt|;
+DECL|field|acceptDocs
+specifier|private
+specifier|final
+name|Bits
+name|acceptDocs
+decl_stmt|;
 DECL|field|parentDoc
 specifier|private
 name|int
@@ -909,6 +916,9 @@ name|firstChildDoc
 parameter_list|,
 name|ScoreMode
 name|scoreMode
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 block|{
 name|super
@@ -934,6 +944,12 @@ operator|.
 name|scoreMode
 operator|=
 name|scoreMode
+expr_stmt|;
+name|this
+operator|.
+name|acceptDocs
+operator|=
+name|acceptDocs
 expr_stmt|;
 if|if
 condition|(
@@ -1109,6 +1125,12 @@ throws|throws
 name|IOException
 block|{
 comment|//System.out.println("Q.nextDoc() nextChildDoc=" + nextChildDoc);
+comment|// Loop until we hit a parentDoc that's accepted
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 if|if
 condition|(
 name|nextChildDoc
@@ -1123,7 +1145,8 @@ operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
-comment|// Gather all children sharing the same parent as nextChildDoc
+comment|// Gather all children sharing the same parent as
+comment|// nextChildDoc
 name|parentDoc
 operator|=
 name|parentBits
@@ -1140,6 +1163,43 @@ operator|!=
 operator|-
 literal|1
 assert|;
+comment|//System.out.println("  nextChildDoc=" + nextChildDoc);
+if|if
+condition|(
+name|acceptDocs
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|acceptDocs
+operator|.
+name|get
+argument_list|(
+name|parentDoc
+argument_list|)
+condition|)
+block|{
+comment|// Parent doc not accepted; skip child docs until
+comment|// we hit a new parent doc:
+do|do
+block|{
+name|nextChildDoc
+operator|=
+name|childScorer
+operator|.
+name|nextDoc
+argument_list|()
+expr_stmt|;
+block|}
+do|while
+condition|(
+name|nextChildDoc
+operator|<
+name|parentDoc
+condition|)
+do|;
+continue|continue;
+block|}
 name|float
 name|totalScore
 init|=
@@ -1270,7 +1330,6 @@ operator|<
 name|parentDoc
 condition|)
 do|;
-comment|//System.out.println("  nextChildDoc=" + nextChildDoc);
 comment|// Parent& child docs are supposed to be orthogonal:
 assert|assert
 name|nextChildDoc
@@ -1317,6 +1376,7 @@ comment|//System.out.println("  return parentDoc=" + parentDoc);
 return|return
 name|parentDoc
 return|;
+block|}
 block|}
 annotation|@
 name|Override
