@@ -154,6 +154,24 @@ argument_list|,
 literal|"steven"
 argument_list|)
 expr_stmt|;
+name|checkOneTermReuse
+argument_list|(
+name|a
+argument_list|,
+literal|"steven\u2019s"
+argument_list|,
+literal|"steven"
+argument_list|)
+expr_stmt|;
+name|checkOneTermReuse
+argument_list|(
+name|a
+argument_list|,
+literal|"steven\uFF07s"
+argument_list|,
+literal|"steven"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** test use of exclusion set */
 DECL|method|testExclude
