@@ -350,7 +350,7 @@ name|currentSegmentsFile
 init|=
 name|segmentInfos
 operator|.
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 argument_list|()
 decl_stmt|;
 if|if
@@ -852,7 +852,7 @@ literal|"forced open of current segments file "
 operator|+
 name|segmentInfos
 operator|.
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2624,7 +2624,7 @@ name|segmentsFileName
 operator|=
 name|segmentInfos
 operator|.
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 argument_list|()
 expr_stmt|;
 name|generation

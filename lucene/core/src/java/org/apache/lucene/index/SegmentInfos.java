@@ -581,12 +581,12 @@ name|i
 argument_list|)
 return|;
 block|}
-comment|/**    * Get the generation (N) of the current segments_N file    * from a list of files.    *    * @param files -- array of file names to check    */
-DECL|method|getCurrentSegmentGeneration
+comment|/**    * Get the generation of the most recent commit to the    * list of index files (N in the segments_N file).    *    * @param files -- array of file names to check    */
+DECL|method|getLastCommitGeneration
 specifier|public
 specifier|static
 name|long
-name|getCurrentSegmentGeneration
+name|getLastCommitGeneration
 parameter_list|(
 name|String
 index|[]
@@ -667,12 +667,12 @@ return|return
 name|max
 return|;
 block|}
-comment|/**    * Get the generation (N) of the current segments_N file    * in the directory.    *    * @param directory -- directory to search for the latest segments_N file    */
-DECL|method|getCurrentSegmentGeneration
+comment|/**    * Get the generation of the most recent commit to the    * index in this directory (N in the segments_N file).    *    * @param directory -- directory to search for the latest segments_N file    */
+DECL|method|getLastCommitGeneration
 specifier|public
 specifier|static
 name|long
-name|getCurrentSegmentGeneration
+name|getLastCommitGeneration
 parameter_list|(
 name|Directory
 name|directory
@@ -683,7 +683,7 @@ block|{
 try|try
 block|{
 return|return
-name|getCurrentSegmentGeneration
+name|getLastCommitGeneration
 argument_list|(
 name|directory
 operator|.
@@ -704,12 +704,12 @@ literal|1
 return|;
 block|}
 block|}
-comment|/**    * Get the filename of the current segments_N file    * from a list of files.    *    * @param files -- array of file names to check    */
-DECL|method|getCurrentSegmentFileName
+comment|/**    * Get the filename of the segments_N file for the most    * recent commit in the list of index files.    *    * @param files -- array of file names to check    */
+DECL|method|getLastCommitSegmentsFileName
 specifier|public
 specifier|static
 name|String
-name|getCurrentSegmentFileName
+name|getLastCommitSegmentsFileName
 parameter_list|(
 name|String
 index|[]
@@ -729,19 +729,19 @@ name|SEGMENTS
 argument_list|,
 literal|""
 argument_list|,
-name|getCurrentSegmentGeneration
+name|getLastCommitGeneration
 argument_list|(
 name|files
 argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Get the filename of the current segments_N file    * in the directory.    *    * @param directory -- directory to search for the latest segments_N file    */
-DECL|method|getCurrentSegmentFileName
+comment|/**    * Get the filename of the segments_N file for the most    * recent commit to the index in this Directory.    *    * @param directory -- directory to search for the latest segments_N file    */
+DECL|method|getLastCommitSegmentsFileName
 specifier|public
 specifier|static
 name|String
-name|getCurrentSegmentFileName
+name|getLastCommitSegmentsFileName
 parameter_list|(
 name|Directory
 name|directory
@@ -760,7 +760,7 @@ name|SEGMENTS
 argument_list|,
 literal|""
 argument_list|,
-name|getCurrentSegmentGeneration
+name|getLastCommitGeneration
 argument_list|(
 name|directory
 argument_list|)
@@ -768,10 +768,10 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Get the segments_N filename in use by this segment infos.    */
-DECL|method|getCurrentSegmentFileName
+DECL|method|getSegmentsFileName
 specifier|public
 name|String
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 parameter_list|()
 block|{
 return|return
@@ -1617,87 +1617,6 @@ return|return
 name|lastGeneration
 return|;
 block|}
-comment|/**    * Current version number from segments file.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|readCurrentVersion
-specifier|public
-specifier|static
-name|long
-name|readCurrentVersion
-parameter_list|(
-name|Directory
-name|directory
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-comment|// Fully read the segments file: this ensures that it's
-comment|// completely written so that if
-comment|// IndexWriter.prepareCommit has been called (but not
-comment|// yet commit), then the reader will still see itself as
-comment|// current:
-name|SegmentInfos
-name|sis
-init|=
-operator|new
-name|SegmentInfos
-argument_list|()
-decl_stmt|;
-name|sis
-operator|.
-name|read
-argument_list|(
-name|directory
-argument_list|)
-expr_stmt|;
-return|return
-name|sis
-operator|.
-name|version
-return|;
-block|}
-comment|/**    * Returns userData from latest segments file    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
-DECL|method|readCurrentUserData
-specifier|public
-specifier|static
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|readCurrentUserData
-parameter_list|(
-name|Directory
-name|directory
-parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
-block|{
-name|SegmentInfos
-name|sis
-init|=
-operator|new
-name|SegmentInfos
-argument_list|()
-decl_stmt|;
-name|sis
-operator|.
-name|read
-argument_list|(
-name|directory
-argument_list|)
-expr_stmt|;
-return|return
-name|sis
-operator|.
-name|getUserData
-argument_list|()
-return|;
-block|}
 comment|/** If non-null, information about retries when loading    * the segments file will be printed to this.    */
 DECL|method|setInfoStream
 specifier|public
@@ -1980,7 +1899,7 @@ condition|)
 block|{
 name|genA
 operator|=
-name|getCurrentSegmentGeneration
+name|getLastCommitGeneration
 argument_list|(
 name|files
 argument_list|)
@@ -2765,7 +2684,7 @@ specifier|final
 name|String
 name|segmentFileName
 init|=
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 argument_list|()
 decl_stmt|;
 if|if
@@ -3159,7 +3078,7 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 argument_list|()
 argument_list|)
 operator|.

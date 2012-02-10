@@ -7963,7 +7963,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**<p>Expert: prepare for commit, specifying    *  commitUserData Map (String -> String).  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *  You can also just call {@link #commit(Map)} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    *    *  @param commitUserData Opaque Map (String->String)    *  that's recorded into the segments file in the index,    *  and retrievable by {@link    *  DirectoryReader#getCommitUserData}.  Note that when    *  IndexWriter commits itself during {@link #close}, the    *  commitUserData is unchanged (just carried over from    *  the prior commit).  If this is null then the previous    *  commitUserData is kept.  Also, the commitUserData will    *  only "stick" if there are actually changes in the    *  index to commit.    */
+comment|/**<p>Expert: prepare for commit, specifying    *  commitUserData Map (String -> String).  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *  You can also just call {@link #commit(Map)} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    *    *  @param commitUserData Opaque Map (String->String)    *  that's recorded into the segments file in the index,    *  and retrievable by {@link    *  IndexCommit#getUserData}.  Note that when    *  IndexWriter commits itself during {@link #close}, the    *  commitUserData is unchanged (just carried over from    *  the prior commit).  If this is null then the previous    *  commitUserData is kept.  Also, the commitUserData will    *  only "stick" if there are actually changes in the    *  index to commit.    */
 DECL|method|prepareCommit
 specifier|public
 specifier|final
@@ -8545,7 +8545,7 @@ literal|"commit: wrote segments file \""
 operator|+
 name|pendingCommit
 operator|.
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 argument_list|()
 operator|+
 literal|"\""

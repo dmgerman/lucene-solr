@@ -6357,7 +6357,7 @@ name|gen
 init|=
 name|SegmentInfos
 operator|.
-name|getCurrentSegmentGeneration
+name|getLastCommitGeneration
 argument_list|(
 name|dir
 argument_list|)
@@ -6379,7 +6379,7 @@ name|segmentsFileName
 init|=
 name|SegmentInfos
 operator|.
-name|getCurrentSegmentFileName
+name|getLastCommitSegmentsFileName
 argument_list|(
 name|dir
 argument_list|)
@@ -6604,7 +6604,7 @@ name|gen
 init|=
 name|SegmentInfos
 operator|.
-name|getCurrentSegmentGeneration
+name|getLastCommitGeneration
 argument_list|(
 name|dir
 argument_list|)
@@ -6625,7 +6625,7 @@ name|fileNameIn
 init|=
 name|SegmentInfos
 operator|.
-name|getCurrentSegmentFileName
+name|getLastCommitSegmentsFileName
 argument_list|(
 name|dir
 argument_list|)
@@ -6886,7 +6886,7 @@ name|gen
 init|=
 name|SegmentInfos
 operator|.
-name|getCurrentSegmentGeneration
+name|getLastCommitGeneration
 argument_list|(
 name|dir
 argument_list|)
@@ -7099,7 +7099,7 @@ name|gen
 init|=
 name|SegmentInfos
 operator|.
-name|getCurrentSegmentGeneration
+name|getLastCommitGeneration
 argument_list|(
 name|dir
 argument_list|)
@@ -7123,7 +7123,7 @@ name|fileNameIn
 init|=
 name|SegmentInfos
 operator|.
-name|getCurrentSegmentFileName
+name|getLastCommitSegmentsFileName
 argument_list|(
 name|dir
 argument_list|)

@@ -1238,7 +1238,7 @@ name|segmentsFile
 init|=
 name|segmentInfos
 operator|.
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 argument_list|()
 decl_stmt|;
 if|if
@@ -1602,7 +1602,7 @@ name|equals
 argument_list|(
 name|segmentInfos
 operator|.
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 argument_list|()
 argument_list|)
 condition|)
@@ -1725,29 +1725,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getCommitUserData
-specifier|public
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|getCommitUserData
-parameter_list|()
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-return|return
-name|segmentInfos
-operator|.
-name|getUserData
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|isCurrent
 specifier|public
 name|boolean
@@ -1773,14 +1750,31 @@ name|isClosed
 argument_list|()
 condition|)
 block|{
-comment|// we loaded SegmentInfos from the directory
-return|return
+comment|// Fully read the segments file: this ensures that it's
+comment|// completely written so that if
+comment|// IndexWriter.prepareCommit has been called (but not
+comment|// yet commit), then the reader will still see itself as
+comment|// current:
 name|SegmentInfos
+name|sis
+init|=
+operator|new
+name|SegmentInfos
+argument_list|()
+decl_stmt|;
+name|sis
 operator|.
-name|readCurrentVersion
+name|read
 argument_list|(
 name|directory
 argument_list|)
+expr_stmt|;
+comment|// we loaded SegmentInfos from the directory
+return|return
+name|sis
+operator|.
+name|getVersion
+argument_list|()
 operator|==
 name|segmentInfos
 operator|.
@@ -1972,7 +1966,7 @@ name|segmentsFileName
 operator|=
 name|infos
 operator|.
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 argument_list|()
 expr_stmt|;
 name|this

@@ -195,6 +195,8 @@ name|String
 argument_list|>
 name|getCommitUserData
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Expert: increments the refCount of this TaxonomyReader instance.     * RefCounts can be used to determine when a taxonomy reader can be closed     * safely, i.e. as soon as there are no more references.     * Be sure to always call a corresponding decRef(), in a finally clause;     * otherwise the reader may never be closed.     */
 DECL|method|incRef

@@ -4221,7 +4221,7 @@ name|assertEquals
 argument_list|(
 name|sis
 operator|.
-name|getCurrentSegmentFileName
+name|getSegmentsFileName
 argument_list|()
 argument_list|,
 name|c
