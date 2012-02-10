@@ -436,7 +436,9 @@ name|TokenStreamComponents
 argument_list|(
 operator|new
 name|Tokenizer
-argument_list|()
+argument_list|(
+name|reader
+argument_list|)
 block|{
 specifier|private
 specifier|final

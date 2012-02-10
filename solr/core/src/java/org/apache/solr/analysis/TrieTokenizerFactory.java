@@ -299,6 +299,8 @@ comment|// must share the attribute source with the NumericTokenStream we delega
 name|super
 argument_list|(
 name|ts
+argument_list|,
+name|input
 argument_list|)
 expr_stmt|;
 name|this

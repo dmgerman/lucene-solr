@@ -417,12 +417,12 @@ name|input
 parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|input
+argument_list|)
 expr_stmt|;
 name|init
 argument_list|(
-name|input
-argument_list|,
 name|matchVersion
 argument_list|)
 expr_stmt|;
@@ -445,12 +445,12 @@ block|{
 name|super
 argument_list|(
 name|source
+argument_list|,
+name|input
 argument_list|)
 expr_stmt|;
 name|init
 argument_list|(
-name|input
-argument_list|,
 name|matchVersion
 argument_list|)
 expr_stmt|;
@@ -473,12 +473,12 @@ block|{
 name|super
 argument_list|(
 name|factory
+argument_list|,
+name|input
 argument_list|)
 expr_stmt|;
 name|init
 argument_list|(
-name|input
-argument_list|,
 name|matchVersion
 argument_list|)
 expr_stmt|;
@@ -489,9 +489,6 @@ specifier|final
 name|void
 name|init
 parameter_list|(
-name|Reader
-name|input
-parameter_list|,
 name|Version
 name|matchVersion
 parameter_list|)
@@ -556,12 +553,6 @@ name|input
 argument_list|)
 expr_stmt|;
 block|}
-name|this
-operator|.
-name|input
-operator|=
-name|input
-expr_stmt|;
 block|}
 comment|// this tokenizer generates three attributes:
 comment|// term offset, positionIncrement and type

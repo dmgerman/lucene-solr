@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CannedAnalyzer
+name|CannedTokenStream
 import|;
 end_import
 
@@ -560,9 +560,7 @@ argument_list|(
 literal|"content"
 argument_list|,
 operator|new
-name|CannedAnalyzer
-operator|.
-name|CannedTokenizer
+name|CannedTokenStream
 argument_list|(
 name|tokens
 argument_list|)
@@ -576,12 +574,6 @@ operator|.
 name|addDocument
 argument_list|(
 name|doc
-argument_list|,
-operator|new
-name|CannedAnalyzer
-argument_list|(
-name|tokens
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|IndexReader
@@ -2172,9 +2164,7 @@ argument_list|(
 literal|"content"
 argument_list|,
 operator|new
-name|CannedAnalyzer
-operator|.
-name|CannedTokenizer
+name|CannedTokenStream
 argument_list|(
 name|tokens
 operator|.

@@ -10654,6 +10654,11 @@ name|Reader
 name|r
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|reset
