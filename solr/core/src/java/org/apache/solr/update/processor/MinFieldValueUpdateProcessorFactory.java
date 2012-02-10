@@ -19,6 +19,38 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -63,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An update processor that keeps only the the minimum value from any selected   * fields where multiple values are found.  Correct behavior assumes that all   * of the values in the SolrInputFields being mutated are mutually comparable;   * If this is not the case, then the full list of all values found will be   * used as is.  *<p>  * By default, this processor matches no fields.  *</p>  *  *<p>  * In the example configuration below, if a document contains multiple integer   * values (ie:<code>64, 128, 1024</code>) in the field   *<code>smallestFileSize</code> then only the smallest value   * (ie:<code>64</code>) will be kept in that field.  *<p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.MinFieldValueUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;smallestFileSize&lt;/str&gt;  *&lt;/processor&gt;  *</pre>  *  * @see MaxFieldValueUpdateProcessorFactory  * @see Collections#min  */
+comment|/**  * An update processor that keeps only the the minimum value from any selected   * fields where multiple values are found.   Correct behavior requires tha all   * of the values in the SolrInputFields being mutated are mutually comparable;   * If this is not the case, then a SolrException will br thrown.   *<p>  * By default, this processor matches no fields.  *</p>  *  *<p>  * In the example configuration below, if a document contains multiple integer   * values (ie:<code>64, 128, 1024</code>) in the field   *<code>smallestFileSize</code> then only the smallest value   * (ie:<code>64</code>) will be kept in that field.  *<p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.MinFieldValueUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;smallestFileSize&lt;/str&gt;  *&lt;/processor&gt;  *</pre>  *  * @see MaxFieldValueUpdateProcessorFactory  * @see Collections#min  */
 end_comment
 
 begin_class
@@ -122,7 +154,22 @@ name|ClassCastException
 name|e
 parameter_list|)
 block|{
-comment|/* NOOP */
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|BAD_REQUEST
+argument_list|,
+literal|"Field values are not mutually comparable: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 return|return
 name|result
