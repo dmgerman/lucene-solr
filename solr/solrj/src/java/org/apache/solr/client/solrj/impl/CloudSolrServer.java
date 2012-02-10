@@ -522,6 +522,16 @@ operator|=
 name|lbServer
 expr_stmt|;
 block|}
+DECL|method|getZkStateReader
+specifier|public
+name|ZkStateReader
+name|getZkStateReader
+parameter_list|()
+block|{
+return|return
+name|zkStateReader
+return|;
+block|}
 comment|/** Sets the default collection for request */
 DECL|method|setDefaultCollection
 specifier|public
