@@ -5087,6 +5087,23 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// test weighting of functions
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"a:testfunc(1)"
+argument_list|)
+argument_list|,
+literal|"/response/docs/[0]=={'a':1}"
+argument_list|)
+expr_stmt|;
 comment|// true and false functions and constants
 name|assertJQ
 argument_list|(
@@ -5144,7 +5161,7 @@ literal|"a1:if(true,'A','B')"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"b1:if(false,'A','B')"
+literal|"b1:if(false,'A',testfunc('B'))"
 argument_list|)
 argument_list|,
 literal|"/response/docs/[0]=={'a1':'A', 'b1':'B'}"
@@ -5161,7 +5178,7 @@ literal|"id:1"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"t1:and(true,true)"
+literal|"t1:and(testfunc(true),true)"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5189,7 +5206,7 @@ literal|"id:1"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"t1:or(true,true)"
+literal|"t1:or(testfunc(true),true)"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5217,7 +5234,7 @@ literal|"id:1"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"f1:xor(true,true)"
+literal|"f1:xor(testfunc(true),true)"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5245,7 +5262,7 @@ literal|"id:1"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"t:not(false),f:not(true)"
+literal|"t:not(testfunc(false)),f:not(true)"
 argument_list|)
 argument_list|,
 literal|"/response/docs/[0]=={'t':true, 'f':false}"
@@ -5262,7 +5279,7 @@ literal|"id:1"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"x:def(id,123.0), y:def(foo_f,234.0)"
+literal|"x:def(id,testfunc(123.0)), y:def(foo_f,234.0)"
 argument_list|)
 argument_list|,
 literal|"/response/docs/[0]=={'x':1.0, 'y':234.0}"

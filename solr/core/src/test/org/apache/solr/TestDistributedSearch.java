@@ -672,11 +672,11 @@ literal|"*:*"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"{!func}add("
+literal|"{!func}testfunc(add("
 operator|+
 name|i1
 operator|+
-literal|",5)"
+literal|",5))"
 operator|+
 literal|" desc"
 argument_list|)
