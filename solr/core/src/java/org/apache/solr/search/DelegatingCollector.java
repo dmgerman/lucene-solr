@@ -94,12 +94,13 @@ name|DelegatingCollector
 extends|extends
 name|Collector
 block|{
+comment|/* for internal testing purposes only to determine the number of times a delegating collector chain was used */
 DECL|field|setLastDelegateCount
+specifier|public
 specifier|static
 name|int
 name|setLastDelegateCount
 decl_stmt|;
-comment|// for testing purposes only to determine the number of times a delegating collector chain was used
 DECL|field|delegate
 specifier|protected
 name|Collector
