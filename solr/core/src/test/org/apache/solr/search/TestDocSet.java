@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FilterIndexReader
+name|FilterAtomicReader
 import|;
 end_import
 
@@ -1493,7 +1493,7 @@ name|IndexReader
 name|r
 init|=
 operator|new
-name|FilterIndexReader
+name|FilterAtomicReader
 argument_list|(
 literal|null
 argument_list|)
