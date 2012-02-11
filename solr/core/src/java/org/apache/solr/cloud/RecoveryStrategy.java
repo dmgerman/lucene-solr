@@ -513,9 +513,6 @@ name|close
 operator|=
 literal|true
 expr_stmt|;
-name|interrupt
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|recoveryFailed
 specifier|private
