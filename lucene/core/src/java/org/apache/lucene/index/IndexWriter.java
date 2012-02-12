@@ -3520,7 +3520,16 @@ block|}
 assert|assert
 name|oldWriter
 operator|.
-name|assertNoActiveDWPT
+name|perThreadPool
+operator|.
+name|numDeactivatedThreadStates
+argument_list|()
+operator|==
+name|oldWriter
+operator|.
+name|perThreadPool
+operator|.
+name|getMaxThreadStates
 argument_list|()
 assert|;
 block|}

@@ -1992,7 +1992,7 @@ name|allActiveThreads
 init|=
 name|flushControl
 operator|.
-name|allActiveThreads
+name|allActiveThreadStates
 argument_list|()
 decl_stmt|;
 name|long
@@ -2015,7 +2015,7 @@ operator|.
 name|next
 argument_list|()
 operator|.
-name|perThread
+name|dwpt
 operator|.
 name|bytesUsed
 argument_list|()
@@ -2331,7 +2331,7 @@ argument_list|()
 operator|&&
 name|state
 operator|.
-name|perThread
+name|dwpt
 operator|.
 name|pendingDeletes
 operator|.
@@ -2527,7 +2527,7 @@ argument_list|()
 operator|&&
 name|state
 operator|.
-name|perThread
+name|dwpt
 operator|.
 name|getNumDocsInRAM
 argument_list|()
@@ -2668,7 +2668,7 @@ name|max
 argument_list|(
 name|state
 operator|.
-name|perThread
+name|dwpt
 operator|.
 name|getNumDocsInRAM
 argument_list|()
@@ -2724,7 +2724,7 @@ name|allActiveThreads
 init|=
 name|flushControl
 operator|.
-name|allActiveThreads
+name|allActiveThreadStates
 argument_list|()
 decl_stmt|;
 while|while

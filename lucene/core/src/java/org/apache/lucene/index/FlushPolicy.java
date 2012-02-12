@@ -136,14 +136,6 @@ argument_list|,
 name|state
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|state
-operator|.
-name|flushPending
-condition|)
-block|{
 name|onDelete
 argument_list|(
 name|control
@@ -151,7 +143,6 @@ argument_list|,
 name|state
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|/**    * Called for each document addition on the given {@link ThreadState}s    * {@link DocumentsWriterPerThread}.    *<p>    * Note: This method is synchronized by the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */
 DECL|method|onInsert
@@ -211,7 +202,7 @@ block|{
 assert|assert
 name|perThreadState
 operator|.
-name|perThread
+name|dwpt
 operator|.
 name|getNumDocsInRAM
 argument_list|()
@@ -247,7 +238,7 @@ name|activePerThreadsIterator
 init|=
 name|control
 operator|.
-name|allActiveThreads
+name|allActiveThreadStates
 argument_list|()
 decl_stmt|;
 while|while
@@ -290,7 +281,7 @@ name|maxRamSoFar
 operator|&&
 name|next
 operator|.
-name|perThread
+name|dwpt
 operator|.
 name|getNumDocsInRAM
 argument_list|()

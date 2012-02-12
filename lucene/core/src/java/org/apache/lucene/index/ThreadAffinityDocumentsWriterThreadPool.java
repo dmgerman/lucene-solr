@@ -89,18 +89,7 @@ name|ThreadState
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Creates a new {@link DocumentsWriterPerThreadPool} with max.    * {@link #DEFAULT_MAX_THREAD_STATES} thread states.    */
-DECL|method|ThreadAffinityDocumentsWriterThreadPool
-specifier|public
-name|ThreadAffinityDocumentsWriterThreadPool
-parameter_list|()
-block|{
-name|this
-argument_list|(
-name|DEFAULT_MAX_THREAD_STATES
-argument_list|)
-expr_stmt|;
-block|}
+comment|/**    * Creates a new {@link ThreadAffinityDocumentsWriterThreadPool} with a given maximum of {@link ThreadState}s.    */
 DECL|method|ThreadAffinityDocumentsWriterThreadPool
 specifier|public
 name|ThreadAffinityDocumentsWriterThreadPool

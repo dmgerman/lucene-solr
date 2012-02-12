@@ -280,6 +280,16 @@ name|DEFAULT_RAM_PER_THREAD_HARD_LIMIT_MB
 init|=
 literal|1945
 decl_stmt|;
+comment|/** The maximum number of simultaneous threads that may be    *  indexing documents at once in IndexWriter; if more    *  than this many threads arrive they will wait for    *  others to finish. Default value is 8. */
+DECL|field|DEFAULT_MAX_THREAD_STATES
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|DEFAULT_MAX_THREAD_STATES
+init|=
+literal|8
+decl_stmt|;
 comment|/**    * Sets the default (for any instance) maximum time to wait for a write lock    * (in milliseconds).    */
 DECL|method|setDefaultWriteLockTimeout
 specifier|public
@@ -580,7 +590,9 @@ name|indexerThreadPool
 operator|=
 operator|new
 name|ThreadAffinityDocumentsWriterThreadPool
-argument_list|()
+argument_list|(
+name|DEFAULT_MAX_THREAD_STATES
+argument_list|)
 expr_stmt|;
 name|readerTermsIndexDivisor
 operator|=
@@ -1160,7 +1172,7 @@ return|return
 name|mergePolicy
 return|;
 block|}
-comment|/** Expert: Sets the {@link DocumentsWriterPerThreadPool} instance used by the    * IndexWriter to assign thread-states to incoming indexing threads. If no    * {@link DocumentsWriterPerThreadPool} is set {@link IndexWriter} will use    * {@link ThreadAffinityDocumentsWriterThreadPool} with max number of    * thread-states set to {@link DocumentsWriterPerThreadPool#DEFAULT_MAX_THREAD_STATES} (see    * {@link DocumentsWriterPerThreadPool#DEFAULT_MAX_THREAD_STATES}).    *</p>    *<p>    * NOTE: The given {@link DocumentsWriterPerThreadPool} instance must not be used with    * other {@link IndexWriter} instances once it has been initialized / associated with an    * {@link IndexWriter}.    *</p>    *<p>    * NOTE: This only takes effect when IndexWriter is first created.</p>*/
+comment|/** Expert: Sets the {@link DocumentsWriterPerThreadPool} instance used by the    * IndexWriter to assign thread-states to incoming indexing threads. If no    * {@link DocumentsWriterPerThreadPool} is set {@link IndexWriter} will use    * {@link ThreadAffinityDocumentsWriterThreadPool} with max number of    * thread-states set to {@link #DEFAULT_MAX_THREAD_STATES} (see    * {@link #DEFAULT_MAX_THREAD_STATES}).    *</p>    *<p>    * NOTE: The given {@link DocumentsWriterPerThreadPool} instance must not be used with    * other {@link IndexWriter} instances once it has been initialized / associated with an    * {@link IndexWriter}.    *</p>    *<p>    * NOTE: This only takes effect when IndexWriter is first created.</p>*/
 DECL|method|setIndexerThreadPool
 specifier|public
 name|IndexWriterConfig
