@@ -67,6 +67,14 @@ argument_list|,
 literal|true
 argument_list|)
 block|,
+DECL|enum constant|EPL
+name|EPL
+argument_list|(
+literal|"Eclipse Public License Version 1.0"
+argument_list|,
+literal|false
+argument_list|)
+block|,
 DECL|enum constant|MIT
 name|MIT
 argument_list|(
