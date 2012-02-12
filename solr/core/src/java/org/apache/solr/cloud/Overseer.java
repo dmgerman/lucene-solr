@@ -3756,11 +3756,21 @@ name|ZkCoreNodeProps
 name|props
 parameter_list|)
 block|{
+name|String
+name|coreUrl
+init|=
+name|props
+operator|.
+name|getCoreUrl
+argument_list|()
+decl_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Leader change pooled."
+literal|"Leader change pooled: "
+operator|+
+name|coreUrl
 argument_list|)
 expr_stmt|;
 name|fifo
@@ -3778,10 +3788,7 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|,
-name|props
-operator|.
-name|getCoreUrl
-argument_list|()
+name|coreUrl
 argument_list|)
 argument_list|)
 expr_stmt|;
