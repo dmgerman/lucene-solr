@@ -668,9 +668,16 @@ argument_list|)
 decl_stmt|;
 name|server
 operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|30000
+argument_list|)
+expr_stmt|;
+name|server
+operator|.
 name|setSoTimeout
 argument_list|(
-literal|15000
+literal|30000
 argument_list|)
 expr_stmt|;
 name|PrepRecovery
