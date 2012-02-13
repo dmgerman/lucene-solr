@@ -109,6 +109,14 @@ argument_list|,
 literal|false
 argument_list|)
 block|,
+DECL|enum constant|COMPOUND
+name|COMPOUND
+argument_list|(
+literal|"Compound license (see NOTICE)."
+argument_list|,
+literal|true
+argument_list|)
+block|,
 DECL|enum constant|FAKE
 name|FAKE
 argument_list|(
@@ -186,6 +194,35 @@ operator|+
 literal|'\''
 operator|+
 literal|'}'
+return|;
+block|}
+comment|/**    * Expected license file suffix for a given license type.    */
+DECL|method|licenseFileSuffix
+specifier|public
+name|String
+name|licenseFileSuffix
+parameter_list|()
+block|{
+return|return
+literal|"-LICENSE-"
+operator|+
+name|this
+operator|.
+name|name
+argument_list|()
+operator|+
+literal|".txt"
+return|;
+block|}
+comment|/**    * Expected notice file suffix for a given license type.    */
+DECL|method|noticeFileSuffix
+specifier|public
+name|String
+name|noticeFileSuffix
+parameter_list|()
+block|{
+return|return
+literal|"-NOTICE.txt"
 return|;
 block|}
 block|}
