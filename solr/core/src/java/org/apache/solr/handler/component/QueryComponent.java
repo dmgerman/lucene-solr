@@ -2953,7 +2953,7 @@ name|params
 operator|.
 name|getBool
 argument_list|(
-literal|"group.distibuted.first"
+literal|"group.distributed.first"
 argument_list|,
 literal|false
 argument_list|)
@@ -3100,7 +3100,7 @@ name|params
 operator|.
 name|getBool
 argument_list|(
-literal|"group.distibuted.second"
+literal|"group.distributed.second"
 argument_list|,
 literal|false
 argument_list|)
