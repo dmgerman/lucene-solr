@@ -134,6 +134,21 @@ name|name
 expr_stmt|;
 if|if
 condition|(
+name|name
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Core needs a name"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|coreContainer
 operator|!=
 literal|null
@@ -172,21 +187,6 @@ else|:
 name|name
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|name
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Core needs a name"
-argument_list|)
-throw|;
 block|}
 if|if
 condition|(
