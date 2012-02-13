@@ -96,11 +96,6 @@ specifier|private
 name|long
 name|waitingGen
 decl_stmt|;
-DECL|field|waitingNeedsDeletes
-specifier|private
-name|boolean
-name|waitingNeedsDeletes
-decl_stmt|;
 comment|/**    * Create NRTManagerReopenThread, to periodically reopen the NRT searcher.    *    * @param targetMaxStaleSec Maximum time until a new    *        reader must be opened; this sets the upper bound    *        on how slowly reopens may occur    *    * @param targetMinStaleSec Mininum time until a new    *        reader can be opened; this sets the lower bound    *        on how quickly reopens may occur, when a caller    *        is waiting for a specific indexing change to    *        become visible.    */
 DECL|method|NRTManagerReopenThread
 specifier|public
@@ -230,17 +225,10 @@ specifier|synchronized
 name|void
 name|waiting
 parameter_list|(
-name|boolean
-name|needsDeletes
-parameter_list|,
 name|long
 name|targetGen
 parameter_list|)
 block|{
-name|waitingNeedsDeletes
-operator||=
-name|needsDeletes
-expr_stmt|;
 name|waitingGen
 operator|=
 name|Math
@@ -255,7 +243,7 @@ expr_stmt|;
 name|notify
 argument_list|()
 expr_stmt|;
-comment|//System.out.println(Thread.currentThread().getName() + ": force wakeup waitingGen=" + waitingGen + " applyDeletes=" + applyDeletes + " waitingNeedsDeletes=" + waitingNeedsDeletes);
+comment|//System.out.println(Thread.currentThread().getName() + ": force wakeup waitingGen=" + waitingGen + " applyDeletes=" + applyDeletes);
 block|}
 annotation|@
 name|Override
@@ -310,9 +298,7 @@ operator|>
 name|manager
 operator|.
 name|getCurrentSearchingGen
-argument_list|(
-name|waitingNeedsDeletes
-argument_list|)
+argument_list|()
 expr_stmt|;
 specifier|final
 name|long
@@ -416,9 +402,7 @@ comment|//final long t0 = System.nanoTime();
 name|manager
 operator|.
 name|maybeReopen
-argument_list|(
-name|waitingNeedsDeletes
-argument_list|)
+argument_list|()
 expr_stmt|;
 comment|//System.out.println("reopen took " + ((System.nanoTime()-t0)/1000000.0) + " msec");
 block|}
