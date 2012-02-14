@@ -2799,7 +2799,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"dbqlevel"
+name|DELETE_BY_QUERY_LEVEL
 argument_list|,
 literal|2
 argument_list|)
@@ -3200,7 +3200,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"dbqlevel"
+name|DELETE_BY_QUERY_LEVEL
 argument_list|,
 literal|3
 argument_list|)
