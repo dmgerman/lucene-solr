@@ -41,20 +41,6 @@ operator|.
 name|index
 operator|.
 name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocValues
 operator|.
 name|Source
 import|;
@@ -110,7 +96,6 @@ end_comment
 
 begin_class
 DECL|class|DirectSource
-specifier|public
 specifier|abstract
 class|class
 name|DirectSource

@@ -194,7 +194,6 @@ end_comment
 
 begin_class
 DECL|class|Ints
-specifier|public
 specifier|final
 class|class
 name|Ints

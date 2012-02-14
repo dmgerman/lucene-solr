@@ -132,7 +132,6 @@ end_comment
 
 begin_class
 DECL|class|Writer
-specifier|public
 specifier|abstract
 class|class
 name|Writer
@@ -161,26 +160,6 @@ operator|=
 name|bytesUsed
 expr_stmt|;
 block|}
-comment|/**    * Filename extension for index files    */
-DECL|field|INDEX_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|INDEX_EXTENSION
-init|=
-literal|"idx"
-decl_stmt|;
-comment|/**    * Filename extension for data files.    */
-DECL|field|DATA_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|DATA_EXTENSION
-init|=
-literal|"dat"
-decl_stmt|;
 comment|/**    * Factory method to create a {@link Writer} instance for a given type. This    * method returns default implementations for each of the different types    * defined in the {@link Type} enumeration.    *     * @param type    *          the {@link Type} to create the {@link Writer} for    * @param id    *          the file name id used to create files within the writer.    * @param directory    *          the {@link Directory} to create the files from.    * @param bytesUsed    *          a byte-usage tracking reference    * @param fasterButMoreRam Whether the space used for packed ints should be rounded up for higher lookup performance.    *                         Currently this parameter only applies for types {@link Type#BYTES_VAR_SORTED}    *                         and {@link Type#BYTES_FIXED_SORTED}.    * @return a new {@link Writer} instance for the given {@link Type}    * @throws IOException    */
 DECL|method|create
 specifier|public

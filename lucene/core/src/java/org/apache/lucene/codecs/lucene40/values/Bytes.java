@@ -442,7 +442,6 @@ end_comment
 
 begin_class
 DECL|class|Bytes
-specifier|public
 specifier|final
 class|class
 name|Bytes
@@ -1255,6 +1254,8 @@ name|id
 argument_list|,
 name|DV_SEGMENT_SUFFIX
 argument_list|,
+name|DocValuesWriterBase
+operator|.
 name|DATA_EXTENSION
 argument_list|)
 argument_list|,
@@ -1355,6 +1356,8 @@ name|id
 argument_list|,
 name|DV_SEGMENT_SUFFIX
 argument_list|,
+name|DocValuesWriterBase
+operator|.
 name|INDEX_EXTENSION
 argument_list|)
 argument_list|,
@@ -1592,7 +1595,7 @@ name|id
 argument_list|,
 name|DV_SEGMENT_SUFFIX
 argument_list|,
-name|Writer
+name|DocValuesWriterBase
 operator|.
 name|DATA_EXTENSION
 argument_list|)
@@ -1634,7 +1637,7 @@ name|id
 argument_list|,
 name|DV_SEGMENT_SUFFIX
 argument_list|,
-name|Writer
+name|DocValuesWriterBase
 operator|.
 name|INDEX_EXTENSION
 argument_list|)

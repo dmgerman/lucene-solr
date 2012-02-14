@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene40
+DECL|package|org.apache.lucene.codecs.lucene40.values
 package|package
 name|org
 operator|.
@@ -11,6 +11,8 @@ operator|.
 name|codecs
 operator|.
 name|lucene40
+operator|.
+name|values
 package|;
 end_package
 

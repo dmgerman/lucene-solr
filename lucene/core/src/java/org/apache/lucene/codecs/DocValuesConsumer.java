@@ -34,24 +34,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|values
-operator|.
-name|Writer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|DocValuesField
@@ -551,7 +533,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Merges a document with the given<code>docID</code>. The methods    * implementation obtains the value for the<i>sourceDoc</i> id from the    * current {@link Source}.    *<p>    * This method is used during merging to provide implementation agnostic    * default merge implementation.    *</p>    *<p>    * All documents IDs between the given ID and the previously given ID or    *<tt>0</tt> if the method is call the first time are filled with default    * values depending on the {@link Writer} implementation. The given document    * ID must always be greater than the previous ID or<tt>0</tt> if called the    * first time.    */
+comment|/**    * Merges a document with the given<code>docID</code>. The methods    * implementation obtains the value for the<i>sourceDoc</i> id from the    * current {@link Source}.    *<p>    * This method is used during merging to provide implementation agnostic    * default merge implementation.    *</p>    *<p>    * All documents IDs between the given ID and the previously given ID or    *<tt>0</tt> if the method is call the first time are filled with default    * values depending on the implementation. The given document    * ID must always be greater than the previous ID or<tt>0</tt> if called the    * first time.    */
 DECL|method|mergeDoc
 specifier|protected
 name|void

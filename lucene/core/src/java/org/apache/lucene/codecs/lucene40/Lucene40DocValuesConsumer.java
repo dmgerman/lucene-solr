@@ -48,6 +48,10 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|lucene40
+operator|.
+name|values
+operator|.
 name|DocValuesWriterBase
 import|;
 end_import

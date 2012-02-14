@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs
+DECL|package|org.apache.lucene.codecs.lucene40.values
 package|package
 name|org
 operator|.
@@ -9,6 +9,10 @@ operator|.
 name|lucene
 operator|.
 name|codecs
+operator|.
+name|lucene40
+operator|.
+name|values
 package|;
 end_package
 
@@ -33,6 +37,34 @@ operator|.
 name|util
 operator|.
 name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|DocValuesConsumer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|PerDocConsumer
 import|;
 end_import
 
@@ -162,10 +194,6 @@ begin_comment
 comment|/**  * Abstract base class for PerDocConsumer implementations  *  * @lucene.experimental  */
 end_comment
 
-begin_comment
-comment|//TODO: this needs to go under lucene40 codec (its specific to its impl)
-end_comment
-
 begin_class
 DECL|class|DocValuesWriterBase
 specifier|public
@@ -198,6 +226,26 @@ specifier|private
 specifier|final
 name|boolean
 name|fasterButMoreRam
+decl_stmt|;
+comment|/**    * Filename extension for index files    */
+DECL|field|INDEX_EXTENSION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|INDEX_EXTENSION
+init|=
+literal|"idx"
+decl_stmt|;
+comment|/**    * Filename extension for data files.    */
+DECL|field|DATA_EXTENSION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DATA_EXTENSION
+init|=
+literal|"dat"
 decl_stmt|;
 comment|/**    * @param state The state to initiate a {@link PerDocConsumer} instance    */
 DECL|method|DocValuesWriterBase

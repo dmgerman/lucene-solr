@@ -194,7 +194,6 @@ end_comment
 
 begin_class
 DECL|class|Floats
-specifier|public
 class|class
 name|Floats
 block|{

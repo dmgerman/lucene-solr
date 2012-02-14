@@ -58,25 +58,11 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DocValuesWriterBase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|lucene40
 operator|.
 name|values
 operator|.
-name|Writer
+name|DocValuesWriterBase
 import|;
 end_import
 
@@ -371,8 +357,6 @@ name|filename
 argument_list|,
 literal|""
 argument_list|,
-name|Writer
-operator|.
 name|INDEX_EXTENSION
 argument_list|)
 argument_list|)
@@ -392,8 +376,6 @@ name|filename
 argument_list|,
 literal|""
 argument_list|,
-name|Writer
-operator|.
 name|INDEX_EXTENSION
 argument_list|)
 argument_list|)
@@ -451,8 +433,6 @@ name|filename
 argument_list|,
 literal|""
 argument_list|,
-name|Writer
-operator|.
 name|DATA_EXTENSION
 argument_list|)
 argument_list|)
@@ -472,8 +452,6 @@ name|filename
 argument_list|,
 literal|""
 argument_list|,
-name|Writer
-operator|.
 name|DATA_EXTENSION
 argument_list|)
 argument_list|)

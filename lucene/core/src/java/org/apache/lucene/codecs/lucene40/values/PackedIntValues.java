@@ -1108,7 +1108,7 @@ name|Bytes
 operator|.
 name|DV_SEGMENT_SUFFIX
 argument_list|,
-name|Writer
+name|DocValuesWriterBase
 operator|.
 name|DATA_EXTENSION
 argument_list|)

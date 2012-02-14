@@ -88,6 +88,10 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|lucene40
+operator|.
+name|values
+operator|.
 name|DocValuesReaderBase
 import|;
 end_import
