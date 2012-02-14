@@ -250,8 +250,6 @@ literal|"/admin/luke"
 argument_list|)
 argument_list|,
 literal|"//int[@name='numDocs'][.='2']"
-argument_list|,
-literal|"//int[@name='numTerms'][.='5']"
 argument_list|)
 expr_stmt|;
 name|assertQ

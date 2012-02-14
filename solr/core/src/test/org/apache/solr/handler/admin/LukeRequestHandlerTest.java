@@ -706,6 +706,10 @@ argument_list|,
 literal|"fl"
 argument_list|,
 literal|"solr_t solr_s"
+argument_list|,
+literal|"show"
+argument_list|,
+literal|"all"
 argument_list|)
 decl_stmt|;
 try|try

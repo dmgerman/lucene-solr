@@ -3887,8 +3887,6 @@ argument_list|()
 operator|.
 name|getIndexReader
 argument_list|()
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|long
