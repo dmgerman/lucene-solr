@@ -76,20 +76,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-DECL|field|EMPTY_ARRAY
-specifier|public
-specifier|static
-specifier|final
-name|PerDocProducer
-index|[]
-name|EMPTY_ARRAY
-init|=
-operator|new
-name|PerDocProducer
-index|[
-literal|0
-index|]
-decl_stmt|;
 block|}
 end_class
 
