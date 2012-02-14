@@ -2693,7 +2693,7 @@ argument_list|)
 expr_stmt|;
 name|mgr
 operator|.
-name|maybeReopen
+name|maybeRefresh
 argument_list|()
 expr_stmt|;
 specifier|final
