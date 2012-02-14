@@ -1347,7 +1347,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Close this NRTManager to future searching. Any searches still in process in    * other threads won't be affected, and they should still call    * {@link SearcherManager#release(IndexSearcher)} after they are done.    *     *<p>    *<b>NOTE</b>: caller must separately close the writer.    */
+comment|/**    * Close this NRTManager to future searching. Any searches still in process in    * other threads won't be affected, and they should still call    * {@link SearcherManager#release} after they are done.    *     *<p>    *<b>NOTE</b>: caller must separately close the writer.    */
 DECL|method|close
 specifier|public
 name|void
