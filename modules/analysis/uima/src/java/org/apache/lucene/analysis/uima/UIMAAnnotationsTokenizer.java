@@ -377,15 +377,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|offsetAttr
-operator|.
-name|endOffset
-argument_list|()
-operator|<
-name|finalOffset
-condition|)
 name|offsetAttr
 operator|.
 name|setOffset
