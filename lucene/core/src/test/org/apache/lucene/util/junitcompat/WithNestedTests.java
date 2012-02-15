@@ -217,12 +217,12 @@ name|PrintStream
 name|prevSysOut
 decl_stmt|;
 DECL|field|sysout
-specifier|protected
+specifier|private
 name|ByteArrayOutputStream
 name|sysout
 decl_stmt|;
 DECL|field|syserr
-specifier|protected
+specifier|private
 name|ByteArrayOutputStream
 name|syserr
 decl_stmt|;

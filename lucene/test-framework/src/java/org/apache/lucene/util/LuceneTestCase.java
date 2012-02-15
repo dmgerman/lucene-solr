@@ -3304,7 +3304,7 @@ name|name
 operator|=
 name|description
 operator|.
-name|getDisplayName
+name|getMethodName
 argument_list|()
 expr_stmt|;
 block|}
