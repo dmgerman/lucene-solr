@@ -108,7 +108,7 @@ return|return
 name|instance
 return|;
 block|}
-comment|/**    *    * @param keyPrefix    * @param aePath    * @return    */
+comment|/**    *    * @param keyPrefix    * @param aePath    * @return AEProvider    */
 DECL|method|getAEProvider
 specifier|public
 specifier|synchronized
@@ -181,7 +181,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    *    * @param keyPrefix    * @param aePath    * @param runtimeParameters    * @return    */
+comment|/**    *    * @param keyPrefix    * @param aePath    * @param runtimeParameters    * @return AEProvider    */
 DECL|method|getAEProvider
 specifier|public
 specifier|synchronized

@@ -58,7 +58,7 @@ specifier|public
 interface|interface
 name|AEProvider
 block|{
-comment|/**    *    * @return    * @throws ResourceInitializationException    */
+comment|/**    *    * @return AnalysisEngine    * @throws ResourceInitializationException    */
 DECL|method|getAE
 specifier|public
 name|AnalysisEngine
