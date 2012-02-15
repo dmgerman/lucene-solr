@@ -68,10 +68,10 @@ name|BasicAEProviderTest
 block|{
 annotation|@
 name|Test
-DECL|method|testBasicInititalization
+DECL|method|testBasicInitialization
 specifier|public
 name|void
-name|testBasicInititalization
+name|testBasicInitialization
 parameter_list|()
 throws|throws
 name|Exception
@@ -82,7 +82,7 @@ init|=
 operator|new
 name|BasicAEProvider
 argument_list|(
-literal|"/uima/DummyEntityAE.xml"
+literal|"/uima/TestEntityAnnotatorAE.xml"
 argument_list|)
 decl_stmt|;
 name|AnalysisEngine

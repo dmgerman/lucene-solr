@@ -827,9 +827,9 @@ argument_list|,
 operator|new
 name|UIMABaseAnalyzer
 argument_list|(
-literal|"/uima/AggregateSentenceAE.xml"
+literal|"/uima/TestAggregateSentenceAE.xml"
 argument_list|,
-literal|"org.apache.uima.TokenAnnotation"
+literal|"org.apache.lucene.uima.ts.TokenAnnotation"
 argument_list|)
 argument_list|,
 literal|1000

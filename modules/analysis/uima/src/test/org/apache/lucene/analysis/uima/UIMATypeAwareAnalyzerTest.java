@@ -245,11 +245,11 @@ argument_list|,
 operator|new
 name|UIMATypeAwareAnalyzer
 argument_list|(
-literal|"/uima/AggregateDummySentenceAE.xml"
+literal|"/uima/TestAggregateSentenceAE.xml"
 argument_list|,
-literal|"org.apache.uima.TokenAnnotation"
+literal|"org.apache.lucene.uima.ts.TokenAnnotation"
 argument_list|,
-literal|"tokenType"
+literal|"pos"
 argument_list|)
 argument_list|,
 literal|1000
