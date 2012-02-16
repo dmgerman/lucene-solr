@@ -58,7 +58,7 @@ specifier|private
 name|String
 name|roles
 init|=
-literal|""
+literal|null
 decl_stmt|;
 DECL|field|numShards
 specifier|private

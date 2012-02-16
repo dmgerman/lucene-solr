@@ -178,6 +178,15 @@ name|SHARD
 init|=
 literal|"shard"
 decl_stmt|;
+DECL|field|ROLES
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ROLES
+init|=
+literal|"roles"
+decl_stmt|;
 comment|/** Prefix for core property name=value pair **/
 DECL|field|PROPERTY_PREFIX
 specifier|public
