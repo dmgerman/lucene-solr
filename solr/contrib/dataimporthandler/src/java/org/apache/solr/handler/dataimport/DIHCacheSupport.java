@@ -150,10 +150,10 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-DECL|field|cacheVariableName
+DECL|field|cacheForeignKey
 specifier|private
 name|String
-name|cacheVariableName
+name|cacheForeignKey
 decl_stmt|;
 DECL|field|cacheImplName
 specifier|private
@@ -334,7 +334,14 @@ argument_list|(
 literal|"="
 argument_list|)
 decl_stmt|;
-name|cacheVariableName
+name|cacheKey
+operator|=
+name|splits
+index|[
+literal|0
+index|]
+expr_stmt|;
+name|cacheForeignKey
 operator|=
 name|splits
 index|[
@@ -347,7 +354,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|cacheVariableName
+name|cacheForeignKey
 operator|=
 name|lookupKey
 expr_stmt|;
@@ -380,7 +387,7 @@ name|DIHCacheSupport
 operator|.
 name|CACHE_FOREIGN_KEY
 argument_list|,
-name|lookupKey
+name|cacheForeignKey
 argument_list|,
 name|Context
 operator|.
@@ -614,7 +621,7 @@ name|dataSourceRowCache
 operator|=
 literal|null
 expr_stmt|;
-name|cacheVariableName
+name|cacheForeignKey
 operator|=
 literal|null
 expr_stmt|;
@@ -867,7 +874,7 @@ name|context
 operator|.
 name|resolve
 argument_list|(
-name|cacheVariableName
+name|cacheForeignKey
 argument_list|)
 decl_stmt|;
 if|if
@@ -887,7 +894,7 @@ name|WARN
 argument_list|,
 literal|"The cache lookup value : "
 operator|+
-name|cacheVariableName
+name|cacheForeignKey
 operator|+
 literal|" is resolved to be null in the entity :"
 operator|+
