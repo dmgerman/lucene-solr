@@ -45,12 +45,54 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|hamcrest
+operator|.
+name|CoreMatchers
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Before
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
 name|junit
 operator|.
 name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
 import|;
 end_import
 
@@ -81,13 +123,121 @@ literal|"dataimport-schema.xml"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testEphemeralCache
+annotation|@
+name|Before
+DECL|method|reset
 specifier|public
 name|void
-name|testEphemeralCache
+name|reset
+parameter_list|()
+block|{
+name|DestroyCountCache
+operator|.
+name|destroyed
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|setupMockData
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testSingleThreaded
+specifier|public
+name|void
+name|testSingleThreaded
 parameter_list|()
 throws|throws
 name|Exception
+block|{
+name|assertFullImport
+argument_list|(
+name|getDataConfigDotXml
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testWithThreadedParamEqualOne
+specifier|public
+name|void
+name|testWithThreadedParamEqualOne
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertFullImport
+argument_list|(
+name|getDataConfigDotXml
+argument_list|(
+literal|1
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Ignore
+argument_list|(
+literal|"TODO: fix included in SOLR-3011"
+argument_list|)
+annotation|@
+name|Test
+DECL|method|testMultiThreaded
+specifier|public
+name|void
+name|testMultiThreaded
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// Try between 2 and 6 threads
+name|int
+name|numThreads
+init|=
+name|random
+operator|.
+name|nextInt
+argument_list|(
+literal|4
+argument_list|)
+operator|+
+literal|2
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TRYING "
+operator|+
+name|numThreads
+argument_list|)
+expr_stmt|;
+name|assertFullImport
+argument_list|(
+name|getDataConfigDotXml
+argument_list|(
+name|numThreads
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|setupMockData
+specifier|private
+name|void
+name|setupMockData
+parameter_list|()
 block|{
 name|List
 name|parentRows
@@ -654,12 +804,110 @@ name|iterator
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|getDataConfigDotXml
+specifier|private
+name|String
+name|getDataConfigDotXml
+parameter_list|(
+name|int
+name|numThreads
+parameter_list|)
+block|{
+return|return
+literal|"<dataConfig>"
+operator|+
+literal|"<dataSource type=\"MockDataSource\" />"
+operator|+
+literal|"<document>"
+operator|+
+literal|"<entity "
+operator|+
+literal|"     name=\"PARENT\""
+operator|+
+literal|"     processor=\"SqlEntityProcessor\""
+operator|+
+literal|"     cacheImpl=\"org.apache.solr.handler.dataimport.DestroyCountCache\""
+operator|+
+literal|"     cacheName=\"PARENT\""
+operator|+
+literal|"     query=\"SELECT * FROM PARENT\"  "
+operator|+
+operator|(
+name|numThreads
+operator|==
+literal|0
+condition|?
+literal|""
+else|:
+literal|"threads=\""
+operator|+
+name|numThreads
+operator|+
+literal|"\" "
+operator|)
+operator|+
+literal|">"
+operator|+
+literal|"<entity"
+operator|+
+literal|"       name=\"CHILD_1\""
+operator|+
+literal|"       processor=\"SqlEntityProcessor\""
+operator|+
+literal|"       cacheImpl=\"org.apache.solr.handler.dataimport.DestroyCountCache\""
+operator|+
+literal|"       cacheName=\"CHILD\""
+operator|+
+literal|"       cachePk=\"id\""
+operator|+
+literal|"       cacheLookup=\"PARENT.id\""
+operator|+
+literal|"       fieldNames=\"id,         child1a_mult_s, child1b_s\""
+operator|+
+literal|"       fieldTypes=\"BIGDECIMAL, STRING,         STRING\""
+operator|+
+literal|"       query=\"SELECT * FROM CHILD_1\"       "
+operator|+
+literal|"     />"
+operator|+
+literal|"<entity"
+operator|+
+literal|"       name=\"CHILD_2\""
+operator|+
+literal|"       processor=\"SqlEntityProcessor\""
+operator|+
+literal|"       cacheImpl=\"org.apache.solr.handler.dataimport.DestroyCountCache\""
+operator|+
+literal|"       cachePk=\"id\""
+operator|+
+literal|"       cacheLookup=\"PARENT.id\""
+operator|+
+literal|"       query=\"SELECT * FROM CHILD_2\"       "
+operator|+
+literal|"     />"
+operator|+
+literal|"</entity>"
+operator|+
+literal|"</document>"
+operator|+
+literal|"</dataConfig>"
+return|;
+block|}
+DECL|method|assertFullImport
+specifier|private
+name|void
+name|assertFullImport
+parameter_list|(
+name|String
+name|dataConfig
+parameter_list|)
+throws|throws
+name|Exception
+block|{
 name|runFullImport
 argument_list|(
-name|loadDataConfig
-argument_list|(
-literal|"dataimport-cache-ephemeral.xml"
-argument_list|)
+name|dataConfig
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -770,6 +1018,21 @@ literal|"child1a_mult_s:(uno OR one)"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|DestroyCountCache
+operator|.
+name|destroyed
+operator|.
+name|size
+argument_list|()
+argument_list|,
+name|is
+argument_list|(
+literal|3
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
