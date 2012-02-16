@@ -1205,8 +1205,6 @@ name|getCoreByCollection
 argument_list|(
 name|cores
 argument_list|,
-name|core
-argument_list|,
 name|corename
 argument_list|,
 name|path
@@ -1712,9 +1710,6 @@ parameter_list|(
 name|CoreContainer
 name|cores
 parameter_list|,
-name|SolrCore
-name|core
-parameter_list|,
 name|String
 name|corename
 parameter_list|,
@@ -1789,6 +1784,11 @@ operator|.
 name|entrySet
 argument_list|()
 decl_stmt|;
+name|SolrCore
+name|core
+init|=
+literal|null
+decl_stmt|;
 name|done
 label|:
 for|for
@@ -1825,8 +1825,6 @@ operator|=
 name|checkProps
 argument_list|(
 name|cores
-argument_list|,
-name|core
 argument_list|,
 name|path
 argument_list|,
@@ -1904,8 +1902,6 @@ name|checkProps
 argument_list|(
 name|cores
 argument_list|,
-name|core
-argument_list|,
 name|path
 argument_list|,
 name|zkProps
@@ -1936,9 +1932,6 @@ parameter_list|(
 name|CoreContainer
 name|cores
 parameter_list|,
-name|SolrCore
-name|core
-parameter_list|,
 name|String
 name|path
 parameter_list|,
@@ -1948,6 +1941,11 @@ parameter_list|)
 block|{
 name|String
 name|corename
+decl_stmt|;
+name|SolrCore
+name|core
+init|=
+literal|null
 decl_stmt|;
 if|if
 condition|(
