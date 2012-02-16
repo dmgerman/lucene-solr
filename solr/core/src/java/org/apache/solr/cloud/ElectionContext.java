@@ -648,11 +648,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|SolrCore
-name|core
-init|=
-literal|null
-decl_stmt|;
 name|String
 name|coreName
 init|=
@@ -664,6 +659,11 @@ name|ZkStateReader
 operator|.
 name|CORE_NAME_PROP
 argument_list|)
+decl_stmt|;
+name|SolrCore
+name|core
+init|=
+literal|null
 decl_stmt|;
 try|try
 block|{
