@@ -146,7 +146,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|NumericField
+name|IntField
 import|;
 end_import
 
@@ -393,7 +393,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"a b c"
 argument_list|)
@@ -407,7 +407,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"d e f"
 argument_list|)
@@ -421,7 +421,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"a f"
 argument_list|)
@@ -872,7 +872,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|NumericField
+name|IntField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -1519,7 +1519,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|NumericField
+name|IntField
 argument_list|(
 literal|"id"
 argument_list|,

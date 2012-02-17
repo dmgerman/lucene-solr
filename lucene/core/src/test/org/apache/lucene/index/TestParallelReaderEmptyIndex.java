@@ -462,7 +462,7 @@ argument_list|)
 expr_stmt|;
 name|idField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"1"
 argument_list|)
@@ -492,7 +492,7 @@ argument_list|)
 expr_stmt|;
 name|idField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"2"
 argument_list|)

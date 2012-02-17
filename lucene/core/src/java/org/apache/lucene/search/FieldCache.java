@@ -74,7 +74,61 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|NumericField
+name|IntField
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FloatField
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|LongField
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|DoubleField
 import|;
 end_import
 
@@ -381,7 +435,7 @@ parameter_list|)
 block|{
 comment|// TODO: would be far better to directly parse from
 comment|// UTF8 bytes... but really users should use
-comment|// NumericField, instead, which already decodes
+comment|// IntField, instead, which already decodes
 comment|// directly from byte[]
 return|return
 name|Byte
@@ -446,7 +500,7 @@ parameter_list|)
 block|{
 comment|// TODO: would be far better to directly parse from
 comment|// UTF8 bytes... but really users should use
-comment|// NumericField, instead, which already decodes
+comment|// IntField, instead, which already decodes
 comment|// directly from byte[]
 return|return
 name|Short
@@ -511,7 +565,7 @@ parameter_list|)
 block|{
 comment|// TODO: would be far better to directly parse from
 comment|// UTF8 bytes... but really users should use
-comment|// NumericField, instead, which already decodes
+comment|// IntField, instead, which already decodes
 comment|// directly from byte[]
 return|return
 name|Integer
@@ -576,7 +630,7 @@ parameter_list|)
 block|{
 comment|// TODO: would be far better to directly parse from
 comment|// UTF8 bytes... but really users should use
-comment|// NumericField, instead, which already decodes
+comment|// FloatField, instead, which already decodes
 comment|// directly from byte[]
 return|return
 name|Float
@@ -641,7 +695,7 @@ parameter_list|)
 block|{
 comment|// TODO: would be far better to directly parse from
 comment|// UTF8 bytes... but really users should use
-comment|// NumericField, instead, which already decodes
+comment|// LongField, instead, which already decodes
 comment|// directly from byte[]
 return|return
 name|Long
@@ -706,7 +760,7 @@ parameter_list|)
 block|{
 comment|// TODO: would be far better to directly parse from
 comment|// UTF8 bytes... but really users should use
-comment|// NumericField, instead, which already decodes
+comment|// DoubleField, instead, which already decodes
 comment|// directly from byte[]
 return|return
 name|Double
@@ -749,7 +803,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A parser instance for int values encoded by {@link NumericUtils}, e.g. when indexed    * via {@link NumericField}/{@link NumericTokenStream}.    */
+comment|/**    * A parser instance for int values encoded by {@link NumericUtils}, e.g. when indexed    * via {@link IntField}/{@link NumericTokenStream}.    */
 DECL|field|NUMERIC_UTILS_INT_PARSER
 specifier|public
 specifier|static
@@ -825,7 +879,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A parser instance for float values encoded with {@link NumericUtils}, e.g. when indexed    * via {@link NumericField}/{@link NumericTokenStream}.    */
+comment|/**    * A parser instance for float values encoded with {@link NumericUtils}, e.g. when indexed    * via {@link FloatField}/{@link NumericTokenStream}.    */
 DECL|field|NUMERIC_UTILS_FLOAT_PARSER
 specifier|public
 specifier|static
@@ -906,7 +960,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A parser instance for long values encoded by {@link NumericUtils}, e.g. when indexed    * via {@link NumericField}/{@link NumericTokenStream}.    */
+comment|/**    * A parser instance for long values encoded by {@link NumericUtils}, e.g. when indexed    * via {@link LongField}/{@link NumericTokenStream}.    */
 DECL|field|NUMERIC_UTILS_LONG_PARSER
 specifier|public
 specifier|static
@@ -982,7 +1036,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A parser instance for double values encoded with {@link NumericUtils}, e.g. when indexed    * via {@link NumericField}/{@link NumericTokenStream}.    */
+comment|/**    * A parser instance for double values encoded with {@link NumericUtils}, e.g. when indexed    * via {@link DoubleField}/{@link NumericTokenStream}.    */
 DECL|field|NUMERIC_UTILS_DOUBLE_PARSER
 specifier|public
 specifier|static

@@ -80,7 +80,23 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|NumericField
+name|FieldType
+operator|.
+name|NumericType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|DoubleField
 import|;
 end_import
 
@@ -399,9 +415,7 @@ name|latLongType
 operator|.
 name|setNumericType
 argument_list|(
-name|NumericField
-operator|.
-name|DataType
+name|NumericType
 operator|.
 name|DOUBLE
 argument_list|)
@@ -470,7 +484,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|NumericField
+name|DoubleField
 argument_list|(
 name|latField
 argument_list|,
@@ -485,7 +499,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|NumericField
+name|DoubleField
 argument_list|(
 name|lngField
 argument_list|,

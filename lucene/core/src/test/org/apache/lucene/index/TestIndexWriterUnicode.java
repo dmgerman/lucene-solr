@@ -2236,7 +2236,7 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|s
 argument_list|)

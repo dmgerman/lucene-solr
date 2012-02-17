@@ -1215,7 +1215,7 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|mydoc
 operator|.
@@ -1260,7 +1260,7 @@ argument_list|)
 expr_stmt|;
 name|f2
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|mydoc
 operator|.

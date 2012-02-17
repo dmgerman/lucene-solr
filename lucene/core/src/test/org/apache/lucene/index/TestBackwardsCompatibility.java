@@ -182,7 +182,21 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|NumericField
+name|IntField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|LongField
 import|;
 end_import
 
@@ -3373,7 +3387,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|NumericField
+name|IntField
 argument_list|(
 literal|"trieInt"
 argument_list|,
@@ -3386,7 +3400,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|NumericField
+name|LongField
 argument_list|(
 literal|"trieLong"
 argument_list|,

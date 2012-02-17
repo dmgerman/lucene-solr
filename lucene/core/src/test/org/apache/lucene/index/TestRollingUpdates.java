@@ -356,7 +356,7 @@ literal|"docid"
 argument_list|)
 operator|)
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|myID
 argument_list|)

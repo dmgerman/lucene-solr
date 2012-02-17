@@ -433,7 +433,7 @@ control|)
 block|{
 name|idField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|""
 operator|+

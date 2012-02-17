@@ -11182,7 +11182,7 @@ argument_list|)
 expr_stmt|;
 name|contentField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"other"
 argument_list|)
@@ -11196,7 +11196,7 @@ argument_list|)
 expr_stmt|;
 name|contentField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"term"
 argument_list|)
@@ -11210,7 +11210,7 @@ argument_list|)
 expr_stmt|;
 name|contentField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|bigTerm
 argument_list|)
@@ -11224,7 +11224,7 @@ argument_list|)
 expr_stmt|;
 name|contentField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"zzz"
 argument_list|)

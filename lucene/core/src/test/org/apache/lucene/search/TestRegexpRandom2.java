@@ -573,7 +573,7 @@ argument_list|)
 decl_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|s
 argument_list|)

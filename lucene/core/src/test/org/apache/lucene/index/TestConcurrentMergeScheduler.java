@@ -474,7 +474,7 @@ control|)
 block|{
 name|idField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|Integer
 operator|.
@@ -763,7 +763,7 @@ control|)
 block|{
 name|idField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|Integer
 operator|.
@@ -1165,7 +1165,7 @@ control|)
 block|{
 name|idField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|Integer
 operator|.

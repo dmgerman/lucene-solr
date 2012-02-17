@@ -952,7 +952,7 @@ argument_list|)
 decl_stmt|;
 name|idField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|id
 argument_list|)

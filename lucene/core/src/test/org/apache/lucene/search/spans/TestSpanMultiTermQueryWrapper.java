@@ -260,7 +260,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"quick brown fox"
 argument_list|)
@@ -274,7 +274,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"jumps over lazy broun dog"
 argument_list|)
@@ -288,7 +288,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"jumps over extremely very lazy broxn dog"
 argument_list|)

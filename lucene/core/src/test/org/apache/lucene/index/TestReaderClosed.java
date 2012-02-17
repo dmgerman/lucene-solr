@@ -310,7 +310,7 @@ control|)
 block|{
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|_TestUtil
 operator|.

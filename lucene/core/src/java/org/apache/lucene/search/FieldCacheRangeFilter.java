@@ -66,6 +66,78 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|IntField
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FloatField
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|LongField
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|DoubleField
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|NumericUtils
@@ -100,26 +172,8 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|NumericField
-import|;
-end_import
-
 begin_comment
-comment|// for javadocs
-end_comment
-
-begin_comment
-comment|/**  * A range filter built on top of a cached single term field (in {@link FieldCache}).  *   *<p>{@code FieldCacheRangeFilter} builds a single cache for the field the first time it is used.  * Each subsequent {@code FieldCacheRangeFilter} on the same field then reuses this cache,  * even if the range itself changes.   *   *<p>This means that {@code FieldCacheRangeFilter} is much faster (sometimes more than 100x as fast)   * as building a {@link TermRangeFilter}, if using a {@link #newStringRange}.  * However, if the range never changes it is slower (around 2x as slow) than building  * a CachingWrapperFilter on top of a single {@link TermRangeFilter}.  *  * For numeric data types, this filter may be significantly faster than {@link NumericRangeFilter}.  * Furthermore, it does not need the numeric values encoded by {@link NumericField}. But  * it has the problem that it only works with exact one value/document (see below).  *  *<p>As with all {@link FieldCache} based functionality, {@code FieldCacheRangeFilter} is only valid for   * fields which exact one term for each document (except for {@link #newStringRange}  * where 0 terms are also allowed). Due to a restriction of {@link FieldCache}, for numeric ranges  * all terms that do not have a numeric value, 0 is assumed.  *  *<p>Thus it works on dates, prices and other single value fields but will not work on  * regular text fields. It is preferable to use a<code>NOT_ANALYZED</code> field to ensure that  * there is only a single term.   *  *<p>This class does not have an constructor, use one of the static factory methods available,  * that create a correct instance for different data types supported by {@link FieldCache}.  */
+comment|/**  * A range filter built on top of a cached single term field (in {@link FieldCache}).  *   *<p>{@code FieldCacheRangeFilter} builds a single cache for the field the first time it is used.  * Each subsequent {@code FieldCacheRangeFilter} on the same field then reuses this cache,  * even if the range itself changes.   *   *<p>This means that {@code FieldCacheRangeFilter} is much faster (sometimes more than 100x as fast)   * as building a {@link TermRangeFilter}, if using a {@link #newStringRange}.  * However, if the range never changes it is slower (around 2x as slow) than building  * a CachingWrapperFilter on top of a single {@link TermRangeFilter}.  *  * For numeric data types, this filter may be significantly faster than {@link NumericRangeFilter}.  * Furthermore, it does not need the numeric values encoded  * by {@link IntField}, {@link FloatField}, {@link  * LongField} or {@link DoubleField}. But  * it has the problem that it only works with exact one value/document (see below).  *  *<p>As with all {@link FieldCache} based functionality, {@code FieldCacheRangeFilter} is only valid for   * fields which exact one term for each document (except for {@link #newStringRange}  * where 0 terms are also allowed). Due to a restriction of {@link FieldCache}, for numeric ranges  * all terms that do not have a numeric value, 0 is assumed.  *  *<p>Thus it works on dates, prices and other single value fields but will not work on  * regular text fields. It is preferable to use a<code>NOT_ANALYZED</code> field to ensure that  * there is only a single term.   *  *<p>This class does not have an constructor, use one of the static factory methods available,  * that create a correct instance for different data types supported by {@link FieldCache}.  */
 end_comment
 
 begin_class

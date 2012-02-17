@@ -779,7 +779,7 @@ control|)
 block|{
 name|idField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|pad
 argument_list|(
@@ -878,7 +878,7 @@ expr_stmt|;
 block|}
 name|randField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|pad
 argument_list|(
@@ -888,7 +888,7 @@ argument_list|)
 expr_stmt|;
 name|bodyField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"body"
 argument_list|)

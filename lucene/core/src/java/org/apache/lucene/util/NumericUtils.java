@@ -40,9 +40,67 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|NumericField
+name|DoubleField
 import|;
 end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FloatField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|IntField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|LongField
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -93,7 +151,7 @@ name|NumericUtils
 parameter_list|()
 block|{}
 comment|// no instance!
-comment|/**    * The default precision step used by {@link NumericField}, {@link NumericTokenStream},    * {@link NumericRangeQuery}, and {@link NumericRangeFilter} as default    */
+comment|/**    * The default precision step used by {@link IntField},    * {@link FloatField}, {@link LongField}, {@link    * DoubleField}, {@link NumericTokenStream}, {@link    * NumericRangeQuery}, and {@link NumericRangeFilter}.    */
 DECL|field|PRECISION_STEP_DEFAULT
 specifier|public
 specifier|static

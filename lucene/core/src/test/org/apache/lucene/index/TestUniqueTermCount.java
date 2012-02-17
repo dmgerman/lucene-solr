@@ -328,7 +328,7 @@ control|)
 block|{
 name|foo
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|addValue
 argument_list|()

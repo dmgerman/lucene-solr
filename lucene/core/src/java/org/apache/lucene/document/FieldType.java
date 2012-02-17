@@ -100,6 +100,25 @@ name|FieldType
 implements|implements
 name|IndexableFieldType
 block|{
+comment|/** Data type of the numeric value    * @since 3.2    */
+DECL|enum|NumericType
+DECL|enum constant|INT
+DECL|enum constant|LONG
+DECL|enum constant|FLOAT
+DECL|enum constant|DOUBLE
+specifier|public
+specifier|static
+enum|enum
+name|NumericType
+block|{
+name|INT
+block|,
+name|LONG
+block|,
+name|FLOAT
+block|,
+name|DOUBLE
+block|}
 DECL|field|indexed
 specifier|private
 name|boolean
@@ -153,9 +172,7 @@ name|docValueType
 decl_stmt|;
 DECL|field|numericType
 specifier|private
-name|NumericField
-operator|.
-name|DataType
+name|NumericType
 name|numericType
 decl_stmt|;
 DECL|field|frozen
@@ -597,9 +614,7 @@ specifier|public
 name|void
 name|setNumericType
 parameter_list|(
-name|NumericField
-operator|.
-name|DataType
+name|NumericType
 name|type
 parameter_list|)
 block|{
@@ -611,12 +626,10 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/** Numeric {@link NumericField.DataType}; if    *  non-null then the field's value will be indexed    *  numerically so that {@link NumericRangeQuery} can be    *  used at search time. */
+comment|/** NumericDataType; if    *  non-null then the field's value will be indexed    *  numerically so that {@link NumericRangeQuery} can be    *  used at search time. */
 DECL|method|numericType
 specifier|public
-name|NumericField
-operator|.
-name|DataType
+name|NumericType
 name|numericType
 parameter_list|()
 block|{

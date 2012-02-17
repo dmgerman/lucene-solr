@@ -70,7 +70,21 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|NumericField
+name|FloatField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|IntField
 import|;
 end_import
 
@@ -169,20 +183,6 @@ operator|.
 name|index
 operator|.
 name|RandomIndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReaderContext
 import|;
 end_import
 
@@ -639,7 +639,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|NumericField
+name|FloatField
 argument_list|(
 literal|"float"
 argument_list|,
@@ -708,7 +708,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|NumericField
+name|IntField
 argument_list|(
 literal|"int"
 argument_list|,

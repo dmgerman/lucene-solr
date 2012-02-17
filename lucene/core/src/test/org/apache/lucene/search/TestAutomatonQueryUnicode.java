@@ -308,7 +308,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"\uD866\uDF05abcdef"
 argument_list|)
@@ -322,7 +322,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"\uD866\uDF06ghijkl"
 argument_list|)
@@ -337,7 +337,7 @@ expr_stmt|;
 comment|// this sorts before the previous two in UTF-8/UTF-32, but after in UTF-16!!!
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"\uFB94mnopqr"
 argument_list|)
@@ -351,7 +351,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"\uFB95stuvwx"
 argument_list|)
@@ -366,7 +366,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"a\uFFFCbc"
 argument_list|)
@@ -380,7 +380,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"a\uFFFDbc"
 argument_list|)
@@ -394,7 +394,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"a\uFFFEbc"
 argument_list|)
@@ -408,7 +408,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"a\uFB94bc"
 argument_list|)
@@ -422,7 +422,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"bacadaba"
 argument_list|)
@@ -436,7 +436,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"\uFFFD"
 argument_list|)
@@ -450,7 +450,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"\uFFFD\uD866\uDF05"
 argument_list|)
@@ -464,7 +464,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"\uFFFD\uFFFD"
 argument_list|)

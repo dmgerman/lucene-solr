@@ -1985,7 +1985,7 @@ argument_list|)
 expr_stmt|;
 name|fullPathField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|categoryPath
 operator|.

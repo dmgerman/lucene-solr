@@ -42,7 +42,9 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|NumericField
+name|FieldType
+operator|.
+name|NumericType
 import|;
 end_import
 
@@ -82,12 +84,10 @@ name|format
 decl_stmt|;
 DECL|field|type
 specifier|private
-name|NumericField
-operator|.
-name|DataType
+name|NumericType
 name|type
 decl_stmt|;
-comment|/**    * Constructs a {@link NumericConfig} object.    *     * @param precisionStep    *          the precision used to index the numeric values    * @param format    *          the {@link NumberFormat} used to parse a {@link String} to    *          {@link Number}    * @param type    *          the numeric type used to index the numeric values    *     * @see NumericConfig#setPrecisionStep(int)    * @see NumericConfig#setNumberFormat(NumberFormat)    * @see #setType(org.apache.lucene.document.NumericField.DataType)    */
+comment|/**    * Constructs a {@link NumericConfig} object.    *     * @param precisionStep    *          the precision used to index the numeric values    * @param format    *          the {@link NumberFormat} used to parse a {@link String} to    *          {@link Number}    * @param type    *          the numeric type used to index the numeric values    *     * @see NumericConfig#setPrecisionStep(int)    * @see NumericConfig#setNumberFormat(NumberFormat)    * @see #setType(org.apache.lucene.document.FieldType.NumericType)    */
 DECL|method|NumericConfig
 specifier|public
 name|NumericConfig
@@ -98,9 +98,7 @@ parameter_list|,
 name|NumberFormat
 name|format
 parameter_list|,
-name|NumericField
-operator|.
-name|DataType
+name|NumericType
 name|type
 parameter_list|)
 block|{
@@ -162,9 +160,7 @@ block|}
 comment|/**    * Returns the numeric type used to index the numeric values    *     * @return the numeric type used to index the numeric values    */
 DECL|method|getType
 specifier|public
-name|NumericField
-operator|.
-name|DataType
+name|NumericType
 name|getType
 parameter_list|()
 block|{
@@ -178,9 +174,7 @@ specifier|public
 name|void
 name|setType
 parameter_list|(
-name|NumericField
-operator|.
-name|DataType
+name|NumericType
 name|type
 parameter_list|)
 block|{

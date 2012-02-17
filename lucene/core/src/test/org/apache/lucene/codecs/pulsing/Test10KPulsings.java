@@ -525,7 +525,7 @@ control|)
 block|{
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|df
 operator|.
@@ -941,7 +941,7 @@ comment|// whitespace
 block|}
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 name|sb
 operator|.

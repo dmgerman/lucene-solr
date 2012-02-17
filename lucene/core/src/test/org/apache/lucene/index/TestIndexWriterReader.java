@@ -5439,7 +5439,7 @@ argument_list|)
 expr_stmt|;
 name|id
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"0"
 argument_list|)
@@ -5453,7 +5453,7 @@ argument_list|)
 expr_stmt|;
 name|id
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"1"
 argument_list|)
@@ -5620,7 +5620,7 @@ argument_list|)
 expr_stmt|;
 name|id
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"0"
 argument_list|)
@@ -5634,7 +5634,7 @@ argument_list|)
 expr_stmt|;
 name|id
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"1"
 argument_list|)

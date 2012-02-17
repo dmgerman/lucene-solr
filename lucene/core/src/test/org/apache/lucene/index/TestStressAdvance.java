@@ -266,7 +266,7 @@ condition|)
 block|{
 name|f
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"a"
 argument_list|)
@@ -283,7 +283,7 @@ else|else
 block|{
 name|f
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"b"
 argument_list|)
@@ -291,7 +291,7 @@ expr_stmt|;
 block|}
 name|idField
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|""
 operator|+

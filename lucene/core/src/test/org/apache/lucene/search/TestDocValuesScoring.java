@@ -424,21 +424,21 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"quick brown fox"
 argument_list|)
 expr_stmt|;
 name|field2
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"quick brown fox"
 argument_list|)
 expr_stmt|;
 name|dvField
 operator|.
-name|setValue
+name|setFloatValue
 argument_list|(
 literal|2f
 argument_list|)
@@ -453,21 +453,21 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"jumps over lazy brown dog"
 argument_list|)
 expr_stmt|;
 name|field2
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"jumps over lazy brown dog"
 argument_list|)
 expr_stmt|;
 name|dvField
 operator|.
-name|setValue
+name|setFloatValue
 argument_list|(
 literal|4f
 argument_list|)

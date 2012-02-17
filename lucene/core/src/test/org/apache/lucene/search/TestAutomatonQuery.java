@@ -383,7 +383,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"some text from doc two a short piece 5678.91"
 argument_list|)
@@ -397,7 +397,7 @@ argument_list|)
 expr_stmt|;
 name|field
 operator|.
-name|setValue
+name|setStringValue
 argument_list|(
 literal|"doc three has some different stuff"
 operator|+
