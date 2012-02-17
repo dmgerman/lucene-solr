@@ -914,6 +914,23 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+comment|// we cache the inner field instances, so we must check
+comment|// that the delegate readers are really still open:
+for|for
+control|(
+specifier|final
+name|AtomicReader
+name|reader
+range|:
+name|parallelReaders
+control|)
+block|{
+name|reader
+operator|.
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 name|fields
 return|;
