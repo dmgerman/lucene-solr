@@ -269,7 +269,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class to manage sharing near-real-time searchers  * across multiple searching thread.  The difference vs  * SearcherManager is that this class enables individual  * requests to wait until specific indexing changes are  * visible.  *  *<p>You must create an IndexWriter, then create a {@link  * NRTManager.TrackingIndexWriter} from it, and pass that to the  * NRTManager.  You may want to create two NRTManagers, once  * that always applies deletes on refresh and one that does  * not.  In this case you should use a single {@link  * NRTManager.TrackingIndexWriter} instance for both.  *  *<p>Then, use {@link #getSearcherManager} to obtain the  * {@link SearcherManager} that you then use to  * acquire/release searchers.  Don't call maybeReopen on  * that SearcherManager!  Only call NRTManager's {@link  * #maybeReopen}.  *  *<p>NOTE: to use this class, you must call {@link #maybeReopen()}  * periodically.  The {@link NRTManagerReopenThread} is a  * simple class to do this on a periodic basis, and reopens  * more quickly if a request is waiting.  If you implement  * your own reopener, be sure to call {@link  * #addWaitingListener} so your reopener is notified when a  * caller is waiting for a specific generation  * searcher.</p>  *  * @see SearcherFactory  *   * @lucene.experimental  */
+comment|/**  * Utility class to manage sharing near-real-time searchers  * across multiple searching thread.  The difference vs  * SearcherManager is that this class enables individual  * requests to wait until specific indexing changes are  * visible.  *  *<p>You must create an IndexWriter, then create a {@link  * NRTManager.TrackingIndexWriter} from it, and pass that to the  * NRTManager.  You may want to create two NRTManagers, once  * that always applies deletes on refresh and one that does  * not.  In this case you should use a single {@link  * NRTManager.TrackingIndexWriter} instance for both.  *  *<p>Then, use {@link #acquire} to obtain the  * {@link IndexSearcher}, and {@link #release} (ideally,  * from within a<code>finally</code> clause) to release it.  *  *<p>NOTE: to use this class, you must call {@link #maybeRefresh()}  * periodically.  The {@link NRTManagerReopenThread} is a  * simple class to do this on a periodic basis, and reopens  * more quickly if a request is waiting.  If you implement  * your own reopener, be sure to call {@link  * #addWaitingListener} so your reopener is notified when a  * caller is waiting for a specific generation  * searcher.</p>  *  * @see SearcherFactory  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -1104,7 +1104,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Waits for the target generation to become visible in    * the searcher.    * If the current searcher is older than the    * target generation, this method will block    * until the searcher is reopened, by another via    * {@link #maybeReopen} or until the {@link NRTManager} is closed.    *     * @param targetGen the generation to wait for    */
+comment|/**    * Waits for the target generation to become visible in    * the searcher.    * If the current searcher is older than the    * target generation, this method will block    * until the searcher is reopened, by another via    * {@link #maybeRefresh} or until the {@link NRTManager} is closed.    *     * @param targetGen the generation to wait for    */
 DECL|method|waitForGeneration
 specifier|public
 name|void
@@ -1127,7 +1127,7 @@ name|NANOSECONDS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Waits for the target generation to become visible in    * the searcher.  If the current searcher is older than    * the target generation, this method will block until the    * searcher has been reopened by another thread via    * {@link #maybeReopen}, the given waiting time has elapsed, or until    * the NRTManager is closed.    *<p>    * NOTE: if the waiting time elapses before the requested target generation is    * available the current {@link SearcherManager} is returned instead.    *     * @param targetGen    *          the generation to wait for    * @param time    *          the time to wait for the target generation    * @param unit    *          the waiting time's time unit    */
+comment|/**    * Waits for the target generation to become visible in    * the searcher.  If the current searcher is older than    * the target generation, this method will block until the    * searcher has been reopened by another thread via    * {@link #maybeRefresh}, the given waiting time has elapsed, or until    * the NRTManager is closed.    *<p>    * NOTE: if the waiting time elapses before the requested target generation is    * available the current {@link SearcherManager} is returned instead.    *     * @param targetGen    *          the generation to wait for    * @param time    *          the time to wait for the target generation    * @param unit    *          the waiting time's time unit    */
 DECL|method|waitForGeneration
 specifier|public
 name|void
