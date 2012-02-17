@@ -160,12 +160,9 @@ name|otherCommit
 operator|.
 name|getDirectory
 argument_list|()
-operator|.
-name|equals
-argument_list|(
+operator|==
 name|getDirectory
 argument_list|()
-argument_list|)
 operator|&&
 name|otherCommit
 operator|.
