@@ -267,9 +267,21 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+name|afterClose
+argument_list|()
+expr_stmt|;
 block|}
 block|}
-comment|/**    * You must call this, periodically, if you want that {@link #acquire()} will    * return refreshed instances.    *     *<p>    *<b>Threads</b>: it's fine for more than one thread to call this at once.    * Only the first thread will attempt the refresh; subsequent threads will see    * that another thread is already handling refresh and will return    * immediately. Note that this means if another thread is already refreshing    * then subsequent threads will return right away without waiting for the    * refresh to complete.    *     *<p>    * This method returns true if the reference was in fact refreshed, or if the    * current reference has no pending changes.    */
+comment|/** Called after close(), so subclass can free any resources. */
+DECL|method|afterClose
+specifier|protected
+name|void
+name|afterClose
+parameter_list|()
+throws|throws
+name|IOException
+block|{   }
+comment|/**    * You must call this, periodically, if you want that {@link #acquire()} will    * return refreshed instances.    *     *<p>    *<b>Threads</b>: it's fine for more than one thread to call this at once.    * Only the first thread will attempt the refresh; subsequent threads will see    * that another thread is already handling refresh and will return    * immediately. Note that this means if another thread is already refreshing    * then subsequent threads will return right away without waiting for the    * refresh to complete.    *     *<p>    * If this method returns true it means the calling thread either refreshed    * or that there were no changes to refresh.  If it returns false it means another    * thread is currently refreshing.    */
 DECL|method|maybeRefresh
 specifier|public
 specifier|final
@@ -283,12 +295,18 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 comment|// Ensure only 1 thread does reopen at once; other threads just return immediately:
-if|if
-condition|(
+specifier|final
+name|boolean
+name|doTryRefresh
+init|=
 name|reopenLock
 operator|.
 name|tryAcquire
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|doTryRefresh
 condition|)
 block|{
 try|try
@@ -366,9 +384,9 @@ name|reference
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-literal|true
-return|;
+name|afterRefresh
+argument_list|()
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -379,13 +397,19 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-else|else
-block|{
 return|return
-literal|false
+name|doTryRefresh
 return|;
 block|}
-block|}
+comment|/** Called after swapReference has installed a new    *  instance. */
+DECL|method|afterRefresh
+specifier|protected
+name|void
+name|afterRefresh
+parameter_list|()
+throws|throws
+name|IOException
+block|{   }
 comment|/**    * Release the refernce previously obtained via {@link #acquire()}.    *<p>    *<b>NOTE:</b> it's safe to call this after {@link #close()}.    */
 DECL|method|release
 specifier|public

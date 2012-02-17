@@ -401,7 +401,7 @@ block|{
 comment|//final long t0 = System.nanoTime();
 name|manager
 operator|.
-name|maybeReopen
+name|maybeRefresh
 argument_list|()
 expr_stmt|;
 comment|//System.out.println("reopen took " + ((System.nanoTime()-t0)/1000000.0) + " msec");
