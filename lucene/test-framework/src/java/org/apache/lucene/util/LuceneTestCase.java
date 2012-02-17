@@ -7226,8 +7226,15 @@ name|r
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|r
+operator|instanceof
+name|CompositeReader
+condition|)
 block|{
+comment|// only wrap if not already atomic (some tests may fail)
 name|r
 operator|=
 operator|new
