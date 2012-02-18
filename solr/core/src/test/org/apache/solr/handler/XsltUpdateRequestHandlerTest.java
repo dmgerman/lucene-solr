@@ -301,7 +301,7 @@ literal|"<random>"
 operator|+
 literal|"<document>"
 operator|+
-literal|"<node name=\"id\" enhance=\"2.2\" value=\"12345\"/>"
+literal|"<node name=\"id\" value=\"12345\"/>"
 operator|+
 literal|"<node name=\"name\" value=\"kitten\"/>"
 operator|+

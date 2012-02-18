@@ -1079,6 +1079,18 @@ operator|.
 name|getBoost
 argument_list|()
 decl_stmt|;
+name|boolean
+name|omitNorms
+init|=
+name|sfield
+operator|!=
+literal|null
+operator|&&
+name|sfield
+operator|.
+name|omitNorms
+argument_list|()
+decl_stmt|;
 comment|// Make sure it has the correct number
 if|if
 condition|(
@@ -1120,6 +1132,50 @@ name|schema
 argument_list|)
 operator|+
 literal|"multiple values encountered for non multiValued field "
+operator|+
+name|sfield
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|field
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|omitNorms
+operator|&&
+name|boost
+operator|!=
+literal|1.0F
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"ERROR: "
+operator|+
+name|getID
+argument_list|(
+name|doc
+argument_list|,
+name|schema
+argument_list|)
+operator|+
+literal|"cannot set an index-time boost, norms are omitted for field "
 operator|+
 name|sfield
 operator|.
@@ -1183,6 +1239,10 @@ name|sfield
 argument_list|,
 name|v
 argument_list|,
+name|omitNorms
+condition|?
+literal|1F
+else|:
 name|docBoost
 operator|*
 name|boost
@@ -1321,6 +1381,10 @@ name|createFields
 argument_list|(
 name|val
 argument_list|,
+name|omitNorms
+condition|?
+literal|1F
+else|:
 name|docBoost
 operator|*
 name|boost

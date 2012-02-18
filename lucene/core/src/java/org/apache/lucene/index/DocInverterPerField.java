@@ -260,15 +260,21 @@ index|[
 name|i
 index|]
 decl_stmt|;
+specifier|final
+name|IndexableFieldType
+name|fieldType
+init|=
+name|field
+operator|.
+name|fieldType
+argument_list|()
+decl_stmt|;
 comment|// TODO FI: this should be "genericized" to querying
 comment|// consumer if it wants to see this particular field
 comment|// tokenized.
 if|if
 condition|(
-name|field
-operator|.
 name|fieldType
-argument_list|()
 operator|.
 name|indexed
 argument_list|()
@@ -276,6 +282,37 @@ operator|&&
 name|doInvert
 condition|)
 block|{
+comment|// if the field omits norms, the boost cannot be indexed.
+if|if
+condition|(
+name|fieldType
+operator|.
+name|omitNorms
+argument_list|()
+operator|&&
+name|field
+operator|.
+name|boost
+argument_list|()
+operator|!=
+literal|1.0f
+condition|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"You cannot set an index-time boost: norms are omitted for field '"
+operator|+
+name|field
+operator|.
+name|name
+argument_list|()
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|i
