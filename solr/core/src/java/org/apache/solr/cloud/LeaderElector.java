@@ -259,7 +259,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Leader Election process. This class contains the logic by which a  * leader is chosen. First call * {@link #setup(ElectionContext)} to ensure  * the election process is init'd. Next call  * {@link #joinElection(ElectionContext)} to start the leader election.  *   * The implementation follows the classic ZooKeeper recipe of creating an  * ephemeral, sequential node for each candidate and then looking at the set  * of such nodes - if the created node is the lowest sequential node, the  * candidate that created the node is the leader. If not, the candidate puts  * a watch on the next lowest node it finds, and if that node goes down,   * starts the whole process over by checking if it's the lowest sequential node, etc.  *   * TODO: now we could just reuse the lock package code for leader election  */
+comment|/**  * Leader Election process. This class contains the logic by which a  * leader is chosen. First call * {@link #setup(ElectionContext)} to ensure  * the election process is init'd. Next call  * {@link #joinElection} to start the leader election.  *   * The implementation follows the classic ZooKeeper recipe of creating an  * ephemeral, sequential node for each candidate and then looking at the set  * of such nodes - if the created node is the lowest sequential node, the  * candidate that created the node is the leader. If not, the candidate puts  * a watch on the next lowest node it finds, and if that node goes down,   * starts the whole process over by checking if it's the lowest sequential node, etc.  *   * TODO: now we could just reuse the lock package code for leader election  */
 end_comment
 
 begin_class
