@@ -2789,6 +2789,37 @@ argument_list|(
 name|collection
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|slices
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Cannot find collection:"
+operator|+
+name|collection
+operator|+
+literal|" in "
+operator|+
+name|zkController
+operator|.
+name|getCloudState
+argument_list|()
+operator|.
+name|getCollections
+argument_list|()
+argument_list|)
+throw|;
+block|}
 name|ModifiableSolrParams
 name|params
 init|=
