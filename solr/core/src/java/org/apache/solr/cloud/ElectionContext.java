@@ -301,6 +301,9 @@ operator|=
 name|leaderProps
 expr_stmt|;
 block|}
+comment|// the given core may or may not be null - if you need access to the current core, you must pass
+comment|// the core container and core name to your context impl - then use this core ref if it is not null
+comment|// else access it from the core container
 DECL|method|runLeaderProcess
 specifier|abstract
 name|void
@@ -311,6 +314,9 @@ name|leaderSeqPath
 parameter_list|,
 name|boolean
 name|weAreReplacement
+parameter_list|,
+name|SolrCore
+name|core
 parameter_list|)
 throws|throws
 name|KeeperException
@@ -443,6 +449,9 @@ name|leaderSeqPath
 parameter_list|,
 name|boolean
 name|weAreReplacement
+parameter_list|,
+name|SolrCore
+name|core
 parameter_list|)
 throws|throws
 name|KeeperException
@@ -633,6 +642,9 @@ name|leaderSeqPath
 parameter_list|,
 name|boolean
 name|weAreReplacement
+parameter_list|,
+name|SolrCore
+name|startupCore
 parameter_list|)
 throws|throws
 name|KeeperException
@@ -667,6 +679,15 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+comment|// the first time we are run, we will get a startupCore - after
+comment|// we will get null and must use cc.getCore
+if|if
+condition|(
+name|startupCore
+operator|==
+literal|null
+condition|)
+block|{
 name|core
 operator|=
 name|cc
@@ -676,6 +697,14 @@ argument_list|(
 name|coreName
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|core
+operator|=
+name|startupCore
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|core
@@ -814,6 +843,9 @@ operator|.
 name|publish
 argument_list|(
 name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
 argument_list|,
 name|ZkStateReader
 operator|.
@@ -827,6 +859,10 @@ if|if
 condition|(
 name|core
 operator|!=
+literal|null
+operator|&&
+name|startupCore
+operator|==
 literal|null
 condition|)
 block|{
@@ -845,6 +881,8 @@ argument_list|(
 name|leaderSeqPath
 argument_list|,
 name|weAreReplacement
+argument_list|,
+name|startupCore
 argument_list|)
 expr_stmt|;
 block|}
@@ -874,6 +912,9 @@ operator|.
 name|publish
 argument_list|(
 name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
 argument_list|,
 name|ZkStateReader
 operator|.
@@ -910,6 +951,8 @@ operator|.
 name|joinElection
 argument_list|(
 name|this
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -1213,6 +1256,9 @@ name|leaderSeqPath
 parameter_list|,
 name|boolean
 name|weAreReplacement
+parameter_list|,
+name|SolrCore
+name|firstCore
 parameter_list|)
 throws|throws
 name|KeeperException

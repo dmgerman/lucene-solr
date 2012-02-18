@@ -196,11 +196,7 @@ name|setUp
 argument_list|()
 expr_stmt|;
 comment|// we expect this time of exception as shards go up and down...
-name|ignoreException
-argument_list|(
-literal|".*"
-argument_list|)
-expr_stmt|;
+comment|//ignoreException(".*");
 comment|// sometimes we cannot get the same port
 name|ignoreException
 argument_list|(

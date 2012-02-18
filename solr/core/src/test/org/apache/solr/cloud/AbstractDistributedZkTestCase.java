@@ -250,11 +250,6 @@ expr_stmt|;
 name|createTempDir
 argument_list|()
 expr_stmt|;
-name|ignoreException
-argument_list|(
-literal|"java.nio.channels.ClosedChannelException"
-argument_list|)
-expr_stmt|;
 name|String
 name|zkDir
 init|=
@@ -536,9 +531,7 @@ name|boolean
 name|verbose
 parameter_list|)
 throws|throws
-name|KeeperException
-throws|,
-name|InterruptedException
+name|Exception
 block|{
 name|waitForRecoveriesToFinish
 argument_list|(
@@ -548,7 +541,7 @@ name|zkStateReader
 argument_list|,
 name|verbose
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -570,9 +563,7 @@ name|boolean
 name|failOnTimeout
 parameter_list|)
 throws|throws
-name|KeeperException
-throws|,
-name|InterruptedException
+name|Exception
 block|{
 name|boolean
 name|cont
@@ -802,7 +793,7 @@ name|sawLiveRecovering
 operator|||
 name|cnt
 operator|==
-literal|15
+literal|120
 condition|)
 block|{
 if|if
@@ -837,6 +828,9 @@ argument_list|(
 literal|"There are still nodes recoverying"
 argument_list|)
 expr_stmt|;
+name|printLayout
+argument_list|()
+expr_stmt|;
 return|return;
 block|}
 if|if
@@ -864,7 +858,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|2000
+literal|1000
 argument_list|)
 expr_stmt|;
 block|}
