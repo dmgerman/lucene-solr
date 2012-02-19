@@ -342,6 +342,9 @@ operator|=
 name|newSearcher
 argument_list|(
 name|reader
+argument_list|,
+comment|/* TODO: change that back to true and add better test,       so wrapped readers are explicitely checked, see LUCENE-3800: */
+literal|false
 argument_list|)
 expr_stmt|;
 name|writer
