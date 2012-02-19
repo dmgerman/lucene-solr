@@ -423,7 +423,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"1"
+literal|"A1"
 argument_list|)
 argument_list|,
 literal|null
@@ -440,7 +440,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"11"
+literal|"A11"
 argument_list|)
 argument_list|,
 literal|null
@@ -457,7 +457,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"12"
+literal|"A12"
 argument_list|)
 argument_list|,
 literal|null
@@ -470,7 +470,7 @@ name|addFirst
 argument_list|(
 name|deleteByQueryAndGetVersion
 argument_list|(
-literal|"id:11"
+literal|"id:A11"
 argument_list|,
 literal|null
 argument_list|)
@@ -486,7 +486,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"13"
+literal|"A13"
 argument_list|)
 argument_list|,
 literal|null
@@ -665,7 +665,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"2"
+literal|"A2"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -675,7 +675,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"3"
+literal|"A3"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -683,7 +683,7 @@ name|assertU
 argument_list|(
 name|delI
 argument_list|(
-literal|"2"
+literal|"A2"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -693,7 +693,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"4"
+literal|"A4"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -752,7 +752,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:2"
+literal|"id:A2"
 argument_list|)
 argument_list|,
 literal|"/response/numFound==0"
@@ -1092,7 +1092,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"1"
+literal|"B1"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1116,7 +1116,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"11"
+literal|"B11"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1136,7 +1136,7 @@ name|updateJ
 argument_list|(
 name|jsonDelQ
 argument_list|(
-literal|"id:1 id:11 id:2 id:3"
+literal|"id:B1 id:B11 id:B2 id:B3"
 argument_list|)
 argument_list|,
 name|params
@@ -1159,7 +1159,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"2"
+literal|"B2"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1183,7 +1183,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"3"
+literal|"B3"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1201,7 +1201,7 @@ argument_list|)
 expr_stmt|;
 name|deleteAndGetVersion
 argument_list|(
-literal|"1"
+literal|"B1"
 argument_list|,
 name|params
 argument_list|(
@@ -1279,7 +1279,7 @@ literal|"/get"
 argument_list|,
 literal|"id"
 argument_list|,
-literal|"3"
+literal|"B3"
 argument_list|)
 argument_list|,
 literal|"=={'doc':null}"
@@ -1405,7 +1405,7 @@ literal|"/get"
 argument_list|,
 literal|"id"
 argument_list|,
-literal|"3"
+literal|"B3"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1428,7 +1428,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"3"
+literal|"B3"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1453,7 +1453,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"4"
+literal|"B4"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1471,7 +1471,7 @@ argument_list|)
 expr_stmt|;
 name|deleteAndGetVersion
 argument_list|(
-literal|"4"
+literal|"B4"
 argument_list|,
 name|params
 argument_list|(
@@ -1494,7 +1494,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"6"
+literal|"B6"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1518,7 +1518,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"5"
+literal|"B5"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1542,7 +1542,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"8"
+literal|"B8"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1562,7 +1562,7 @@ comment|// test that delete by query is at least buffered along with everything 
 comment|// currently buffered id:8 (even if it doesn't currently support versioning)
 name|updateJ
 argument_list|(
-literal|"{\"delete\": { \"query\":\"id:2 OR id:8\" }}"
+literal|"{\"delete\": { \"query\":\"id:B2 OR id:B8\" }}"
 argument_list|,
 name|params
 argument_list|(
@@ -1643,7 +1643,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"7"
+literal|"B7"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1662,7 +1662,7 @@ expr_stmt|;
 comment|// a reordered update that should be dropped
 name|deleteAndGetVersion
 argument_list|(
-literal|"5"
+literal|"B5"
 argument_list|,
 name|params
 argument_list|(
@@ -1678,7 +1678,7 @@ argument_list|)
 expr_stmt|;
 name|deleteAndGetVersion
 argument_list|(
-literal|"6"
+literal|"B6"
 argument_list|,
 name|params
 argument_list|(
@@ -1728,13 +1728,13 @@ argument_list|)
 argument_list|,
 literal|"/response/docs==["
 operator|+
-literal|"{'id':'3','_version_':1030}"
+literal|"{'id':'B3','_version_':1030}"
 operator|+
-literal|",{'id':'4','_version_':1040}"
+literal|",{'id':'B4','_version_':1040}"
 operator|+
-literal|",{'id':'5','_version_':1050}"
+literal|",{'id':'B5','_version_':1050}"
 operator|+
-literal|",{'id':'7','_version_':1070}"
+literal|",{'id':'B7','_version_':1070}"
 operator|+
 literal|"]"
 argument_list|)
@@ -2031,7 +2031,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"1"
+literal|"C1"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2055,7 +2055,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"2"
+literal|"C2"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2079,7 +2079,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"3"
+literal|"C3"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2116,7 +2116,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"4"
+literal|"C4"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2140,7 +2140,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"5"
+literal|"C5"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2214,7 +2214,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"100"
+literal|"C100"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2238,7 +2238,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"101"
+literal|"C101"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2267,7 +2267,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"103"
+literal|"C103"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2291,7 +2291,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"104"
+literal|"C104"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2328,7 +2328,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"105"
+literal|"C105"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2352,7 +2352,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"106"
+literal|"C106"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2410,17 +2410,17 @@ argument_list|)
 argument_list|,
 literal|"/response/docs==["
 operator|+
-literal|"{'id':'4','_version_':104}"
+literal|"{'id':'C4','_version_':104}"
 operator|+
-literal|",{'id':'5','_version_':105}"
+literal|",{'id':'C5','_version_':105}"
 operator|+
-literal|",{'id':'100','_version_':200}"
+literal|",{'id':'C100','_version_':200}"
 operator|+
-literal|",{'id':'101','_version_':201}"
+literal|",{'id':'C101','_version_':201}"
 operator|+
-literal|",{'id':'105','_version_':205}"
+literal|",{'id':'C105','_version_':205}"
 operator|+
-literal|",{'id':'106','_version_':206}"
+literal|",{'id':'C106','_version_':206}"
 operator|+
 literal|"]"
 argument_list|)
@@ -2511,7 +2511,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"1"
+literal|"D1"
 argument_list|,
 literal|"val_i"
 argument_list|,
@@ -2525,7 +2525,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"2"
+literal|"D2"
 argument_list|,
 literal|"val_i"
 argument_list|,
@@ -2548,7 +2548,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:1"
+literal|"id:D1"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2561,7 +2561,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:2"
+literal|"id:D2"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2579,7 +2579,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"1"
+literal|"D1"
 argument_list|,
 literal|"val_i"
 argument_list|,
@@ -2602,7 +2602,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:1"
+literal|"id:D1"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2789,7 +2789,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"1"
+literal|"E1"
 argument_list|,
 literal|"val_i"
 argument_list|,
@@ -2803,7 +2803,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"2"
+literal|"E2"
 argument_list|,
 literal|"val_i"
 argument_list|,
@@ -3947,7 +3947,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"1"
+literal|"F1"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3957,7 +3957,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"2"
+literal|"F2"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3967,7 +3967,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"3"
+literal|"F3"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4109,7 +4109,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"4"
+literal|"F4"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -4133,7 +4133,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"5"
+literal|"F5"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -4157,7 +4157,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"6"
+literal|"F6"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -4213,6 +4213,85 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+block|}
+comment|// stops the core, removes the transaction logs, restarts the core.
+DECL|method|deleteLogs
+name|void
+name|deleteLogs
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|File
+name|logDir
+init|=
+name|h
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getUpdateLog
+argument_list|()
+operator|.
+name|getLogDir
+argument_list|()
+decl_stmt|;
+name|h
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|String
+index|[]
+name|files
+init|=
+name|UpdateLog
+operator|.
+name|getLogList
+argument_list|(
+name|logDir
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|String
+name|file
+range|:
+name|files
+control|)
+block|{
+operator|new
+name|File
+argument_list|(
+name|logDir
+argument_list|,
+name|file
+argument_list|)
+operator|.
+name|delete
+argument_list|()
+expr_stmt|;
+block|}
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|UpdateLog
+operator|.
+name|getLogList
+argument_list|(
+name|logDir
+argument_list|)
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+name|createCore
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|getVer
 specifier|private
