@@ -516,11 +516,14 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"SolrInputDocument["
+literal|"SolrInputDocument{"
 operator|+
 name|_fields
+operator|.
+name|values
+argument_list|()
 operator|+
-literal|"]"
+literal|"}"
 return|;
 block|}
 comment|//---------------------------------------------------
