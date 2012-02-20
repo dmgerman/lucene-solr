@@ -561,12 +561,27 @@ name|closed
 condition|)
 return|return;
 block|}
+comment|// if true, we are recovering after startup and shouldn't have (or be receiving) additional updates (except for local tlog recovery)
+name|boolean
+name|recoveringAfterStartup
+init|=
+name|recoveryStrat
+operator|==
+literal|null
+decl_stmt|;
 name|recoveryStrat
 operator|=
 operator|new
 name|RecoveryStrategy
 argument_list|(
 name|core
+argument_list|)
+expr_stmt|;
+name|recoveryStrat
+operator|.
+name|setRecoveringAfterStartup
+argument_list|(
+name|recoveringAfterStartup
 argument_list|)
 expr_stmt|;
 name|recoveryStrat
