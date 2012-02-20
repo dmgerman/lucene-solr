@@ -345,9 +345,10 @@ block|}
 block|}
 DECL|field|closed
 specifier|private
-specifier|volatile
 name|boolean
 name|closed
+init|=
+literal|false
 decl_stmt|;
 DECL|field|refCount
 specifier|private
