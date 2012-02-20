@@ -195,6 +195,36 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**      * Returns the {@link MultiTermQuery}s {@link TermsEnum}      * @see MultiTermQuery#getTermsEnum(Terms, AttributeSource);      */
+DECL|method|getTermsEnum
+specifier|protected
+name|TermsEnum
+name|getTermsEnum
+parameter_list|(
+name|MultiTermQuery
+name|query
+parameter_list|,
+name|Terms
+name|terms
+parameter_list|,
+name|AttributeSource
+name|atts
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|query
+operator|.
+name|getTermsEnum
+argument_list|(
+name|terms
+argument_list|,
+name|atts
+argument_list|)
+return|;
+comment|// allow RewriteMethod subclasses to pull a TermsEnum from the MTQ
+block|}
 block|}
 comment|/** A rewrite method that first creates a private Filter,    *  by visiting each term in sequence and marking all docs    *  for that term.  Matching documents are assigned a    *  constant score equal to the query's boost.    *     *<p> This method is faster than the BooleanQuery    *  rewrite methods when the number of matched terms or    *  matched documents is non-trivial. Also, it will never    *  hit an errant {@link BooleanQuery.TooManyClauses}    *  exception.    *    *  @see #setRewriteMethod */
 DECL|field|CONSTANT_SCORE_FILTER_REWRITE

@@ -362,10 +362,10 @@ specifier|final
 name|TermsEnum
 name|termsEnum
 init|=
-name|query
-operator|.
 name|getTermsEnum
 argument_list|(
+name|query
+argument_list|,
 name|terms
 argument_list|,
 name|collector
