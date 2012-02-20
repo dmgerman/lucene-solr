@@ -771,9 +771,6 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
-comment|// start buffer updates to tran log
-comment|// and do recovery - either replay via realtime get (eventually)
-comment|// or full index replication
 name|String
 name|leaderBaseUrl
 init|=
@@ -1158,7 +1155,7 @@ name|prepCmd
 operator|.
 name|setPauseFor
 argument_list|(
-literal|4000
+literal|6000
 argument_list|)
 expr_stmt|;
 name|server
@@ -1426,6 +1423,7 @@ block|{
 comment|// don't use interruption or it will close channels though
 try|try
 block|{
+comment|// first thing we just try to sync
 name|zkController
 operator|.
 name|publish
@@ -1530,12 +1528,10 @@ argument_list|(
 literal|"Attempting to PeerSync from "
 operator|+
 name|leaderUrl
-operator|+
-literal|" recoveringAfterStartup="
-operator|+
-name|recoveringAfterStartup
 argument_list|)
 expr_stmt|;
+comment|// System.out.println("Attempting to PeerSync from " + leaderUrl
+comment|// + " i am:" + zkController.getNodeName());
 name|PeerSync
 name|peerSync
 init|=
@@ -1612,6 +1608,24 @@ argument_list|(
 literal|"Sync Recovery was succesful - registering as Active"
 argument_list|)
 expr_stmt|;
+comment|// System.out
+comment|// .println("Sync Recovery was succesful - registering as Active "
+comment|// + zkController.getNodeName());
+comment|// solrcloud_debug
+comment|// try {
+comment|// RefCounted<SolrIndexSearcher> searchHolder =
+comment|// core.getNewestSearcher(false);
+comment|// SolrIndexSearcher searcher = searchHolder.get();
+comment|// try {
+comment|// System.out.println(core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName()
+comment|// + " synched "
+comment|// + searcher.search(new MatchAllDocsQuery(), 1).totalHits);
+comment|// } finally {
+comment|// searchHolder.decref();
+comment|// }
+comment|// } catch (Exception e) {
+comment|//
+comment|// }
 comment|// sync success - register as active and return
 name|zkController
 operator|.
@@ -1647,6 +1661,7 @@ literal|"Sync Recovery was not successful - trying replication"
 argument_list|)
 expr_stmt|;
 block|}
+comment|//System.out.println("Sync Recovery was not successful - trying replication");
 name|log
 operator|.
 name|info

@@ -162,7 +162,7 @@ begin_class
 annotation|@
 name|Ignore
 argument_list|(
-literal|"Fixme! I am so tired of failing all the time. This is cruelty to animals! :("
+literal|"SOLR-3126"
 argument_list|)
 DECL|class|ChaosMonkeySafeLeaderTest
 specifier|public
@@ -452,7 +452,7 @@ name|checkShardConsistency
 argument_list|(
 literal|true
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 if|if

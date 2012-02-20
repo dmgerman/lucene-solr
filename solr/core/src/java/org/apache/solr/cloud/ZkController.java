@@ -1087,6 +1087,8 @@ argument_list|(
 name|descriptor
 argument_list|,
 name|coreZkNodeName
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -4744,6 +4746,9 @@ name|core
 parameter_list|,
 name|CoreDescriptor
 name|cd
+parameter_list|,
+name|boolean
+name|waitForNotLive
 parameter_list|)
 block|{
 comment|// before becoming available, make sure we are not live and active
@@ -4954,6 +4959,8 @@ argument_list|(
 name|cd
 argument_list|,
 name|coreZkNodeName
+argument_list|,
+name|waitForNotLive
 argument_list|)
 expr_stmt|;
 block|}
@@ -4968,6 +4975,9 @@ parameter_list|,
 specifier|final
 name|String
 name|shardZkNodeName
+parameter_list|,
+name|boolean
+name|waitForNotLive
 parameter_list|)
 block|{
 name|CloudDescriptor
@@ -5211,11 +5221,24 @@ argument_list|)
 expr_stmt|;
 name|prepCmd
 operator|.
+name|setPauseFor
+argument_list|(
+literal|6000
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|waitForNotLive
+condition|)
+block|{
+name|prepCmd
+operator|.
 name|setCheckLive
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|server
