@@ -195,7 +195,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Returns the {@link MultiTermQuery}s {@link TermsEnum}      * @see MultiTermQuery#getTermsEnum(Terms, AttributeSource);      */
+comment|/**      * Returns the {@link MultiTermQuery}s {@link TermsEnum}      * @see MultiTermQuery#getTermsEnum(Terms, AttributeSource)      */
 DECL|method|getTermsEnum
 specifier|protected
 name|TermsEnum
