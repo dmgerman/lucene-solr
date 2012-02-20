@@ -176,13 +176,9 @@ name|builder
 operator|.
 name|add
 argument_list|(
-operator|new
-name|BytesRef
-argument_list|(
 name|tf
 operator|.
 name|term
-argument_list|)
 argument_list|,
 operator|(
 name|int
@@ -854,6 +850,9 @@ argument_list|(
 name|tf
 operator|.
 name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -939,6 +938,9 @@ argument_list|(
 name|tf
 operator|.
 name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 operator|!=
 literal|null
@@ -957,6 +959,9 @@ argument_list|(
 name|tf
 operator|.
 name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|,
 literal|true
 argument_list|,
@@ -1190,6 +1195,9 @@ init|=
 name|tf
 operator|.
 name|term
+operator|.
+name|utf8ToString
+argument_list|()
 decl_stmt|;
 for|for
 control|(

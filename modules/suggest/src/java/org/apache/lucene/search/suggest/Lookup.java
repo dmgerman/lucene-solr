@@ -42,9 +42,19 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|io
 operator|.
-name|Iterator
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStream
 import|;
 end_import
 
@@ -87,6 +97,20 @@ operator|.
 name|spell
 operator|.
 name|TermFreqIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefIterator
 import|;
 end_import
 
@@ -316,10 +340,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Iterator
-argument_list|<
-name|String
-argument_list|>
+name|BytesRefIterator
 name|it
 init|=
 name|dict
@@ -376,6 +397,80 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Look up a key and return possible completion for this key.    * @param key lookup key. Depending on the implementation this may be    * a prefix, misspelling, or even infix.    * @param onlyMorePopular return only more popular results    * @param num maximum number of results to return    * @return a list of possible completions, with their relative weight (e.g. popularity)    */
+comment|// TODO: this should be a BytesRef API?
+DECL|method|lookup
+specifier|public
+specifier|abstract
+name|List
+argument_list|<
+name|LookupResult
+argument_list|>
+name|lookup
+parameter_list|(
+name|String
+name|key
+parameter_list|,
+name|boolean
+name|onlyMorePopular
+parameter_list|,
+name|int
+name|num
+parameter_list|)
+function_decl|;
+comment|/**    * Modify the lookup data by recording additional data. Optional operation.    * @param key new lookup key    * @param value value to associate with this key    * @return true if new key is added, false if it already exists or operation    * is not supported.    */
+comment|// TODO: this should be a BytesRef API?
+DECL|method|add
+specifier|public
+specifier|abstract
+name|boolean
+name|add
+parameter_list|(
+name|String
+name|key
+parameter_list|,
+name|Object
+name|value
+parameter_list|)
+function_decl|;
+comment|/**    * Get value associated with a specific key.    * @param key lookup key    * @return associated value    */
+comment|// TODO: this should be a BytesRef API?
+DECL|method|get
+specifier|public
+specifier|abstract
+name|Object
+name|get
+parameter_list|(
+name|String
+name|key
+parameter_list|)
+function_decl|;
+comment|/**    * Persist the constructed lookup data to a directory. Optional operation.    * @param output {@link OutputStream} to write the data to.    * @return true if successful, false if unsuccessful or not supported.    * @throws IOException when fatal IO error occurs.    */
+DECL|method|store
+specifier|public
+specifier|abstract
+name|boolean
+name|store
+parameter_list|(
+name|OutputStream
+name|output
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Discard current lookup data and load it from a previously saved copy.    * Optional operation.    * @param input the {@link InputStream} to load the lookup data.    * @return true if completed successfully, false if unsuccessful or not supported.    * @throws IOException when fatal IO error occurs.    */
+DECL|method|load
+specifier|public
+specifier|abstract
+name|boolean
+name|load
+parameter_list|(
+name|InputStream
+name|input
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/**    * Persist the constructed lookup data to a directory. Optional operation.    * @param storeDir directory where data can be stored.    * @return true if successful, false if unsuccessful or not supported.    * @throws IOException when fatal IO error occurs.    */
 DECL|method|store
 specifier|public
@@ -401,51 +496,6 @@ name|storeDir
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
-comment|/**    * Look up a key and return possible completion for this key.    * @param key lookup key. Depending on the implementation this may be    * a prefix, misspelling, or even infix.    * @param onlyMorePopular return only more popular results    * @param num maximum number of results to return    * @return a list of possible completions, with their relative weight (e.g. popularity)    */
-DECL|method|lookup
-specifier|public
-specifier|abstract
-name|List
-argument_list|<
-name|LookupResult
-argument_list|>
-name|lookup
-parameter_list|(
-name|String
-name|key
-parameter_list|,
-name|boolean
-name|onlyMorePopular
-parameter_list|,
-name|int
-name|num
-parameter_list|)
-function_decl|;
-comment|/**    * Modify the lookup data by recording additional data. Optional operation.    * @param key new lookup key    * @param value value to associate with this key    * @return true if new key is added, false if it already exists or operation    * is not supported.    */
-DECL|method|add
-specifier|public
-specifier|abstract
-name|boolean
-name|add
-parameter_list|(
-name|String
-name|key
-parameter_list|,
-name|Object
-name|value
-parameter_list|)
-function_decl|;
-comment|/**    * Get value associated with a specific key.    * @param key lookup key    * @return associated value    */
-DECL|method|get
-specifier|public
-specifier|abstract
-name|Object
-name|get
-parameter_list|(
-name|String
-name|key
-parameter_list|)
 function_decl|;
 block|}
 end_class

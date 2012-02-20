@@ -20,11 +20,15 @@ end_comment
 
 begin_import
 import|import
-name|java
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
 operator|.
 name|util
 operator|.
-name|Iterator
+name|BytesRefIterator
 import|;
 end_import
 
@@ -40,10 +44,7 @@ name|Dictionary
 block|{
 comment|/**    * Return all words present in the dictionary    * @return Iterator    */
 DECL|method|getWordsIterator
-name|Iterator
-argument_list|<
-name|String
-argument_list|>
+name|BytesRefIterator
 name|getWordsIterator
 parameter_list|()
 function_decl|;

@@ -24,7 +24,31 @@ name|java
 operator|.
 name|util
 operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
@@ -37,7 +61,17 @@ DECL|interface|SortedIterator
 specifier|public
 interface|interface
 name|SortedIterator
-block|{  }
+block|{
+DECL|method|comparator
+specifier|public
+name|Comparator
+argument_list|<
+name|BytesRef
+argument_list|>
+name|comparator
+parameter_list|()
+function_decl|;
+block|}
 end_interface
 
 end_unit

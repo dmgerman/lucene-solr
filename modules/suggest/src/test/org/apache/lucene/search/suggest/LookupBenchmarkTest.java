@@ -1058,6 +1058,9 @@ name|tf
 operator|.
 name|term
 operator|.
+name|utf8ToString
+argument_list|()
+operator|.
 name|substring
 argument_list|(
 literal|0
@@ -1071,7 +1074,6 @@ operator|.
 name|term
 operator|.
 name|length
-argument_list|()
 argument_list|,
 name|minPrefixLen
 operator|+
