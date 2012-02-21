@@ -759,6 +759,15 @@ name|ZkStateReader
 operator|.
 name|SYNC
 argument_list|)
+operator|||
+name|state
+operator|.
+name|equals
+argument_list|(
+name|ZkStateReader
+operator|.
+name|DOWN
+argument_list|)
 operator|)
 operator|&&
 name|cloudState
