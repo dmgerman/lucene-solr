@@ -1997,6 +1997,7 @@ argument_list|(
 name|terms
 argument_list|)
 expr_stmt|;
+comment|// NOTE: kinda sketchy assumptions, but ideally we would fix fieldsenum api...
 name|TermsEnum
 name|termsEnum
 init|=
