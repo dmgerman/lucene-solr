@@ -2495,6 +2495,8 @@ name|termIndexStatus
 operator|=
 name|testPostings
 argument_list|(
+name|fieldInfos
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
@@ -3129,6 +3131,9 @@ operator|.
 name|TermIndexStatus
 name|testPostings
 parameter_list|(
+name|FieldInfos
+name|fieldInfos
+parameter_list|,
 name|SegmentReader
 name|reader
 parameter_list|)
@@ -3237,6 +3242,11 @@ name|postings
 init|=
 literal|null
 decl_stmt|;
+name|String
+name|lastField
+init|=
+literal|null
+decl_stmt|;
 specifier|final
 name|FieldsEnum
 name|fieldsEnum
@@ -3269,8 +3279,90 @@ condition|)
 block|{
 break|break;
 block|}
+comment|// MultiFieldsEnum relies upon this order...
+if|if
+condition|(
+name|lastField
+operator|!=
+literal|null
+operator|&&
+name|field
+operator|.
+name|compareTo
+argument_list|(
+name|lastField
+argument_list|)
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"fields out of order: lastField="
+operator|+
+name|lastField
+operator|+
+literal|" field="
+operator|+
+name|field
+argument_list|)
+throw|;
+block|}
+name|lastField
+operator|=
+name|field
+expr_stmt|;
+comment|// check that the field is in fieldinfos, and is indexed.
+comment|// TODO: add a separate test to check this for different reader impls
+name|FieldInfo
+name|fi
+init|=
+name|fieldInfos
+operator|.
+name|fieldInfo
+argument_list|(
+name|field
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fi
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"fieldsEnum inconsistent with fieldInfos, no fieldInfos for: "
+operator|+
+name|field
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+operator|!
+name|fi
+operator|.
+name|isIndexed
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"fieldsEnum inconsistent with fieldInfos, isIndexed == false for: "
+operator|+
+name|field
+argument_list|)
+throw|;
+block|}
 comment|// TODO: really the codec should not return a field
-comment|// from FieldsEnum if it has to Terms... but we do
+comment|// from FieldsEnum if it has no Terms... but we do
 comment|// this today:
 comment|// assert fields.terms(field) != null;
 name|computedFieldCount
