@@ -536,7 +536,7 @@ return|return
 name|y
 return|;
 block|}
-comment|/**    * Is this a geospatial context (true) or simply 2d spatial (false)    * @return    */
+comment|/**    * Is this a geospatial context (true) or simply 2d spatial (false)    */
 DECL|method|isGeo
 specifier|public
 name|boolean
@@ -675,7 +675,7 @@ name|distance
 argument_list|)
 return|;
 block|}
-comment|/**    *    * @param ctr    * @param distance The units of "distance" should be the same as {@link #getUnits()}.    * @return    */
+comment|/**    *    * @param ctr    * @param distance The units of "distance" should be the same as {@link #getUnits()}.    */
 DECL|method|makeCircle
 specifier|public
 specifier|abstract

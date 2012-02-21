@@ -695,7 +695,7 @@ return|return
 name|cells
 return|;
 block|}
-comment|/**    * Performant implementations are expected to implement this efficiently by considering the current    * cell's boundary.    * Precondition: Never called when getLevel() == maxLevel.    * Precondition: this.getShape().relate(p) != DISJOINT.    *    * @param p    * @return    */
+comment|/**    * Performant implementations are expected to implement this efficiently by considering the current    * cell's boundary.    * Precondition: Never called when getLevel() == maxLevel.    * Precondition: this.getShape().relate(p) != DISJOINT.    */
 DECL|method|getSubCell
 specifier|public
 specifier|abstract

@@ -147,7 +147,7 @@ specifier|protected
 name|Rectangle
 name|worldBounds
 decl_stmt|;
-comment|/**    * The factory class is lookuped up via "spatialContextFactory" in args    * then falling back to a Java system property (with initial caps). If neither are specified    * then {@link SimpleSpatialContextFactory} is chosen.    * @param args    * @param classLoader    * @return    */
+comment|/**    * The factory class is lookuped up via "spatialContextFactory" in args    * then falling back to a Java system property (with initial caps). If neither are specified    * then {@link SimpleSpatialContextFactory} is chosen.    * @param args    * @param classLoader    */
 DECL|method|makeSpatialContext
 specifier|public
 specifier|static

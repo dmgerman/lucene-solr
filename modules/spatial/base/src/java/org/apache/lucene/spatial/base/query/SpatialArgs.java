@@ -396,7 +396,7 @@ operator|=
 name|operation
 expr_stmt|;
 block|}
-comment|/**    * Considers {@link SpatialOperation#BBoxWithin} in returning the shape.    * @return    */
+comment|/**    * Considers {@link SpatialOperation#BBoxWithin} in returning the shape.    */
 DECL|method|getShape
 specifier|public
 name|Shape

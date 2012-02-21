@@ -344,7 +344,7 @@ return|return
 name|horizAxisY
 return|;
 block|}
-comment|/**    * Called after bounding box is intersected.    * @bboxSect INTERSECTS or CONTAINS from enclosingBox's intersection    * @result DISJOINT, CONTAINS, or INTERSECTS (not WITHIN)    */
+comment|/**    * Called after bounding box is intersected.    * @param bboxSect INTERSECTS or CONTAINS from enclosingBox's intersection    * @return DISJOINT, CONTAINS, or INTERSECTS (not WITHIN)    */
 annotation|@
 name|Override
 DECL|method|relateRectanglePhase2
