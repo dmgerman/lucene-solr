@@ -1012,7 +1012,9 @@ condition|)
 block|{
 name|fail
 argument_list|(
-literal|"Not all shards are ACTIVE"
+literal|"Not all shards are ACTIVE - found a shard that is: "
+operator|+
+name|state
 argument_list|)
 expr_stmt|;
 block|}
