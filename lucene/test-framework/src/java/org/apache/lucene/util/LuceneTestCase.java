@@ -7172,17 +7172,6 @@ name|AtomicReader
 decl_stmt|;
 if|if
 condition|(
-name|wasOriginallyAtomic
-condition|)
-block|{
-comment|// TODO: investigate purging etc of tests making top-level fieldcaches,
-comment|// something is up if they get a crazy hierarchy
-return|return
-name|r
-return|;
-block|}
-if|if
-condition|(
 name|rarely
 argument_list|()
 condition|)
