@@ -5223,7 +5223,7 @@ name|prepCmd
 operator|.
 name|setPauseFor
 argument_list|(
-literal|6000
+literal|10000
 argument_list|)
 expr_stmt|;
 if|if
