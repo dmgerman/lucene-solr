@@ -669,16 +669,18 @@ argument_list|(
 name|dir_2
 argument_list|)
 decl_stmt|;
+comment|// TODO: wrap in a better way
 name|writer
 operator|.
 name|addIndexes
 argument_list|(
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
+name|newSearcher
 argument_list|(
 name|open
 argument_list|)
+operator|.
+name|getIndexReader
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|open
