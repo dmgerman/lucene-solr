@@ -1656,17 +1656,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Laps: "
-operator|+
-name|laps
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("Laps: "+laps);
 comment|//TODO deliberately test INTERSECTS based on known intersection point
 block|}
 comment|/** Returns a random integer between [start, end] with a limited number of possibilities instead of end-start+1. */
