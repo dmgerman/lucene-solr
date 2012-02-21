@@ -7161,6 +7161,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO: remove this, and fix those tests to wrap before putting slow around:
+specifier|final
+name|boolean
+name|wasOriginallyAtomic
+init|=
+name|r
+operator|instanceof
+name|AtomicReader
+decl_stmt|;
 if|if
 condition|(
 name|rarely
@@ -7249,6 +7258,13 @@ break|break;
 case|case
 literal|2
 case|:
+if|if
+condition|(
+operator|!
+name|wasOriginallyAtomic
+condition|)
+block|{
+comment|// dont wrap originally atomic readers to be composite (some tests don't like)
 name|r
 operator|=
 operator|new
@@ -7257,6 +7273,7 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 literal|3
