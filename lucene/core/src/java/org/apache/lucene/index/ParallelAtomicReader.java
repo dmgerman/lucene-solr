@@ -208,6 +208,7 @@ name|boolean
 name|hasDeletions
 decl_stmt|;
 DECL|field|fieldToReader
+specifier|private
 specifier|final
 name|SortedMap
 argument_list|<
@@ -675,13 +676,13 @@ decl_stmt|;
 DECL|field|fields
 specifier|private
 specifier|final
-name|Fields
+name|ParallelFields
 name|fields
 decl_stmt|;
 DECL|method|ParallelFieldsEnum
 name|ParallelFieldsEnum
 parameter_list|(
-name|Fields
+name|ParallelFields
 name|fields
 parameter_list|)
 block|{
@@ -693,7 +694,9 @@ name|fields
 expr_stmt|;
 name|keys
 operator|=
-name|fieldToReader
+name|fields
+operator|.
+name|fields
 operator|.
 name|keySet
 argument_list|()
@@ -770,7 +773,7 @@ name|Fields
 block|{
 DECL|field|fields
 specifier|final
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -779,7 +782,7 @@ argument_list|>
 name|fields
 init|=
 operator|new
-name|HashMap
+name|TreeMap
 argument_list|<
 name|String
 argument_list|,
