@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A base class for a Distance Calculator that assumes a spherical earth model.  * @author dsmiley  */
+comment|/**  * A base class for a Distance Calculator that assumes a spherical earth model.  */
 end_comment
 
 begin_class

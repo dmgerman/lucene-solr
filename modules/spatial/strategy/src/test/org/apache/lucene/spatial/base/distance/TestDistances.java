@@ -146,10 +146,6 @@ name|Test
 import|;
 end_import
 
-begin_comment
-comment|/**  * @author David Smiley - dsmiley@mitre.org  */
-end_comment
-
 begin_class
 DECL|class|TestDistances
 specifier|public
