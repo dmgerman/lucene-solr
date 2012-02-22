@@ -876,8 +876,6 @@ name|current
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Nightly
 DECL|method|testMultilingualInput
 specifier|public
 name|void
@@ -1074,8 +1072,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Nightly
 DECL|method|testRandom
 specifier|public
 name|void
