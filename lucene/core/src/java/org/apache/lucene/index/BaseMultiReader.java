@@ -168,12 +168,18 @@ index|]
 operator|=
 name|maxDoc
 expr_stmt|;
-name|maxDoc
-operator|+=
+specifier|final
+name|IndexReader
+name|r
+init|=
 name|subReaders
 index|[
 name|i
 index|]
+decl_stmt|;
+name|maxDoc
+operator|+=
+name|r
 operator|.
 name|maxDoc
 argument_list|()
@@ -181,10 +187,7 @@ expr_stmt|;
 comment|// compute maxDocs
 name|numDocs
 operator|+=
-name|subReaders
-index|[
-name|i
-index|]
+name|r
 operator|.
 name|numDocs
 argument_list|()
@@ -192,10 +195,7 @@ expr_stmt|;
 comment|// compute numDocs
 if|if
 condition|(
-name|subReaders
-index|[
-name|i
-index|]
+name|r
 operator|.
 name|hasDeletions
 argument_list|()
@@ -206,6 +206,13 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+name|r
+operator|.
+name|registerParentReader
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 name|starts
 index|[

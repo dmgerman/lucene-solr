@@ -987,6 +987,13 @@ name|in
 operator|=
 name|in
 expr_stmt|;
+name|in
+operator|.
+name|registerParentReader
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
