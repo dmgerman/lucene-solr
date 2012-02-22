@@ -56,7 +56,9 @@ name|lucene
 operator|.
 name|spatial
 operator|.
-name|geometry
+name|base
+operator|.
+name|distance
 operator|.
 name|DistanceUnits
 import|;
@@ -71,6 +73,10 @@ operator|.
 name|lucene
 operator|.
 name|spatial
+operator|.
+name|base
+operator|.
+name|distance
 operator|.
 name|DistanceUtils
 import|;

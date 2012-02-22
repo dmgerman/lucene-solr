@@ -64,6 +64,10 @@ name|lucene
 operator|.
 name|spatial
 operator|.
+name|base
+operator|.
+name|distance
+operator|.
 name|DistanceUtils
 import|;
 end_import
@@ -187,7 +191,7 @@ expr_stmt|;
 return|return
 name|DistanceUtils
 operator|.
-name|squaredEuclideanDistance
+name|distSquaredCartesian
 argument_list|(
 name|vals1
 argument_list|,

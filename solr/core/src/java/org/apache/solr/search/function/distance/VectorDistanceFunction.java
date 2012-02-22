@@ -126,6 +126,10 @@ name|lucene
 operator|.
 name|spatial
 operator|.
+name|base
+operator|.
+name|distance
+operator|.
 name|DistanceUtils
 import|;
 end_import

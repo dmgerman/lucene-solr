@@ -22,11 +22,15 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|schema
+name|spatial
 operator|.
-name|SchemaField
+name|base
+operator|.
+name|distance
+operator|.
+name|DistanceUnits
 import|;
 end_import
 
@@ -36,13 +40,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|spatial
+name|schema
 operator|.
-name|geometry
-operator|.
-name|DistanceUnits
+name|SchemaField
 import|;
 end_import
 
