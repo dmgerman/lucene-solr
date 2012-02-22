@@ -565,7 +565,7 @@ argument_list|()
 operator|.
 name|setDefaultMaxConnectionsPerHost
 argument_list|(
-literal|20
+literal|256
 argument_list|)
 expr_stmt|;
 name|mgr
