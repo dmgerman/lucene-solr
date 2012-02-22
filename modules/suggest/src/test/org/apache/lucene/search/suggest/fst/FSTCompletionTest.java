@@ -951,6 +951,9 @@ argument_list|(
 name|tf
 operator|.
 name|term
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|,
 name|lookup
 operator|.
