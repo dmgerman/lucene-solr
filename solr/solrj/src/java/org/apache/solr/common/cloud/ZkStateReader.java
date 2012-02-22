@@ -392,7 +392,7 @@ specifier|final
 name|String
 name|SHARD_ID_PROP
 init|=
-literal|"shard_id"
+literal|"shard"
 decl_stmt|;
 DECL|field|NUM_SHARDS_PROP
 specifier|public

@@ -2683,7 +2683,7 @@ name|slices
 operator|.
 name|get
 argument_list|(
-literal|"shard1"
+literal|"slice1"
 argument_list|)
 operator|.
 name|getShards
