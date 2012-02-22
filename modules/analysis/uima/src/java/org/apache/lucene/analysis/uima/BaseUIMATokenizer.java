@@ -216,8 +216,6 @@ argument_list|()
 operator|.
 name|getAEProvider
 argument_list|(
-literal|""
-argument_list|,
 name|descriptorPath
 argument_list|)
 operator|.
