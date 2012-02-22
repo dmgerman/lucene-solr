@@ -1771,6 +1771,13 @@ operator|.
 name|this
 argument_list|)
 assert|;
+assert|assert
+name|info
+operator|.
+name|docCount
+operator|>
+literal|0
+assert|;
 comment|//System.out.println("initWritableLivedocs seg=" + info + " liveDocs=" + liveDocs + " shared=" + shared);
 if|if
 condition|(
