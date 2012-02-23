@@ -64,6 +64,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|admin
+operator|.
+name|LogLevelHandler
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -129,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Admin JDK Logger level report and selection servlet.  *  *  * @since solr 1.3  */
+comment|/**  * Admin JDK Logger level report and selection servlet.  *  * @since solr 1.3  * @deprecated  {@link LogLevelHandler} this servlet will be removed before solr 4.0  */
 end_comment
 
 begin_class
