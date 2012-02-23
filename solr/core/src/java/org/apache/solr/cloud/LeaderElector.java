@@ -356,10 +356,6 @@ name|void
 name|checkIfIamLeader
 parameter_list|(
 specifier|final
-name|String
-name|leaderSeqPath
-parameter_list|,
-specifier|final
 name|int
 name|seq
 parameter_list|,
@@ -438,8 +434,6 @@ condition|)
 block|{
 name|runIamLeaderProcess
 argument_list|(
-name|leaderSeqPath
-argument_list|,
 name|context
 argument_list|,
 name|replacement
@@ -550,8 +544,6 @@ try|try
 block|{
 name|checkIfIamLeader
 argument_list|(
-name|leaderSeqPath
-argument_list|,
 name|seq
 argument_list|,
 name|context
@@ -650,8 +642,6 @@ comment|// we couldn't set our watch - the node before us may already be down?
 comment|// we need to check if we are the leader again
 name|checkIfIamLeader
 argument_list|(
-name|leaderSeqPath
-argument_list|,
 name|seq
 argument_list|,
 name|context
@@ -670,9 +660,6 @@ specifier|protected
 name|void
 name|runIamLeaderProcess
 parameter_list|(
-name|String
-name|leaderSeqPath
-parameter_list|,
 specifier|final
 name|ElectionContext
 name|context
@@ -694,8 +681,6 @@ name|context
 operator|.
 name|runLeaderProcess
 argument_list|(
-name|leaderSeqPath
-argument_list|,
 name|weAreReplacement
 argument_list|,
 name|core
@@ -977,6 +962,12 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|context
+operator|.
+name|leaderSeqPath
+operator|=
+name|leaderSeqPath
+expr_stmt|;
 name|cont
 operator|=
 literal|false
@@ -1113,8 +1104,6 @@ argument_list|)
 decl_stmt|;
 name|checkIfIamLeader
 argument_list|(
-name|leaderSeqPath
-argument_list|,
 name|seq
 argument_list|,
 name|context
