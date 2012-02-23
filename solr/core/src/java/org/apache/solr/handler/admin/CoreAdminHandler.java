@@ -3155,7 +3155,9 @@ argument_list|()
 operator|.
 name|doRecovery
 argument_list|(
-name|core
+name|coreContainer
+argument_list|,
+name|cname
 argument_list|)
 expr_stmt|;
 block|}
@@ -3293,6 +3295,26 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+name|String
+name|state
+init|=
+literal|null
+decl_stmt|;
+name|boolean
+name|live
+init|=
+literal|false
+decl_stmt|;
+name|int
+name|retry
+init|=
+literal|0
+decl_stmt|;
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 name|SolrCore
 name|core
 init|=
@@ -3314,6 +3336,10 @@ condition|(
 name|core
 operator|==
 literal|null
+operator|&&
+name|retry
+operator|==
+literal|30
 condition|)
 block|{
 throw|throw
@@ -3330,24 +3356,11 @@ name|cname
 argument_list|)
 throw|;
 block|}
-name|String
-name|state
-init|=
-literal|null
-decl_stmt|;
-name|boolean
-name|live
-init|=
-literal|false
-decl_stmt|;
-name|int
-name|retry
-init|=
-literal|0
-decl_stmt|;
-while|while
+if|if
 condition|(
-literal|true
+name|core
+operator|!=
+literal|null
 condition|)
 block|{
 comment|// wait until we are sure the recovering node is ready
@@ -3492,6 +3505,7 @@ block|}
 block|}
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|retry
@@ -3526,42 +3540,6 @@ name|live
 argument_list|)
 throw|;
 block|}
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|1000
-argument_list|)
-expr_stmt|;
-block|}
-comment|// small safety net for any updates that started with state that
-comment|// kept it from sending the update to be buffered -
-comment|// pause for a while to let any outstanding updates finish
-comment|//System.out.println("I saw state:" + state + " sleep for " + pauseFor + " live:" + live);
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-name|pauseFor
-argument_list|)
-expr_stmt|;
-comment|// solrcloud_debug
-comment|//      try {;
-comment|//        LocalSolrQueryRequest r = new LocalSolrQueryRequest(core,  new ModifiableSolrParams());
-comment|//        CommitUpdateCommand commitCmd = new CommitUpdateCommand(r, false);
-comment|//        commitCmd.softCommit = true;
-comment|//        core.getUpdateHandler().commit(commitCmd);
-comment|//        RefCounted<SolrIndexSearcher> searchHolder = core.getNewestSearcher(false);
-comment|//        SolrIndexSearcher searcher = searchHolder.get();
-comment|//        try {
-comment|//          System.out.println(core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName() + " to replicate "
-comment|//              + searcher.search(new MatchAllDocsQuery(), 1).totalHits + " gen:" + core.getDeletionPolicy().getLatestCommit().getGeneration()  + " data:" + core.getDataDir());
-comment|//        } finally {
-comment|//          searchHolder.decref();
-comment|//        }
-comment|//      } catch (Exception e) {
-comment|//
-comment|//      }
 block|}
 finally|finally
 block|{
@@ -3579,6 +3557,48 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|1000
+argument_list|)
+expr_stmt|;
+block|}
+comment|// small safety net for any updates that started with state that
+comment|// kept it from sending the update to be buffered -
+comment|// pause for a while to let any outstanding updates finish
+comment|// System.out.println("I saw state:" + state + " sleep for " + pauseFor +
+comment|// " live:" + live);
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+name|pauseFor
+argument_list|)
+expr_stmt|;
+comment|// solrcloud_debug
+comment|// try {;
+comment|// LocalSolrQueryRequest r = new LocalSolrQueryRequest(core, new
+comment|// ModifiableSolrParams());
+comment|// CommitUpdateCommand commitCmd = new CommitUpdateCommand(r, false);
+comment|// commitCmd.softCommit = true;
+comment|// core.getUpdateHandler().commit(commitCmd);
+comment|// RefCounted<SolrIndexSearcher> searchHolder =
+comment|// core.getNewestSearcher(false);
+comment|// SolrIndexSearcher searcher = searchHolder.get();
+comment|// try {
+comment|// System.out.println(core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName()
+comment|// + " to replicate "
+comment|// + searcher.search(new MatchAllDocsQuery(), 1).totalHits + " gen:" +
+comment|// core.getDeletionPolicy().getLatestCommit().getGeneration() + " data:" +
+comment|// core.getDataDir());
+comment|// } finally {
+comment|// searchHolder.decref();
+comment|// }
+comment|// } catch (Exception e) {
+comment|//
+comment|// }
 block|}
 DECL|method|handleDistribUrlAction
 specifier|protected

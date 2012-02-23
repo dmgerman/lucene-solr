@@ -424,6 +424,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|File
 import|;
 end_import
@@ -455,6 +465,18 @@ operator|.
 name|util
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -902,6 +924,11 @@ name|testsFailed
 operator|=
 literal|true
 expr_stmt|;
+comment|// For debugging
+comment|//       Set<Entry<SolrCore,Exception>> coreEntries = SolrCore.openHandles.entrySet();
+comment|//       for (Entry<SolrCore,Exception> entry : coreEntries) {
+comment|//         entry.getValue().printStackTrace();
+comment|//       }
 name|fail
 argument_list|(
 name|msg

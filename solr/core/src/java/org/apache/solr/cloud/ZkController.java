@@ -2904,7 +2904,9 @@ argument_list|()
 operator|.
 name|doRecovery
 argument_list|(
-name|core
+name|cc
+argument_list|,
+name|coreName
 argument_list|)
 expr_stmt|;
 return|return

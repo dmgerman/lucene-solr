@@ -950,7 +950,12 @@ argument_list|()
 operator|.
 name|doRecovery
 argument_list|(
+name|cc
+argument_list|,
 name|core
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|leaderElector
