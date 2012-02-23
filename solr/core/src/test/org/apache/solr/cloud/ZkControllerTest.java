@@ -1169,6 +1169,13 @@ name|System
 operator|.
 name|clearProperty
 argument_list|(
+literal|"solrcloud.skip.autorecovery"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|clearProperty
+argument_list|(
 name|ZkStateReader
 operator|.
 name|NUM_SHARDS_PROP
