@@ -9867,6 +9867,16 @@ specifier|final
 name|ReadersAndLiveDocs
 name|mergedDeletes
 init|=
+name|merge
+operator|.
+name|info
+operator|.
+name|docCount
+operator|==
+literal|0
+condition|?
+literal|null
+else|:
 name|commitMergedDeletes
 argument_list|(
 name|merge
