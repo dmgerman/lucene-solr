@@ -438,6 +438,7 @@ literal|10000
 decl_stmt|;
 DECL|field|defaultCollection
 specifier|private
+specifier|volatile
 name|String
 name|defaultCollection
 decl_stmt|;
