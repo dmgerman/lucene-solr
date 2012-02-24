@@ -1539,6 +1539,138 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+name|coreadmin
+operator|=
+name|getRenamedSolrAdmin
+argument_list|()
+expr_stmt|;
+name|CoreAdminRequest
+operator|.
+name|createCore
+argument_list|(
+literal|"newCore"
+argument_list|,
+name|home
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|,
+name|coreadmin
+argument_list|)
+expr_stmt|;
+comment|//    fis = new FileInputStream(new File(solrXml.getParent(), "solr-persist.xml"));
+comment|//    solrPersistXml = IOUtils.toString(fis);
+comment|//    System.out.println("xml:" + solrPersistXml);
+comment|//    fis.close();
+name|mcr
+operator|=
+name|CoreAdminRequest
+operator|.
+name|persist
+argument_list|(
+literal|"solr-persist.xml"
+argument_list|,
+name|getRenamedSolrAdmin
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//    fis = new FileInputStream(new File(solrXml.getParent(), "solr-persist.xml"));
+comment|//    solrPersistXml = IOUtils.toString(fis);
+comment|//    System.out.println("xml:" + solrPersistXml);
+comment|//    fis.close();
+name|fis
+operator|=
+operator|new
+name|FileInputStream
+argument_list|(
+operator|new
+name|File
+argument_list|(
+name|solrXml
+operator|.
+name|getParent
+argument_list|()
+argument_list|,
+literal|"solr-persist.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|Document
+name|document
+init|=
+name|builder
+operator|.
+name|parse
+argument_list|(
+name|fis
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|exists
+argument_list|(
+literal|"/solr/cores/core[@name='collection1' and @instanceDir='./']"
+argument_list|,
+name|document
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|fis
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+comment|// test reload and parse
+name|cores
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+name|cores
+operator|=
+operator|new
+name|CoreContainer
+argument_list|(
+name|home
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|,
+operator|new
+name|File
+argument_list|(
+name|solrXml
+operator|.
+name|getParent
+argument_list|()
+argument_list|,
+literal|"solr-persist.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|mcr
+operator|=
+name|CoreAdminRequest
+operator|.
+name|persist
+argument_list|(
+literal|"solr-persist.xml"
+argument_list|,
+name|getRenamedSolrAdmin
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//     fis = new FileInputStream(new File(solrXml.getParent(),
+comment|//     "solr-persist.xml"));
+comment|//     solrPersistXml = IOUtils.toString(fis);
+comment|//     System.out.println("xml:" + solrPersistXml);
+comment|//     fis.close();
 block|}
 DECL|method|exists
 specifier|public
