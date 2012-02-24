@@ -26,6 +26,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
 begin_comment
 comment|/**  * A simple iterator interface for {@link BytesRef} iteration  *   */
 end_comment
@@ -56,6 +66,16 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Return the {@link BytesRef} Comparator used to sort terms provided by the    * iterator. This may return null if there are no items or the iterator is not    * sorted. Callers may invoke this method many times, so it's best to cache a    * single instance& reuse it.    */
+DECL|method|getComparator
+specifier|public
+name|Comparator
+argument_list|<
+name|BytesRef
+argument_list|>
+name|getComparator
+parameter_list|()
+function_decl|;
 DECL|class|EmptyBytesRefIterator
 specifier|public
 specifier|final
@@ -74,6 +94,19 @@ name|next
 parameter_list|()
 throws|throws
 name|IOException
+block|{
+return|return
+literal|null
+return|;
+block|}
+DECL|method|getComparator
+specifier|public
+name|Comparator
+argument_list|<
+name|BytesRef
+argument_list|>
+name|getComparator
+parameter_list|()
 block|{
 return|return
 literal|null

@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -177,7 +187,7 @@ name|TermFreqIterator
 block|{
 DECL|field|curFreq
 specifier|private
-name|float
+name|long
 name|curFreq
 decl_stmt|;
 DECL|field|spare
@@ -190,10 +200,10 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
-DECL|method|freq
+DECL|method|weight
 specifier|public
-name|float
-name|freq
+name|long
+name|weight
 parameter_list|()
 block|{
 return|return
@@ -253,8 +263,12 @@ operator|>
 literal|1
 condition|)
 block|{
+comment|// keep reading floats for bw compat
 name|curFreq
 operator|=
+operator|(
+name|int
+operator|)
 name|Float
 operator|.
 name|parseFloat
@@ -311,6 +325,21 @@ return|return
 literal|null
 return|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|getComparator
+specifier|public
+name|Comparator
+argument_list|<
+name|BytesRef
+argument_list|>
+name|getComparator
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
 block|}
 block|}
 block|}

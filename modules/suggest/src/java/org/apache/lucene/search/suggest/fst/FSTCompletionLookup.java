@@ -273,7 +273,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An adapter from {@link Lookup} API to {@link FSTCompletion}.  *   *<p>This adapter differs from {@link FSTCompletion} in that it attempts  * to discretize any "weights" as passed from in {@link TermFreqIterator#freq()}  * to match the number of buckets. For the rationale for bucketing, see  * {@link FSTCompletion}.  *   *<p><b>Note:</b>Discretization requires an additional sorting pass.  *   *<p>The range of weights for bucketing/ discretization is determined   * by sorting the input by weight and then dividing into  * equal ranges. Then, scores within each range are assigned to that bucket.   *   *<p>Note that this means that even large differences in weights may be lost   * during automaton construction, but the overall distinction between "classes"  * of weights will be preserved regardless of the distribution of weights.   *   *<p>For fine-grained control over which weights are assigned to which buckets,  * use {@link FSTCompletion} directly or {@link TSTLookup}, for example.  *   * @see FSTCompletion  */
+comment|/**  * An adapter from {@link Lookup} API to {@link FSTCompletion}.  *   *<p>This adapter differs from {@link FSTCompletion} in that it attempts  * to discretize any "weights" as passed from in {@link TermFreqIterator#weight()}  * to match the number of buckets. For the rationale for bucketing, see  * {@link FSTCompletion}.  *   *<p><b>Note:</b>Discretization requires an additional sorting pass.  *   *<p>The range of weights for bucketing/ discretization is determined   * by sorting the input by weight and then dividing into  * equal ranges. Then, scores within each range are assigned to that bucket.   *   *<p>Note that this means that even large differences in weights may be lost   * during automaton construction, but the overall distinction between "classes"  * of weights will be preserved regardless of the distribution of weights.   *   *<p>For fine-grained control over which weights are assigned to which buckets,  * use {@link FSTCompletion} directly or {@link TSTLookup}, for example.  *   * @see FSTCompletion  */
 end_comment
 
 begin_class
@@ -600,7 +600,7 @@ name|toSortable
 argument_list|(
 name|tfit
 operator|.
-name|freq
+name|weight
 argument_list|()
 argument_list|)
 argument_list|)
@@ -934,7 +934,7 @@ name|LookupResult
 argument_list|>
 name|lookup
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|,
 name|boolean
@@ -1001,6 +1001,13 @@ name|size
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|CharsRef
+name|spare
+init|=
+operator|new
+name|CharsRef
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|Completion
@@ -1009,6 +1016,28 @@ range|:
 name|completions
 control|)
 block|{
+name|spare
+operator|.
+name|grow
+argument_list|(
+name|c
+operator|.
+name|utf8
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+name|UnicodeUtil
+operator|.
+name|UTF8toUTF16
+argument_list|(
+name|c
+operator|.
+name|utf8
+argument_list|,
+name|spare
+argument_list|)
+expr_stmt|;
 name|results
 operator|.
 name|add
@@ -1016,11 +1045,9 @@ argument_list|(
 operator|new
 name|LookupResult
 argument_list|(
-name|c
+name|spare
 operator|.
-name|utf8
-operator|.
-name|utf8ToString
+name|toString
 argument_list|()
 argument_list|,
 name|c
@@ -1041,7 +1068,7 @@ specifier|public
 name|boolean
 name|add
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|,
 name|Object
@@ -1057,10 +1084,10 @@ annotation|@
 name|Override
 DECL|method|get
 specifier|public
-name|Float
+name|Object
 name|get
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|)
 block|{

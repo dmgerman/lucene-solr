@@ -24,7 +24,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|Comparator
 import|;
 end_import
 
@@ -164,6 +164,8 @@ specifier|public
 name|BytesRefIterator
 name|getWordsIterator
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 operator|new
@@ -295,6 +297,21 @@ block|}
 block|}
 return|return
 name|result
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getComparator
+specifier|public
+name|Comparator
+argument_list|<
+name|BytesRef
+argument_list|>
+name|getComparator
+parameter_list|()
+block|{
+return|return
+literal|null
 return|;
 block|}
 block|}

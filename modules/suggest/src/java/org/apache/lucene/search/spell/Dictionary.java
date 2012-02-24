@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -47,6 +57,8 @@ DECL|method|getWordsIterator
 name|BytesRefIterator
 name|getWordsIterator
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_interface

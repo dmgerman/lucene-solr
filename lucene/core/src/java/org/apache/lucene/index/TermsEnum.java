@@ -375,19 +375,6 @@ block|{       }
 block|}
 return|;
 block|}
-comment|/** Return the {@link BytesRef} Comparator used to sort    *  terms provided by the iterator.  This may return    *  null if there are no terms.  Callers may invoke this    *  method many times, so it's best to cache a single    *  instance& reuse it. */
-DECL|method|getComparator
-specifier|public
-specifier|abstract
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|getComparator
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
 comment|/** An empty TermsEnum for quickly returning an empty instance e.g.    * in {@link org.apache.lucene.search.MultiTermQuery}    *<p><em>Please note:</em> This enum should be unmodifiable,    * but it is currently possible to add Attributes to it.    * This should not be a problem, as the enum is always empty and    * the existence of unused Attributes does not matter.    */
 DECL|field|EMPTY
 specifier|public

@@ -561,12 +561,12 @@ operator|>=
 literal|0
 argument_list|)
 expr_stmt|;
-name|float
+name|int
 name|weight
 init|=
-name|Float
+name|Integer
 operator|.
-name|parseFloat
+name|parseInt
 argument_list|(
 name|line
 operator|.

@@ -132,22 +132,6 @@ name|search
 operator|.
 name|spell
 operator|.
-name|SortedIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|spell
-operator|.
 name|TermFreqIterator
 import|;
 end_import
@@ -306,8 +290,11 @@ block|{
 if|if
 condition|(
 name|tfit
-operator|instanceof
-name|SortedIterator
+operator|.
+name|getComparator
+argument_list|()
+operator|!=
+literal|null
 condition|)
 block|{
 comment|// make sure it's unsorted
@@ -364,7 +351,7 @@ name|freq
 init|=
 name|tfit
 operator|.
-name|freq
+name|weight
 argument_list|()
 decl_stmt|;
 if|if
@@ -431,7 +418,7 @@ specifier|public
 name|boolean
 name|add
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|,
 name|Object
@@ -459,7 +446,7 @@ specifier|public
 name|Object
 name|get
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|)
 block|{
@@ -482,7 +469,7 @@ name|LookupResult
 argument_list|>
 name|lookup
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|,
 name|boolean
@@ -628,7 +615,11 @@ argument_list|(
 operator|new
 name|LookupResult
 argument_list|(
+operator|new
+name|CharsRef
+argument_list|(
 name|s
+argument_list|)
 argument_list|,
 name|freq
 argument_list|)
@@ -702,7 +693,11 @@ argument_list|(
 operator|new
 name|LookupResult
 argument_list|(
+operator|new
+name|CharsRef
+argument_list|(
 name|s
+argument_list|)
 argument_list|,
 name|freq
 argument_list|)

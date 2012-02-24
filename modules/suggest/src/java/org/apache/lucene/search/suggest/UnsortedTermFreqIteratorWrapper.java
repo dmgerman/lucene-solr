@@ -80,6 +80,7 @@ name|UnsortedTermFreqIteratorWrapper
 extends|extends
 name|BufferingTermFreqIteratorWrapper
 block|{
+comment|// TODO keep this for now
 DECL|field|ords
 specifier|private
 specifier|final
@@ -221,10 +222,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|freq
+DECL|method|weight
 specifier|public
-name|float
-name|freq
+name|long
+name|weight
 parameter_list|()
 block|{
 return|return
