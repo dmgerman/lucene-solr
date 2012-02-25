@@ -867,6 +867,10 @@ argument_list|,
 literal|null
 argument_list|,
 name|solrHome
+operator|+
+literal|"/zoo_data"
+argument_list|,
+name|solrHome
 argument_list|,
 name|solrPort
 argument_list|)
