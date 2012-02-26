@@ -1397,6 +1397,31 @@ name|getCloudState
 argument_list|()
 return|;
 block|}
+comment|/** @return the CoreState for the core, which may not yet be visible to ZooKeeper or other nodes in the cluster */
+DECL|method|getCoreState
+specifier|public
+name|CoreState
+name|getCoreState
+parameter_list|(
+name|String
+name|coreName
+parameter_list|)
+block|{
+synchronized|synchronized
+init|(
+name|coreStates
+init|)
+block|{
+return|return
+name|coreStates
+operator|.
+name|get
+argument_list|(
+name|coreName
+argument_list|)
+return|;
+block|}
+block|}
 comment|/**    * @param zkConfigName    * @param fileName    * @return config file data (in bytes)    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|getConfigFileData
 specifier|public
@@ -2638,21 +2663,14 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|isLeader
-condition|)
-block|{
 comment|// recover from local transaction log and wait for it to complete before
 comment|// going active
 comment|// TODO: should this be moved to another thread? To recoveryStrat?
 comment|// TODO: should this actually be done earlier, before (or as part of)
 comment|// leader election perhaps?
-comment|// TODO: ensure that a replica that is trying to recover waits until I'm
+comment|// TODO: if I'm the leader, ensure that a replica that is trying to recover waits until I'm
 comment|// active (or don't make me the
-comment|// leader until my local replay is done. But this replay is only needed
-comment|// on the leader - replicas
-comment|// will do recovery anyway
+comment|// leader until my local replay is done.
 name|UpdateLog
 name|ulog
 init|=
@@ -2711,7 +2729,7 @@ expr_stmt|;
 comment|// NOTE: this could potentially block for
 comment|// minutes or more!
 comment|// TODO: public as recovering in the mean time?
-block|}
+comment|// TODO: in the future we could do peerync in parallel with recoverFromLog
 block|}
 block|}
 name|boolean
