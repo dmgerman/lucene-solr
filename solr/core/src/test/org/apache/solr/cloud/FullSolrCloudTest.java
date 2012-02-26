@@ -954,11 +954,7 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|ignoreException
-argument_list|(
-literal|".*"
-argument_list|)
-expr_stmt|;
+comment|// ignoreException(".*");
 name|System
 operator|.
 name|setProperty
