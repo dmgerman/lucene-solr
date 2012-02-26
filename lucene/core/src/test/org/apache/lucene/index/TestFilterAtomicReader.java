@@ -1032,7 +1032,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"does not override some methods; see log above"
+literal|" does not override some methods; see log above"
 argument_list|,
 name|fail
 argument_list|)
