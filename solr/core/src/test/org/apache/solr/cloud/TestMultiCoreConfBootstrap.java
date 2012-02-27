@@ -368,7 +368,7 @@ name|System
 operator|.
 name|clearProperty
 argument_list|(
-literal|"bootstrap_confdir"
+literal|"bootstrap_conf"
 argument_list|)
 expr_stmt|;
 name|System
