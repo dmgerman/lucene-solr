@@ -374,6 +374,9 @@ operator|new
 name|LineFileDocs
 argument_list|(
 name|random
+argument_list|,
+name|defaultCodecSupportsDocValues
+argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
