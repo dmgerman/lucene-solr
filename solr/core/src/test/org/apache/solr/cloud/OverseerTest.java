@@ -1037,8 +1037,6 @@ operator|.
 name|joinElection
 argument_list|(
 name|ctx
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 break|break;
@@ -1426,13 +1424,9 @@ argument_list|)
 expr_stmt|;
 name|zkController
 operator|.
-name|preRegisterSetup
+name|preRegister
 argument_list|(
-literal|null
-argument_list|,
 name|desc1
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|ids
@@ -2028,13 +2022,9 @@ operator|%
 name|nodeCount
 index|]
 operator|.
-name|preRegisterSetup
+name|preRegister
 argument_list|(
-literal|null
-argument_list|,
 name|desc
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|ids
@@ -5192,8 +5182,6 @@ operator|.
 name|joinElection
 argument_list|(
 name|ec
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 return|return

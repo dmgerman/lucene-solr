@@ -3194,16 +3194,12 @@ block|{
 comment|// this happens before we can receive requests
 name|zkController
 operator|.
-name|preRegisterSetup
+name|preRegister
 argument_list|(
-name|core
-argument_list|,
 name|core
 operator|.
 name|getCoreDescriptor
 argument_list|()
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
