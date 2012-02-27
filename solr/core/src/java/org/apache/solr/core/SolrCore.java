@@ -6664,23 +6664,8 @@ argument_list|()
 decl_stmt|;
 comment|// for back compat, we set these now just in case other code
 comment|// are expecting them during handleRequest
-name|toLog
-operator|.
-name|add
-argument_list|(
-literal|"webapp"
-argument_list|,
-name|req
-operator|.
-name|getContext
-argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"webapp"
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|// multiple webaps are no longer best practise
+comment|// toLog.add("webapp", req.getContext().get("webapp"));
 name|toLog
 operator|.
 name|add
@@ -6738,6 +6723,13 @@ name|log
 operator|.
 name|isInfoEnabled
 argument_list|()
+operator|&&
+name|toLog
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
 name|StringBuilder
@@ -6745,9 +6737,7 @@ name|sb
 init|=
 operator|new
 name|StringBuilder
-argument_list|(
-name|logid
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -6787,6 +6777,33 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+literal|"path"
+operator|==
+name|name
+operator|||
+literal|"params"
+operator|==
+name|name
+condition|)
+block|{
+comment|//equals OK here
+name|sb
+operator|.
+name|append
+argument_list|(
+name|val
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|' '
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|sb
 operator|.
 name|append
@@ -6796,7 +6813,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-literal|"="
+literal|'='
 argument_list|)
 operator|.
 name|append
@@ -6806,9 +6823,10 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-literal|" "
+literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|log
 operator|.
@@ -6931,6 +6949,19 @@ argument_list|,
 name|qtime
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|rsp
+operator|.
+name|getToLog
+argument_list|()
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 name|rsp
 operator|.
 name|getToLog
@@ -6955,6 +6986,7 @@ argument_list|,
 name|qtime
 argument_list|)
 expr_stmt|;
+block|}
 name|SolrParams
 name|params
 init|=
