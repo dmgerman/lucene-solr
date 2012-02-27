@@ -532,17 +532,6 @@ argument_list|,
 name|actual
 argument_list|)
 expr_stmt|;
-name|QueryUtils
-operator|.
-name|purgeFieldCache
-argument_list|(
-name|s
-operator|.
-name|getIndexReader
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// our wrapping can create insanity otherwise
 block|}
 block|}
 DECL|class|SetCollector
