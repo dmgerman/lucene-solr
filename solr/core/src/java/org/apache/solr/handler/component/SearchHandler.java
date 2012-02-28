@@ -864,7 +864,6 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-block|}
 name|core
 operator|.
 name|addCloseHook
@@ -898,10 +897,11 @@ parameter_list|(
 name|SolrCore
 name|core
 parameter_list|)
-block|{       }
+block|{         }
 block|}
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|getComponents
 specifier|public
