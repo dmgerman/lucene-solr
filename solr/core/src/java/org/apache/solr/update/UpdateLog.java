@@ -2927,6 +2927,17 @@ name|committed
 condition|)
 block|{
 comment|// record a commit
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Recording current log as closed for "
+operator|+
+name|uhandler
+operator|.
+name|core
+argument_list|)
+expr_stmt|;
 name|CommitUpdateCommand
 name|cmd
 init|=

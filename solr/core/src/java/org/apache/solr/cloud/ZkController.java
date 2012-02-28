@@ -2902,6 +2902,25 @@ comment|// minutes or more!
 comment|// TODO: public as recovering in the mean time?
 comment|// TODO: in the future we could do peerync in parallel with recoverFromLog
 block|}
+else|else
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"No LogReplay needed for core="
+operator|+
+name|core
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" baseURL="
+operator|+
+name|baseUrl
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|boolean
 name|didRecovery

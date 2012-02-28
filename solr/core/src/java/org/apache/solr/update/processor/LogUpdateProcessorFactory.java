@@ -291,38 +291,14 @@ name|UpdateRequestProcessor
 name|next
 parameter_list|)
 block|{
-specifier|final
-name|Logger
-name|logger
-init|=
-name|LoggerFactory
-operator|.
-name|getLogger
-argument_list|(
+return|return
 name|LogUpdateProcessor
 operator|.
-name|class
-argument_list|)
-decl_stmt|;
-name|boolean
-name|doLog
-init|=
-name|logger
+name|log
 operator|.
 name|isInfoEnabled
 argument_list|()
-decl_stmt|;
-comment|// LogUpdateProcessor.log.error("Will Log=" + doLog);
-if|if
-condition|(
-name|doLog
-condition|)
-block|{
-comment|// only create the log processor if we will use it
-specifier|final
-name|LogUpdateProcessor
-name|processor
-init|=
+condition|?
 operator|new
 name|LogUpdateProcessor
 argument_list|(
@@ -334,19 +310,7 @@ name|this
 argument_list|,
 name|next
 argument_list|)
-decl_stmt|;
-assert|assert
-name|processor
-operator|.
-name|log
-operator|==
-name|logger
-assert|;
-return|return
-name|processor
-return|;
-block|}
-return|return
+else|:
 literal|null
 return|;
 block|}
@@ -360,6 +324,22 @@ name|LogUpdateProcessor
 extends|extends
 name|UpdateRequestProcessor
 block|{
+DECL|field|log
+specifier|public
+specifier|final
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|UpdateRequestProcessor
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|field|req
 specifier|private
 specifier|final
@@ -501,6 +481,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
+literal|"PRE_UPDATE "
+operator|+
 name|cmd
 operator|.
 name|toString
@@ -625,6 +607,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
+literal|"PRE_UPDATE "
+operator|+
 name|cmd
 operator|.
 name|toString
@@ -810,6 +794,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
+literal|"PRE_UPDATE "
+operator|+
 name|cmd
 operator|.
 name|toString
@@ -865,6 +851,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
+literal|"PRE_UPDATE "
+operator|+
 name|cmd
 operator|.
 name|toString
@@ -930,6 +918,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
+literal|"PRE_UPDATE "
+operator|+
 name|cmd
 operator|.
 name|toString
@@ -972,6 +962,19 @@ name|IOException
 block|{
 if|if
 condition|(
+name|logDebug
+condition|)
+block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"PRE_UPDATE finish()"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|next
 operator|!=
 literal|null
@@ -981,25 +984,7 @@ operator|.
 name|finish
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|logDebug
-condition|)
-block|{
-name|log
-operator|.
-name|debug
-argument_list|(
-literal|"finish"
-argument_list|)
-expr_stmt|;
-block|}
 comment|// LOG A SUMMARY WHEN ALL DONE (INFO LEVEL)
-comment|// TODO: right now, update requests are logged twice...
-comment|// this will slow down things compared to Solr 1.2
-comment|// we should have extra log info on the SolrQueryResponse, to
-comment|// be logged by SolrCore
-comment|// if id lists were truncated, show how many more there were
 name|NamedList
 argument_list|<
 name|Object
@@ -1113,6 +1098,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 comment|// make it so SolrCore.exec won't log this again
+comment|// if id lists were truncated, show how many more there were
 if|if
 condition|(
 name|adds
