@@ -235,7 +235,7 @@ literal|0
 condition|)
 block|{
 comment|// since docs are visited in doc Id order, if compare is 0, it means
-comment|// this document is largest than anything else in the queue, and
+comment|// this document is larger than anything else in the queue, and
 comment|// therefore not competitive.
 return|return;
 block|}
