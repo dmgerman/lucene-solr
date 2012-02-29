@@ -1001,7 +1001,15 @@ name|sb
 init|=
 operator|new
 name|StringBuilder
+argument_list|(
+name|req
+operator|.
+name|getCore
 argument_list|()
+operator|.
+name|getLogId
+argument_list|()
+argument_list|)
 decl_stmt|;
 for|for
 control|(
