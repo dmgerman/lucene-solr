@@ -4189,21 +4189,6 @@ specifier|private
 name|RecoveryInfo
 name|recoveryInfo
 decl_stmt|;
-DECL|field|loglog
-specifier|public
-specifier|static
-name|Logger
-name|loglog
-init|=
-name|LoggerFactory
-operator|.
-name|getLogger
-argument_list|(
-name|LogReplayer
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 comment|// TODO: do we let the log replayer run across core reloads?
 DECL|class|LogReplayer
 class|class
@@ -4211,6 +4196,14 @@ name|LogReplayer
 implements|implements
 name|Runnable
 block|{
+DECL|field|loglog
+specifier|private
+name|Logger
+name|loglog
+init|=
+name|log
+decl_stmt|;
+comment|// set to something different?
 DECL|field|translog
 name|TransactionLog
 name|translog

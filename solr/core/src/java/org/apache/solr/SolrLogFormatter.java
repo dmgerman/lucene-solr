@@ -937,7 +937,6 @@ argument_list|)
 expr_stmt|;
 comment|// core
 block|}
-elseif|else
 if|if
 condition|(
 name|zkController
@@ -945,7 +944,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// if we don't have info about the core, then at least try to do core container
 name|sb
 operator|.
 name|append

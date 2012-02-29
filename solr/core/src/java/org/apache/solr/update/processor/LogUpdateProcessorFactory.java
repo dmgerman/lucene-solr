@@ -335,7 +335,7 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|UpdateRequestProcessor
+name|LogUpdateProcessor
 operator|.
 name|class
 argument_list|)
@@ -1012,7 +1012,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|stdLog
+name|toLog
 operator|.
 name|size
 argument_list|()
@@ -1024,7 +1024,7 @@ block|{
 name|String
 name|name
 init|=
-name|stdLog
+name|toLog
 operator|.
 name|getName
 argument_list|(
@@ -1034,7 +1034,7 @@ decl_stmt|;
 name|Object
 name|val
 init|=
-name|stdLog
+name|toLog
 operator|.
 name|getVal
 argument_list|(
@@ -1043,30 +1043,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-literal|"path"
-operator|==
 name|name
-operator|||
-literal|"params"
-operator|==
-name|name
+operator|!=
+literal|null
 condition|)
-block|{
-comment|//equals OK here
-name|sb
-operator|.
-name|append
-argument_list|(
-name|val
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|' '
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|sb
 operator|.
@@ -1079,6 +1059,9 @@ name|append
 argument_list|(
 literal|'='
 argument_list|)
+expr_stmt|;
+block|}
+name|sb
 operator|.
 name|append
 argument_list|(
@@ -1090,7 +1073,6 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|stdLog
 operator|.
@@ -1159,11 +1141,6 @@ name|getStartTime
 argument_list|()
 decl_stmt|;
 name|sb
-operator|.
-name|append
-argument_list|(
-name|toLog
-argument_list|)
 operator|.
 name|append
 argument_list|(
