@@ -78,15 +78,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|base
+name|core
 operator|.
 name|context
 operator|.
@@ -96,15 +92,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|base
+name|core
 operator|.
 name|query
 operator|.
@@ -114,15 +106,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|base
+name|core
 operator|.
 name|shape
 operator|.

@@ -94,15 +94,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|base
+name|core
 operator|.
 name|context
 operator|.
@@ -112,15 +108,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|base
+name|core
 operator|.
 name|context
 operator|.
@@ -130,15 +122,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|base
+name|core
 operator|.
 name|context
 operator|.
@@ -150,15 +138,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|base
+name|core
 operator|.
 name|exception
 operator|.
@@ -168,15 +152,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|base
+name|core
 operator|.
 name|prefix
 operator|.
@@ -188,15 +168,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|base
+name|core
 operator|.
 name|shape
 operator|.
@@ -319,7 +295,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is a class that represents a<a  * href="http://en.wikipedia.org/wiki/Geohash">Geohash</a> field. The field is  * provided as a lat/lon pair and is internally represented as a string.  *  * @see org.apache.lucene.spatial.base.context.ParseUtils#parseLatitudeLongitude(double[], String)   */
+comment|/**  * This is a class that represents a<a  * href="http://en.wikipedia.org/wiki/Geohash">Geohash</a> field. The field is  * provided as a lat/lon pair and is internally represented as a string.  *  * @see com.spatial4j.core.context.ParseUtils#parseLatitudeLongitude(double[], String)   */
 end_comment
 
 begin_class
