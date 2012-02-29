@@ -1012,7 +1012,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|toLog
+name|stdLog
 operator|.
 name|size
 argument_list|()
@@ -1024,7 +1024,7 @@ block|{
 name|String
 name|name
 init|=
-name|toLog
+name|stdLog
 operator|.
 name|getName
 argument_list|(
@@ -1034,7 +1034,7 @@ decl_stmt|;
 name|Object
 name|val
 init|=
-name|toLog
+name|stdLog
 operator|.
 name|getVal
 argument_list|(
@@ -1141,6 +1141,11 @@ name|getStartTime
 argument_list|()
 decl_stmt|;
 name|sb
+operator|.
+name|append
+argument_list|(
+name|toLog
+argument_list|)
 operator|.
 name|append
 argument_list|(
