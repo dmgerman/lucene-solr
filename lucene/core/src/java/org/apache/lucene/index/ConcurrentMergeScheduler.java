@@ -1731,6 +1731,8 @@ name|String
 name|toString
 parameter_list|()
 block|{
+try|try
+block|{
 name|MergePolicy
 operator|.
 name|OneMerge
@@ -1751,8 +1753,6 @@ operator|=
 name|startMerge
 expr_stmt|;
 block|}
-try|try
-block|{
 return|return
 literal|"merge thread: "
 operator|+
@@ -1768,17 +1768,18 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
-name|ioe
+name|Throwable
+name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|ioe
-argument_list|)
-throw|;
+return|return
+literal|"merge thread: "
+operator|+
+name|e
+operator|.
+name|toString
+argument_list|()
+return|;
 block|}
 block|}
 block|}
