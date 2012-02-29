@@ -332,7 +332,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Tests that a query matches the an expected set of documents using a    * HitCollector.    *    *<p>    * Note that when using the HitCollector API, documents will be collected    * if they "match" regardless of what their score is.    *</p>    * @param query the query to test    * @param searcher the searcher to test the query against    * @param defaultFieldName used for displaying the query in assertion messages    * @param results a list of documentIds that must match the query    * @see Searcher#search(Query,Collector)    * @see #checkHits    */
+comment|/**    * Tests that a query matches the an expected set of documents using a    * HitCollector.    *    *<p>    * Note that when using the HitCollector API, documents will be collected    * if they "match" regardless of what their score is.    *</p>    * @param query the query to test    * @param searcher the searcher to test the query against    * @param defaultFieldName used for displaying the query in assertion messages    * @param results a list of documentIds that must match the query    * see Searcher#search(Query,Collector)    * @see #checkHits    */
 DECL|method|checkHitCollector
 specifier|public
 specifier|static
@@ -656,7 +656,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**    * Tests that a query matches the an expected set of documents using Hits.    *    *<p>    * Note that when using the Hits API, documents will only be returned    * if they have a positive normalized score.    *</p>    * @param query the query to test    * @param searcher the searcher to test the query against    * @param defaultFieldName used for displaing the query in assertion messages    * @param results a list of documentIds that must match the query    * @see Searcher#search(Query, int)    * @see #checkHitCollector    */
+comment|/**    * Tests that a query matches the an expected set of documents using Hits.    *    *<p>    * Note that when using the Hits API, documents will only be returned    * if they have a positive normalized score.    *</p>    * @param query the query to test    * @param searcher the searcher to test the query against    * @param defaultFieldName used for displaing the query in assertion messages    * @param results a list of documentIds that must match the query    * see Searcher#search(Query, int)    * @see #checkHitCollector    */
 DECL|method|checkHits
 specifier|public
 specifier|static
