@@ -6551,13 +6551,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** @lucene.internal use the more consiste testLoggingFormat for tests... for use with SolrLogFormatter */
-DECL|field|isTestLoggingFormat
-specifier|public
-specifier|static
-name|boolean
-name|isTestLoggingFormat
-decl_stmt|;
 DECL|method|execute
 specifier|public
 name|void

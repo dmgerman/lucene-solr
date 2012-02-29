@@ -659,12 +659,6 @@ name|void
 name|setupLogging
 parameter_list|()
 block|{
-name|SolrCore
-operator|.
-name|isTestLoggingFormat
-operator|=
-literal|true
-expr_stmt|;
 name|boolean
 name|register
 init|=
