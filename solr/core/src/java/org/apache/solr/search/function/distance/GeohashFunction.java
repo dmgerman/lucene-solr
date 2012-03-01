@@ -74,9 +74,7 @@ name|spatial4j
 operator|.
 name|core
 operator|.
-name|prefix
-operator|.
-name|geohash
+name|util
 operator|.
 name|GeohashUtils
 import|;

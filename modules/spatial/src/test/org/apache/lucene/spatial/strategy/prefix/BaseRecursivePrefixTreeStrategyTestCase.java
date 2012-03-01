@@ -36,17 +36,17 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|spatial4j
+name|apache
 operator|.
-name|core
+name|lucene
 operator|.
-name|prefix
+name|spatial
 operator|.
-name|geohash
+name|strategy
 operator|.
-name|GeohashPrefixTree
+name|SimpleSpatialFieldInfo
 import|;
 end_import
 
@@ -62,7 +62,11 @@ name|spatial
 operator|.
 name|strategy
 operator|.
-name|SimpleSpatialFieldInfo
+name|prefix
+operator|.
+name|tree
+operator|.
+name|GeohashPrefixTree
 import|;
 end_import
 
