@@ -86,6 +86,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -381,7 +391,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Suggester based on a weighted FST: it first traverses the prefix,   * then walks the<i>n</i> shortest paths to retrieve top-ranked  * suggestions.  *<p>  *<b>NOTE</b>: Although the {@link TermFreqIterator} API specifies  * floating point weights, input weights should be whole numbers.  * Input weights will be cast to a java integer, and any  * negative, infinite, or NaN values will be rejected.  *   * @see Util#shortestPaths(FST, FST.Arc, int)  * @lucene.experimental  */
+comment|/**  * Suggester based on a weighted FST: it first traverses the prefix,   * then walks the<i>n</i> shortest paths to retrieve top-ranked  * suggestions.  *<p>  *<b>NOTE</b>: Although the {@link TermFreqIterator} API specifies  * floating point weights, input weights should be whole numbers.  * Input weights will be cast to a java integer, and any  * negative, infinite, or NaN values will be rejected.  *   * @see Util#shortestPaths(FST, FST.Arc, Comparator, int)  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -1287,6 +1297,9 @@ block|}
 block|}
 comment|// complete top-N
 name|MinResult
+argument_list|<
+name|Long
+argument_list|>
 name|completions
 index|[]
 init|=
@@ -1303,6 +1316,8 @@ argument_list|(
 name|fst
 argument_list|,
 name|arc
+argument_list|,
+name|weightComparator
 argument_list|,
 name|num
 argument_list|)
@@ -1334,6 +1349,9 @@ decl_stmt|;
 for|for
 control|(
 name|MinResult
+argument_list|<
+name|Long
+argument_list|>
 name|completion
 range|:
 name|completions
@@ -1727,6 +1745,44 @@ operator|)
 name|value
 return|;
 block|}
+DECL|field|weightComparator
+specifier|static
+specifier|final
+name|Comparator
+argument_list|<
+name|Long
+argument_list|>
+name|weightComparator
+init|=
+operator|new
+name|Comparator
+argument_list|<
+name|Long
+argument_list|>
+argument_list|()
+block|{
+specifier|public
+name|int
+name|compare
+parameter_list|(
+name|Long
+name|left
+parameter_list|,
+name|Long
+name|right
+parameter_list|)
+block|{
+return|return
+name|left
+operator|.
+name|compareTo
+argument_list|(
+name|right
+argument_list|)
+return|;
+block|}
+block|}
+decl_stmt|;
 block|}
 end_class
 
