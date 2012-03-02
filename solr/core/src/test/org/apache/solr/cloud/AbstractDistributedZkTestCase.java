@@ -1149,17 +1149,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|AfterClass
-DECL|method|afterClass
-specifier|public
-specifier|static
-name|void
-name|afterClass
-parameter_list|()
-throws|throws
-name|InterruptedException
-block|{   }
 block|}
 end_class
 
