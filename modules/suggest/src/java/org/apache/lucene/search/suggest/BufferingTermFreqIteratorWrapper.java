@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This wrapper buffers incoming elements.  */
+comment|/**  * This wrapper buffers incoming elements.  * @lucene.experimental  */
 end_comment
 
 begin_class

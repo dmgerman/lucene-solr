@@ -138,6 +138,10 @@ name|PriorityQueue
 import|;
 end_import
 
+begin_comment
+comment|/**  * Simple Lookup interface for {@link CharSequence} suggestions.  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|Lookup
 specifier|public
@@ -167,7 +171,7 @@ decl_stmt|;
 DECL|field|value
 specifier|public
 specifier|final
-name|float
+name|long
 name|value
 decl_stmt|;
 DECL|method|LookupResult
@@ -177,7 +181,7 @@ parameter_list|(
 name|CharSequence
 name|key
 parameter_list|,
-name|float
+name|long
 name|value
 parameter_list|)
 block|{
@@ -517,6 +521,7 @@ name|tfit
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Builds up a new internal {@link Lookup} representation based on the given {@link TermFreqIterator}.    * The implementation might re-sort the data internally.    */
 DECL|method|build
 specifier|public
 specifier|abstract
@@ -547,31 +552,6 @@ name|onlyMorePopular
 parameter_list|,
 name|int
 name|num
-parameter_list|)
-function_decl|;
-comment|/**    * Modify the lookup data by recording additional data. Optional operation.    * @param key new lookup key    * @param value value to associate with this key    * @return true if new key is added, false if it already exists or operation    * is not supported.    */
-DECL|method|add
-specifier|public
-specifier|abstract
-name|boolean
-name|add
-parameter_list|(
-name|CharSequence
-name|key
-parameter_list|,
-name|Object
-name|value
-parameter_list|)
-function_decl|;
-comment|/**    * Get value associated with a specific key.    * @param key lookup key    * @return associated value    */
-DECL|method|get
-specifier|public
-specifier|abstract
-name|Object
-name|get
-parameter_list|(
-name|CharSequence
-name|key
 parameter_list|)
 function_decl|;
 comment|/**    * Persist the constructed lookup data to a directory. Optional operation.    * @param output {@link OutputStream} to write the data to.    * @return true if successful, false if unsuccessful or not supported.    * @throws IOException when fatal IO error occurs.    */

@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This wrapper buffers the incoming elements and makes sure they are in  * random order.  */
+comment|/**  * This wrapper buffers the incoming elements and makes sure they are in  * random order.  * @lucene.experimental  */
 end_comment
 
 begin_class
