@@ -1166,7 +1166,7 @@ name|Locale
 operator|.
 name|ENGLISH
 argument_list|,
-literal|"%-15s queries: %d, time[ms]: %s, ~qps: %.0f"
+literal|"%-15s queries: %d, time[ms]: %s, ~kQPS: %.0f"
 argument_list|,
 name|lookup
 operator|.
