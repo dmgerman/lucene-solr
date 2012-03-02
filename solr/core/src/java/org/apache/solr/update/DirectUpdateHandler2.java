@@ -2723,6 +2723,46 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|// if we are later going to mark everything in the tlog as committed, then we
+comment|// need to block all updates from coming in so we can be sure that the close
+comment|// will contain all of the updates.
+name|VersionInfo
+name|vinfo
+init|=
+name|ulog
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|ulog
+operator|.
+name|getVersionInfo
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|vinfo
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// TODO: move the RW update lock somewhere else?
+name|vinfo
+operator|.
+name|blockUpdates
+argument_list|()
+expr_stmt|;
+block|}
+try|try
+block|{
+name|boolean
+name|succeeded
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|writer
@@ -2736,8 +2776,13 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// if the writer hits an exception, it's OK (and perhaps desirable)
-comment|// to not close the ulog.
+name|succeeded
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
 if|if
 condition|(
 name|ulog
@@ -2748,9 +2793,27 @@ name|ulog
 operator|.
 name|close
 argument_list|(
-literal|true
+name|succeeded
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|vinfo
+operator|!=
+literal|null
+condition|)
+block|{
+name|vinfo
+operator|.
+name|unblockUpdates
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 finally|finally
 block|{
