@@ -634,18 +634,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|zookeeper
-operator|.
-name|KeeperException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -1704,6 +1692,14 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+name|params
+operator|.
+name|remove
+argument_list|(
+literal|"commit"
+argument_list|)
+expr_stmt|;
+comment|// this will be distributed from the local commit
 name|cmdDistrib
 operator|.
 name|distribAdd
@@ -2624,6 +2620,14 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+name|params
+operator|.
+name|remove
+argument_list|(
+literal|"commit"
+argument_list|)
+expr_stmt|;
+comment|// we already will have forwarded this from our local commit
 name|cmdDistrib
 operator|.
 name|distribDelete
@@ -3041,6 +3045,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|params
+operator|.
+name|remove
+argument_list|(
+literal|"commit"
+argument_list|)
+expr_stmt|;
+comment|// this will be distributed from the local commit
 name|cmdDistrib
 operator|.
 name|distribDelete
