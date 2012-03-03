@@ -2568,17 +2568,6 @@ argument_list|(
 literal|"commits"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"resp:"
-operator|+
-name|resp
-argument_list|)
-expr_stmt|;
 return|return
 name|commits
 return|;
