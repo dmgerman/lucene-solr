@@ -231,6 +231,27 @@ name|isZooKeeperAware
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// for the really slow/busy computer, we wait to make sure we have a leader before starting
+name|h
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|getLeaderUrl
+argument_list|(
+literal|"collection1"
+argument_list|,
+literal|"shard1"
+argument_list|,
+literal|30000
+argument_list|)
+expr_stmt|;
 name|ZkController
 name|zkController
 init|=
@@ -877,6 +898,14 @@ name|SAXParseException
 name|e
 parameter_list|)
 block|{            }
+name|zkController
+operator|.
+name|getZkClient
+argument_list|()
+operator|.
+name|printLayoutToStdOut
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|request
 specifier|public
