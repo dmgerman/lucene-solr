@@ -1246,6 +1246,8 @@ expr_stmt|;
 return|return;
 block|}
 comment|// set request info for logging
+try|try
+block|{
 name|SolrQueryRequest
 name|req
 init|=
@@ -1288,8 +1290,6 @@ operator|+
 name|recoveringAfterStartup
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|doRecovery
 argument_list|(
 name|core
@@ -1298,6 +1298,17 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|core
+operator|!=
+literal|null
+condition|)
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|SolrRequestInfo
 operator|.
 name|clearRequestInfo
@@ -1305,6 +1316,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// TODO: perhaps make this grab a new core each time through the loop to handle core reloads?
 DECL|method|doRecovery
 specifier|public
 name|void
@@ -1327,8 +1339,6 @@ decl_stmt|;
 name|UpdateLog
 name|ulog
 decl_stmt|;
-try|try
-block|{
 name|ulog
 operator|=
 name|core
@@ -1372,15 +1382,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
-block|}
-block|}
-finally|finally
-block|{
-name|core
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 name|List
 argument_list|<
@@ -1559,35 +1560,6 @@ argument_list|()
 condition|)
 block|{
 comment|// don't use interruption or it will close channels though
-name|core
-operator|=
-name|cc
-operator|.
-name|getCore
-argument_list|(
-name|coreName
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|core
-operator|==
-literal|null
-condition|)
-block|{
-name|SolrException
-operator|.
-name|log
-argument_list|(
-name|log
-argument_list|,
-literal|"SolrCore not found - cannot recover:"
-operator|+
-name|coreName
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
 try|try
 block|{
 comment|// first thing we just try to sync
@@ -1998,18 +1970,10 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Error while trying to recover... closing core."
+literal|"Error while trying to recover."
 argument_list|,
 name|t
 argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|core
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 block|}
 if|if
@@ -2046,7 +2010,7 @@ name|retries
 operator|==
 name|INTERRUPTED
 condition|)
-block|{                            }
+block|{              }
 else|else
 block|{
 name|log
@@ -2056,18 +2020,6 @@ argument_list|(
 literal|"Recovery failed - max retries exceeded."
 argument_list|)
 expr_stmt|;
-comment|// TODO: for now, give up after X tries - should we do more?
-name|core
-operator|=
-name|cc
-operator|.
-name|getCore
-argument_list|(
-name|coreName
-argument_list|)
-expr_stmt|;
-try|try
-block|{
 name|recoveryFailed
 argument_list|(
 name|core
@@ -2084,15 +2036,6 @@ name|getCoreDescriptor
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|core
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 break|break;
 block|}
