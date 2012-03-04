@@ -444,7 +444,7 @@ condition|)
 block|{
 name|arcLabel
 operator|+=
-literal|"  / "
+literal|" / "
 operator|+
 name|inputText
 operator|.
