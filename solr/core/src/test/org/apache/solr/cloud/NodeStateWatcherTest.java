@@ -567,6 +567,15 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+name|ZkStateReader
+operator|.
+name|NUM_SHARDS_PROP
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|zkClient
