@@ -245,6 +245,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"numShards"
+argument_list|)
+expr_stmt|;
 name|super
 operator|.
 name|tearDown
