@@ -30,9 +30,9 @@ name|analysis
 operator|.
 name|kuromoji
 operator|.
-name|dict
+name|KuromojiTokenizer
 operator|.
-name|Dictionary
+name|Type
 import|;
 end_import
 
@@ -48,11 +48,9 @@ name|analysis
 operator|.
 name|kuromoji
 operator|.
-name|viterbi
+name|dict
 operator|.
-name|ViterbiNode
-operator|.
-name|Type
+name|Dictionary
 import|;
 end_import
 
@@ -98,6 +96,11 @@ specifier|private
 specifier|final
 name|int
 name|position
+decl_stmt|;
+DECL|field|positionLength
+specifier|private
+name|int
+name|positionLength
 decl_stmt|;
 DECL|field|type
 specifier|private
@@ -170,10 +173,61 @@ name|position
 expr_stmt|;
 name|this
 operator|.
+name|positionLength
+operator|=
+name|positionLength
+expr_stmt|;
+name|this
+operator|.
 name|dictionary
 operator|=
 name|dictionary
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Token(\""
+operator|+
+operator|new
+name|String
+argument_list|(
+name|surfaceForm
+argument_list|,
+name|offset
+argument_list|,
+name|length
+argument_list|)
+operator|+
+literal|"\" pos="
+operator|+
+name|position
+operator|+
+literal|" type="
+operator|+
+name|type
+operator|+
+literal|" wordId="
+operator|+
+name|wordId
+operator|+
+literal|" leftID="
+operator|+
+name|dictionary
+operator|.
+name|getLeftId
+argument_list|(
+name|wordId
+argument_list|)
+operator|+
+literal|")"
+return|;
 block|}
 comment|/**    * @return surfaceForm    */
 DECL|method|getSurfaceForm
@@ -396,6 +450,34 @@ parameter_list|()
 block|{
 return|return
 name|position
+return|;
+block|}
+comment|/**    * Set the position length (in tokens) of this token.  For normal    * tokens this is 1; for compound tokens it's> 1.    */
+DECL|method|setPositionLength
+specifier|public
+name|void
+name|setPositionLength
+parameter_list|(
+name|int
+name|positionLength
+parameter_list|)
+block|{
+name|this
+operator|.
+name|positionLength
+operator|=
+name|positionLength
+expr_stmt|;
+block|}
+comment|/**    * Get the length (in tokens) of this token.  For normal    * tokens this is 1; for compound tokens it's> 1.    * @return position length of token    */
+DECL|method|getPositionLength
+specifier|public
+name|int
+name|getPositionLength
+parameter_list|()
+block|{
+return|return
+name|positionLength
 return|;
 block|}
 block|}

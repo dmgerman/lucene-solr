@@ -117,6 +117,14 @@ operator|new
 name|KuromojiTokenizer
 argument_list|(
 name|reader
+argument_list|,
+literal|null
+argument_list|,
+literal|true
+argument_list|,
+name|KuromojiTokenizer
+operator|.
+name|DEFAULT_MODE
 argument_list|)
 decl_stmt|;
 return|return
