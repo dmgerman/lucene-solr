@@ -1018,6 +1018,12 @@ name|SolrDocument
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|// Used for timeAllowed parameter. First phase elapsed time is subtracted from the time allowed for the second phase.
+DECL|field|firstPhaseElapsedTime
+specifier|public
+name|int
+name|firstPhaseElapsedTime
+decl_stmt|;
 comment|/**    * Utility function to add debugging info.  This will make sure a valid    * debugInfo exists before adding to it.    */
 DECL|method|addDebugInfo
 specifier|public
