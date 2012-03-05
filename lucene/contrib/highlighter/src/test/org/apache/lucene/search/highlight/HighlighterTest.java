@@ -4968,13 +4968,6 @@ name|numHighlights
 operator|=
 literal|0
 expr_stmt|;
-name|String
-name|queryString
-init|=
-name|FIELD_NAME
-operator|+
-literal|":[kannedy TO kznnedy]"
-decl_stmt|;
 comment|// Need to explicitly set the QueryParser property to use TermRangeQuery
 comment|// rather
 comment|// than RangeFilters
@@ -8226,36 +8219,6 @@ init|=
 operator|new
 name|SimpleHTMLFormatter
 argument_list|()
-decl_stmt|;
-name|TokenStream
-name|tokenStream
-init|=
-operator|new
-name|MockAnalyzer
-argument_list|(
-name|random
-argument_list|,
-name|MockTokenizer
-operator|.
-name|SIMPLE
-argument_list|,
-literal|true
-argument_list|,
-name|stopWords
-argument_list|,
-literal|true
-argument_list|)
-operator|.
-name|tokenStream
-argument_list|(
-literal|"text"
-argument_list|,
-operator|new
-name|StringReader
-argument_list|(
-name|text
-argument_list|)
-argument_list|)
 decl_stmt|;
 name|Highlighter
 name|hg

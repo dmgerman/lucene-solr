@@ -104,22 +104,6 @@ name|Similarity
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Scorer
-operator|.
-name|ChildScorer
-import|;
-end_import
-
 begin_comment
 comment|/* See the description in BooleanScorer.java, comparing  * BooleanScorer& BooleanScorer2 */
 end_comment

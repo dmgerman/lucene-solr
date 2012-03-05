@@ -262,6 +262,11 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|field|fieldInfos
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|final
 name|FieldInfos

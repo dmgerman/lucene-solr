@@ -3229,12 +3229,6 @@ operator|.
 name|ord
 return|;
 block|}
-DECL|method|doPendingSeek
-specifier|private
-name|void
-name|doPendingSeek
-parameter_list|()
-block|{       }
 comment|/* Does initial decode of next block of terms; this          doesn't actually decode the docFreq, totalTermFreq,          postings details (frq/prx offset, etc.) metadata;          it just loads them as byte[] blobs which are then                decoded on-demand if the metadata is ever requested          for any term in this block.  This enables terms-only          intensive consumes (eg certain MTQs, respelling) to          not pay the price of decoding metadata they won't          use. */
 DECL|method|nextBlock
 specifier|private

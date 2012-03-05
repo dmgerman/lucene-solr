@@ -594,11 +594,6 @@ specifier|final
 name|IndexReader
 name|r
 decl_stmt|;
-if|if
-condition|(
-literal|true
-condition|)
-block|{
 specifier|final
 name|IndexWriterConfig
 name|iwc
@@ -775,19 +770,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
-else|else
-block|{
-name|r
-operator|=
-name|IndexReader
-operator|.
-name|open
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
-block|}
 comment|/*     if (VERBOSE) {       System.out.println("TEST: terms");       TermEnum termEnum = r.terms();       while(termEnum.next()) {         System.out.println("  term=" + termEnum.term() + " len=" + termEnum.term().text().length());         assertTrue(termEnum.docFreq()> 0);         System.out.println("    s1?=" + (termEnum.term().text().equals(s1)) + " s1len=" + s1.length());         System.out.println("    s2?=" + (termEnum.term().text().equals(s2)) + " s2len=" + s2.length());         final String s = termEnum.term().text();         for(int idx=0;idx<s.length();idx++) {           System.out.println("      ch=0x" + Integer.toHexString(s.charAt(idx)));         }       }     }     */
 name|assertEquals
 argument_list|(

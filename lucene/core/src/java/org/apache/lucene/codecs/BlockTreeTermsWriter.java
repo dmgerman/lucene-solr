@@ -2981,6 +2981,11 @@ literal|1
 expr_stmt|;
 block|}
 comment|// for debugging
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 DECL|method|toString
 specifier|private
 name|String

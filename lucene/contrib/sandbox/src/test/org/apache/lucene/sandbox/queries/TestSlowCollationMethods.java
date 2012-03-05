@@ -544,6 +544,9 @@ annotation|@
 name|Override
 specifier|public
 name|FieldComparator
+argument_list|<
+name|String
+argument_list|>
 name|newComparator
 parameter_list|(
 name|String

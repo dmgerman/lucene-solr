@@ -314,6 +314,9 @@ DECL|field|comparators
 specifier|private
 specifier|final
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|comparators
 decl_stmt|;
@@ -1262,6 +1265,9 @@ comment|// At this point we hold all docs w/ in each group,
 comment|// unsorted; we now sort them:
 specifier|final
 name|TopDocsCollector
+argument_list|<
+name|?
+argument_list|>
 name|collector
 decl_stmt|;
 if|if
@@ -1571,6 +1577,9 @@ expr_stmt|;
 for|for
 control|(
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 name|comparator
 range|:
 name|comparators
@@ -1726,6 +1735,9 @@ comment|//System.out.println("    init copy to bottomSlot=" + bottomSlot);
 for|for
 control|(
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 name|fc
 range|:
 name|comparators
@@ -1826,6 +1838,9 @@ comment|//System.out.println("       best w/in group!");
 for|for
 control|(
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 name|fc
 range|:
 name|comparators
@@ -1936,6 +1951,9 @@ expr_stmt|;
 for|for
 control|(
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 name|fc
 range|:
 name|comparators
