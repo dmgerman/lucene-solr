@@ -7404,7 +7404,7 @@ break|break;
 case|case
 literal|1
 case|:
-comment|// will create no FC insanity as Parallel*Reader has own cache key:
+comment|// will create no FC insanity in atomic case, as ParallelAtomicReader has own cache key:
 name|r
 operator|=
 operator|(
@@ -7595,6 +7595,33 @@ operator|=
 name|SlowCompositeReaderWrapper
 operator|.
 name|wrap
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+operator|(
+name|r
+operator|instanceof
+name|CompositeReader
+operator|)
+operator|&&
+operator|!
+operator|(
+name|r
+operator|instanceof
+name|FCInvisibleMultiReader
+operator|)
+condition|)
+block|{
+comment|// prevent cache insanity caused by e.g. ParallelCompositeReader, to fix we wrap one more time:
+name|r
+operator|=
+operator|new
+name|FCInvisibleMultiReader
 argument_list|(
 name|r
 argument_list|)
