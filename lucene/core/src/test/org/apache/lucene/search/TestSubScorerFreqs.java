@@ -1093,6 +1093,15 @@ operator|.
 name|MUST
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"rawtypes"
+block|,
+literal|"unchecked"
+block|}
+argument_list|)
 name|Set
 argument_list|<
 name|String

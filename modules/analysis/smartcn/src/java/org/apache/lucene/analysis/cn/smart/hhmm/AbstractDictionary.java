@@ -117,7 +117,7 @@ literal|0
 operator|||
 name|ccid
 argument_list|>
-name|WordDictionary
+name|AbstractDictionary
 operator|.
 name|GB2312_CHAR_NUM
 condition|)

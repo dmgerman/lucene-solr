@@ -507,7 +507,7 @@ argument_list|)
 decl_stmt|;
 name|queryFields
 operator|=
-name|U
+name|SolrPluginUtils
 operator|.
 name|parseFieldBoosts
 argument_list|(
@@ -515,7 +515,7 @@ name|solrParams
 operator|.
 name|getParams
 argument_list|(
-name|DMP
+name|DisMaxParams
 operator|.
 name|QF
 argument_list|)
@@ -556,7 +556,7 @@ name|Float
 argument_list|>
 name|phraseFields
 init|=
-name|U
+name|SolrPluginUtils
 operator|.
 name|parseFieldBoosts
 argument_list|(
@@ -564,7 +564,7 @@ name|solrParams
 operator|.
 name|getParams
 argument_list|(
-name|DMP
+name|DisMaxParams
 operator|.
 name|PF
 argument_list|)
@@ -579,7 +579,7 @@ name|Float
 argument_list|>
 name|phraseFields2
 init|=
-name|U
+name|SolrPluginUtils
 operator|.
 name|parseFieldBoosts
 argument_list|(
@@ -600,7 +600,7 @@ name|Float
 argument_list|>
 name|phraseFields3
 init|=
-name|U
+name|SolrPluginUtils
 operator|.
 name|parseFieldBoosts
 argument_list|(
@@ -619,7 +619,7 @@ name|solrParams
 operator|.
 name|getFloat
 argument_list|(
-name|DMP
+name|DisMaxParams
 operator|.
 name|TIE
 argument_list|,
@@ -633,7 +633,7 @@ name|solrParams
 operator|.
 name|getInt
 argument_list|(
-name|DMP
+name|DisMaxParams
 operator|.
 name|PS
 argument_list|,
@@ -647,7 +647,7 @@ name|solrParams
 operator|.
 name|getInt
 argument_list|(
-name|DMP
+name|DisMaxParams
 operator|.
 name|QS
 argument_list|,
@@ -714,7 +714,7 @@ name|solrParams
 operator|.
 name|get
 argument_list|(
-name|DMP
+name|DisMaxParams
 operator|.
 name|ALTQ
 argument_list|)
@@ -1278,7 +1278,7 @@ operator|instanceof
 name|BooleanQuery
 condition|)
 block|{
-name|U
+name|SolrPluginUtils
 operator|.
 name|setMinShouldMatch
 argument_list|(
@@ -1483,7 +1483,7 @@ operator|new
 name|BooleanQuery
 argument_list|()
 decl_stmt|;
-name|U
+name|SolrPluginUtils
 operator|.
 name|flattenBooleanQuery
 argument_list|(
@@ -1495,7 +1495,7 @@ operator|)
 name|parsedUserQuery
 argument_list|)
 expr_stmt|;
-name|U
+name|SolrPluginUtils
 operator|.
 name|setMinShouldMatch
 argument_list|(
@@ -1704,7 +1704,7 @@ name|solrParams
 operator|.
 name|getParams
 argument_list|(
-name|DMP
+name|DisMaxParams
 operator|.
 name|BQ
 argument_list|)
@@ -1818,7 +1818,7 @@ name|solrParams
 operator|.
 name|getParams
 argument_list|(
-name|DMP
+name|DisMaxParams
 operator|.
 name|BF
 argument_list|)

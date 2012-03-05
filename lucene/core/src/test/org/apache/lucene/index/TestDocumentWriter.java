@@ -192,6 +192,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -907,7 +921,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|termPositions
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -1332,7 +1346,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|termPositions
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -1624,7 +1638,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|termPositions
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -1678,7 +1692,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|termPositions
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -1742,7 +1756,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|termPositions
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)

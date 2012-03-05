@@ -296,7 +296,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-name|SolrTestCaseJ4
+name|LuceneTestCase
 operator|.
 name|TEMP_DIR
 argument_list|,

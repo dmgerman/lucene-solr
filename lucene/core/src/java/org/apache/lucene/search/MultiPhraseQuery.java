@@ -2317,7 +2317,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsAndPositionsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)

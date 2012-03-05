@@ -256,6 +256,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|TestHarness
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -1842,7 +1856,7 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-name|h
+name|TestHarness
 operator|.
 name|commit
 argument_list|(
@@ -3058,7 +3072,7 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-name|h
+name|TestHarness
 operator|.
 name|commit
 argument_list|(
@@ -4373,7 +4387,7 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-name|h
+name|TestHarness
 operator|.
 name|commit
 argument_list|(
@@ -5855,7 +5869,7 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
-name|h
+name|TestHarness
 operator|.
 name|commit
 argument_list|(

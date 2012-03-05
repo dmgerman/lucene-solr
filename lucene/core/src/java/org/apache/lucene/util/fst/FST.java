@@ -1681,7 +1681,11 @@ comment|// Caches first 128 labels
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
+literal|"rawtypes"
+block|,
 literal|"unchecked"
+block|}
 argument_list|)
 DECL|method|cacheRootArcs
 specifier|private

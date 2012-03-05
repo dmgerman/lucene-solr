@@ -5617,7 +5617,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,

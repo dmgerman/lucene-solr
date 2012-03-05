@@ -142,6 +142,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|ReaderUtil
@@ -708,7 +722,7 @@ literal|null
 condition|)
 block|{
 return|return
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 return|;
@@ -743,7 +757,7 @@ literal|null
 condition|)
 block|{
 return|return
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 return|;
@@ -771,7 +785,7 @@ literal|null
 condition|)
 block|{
 return|return
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 return|;

@@ -284,7 +284,7 @@ init|=
 operator|new
 name|RandomGen
 argument_list|(
-name|this
+name|LuceneTestCase
 operator|.
 name|random
 argument_list|)

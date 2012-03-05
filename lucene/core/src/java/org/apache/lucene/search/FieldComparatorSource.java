@@ -42,6 +42,9 @@ DECL|method|newComparator
 specifier|public
 specifier|abstract
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 name|newComparator
 parameter_list|(
 name|String

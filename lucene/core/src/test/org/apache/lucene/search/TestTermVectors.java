@@ -1062,7 +1062,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -1123,7 +1123,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -1184,7 +1184,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -1423,7 +1423,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -2060,7 +2060,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -3225,7 +3225,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -3291,7 +3291,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)

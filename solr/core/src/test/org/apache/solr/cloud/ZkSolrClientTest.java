@@ -46,6 +46,16 @@ name|junit
 operator|.
 name|framework
 operator|.
+name|Assert
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
 name|TestCase
 import|;
 end_import
@@ -444,7 +454,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|TestCase
+name|Assert
 operator|.
 name|fail
 argument_list|(

@@ -589,7 +589,7 @@ condition|)
 block|{
 name|solrConfig
 operator|=
-name|h
+name|TestHarness
 operator|.
 name|createConfig
 argument_list|(
@@ -1348,7 +1348,7 @@ name|args
 parameter_list|)
 block|{
 return|return
-name|h
+name|TestHarness
 operator|.
 name|optimize
 argument_list|(
@@ -1368,7 +1368,7 @@ name|args
 parameter_list|)
 block|{
 return|return
-name|h
+name|TestHarness
 operator|.
 name|commit
 argument_list|(
@@ -1648,7 +1648,7 @@ name|args
 parameter_list|)
 block|{
 return|return
-name|h
+name|TestHarness
 operator|.
 name|deleteById
 argument_list|(
@@ -1673,7 +1673,7 @@ name|args
 parameter_list|)
 block|{
 return|return
-name|h
+name|TestHarness
 operator|.
 name|deleteByQuery
 argument_list|(
@@ -1705,7 +1705,7 @@ name|d
 operator|.
 name|xml
 operator|=
-name|h
+name|TestHarness
 operator|.
 name|makeSimpleDoc
 argument_list|(

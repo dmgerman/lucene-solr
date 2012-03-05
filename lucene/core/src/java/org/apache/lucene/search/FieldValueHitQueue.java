@@ -495,6 +495,15 @@ return|;
 block|}
 block|}
 comment|// prevent instantiation and extension.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"rawtypes"
+block|,
+literal|"unchecked"
+block|}
+argument_list|)
 DECL|method|FieldValueHitQueue
 specifier|private
 name|FieldValueHitQueue
@@ -632,6 +641,9 @@ block|}
 DECL|method|getComparators
 specifier|public
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|getComparators
 parameter_list|()
@@ -660,6 +672,9 @@ name|int
 name|pos
 parameter_list|,
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 name|comparator
 parameter_list|)
 block|{
@@ -693,6 +708,9 @@ DECL|field|comparators
 specifier|protected
 specifier|final
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|comparators
 decl_stmt|;
@@ -700,6 +718,9 @@ comment|// use setComparator to change this array
 DECL|field|firstComparator
 specifier|protected
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 name|firstComparator
 decl_stmt|;
 comment|// this must always be equal to comparators[0]

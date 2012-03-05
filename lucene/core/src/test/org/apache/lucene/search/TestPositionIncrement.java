@@ -1593,7 +1593,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsAndPositionsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|)
@@ -1657,7 +1657,7 @@ expr_stmt|;
 comment|// only one doc has "a"
 name|assertEquals
 argument_list|(
-name|DocsAndPositionsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,

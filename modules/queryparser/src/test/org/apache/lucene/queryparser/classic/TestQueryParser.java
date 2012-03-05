@@ -138,7 +138,7 @@ name|qp
 operator|.
 name|setDefaultOperator
 argument_list|(
-name|QueryParser
+name|QueryParserBase
 operator|.
 name|OR_OPERATOR
 argument_list|)

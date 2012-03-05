@@ -116,6 +116,22 @@ name|solr
 operator|.
 name|common
 operator|.
+name|params
+operator|.
+name|SpellingParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|NamedList
@@ -490,7 +506,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_BUILD
 argument_list|,
@@ -501,7 +517,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COUNT
 argument_list|,
@@ -512,7 +528,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COLLATE
 argument_list|,
@@ -902,7 +918,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_BUILD
 argument_list|,
@@ -913,7 +929,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COUNT
 argument_list|,
@@ -924,7 +940,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COLLATE
 argument_list|,
@@ -935,7 +951,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATION_TRIES
 argument_list|,
@@ -946,7 +962,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATIONS
 argument_list|,
@@ -1167,7 +1183,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_DICT
 argument_list|,
@@ -1178,7 +1194,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_BUILD
 argument_list|,
@@ -1189,7 +1205,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COUNT
 argument_list|,
@@ -1200,7 +1216,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COLLATE
 argument_list|,
@@ -1211,7 +1227,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATION_TRIES
 argument_list|,
@@ -1222,7 +1238,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATIONS
 argument_list|,
@@ -1353,7 +1369,7 @@ name|params
 operator|.
 name|remove
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_BUILD
 argument_list|)
@@ -1529,7 +1545,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_EXTENDED_RESULTS
 argument_list|,
@@ -1551,7 +1567,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_BUILD
 argument_list|,
@@ -1562,7 +1578,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COUNT
 argument_list|,
@@ -1573,7 +1589,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COLLATE
 argument_list|,
@@ -1697,7 +1713,7 @@ name|params
 operator|.
 name|remove
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_BUILD
 argument_list|)
@@ -1706,7 +1722,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATION_TRIES
 argument_list|,
@@ -1717,7 +1733,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATIONS
 argument_list|,
@@ -1830,7 +1846,7 @@ name|params
 operator|.
 name|remove
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATION_TRIES
 argument_list|)
@@ -1839,7 +1855,7 @@ name|params
 operator|.
 name|remove
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATIONS
 argument_list|)
@@ -1848,7 +1864,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATION_TRIES
 argument_list|,
@@ -1859,7 +1875,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATIONS
 argument_list|,
@@ -2002,7 +2018,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COLLATE_EXTENDED_RESULTS
 argument_list|,
@@ -2362,7 +2378,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_BUILD
 argument_list|,
@@ -2373,7 +2389,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COUNT
 argument_list|,
@@ -2384,7 +2400,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COLLATE
 argument_list|,
@@ -2395,7 +2411,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATION_TRIES
 argument_list|,
@@ -2406,7 +2422,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_MAX_COLLATIONS
 argument_list|,

@@ -728,7 +728,7 @@ name|mfqp
 operator|.
 name|setDefaultOperator
 argument_list|(
-name|QueryParser
+name|QueryParserBase
 operator|.
 name|AND_OPERATOR
 argument_list|)

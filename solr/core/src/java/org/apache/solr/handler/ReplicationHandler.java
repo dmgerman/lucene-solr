@@ -996,10 +996,7 @@ name|add
 argument_list|(
 name|CMD_INDEX_VERSION
 argument_list|,
-name|core
-operator|.
-name|getDeletionPolicy
-argument_list|()
+name|IndexDeletionPolicyWrapper
 operator|.
 name|getCommitTimestamp
 argument_list|(
@@ -1597,10 +1594,7 @@ name|add
 argument_list|(
 literal|"indexVersion"
 argument_list|,
-name|core
-operator|.
-name|getDeletionPolicy
-argument_list|()
+name|IndexDeletionPolicyWrapper
 operator|.
 name|getCommitTimestamp
 argument_list|(

@@ -236,7 +236,7 @@ name|this
 operator|.
 name|context
 operator|=
-name|func
+name|ValueSource
 operator|.
 name|newContext
 argument_list|(

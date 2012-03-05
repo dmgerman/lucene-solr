@@ -220,7 +220,7 @@ name|lead
 operator|.
 name|doc
 operator|==
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)

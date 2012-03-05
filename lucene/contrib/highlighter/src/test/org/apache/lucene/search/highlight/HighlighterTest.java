@@ -448,6 +448,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|automaton
 operator|.
 name|BasicAutomata
@@ -12627,7 +12641,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|HighlighterTest
+name|LuceneTestCase
 operator|.
 name|VERBOSE
 condition|)
@@ -12661,7 +12675,7 @@ name|Exception
 block|{
 if|if
 condition|(
-name|HighlighterTest
+name|LuceneTestCase
 operator|.
 name|VERBOSE
 condition|)
@@ -12679,7 +12693,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|HighlighterTest
+name|LuceneTestCase
 operator|.
 name|VERBOSE
 condition|)
