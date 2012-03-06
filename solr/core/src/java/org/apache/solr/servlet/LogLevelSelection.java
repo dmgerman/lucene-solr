@@ -234,14 +234,21 @@ name|out
 operator|.
 name|write
 argument_list|(
-literal|"<a href=\".\"><img border=\"0\" align=\"right\" height=\"78\" width=\"142\" src=\"solr_small.png\" alt=\"Solr\"></a>"
+literal|"<a href=\".\"><img border=\"0\" align=\"right\" height=\"78\" width=\"142\" src=\"img/solr.png\" alt=\"Solr\"></a>"
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|write
 argument_list|(
-literal|"<h1>JDK Log Level Selector</h1>"
+literal|"<h1 style='margin-bottom:5px;'>JDK Log Level Selector</h1>"
+argument_list|)
+expr_stmt|;
+name|out
+operator|.
+name|write
+argument_list|(
+literal|"<h2 style='color:#AA0000; margin-top:0px;'>This will be removed before Solr 4.0.  See<a href='/#/logging'>logging</a></h1>"
 argument_list|)
 expr_stmt|;
 name|out
