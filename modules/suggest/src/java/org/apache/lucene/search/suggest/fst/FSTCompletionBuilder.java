@@ -42,11 +42,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
 operator|.
 name|util
 operator|.
-name|Iterator
+name|BytesRef
 import|;
 end_import
 
@@ -60,7 +64,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|BytesRefIterator
 import|;
 end_import
 
@@ -95,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Finite state automata based implementation of "autocomplete" functionality.  *   *<h2>Implementation details</h2>  *   *<p>  * The construction step in {@link #finalize()} works as follows:  *<ul>  *<li>A set of input terms and their buckets is given.</li>  *<li>All terms in the input are prefixed with a synthetic pseudo-character  * (code) of the weight bucket the term fell into. For example a term  *<code>abc</code> with a discretized weight equal '1' would become  *<code>1abc</code>.</li>  *<li>The terms are then sorted by their raw value of UTF-8 character values  * (including the synthetic bucket code in front).</li>  *<li>A finite state automaton ({@link FST}) is constructed from the input. The  * root node has arcs labeled with all possible weights. We cache all these  * arcs, highest-weight first.</li>  *</ul>  *   *<p>  * At runtime, in {@link FSTCompletion#lookup(String, int)},   * the automaton is utilized as follows:  *<ul>  *<li>For each possible term weight encoded in the automaton (cached arcs from  * the root above), starting with the highest one, we descend along the path of  * the input key. If the key is not a prefix of a sequence in the automaton  * (path ends prematurely), we exit immediately -- no completions.</li>  *<li>Otherwise, we have found an internal automaton node that ends the key.  *<b>The entire subautomaton (all paths) starting from this node form the key's  * completions.</b> We start the traversal of this subautomaton. Every time we  * reach a final state (arc), we add a single suggestion to the list of results  * (the weight of this suggestion is constant and equal to the root path we  * started from). The tricky part is that because automaton edges are sorted and  * we scan depth-first, we can terminate the entire procedure as soon as we  * collect enough suggestions the user requested.</li>  *<li>In case the number of suggestions collected in the step above is still  * insufficient, we proceed to the next (smaller) weight leaving the root node  * and repeat the same algorithm again.</li>  *</ul>  *   *<h2>Runtime behavior and performance characteristic</h2>  *   * The algorithm described above is optimized for finding suggestions to short  * prefixes in a top-weights-first order. This is probably the most common use  * case: it allows presenting suggestions early and sorts them by the global  * frequency (and then alphabetically).  *   *<p>  * If there is an exact match in the automaton, it is returned first on the  * results list (even with by-weight sorting).  *   *<p>  * Note that the maximum lookup time for<b>any prefix</b> is the time of  * descending to the subtree, plus traversal of the subtree up to the number of  * requested suggestions (because they are already presorted by weight on the  * root level and alphabetically at any node level).  *   *<p>  * To order alphabetically only (no ordering by priorities), use identical term  * weights for all terms. Alphabetical suggestions are returned even if  * non-constant weights are used, but the algorithm for doing this is  * suboptimal.  *   *<p>  * "alphabetically" in any of the documentation above indicates UTF-8  * representation order, nothing else.  *   *<p>  *<b>NOTE</b>: the FST file format is experimental and subject to suddenly  * change, requiring you to rebuild the FST suggest index.  *   * @see FSTCompletion  */
+comment|/**  * Finite state automata based implementation of "autocomplete" functionality.  *   *<h2>Implementation details</h2>  *   *<p>  * The construction step in {@link #finalize()} works as follows:  *<ul>  *<li>A set of input terms and their buckets is given.</li>  *<li>All terms in the input are prefixed with a synthetic pseudo-character  * (code) of the weight bucket the term fell into. For example a term  *<code>abc</code> with a discretized weight equal '1' would become  *<code>1abc</code>.</li>  *<li>The terms are then sorted by their raw value of UTF-8 character values  * (including the synthetic bucket code in front).</li>  *<li>A finite state automaton ({@link FST}) is constructed from the input. The  * root node has arcs labeled with all possible weights. We cache all these  * arcs, highest-weight first.</li>  *</ul>  *   *<p>  * At runtime, in {@link FSTCompletion#lookup(CharSequence, int)},   * the automaton is utilized as follows:  *<ul>  *<li>For each possible term weight encoded in the automaton (cached arcs from  * the root above), starting with the highest one, we descend along the path of  * the input key. If the key is not a prefix of a sequence in the automaton  * (path ends prematurely), we exit immediately -- no completions.</li>  *<li>Otherwise, we have found an internal automaton node that ends the key.  *<b>The entire subautomaton (all paths) starting from this node form the key's  * completions.</b> We start the traversal of this subautomaton. Every time we  * reach a final state (arc), we add a single suggestion to the list of results  * (the weight of this suggestion is constant and equal to the root path we  * started from). The tricky part is that because automaton edges are sorted and  * we scan depth-first, we can terminate the entire procedure as soon as we  * collect enough suggestions the user requested.</li>  *<li>In case the number of suggestions collected in the step above is still  * insufficient, we proceed to the next (smaller) weight leaving the root node  * and repeat the same algorithm again.</li>  *</ul>  *   *<h2>Runtime behavior and performance characteristic</h2>  *   * The algorithm described above is optimized for finding suggestions to short  * prefixes in a top-weights-first order. This is probably the most common use  * case: it allows presenting suggestions early and sorts them by the global  * frequency (and then alphabetically).  *   *<p>  * If there is an exact match in the automaton, it is returned first on the  * results list (even with by-weight sorting).  *   *<p>  * Note that the maximum lookup time for<b>any prefix</b> is the time of  * descending to the subtree, plus traversal of the subtree up to the number of  * requested suggestions (because they are already presorted by weight on the  * root level and alphabetically at any node level).  *   *<p>  * To order alphabetically only (no ordering by priorities), use identical term  * weights for all terms. Alphabetical suggestions are returned even if  * non-constant weights are used, but the algorithm for doing this is  * suboptimal.  *   *<p>  * "alphabetically" in any of the documentation above indicates UTF-8  * representation order, nothing else.  *   *<p>  *<b>NOTE</b>: the FST file format is experimental and subject to suddenly  * change, requiring you to rebuild the FST suggest index.  *   * @see FSTCompletion  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -154,7 +158,7 @@ specifier|final
 name|int
 name|shareMaxTailLength
 decl_stmt|;
-comment|/**    * Creates an {@link FSTCompletion} with default options: 10 buckets, exact match    * promoted to first position and {@link InMemorySorter}.    */
+comment|/**    * Creates an {@link FSTCompletion} with default options: 10 buckets, exact match    * promoted to first position and {@link InMemorySorter} with a comparator obtained from    * {@link BytesRef#getUTF8SortedAsUnicodeComparator()}.    */
 DECL|method|FSTCompletionBuilder
 specifier|public
 name|FSTCompletionBuilder
@@ -166,7 +170,12 @@ name|DEFAULT_BUCKETS
 argument_list|,
 operator|new
 name|InMemorySorter
+argument_list|(
+name|BytesRef
+operator|.
+name|getUTF8SortedAsUnicodeComparator
 argument_list|()
+argument_list|)
 argument_list|,
 name|Integer
 operator|.
@@ -466,6 +475,9 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+name|BytesRef
+name|entry
+decl_stmt|;
 specifier|final
 name|IntsRef
 name|scratchIntsRef
@@ -479,36 +491,31 @@ name|count
 init|=
 literal|0
 decl_stmt|;
-for|for
-control|(
-name|Iterator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|i
+name|BytesRefIterator
+name|iter
 init|=
 name|sorter
 operator|.
 name|iterator
 argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-name|count
-operator|++
-control|)
-block|{
-name|BytesRef
+decl_stmt|;
+while|while
+condition|(
+operator|(
 name|entry
-init|=
-name|i
+operator|=
+name|iter
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
+operator|)
+operator|!=
+literal|null
+condition|)
+block|{
+name|count
+operator|++
+expr_stmt|;
 if|if
 condition|(
 name|scratch

@@ -140,7 +140,7 @@ parameter_list|(
 name|TernaryTreeNode
 name|currentNode
 parameter_list|,
-name|String
+name|CharSequence
 name|s
 parameter_list|,
 name|Object
@@ -236,6 +236,9 @@ operator|.
 name|token
 operator|=
 name|s
+operator|.
+name|toString
+argument_list|()
 expr_stmt|;
 name|currentNode
 operator|.
@@ -335,6 +338,9 @@ operator|.
 name|token
 operator|=
 name|s
+operator|.
+name|toString
+argument_list|()
 expr_stmt|;
 name|currentNode
 operator|.
@@ -383,7 +389,7 @@ parameter_list|(
 name|TernaryTreeNode
 name|root
 parameter_list|,
-name|String
+name|CharSequence
 name|s
 parameter_list|,
 name|int

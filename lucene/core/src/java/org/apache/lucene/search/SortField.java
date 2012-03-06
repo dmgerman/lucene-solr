@@ -1260,6 +1260,9 @@ comment|/** Returns the {@link FieldComparator} to use for    * sorting.    *   
 DECL|method|getComparator
 specifier|public
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 name|getComparator
 parameter_list|(
 specifier|final

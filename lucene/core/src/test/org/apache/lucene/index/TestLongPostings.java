@@ -174,6 +174,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -580,11 +594,6 @@ specifier|final
 name|IndexReader
 name|r
 decl_stmt|;
-if|if
-condition|(
-literal|true
-condition|)
-block|{
 specifier|final
 name|IndexWriterConfig
 name|iwc
@@ -761,19 +770,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
-else|else
-block|{
-name|r
-operator|=
-name|IndexReader
-operator|.
-name|open
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
-block|}
 comment|/*     if (VERBOSE) {       System.out.println("TEST: terms");       TermEnum termEnum = r.terms();       while(termEnum.next()) {         System.out.println("  term=" + termEnum.term() + " len=" + termEnum.term().text().length());         assertTrue(termEnum.docFreq()> 0);         System.out.println("    s1?=" + (termEnum.term().text().equals(s1)) + " s1len=" + s1.length());         System.out.println("    s2?=" + (termEnum.term().text().equals(s2)) + " s2len=" + s2.length());         final String s = termEnum.term().text();         for(int idx=0;idx<s.length();idx++) {           System.out.println("      ch=0x" + Integer.toHexString(s.charAt(idx)));         }       }     }     */
 name|assertEquals
 argument_list|(
@@ -934,7 +930,7 @@ while|while
 condition|(
 name|docID
 operator|<
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -1061,7 +1057,7 @@ if|if
 condition|(
 name|docID
 operator|==
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -1301,7 +1297,7 @@ if|if
 condition|(
 name|docID
 operator|==
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -2007,7 +2003,7 @@ while|while
 condition|(
 name|docID
 operator|<
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -2134,7 +2130,7 @@ if|if
 condition|(
 name|docID
 operator|==
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -2333,7 +2329,7 @@ if|if
 condition|(
 name|docID
 operator|==
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)

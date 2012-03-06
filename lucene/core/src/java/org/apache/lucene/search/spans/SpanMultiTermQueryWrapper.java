@@ -208,6 +208,15 @@ name|Q
 name|query
 decl_stmt|;
 comment|/**    * Create a new SpanMultiTermQueryWrapper.     *     * @param query Query to wrap.    *<p>    * NOTE: This will call {@link MultiTermQuery#setRewriteMethod(MultiTermQuery.RewriteMethod)}    * on the wrapped<code>query</code>, changing its rewrite method to a suitable one for spans.    * Be sure to not change the rewrite method on the wrapped query afterwards! Doing so will    * throw {@link UnsupportedOperationException} on rewriting this query!    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"rawtypes"
+block|,
+literal|"unchecked"
+block|}
+argument_list|)
 DECL|method|SpanMultiTermQueryWrapper
 specifier|public
 name|SpanMultiTermQueryWrapper
@@ -494,6 +503,15 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"rawtypes"
+block|,
+literal|"unchecked"
+block|}
+argument_list|)
 DECL|method|equals
 specifier|public
 name|boolean

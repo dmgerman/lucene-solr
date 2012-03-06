@@ -446,7 +446,7 @@ argument_list|()
 expr_stmt|;
 name|solrConfig
 operator|=
-name|h
+name|TestHarness
 operator|.
 name|createConfig
 argument_list|(

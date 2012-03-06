@@ -82,7 +82,11 @@ DECL|field|arcs
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
+literal|"rawtypes"
+block|,
 literal|"unchecked"
+block|}
 argument_list|)
 specifier|protected
 name|FST
@@ -107,7 +111,11 @@ DECL|field|output
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
+literal|"rawtypes"
+block|,
 literal|"unchecked"
+block|}
 argument_list|)
 specifier|protected
 name|T
@@ -1993,7 +2001,11 @@ block|{
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
+literal|"rawtypes"
+block|,
 literal|"unchecked"
+block|}
 argument_list|)
 specifier|final
 name|FST
@@ -2058,7 +2070,11 @@ block|{
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
+literal|"rawtypes"
+block|,
 literal|"unchecked"
+block|}
 argument_list|)
 specifier|final
 name|T

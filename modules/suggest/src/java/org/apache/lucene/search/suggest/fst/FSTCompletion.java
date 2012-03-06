@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Finite state automata based implementation of "autocomplete" functionality.  *   * @see FSTCompletionBuilder  */
+comment|/**  * Finite state automata based implementation of "autocomplete" functionality.  *   * @see FSTCompletionBuilder  * @lucene.experimental  */
 end_comment
 
 begin_comment
@@ -515,10 +515,10 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns the first exact match by traversing root arcs, starting from the    * arc<code>rootArcIndex</code>.    *     * @param rootArcIndex    *          The first root arc index in {@link #rootArcs} to consider when    *          matching.    *     * @param utf8    *          The sequence of utf8 bytes to follow.    *     * @return Returns the bucket number of the match or<code>null</code> if no    *         match was found.    */
+comment|/**    * Returns the first exact match by traversing root arcs, starting from the    * arc<code>rootArcIndex</code>.    *     * @param rootArcIndex    *          The first root arc index in {@link #rootArcs} to consider when    *          matching.    *     * @param utf8    *          The sequence of utf8 bytes to follow.    *     * @return Returns the bucket number of the match or<code>-1</code> if no    *         match was found.    */
 DECL|method|getExactMatchStartingFromRootArc
 specifier|private
-name|Integer
+name|int
 name|getExactMatchStartingFromRootArc
 parameter_list|(
 name|int
@@ -650,7 +650,8 @@ throw|;
 block|}
 comment|// No match.
 return|return
-literal|null
+operator|-
+literal|1
 return|;
 block|}
 comment|/**    * Lookup suggestions to<code>key</code>.    *     * @param key    *          The prefix to which suggestions should be sought.    * @param num    *          At most this number of suggestions will be returned.    * @return Returns the suggestions, sorted by their approximated weight first    *         (decreasing) and then alphabetically (UTF-8 codepoint order).    */
@@ -662,7 +663,7 @@ name|Completion
 argument_list|>
 name|lookup
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|,
 name|int
@@ -998,7 +999,7 @@ name|key
 argument_list|)
 condition|)
 block|{
-name|Integer
+name|int
 name|exactMatchBucket
 init|=
 name|getExactMatchStartingFromRootArc
@@ -1012,7 +1013,8 @@ if|if
 condition|(
 name|exactMatchBucket
 operator|!=
-literal|null
+operator|-
+literal|1
 condition|)
 block|{
 comment|// Insert as the first result and truncate at num.
@@ -1452,13 +1454,13 @@ operator|.
 name|length
 return|;
 block|}
-comment|/**    * Returns the bucket assigned to a given key (if found) or<code>null</code> if    * no exact match exists.    */
+comment|/**    * Returns the bucket assigned to a given key (if found) or<code>-1</code> if    * no exact match exists.    */
 DECL|method|getBucket
 specifier|public
-name|Integer
+name|int
 name|getBucket
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|)
 block|{

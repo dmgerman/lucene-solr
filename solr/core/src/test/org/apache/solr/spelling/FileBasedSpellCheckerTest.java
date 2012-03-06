@@ -390,7 +390,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|IndexBasedSpellChecker
+name|AbstractLuceneSpellChecker
 operator|.
 name|FIELD
 argument_list|,
@@ -435,7 +435,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|FileBasedSpellChecker
+name|AbstractLuceneSpellChecker
 operator|.
 name|INDEX_DIR
 argument_list|,
@@ -764,7 +764,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|IndexBasedSpellChecker
+name|AbstractLuceneSpellChecker
 operator|.
 name|FIELD
 argument_list|,
@@ -809,7 +809,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|FileBasedSpellChecker
+name|AbstractLuceneSpellChecker
 operator|.
 name|INDEX_DIR
 argument_list|,
@@ -823,7 +823,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|FileBasedSpellChecker
+name|SolrSpellChecker
 operator|.
 name|FIELD_TYPE
 argument_list|,
@@ -1195,7 +1195,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|IndexBasedSpellChecker
+name|AbstractLuceneSpellChecker
 operator|.
 name|FIELD
 argument_list|,
@@ -1206,7 +1206,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|FileBasedSpellChecker
+name|SolrSpellChecker
 operator|.
 name|FIELD_TYPE
 argument_list|,

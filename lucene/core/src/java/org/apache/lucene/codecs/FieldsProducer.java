@@ -50,36 +50,8 @@ name|Fields
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Terms
-import|;
-end_import
-
 begin_comment
-comment|/** Abstract API that consumes terms, doc, freq, prox and  *  payloads postings.  Concrete implementations of this  *  actually do "something" with the postings (write it into  *  the index in a specific format).  *  * @lucene.experimental  */
+comment|/** Abstract API that produces terms, doc, freq, prox and  *  payloads postings.    *  * @lucene.experimental  */
 end_comment
 
 begin_class

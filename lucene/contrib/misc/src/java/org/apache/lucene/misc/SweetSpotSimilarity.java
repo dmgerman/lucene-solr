@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A similarity with a lengthNorm that provides for a "plateau" of  * equally good lengths, and tf helper functions.  *  *<p>  * For lengthNorm, A global min/max can be specified to define the  * plateau of lengths that should all have a norm of 1.0.  * Below the min, and above the max the lengthNorm drops off in a  * sqrt function.  *</p>  *<p>  * A per field min/max can be specified if different fields have  * different sweet spots.  *</p>  *  *<p>  * For tf, baselineTf and hyperbolicTf functions are provided, which  * subclasses can choose between.  *</p>  *  */
+comment|/**  * A similarity with a lengthNorm that provides for a "plateau" of  * equally good lengths, and tf helper functions.  *  *<p>  * For lengthNorm, A global min/max can be specified to define the  * plateau of lengths that should all have a norm of 1.0.  * Below the min, and above the max the lengthNorm drops off in a  * sqrt function.  *</p>  *<p>  * A per field min/max can be specified if different fields have  * different sweet spots.  *</p>  *  *<p>  * For tf, baselineTf and hyperbolicTf functions are provided, which  * subclasses can choose between.  *</p>  *  * @see<a href="doc-files/ss.gnuplot">A Gnuplot file used to generate some of the visualizations refrenced from each function.</a>   */
 end_comment
 
 begin_class
@@ -166,7 +166,7 @@ operator|=
 name|base
 expr_stmt|;
 block|}
-comment|/**    * Sets the function variables for the hyperbolicTf functions    *    * @param min the minimum tf value to ever be returned (default: 0.0)    * @param max the maximum tf value to ever be returned (default: 2.0)    * @param base the base value to be used in the exponential for the hyperbolic function (default: e)    * @param xoffset the midpoint of the hyperbolic function (default: 10.0)    * @see #hyperbolicTf    */
+comment|/**    * Sets the function variables for the hyperbolicTf functions    *    * @param min the minimum tf value to ever be returned (default: 0.0)    * @param max the maximum tf value to ever be returned (default: 2.0)    * @param base the base value to be used in the exponential for the hyperbolic function (default: 1.3)    * @param xoffset the midpoint of the hyperbolic function (default: 10.0)    * @see #hyperbolicTf    */
 DECL|method|setHyperbolicTfFactors
 specifier|public
 name|void
@@ -308,7 +308,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimization is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    */
+comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimization is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    * @see<a href="doc-files/ss.computeLengthNorm.svg">An SVG visualization of this function</a>     */
 DECL|method|computeLengthNorm
 specifier|public
 name|float
@@ -404,7 +404,7 @@ name|freq
 argument_list|)
 return|;
 block|}
-comment|/**    * Implemented as:    *<code>    *  (x&lt;= min)&#63; base : sqrt(x+(base**2)-min)    *</code>    * ...but with a special case check for 0.    *<p>    * This degrates to<code>sqrt(x)</code> when min and base are both 0    *</p>    *    * @see #setBaselineTfFactors    */
+comment|/**    * Implemented as:    *<code>    *  (x&lt;= min)&#63; base : sqrt(x+(base**2)-min)    *</code>    * ...but with a special case check for 0.    *<p>    * This degrates to<code>sqrt(x)</code> when min and base are both 0    *</p>    *    * @see #setBaselineTfFactors    * @see<a href="doc-files/ss.baselineTf.svg">An SVG visualization of this function</a>     */
 DECL|method|baselineTf
 specifier|public
 name|float
@@ -451,7 +451,7 @@ name|tf_min
 argument_list|)
 return|;
 block|}
-comment|/**    * Uses a hyperbolic tangent function that allows for a hard max...    *    *<code>    * tf(x)=min+(max-min)/2*(((base**(x-xoffset)-base**-(x-xoffset))/(base**(x-xoffset)+base**-(x-xoffset)))+1)    *</code>    *    *<p>    * This code is provided as a convenience for subclasses that want    * to use a hyperbolic tf function.    *</p>    *    * @see #setHyperbolicTfFactors    */
+comment|/**    * Uses a hyperbolic tangent function that allows for a hard max...    *    *<code>    * tf(x)=min+(max-min)/2*(((base**(x-xoffset)-base**-(x-xoffset))/(base**(x-xoffset)+base**-(x-xoffset)))+1)    *</code>    *    *<p>    * This code is provided as a convenience for subclasses that want    * to use a hyperbolic tf function.    *</p>    *    * @see #setHyperbolicTfFactors    * @see<a href="doc-files/ss.hyperbolicTf.svg">An SVG visualization of this function</a>     */
 DECL|method|hyperbolicTf
 specifier|public
 name|float

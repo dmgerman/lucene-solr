@@ -448,6 +448,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|automaton
 operator|.
 name|BasicAutomata
@@ -4954,13 +4968,6 @@ name|numHighlights
 operator|=
 literal|0
 expr_stmt|;
-name|String
-name|queryString
-init|=
-name|FIELD_NAME
-operator|+
-literal|":[kannedy TO kznnedy]"
-decl_stmt|;
 comment|// Need to explicitly set the QueryParser property to use TermRangeQuery
 comment|// rather
 comment|// than RangeFilters
@@ -8212,36 +8219,6 @@ init|=
 operator|new
 name|SimpleHTMLFormatter
 argument_list|()
-decl_stmt|;
-name|TokenStream
-name|tokenStream
-init|=
-operator|new
-name|MockAnalyzer
-argument_list|(
-name|random
-argument_list|,
-name|MockTokenizer
-operator|.
-name|SIMPLE
-argument_list|,
-literal|true
-argument_list|,
-name|stopWords
-argument_list|,
-literal|true
-argument_list|)
-operator|.
-name|tokenStream
-argument_list|(
-literal|"text"
-argument_list|,
-operator|new
-name|StringReader
-argument_list|(
-name|text
-argument_list|)
-argument_list|)
 decl_stmt|;
 name|Highlighter
 name|hg
@@ -12627,7 +12604,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|HighlighterTest
+name|LuceneTestCase
 operator|.
 name|VERBOSE
 condition|)
@@ -12661,7 +12638,7 @@ name|Exception
 block|{
 if|if
 condition|(
-name|HighlighterTest
+name|LuceneTestCase
 operator|.
 name|VERBOSE
 condition|)
@@ -12679,7 +12656,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|HighlighterTest
+name|LuceneTestCase
 operator|.
 name|VERBOSE
 condition|)

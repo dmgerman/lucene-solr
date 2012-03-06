@@ -162,7 +162,7 @@ begin_class
 annotation|@
 name|Ignore
 argument_list|(
-literal|"Fixme! I am so tired of failing all the time. This is cruelty to animals! :("
+literal|"SOLR-3126"
 argument_list|)
 DECL|class|ChaosMonkeySafeLeaderTest
 specifier|public
@@ -245,6 +245,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"numShards"
+argument_list|)
+expr_stmt|;
 name|super
 operator|.
 name|tearDown
@@ -452,7 +459,7 @@ name|checkShardConsistency
 argument_list|(
 literal|true
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 if|if

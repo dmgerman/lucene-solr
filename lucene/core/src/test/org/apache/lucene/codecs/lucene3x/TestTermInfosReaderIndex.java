@@ -106,85 +106,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|FieldInfosReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene3x
-operator|.
-name|Lucene3xPostingsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene3x
-operator|.
-name|PreFlexRWCodec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene3x
-operator|.
-name|SegmentTermEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene3x
-operator|.
-name|TermInfosReaderIndex
 import|;
 end_import
 
@@ -722,13 +644,13 @@ name|PreFlexRWCodec
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// turn off compound file, this test will open some index files directly.
 name|LogMergePolicy
 name|mp
 init|=
 name|newLogMergePolicy
 argument_list|()
 decl_stmt|;
+comment|// turn off compound file, this test will open some index files directly.
 name|mp
 operator|.
 name|setUseCompoundFile
@@ -1417,7 +1339,7 @@ block|{
 comment|// TODO: this test just uses random terms, so this is always possible
 name|assumeTrue
 argument_list|(
-literal|"ran out of terms."
+literal|"ran out of terms"
 argument_list|,
 name|termEnum
 operator|.
@@ -1426,11 +1348,32 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-return|return
+specifier|final
+name|Term
+name|term
+init|=
 name|termEnum
 operator|.
 name|term
 argument_list|()
+decl_stmt|;
+comment|// An indexed term is only written when the term after
+comment|// it exists, so, if the number of terms is 0 mod
+comment|// termIndexInterval, the last index term will not be
+comment|// written; so we require a term after this term
+comment|// as well:
+name|assumeTrue
+argument_list|(
+literal|"ran out of terms"
+argument_list|,
+name|termEnum
+operator|.
+name|next
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|term
 return|;
 block|}
 DECL|method|populate

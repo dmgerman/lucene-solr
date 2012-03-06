@@ -218,6 +218,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|spelling
+operator|.
+name|SolrSpellChecker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -514,7 +528,7 @@ name|COMPONENT_NAME
 argument_list|,
 literal|"true"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_BUILD
 argument_list|,
@@ -524,13 +538,13 @@ literal|"q"
 argument_list|,
 literal|"bluo"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COUNT
 argument_list|,
 literal|"5"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_EXTENDED_RESULTS
 argument_list|,
@@ -560,13 +574,13 @@ literal|"q"
 argument_list|,
 literal|"bluo"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COUNT
 argument_list|,
 literal|"3"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_EXTENDED_RESULTS
 argument_list|,
@@ -638,7 +652,7 @@ name|COMPONENT_NAME
 argument_list|,
 literal|"true"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_BUILD
 argument_list|,
@@ -705,7 +719,7 @@ name|COMPONENT_NAME
 argument_list|,
 literal|"true"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_BUILD
 argument_list|,
@@ -715,7 +729,7 @@ literal|"q"
 argument_list|,
 literal|"documemt"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COLLATE
 argument_list|,
@@ -747,7 +761,7 @@ literal|"q"
 argument_list|,
 literal|"documemt lowerfilt:broen^4"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COLLATE
 argument_list|,
@@ -779,7 +793,7 @@ literal|"q"
 argument_list|,
 literal|"documemtsss broens"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COLLATE
 argument_list|,
@@ -811,7 +825,7 @@ literal|"q"
 argument_list|,
 literal|"pixma"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COLLATE
 argument_list|,
@@ -855,7 +869,7 @@ literal|"q"
 argument_list|,
 literal|"lowerfilt:lazy lowerfilt:brown"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_EXTENDED_RESULTS
 argument_list|,
@@ -887,7 +901,7 @@ literal|"q"
 argument_list|,
 literal|"lakkle"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_EXTENDED_RESULTS
 argument_list|,
@@ -1083,7 +1097,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|AbstractLuceneSpellChecker
+name|SolrSpellChecker
 operator|.
 name|DICTIONARY_NAME
 argument_list|,
@@ -1356,19 +1370,19 @@ literal|"q"
 argument_list|,
 literal|"documenq"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_DICT
 argument_list|,
 literal|"threshold"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COUNT
 argument_list|,
 literal|"5"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_EXTENDED_RESULTS
 argument_list|,
@@ -1396,19 +1410,19 @@ literal|"q"
 argument_list|,
 literal|"documenq"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_DICT
 argument_list|,
 literal|"threshold_direct"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COUNT
 argument_list|,
 literal|"5"
 argument_list|,
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_EXTENDED_RESULTS
 argument_list|,
@@ -1468,7 +1482,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_COUNT
 argument_list|,
@@ -1479,7 +1493,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_DICT
 argument_list|,
@@ -1490,7 +1504,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_EXTENDED_RESULTS
 argument_list|,
@@ -1626,7 +1640,7 @@ name|params
 operator|.
 name|remove
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_DICT
 argument_list|)
@@ -1635,7 +1649,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|SpellCheckComponent
+name|SpellingParams
 operator|.
 name|SPELLCHECK_DICT
 argument_list|,

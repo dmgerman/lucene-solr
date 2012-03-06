@@ -1271,12 +1271,6 @@ specifier|final
 class|class
 name|FieldIndexData
 block|{
-DECL|field|fieldInfo
-specifier|final
-specifier|private
-name|FieldInfo
-name|fieldInfo
-decl_stmt|;
 DECL|field|coreIndex
 specifier|volatile
 name|CoreFieldIndex
@@ -1337,12 +1331,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|this
-operator|.
-name|fieldInfo
-operator|=
-name|fieldInfo
-expr_stmt|;
 name|this
 operator|.
 name|termsStart

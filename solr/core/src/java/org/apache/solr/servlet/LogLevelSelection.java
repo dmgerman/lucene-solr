@@ -64,6 +64,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|admin
+operator|.
+name|LogLevelHandler
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -129,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Admin JDK Logger level report and selection servlet.  *  *  * @since solr 1.3  */
+comment|/**  * Admin JDK Logger level report and selection servlet.  *  * @since solr 1.3  * @deprecated  {@link LogLevelHandler} this servlet will be removed before solr 4.0  */
 end_comment
 
 begin_class
@@ -218,14 +234,21 @@ name|out
 operator|.
 name|write
 argument_list|(
-literal|"<a href=\".\"><img border=\"0\" align=\"right\" height=\"78\" width=\"142\" src=\"solr_small.png\" alt=\"Solr\"></a>"
+literal|"<a href=\".\"><img border=\"0\" align=\"right\" height=\"78\" width=\"142\" src=\"img/solr.png\" alt=\"Solr\"></a>"
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|write
 argument_list|(
-literal|"<h1>JDK Log Level Selector</h1>"
+literal|"<h1 style='margin-bottom:5px;'>JDK Log Level Selector</h1>"
+argument_list|)
+expr_stmt|;
+name|out
+operator|.
+name|write
+argument_list|(
+literal|"<h2 style='color:#AA0000; margin-top:0px;'>This will be removed before Solr 4.0.  See<a href='/#/logging'>logging</a></h1>"
 argument_list|)
 expr_stmt|;
 name|out

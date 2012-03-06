@@ -36,7 +36,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|Comparator
 import|;
 end_import
 
@@ -54,8 +54,22 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefIterator
+import|;
+end_import
+
 begin_comment
-comment|/**  * Collects {@link BytesRef} and then allows one to iterate over their sorted order. Implementations  * of this interface will be called in a single-threaded scenario.    */
+comment|/**  * Collects {@link BytesRef} and then allows one to iterate over their sorted order. Implementations  * of this interface will be called in a single-threaded scenario.  * @lucene.experimental  * @lucene.internal    */
 end_comment
 
 begin_interface
@@ -79,14 +93,19 @@ name|IllegalStateException
 function_decl|;
 comment|/**    * Sorts the entries added in {@link #add(BytesRef)} and returns     * an iterator over all sorted entries.    *     * @throws IOException If an I/O exception occurs.    */
 DECL|method|iterator
-name|Iterator
-argument_list|<
-name|BytesRef
-argument_list|>
+name|BytesRefIterator
 name|iterator
 parameter_list|()
 throws|throws
 name|IOException
+function_decl|;
+DECL|method|getComparator
+name|Comparator
+argument_list|<
+name|BytesRef
+argument_list|>
+name|getComparator
+parameter_list|()
 function_decl|;
 block|}
 end_interface

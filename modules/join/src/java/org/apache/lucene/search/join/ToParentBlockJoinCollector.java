@@ -1950,6 +1950,9 @@ comment|// At this point we hold all docs w/ in each group,
 comment|// unsorted; we now sort them:
 specifier|final
 name|TopDocsCollector
+argument_list|<
+name|?
+argument_list|>
 name|collector
 decl_stmt|;
 if|if

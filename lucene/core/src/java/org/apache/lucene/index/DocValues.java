@@ -492,6 +492,7 @@ operator|<
 literal|0
 condition|)
 block|{
+comment|// Negative ord means doc was missing?
 name|bytesRef
 operator|.
 name|length
@@ -535,7 +536,7 @@ name|int
 name|ord
 parameter_list|,
 name|BytesRef
-name|bytesRef
+name|result
 parameter_list|)
 function_decl|;
 comment|/** Return true if it's safe to call {@link      *  #getDocToOrd}. */
@@ -573,11 +574,11 @@ return|return
 name|comparator
 return|;
 block|}
-comment|/**      * Performs a lookup by value.      *       * @param value      *          the value to look up      * @param spare      *          a spare {@link BytesRef} instance used to compare internal      *          values to the given value. Must not be<code>null</code>      * @return the given values ordinal if found or otherwise      *<code>(-(ord)-1)</code>, defined as the ordinal of the first      *         element that is greater than the given value. This guarantees      *         that the return value will always be&gt;= 0 if the given value      *         is found.      */
-DECL|method|getByValue
+comment|/**      * Lookup ord by value.      *       * @param value      *          the value to look up      * @param spare      *          a spare {@link BytesRef} instance used to compare internal      *          values to the given value. Must not be<code>null</code>      * @return the given values ordinal if found or otherwise      *<code>(-(ord)-1)</code>, defined as the ordinal of the first      *         element that is greater than the given value (the insertion      *         point). This guarantees that the return value will always be      *&gt;= 0 if the given value is found.      */
+DECL|method|getOrdByValue
 specifier|public
 name|int
-name|getByValue
+name|getOrdByValue
 parameter_list|(
 name|BytesRef
 name|value
@@ -1006,7 +1007,7 @@ annotation|@
 name|Override
 specifier|public
 name|int
-name|getByValue
+name|getOrdByValue
 parameter_list|(
 name|BytesRef
 name|value

@@ -302,6 +302,20 @@ name|solr
 operator|.
 name|core
 operator|.
+name|CoreContainer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
 name|CoreDescriptor
 import|;
 end_import
@@ -389,6 +403,34 @@ operator|.
 name|request
 operator|.
 name|SolrRequestHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrRequestInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|response
+operator|.
+name|SolrQueryResponse
 import|;
 end_import
 
@@ -588,38 +630,38 @@ specifier|private
 name|int
 name|retries
 decl_stmt|;
-DECL|field|core
-specifier|private
-name|SolrCore
-name|core
-decl_stmt|;
 DECL|field|recoveringAfterStartup
 specifier|private
 name|boolean
 name|recoveringAfterStartup
 decl_stmt|;
+DECL|field|cc
+specifier|private
+name|CoreContainer
+name|cc
+decl_stmt|;
 DECL|method|RecoveryStrategy
 specifier|public
 name|RecoveryStrategy
 parameter_list|(
-name|SolrCore
-name|core
+name|CoreContainer
+name|cc
+parameter_list|,
+name|String
+name|name
 parameter_list|)
 block|{
 name|this
 operator|.
-name|core
+name|cc
 operator|=
-name|core
+name|cc
 expr_stmt|;
 name|this
 operator|.
 name|coreName
 operator|=
-name|core
-operator|.
-name|getName
-argument_list|()
+name|name
 expr_stmt|;
 name|setName
 argument_list|(
@@ -628,13 +670,7 @@ argument_list|)
 expr_stmt|;
 name|zkController
 operator|=
-name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
-name|getCoreContainer
-argument_list|()
+name|cc
 operator|.
 name|getZkController
 argument_list|()
@@ -771,9 +807,6 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
-comment|// start buffer updates to tran log
-comment|// and do recovery - either replay via realtime get (eventually)
-comment|// or full index replication
 name|String
 name|leaderBaseUrl
 init|=
@@ -1158,7 +1191,7 @@ name|prepCmd
 operator|.
 name|setPauseFor
 argument_list|(
-literal|4000
+literal|6000
 argument_list|)
 expr_stmt|;
 name|server
@@ -1182,19 +1215,132 @@ name|void
 name|run
 parameter_list|()
 block|{
+name|SolrCore
+name|core
+init|=
+name|cc
+operator|.
+name|getCore
+argument_list|(
+name|coreName
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|core
+operator|==
+literal|null
+condition|)
+block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+literal|"SolrCore not found - cannot recover:"
+operator|+
+name|coreName
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+comment|// set request info for logging
+try|try
+block|{
+name|SolrQueryRequest
+name|req
+init|=
+operator|new
+name|LocalSolrQueryRequest
+argument_list|(
+name|core
+argument_list|,
+operator|new
+name|ModifiableSolrParams
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|SolrQueryResponse
+name|rsp
+init|=
+operator|new
+name|SolrQueryResponse
+argument_list|()
+decl_stmt|;
+name|SolrRequestInfo
+operator|.
+name|setRequestInfo
+argument_list|(
+operator|new
+name|SolrRequestInfo
+argument_list|(
+name|req
+argument_list|,
+name|rsp
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Starting recovery process. recoveringAfterStartup="
+operator|+
+name|recoveringAfterStartup
+argument_list|)
+expr_stmt|;
+name|doRecovery
+argument_list|(
+name|core
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|core
+operator|!=
+literal|null
+condition|)
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|SolrRequestInfo
+operator|.
+name|clearRequestInfo
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|// TODO: perhaps make this grab a new core each time through the loop to handle core reloads?
+DECL|method|doRecovery
+specifier|public
+name|void
+name|doRecovery
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|)
+block|{
 name|boolean
 name|replayed
 init|=
 literal|false
 decl_stmt|;
 name|boolean
-name|succesfulRecovery
+name|successfulRecovery
 init|=
 literal|false
 decl_stmt|;
 name|UpdateLog
 name|ulog
-init|=
+decl_stmt|;
+name|ulog
+operator|=
 name|core
 operator|.
 name|getUpdateHandler
@@ -1202,7 +1348,7 @@ argument_list|()
 operator|.
 name|getUpdateLog
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|ulog
@@ -1350,11 +1496,8 @@ block|}
 if|if
 condition|(
 name|oldIdx
-operator|<
-name|startingRecentVersions
-operator|.
-name|size
-argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
 name|log
@@ -1363,14 +1506,16 @@ name|info
 argument_list|(
 literal|"####### Found new versions added after startup: num="
 operator|+
-operator|(
-name|startingRecentVersions
-operator|.
-name|size
-argument_list|()
-operator|-
 name|oldIdx
-operator|)
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"###### currentVersions="
+operator|+
+name|startingRecentVersions
 argument_list|)
 expr_stmt|;
 block|}
@@ -1381,15 +1526,6 @@ argument_list|(
 literal|"###### startupVersions="
 operator|+
 name|reallyStartingVersions
-argument_list|)
-expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"###### currentVersions="
-operator|+
-name|startingRecentVersions
 argument_list|)
 expr_stmt|;
 block|}
@@ -1413,7 +1549,7 @@ decl_stmt|;
 while|while
 condition|(
 operator|!
-name|succesfulRecovery
+name|successfulRecovery
 operator|&&
 operator|!
 name|close
@@ -1426,6 +1562,7 @@ block|{
 comment|// don't use interruption or it will close channels though
 try|try
 block|{
+comment|// first thing we just try to sync
 name|zkController
 operator|.
 name|publish
@@ -1536,6 +1673,8 @@ operator|+
 name|recoveringAfterStartup
 argument_list|)
 expr_stmt|;
+comment|// System.out.println("Attempting to PeerSync from " + leaderUrl
+comment|// + " i am:" + zkController.getNodeName());
 name|PeerSync
 name|peerSync
 init|=
@@ -1609,9 +1748,27 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Sync Recovery was succesful - registering as Active"
+literal|"Sync Recovery was successful - registering as Active"
 argument_list|)
 expr_stmt|;
+comment|// System.out
+comment|// .println("Sync Recovery was successful - registering as Active "
+comment|// + zkController.getNodeName());
+comment|// solrcloud_debug
+comment|// try {
+comment|// RefCounted<SolrIndexSearcher> searchHolder =
+comment|// core.getNewestSearcher(false);
+comment|// SolrIndexSearcher searcher = searchHolder.get();
+comment|// try {
+comment|// System.out.println(core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName()
+comment|// + " synched "
+comment|// + searcher.search(new MatchAllDocsQuery(), 1).totalHits);
+comment|// } finally {
+comment|// searchHolder.decref();
+comment|// }
+comment|// } catch (Exception e) {
+comment|//
+comment|// }
 comment|// sync success - register as active and return
 name|zkController
 operator|.
@@ -1629,7 +1786,7 @@ argument_list|,
 name|coreName
 argument_list|)
 expr_stmt|;
-name|succesfulRecovery
+name|successfulRecovery
 operator|=
 literal|true
 expr_stmt|;
@@ -1647,6 +1804,7 @@ literal|"Sync Recovery was not successful - trying replication"
 argument_list|)
 expr_stmt|;
 block|}
+comment|//System.out.println("Sync Recovery was not successful - trying replication");
 name|log
 operator|.
 name|info
@@ -1692,7 +1850,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Recovery was succesful - registering as Active"
+literal|"Recovery was successful - registering as Active"
 argument_list|)
 expr_stmt|;
 comment|// if there are pending recovery requests, don't advert as active
@@ -1716,7 +1874,7 @@ name|close
 operator|=
 literal|true
 expr_stmt|;
-name|succesfulRecovery
+name|successfulRecovery
 operator|=
 literal|true
 expr_stmt|;
@@ -1755,12 +1913,10 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-name|SolrException
+name|log
 operator|.
-name|log
+name|error
 argument_list|(
-name|log
-argument_list|,
 literal|"Error while trying to recover"
 argument_list|,
 name|t
@@ -1810,13 +1966,11 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-name|SolrException
+name|log
 operator|.
-name|log
+name|error
 argument_list|(
-name|log
-argument_list|,
-literal|"Error while trying to recover"
+literal|"Error while trying to recover."
 argument_list|,
 name|t
 argument_list|)
@@ -1825,7 +1979,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|succesfulRecovery
+name|successfulRecovery
 condition|)
 block|{
 comment|// lets pause for a moment and we need to try again...
@@ -1833,12 +1987,10 @@ comment|// TODO: we don't want to retry for some problems?
 comment|// Or do a fall off retry...
 try|try
 block|{
-name|SolrException
+name|log
 operator|.
-name|log
+name|error
 argument_list|(
-name|log
-argument_list|,
 literal|"Recovery failed - trying again..."
 argument_list|)
 expr_stmt|;
@@ -1858,10 +2010,16 @@ name|retries
 operator|==
 name|INTERRUPTED
 condition|)
-block|{                            }
+block|{              }
 else|else
 block|{
-comment|// TODO: for now, give up after X tries - should we do more?
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Recovery failed - max retries exceeded."
+argument_list|)
+expr_stmt|;
 name|recoveryFailed
 argument_list|(
 name|core
@@ -1948,6 +2106,7 @@ name|INTERRUPTED
 expr_stmt|;
 block|}
 block|}
+block|}
 name|log
 operator|.
 name|info
@@ -1955,7 +2114,6 @@ argument_list|(
 literal|"Finished recovery process"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|replay
 specifier|private

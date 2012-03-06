@@ -290,8 +290,6 @@ name|BytesRef
 argument_list|>
 name|getComparator
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|tenum

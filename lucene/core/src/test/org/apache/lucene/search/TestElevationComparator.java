@@ -972,6 +972,9 @@ name|Override
 DECL|method|newComparator
 specifier|public
 name|FieldComparator
+argument_list|<
+name|Integer
+argument_list|>
 name|newComparator
 parameter_list|(
 specifier|final
@@ -1192,6 +1195,9 @@ annotation|@
 name|Override
 specifier|public
 name|FieldComparator
+argument_list|<
+name|Integer
+argument_list|>
 name|setNextReader
 parameter_list|(
 name|AtomicReaderContext

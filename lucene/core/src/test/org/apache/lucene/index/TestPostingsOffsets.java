@@ -698,7 +698,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -786,7 +786,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -874,7 +874,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 argument_list|,
@@ -1259,7 +1259,7 @@ name|nextDoc
 argument_list|()
 operator|)
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -2359,7 +2359,7 @@ name|nextDoc
 argument_list|()
 operator|)
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -2436,7 +2436,7 @@ name|nextDoc
 argument_list|()
 operator|)
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -2546,7 +2546,7 @@ name|nextDoc
 argument_list|()
 operator|)
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)

@@ -1208,7 +1208,7 @@ specifier|public
 name|Object
 name|get
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|)
 block|{
@@ -1218,12 +1218,6 @@ init|=
 name|getNode
 argument_list|(
 name|key
-operator|.
-name|trim
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -1461,7 +1455,7 @@ specifier|public
 name|TSTNode
 name|getNode
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|)
 block|{
@@ -1474,30 +1468,19 @@ name|rootNode
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the node indexed by key, or<code>null</code> if that node doesn't    * exist. The search begins at root node.    *     *@param key2    *          A<code>String</code> that indexes the node that is returned.    *@param startNode    *          The top node defining the subtrie to be searched.    *@return The node object indexed by key. This object is an instance of an    *         inner class named<code>TernarySearchTrie.TSTNode</code>.    */
+comment|/**    * Returns the node indexed by key, or<code>null</code> if that node doesn't    * exist. The search begins at root node.    *     *@param key    *          A<code>String</code> that indexes the node that is returned.    *@param startNode    *          The top node defining the subtrie to be searched.    *@return The node object indexed by key. This object is an instance of an    *         inner class named<code>TernarySearchTrie.TSTNode</code>.    */
 DECL|method|getNode
 specifier|protected
 name|TSTNode
 name|getNode
 parameter_list|(
-name|String
-name|key2
+name|CharSequence
+name|key
 parameter_list|,
 name|TSTNode
 name|startNode
 parameter_list|)
 block|{
-name|String
-name|key
-init|=
-name|key2
-operator|.
-name|trim
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|key
@@ -1641,7 +1624,7 @@ specifier|protected
 name|TSTNode
 name|getOrCreateNode
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|)
 throws|throws
@@ -1951,7 +1934,7 @@ name|String
 argument_list|>
 name|matchAlmost
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|,
 name|int
@@ -2011,7 +1994,7 @@ parameter_list|,
 name|int
 name|d
 parameter_list|,
-name|String
+name|CharSequence
 name|matchAlmostKey
 parameter_list|,
 name|int
@@ -2310,7 +2293,7 @@ name|String
 argument_list|>
 name|matchPrefix
 parameter_list|(
-name|String
+name|CharSequence
 name|prefix
 parameter_list|,
 name|int
@@ -2474,7 +2457,7 @@ specifier|public
 name|void
 name|put
 parameter_list|(
-name|String
+name|CharSequence
 name|key
 parameter_list|,
 name|Object
@@ -2484,12 +2467,6 @@ block|{
 name|getOrCreateNode
 argument_list|(
 name|key
-operator|.
-name|trim
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|()
 argument_list|)
 operator|.
 name|data

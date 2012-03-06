@@ -804,7 +804,7 @@ name|runFullImport
 argument_list|(
 name|generateDIHConfig
 argument_list|(
-literal|"query='*:*' rows='2' fields='id,desc' onError='skip'"
+literal|"query='*:*' rows='2' fl='id,desc' onError='skip'"
 argument_list|,
 name|jetty
 operator|.
@@ -1012,7 +1012,7 @@ name|runFullImport
 argument_list|(
 name|generateDIHConfig
 argument_list|(
-literal|"query='*:*' fields='id' rows='2'"
+literal|"query='*:*' fl='id' rows='2'"
 argument_list|,
 name|jetty
 operator|.
@@ -1258,7 +1258,7 @@ name|runFullImport
 argument_list|(
 name|generateDIHConfig
 argument_list|(
-literal|"query='*:*' rows='2' fields='id,desc' onError='skip'"
+literal|"query='*:*' rows='2' fl='id,desc' onError='skip'"
 argument_list|,
 name|jetty
 operator|.
@@ -1328,7 +1328,7 @@ name|runFullImport
 argument_list|(
 name|generateDIHConfig
 argument_list|(
-literal|"query='bogus:3' rows='2' fields='id,desc' onError='abort'"
+literal|"query='bogus:3' rows='2' fl='id,desc' onError='abort'"
 argument_list|,
 name|jetty
 operator|.

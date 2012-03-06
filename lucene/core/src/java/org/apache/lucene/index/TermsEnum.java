@@ -78,6 +78,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefIterator
+import|;
+end_import
+
 begin_comment
 comment|/** Iterator to seek ({@link #seekCeil(BytesRef)}, {@link  * #seekExact(BytesRef,boolean)}) or step through ({@link  * #next} terms to obtain frequency information ({@link  * #docFreq}), {@link DocsEnum} or {@link  * DocsAndPositionsEnum} for the current term ({@link  * #docs}.  *   *<p>Term enumerations are always ordered by  * {@link #getComparator}.  Each term in the enumeration is  * greater than the one before it.</p>  *  *<p>The TermsEnum is unpositioned when you first obtain it  * and you must first successfully call {@link #next} or one  * of the<code>seek</code> methods.  *  * @lucene.experimental */
 end_comment
@@ -88,6 +102,8 @@ specifier|public
 specifier|abstract
 class|class
 name|TermsEnum
+implements|implements
+name|BytesRefIterator
 block|{
 DECL|field|atts
 specifier|private
@@ -254,16 +270,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Increments the enumeration to the next term.    *  Returns the resulting term, or null if the end was    *  hit (which means the enum is unpositioned).  The    *  returned BytesRef may be re-used across calls to next.    *  After this method returns null, do not call it again:    *  the results are undefined. */
-DECL|method|next
-specifier|public
-specifier|abstract
-name|BytesRef
-name|next
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Returns current term. Do not call this when the enum    *  is unpositioned. */
 DECL|method|term
 specifier|public
@@ -369,19 +375,6 @@ block|{       }
 block|}
 return|;
 block|}
-comment|/** Return the {@link BytesRef} Comparator used to sort    *  terms provided by the iterator.  This may return    *  null if there are no terms.  Callers may invoke this    *  method many times, so it's best to cache a single    *  instance& reuse it. */
-DECL|method|getComparator
-specifier|public
-specifier|abstract
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|getComparator
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
 comment|/** An empty TermsEnum for quickly returning an empty instance e.g.    * in {@link org.apache.lucene.search.MultiTermQuery}    *<p><em>Please note:</em> This enum should be unmodifiable,    * but it is currently possible to add Attributes to it.    * This should not be a problem, as the enum is always empty and    * the existence of unused Attributes does not matter.    */
 DECL|field|EMPTY
 specifier|public

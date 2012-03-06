@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -65,6 +55,16 @@ operator|.
 name|util
 operator|.
 name|ThreadInterruptedException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -209,7 +209,6 @@ name|MIN_VALUE
 decl_stmt|;
 DECL|field|collector
 specifier|private
-specifier|final
 name|Collector
 name|collector
 decl_stmt|;
@@ -488,6 +487,23 @@ operator|.
 name|acceptsDocsOutOfOrder
 argument_list|()
 return|;
+block|}
+comment|/**    * This is so the same timer can be used with a multi-phase search process such as grouping.     * We don't want to create a new TimeLimitingCollector for each phase because that would     * reset the timer for each phase.  Once time is up subsequent phases need to timeout quickly.    *    * @param collector The actual collector performing search functionality    */
+DECL|method|setCollector
+specifier|public
+name|void
+name|setCollector
+parameter_list|(
+name|Collector
+name|collector
+parameter_list|)
+block|{
+name|this
+operator|.
+name|collector
+operator|=
+name|collector
+expr_stmt|;
 block|}
 comment|/**    * Returns the global TimerThreads {@link Counter}    *<p>    * Invoking this creates may create a new instance of {@link TimerThread} iff    * the global {@link TimerThread} has never been accessed before. The thread    * returned from this method is started on creation and will be alive unless    * you stop the {@link TimerThread} via {@link TimerThread#stopTimer()}.    *</p>    * @return the global TimerThreads {@link Counter}    * @lucene.experimental    */
 DECL|method|getGlobalCounter

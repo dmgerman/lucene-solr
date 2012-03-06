@@ -2596,12 +2596,6 @@ name|OrdWrappedTermsEnum
 extends|extends
 name|TermsEnum
 block|{
-DECL|field|reader
-specifier|private
-specifier|final
-name|AtomicReader
-name|reader
-decl_stmt|;
 DECL|field|termsEnum
 specifier|private
 specifier|final
@@ -2634,12 +2628,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|this
-operator|.
-name|reader
-operator|=
-name|reader
-expr_stmt|;
 assert|assert
 name|indexedTermsArray
 operator|!=
@@ -2673,8 +2661,6 @@ name|BytesRef
 argument_list|>
 name|getComparator
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|termsEnum

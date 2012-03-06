@@ -26,6 +26,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|AttributeSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|Bits
 import|;
 end_import
@@ -41,6 +55,22 @@ operator|.
 name|util
 operator|.
 name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|CompiledAutomaton
 import|;
 end_import
 
@@ -65,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  A<code>FilterAtomicReader</code> contains another AtomicReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality. The class  *<code>FilterIndexReader</code> itself simply implements all abstract methods  * of<code>IndexReader</code> with versions that pass all requests to the  * contained index reader. Subclasses of<code>FilterAtomicReader</code> may  * further override some of these methods and may also provide additional  * methods and fields.  */
+comment|/**  A<code>FilterAtomicReader</code> contains another AtomicReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality. The class  *<code>FilterAtomicReader</code> itself simply implements all abstract methods  * of<code>IndexReader</code> with versions that pass all requests to the  * contained index reader. Subclasses of<code>FilterAtomicReader</code> may  * further override some of these methods and may also provide additional  * methods and fields.  */
 end_comment
 
 begin_class
@@ -87,6 +117,7 @@ name|Fields
 block|{
 DECL|field|in
 specifier|protected
+specifier|final
 name|Fields
 name|in
 decl_stmt|;
@@ -161,6 +192,23 @@ name|getUniqueFieldCount
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getUniqueTermCount
+specifier|public
+name|long
+name|getUniqueTermCount
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|in
+operator|.
+name|getUniqueTermCount
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** Base class for filtering {@link Terms}    *  implementations. */
 DECL|class|FilterTerms
@@ -173,6 +221,7 @@ name|Terms
 block|{
 DECL|field|in
 specifier|protected
+specifier|final
 name|Terms
 name|in
 decl_stmt|;
@@ -301,6 +350,37 @@ name|getDocCount
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|intersect
+specifier|public
+name|TermsEnum
+name|intersect
+parameter_list|(
+name|CompiledAutomaton
+name|automaton
+parameter_list|,
+name|BytesRef
+name|bytes
+parameter_list|)
+throws|throws
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+block|{
+return|return
+name|in
+operator|.
+name|intersect
+argument_list|(
+name|automaton
+argument_list|,
+name|bytes
+argument_list|)
+return|;
+block|}
 block|}
 comment|/** Base class for filtering {@link TermsEnum} implementations. */
 DECL|class|FilterFieldsEnum
@@ -313,6 +393,7 @@ name|FieldsEnum
 block|{
 DECL|field|in
 specifier|protected
+specifier|final
 name|FieldsEnum
 name|in
 decl_stmt|;
@@ -365,6 +446,21 @@ name|terms
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|attributes
+specifier|public
+name|AttributeSource
+name|attributes
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|attributes
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** Base class for filtering {@link TermsEnum} implementations. */
 DECL|class|FilterTermsEnum
@@ -377,6 +473,7 @@ name|TermsEnum
 block|{
 DECL|field|in
 specifier|protected
+specifier|final
 name|TermsEnum
 name|in
 decl_stmt|;
@@ -629,8 +726,6 @@ name|BytesRef
 argument_list|>
 name|getComparator
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|in
@@ -682,6 +777,21 @@ name|termState
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|attributes
+specifier|public
+name|AttributeSource
+name|attributes
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|attributes
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** Base class for filtering {@link DocsEnum} implementations. */
 DECL|class|FilterDocsEnum
@@ -694,6 +804,7 @@ name|DocsEnum
 block|{
 DECL|field|in
 specifier|protected
+specifier|final
 name|DocsEnum
 name|in
 decl_stmt|;
@@ -781,6 +892,21 @@ name|target
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|attributes
+specifier|public
+name|AttributeSource
+name|attributes
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|attributes
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** Base class for filtering {@link DocsAndPositionsEnum} implementations. */
 DECL|class|FilterDocsAndPositionsEnum
@@ -793,6 +919,7 @@ name|DocsAndPositionsEnum
 block|{
 DECL|field|in
 specifier|protected
+specifier|final
 name|DocsAndPositionsEnum
 name|in
 decl_stmt|;
@@ -963,13 +1090,29 @@ name|hasPayload
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|attributes
+specifier|public
+name|AttributeSource
+name|attributes
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|attributes
+argument_list|()
+return|;
+block|}
 block|}
 DECL|field|in
 specifier|protected
+specifier|final
 name|AtomicReader
 name|in
 decl_stmt|;
-comment|/**    *<p>Construct a FilterIndexReader based on the specified base reader.    *<p>Note that base reader is closed if this FilterIndexReader is closed.</p>    * @param in specified base reader.    */
+comment|/**    *<p>Construct a FilterAtomicReader based on the specified base reader.    *<p>Note that base reader is closed if this FilterAtomicReader is closed.</p>    * @param in specified base reader.    */
 DECL|method|FilterAtomicReader
 specifier|public
 name|FilterAtomicReader
@@ -986,6 +1129,13 @@ operator|.
 name|in
 operator|=
 name|in
+expr_stmt|;
+name|in
+operator|.
+name|registerParentReader
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -1235,7 +1385,7 @@ init|=
 operator|new
 name|StringBuilder
 argument_list|(
-literal|"FilterIndexReader("
+literal|"FilterAtomicReader("
 argument_list|)
 decl_stmt|;
 name|buffer

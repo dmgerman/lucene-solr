@@ -4694,7 +4694,7 @@ init|=
 operator|new
 name|DateMathParser
 argument_list|(
-name|ft
+name|DateField
 operator|.
 name|UTC
 argument_list|,

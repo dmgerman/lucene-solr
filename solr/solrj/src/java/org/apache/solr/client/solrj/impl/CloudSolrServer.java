@@ -438,6 +438,7 @@ literal|10000
 decl_stmt|;
 DECL|field|defaultCollection
 specifier|private
+specifier|volatile
 name|String
 name|defaultCollection
 decl_stmt|;
@@ -798,6 +799,21 @@ argument_list|,
 name|defaultCollection
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrServerException
+argument_list|(
+literal|"No collection param specified on request and no default collection has been set."
+argument_list|)
+throw|;
+block|}
 comment|// Extract each comma separated collection name and store in a List.
 name|List
 argument_list|<

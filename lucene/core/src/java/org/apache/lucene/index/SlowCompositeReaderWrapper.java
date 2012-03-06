@@ -246,6 +246,13 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+name|in
+operator|.
+name|registerParentReader
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -276,12 +283,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|in
-operator|.
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-comment|// as we cached the fields, we better check the original reader
 return|return
 name|fields
 return|;
@@ -471,12 +472,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|in
-operator|.
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-comment|// as we cached the liveDocs, we better check the original reader
 return|return
 name|liveDocs
 return|;

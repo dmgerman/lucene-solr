@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -104,6 +94,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DirectoryReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -133,6 +137,34 @@ operator|.
 name|store
 operator|.
 name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefIterator
 import|;
 end_import
 
@@ -181,11 +213,17 @@ name|ld
 decl_stmt|;
 DECL|field|it
 specifier|private
-name|Iterator
-argument_list|<
-name|String
-argument_list|>
+name|BytesRefIterator
 name|it
+decl_stmt|;
+DECL|field|spare
+specifier|private
+name|BytesRef
+name|spare
+init|=
+operator|new
+name|BytesRef
+argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
@@ -438,7 +476,7 @@ try|try
 block|{
 name|indexReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -462,26 +500,16 @@ operator|.
 name|getWordsIterator
 argument_list|()
 expr_stmt|;
-name|assertFalse
+name|assertNull
 argument_list|(
 literal|"More elements than expected"
 argument_list|,
-name|it
-operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"Nonexistent element is really null"
-argument_list|,
+name|spare
+operator|=
 name|it
 operator|.
 name|next
 argument_list|()
-operator|==
-literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -514,7 +542,7 @@ try|try
 block|{
 name|indexReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -538,13 +566,15 @@ operator|.
 name|getWordsIterator
 argument_list|()
 expr_stmt|;
-name|assertTrue
+name|assertNotNull
 argument_list|(
 literal|"First element doesn't exist."
 argument_list|,
+name|spare
+operator|=
 name|it
 operator|.
-name|hasNext
+name|next
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -552,9 +582,9 @@ name|assertTrue
 argument_list|(
 literal|"First element isn't correct"
 argument_list|,
-name|it
+name|spare
 operator|.
-name|next
+name|utf8ToString
 argument_list|()
 operator|.
 name|equals
@@ -563,26 +593,14 @@ literal|"foo"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertFalse
+name|assertNull
 argument_list|(
 literal|"More elements than expected"
 argument_list|,
 name|it
 operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"Nonexistent element is really null"
-argument_list|,
-name|it
-operator|.
 name|next
 argument_list|()
-operator|==
-literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -615,7 +633,7 @@ try|try
 block|{
 name|indexReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -639,13 +657,15 @@ operator|.
 name|getWordsIterator
 argument_list|()
 expr_stmt|;
-name|assertTrue
+name|assertNotNull
 argument_list|(
 literal|"First element doesn't exist."
 argument_list|,
+name|spare
+operator|=
 name|it
 operator|.
-name|hasNext
+name|next
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -653,9 +673,9 @@ name|assertTrue
 argument_list|(
 literal|"First element isn't correct"
 argument_list|,
-name|it
+name|spare
 operator|.
-name|next
+name|utf8ToString
 argument_list|()
 operator|.
 name|equals
@@ -664,13 +684,15 @@ literal|"Jerry"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertNotNull
 argument_list|(
 literal|"Second element doesn't exist."
 argument_list|,
+name|spare
+operator|=
 name|it
 operator|.
-name|hasNext
+name|next
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -678,9 +700,9 @@ name|assertTrue
 argument_list|(
 literal|"Second element isn't correct"
 argument_list|,
-name|it
+name|spare
 operator|.
-name|next
+name|utf8ToString
 argument_list|()
 operator|.
 name|equals
@@ -689,26 +711,14 @@ literal|"Tom"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertFalse
+name|assertNull
 argument_list|(
 literal|"More elements than expected"
 argument_list|,
 name|it
 operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"Nonexistent element is really null"
-argument_list|,
-name|it
-operator|.
 name|next
 argument_list|()
-operator|==
-literal|null
 argument_list|)
 expr_stmt|;
 name|ld
@@ -737,15 +747,12 @@ while|while
 condition|(
 name|it
 operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|it
-operator|.
 name|next
 argument_list|()
-expr_stmt|;
+operator|!=
+literal|null
+condition|)
+block|{
 name|counter
 operator|--
 expr_stmt|;
@@ -789,7 +796,7 @@ try|try
 block|{
 name|indexReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -813,69 +820,38 @@ operator|.
 name|getWordsIterator
 argument_list|()
 expr_stmt|;
-comment|// hasNext() should have no side effects
-name|assertTrue
-argument_list|(
-literal|"First element isn't were it should be."
-argument_list|,
-name|it
-operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"First element isn't were it should be."
-argument_list|,
-name|it
-operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"First element isn't were it should be."
-argument_list|,
-name|it
-operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// just iterate through words
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"First element isn't correct"
 argument_list|,
+literal|"Jerry"
+argument_list|,
 name|it
 operator|.
 name|next
 argument_list|()
 operator|.
-name|equals
-argument_list|(
-literal|"Jerry"
-argument_list|)
+name|utf8ToString
+argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 literal|"Second element isn't correct"
 argument_list|,
-name|it
-operator|.
-name|next
-argument_list|()
-operator|.
-name|equals
-argument_list|(
 literal|"Tom"
-argument_list|)
+argument_list|,
+name|it
+operator|.
+name|next
+argument_list|()
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertNull
 argument_list|(
 literal|"Nonexistent element is really null"
 argument_list|,
@@ -883,76 +859,6 @@ name|it
 operator|.
 name|next
 argument_list|()
-operator|==
-literal|null
-argument_list|)
-expr_stmt|;
-comment|// hasNext() should still have no side effects ...
-name|assertFalse
-argument_list|(
-literal|"There should be any more elements"
-argument_list|,
-name|it
-operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertFalse
-argument_list|(
-literal|"There should be any more elements"
-argument_list|,
-name|it
-operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertFalse
-argument_list|(
-literal|"There should be any more elements"
-argument_list|,
-name|it
-operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// .. and there are really no more words
-name|assertTrue
-argument_list|(
-literal|"Nonexistent element is really null"
-argument_list|,
-name|it
-operator|.
-name|next
-argument_list|()
-operator|==
-literal|null
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"Nonexistent element is really null"
-argument_list|,
-name|it
-operator|.
-name|next
-argument_list|()
-operator|==
-literal|null
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"Nonexistent element is really null"
-argument_list|,
-name|it
-operator|.
-name|next
-argument_list|()
-operator|==
-literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -985,7 +891,7 @@ try|try
 block|{
 name|indexReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1009,51 +915,38 @@ operator|.
 name|getWordsIterator
 argument_list|()
 expr_stmt|;
-name|assertTrue
+name|assertNotNull
 argument_list|(
 literal|"First element doesn't exist."
 argument_list|,
-name|it
-operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"First element isn't correct"
-argument_list|,
+name|spare
+operator|=
 name|it
 operator|.
 name|next
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"bar"
-argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertFalse
+name|assertEquals
+argument_list|(
+literal|"First element isn't correct"
+argument_list|,
+literal|"bar"
+argument_list|,
+name|spare
+operator|.
+name|utf8ToString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
 argument_list|(
 literal|"More elements than expected"
 argument_list|,
 name|it
 operator|.
-name|hasNext
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"Nonexistent element is really null"
-argument_list|,
-name|it
-operator|.
 name|next
 argument_list|()
-operator|==
-literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -1099,7 +992,7 @@ argument_list|)
 decl_stmt|;
 name|indexReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

@@ -56,6 +56,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Filter
 import|;
 end_import
@@ -383,7 +397,7 @@ if|if
 condition|(
 name|doc
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -432,7 +446,7 @@ if|if
 condition|(
 name|doc
 operator|==
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -593,7 +607,7 @@ if|if
 condition|(
 name|doc
 operator|!=
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -649,7 +663,7 @@ if|if
 condition|(
 name|doc
 operator|==
-name|DocsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)

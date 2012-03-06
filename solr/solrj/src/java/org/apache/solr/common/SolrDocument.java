@@ -699,14 +699,9 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"SolrDocument["
+literal|"SolrDocument"
 operator|+
 name|_fields
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|"]"
 return|;
 block|}
 comment|/**    * Iterate of String->Object keys    */

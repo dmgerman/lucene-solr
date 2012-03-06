@@ -225,6 +225,9 @@ operator|new
 name|LineFileDocs
 argument_list|(
 name|random
+argument_list|,
+name|defaultCodecSupportsDocValues
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2204,6 +2207,24 @@ name|Throwable
 name|ex
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"FAILED exc:"
+argument_list|)
+expr_stmt|;
+name|ex
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException

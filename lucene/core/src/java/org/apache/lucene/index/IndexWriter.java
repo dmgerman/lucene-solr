@@ -1568,6 +1568,17 @@ name|liveDocs
 operator|.
 name|length
 argument_list|()
+operator|:
+literal|"out of bounds: docid="
+operator|+
+name|docID
+operator|+
+literal|",liveDocsLength="
+operator|+
+name|liveDocs
+operator|.
+name|length
+argument_list|()
 assert|;
 assert|assert
 operator|!
@@ -1759,6 +1770,13 @@ name|IndexWriter
 operator|.
 name|this
 argument_list|)
+assert|;
+assert|assert
+name|info
+operator|.
+name|docCount
+operator|>
+literal|0
 assert|;
 comment|//System.out.println("initWritableLivedocs seg=" + info + " liveDocs=" + liveDocs + " shared=" + shared);
 if|if
@@ -9849,6 +9867,16 @@ specifier|final
 name|ReadersAndLiveDocs
 name|mergedDeletes
 init|=
+name|merge
+operator|.
+name|info
+operator|.
+name|docCount
+operator|==
+literal|0
+condition|?
+literal|null
+else|:
 name|commitMergedDeletes
 argument_list|(
 name|merge

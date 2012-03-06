@@ -2317,7 +2317,7 @@ operator|.
 name|nextDoc
 argument_list|()
 operator|!=
-name|DocsAndPositionsEnum
+name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 condition|)
@@ -2329,18 +2329,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-DECL|method|peek
-specifier|final
-specifier|public
-name|DocsEnum
-name|peek
-parameter_list|()
-block|{
-return|return
-name|top
-argument_list|()
-return|;
 block|}
 annotation|@
 name|Override

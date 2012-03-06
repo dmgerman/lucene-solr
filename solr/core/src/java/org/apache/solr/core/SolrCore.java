@@ -548,6 +548,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|slf4j
@@ -623,6 +637,54 @@ name|String
 name|version
 init|=
 literal|"1.0"
+decl_stmt|;
+comment|// These should *only* be used for debugging or monitoring purposes
+DECL|field|numOpens
+specifier|public
+specifier|static
+specifier|final
+name|AtomicLong
+name|numOpens
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
+decl_stmt|;
+DECL|field|numCloses
+specifier|public
+specifier|static
+specifier|final
+name|AtomicLong
+name|numCloses
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
+decl_stmt|;
+DECL|field|openHandles
+specifier|public
+specifier|static
+name|Map
+argument_list|<
+name|SolrCore
+argument_list|,
+name|Exception
+argument_list|>
+name|openHandles
+init|=
+name|Collections
+operator|.
+name|synchronizedMap
+argument_list|(
+operator|new
+name|IdentityHashMap
+argument_list|<
+name|SolrCore
+argument_list|,
+name|Exception
+argument_list|>
+argument_list|()
+argument_list|)
 decl_stmt|;
 DECL|field|log
 specifier|public
@@ -3260,6 +3322,9 @@ argument_list|(
 name|infoRegistry
 argument_list|)
 expr_stmt|;
+comment|// For debugging
+comment|//    numOpens.incrementAndGet();
+comment|//    openHandles.put(this, new RuntimeException("unclosed core - name:" + getName() + " refs: " + refCount.get()));
 block|}
 DECL|method|initCodec
 specifier|private
@@ -3870,6 +3935,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// For debugging
+comment|//    numCloses.incrementAndGet();
+comment|//    openHandles.remove(this);
 block|}
 comment|/** Current core usage count. */
 DECL|method|getOpenCount
@@ -6670,6 +6738,13 @@ name|log
 operator|.
 name|isInfoEnabled
 argument_list|()
+operator|&&
+name|toLog
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
 name|StringBuilder
@@ -6719,6 +6794,13 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|name
+operator|!=
+literal|null
+condition|)
+block|{
 name|sb
 operator|.
 name|append
@@ -6728,8 +6810,11 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-literal|"="
+literal|'='
 argument_list|)
+expr_stmt|;
+block|}
+name|sb
 operator|.
 name|append
 argument_list|(
@@ -6738,7 +6823,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-literal|" "
+literal|' '
 argument_list|)
 expr_stmt|;
 block|}
@@ -6863,6 +6948,19 @@ argument_list|,
 name|qtime
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|rsp
+operator|.
+name|getToLog
+argument_list|()
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 name|rsp
 operator|.
 name|getToLog
@@ -6887,6 +6985,7 @@ argument_list|,
 name|qtime
 argument_list|)
 expr_stmt|;
+block|}
 name|SolrParams
 name|params
 init|=

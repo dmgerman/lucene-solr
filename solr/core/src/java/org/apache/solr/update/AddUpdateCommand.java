@@ -535,12 +535,6 @@ name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|indexedId
-operator|!=
-literal|null
-condition|)
 name|sb
 operator|.
 name|append
@@ -550,7 +544,8 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|indexedId
+name|getPrintableId
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if

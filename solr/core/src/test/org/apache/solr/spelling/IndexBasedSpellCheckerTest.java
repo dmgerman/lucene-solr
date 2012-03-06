@@ -730,7 +730,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|IndexBasedSpellChecker
+name|AbstractLuceneSpellChecker
 operator|.
 name|FIELD
 argument_list|,
@@ -1444,7 +1444,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|IndexBasedSpellChecker
+name|AbstractLuceneSpellChecker
 operator|.
 name|FIELD
 argument_list|,
@@ -1936,7 +1936,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|IndexBasedSpellChecker
+name|AbstractLuceneSpellChecker
 operator|.
 name|FIELD
 argument_list|,
@@ -2335,7 +2335,7 @@ name|spellchecker
 operator|.
 name|add
 argument_list|(
-name|IndexBasedSpellChecker
+name|AbstractLuceneSpellChecker
 operator|.
 name|FIELD
 argument_list|,

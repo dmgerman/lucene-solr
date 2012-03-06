@@ -726,14 +726,6 @@ specifier|private
 name|Bucket
 name|current
 decl_stmt|;
-DECL|field|doc
-specifier|private
-name|int
-name|doc
-init|=
-operator|-
-literal|1
-decl_stmt|;
 comment|// Any time a prohibited clause matches we set bit 0:
 DECL|field|PROHIBITED_MASK
 specifier|private

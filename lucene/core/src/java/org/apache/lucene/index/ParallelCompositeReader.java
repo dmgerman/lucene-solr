@@ -77,7 +77,7 @@ specifier|final
 class|class
 name|ParallelCompositeReader
 extends|extends
-name|BaseMultiReader
+name|BaseCompositeReader
 argument_list|<
 name|IndexReader
 argument_list|>

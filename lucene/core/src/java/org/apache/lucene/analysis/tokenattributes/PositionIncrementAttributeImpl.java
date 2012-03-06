@@ -85,15 +85,17 @@ name|positionIncrement
 operator|<
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Increment must be zero or greater: "
+literal|"Increment must be zero or greater: got "
 operator|+
 name|positionIncrement
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|positionIncrement
@@ -156,15 +158,18 @@ operator|instanceof
 name|PositionIncrementAttributeImpl
 condition|)
 block|{
-return|return
-name|positionIncrement
-operator|==
-operator|(
+name|PositionIncrementAttributeImpl
+name|_other
+init|=
 operator|(
 name|PositionIncrementAttributeImpl
 operator|)
 name|other
-operator|)
+decl_stmt|;
+return|return
+name|positionIncrement
+operator|==
+name|_other
 operator|.
 name|positionIncrement
 return|;

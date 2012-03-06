@@ -97,6 +97,26 @@ name|SHARDS_QT
 init|=
 literal|"shards.qt"
 decl_stmt|;
+comment|/** Request detailed match info for each shard (true/false) */
+DECL|field|SHARDS_INFO
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SHARDS_INFO
+init|=
+literal|"shards.info"
+decl_stmt|;
+comment|/** Should things fail if there is an error? (true/false) */
+DECL|field|SHARDS_TOLERANT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SHARDS_TOLERANT
+init|=
+literal|"shards.tolerant"
+decl_stmt|;
 block|}
 end_interface
 

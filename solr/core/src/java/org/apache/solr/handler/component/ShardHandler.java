@@ -67,6 +67,13 @@ name|ModifiableSolrParams
 name|params
 parameter_list|)
 function_decl|;
+DECL|method|takeCompletedIncludingErrors
+specifier|public
+specifier|abstract
+name|ShardResponse
+name|takeCompletedIncludingErrors
+parameter_list|()
+function_decl|;
 DECL|method|takeCompletedOrError
 specifier|public
 specifier|abstract
