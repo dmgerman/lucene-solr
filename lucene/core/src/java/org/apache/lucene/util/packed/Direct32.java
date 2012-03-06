@@ -242,6 +242,16 @@ name|int
 name|index
 parameter_list|)
 block|{
+assert|assert
+name|index
+operator|>=
+literal|0
+operator|&&
+name|index
+operator|<
+name|size
+argument_list|()
+assert|;
 return|return
 literal|0xFFFFFFFFL
 operator|&
