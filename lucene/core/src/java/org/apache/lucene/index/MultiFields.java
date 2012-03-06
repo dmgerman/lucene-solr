@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exposes flex API, merged from flex API of sub-segments.  * This is useful when you're interacting with an {@link  * IndexReader} implementation that consists of sequential  * sub-readers (eg DirectoryReader or {@link  * MultiReader}).  *  *<p><b>NOTE</b>: for multi readers, you'll get better  * performance by gathering the sub readers using {@link  * ReaderUtil#gatherSubReaders} and then operate per-reader,  * instead of using this class.  *  * @lucene.experimental  */
+comment|/**  * Exposes flex API, merged from flex API of sub-segments.  * This is useful when you're interacting with an {@link  * IndexReader} implementation that consists of sequential  * sub-readers (eg {@link DirectoryReader} or {@link  * MultiReader}).  *  *<p><b>NOTE</b>: for multi readers, you'll get better  * performance by gathering the sub readers using {@link  * ReaderUtil#gatherSubReaders} and then operate per-reader,  * instead of using this class.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

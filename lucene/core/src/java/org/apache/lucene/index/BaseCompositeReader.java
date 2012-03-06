@@ -54,11 +54,16 @@ name|ReaderUtil
 import|;
 end_import
 
+begin_comment
+comment|/** Base class for implementing {@link CompositeReader}s based on an array  * of sub-readers. The implementing class has to add code for  * correctly refcounting and closing the sub-readers.  *   *<p>User code will most likely use {@link MultiReader} to build a  * composite reader on a set of sub-readers (like several  * {@link DirectoryReader}s).  *   *<p> For efficiency, in this API documents are often referred to via  *<i>document numbers</i>, non-negative integers which each name a unique  * document in the index.  These document numbers are ephemeral -- they may change  * as documents are added to and deleted from an index.  Clients should thus not  * rely on a given document having the same number between sessions.  *   *<p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  * IndexReader} instances are completely thread  * safe, meaning multiple threads can call any of its methods,  * concurrently.  If your application requires external  * synchronization, you should<b>not</b> synchronize on the  *<code>IndexReader</code> instance; use your own  * (non-Lucene) objects instead.  * @see MultiReader  * @lucene.internal  */
+end_comment
+
 begin_class
-DECL|class|BaseMultiReader
+DECL|class|BaseCompositeReader
+specifier|public
 specifier|abstract
 class|class
-name|BaseMultiReader
+name|BaseCompositeReader
 parameter_list|<
 name|R
 extends|extends
@@ -100,9 +105,9 @@ specifier|final
 name|boolean
 name|hasDeletions
 decl_stmt|;
-DECL|method|BaseMultiReader
+DECL|method|BaseCompositeReader
 specifier|protected
-name|BaseMultiReader
+name|BaseCompositeReader
 parameter_list|(
 name|R
 index|[]
@@ -268,7 +273,7 @@ argument_list|(
 name|docID
 argument_list|)
 decl_stmt|;
-comment|// find segment num
+comment|// find subreader num
 return|return
 name|subReaders
 index|[
@@ -285,7 +290,7 @@ name|i
 index|]
 argument_list|)
 return|;
-comment|// dispatch to segment
+comment|// dispatch to subreader
 block|}
 annotation|@
 name|Override
@@ -346,7 +351,7 @@ argument_list|(
 name|docID
 argument_list|)
 decl_stmt|;
-comment|// find segment num
+comment|// find subreader num
 name|subReaders
 index|[
 name|i
@@ -364,7 +369,7 @@ argument_list|,
 name|visitor
 argument_list|)
 expr_stmt|;
-comment|// dispatch to segment reader
+comment|// dispatch to subreader
 block|}
 annotation|@
 name|Override
@@ -405,7 +410,7 @@ name|total
 init|=
 literal|0
 decl_stmt|;
-comment|// sum freqs in segments
+comment|// sum freqs in subreaders
 for|for
 control|(
 name|int
