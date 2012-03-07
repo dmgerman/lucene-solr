@@ -1860,10 +1860,8 @@ index|[]
 argument_list|>
 name|stores
 decl_stmt|;
-comment|/** @deprecated (4.0) until we fix no-fork problems in solr tests */
-annotation|@
-name|Deprecated
 DECL|field|testClassesRun
+specifier|private
 specifier|static
 name|List
 argument_list|<
@@ -1938,6 +1936,18 @@ name|icuTested
 init|=
 literal|false
 decl_stmt|;
+comment|/**    * Stores the currently class under test.    */
+DECL|field|classNameRule
+specifier|private
+specifier|static
+specifier|final
+name|StoreClassNameRule
+name|classNameRule
+init|=
+operator|new
+name|StoreClassNameRule
+argument_list|()
+decl_stmt|;
 annotation|@
 name|ClassRule
 DECL|field|classRules
@@ -1954,6 +1964,11 @@ operator|new
 name|SystemPropertiesInvariantRule
 argument_list|()
 argument_list|)
+operator|.
+name|around
+argument_list|(
+name|classNameRule
+argument_list|)
 decl_stmt|;
 annotation|@
 name|BeforeClass
@@ -1964,6 +1979,17 @@ name|void
 name|beforeClassLuceneTestCaseJ4
 parameter_list|()
 block|{
+name|testClassesRun
+operator|.
+name|add
+argument_list|(
+name|getTestClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|initRandom
 argument_list|()
 expr_stmt|;
@@ -8423,6 +8449,24 @@ expr_stmt|;
 block|}
 return|return
 name|context
+return|;
+block|}
+comment|/**    * Return the current class being tested.    */
+DECL|method|getTestClass
+specifier|public
+specifier|static
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|getTestClass
+parameter_list|()
+block|{
+return|return
+name|classNameRule
+operator|.
+name|getTestClass
+argument_list|()
 return|;
 block|}
 comment|// initialized by the TestRunner
