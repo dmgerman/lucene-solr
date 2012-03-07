@@ -1185,6 +1185,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|field
+operator|!=
+literal|null
+assert|;
 return|return
 name|fields
 operator|.
