@@ -88,6 +88,13 @@ name|SolrCore
 name|core
 parameter_list|)
 function_decl|;
+DECL|method|storeFileName
+specifier|public
+specifier|abstract
+name|String
+name|storeFileName
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

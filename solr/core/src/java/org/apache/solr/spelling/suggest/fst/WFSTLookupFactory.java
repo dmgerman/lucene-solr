@@ -22,6 +22,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -122,6 +132,16 @@ name|EXACT_MATCH_FIRST
 init|=
 literal|"exactMatchFirst"
 decl_stmt|;
+comment|/**    * File name for the automaton.    *     */
+DECL|field|FILENAME
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FILENAME
+init|=
+literal|"wfst.bin"
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|create
@@ -171,6 +191,18 @@ name|WFSTCompletionLookup
 argument_list|(
 name|exactMatchFirst
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|storeFileName
+specifier|public
+name|String
+name|storeFileName
+parameter_list|()
+block|{
+return|return
+name|FILENAME
 return|;
 block|}
 block|}

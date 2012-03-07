@@ -580,32 +580,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Persist the constructed lookup data to a directory. Optional operation.    * @param storeDir directory where data can be stored.    * @return true if successful, false if unsuccessful or not supported.    * @throws IOException when fatal IO error occurs.    */
-DECL|method|store
-specifier|public
-specifier|abstract
-name|boolean
-name|store
-parameter_list|(
-name|File
-name|storeDir
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Discard current lookup data and load it from a previously saved copy.    * Optional operation.    * @param storeDir directory where lookup data was stored.    * @return true if completed successfully, false if unsuccessful or not supported.    * @throws IOException when fatal IO error occurs.    */
-DECL|method|load
-specifier|public
-specifier|abstract
-name|boolean
-name|load
-parameter_list|(
-name|File
-name|storeDir
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 block|}
 end_class
 
