@@ -200,7 +200,9 @@ name|org
 operator|.
 name|apache
 operator|.
-name|commons
+name|solr
+operator|.
+name|internal
 operator|.
 name|csv
 operator|.
@@ -214,7 +216,9 @@ name|org
 operator|.
 name|apache
 operator|.
-name|commons
+name|solr
+operator|.
+name|internal
 operator|.
 name|csv
 operator|.
