@@ -167,6 +167,18 @@ name|GROUP
 operator|+
 literal|".ngroups"
 decl_stmt|;
+comment|/** Whether to compute grouped facets based on the first specified group. */
+DECL|field|GROUP_FACET
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GROUP_FACET
+init|=
+name|GROUP
+operator|+
+literal|".facet"
+decl_stmt|;
 block|}
 end_interface
 
