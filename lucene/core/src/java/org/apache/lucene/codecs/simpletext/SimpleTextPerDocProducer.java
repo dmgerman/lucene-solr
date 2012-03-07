@@ -439,7 +439,7 @@ specifier|final
 name|String
 name|segmentSuffix
 decl_stmt|;
-comment|/**    * Creates a new {@link Lucene40DocValuesProducer} instance and loads all    * {@link DocValues} instances for this segment and codec.    */
+comment|/**    * Creates a new {@link SimpleTextPerDocProducer} instance and loads all    * {@link DocValues} instances for this segment and codec.    */
 DECL|method|SimpleTextPerDocProducer
 specifier|public
 name|SimpleTextPerDocProducer
