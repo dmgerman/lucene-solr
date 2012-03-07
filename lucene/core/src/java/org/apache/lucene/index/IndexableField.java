@@ -138,7 +138,7 @@ name|Reader
 name|readerValue
 parameter_list|()
 function_decl|;
-comment|/** Non-null if this field hasa numeric value */
+comment|/** Non-null if this field has a numeric value */
 DECL|method|numericValue
 specifier|public
 name|Number

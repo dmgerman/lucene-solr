@@ -144,22 +144,6 @@ name|TermVectorsFormat
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|Lucene40DocValuesFormat
-import|;
-end_import
-
 begin_comment
 comment|/**  * plain text index format.  *<p>  *<b><font color="red">FOR RECREATIONAL USE ONLY</font></B>  * @lucene.experimental  */
 end_comment
@@ -231,7 +215,7 @@ name|DocValuesFormat
 name|docValues
 init|=
 operator|new
-name|Lucene40DocValuesFormat
+name|SimpleTextDocValuesFormat
 argument_list|()
 decl_stmt|;
 comment|// TODO: need a plain-text impl (using the above)

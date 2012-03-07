@@ -452,6 +452,10 @@ argument_list|,
 name|context
 argument_list|,
 name|fasterButMoreRam
+argument_list|,
+name|Type
+operator|.
+name|BYTES_VAR_SORTED
 argument_list|)
 expr_stmt|;
 name|this

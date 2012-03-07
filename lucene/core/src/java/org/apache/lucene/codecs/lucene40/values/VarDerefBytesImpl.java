@@ -305,6 +305,10 @@ argument_list|,
 name|bytesUsed
 argument_list|,
 name|context
+argument_list|,
+name|Type
+operator|.
+name|BYTES_VAR_DEREF
 argument_list|)
 expr_stmt|;
 name|size
