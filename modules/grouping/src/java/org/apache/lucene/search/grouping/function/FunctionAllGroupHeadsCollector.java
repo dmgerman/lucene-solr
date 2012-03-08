@@ -646,6 +646,15 @@ argument_list|>
 index|[]
 name|comparators
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
+argument_list|)
 DECL|method|GroupHead
 specifier|private
 name|GroupHead
