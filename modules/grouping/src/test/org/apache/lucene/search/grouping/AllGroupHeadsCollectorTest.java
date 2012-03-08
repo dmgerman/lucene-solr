@@ -4043,6 +4043,10 @@ block|{
 name|AbstractAllGroupHeadsCollector
 argument_list|<
 name|?
+extends|extends
+name|AbstractAllGroupHeadsCollector
+operator|.
+name|GroupHead
 argument_list|>
 name|collector
 decl_stmt|;

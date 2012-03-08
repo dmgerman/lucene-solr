@@ -297,12 +297,27 @@ name|diskResident
 expr_stmt|;
 block|}
 comment|/**    * Creates an<code>AbstractAllGroupHeadsCollector</code> instance based on the supplied arguments.    * This factory method decides with implementation is best suited.    *    * @param groupField      The field to group by    * @param sortWithinGroup The sort within each group    * @param type The {@link Type} which is used to select a concrete implementation.    * @param diskResident Whether the values to group by should be disk resident    * @return an<code>AbstractAllGroupHeadsCollector</code> instance based on the supplied arguments    * @throws IOException If I/O related errors occur    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|create
 specifier|public
 specifier|static
+parameter_list|<
+name|T
+extends|extends
 name|AbstractAllGroupHeadsCollector
+operator|.
+name|GroupHead
 argument_list|<
 name|?
+argument_list|>
+parameter_list|>
+name|DVAllGroupHeadsCollector
+argument_list|<
+name|T
 argument_list|>
 name|create
 parameter_list|(
@@ -343,7 +358,11 @@ case|:
 case|case
 name|FIXED_INTS_64
 case|:
+comment|// Type erasure b/c otherwise we have inconvertible types...
 return|return
+operator|(
+name|DVAllGroupHeadsCollector
+operator|)
 operator|new
 name|GeneralAllGroupHeadsCollector
 operator|.
@@ -365,6 +384,9 @@ case|case
 name|FLOAT_64
 case|:
 return|return
+operator|(
+name|DVAllGroupHeadsCollector
+operator|)
 operator|new
 name|GeneralAllGroupHeadsCollector
 operator|.
@@ -392,6 +414,9 @@ case|case
 name|BYTES_VAR_DEREF
 case|:
 return|return
+operator|(
+name|DVAllGroupHeadsCollector
+operator|)
 operator|new
 name|GeneralAllGroupHeadsCollector
 operator|.
@@ -413,6 +438,9 @@ case|case
 name|BYTES_FIXED_SORTED
 case|:
 return|return
+operator|(
+name|DVAllGroupHeadsCollector
+operator|)
 operator|new
 name|GeneralAllGroupHeadsCollector
 operator|.

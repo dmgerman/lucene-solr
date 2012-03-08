@@ -161,12 +161,20 @@ init|=
 literal|128
 decl_stmt|;
 comment|/**    * Expert: Constructs a {@link DVAllGroupsCollector}.    * Selects and constructs the most optimal all groups collector implementation for grouping by {@link DocValues}.    *     *    * @param groupField  The field to group by    * @param type The {@link Type} which is used to select a concrete implementation.    * @param diskResident Whether the values to group by should be disk resident    * @param initialSize The initial allocation size of the    *                    internal int set and group list    *                    which should roughly match the total    *                    number of expected unique groups. Be aware that the    *                    heap usage is 4 bytes * initialSize. Not all concrete implementions use this!    * @return the most optimal all groups collector implementation for grouping by {@link DocValues}    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|create
 specifier|public
 specifier|static
+parameter_list|<
+name|T
+parameter_list|>
 name|DVAllGroupsCollector
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|create
 parameter_list|(
@@ -205,7 +213,11 @@ case|:
 case|case
 name|FIXED_INTS_64
 case|:
+comment|// Type erasure b/c otherwise we have inconvertible types...
 return|return
+operator|(
+name|DVAllGroupsCollector
+operator|)
 operator|new
 name|Lng
 argument_list|(
@@ -222,7 +234,11 @@ case|:
 case|case
 name|FLOAT_64
 case|:
+comment|// Type erasure b/c otherwise we have inconvertible types...
 return|return
+operator|(
+name|DVAllGroupsCollector
+operator|)
 operator|new
 name|Dbl
 argument_list|(
@@ -245,7 +261,11 @@ case|:
 case|case
 name|BYTES_VAR_DEREF
 case|:
+comment|// Type erasure b/c otherwise we have inconvertible types...
 return|return
+operator|(
+name|DVAllGroupsCollector
+operator|)
 operator|new
 name|BR
 argument_list|(
@@ -262,7 +282,11 @@ case|:
 case|case
 name|BYTES_FIXED_SORTED
 case|:
+comment|// Type erasure b/c otherwise we have inconvertible types...
 return|return
+operator|(
+name|DVAllGroupsCollector
+operator|)
 operator|new
 name|SortedBR
 argument_list|(
@@ -296,9 +320,12 @@ comment|/**    * Constructs a {@link DVAllGroupsCollector}.    * Selects and con
 DECL|method|create
 specifier|public
 specifier|static
+parameter_list|<
+name|T
+parameter_list|>
 name|DVAllGroupsCollector
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|create
 parameter_list|(
