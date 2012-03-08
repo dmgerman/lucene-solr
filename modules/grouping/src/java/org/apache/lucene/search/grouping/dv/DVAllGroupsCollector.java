@@ -165,6 +165,9 @@ DECL|method|create
 specifier|public
 specifier|static
 name|DVAllGroupsCollector
+argument_list|<
+name|?
+argument_list|>
 name|create
 parameter_list|(
 name|String
@@ -294,6 +297,9 @@ DECL|method|create
 specifier|public
 specifier|static
 name|DVAllGroupsCollector
+argument_list|<
+name|?
+argument_list|>
 name|create
 parameter_list|(
 name|String
