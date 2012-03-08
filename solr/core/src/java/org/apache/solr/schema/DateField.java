@@ -276,22 +276,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|search
-operator|.
-name|function
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|util
 operator|.
 name|DateMathParser
@@ -350,7 +334,7 @@ specifier|public
 class|class
 name|DateField
 extends|extends
-name|FieldType
+name|PrimitiveFieldType
 block|{
 DECL|field|UTC
 specifier|public
@@ -414,25 +398,6 @@ comment|// The XML (external) date format will sort correctly, except if
 comment|// fractions of seconds are present (because '.' is lower than 'Z').
 comment|// The easiest fix is to simply remove the 'Z' for the internal
 comment|// format.
-annotation|@
-name|Override
-DECL|method|init
-specifier|protected
-name|void
-name|init
-parameter_list|(
-name|IndexSchema
-name|schema
-parameter_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|args
-parameter_list|)
-block|{   }
 DECL|field|NOW
 specifier|protected
 specifier|static
