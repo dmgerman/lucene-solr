@@ -56,40 +56,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|DocValues
-operator|.
-name|Type
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|Sort
@@ -172,10 +138,22 @@ operator|.
 name|Type
 name|valueType
 decl_stmt|;
+comment|/**    * Constructs a {@link DVFirstPassGroupingCollector}.    * Selects and constructs the most optimal first pass collector implementation for grouping by {@link DocValues}.    *    * @param groupField      The field to group by    * @param topNGroups      The maximum top number of groups to return. Typically this equals to offset + rows.    * @param diskResident    Whether the values to group by should be disk resident    * @param type            The {@link org.apache.lucene.index.DocValues.Type} which is used to select a concrete implementation.    * @param groupSort       The sort used for the groups    * @return the most optimal first pass collector implementation for grouping by {@link DocValues}    * @throws IOException    If I/O related errors occur    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|create
 specifier|public
 specifier|static
+parameter_list|<
+name|T
+parameter_list|>
 name|DVFirstPassGroupingCollector
+argument_list|<
+name|T
+argument_list|>
 name|create
 parameter_list|(
 name|Sort
@@ -218,7 +196,11 @@ case|:
 case|case
 name|FIXED_INTS_64
 case|:
+comment|// Type erasure b/c otherwise we have inconvertible types...
 return|return
+operator|(
+name|DVFirstPassGroupingCollector
+operator|)
 operator|new
 name|Lng
 argument_list|(
@@ -239,7 +221,11 @@ case|:
 case|case
 name|FLOAT_64
 case|:
+comment|// Type erasure b/c otherwise we have inconvertible types...
 return|return
+operator|(
+name|DVFirstPassGroupingCollector
+operator|)
 operator|new
 name|Dbl
 argument_list|(
@@ -266,7 +252,11 @@ case|:
 case|case
 name|BYTES_VAR_DEREF
 case|:
+comment|// Type erasure b/c otherwise we have inconvertible types...
 return|return
+operator|(
+name|DVFirstPassGroupingCollector
+operator|)
 operator|new
 name|BR
 argument_list|(
@@ -287,7 +277,11 @@ case|:
 case|case
 name|BYTES_FIXED_SORTED
 case|:
+comment|// Type erasure b/c otherwise we have inconvertible types...
 return|return
+operator|(
+name|DVFirstPassGroupingCollector
+operator|)
 operator|new
 name|SortedBR
 argument_list|(
