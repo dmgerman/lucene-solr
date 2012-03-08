@@ -167,6 +167,11 @@ DECL|field|vsContext
 specifier|private
 specifier|final
 name|Map
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|vsContext
 decl_stmt|;
 DECL|field|groupBy
@@ -212,6 +217,11 @@ name|ValueSource
 name|groupBy
 parameter_list|,
 name|Map
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|vsContext
 parameter_list|)
 block|{
