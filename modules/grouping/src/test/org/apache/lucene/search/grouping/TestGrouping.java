@@ -1806,7 +1806,11 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
 DECL|method|createSecondPassCollector
 specifier|private
@@ -1875,6 +1879,9 @@ decl_stmt|;
 name|Collection
 argument_list|<
 name|SearchGroup
+argument_list|<
+name|T
+argument_list|>
 argument_list|>
 name|searchGroups
 init|=
