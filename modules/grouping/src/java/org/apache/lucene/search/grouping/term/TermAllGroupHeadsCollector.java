@@ -128,6 +128,9 @@ extends|extends
 name|AbstractAllGroupHeadsCollector
 operator|.
 name|GroupHead
+parameter_list|<
+name|?
+parameter_list|>
 parameter_list|>
 extends|extends
 name|AbstractAllGroupHeadsCollector

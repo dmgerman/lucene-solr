@@ -530,6 +530,9 @@ index|]
 decl_stmt|;
 specifier|final
 name|GroupDocs
+argument_list|<
+name|?
+argument_list|>
 name|shardGroupDocs
 init|=
 name|shard

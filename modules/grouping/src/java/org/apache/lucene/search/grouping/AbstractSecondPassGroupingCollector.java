@@ -275,6 +275,9 @@ block|{
 comment|//System.out.println("  prep group=" + (group.groupValue == null ? "null" : group.groupValue.utf8ToString()));
 specifier|final
 name|TopDocsCollector
+argument_list|<
+name|?
+argument_list|>
 name|collector
 decl_stmt|;
 if|if
@@ -550,6 +553,9 @@ decl_stmt|;
 for|for
 control|(
 name|SearchGroup
+argument_list|<
+name|?
+argument_list|>
 name|group
 range|:
 name|groups
@@ -673,6 +679,9 @@ DECL|field|collector
 specifier|public
 specifier|final
 name|TopDocsCollector
+argument_list|<
+name|?
+argument_list|>
 name|collector
 decl_stmt|;
 DECL|method|SearchGroupDocs
@@ -683,6 +692,9 @@ name|GROUP_VALUE_TYPE
 name|groupValue
 parameter_list|,
 name|TopDocsCollector
+argument_list|<
+name|?
+argument_list|>
 name|collector
 parameter_list|)
 block|{
