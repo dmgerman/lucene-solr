@@ -967,7 +967,10 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 name|AbstractAllGroupHeadsCollector
-name|c1
+argument_list|<
+name|?
+argument_list|>
+name|allGroupHeadsCollector
 init|=
 name|createRandomCollector
 argument_list|(
@@ -996,7 +999,7 @@ literal|"random"
 argument_list|)
 argument_list|)
 argument_list|,
-name|c1
+name|allGroupHeadsCollector
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1016,7 +1019,7 @@ block|,
 literal|7
 block|}
 argument_list|,
-name|c1
+name|allGroupHeadsCollector
 operator|.
 name|retrieveGroupHeads
 argument_list|()
@@ -1040,7 +1043,7 @@ block|,
 literal|7
 block|}
 argument_list|,
-name|c1
+name|allGroupHeadsCollector
 operator|.
 name|retrieveGroupHeads
 argument_list|(
@@ -1051,9 +1054,8 @@ name|maxDoc
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|AbstractAllGroupHeadsCollector
-name|c2
-init|=
+name|allGroupHeadsCollector
+operator|=
 name|createRandomCollector
 argument_list|(
 name|groupField
@@ -1064,7 +1066,7 @@ name|canUseIDV
 argument_list|,
 name|valueType
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|indexSearcher
 operator|.
 name|search
@@ -1081,7 +1083,7 @@ literal|"some"
 argument_list|)
 argument_list|)
 argument_list|,
-name|c2
+name|allGroupHeadsCollector
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1099,7 +1101,7 @@ block|,
 literal|4
 block|}
 argument_list|,
-name|c2
+name|allGroupHeadsCollector
 operator|.
 name|retrieveGroupHeads
 argument_list|()
@@ -1121,7 +1123,7 @@ block|,
 literal|4
 block|}
 argument_list|,
-name|c2
+name|allGroupHeadsCollector
 operator|.
 name|retrieveGroupHeads
 argument_list|(
@@ -1132,9 +1134,8 @@ name|maxDoc
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|AbstractAllGroupHeadsCollector
-name|c3
-init|=
+name|allGroupHeadsCollector
+operator|=
 name|createRandomCollector
 argument_list|(
 name|groupField
@@ -1145,7 +1146,7 @@ name|canUseIDV
 argument_list|,
 name|valueType
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|indexSearcher
 operator|.
 name|search
@@ -1162,7 +1163,7 @@ literal|"blob"
 argument_list|)
 argument_list|)
 argument_list|,
-name|c3
+name|allGroupHeadsCollector
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1178,7 +1179,7 @@ block|,
 literal|5
 block|}
 argument_list|,
-name|c3
+name|allGroupHeadsCollector
 operator|.
 name|retrieveGroupHeads
 argument_list|()
@@ -1198,7 +1199,7 @@ block|,
 literal|5
 block|}
 argument_list|,
-name|c3
+name|allGroupHeadsCollector
 operator|.
 name|retrieveGroupHeads
 argument_list|(
@@ -1231,9 +1232,8 @@ literal|true
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|AbstractAllGroupHeadsCollector
-name|c4
-init|=
+name|allGroupHeadsCollector
+operator|=
 name|createRandomCollector
 argument_list|(
 name|groupField
@@ -1244,7 +1244,7 @@ name|canUseIDV
 argument_list|,
 name|valueType
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|indexSearcher
 operator|.
 name|search
@@ -1261,7 +1261,7 @@ literal|"random"
 argument_list|)
 argument_list|)
 argument_list|,
-name|c4
+name|allGroupHeadsCollector
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1281,7 +1281,7 @@ block|,
 literal|7
 block|}
 argument_list|,
-name|c4
+name|allGroupHeadsCollector
 operator|.
 name|retrieveGroupHeads
 argument_list|()
@@ -1305,7 +1305,7 @@ block|,
 literal|7
 block|}
 argument_list|,
-name|c4
+name|allGroupHeadsCollector
 operator|.
 name|retrieveGroupHeads
 argument_list|(
@@ -1337,9 +1337,8 @@ literal|false
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|AbstractAllGroupHeadsCollector
-name|c5
-init|=
+name|allGroupHeadsCollector
+operator|=
 name|createRandomCollector
 argument_list|(
 name|groupField
@@ -1350,7 +1349,7 @@ name|canUseIDV
 argument_list|,
 name|valueType
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|indexSearcher
 operator|.
 name|search
@@ -1367,7 +1366,7 @@ literal|"random"
 argument_list|)
 argument_list|)
 argument_list|,
-name|c5
+name|allGroupHeadsCollector
 argument_list|)
 expr_stmt|;
 comment|// 7 b/c higher doc id wins, even if order of field is in not in reverse.
@@ -1388,7 +1387,7 @@ block|,
 literal|6
 block|}
 argument_list|,
-name|c5
+name|allGroupHeadsCollector
 operator|.
 name|retrieveGroupHeads
 argument_list|()
@@ -1412,7 +1411,7 @@ block|,
 literal|6
 block|}
 argument_list|,
-name|c5
+name|allGroupHeadsCollector
 operator|.
 name|retrieveGroupHeads
 argument_list|(
@@ -2684,6 +2683,9 @@ name|sortByScoreOnly
 argument_list|)
 decl_stmt|;
 name|AbstractAllGroupHeadsCollector
+argument_list|<
+name|?
+argument_list|>
 name|allGroupHeadsCollector
 init|=
 name|createRandomCollector
@@ -4018,6 +4020,9 @@ block|}
 DECL|method|createRandomCollector
 specifier|private
 name|AbstractAllGroupHeadsCollector
+argument_list|<
+name|?
+argument_list|>
 name|createRandomCollector
 parameter_list|(
 name|String
@@ -4036,6 +4041,9 @@ throws|throws
 name|IOException
 block|{
 name|AbstractAllGroupHeadsCollector
+argument_list|<
+name|?
+argument_list|>
 name|collector
 decl_stmt|;
 if|if
@@ -4064,6 +4072,11 @@ name|vs
 argument_list|,
 operator|new
 name|HashMap
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
 argument_list|()
 argument_list|,
 name|sortWithinGroup
