@@ -42,20 +42,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|*
@@ -88,7 +74,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|SentinelIntSet
+name|BytesRef
 import|;
 end_import
 
@@ -102,7 +88,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|SentinelIntSet
 import|;
 end_import
 
@@ -210,6 +196,9 @@ DECL|method|create
 specifier|public
 specifier|static
 name|AbstractAllGroupHeadsCollector
+argument_list|<
+name|?
+argument_list|>
 name|create
 parameter_list|(
 name|String
@@ -237,6 +226,9 @@ DECL|method|create
 specifier|public
 specifier|static
 name|AbstractAllGroupHeadsCollector
+argument_list|<
+name|?
+argument_list|>
 name|create
 parameter_list|(
 name|String
@@ -784,6 +776,9 @@ block|{
 for|for
 control|(
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 name|comparator
 range|:
 name|groupHead
@@ -815,9 +810,21 @@ block|{
 DECL|field|comparators
 specifier|final
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|comparators
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
+argument_list|)
 DECL|method|GroupHead
 specifier|private
 name|GroupHead
@@ -978,6 +985,9 @@ block|{
 for|for
 control|(
 name|FieldComparator
+argument_list|<
+name|?
+argument_list|>
 name|comparator
 range|:
 name|comparators
