@@ -118,6 +118,16 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -189,6 +199,11 @@ comment|// TODO (MvG) : The grouping tests contain a lot of code duplication. Tr
 end_comment
 
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"Maven Surefire will attempt to run this test suite without an @Ignore annotation."
+argument_list|)
 DECL|class|AbstractGroupingTestCase
 specifier|public
 class|class
