@@ -230,10 +230,8 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
-argument_list|(
-literal|"not allowed"
-argument_list|)
+name|UnsupportedOperationException
+argument_list|()
 throw|;
 block|}
 annotation|@

@@ -235,10 +235,8 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
-argument_list|(
-literal|"not allowed"
-argument_list|)
+name|UnsupportedOperationException
+argument_list|()
 throw|;
 block|}
 comment|/**    * Starts but does not complete the commit of this file (=    * writing of the final checksum at the end).  After this    * is called must call {@link #finishCommit} and the    * {@link #close} to complete the commit.    */
