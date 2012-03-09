@@ -140,8 +140,6 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"score"
-block|,
 literal|"score,*"
 block|,
 literal|"*,score"

@@ -1349,10 +1349,9 @@ literal|"n_tl1 asc"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"score"
+literal|"*,score"
 argument_list|)
 expr_stmt|;
-comment|// test legacy behavior - "score"=="*,score"
 name|query
 argument_list|(
 literal|"q"
