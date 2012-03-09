@@ -523,6 +523,13 @@ name|putConfig
 argument_list|(
 name|zkClient
 argument_list|,
+literal|"currency.xml"
+argument_list|)
+expr_stmt|;
+name|putConfig
+argument_list|(
+name|zkClient
+argument_list|,
 literal|"mapping-ISOLatin1Accent.txt"
 argument_list|)
 expr_stmt|;
