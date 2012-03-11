@@ -470,7 +470,7 @@ block|{
 return|return
 name|infos
 operator|.
-name|anyDocValuesFields
+name|hasDocValues
 argument_list|()
 return|;
 block|}

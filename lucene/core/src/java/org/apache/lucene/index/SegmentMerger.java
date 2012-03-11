@@ -1117,7 +1117,7 @@ if|if
 condition|(
 name|fi
 operator|.
-name|normsPresent
+name|hasNorms
 argument_list|()
 condition|)
 block|{

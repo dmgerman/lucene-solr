@@ -708,15 +708,18 @@ name|fi
 operator|.
 name|omitNorms
 operator|==
-operator|!
+operator|(
 name|reader
 operator|.
-name|hasNorms
+name|normValues
 argument_list|(
 name|fi
 operator|.
 name|name
 argument_list|)
+operator|==
+literal|null
+operator|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2222,12 +2225,15 @@ name|assertFalse
 argument_list|(
 literal|"f1 should have no norms"
 argument_list|,
-name|reader
+name|fi
 operator|.
-name|hasNorms
+name|fieldInfo
 argument_list|(
 literal|"f1"
 argument_list|)
+operator|.
+name|hasNorms
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2253,12 +2259,15 @@ name|assertTrue
 argument_list|(
 literal|"f2 should have norms"
 argument_list|,
-name|reader
+name|fi
 operator|.
-name|hasNorms
+name|fieldInfo
 argument_list|(
 literal|"f2"
 argument_list|)
+operator|.
+name|hasNorms
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals

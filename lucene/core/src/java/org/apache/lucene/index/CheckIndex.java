@@ -2895,6 +2895,13 @@ control|)
 block|{
 if|if
 condition|(
+name|info
+operator|.
+name|hasNorms
+argument_list|()
+condition|)
+block|{
+assert|assert
 name|reader
 operator|.
 name|hasNorms
@@ -2903,8 +2910,8 @@ name|info
 operator|.
 name|name
 argument_list|)
-condition|)
-block|{
+assert|;
+comment|// deprecated path
 name|DocValues
 name|dv
 init|=
@@ -2944,6 +2951,18 @@ expr_stmt|;
 block|}
 else|else
 block|{
+assert|assert
+operator|!
+name|reader
+operator|.
+name|hasNorms
+argument_list|(
+name|info
+operator|.
+name|name
+argument_list|)
+assert|;
+comment|// deprecated path
 if|if
 condition|(
 name|reader
@@ -2969,28 +2988,6 @@ operator|.
 name|name
 operator|+
 literal|" should omit norms but has them!"
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-name|info
-operator|.
-name|normsPresent
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"field: "
-operator|+
-name|info
-operator|.
-name|name
-operator|+
-literal|" should have norms but omits them!"
 argument_list|)
 throw|;
 block|}
