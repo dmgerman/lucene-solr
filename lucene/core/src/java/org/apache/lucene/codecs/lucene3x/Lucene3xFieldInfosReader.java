@@ -694,7 +694,7 @@ name|omitNorms
 condition|?
 name|Type
 operator|.
-name|BYTES_VAR_STRAIGHT
+name|FIXED_INTS_8
 else|:
 literal|null
 argument_list|)

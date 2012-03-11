@@ -2888,6 +2888,8 @@ block|}
 name|DocValues
 name|dv
 decl_stmt|;
+comment|// todo: factor out a shared checkValues(DocValues, Type (from fieldinfos), ...) and share this method
+comment|// between this and testDocValues
 for|for
 control|(
 name|FieldInfo
@@ -2924,6 +2926,49 @@ name|dv
 operator|!=
 literal|null
 assert|;
+name|DocValues
+operator|.
+name|Type
+name|type
+init|=
+name|dv
+operator|.
+name|type
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|type
+operator|!=
+name|info
+operator|.
+name|getNormType
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"field: "
+operator|+
+name|info
+operator|.
+name|name
+operator|+
+literal|" has type: "
+operator|+
+name|type
+operator|+
+literal|" but fieldInfos says:"
+operator|+
+name|info
+operator|.
+name|getNormType
+argument_list|()
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|dv
