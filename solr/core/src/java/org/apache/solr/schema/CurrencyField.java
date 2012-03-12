@@ -748,7 +748,7 @@ name|fieldTypeAmountRaw
 operator|.
 name|setTypeName
 argument_list|(
-literal|"amount_raw_type_tint"
+literal|"amount_raw_type_tlong"
 argument_list|)
 expr_stmt|;
 name|Map
