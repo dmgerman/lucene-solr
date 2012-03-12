@@ -5843,7 +5843,7 @@ name|type
 init|=
 name|docValues
 operator|.
-name|type
+name|getType
 argument_list|()
 decl_stmt|;
 if|if

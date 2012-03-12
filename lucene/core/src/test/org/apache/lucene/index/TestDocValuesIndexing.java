@@ -3009,7 +3009,7 @@ switch|switch
 condition|(
 name|source
 operator|.
-name|type
+name|getType
 argument_list|()
 condition|)
 block|{
@@ -3408,7 +3408,7 @@ literal|"unexpected value "
 operator|+
 name|source
 operator|.
-name|type
+name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3546,7 +3546,7 @@ switch|switch
 condition|(
 name|source
 operator|.
-name|type
+name|getType
 argument_list|()
 condition|)
 block|{
@@ -3643,7 +3643,7 @@ literal|"unexpected value "
 operator|+
 name|source
 operator|.
-name|type
+name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3741,7 +3741,7 @@ if|if
 condition|(
 name|values
 operator|.
-name|type
+name|getType
 argument_list|()
 operator|==
 name|Type
@@ -3750,7 +3750,7 @@ name|BYTES_VAR_SORTED
 operator|||
 name|values
 operator|.
-name|type
+name|getType
 argument_list|()
 operator|==
 name|Type

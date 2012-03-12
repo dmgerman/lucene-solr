@@ -1238,10 +1238,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|type
+DECL|method|getType
 specifier|public
 name|Type
-name|type
+name|getType
 parameter_list|()
 block|{
 return|return

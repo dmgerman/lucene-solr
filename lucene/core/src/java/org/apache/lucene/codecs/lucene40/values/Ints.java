@@ -711,12 +711,12 @@ argument_list|)
 operator|&&
 name|docValues
 operator|.
-name|type
+name|getType
 argument_list|()
 operator|==
 name|template
 operator|.
-name|type
+name|getType
 argument_list|()
 return|;
 block|}

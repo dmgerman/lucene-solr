@@ -6980,7 +6980,7 @@ operator|.
 name|getSource
 argument_list|()
 operator|.
-name|type
+name|getType
 argument_list|()
 operator|+
 literal|" reader="

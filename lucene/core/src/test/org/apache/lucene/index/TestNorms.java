@@ -626,7 +626,7 @@ name|FIXED_INTS_8
 argument_list|,
 name|normValues
 operator|.
-name|type
+name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1017,7 +1017,7 @@ name|FIXED_INTS_8
 argument_list|,
 name|normValues
 operator|.
-name|type
+name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;

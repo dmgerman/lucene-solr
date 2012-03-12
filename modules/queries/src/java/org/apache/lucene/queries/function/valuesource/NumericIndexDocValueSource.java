@@ -189,7 +189,7 @@ name|type
 init|=
 name|source
 operator|.
-name|type
+name|getType
 argument_list|()
 decl_stmt|;
 switch|switch

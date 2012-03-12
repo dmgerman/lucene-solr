@@ -1561,7 +1561,7 @@ index|]
 argument_list|,
 name|source
 operator|.
-name|type
+name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3281,7 +3281,7 @@ name|type
 argument_list|,
 name|s
 operator|.
-name|type
+name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;
