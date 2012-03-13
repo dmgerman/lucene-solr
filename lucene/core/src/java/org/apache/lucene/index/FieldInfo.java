@@ -532,6 +532,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * @return true if this field has any docValues.    */
 DECL|method|hasDocValues
 specifier|public
 name|boolean
@@ -544,6 +545,7 @@ operator|!=
 literal|null
 return|;
 block|}
+comment|/**    * @return {@link DocValues.Type} of the docValues. this may be null if the field has no docvalues.    */
 DECL|method|getDocValuesType
 specifier|public
 name|DocValues
@@ -556,6 +558,7 @@ return|return
 name|docValueType
 return|;
 block|}
+comment|/**    * @return {@link DocValues.Type} of the norm. this may be null if the field has no norms.    */
 DECL|method|getNormType
 specifier|public
 name|DocValues
@@ -624,6 +627,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * @return true if norms are explicitly omitted for this field    */
 DECL|method|omitNorms
 specifier|public
 name|boolean
@@ -634,10 +638,11 @@ return|return
 name|omitNorms
 return|;
 block|}
-DECL|method|normsPresent
+comment|/**    * @return true if this field actually has any norms.    */
+DECL|method|hasNorms
 specifier|public
 name|boolean
-name|normsPresent
+name|hasNorms
 parameter_list|()
 block|{
 return|return

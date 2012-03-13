@@ -772,7 +772,7 @@ return|return
 name|fis
 return|;
 block|}
-comment|/** Returns true if any fields do not positions */
+comment|/** Returns true if any fields have positions */
 DECL|method|hasProx
 specifier|public
 name|boolean
@@ -1466,6 +1466,7 @@ return|return
 name|fi
 return|;
 block|}
+comment|/**    * lookup the number of a field by name.    *     * @param fieldName field's name    * @return number of field, or -1 if it does not exist.    */
 DECL|method|fieldNumber
 specifier|public
 name|int
@@ -1594,6 +1595,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
+comment|/**    * @return number of fields    */
 DECL|method|size
 specifier|public
 name|int
@@ -1618,6 +1620,7 @@ name|size
 argument_list|()
 return|;
 block|}
+comment|/**    * @return true if at least one field has any vectors    */
 DECL|method|hasVectors
 specifier|public
 name|boolean
@@ -1659,6 +1662,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**    * @return true if at least one field has any norms    */
 DECL|method|hasNorms
 specifier|public
 name|boolean
@@ -1677,7 +1681,7 @@ if|if
 condition|(
 name|fi
 operator|.
-name|normsPresent
+name|hasNorms
 argument_list|()
 condition|)
 block|{
@@ -1822,10 +1826,11 @@ return|return
 name|roFis
 return|;
 block|}
-DECL|method|anyDocValuesFields
+comment|/**    * @return true if at least one field has docValues    */
+DECL|method|hasDocValues
 specifier|public
 name|boolean
-name|anyDocValuesFields
+name|hasDocValues
 parameter_list|()
 block|{
 for|for

@@ -311,6 +311,7 @@ name|isDirectory
 argument_list|()
 condition|)
 block|{
+comment|// TODO: NoSuchDirectoryException instead?
 throw|throw
 operator|new
 name|IOException

@@ -452,6 +452,10 @@ argument_list|,
 name|context
 argument_list|,
 name|fasterButMoreRam
+argument_list|,
+name|Type
+operator|.
+name|BYTES_VAR_SORTED
 argument_list|)
 expr_stmt|;
 name|this
@@ -1106,7 +1110,7 @@ argument_list|()
 argument_list|,
 name|comparator
 argument_list|,
-name|type
+name|getType
 argument_list|()
 argument_list|)
 return|;

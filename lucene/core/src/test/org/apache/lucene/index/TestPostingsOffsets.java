@@ -164,6 +164,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|memory
+operator|.
+name|MemoryPostingsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|Document
@@ -338,6 +354,14 @@ name|_TestUtil
 import|;
 end_import
 
+begin_comment
+comment|// TODO: we really need to test indexingoffsets, but then getting only docs / docs + freqs.
+end_comment
+
+begin_comment
+comment|// not all codecs store prx separate...
+end_comment
+
 begin_class
 DECL|class|TestPostingsOffsets
 specifier|public
@@ -425,6 +449,14 @@ argument_list|)
 condition|)
 block|{
 comment|// pulsing etc are not implemented
+if|if
+condition|(
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
 name|iwc
 operator|.
 name|setCodec
@@ -439,6 +471,24 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|iwc
+operator|.
+name|setCodec
+argument_list|(
+name|_TestUtil
+operator|.
+name|alwaysPostingsFormat
+argument_list|(
+operator|new
+name|MemoryPostingsFormat
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|testBasic
@@ -981,6 +1031,14 @@ argument_list|)
 condition|)
 block|{
 comment|// pulsing etc are not implemented
+if|if
+condition|(
+name|random
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
 name|iwc
 operator|.
 name|setCodec
@@ -995,6 +1053,24 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|iwc
+operator|.
+name|setCodec
+argument_list|(
+name|_TestUtil
+operator|.
+name|alwaysPostingsFormat
+argument_list|(
+operator|new
+name|MemoryPostingsFormat
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|iwc
 operator|.

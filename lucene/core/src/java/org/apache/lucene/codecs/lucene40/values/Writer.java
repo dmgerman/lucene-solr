@@ -144,6 +144,11 @@ specifier|final
 name|Counter
 name|bytesUsed
 decl_stmt|;
+DECL|field|type
+specifier|protected
+name|Type
+name|type
+decl_stmt|;
 comment|/**    * Creates a new {@link Writer}.    *     * @param bytesUsed    *          bytes-usage tracking reference used by implementation to track    *          internally allocated memory. All tracked bytes must be released    *          once {@link #finish(int)} has been called.    */
 DECL|method|Writer
 specifier|protected
@@ -151,6 +156,9 @@ name|Writer
 parameter_list|(
 name|Counter
 name|bytesUsed
+parameter_list|,
+name|Type
+name|type
 parameter_list|)
 block|{
 name|this
@@ -159,6 +167,24 @@ name|bytesUsed
 operator|=
 name|bytesUsed
 expr_stmt|;
+name|this
+operator|.
+name|type
+operator|=
+name|type
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getType
+specifier|protected
+name|Type
+name|getType
+parameter_list|()
+block|{
+return|return
+name|type
+return|;
 block|}
 comment|/**    * Factory method to create a {@link Writer} instance for a given type. This    * method returns default implementations for each of the different types    * defined in the {@link Type} enumeration.    *     * @param type    *          the {@link Type} to create the {@link Writer} for    * @param id    *          the file name id used to create files within the writer.    * @param directory    *          the {@link Directory} to create the files from.    * @param bytesUsed    *          a byte-usage tracking reference    * @param fasterButMoreRam Whether the space used for packed ints should be rounded up for higher lookup performance.    *                         Currently this parameter only applies for types {@link Type#BYTES_VAR_SORTED}    *                         and {@link Type#BYTES_FIXED_SORTED}.    * @return a new {@link Writer} instance for the given {@link Type}    * @throws IOException    */
 DECL|method|create

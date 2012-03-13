@@ -140,9 +140,12 @@ return|return
 name|readerContext
 return|;
 block|}
-comment|/** Returns true if there are norms stored for this field. */
+comment|/**     * Returns true if there are norms stored for this field.    * @deprecated (4.0) use {@link #getFieldInfos()} and check {@link FieldInfo#hasNorms()}     *                   for the field instead.    */
+annotation|@
+name|Deprecated
 DECL|method|hasNorms
 specifier|public
+specifier|final
 name|boolean
 name|hasNorms
 parameter_list|(
@@ -152,18 +155,30 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// backward compatible implementation.
-comment|// SegmentReader has an efficient implementation.
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-return|return
-name|normValues
+comment|// note: using normValues(field) != null would potentially cause i/o
+name|FieldInfo
+name|fi
+init|=
+name|getFieldInfos
+argument_list|()
+operator|.
+name|fieldInfo
 argument_list|(
 name|field
 argument_list|)
+decl_stmt|;
+return|return
+name|fi
 operator|!=
 literal|null
+operator|&&
+name|fi
+operator|.
+name|hasNorms
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns {@link Fields} for this reader.    * This method may return null if the reader has no    * postings.    */

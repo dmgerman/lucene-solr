@@ -875,7 +875,7 @@ name|create
 argument_list|(
 name|docValues
 operator|.
-name|type
+name|getType
 argument_list|()
 argument_list|,
 name|docValues
@@ -1117,7 +1117,7 @@ if|if
 condition|(
 name|fi
 operator|.
-name|normsPresent
+name|hasNorms
 argument_list|()
 condition|)
 block|{

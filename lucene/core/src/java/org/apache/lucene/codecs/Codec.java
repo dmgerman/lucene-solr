@@ -38,6 +38,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ServiceLoader
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -97,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Encodes/decodes an inverted index segment  */
+comment|/**  * Encodes/decodes an inverted index segment.  *<p>  * Note, when extending this class, the name ({@link #getName}) is   * written into the index. In order for the segment to be read, the  * name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} to resolve codec names.  *<p>  * @see ServiceLoader  */
 end_comment
 
 begin_class

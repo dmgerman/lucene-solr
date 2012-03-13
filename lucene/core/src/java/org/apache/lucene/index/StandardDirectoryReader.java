@@ -526,8 +526,6 @@ operator|==
 name|dir
 assert|;
 specifier|final
-name|IndexWriter
-operator|.
 name|ReadersAndLiveDocs
 name|rld
 init|=
@@ -542,6 +540,8 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 specifier|final
 name|SegmentReader
 name|reader
@@ -570,6 +570,7 @@ name|getKeepFullyDeletedSegments
 argument_list|()
 condition|)
 block|{
+comment|// Steal the ref:
 name|readers
 operator|.
 name|add
@@ -596,6 +597,19 @@ name|infosUpto
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
+name|writer
+operator|.
+name|readerPool
+operator|.
+name|release
+argument_list|(
+name|rld
+argument_list|)
+expr_stmt|;
+block|}
 name|success
 operator|=
 literal|true
@@ -619,6 +633,7 @@ condition|(
 operator|!
 name|success
 condition|)
+block|{
 name|IOUtils
 operator|.
 name|closeWhileHandlingException
@@ -628,6 +643,7 @@ argument_list|,
 name|readers
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -1337,7 +1353,6 @@ annotation|@
 name|Override
 DECL|method|doOpenIfChanged
 specifier|protected
-specifier|final
 name|DirectoryReader
 name|doOpenIfChanged
 parameter_list|()
@@ -1357,7 +1372,6 @@ annotation|@
 name|Override
 DECL|method|doOpenIfChanged
 specifier|protected
-specifier|final
 name|DirectoryReader
 name|doOpenIfChanged
 parameter_list|(
@@ -1403,7 +1417,6 @@ annotation|@
 name|Override
 DECL|method|doOpenIfChanged
 specifier|protected
-specifier|final
 name|DirectoryReader
 name|doOpenIfChanged
 parameter_list|(
@@ -1457,7 +1470,6 @@ block|}
 block|}
 DECL|method|doOpenFromWriter
 specifier|private
-specifier|final
 name|DirectoryReader
 name|doOpenFromWriter
 parameter_list|(

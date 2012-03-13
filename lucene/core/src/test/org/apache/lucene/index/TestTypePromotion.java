@@ -2481,7 +2481,7 @@ name|BYTES_VAR_STRAIGHT
 argument_list|,
 name|docValues
 operator|.
-name|type
+name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;

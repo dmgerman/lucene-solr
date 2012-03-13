@@ -104,15 +104,15 @@ name|String
 name|name
 decl_stmt|;
 DECL|field|min
-name|Double
+name|Object
 name|min
 decl_stmt|;
 DECL|field|max
-name|Double
+name|Object
 name|max
 decl_stmt|;
 DECL|field|sum
-name|Double
+name|Object
 name|sum
 decl_stmt|;
 DECL|field|count
@@ -124,7 +124,7 @@ name|Long
 name|missing
 decl_stmt|;
 DECL|field|mean
-name|Double
+name|Object
 name|mean
 init|=
 literal|null
@@ -201,9 +201,6 @@ condition|)
 block|{
 name|min
 operator|=
-operator|(
-name|Double
-operator|)
 name|entry
 operator|.
 name|getValue
@@ -226,9 +223,6 @@ condition|)
 block|{
 name|max
 operator|=
-operator|(
-name|Double
-operator|)
 name|entry
 operator|.
 name|getValue
@@ -251,9 +245,6 @@ condition|)
 block|{
 name|sum
 operator|=
-operator|(
-name|Double
-operator|)
 name|entry
 operator|.
 name|getValue
@@ -326,9 +317,6 @@ condition|)
 block|{
 name|mean
 operator|=
-operator|(
-name|Double
-operator|)
 name|entry
 operator|.
 name|getValue
@@ -773,7 +761,7 @@ return|;
 block|}
 DECL|method|getMin
 specifier|public
-name|Double
+name|Object
 name|getMin
 parameter_list|()
 block|{
@@ -783,7 +771,7 @@ return|;
 block|}
 DECL|method|getMax
 specifier|public
-name|Double
+name|Object
 name|getMax
 parameter_list|()
 block|{
@@ -793,7 +781,7 @@ return|;
 block|}
 DECL|method|getSum
 specifier|public
-name|Double
+name|Object
 name|getSum
 parameter_list|()
 block|{
@@ -823,7 +811,7 @@ return|;
 block|}
 DECL|method|getMean
 specifier|public
-name|Double
+name|Object
 name|getMean
 parameter_list|()
 block|{

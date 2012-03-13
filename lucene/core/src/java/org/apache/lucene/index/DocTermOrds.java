@@ -640,6 +640,17 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**    * @return The number of terms in this field    */
+DECL|method|numTerms
+specifier|public
+name|int
+name|numTerms
+parameter_list|()
+block|{
+return|return
+name|numTermsInField
+return|;
+block|}
 comment|/** Subclass can override this */
 DECL|method|visitTerm
 specifier|protected

@@ -238,7 +238,7 @@ begin_import
 import|import
 name|org
 operator|.
-name|mortbay
+name|eclipse
 operator|.
 name|jetty
 operator|.

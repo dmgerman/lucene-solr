@@ -87,11 +87,26 @@ name|PhrasePositions
 name|next
 decl_stmt|;
 comment|// used to make lists
-DECL|field|nextRepeating
-name|PhrasePositions
-name|nextRepeating
+DECL|field|rptGroup
+name|int
+name|rptGroup
+init|=
+operator|-
+literal|1
 decl_stmt|;
-comment|// link to next repeating pp: standing for same term in different query offsets
+comment|//>=0 indicates that this is a repeating PP
+DECL|field|rptInd
+name|int
+name|rptInd
+decl_stmt|;
+comment|// index in the rptGroup
+DECL|field|terms
+specifier|final
+name|Term
+index|[]
+name|terms
+decl_stmt|;
+comment|// for repetitions initialization
 DECL|method|PhrasePositions
 name|PhrasePositions
 parameter_list|(
@@ -103,6 +118,10 @@ name|o
 parameter_list|,
 name|int
 name|ord
+parameter_list|,
+name|Term
+index|[]
+name|terms
 parameter_list|)
 block|{
 name|this
@@ -120,6 +139,12 @@ operator|.
 name|ord
 operator|=
 name|ord
+expr_stmt|;
+name|this
+operator|.
+name|terms
+operator|=
+name|terms
 expr_stmt|;
 block|}
 DECL|method|next
@@ -278,18 +303,20 @@ name|count
 decl_stmt|;
 if|if
 condition|(
-name|nextRepeating
-operator|!=
-literal|null
+name|rptGroup
+operator|>=
+literal|0
 condition|)
 block|{
 name|s
 operator|+=
-literal|" rpt[ "
+literal|" rpt:"
 operator|+
-name|nextRepeating
+name|rptGroup
 operator|+
-literal|" ]"
+literal|",i"
+operator|+
+name|rptInd
 expr_stmt|;
 block|}
 return|return

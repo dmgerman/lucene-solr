@@ -105,6 +105,7 @@ specifier|final
 name|boolean
 name|hasDeletions
 decl_stmt|;
+comment|/**    * Constructs a {@code BaseCompositeReader} on the given subReaders.    * @param subReaders the wrapped sub-readers. This array is returned by    * {@link #getSequentialSubReaders} and used to resolve the correct    * subreader for docID-based methods.<b>Please note:</b> This array is<b>not</b>    * cloned and not protected for modification, the subclass is responsible     * to do this.    */
 DECL|method|BaseCompositeReader
 specifier|protected
 name|BaseCompositeReader

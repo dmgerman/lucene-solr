@@ -137,6 +137,13 @@ operator|.
 name|position
 argument_list|,
 literal|0
+argument_list|,
+name|postings
+index|[
+literal|0
+index|]
+operator|.
+name|terms
 argument_list|)
 expr_stmt|;
 name|max
@@ -188,6 +195,13 @@ operator|.
 name|position
 argument_list|,
 name|i
+argument_list|,
+name|postings
+index|[
+name|i
+index|]
+operator|.
+name|terms
 argument_list|)
 decl_stmt|;
 name|max

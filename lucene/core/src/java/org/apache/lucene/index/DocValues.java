@@ -192,11 +192,11 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/**    * Returns the {@link Type} of this {@link DocValues} instance    */
-DECL|method|type
+DECL|method|getType
 specifier|public
 specifier|abstract
 name|Type
-name|type
+name|getType
 parameter_list|()
 function_decl|;
 comment|/**    * Closes this {@link DocValues} instance. This method should only be called    * by the creator of this {@link DocValues} instance. API users should not    * close {@link DocValues} instances.    */
@@ -365,10 +365,10 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * Returns the {@link Type} of this source.      *       * @return the {@link Type} of this source.      */
-DECL|method|type
+DECL|method|getType
 specifier|public
 name|Type
-name|type
+name|getType
 parameter_list|()
 block|{
 return|return

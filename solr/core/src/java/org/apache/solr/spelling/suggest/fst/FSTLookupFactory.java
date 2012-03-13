@@ -50,7 +50,7 @@ name|suggest
 operator|.
 name|fst
 operator|.
-name|*
+name|FSTCompletionLookup
 import|;
 end_import
 
@@ -112,6 +112,16 @@ name|FSTLookupFactory
 extends|extends
 name|LookupFactory
 block|{
+comment|/**    * File name for the automaton.    */
+DECL|field|FILENAME
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FILENAME
+init|=
+literal|"fst.bin"
+decl_stmt|;
 comment|/**    * The number of separate buckets for weights (discretization). The more buckets,    * the more fine-grained term weights (priorities) can be assigned. The speed of lookup    * will not decrease for prefixes which have highly-weighted completions (because these    * are filled-in first), but will decrease significantly for low-weighted terms (but    * these should be infrequent, so it is all right).    *     *<p>The number of buckets must be within [1, 255] range.    */
 DECL|field|WEIGHT_BUCKETS
 specifier|public
@@ -212,6 +222,18 @@ name|buckets
 argument_list|,
 name|exactMatchFirst
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|storeFileName
+specifier|public
+name|String
+name|storeFileName
+parameter_list|()
+block|{
+return|return
+name|FILENAME
 return|;
 block|}
 block|}

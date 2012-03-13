@@ -155,6 +155,15 @@ name|int
 name|spareSlot
 decl_stmt|;
 comment|/**    * Create the first pass collector.    *    *  @param groupSort The {@link Sort} used to sort the    *    groups.  The top sorted document within each group    *    according to groupSort, determines how that group    *    sorts against other groups.  This must be non-null,    *    ie, if you want to groupSort by relevance use    *    Sort.RELEVANCE.    *  @param topNGroups How many top groups to keep.    *  @throws IOException If I/O related errors occur    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
+argument_list|)
 DECL|method|AbstractFirstPassGroupingCollector
 specifier|public
 name|AbstractFirstPassGroupingCollector
@@ -1155,6 +1164,9 @@ name|topNGroups
 assert|;
 specifier|final
 name|CollectedSearchGroup
+argument_list|<
+name|?
+argument_list|>
 name|newLast
 init|=
 name|orderedGroups
@@ -1208,6 +1220,9 @@ specifier|final
 name|Comparator
 argument_list|<
 name|CollectedSearchGroup
+argument_list|<
+name|?
+argument_list|>
 argument_list|>
 name|comparator
 init|=
@@ -1215,6 +1230,9 @@ operator|new
 name|Comparator
 argument_list|<
 name|CollectedSearchGroup
+argument_list|<
+name|?
+argument_list|>
 argument_list|>
 argument_list|()
 block|{
@@ -1223,9 +1241,15 @@ name|int
 name|compare
 parameter_list|(
 name|CollectedSearchGroup
+argument_list|<
+name|?
+argument_list|>
 name|o1
 parameter_list|,
 name|CollectedSearchGroup
+argument_list|<
+name|?
+argument_list|>
 name|o2
 parameter_list|)
 block|{
@@ -1306,7 +1330,7 @@ block|}
 block|}
 block|}
 block|}
-decl_stmt|;
+empty_stmt|;
 name|orderedGroups
 operator|=
 operator|new

@@ -4362,9 +4362,11 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"undefined field "
+literal|"undefined field: \""
 operator|+
 name|fieldName
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}

@@ -115,6 +115,7 @@ operator|==
 literal|null
 expr_stmt|;
 block|}
+comment|/** Returns the {@link IndexReader}, this context represents. */
 DECL|method|reader
 specifier|public
 specifier|abstract
@@ -122,7 +123,7 @@ name|IndexReader
 name|reader
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the context's leaves if this context is a top-level context    * otherwise<code>null</code>. For convenience, if this is an    * {@link AtomicReaderContext} this returns itsself as the only leaf.    *<p>    * Note: this is convenience method since leaves can always be obtained by    * walking the context tree.    */
+comment|/**    * Returns the context's leaves if this context is a top-level context    * otherwise<code>null</code>. For convenience, if this is an    * {@link AtomicReaderContext} this returns itsself as the only leaf.    *<p>Note: this is convenience method since leaves can always be obtained by    * walking the context tree.    *<p><b>Warning:</b> Don't modify the returned array!    * Doing so will corrupt the internal structure of this    * {@code IndexReaderContext}.    */
 DECL|method|leaves
 specifier|public
 specifier|abstract
@@ -131,7 +132,7 @@ index|[]
 name|leaves
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the context's children iff this context is a composite context    * otherwise<code>null</code>.    *<p>    * Note: this method is a convenience method to prevent    *<code>instanceof</code> checks and type-casts to    * {@link CompositeReaderContext}.    */
+comment|/**    * Returns the context's children iff this context is a composite context    * otherwise<code>null</code>.    *<p><b>Warning:</b> Don't modify the returned array!    * Doing so will corrupt the internal structure of this    * {@code IndexReaderContext}.    */
 DECL|method|children
 specifier|public
 specifier|abstract
