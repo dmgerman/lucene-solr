@@ -48,15 +48,13 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
+name|core
 operator|.
-name|spatial
-operator|.
-name|geometry
+name|distance
 operator|.
 name|DistanceUnits
 import|;
@@ -64,13 +62,13 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
+name|core
 operator|.
-name|spatial
+name|distance
 operator|.
 name|DistanceUtils
 import|;

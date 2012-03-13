@@ -68,17 +68,15 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
+name|core
 operator|.
-name|spatial
+name|util
 operator|.
-name|geohash
-operator|.
-name|GeoHashUtils
+name|GeohashUtils
 import|;
 end_import
 
@@ -214,9 +212,9 @@ name|doc
 parameter_list|)
 block|{
 return|return
-name|GeoHashUtils
+name|GeohashUtils
 operator|.
-name|encode
+name|encodeLatLon
 argument_list|(
 name|latDV
 operator|.

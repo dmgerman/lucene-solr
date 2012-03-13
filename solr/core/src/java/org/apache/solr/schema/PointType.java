@@ -136,13 +136,27 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
+name|core
 operator|.
-name|spatial
+name|context
+operator|.
+name|ParseUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|spatial4j
+operator|.
+name|core
+operator|.
+name|distance
 operator|.
 name|DistanceUtils
 import|;
@@ -150,17 +164,15 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|lucene
+name|core
 operator|.
-name|spatial
+name|exception
 operator|.
-name|tier
-operator|.
-name|InvalidGeoException
+name|InvalidShapeException
 import|;
 end_import
 
@@ -450,7 +462,7 @@ try|try
 block|{
 name|point
 operator|=
-name|DistanceUtils
+name|ParseUtils
 operator|.
 name|parsePoint
 argument_list|(
@@ -464,7 +476,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|InvalidGeoException
+name|InvalidShapeException
 name|e
 parameter_list|)
 block|{
@@ -837,7 +849,7 @@ try|try
 block|{
 name|p1
 operator|=
-name|DistanceUtils
+name|ParseUtils
 operator|.
 name|parsePoint
 argument_list|(
@@ -850,7 +862,7 @@ argument_list|)
 expr_stmt|;
 name|p2
 operator|=
-name|DistanceUtils
+name|ParseUtils
 operator|.
 name|parsePoint
 argument_list|(
@@ -864,7 +876,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|InvalidGeoException
+name|InvalidShapeException
 name|e
 parameter_list|)
 block|{
@@ -990,7 +1002,7 @@ try|try
 block|{
 name|p1
 operator|=
-name|DistanceUtils
+name|ParseUtils
 operator|.
 name|parsePoint
 argument_list|(
@@ -1004,7 +1016,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|InvalidGeoException
+name|InvalidShapeException
 name|e
 parameter_list|)
 block|{
@@ -1127,7 +1139,7 @@ try|try
 block|{
 name|point
 operator|=
-name|DistanceUtils
+name|ParseUtils
 operator|.
 name|parsePointDouble
 argument_list|(
@@ -1143,7 +1155,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|InvalidGeoException
+name|InvalidShapeException
 name|e
 parameter_list|)
 block|{

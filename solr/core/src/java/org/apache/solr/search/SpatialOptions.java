@@ -18,15 +18,15 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|apache
+name|spatial4j
 operator|.
-name|solr
+name|core
 operator|.
-name|schema
+name|distance
 operator|.
-name|SchemaField
+name|DistanceUnits
 import|;
 end_import
 
@@ -36,13 +36,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|spatial
+name|schema
 operator|.
-name|geometry
-operator|.
-name|DistanceUnits
+name|SchemaField
 import|;
 end_import
 
