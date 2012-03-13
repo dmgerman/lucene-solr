@@ -1024,8 +1024,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-try|try
-block|{
 if|if
 condition|(
 name|valueSource
@@ -1098,26 +1096,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|bq
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|ex
-parameter_list|)
-block|{
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"error making score"
-argument_list|,
-name|ex
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|spatial
 return|;
 block|}
 comment|/**    * Constructs a query to retrieve documents that fully contain the input envelope.    * @return the spatial query    */
