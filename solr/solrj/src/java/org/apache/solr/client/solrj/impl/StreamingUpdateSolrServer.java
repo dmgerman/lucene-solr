@@ -367,7 +367,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link StreamingUpdateSolrServer} buffers all added documents and writes them  * into open HTTP connections. This class is thread safe.  *   * Although any SolrServer request can be made with this implementation,   * it is only recommended to use the {@link StreamingUpdateSolrServer} with  * /update requests.  The query interface is better suited for   *   *  * @since solr 1.4  */
+comment|/**  * {@link StreamingUpdateSolrServer} buffers all added documents and writes them  * into open HTTP connections. This class is thread safe.  *   * Although any SolrServer request can be made with this implementation,  * it is only recommended to use {@link StreamingUpdateSolrServer} with  * /update requests.  The base class {&link CommonsHttpSolrServer} is  * better suited for the query interface.  *  * @since solr 1.4  */
 end_comment
 
 begin_class
