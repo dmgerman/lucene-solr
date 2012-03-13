@@ -67,7 +67,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<p>Construct a MultiReader aggregating the named set of (sub)readers.    * @param subReaders set of (sub)readers    * @param closeSubReaders indicates whether the subreaders should be closed    * when this MultiReader is closed    */
+comment|/**    *<p>Construct a MultiReader aggregating the named set of (sub)readers.    * @param subReaders set of (sub)readers; this array will be cloned.    * @param closeSubReaders indicates whether the subreaders should be closed    * when this MultiReader is closed    */
 DECL|method|MultiReader
 specifier|public
 name|MultiReader

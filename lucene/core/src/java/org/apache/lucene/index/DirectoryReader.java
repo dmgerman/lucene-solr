@@ -650,6 +650,7 @@ literal|false
 return|;
 block|}
 block|}
+comment|/**    * Expert: Constructs a {@code DirectoryReader} on the given subReaders.    * @param segmentReaders the wrapped atomic index segment readers. This array is    * returned by {@link #getSequentialSubReaders} and used to resolve the correct    * subreader for docID-based methods.<b>Please note:</b> This array is<b>not</b>    * cloned and not protected for modification outside of this reader.    * Subclasses of {@code DirectoryReader} should take care to not allow    * modification of this internal array, e.g. {@link #doOpenIfChanged()}.    */
 DECL|method|DirectoryReader
 specifier|protected
 name|DirectoryReader
@@ -659,7 +660,7 @@ name|directory
 parameter_list|,
 name|AtomicReader
 index|[]
-name|readers
+name|segmentReaders
 parameter_list|)
 throws|throws
 name|CorruptIndexException
@@ -668,7 +669,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|readers
+name|segmentReaders
 argument_list|)
 expr_stmt|;
 name|this
