@@ -776,7 +776,7 @@ throw|throw
 operator|new
 name|InvalidShapeException
 argument_list|(
-literal|"A rectangle is the only supported at this time, not "
+literal|"A rectangle is the only supported shape (so far), not "
 operator|+
 name|shape
 operator|.
