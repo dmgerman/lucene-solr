@@ -1253,7 +1253,7 @@ operator|.
 name|setLastDelegateCount
 argument_list|)
 expr_stmt|;
-comment|// post filtering shouldn't be used
+comment|// post filtering *should* have been used
 block|}
 block|}
 block|}
