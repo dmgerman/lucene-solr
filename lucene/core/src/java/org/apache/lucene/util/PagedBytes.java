@@ -1069,7 +1069,6 @@ comment|// fit in current block,
 comment|// VarDerefBytesImpl.finishInternal does its own
 comment|// prefix + byte[] writing which can span two blocks,
 comment|// so we support that here on decode:
-comment|// we could some day relax that and span two blocks:
 if|if
 condition|(
 name|blockSize
