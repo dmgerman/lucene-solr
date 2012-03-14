@@ -869,6 +869,8 @@ name|IOException
 block|{
 comment|//System.out.println("Q.nextDoc() parentDoc=" + parentDoc + " childDoc=" + childDoc);
 comment|// Loop until we hit a childDoc that's accepted
+name|nextChildDoc
+label|:
 while|while
 condition|(
 literal|true
@@ -964,7 +966,9 @@ name|childDoc
 argument_list|)
 condition|)
 block|{
-continue|continue;
+continue|continue
+name|nextChildDoc
+continue|;
 block|}
 if|if
 condition|(
@@ -1078,6 +1082,22 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|childTarget
+operator|>=
+name|parentBits
+operator|.
+name|length
+argument_list|()
+operator|||
+operator|!
+name|parentBits
+operator|.
+name|get
+argument_list|(
+name|childTarget
+argument_list|)
+assert|;
 comment|//System.out.println("Q.advance childTarget=" + childTarget);
 if|if
 condition|(
@@ -1096,12 +1116,26 @@ name|NO_MORE_DOCS
 return|;
 block|}
 assert|assert
+name|childDoc
+operator|==
+operator|-
+literal|1
+operator|||
 name|childTarget
 operator|!=
 name|parentDoc
+operator|:
+literal|"childTarget="
+operator|+
+name|childTarget
 assert|;
 if|if
 condition|(
+name|childDoc
+operator|==
+operator|-
+literal|1
+operator|||
 name|childTarget
 operator|>
 name|parentDoc
@@ -1187,6 +1221,25 @@ operator|=
 name|childTarget
 expr_stmt|;
 comment|//System.out.println("  " + childDoc);
+if|if
+condition|(
+name|acceptDocs
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|acceptDocs
+operator|.
+name|get
+argument_list|(
+name|childDoc
+argument_list|)
+condition|)
+block|{
+name|nextDoc
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 name|childDoc
 return|;
