@@ -1793,6 +1793,13 @@ name|getKey
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|leaderProps
+operator|!=
+literal|null
+condition|)
+block|{
 name|core
 operator|=
 name|checkProps
@@ -1804,6 +1811,7 @@ argument_list|,
 name|leaderProps
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|core
