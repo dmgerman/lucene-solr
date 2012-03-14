@@ -68,6 +68,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Before
@@ -84,35 +98,13 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertEquals
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertTrue
-import|;
-end_import
-
 begin_class
 DECL|class|SpatialPrefixTreeTest
 specifier|public
 class|class
 name|SpatialPrefixTreeTest
+extends|extends
+name|LuceneTestCase
 block|{
 comment|//TODO plug in others and test them
 DECL|field|ctx
@@ -135,6 +127,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
 name|ctx
 operator|=
 name|SimpleSpatialContext
