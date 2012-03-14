@@ -1063,15 +1063,22 @@ name|length
 operator|=
 name|length
 expr_stmt|;
-comment|// We always alloc a new block when writing w/ prefix;
+comment|// NOTE: even though copyUsingLengthPrefix always
+comment|// allocs a new block if the byte[] to be added won't
+comment|// fit in current block,
+comment|// VarDerefBytesImpl.finishInternal does its own
+comment|// prefix + byte[] writing which can span two blocks,
+comment|// so we support that here on decode:
 comment|// we could some day relax that and span two blocks:
-assert|assert
+if|if
+condition|(
 name|blockSize
 operator|-
 name|offset
 operator|>=
 name|length
-assert|;
+condition|)
+block|{
 comment|// Within block
 name|b
 operator|.
@@ -1088,6 +1095,79 @@ index|[
 name|index
 index|]
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Split
+name|b
+operator|.
+name|bytes
+operator|=
+operator|new
+name|byte
+index|[
+name|length
+index|]
+expr_stmt|;
+name|b
+operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|blocks
+index|[
+name|index
+index|]
+argument_list|,
+name|offset
+argument_list|,
+name|b
+operator|.
+name|bytes
+argument_list|,
+literal|0
+argument_list|,
+name|blockSize
+operator|-
+name|offset
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|blocks
+index|[
+literal|1
+operator|+
+name|index
+index|]
+argument_list|,
+literal|0
+argument_list|,
+name|b
+operator|.
+name|bytes
+argument_list|,
+name|blockSize
+operator|-
+name|offset
+argument_list|,
+name|length
+operator|-
+operator|(
+name|blockSize
+operator|-
+name|offset
+operator|)
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|b
 return|;
