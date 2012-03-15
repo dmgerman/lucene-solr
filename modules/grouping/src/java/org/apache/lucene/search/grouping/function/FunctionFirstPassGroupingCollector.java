@@ -164,11 +164,6 @@ name|?
 argument_list|>
 name|vsContext
 decl_stmt|;
-DECL|field|docValues
-specifier|private
-name|FunctionValues
-name|docValues
-decl_stmt|;
 DECL|field|filler
 specifier|private
 name|FunctionValues
@@ -307,8 +302,9 @@ argument_list|(
 name|readerContext
 argument_list|)
 expr_stmt|;
-name|docValues
-operator|=
+name|FunctionValues
+name|values
+init|=
 name|groupByVS
 operator|.
 name|getValues
@@ -317,10 +313,10 @@ name|vsContext
 argument_list|,
 name|readerContext
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|filler
 operator|=
-name|docValues
+name|values
 operator|.
 name|getValueFiller
 argument_list|()
