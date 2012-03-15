@@ -551,8 +551,13 @@ argument_list|)
 throw|;
 block|}
 return|return
-literal|null
+operator|new
+name|IndexableField
+index|[
+literal|0
+index|]
 return|;
+comment|// nothing (solr does not support null)
 block|}
 annotation|@
 name|Override
