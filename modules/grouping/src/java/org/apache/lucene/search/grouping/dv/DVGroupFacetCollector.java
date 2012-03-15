@@ -70,6 +70,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|DocValues
+operator|.
+name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|grouping
@@ -89,20 +105,6 @@ operator|.
 name|util
 operator|.
 name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|PriorityQueue
 import|;
 end_import
 
@@ -179,8 +181,6 @@ name|AbstractGroupFacetCollector
 block|{
 DECL|field|groupDvType
 specifier|final
-name|DocValues
-operator|.
 name|Type
 name|groupDvType
 decl_stmt|;
@@ -191,8 +191,6 @@ name|groupDiskResident
 decl_stmt|;
 DECL|field|facetFieldDvType
 specifier|final
-name|DocValues
-operator|.
 name|Type
 name|facetFieldDvType
 decl_stmt|;
@@ -214,7 +212,7 @@ specifier|final
 name|SentinelIntSet
 name|segmentGroupedFacetHits
 decl_stmt|;
-comment|/**    * Factory method for creating the right implementation based on the group docvalues type and the facet docvalues    * type.    *    * Currently only the {@link DocValues.Type#BYTES_VAR_SORTED} and the {@link DocValues.Type#BYTES_FIXED_SORTED} are    * the only docvalues type supported for both the group and facet field.    *    * @param groupField        The group field    * @param groupDvType       The docvalues type for the group field    * @param groupDiskResident Whether the group docvalues should be disk resident    * @param facetField        The facet field    * @param facetDvType       The docvalues type for the facet field    * @param facetDiskResident Whether the facet docvalues should be disk resident    * @param facetPrefix       The facet prefix a facet entry should start with to be included.    * @param initialSize       The initial allocation size of the internal int set and group facet list which should roughly    *                          match the total number of expected unique groups. Be aware that the heap usage is    *                          4 bytes * initialSize.    * @return a<code>DVGroupFacetCollector</code> implementation    */
+comment|/**    * Factory method for creating the right implementation based on the group docvalues type and the facet docvalues    * type.    *    * Currently only the {@link Type#BYTES_VAR_SORTED} and the {@link Type#BYTES_FIXED_SORTED} are    * the only docvalues type supported for both the group and facet field.    *    * @param groupField        The group field    * @param groupDvType       The docvalues type for the group field    * @param groupDiskResident Whether the group docvalues should be disk resident    * @param facetField        The facet field    * @param facetDvType       The docvalues type for the facet field    * @param facetDiskResident Whether the facet docvalues should be disk resident    * @param facetPrefix       The facet prefix a facet entry should start with to be included.    * @param initialSize       The initial allocation size of the internal int set and group facet list which should roughly    *                          match the total number of expected unique groups. Be aware that the heap usage is    *                          4 bytes * initialSize.    * @return a<code>DVGroupFacetCollector</code> implementation    */
 DECL|method|createDvGroupFacetCollector
 specifier|public
 specifier|static
@@ -224,8 +222,6 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|groupDvType
 parameter_list|,
@@ -235,8 +231,6 @@ parameter_list|,
 name|String
 name|facetField
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|facetDvType
 parameter_list|,
@@ -353,8 +347,6 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|groupDvType
 parameter_list|,
@@ -364,8 +356,6 @@ parameter_list|,
 name|String
 name|facetField
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|facetFieldDvType
 parameter_list|,
@@ -473,8 +463,6 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|groupDvType
 parameter_list|,
@@ -484,8 +472,6 @@ parameter_list|,
 name|String
 name|facetField
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|facetFieldDvType
 parameter_list|,
@@ -527,8 +513,6 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|groupDvType
 parameter_list|,
@@ -538,8 +522,6 @@ parameter_list|,
 name|String
 name|facetField
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|facetDvType
 parameter_list|,
@@ -669,8 +651,6 @@ parameter_list|(
 name|String
 name|groupField
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|groupDvType
 parameter_list|,
@@ -680,8 +660,6 @@ parameter_list|,
 name|String
 name|facetField
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|facetDvType
 parameter_list|,
@@ -1167,8 +1145,6 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|DocValues
-operator|.
 name|Type
 name|dvType
 parameter_list|,
