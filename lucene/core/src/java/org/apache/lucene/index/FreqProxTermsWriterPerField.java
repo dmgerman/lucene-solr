@@ -2575,7 +2575,7 @@ decl_stmt|;
 name|position
 operator|+=
 name|code
-operator|>>
+operator|>>>
 literal|1
 expr_stmt|;
 if|if
