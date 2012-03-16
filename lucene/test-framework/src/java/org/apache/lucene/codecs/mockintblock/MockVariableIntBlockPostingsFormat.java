@@ -806,11 +806,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
-name|value
-operator|>=
-literal|0
-assert|;
 name|buffer
 index|[
 name|pendingCount

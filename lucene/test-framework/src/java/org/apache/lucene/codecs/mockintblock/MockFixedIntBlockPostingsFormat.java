@@ -697,14 +697,6 @@ name|i
 operator|++
 control|)
 block|{
-assert|assert
-name|buffer
-index|[
-name|i
-index|]
-operator|>=
-literal|0
-assert|;
 name|out
 operator|.
 name|writeVInt

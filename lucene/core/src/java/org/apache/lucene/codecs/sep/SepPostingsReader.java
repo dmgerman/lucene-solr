@@ -3204,11 +3204,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-assert|assert
-name|code
-operator|>=
-literal|0
-assert|;
 if|if
 condition|(
 name|storePayloads
@@ -3242,7 +3237,7 @@ block|}
 name|position
 operator|+=
 name|code
-operator|>>
+operator|>>>
 literal|1
 expr_stmt|;
 name|pendingPayloadBytes
