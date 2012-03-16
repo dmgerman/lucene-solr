@@ -104,6 +104,14 @@ name|boolean
 name|enablePositionIncrements
 decl_stmt|;
 comment|// no init needed, as ctor enforces setting value!
+DECL|field|first
+specifier|private
+name|boolean
+name|first
+init|=
+literal|true
+decl_stmt|;
+comment|// only used when not preserving gaps
 DECL|method|FilteringTokenFilter
 specifier|public
 name|FilteringTokenFilter
@@ -221,6 +229,35 @@ name|accept
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+name|first
+condition|)
+block|{
+comment|// first token having posinc=0 is illegal.
+if|if
+condition|(
+name|posIncrAtt
+operator|.
+name|getPositionIncrement
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+name|posIncrAtt
+operator|.
+name|setPositionIncrement
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+name|first
+operator|=
+literal|false
+expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -231,6 +268,26 @@ comment|// reached EOS -- return false
 return|return
 literal|false
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|super
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|first
+operator|=
+literal|true
+expr_stmt|;
 block|}
 comment|/**    * @see #setEnablePositionIncrements(boolean)    */
 DECL|method|getEnablePositionIncrements
