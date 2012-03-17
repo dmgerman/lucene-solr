@@ -70,16 +70,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -171,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Update processor which examines a URL and outputs to various other fields  * characteristics of that URL, including length, number of path levels, whether  * it is a top level URL (levels==0), whether it looks like a landing/index page,  * a canonical representation of the URL (e.g. stripping index.html), the domain  * and path parts of the URL etc.  *<p>  * This processor is intended used in connection with processing web resuources,  * and helping to produce values which may be used for boosting or filtering later.  */
+comment|/**  * Update processor which examines a URL and outputs to various other fields  * characteristics of that URL, including length, number of path levels, whether  * it is a top level URL (levels==0), whether it looks like a landing/index page,  * a canonical representation of the URL (e.g. stripping index.html), the domain  * and path parts of the URL etc.  *<p>  * This processor is intended used in connection with processing web resources,  * and helping to produce values which may be used for boosting or filtering later.  */
 end_comment
 
 begin_class
@@ -364,6 +354,8 @@ literal|null
 decl_stmt|;
 DECL|field|landingPageSuffixes
 specifier|private
+specifier|static
+specifier|final
 name|String
 index|[]
 name|landingPageSuffixes
@@ -426,35 +418,6 @@ argument_list|(
 name|nextProcessor
 argument_list|)
 expr_stmt|;
-name|HashSet
-argument_list|<
-name|String
-argument_list|>
-name|landingPageSuffixesSet
-init|=
-operator|new
-name|HashSet
-argument_list|<
-name|String
-argument_list|>
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|String
-name|s
-range|:
-name|landingPageSuffixes
-control|)
-block|{
-name|landingPageSuffixesSet
-operator|.
-name|add
-argument_list|(
-name|s
-argument_list|)
-expr_stmt|;
-block|}
 name|this
 operator|.
 name|initParameters
