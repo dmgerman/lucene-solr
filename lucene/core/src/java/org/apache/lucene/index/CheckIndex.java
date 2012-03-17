@@ -2653,6 +2653,8 @@ name|termVectorStatus
 operator|=
 name|testTermVectors
 argument_list|(
+name|fieldInfos
+argument_list|,
 name|info
 argument_list|,
 name|reader
@@ -3977,6 +3979,13 @@ operator|.
 name|nextPosition
 argument_list|()
 decl_stmt|;
+comment|// NOTE: pos=-1 is allowed because of ancient bug
+comment|// (LUCENE-1542) whereby IndexWriter could
+comment|// write pos=-1 when first token's posInc is 0
+comment|// (separately: analyzers should not give
+comment|// posInc=0 to first token); also, term
+comment|// vectors are allowed to return pos=-1 if
+comment|// they indexed offset but not positions:
 if|if
 condition|(
 name|pos
@@ -4445,11 +4454,19 @@ operator|.
 name|nextPosition
 argument_list|()
 decl_stmt|;
+comment|// NOTE: pos=-1 is allowed because of ancient bug
+comment|// (LUCENE-1542) whereby IndexWriter could
+comment|// write pos=-1 when first token's posInc is 0
+comment|// (separately: analyzers should not give
+comment|// posInc=0 to first token); also, term
+comment|// vectors are allowed to return pos=-1 if
+comment|// they indexed offset but not positions:
 if|if
 condition|(
 name|pos
 operator|<
-literal|0
+operator|-
+literal|1
 condition|)
 block|{
 throw|throw
@@ -5876,6 +5893,8 @@ operator|++
 name|j
 control|)
 block|{
+comment|// Intentionally pull even deleted documents to
+comment|// make sure they too are not corrupt:
 name|Document
 name|doc
 init|=
@@ -6761,6 +6780,9 @@ operator|.
 name|TermVectorStatus
 name|testTermVectors
 parameter_list|(
+name|FieldInfos
+name|fieldInfos
+parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
@@ -6783,9 +6805,16 @@ operator|.
 name|TermVectorStatus
 argument_list|()
 decl_stmt|;
-comment|// TODO: in theory we could test that term vectors have
-comment|// same terms/pos/offsets as the postings, but it'd be
-comment|// very slow...
+specifier|final
+name|Bits
+name|onlyDocIsDeleted
+init|=
+operator|new
+name|FixedBitSet
+argument_list|(
+literal|1
+argument_list|)
+decl_stmt|;
 try|try
 block|{
 if|if
@@ -6803,7 +6832,6 @@ literal|"    test: term vectors........"
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: maybe we can factor out testTermIndex and reuse here?
 name|DocsEnum
 name|docs
 init|=
@@ -6886,25 +6914,9 @@ operator|++
 name|j
 control|)
 block|{
-if|if
-condition|(
-name|liveDocs
-operator|==
-literal|null
-operator|||
-name|liveDocs
-operator|.
-name|get
-argument_list|(
-name|j
-argument_list|)
-condition|)
-block|{
-name|status
-operator|.
-name|docCount
-operator|++
-expr_stmt|;
+comment|// Intentionally pull/visit (but don't count in
+comment|// stats) deleted documents to make sure they too
+comment|// are not corrupt:
 name|Fields
 name|tfv
 init|=
@@ -6915,6 +6927,8 @@ argument_list|(
 name|j
 argument_list|)
 decl_stmt|;
+comment|// TODO: can we make a IS(FIR) that searches just
+comment|// this term vector... to pass for searcher?
 if|if
 condition|(
 name|tfv
@@ -6922,16 +6936,61 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|int
-name|tfvComputedFieldCount
+comment|// First run with no deletions:
+name|checkFields
+argument_list|(
+name|tfv
+argument_list|,
+literal|null
+argument_list|,
+literal|1
+argument_list|,
+name|fieldInfos
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// Again, with the one doc deleted:
+name|checkFields
+argument_list|(
+name|tfv
+argument_list|,
+name|onlyDocIsDeleted
+argument_list|,
+literal|1
+argument_list|,
+name|fieldInfos
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// Only agg stats if the doc is live:
+specifier|final
+name|boolean
+name|doStats
 init|=
-literal|0
+name|liveDocs
+operator|==
+literal|null
+operator|||
+name|liveDocs
+operator|.
+name|get
+argument_list|(
+name|j
+argument_list|)
 decl_stmt|;
-name|long
-name|tfvComputedTermCount
-init|=
-literal|0
-decl_stmt|;
+if|if
+condition|(
+name|doStats
+condition|)
+block|{
+name|status
+operator|.
+name|docCount
+operator|++
+expr_stmt|;
+block|}
 name|FieldsEnum
 name|fieldsEnum
 init|=
@@ -6942,11 +7001,6 @@ argument_list|()
 decl_stmt|;
 name|String
 name|field
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|lastField
 init|=
 literal|null
 decl_stmt|;
@@ -6964,57 +7018,58 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|doStats
+condition|)
+block|{
 name|status
 operator|.
 name|totVectors
 operator|++
 expr_stmt|;
-name|tfvComputedFieldCount
-operator|++
-expr_stmt|;
-if|if
-condition|(
-name|lastField
-operator|==
-literal|null
-condition|)
-block|{
-name|lastField
-operator|=
-name|field
-expr_stmt|;
 block|}
-elseif|else
-if|if
-condition|(
-name|lastField
+comment|// Make sure FieldInfo thinks this field is vector'd:
+specifier|final
+name|FieldInfo
+name|fieldInfo
+init|=
+name|fieldInfos
 operator|.
-name|compareTo
+name|fieldInfo
 argument_list|(
 name|field
 argument_list|)
-operator|>
-literal|0
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|fieldInfo
+operator|.
+name|storeTermVector
 condition|)
 block|{
 throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"vector fields are out of order: lastField="
+literal|"docID="
 operator|+
-name|lastField
+name|j
 operator|+
-literal|" field="
+literal|" has term vectors for field="
 operator|+
 name|field
 operator|+
-literal|" doc="
-operator|+
-name|j
+literal|" but FieldInfo has storeTermVector=false"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|crossCheckTermVectors
+condition|)
+block|{
 name|Terms
 name|terms
 init|=
@@ -7034,11 +7089,6 @@ argument_list|(
 name|termsEnum
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|crossCheckTermVectors
-condition|)
-block|{
 name|Terms
 name|postingsTerms
 init|=
@@ -7079,40 +7129,6 @@ argument_list|(
 name|postingsTermsEnum
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|postingsTermsEnum
-operator|=
-literal|null
-expr_stmt|;
-block|}
-name|long
-name|tfvComputedTermCountForField
-init|=
-literal|0
-decl_stmt|;
-name|long
-name|tfvComputedSumTotalTermFreq
-init|=
-literal|0
-decl_stmt|;
-name|BytesRef
-name|lastTerm
-init|=
-literal|null
-decl_stmt|;
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|termComp
-init|=
-name|terms
-operator|.
-name|getComparator
-argument_list|()
-decl_stmt|;
 name|BytesRef
 name|term
 init|=
@@ -7132,132 +7148,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|tfvComputedTermCountForField
-operator|++
-expr_stmt|;
-comment|// make sure terms arrive in order according to
-comment|// the comp
-if|if
-condition|(
-name|lastTerm
-operator|==
-literal|null
-condition|)
-block|{
-name|lastTerm
-operator|=
-name|BytesRef
-operator|.
-name|deepCopyOf
-argument_list|(
-name|term
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|termComp
-operator|.
-name|compare
-argument_list|(
-name|lastTerm
-argument_list|,
-name|term
-argument_list|)
-operator|>=
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector terms out of order for doc "
-operator|+
-name|j
-operator|+
-literal|": lastTerm="
-operator|+
-name|lastTerm
-operator|+
-literal|" term="
-operator|+
-name|term
-argument_list|)
-throw|;
-block|}
-name|lastTerm
-operator|.
-name|copyBytes
-argument_list|(
-name|term
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|termsEnum
-operator|.
-name|docFreq
-argument_list|()
-operator|!=
-literal|1
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector docFreq for doc "
-operator|+
-name|j
-operator|+
-literal|", field "
-operator|+
-name|field
-operator|+
-literal|", term"
-operator|+
-name|term
-operator|+
-literal|" != 1"
-argument_list|)
-throw|;
-block|}
-name|long
-name|totalTermFreq
-init|=
-name|termsEnum
-operator|.
-name|totalTermFreq
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|totalTermFreq
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|totalTermFreq
-operator|<=
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"totalTermFreq: "
-operator|+
-name|totalTermFreq
-operator|+
-literal|" is out of bounds"
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|boolean
 name|hasPositions
@@ -7389,7 +7279,7 @@ name|hasOffsets
 operator|=
 literal|true
 expr_stmt|;
-comment|// NOTE: may be a lie... but we accept -1 below
+comment|// NOTE: may be a lie... but we accept -1
 name|hasPositions
 operator|=
 literal|true
@@ -7440,11 +7330,6 @@ specifier|final
 name|boolean
 name|postingsHasFreq
 decl_stmt|;
-if|if
-condition|(
-name|crossCheckTermVectors
-condition|)
-block|{
 if|if
 condition|(
 operator|!
@@ -7664,18 +7549,6 @@ literal|")"
 argument_list|)
 throw|;
 block|}
-block|}
-else|else
-block|{
-name|postingsDocs2
-operator|=
-literal|null
-expr_stmt|;
-name|postingsHasFreq
-operator|=
-literal|false
-expr_stmt|;
-block|}
 specifier|final
 name|int
 name|doc
@@ -7722,58 +7595,8 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|tf
-operator|<=
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector freq "
-operator|+
-name|tf
-operator|+
-literal|" is out of bounds"
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-name|totalTermFreq
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|totalTermFreq
-operator|!=
-name|tf
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector totalTermFreq "
-operator|+
-name|totalTermFreq
-operator|+
-literal|" != tf "
-operator|+
-name|tf
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-name|crossCheckTermVectors
-operator|&&
 name|postingsHasFreq
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|postingsDocs2
 operator|.
 name|freq
@@ -7811,11 +7634,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-block|}
-name|tfvComputedSumTotalTermFreq
-operator|+=
-name|tf
-expr_stmt|;
 if|if
 condition|(
 name|hasPositions
@@ -7823,13 +7641,6 @@ operator|||
 name|hasOffsets
 condition|)
 block|{
-name|int
-name|lastPosition
-init|=
-operator|-
-literal|1
-decl_stmt|;
-comment|//int lastStartOffset = -1;
 for|for
 control|(
 name|int
@@ -7855,63 +7666,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|hasPositions
-condition|)
-block|{
-if|if
-condition|(
-name|pos
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|pos
-operator|<
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector position "
-operator|+
-name|pos
-operator|+
-literal|" is out of bounds"
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-name|pos
-operator|<
-name|lastPosition
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector position "
-operator|+
-name|pos
-operator|+
-literal|"< lastPos "
-operator|+
-name|lastPosition
-argument_list|)
-throw|;
-block|}
-name|lastPosition
-operator|=
-name|pos
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|crossCheckTermVectors
-operator|&&
 name|postingsPostings
 operator|!=
 literal|null
@@ -7995,11 +7749,9 @@ name|endOffset
 argument_list|()
 decl_stmt|;
 comment|// TODO: these are too anal...?
-comment|/*                         if (endOffset< startOffset) {                           throw new RuntimeException("vector startOffset=" + startOffset + " is> endOffset=" + endOffset);                         }                         if (startOffset< lastStartOffset) {                           throw new RuntimeException("vector startOffset=" + startOffset + " is< prior startOffset=" + lastStartOffset);                         }                         lastStartOffset = startOffset;                         */
+comment|/*                           if (endOffset< startOffset) {                           throw new RuntimeException("vector startOffset=" + startOffset + " is> endOffset=" + endOffset);                           }                           if (startOffset< lastStartOffset) {                           throw new RuntimeException("vector startOffset=" + startOffset + " is< prior startOffset=" + lastStartOffset);                           }                           lastStartOffset = startOffset;                         */
 if|if
 condition|(
-name|crossCheckTermVectors
-operator|&&
 name|postingsPostings
 operator|!=
 literal|null
@@ -8114,277 +7866,7 @@ block|}
 block|}
 block|}
 block|}
-if|if
-condition|(
-name|docs2
-operator|.
-name|nextDoc
-argument_list|()
-operator|!=
-name|DocIdSetIterator
-operator|.
-name|NO_MORE_DOCS
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector for doc "
-operator|+
-name|j
-operator|+
-literal|" references multiple documents!"
-argument_list|)
-throw|;
 block|}
-block|}
-name|long
-name|uniqueTermCount
-init|=
-name|terms
-operator|.
-name|getUniqueTermCount
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|uniqueTermCount
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|uniqueTermCount
-operator|!=
-name|tfvComputedTermCountForField
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector term count for doc "
-operator|+
-name|j
-operator|+
-literal|", field "
-operator|+
-name|field
-operator|+
-literal|" = "
-operator|+
-name|uniqueTermCount
-operator|+
-literal|" != recomputed term count="
-operator|+
-name|tfvComputedTermCountForField
-argument_list|)
-throw|;
-block|}
-name|int
-name|docCount
-init|=
-name|terms
-operator|.
-name|getDocCount
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|docCount
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|docCount
-operator|!=
-literal|1
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector doc count for doc "
-operator|+
-name|j
-operator|+
-literal|", field "
-operator|+
-name|field
-operator|+
-literal|" = "
-operator|+
-name|docCount
-operator|+
-literal|" != 1"
-argument_list|)
-throw|;
-block|}
-name|long
-name|sumDocFreq
-init|=
-name|terms
-operator|.
-name|getSumDocFreq
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|sumDocFreq
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|sumDocFreq
-operator|!=
-name|tfvComputedTermCountForField
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector postings count for doc "
-operator|+
-name|j
-operator|+
-literal|", field "
-operator|+
-name|field
-operator|+
-literal|" = "
-operator|+
-name|sumDocFreq
-operator|+
-literal|" != recomputed postings count="
-operator|+
-name|tfvComputedTermCountForField
-argument_list|)
-throw|;
-block|}
-name|long
-name|sumTotalTermFreq
-init|=
-name|terms
-operator|.
-name|getSumTotalTermFreq
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|sumTotalTermFreq
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|sumTotalTermFreq
-operator|!=
-name|tfvComputedSumTotalTermFreq
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector sumTotalTermFreq for doc "
-operator|+
-name|j
-operator|+
-literal|", field "
-operator|+
-name|field
-operator|+
-literal|" = "
-operator|+
-name|sumTotalTermFreq
-operator|+
-literal|" != recomputed sumTotalTermFreq="
-operator|+
-name|tfvComputedSumTotalTermFreq
-argument_list|)
-throw|;
-block|}
-name|tfvComputedTermCount
-operator|+=
-name|tfvComputedTermCountForField
-expr_stmt|;
-block|}
-name|int
-name|tfvUniqueFieldCount
-init|=
-name|tfv
-operator|.
-name|getUniqueFieldCount
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|tfvUniqueFieldCount
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|tfvUniqueFieldCount
-operator|!=
-name|tfvComputedFieldCount
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector field count for doc "
-operator|+
-name|j
-operator|+
-literal|"="
-operator|+
-name|tfvUniqueFieldCount
-operator|+
-literal|" != recomputed uniqueFieldCount="
-operator|+
-name|tfvComputedFieldCount
-argument_list|)
-throw|;
-block|}
-name|long
-name|tfvUniqueTermCount
-init|=
-name|tfv
-operator|.
-name|getUniqueTermCount
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|tfvUniqueTermCount
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|tfvUniqueTermCount
-operator|!=
-name|tfvComputedTermCount
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"vector term count for doc "
-operator|+
-name|j
-operator|+
-literal|"="
-operator|+
-name|tfvUniqueTermCount
-operator|+
-literal|" != recomputed uniqueTermCount="
-operator|+
-name|tfvComputedTermCount
-argument_list|)
-throw|;
 block|}
 block|}
 block|}
