@@ -755,10 +755,21 @@ name|MalformedURLException
 name|e
 parameter_list|)
 block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"cannot get the normalized url for \""
+operator|+
+name|url
+operator|+
+literal|"\" due to "
+operator|+
 name|e
 operator|.
-name|printStackTrace
+name|getMessage
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -767,10 +778,21 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"cannot get the normalized url for \""
+operator|+
+name|url
+operator|+
+literal|"\" due to "
+operator|+
 name|e
 operator|.
-name|printStackTrace
+name|getMessage
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 block|}
