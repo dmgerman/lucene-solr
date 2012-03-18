@@ -739,14 +739,6 @@ argument_list|(
 literal|"-- RAM consumption"
 argument_list|)
 expr_stmt|;
-specifier|final
-name|RamUsageEstimator
-name|rue
-init|=
-operator|new
-name|RamUsageEstimator
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|Class
@@ -794,9 +786,9 @@ operator|.
 name|getSimpleName
 argument_list|()
 argument_list|,
-name|rue
+name|RamUsageEstimator
 operator|.
-name|estimateRamUsage
+name|sizeOf
 argument_list|(
 name|lookup
 argument_list|)

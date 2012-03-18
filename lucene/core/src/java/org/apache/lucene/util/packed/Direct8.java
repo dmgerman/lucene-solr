@@ -324,11 +324,10 @@ block|{
 return|return
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_ARRAY_HEADER
-operator|+
+name|sizeOf
+argument_list|(
 name|values
-operator|.
-name|length
+argument_list|)
 return|;
 block|}
 DECL|method|clear

@@ -1773,40 +1773,19 @@ operator|=
 name|size
 expr_stmt|;
 block|}
-comment|/**       * @see #estimateSize(RamUsageEstimator)      */
+comment|/**       * Computes (and stores) the estimated size of the cache Value       * @see #getEstimatedSize      */
 DECL|method|estimateSize
 specifier|public
 name|void
 name|estimateSize
 parameter_list|()
 block|{
-name|estimateSize
-argument_list|(
-operator|new
-name|RamUsageEstimator
-argument_list|(
-literal|false
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// doesn't check for interned
-block|}
-comment|/**       * Computes (and stores) the estimated size of the cache Value       * @see #getEstimatedSize      */
-DECL|method|estimateSize
-specifier|public
-name|void
-name|estimateSize
-parameter_list|(
-name|RamUsageEstimator
-name|ramCalc
-parameter_list|)
-block|{
 name|long
 name|size
 init|=
-name|ramCalc
+name|RamUsageEstimator
 operator|.
-name|estimateRamUsage
+name|sizeOf
 argument_list|(
 name|getValue
 argument_list|()
@@ -1819,12 +1798,6 @@ operator|.
 name|humanReadableUnits
 argument_list|(
 name|size
-argument_list|,
-operator|new
-name|DecimalFormat
-argument_list|(
-literal|"0.#"
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

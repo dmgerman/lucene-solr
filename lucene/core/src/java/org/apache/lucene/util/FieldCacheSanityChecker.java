@@ -155,12 +155,10 @@ specifier|final
 class|class
 name|FieldCacheSanityChecker
 block|{
-DECL|field|ramCalc
+DECL|field|estimateRam
 specifier|private
-name|RamUsageEstimator
-name|ramCalc
-init|=
-literal|null
+name|boolean
+name|estimateRam
 decl_stmt|;
 DECL|method|FieldCacheSanityChecker
 specifier|public
@@ -169,19 +167,19 @@ parameter_list|()
 block|{
 comment|/* NOOP */
 block|}
-comment|/**    * If set, will be used to estimate size for all CacheEntry objects     * dealt with.    */
+comment|/**    * If set, estimate size for all CacheEntry objects will be calculateed.    */
 DECL|method|setRamUsageEstimator
 specifier|public
 name|void
 name|setRamUsageEstimator
 parameter_list|(
-name|RamUsageEstimator
-name|r
+name|boolean
+name|flag
 parameter_list|)
 block|{
-name|ramCalc
+name|estimateRam
 operator|=
-name|r
+name|flag
 expr_stmt|;
 block|}
 comment|/**     * Quick and dirty convenience method    * @see #check    */
@@ -226,16 +224,11 @@ operator|new
 name|FieldCacheSanityChecker
 argument_list|()
 decl_stmt|;
-comment|// doesn't check for interned
 name|sanityChecker
 operator|.
 name|setRamUsageEstimator
 argument_list|(
-operator|new
-name|RamUsageEstimator
-argument_list|(
-literal|false
-argument_list|)
+literal|true
 argument_list|)
 expr_stmt|;
 return|return
@@ -280,9 +273,7 @@ index|]
 return|;
 if|if
 condition|(
-literal|null
-operator|!=
-name|ramCalc
+name|estimateRam
 condition|)
 block|{
 for|for
@@ -308,9 +299,7 @@ name|i
 index|]
 operator|.
 name|estimateSize
-argument_list|(
-name|ramCalc
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 block|}
