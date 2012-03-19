@@ -118,20 +118,6 @@ name|lucene
 operator|.
 name|facet
 operator|.
-name|FacetException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
 name|index
 operator|.
 name|attributes
@@ -292,7 +278,7 @@ return|return
 name|ca
 return|;
 block|}
-comment|/**    * Add a category with multiple properties.    *     * @param categoryPath    *            The path of the category.    * @param properties    *            The properties to associate to the category.    * @return The {@link CategoryAttribute} of the category.    * @throws FacetException    *             When the category already has a property of the same type as    *             one of the new properties, and merging for this property type    *             is prohibited.    */
+comment|/**    * Add a category with multiple properties.    *     * @param categoryPath    *            The path of the category.    * @param properties    *            The properties to associate to the category.    * @return The {@link CategoryAttribute} of the category.    */
 DECL|method|addCategory
 specifier|public
 name|CategoryAttribute
@@ -305,8 +291,6 @@ name|CategoryProperty
 modifier|...
 name|properties
 parameter_list|)
-throws|throws
-name|FacetException
 block|{
 name|CategoryAttribute
 name|ca
