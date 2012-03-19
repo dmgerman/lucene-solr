@@ -1968,11 +1968,6 @@ name|sortFields
 argument_list|()
 expr_stmt|;
 name|int
-name|sumBytes
-init|=
-literal|0
-decl_stmt|;
-name|int
 name|sumPositions
 init|=
 literal|0
@@ -2044,11 +2039,6 @@ operator|+
 literal|":\n"
 argument_list|)
 expr_stmt|;
-name|int
-name|numBytes
-init|=
-literal|0
-decl_stmt|;
 name|int
 name|numPositions
 init|=
@@ -2151,12 +2141,6 @@ argument_list|(
 name|positions
 argument_list|)
 expr_stmt|;
-name|numBytes
-operator|+=
-name|term
-operator|.
-name|length
-expr_stmt|;
 block|}
 name|result
 operator|.
@@ -2184,13 +2168,19 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|", Kbytes="
+literal|", memory="
 operator|+
-operator|(
-name|numBytes
-operator|/
-literal|1000.0f
-operator|)
+name|RamUsageEstimator
+operator|.
+name|humanReadableUnits
+argument_list|(
+name|RamUsageEstimator
+operator|.
+name|sizeOf
+argument_list|(
+name|info
+argument_list|)
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|result
@@ -2203,10 +2193,6 @@ expr_stmt|;
 name|sumPositions
 operator|+=
 name|numPositions
-expr_stmt|;
-name|sumBytes
-operator|+=
-name|numBytes
 expr_stmt|;
 name|sumTerms
 operator|+=
@@ -2250,13 +2236,15 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|", Kbytes="
+literal|", memory="
 operator|+
-operator|(
-name|sumBytes
-operator|/
-literal|1000.0f
-operator|)
+name|RamUsageEstimator
+operator|.
+name|humanReadableUnits
+argument_list|(
+name|getMemorySize
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
