@@ -86,7 +86,7 @@ name|standard
 operator|.
 name|std31
 operator|.
-name|StandardTokenizerImpl31
+name|UAX29URLEmailTokenizerImpl31
 import|;
 end_import
 
@@ -102,9 +102,9 @@ name|analysis
 operator|.
 name|standard
 operator|.
-name|std31
+name|std34
 operator|.
-name|UAX29URLEmailTokenizerImpl31
+name|UAX29URLEmailTokenizerImpl34
 import|;
 end_import
 
@@ -553,13 +553,34 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_34
+name|LUCENE_36
 argument_list|)
 condition|)
 block|{
 return|return
 operator|new
 name|UAX29URLEmailTokenizerImpl
+argument_list|(
+name|input
+argument_list|)
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|matchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_34
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|UAX29URLEmailTokenizerImpl34
 argument_list|(
 name|input
 argument_list|)
