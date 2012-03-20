@@ -574,6 +574,10 @@ name|Assert
 import|;
 end_import
 
+begin_comment
+comment|/**  * General utility methods for Lucene unit tests.   */
+end_comment
+
 begin_class
 DECL|class|_TestUtil
 specifier|public

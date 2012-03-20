@@ -64,6 +64,10 @@ name|Arc
 import|;
 end_import
 
+begin_comment
+comment|/**  * Thin wrapper around an FST with root-arc caching for Japanese.  *<p>  * Depending upon fasterButMoreRam, either just kana (191 arcs),  * or kana and han (28,607 arcs) are cached. The latter offers  * additional performance at the cost of more RAM.  */
+end_comment
+
 begin_class
 DECL|class|TokenInfoFST
 specifier|public

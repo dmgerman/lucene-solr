@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Utility class for reading and writing versioned headers.  * This is useful to ensure that a file is in the format  * you think it is.  * @lucene.experimental  */
 end_comment
 
 begin_class

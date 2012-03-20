@@ -114,6 +114,10 @@ name|PositionIncrementAttribute
 import|;
 end_import
 
+begin_comment
+comment|/**  * Filter for DoubleMetaphone (supporting secondary codes)  */
+end_comment
+
 begin_class
 DECL|class|DoubleMetaphoneFilter
 specifier|public

@@ -82,6 +82,10 @@ name|AttributeReflector
 import|;
 end_import
 
+begin_comment
+comment|/**  * Attribute for Kuromoji inflection data.  */
+end_comment
+
 begin_class
 DECL|class|InflectionAttributeImpl
 specifier|public

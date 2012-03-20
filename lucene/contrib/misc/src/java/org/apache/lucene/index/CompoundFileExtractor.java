@@ -148,6 +148,10 @@ name|CommandLineUtil
 import|;
 end_import
 
+begin_comment
+comment|/**  * Command-line tool for extracting sub-files out of a compound file.  */
+end_comment
+
 begin_class
 DECL|class|CompoundFileExtractor
 specifier|public
@@ -297,7 +301,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Usage: org.apache.lucene.index.IndexReader [-extract] [-dir-impl X]<cfsfile>"
+literal|"Usage: org.apache.lucene.index.CompoundFileExtractor [-extract] [-dir-impl X]<cfsfile>"
 argument_list|)
 expr_stmt|;
 return|return;

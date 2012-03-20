@@ -132,6 +132,10 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_comment
+comment|/**  * Utility class for asserting expected hits in tests.  */
+end_comment
+
 begin_class
 DECL|class|CheckHits
 specifier|public
@@ -534,6 +538,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Just collects document ids into a set.    */
 DECL|class|SetCollector
 specifier|public
 specifier|static

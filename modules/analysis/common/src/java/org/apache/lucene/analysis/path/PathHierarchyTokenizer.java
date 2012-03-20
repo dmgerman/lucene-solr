@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * Take something like:  *  *<pre>  *  /something/something/else  *</pre>  *  * and make:  *  *<pre>  *  /something  *  /something/something  *  /something/something/else  *</pre>  */
+comment|/**  * Tokenizer for path-like hierarchies.  *<p>  * Take something like:  *  *<pre>  *  /something/something/else  *</pre>  *  * and make:  *  *<pre>  *  /something  *  /something/something  *  /something/something/else  *</pre>  */
 end_comment
 
 begin_class

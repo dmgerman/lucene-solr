@@ -527,6 +527,7 @@ block|{
 comment|// nothing to do; can be overridden
 block|}
 block|}
+comment|/**    * TokenStream output from a tee with optional filtering.    */
 DECL|class|SinkTokenStream
 specifier|public
 specifier|static

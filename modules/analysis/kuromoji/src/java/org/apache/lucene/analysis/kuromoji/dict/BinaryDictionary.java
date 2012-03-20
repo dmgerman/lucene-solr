@@ -174,6 +174,10 @@ name|IOUtils
 import|;
 end_import
 
+begin_comment
+comment|/**  * Base class for a binary-encoded in-memory dictionary.  */
+end_comment
+
 begin_class
 DECL|class|BinaryDictionary
 specifier|public

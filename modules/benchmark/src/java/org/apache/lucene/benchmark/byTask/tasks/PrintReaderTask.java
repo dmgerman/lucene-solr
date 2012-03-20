@@ -64,6 +64,10 @@ name|Directory
 import|;
 end_import
 
+begin_comment
+comment|/**  * Opens a reader and prints basic statistics.  */
+end_comment
+
 begin_class
 DECL|class|PrintReaderTask
 specifier|public

@@ -1883,6 +1883,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**    * Specifies configuration parameters for BalancedSegmentMergePolicy.    */
 DECL|class|MergePolicyParams
 specifier|public
 specifier|static

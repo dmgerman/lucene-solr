@@ -394,6 +394,10 @@ begin_comment
 comment|/* Uses a rolling Viterbi search to find the least cost  * segmentation (path) of the incoming characters.  For  * tokens that appear to be compound (> length 2 for all  * Kanji, or> length 7 for non-Kanji), we see if there is a  * 2nd best segmentation of that token after applying  * penalties to the long tokens.  If so, and the Mode is  * SEARCH_WITH_COMPOUND, we output the alternate  * segmentation as well. */
 end_comment
 
+begin_comment
+comment|/**  * Tokenizer for Japanese that uses morphological analysis.  */
+end_comment
+
 begin_class
 DECL|class|KuromojiTokenizer
 specifier|public

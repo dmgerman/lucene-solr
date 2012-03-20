@@ -30,6 +30,10 @@ name|HashMap
 import|;
 end_import
 
+begin_comment
+comment|/**  * Utility class for english translations of morphological data,  * used only for debugging.  */
+end_comment
+
 begin_class
 DECL|class|ToStringUtil
 specifier|public

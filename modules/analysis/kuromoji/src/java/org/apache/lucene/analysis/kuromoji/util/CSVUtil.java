@@ -54,6 +54,10 @@ name|Pattern
 import|;
 end_import
 
+begin_comment
+comment|/**  * Utility class for parsing CSV text  */
+end_comment
+
 begin_class
 DECL|class|CSVUtil
 specifier|public

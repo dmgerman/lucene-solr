@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * Take something like:  *  *<pre>  * www.site.co.uk  *</pre>  *  * and make:  *  *<pre>  * www.site.co.uk  * site.co.uk  * co.uk  * uk  *</pre>  *  */
+comment|/**  * Tokenizer for domain-like hierarchies.  *<p>  * Take something like:  *  *<pre>  * www.site.co.uk  *</pre>  *  * and make:  *  *<pre>  * www.site.co.uk  * site.co.uk  * co.uk  * uk  *</pre>  *  */
 end_comment
 
 begin_class

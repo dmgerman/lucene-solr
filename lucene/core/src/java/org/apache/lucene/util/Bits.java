@@ -17,7 +17,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Interface for Bitset-like structures.  * @lucene.experimental  */
 end_comment
 
 begin_interface
@@ -55,6 +55,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/**    * Bits impl of the specified length with all bits set.     */
 DECL|class|MatchAllBits
 specifier|public
 specifier|static
@@ -107,6 +108,7 @@ name|len
 return|;
 block|}
 block|}
+comment|/**    * Bits impl of the specified length with no bits set.     */
 DECL|class|MatchNoBits
 specifier|public
 specifier|static

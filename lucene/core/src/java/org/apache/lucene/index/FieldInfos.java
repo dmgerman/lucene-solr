@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Access to the Field Info file that describes document fields and whether or  *  not they are indexed. Each segment has a separate Field Info file. Objects  *  of this class are thread-safe for multiple readers, but only one thread can  *  be adding documents at a time, with no other reader or writer threads  *  accessing this object.  *  @lucene.experimental  */
+comment|/**   * Collection of {@link FieldInfo}s (accessible by number or by name).  *  @lucene.experimental  */
 end_comment
 
 begin_class

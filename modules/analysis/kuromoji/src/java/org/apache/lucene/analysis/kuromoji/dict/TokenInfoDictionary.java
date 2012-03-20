@@ -110,6 +110,10 @@ name|PositiveIntOutputs
 import|;
 end_import
 
+begin_comment
+comment|/**  * Binary dictionary implementation for a known-word dictionary model:  * Words are encoded into an FST mapping to a list of wordIDs.  */
+end_comment
+
 begin_class
 DECL|class|TokenInfoDictionary
 specifier|public

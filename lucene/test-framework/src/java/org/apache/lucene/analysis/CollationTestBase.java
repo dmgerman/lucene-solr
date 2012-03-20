@@ -394,6 +394,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * Base test class for testing Unicode collation.  */
+end_comment
+
 begin_class
 DECL|class|CollationTestBase
 specifier|public

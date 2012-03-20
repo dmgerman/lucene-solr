@@ -216,6 +216,10 @@ name|Version
 import|;
 end_import
 
+begin_comment
+comment|/**  * Analyzer for Japanese that uses morphological analysis.  */
+end_comment
+
 begin_class
 DECL|class|KuromojiAnalyzer
 specifier|public

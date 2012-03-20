@@ -106,6 +106,10 @@ name|IOUtils
 import|;
 end_import
 
+begin_comment
+comment|/**  * n-gram connection cost data  */
+end_comment
+
 begin_class
 DECL|class|ConnectionCosts
 specifier|public

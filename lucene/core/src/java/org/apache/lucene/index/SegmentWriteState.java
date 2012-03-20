@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Holder class for common parameters used during write.  * @lucene.experimental  */
 end_comment
 
 begin_class

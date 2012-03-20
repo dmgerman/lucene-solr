@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  * Base class for filtering a SpanQuery based on the position of a match.  **/
 end_comment
 
 begin_class

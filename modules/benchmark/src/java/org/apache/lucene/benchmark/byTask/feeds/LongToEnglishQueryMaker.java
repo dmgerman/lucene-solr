@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  * Creates queries whose content is a spelled-out<code>long</code> number   * starting from<code>{@link Long#MIN_VALUE} + 10</code>.  */
 end_comment
 
 begin_class

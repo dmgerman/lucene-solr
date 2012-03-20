@@ -208,6 +208,10 @@ name|PositiveIntOutputs
 import|;
 end_import
 
+begin_comment
+comment|/**  * Class for building a User Dictionary.  * This class allows for custom segmentation of phrases.  */
+end_comment
+
 begin_class
 DECL|class|UserDictionary
 specifier|public
