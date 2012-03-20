@@ -744,6 +744,7 @@ operator|new
 name|SegmentByteSizeDescending
 argument_list|()
 decl_stmt|;
+comment|/** Holds score and explanation for a single candidate    *  merge. */
 DECL|class|MergeScore
 specifier|protected
 specifier|static
