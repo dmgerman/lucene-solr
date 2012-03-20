@@ -996,6 +996,8 @@ argument_list|)
 expr_stmt|;
 comment|// some tokenizers, such as limiting tokenizers, call end() before incrementToken() returns false.
 comment|// these tests should disable this check (in general you should consume the entire stream)
+try|try
+block|{
 assert|assert
 operator|!
 name|enableChecks
@@ -1008,12 +1010,16 @@ name|INCREMENT_FALSE
 operator|:
 literal|"end() called before incrementToken() returned false!"
 assert|;
+block|}
+finally|finally
+block|{
 name|streamState
 operator|=
 name|State
 operator|.
 name|END
 expr_stmt|;
+block|}
 block|}
 comment|/**     * Toggle consumer workflow checking: if your test consumes tokenstreams normally you    * should leave this enabled.    */
 DECL|method|setEnableChecks
