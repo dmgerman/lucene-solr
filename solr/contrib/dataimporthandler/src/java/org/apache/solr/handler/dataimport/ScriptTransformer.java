@@ -250,8 +250,6 @@ name|Context
 name|context
 parameter_list|)
 block|{
-try|try
-block|{
 name|String
 name|scriptText
 init|=
@@ -288,6 +286,12 @@ block|}
 name|Object
 name|scriptEngineMgr
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|scriptEngineMgr
+operator|=
 name|Class
 operator|.
 name|forName
@@ -297,8 +301,26 @@ argument_list|)
 operator|.
 name|newInstance
 argument_list|()
-decl_stmt|;
-comment|// create a Script engine
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|wrapAndThrow
+argument_list|(
+name|SEVERE
+argument_list|,
+name|e
+argument_list|,
+literal|"<script> can be used only in java 6 or above"
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
 name|Method
 name|getEngineMethod
 init|=
@@ -327,6 +349,27 @@ argument_list|,
 name|scriptLang
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|wrapAndThrow
+argument_list|(
+name|SEVERE
+argument_list|,
+name|e
+argument_list|,
+literal|"Cannot load Script Engine for language: "
+operator|+
+name|scriptLang
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
 name|Method
 name|evalMethod
 init|=
@@ -387,7 +430,13 @@ name|SEVERE
 argument_list|,
 name|e
 argument_list|,
-literal|"<script> can be used only in java 6 or above"
+literal|"'eval' failed with language: "
+operator|+
+name|scriptLang
+operator|+
+literal|" and script: \n"
+operator|+
+name|scriptText
 argument_list|)
 expr_stmt|;
 block|}
