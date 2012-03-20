@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Static helper methods  *  * @lucene.experimental */
+comment|/** Static helper methods.  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -2410,6 +2410,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/** Holds a single input (IntsRef) + output, returned by    *  {@link #shortestPaths}. */
 DECL|class|MinResult
 specifier|public
 specifier|final

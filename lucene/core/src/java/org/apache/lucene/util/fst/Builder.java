@@ -93,7 +93,7 @@ comment|// javadoc
 end_comment
 
 begin_comment
-comment|/**  * Builds a minimal FST (maps an IntsRef term to an arbitrary  * output) from pre-sorted terms with outputs (the FST  * becomes an FSA if you use NoOutputs).  The FST is written  * on-the-fly into a compact serialized format byte array, which can  * be saved to / loaded from a Directory or used directly  * for traversal.  The FST is always finite (no cycles).  *  *<p>NOTE: The algorithm is described at  * http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.24.3698</p>  *  * The parameterized type T is the output type.  See the  * subclasses of {@link Outputs}.  *  * @lucene.experimental  */
+comment|/**  * Builds a minimal FST (maps an IntsRef term to an arbitrary  * output) from pre-sorted terms with outputs.  The FST  * becomes an FSA if you use NoOutputs.  The FST is written  * on-the-fly into a compact serialized format byte array, which can  * be saved to / loaded from a Directory or used directly  * for traversal.  The FST is always finite (no cycles).  *  *<p>NOTE: The algorithm is described at  * http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.24.3698</p>  *  * The parameterized type T is the output type.  See the  * subclasses of {@link Outputs}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -182,8 +182,7 @@ argument_list|>
 index|[]
 name|frontier
 decl_stmt|;
-comment|// Expert: you pass an instance of this if you want to do
-comment|// something "custom" as suffixes are "frozen":
+comment|/** Expert: this is invoked by Builder whenever a suffix    *  is serialized. */
 DECL|class|FreezeTail
 specifier|public
 specifier|static
@@ -1999,6 +1998,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Expert: holds a pending (seen but not yet serialized) arc. */
 DECL|class|Arc
 specifier|public
 specifier|static
@@ -2072,6 +2072,7 @@ literal|true
 return|;
 block|}
 block|}
+comment|/** Expert: holds a pending (seen but not yet serialized) Node. */
 DECL|class|UnCompiledNode
 specifier|public
 specifier|static

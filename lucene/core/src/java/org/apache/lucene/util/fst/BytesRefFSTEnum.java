@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Can next() and advance() through the terms in an FST  *   * @lucene.experimental */
+comment|/** Enumerates all input (BytesRef) + output pairs in an  *  FST.  *   * @lucene.experimental */
 end_comment
 
 begin_class
@@ -94,6 +94,7 @@ specifier|private
 name|BytesRef
 name|target
 decl_stmt|;
+comment|/** Holds a single input (BytesRef) + output pair. */
 DECL|class|InputOutput
 specifier|public
 specifier|static

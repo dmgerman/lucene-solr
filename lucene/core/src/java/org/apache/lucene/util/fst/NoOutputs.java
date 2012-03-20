@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Use this if you just want to build an FSA.  *  * @lucene.experimental  */
+comment|/**  * A null FST {@link Outputs} implementation; use this if  * you just want to build an FSA.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

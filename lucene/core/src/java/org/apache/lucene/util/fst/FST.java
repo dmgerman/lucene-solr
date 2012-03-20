@@ -325,7 +325,7 @@ comment|// (FSTEnum, Util) have problems with this!!
 end_comment
 
 begin_comment
-comment|/** Represents an FST using a compact byte[] format.  *<p> The format is similar to what's used by Morfologik  *  (http://sourceforge.net/projects/morfologik).  *  *<p><b>NOTE</b>: the FST cannot be larger than ~2.1 GB  *  because it uses int to address the byte[].  *  * @lucene.experimental  */
+comment|/** Represents an finite state machine (FST), using a  *  compact byte[] format.  *<p> The format is similar to what's used by Morfologik  *  (http://sourceforge.net/projects/morfologik).  *  *<p><b>NOTE</b>: the FST cannot be larger than ~2.1 GB  *  because it uses int to address the byte[].  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -338,6 +338,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
+comment|/** Specifies allowed range of each int input label for    *  this FST. */
 DECL|enum|INPUT_TYPE
 DECL|enum constant|BYTE1
 DECL|enum constant|BYTE2
@@ -674,6 +675,7 @@ argument_list|>
 name|cachedRootArcs
 index|[]
 decl_stmt|;
+comment|/** Represents a single arc. */
 DECL|class|Arc
 specifier|public
 specifier|final
@@ -5727,7 +5729,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Expert */
+comment|/** Reads the bytes from this FST.  Use {@link    *  #getBytesReader(int)} to obtain an instance for this    *  FST; re-use across calls (but only within a single    *  thread) for better performance. */
 DECL|class|BytesReader
 specifier|public
 specifier|static

@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents the outputs for an FST, providing the basic  * algebra needed for the FST.  *  *<p>Note that any operation that returns NO_OUTPUT must  * return the same singleton object from {@link  * #getNoOutput}.</p>  *  * @lucene.experimental  */
+comment|/**  * Represents the outputs for an FST, providing the basic  * algebra required for building and traversing the FST.  *  *<p>Note that any operation that returns NO_OUTPUT must  * return the same singleton object from {@link  * #getNoOutput}.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class

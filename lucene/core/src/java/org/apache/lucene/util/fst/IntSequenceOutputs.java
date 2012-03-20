@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Output is a sequence of ints, for each input term.  *  * @lucene.experimental  */
+comment|/**  * An FST {@link Outputs} implementation where each output  * is a sequence of ints.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

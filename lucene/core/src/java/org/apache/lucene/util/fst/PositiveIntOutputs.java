@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Output is a long, for each input term.  NOTE: the  * resulting FST is not guaranteed to be minimal!  See  * {@link Builder}.  *  * @lucene.experimental  */
+comment|/**  * An FST {@link Outputs} implementation where each output  * is a non-negative long value.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

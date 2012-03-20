@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Holds one or two longs for each input term.  If it's a  * single output, Long is returned; else, TwoLongs.  Order  * is preserved in the TwoLongs case, ie .first is the first  * input/output added to Builder, and .second is the  * second.  You cannot store 0 output with this (that's  * reserved to mean "no output")!  *  * NOTE: the resulting FST is not guaranteed to be minimal!  * See {@link Builder}.  *  * @lucene.experimental  */
+comment|/**  * An FST {@link Outputs} implementation where each output  * is one or two non-negative long values.  If it's a  * single output, Long is returned; else, TwoLongs.  Order  * is preserved in the TwoLongs case, ie .first is the first  * input/output added to Builder, and .second is the  * second.  You cannot store 0 output with this (that's  * reserved to mean "no output")!  *  * NOTE: the resulting FST is not guaranteed to be minimal!  * See {@link Builder}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -72,6 +72,7 @@ argument_list|<
 name|Object
 argument_list|>
 block|{
+comment|/** Holds two long outputs. */
 DECL|class|TwoLongs
 specifier|public
 specifier|final
