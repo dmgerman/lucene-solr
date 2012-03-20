@@ -179,6 +179,41 @@ name|GROUP
 operator|+
 literal|".facet"
 decl_stmt|;
+comment|/** Retrieve the top search groups (top group values) from the shards being queried.  */
+DECL|field|GROUP_DISTRIBUTED_FIRST
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GROUP_DISTRIBUTED_FIRST
+init|=
+name|GROUP
+operator|+
+literal|".distributed.first"
+decl_stmt|;
+comment|/** Retrieve the top groups from the shards being queries based on the specified search groups in    * the {@link #GROUP_DISTRIBUTED_TOPGROUPS_PREFIX} parameters.    */
+DECL|field|GROUP_DISTRIBUTED_SECOND
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GROUP_DISTRIBUTED_SECOND
+init|=
+name|GROUP
+operator|+
+literal|".distributed.second"
+decl_stmt|;
+DECL|field|GROUP_DISTRIBUTED_TOPGROUPS_PREFIX
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GROUP_DISTRIBUTED_TOPGROUPS_PREFIX
+init|=
+name|GROUP
+operator|+
+literal|".topgroups."
+decl_stmt|;
 block|}
 end_interface
 
