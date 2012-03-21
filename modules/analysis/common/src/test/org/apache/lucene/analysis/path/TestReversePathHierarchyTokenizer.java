@@ -1138,7 +1138,7 @@ literal|200
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
-literal|8192
+literal|1027
 argument_list|)
 expr_stmt|;
 block|}
