@@ -276,6 +276,20 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"51"
+argument_list|,
+literal|"store"
+argument_list|,
+literal|"12.34,-56.78"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
 argument_list|)
@@ -309,12 +323,12 @@ block|{
 name|String
 name|allq
 init|=
-literal|"id:[42 TO 50]"
+literal|"id:[42 TO 51]"
 decl_stmt|;
 name|String
 name|allr
 init|=
-literal|"*[count(//doc)=9]"
+literal|"*[count(//doc)=10]"
 decl_stmt|;
 name|String
 name|oner
@@ -1139,6 +1153,152 @@ literal|"movies_t foo_i"
 argument_list|)
 argument_list|,
 name|twor
+argument_list|)
+expr_stmt|;
+comment|// special psuedo-fields like _query_ and _val_
+comment|// special fields (and real field id) should be included by default
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"mm"
+argument_list|,
+literal|"100%"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:51"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"_query_:\"{!geofilt d=20 sfield=store pt=12.34,-56.78}\""
+argument_list|)
+argument_list|,
+name|oner
+argument_list|)
+expr_stmt|;
+comment|// should also work when explicitly allowed
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"mm"
+argument_list|,
+literal|"100%"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:51"
+argument_list|,
+literal|"uf"
+argument_list|,
+literal|"id _query_"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"_query_:\"{!geofilt d=20 sfield=store pt=12.34,-56.78}\""
+argument_list|)
+argument_list|,
+name|oner
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"mm"
+argument_list|,
+literal|"100%"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:51"
+argument_list|,
+literal|"uf"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"uf"
+argument_list|,
+literal|"_query_"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"_query_:\"{!geofilt d=20 sfield=store pt=12.34,-56.78}\""
+argument_list|)
+argument_list|,
+name|oner
+argument_list|)
+expr_stmt|;
+comment|// should fail when prohibited
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"mm"
+argument_list|,
+literal|"100%"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:51"
+argument_list|,
+literal|"uf"
+argument_list|,
+literal|"* -_query_"
+argument_list|,
+comment|// explicitly excluded
+literal|"q"
+argument_list|,
+literal|"_query_:\"{!geofilt d=20 sfield=store pt=12.34,-56.78}\""
+argument_list|)
+argument_list|,
+name|nor
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"mm"
+argument_list|,
+literal|"100%"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:51"
+argument_list|,
+literal|"uf"
+argument_list|,
+literal|"id"
+argument_list|,
+comment|// excluded by ommision
+literal|"q"
+argument_list|,
+literal|"_query_:\"{!geofilt d=20 sfield=store pt=12.34,-56.78}\""
+argument_list|)
+argument_list|,
+name|nor
 argument_list|)
 expr_stmt|;
 comment|/** stopword removal in conjunction with multi-word synonyms at query time      * break this test.      // multi-word synonyms      // remove id:50 which contans the false match           assertQ(req("defType", "edismax", "qf", "text_t", "indent","true", "debugQuery","true",            "q","-id:50 nyc"), oner     );     **/
