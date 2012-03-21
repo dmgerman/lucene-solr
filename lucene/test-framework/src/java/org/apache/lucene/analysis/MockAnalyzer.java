@@ -170,6 +170,15 @@ name|enableChecks
 init|=
 literal|true
 decl_stmt|;
+DECL|field|maxTokenLength
+specifier|private
+name|int
+name|maxTokenLength
+init|=
+name|MockTokenizer
+operator|.
+name|DEFAULT_MAX_TOKEN_LENGTH
+decl_stmt|;
 comment|/**    * Creates a new MockAnalyzer.    *     * @param random Random for payloads behavior    * @param runAutomaton DFA describing how tokenization should happen (e.g. [a-zA-Z]+)    * @param lowerCase true if the tokenizer should lowercase terms    * @param filter DFA describing how terms should be filtered (set of stopwords, etc)    * @param enablePositionIncrements true if position increments should reflect filtered terms.    */
 DECL|method|MockAnalyzer
 specifier|public
@@ -306,6 +315,8 @@ argument_list|,
 name|runAutomaton
 argument_list|,
 name|lowerCase
+argument_list|,
+name|maxTokenLength
 argument_list|)
 decl_stmt|;
 name|tokenizer
@@ -534,6 +545,23 @@ operator|.
 name|enableChecks
 operator|=
 name|enableChecks
+expr_stmt|;
+block|}
+comment|/**     * Toggle maxTokenLength for MockTokenizer    */
+DECL|method|setMaxTokenLength
+specifier|public
+name|void
+name|setMaxTokenLength
+parameter_list|(
+name|int
+name|length
+parameter_list|)
+block|{
+name|this
+operator|.
+name|maxTokenLength
+operator|=
+name|length
 expr_stmt|;
 block|}
 block|}
