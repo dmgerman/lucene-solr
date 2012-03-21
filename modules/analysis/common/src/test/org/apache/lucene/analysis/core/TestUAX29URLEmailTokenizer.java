@@ -3105,6 +3105,29 @@ name|RANDOM_MULTIPLIER
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** blast some random large strings through the analyzer */
+DECL|method|testRandomHugeStrings
+specifier|public
+name|void
+name|testRandomHugeStrings
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkRandomData
+argument_list|(
+name|random
+argument_list|,
+name|a
+argument_list|,
+literal|200
+operator|*
+name|RANDOM_MULTIPLIER
+argument_list|,
+literal|8192
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
