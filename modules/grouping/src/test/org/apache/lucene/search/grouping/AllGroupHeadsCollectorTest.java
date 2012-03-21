@@ -4017,6 +4017,15 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
+argument_list|)
 DECL|method|createRandomCollector
 specifier|private
 name|AbstractAllGroupHeadsCollector
