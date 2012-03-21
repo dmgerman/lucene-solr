@@ -2416,10 +2416,21 @@ name|finished
 operator|=
 literal|false
 expr_stmt|;
+name|inputSkipCount
+operator|=
+literal|0
+expr_stmt|;
+name|nextRead
+operator|=
+name|nextWrite
+operator|=
+literal|0
+expr_stmt|;
 comment|// In normal usage these resets would not be needed,
 comment|// since they reset-as-they-are-consumed, but the app
-comment|// may not consume all input tokens in which case we
-comment|// have leftover state here:
+comment|// may not consume all input tokens (or we might hit an
+comment|// exception), in which case we have leftover state
+comment|// here:
 for|for
 control|(
 name|PendingInput
