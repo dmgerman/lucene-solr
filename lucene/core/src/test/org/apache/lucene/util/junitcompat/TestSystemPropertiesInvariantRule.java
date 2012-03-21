@@ -95,6 +95,8 @@ DECL|class|TestSystemPropertiesInvariantRule
 specifier|public
 class|class
 name|TestSystemPropertiesInvariantRule
+extends|extends
+name|WithNestedTests
 block|{
 DECL|field|PROP_KEY1
 specifier|public
@@ -114,6 +116,17 @@ name|VALUE1
 init|=
 literal|"new-value-1"
 decl_stmt|;
+DECL|method|TestSystemPropertiesInvariantRule
+specifier|public
+name|TestSystemPropertiesInvariantRule
+parameter_list|()
+block|{
+name|super
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 DECL|class|Base
 specifier|public
 specifier|static
