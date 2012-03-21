@@ -52,22 +52,6 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|core
-operator|.
-name|WhitespaceTokenizer
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests ICUFoldingFilter  */
 end_comment
@@ -105,11 +89,15 @@ name|Tokenizer
 name|tokenizer
 init|=
 operator|new
-name|WhitespaceTokenizer
+name|MockTokenizer
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|reader
+argument_list|,
+name|MockTokenizer
+operator|.
+name|WHITESPACE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 return|return
