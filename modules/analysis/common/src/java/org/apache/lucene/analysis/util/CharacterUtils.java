@@ -14,6 +14,10 @@ name|util
 package|;
 end_package
 
+begin_comment
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|java
@@ -47,10 +51,6 @@ operator|.
 name|Version
 import|;
 end_import
-
-begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/**  * {@link CharacterUtils} provides a unified interface to Character-related  * operations to implement backwards compatible character operations based on a  * {@link Version} instance.  *   * @lucene.internal  */
@@ -184,6 +184,7 @@ name|bufferSize
 operator|<
 literal|2
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -191,6 +192,7 @@ argument_list|(
 literal|"buffersize must be>= 2"
 argument_list|)
 throw|;
+block|}
 return|return
 operator|new
 name|CharacterBuffer
@@ -240,7 +242,6 @@ annotation|@
 name|Override
 DECL|method|codePointAt
 specifier|public
-specifier|final
 name|int
 name|codePointAt
 parameter_list|(
@@ -359,6 +360,20 @@ name|offset
 operator|=
 literal|0
 expr_stmt|;
+specifier|final
+name|int
+name|offset
+decl_stmt|;
+comment|// Install the previously saved ending high surrogate:
+if|if
+condition|(
+name|buffer
+operator|.
+name|lastTrailingHighSurrogate
+operator|!=
+literal|0
+condition|)
+block|{
 name|charBuffer
 index|[
 literal|0
@@ -368,26 +383,18 @@ name|buffer
 operator|.
 name|lastTrailingHighSurrogate
 expr_stmt|;
-specifier|final
-name|int
 name|offset
-init|=
-name|buffer
-operator|.
-name|lastTrailingHighSurrogate
-operator|==
-literal|0
-condition|?
-literal|0
-else|:
+operator|=
 literal|1
-decl_stmt|;
-name|buffer
-operator|.
-name|lastTrailingHighSurrogate
+expr_stmt|;
+block|}
+else|else
+block|{
+name|offset
 operator|=
 literal|0
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|read
@@ -421,12 +428,23 @@ name|length
 operator|=
 name|offset
 expr_stmt|;
+name|buffer
+operator|.
+name|lastTrailingHighSurrogate
+operator|=
+literal|0
+expr_stmt|;
 return|return
 name|offset
 operator|!=
 literal|0
 return|;
 block|}
+assert|assert
+name|read
+operator|>
+literal|0
+assert|;
 name|buffer
 operator|.
 name|length
@@ -435,7 +453,76 @@ name|read
 operator|+
 name|offset
 expr_stmt|;
-comment|// special case if the read returns 0 and the lastTrailingHighSurrogate was set
+comment|// If we read only a single char, and that char was a
+comment|// high surrogate, read again:
+if|if
+condition|(
+name|buffer
+operator|.
+name|length
+operator|==
+literal|1
+operator|&&
+name|Character
+operator|.
+name|isHighSurrogate
+argument_list|(
+name|charBuffer
+index|[
+name|buffer
+operator|.
+name|length
+operator|-
+literal|1
+index|]
+argument_list|)
+condition|)
+block|{
+specifier|final
+name|int
+name|read2
+init|=
+name|reader
+operator|.
+name|read
+argument_list|(
+name|charBuffer
+argument_list|,
+literal|1
+argument_list|,
+name|charBuffer
+operator|.
+name|length
+operator|-
+literal|1
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|read2
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+comment|// NOTE: mal-formed input (ended on a high
+comment|// surrogate)!  Consumer must deal with it...
+return|return
+literal|true
+return|;
+block|}
+assert|assert
+name|read2
+operator|>
+literal|0
+assert|;
+name|buffer
+operator|.
+name|length
+operator|+=
+name|read2
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|buffer
@@ -472,6 +559,15 @@ name|length
 index|]
 expr_stmt|;
 block|}
+else|else
+block|{
+name|buffer
+operator|.
+name|lastTrailingHighSurrogate
+operator|=
+literal|0
+expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -494,7 +590,6 @@ annotation|@
 name|Override
 DECL|method|codePointAt
 specifier|public
-specifier|final
 name|int
 name|codePointAt
 parameter_list|(
@@ -664,12 +759,11 @@ specifier|private
 name|int
 name|length
 decl_stmt|;
+comment|// NOTE: not private so outer class can access without
+comment|// $access methods:
 DECL|field|lastTrailingHighSurrogate
-specifier|private
 name|char
 name|lastTrailingHighSurrogate
-init|=
-literal|0
 decl_stmt|;
 DECL|method|CharacterBuffer
 name|CharacterBuffer
