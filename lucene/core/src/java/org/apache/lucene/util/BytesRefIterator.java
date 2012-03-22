@@ -46,18 +46,6 @@ specifier|public
 interface|interface
 name|BytesRefIterator
 block|{
-comment|/** Singleton BytesRefIterator that iterates over 0 BytesRefs. */
-DECL|field|EMPTY_ITERATOR
-specifier|public
-specifier|static
-specifier|final
-name|BytesRefIterator
-name|EMPTY_ITERATOR
-init|=
-operator|new
-name|EmptyBytesRefIterator
-argument_list|()
-decl_stmt|;
 comment|/**    * Increments the iteration to the next {@link BytesRef} in the iterator.    * Returns the resulting {@link BytesRef} or<code>null</code> if the end of    * the iterator is reached. The returned BytesRef may be re-used across calls    * to next. After this method returns null, do not call it again: the results    * are undefined.    *     * @return the next {@link BytesRef} in the iterator or<code>null</code> if    *         the end of the iterator is reached.    * @throws IOException    */
 DECL|method|next
 specifier|public
@@ -77,20 +65,20 @@ argument_list|>
 name|getComparator
 parameter_list|()
 function_decl|;
-comment|// TODO: private?
-comment|/** Iterates over 0 BytesRefs. */
-DECL|class|EmptyBytesRefIterator
+comment|/** Singleton BytesRefIterator that iterates over 0 BytesRefs. */
+DECL|field|EMPTY
 specifier|public
-specifier|final
 specifier|static
-class|class
-name|EmptyBytesRefIterator
-implements|implements
+specifier|final
 name|BytesRefIterator
+name|EMPTY
+init|=
+operator|new
+name|BytesRefIterator
+argument_list|()
 block|{
 annotation|@
 name|Override
-DECL|method|next
 specifier|public
 name|BytesRef
 name|next
@@ -102,7 +90,6 @@ return|return
 literal|null
 return|;
 block|}
-DECL|method|getComparator
 specifier|public
 name|Comparator
 argument_list|<
@@ -116,6 +103,7 @@ literal|null
 return|;
 block|}
 block|}
+decl_stmt|;
 block|}
 end_interface
 

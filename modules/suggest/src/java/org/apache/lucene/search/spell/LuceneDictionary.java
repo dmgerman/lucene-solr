@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene Dictionary: terms taken from the given field  * of a Lucene index.  *  * When using IndexReader.terms(Term) the code must not call next() on TermEnum  * as the first call to TermEnum, see: http://issues.apache.org/jira/browse/LUCENE-6  *  *  *  */
+comment|/**  * Lucene Dictionary: terms taken from the given field  * of a Lucene index.  *  * When using IndexReader.terms(Term) the code must not call next() on TermEnum  * as the first call to TermEnum, see: http://issues.apache.org/jira/browse/LUCENE-6  */
 end_comment
 
 begin_class
@@ -173,7 +173,7 @@ block|{
 return|return
 name|BytesRefIterator
 operator|.
-name|EMPTY_ITERATOR
+name|EMPTY
 return|;
 block|}
 block|}
