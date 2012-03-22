@@ -484,6 +484,21 @@ name|DataImportHandlerException
 name|e
 parameter_list|)
 block|{
+name|assumeFalse
+argument_list|(
+literal|"This JVM does not have Rhino installed.  Test Skipped."
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"Cannot load Script Engine for language"
+argument_list|)
+argument_list|)
+expr_stmt|;
 throw|throw
 name|e
 throw|;
