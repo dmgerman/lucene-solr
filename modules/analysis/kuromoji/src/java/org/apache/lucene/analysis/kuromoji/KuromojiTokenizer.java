@@ -391,11 +391,7 @@ comment|// so other decompounders/tokenizers can reuse...
 end_comment
 
 begin_comment
-comment|/* Uses a rolling Viterbi search to find the least cost  * segmentation (path) of the incoming characters.  For  * tokens that appear to be compound (> length 2 for all  * Kanji, or> length 7 for non-Kanji), we see if there is a  * 2nd best segmentation of that token after applying  * penalties to the long tokens.  If so, and the Mode is  * SEARCH_WITH_COMPOUND, we output the alternate  * segmentation as well. */
-end_comment
-
-begin_comment
-comment|/**  * Tokenizer for Japanese that uses morphological analysis.  */
+comment|/**  * Tokenizer for Japanese that uses morphological analysis.  *<p>  * This tokenizer sets a number of additional attributes:  *<ul>  *<li>{@link BaseFormAttribute} containing base form for inflected  *       adjectives and verbs.  *<li>{@link PartOfSpeechAttribute} containing part-of-speech.  *<li>{@link ReadingAttribute} containing reading and pronunciation.  *<li>{@link InflectionAttribute} containing additional part-of-speech  *       information for inflected forms.  *</ul>  *<p>  * This tokenizer uses a rolling Viterbi search to find the   * least cost segmentation (path) of the incoming characters.    * For tokens that appear to be compound (> length 2 for all  * Kanji, or> length 7 for non-Kanji), we see if there is a  * 2nd best segmentation of that token after applying  * penalties to the long tokens.  If so, and the Mode is  * {@link Mode#SEARCH}, we output the alternate segmentation   * as well.  */
 end_comment
 
 begin_class
@@ -407,21 +403,26 @@ name|KuromojiTokenizer
 extends|extends
 name|Tokenizer
 block|{
+comment|/**    * Tokenization mode: this determines how the tokenizer handles    * compound and unknown words.    */
 DECL|enum|Mode
 specifier|public
 specifier|static
 enum|enum
 name|Mode
 block|{
+comment|/**      * Ordinary segmentation: no decomposition for compounds,      */
 DECL|enum constant|NORMAL
-DECL|enum constant|SEARCH
-DECL|enum constant|EXTENDED
 name|NORMAL
 block|,
+comment|/**      * Segmentation geared towards search: this includes a       * decompounding process for long nouns, also including      * the full compound token as a synonym.      */
+DECL|enum constant|SEARCH
 name|SEARCH
 block|,
+comment|/**      * Extended mode outputs unigrams for unknown words.      * @lucene.experimental      */
+DECL|enum constant|EXTENDED
 name|EXTENDED
 block|}
+comment|/**    * Default tokenization mode. Currently this is {@link Mode#SEARCH}.    */
 DECL|field|DEFAULT_MODE
 specifier|public
 specifier|static
@@ -822,6 +823,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/**    * Create a new KuromojiTokenizer.    *     * @param input Reader containing text    * @param userDictionary Optional: if non-null, user dictionary.    * @param discardPunctuation true if punctuation tokens should be dropped from the output.    * @param mode tokenization mode.    */
 DECL|method|KuromojiTokenizer
 specifier|public
 name|KuromojiTokenizer
