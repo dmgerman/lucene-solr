@@ -139,6 +139,8 @@ class|class
 name|ICUNormalizer2FilterFactory
 extends|extends
 name|BaseTokenFilterFactory
+implements|implements
+name|MultiTermAwareComponent
 block|{
 DECL|field|normalizer
 specifier|private
@@ -346,6 +348,16 @@ name|input
 argument_list|,
 name|normalizer
 argument_list|)
+return|;
+block|}
+DECL|method|getMultiTermComponent
+specifier|public
+name|Object
+name|getMultiTermComponent
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 block|}

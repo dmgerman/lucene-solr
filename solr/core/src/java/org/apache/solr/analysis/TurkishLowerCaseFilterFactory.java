@@ -57,6 +57,8 @@ class|class
 name|TurkishLowerCaseFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
+implements|implements
+name|MultiTermAwareComponent
 block|{
 DECL|method|create
 specifier|public
@@ -73,6 +75,18 @@ name|TurkishLowerCaseFilter
 argument_list|(
 name|input
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getMultiTermComponent
+specifier|public
+name|Object
+name|getMultiTermComponent
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 block|}

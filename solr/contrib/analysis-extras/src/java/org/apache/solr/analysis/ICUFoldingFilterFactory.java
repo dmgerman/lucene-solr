@@ -57,6 +57,8 @@ class|class
 name|ICUFoldingFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
+implements|implements
+name|MultiTermAwareComponent
 block|{
 annotation|@
 name|Override
@@ -75,6 +77,16 @@ name|ICUFoldingFilter
 argument_list|(
 name|input
 argument_list|)
+return|;
+block|}
+DECL|method|getMultiTermComponent
+specifier|public
+name|Object
+name|getMultiTermComponent
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 block|}
