@@ -126,8 +126,6 @@ argument_list|<
 name|String
 argument_list|>
 argument_list|(
-name|this
-operator|.
 name|ignoredProperties
 argument_list|)
 expr_stmt|;
