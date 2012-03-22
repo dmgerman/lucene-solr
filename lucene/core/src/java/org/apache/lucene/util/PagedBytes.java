@@ -186,6 +186,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/** Provides methods to read BytesRefs from a frozen    *  PagedBytes.    *    * @see #freeze */
 DECL|class|Reader
 specifier|public
 specifier|final

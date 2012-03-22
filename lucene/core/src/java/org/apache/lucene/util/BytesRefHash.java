@@ -2106,6 +2106,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Manages allocation of the per-term addresses. */
 DECL|class|BytesStartArray
 specifier|public
 specifier|abstract
@@ -2149,7 +2150,7 @@ name|bytesUsed
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * A direct {@link BytesStartArray} that tracks all memory allocation using an {@link Counter} instance.    */
+comment|/** A simple {@link BytesStartArray} that tracks all    *  memory allocation using a shared {@link Counter}    *  instance.  */
 DECL|class|TrackingDirectBytesStartArray
 specifier|public
 specifier|static
@@ -2353,6 +2354,7 @@ name|bytesUsed
 return|;
 block|}
 block|}
+comment|/** A simple {@link BytesStartArray} that tracks    *  memory allocation using a private {@link AtomicLong}    *  instance.  */
 DECL|class|DirectBytesStartArray
 specifier|public
 specifier|static
@@ -2361,6 +2363,9 @@ name|DirectBytesStartArray
 extends|extends
 name|BytesStartArray
 block|{
+comment|// TODO: can't we just merge this w/
+comment|// TrackingDirectBytesStartArray...?  Just add a ctor
+comment|// that makes a private bytesUsed?
 DECL|field|initSize
 specifier|protected
 specifier|final

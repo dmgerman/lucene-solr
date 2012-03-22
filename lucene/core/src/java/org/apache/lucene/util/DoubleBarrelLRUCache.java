@@ -72,6 +72,7 @@ parameter_list|,
 name|V
 parameter_list|>
 block|{
+comment|/** Object providing clone(); the key class must subclass this. */
 DECL|class|CloneableKey
 specifier|public
 specifier|static
