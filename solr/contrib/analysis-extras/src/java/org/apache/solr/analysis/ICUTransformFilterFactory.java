@@ -125,6 +125,8 @@ class|class
 name|ICUTransformFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
+implements|implements
+name|MultiTermAwareComponent
 block|{
 DECL|field|transliterator
 specifier|private
@@ -275,6 +277,18 @@ name|input
 argument_list|,
 name|transliterator
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getMultiTermComponent
+specifier|public
+name|Object
+name|getMultiTermComponent
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 block|}

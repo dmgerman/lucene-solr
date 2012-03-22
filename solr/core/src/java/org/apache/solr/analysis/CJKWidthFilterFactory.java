@@ -57,6 +57,8 @@ class|class
 name|CJKWidthFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
+implements|implements
+name|MultiTermAwareComponent
 block|{
 annotation|@
 name|Override
@@ -75,6 +77,18 @@ name|CJKWidthFilter
 argument_list|(
 name|input
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getMultiTermComponent
+specifier|public
+name|Object
+name|getMultiTermComponent
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 block|}
