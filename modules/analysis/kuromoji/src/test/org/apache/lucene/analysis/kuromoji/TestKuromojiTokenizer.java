@@ -1368,11 +1368,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** blast some random large strings through the analyzer */
-annotation|@
-name|Ignore
-argument_list|(
-literal|"FIXME: see LUCENE-3897"
-argument_list|)
 DECL|method|testRandomHugeStrings
 specifier|public
 name|void
