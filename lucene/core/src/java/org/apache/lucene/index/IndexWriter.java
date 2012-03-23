@@ -12781,7 +12781,7 @@ literal|"finishStartCommit"
 argument_list|)
 assert|;
 block|}
-comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Returns<code>true</code> if the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    */
 DECL|method|isLocked
 specifier|public
 specifier|static
