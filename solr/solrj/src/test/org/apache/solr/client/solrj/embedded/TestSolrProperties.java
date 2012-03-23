@@ -418,7 +418,7 @@ specifier|public
 class|class
 name|TestSolrProperties
 extends|extends
-name|AbstractEmbeddedSolrServerTest
+name|AbstractEmbeddedSolrServerTestCase
 block|{
 DECL|field|log
 specifier|protected

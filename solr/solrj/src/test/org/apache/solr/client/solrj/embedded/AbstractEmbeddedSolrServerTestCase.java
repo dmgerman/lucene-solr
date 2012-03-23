@@ -141,11 +141,11 @@ import|;
 end_import
 
 begin_class
-DECL|class|AbstractEmbeddedSolrServerTest
+DECL|class|AbstractEmbeddedSolrServerTestCase
 specifier|public
 specifier|abstract
 class|class
-name|AbstractEmbeddedSolrServerTest
+name|AbstractEmbeddedSolrServerTestCase
 extends|extends
 name|LuceneTestCase
 block|{
@@ -159,7 +159,7 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|AbstractEmbeddedSolrServerTest
+name|AbstractEmbeddedSolrServerTestCase
 operator|.
 name|class
 argument_list|)
