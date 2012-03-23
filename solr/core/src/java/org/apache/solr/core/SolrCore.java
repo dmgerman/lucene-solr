@@ -22,6 +22,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|IOUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|lucene
 operator|.
 name|codecs
@@ -40,7 +54,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexDeletionPolicy
+name|DirectoryReader
 import|;
 end_import
 
@@ -54,7 +68,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DirectoryReader
+name|IndexDeletionPolicy
 import|;
 end_import
 
@@ -97,6 +111,20 @@ operator|.
 name|store
 operator|.
 name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|LockObtainFailedException
 import|;
 end_import
 
@@ -238,7 +266,21 @@ name|solr
 operator|.
 name|request
 operator|.
-name|*
+name|SolrQueryRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrRequestHandler
 import|;
 end_import
 
@@ -442,7 +484,7 @@ name|util
 operator|.
 name|plugin
 operator|.
-name|SolrCoreAware
+name|PluginInfoInitialized
 import|;
 end_import
 
@@ -458,7 +500,7 @@ name|util
 operator|.
 name|plugin
 operator|.
-name|PluginInfoInitialized
+name|SolrCoreAware
 import|;
 end_import
 
@@ -466,13 +508,19 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|slf4j
 operator|.
-name|commons
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|io
+name|slf4j
 operator|.
-name|IOUtils
+name|LoggerFactory
 import|;
 end_import
 
@@ -507,6 +555,28 @@ operator|.
 name|io
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Constructor
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
 import|;
 end_import
 
@@ -557,48 +627,6 @@ operator|.
 name|atomic
 operator|.
 name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Constructor
 import|;
 end_import
 
@@ -1922,8 +1950,6 @@ condition|(
 name|indexExists
 operator|&&
 name|firstTime
-operator|&&
-name|removeLocks
 condition|)
 block|{
 comment|// to remove locks, the directory must already exist... so we create it
@@ -1962,17 +1988,20 @@ name|dir
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|removeLocks
+condition|)
+block|{
 name|log
 operator|.
 name|warn
 argument_list|(
 name|logid
 operator|+
-literal|"WARNING: Solr index directory '"
-operator|+
+literal|"WARNING: Solr index directory '{}' is locked.  Unlocking..."
+argument_list|,
 name|indexDir
-operator|+
-literal|"' is locked.  Unlocking..."
 argument_list|)
 expr_stmt|;
 name|IndexWriter
@@ -1982,6 +2011,30 @@ argument_list|(
 name|dir
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+name|logid
+operator|+
+literal|"Solr index directory '{}' is locked.  Throwing exception"
+argument_list|,
+name|indexDir
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|LockObtainFailedException
+argument_list|(
+literal|"Index locked for write for core "
+operator|+
+name|name
+argument_list|)
+throw|;
+block|}
 block|}
 name|directoryFactory
 operator|.
