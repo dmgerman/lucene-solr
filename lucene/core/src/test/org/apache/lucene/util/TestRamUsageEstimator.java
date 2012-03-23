@@ -503,7 +503,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"      Memory estimates may be inaccurate."
+literal|" Memory estimates may be inaccurate."
 argument_list|)
 expr_stmt|;
 name|System
@@ -512,11 +512,29 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"      Please report this to the Lucene mailing list. JVM version: "
+literal|" Please report this to the Lucene mailing list."
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"JVM version: "
 operator|+
 name|RamUsageEstimator
 operator|.
 name|JVM_INFO_STRING
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"UnsupportedFeatures:"
 argument_list|)
 expr_stmt|;
 for|for
@@ -534,15 +552,43 @@ name|System
 operator|.
 name|err
 operator|.
-name|println
+name|print
 argument_list|(
-literal|"      - "
+literal|" - "
 operator|+
 name|f
 operator|.
 name|toString
 argument_list|()
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|f
+operator|==
+name|RamUsageEstimator
+operator|.
+name|JvmFeature
+operator|.
+name|OBJECT_ALIGNMENT
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|print
+argument_list|(
+literal|"; Please note: 32bit Oracle/Sun VMs don't allow exact OBJECT_ALIGNMENT retrieval, this is a known issue."
+argument_list|)
+expr_stmt|;
+block|}
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|()
 expr_stmt|;
 block|}
 block|}

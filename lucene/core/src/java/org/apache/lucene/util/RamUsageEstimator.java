@@ -91,25 +91,25 @@ block|{
 DECL|enum constant|OBJECT_REFERENCE_SIZE
 name|OBJECT_REFERENCE_SIZE
 argument_list|(
-literal|"Object reference size estimated using array index scale."
+literal|"Object reference size estimated using array index scale"
 argument_list|)
 block|,
 DECL|enum constant|ARRAY_HEADER_SIZE
 name|ARRAY_HEADER_SIZE
 argument_list|(
-literal|"Array header size estimated using array based offset."
+literal|"Array header size estimated using array based offset"
 argument_list|)
 block|,
 DECL|enum constant|FIELD_OFFSETS
 name|FIELD_OFFSETS
 argument_list|(
-literal|"Shallow instance size based on field offsets."
+literal|"Shallow instance size based on field offsets"
 argument_list|)
 block|,
 DECL|enum constant|OBJECT_ALIGNMENT
 name|OBJECT_ALIGNMENT
 argument_list|(
-literal|"Object alignment retrieved from HotSpotDiagnostic MX bean."
+literal|"Object alignment retrieved from HotSpotDiagnostic MX bean"
 argument_list|)
 block|;
 DECL|field|description
@@ -996,8 +996,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 specifier|final
 name|Object
 name|vmOption
@@ -1045,30 +1043,6 @@ operator|.
 name|OBJECT_ALIGNMENT
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InvocationTargetException
-name|ite
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|!
-operator|(
-name|ite
-operator|.
-name|getCause
-argument_list|()
-operator|instanceof
-name|IllegalArgumentException
-operator|)
-condition|)
-throw|throw
-name|ite
-throw|;
-comment|// ignore the error completely and use default of 8 (32 bit JVMs).
-block|}
 block|}
 catch|catch
 parameter_list|(
