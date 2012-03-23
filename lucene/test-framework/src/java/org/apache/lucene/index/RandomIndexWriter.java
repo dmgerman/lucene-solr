@@ -624,7 +624,7 @@ block|}
 comment|/* TODO: find some what to make that random...      * This must be fixed across all fixed bytes       * fields in one index. so if you open another writer      * this might change if I use r.nextInt(x)      * maybe we can peek at the existing files here?       */
 name|fixedBytesLength
 operator|=
-literal|37
+literal|17
 expr_stmt|;
 name|docValuesFieldPrefix
 operator|=
@@ -1062,7 +1062,7 @@ name|randomUnicodeString
 argument_list|(
 name|random
 argument_list|,
-literal|200
+literal|20
 argument_list|)
 argument_list|)
 argument_list|,
