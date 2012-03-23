@@ -50,10 +50,10 @@ name|TestRamUsageEstimator
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|method|testBasic
+DECL|method|testSanity
 specifier|public
 name|void
-name|testBasic
+name|testSanity
 parameter_list|()
 block|{
 name|assertTrue
@@ -63,7 +63,7 @@ argument_list|(
 operator|new
 name|String
 argument_list|(
-literal|"test strin"
+literal|"test string"
 argument_list|)
 argument_list|)
 operator|>
@@ -141,7 +141,7 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertTrue
 argument_list|(
 name|shallowSizeOfInstance
 argument_list|(
@@ -149,7 +149,7 @@ name|Holder
 operator|.
 name|class
 argument_list|)
-argument_list|,
+operator|==
 name|shallowSizeOfInstance
 argument_list|(
 name|HolderSubclass2
@@ -169,7 +169,7 @@ block|{
 operator|new
 name|String
 argument_list|(
-literal|"test strin"
+literal|"test string"
 argument_list|)
 block|,
 operator|new
@@ -494,7 +494,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"WARN: Your JVM does not support the Oracle/Sun extensions (Hotspot diagnostics, sun.misc.Unsafe),"
+literal|"WARN: Your JVM does not support certain Oracle/Sun extensions."
 argument_list|)
 expr_stmt|;
 name|System
@@ -503,7 +503,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"so the memory estimates may be inprecise."
+literal|"      Memory estimates may be inaccurate."
 argument_list|)
 expr_stmt|;
 name|System
@@ -512,82 +512,39 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"Please report this to the Lucene mailing list, noting your JVM version: "
+literal|"      Please report this to the Lucene mailing list. JVM version: "
 operator|+
-name|Constants
+name|RamUsageEstimator
 operator|.
-name|JAVA_VENDOR
-operator|+
-literal|" "
-operator|+
-name|Constants
-operator|.
-name|JAVA_VERSION
+name|JVM_INFO_STRING
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|VERBOSE
-condition|)
+for|for
+control|(
+name|JvmFeature
+name|f
+range|:
+name|RamUsageEstimator
+operator|.
+name|getUnsupportedFeatures
+argument_list|()
+control|)
 block|{
 name|System
 operator|.
-name|out
+name|err
 operator|.
 name|println
 argument_list|(
-literal|"This JVM is 64bit: "
+literal|"      - "
 operator|+
-name|Constants
+name|f
 operator|.
-name|JRE_IS_64BIT
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Reference size in this JVM: "
-operator|+
-name|NUM_BYTES_OBJECT_REF
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Object header size in this JVM: "
-operator|+
-name|NUM_BYTES_OBJECT_HEADER
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Array header size in this JVM: "
-operator|+
-name|NUM_BYTES_ARRAY_HEADER
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Object alignment in this JVM: "
-operator|+
-name|NUM_BYTES_OBJECT_ALIGNMENT
-argument_list|)
-expr_stmt|;
+block|}
 block|}
 name|assertTrue
 argument_list|(
@@ -610,7 +567,7 @@ condition|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"For 32bit JVMs, reference size must always be 4"
+literal|"For 32bit JVMs, reference size must always be 4?"
 argument_list|,
 literal|4
 argument_list|,
@@ -659,7 +616,7 @@ decl_stmt|;
 DECL|method|Holder
 name|Holder
 parameter_list|()
-block|{     }
+block|{}
 DECL|method|Holder
 name|Holder
 parameter_list|(
