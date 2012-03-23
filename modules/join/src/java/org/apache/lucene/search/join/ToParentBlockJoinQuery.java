@@ -1076,7 +1076,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"ScoreMode is None"
+literal|"ScoreMode is None; you must pass trackScores=false to ToParentBlockJoinCollector"
 argument_list|)
 throw|;
 block|}
