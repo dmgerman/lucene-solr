@@ -57,6 +57,8 @@ class|class
 name|IrishLowerCaseFilterFactory
 extends|extends
 name|BaseTokenFilterFactory
+implements|implements
+name|MultiTermAwareComponent
 block|{
 annotation|@
 name|Override
@@ -75,6 +77,19 @@ name|IrishLowerCaseFilter
 argument_list|(
 name|input
 argument_list|)
+return|;
+block|}
+comment|// this will 'mostly work', except for special cases, just like most other filters
+annotation|@
+name|Override
+DECL|method|getMultiTermComponent
+specifier|public
+name|Object
+name|getMultiTermComponent
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 block|}
