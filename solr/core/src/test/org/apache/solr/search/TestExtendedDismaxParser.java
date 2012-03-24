@@ -347,6 +347,28 @@ literal|"*[count(//doc)=0]"
 decl_stmt|;
 name|assertQ
 argument_list|(
+literal|"blank q"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|" "
+argument_list|,
+literal|"q.alt"
+argument_list|,
+name|allq
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|)
+argument_list|,
+name|allr
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
 literal|"expected doc is missing (using un-escaped edismax w/qf)"
 argument_list|,
 name|req

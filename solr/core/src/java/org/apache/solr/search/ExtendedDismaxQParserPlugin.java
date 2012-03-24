@@ -827,10 +827,13 @@ literal|null
 operator|||
 name|userQuery
 operator|.
+name|trim
+argument_list|()
+operator|.
 name|length
 argument_list|()
-operator|<
-literal|1
+operator|==
+literal|0
 condition|)
 block|{
 comment|// If no query is specified, we may have an alternate
