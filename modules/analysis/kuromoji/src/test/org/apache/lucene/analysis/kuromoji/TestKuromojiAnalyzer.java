@@ -84,6 +84,10 @@ name|Mode
 import|;
 end_import
 
+begin_comment
+comment|/**  * Test Kuromoji Japanese morphological analyzer  */
+end_comment
+
 begin_class
 DECL|class|TestKuromojiAnalyzer
 specifier|public
@@ -214,7 +218,6 @@ name|getDefaultStopTags
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/*     //TokenStream ts = a.tokenStream("foo", new StringReader("å¦¹ã®å²å­ã§ããä¿ºã¨å¹´å­ã§ãä»åé¨çã§ãã"));     TokenStream ts = a.tokenStream("foo", new StringReader("&#x250cdf66<!--\"<!--#<!--;?><!--#<!--#><!---->?>-->;"));     ts.reset();     CharTermAttribute termAtt = ts.addAttribute(CharTermAttribute.class);     while(ts.incrementToken()) {       System.out.println("  " + termAtt.toString());     }     System.out.println("DONE PARSE\n\n");     */
 comment|// Senior software engineer:
 name|assertAnalyzesToPositions
 argument_list|(
@@ -230,11 +233,61 @@ literal|"ã·ãã¢"
 block|,
 literal|"ã·ãã¢ã½ããã¦ã§ã¢ã¨ã³ã¸ãã¢"
 block|,
+comment|// zero pos inc
 literal|"ã½ããã¦ã§ã¢"
 block|,
 literal|"ã¨ã³ã¸ãã¢"
 block|}
 argument_list|,
+operator|new
+name|int
+index|[]
+block|{
+literal|1
+block|,
+literal|0
+block|,
+literal|1
+block|,
+literal|1
+block|}
+argument_list|,
+operator|new
+name|int
+index|[]
+block|{
+literal|1
+block|,
+literal|3
+block|,
+literal|1
+block|,
+literal|1
+block|}
+argument_list|)
+expr_stmt|;
+comment|// Senior project manager: also tests katakana spelling variation stemming
+name|assertAnalyzesToPositions
+argument_list|(
+name|a
+argument_list|,
+literal|"ã·ãã¢ãã­ã¸ã§ã¯ãããã¼ã¸ã£ã¼"
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"ã·ãã¢"
+block|,
+literal|"ã·ãã¢ãã­ã¸ã§ã¯ãããã¼ã¸ã£"
+block|,
+comment|// trailing ã¼ removed by stemming, zero pos inc
+literal|"ãã­ã¸ã§ã¯ã"
+block|,
+literal|"ããã¼ã¸ã£"
+block|}
+argument_list|,
+comment|// trailing ã¼ removed by stemming
 operator|new
 name|int
 index|[]

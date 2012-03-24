@@ -544,6 +544,14 @@ expr_stmt|;
 name|stream
 operator|=
 operator|new
+name|KuromojiKatakanaStemFilter
+argument_list|(
+name|stream
+argument_list|)
+expr_stmt|;
+name|stream
+operator|=
+operator|new
 name|LowerCaseFilter
 argument_list|(
 name|matchVersion
