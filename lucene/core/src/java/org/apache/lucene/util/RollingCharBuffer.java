@@ -309,6 +309,18 @@ operator|-
 name|pos
 operator|<=
 name|count
+operator|:
+literal|"nextPos="
+operator|+
+name|nextPos
+operator|+
+literal|" pos="
+operator|+
+name|pos
+operator|+
+literal|" count="
+operator|+
+name|count
 assert|;
 specifier|final
 name|int
