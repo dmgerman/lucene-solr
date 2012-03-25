@@ -78,6 +78,13 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|len
+operator|>
+literal|0
+condition|)
+block|{
 name|len
 operator|=
 name|normalize
@@ -87,6 +94,7 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|len
 return|;
