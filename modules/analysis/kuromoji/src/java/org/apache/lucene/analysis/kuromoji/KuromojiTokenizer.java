@@ -3199,7 +3199,7 @@ specifier|final
 name|int
 name|cost
 init|=
-name|posData
+name|posData2
 operator|.
 name|costs
 index|[
