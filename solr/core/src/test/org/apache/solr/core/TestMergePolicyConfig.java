@@ -201,6 +201,20 @@ argument_list|,
 literal|0.001
 argument_list|)
 expr_stmt|;
+comment|// make sure we overrode noCFSRatio (useless because we disabled useCompoundFile,
+comment|// but just to make sure it works)
+name|assertEquals
+argument_list|(
+literal|1.0D
+argument_list|,
+name|tieredMP
+operator|.
+name|getNoCFSRatio
+argument_list|()
+argument_list|,
+literal|0.001
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
