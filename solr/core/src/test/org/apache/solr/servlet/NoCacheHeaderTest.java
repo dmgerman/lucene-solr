@@ -102,6 +102,8 @@ name|NoCacheHeaderTest
 extends|extends
 name|CacheHeaderTestBase
 block|{
+comment|// TODO: fix this test not to directly use the test-files copied to build/
+comment|// as its home. it could interfere with other tests!
 annotation|@
 name|BeforeClass
 DECL|method|beforeTest
