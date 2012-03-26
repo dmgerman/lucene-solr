@@ -900,7 +900,19 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"endOffset must be>= startOffset"
+literal|"endOffset must be>= startOffset, got startOffset="
+operator|+
+name|offsetAtt
+operator|.
+name|startOffset
+argument_list|()
+operator|+
+literal|",endOffset="
+operator|+
+name|offsetAtt
+operator|.
+name|endOffset
+argument_list|()
 argument_list|,
 name|offsetAtt
 operator|.
@@ -2973,9 +2985,11 @@ literal|"TEST FAIL: useCharFilter="
 operator|+
 name|useCharFilter
 operator|+
-literal|" text="
+literal|" text='"
 operator|+
 name|text
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 throw|throw
