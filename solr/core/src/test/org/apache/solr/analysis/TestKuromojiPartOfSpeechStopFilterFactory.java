@@ -111,11 +111,11 @@ literal|"#  verb-main:\n"
 operator|+
 literal|"åè©-èªç«\n"
 decl_stmt|;
-name|KuromojiTokenizerFactory
+name|JapaneseTokenizerFactory
 name|tokenizerFactory
 init|=
 operator|new
-name|KuromojiTokenizerFactory
+name|JapaneseTokenizerFactory
 argument_list|()
 decl_stmt|;
 name|tokenizerFactory
@@ -152,11 +152,11 @@ literal|"ç§ã¯å¶éã¹ãã¼ããè¶ãã�
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|KuromojiPartOfSpeechStopFilterFactory
+name|JapanesePartOfSpeechStopFilterFactory
 name|factory
 init|=
 operator|new
-name|KuromojiPartOfSpeechStopFilterFactory
+name|JapanesePartOfSpeechStopFilterFactory
 argument_list|()
 decl_stmt|;
 name|Map

@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple tests for {@link KuromojiTokenizerFactory}  */
+comment|/**  * Simple tests for {@link JapaneseTokenizerFactory}  */
 end_comment
 
 begin_class
@@ -104,11 +104,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|KuromojiTokenizerFactory
+name|JapaneseTokenizerFactory
 name|factory
 init|=
 operator|new
-name|KuromojiTokenizerFactory
+name|JapaneseTokenizerFactory
 argument_list|()
 decl_stmt|;
 name|factory
@@ -211,11 +211,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|KuromojiTokenizerFactory
+name|JapaneseTokenizerFactory
 name|factory
 init|=
 operator|new
-name|KuromojiTokenizerFactory
+name|JapaneseTokenizerFactory
 argument_list|()
 decl_stmt|;
 name|factory
@@ -280,11 +280,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|KuromojiTokenizerFactory
+name|JapaneseTokenizerFactory
 name|factory
 init|=
 operator|new
-name|KuromojiTokenizerFactory
+name|JapaneseTokenizerFactory
 argument_list|()
 decl_stmt|;
 name|Map
@@ -381,11 +381,11 @@ literal|"# Custom reading for sumo wrestler\n"
 operator|+
 literal|"æéé¾,æéé¾,ã¢ãµã·ã§ã¦ãªã¥ã¦,ã«ã¹ã¿ã äººå\n"
 decl_stmt|;
-name|KuromojiTokenizerFactory
+name|JapaneseTokenizerFactory
 name|factory
 init|=
 operator|new
-name|KuromojiTokenizerFactory
+name|JapaneseTokenizerFactory
 argument_list|()
 decl_stmt|;
 name|Map
