@@ -85,14 +85,14 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Simple tests for {@link KuromojiPartOfSpeechStopFilter}  */
+comment|/**  * Simple tests for {@link JapanesePartOfSpeechStopFilterFactory}  */
 end_comment
 
 begin_class
-DECL|class|TestKuromojiPartOfSpeechStopFilterFactory
+DECL|class|TestJapanesePartOfSpeechStopFilterFactory
 specifier|public
 class|class
-name|TestKuromojiPartOfSpeechStopFilterFactory
+name|TestJapanesePartOfSpeechStopFilterFactory
 extends|extends
 name|BaseTokenTestCase
 block|{

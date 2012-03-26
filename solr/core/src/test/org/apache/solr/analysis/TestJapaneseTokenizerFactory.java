@@ -89,10 +89,10 @@ comment|/**  * Simple tests for {@link JapaneseTokenizerFactory}  */
 end_comment
 
 begin_class
-DECL|class|TestKuromojiTokenizerFactory
+DECL|class|TestJapaneseTokenizerFactory
 specifier|public
 class|class
-name|TestKuromojiTokenizerFactory
+name|TestJapaneseTokenizerFactory
 extends|extends
 name|BaseTokenTestCase
 block|{

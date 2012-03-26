@@ -69,10 +69,10 @@ comment|/**  * Simple tests for {@link JapaneseBaseFormFilterFactory}  */
 end_comment
 
 begin_class
-DECL|class|TestKuromojiBaseFormFilterFactory
+DECL|class|TestJapaneseBaseFormFilterFactory
 specifier|public
 class|class
-name|TestKuromojiBaseFormFilterFactory
+name|TestJapaneseBaseFormFilterFactory
 extends|extends
 name|BaseTokenTestCase
 block|{
