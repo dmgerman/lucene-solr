@@ -187,6 +187,7 @@ name|class
 argument_list|)
 decl_stmt|;
 DECL|field|delegate
+specifier|private
 name|EntityProcessor
 name|delegate
 decl_stmt|;
@@ -196,20 +197,22 @@ name|DocBuilder
 name|docBuilder
 decl_stmt|;
 DECL|field|onError
+specifier|private
 name|String
 name|onError
 decl_stmt|;
 DECL|field|context
-specifier|protected
+specifier|private
 name|Context
 name|context
 decl_stmt|;
 DECL|field|resolver
-specifier|protected
+specifier|private
 name|VariableResolverImpl
 name|resolver
 decl_stmt|;
 DECL|field|entityName
+specifier|private
 name|String
 name|entityName
 decl_stmt|;
@@ -289,7 +292,6 @@ operator|.
 name|getVariableResolver
 argument_list|()
 expr_stmt|;
-comment|//context has to be set correctly . keep the copy of the old one so that it can be restored in destroy
 if|if
 condition|(
 name|entityName

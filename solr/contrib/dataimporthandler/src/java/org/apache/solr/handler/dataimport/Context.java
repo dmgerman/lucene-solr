@@ -344,22 +344,6 @@ name|String
 name|template
 parameter_list|)
 function_decl|;
-DECL|field|CURRENT_CONTEXT
-specifier|static
-specifier|final
-name|ThreadLocal
-argument_list|<
-name|Context
-argument_list|>
-name|CURRENT_CONTEXT
-init|=
-operator|new
-name|ThreadLocal
-argument_list|<
-name|Context
-argument_list|>
-argument_list|()
-decl_stmt|;
 block|}
 end_class
 

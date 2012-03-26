@@ -783,7 +783,7 @@ name|getNext
 argument_list|()
 return|;
 block|}
-comment|/**    * The following method changes the rowIterator mutable field. It requires    * external synchronization. In fact when used in a multi-threaded setup the nextRow() method is called from a    * synchronized block {@link ThreadedEntityProcessorWrapper#nextRow()}, so this    * is taken care of.    */
+comment|/**    * The following method changes the rowIterator mutable field. It requires    * external synchronization.     */
 DECL|method|buildIterator
 specifier|private
 name|void

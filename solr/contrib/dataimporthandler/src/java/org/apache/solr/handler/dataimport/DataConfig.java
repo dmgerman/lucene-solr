@@ -226,12 +226,6 @@ name|SchemaField
 argument_list|>
 argument_list|()
 decl_stmt|;
-DECL|field|isMultiThreaded
-name|boolean
-name|isMultiThreaded
-init|=
-literal|false
-decl_stmt|;
 DECL|class|Document
 specifier|public
 specifier|static
