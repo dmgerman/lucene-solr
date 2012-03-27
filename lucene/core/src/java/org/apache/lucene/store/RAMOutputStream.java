@@ -710,11 +710,17 @@ name|sizeInBytes
 parameter_list|()
 block|{
 return|return
+operator|(
+name|long
+operator|)
 name|file
 operator|.
 name|numBuffers
 argument_list|()
 operator|*
+operator|(
+name|long
+operator|)
 name|BUFFER_SIZE
 return|;
 block|}
