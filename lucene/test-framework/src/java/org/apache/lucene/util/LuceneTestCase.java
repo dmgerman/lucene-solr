@@ -6238,6 +6238,23 @@ argument_list|(
 name|TEST_THROTTLING
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: LuceneTestCase.newDirectory: returning "
+operator|+
+name|dir
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|dir
 return|;

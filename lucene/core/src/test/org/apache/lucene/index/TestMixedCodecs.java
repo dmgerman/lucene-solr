@@ -231,6 +231,27 @@ condition|)
 block|{
 if|if
 condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: "
+operator|+
+name|docUpto
+operator|+
+literal|" of "
+operator|+
+name|NUM_DOCS
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|docsLeftInThisSegment
 operator|==
 literal|0
@@ -355,6 +376,21 @@ operator|++
 expr_stmt|;
 name|docsLeftInThisSegment
 operator|--
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: now delete..."
+argument_list|)
 expr_stmt|;
 block|}
 comment|// Random delete half the docs:
