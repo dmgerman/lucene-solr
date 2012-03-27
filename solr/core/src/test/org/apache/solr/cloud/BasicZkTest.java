@@ -898,14 +898,7 @@ name|SAXParseException
 name|e
 parameter_list|)
 block|{            }
-name|zkController
-operator|.
-name|getZkClient
-argument_list|()
-operator|.
-name|printLayoutToStdOut
-argument_list|()
-expr_stmt|;
+comment|//zkController.getZkClient().printLayoutToStdOut();
 block|}
 DECL|method|request
 specifier|public
