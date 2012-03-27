@@ -4096,6 +4096,17 @@ condition|)
 block|{
 comment|// we don't care if one has a version and the other doesnt -
 comment|// control vs distrib
+comment|// TODO: this should prob be done by adding an ignore on _version_ rather than mutating the responses?
+if|if
+condition|(
+name|a
+operator|.
+name|getResults
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|SolrDocument
@@ -4115,6 +4126,17 @@ literal|"_version_"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|b
+operator|.
+name|getResults
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|SolrDocument
@@ -4133,6 +4155,7 @@ argument_list|(
 literal|"_version_"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|cmp
