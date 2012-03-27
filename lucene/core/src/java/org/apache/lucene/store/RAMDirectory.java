@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A memory-resident {@link Directory} implementation.  Locking  * implementation is by default the {@link SingleInstanceLockFactory}  * but can be changed with {@link #setLockFactory}.  */
+comment|/**  * A memory-resident {@link Directory} implementation.  Locking  * implementation is by default the {@link SingleInstanceLockFactory}  * but can be changed with {@link #setLockFactory}.  *   *<p><b>Warning:</b> This class is not intended to work with huge  * indexes. Everything beyond several hundred megabytes will waste  * resources (GC cycles), because it uses an internal buffer size  * of 1024 bytes, producing millions of {@code byte[1024]} arrays.  * This class is optimized for small memory-resident indexes.  * It also has bad concurrency on multithreaded environments.  *   *<p>It is recommended to materialize large indexes on disk and use  * {@link MMapDirectory}, which is a high-performance directory  * implementation working directly on the file system cache of the  * operating system, so copying data to Java heap space is not useful.  */
 end_comment
 
 begin_class
@@ -182,7 +182,7 @@ block|{
 comment|// Cannot happen
 block|}
 block|}
-comment|/**    * Creates a new<code>RAMDirectory</code> instance from a different    *<code>Directory</code> implementation.  This can be used to load    * a disk-based index into memory.    *<P>    * This should be used only with indices that can fit into memory.    *<P>    * Note that the resulting<code>RAMDirectory</code> instance is fully    * independent from the original<code>Directory</code> (it is a    * complete copy).  Any subsequent changes to the    * original<code>Directory</code> will not be visible in the    *<code>RAMDirectory</code> instance.    *    * @param dir a<code>Directory</code> value    * @exception IOException if an error occurs    */
+comment|/**    * Creates a new<code>RAMDirectory</code> instance from a different    *<code>Directory</code> implementation.  This can be used to load    * a disk-based index into memory.    *     *<p><b>Warning:</b> This class is not intended to work with huge    * indexes. Everything beyond several hundred megabytes will waste    * resources (GC cycles), because it uses an internal buffer size    * of 1024 bytes, producing millions of {@code byte[1024]} arrays.    * This class is optimized for small memory-resident indexes.    * It also has bad concurrency on multithreaded environments.    *     *<p>For disk-based indexes it is recommended to use    * {@link MMapDirectory}, which is a high-performance directory    * implementation working directly on the file system cache of the    * operating system, so copying data to Java heap space is not useful.    *     *<p>Note that the resulting<code>RAMDirectory</code> instance is fully    * independent from the original<code>Directory</code> (it is a    * complete copy).  Any subsequent changes to the    * original<code>Directory</code> will not be visible in the    *<code>RAMDirectory</code> instance.    *    * @param dir a<code>Directory</code> value    * @exception IOException if an error occurs    */
 DECL|method|RAMDirectory
 specifier|public
 name|RAMDirectory
