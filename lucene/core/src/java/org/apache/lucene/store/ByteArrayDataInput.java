@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -41,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * DataInput backed by a byte array.  *<b>WARNING:</b> This class omits most low-level checks,  * so be sure to test heavily with assertions enabled.  * @lucene.experimental   */
+comment|/**   * DataInput backed by a byte array.  *<b>WARNING:</b> This class omits all low-level checks.  * @lucene.experimental   */
 end_comment
 
 begin_class
@@ -251,11 +241,6 @@ name|pos
 operator|+=
 name|count
 expr_stmt|;
-assert|assert
-name|pos
-operator|<=
-name|limit
-assert|;
 block|}
 annotation|@
 name|Override
@@ -304,13 +289,6 @@ name|int
 name|readInt
 parameter_list|()
 block|{
-assert|assert
-name|pos
-operator|+
-literal|4
-operator|<=
-name|limit
-assert|;
 return|return
 operator|(
 operator|(
@@ -373,13 +351,6 @@ name|long
 name|readLong
 parameter_list|()
 block|{
-assert|assert
-name|pos
-operator|+
-literal|8
-operator|<=
-name|limit
-assert|;
 specifier|final
 name|int
 name|i1
@@ -519,10 +490,6 @@ name|int
 name|readVInt
 parameter_list|()
 block|{
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|byte
 name|b
 init|=
@@ -552,10 +519,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -587,10 +550,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -622,10 +581,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -657,10 +612,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -709,10 +660,6 @@ name|long
 name|readVLong
 parameter_list|()
 block|{
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|byte
 name|b
 init|=
@@ -742,10 +689,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -777,10 +720,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -812,10 +751,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -847,10 +782,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -882,10 +813,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -917,10 +844,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -952,10 +875,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -987,10 +906,6 @@ condition|)
 return|return
 name|i
 return|;
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 name|b
 operator|=
 name|bytes
@@ -1039,10 +954,6 @@ name|byte
 name|readByte
 parameter_list|()
 block|{
-assert|assert
-name|checkBounds
-argument_list|()
-assert|;
 return|return
 name|bytes
 index|[
@@ -1070,13 +981,6 @@ name|int
 name|len
 parameter_list|)
 block|{
-assert|assert
-name|pos
-operator|+
-name|len
-operator|<=
-name|limit
-assert|;
 name|System
 operator|.
 name|arraycopy
@@ -1096,18 +1000,6 @@ name|pos
 operator|+=
 name|len
 expr_stmt|;
-block|}
-DECL|method|checkBounds
-specifier|private
-name|boolean
-name|checkBounds
-parameter_list|()
-block|{
-return|return
-name|pos
-operator|<
-name|limit
-return|;
 block|}
 block|}
 end_class
