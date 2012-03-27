@@ -658,7 +658,7 @@ specifier|volatile
 name|boolean
 name|live
 decl_stmt|;
-comment|/**    *<p>    * This loader will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources using any jar files    * found in the "lib/" directory in the specified instance directory.    * If the instance directory is not specified (=null), SolrResourceLoader#locateInstanceDir will provide one.    *<p>    */
+comment|/**    *<p>    * This loader will delegate to the context classloader when possible,    * otherwise it will attempt to resolve resources using any jar files    * found in the "lib/" directory in the specified instance directory.    *</p>    *    * @param instanceDir - base directory for this resource loader, if null locateSolrHome() will be used.    * @see #locateSolrHome    */
 DECL|method|SolrResourceLoader
 specifier|public
 name|SolrResourceLoader
@@ -689,6 +689,17 @@ operator|.
 name|locateSolrHome
 argument_list|()
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"new SolrResourceLoader for deduced Solr Home: '{}'"
+argument_list|,
+name|this
+operator|.
+name|instanceDir
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -701,20 +712,18 @@ argument_list|(
 name|instanceDir
 argument_list|)
 expr_stmt|;
-block|}
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Solr home set to '"
-operator|+
+literal|"new SolrResourceLoader for directory: '{}'"
+argument_list|,
 name|this
 operator|.
 name|instanceDir
-operator|+
-literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|classLoader
