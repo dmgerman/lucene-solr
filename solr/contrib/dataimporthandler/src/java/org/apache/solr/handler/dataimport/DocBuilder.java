@@ -1621,7 +1621,7 @@ name|statusMessages
 operator|.
 name|put
 argument_list|(
-literal|"Time taken "
+literal|"Time taken"
 argument_list|,
 name|getTimeElapsedSince
 argument_list|(
