@@ -110,6 +110,26 @@ name|S
 argument_list|>
 name|services
 decl_stmt|;
+comment|/** This field is a hack for LuceneTestCase to get access    * to the modifiable map (to work around bugs in IBM J9) */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+annotation|@
+name|Deprecated
+comment|// Hackidy-HÃ¤ck-Hack for bugs in IBM J9 ServiceLoader
+DECL|field|modifiableServices
+specifier|private
+specifier|final
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|S
+argument_list|>
+name|modifiableServices
+decl_stmt|;
 DECL|field|clazz
 specifier|private
 specifier|final
@@ -211,6 +231,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|this
+operator|.
+name|modifiableServices
+operator|=
+name|services
+expr_stmt|;
+comment|// hack, remove when IBM J9 is fixed!
 name|this
 operator|.
 name|services
