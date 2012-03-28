@@ -478,11 +478,14 @@ DECL|method|clone
 annotation|@
 name|Override
 specifier|public
-name|Object
+name|IndexInput
 name|clone
 parameter_list|()
 block|{
 return|return
+operator|(
+name|IndexInput
+operator|)
 name|ii
 operator|.
 name|clone

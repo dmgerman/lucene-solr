@@ -607,7 +607,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|IndexWriterConfig
 name|clone
 parameter_list|()
 block|{
@@ -616,6 +616,9 @@ comment|// analyzer, index commit etc. do not implement Cloneable.
 try|try
 block|{
 return|return
+operator|(
+name|IndexWriterConfig
+operator|)
 name|super
 operator|.
 name|clone

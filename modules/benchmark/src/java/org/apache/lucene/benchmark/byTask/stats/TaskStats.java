@@ -608,7 +608,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|TaskStats
 name|clone
 parameter_list|()
 throws|throws

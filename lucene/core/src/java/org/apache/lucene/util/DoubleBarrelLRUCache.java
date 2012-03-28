@@ -85,7 +85,7 @@ name|Override
 DECL|method|clone
 specifier|abstract
 specifier|public
-name|Object
+name|CloneableKey
 name|clone
 parameter_list|()
 function_decl|;

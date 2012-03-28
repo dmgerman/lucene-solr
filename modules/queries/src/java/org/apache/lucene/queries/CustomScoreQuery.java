@@ -524,7 +524,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|CustomScoreQuery
 name|clone
 parameter_list|()
 block|{

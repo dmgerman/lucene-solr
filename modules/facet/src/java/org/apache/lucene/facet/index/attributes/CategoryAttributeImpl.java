@@ -414,7 +414,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|CategoryAttribute
+name|CategoryAttributeImpl
 name|clone
 parameter_list|()
 block|{

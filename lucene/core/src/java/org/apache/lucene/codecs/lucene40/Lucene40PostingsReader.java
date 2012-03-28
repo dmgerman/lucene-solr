@@ -592,7 +592,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|StandardTermState
 name|clone
 parameter_list|()
 block|{

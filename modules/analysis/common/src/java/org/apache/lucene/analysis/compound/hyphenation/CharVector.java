@@ -193,7 +193,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|CharVector
 name|clone
 parameter_list|()
 block|{

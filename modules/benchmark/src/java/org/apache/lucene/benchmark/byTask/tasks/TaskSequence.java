@@ -2479,7 +2479,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|protected
-name|Object
+name|TaskSequence
 name|clone
 parameter_list|()
 throws|throws

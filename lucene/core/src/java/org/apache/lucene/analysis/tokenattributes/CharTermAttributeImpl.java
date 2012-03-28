@@ -1167,7 +1167,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|CharTermAttributeImpl
 name|clone
 parameter_list|()
 block|{

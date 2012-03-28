@@ -44,13 +44,16 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|TermState
 name|clone
 parameter_list|()
 block|{
 try|try
 block|{
 return|return
+operator|(
+name|TermState
+operator|)
 name|super
 operator|.
 name|clone

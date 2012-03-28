@@ -566,7 +566,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|MyTermAttributeImpl
 name|clone
 parameter_list|()
 block|{

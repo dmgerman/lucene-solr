@@ -302,7 +302,7 @@ expr_stmt|;
 block|}
 DECL|method|clone
 specifier|public
-name|Object
+name|MorphosyntacticTagAttributeImpl
 name|clone
 parameter_list|()
 block|{

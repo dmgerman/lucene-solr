@@ -225,7 +225,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|SpanFirstQuery
 name|clone
 parameter_list|()
 block|{

@@ -362,7 +362,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|SpanPayloadCheckQuery
 name|clone
 parameter_list|()
 block|{

@@ -708,7 +708,7 @@ name|Override
 DECL|method|clone
 specifier|synchronized
 specifier|public
-name|Object
+name|FieldInfos
 name|clone
 parameter_list|()
 block|{

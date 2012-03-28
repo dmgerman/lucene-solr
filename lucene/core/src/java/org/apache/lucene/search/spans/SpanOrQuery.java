@@ -411,7 +411,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|SpanOrQuery
 name|clone
 parameter_list|()
 block|{
@@ -563,9 +563,6 @@ literal|null
 condition|)
 name|clone
 operator|=
-operator|(
-name|SpanOrQuery
-operator|)
 name|this
 operator|.
 name|clone

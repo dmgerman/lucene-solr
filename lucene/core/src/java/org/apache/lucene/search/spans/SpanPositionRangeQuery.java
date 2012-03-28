@@ -279,7 +279,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|SpanPositionRangeQuery
 name|clone
 parameter_list|()
 block|{

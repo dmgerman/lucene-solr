@@ -908,9 +908,6 @@ literal|null
 condition|)
 name|clone
 operator|=
-operator|(
-name|DisjunctionMaxQuery
-operator|)
 name|this
 operator|.
 name|clone
@@ -953,7 +950,7 @@ literal|"unchecked"
 argument_list|)
 DECL|method|clone
 specifier|public
-name|Object
+name|DisjunctionMaxQuery
 name|clone
 parameter_list|()
 block|{

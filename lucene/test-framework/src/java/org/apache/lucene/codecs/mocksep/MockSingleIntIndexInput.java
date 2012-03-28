@@ -400,7 +400,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|Object
+name|Index
 name|clone
 parameter_list|()
 block|{

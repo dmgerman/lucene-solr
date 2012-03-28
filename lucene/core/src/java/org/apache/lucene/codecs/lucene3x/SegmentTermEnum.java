@@ -430,7 +430,7 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|protected
-name|Object
+name|SegmentTermEnum
 name|clone
 parameter_list|()
 block|{
