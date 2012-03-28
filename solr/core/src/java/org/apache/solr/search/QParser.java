@@ -527,7 +527,7 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create and return the<code>Query</code> object represented by<code>qstr</code>.  Null MAY be returned to signify    * there was no input (e.g. no query string) to parse.    * @see #getQuery()    **/
+comment|/** Create and return the<code>Query</code> object represented by<code>qstr</code>    * @see #getQuery()    **/
 DECL|method|parse
 specifier|public
 specifier|abstract
