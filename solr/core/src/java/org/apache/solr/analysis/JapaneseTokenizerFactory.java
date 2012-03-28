@@ -227,7 +227,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link org.apache.lucene.analysis.ja.JapaneseTokenizer}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"  *       mode=NORMAL  *       user-dictionary=user.txt  *       user-dictionary-encoding=UTF-8  *     /&gt;  *&lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
+comment|/**  * Factory for {@link org.apache.lucene.analysis.ja.JapaneseTokenizer}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"  *       mode=NORMAL  *       userDictionary=user.txt  *       userDictionaryEncoding=UTF-8  *     /&gt;  *&lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
 end_comment
 
 begin_class
@@ -256,7 +256,7 @@ specifier|final
 name|String
 name|USER_DICT_PATH
 init|=
-literal|"user-dictionary"
+literal|"userDictionary"
 decl_stmt|;
 DECL|field|USER_DICT_ENCODING
 specifier|private
@@ -265,7 +265,7 @@ specifier|final
 name|String
 name|USER_DICT_ENCODING
 init|=
-literal|"user-dictionary-encoding"
+literal|"userDictionaryEncoding"
 decl_stmt|;
 DECL|field|userDictionary
 specifier|private

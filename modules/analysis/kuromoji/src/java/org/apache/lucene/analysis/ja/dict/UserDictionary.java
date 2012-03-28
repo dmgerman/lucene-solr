@@ -570,18 +570,34 @@ operator|.
 name|length
 condition|)
 block|{
-comment|// FIXME: Should probably deal with this differently.  Exception?
-name|System
-operator|.
-name|out
-operator|.
-name|println
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"This entry is not properly formatted : "
+literal|"Illegal user dictionary entry "
 operator|+
-name|line
+name|values
+index|[
+literal|0
+index|]
+operator|+
+literal|" - the number of segmentations ("
+operator|+
+name|segmentation
+operator|.
+name|length
+operator|+
+literal|")"
+operator|+
+literal|" does not the match number of readings ("
+operator|+
+name|readings
+operator|.
+name|length
+operator|+
+literal|")"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 name|int
 index|[]
