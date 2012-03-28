@@ -2031,7 +2031,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warn
+name|debug
 argument_list|(
 literal|"no default search field specified in schema."
 argument_list|)
@@ -2111,7 +2111,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"default search field is "
+literal|"default search field in schema is "
 operator|+
 name|defaultSearchFieldName
 argument_list|)
