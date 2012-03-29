@@ -440,9 +440,6 @@ name|ca
 operator|.
 name|categoryPath
 operator|=
-operator|(
-name|CategoryPath
-operator|)
 name|categoryPath
 operator|.
 name|clone

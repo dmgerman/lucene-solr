@@ -140,9 +140,6 @@ name|Collections
 operator|.
 name|max
 argument_list|(
-operator|(
-name|Collection
-operator|)
 name|values
 argument_list|)
 argument_list|)

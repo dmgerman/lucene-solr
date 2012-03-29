@@ -750,12 +750,7 @@ block|{
 name|FieldInfo
 name|clone
 init|=
-call|(
-name|FieldInfo
-call|)
-argument_list|(
 name|fi
-argument_list|)
 operator|.
 name|clone
 argument_list|()
@@ -1759,12 +1754,7 @@ block|{
 name|FieldInfo
 name|clone
 init|=
-call|(
-name|FieldInfo
-call|)
-argument_list|(
 name|fieldInfo
-argument_list|)
 operator|.
 name|clone
 argument_list|()

@@ -1744,9 +1744,6 @@ return|return
 operator|new
 name|ToParentBlockJoinQuery
 argument_list|(
-operator|(
-name|Query
-operator|)
 name|origChildQuery
 operator|.
 name|clone

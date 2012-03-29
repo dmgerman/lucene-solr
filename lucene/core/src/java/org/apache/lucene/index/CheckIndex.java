@@ -1695,9 +1695,6 @@ name|result
 operator|.
 name|newSegments
 operator|=
-operator|(
-name|SegmentInfos
-operator|)
 name|sis
 operator|.
 name|clone
@@ -2859,9 +2856,6 @@ name|newSegments
 operator|.
 name|add
 argument_list|(
-operator|(
-name|SegmentInfo
-operator|)
 name|info
 operator|.
 name|clone

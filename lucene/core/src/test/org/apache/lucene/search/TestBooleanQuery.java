@@ -738,9 +738,6 @@ comment|// LUCENE-2617: make sure that a clause not in the index still contribut
 name|BooleanQuery
 name|qq
 init|=
-operator|(
-name|BooleanQuery
-operator|)
 name|q
 operator|.
 name|clone

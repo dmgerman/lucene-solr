@@ -1533,9 +1533,6 @@ operator|)
 condition|?
 literal|null
 else|:
-operator|(
-name|State
-operator|)
 name|state
 operator|.
 name|clone
@@ -2069,9 +2066,6 @@ operator|.
 name|getClass
 argument_list|()
 argument_list|,
-operator|(
-name|AttributeImpl
-operator|)
 name|state
 operator|.
 name|attribute

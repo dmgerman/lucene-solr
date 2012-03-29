@@ -228,15 +228,12 @@ block|{
 comment|// That is the most common case, if ScoredDocIdsCollector was used.
 name|complement
 operator|=
-call|(
-name|OpenBitSet
-call|)
-argument_list|(
+operator|(
 operator|(
 name|OpenBitSet
 operator|)
 name|docIdSet
-argument_list|)
+operator|)
 operator|.
 name|clone
 argument_list|()

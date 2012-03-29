@@ -1025,9 +1025,6 @@ specifier|final
 name|SegmentInfo
 name|sav
 init|=
-operator|(
-name|SegmentInfo
-operator|)
 name|info
 operator|.
 name|clone

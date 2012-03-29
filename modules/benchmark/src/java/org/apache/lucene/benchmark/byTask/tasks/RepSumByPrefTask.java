@@ -315,9 +315,6 @@ try|try
 block|{
 name|stat2
 operator|=
-operator|(
-name|TaskStats
-operator|)
 name|stat1
 operator|.
 name|clone

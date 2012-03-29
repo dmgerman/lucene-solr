@@ -203,9 +203,6 @@ decl_stmt|;
 name|FieldQueryNode
 name|lowerNode
 init|=
-operator|(
-name|FieldQueryNode
-operator|)
 name|rangeNode
 operator|.
 name|getLowerBound
@@ -214,9 +211,6 @@ decl_stmt|;
 name|FieldQueryNode
 name|upperNode
 init|=
-operator|(
-name|FieldQueryNode
-operator|)
 name|rangeNode
 operator|.
 name|getUpperBound

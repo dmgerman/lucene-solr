@@ -1665,9 +1665,6 @@ specifier|final
 name|PerfTask
 name|task
 init|=
-operator|(
-name|PerfTask
-operator|)
 name|tasksArray
 index|[
 name|i
@@ -2531,9 +2528,6 @@ name|tasks
 operator|.
 name|add
 argument_list|(
-operator|(
-name|PerfTask
-operator|)
 name|tasks
 operator|.
 name|get

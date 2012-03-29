@@ -601,9 +601,6 @@ expr_stmt|;
 name|CharArrayIterator
 name|ci2
 init|=
-operator|(
-name|CharArrayIterator
-operator|)
 name|ci
 operator|.
 name|clone

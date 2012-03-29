@@ -574,9 +574,6 @@ decl_stmt|;
 name|FacetRequest
 name|clone
 init|=
-operator|(
-name|FacetRequest
-operator|)
 name|fr
 operator|.
 name|clone

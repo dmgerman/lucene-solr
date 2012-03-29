@@ -765,9 +765,6 @@ name|t
 operator|.
 name|payload
 operator|=
-operator|(
-name|Payload
-operator|)
 name|payload
 operator|.
 name|clone
@@ -847,9 +844,6 @@ name|t
 operator|.
 name|payload
 operator|=
-operator|(
-name|Payload
-operator|)
 name|payload
 operator|.
 name|clone
@@ -1628,9 +1622,6 @@ name|to
 operator|.
 name|payload
 operator|=
-operator|(
-name|Payload
-operator|)
 name|payload
 operator|.
 name|clone
@@ -1690,9 +1681,6 @@ operator|)
 condition|?
 literal|null
 else|:
-operator|(
-name|Payload
-operator|)
 name|payload
 operator|.
 name|clone

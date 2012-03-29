@@ -1485,9 +1485,6 @@ block|{
 name|CacheEntry
 name|otherEntry
 init|=
-operator|(
-name|CacheEntry
-operator|)
 name|queue
 operator|.
 name|pop

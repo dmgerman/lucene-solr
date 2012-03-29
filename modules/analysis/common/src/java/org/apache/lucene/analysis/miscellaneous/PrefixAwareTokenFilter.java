@@ -490,9 +490,6 @@ name|previousPrefixToken
 operator|.
 name|setPayload
 argument_list|(
-operator|(
-name|Payload
-operator|)
 name|p
 operator|.
 name|clone

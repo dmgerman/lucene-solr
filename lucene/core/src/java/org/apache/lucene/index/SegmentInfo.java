@@ -557,9 +557,6 @@ literal|null
 condition|?
 literal|null
 else|:
-operator|(
-name|FieldInfos
-operator|)
 name|src
 operator|.
 name|fieldInfos
@@ -1123,9 +1120,6 @@ literal|null
 condition|?
 literal|null
 else|:
-operator|(
-name|FieldInfos
-operator|)
 name|fieldInfos
 operator|.
 name|clone

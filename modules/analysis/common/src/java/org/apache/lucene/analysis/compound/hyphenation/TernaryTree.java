@@ -1513,9 +1513,6 @@ name|t
 operator|.
 name|kv
 operator|=
-operator|(
-name|CharVector
-operator|)
 name|this
 operator|.
 name|kv
@@ -2319,9 +2316,6 @@ name|ns
 operator|.
 name|push
 argument_list|(
-operator|(
-name|Item
-operator|)
 name|i
 operator|.
 name|clone
@@ -2352,9 +2346,6 @@ name|ns
 operator|.
 name|push
 argument_list|(
-operator|(
-name|Item
-operator|)
 name|i
 operator|.
 name|clone
@@ -2392,9 +2383,6 @@ name|ns
 operator|.
 name|push
 argument_list|(
-operator|(
-name|Item
-operator|)
 name|i
 operator|.
 name|clone

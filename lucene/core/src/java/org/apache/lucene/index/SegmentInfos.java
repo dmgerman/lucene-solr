@@ -1540,9 +1540,6 @@ name|sis
 operator|.
 name|add
 argument_list|(
-operator|(
-name|SegmentInfo
-operator|)
 name|info
 operator|.
 name|clone
@@ -3633,9 +3630,6 @@ name|list
 operator|.
 name|add
 argument_list|(
-operator|(
-name|SegmentInfo
-operator|)
 name|info
 operator|.
 name|clone

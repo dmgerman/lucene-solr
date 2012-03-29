@@ -467,9 +467,6 @@ specifier|final
 name|SegmentInfos
 name|segmentInfos
 init|=
-operator|(
-name|SegmentInfos
-operator|)
 name|infos
 operator|.
 name|clone

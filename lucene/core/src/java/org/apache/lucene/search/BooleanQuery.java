@@ -2113,9 +2113,6 @@ block|{
 comment|// if rewrite was no-op
 name|query
 operator|=
-operator|(
-name|Query
-operator|)
 name|query
 operator|.
 name|clone

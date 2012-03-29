@@ -994,9 +994,6 @@ decl_stmt|;
 name|IndexableField
 name|out
 init|=
-operator|(
-name|Field
-operator|)
 name|f
 operator|.
 name|createField
@@ -1025,9 +1022,6 @@ argument_list|)
 expr_stmt|;
 name|out
 operator|=
-operator|(
-name|Field
-operator|)
 name|f
 operator|.
 name|createField

@@ -1727,9 +1727,6 @@ name|IOException
 block|{
 name|config
 operator|=
-operator|(
-name|IndexWriterConfig
-operator|)
 name|conf
 operator|.
 name|clone
@@ -7240,9 +7237,6 @@ comment|// corresponding add from an updateDocument) can
 comment|// sneak into the commit point:
 name|toCommit
 operator|=
-operator|(
-name|SegmentInfos
-operator|)
 name|segmentInfos
 operator|.
 name|clone

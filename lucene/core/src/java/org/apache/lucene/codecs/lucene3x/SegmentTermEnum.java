@@ -484,9 +484,6 @@ name|clone
 operator|.
 name|termBuffer
 operator|=
-operator|(
-name|TermBuffer
-operator|)
 name|termBuffer
 operator|.
 name|clone
@@ -496,9 +493,6 @@ name|clone
 operator|.
 name|prevBuffer
 operator|=
-operator|(
-name|TermBuffer
-operator|)
 name|prevBuffer
 operator|.
 name|clone

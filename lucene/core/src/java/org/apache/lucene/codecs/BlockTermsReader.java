@@ -3043,9 +3043,6 @@ expr_stmt|;
 name|TermState
 name|ts
 init|=
-operator|(
-name|TermState
-operator|)
 name|state
 operator|.
 name|clone

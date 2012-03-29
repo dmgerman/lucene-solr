@@ -283,9 +283,6 @@ else|else
 block|{
 name|commonWords
 operator|=
-operator|(
-name|CharArraySet
-operator|)
 name|StopAnalyzer
 operator|.
 name|ENGLISH_STOP_WORDS_SET

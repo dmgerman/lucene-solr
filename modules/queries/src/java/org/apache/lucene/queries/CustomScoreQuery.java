@@ -377,9 +377,6 @@ condition|)
 block|{
 name|clone
 operator|=
-operator|(
-name|CustomScoreQuery
-operator|)
 name|clone
 argument_list|()
 expr_stmt|;
@@ -439,9 +436,6 @@ literal|null
 condition|)
 name|clone
 operator|=
-operator|(
-name|CustomScoreQuery
-operator|)
 name|clone
 argument_list|()
 expr_stmt|;
@@ -543,9 +537,6 @@ name|clone
 operator|.
 name|subQuery
 operator|=
-operator|(
-name|Query
-operator|)
 name|subQuery
 operator|.
 name|clone
@@ -587,9 +578,6 @@ index|[
 name|i
 index|]
 operator|=
-operator|(
-name|Query
-operator|)
 name|scoringQueries
 index|[
 name|i

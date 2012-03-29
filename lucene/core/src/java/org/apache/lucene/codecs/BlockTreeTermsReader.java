@@ -4074,9 +4074,6 @@ name|decodeMetaData
 argument_list|()
 expr_stmt|;
 return|return
-operator|(
-name|TermState
-operator|)
 name|currentFrame
 operator|.
 name|termState
@@ -10372,9 +10369,6 @@ expr_stmt|;
 name|TermState
 name|ts
 init|=
-operator|(
-name|TermState
-operator|)
 name|currentFrame
 operator|.
 name|state
