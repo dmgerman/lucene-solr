@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -79,11 +89,13 @@ parameter_list|)
 throws|throws
 name|SolrException
 function_decl|;
-comment|/**    * List all configured currency code pairs    * @return a string array of<a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency codes on the format    * ["SRC,DST", "SRC,DST"...]    */
+comment|/**    * List all configured currency codes which are valid as source/target for this Provider    * @return a Set of<a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code strings    */
 DECL|method|listAvailableCurrencies
 specifier|public
+name|Set
+argument_list|<
 name|String
-index|[]
+argument_list|>
 name|listAvailableCurrencies
 parameter_list|()
 function_decl|;
