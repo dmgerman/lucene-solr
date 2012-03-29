@@ -2266,21 +2266,7 @@ argument_list|(
 literal|"isShard is only acceptable"
 argument_list|)
 expr_stmt|;
-name|query
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"*:*"
-argument_list|,
-literal|"shards.qt"
-argument_list|,
-literal|"/update"
-argument_list|,
-literal|"stream.body"
-argument_list|,
-literal|"<delete><query>*:*</query></delete>"
-argument_list|)
-expr_stmt|;
+comment|// query("q","*:*","shards.qt","/update","stream.body","<delete><query>*:*</query></delete>");
 comment|// fail();
 block|}
 catch|catch
