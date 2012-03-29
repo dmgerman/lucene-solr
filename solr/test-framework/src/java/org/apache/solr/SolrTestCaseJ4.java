@@ -625,6 +625,15 @@ name|SolrTestCaseJ4
 extends|extends
 name|LuceneTestCase
 block|{
+DECL|field|DEFAULT_CONNECTION_TIMEOUT
+specifier|public
+specifier|static
+name|int
+name|DEFAULT_CONNECTION_TIMEOUT
+init|=
+literal|500
+decl_stmt|;
+comment|// default socket connection timeout in ms
 annotation|@
 name|ClassRule
 DECL|field|solrClassRules

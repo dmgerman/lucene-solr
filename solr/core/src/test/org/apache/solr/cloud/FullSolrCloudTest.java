@@ -8179,10 +8179,9 @@ name|s
 operator|.
 name|setConnectionTimeout
 argument_list|(
-literal|100
+name|DEFAULT_CONNECTION_TIMEOUT
 argument_list|)
 expr_stmt|;
-comment|// 1/10th sec
 name|s
 operator|.
 name|setSoTimeout

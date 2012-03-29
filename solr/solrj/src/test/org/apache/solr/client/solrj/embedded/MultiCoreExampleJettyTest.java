@@ -28,6 +28,18 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -424,10 +436,11 @@ name|s
 operator|.
 name|setConnectionTimeout
 argument_list|(
-literal|100
+name|SolrTestCaseJ4
+operator|.
+name|DEFAULT_CONNECTION_TIMEOUT
 argument_list|)
 expr_stmt|;
-comment|// 1/10th sec
 name|s
 operator|.
 name|setDefaultMaxConnectionsPerHost
