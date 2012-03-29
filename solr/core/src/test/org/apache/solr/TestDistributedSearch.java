@@ -2261,6 +2261,11 @@ comment|//SOLR 3161 ensure shards.qt=/update fails (anything but search handler 
 comment|// Also see TestRemoteStreaming#testQtUpdateFails()
 try|try
 block|{
+name|ignoreException
+argument_list|(
+literal|"isShard is only acceptable"
+argument_list|)
+expr_stmt|;
 name|query
 argument_list|(
 literal|"q"
@@ -2288,6 +2293,11 @@ parameter_list|)
 block|{
 comment|//expected
 block|}
+name|unIgnoreException
+argument_list|(
+literal|"isShard is only acceptable"
+argument_list|)
+expr_stmt|;
 comment|// test debugging
 name|handle
 operator|.
