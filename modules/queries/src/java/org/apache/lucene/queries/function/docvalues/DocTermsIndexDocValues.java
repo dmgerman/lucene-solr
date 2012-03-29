@@ -195,15 +195,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** Internal class, subject to change.  *  Serves as base class for FunctionValues based on StringIndex   **/
+comment|/**  * Internal class, subject to change.  * Serves as base class for FunctionValues based on DocTermsIndex.  */
 end_comment
 
 begin_class
-DECL|class|StringIndexDocValues
+DECL|class|DocTermsIndexDocValues
 specifier|public
 specifier|abstract
 class|class
-name|StringIndexDocValues
+name|DocTermsIndexDocValues
 extends|extends
 name|FunctionValues
 block|{
@@ -251,9 +251,9 @@ operator|new
 name|CharsRef
 argument_list|()
 decl_stmt|;
-DECL|method|StringIndexDocValues
+DECL|method|DocTermsIndexDocValues
 specifier|public
-name|StringIndexDocValues
+name|DocTermsIndexDocValues
 parameter_list|(
 name|ValueSource
 name|vs
@@ -846,9 +846,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Can't initialize StringIndex to generate (function) "
-operator|+
-literal|"FunctionValues for field: "
+literal|"Can't initialize StringIndex to generate (function) FunctionValues for field: "
 operator|+
 name|fieldName
 argument_list|,

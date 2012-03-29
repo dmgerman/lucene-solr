@@ -62,7 +62,7 @@ name|function
 operator|.
 name|docvalues
 operator|.
-name|StringIndexDocValues
+name|DocTermsIndexDocValues
 import|;
 end_import
 
@@ -616,7 +616,7 @@ name|defVal
 decl_stmt|;
 return|return
 operator|new
-name|StringIndexDocValues
+name|DocTermsIndexDocValues
 argument_list|(
 name|this
 argument_list|,
