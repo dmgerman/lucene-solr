@@ -92,11 +92,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|commons
+name|http
 operator|.
-name|httpclient
+name|impl
 operator|.
-name|HttpClient
+name|client
+operator|.
+name|DefaultHttpClient
 import|;
 end_import
 
@@ -106,11 +108,15 @@ name|org
 operator|.
 name|apache
 operator|.
-name|commons
+name|http
 operator|.
-name|httpclient
+name|impl
 operator|.
-name|MultiThreadedHttpConnectionManager
+name|conn
+operator|.
+name|tsccm
+operator|.
+name|ThreadSafeClientConnManager
 import|;
 end_import
 
@@ -160,7 +166,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CommonsHttpSolrServer
+name|ConcurrentUpdateSolrServer
 import|;
 end_import
 
@@ -178,7 +184,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|StreamingUpdateSolrServer
+name|HttpSolrServer
 import|;
 end_import
 
@@ -925,20 +931,20 @@ extends|extends
 name|StopableIndexingThread
 block|{
 DECL|field|cm
-name|MultiThreadedHttpConnectionManager
+name|ThreadSafeClientConnManager
 name|cm
 init|=
 operator|new
-name|MultiThreadedHttpConnectionManager
+name|ThreadSafeClientConnManager
 argument_list|()
 decl_stmt|;
 DECL|field|httpClient
 specifier|private
-name|HttpClient
+name|DefaultHttpClient
 name|httpClient
 init|=
 operator|new
-name|HttpClient
+name|DefaultHttpClient
 argument_list|(
 name|cm
 argument_list|)
@@ -959,7 +965,7 @@ literal|0
 decl_stmt|;
 DECL|field|suss
 specifier|private
-name|StreamingUpdateSolrServer
+name|ConcurrentUpdateSolrServer
 name|suss
 decl_stmt|;
 DECL|field|clients
@@ -1015,11 +1021,11 @@ expr_stmt|;
 name|suss
 operator|=
 operator|new
-name|StreamingUpdateSolrServer
+name|ConcurrentUpdateSolrServer
 argument_list|(
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|clients
 operator|.
@@ -1307,11 +1313,11 @@ expr_stmt|;
 name|suss
 operator|=
 operator|new
-name|StreamingUpdateSolrServer
+name|ConcurrentUpdateSolrServer
 argument_list|(
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|clients
 operator|.

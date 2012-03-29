@@ -110,7 +110,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 import|;
 end_import
 
@@ -128,7 +128,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|StreamingUpdateSolrServer
+name|ConcurrentUpdateSolrServer
 import|;
 end_import
 
@@ -335,16 +335,6 @@ operator|.
 name|junit
 operator|.
 name|BeforeClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
 import|;
 end_import
 
@@ -1300,15 +1290,15 @@ name|MalformedURLException
 throws|,
 name|Exception
 block|{
-name|StreamingUpdateSolrServer
+name|ConcurrentUpdateSolrServer
 name|suss
 init|=
 operator|new
-name|StreamingUpdateSolrServer
+name|ConcurrentUpdateSolrServer
 argument_list|(
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|clients
 operator|.

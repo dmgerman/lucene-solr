@@ -104,7 +104,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 import|;
 end_import
 
@@ -383,11 +383,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|solrServer
 init|=
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|getSolrServer
 argument_list|()
@@ -702,11 +702,11 @@ parameter_list|()
 throws|throws
 name|UnsupportedEncodingException
 block|{
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|solrServer
 init|=
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|getSolrServer
 argument_list|()

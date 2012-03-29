@@ -80,7 +80,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 import|;
 end_import
 
@@ -241,11 +241,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|commonsHttpSolrServer
 init|=
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|getSolrServer
 argument_list|()
@@ -283,11 +283,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|commonsHttpSolrServer
 init|=
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|getSolrServer
 argument_list|()
@@ -325,11 +325,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|commonsHttpSolrServer
 init|=
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|getSolrServer
 argument_list|()
@@ -512,7 +512,7 @@ specifier|private
 name|void
 name|doIt
 parameter_list|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|commonsHttpSolrServer
 parameter_list|)
 throws|throws

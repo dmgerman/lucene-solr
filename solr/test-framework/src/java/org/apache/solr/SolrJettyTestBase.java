@@ -80,7 +80,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 import|;
 end_import
 
@@ -149,6 +149,8 @@ specifier|public
 specifier|static
 name|SolrServer
 name|server
+init|=
+literal|null
 decl_stmt|;
 DECL|field|context
 specifier|public
@@ -343,11 +345,11 @@ name|port
 operator|+
 name|context
 decl_stmt|;
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|s
 init|=
 operator|new
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 argument_list|(
 name|url
 argument_list|)

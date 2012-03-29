@@ -270,7 +270,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 import|;
 end_import
 
@@ -2341,7 +2341,7 @@ init|=
 name|getNumCommits
 argument_list|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|clients
 operator|.
@@ -2416,7 +2416,7 @@ init|=
 name|getNumCommits
 argument_list|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|clients
 operator|.
@@ -2441,7 +2441,7 @@ specifier|private
 name|Long
 name|getNumCommits
 parameter_list|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|solrServer
 parameter_list|)
 throws|throws
@@ -2451,11 +2451,11 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|server
 init|=
 operator|new
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 argument_list|(
 name|solrServer
 operator|.
@@ -2616,7 +2616,7 @@ name|baseUrl
 init|=
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|client
 operator|)
@@ -3056,7 +3056,7 @@ name|baseUrl
 init|=
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|client
 operator|)
@@ -3154,7 +3154,7 @@ name|baseUrl
 init|=
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|client
 operator|)
@@ -3577,7 +3577,7 @@ name|Object
 name|call
 parameter_list|()
 block|{
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|server
 decl_stmt|;
 try|try
@@ -3585,7 +3585,7 @@ block|{
 name|server
 operator|=
 operator|new
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 argument_list|(
 name|baseUrl
 argument_list|)
@@ -4350,7 +4350,7 @@ name|Object
 name|call
 parameter_list|()
 block|{
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|server
 decl_stmt|;
 try|try
@@ -4358,11 +4358,11 @@ block|{
 name|server
 operator|=
 operator|new
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 argument_list|(
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|client
 operator|)
@@ -4440,7 +4440,7 @@ name|collection
 argument_list|,
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|client
 operator|)
@@ -4519,11 +4519,11 @@ block|{
 try|try
 block|{
 comment|// setup the server...
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|s
 init|=
 operator|new
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 argument_list|(
 name|baseUrl
 operator|+

@@ -134,7 +134,9 @@ name|jetty
 operator|.
 name|server
 operator|.
-name|Server
+name|bio
+operator|.
+name|SocketConnector
 import|;
 end_import
 
@@ -148,9 +150,9 @@ name|jetty
 operator|.
 name|server
 operator|.
-name|bio
+name|handler
 operator|.
-name|SocketConnector
+name|GzipHandler
 import|;
 end_import
 
@@ -690,6 +692,15 @@ operator|.
 name|SESSIONS
 argument_list|)
 decl_stmt|;
+name|root
+operator|.
+name|setHandler
+argument_list|(
+operator|new
+name|GzipHandler
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|server
 operator|.
 name|addLifeCycleListener

@@ -164,7 +164,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 import|;
 end_import
 
@@ -246,6 +246,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|IOUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Rule
@@ -285,7 +299,7 @@ extends|extends
 name|LuceneTestCase
 block|{
 DECL|field|server
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|server
 decl_stmt|;
 DECL|field|jetty
@@ -569,7 +583,7 @@ decl_stmt|;
 name|server
 operator|=
 operator|new
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 argument_list|(
 name|url
 argument_list|)

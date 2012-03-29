@@ -150,7 +150,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 import|;
 end_import
 
@@ -223,24 +223,6 @@ operator|.
 name|request
 operator|.
 name|QueryRequest
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|request
-operator|.
-name|SolrPing
 import|;
 end_import
 
@@ -1952,14 +1934,14 @@ if|if
 condition|(
 name|server
 operator|instanceof
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 condition|)
 block|{
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 name|cserver
 init|=
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|server
 decl_stmt|;
@@ -1993,7 +1975,7 @@ if|if
 condition|(
 name|server
 operator|instanceof
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 condition|)
 block|{
 if|if
@@ -2006,7 +1988,7 @@ condition|)
 block|{
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|server
 operator|)
@@ -2023,7 +2005,7 @@ else|else
 block|{
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|server
 operator|)
@@ -2248,7 +2230,7 @@ block|{
 comment|// set the old parser back
 operator|(
 operator|(
-name|CommonsHttpSolrServer
+name|HttpSolrServer
 operator|)
 name|server
 operator|)
