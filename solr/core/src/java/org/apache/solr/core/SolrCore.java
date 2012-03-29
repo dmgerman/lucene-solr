@@ -6783,42 +6783,9 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|req
-operator|.
-name|getParams
-argument_list|()
-operator|.
-name|getBool
-argument_list|(
-name|ShardParams
-operator|.
-name|IS_SHARD
-argument_list|,
-literal|false
-argument_list|)
-operator|&&
-operator|!
-operator|(
-name|handler
-operator|instanceof
-name|SearchHandler
-operator|)
-condition|)
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
-literal|"isShard is only acceptable with search handlers"
-argument_list|)
-throw|;
+comment|// TODO: this doesn't seem to be working correctly and causes problems with the example server and distrib (for example /spell)
+comment|// if (req.getParams().getBool(ShardParams.IS_SHARD,false)&& !(handler instanceof SearchHandler))
+comment|//   throw new SolrException(SolrException.ErrorCode.BAD_REQUEST,"isShard is only acceptable with search handlers");
 name|handler
 operator|.
 name|handleRequest

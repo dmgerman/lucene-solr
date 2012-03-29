@@ -2281,9 +2281,7 @@ argument_list|,
 literal|"<delete><query>*:*</query></delete>"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
+comment|// fail();
 block|}
 catch|catch
 parameter_list|(
