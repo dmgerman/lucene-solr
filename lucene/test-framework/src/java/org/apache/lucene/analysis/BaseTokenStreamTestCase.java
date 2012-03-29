@@ -212,6 +212,20 @@ name|_TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Rethrow
+import|;
+end_import
+
 begin_comment
 comment|/**   * Base class for all Lucene unit tests that use TokenStreams.   *<p>  * When writing unit tests for analysis components, its highly recommended  * to use the helper methods here (especially in conjunction with {@link MockAnalyzer} or  * {@link MockTokenizer}), as they contain many assertions and checks to   * catch bugs.  *   * @see MockAnalyzer  * @see MockTokenizer  */
 end_comment
@@ -2561,13 +2575,13 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|RuntimeException
+name|Rethrow
+operator|.
+name|rethrow
 argument_list|(
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -2992,13 +3006,13 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|RuntimeException
+name|Rethrow
+operator|.
+name|rethrow
 argument_list|(
 name|t
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 block|}
