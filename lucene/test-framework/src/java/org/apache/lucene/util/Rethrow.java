@@ -21,6 +21,15 @@ comment|/**  * Sneaky: rethrowing checked exceptions as unchecked  * ones. Eh, i
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
+argument_list|)
 DECL|class|Rethrow
 specifier|public
 specifier|final
@@ -28,11 +37,6 @@ class|class
 name|Rethrow
 block|{
 comment|/**    * Classy puzzler to rethrow any checked exception as an unchecked one.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"all"
-argument_list|)
 DECL|class|Rethrower
 specifier|private
 specifier|static
