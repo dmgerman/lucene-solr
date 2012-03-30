@@ -148,7 +148,7 @@ name|solrj
 operator|.
 name|request
 operator|.
-name|UpdateRequest
+name|AbstractUpdateRequest
 operator|.
 name|ACTION
 import|;
