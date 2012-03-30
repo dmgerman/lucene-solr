@@ -2319,7 +2319,7 @@ literal|"edismax"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"Zapp Pig"
+literal|"ignore_exception"
 argument_list|,
 literal|"qf"
 argument_list|,
@@ -2378,7 +2378,7 @@ literal|"edismax"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"Zapp Pig"
+literal|"ignore_exception"
 argument_list|,
 literal|"qf"
 argument_list|,
@@ -2439,7 +2439,7 @@ literal|"edismax"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"Zapp Pig"
+literal|"ignore_exception"
 argument_list|,
 literal|"qf"
 argument_list|,
@@ -2494,7 +2494,7 @@ literal|"edismax"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"Zapp Pig"
+literal|"ignore_exception"
 argument_list|,
 literal|"qf"
 argument_list|,
@@ -2559,7 +2559,7 @@ literal|"edismax"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"who:(Zapp Pig)"
+literal|"who:(Zapp Pig) ignore_exception"
 argument_list|,
 literal|"qf"
 argument_list|,
