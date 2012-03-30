@@ -1200,6 +1200,11 @@ name|JSONParser
 operator|.
 name|OBJECT_START
 case|:
+case|case
+name|JSONParser
+operator|.
+name|EOF
+case|:
 break|break;
 default|default:
 name|log
