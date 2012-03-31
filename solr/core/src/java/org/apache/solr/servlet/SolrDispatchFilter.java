@@ -134,6 +134,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|ContentStreamHandlerBase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -1445,16 +1459,15 @@ argument_list|(
 literal|"/"
 argument_list|)
 operator|&&
-operator|!
 operator|(
 name|handler
 operator|instanceof
-name|SearchHandler
+name|ContentStreamHandlerBase
 operator|)
 condition|)
 block|{
 comment|//For security reasons it's a bad idea to allow a leading '/', ex: /select?qt=/update see SOLR-3161
-comment|//There was no restriction from Solr 1.4 thru 3.5 and it's now only supported for SearchHandlers.
+comment|//There was no restriction from Solr 1.4 thru 3.5 and it's not supported for update handlers.
 throw|throw
 operator|new
 name|SolrException
