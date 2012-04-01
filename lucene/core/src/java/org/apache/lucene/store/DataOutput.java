@@ -258,7 +258,7 @@ argument_list|(
 operator|(
 name|i
 operator|&
-literal|0x7f
+literal|0x7F
 operator|)
 operator||
 literal|0x80
@@ -336,10 +336,10 @@ operator|(
 name|i
 operator|&
 operator|~
-literal|0x7F
+literal|0x7FL
 operator|)
 operator|!=
-literal|0
+literal|0L
 condition|)
 block|{
 name|writeByte
@@ -351,10 +351,10 @@ argument_list|(
 operator|(
 name|i
 operator|&
-literal|0x7f
+literal|0x7FL
 operator|)
 operator||
-literal|0x80
+literal|0x80L
 argument_list|)
 argument_list|)
 expr_stmt|;
