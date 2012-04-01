@@ -891,7 +891,7 @@ block|{
 return|return
 literal|null
 return|;
-comment|// throw new SolrException( SolrException.ErrorCode.BAD_REQUEST, "missing query string" );
+comment|// throw new ParseException("missing query string" );
 block|}
 block|}
 else|else
