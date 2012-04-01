@@ -938,9 +938,6 @@ decl_stmt|;
 name|SegmentTermEnum
 name|clone
 init|=
-operator|(
-name|SegmentTermEnum
-operator|)
 name|termEnum
 operator|.
 name|clone

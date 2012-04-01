@@ -1227,9 +1227,6 @@ expr_stmt|;
 name|OpenBitSet
 name|bb
 init|=
-operator|(
-name|OpenBitSet
-operator|)
 name|b
 operator|.
 name|clone
@@ -1303,9 +1300,6 @@ argument_list|)
 expr_stmt|;
 name|bb
 operator|=
-operator|(
-name|OpenBitSet
-operator|)
 name|b
 operator|.
 name|clone
@@ -1398,9 +1392,6 @@ argument_list|)
 expr_stmt|;
 name|bb
 operator|=
-operator|(
-name|OpenBitSet
-operator|)
 name|b
 operator|.
 name|clone
@@ -1556,9 +1547,6 @@ expr_stmt|;
 name|OpenBitSet
 name|b_and
 init|=
-operator|(
-name|OpenBitSet
-operator|)
 name|b
 operator|.
 name|clone
@@ -1581,9 +1569,6 @@ expr_stmt|;
 name|OpenBitSet
 name|b_or
 init|=
-operator|(
-name|OpenBitSet
-operator|)
 name|b
 operator|.
 name|clone
@@ -1599,9 +1584,6 @@ expr_stmt|;
 name|OpenBitSet
 name|b_xor
 init|=
-operator|(
-name|OpenBitSet
-operator|)
 name|b
 operator|.
 name|clone
@@ -1617,9 +1599,6 @@ expr_stmt|;
 name|OpenBitSet
 name|b_andn
 init|=
-operator|(
-name|OpenBitSet
-operator|)
 name|b
 operator|.
 name|clone

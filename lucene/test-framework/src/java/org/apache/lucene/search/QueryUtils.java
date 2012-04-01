@@ -327,9 +327,6 @@ block|{
 name|Query
 name|q2
 init|=
-operator|(
-name|Query
-operator|)
 name|q
 operator|.
 name|clone
@@ -345,9 +342,6 @@ expr_stmt|;
 name|Query
 name|q3
 init|=
-operator|(
-name|Query
-operator|)
 name|q
 operator|.
 name|clone
@@ -708,9 +702,6 @@ expr_stmt|;
 name|Query
 name|q2
 init|=
-operator|(
-name|Query
-operator|)
 name|q1
 operator|.
 name|clone
