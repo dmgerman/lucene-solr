@@ -1422,24 +1422,10 @@ operator|=
 name|noCaches
 expr_stmt|;
 block|}
+comment|// TODO: This option has been dead/noop since 3.1, should we re-enable it?
+comment|//    optimizer = solrConfig.filtOptEnabled ? new LuceneQueryOptimizer(solrConfig.filtOptCacheSize,solrConfig.filtOptThreshold) : null;
 name|optimizer
 operator|=
-name|solrConfig
-operator|.
-name|filtOptEnabled
-condition|?
-operator|new
-name|LuceneQueryOptimizer
-argument_list|(
-name|solrConfig
-operator|.
-name|filtOptCacheSize
-argument_list|,
-name|solrConfig
-operator|.
-name|filtOptThreshold
-argument_list|)
-else|:
 literal|null
 expr_stmt|;
 name|fieldNames
@@ -2331,6 +2317,7 @@ return|return
 name|qr
 return|;
 block|}
+comment|//  FIXME: This option has been dead/noop since 3.1, should we re-enable or remove it?
 comment|//  public Hits search(Query query, Filter filter, Sort sort) throws IOException {
 comment|//    // todo - when Solr starts accepting filters, need to
 comment|//    // change this conditional check (filter!=null) and create a new filter

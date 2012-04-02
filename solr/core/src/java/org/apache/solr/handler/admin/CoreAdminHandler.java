@@ -1492,7 +1492,7 @@ operator|.
 name|getSolrConfig
 argument_list|()
 operator|.
-name|mainIndexConfig
+name|indexConfig
 operator|.
 name|lockType
 argument_list|)

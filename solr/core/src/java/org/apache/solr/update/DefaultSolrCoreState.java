@@ -538,7 +538,7 @@ operator|.
 name|getSolrConfig
 argument_list|()
 operator|.
-name|mainIndexConfig
+name|indexConfig
 argument_list|,
 name|core
 operator|.

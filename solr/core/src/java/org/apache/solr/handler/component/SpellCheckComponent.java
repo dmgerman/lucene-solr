@@ -3966,7 +3966,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|info
 argument_list|(
 literal|"No queryConverter defined, using default converter"
 argument_list|)

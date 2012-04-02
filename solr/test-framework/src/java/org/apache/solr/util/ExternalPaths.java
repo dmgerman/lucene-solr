@@ -26,18 +26,6 @@ name|File
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|SolrTestCaseJ4
-import|;
-end_import
-
 begin_comment
 comment|/**  * Some tests need to reach outside the classpath to get certain resources (e.g. the example configuration).  * This class provides some paths to allow them to do this.  * @lucene.internal  */
 end_comment
