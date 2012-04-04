@@ -550,6 +550,18 @@ literal|')'
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|doIndent
+condition|)
+name|writer
+operator|.
+name|write
+argument_list|(
+literal|'\n'
+argument_list|)
+expr_stmt|;
+comment|// ending with a newline looks much better from the command line
 block|}
 DECL|method|writeKey
 specifier|protected
