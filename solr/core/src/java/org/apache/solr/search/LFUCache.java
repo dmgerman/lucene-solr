@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * SolrCache based on ConcurrentLFUCache implementation.  *<p/>  * This implementation does not use a separate cleanup thread. Instead it uses the calling thread  * itself to do the cleanup when the size of the cache exceeds certain limits.  *<p/>  * Also see<a href="http://wiki.apache.org/solr/SolrCaching">SolrCaching</a>  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @version $Id: LFUCache.java 1170772 2011-09-14 19:09:56Z sarowe $  * @see org.apache.solr.util.ConcurrentLFUCache  * @see org.apache.solr.search.SolrCache  * @since solr 3.6  */
+comment|/**  * SolrCache based on ConcurrentLFUCache implementation.  *<p/>  * This implementation does not use a separate cleanup thread. Instead it uses the calling thread  * itself to do the cleanup when the size of the cache exceeds certain limits.  *<p/>  * Also see<a href="http://wiki.apache.org/solr/SolrCaching">SolrCaching</a>  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @version $Id$  * @see org.apache.solr.util.ConcurrentLFUCache  * @see org.apache.solr.search.SolrCache  * @since solr 3.6  */
 end_comment
 
 begin_class
@@ -1169,7 +1169,7 @@ name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id: LFUCache.java 1170772 2011-09-14 19:09:56Z sarowe $"
+literal|"$Id$"
 return|;
 block|}
 DECL|method|getSource
@@ -1179,7 +1179,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$URL: http://svn.apache.org/repos/asf/lucene/dev/branches/branch_3x/solr/core/src/java/org/apache/solr/search/LFUCache.java $"
+literal|"$URL$"
 return|;
 block|}
 DECL|method|getDocs

@@ -1478,7 +1478,7 @@ name|getVersion
 parameter_list|()
 block|{
 return|return
-literal|"$Revision: 1079707 $"
+literal|"$Revision$"
 return|;
 block|}
 annotation|@
@@ -1490,7 +1490,7 @@ name|getSourceId
 parameter_list|()
 block|{
 return|return
-literal|"$Id: LogLevelHandler.... $"
+literal|"$Id$"
 return|;
 block|}
 annotation|@
@@ -1502,7 +1502,7 @@ name|getSource
 parameter_list|()
 block|{
 return|return
-literal|"$URL: https://svn.apache.org/repos/asf/lucene/dev/trunk/solr/src/... $"
+literal|"$URL$"
 return|;
 block|}
 annotation|@

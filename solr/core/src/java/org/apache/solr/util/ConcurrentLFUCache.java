@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A LFU cache implementation based upon ConcurrentHashMap.  *<p/>  * This is not a terribly efficient implementation.  The tricks used in the  * LRU version were not directly usable, perhaps it might be possible to  * rewrite them with LFU in mind.  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @version $Id: ConcurrentLFUCache.java 1170772 2011-09-14 19:09:56Z sarowe $  * @since solr 1.6  */
+comment|/**  * A LFU cache implementation based upon ConcurrentHashMap.  *<p/>  * This is not a terribly efficient implementation.  The tricks used in the  * LRU version were not directly usable, perhaps it might be possible to  * rewrite them with LFU in mind.  *<p/>  *<b>This API is experimental and subject to change</b>  *  * @version $Id$  * @since solr 1.6  */
 end_comment
 
 begin_class
