@@ -64,6 +64,20 @@ name|IndexInput
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|MathUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * This abstract class reads skip lists with multiple levels.  *   * See {@link MultiLevelSkipListWriter} for the information about the encoding   * of the multi level skip lists.   *   * Subclasses must implement the abstract method {@link #readSkipData(int, IndexInput)}  * which defines the actual format of the skip data.  * @lucene.experimental  */
 end_comment
@@ -803,54 +817,6 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/** returns x == 0 ? 0 : Math.floor(Math.log(x) / Math.log(base)) */
-DECL|method|log
-specifier|static
-name|int
-name|log
-parameter_list|(
-name|int
-name|x
-parameter_list|,
-name|int
-name|base
-parameter_list|)
-block|{
-assert|assert
-name|base
-operator|>=
-literal|2
-assert|;
-name|int
-name|ret
-init|=
-literal|0
-decl_stmt|;
-name|long
-name|n
-init|=
-name|base
-decl_stmt|;
-comment|// needs to be a long to avoid overflow
-while|while
-condition|(
-name|x
-operator|>=
-name|n
-condition|)
-block|{
-name|n
-operator|*=
-name|base
-expr_stmt|;
-name|ret
-operator|++
-expr_stmt|;
-block|}
-return|return
-name|ret
-return|;
-block|}
 comment|/** Loads the skip levels  */
 DECL|method|loadSkipLevels
 specifier|private
@@ -862,6 +828,8 @@ name|IOException
 block|{
 name|numberOfSkipLevels
 operator|=
+name|MathUtil
+operator|.
 name|log
 argument_list|(
 name|docCount
