@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A simple StringBuffer replacement that aims to   * reduce copying as much as possible. The buffer  * grows as necessary.  * This class is not thread safe.  *   * @author Ortwin Glï¿½ck  */
+comment|/**  * A simple StringBuffer replacement that aims to   * reduce copying as much as possible. The buffer  * grows as necessary.  * This class is not thread safe.  */
 end_comment
 
 begin_class

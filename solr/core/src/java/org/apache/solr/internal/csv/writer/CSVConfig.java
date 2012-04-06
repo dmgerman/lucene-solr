@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The CSVConfig is used to configure the CSV writer  *  * @author Martin van den Bemt  */
+comment|/**  * The CSVConfig is used to configure the CSV writer  *  */
 end_comment
 
 begin_class

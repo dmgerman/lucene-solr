@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit Test Case for {@link org.apache.solr.common.params.ModifiableSolrParams  * ModifiableSolrParams}  *   * @author kkumar  */
+comment|/**  * Unit Test Case for {@link org.apache.solr.common.params.ModifiableSolrParams  * ModifiableSolrParams}  */
 end_comment
 
 begin_class

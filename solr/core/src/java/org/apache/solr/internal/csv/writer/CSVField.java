@@ -21,7 +21,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *   * @author Martin van den Bemt  */
+comment|/**  *   */
 end_comment
 
 begin_class

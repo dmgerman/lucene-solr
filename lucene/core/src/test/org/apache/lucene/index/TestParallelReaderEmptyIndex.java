@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Some tests for {@link ParallelAtomicReader}s with empty indexes  *   * @author Christian Kohlschuetter  */
+comment|/**  * Some tests for {@link ParallelAtomicReader}s with empty indexes  */
 end_comment
 
 begin_class

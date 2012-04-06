@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests for lookup3ycs hash functions  * @author yonik  */
+comment|/** Tests for lookup3ycs hash functions  */
 end_comment
 
 begin_class
