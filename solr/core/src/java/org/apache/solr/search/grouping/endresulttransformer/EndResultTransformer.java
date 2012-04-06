@@ -56,25 +56,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|response
+name|handler
 operator|.
-name|SolrQueryResponse
-import|;
-end_import
-
-begin_import
-import|import
-name|org
+name|component
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|grouping
-operator|.
-name|GroupingSpecification
+name|ResponseBuilder
 import|;
 end_import
 
@@ -98,7 +84,7 @@ specifier|public
 interface|interface
 name|EndResultTransformer
 block|{
-comment|/**    * Transforms the specified result into its final form and puts it into the specified response.    *    * @param result The map containing the grouping result (for grouping by field and query)    * @param response The response that will be rendered to the client    * @param groupingSpecification The grouping specification    * @param solrDocumentSource The source of {@link SolrDocument} instances    */
+comment|/**    * Transforms the specified result into its final form and puts it into the specified response.    *    * @param result The map containing the grouping result (for grouping by field and query)    * @param rb The response builder containing the response used to render the result and the grouping specification    * @param solrDocumentSource The source of {@link SolrDocument} instances    */
 DECL|method|transform
 name|void
 name|transform
@@ -111,11 +97,8 @@ name|?
 argument_list|>
 name|result
 parameter_list|,
-name|SolrQueryResponse
-name|response
-parameter_list|,
-name|GroupingSpecification
-name|groupingSpecification
+name|ResponseBuilder
+name|rb
 parameter_list|,
 name|SolrDocumentSource
 name|solrDocumentSource

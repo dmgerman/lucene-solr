@@ -1018,6 +1018,12 @@ name|SolrDocument
 argument_list|>
 argument_list|()
 decl_stmt|;
+DECL|field|totalHitCount
+specifier|public
+name|int
+name|totalHitCount
+decl_stmt|;
+comment|// Hit count used when distributed grouping is performed.
 comment|// Used for timeAllowed parameter. First phase elapsed time is subtracted from the time allowed for the second phase.
 DECL|field|firstPhaseElapsedTime
 specifier|public

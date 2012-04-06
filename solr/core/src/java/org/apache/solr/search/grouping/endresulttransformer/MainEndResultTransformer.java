@@ -102,25 +102,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|response
+name|handler
 operator|.
-name|SolrQueryResponse
-import|;
-end_import
-
-begin_import
-import|import
-name|org
+name|component
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|grouping
-operator|.
-name|GroupingSpecification
+name|ResponseBuilder
 import|;
 end_import
 
@@ -135,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  */
+comment|/**  * Implementation of {@link EndResultTransformer} that transforms the grouped result into the main result list in the  * response.  */
 end_comment
 
 begin_class
@@ -146,6 +132,7 @@ name|MainEndResultTransformer
 implements|implements
 name|EndResultTransformer
 block|{
+comment|/**    * {@inheritDoc}    */
 DECL|method|transform
 specifier|public
 name|void
@@ -159,11 +146,8 @@ name|?
 argument_list|>
 name|result
 parameter_list|,
-name|SolrQueryResponse
-name|response
-parameter_list|,
-name|GroupingSpecification
-name|groupingSpecification
+name|ResponseBuilder
+name|rb
 parameter_list|,
 name|SolrDocumentSource
 name|solrDocumentSource
@@ -176,7 +160,10 @@ name|result
 operator|.
 name|get
 argument_list|(
-name|groupingSpecification
+name|rb
+operator|.
+name|getGroupingSpec
+argument_list|()
 operator|.
 name|getFields
 argument_list|()
@@ -227,7 +214,10 @@ name|docList
 operator|.
 name|setStart
 argument_list|(
-name|groupingSpecification
+name|rb
+operator|.
+name|getGroupingSpec
+argument_list|()
 operator|.
 name|getOffset
 argument_list|()
@@ -237,7 +227,7 @@ name|docList
 operator|.
 name|setNumFound
 argument_list|(
-name|topGroups
+name|rb
 operator|.
 name|totalHitCount
 argument_list|)
@@ -319,7 +309,9 @@ name|maxScore
 argument_list|)
 expr_stmt|;
 block|}
-name|response
+name|rb
+operator|.
+name|rsp
 operator|.
 name|add
 argument_list|(

@@ -134,9 +134,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|response
+name|handler
 operator|.
-name|SolrQueryResponse
+name|component
+operator|.
+name|ResponseBuilder
 import|;
 end_import
 
@@ -194,22 +196,6 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|GroupingSpecification
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|grouping
-operator|.
 name|distributed
 operator|.
 name|command
@@ -249,7 +235,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  */
+comment|/**  * Implementation of {@link EndResultTransformer} that keeps each grouped result separate in the final response.  */
 end_comment
 
 begin_class
@@ -281,6 +267,7 @@ operator|=
 name|searcher
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    */
 DECL|method|transform
 specifier|public
 name|void
@@ -294,11 +281,8 @@ name|?
 argument_list|>
 name|result
 parameter_list|,
-name|SolrQueryResponse
-name|response
-parameter_list|,
-name|GroupingSpecification
-name|groupingSpecification
+name|ResponseBuilder
+name|rb
 parameter_list|,
 name|SolrDocumentSource
 name|solrDocumentSource
@@ -393,7 +377,7 @@ name|add
 argument_list|(
 literal|"matches"
 argument_list|,
-name|topGroups
+name|rb
 operator|.
 name|totalHitCount
 argument_list|)
@@ -573,7 +557,10 @@ name|docList
 operator|.
 name|setStart
 argument_list|(
-name|groupingSpecification
+name|rb
+operator|.
+name|getGroupingSpec
+argument_list|()
 operator|.
 name|getGroupOffset
 argument_list|()
@@ -741,7 +728,10 @@ name|docList
 operator|.
 name|setStart
 argument_list|(
-name|groupingSpecification
+name|rb
+operator|.
+name|getGroupingSpec
+argument_list|()
 operator|.
 name|getGroupOffset
 argument_list|()
@@ -796,7 +786,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|response
+name|rb
+operator|.
+name|rsp
 operator|.
 name|add
 argument_list|(
