@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Test (some of the) character escaping functions of the XML class  *  $Id$  */
+comment|/** Test (some of the) character escaping functions of the XML class  */
 end_comment
 
 begin_class

@@ -759,16 +759,6 @@ return|return
 literal|null
 return|;
 block|}
-DECL|method|getSourceId
-specifier|public
-name|String
-name|getSourceId
-parameter_list|()
-block|{
-return|return
-literal|"mock"
-return|;
-block|}
 block|}
 block|}
 end_class

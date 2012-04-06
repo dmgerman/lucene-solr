@@ -104,13 +104,6 @@ name|Category
 name|getCategory
 parameter_list|()
 function_decl|;
-comment|/** CVS Id, SVN Id, etc */
-DECL|method|getSourceId
-specifier|public
-name|String
-name|getSourceId
-parameter_list|()
-function_decl|;
 comment|/** CVS Source, SVN Source, etc */
 DECL|method|getSource
 specifier|public

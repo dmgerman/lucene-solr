@@ -8999,16 +8999,6 @@ operator|.
 name|CORE
 return|;
 block|}
-DECL|method|getSourceId
-specifier|public
-name|String
-name|getSourceId
-parameter_list|()
-block|{
-return|return
-literal|"$Id$"
-return|;
-block|}
 DECL|method|getSource
 specifier|public
 name|String

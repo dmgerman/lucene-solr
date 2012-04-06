@@ -67,18 +67,6 @@ block|{
 comment|//////////////////////// SolrInfoMBeans methods //////////////////////
 annotation|@
 name|Override
-DECL|method|getVersion
-specifier|public
-name|String
-name|getVersion
-parameter_list|()
-block|{
-return|return
-literal|"$Revision$"
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|getDescription
 specifier|public
 name|String
@@ -87,18 +75,6 @@ parameter_list|()
 block|{
 return|return
 literal|"The standard Solr request handler"
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getSourceId
-specifier|public
-name|String
-name|getSourceId
-parameter_list|()
-block|{
-return|return
-literal|"$Id$"
 return|;
 block|}
 annotation|@

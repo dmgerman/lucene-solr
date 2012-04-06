@@ -35,7 +35,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id: JSONParser.java 1099557 2011-05-04 18:54:26Z yonik $  */
+comment|/**  * @author yonik  */
 end_comment
 
 begin_class

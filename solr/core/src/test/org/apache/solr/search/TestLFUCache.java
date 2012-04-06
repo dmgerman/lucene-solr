@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test for LFUCache  *  * @version $Id: TestFastLFUCache.java 1170772 2011-09-14 19:09:56Z sarowe $  * @see org.apache.solr.search.LFUCache  * @since solr 3.6  */
+comment|/**  * Test for LFUCache  *  * @see org.apache.solr.search.LFUCache  * @since solr 3.6  */
 end_comment
 
 begin_class

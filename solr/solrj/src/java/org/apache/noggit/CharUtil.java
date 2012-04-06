@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * @author yonik  * @version $Id: CharUtil.java 479919 2006-11-28 05:53:55Z yonik $  */
+comment|/**  * @author yonik  */
 end_comment
 
 begin_class
