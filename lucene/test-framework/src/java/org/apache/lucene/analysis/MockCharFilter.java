@@ -57,15 +57,12 @@ import|;
 end_import
 
 begin_comment
-comment|// the purpose of this charfilter is to send offsets out of bounds
-end_comment
-
-begin_comment
-comment|// if the analyzer doesn't use correctOffset or does incorrect offset math.
+comment|/** the purpose of this charfilter is to send offsets out of bounds   if the analyzer doesn't use correctOffset or does incorrect offset math. */
 end_comment
 
 begin_class
 DECL|class|MockCharFilter
+specifier|public
 class|class
 name|MockCharFilter
 extends|extends
@@ -73,7 +70,7 @@ name|CharStream
 block|{
 DECL|field|in
 specifier|final
-name|Reader
+name|CharStream
 name|in
 decl_stmt|;
 DECL|field|remainder
@@ -97,7 +94,12 @@ name|this
 operator|.
 name|in
 operator|=
+name|CharReader
+operator|.
+name|get
+argument_list|(
 name|in
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -116,6 +118,23 @@ literal|10
 operator|:
 literal|"invalid parameter"
 assert|;
+block|}
+comment|// for testing only, uses a remainder of 0
+DECL|method|MockCharFilter
+specifier|public
+name|MockCharFilter
+parameter_list|(
+name|Reader
+name|in
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|in
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -416,8 +435,14 @@ name|currentOff
 operator|)
 assert|;
 return|return
+name|in
+operator|.
+name|correctOffset
+argument_list|(
 name|ret
+argument_list|)
 return|;
+comment|// chain the call
 block|}
 DECL|method|addOffCorrectMap
 specifier|protected

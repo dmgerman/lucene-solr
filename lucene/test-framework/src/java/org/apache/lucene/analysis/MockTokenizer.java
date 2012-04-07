@@ -438,6 +438,25 @@ name|DEFAULT_MAX_TOKEN_LENGTH
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Calls {@link #MockTokenizer(Reader, CharacterRunAutomaton, boolean) MockTokenizer(Reader, WHITESPACE, true)} */
+DECL|method|MockTokenizer
+specifier|public
+name|MockTokenizer
+parameter_list|(
+name|Reader
+name|input
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|input
+argument_list|,
+name|WHITESPACE
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|incrementToken
