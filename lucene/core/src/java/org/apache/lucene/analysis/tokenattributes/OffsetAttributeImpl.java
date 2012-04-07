@@ -82,6 +82,10 @@ name|int
 name|endOffset
 parameter_list|)
 block|{
+comment|// TODO: check that these are valid!  IE, each should be
+comment|//>= 0, and endOffset should be>= startOffset.
+comment|// Problem is this could "break" existing
+comment|// tokenizers/filters.
 name|this
 operator|.
 name|startOffset

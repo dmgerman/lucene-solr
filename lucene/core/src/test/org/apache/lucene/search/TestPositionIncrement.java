@@ -440,6 +440,7 @@ argument_list|(
 name|reader
 argument_list|)
 block|{
+comment|// TODO: use CannedTokenStream
 specifier|private
 specifier|final
 name|String
