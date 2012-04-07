@@ -1128,9 +1128,15 @@ name|String
 name|toString
 parameter_list|()
 block|{
-return|return
-literal|"SolrResourceLocator, "
-operator|+
+name|String
+name|configDir
+init|=
+literal|""
+decl_stmt|;
+try|try
+block|{
+name|configDir
+operator|=
 literal|"configDir="
 operator|+
 operator|new
@@ -1145,7 +1151,26 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 operator|+
-literal|", Carrot2 relative lexicalResourcesDir="
+literal|", "
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ignored
+parameter_list|)
+block|{
+comment|// If we get the exception, the resource loader implementation
+comment|// probably does not support getConfigDir(). Not a big problem.
+block|}
+return|return
+literal|"SolrResourceLocator, "
+operator|+
+name|configDir
+operator|+
+literal|"Carrot2 relative lexicalResourcesDir="
+operator|+
+name|carrot2ResourcesDir
 return|;
 block|}
 block|}
