@@ -82,6 +82,11 @@ name|int
 name|endOffset
 parameter_list|)
 block|{
+comment|// TODO: we could assert that this is set-once, ie,
+comment|// current values are -1?  Very few token filters should
+comment|// change offsets once set by the tokenizer... and
+comment|// tokenizer should call clearAtts before re-using
+comment|// OffsetAtt
 comment|// TODO: check that these are valid!  IE, each should be
 comment|//>= 0, and endOffset should be>= startOffset.
 comment|// Problem is this could "break" existing
@@ -118,6 +123,8 @@ name|void
 name|clear
 parameter_list|()
 block|{
+comment|// TODO: we could use -1 as default here?  Then we can
+comment|// assert in setOffset...
 name|startOffset
 operator|=
 literal|0

@@ -3177,6 +3177,8 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
+comment|// TODO: really we should pass a random seed to
+comment|// checkAnalysisConsistency then print it here too:
 name|System
 operator|.
 name|err
