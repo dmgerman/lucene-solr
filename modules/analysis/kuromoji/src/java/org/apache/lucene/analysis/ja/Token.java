@@ -213,6 +213,14 @@ literal|"\" pos="
 operator|+
 name|position
 operator|+
+literal|" length="
+operator|+
+name|length
+operator|+
+literal|" posLen="
+operator|+
+name|positionLength
+operator|+
 literal|" type="
 operator|+
 name|type

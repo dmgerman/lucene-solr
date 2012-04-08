@@ -3037,9 +3037,6 @@ literal|0
 condition|)
 block|{
 comment|// No arcs arrive here; move to next position:
-name|pos
-operator|++
-expr_stmt|;
 if|if
 condition|(
 name|VERBOSE
@@ -3051,10 +3048,15 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"    no arcs in; skip"
+literal|"    no arcs in; skip pos="
+operator|+
+name|pos
 argument_list|)
 expr_stmt|;
 block|}
+name|pos
+operator|++
+expr_stmt|;
 continue|continue;
 block|}
 if|if
@@ -3956,6 +3958,15 @@ argument_list|(
 name|firstCharacter
 argument_list|)
 decl_stmt|;
+specifier|final
+name|boolean
+name|isPunct
+init|=
+name|isPunctuation
+argument_list|(
+name|firstCharacter
+argument_list|)
+decl_stmt|;
 comment|// NOTE: copied from UnknownDictionary.lookup:
 name|int
 name|unknownWordLength
@@ -4034,6 +4045,16 @@ name|char
 operator|)
 name|ch
 argument_list|)
+operator|&&
+name|isPunctuation
+argument_list|(
+operator|(
+name|char
+operator|)
+name|ch
+argument_list|)
+operator|==
+name|isPunct
 condition|)
 block|{
 name|unknownWordLength
@@ -5595,25 +5616,28 @@ comment|// compound token starts; add it now:
 comment|// The pruning we did when we created the altToken
 comment|// ensures that the back trace will align back with
 comment|// the start of the altToken:
-comment|// cannot assert...
-comment|//assert altToken.getPosition() == backPos: altToken.getPosition() + " vs " + backPos;
-if|if
-condition|(
-name|VERBOSE
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    add altToken="
-operator|+
+assert|assert
 name|altToken
-argument_list|)
-expr_stmt|;
-block|}
+operator|.
+name|getPosition
+argument_list|()
+operator|==
+name|backPos
+operator|:
+name|altToken
+operator|.
+name|getPosition
+argument_list|()
+operator|+
+literal|" vs "
+operator|+
+name|backPos
+assert|;
+comment|// NOTE: not quite right: the compound token may
+comment|// have had all punctuation back traced so far, but
+comment|// then the decompounded token at this position is
+comment|// not punctuation.  In this case backCount is 0,
+comment|// but we should maybe add the altToken anyway...?
 if|if
 condition|(
 name|backCount
@@ -5631,6 +5655,23 @@ argument_list|(
 name|backCount
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    add altToken="
+operator|+
+name|altToken
+argument_list|)
+expr_stmt|;
+block|}
 name|pending
 operator|.
 name|add
@@ -5642,6 +5683,23 @@ block|}
 else|else
 block|{
 comment|// This means alt token was all punct tokens:
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    discard all-punctuation altToken="
+operator|+
+name|altToken
+argument_list|)
+expr_stmt|;
+block|}
 assert|assert
 name|discardPunctuation
 assert|;

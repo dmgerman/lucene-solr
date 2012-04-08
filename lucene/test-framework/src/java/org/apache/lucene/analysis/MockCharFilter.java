@@ -101,6 +101,8 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+comment|// TODO: instead of fixed remainder... maybe a fixed
+comment|// random seed?
 name|this
 operator|.
 name|remainder
