@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Fields
+name|InvertedFields
 import|;
 end_import
 
@@ -55,13 +55,13 @@ comment|/** Abstract API that produces terms, doc, freq, prox and  *  payloads p
 end_comment
 
 begin_class
-DECL|class|FieldsProducer
+DECL|class|InvertedFieldsProducer
 specifier|public
 specifier|abstract
 class|class
-name|FieldsProducer
+name|InvertedFieldsProducer
 extends|extends
-name|Fields
+name|InvertedFields
 implements|implements
 name|Closeable
 block|{

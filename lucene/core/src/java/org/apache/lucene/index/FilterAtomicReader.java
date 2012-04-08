@@ -106,26 +106,26 @@ name|FilterAtomicReader
 extends|extends
 name|AtomicReader
 block|{
-comment|/** Base class for filtering {@link Fields}    *  implementations. */
+comment|/** Base class for filtering {@link InvertedFields}    *  implementations. */
 DECL|class|FilterFields
 specifier|public
 specifier|static
 class|class
 name|FilterFields
 extends|extends
-name|Fields
+name|InvertedFields
 block|{
 DECL|field|in
 specifier|protected
 specifier|final
-name|Fields
+name|InvertedFields
 name|in
 decl_stmt|;
 DECL|method|FilterFields
 specifier|public
 name|FilterFields
 parameter_list|(
-name|Fields
+name|InvertedFields
 name|in
 parameter_list|)
 block|{
@@ -1175,7 +1175,7 @@ annotation|@
 name|Override
 DECL|method|getTermVectors
 specifier|public
-name|Fields
+name|InvertedFields
 name|getTermVectors
 parameter_list|(
 name|int
@@ -1297,7 +1297,7 @@ annotation|@
 name|Override
 DECL|method|fields
 specifier|public
-name|Fields
+name|InvertedFields
 name|fields
 parameter_list|()
 throws|throws

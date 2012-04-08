@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 import|;
 end_import
 
@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldsProducer
+name|InvertedFieldsProducer
 import|;
 end_import
 
@@ -753,7 +753,7 @@ name|void
 name|write
 parameter_list|(
 specifier|final
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 name|consumer
 parameter_list|)
 throws|throws
@@ -1779,7 +1779,7 @@ name|clonedFieldInfos
 argument_list|)
 decl_stmt|;
 specifier|final
-name|FieldsProducer
+name|InvertedFieldsProducer
 name|reader
 init|=
 name|codec
@@ -2224,7 +2224,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|final
-name|FieldsProducer
+name|InvertedFieldsProducer
 name|terms
 init|=
 name|codec
@@ -2739,7 +2739,7 @@ name|Thread
 block|{
 DECL|field|termsDict
 specifier|final
-name|Fields
+name|InvertedFields
 name|termsDict
 decl_stmt|;
 DECL|field|fields
@@ -2771,7 +2771,7 @@ index|[]
 name|fields
 parameter_list|,
 specifier|final
-name|Fields
+name|InvertedFields
 name|termsDict
 parameter_list|)
 block|{
@@ -3913,10 +3913,6 @@ name|DocsEnum
 name|docs
 decl_stmt|;
 specifier|final
-name|DocsEnum
-name|docsAndFreqs
-decl_stmt|;
-specifier|final
 name|DocsAndPositionsEnum
 name|postings
 decl_stmt|;
@@ -3950,16 +3946,12 @@ condition|)
 block|{
 name|docs
 operator|=
-name|docsAndFreqs
-operator|=
 name|postings
 expr_stmt|;
 block|}
 else|else
 block|{
 name|docs
-operator|=
-name|docsAndFreqs
 operator|=
 name|_TestUtil
 operator|.
@@ -3981,10 +3973,6 @@ block|}
 else|else
 block|{
 name|postings
-operator|=
-literal|null
-expr_stmt|;
-name|docsAndFreqs
 operator|=
 literal|null
 expr_stmt|;
@@ -4413,7 +4401,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|final
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 name|consumer
 init|=
 name|codec

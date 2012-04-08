@@ -88,7 +88,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 import|;
 end_import
 
@@ -1788,7 +1788,7 @@ parameter_list|(
 name|String
 name|fieldName
 parameter_list|,
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 name|consumer
 parameter_list|,
 specifier|final

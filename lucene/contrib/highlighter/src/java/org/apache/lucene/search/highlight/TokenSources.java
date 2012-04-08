@@ -190,7 +190,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Fields
+name|InvertedFields
 import|;
 end_import
 
@@ -304,7 +304,7 @@ name|ts
 init|=
 literal|null
 decl_stmt|;
-name|Fields
+name|InvertedFields
 name|vectors
 init|=
 name|reader
@@ -398,7 +398,7 @@ name|ts
 init|=
 literal|null
 decl_stmt|;
-name|Fields
+name|InvertedFields
 name|vectors
 init|=
 name|reader
@@ -1119,7 +1119,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Fields
+name|InvertedFields
 name|vectors
 init|=
 name|reader

@@ -227,7 +227,7 @@ name|maxDoc
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Fields
+name|InvertedFields
 name|fields
 init|=
 name|reader

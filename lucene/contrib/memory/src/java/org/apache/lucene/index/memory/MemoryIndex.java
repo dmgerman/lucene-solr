@@ -242,6 +242,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|InvertedFields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Norm
 import|;
 end_import
@@ -313,20 +327,6 @@ operator|.
 name|index
 operator|.
 name|FieldInvertState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Fields
 import|;
 end_import
 
@@ -563,24 +563,6 @@ operator|.
 name|BytesRef
 import|;
 end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Constants
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
 
 begin_import
 import|import
@@ -2963,7 +2945,7 @@ specifier|private
 class|class
 name|MemoryFields
 extends|extends
-name|Fields
+name|InvertedFields
 block|{
 annotation|@
 name|Override
@@ -3230,7 +3212,7 @@ annotation|@
 name|Override
 DECL|method|fields
 specifier|public
-name|Fields
+name|InvertedFields
 name|fields
 parameter_list|()
 block|{
@@ -4249,7 +4231,7 @@ annotation|@
 name|Override
 DECL|method|getTermVectors
 specifier|public
-name|Fields
+name|InvertedFields
 name|getTermVectors
 parameter_list|(
 name|int

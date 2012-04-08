@@ -893,7 +893,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Fields
+name|InvertedFields
 name|fields
 init|=
 name|MultiFields

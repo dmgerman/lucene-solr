@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Fields
+name|InvertedFields
 import|;
 end_import
 
@@ -107,7 +107,7 @@ comment|/** Returns term vectors for this document, or null if    *  term vector
 DECL|method|get
 specifier|public
 specifier|abstract
-name|Fields
+name|InvertedFields
 name|get
 parameter_list|(
 name|int

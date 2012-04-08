@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StoredFieldVisitor
+name|InvertedFields
 import|;
 end_import
 
@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Fields
+name|StoredFieldVisitor
 import|;
 end_import
 
@@ -1609,7 +1609,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Fields
+name|InvertedFields
 name|fields
 parameter_list|()
 block|{
@@ -1620,7 +1620,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Fields
+name|InvertedFields
 name|getTermVectors
 parameter_list|(
 name|int

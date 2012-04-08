@@ -78,42 +78,6 @@ begin_comment
 comment|// javadoc
 end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DirectoryReader
-import|;
-end_import
-
-begin_comment
-comment|// javadoc
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|MultiReader
-import|;
-end_import
-
-begin_comment
-comment|// javadoc
-end_comment
-
 begin_comment
 comment|/**  * This class forces a composite reader (eg a {@link  * MultiReader} or {@link DirectoryReader}) to emulate an  * atomic reader.  This requires implementing the postings  * APIs on-the-fly, using the static methods in {@link  * MultiFields}, {@link MultiDocValues},   * by stepping through the sub-readers to merge fields/terms,   * appending docs, etc.  *  *<p><b>NOTE</b>: this class almost always results in a  * performance hit.  If this is important to your use case,  * it's better to get the sequential sub readers (see {@link  * ReaderUtil#gatherSubReaders}, instead, and iterate through them  * yourself.</p>  */
 end_comment
@@ -156,7 +120,7 @@ decl_stmt|;
 DECL|field|fields
 specifier|private
 specifier|final
-name|Fields
+name|InvertedFields
 name|fields
 decl_stmt|;
 DECL|field|liveDocs
@@ -274,7 +238,7 @@ annotation|@
 name|Override
 DECL|method|fields
 specifier|public
-name|Fields
+name|InvertedFields
 name|fields
 parameter_list|()
 throws|throws
@@ -377,7 +341,7 @@ annotation|@
 name|Override
 DECL|method|getTermVectors
 specifier|public
-name|Fields
+name|InvertedFields
 name|getTermVectors
 parameter_list|(
 name|int

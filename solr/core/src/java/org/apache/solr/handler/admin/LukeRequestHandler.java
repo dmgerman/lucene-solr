@@ -4500,7 +4500,7 @@ operator|new
 name|CharsRef
 argument_list|()
 decl_stmt|;
-name|Fields
+name|InvertedFields
 name|fields
 init|=
 name|MultiFields

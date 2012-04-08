@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Access to the terms in a specific field.  See {@link Fields}.  * @lucene.experimental  */
+comment|/**  * Access to the terms in a specific field.  See {@link InvertedFields}.  * @lucene.experimental  */
 end_comment
 
 begin_class

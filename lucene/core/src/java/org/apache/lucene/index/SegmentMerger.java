@@ -104,7 +104,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 import|;
 end_import
 
@@ -1729,14 +1729,14 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|Fields
+name|InvertedFields
 argument_list|>
 name|fields
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|Fields
+name|InvertedFields
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1799,7 +1799,7 @@ name|readerIndex
 argument_list|)
 decl_stmt|;
 specifier|final
-name|Fields
+name|InvertedFields
 name|f
 init|=
 name|r
@@ -1858,7 +1858,7 @@ name|maxDoc
 expr_stmt|;
 block|}
 specifier|final
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 name|consumer
 init|=
 name|codec
@@ -1891,7 +1891,7 @@ name|fields
 operator|.
 name|toArray
 argument_list|(
-name|Fields
+name|InvertedFields
 operator|.
 name|EMPTY_ARRAY
 argument_list|)

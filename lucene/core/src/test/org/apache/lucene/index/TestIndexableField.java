@@ -1550,7 +1550,7 @@ comment|// TODO: offsets
 block|}
 else|else
 block|{
-name|Fields
+name|InvertedFields
 name|vectors
 init|=
 name|r

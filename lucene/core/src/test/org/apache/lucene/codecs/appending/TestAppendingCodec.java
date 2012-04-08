@@ -60,22 +60,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|appending
-operator|.
-name|AppendingCodec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|Document
@@ -134,7 +118,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Fields
+name|InvertedFields
 import|;
 end_import
 
@@ -826,7 +810,7 @@ literal|"f"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Fields
+name|InvertedFields
 name|fields
 init|=
 name|MultiFields

@@ -851,16 +851,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Fields api equivalency     */
+comment|/**     * InvertedFields api equivalency    */
 DECL|method|assertFields
 specifier|public
 name|void
 name|assertFields
 parameter_list|(
-name|Fields
+name|InvertedFields
 name|leftFields
 parameter_list|,
-name|Fields
+name|InvertedFields
 name|rightFields
 parameter_list|,
 name|boolean
@@ -869,7 +869,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-comment|// Fields could be null if there are no postings,
+comment|// InvertedFields could be null if there are no postings,
 comment|// but then it must be null for both
 if|if
 condition|(
@@ -975,16 +975,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * checks that top-level statistics on Fields are the same     */
+comment|/**     * checks that top-level statistics on InvertedFields are the same    */
 DECL|method|assertFieldStatistics
 specifier|public
 name|void
 name|assertFieldStatistics
 parameter_list|(
-name|Fields
+name|InvertedFields
 name|leftFields
 parameter_list|,
-name|Fields
+name|InvertedFields
 name|rightFields
 parameter_list|)
 throws|throws
@@ -2842,7 +2842,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|Fields
+name|InvertedFields
 name|leftFields
 init|=
 name|MultiFields
@@ -2852,7 +2852,7 @@ argument_list|(
 name|leftReader
 argument_list|)
 decl_stmt|;
-name|Fields
+name|InvertedFields
 name|rightFields
 init|=
 name|MultiFields
@@ -2862,7 +2862,7 @@ argument_list|(
 name|rightReader
 argument_list|)
 decl_stmt|;
-comment|// Fields could be null if there are no postings,
+comment|// InvertedFields could be null if there are no postings,
 comment|// but then it must be null for both
 if|if
 condition|(
@@ -3295,7 +3295,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Fields
+name|InvertedFields
 name|leftFields
 init|=
 name|leftReader
@@ -3305,7 +3305,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|Fields
+name|InvertedFields
 name|rightFields
 init|=
 name|rightReader

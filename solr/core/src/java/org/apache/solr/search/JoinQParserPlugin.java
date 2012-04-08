@@ -1497,7 +1497,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|Fields
+name|InvertedFields
 name|fromFields
 init|=
 name|fromSearcher
@@ -1508,7 +1508,7 @@ operator|.
 name|fields
 argument_list|()
 decl_stmt|;
-name|Fields
+name|InvertedFields
 name|toFields
 init|=
 name|fromSearcher

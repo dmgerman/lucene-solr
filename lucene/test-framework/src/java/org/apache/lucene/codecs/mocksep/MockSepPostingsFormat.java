@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 import|;
 end_import
 
@@ -90,7 +90,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|FieldsProducer
+name|InvertedFieldsProducer
 import|;
 end_import
 
@@ -323,7 +323,7 @@ annotation|@
 name|Override
 DECL|method|fieldsConsumer
 specifier|public
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 name|fieldsConsumer
 parameter_list|(
 name|SegmentWriteState
@@ -389,7 +389,7 @@ literal|false
 expr_stmt|;
 try|try
 block|{
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 name|ret
 init|=
 operator|new
@@ -441,7 +441,7 @@ annotation|@
 name|Override
 DECL|method|fieldsProducer
 specifier|public
-name|FieldsProducer
+name|InvertedFieldsProducer
 name|fieldsProducer
 parameter_list|(
 name|SegmentReadState
@@ -550,7 +550,7 @@ literal|false
 expr_stmt|;
 try|try
 block|{
-name|FieldsProducer
+name|InvertedFieldsProducer
 name|ret
 init|=
 operator|new

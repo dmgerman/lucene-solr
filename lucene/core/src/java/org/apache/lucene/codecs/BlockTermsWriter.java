@@ -248,7 +248,7 @@ specifier|public
 class|class
 name|BlockTermsWriter
 extends|extends
-name|FieldsConsumer
+name|InvertedFieldsConsumer
 block|{
 DECL|field|CODEC_NAME
 specifier|final

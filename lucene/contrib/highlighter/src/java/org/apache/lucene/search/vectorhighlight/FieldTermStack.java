@@ -82,7 +82,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Fields
+name|InvertedFields
 import|;
 end_import
 
@@ -269,7 +269,7 @@ literal|null
 condition|)
 return|return;
 specifier|final
-name|Fields
+name|InvertedFields
 name|vectors
 init|=
 name|reader

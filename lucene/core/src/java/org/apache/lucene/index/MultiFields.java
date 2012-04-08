@@ -175,12 +175,12 @@ specifier|final
 class|class
 name|MultiFields
 extends|extends
-name|Fields
+name|InvertedFields
 block|{
 DECL|field|subs
 specifier|private
 specifier|final
-name|Fields
+name|InvertedFields
 index|[]
 name|subs
 decl_stmt|;
@@ -213,11 +213,11 @@ name|Terms
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/** Returns a single {@link Fields} instance for this    *  reader, merging fields/terms/docs/positions on the    *  fly.  This method will return null if the reader     *  has no postings.    *    *<p><b>NOTE</b>: this is a slow way to access postings.    *  It's better to get the sub-readers (using {@link    *  Gather}) and iterate through them    *  yourself. */
+comment|/** Returns a single {@link InvertedFields} instance for this    *  reader, merging fields/terms/docs/positions on the    *  fly.  This method will return null if the reader     *  has no postings.    *    *<p><b>NOTE</b>: this is a slow way to access postings.    *  It's better to get the sub-readers (using {@link    *  Gather}) and iterate through them    *  yourself. */
 DECL|method|getFields
 specifier|public
 specifier|static
-name|Fields
+name|InvertedFields
 name|getFields
 parameter_list|(
 name|IndexReader
@@ -285,14 +285,14 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|Fields
+name|InvertedFields
 argument_list|>
 name|fields
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|Fields
+name|InvertedFields
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -338,7 +338,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|Fields
+name|InvertedFields
 name|f
 init|=
 name|r
@@ -434,7 +434,7 @@ name|fields
 operator|.
 name|toArray
 argument_list|(
-name|Fields
+name|InvertedFields
 operator|.
 name|EMPTY_ARRAY
 argument_list|)
@@ -643,7 +643,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|Fields
+name|InvertedFields
 name|fields
 init|=
 name|getFields
@@ -866,7 +866,7 @@ DECL|method|MultiFields
 specifier|public
 name|MultiFields
 parameter_list|(
-name|Fields
+name|InvertedFields
 index|[]
 name|subs
 parameter_list|,

@@ -253,7 +253,7 @@ name|Override
 DECL|method|getTermVectors
 specifier|public
 specifier|final
-name|Fields
+name|InvertedFields
 name|getTermVectors
 parameter_list|(
 name|int

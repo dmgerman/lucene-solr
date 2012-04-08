@@ -204,7 +204,7 @@ block|{
 DECL|method|TestFields
 name|TestFields
 parameter_list|(
-name|Fields
+name|InvertedFields
 name|in
 parameter_list|)
 block|{
@@ -571,7 +571,7 @@ annotation|@
 name|Override
 DECL|method|fields
 specifier|public
-name|Fields
+name|InvertedFields
 name|fields
 parameter_list|()
 throws|throws

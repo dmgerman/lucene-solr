@@ -2263,7 +2263,7 @@ argument_list|(
 name|s
 argument_list|)
 expr_stmt|;
-name|Fields
+name|InvertedFields
 name|fields
 init|=
 name|MultiFields
