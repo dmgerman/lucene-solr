@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|InvertedFields
+name|Fields
 import|;
 end_import
 
@@ -528,7 +528,7 @@ continue|continue;
 block|}
 comment|// NOTE: it's very important to first assign to vectors then pass it to
 comment|// termVectorsWriter.addAllDocVectors; see LUCENE-1282
-name|InvertedFields
+name|Fields
 name|vectors
 init|=
 name|reader
@@ -572,14 +572,14 @@ return|return
 name|docCount
 return|;
 block|}
-comment|/** Safe (but, slowish) default method to write every    *  vector field in the document.  This default    *  implementation requires that the vectors implement    *  both InvertedFields.getUniqueFieldCount and    *  Terms.getUniqueTermCount. */
+comment|/** Safe (but, slowish) default method to write every    *  vector field in the document.  This default    *  implementation requires that the vectors implement    *  both Fields.getUniqueFieldCount and    *  Terms.getUniqueTermCount. */
 DECL|method|addAllDocVectors
 specifier|protected
 specifier|final
 name|void
 name|addAllDocVectors
 parameter_list|(
-name|InvertedFields
+name|Fields
 name|vectors
 parameter_list|,
 name|FieldInfos

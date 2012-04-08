@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|InvertedFields
+name|Fields
 import|;
 end_import
 
@@ -329,7 +329,7 @@ name|reader
 argument_list|()
 decl_stmt|;
 specifier|final
-name|InvertedFields
+name|Fields
 name|fields
 init|=
 name|reader

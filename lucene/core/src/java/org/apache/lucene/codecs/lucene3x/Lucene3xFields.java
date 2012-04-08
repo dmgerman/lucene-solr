@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|InvertedFieldsProducer
+name|FieldsProducer
 import|;
 end_import
 
@@ -353,7 +353,7 @@ DECL|class|Lucene3xFields
 class|class
 name|Lucene3xFields
 extends|extends
-name|InvertedFieldsProducer
+name|FieldsProducer
 block|{
 DECL|field|DEBUG_SURROGATES
 specifier|private
@@ -392,6 +392,12 @@ specifier|final
 specifier|private
 name|FieldInfos
 name|fieldInfos
+decl_stmt|;
+DECL|field|si
+specifier|private
+specifier|final
+name|SegmentInfo
+name|si
 decl_stmt|;
 DECL|field|fields
 specifier|final
@@ -437,6 +443,12 @@ specifier|final
 name|Directory
 name|dir
 decl_stmt|;
+DECL|field|context
+specifier|private
+specifier|final
+name|IOContext
+name|context
+decl_stmt|;
 DECL|field|cfsReader
 specifier|private
 name|Directory
@@ -464,6 +476,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|si
+operator|=
+name|info
+expr_stmt|;
 comment|// NOTE: we must always load terms index, even for
 comment|// "sequential" scan during merging, because what is
 comment|// sequential to merger may not be to TermInfosReader
@@ -531,6 +547,12 @@ operator|=
 name|r
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|context
+operator|=
+name|context
+expr_stmt|;
 name|this
 operator|.
 name|fieldInfos

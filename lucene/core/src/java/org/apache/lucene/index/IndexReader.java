@@ -126,6 +126,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|SearcherManager
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|*
@@ -146,10 +164,6 @@ name|Bits
 import|;
 end_import
 
-begin_comment
-comment|// javadocs
-end_comment
-
 begin_import
 import|import
 name|org
@@ -163,6 +177,24 @@ operator|.
 name|BytesRef
 import|;
 end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ReaderUtil
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
 
 begin_comment
 comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p>There are two different types of IndexReaders:<ul><li>{@link AtomicReader}: These indexes do not consist of several sub-readers,   they are atomic. They support retrieval of stored fields, doc values, terms,   and postings.<li>{@link CompositeReader}: Instances (like {@link DirectoryReader})   of this reader can only   be used to get stored fields from the underlying AtomicReaders,   but it is not possible to directly retrieve postings. To do that, get   the sub-readers via {@link CompositeReader#getSequentialSubReaders}.   Alternatively, you can mimic an {@link AtomicReader} (with a serious slowdown),   by wrapping composite readers with {@link SlowCompositeReaderWrapper}.</ul><p>IndexReader instances for indexes on disk are usually constructed  with a call to one of the static<code>DirectoryReader,open()</code> methods,  e.g. {@link DirectoryReader#open(Directory)}. {@link DirectoryReader} implements  the {@link CompositeReader} interface, it is not possible to directly get postings.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral -- they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  IndexReader} instances are completely thread  safe, meaning multiple threads can call any of its methods,  concurrently.  If your application requires external  synchronization, you should<b>not</b> synchronize on the<code>IndexReader</code> instance; use your own  (non-Lucene) objects instead. */
@@ -854,11 +886,11 @@ name|termInfosIndexDivisor
 argument_list|)
 return|;
 block|}
-comment|/** Retrieve term vectors for this document, or null if    *  term vectors were not indexed.  The returned InvertedFields    *  instance acts like a single-document inverted index    *  (the docID will be 0). */
+comment|/** Retrieve term vectors for this document, or null if    *  term vectors were not indexed.  The returned Fields    *  instance acts like a single-document inverted index    *  (the docID will be 0). */
 DECL|method|getTermVectors
 specifier|public
 specifier|abstract
-name|InvertedFields
+name|Fields
 name|getTermVectors
 parameter_list|(
 name|int
@@ -867,7 +899,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Retrieve term vector for this document and field, or    *  null if term vectors were not indexed.  The returned    *  InvertedFields instance acts like a single-document inverted    *  index (the docID will be 0). */
+comment|/** Retrieve term vector for this document and field, or    *  null if term vectors were not indexed.  The returned    *  Fields instance acts like a single-document inverted    *  index (the docID will be 0). */
 DECL|method|getTermVector
 specifier|public
 specifier|final
@@ -883,7 +915,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|InvertedFields
+name|Fields
 name|vectors
 init|=
 name|getTermVectors

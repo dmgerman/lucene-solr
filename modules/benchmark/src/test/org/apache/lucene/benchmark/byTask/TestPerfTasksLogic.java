@@ -350,7 +350,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|InvertedFields
+name|Fields
 import|;
 end_import
 
@@ -3317,7 +3317,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|InvertedFields
+name|Fields
 name|tfv
 init|=
 name|reader

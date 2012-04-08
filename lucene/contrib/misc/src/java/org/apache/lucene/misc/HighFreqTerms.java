@@ -54,7 +54,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|InvertedFields
+name|MultiFields
 import|;
 end_import
 
@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MultiFields
+name|Fields
 import|;
 end_import
 
@@ -643,7 +643,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|InvertedFields
+name|Fields
 name|fields
 init|=
 name|MultiFields
@@ -720,7 +720,7 @@ block|}
 block|}
 else|else
 block|{
-name|InvertedFields
+name|Fields
 name|fields
 init|=
 name|MultiFields

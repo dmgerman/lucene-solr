@@ -364,7 +364,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|InvertedFields
+name|Fields
 name|fields
 init|=
 name|MultiFields

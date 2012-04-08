@@ -336,7 +336,7 @@ specifier|public
 class|class
 name|BlockTreeTermsWriter
 extends|extends
-name|InvertedFieldsConsumer
+name|FieldsConsumer
 block|{
 DECL|field|DEFAULT_MIN_BLOCK_SIZE
 specifier|public

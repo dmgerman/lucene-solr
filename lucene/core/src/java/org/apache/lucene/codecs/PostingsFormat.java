@@ -180,7 +180,7 @@ comment|/** Writes a new segment */
 DECL|method|fieldsConsumer
 specifier|public
 specifier|abstract
-name|InvertedFieldsConsumer
+name|FieldsConsumer
 name|fieldsConsumer
 parameter_list|(
 name|SegmentWriteState
@@ -193,7 +193,7 @@ comment|/** Reads a segment.  NOTE: by the time this call    *  returns, it must
 DECL|method|fieldsProducer
 specifier|public
 specifier|abstract
-name|InvertedFieldsProducer
+name|FieldsProducer
 name|fieldsProducer
 parameter_list|(
 name|SegmentReadState

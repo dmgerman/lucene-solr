@@ -106,7 +106,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|InvertedFields
+name|Fields
 import|;
 end_import
 
@@ -1711,7 +1711,7 @@ name|fieldNames
 control|)
 block|{
 specifier|final
-name|InvertedFields
+name|Fields
 name|vectors
 init|=
 name|ir

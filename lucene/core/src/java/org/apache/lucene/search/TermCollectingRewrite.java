@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|InvertedFields
+name|Fields
 import|;
 end_import
 
@@ -314,7 +314,7 @@ name|leaves
 control|)
 block|{
 specifier|final
-name|InvertedFields
+name|Fields
 name|fields
 init|=
 name|context

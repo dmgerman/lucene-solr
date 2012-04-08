@@ -773,7 +773,7 @@ operator|.
 name|getAtomicReader
 argument_list|()
 decl_stmt|;
-name|InvertedFields
+name|Fields
 name|lfields
 init|=
 name|indexReader

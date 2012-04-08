@@ -163,7 +163,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a {@link Source} instance through the current {@link SourceCache}.    * Iff no {@link Source} has been loaded into the cache so far the source will    * be loaded through {@link #load()} and passed to the {@link SourceCache}.    * The caller of this method should not close the obtained {@link Source}    * instance unless it is not needed for the rest of its life time.    *<p>    * {@link Source} instances obtained from this method are closed / released    * from the cache once this {@link DocValues} instance is closed by the    * {@link IndexReader}, {@link InvertedFields} or {@link FieldsEnum} the    * {@link DocValues} was created from.    */
+comment|/**    * Returns a {@link Source} instance through the current {@link SourceCache}.    * Iff no {@link Source} has been loaded into the cache so far the source will    * be loaded through {@link #load()} and passed to the {@link SourceCache}.    * The caller of this method should not close the obtained {@link Source}    * instance unless it is not needed for the rest of its life time.    *<p>    * {@link Source} instances obtained from this method are closed / released    * from the cache once this {@link DocValues} instance is closed by the    * {@link IndexReader}, {@link Fields} or {@link FieldsEnum} the    * {@link DocValues} was created from.    */
 DECL|method|getSource
 specifier|public
 name|Source

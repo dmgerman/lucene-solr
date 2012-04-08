@@ -3999,7 +3999,7 @@ name|indexedPrefix
 argument_list|)
 expr_stmt|;
 block|}
-name|InvertedFields
+name|Fields
 name|fields
 init|=
 name|r

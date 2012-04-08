@@ -181,7 +181,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|InvertedFields
+name|Fields
 name|fields
 init|=
 name|readerContext

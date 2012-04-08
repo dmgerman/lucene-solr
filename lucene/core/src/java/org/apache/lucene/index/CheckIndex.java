@@ -3182,7 +3182,7 @@ return|return
 name|status
 return|;
 block|}
-comment|/**    * checks InvertedFields api is consistent with itself.    * searcher is optional, to verify with queries. Can be null.    */
+comment|/**    * checks Fields api is consistent with itself.    * searcher is optional, to verify with queries. Can be null.    */
 comment|// TODO: cutover term vectors to this!
 DECL|method|checkFields
 specifier|private
@@ -3191,7 +3191,7 @@ operator|.
 name|TermIndexStatus
 name|checkFields
 parameter_list|(
-name|InvertedFields
+name|Fields
 name|fields
 parameter_list|,
 name|Bits
@@ -4765,7 +4765,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"InvertedFields.terms(field="
+literal|"Fields.terms(field="
 operator|+
 name|field
 operator|+
@@ -5705,7 +5705,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|final
-name|InvertedFields
+name|Fields
 name|fields
 init|=
 name|reader
@@ -6709,7 +6709,7 @@ name|status
 operator|.
 name|docCount
 operator|+
-literal|" total doc Count; Num DocValues InvertedFields "
+literal|" total doc Count; Num DocValues Fields "
 operator|+
 name|status
 operator|.
@@ -6857,7 +6857,7 @@ name|getLiveDocs
 argument_list|()
 decl_stmt|;
 specifier|final
-name|InvertedFields
+name|Fields
 name|postingsFields
 decl_stmt|;
 comment|// TODO: testTermsIndex
@@ -6911,7 +6911,7 @@ block|{
 comment|// Intentionally pull/visit (but don't count in
 comment|// stats) deleted documents to make sure they too
 comment|// are not corrupt:
-name|InvertedFields
+name|Fields
 name|tfv
 init|=
 name|reader

@@ -1263,7 +1263,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-name|InvertedFields
+name|Fields
 name|results
 init|=
 name|reader

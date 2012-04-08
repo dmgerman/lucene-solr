@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|InvertedFields
+name|Fields
 import|;
 end_import
 
@@ -754,6 +754,7 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+return|return;
 block|}
 DECL|method|testTermVectors
 specifier|private
@@ -799,7 +800,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 expr_stmt|;
-name|InvertedFields
+name|Fields
 name|vectors
 init|=
 name|reader
@@ -876,7 +877,7 @@ specifier|private
 name|void
 name|verifyVectors
 parameter_list|(
-name|InvertedFields
+name|Fields
 name|vectors
 parameter_list|,
 name|int

@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|InvertedFields
+name|Fields
 import|;
 end_import
 
@@ -111,11 +111,11 @@ comment|/** Abstract API that consumes terms, doc, freq, prox, offset and  *  pa
 end_comment
 
 begin_class
-DECL|class|InvertedFieldsConsumer
+DECL|class|FieldsConsumer
 specifier|public
 specifier|abstract
 class|class
-name|InvertedFieldsConsumer
+name|FieldsConsumer
 implements|implements
 name|Closeable
 block|{
@@ -150,7 +150,7 @@ parameter_list|(
 name|MergeState
 name|mergeState
 parameter_list|,
-name|InvertedFields
+name|Fields
 name|fields
 parameter_list|)
 throws|throws

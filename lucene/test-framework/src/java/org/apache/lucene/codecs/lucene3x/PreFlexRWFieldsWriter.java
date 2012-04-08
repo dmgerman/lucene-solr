@@ -48,7 +48,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|InvertedFieldsConsumer
+name|FieldsConsumer
 import|;
 end_import
 
@@ -229,7 +229,7 @@ DECL|class|PreFlexRWFieldsWriter
 class|class
 name|PreFlexRWFieldsWriter
 extends|extends
-name|InvertedFieldsConsumer
+name|FieldsConsumer
 block|{
 DECL|field|termsOut
 specifier|private

@@ -36,6 +36,20 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|FilterAtomicReader
+import|;
+end_import
+
 begin_class
 DECL|class|FieldFilterAtomicReader
 specifier|public
@@ -174,7 +188,7 @@ annotation|@
 name|Override
 DECL|method|getTermVectors
 specifier|public
-name|InvertedFields
+name|Fields
 name|getTermVectors
 parameter_list|(
 name|int
@@ -183,7 +197,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|InvertedFields
+name|Fields
 name|f
 init|=
 name|super
@@ -462,14 +476,14 @@ annotation|@
 name|Override
 DECL|method|fields
 specifier|public
-name|InvertedFields
+name|Fields
 name|fields
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 specifier|final
-name|InvertedFields
+name|Fields
 name|f
 init|=
 name|super
@@ -620,7 +634,7 @@ DECL|method|FieldFilterFields
 specifier|public
 name|FieldFilterFields
 parameter_list|(
-name|InvertedFields
+name|Fields
 name|in
 parameter_list|)
 block|{

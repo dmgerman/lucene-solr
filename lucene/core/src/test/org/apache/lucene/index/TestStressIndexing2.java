@@ -2092,7 +2092,7 @@ decl_stmt|;
 comment|// r2 id to r1 id mapping
 comment|// create mapping from id2 space to id2 based on idField
 specifier|final
-name|InvertedFields
+name|Fields
 name|f1
 init|=
 name|MultiFields
@@ -2201,7 +2201,7 @@ argument_list|(
 name|r2
 argument_list|)
 decl_stmt|;
-name|InvertedFields
+name|Fields
 name|fields
 init|=
 name|MultiFields
@@ -2602,7 +2602,7 @@ operator|+
 name|id2
 argument_list|)
 expr_stmt|;
-name|InvertedFields
+name|Fields
 name|tv1
 init|=
 name|r1
@@ -2896,7 +2896,7 @@ block|}
 block|}
 block|}
 block|}
-name|InvertedFields
+name|Fields
 name|tv2
 init|=
 name|r2
@@ -3977,10 +3977,10 @@ specifier|static
 name|void
 name|verifyEquals
 parameter_list|(
-name|InvertedFields
+name|Fields
 name|d1
 parameter_list|,
-name|InvertedFields
+name|Fields
 name|d2
 parameter_list|)
 throws|throws

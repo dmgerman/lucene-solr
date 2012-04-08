@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|InvertedFields
+name|Fields
 import|;
 end_import
 
@@ -529,7 +529,7 @@ block|{
 comment|// this happens with span-not query, as it doesn't include the NOT side in extractTerms()
 comment|// so we seek to the term now in this segment..., this sucks because its ugly mostly!
 specifier|final
-name|InvertedFields
+name|Fields
 name|fields
 init|=
 name|context
