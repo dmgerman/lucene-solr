@@ -966,7 +966,6 @@ name|endOffset
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// nocommit is this right!?  i'm just guessing...
 name|posLenAtt
 operator|.
 name|setPositionLength
