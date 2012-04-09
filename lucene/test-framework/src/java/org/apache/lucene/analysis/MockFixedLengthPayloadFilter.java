@@ -130,6 +130,21 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|length
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"length must be>= 0"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|random

@@ -230,6 +230,36 @@ argument_list|(
 name|str
 argument_list|)
 expr_stmt|;
+comment|// confusingly group count depends ENTIRELY on the pattern but is only accessible via matcher
+if|if
+condition|(
+name|group
+operator|>=
+literal|0
+operator|&&
+name|group
+operator|>
+name|matcher
+operator|.
+name|groupCount
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"invalid group specified: pattern only has: "
+operator|+
+name|matcher
+operator|.
+name|groupCount
+argument_list|()
+operator|+
+literal|" capturing groups"
+argument_list|)
+throw|;
+block|}
 name|index
 operator|=
 literal|0
