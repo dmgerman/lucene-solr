@@ -909,6 +909,93 @@ argument_list|>
 argument_list|>
 name|charfilters
 decl_stmt|;
+comment|// TODO: fix those and remove
+DECL|field|brokenComponents
+specifier|private
+specifier|static
+specifier|final
+name|Set
+argument_list|<
+name|Class
+argument_list|<
+name|?
+argument_list|>
+argument_list|>
+name|brokenComponents
+init|=
+name|Collections
+operator|.
+name|newSetFromMap
+argument_list|(
+operator|new
+name|IdentityHashMap
+argument_list|<
+name|Class
+argument_list|<
+name|?
+argument_list|>
+argument_list|,
+name|Boolean
+argument_list|>
+argument_list|()
+argument_list|)
+decl_stmt|;
+static|static
+block|{
+name|Collections
+operator|.
+expr|<
+name|Class
+argument_list|<
+name|?
+argument_list|>
+operator|>
+name|addAll
+argument_list|(
+name|brokenComponents
+argument_list|,
+comment|// TODO: fix basetokenstreamtestcase not to trip because this one has no CharTermAtt
+name|EmptyTokenizer
+operator|.
+name|class
+argument_list|,
+comment|// doesn't actual reset itself!
+name|CachingTokenFilter
+operator|.
+name|class
+argument_list|,
+comment|// nocommit: corrumpts graphs (offset consistency check)
+name|PositionFilter
+operator|.
+name|class
+argument_list|,
+comment|// doesn't consume whole stream!
+name|LimitTokenCountFilter
+operator|.
+name|class
+argument_list|,
+comment|// broken!
+name|NGramTokenizer
+operator|.
+name|class
+argument_list|,
+comment|// broken!
+name|NGramTokenFilter
+operator|.
+name|class
+argument_list|,
+comment|// broken!
+name|EdgeNGramTokenizer
+operator|.
+name|class
+argument_list|,
+comment|// broken!
+name|EdgeNGramTokenFilter
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -1085,62 +1172,13 @@ argument_list|(
 name|c
 argument_list|)
 operator|)
-comment|// TODO: fix basetokenstreamtestcase not to trip because this one has no CharTermAtt
 operator|||
-name|c
-operator|==
-name|EmptyTokenizer
+name|brokenComponents
 operator|.
-name|class
-comment|// doesn't actual reset itself!
-operator|||
+name|contains
+argument_list|(
 name|c
-operator|==
-name|CachingTokenFilter
-operator|.
-name|class
-comment|// nocommit: corrumpts graphs (offset consistency check)
-operator|||
-name|c
-operator|==
-name|PositionFilter
-operator|.
-name|class
-comment|// doesn't consume whole stream!
-operator|||
-name|c
-operator|==
-name|LimitTokenCountFilter
-operator|.
-name|class
-comment|// broken!
-operator|||
-name|c
-operator|==
-name|NGramTokenizer
-operator|.
-name|class
-comment|// broken!
-operator|||
-name|c
-operator|==
-name|NGramTokenFilter
-operator|.
-name|class
-comment|// broken!
-operator|||
-name|c
-operator|==
-name|EdgeNGramTokenizer
-operator|.
-name|class
-comment|// broken!
-operator|||
-name|c
-operator|==
-name|EdgeNGramTokenFilter
-operator|.
-name|class
+argument_list|)
 condition|)
 block|{
 continue|continue;
@@ -4818,8 +4856,6 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-literal|true
-operator|||
 name|VERBOSE
 condition|)
 block|{
