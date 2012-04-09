@@ -214,20 +214,15 @@ name|group
 operator|=
 name|group
 expr_stmt|;
-name|fillBuffer
-argument_list|(
-name|str
-argument_list|,
-name|input
-argument_list|)
-expr_stmt|;
+comment|// Use "" instead of str so don't consume chars
+comment|// (fillBuffer) from the input on throwing IAE below:
 name|matcher
 operator|=
 name|pattern
 operator|.
 name|matcher
 argument_list|(
-name|str
+literal|""
 argument_list|)
 expr_stmt|;
 comment|// confusingly group count depends ENTIRELY on the pattern but is only accessible via matcher
@@ -260,6 +255,20 @@ literal|" capturing groups"
 argument_list|)
 throw|;
 block|}
+name|fillBuffer
+argument_list|(
+name|str
+argument_list|,
+name|input
+argument_list|)
+expr_stmt|;
+name|matcher
+operator|.
+name|reset
+argument_list|(
+name|str
+argument_list|)
+expr_stmt|;
 name|index
 operator|=
 literal|0
