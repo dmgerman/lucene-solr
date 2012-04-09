@@ -3660,15 +3660,16 @@ operator|.
 name|class
 condition|)
 block|{
+comment|// nocommit: args[i] = new AttributeSource();
+comment|// this is currently too scary to deal with!
 name|args
 index|[
 name|i
 index|]
 operator|=
-operator|new
-name|AttributeSource
-argument_list|()
+literal|null
 expr_stmt|;
+comment|// force IAE
 block|}
 else|else
 block|{
@@ -4896,8 +4897,11 @@ name|nextLong
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// nocommit: wrap the uncaught handler with our own that prints the analyzer
 if|if
 condition|(
+literal|true
+operator|||
 name|VERBOSE
 condition|)
 block|{
