@@ -1043,6 +1043,12 @@ comment|// broken!
 name|EdgeNGramTokenFilter
 operator|.
 name|class
+argument_list|,
+comment|// Not broken: we forcefully add this, so we shouldn't
+comment|// also randomly pick it:
+name|ValidatingTokenFilter
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 block|}
@@ -1231,18 +1237,6 @@ name|c
 argument_list|)
 condition|)
 block|{
-continue|continue;
-block|}
-if|if
-condition|(
-name|c
-operator|==
-name|ValidatingTokenFilter
-operator|.
-name|class
-condition|)
-block|{
-comment|// We insert this one ourselves after each stage...
 continue|continue;
 block|}
 for|for
