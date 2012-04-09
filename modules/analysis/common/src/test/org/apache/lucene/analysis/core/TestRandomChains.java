@@ -200,7 +200,27 @@ name|java
 operator|.
 name|util
 operator|.
+name|IdentityHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -221,26 +241,6 @@ operator|.
 name|util
 operator|.
 name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|IdentityHashMap
 import|;
 end_import
 
@@ -407,6 +407,20 @@ operator|.
 name|analysis
 operator|.
 name|Tokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|ValidatingTokenFilter
 import|;
 end_import
 
@@ -759,6 +773,8 @@ operator|.
 name|util
 operator|.
 name|AttributeSource
+operator|.
+name|AttributeFactory
 import|;
 end_import
 
@@ -773,8 +789,6 @@ operator|.
 name|util
 operator|.
 name|AttributeSource
-operator|.
-name|AttributeFactory
 import|;
 end_import
 
@@ -1217,6 +1231,18 @@ name|c
 argument_list|)
 condition|)
 block|{
+continue|continue;
+block|}
+if|if
+condition|(
+name|c
+operator|==
+name|ValidatingTokenFilter
+operator|.
+name|class
+condition|)
+block|{
+comment|// We insert this one ourselves after each stage...
 continue|continue;
 block|}
 for|for
@@ -4793,6 +4819,25 @@ name|i
 operator|++
 control|)
 block|{
+comment|// Insert ValidatingTF after each stage so we can
+comment|// catch problems right after the TF that "caused"
+comment|// them:
+name|spec
+operator|.
+name|stream
+operator|=
+operator|new
+name|ValidatingTokenFilter
+argument_list|(
+name|spec
+operator|.
+name|stream
+argument_list|,
+literal|"stage "
+operator|+
+name|i
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 literal|true
@@ -4871,6 +4916,23 @@ break|break;
 block|}
 block|}
 block|}
+comment|// Insert ValidatingTF after each stage so we can
+comment|// catch problems right after the TF that "caused"
+comment|// them:
+name|spec
+operator|.
+name|stream
+operator|=
+operator|new
+name|ValidatingTokenFilter
+argument_list|(
+name|spec
+operator|.
+name|stream
+argument_list|,
+literal|"last stage"
+argument_list|)
+expr_stmt|;
 name|spec
 operator|.
 name|toString

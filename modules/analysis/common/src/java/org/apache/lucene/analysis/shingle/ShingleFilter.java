@@ -88,6 +88,22 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
+name|CharTermAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
 name|OffsetAttribute
 import|;
 end_import
@@ -120,7 +136,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|CharTermAttribute
+name|PositionLengthAttribute
 import|;
 end_import
 
@@ -366,6 +382,19 @@ init|=
 name|addAttribute
 argument_list|(
 name|PositionIncrementAttribute
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+DECL|field|posLenAtt
+specifier|private
+specifier|final
+name|PositionLengthAttribute
+name|posLenAtt
+init|=
+name|addAttribute
+argument_list|(
+name|PositionLengthAttribute
 operator|.
 name|class
 argument_list|)
@@ -935,6 +964,14 @@ name|offsetAtt
 operator|.
 name|endOffset
 argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// nocommit is this right!?  i'm just guessing...
+name|posLenAtt
+operator|.
+name|setPositionLength
+argument_list|(
+name|builtGramSize
 argument_list|)
 expr_stmt|;
 name|isOutputHere

@@ -1244,7 +1244,13 @@ block|}
 block|}
 name|assertFalse
 argument_list|(
-literal|"TokenStream has more tokens than expected"
+literal|"TokenStream has more tokens than expected (expected count="
+operator|+
+name|output
+operator|.
+name|length
+operator|+
+literal|")"
 argument_list|,
 name|ts
 operator|.

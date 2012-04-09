@@ -650,6 +650,20 @@ operator|.
 name|startOffset
 operator|==
 name|startOffset
+operator|:
+literal|"prev startOffset="
+operator|+
+name|startPosData
+operator|.
+name|startOffset
+operator|+
+literal|" vs new startOffset="
+operator|+
+name|startOffset
+operator|+
+literal|" inputPos="
+operator|+
+name|inputPos
 assert|;
 block|}
 specifier|final
@@ -687,6 +701,20 @@ operator|.
 name|endOffset
 operator|==
 name|endOffset
+operator|:
+literal|"prev endOffset="
+operator|+
+name|endPosData
+operator|.
+name|endOffset
+operator|+
+literal|" vs new endOffset="
+operator|+
+name|endOffset
+operator|+
+literal|" inputPos="
+operator|+
+name|inputPos
 assert|;
 block|}
 name|tokenPending
