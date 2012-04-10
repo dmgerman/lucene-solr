@@ -1122,6 +1122,33 @@ comment|// also randomly pick it:
 name|ValidatingTokenFilter
 operator|.
 name|class
+argument_list|,
+comment|// NOTE: these by themselves won't cause any 'basic assertions' to fail.
+comment|// but see https://issues.apache.org/jira/browse/LUCENE-3920, if any
+comment|// tokenfilter that combines words (e.g. shingles) comes after them,
+comment|// this will create bogus offsets because their 'offsets go backwards',
+comment|// causing shingle or whatever to make a single token with a
+comment|// startOffset thats> its endOffset
+comment|// (see LUCENE-3738 for a list of other offenders here)
+comment|// broken!
+name|NGramTokenizer
+operator|.
+name|class
+argument_list|,
+comment|// broken!
+name|NGramTokenFilter
+operator|.
+name|class
+argument_list|,
+comment|// broken!
+name|EdgeNGramTokenizer
+operator|.
+name|class
+argument_list|,
+comment|// broken!
+name|EdgeNGramTokenFilter
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 block|}
@@ -1197,26 +1224,6 @@ name|class
 argument_list|,
 comment|// nocommit: corrumpts graphs (offset consistency check):
 name|PositionFilter
-operator|.
-name|class
-argument_list|,
-comment|// broken!
-name|NGramTokenizer
-operator|.
-name|class
-argument_list|,
-comment|// broken!
-name|NGramTokenFilter
-operator|.
-name|class
-argument_list|,
-comment|// broken!
-name|EdgeNGramTokenizer
-operator|.
-name|class
-argument_list|,
-comment|// broken!
-name|EdgeNGramTokenFilter
 operator|.
 name|class
 argument_list|,
