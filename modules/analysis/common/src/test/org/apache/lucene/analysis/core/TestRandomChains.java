@@ -4294,24 +4294,14 @@ argument_list|(
 name|args
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|descr
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
+comment|/*         if (descr.length()> 0) {           descr.append(",");         }         */
 name|descr
 operator|.
 name|append
 argument_list|(
-literal|","
+literal|"\n  "
 argument_list|)
 expr_stmt|;
-block|}
 name|descr
 operator|.
 name|append
