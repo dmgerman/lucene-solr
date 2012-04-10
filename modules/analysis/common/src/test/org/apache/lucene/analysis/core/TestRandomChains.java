@@ -5599,11 +5599,8 @@ name|nextLong
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// nocommit: wrap the uncaught handler with our own that prints the analyzer
 if|if
 condition|(
-literal|true
-operator|||
 name|VERBOSE
 condition|)
 block|{
