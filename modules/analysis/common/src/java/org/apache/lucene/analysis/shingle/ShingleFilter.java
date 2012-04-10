@@ -1487,6 +1487,14 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|nextInputStreamToken
+operator|=
+literal|null
+expr_stmt|;
+name|isNextInputStreamToken
+operator|=
+literal|false
+expr_stmt|;
 name|numFillerTokensToInsert
 operator|=
 literal|0
