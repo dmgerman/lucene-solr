@@ -125,7 +125,19 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit better name...?
+comment|// nocommit rename to OffsetsXXXTF?  ie we only validate
+end_comment
+
+begin_comment
+comment|// offsets (now anyway...)
+end_comment
+
+begin_comment
+comment|// TODO: also make a DebuggingTokenFilter, that just prints
+end_comment
+
+begin_comment
+comment|// all att values that come through it...
 end_comment
 
 begin_comment
@@ -153,6 +165,11 @@ DECL|field|pos
 specifier|private
 name|int
 name|pos
+decl_stmt|;
+DECL|field|lastStartOffset
+specifier|private
+name|int
+name|lastStartOffset
 decl_stmt|;
 comment|// Maps position to the start/end offset:
 DECL|field|posToStartOffset
@@ -247,6 +264,12 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+DECL|field|offsetsAreCorrect
+specifier|private
+specifier|final
+name|boolean
+name|offsetsAreCorrect
+decl_stmt|;
 DECL|field|name
 specifier|private
 specifier|final
@@ -303,6 +326,9 @@ name|in
 parameter_list|,
 name|String
 name|name
+parameter_list|,
+name|boolean
+name|offsetsAreCorrect
 parameter_list|)
 block|{
 name|super
@@ -315,6 +341,12 @@ operator|.
 name|name
 operator|=
 name|name
+expr_stmt|;
+name|this
+operator|.
+name|offsetsAreCorrect
+operator|=
+name|offsetsAreCorrect
 expr_stmt|;
 block|}
 annotation|@
@@ -386,6 +418,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|// System.out.println("  got token=" + termAtt + " pos=" + pos);
 if|if
 condition|(
 name|offsetAtt
@@ -480,6 +513,41 @@ name|termAtt
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|offsetsAreCorrect
+operator|&&
+name|offsetAtt
+operator|.
+name|startOffset
+argument_list|()
+operator|<
+name|lastStartOffset
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+name|name
+operator|+
+literal|": offsets must not go backwards startOffset="
+operator|+
+name|startOffset
+operator|+
+literal|" is< lastStartOffset="
+operator|+
+name|lastStartOffset
+argument_list|)
+throw|;
+block|}
+name|lastStartOffset
+operator|=
+name|offsetAtt
+operator|.
+name|startOffset
+argument_list|()
+expr_stmt|;
 block|}
 name|posLen
 operator|=
@@ -503,6 +571,8 @@ operator|&&
 name|posIncAtt
 operator|!=
 literal|null
+operator|&&
+name|offsetsAreCorrect
 condition|)
 block|{
 if|if
@@ -708,6 +778,10 @@ name|posToEndOffset
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|lastStartOffset
+operator|=
+literal|0
 expr_stmt|;
 block|}
 block|}
