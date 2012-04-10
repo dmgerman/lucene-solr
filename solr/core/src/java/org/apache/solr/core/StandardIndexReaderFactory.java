@@ -75,6 +75,9 @@ name|newReader
 parameter_list|(
 name|Directory
 name|indexDir
+parameter_list|,
+name|SolrCore
+name|core
 parameter_list|)
 throws|throws
 name|IOException
