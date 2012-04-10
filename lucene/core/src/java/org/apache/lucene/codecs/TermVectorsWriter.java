@@ -572,7 +572,7 @@ return|return
 name|docCount
 return|;
 block|}
-comment|/** Safe (but, slowish) default method to write every    *  vector field in the document.  This default    *  implementation requires that the vectors implement    *  both Fields.getUniqueFieldCount and    *  Terms.getUniqueTermCount. */
+comment|/** Safe (but, slowish) default method to write every    *  vector field in the document.  This default    *  implementation requires that the vectors implement    *  both Fields.size and    *  Terms.size. */
 DECL|method|addAllDocVectors
 specifier|protected
 specifier|final
@@ -608,7 +608,7 @@ name|numFields
 init|=
 name|vectors
 operator|.
-name|getUniqueFieldCount
+name|size
 argument_list|()
 decl_stmt|;
 if|if
@@ -623,7 +623,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"vectors.getUniqueFieldCount() must be implemented (it returned -1)"
+literal|"vectors.size() must be implemented (it returned -1)"
 argument_list|)
 throw|;
 block|}
@@ -728,7 +728,7 @@ name|int
 operator|)
 name|terms
 operator|.
-name|getUniqueTermCount
+name|size
 argument_list|()
 decl_stmt|;
 if|if
@@ -743,7 +743,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"vector.getUniqueTermCount() must be implemented (it returned -1)"
+literal|"terms.size() must be implemented (it returned -1)"
 argument_list|)
 throw|;
 block|}
