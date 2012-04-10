@@ -682,7 +682,7 @@ name|LIVE_NODES_ZKNODE
 operator|+
 literal|"/"
 operator|+
-literal|"node1"
+name|nodeName
 argument_list|)
 expr_stmt|;
 name|zkClient
@@ -921,7 +921,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10
+literal|30
 condition|;
 name|i
 operator|++
@@ -1112,13 +1112,14 @@ operator|+
 name|coreName
 argument_list|)
 condition|)
-empty_stmt|;
+block|{
 return|return
 name|slice
 operator|.
 name|getName
 argument_list|()
 return|;
+block|}
 block|}
 block|}
 return|return
