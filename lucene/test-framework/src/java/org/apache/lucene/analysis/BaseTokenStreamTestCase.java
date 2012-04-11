@@ -2908,6 +2908,9 @@ specifier|final
 name|boolean
 name|offsetsAreCorrect
 decl_stmt|;
+comment|// NOTE: not volatile because we don't want the tests to
+comment|// add memory barriers (ie alter how threads
+comment|// interact)... so this is just "best effort":
 DECL|field|failed
 specifier|public
 name|boolean
