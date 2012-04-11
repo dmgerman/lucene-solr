@@ -288,15 +288,8 @@ name|NamedList
 name|getStatistics
 parameter_list|()
 block|{
-name|NamedList
-name|lst
-init|=
-operator|new
-name|SimpleOrderedMap
-argument_list|()
-decl_stmt|;
 return|return
-name|lst
+literal|null
 return|;
 block|}
 block|}
