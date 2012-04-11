@@ -1430,10 +1430,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getUniqueFieldCount
+DECL|method|size
 specifier|public
 name|int
-name|getUniqueFieldCount
+name|size
 parameter_list|()
 block|{
 if|if
@@ -1594,10 +1594,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getUniqueTermCount
+DECL|method|size
 specifier|public
 name|long
-name|getUniqueTermCount
+name|size
 parameter_list|()
 block|{
 return|return
@@ -3223,7 +3223,7 @@ if|if
 condition|(
 name|fields
 operator|.
-name|getUniqueFieldCount
+name|size
 argument_list|()
 operator|==
 literal|0

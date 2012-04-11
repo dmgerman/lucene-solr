@@ -177,10 +177,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getUniqueFieldCount
+DECL|method|size
 specifier|public
 name|int
-name|getUniqueFieldCount
+name|size
 parameter_list|()
 throws|throws
 name|IOException
@@ -188,7 +188,7 @@ block|{
 return|return
 name|in
 operator|.
-name|getUniqueFieldCount
+name|size
 argument_list|()
 return|;
 block|}
@@ -284,10 +284,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getUniqueTermCount
+DECL|method|size
 specifier|public
 name|long
-name|getUniqueTermCount
+name|size
 parameter_list|()
 throws|throws
 name|IOException
@@ -295,7 +295,7 @@ block|{
 return|return
 name|in
 operator|.
-name|getUniqueTermCount
+name|size
 argument_list|()
 return|;
 block|}

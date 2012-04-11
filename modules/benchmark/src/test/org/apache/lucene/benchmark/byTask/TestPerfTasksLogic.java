@@ -3336,7 +3336,7 @@ name|assertTrue
 argument_list|(
 name|tfv
 operator|.
-name|getUniqueFieldCount
+name|size
 argument_list|()
 operator|>
 literal|0

@@ -1328,10 +1328,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getUniqueFieldCount
+DECL|method|size
 specifier|public
 name|int
-name|getUniqueFieldCount
+name|size
 parameter_list|()
 block|{
 return|return

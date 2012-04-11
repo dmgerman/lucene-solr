@@ -61,11 +61,11 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/** Returns the number of terms for all fields, or -1 if this     *  measure isn't stored by the codec. Note that, just like     *  other term measures, this measure does not take deleted     *  documents into account. */
-DECL|method|getUniqueFieldCount
+DECL|method|size
 specifier|public
 specifier|abstract
 name|int
-name|getUniqueFieldCount
+name|size
 parameter_list|()
 throws|throws
 name|IOException
@@ -134,7 +134,7 @@ name|termCount
 init|=
 name|terms
 operator|.
-name|getUniqueTermCount
+name|size
 argument_list|()
 decl_stmt|;
 if|if

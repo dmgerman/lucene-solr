@@ -6076,7 +6076,7 @@ name|numUniqueTerms
 operator|=
 name|terms
 operator|.
-name|getUniqueTermCount
+name|size
 argument_list|()
 expr_stmt|;
 block|}
@@ -6285,7 +6285,7 @@ condition|)
 block|{
 comment|// NOTE: this code only runs if the incoming
 comment|// reader impl doesn't implement
-comment|// getUniqueTermCount (which should be uncommon)
+comment|// size (which should be uncommon)
 name|termOrdToBytesOffset
 operator|=
 name|termOrdToBytesOffset
@@ -6739,7 +6739,7 @@ name|numUniqueTerms
 operator|=
 name|terms
 operator|.
-name|getUniqueTermCount
+name|size
 argument_list|()
 expr_stmt|;
 block|}

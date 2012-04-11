@@ -171,7 +171,7 @@ return|return
 name|termInfosIndexDivisor
 return|;
 block|}
-comment|/**    * Creates a new IndexReader instance using the given Directory.    *     * @param indexDir indexDir index location    * @return An IndexReader instance    * @throws IOException    */
+comment|/**    * Creates a new IndexReader instance using the given Directory.    *     * @param indexDir indexDir index location    * @param core {@link SolrCore} instance where this reader will be used. NOTE:    * this SolrCore instance may not be fully configured yet, but basic things like    * {@link SolrCore#getCoreDescriptor()}, {@link SolrCore#getSchema()} and    * {@link SolrCore#getSolrConfig()} are valid.    * @return An IndexReader instance    * @throws IOException    */
 DECL|method|newReader
 specifier|public
 specifier|abstract
@@ -180,6 +180,9 @@ name|newReader
 parameter_list|(
 name|Directory
 name|indexDir
+parameter_list|,
+name|SolrCore
+name|core
 parameter_list|)
 throws|throws
 name|IOException
