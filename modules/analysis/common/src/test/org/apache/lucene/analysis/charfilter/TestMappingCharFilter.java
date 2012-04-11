@@ -1351,9 +1351,11 @@ name|numRounds
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit: wrong final offset, fix this!
 annotation|@
 name|Ignore
+argument_list|(
+literal|"wrong finalOffset: https://issues.apache.org/jira/browse/LUCENE-3971"
+argument_list|)
 DECL|method|testFinalOffsetSpecialCase
 specifier|public
 name|void
@@ -1478,9 +1480,11 @@ name|text
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit: this is intended to fail until we fix bugs
 annotation|@
 name|Ignore
+argument_list|(
+literal|"wrong finalOffset: https://issues.apache.org/jira/browse/LUCENE-3971"
+argument_list|)
 DECL|method|testRandomMaps
 specifier|public
 name|void

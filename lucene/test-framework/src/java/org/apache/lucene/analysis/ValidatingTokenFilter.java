@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit rename to OffsetsXXXTF?  ie we only validate
+comment|// TODO: rename to OffsetsXXXTF?  ie we only validate
 end_comment
 
 begin_comment
@@ -141,7 +141,7 @@ comment|// all att values that come through it...
 end_comment
 
 begin_comment
-comment|// nocommit BTSTC should just append this to the chain
+comment|// TODO: BTSTC should just append this to the chain
 end_comment
 
 begin_comment
@@ -746,7 +746,7 @@ name|end
 argument_list|()
 expr_stmt|;
 comment|// TODO: what else to validate
-comment|// nocommit check that endOffset is>= max(endOffset)
+comment|// TODO: check that endOffset is>= max(endOffset)
 comment|// we've seen
 block|}
 annotation|@
