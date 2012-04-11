@@ -364,6 +364,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|MockRandomLookaheadTokenFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|MockTokenFilter
 import|;
 end_import
@@ -5242,10 +5256,16 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// nocommit/hack: MockGraph has assertions that will trip if it follows
-comment|// an offsets violator. so we cant use it after e.g. wikipediatokenizer
+comment|// nocommit/hack: MockGraph/MockLookahead has assertions that will trip if they follow
+comment|// an offsets violator. so we cant use them after e.g. wikipediatokenizer
 if|if
 condition|(
+operator|!
+name|spec
+operator|.
+name|offsetsAreCorrect
+operator|&&
+operator|(
 name|ctor
 operator|.
 name|getDeclaringClass
@@ -5257,11 +5277,19 @@ name|MockGraphTokenFilter
 operator|.
 name|class
 argument_list|)
-operator|&&
-operator|!
-name|spec
+operator|||
+name|ctor
 operator|.
-name|offsetsAreCorrect
+name|getDeclaringClass
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|MockRandomLookaheadTokenFilter
+operator|.
+name|class
+argument_list|)
+operator|)
 condition|)
 block|{
 continue|continue;
