@@ -265,7 +265,7 @@ name|MockTokenFilter
 operator|.
 name|EMPTY_STOPSET
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -326,7 +326,7 @@ argument_list|(
 name|enableChecks
 argument_list|)
 expr_stmt|;
-name|TokenFilter
+name|MockTokenFilter
 name|filt
 init|=
 operator|new
@@ -335,10 +335,15 @@ argument_list|(
 name|tokenizer
 argument_list|,
 name|filter
-argument_list|,
-name|enablePositionIncrements
 argument_list|)
 decl_stmt|;
+name|filt
+operator|.
+name|setEnablePositionIncrements
+argument_list|(
+name|enablePositionIncrements
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|TokenStreamComponents

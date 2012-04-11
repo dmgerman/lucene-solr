@@ -463,8 +463,16 @@ block|,
 literal|5
 block|}
 argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
 literal|5
 comment|/* abcde */
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -718,6 +726,12 @@ argument_list|,
 literal|10000
 operator|*
 name|RANDOM_MULTIPLIER
+argument_list|,
+literal|20
+argument_list|,
+literal|false
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|checkRandomData
@@ -731,6 +745,10 @@ operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
 literal|8192
+argument_list|,
+literal|false
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

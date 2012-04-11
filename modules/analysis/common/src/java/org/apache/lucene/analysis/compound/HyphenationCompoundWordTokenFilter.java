@@ -546,6 +546,8 @@ operator|.
 name|minSubwordSize
 condition|)
 block|{
+comment|// BOGUS/BROKEN/FUNKY/WACKO: somehow we have negative 'parts' according to the
+comment|// calculation above, and we rely upon minSubwordSize being>=0 to filter them out...
 continue|continue;
 block|}
 comment|// check the dictionary

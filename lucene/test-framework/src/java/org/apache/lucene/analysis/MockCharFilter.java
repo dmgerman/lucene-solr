@@ -109,17 +109,27 @@ name|remainder
 operator|=
 name|remainder
 expr_stmt|;
-assert|assert
-name|remainder
-operator|>=
-literal|0
-operator|&&
+if|if
+condition|(
 name|remainder
 operator|<
+literal|0
+operator|||
+name|remainder
+operator|>=
 literal|10
-operator|:
-literal|"invalid parameter"
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"invalid remainder parameter (must be 0..10): "
+operator|+
+name|remainder
+argument_list|)
+throw|;
+block|}
 block|}
 comment|// for testing only, uses a remainder of 0
 DECL|method|MockCharFilter

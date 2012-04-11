@@ -149,6 +149,21 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|positionIncrement
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"positionIncrement may not be negative"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|positionIncrement

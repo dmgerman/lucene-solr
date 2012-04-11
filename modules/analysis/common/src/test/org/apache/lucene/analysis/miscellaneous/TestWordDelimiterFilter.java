@@ -359,6 +359,16 @@ literal|12
 block|,
 literal|12
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|wdf
@@ -423,6 +433,16 @@ literal|6
 block|,
 literal|6
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -751,6 +771,16 @@ literal|15
 block|,
 literal|15
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -1292,6 +1322,8 @@ block|,
 literal|13
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -1300,6 +1332,10 @@ literal|1
 block|,
 literal|1
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|/* only in this case, posInc of 2 ?! */
@@ -1348,6 +1384,8 @@ block|,
 literal|13
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -1360,6 +1398,10 @@ literal|1
 block|,
 literal|0
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|assertAnalyzesTo
@@ -1401,6 +1443,8 @@ block|,
 literal|19
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -1411,6 +1455,10 @@ literal|1
 block|,
 literal|1
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|/* analyzer that will consume tokens with large position increments */
@@ -1513,6 +1561,8 @@ block|,
 literal|20
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -1523,6 +1573,10 @@ literal|10
 block|,
 literal|1
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|/* the "/" had a position increment of 10, where did it go?!?!! */
@@ -1559,6 +1613,8 @@ block|,
 literal|13
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -1567,6 +1623,10 @@ literal|1
 block|,
 literal|11
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|/* in this case, the increment of 10 from the "/" is carried over */
@@ -1615,6 +1675,8 @@ block|,
 literal|13
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -1627,6 +1689,10 @@ literal|1
 block|,
 literal|0
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|assertAnalyzesTo
@@ -1668,6 +1734,8 @@ block|,
 literal|19
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -1678,6 +1746,10 @@ literal|11
 block|,
 literal|1
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|Analyzer
@@ -1796,6 +1868,8 @@ block|,
 literal|11
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -1806,6 +1880,10 @@ literal|1
 block|,
 literal|0
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|/* the stopword should add a gap here */
@@ -1848,6 +1926,8 @@ block|,
 literal|15
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -1858,6 +1938,10 @@ literal|1
 block|,
 literal|0
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -2016,6 +2100,12 @@ argument_list|,
 literal|10000
 operator|*
 name|RANDOM_MULTIPLIER
+argument_list|,
+literal|20
+argument_list|,
+literal|false
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

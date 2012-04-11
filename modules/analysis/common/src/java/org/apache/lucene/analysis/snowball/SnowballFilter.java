@@ -265,12 +265,13 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|IllegalArgumentException
 argument_list|(
+literal|"Invalid stemmer class specified: "
+operator|+
+name|name
+argument_list|,
 name|e
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 throw|;
 block|}

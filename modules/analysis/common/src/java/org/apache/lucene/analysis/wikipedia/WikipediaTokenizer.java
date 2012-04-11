@@ -794,6 +794,30 @@ argument_list|>
 name|untokenizedTypes
 parameter_list|)
 block|{
+comment|// TODO: cutover to enum
+if|if
+condition|(
+name|tokenOutput
+operator|!=
+name|TOKENS_ONLY
+operator|&&
+name|tokenOutput
+operator|!=
+name|UNTOKENIZED_ONLY
+operator|&&
+name|tokenOutput
+operator|!=
+name|BOTH
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"tokenOutput must be TOKENS_ONLY, UNTOKENIZED_ONLY or BOTH"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|tokenOutput

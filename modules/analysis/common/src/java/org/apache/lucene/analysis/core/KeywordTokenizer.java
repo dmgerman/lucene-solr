@@ -190,6 +190,21 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|bufferSize
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"bufferSize must be> 0"
+argument_list|)
+throw|;
+block|}
 name|termAtt
 operator|.
 name|resizeBuffer
@@ -219,6 +234,21 @@ argument_list|,
 name|input
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|bufferSize
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"bufferSize must be> 0"
+argument_list|)
+throw|;
+block|}
 name|termAtt
 operator|.
 name|resizeBuffer
@@ -248,6 +278,21 @@ argument_list|,
 name|input
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|bufferSize
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"bufferSize must be> 0"
+argument_list|)
+throw|;
+block|}
 name|termAtt
 operator|.
 name|resizeBuffer
