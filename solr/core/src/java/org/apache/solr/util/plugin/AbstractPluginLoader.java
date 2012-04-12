@@ -110,8 +110,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|DOMUtil
