@@ -294,7 +294,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|StringIndexException
+name|DocTermsIndexException
 argument_list|(
 name|field
 argument_list|,
@@ -822,18 +822,18 @@ block|}
 block|}
 return|;
 block|}
-DECL|class|StringIndexException
+DECL|class|DocTermsIndexException
 specifier|public
 specifier|static
 specifier|final
 class|class
-name|StringIndexException
+name|DocTermsIndexException
 extends|extends
 name|RuntimeException
 block|{
-DECL|method|StringIndexException
+DECL|method|DocTermsIndexException
 specifier|public
-name|StringIndexException
+name|DocTermsIndexException
 parameter_list|(
 specifier|final
 name|String
@@ -846,7 +846,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Can't initialize StringIndex to generate (function) FunctionValues for field: "
+literal|"Can't initialize DocTermsIndex to generate (function) FunctionValues for field: "
 operator|+
 name|fieldName
 argument_list|,
