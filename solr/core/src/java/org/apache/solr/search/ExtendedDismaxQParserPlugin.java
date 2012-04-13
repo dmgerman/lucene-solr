@@ -2450,7 +2450,7 @@ name|clauses
 operator|.
 name|size
 argument_list|()
-operator|<=
+operator|<
 name|shingleSize
 condition|)
 return|return;
