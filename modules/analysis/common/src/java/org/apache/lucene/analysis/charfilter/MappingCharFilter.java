@@ -172,26 +172,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|correct
-specifier|protected
-name|int
-name|correct
-parameter_list|(
-name|int
-name|currentOff
-parameter_list|)
-block|{
-return|return
-name|super
-operator|.
-name|correct
-argument_list|(
-name|currentOff
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|read
 specifier|public
 name|int
@@ -621,8 +601,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-else|else
-block|{                }
 block|}
 if|if
 condition|(
