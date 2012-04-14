@@ -160,6 +160,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|FieldCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|client
@@ -968,6 +982,14 @@ literal|" FAILED !!!!!"
 argument_list|)
 expr_stmt|;
 block|}
+name|purgeFieldCache
+argument_list|(
+name|FieldCache
+operator|.
+name|DEFAULT
+argument_list|)
+expr_stmt|;
+comment|// avoid FC insanity
 name|super
 operator|.
 name|tearDown
