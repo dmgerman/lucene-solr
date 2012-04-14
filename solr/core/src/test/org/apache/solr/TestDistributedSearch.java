@@ -74,6 +74,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|FieldCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|client
@@ -578,6 +592,10 @@ argument_list|,
 literal|"couldn't put humpty together again"
 argument_list|)
 expr_stmt|;
+name|commit
+argument_list|()
+expr_stmt|;
+comment|// try to ensure there's more than one segment
 name|indexr
 argument_list|(
 name|id
@@ -2691,6 +2709,14 @@ comment|// TODO: This test currently fails because debug info is obtained only
 comment|// on shards with matches.
 comment|// query("q","matchesnothing","fl","*,score", "debugQuery", "true");
 comment|// Thread.sleep(10000000000L);
+name|purgeFieldCache
+argument_list|(
+name|FieldCache
+operator|.
+name|DEFAULT
+argument_list|)
+expr_stmt|;
+comment|// avoid FC insanity
 block|}
 DECL|method|queryPartialResults
 specifier|protected
