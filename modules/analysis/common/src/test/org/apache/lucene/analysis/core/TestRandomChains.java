@@ -496,22 +496,6 @@ name|analysis
 operator|.
 name|charfilter
 operator|.
-name|MappingCharFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|charfilter
-operator|.
 name|NormalizeCharMap
 import|;
 end_import
@@ -1233,11 +1217,6 @@ name|class
 argument_list|,
 comment|// broken!
 name|TrimFilter
-operator|.
-name|class
-argument_list|,
-comment|// TODO: remove this class after we fix its finalOffset bug
-name|MappingCharFilter
 operator|.
 name|class
 argument_list|)
