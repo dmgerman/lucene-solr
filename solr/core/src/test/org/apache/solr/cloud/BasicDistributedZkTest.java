@@ -196,6 +196,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|client
@@ -495,6 +509,15 @@ comment|/**  *  */
 end_comment
 
 begin_class
+annotation|@
+name|LuceneTestCase
+operator|.
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-2161"
+argument_list|)
 DECL|class|BasicDistributedZkTest
 specifier|public
 class|class
