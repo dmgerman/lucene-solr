@@ -153,6 +153,7 @@ name|int
 name|len
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -193,6 +194,7 @@ operator|(
 name|char
 operator|)
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -229,6 +231,7 @@ name|int
 name|val
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()

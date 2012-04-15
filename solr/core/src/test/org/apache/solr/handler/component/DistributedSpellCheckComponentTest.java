@@ -195,6 +195,7 @@ expr_stmt|;
 name|requestHandlerName
 operator|=
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()

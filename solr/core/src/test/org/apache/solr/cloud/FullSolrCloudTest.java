@@ -1158,6 +1158,7 @@ argument_list|,
 name|shardToLeaderJetty
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -7783,6 +7784,7 @@ condition|(
 name|doDeletes
 operator|&&
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -7918,6 +7920,7 @@ condition|(
 name|doDeletes
 operator|&&
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()

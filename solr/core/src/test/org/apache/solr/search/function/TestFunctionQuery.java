@@ -448,6 +448,7 @@ expr_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -492,6 +493,7 @@ block|}
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1575,6 +1577,7 @@ name|Random
 name|r
 init|=
 name|random
+argument_list|()
 decl_stmt|;
 for|for
 control|(

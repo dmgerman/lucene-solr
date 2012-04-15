@@ -467,6 +467,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -1310,6 +1311,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -1483,6 +1485,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|)
@@ -1559,6 +1562,7 @@ decl_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1568,6 +1572,7 @@ comment|// float/double
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1578,6 +1583,7 @@ name|float
 name|f
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextFloat
 argument_list|()
@@ -1625,6 +1631,7 @@ name|double
 name|d
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextDouble
 argument_list|()
@@ -1672,6 +1679,7 @@ comment|// int/long
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1682,6 +1690,7 @@ name|int
 name|i
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -1729,6 +1738,7 @@ name|long
 name|l
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextLong
 argument_list|()
@@ -2001,6 +2011,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|)

@@ -731,6 +731,7 @@ name|Random
 name|r
 init|=
 name|random
+argument_list|()
 decl_stmt|;
 name|int
 name|ITERS
@@ -1227,6 +1228,7 @@ operator|.
 name|randomRegexp
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|,
 name|RegExp
@@ -1313,6 +1315,7 @@ decl_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1326,6 +1329,7 @@ operator|.
 name|randomUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1341,6 +1345,7 @@ operator|.
 name|getRandomAcceptedString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try

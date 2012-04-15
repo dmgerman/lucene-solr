@@ -354,6 +354,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextLong
 argument_list|()

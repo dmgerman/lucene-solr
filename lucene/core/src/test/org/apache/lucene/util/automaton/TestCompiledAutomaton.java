@@ -424,6 +424,7 @@ name|String
 name|s
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -435,6 +436,7 @@ condition|?
 name|terms
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -647,6 +649,7 @@ operator|.
 name|randomRealisticUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 return|;
 block|}

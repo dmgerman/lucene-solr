@@ -176,6 +176,7 @@ operator|=
 name|single
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|parallel
@@ -183,6 +184,7 @@ operator|=
 name|parallel
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|queryTest
@@ -425,6 +427,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -433,6 +436,7 @@ init|=
 name|getDir2
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|ParallelAtomicReader
@@ -554,6 +558,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -562,6 +567,7 @@ init|=
 name|getDir2
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|AtomicReader
@@ -676,6 +682,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -684,6 +691,7 @@ init|=
 name|getDir2
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|AtomicReader
@@ -832,6 +840,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// one document only:
@@ -857,6 +866,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
@@ -956,6 +966,7 @@ operator|new
 name|ParallelAtomicReader
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1049,6 +1060,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -1057,6 +1069,7 @@ init|=
 name|getDir2
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|AtomicReader

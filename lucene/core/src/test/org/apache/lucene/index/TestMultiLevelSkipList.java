@@ -275,6 +275,7 @@ block|{
 name|super
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|delegate
 argument_list|)

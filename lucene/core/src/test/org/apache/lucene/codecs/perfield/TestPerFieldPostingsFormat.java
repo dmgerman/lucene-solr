@@ -690,6 +690,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -842,6 +843,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -989,6 +991,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -1546,6 +1549,7 @@ init|=
 name|newDirectory
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -1585,6 +1589,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|30
 argument_list|,
@@ -1597,6 +1602,7 @@ init|=
 name|newIndexWriterConfig
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -1604,6 +1610,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1680,6 +1687,7 @@ operator|.
 name|setTokenized
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1690,6 +1698,7 @@ operator|.
 name|setOmitNorms
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1709,6 +1718,7 @@ operator|.
 name|randomRealisticUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|128
 argument_list|)
@@ -1735,6 +1745,7 @@ block|}
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()

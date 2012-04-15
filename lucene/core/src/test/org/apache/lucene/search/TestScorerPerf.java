@@ -275,6 +275,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
@@ -440,6 +441,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -491,6 +493,7 @@ block|{
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -590,6 +593,7 @@ operator|.
 name|set
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -652,6 +656,7 @@ argument_list|(
 name|setSize
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -886,6 +891,7 @@ init|=
 name|sets
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1021,6 +1027,7 @@ name|int
 name|nClauses
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1169,6 +1176,7 @@ name|int
 name|oClauses
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1210,6 +1218,7 @@ name|int
 name|nClauses
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1397,6 +1406,7 @@ name|int
 name|nClauses
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1446,6 +1456,7 @@ comment|// don't pick same clause twice
 name|tnum
 operator|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1628,6 +1639,7 @@ name|int
 name|oClauses
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1664,6 +1676,7 @@ name|int
 name|nClauses
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1713,6 +1726,7 @@ comment|// don't pick same clause twice
 name|tnum
 operator|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1903,6 +1917,7 @@ name|int
 name|nClauses
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1940,6 +1955,7 @@ name|int
 name|tnum
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(

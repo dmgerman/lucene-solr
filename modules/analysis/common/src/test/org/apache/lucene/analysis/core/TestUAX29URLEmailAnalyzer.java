@@ -1882,6 +1882,7 @@ block|{
 name|checkRandomData
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 operator|new
 name|UAX29URLEmailAnalyzer

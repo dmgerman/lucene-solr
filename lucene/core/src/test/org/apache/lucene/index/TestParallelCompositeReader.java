@@ -176,6 +176,7 @@ operator|=
 name|single
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|false
 argument_list|)
@@ -185,6 +186,7 @@ operator|=
 name|parallel
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|false
 argument_list|)
@@ -257,6 +259,7 @@ operator|=
 name|single
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|true
 argument_list|)
@@ -266,6 +269,7 @@ operator|=
 name|parallel
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|true
 argument_list|)
@@ -522,6 +526,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -530,6 +535,7 @@ init|=
 name|getDir2
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|DirectoryReader
@@ -634,6 +640,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -642,6 +649,7 @@ init|=
 name|getDir2
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|DirectoryReader
@@ -780,6 +788,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// one document only:
@@ -805,6 +814,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
@@ -893,6 +903,7 @@ operator|new
 name|ParallelCompositeReader
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -991,6 +1002,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -999,6 +1011,7 @@ init|=
 name|getInvalidStructuredDir2
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|DirectoryReader
@@ -1061,6 +1074,7 @@ operator|new
 name|ParallelCompositeReader
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1159,6 +1173,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -1167,6 +1182,7 @@ init|=
 name|getDir2
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|CompositeReader
@@ -1256,6 +1272,7 @@ operator|new
 name|ParallelCompositeReader
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1354,6 +1371,7 @@ init|=
 name|getDir1
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -1362,6 +1380,7 @@ init|=
 name|getDir2
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|CompositeReader

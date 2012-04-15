@@ -469,6 +469,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -480,6 +481,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|MockTokenizer
 operator|.
@@ -496,6 +498,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|50
 argument_list|,
@@ -572,6 +575,7 @@ operator|.
 name|randomUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|field
@@ -685,6 +689,7 @@ operator|.
 name|randomRegexp
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Automaton
@@ -859,6 +864,7 @@ operator|.
 name|randomRegexp
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Automaton
@@ -916,6 +922,7 @@ argument_list|(
 name|unsortedTerms
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 for|for
@@ -945,6 +952,7 @@ comment|// term is accepted
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -960,6 +968,7 @@ argument_list|(
 name|term
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -983,6 +992,7 @@ argument_list|(
 name|term
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1057,6 +1067,7 @@ name|int
 name|c
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1102,6 +1113,7 @@ argument_list|(
 name|term
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1130,6 +1142,7 @@ argument_list|(
 name|term
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1172,6 +1185,7 @@ operator|.
 name|randomRegexp
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Automaton

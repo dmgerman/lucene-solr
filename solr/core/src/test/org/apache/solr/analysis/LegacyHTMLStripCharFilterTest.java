@@ -1870,6 +1870,7 @@ decl_stmt|;
 name|checkRandomData
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|analyzer
 argument_list|,
@@ -1898,6 +1899,7 @@ operator|.
 name|randomHtmlishString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|maxNumElements
 argument_list|)
@@ -1975,6 +1977,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|minNumWords
 argument_list|,
@@ -1988,6 +1991,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|0
 argument_list|,
@@ -2023,6 +2027,7 @@ operator|.
 name|randomUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|maxWordLength
 argument_list|)
@@ -2066,6 +2071,7 @@ operator|.
 name|randomRealisticUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|minWordLength
 argument_list|,
@@ -2110,6 +2116,7 @@ operator|.
 name|randomSimpleString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

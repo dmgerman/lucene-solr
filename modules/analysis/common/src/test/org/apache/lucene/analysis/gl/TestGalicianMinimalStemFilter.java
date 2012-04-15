@@ -258,6 +258,7 @@ block|{
 name|checkRandomData
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|a
 argument_list|,

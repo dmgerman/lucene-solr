@@ -861,6 +861,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|2
 argument_list|,
@@ -868,6 +869,7 @@ literal|4
 argument_list|)
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -880,6 +882,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -891,6 +894,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|0
 argument_list|,
@@ -1044,6 +1048,7 @@ operator|-
 literal|1
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|MockDirectoryWrapper
@@ -1053,6 +1058,7 @@ operator|new
 name|MockDirectoryWrapper
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|slowIndexDir
 argument_list|)
@@ -1067,6 +1073,7 @@ operator|-
 literal|1
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|MockDirectoryWrapper
@@ -1076,6 +1083,7 @@ operator|new
 name|MockDirectoryWrapper
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|slowTaxoDir
 argument_list|)
@@ -2642,6 +2650,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|MockTokenizer
 operator|.

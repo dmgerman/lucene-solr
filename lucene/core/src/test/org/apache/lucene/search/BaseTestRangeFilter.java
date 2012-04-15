@@ -494,6 +494,7 @@ operator|new
 name|TestIndex
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|Integer
 operator|.
@@ -512,6 +513,7 @@ operator|new
 name|TestIndex
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|Integer
 operator|.
@@ -527,6 +529,7 @@ operator|=
 name|build
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|signedIndexDir
 argument_list|)
@@ -536,6 +539,7 @@ operator|=
 name|build
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|unsignedIndexDir
 argument_list|)

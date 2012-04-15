@@ -822,6 +822,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -833,6 +834,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -844,6 +846,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|100
 argument_list|,
@@ -851,6 +854,7 @@ literal|1000
 argument_list|)
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1078,6 +1082,7 @@ operator|.
 name|toString
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(

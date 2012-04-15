@@ -230,6 +230,7 @@ name|int
 name|initSz
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -240,6 +241,7 @@ name|int
 name|num
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -251,11 +253,13 @@ name|maxVal
 init|=
 operator|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
 condition|?
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -263,6 +267,7 @@ literal|50
 argument_list|)
 else|:
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -320,6 +325,7 @@ name|int
 name|val
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(

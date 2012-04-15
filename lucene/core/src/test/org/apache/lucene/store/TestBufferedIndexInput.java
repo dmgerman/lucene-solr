@@ -505,6 +505,7 @@ operator|.
 name|BUFFER_SIZE
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// This tests the workaround code for LUCENE-1566 where readBytesInternal
@@ -561,6 +562,7 @@ argument_list|,
 name|newIOContext
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|,
 literal|10
@@ -569,6 +571,7 @@ argument_list|,
 name|inputBufferSize
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// run test with chunk size of 10 bytes
@@ -582,6 +585,7 @@ argument_list|,
 name|newIOContext
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|,
 literal|10
@@ -590,6 +594,7 @@ argument_list|,
 name|inputBufferSize
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1367,6 +1372,7 @@ argument_list|(
 name|indexDir
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -1388,6 +1394,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.

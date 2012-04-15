@@ -226,6 +226,7 @@ init|=
 literal|1
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -270,6 +271,7 @@ operator|.
 name|valueOf
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -385,6 +387,7 @@ operator|.
 name|valueOf
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -451,6 +454,7 @@ init|=
 literal|2
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -507,6 +511,7 @@ operator|.
 name|valueOf
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(

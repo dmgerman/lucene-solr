@@ -640,6 +640,7 @@ operator|new
 name|AppendingRAMDirectory
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 operator|new
 name|RAMDirectory
@@ -660,6 +661,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1092,6 +1094,7 @@ operator|new
 name|AppendingRAMDirectory
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 operator|new
 name|RAMDirectory
@@ -1112,6 +1115,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

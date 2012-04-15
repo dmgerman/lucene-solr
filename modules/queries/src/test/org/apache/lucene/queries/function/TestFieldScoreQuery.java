@@ -370,6 +370,7 @@ operator|.
 name|check
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|functionQuery
 argument_list|,

@@ -209,6 +209,7 @@ name|Random
 name|rnd
 init|=
 name|random
+argument_list|()
 decl_stmt|;
 block|{
 name|byte

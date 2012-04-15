@@ -207,11 +207,19 @@ name|PerFieldReuseStrategy
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// TODO: this should be solved in a different way; Random should not be shared (!).
 name|this
 operator|.
 name|random
 operator|=
+operator|new
+name|Random
+argument_list|(
 name|random
+operator|.
+name|nextLong
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|this
 operator|.

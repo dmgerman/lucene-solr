@@ -325,6 +325,7 @@ parameter_list|)
 block|{
 return|return
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -627,6 +628,7 @@ block|{
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1632,6 +1634,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1962,6 +1965,7 @@ name|Random
 name|rnd
 init|=
 name|random
+argument_list|()
 decl_stmt|;
 name|Directory
 name|dir

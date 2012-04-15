@@ -732,6 +732,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|100000
 argument_list|,
@@ -801,6 +802,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -894,6 +896,7 @@ operator|new
 name|MyTokenStream
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|TERMS_PER_DOC
 argument_list|)
@@ -1317,6 +1320,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|500000
 argument_list|,
@@ -1378,6 +1382,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|500000
 argument_list|,
@@ -1492,6 +1497,7 @@ operator|.
 name|get
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(

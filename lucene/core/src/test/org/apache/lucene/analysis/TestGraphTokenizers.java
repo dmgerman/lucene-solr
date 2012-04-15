@@ -58,6 +58,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -831,6 +841,7 @@ operator|new
 name|MockGraphTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t
 argument_list|)
@@ -850,6 +861,7 @@ decl_stmt|;
 name|checkAnalysisConsistency
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|a
 argument_list|,
@@ -943,6 +955,7 @@ operator|new
 name|MockGraphTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t
 argument_list|)
@@ -962,6 +975,7 @@ decl_stmt|;
 name|checkAnalysisConsistency
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|a
 argument_list|,
@@ -1245,6 +1259,7 @@ operator|new
 name|MockGraphTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t
 argument_list|)
@@ -1270,6 +1285,12 @@ argument_list|)
 return|;
 block|}
 block|}
+decl_stmt|;
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
 decl_stmt|;
 name|checkAnalysisConsistency
 argument_list|(
@@ -1416,6 +1437,7 @@ operator|new
 name|MockGraphTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t2
 argument_list|)
@@ -1431,6 +1453,12 @@ argument_list|)
 return|;
 block|}
 block|}
+decl_stmt|;
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
 decl_stmt|;
 name|checkAnalysisConsistency
 argument_list|(
@@ -1567,6 +1595,7 @@ operator|new
 name|MockGraphTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t
 argument_list|)
@@ -1582,6 +1611,12 @@ argument_list|)
 return|;
 block|}
 block|}
+decl_stmt|;
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
 decl_stmt|;
 name|checkRandomData
 argument_list|(
@@ -1689,6 +1724,7 @@ operator|new
 name|MockGraphTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t
 argument_list|)
@@ -1701,6 +1737,7 @@ operator|new
 name|MockGraphTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t1
 argument_list|)
@@ -1716,6 +1753,12 @@ argument_list|)
 return|;
 block|}
 block|}
+decl_stmt|;
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
 decl_stmt|;
 name|checkRandomData
 argument_list|(
@@ -1822,6 +1865,7 @@ operator|new
 name|MockGraphTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t
 argument_list|)
@@ -1834,6 +1878,7 @@ operator|new
 name|MockHoleInjectingTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t1
 argument_list|)
@@ -1849,6 +1894,12 @@ argument_list|)
 return|;
 block|}
 block|}
+decl_stmt|;
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
 decl_stmt|;
 name|checkRandomData
 argument_list|(
@@ -1955,6 +2006,7 @@ operator|new
 name|MockHoleInjectingTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t
 argument_list|)
@@ -1967,6 +2019,7 @@ operator|new
 name|MockGraphTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|t1
 argument_list|)
@@ -1982,6 +2035,12 @@ argument_list|)
 return|;
 block|}
 block|}
+decl_stmt|;
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
 decl_stmt|;
 name|checkRandomData
 argument_list|(

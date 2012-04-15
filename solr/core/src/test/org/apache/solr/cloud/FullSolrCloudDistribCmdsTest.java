@@ -360,7 +360,7 @@ name|beforeSuperClass
 parameter_list|()
 throws|throws
 name|Exception
-block|{        }
+block|{   }
 DECL|method|FullSolrCloudDistribCmdsTest
 specifier|public
 name|FullSolrCloudDistribCmdsTest

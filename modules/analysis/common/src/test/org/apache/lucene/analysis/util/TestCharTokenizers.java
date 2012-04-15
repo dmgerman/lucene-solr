@@ -201,6 +201,7 @@ init|=
 literal|1024
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -696,6 +697,7 @@ operator|.
 name|randomUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|TokenStream
@@ -830,6 +832,7 @@ comment|// just for fun
 name|checkRandomData
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|analyzer
 argument_list|,
@@ -949,6 +952,7 @@ operator|.
 name|randomUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|TokenStream
@@ -1083,6 +1087,7 @@ comment|// just for fun
 name|checkRandomData
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|analyzer
 argument_list|,

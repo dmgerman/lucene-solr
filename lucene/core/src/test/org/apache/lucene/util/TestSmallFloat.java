@@ -653,6 +653,7 @@ operator|.
 name|intBitsToFloat
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()

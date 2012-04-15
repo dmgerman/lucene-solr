@@ -827,6 +827,7 @@ name|int
 name|indexSize
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1207,6 +1208,7 @@ decl_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1224,6 +1226,7 @@ operator|.
 name|get
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1241,6 +1244,7 @@ name|toField
 operator|=
 operator|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1257,6 +1261,7 @@ operator|.
 name|get
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1280,6 +1285,7 @@ init|=
 name|compat
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1294,6 +1300,7 @@ operator|=
 name|group
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1308,6 +1315,7 @@ operator|=
 name|group
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1574,6 +1582,7 @@ name|toField
 operator|+
 operator|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(

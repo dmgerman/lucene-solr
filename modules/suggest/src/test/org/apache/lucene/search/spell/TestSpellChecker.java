@@ -343,6 +343,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2554,9 +2555,8 @@ name|numThreads
 init|=
 literal|5
 operator|+
-name|LuceneTestCase
-operator|.
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2628,6 +2628,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(

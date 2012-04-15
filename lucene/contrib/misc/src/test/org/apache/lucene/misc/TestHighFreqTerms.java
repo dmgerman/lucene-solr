@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -234,6 +244,7 @@ argument_list|,
 name|newIndexWriterConfig
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|TEST_VERSION_CURRENT
 argument_list|,
@@ -241,6 +252,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|MockTokenizer
 operator|.
@@ -1237,6 +1249,12 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+name|Random
+name|rnd
+init|=
+name|random
+argument_list|()
+decl_stmt|;
 comment|/**      * Generate 10 documents where term n  has a docFreq of n and a totalTermFreq of n*2 (squared).       */
 for|for
 control|(
@@ -1274,7 +1292,7 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
+name|rnd
 argument_list|,
 literal|"FIELD_1"
 argument_list|,
@@ -1293,7 +1311,7 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
+name|rnd
 argument_list|,
 literal|"different_field"
 argument_list|,
@@ -1343,7 +1361,7 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
+name|rnd
 argument_list|,
 literal|"different_field"
 argument_list|,
@@ -1408,7 +1426,7 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
+name|rnd
 argument_list|,
 literal|"FIELD_1"
 argument_list|,
@@ -1491,7 +1509,7 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
+name|rnd
 argument_list|,
 literal|"FIELD_1"
 argument_list|,
@@ -1553,7 +1571,7 @@ name|add
 argument_list|(
 name|newField
 argument_list|(
-name|random
+name|rnd
 argument_list|,
 literal|"different_field"
 argument_list|,

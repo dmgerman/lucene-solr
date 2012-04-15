@@ -429,6 +429,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -452,6 +453,7 @@ comment|// pulsing etc are not implemented
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -512,6 +514,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -1003,6 +1006,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|iwc
@@ -1034,6 +1038,7 @@ comment|// pulsing etc are not implemented
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1088,6 +1093,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -1119,6 +1125,7 @@ expr_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1136,6 +1143,7 @@ operator|.
 name|setStoreTermVectorOffsets
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1146,6 +1154,7 @@ operator|.
 name|setStoreTermVectorPositions
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1503,6 +1512,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|100
 argument_list|,
@@ -1817,6 +1827,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -1860,6 +1871,7 @@ expr_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1877,6 +1889,7 @@ operator|.
 name|setStoreTermVectorOffsets
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1887,6 +1900,7 @@ operator|.
 name|setStoreTermVectorPositions
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1985,6 +1999,7 @@ decl_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1999,6 +2014,7 @@ elseif|else
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -2013,6 +2029,7 @@ elseif|else
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -2034,6 +2051,7 @@ name|int
 name|posIncr
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -2041,6 +2059,7 @@ condition|?
 literal|1
 else|:
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2068,6 +2087,7 @@ name|int
 name|offIncr
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -2075,6 +2095,7 @@ condition|?
 literal|0
 else|:
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2086,6 +2107,7 @@ name|int
 name|tokenOffset
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2396,6 +2418,7 @@ name|term
 argument_list|)
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()

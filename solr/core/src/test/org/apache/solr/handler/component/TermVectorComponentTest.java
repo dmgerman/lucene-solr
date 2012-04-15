@@ -811,6 +811,7 @@ name|boolean
 name|use
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()

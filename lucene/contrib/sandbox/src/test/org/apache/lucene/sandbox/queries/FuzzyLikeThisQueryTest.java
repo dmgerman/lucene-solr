@@ -247,12 +247,6 @@ DECL|field|analyzer
 specifier|private
 name|Analyzer
 name|analyzer
-init|=
-operator|new
-name|MockAnalyzer
-argument_list|(
-name|random
-argument_list|)
 decl_stmt|;
 annotation|@
 name|Override
@@ -269,6 +263,15 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+name|analyzer
+operator|=
+operator|new
+name|MockAnalyzer
+argument_list|(
+name|random
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|directory
 operator|=
 name|newDirectory
@@ -281,6 +284,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|directory
 argument_list|,
@@ -292,6 +296,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -993,6 +998,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|FuzzyLikeThisQuery

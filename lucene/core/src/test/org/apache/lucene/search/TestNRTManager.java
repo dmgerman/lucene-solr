@@ -443,6 +443,7 @@ comment|// Randomly swap in NRTCachingDir
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -525,6 +526,7 @@ comment|// Randomly verify the update "took":
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -686,6 +688,7 @@ comment|// Randomly verify the add "took":
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -842,6 +845,7 @@ comment|// Randomly verify the add "took":
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -997,6 +1001,7 @@ comment|// Randomly verify the udpate "took":
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1142,6 +1147,7 @@ comment|// randomly verify the delete "took":
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1311,6 +1317,7 @@ operator|+
 literal|0.05
 operator|*
 name|random
+argument_list|()
 operator|.
 name|nextDouble
 argument_list|()
@@ -1327,6 +1334,7 @@ operator|+
 literal|10
 operator|*
 name|random
+argument_list|()
 operator|.
 name|nextDouble
 argument_list|()
@@ -1663,6 +1671,7 @@ decl_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1785,6 +1794,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2346,6 +2356,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|)

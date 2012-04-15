@@ -1892,6 +1892,7 @@ operator|.
 name|check
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|q1
 argument_list|,
@@ -1906,6 +1907,7 @@ operator|.
 name|check
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|q2
 argument_list|,
@@ -1920,6 +1922,7 @@ operator|.
 name|check
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|q3
 argument_list|,
@@ -1934,6 +1937,7 @@ operator|.
 name|check
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|q4
 argument_list|,
@@ -1948,6 +1952,7 @@ operator|.
 name|check
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|q5
 argument_list|,

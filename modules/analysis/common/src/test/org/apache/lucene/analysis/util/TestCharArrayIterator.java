@@ -159,6 +159,7 @@ operator|.
 name|randomUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 operator|.
 name|toCharArray
@@ -248,6 +249,7 @@ operator|.
 name|randomUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 operator|.
 name|toCharArray

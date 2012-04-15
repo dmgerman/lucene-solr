@@ -343,6 +343,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -354,6 +355,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -378,6 +380,7 @@ argument_list|,
 name|writer
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|writer
@@ -489,6 +492,7 @@ operator|.
 name|docs
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -509,6 +513,7 @@ argument_list|,
 literal|null
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -589,6 +594,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -600,6 +606,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -624,6 +631,7 @@ argument_list|,
 name|writer
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|writer
@@ -742,6 +750,7 @@ argument_list|,
 name|docs
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -817,6 +826,7 @@ argument_list|,
 name|docs
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -886,6 +896,7 @@ argument_list|,
 name|docs
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -958,6 +969,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -969,6 +981,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -993,6 +1006,7 @@ argument_list|,
 name|writer
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1155,6 +1169,7 @@ name|bits
 argument_list|)
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1235,6 +1250,7 @@ name|bits
 argument_list|)
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1302,6 +1318,7 @@ block|{
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1324,6 +1341,7 @@ operator|)
 name|readers
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1345,6 +1363,7 @@ argument_list|,
 name|term
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()

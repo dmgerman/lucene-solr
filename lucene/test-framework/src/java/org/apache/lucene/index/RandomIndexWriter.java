@@ -349,9 +349,7 @@ argument_list|,
 name|conf
 argument_list|)
 expr_stmt|;
-comment|// must make a private random since our methods are
-comment|// called from different threads; else test failures may
-comment|// not be reproducible from the original seed
+comment|// TODO: this should be solved in a different way; Random should not be shared (!).
 name|this
 operator|.
 name|r
@@ -361,7 +359,7 @@ name|Random
 argument_list|(
 name|r
 operator|.
-name|nextInt
+name|nextLong
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -530,11 +528,19 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO: this should be solved in a different way; Random should not be shared (!).
 name|this
 operator|.
 name|r
 operator|=
+operator|new
+name|Random
+argument_list|(
 name|r
+operator|.
+name|nextLong
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|w
 operator|=

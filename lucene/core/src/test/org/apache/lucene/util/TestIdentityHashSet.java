@@ -66,6 +66,7 @@ name|Random
 name|rnd
 init|=
 name|random
+argument_list|()
 decl_stmt|;
 name|Set
 argument_list|<

@@ -455,6 +455,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|)
@@ -509,6 +510,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -537,6 +539,7 @@ argument_list|(
 name|tokens
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -600,6 +603,7 @@ operator|.
 name|randomRealisticUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|,
 name|StringField
@@ -619,6 +623,7 @@ argument_list|,
 name|content
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -644,6 +649,7 @@ argument_list|(
 literal|"float"
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextFloat
 argument_list|()
@@ -657,6 +663,7 @@ decl_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -677,6 +684,7 @@ elseif|else
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -698,6 +706,7 @@ block|{
 name|intValue
 operator|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -1171,6 +1180,7 @@ argument_list|,
 name|tokens
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1189,6 +1199,7 @@ decl_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1219,6 +1230,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -1253,6 +1265,7 @@ operator|.
 name|get
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1282,6 +1295,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -1361,6 +1375,7 @@ argument_list|,
 literal|true
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1579,6 +1594,7 @@ argument_list|,
 literal|true
 argument_list|,
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()

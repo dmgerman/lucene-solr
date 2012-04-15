@@ -246,6 +246,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|index
 argument_list|)
@@ -475,6 +476,7 @@ operator|.
 name|check
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|q
 argument_list|,
@@ -2633,6 +2635,7 @@ operator|.
 name|setMinimumNumberShouldMatch
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2673,6 +2676,7 @@ name|int
 name|lev
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2684,6 +2688,7 @@ name|long
 name|seed
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextLong
 argument_list|()
@@ -2789,6 +2794,7 @@ operator|.
 name|check
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|q1
 argument_list|,
@@ -2800,6 +2806,7 @@ operator|.
 name|check
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|q2
 argument_list|,

@@ -287,7 +287,7 @@ name|beforeSuperClass
 parameter_list|()
 throws|throws
 name|Exception
-block|{        }
+block|{   }
 annotation|@
 name|AfterClass
 DECL|method|afterSuperClass
@@ -298,7 +298,7 @@ name|afterSuperClass
 parameter_list|()
 throws|throws
 name|Exception
-block|{        }
+block|{   }
 annotation|@
 name|Before
 annotation|@
@@ -1105,6 +1105,7 @@ condition|(
 name|doDeletes
 operator|&&
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1231,6 +1232,7 @@ condition|(
 name|doDeletes
 operator|&&
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()

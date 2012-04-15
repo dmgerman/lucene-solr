@@ -363,6 +363,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -387,6 +388,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -401,6 +403,7 @@ operator|new
 name|LineFileDocs
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|int
@@ -438,6 +441,7 @@ name|float
 name|nextFloat
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextFloat
 argument_list|()
@@ -681,6 +685,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -705,6 +710,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -719,6 +725,7 @@ operator|new
 name|LineFileDocs
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|int
@@ -758,6 +765,7 @@ name|float
 name|nextFloat
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextFloat
 argument_list|()
@@ -928,6 +936,7 @@ operator|new
 name|RandomTypeSimilarity
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 return|;
 block|}

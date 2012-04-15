@@ -432,6 +432,7 @@ init|=
 literal|1
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -446,6 +447,7 @@ operator|+
 literal|1
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -886,6 +888,7 @@ init|=
 literal|1
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -900,6 +903,7 @@ operator|+
 literal|1
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1023,6 +1027,7 @@ name|long
 name|seed
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextLong
 argument_list|()

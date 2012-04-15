@@ -2838,6 +2838,7 @@ operator|new
 name|LineFileDocs
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|defaultCodecSupportsDocValues
 argument_list|()
@@ -2863,6 +2864,7 @@ name|int
 name|what
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2876,6 +2878,7 @@ init|=
 name|nodes
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2934,6 +2937,7 @@ argument_list|,
 literal|""
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2967,6 +2971,7 @@ argument_list|,
 literal|""
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2980,6 +2985,7 @@ comment|// TODO: doc blocks too
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -3000,6 +3006,7 @@ block|}
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -3012,6 +3019,7 @@ block|{
 name|nodes
 index|[
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -3154,6 +3162,7 @@ operator|new
 name|NodeState
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|baseDirName
 argument_list|,

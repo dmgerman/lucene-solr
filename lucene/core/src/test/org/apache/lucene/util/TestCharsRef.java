@@ -92,6 +92,7 @@ operator|.
 name|randomUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|utf8
@@ -224,6 +225,7 @@ operator|.
 name|randomRealisticUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -237,6 +239,7 @@ name|int
 name|offset
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -336,6 +339,7 @@ operator|.
 name|randomRealisticUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -349,6 +353,7 @@ name|int
 name|offset
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(

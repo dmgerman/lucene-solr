@@ -598,6 +598,18 @@ name|SAXException
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|RandomizedContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * A junit4 Solr test harness that extends LuceneTestCaseJ4.  * Unlike AbstractSolrTestCase, a new core is not created for each test method.  *  */
 end_comment
@@ -1568,6 +1580,20 @@ name|dataDir
 operator|.
 name|mkdirs
 argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"Creating dataDir: "
+operator|+
+name|dataDir
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|initCore
@@ -4773,6 +4799,7 @@ operator|!=
 name|max
 condition|?
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4940,6 +4967,7 @@ return|return
 name|min
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextFloat
 argument_list|()
@@ -5896,6 +5924,7 @@ comment|// commit 10% of the time
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5916,6 +5945,7 @@ comment|// duplicate 10% of the docs
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5952,6 +5982,7 @@ comment|// optimize 10% of the time
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -6267,6 +6298,7 @@ name|int
 name|nSorts
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -6324,6 +6356,7 @@ name|int
 name|which
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -6339,6 +6372,7 @@ name|boolean
 name|asc
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()

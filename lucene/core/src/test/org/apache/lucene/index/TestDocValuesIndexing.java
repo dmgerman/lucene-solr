@@ -42,67 +42,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|EnumSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
+name|*
 import|;
 end_import
 
@@ -124,17 +64,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
+name|*
 import|;
 end_import
 
@@ -844,6 +774,7 @@ argument_list|(
 name|writerConfig
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -866,6 +797,7 @@ argument_list|(
 name|writerConfig
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -888,6 +820,7 @@ argument_list|(
 name|writerConfig
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -910,6 +843,7 @@ argument_list|(
 name|writerConfig
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -955,6 +889,7 @@ argument_list|(
 name|values
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Type
@@ -995,6 +930,7 @@ argument_list|,
 name|writerConfig
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1056,6 +992,7 @@ argument_list|,
 name|writerConfig
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1116,6 +1053,7 @@ argument_list|,
 name|writerConfig
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1149,6 +1087,7 @@ decl_stmt|;
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -1650,6 +1589,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1660,6 +1600,7 @@ argument_list|(
 name|newLogMergePolicy
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1759,6 +1700,7 @@ argument_list|(
 name|numVariantList
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 for|for
@@ -2239,6 +2181,7 @@ argument_list|(
 name|byteVariantList
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -2861,6 +2804,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2909,6 +2853,7 @@ argument_list|(
 name|numVariantList
 argument_list|,
 name|random
+argument_list|()
 argument_list|)
 expr_stmt|;
 for|for
@@ -3445,6 +3390,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -3697,6 +3643,7 @@ comment|// getSource uses cache internally
 switch|switch
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4397,6 +4344,7 @@ condition|(
 name|withDeletions
 operator|&&
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -4410,6 +4358,7 @@ operator|.
 name|get
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4433,6 +4382,7 @@ operator|==
 name|valueType
 condition|?
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4442,6 +4392,7 @@ name|i
 argument_list|)
 else|:
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4487,6 +4438,7 @@ block|}
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4515,6 +4467,7 @@ condition|(
 name|withDeletions
 operator|||
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -4555,6 +4508,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|d
 argument_list|)
@@ -4718,6 +4672,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|d
 argument_list|)
@@ -4927,6 +4882,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4979,6 +4935,7 @@ init|=
 literal|1
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5035,6 +4992,7 @@ operator|.
 name|randomFixedByteLengthUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|len
 argument_list|)
@@ -5044,6 +5002,7 @@ operator|.
 name|randomRealisticUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -5272,6 +5231,7 @@ operator|.
 name|randomFixedByteLengthUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|len
 argument_list|)
@@ -5281,6 +5241,7 @@ operator|.
 name|randomRealisticUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -5672,6 +5633,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
+decl_stmt|;
 specifier|final
 name|int
 name|NUM_DOCS
@@ -6036,6 +6003,7 @@ operator|.
 name|nextInt
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -6083,6 +6051,12 @@ name|void
 name|run
 parameter_list|()
 block|{
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
+decl_stmt|;
 specifier|final
 name|DocValues
 operator|.
@@ -6329,6 +6303,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)

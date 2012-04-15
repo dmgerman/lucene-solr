@@ -435,6 +435,7 @@ operator|.
 name|flip
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -483,6 +484,7 @@ init|=
 name|createReaderWithNDocs
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|n
 argument_list|,
@@ -555,6 +557,7 @@ init|=
 name|createReaderWithNDocs
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|maxDoc
 argument_list|,
@@ -856,6 +859,7 @@ init|=
 name|createReaderWithNDocs
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|N_DOCS
 argument_list|,

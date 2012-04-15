@@ -1361,6 +1361,7 @@ comment|// addIndexes - single commit in each
 name|doTest
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|true
 argument_list|,
@@ -1373,6 +1374,7 @@ comment|// addIndexes - multiple commits in each
 name|doTest
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|true
 argument_list|,
@@ -1396,6 +1398,7 @@ comment|// addIndexes - single commit in each
 name|doTest
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|false
 argument_list|,
@@ -1408,6 +1411,7 @@ comment|// addIndexes - multiple commits in each
 name|doTest
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|false
 argument_list|,
@@ -1436,6 +1440,7 @@ decl_stmt|;
 name|populateDocs
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -1518,6 +1523,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|MockTokenizer
 operator|.

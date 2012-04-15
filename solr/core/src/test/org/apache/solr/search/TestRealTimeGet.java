@@ -1490,6 +1490,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1503,6 +1504,7 @@ init|=
 literal|30
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1517,6 +1519,7 @@ init|=
 literal|4
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1530,6 +1533,7 @@ init|=
 literal|1
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1544,11 +1548,13 @@ literal|5
 operator|+
 operator|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
 condition|?
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1556,6 +1562,7 @@ literal|25
 argument_list|)
 else|:
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1569,6 +1576,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1606,6 +1614,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1741,6 +1750,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -2340,6 +2350,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -2783,6 +2794,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2796,6 +2808,7 @@ init|=
 literal|30
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2810,6 +2823,7 @@ init|=
 literal|4
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2823,6 +2837,7 @@ init|=
 literal|1
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2837,11 +2852,13 @@ literal|5
 operator|+
 operator|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
 condition|?
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2849,6 +2866,7 @@ literal|25
 argument_list|)
 else|:
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2862,6 +2880,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2899,6 +2918,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -2964,6 +2984,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -3651,6 +3672,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -4094,6 +4116,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4107,6 +4130,7 @@ init|=
 literal|30
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4121,6 +4145,7 @@ init|=
 literal|4
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4142,11 +4167,13 @@ literal|5
 operator|+
 operator|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
 condition|?
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4154,6 +4181,7 @@ literal|25
 argument_list|)
 else|:
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4167,6 +4195,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4204,6 +4233,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -4279,6 +4309,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -4962,6 +4993,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -5418,6 +5450,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5431,6 +5464,7 @@ init|=
 literal|30
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5445,6 +5479,7 @@ init|=
 literal|4
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5466,11 +5501,13 @@ literal|5
 operator|+
 operator|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
 condition|?
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5478,6 +5515,7 @@ literal|25
 argument_list|)
 else|:
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5491,6 +5529,7 @@ init|=
 literal|2
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5517,6 +5556,7 @@ name|int
 name|percentGetLatestVersions
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5543,6 +5583,7 @@ init|=
 literal|2
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -5723,6 +5764,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -6446,6 +6488,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -6941,6 +6984,7 @@ comment|// sometimes wait for a second to allow time for writers to write someth
 if|if
 condition|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -6950,6 +6994,7 @@ operator|.
 name|sleep
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7008,6 +7053,7 @@ operator|.
 name|get
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7071,6 +7117,7 @@ operator|.
 name|release
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7284,6 +7331,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7297,6 +7345,7 @@ init|=
 literal|30
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7311,6 +7360,7 @@ init|=
 literal|4
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7324,6 +7374,7 @@ init|=
 literal|1
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7338,11 +7389,13 @@ literal|5
 operator|+
 operator|(
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
 condition|?
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7350,6 +7403,7 @@ literal|25
 argument_list|)
 else|:
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7363,6 +7417,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7393,6 +7448,7 @@ init|=
 literal|5
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -7404,6 +7460,7 @@ name|boolean
 name|tombstones
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -7413,6 +7470,7 @@ name|boolean
 name|syncCommits
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -7631,6 +7689,7 @@ operator|new
 name|RandomIndexWriter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|dir
 argument_list|,
@@ -7642,6 +7701,7 @@ operator|new
 name|MockAnalyzer
 argument_list|(
 name|random
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
@@ -7703,6 +7763,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()
@@ -8672,6 +8733,7 @@ operator|new
 name|Random
 argument_list|(
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|()

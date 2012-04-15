@@ -80,6 +80,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1289,6 +1299,7 @@ block|{
 name|checkRandomData
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|analyzer
 argument_list|,
@@ -1300,6 +1311,7 @@ expr_stmt|;
 name|checkRandomData
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|analyzerNoPunct
 argument_list|,
@@ -1318,6 +1330,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
+decl_stmt|;
 name|checkRandomData
 argument_list|(
 name|random
@@ -1354,6 +1372,12 @@ throws|throws
 name|Exception
 block|{
 comment|// Randomly inject graph tokens after JapaneseTokenizer:
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
+decl_stmt|;
 name|checkRandomData
 argument_list|(
 name|random
@@ -1400,6 +1424,7 @@ operator|new
 name|MockGraphTokenFilter
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 name|tokenizer
 argument_list|)
@@ -1455,6 +1480,7 @@ operator|.
 name|randomUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|10000
 argument_list|)
@@ -1581,6 +1607,7 @@ operator|.
 name|randomUnicodeString
 argument_list|(
 name|random
+argument_list|()
 argument_list|,
 literal|100
 argument_list|)

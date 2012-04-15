@@ -1061,6 +1061,7 @@ argument_list|,
 literal|"*:* OR foo_i:"
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1124,6 +1125,7 @@ argument_list|,
 literal|"*:* OR foo_i:"
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -1199,6 +1201,7 @@ argument_list|,
 literal|"*:* OR foo_i:"
 operator|+
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(

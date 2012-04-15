@@ -396,6 +396,7 @@ name|int
 name|numObjects
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -436,6 +437,7 @@ name|boolean
 name|failOnPrepare
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -445,6 +447,7 @@ name|boolean
 name|failOnCommit
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextDouble
 argument_list|()
@@ -455,6 +458,7 @@ name|boolean
 name|railOnRollback
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
@@ -666,6 +670,7 @@ name|int
 name|numObjects
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
@@ -711,6 +716,7 @@ name|boolean
 name|isNull
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextDouble
 argument_list|()
@@ -764,6 +770,7 @@ name|int
 name|idx
 init|=
 name|random
+argument_list|()
 operator|.
 name|nextInt
 argument_list|(
