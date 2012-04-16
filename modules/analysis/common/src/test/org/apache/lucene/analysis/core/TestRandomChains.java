@@ -4448,6 +4448,7 @@ argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
+comment|//System.out.println("seed=" + seed + ",create tokenizer=" + tokenizerSpec.toString);
 name|TokenFilterSpec
 name|filterSpec
 init|=
@@ -4464,6 +4465,7 @@ operator|.
 name|offsetsAreCorrect
 argument_list|)
 decl_stmt|;
+comment|//System.out.println("seed=" + seed + ",create filter=" + filterSpec.toString);
 return|return
 operator|new
 name|TokenStreamComponents
@@ -4978,6 +4980,15 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|spec
+operator|.
+name|tokenizer
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
 name|brokenOffsetsComponents
 operator|.
 name|contains
@@ -4996,14 +5007,17 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-if|if
-condition|(
 name|spec
 operator|.
-name|tokenizer
-operator|==
-literal|null
-condition|)
+name|toString
+operator|=
+name|descr
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
+block|}
+else|else
 block|{
 name|assertFalse
 argument_list|(
@@ -5023,15 +5037,6 @@ name|readSomething
 argument_list|)
 expr_stmt|;
 block|}
-name|spec
-operator|.
-name|toString
-operator|=
-name|descr
-operator|.
-name|toString
-argument_list|()
-expr_stmt|;
 block|}
 return|return
 name|spec
