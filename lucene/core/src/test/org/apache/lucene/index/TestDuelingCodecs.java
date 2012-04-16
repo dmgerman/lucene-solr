@@ -697,6 +697,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|lineFileDocs
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**    * checks the two indexes are equivalent    */
 DECL|method|testEquals

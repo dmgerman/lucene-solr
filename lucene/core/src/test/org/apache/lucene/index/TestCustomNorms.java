@@ -651,6 +651,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|docs
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testExceptionOnRandomType
 specifier|public
@@ -853,6 +858,11 @@ name|close
 argument_list|()
 expr_stmt|;
 name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|docs
 operator|.
 name|close
 argument_list|()

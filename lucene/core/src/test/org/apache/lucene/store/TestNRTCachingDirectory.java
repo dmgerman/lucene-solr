@@ -697,6 +697,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|docs
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// NOTE: not a test; just here to make sure the code frag
 comment|// in the javadocs is correct!
