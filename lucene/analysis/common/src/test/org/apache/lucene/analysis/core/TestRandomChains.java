@@ -5794,7 +5794,7 @@ name|numIterations
 init|=
 name|atLeast
 argument_list|(
-literal|20
+literal|10
 argument_list|)
 decl_stmt|;
 name|Random
@@ -5855,7 +5855,7 @@ name|random
 argument_list|,
 name|a
 argument_list|,
-literal|1000
+literal|200
 argument_list|,
 literal|20
 argument_list|,

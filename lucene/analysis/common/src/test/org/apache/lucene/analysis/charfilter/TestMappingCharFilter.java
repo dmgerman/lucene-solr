@@ -1487,6 +1487,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|int
+name|numIterations
+init|=
+name|atLeast
+argument_list|(
+literal|10
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1496,7 +1504,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
+name|numIterations
 condition|;
 name|i
 operator|++
@@ -1584,8 +1592,6 @@ decl_stmt|;
 name|int
 name|numRounds
 init|=
-name|RANDOM_MULTIPLIER
-operator|*
 literal|100
 decl_stmt|;
 name|checkRandomData

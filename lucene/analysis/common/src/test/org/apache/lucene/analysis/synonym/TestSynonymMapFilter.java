@@ -2987,9 +2987,7 @@ argument_list|()
 argument_list|,
 name|analyzer
 argument_list|,
-literal|1000
-operator|*
-name|RANDOM_MULTIPLIER
+literal|200
 argument_list|)
 expr_stmt|;
 block|}
@@ -3186,9 +3184,7 @@ name|random
 argument_list|,
 name|analyzer
 argument_list|,
-literal|1000
-operator|*
-name|RANDOM_MULTIPLIER
+literal|200
 argument_list|)
 expr_stmt|;
 block|}
@@ -3539,8 +3535,6 @@ argument_list|,
 name|analyzer
 argument_list|,
 literal|100
-operator|*
-name|RANDOM_MULTIPLIER
 argument_list|,
 literal|8192
 argument_list|)

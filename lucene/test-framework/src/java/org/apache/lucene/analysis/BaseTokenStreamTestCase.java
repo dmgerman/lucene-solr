@@ -3181,9 +3181,9 @@ name|nextInt
 argument_list|(
 name|random
 argument_list|,
-literal|4
+literal|2
 argument_list|,
-literal|8
+literal|4
 argument_list|)
 decl_stmt|;
 name|AnalysisThread

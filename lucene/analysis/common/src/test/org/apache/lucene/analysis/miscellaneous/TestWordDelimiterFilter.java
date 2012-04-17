@@ -2090,9 +2090,7 @@ argument_list|()
 argument_list|,
 name|a
 argument_list|,
-literal|10000
-operator|*
-name|RANDOM_MULTIPLIER
+literal|200
 argument_list|,
 literal|20
 argument_list|,
