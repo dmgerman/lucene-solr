@@ -875,7 +875,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"defaultExtr:http\\://www.apache.org"
+literal|"defaultExtr:http\\:\\/\\/www.apache.org"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"

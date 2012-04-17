@@ -188,6 +188,8 @@ block|,
 literal|"}"
 block|,
 literal|"~"
+block|,
+literal|"/"
 block|}
 decl_stmt|;
 comment|// TODO: check what to do with these "*", "?", "\\"
