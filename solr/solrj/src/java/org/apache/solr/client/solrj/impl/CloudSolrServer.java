@@ -408,6 +408,10 @@ name|KeeperException
 import|;
 end_import
 
+begin_comment
+comment|/**  * SolrJ client class to communicate with SolrCloud.  * Instances of this class communicate with Zookeeper to discover  * Solr endpoints for SolrCloud collections, and then use the   * {@link LBHttpSolrServer} to issue requests.  */
+end_comment
+
 begin_class
 DECL|class|CloudSolrServer
 specifier|public
@@ -466,7 +470,7 @@ specifier|private
 name|ThreadSafeClientConnManager
 name|connManager
 decl_stmt|;
-comment|/**    * @param zkHost The address of the zookeeper quorum containing the cloud state    */
+comment|/**    * @param zkHost The client endpoint of the zookeeper quorum containing the cloud state,    * in the form HOST:PORT.    */
 DECL|method|CloudSolrServer
 specifier|public
 name|CloudSolrServer
@@ -504,7 +508,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param zkHost The address of the zookeeper quorum containing the cloud state    */
+comment|/**    * @param zkHost The client endpoint of the zookeeper quorum containing the cloud state,    * in the form HOST:PORT.    * @param lbServer LBHttpSolrServer instance for requests.     */
 DECL|method|CloudSolrServer
 specifier|public
 name|CloudSolrServer
