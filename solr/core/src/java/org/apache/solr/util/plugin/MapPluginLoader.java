@@ -92,6 +92,12 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
+name|Class
+argument_list|<
+name|T
+argument_list|>
+name|pluginClassType
+parameter_list|,
 name|Map
 argument_list|<
 name|String
@@ -104,6 +110,8 @@ block|{
 name|super
 argument_list|(
 name|name
+argument_list|,
+name|pluginClassType
 argument_list|)
 expr_stmt|;
 name|registry

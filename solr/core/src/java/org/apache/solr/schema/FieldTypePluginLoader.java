@@ -361,6 +361,10 @@ name|super
 argument_list|(
 literal|"[schema.xml] fieldType"
 argument_list|,
+name|FieldType
+operator|.
+name|class
+argument_list|,
 literal|true
 argument_list|,
 literal|true
@@ -436,14 +440,15 @@ block|{
 name|FieldType
 name|ft
 init|=
-operator|(
-name|FieldType
-operator|)
 name|loader
 operator|.
 name|newInstance
 argument_list|(
 name|className
+argument_list|,
+name|FieldType
+operator|.
+name|class
 argument_list|)
 decl_stmt|;
 name|ft
@@ -1262,10 +1267,7 @@ operator|.
 name|findClass
 argument_list|(
 name|analyzerName
-argument_list|)
-operator|.
-name|asSubclass
-argument_list|(
+argument_list|,
 name|Analyzer
 operator|.
 name|class
@@ -1444,6 +1446,10 @@ argument_list|>
 argument_list|(
 literal|"[schema.xml] analyzer/charFilter"
 argument_list|,
+name|CharFilterFactory
+operator|.
+name|class
+argument_list|,
 literal|false
 argument_list|,
 literal|false
@@ -1609,6 +1615,10 @@ name|TokenizerFactory
 argument_list|>
 argument_list|(
 literal|"[schema.xml] analyzer/tokenizer"
+argument_list|,
+name|TokenizerFactory
+operator|.
+name|class
 argument_list|,
 literal|false
 argument_list|,
@@ -1811,6 +1821,10 @@ name|TokenFilterFactory
 argument_list|>
 argument_list|(
 literal|"[schema.xml] analyzer/filter"
+argument_list|,
+name|TokenFilterFactory
+operator|.
+name|class
 argument_list|,
 literal|false
 argument_list|,

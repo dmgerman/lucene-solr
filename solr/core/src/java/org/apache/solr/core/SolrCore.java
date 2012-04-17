@@ -1774,9 +1774,6 @@ condition|)
 block|{
 name|dirFactory
 operator|=
-operator|(
-name|DirectoryFactory
-operator|)
 name|getResourceLoader
 argument_list|()
 operator|.
@@ -1785,6 +1782,10 @@ argument_list|(
 name|info
 operator|.
 name|className
+argument_list|,
+name|DirectoryFactory
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|dirFactory
@@ -1845,9 +1846,6 @@ condition|)
 block|{
 name|indexReaderFactory
 operator|=
-operator|(
-name|IndexReaderFactory
-operator|)
 name|resourceLoader
 operator|.
 name|newInstance
@@ -1855,6 +1853,10 @@ argument_list|(
 name|info
 operator|.
 name|className
+argument_list|,
+name|IndexReaderFactory
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|indexReaderFactory
@@ -2142,8 +2144,6 @@ DECL|method|createInstance
 specifier|private
 parameter_list|<
 name|T
-extends|extends
-name|Object
 parameter_list|>
 name|T
 name|createInstance
@@ -2162,6 +2162,11 @@ name|msg
 parameter_list|)
 block|{
 name|Class
+argument_list|<
+name|?
+extends|extends
+name|T
+argument_list|>
 name|clazz
 init|=
 literal|null
@@ -2186,50 +2191,10 @@ operator|.
 name|findClass
 argument_list|(
 name|className
+argument_list|,
+name|cast
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|cast
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|cast
-operator|.
-name|isAssignableFrom
-argument_list|(
-name|clazz
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|"Error Instantiating "
-operator|+
-name|msg
-operator|+
-literal|", "
-operator|+
-name|className
-operator|+
-literal|" is not a "
-operator|+
-name|cast
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
 comment|//most of the classes do not have constructors which takes SolrCore argument. It is recommended to obtain SolrCore by implementing SolrCoreAware.
 comment|// So invariably always it will cause a  NoSuchMethodException. So iterate though the list of available constructors
 name|Constructor
@@ -2290,15 +2255,14 @@ return|;
 block|}
 block|}
 return|return
-operator|(
-name|T
-operator|)
 name|getResourceLoader
 argument_list|()
 operator|.
 name|newInstance
 argument_list|(
 name|className
+argument_list|,
+name|cast
 argument_list|)
 return|;
 comment|//use the empty constructor
@@ -2351,22 +2315,11 @@ block|}
 block|}
 DECL|method|createReloadedUpdateHandler
 specifier|private
-parameter_list|<
-name|T
-extends|extends
-name|Object
-parameter_list|>
-name|T
+name|UpdateHandler
 name|createReloadedUpdateHandler
 parameter_list|(
 name|String
 name|className
-parameter_list|,
-name|Class
-argument_list|<
-name|UpdateHandler
-argument_list|>
-name|class1
 parameter_list|,
 name|String
 name|msg
@@ -2376,6 +2329,11 @@ name|updateHandler
 parameter_list|)
 block|{
 name|Class
+argument_list|<
+name|?
+extends|extends
+name|UpdateHandler
+argument_list|>
 name|clazz
 init|=
 literal|null
@@ -2400,50 +2358,12 @@ operator|.
 name|findClass
 argument_list|(
 name|className
+argument_list|,
+name|UpdateHandler
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|class1
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|class1
-operator|.
-name|isAssignableFrom
-argument_list|(
-name|clazz
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|"Error Instantiating "
-operator|+
-name|msg
-operator|+
-literal|", "
-operator|+
-name|className
-operator|+
-literal|" is not a "
-operator|+
-name|class1
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
 comment|//most of the classes do not have constructors which takes SolrCore argument. It is recommended to obtain SolrCore by implementing SolrCoreAware.
 comment|// So invariably always it will cause a  NoSuchMethodException. So iterate though the list of available constructors
 name|Constructor
@@ -2506,7 +2426,7 @@ condition|)
 block|{
 return|return
 operator|(
-name|T
+name|UpdateHandler
 operator|)
 name|con
 operator|.
@@ -2539,7 +2459,9 @@ name|className
 operator|+
 literal|" could not find proper constructor for "
 operator|+
-name|class1
+name|UpdateHandler
+operator|.
+name|class
 operator|.
 name|getName
 argument_list|()
@@ -2582,7 +2504,9 @@ name|className
 operator|+
 literal|" failed to instantiate "
 operator|+
-name|class1
+name|UpdateHandler
+operator|.
+name|class
 operator|.
 name|getName
 argument_list|()
@@ -2778,10 +2702,6 @@ return|return
 name|createReloadedUpdateHandler
 argument_list|(
 name|className
-argument_list|,
-name|UpdateHandler
-operator|.
-name|class
 argument_list|,
 literal|"Update Handler"
 argument_list|,
@@ -3437,9 +3357,6 @@ condition|)
 block|{
 name|factory
 operator|=
-operator|(
-name|CodecFactory
-operator|)
 name|schema
 operator|.
 name|getResourceLoader
@@ -3450,6 +3367,10 @@ argument_list|(
 name|info
 operator|.
 name|className
+argument_list|,
+name|CodecFactory
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|factory
@@ -4581,9 +4502,6 @@ block|{
 name|T
 name|searchComp
 init|=
-operator|(
-name|T
-operator|)
 name|resourceLoader
 operator|.
 name|newInstance
@@ -4592,6 +4510,8 @@ name|c
 operator|.
 name|getName
 argument_list|()
+argument_list|,
+name|c
 argument_list|)
 decl_stmt|;
 if|if

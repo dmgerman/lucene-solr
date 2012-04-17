@@ -658,6 +658,10 @@ operator|.
 name|newInstance
 argument_list|(
 name|compClass
+argument_list|,
+name|Comparator
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 block|}
@@ -697,9 +701,6 @@ argument_list|)
 condition|)
 name|sd
 operator|=
-operator|(
-name|StringDistance
-operator|)
 name|core
 operator|.
 name|getResourceLoader
@@ -708,6 +709,10 @@ operator|.
 name|newInstance
 argument_list|(
 name|distClass
+argument_list|,
+name|StringDistance
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|float
