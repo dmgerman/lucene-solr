@@ -179,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Plugin for lucene/contrib Surround query parser, bringing SpanQuery support  * to Solr  *   *<queryParser name="surround"  * class="org.apache.solr.search.SurroundQParserPlugin" />  *   * Examples of query syntax can be found in modules/queryparser/docs/surround  *   * Note that the query string is not analyzed in any way  *   * @since 4.0  */
+comment|/**  * Plugin for lucene/contrib Surround query parser, bringing SpanQuery support  * to Solr  *   *<queryParser name="surround"  * class="org.apache.solr.search.SurroundQParserPlugin" />  *   * Examples of query syntax can be found in lucene/queryparser/docs/surround  *   * Note that the query string is not analyzed in any way  *   * @since 4.0  */
 end_comment
 
 begin_class
