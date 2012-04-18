@@ -648,22 +648,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|Log4jWatcher
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|schema
 operator|.
 name|IndexSchema
@@ -2442,26 +2426,9 @@ name|slf4jImpl
 argument_list|)
 expr_stmt|;
 block|}
-elseif|else
-if|if
-condition|(
-literal|"Log4j"
-operator|.
-name|equals
-argument_list|(
-name|fname
-argument_list|)
-condition|)
-block|{
-name|logging
-operator|=
-operator|new
-name|Log4jWatcher
-argument_list|(
-name|slf4jImpl
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        else if( "Log4j".equals(fname) ) {
+comment|//          logging = new Log4jWatcher(slf4jImpl);
+comment|//        }
 else|else
 block|{
 try|try
