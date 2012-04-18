@@ -565,7 +565,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This handler exposes the internal lucene index.  It is inspired by and   * modeled on Luke, the Lucene Index Browser by Andrzej Bialecki.  *   http://www.getopt.org/luke/  *<p>  * NOTE: the response format is still likely to change.  It should be designed so  * that it works nicely with an XSLT transformation.  Until we have a nice  * XSLT front end for /admin, the format is still open to change.  *</p>  *  * For more documentation see:  *  http://wiki.apache.org/solr/LukeRequestHandler  *  *  * @since solr 1.2  */
+comment|/**  * This handler exposes the internal lucene index.  It is inspired by and   * modeled on Luke, the Lucene Index Browser by Andrzej Bialecki.  *   http://www.getopt.org/luke/  *  * For more documentation see:  *  http://wiki.apache.org/solr/LukeRequestHandler  *  * @since solr 1.2  */
 end_comment
 
 begin_class
@@ -2467,11 +2467,6 @@ return|return
 name|finfo
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|getIndexedFieldsInfo
 specifier|private
 specifier|static
@@ -4439,6 +4434,11 @@ return|;
 block|}
 comment|// Get terribly detailed information about a particular field. This is a very expensive call, use it with caution
 comment|// especially on large indexes!
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|getDetailedFieldInfo
 specifier|private
 specifier|static
