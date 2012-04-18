@@ -1194,6 +1194,18 @@ name|carrotsearch
 operator|.
 name|randomizedtesting
 operator|.
+name|MixWithSuiteName
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
 name|RandomizedContext
 import|;
 end_import
@@ -1230,6 +1242,13 @@ end_comment
 
 begin_class
 annotation|@
+name|RunWith
+argument_list|(
+name|RandomizedRunner
+operator|.
+name|class
+argument_list|)
+annotation|@
 name|TestMethodProviders
 argument_list|(
 block|{
@@ -1256,12 +1275,15 @@ name|class
 block|}
 argument_list|)
 annotation|@
-name|RunWith
+name|SeedDecorators
 argument_list|(
-name|RandomizedRunner
+block|{
+name|MixWithSuiteName
 operator|.
 name|class
+block|}
 argument_list|)
+comment|// See LUCENE-3995 for rationale.
 annotation|@
 name|ThreadLeaks
 argument_list|(
@@ -1277,7 +1299,7 @@ name|LuceneTestCase
 extends|extends
 name|Assert
 block|{
-comment|/**    * true iff tests are run in verbose mode. Note: if it is false, tests are not    * expected to print any messages.    */
+comment|/**    * true if and only if tests are run in verbose mode. Note: if it is false, tests are not    * expected to print any messages.    */
 DECL|field|VERBOSE
 specifier|public
 specifier|static
@@ -2472,6 +2494,17 @@ argument_list|(
 literal|10
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"randomVal: "
+operator|+
+name|randomVal
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 literal|"Lucene3x"
