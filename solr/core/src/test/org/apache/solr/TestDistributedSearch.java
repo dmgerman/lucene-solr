@@ -1286,6 +1286,26 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
+comment|// a facet query to test out chars out of the ascii range
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|0
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.query"
+argument_list|,
+literal|"{!term f=foo_s}international\u00ff\u01ff\u2222\u3333"
+argument_list|)
+expr_stmt|;
 comment|// simple date facet on one field
 name|query
 argument_list|(
