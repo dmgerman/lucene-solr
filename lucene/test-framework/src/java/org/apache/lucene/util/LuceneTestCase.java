@@ -2494,17 +2494,6 @@ argument_list|(
 literal|10
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"randomVal: "
-operator|+
-name|randomVal
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 literal|"Lucene3x"
