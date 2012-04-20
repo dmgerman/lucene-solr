@@ -1834,6 +1834,11 @@ argument_list|()
 argument_list|,
 name|content
 operator|.
+name|getContentType
+argument_list|()
+argument_list|,
+name|content
+operator|.
 name|getName
 argument_list|()
 argument_list|)
