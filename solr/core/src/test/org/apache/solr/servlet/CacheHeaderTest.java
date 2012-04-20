@@ -136,6 +136,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -228,12 +244,20 @@ name|getUpdateMethod
 argument_list|(
 literal|"GET"
 argument_list|,
-literal|"stream.file"
+name|CommonParams
+operator|.
+name|STREAM_FILE
 argument_list|,
 name|f
 operator|.
 name|getCanonicalPath
 argument_list|()
+argument_list|,
+name|CommonParams
+operator|.
+name|STREAM_CONTENTTYPE
+argument_list|,
+literal|"text/csv"
 argument_list|)
 decl_stmt|;
 name|HttpResponse
@@ -360,7 +384,11 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"We got no no-cache in the Cache-Control header"
+literal|"We got no no-cache in the Cache-Control header ["
+operator|+
+name|head
+operator|+
+literal|"]"
 argument_list|,
 name|head
 operator|.
@@ -375,7 +403,11 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"We got no no-store in the Cache-Control header"
+literal|"We got no no-store in the Cache-Control header ["
+operator|+
+name|head
+operator|+
+literal|"]"
 argument_list|,
 name|head
 operator|.
