@@ -235,7 +235,7 @@ block|{
 name|Object
 name|caching
 init|=
-name|initArgs
+name|args
 operator|.
 name|get
 argument_list|(
