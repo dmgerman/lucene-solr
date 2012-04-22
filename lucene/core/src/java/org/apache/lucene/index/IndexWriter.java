@@ -7417,7 +7417,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Commits all changes to the index, specifying a    *  commitUserData Map (String -> String).  This just    *  calls {@link #prepareCommit(Map)} (if you didn't    *  already call it) and then {@link #finishCommit}.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    */
+comment|/** Commits all changes to the index, specifying a    *  commitUserData Map (String -> String).  This just    *  calls {@link #prepareCommit(Map)} (if you didn't    *  already call it) and then {@link #commit}.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    */
 DECL|method|commit
 specifier|public
 specifier|final
@@ -12826,7 +12826,7 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** If {@link #getReader} has been called (ie, this writer    *  is in near real-time mode), then after a merge    *  completes, this class can be invoked to warm the    *  reader on the newly merged segment, before the merge    *  commits.  This is not required for near real-time    *  search, but will reduce search latency on opening a    *  new near real-time reader after a merge completes.    *    * @lucene.experimental    *    *<p><b>NOTE</b>: warm is called before any deletes have    * been carried over to the merged segment. */
+comment|/** If {@link IndexReader#open(IndexWriter,boolean)} has    *  been called (ie, this writer is in near real-time    *  mode), then after a merge completes, this class can be    *  invoked to warm the reader on the newly merged    *  segment, before the merge commits.  This is not    *  required for near real-time search, but will reduce    *  search latency on opening a new near real-time reader    *  after a merge completes.    *    * @lucene.experimental    *    *<p><b>NOTE</b>: warm is called before any deletes have    * been carried over to the merged segment. */
 DECL|class|IndexReaderWarmer
 specifier|public
 specifier|static

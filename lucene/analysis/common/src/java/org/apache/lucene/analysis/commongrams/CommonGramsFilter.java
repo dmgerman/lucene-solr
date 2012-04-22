@@ -188,6 +188,7 @@ extends|extends
 name|TokenFilter
 block|{
 DECL|field|GRAM_TYPE
+specifier|public
 specifier|static
 specifier|final
 name|String
