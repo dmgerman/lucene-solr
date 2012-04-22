@@ -221,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Minimal port of contrib/benchmark's LneDocSource +  * DocMaker, so tests can enum docs from a line file created  * by contrib/benchmark's WriteLineDoc task */
+comment|/** Minimal port of benchmark's LneDocSource +  * DocMaker, so tests can enum docs from a line file created  * by benchmark's WriteLineDoc task */
 end_comment
 
 begin_class
