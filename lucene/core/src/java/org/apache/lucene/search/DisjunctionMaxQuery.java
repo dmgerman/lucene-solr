@@ -224,7 +224,7 @@ name|query
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Add a collection of disjuncts to this disjunction    * via Iterable<Query>    */
+comment|/** Add a collection of disjuncts to this disjunction    * via Iterable<Query>    * @param disjuncts a collection of queries to add as disjuncts.    */
 DECL|method|add
 specifier|public
 name|void
@@ -247,7 +247,7 @@ name|disjuncts
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** An Iterator<Query> over the disjuncts */
+comment|/** @return An Iterator<Query> over the disjuncts */
 DECL|method|iterator
 specifier|public
 name|Iterator
@@ -262,6 +262,31 @@ name|disjuncts
 operator|.
 name|iterator
 argument_list|()
+return|;
+block|}
+comment|/**    * @return the disjuncts.    */
+DECL|method|getDisjuncts
+specifier|public
+name|ArrayList
+argument_list|<
+name|Query
+argument_list|>
+name|getDisjuncts
+parameter_list|()
+block|{
+return|return
+name|disjuncts
+return|;
+block|}
+comment|/**    * @return tie breaker value for multiple matches.    */
+DECL|method|getTieBreakerMultiplier
+specifier|public
+name|float
+name|getTieBreakerMultiplier
+parameter_list|()
+block|{
+return|return
+name|tieBreakerMultiplier
 return|;
 block|}
 comment|/**    * Expert: the Weight for DisjunctionMaxQuery, used to    * normalize, score and explain these queries.    *    *<p>NOTE: this API and implementation is subject to    * change suddenly in the next release.</p>    */
