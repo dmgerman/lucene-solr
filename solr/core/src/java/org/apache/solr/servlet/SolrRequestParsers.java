@@ -467,7 +467,7 @@ specifier|private
 name|boolean
 name|handleSelect
 init|=
-literal|false
+literal|true
 decl_stmt|;
 DECL|field|standard
 specifier|private
