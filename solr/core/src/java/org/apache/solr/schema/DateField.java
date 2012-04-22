@@ -1428,7 +1428,7 @@ operator|.
 name|getIndex
 argument_list|()
 decl_stmt|;
-comment|/* worry aboutthe milliseconds ourselves */
+comment|/* worry about the milliseconds ourselves */
 if|if
 condition|(
 literal|null
