@@ -1277,7 +1277,7 @@ name|blockEnds
 return|;
 block|}
 block|}
-comment|/** 1<<blockBits must be bigger than biggest single    *  BytesRef slice that will be pulled */
+comment|/** 1&lt;&lt;blockBits must be bigger than biggest single    *  BytesRef slice that will be pulled */
 DECL|method|PagedBytes
 specifier|public
 name|PagedBytes

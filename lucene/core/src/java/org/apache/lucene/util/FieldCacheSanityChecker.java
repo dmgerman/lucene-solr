@@ -1810,7 +1810,7 @@ argument_list|(
 literal|"SUBREADER"
 argument_list|)
 decl_stmt|;
-comment|/**       *<p>      * Indicates entries have the same reader+fieldname but       * different cached values.  This can happen if different datatypes,       * or parsers are used -- and while it's not necessarily a bug       * it's typically an indication of a possible problem.      *</p>      *<p>      *<bPNOTE:</b> Only the reader, fieldname, and cached value are actually       * tested -- if two cache entries have different parsers or datatypes but       * the cached values are the same Object (== not just equal()) this method       * does not consider that a red flag.  This allows for subtle variations       * in the way a Parser is specified (null vs DEFAULT_LONG_PARSER, etc...)      *</p>      */
+comment|/**       *<p>      * Indicates entries have the same reader+fieldname but       * different cached values.  This can happen if different datatypes,       * or parsers are used -- and while it's not necessarily a bug       * it's typically an indication of a possible problem.      *</p>      *<p>      *<b>NOTE:</b> Only the reader, fieldname, and cached value are actually       * tested -- if two cache entries have different parsers or datatypes but       * the cached values are the same Object (== not just equal()) this method       * does not consider that a red flag.  This allows for subtle variations       * in the way a Parser is specified (null vs DEFAULT_LONG_PARSER, etc...)      *</p>      */
 DECL|field|VALUEMISMATCH
 specifier|public
 specifier|final

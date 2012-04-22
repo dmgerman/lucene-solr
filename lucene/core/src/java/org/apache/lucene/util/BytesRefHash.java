@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link BytesRefHash} is a special purpose hash-map like data-structure  * optimized for {@link BytesRef} instances. BytesRefHash maintains mappings of  * byte arrays to ordinal (Map<BytesRef,int>) storing the hashed bytes  * efficiently in continuous storage. The mapping to the ordinal is  * encapsulated inside {@link BytesRefHash} and is guaranteed to be increased  * for each added {@link BytesRef}.  *   *<p>  * Note: The maximum capacity {@link BytesRef} instance passed to  * {@link #add(BytesRef)} must not be longer than {@link ByteBlockPool#BYTE_BLOCK_SIZE}-2.   * The internal storage is limited to 2GB total byte storage.  *</p>  *   * @lucene.internal  */
+comment|/**  * {@link BytesRefHash} is a special purpose hash-map like data-structure  * optimized for {@link BytesRef} instances. BytesRefHash maintains mappings of  * byte arrays to ordinal (Map&lt;BytesRef,int&gt;) storing the hashed bytes  * efficiently in continuous storage. The mapping to the ordinal is  * encapsulated inside {@link BytesRefHash} and is guaranteed to be increased  * for each added {@link BytesRef}.  *   *<p>  * Note: The maximum capacity {@link BytesRef} instance passed to  * {@link #add(BytesRef)} must not be longer than {@link ByteBlockPool#BYTE_BLOCK_SIZE}-2.   * The internal storage is limited to 2GB total byte storage.  *</p>  *   * @lucene.internal  */
 end_comment
 
 begin_class

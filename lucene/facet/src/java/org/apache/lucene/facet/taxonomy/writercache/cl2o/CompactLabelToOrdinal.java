@@ -18,6 +18,10 @@ name|cl2o
 package|;
 end_package
 
+begin_comment
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|java
@@ -125,11 +129,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|// TODO: maybe this could use an FST instead...
 end_comment
 
 begin_comment
-comment|/**  * This is a very efficient LabelToOrdinal implementation that uses a  * CharBlockArray to store all labels and a configurable number of HashArrays to  * reference the labels.  *<p>  * Since the HashArrays don't handle collisions, a {@link CollisionMap} is used  * to store the colliding labels.  *<p>  * This data structure grows by adding a new HashArray whenever the number of  * collisions in the {@link CollisionMap} exceeds {@code loadFactor} *   * {@link #getMaxOrdinal()}. Growing also includes reinserting all colliding  * labels into the HashArrays to possibly reduce the number of collisions.  *   * For setting the {@code loadFactor} see   * {@link #CompactLabelToOrdinal(int, float, int)}.   *   *<p>  * This data structure has a much lower memory footprint (~30%) compared to a  * Java HashMap<String, Integer>. It also only uses a small fraction of objects  * a HashMap would use, thus limiting the GC overhead. Ingestion speed was also  * ~50% faster compared to a HashMap for 3M unique labels.  *   * @lucene.experimental  */
+comment|/**  * This is a very efficient LabelToOrdinal implementation that uses a  * CharBlockArray to store all labels and a configurable number of HashArrays to  * reference the labels.  *<p>  * Since the HashArrays don't handle collisions, a {@link CollisionMap} is used  * to store the colliding labels.  *<p>  * This data structure grows by adding a new HashArray whenever the number of  * collisions in the {@link CollisionMap} exceeds {@code loadFactor} *   * {@link #getMaxOrdinal()}. Growing also includes reinserting all colliding  * labels into the HashArrays to possibly reduce the number of collisions.  *   * For setting the {@code loadFactor} see   * {@link #CompactLabelToOrdinal(int, float, int)}.   *   *<p>  * This data structure has a much lower memory footprint (~30%) compared to a  * Java HashMap&lt;String, Integer&gt;. It also only uses a small fraction of objects  * a HashMap would use, thus limiting the GC overhead. Ingestion speed was also  * ~50% faster compared to a HashMap for 3M unique labels.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
