@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple class that stores key Strings as char[]'s in a  * hash table. Note that this is not a general purpose  * class.  For example, it cannot remove items from the  * map, nor does it resize its hash table to be smaller,  * etc.  It is designed to be quick to retrieve items  * by char[] keys without the necessity of converting  * to a String first.  *<p>You must specify the required {@link Version}  * compatibility when creating {@link CharArrayMap}:  *<ul>  *<li> As of 3.1, supplementary characters are  *       properly lowercased.</li>  *</ul>  * Before 3.1 supplementary characters could not be  * lowercased correctly due to the lack of Unicode 4  * support in JDK 1.4. To use instances of  * {@link CharArrayMap} with the behavior before Lucene  * 3.1 pass a {@link Version}&lt; 3.1 to the constructors.  */
+comment|/**  * A simple class that stores key Strings as char[]'s in a  * hash table. Note that this is not a general purpose  * class.  For example, it cannot remove items from the  * map, nor does it resize its hash table to be smaller,  * etc.  It is designed to be quick to retrieve items  * by char[] keys without the necessity of converting  * to a String first.  *  *<a name="version"></a>  *<p>You must specify the required {@link Version}  * compatibility when creating {@link CharArrayMap}:  *<ul>  *<li> As of 3.1, supplementary characters are  *       properly lowercased.</li>  *</ul>  * Before 3.1 supplementary characters could not be  * lowercased correctly due to the lack of Unicode 4  * support in JDK 1.4. To use instances of  * {@link CharArrayMap} with the behavior before Lucene  * 3.1 pass a {@link Version}&lt; 3.1 to the constructors.  */
 end_comment
 
 begin_class
@@ -409,7 +409,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** true if the<code>len</code> chars of<code>text</code> starting at<code>off</code>    * are in the {@link #keySet} */
+comment|/** true if the<code>len</code> chars of<code>text</code> starting at<code>off</code>    * are in the {@link #keySet()} */
 DECL|method|containsKey
 specifier|public
 name|boolean
@@ -442,7 +442,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/** true if the<code>CharSequence</code> is in the {@link #keySet} */
+comment|/** true if the<code>CharSequence</code> is in the {@link #keySet()} */
 DECL|method|containsKey
 specifier|public
 name|boolean

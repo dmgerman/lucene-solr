@@ -151,7 +151,7 @@ specifier|private
 name|HyphenationTree
 name|hyphenator
 decl_stmt|;
-comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.     *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against.    */
+comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.     *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase.html#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against.    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
@@ -189,7 +189,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against.    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
+comment|/**    * Creates a new {@link HyphenationCompoundWordTokenFilter} instance.    *     * @param matchVersion    *          Lucene version to enable correct Unicode 4.0 behavior in the    *          dictionaries if Version> 3.0. See<a    *          href="CompoundWordTokenFilterBase.html#version"    *>CompoundWordTokenFilterBase</a> for details.    * @param input    *          the {@link TokenStream} to process    * @param hyphenator    *          the hyphenation pattern tree to use for hyphenation    * @param dictionary    *          the word dictionary to match against.    * @param minWordSize    *          only words longer than this get processed    * @param minSubwordSize    *          only subwords longer than this get to the output stream    * @param maxSubwordSize    *          only subwords shorter than this get to the output stream    * @param onlyLongestMatch    *          Add only the longest matching subword to the stream    */
 DECL|method|HyphenationCompoundWordTokenFilter
 specifier|public
 name|HyphenationCompoundWordTokenFilter
