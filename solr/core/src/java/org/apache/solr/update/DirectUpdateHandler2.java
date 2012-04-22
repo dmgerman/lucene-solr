@@ -2451,6 +2451,12 @@ block|}
 else|else
 block|{
 comment|// force open a new realtime searcher so realtime-get and versioning code can see the latest
+name|RefCounted
+argument_list|<
+name|SolrIndexSearcher
+argument_list|>
+name|searchHolder
+init|=
 name|core
 operator|.
 name|openNewSearcher
@@ -2459,6 +2465,11 @@ literal|true
 argument_list|,
 literal|true
 argument_list|)
+decl_stmt|;
+name|searchHolder
+operator|.
+name|decref
+argument_list|()
 expr_stmt|;
 block|}
 if|if
