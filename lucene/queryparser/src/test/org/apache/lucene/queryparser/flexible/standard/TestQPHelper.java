@@ -5558,7 +5558,7 @@ block|}
 annotation|@
 name|Ignore
 argument_list|(
-literal|"contrib queryparser shouldn't escape wildcard terms"
+literal|"flexible queryparser shouldn't escape wildcard terms"
 argument_list|)
 DECL|method|testEscapedWildcard
 specifier|public
