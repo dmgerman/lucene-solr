@@ -256,7 +256,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Index
+name|MockSingleIntIndexOutputIndex
 argument_list|()
 return|;
 block|}
@@ -293,10 +293,10 @@ name|getFilePointer
 argument_list|()
 return|;
 block|}
-DECL|class|Index
+DECL|class|MockSingleIntIndexOutputIndex
 specifier|private
 class|class
-name|Index
+name|MockSingleIntIndexOutputIndex
 extends|extends
 name|IntIndexOutput
 operator|.
@@ -346,7 +346,7 @@ name|fp
 operator|=
 operator|(
 operator|(
-name|Index
+name|MockSingleIntIndexOutputIndex
 operator|)
 name|other
 operator|)
@@ -362,7 +362,7 @@ name|lastFP
 operator|=
 operator|(
 operator|(
-name|Index
+name|MockSingleIntIndexOutputIndex
 operator|)
 name|other
 operator|)
