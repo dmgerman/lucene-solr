@@ -626,7 +626,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Holds current head document for a single group.    *    * @lucene.experimental */
 DECL|class|GroupHead
+specifier|public
 class|class
 name|GroupHead
 extends|extends

@@ -438,7 +438,9 @@ name|getValue
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Holds distinct values for a single group.    *    * @lucene.experimental */
 DECL|class|GroupCount
+specifier|public
 specifier|static
 class|class
 name|GroupCount

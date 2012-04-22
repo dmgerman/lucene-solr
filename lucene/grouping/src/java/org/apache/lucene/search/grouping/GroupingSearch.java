@@ -1951,7 +1951,7 @@ return|return
 name|matchingGroupHeads
 return|;
 block|}
-comment|/**    * Sets the initial size of some internal used data structures.    * This prevents growing data structures many times. This can improve the performance of the grouping at the cost of    * more initial RAM.    *<p/>    * The {@link #allGroups} and {@link #allGroupHeads} features use this option.    * Defaults to 128.    *    * @param initialSize The initial size of some internal used data structures    * @return<code>this</code>    */
+comment|/**    * Sets the initial size of some internal used data structures.    * This prevents growing data structures many times. This can improve the performance of the grouping at the cost of    * more initial RAM.    *<p/>    * The {@link #setAllGroups} and {@link #setAllGroupHeads} features use this option.    * Defaults to 128.    *    * @param initialSize The initial size of some internal used data structures    * @return<code>this</code>    */
 DECL|method|setInitialSize
 specifier|public
 name|GroupingSearch
