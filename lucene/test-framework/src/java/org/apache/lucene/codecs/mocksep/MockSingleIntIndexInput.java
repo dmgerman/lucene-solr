@@ -271,9 +271,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|class|Index
+DECL|class|MockSingleIntIndexInputIndex
 class|class
-name|Index
+name|MockSingleIntIndexInputIndex
 extends|extends
 name|IntIndexInput
 operator|.
@@ -341,7 +341,7 @@ name|fp
 operator|=
 operator|(
 operator|(
-name|Index
+name|MockSingleIntIndexInputIndex
 operator|)
 name|other
 operator|)
@@ -404,11 +404,11 @@ name|Index
 name|clone
 parameter_list|()
 block|{
-name|Index
+name|MockSingleIntIndexInputIndex
 name|other
 init|=
 operator|new
-name|Index
+name|MockSingleIntIndexInputIndex
 argument_list|()
 decl_stmt|;
 name|other
@@ -432,7 +432,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Index
+name|MockSingleIntIndexInputIndex
 argument_list|()
 return|;
 block|}
