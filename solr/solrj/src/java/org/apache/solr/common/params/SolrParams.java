@@ -1384,7 +1384,7 @@ name|defaults
 argument_list|)
 return|;
 block|}
-comment|/** Create a Map<String,String> from a NamedList given no keys are repeated */
+comment|/** Create a Map&lt;String,String&gt; from a NamedList given no keys are repeated */
 DECL|method|toMap
 specifier|public
 specifier|static
@@ -1462,7 +1462,7 @@ return|return
 name|map
 return|;
 block|}
-comment|/** Create a Map<String,String[]> from a NamedList */
+comment|/** Create a Map&lt;String,String[]&gt; from a NamedList */
 DECL|method|toMultiMap
 specifier|public
 specifier|static

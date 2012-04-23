@@ -120,7 +120,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Constructs a new ModifiableSolrParams directly using the provided Map<String,String[]> */
+comment|/** Constructs a new ModifiableSolrParams directly using the provided Map&lt;String,String[]&gt; */
 DECL|method|ModifiableSolrParams
 specifier|public
 name|ModifiableSolrParams

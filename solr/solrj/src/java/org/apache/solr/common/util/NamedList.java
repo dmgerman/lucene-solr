@@ -92,7 +92,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Creates a NamedList instance containing the "name,value" pairs contained in the    * Entry[].    *    *<p>    * Modifying the contents of the Entry[] after calling this constructor may change    * the NamedList (in future versions of Solr), but this is not garunteed and should    * not be relied upon.  To modify the NamedList, refer to {@link #add(String, Object)}    * or {@link #remove(String)}.    *</p>    *    * @param nameValuePairs the name value pairs    */
+comment|/**    * Creates a NamedList instance containing the "name,value" pairs contained in the    * Entry[].    *    *<p>    * Modifying the contents of the Entry[] after calling this constructor may change    * the NamedList (in future versions of Solr), but this is not guaranteed and should    * not be relied upon.  To modify the NamedList, refer to {@link #add(String, Object)}    * or {@link #remove(String)}.    *</p>    *    * @param nameValuePairs the name value pairs    */
 DECL|method|NamedList
 specifier|public
 name|NamedList
@@ -119,7 +119,7 @@ name|nameValuePairs
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates an instance backed by an explicitly specified list of    * pairwise names/values.    *    *<p>    * When using this constructor, runtime typesafety is only garunteed if the all    * even numbered elements of the input list are of type "T".    *</p>    *    * @param nameValuePairs underlying List which should be used to implement a NamedList    * @deprecated Use {@link #NamedList(java.util.Map.Entry[])} for the NamedList instantiation    */
+comment|/**    * Creates an instance backed by an explicitly specified list of    * pairwise names/values.    *    *<p>    * When using this constructor, runtime typesafety is only guaranteed if the all    * even numbered elements of the input list are of type "T".    *</p>    *    * @param nameValuePairs underlying List which should be used to implement a NamedList    * @deprecated Use {@link #NamedList(java.util.Map.Entry[])} for the NamedList instantiation    */
 annotation|@
 name|Deprecated
 DECL|method|NamedList
@@ -820,7 +820,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    *    * Helper class implementing Map.Entry<String, T> to store the key-value    * relationship in NamedList (the keys of which are String-s)     *    * @param<T>    */
+comment|/**    *    * Helper class implementing Map.Entry&lt;String, T&gt; to store the key-value    * relationship in NamedList (the keys of which are String-s)     *     * @param<T>    */
 DECL|class|NamedListEntry
 specifier|public
 specifier|static
