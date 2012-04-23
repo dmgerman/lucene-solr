@@ -1223,7 +1223,7 @@ operator|.
 name|indexerThreadPool
 return|;
 block|}
-comment|/** By default, IndexWriter does not pool the    *  SegmentReaders it must open for deletions and    *  merging, unless a near-real-time reader has been    *  obtained by calling {@link IndexWriter#getReader}.    *  This method lets you enable pooling without getting a    *  near-real-time reader.  NOTE: if you set this to    *  false, IndexWriter will still pool readers once    *  {@link IndexWriter#getReader} is called.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/** By default, IndexWriter does not pool the    *  SegmentReaders it must open for deletions and    *  merging, unless a near-real-time reader has been    *  obtained by calling {@link DirectoryReader#open(IndexWriter, boolean)}.    *  This method lets you enable pooling without getting a    *  near-real-time reader.  NOTE: if you set this to    *  false, IndexWriter will still pool readers once    *  {@link DirectoryReader#open(IndexWriter, boolean)} is called.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setReaderPooling
 specifier|public
 name|IndexWriterConfig
@@ -1243,7 +1243,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Returns true if IndexWriter should pool readers even    *  if {@link IndexWriter#getReader} has not been called. */
+comment|/** Returns true if IndexWriter should pool readers even    *  if {@link DirectoryReader#open(IndexWriter, boolean)} has not been called. */
 DECL|method|getReaderPooling
 specifier|public
 name|boolean
@@ -1291,7 +1291,7 @@ return|return
 name|indexingChain
 return|;
 block|}
-comment|/** Sets the termsIndexDivisor passed to any readers that    *  IndexWriter opens, for example when applying deletes    *  or creating a near-real-time reader in {@link    *  IndexWriter#getReader}. If you pass -1, the terms index     *  won't be loaded by the readers. This is only useful in     *  advanced situations when you will only .next() through     *  all terms; attempts to seek will hit an exception.    *    *<p>Takes effect immediately, but only applies to    * readers opened after this call */
+comment|/** Sets the termsIndexDivisor passed to any readers that    *  IndexWriter opens, for example when applying deletes    *  or creating a near-real-time reader in {@link    *  DirectoryReader#open(IndexWriter, boolean)}. If you pass -1, the terms index     *  won't be loaded by the readers. This is only useful in     *  advanced situations when you will only .next() through     *  all terms; attempts to seek will hit an exception.    *    *<p>Takes effect immediately, but only applies to    * readers opened after this call */
 DECL|method|setReaderTermsIndexDivisor
 specifier|public
 name|IndexWriterConfig
