@@ -83,6 +83,7 @@ name|DaciukMihovAutomatonBuilder
 block|{
 comment|/**    * DFSA state with<code>char</code> labels on transitions.    */
 DECL|class|State
+specifier|public
 specifier|final
 specifier|static
 class|class
