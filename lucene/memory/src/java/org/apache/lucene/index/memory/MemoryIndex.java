@@ -649,7 +649,7 @@ specifier|final
 name|int
 name|stride
 decl_stmt|;
-comment|/** Could be made configurable; See {@link Document#setBoost(float)} */
+comment|/** Could be made configurable; */
 DECL|field|docBoost
 specifier|private
 specifier|static

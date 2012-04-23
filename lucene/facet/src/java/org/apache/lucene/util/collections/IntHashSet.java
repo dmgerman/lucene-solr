@@ -432,7 +432,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Adds a pair to the map. Takes the first empty position from the    * empty-linked-list's head - {@link firstEmpty}.    *     * New pairs are always inserted to baseHash, and are followed by the old    * colliding pair.    *     * @param key    *            integer which maps the given value    * @param e    *            value which is being mapped using the given key    */
+comment|/**    * Adds a pair to the map. Takes the first empty position from the    * empty-linked-list's head - {@link #firstEmpty}.    *     * New pairs are always inserted to baseHash, and are followed by the old    * colliding pair.    *     * @param key    *            integer which maps the given value    */
 DECL|method|prvt_add
 specifier|private
 name|void
@@ -664,7 +664,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**    * Find the actual index of a given key with it's baseHashIndex.<br>    * Some methods use the baseHashIndex. If those call {@link #find()} there's    * no need to re-calculate that hash.    *     * @param key    * @param baseHashIndex    * @return the index of the given key, or 0 as 'Ground' if the key wasn't    *         found.    */
+comment|/**    * Find the actual index of a given key with it's baseHashIndex.<br>    * Some methods use the baseHashIndex. If those call {@link #find} there's    * no need to re-calculate that hash.    *     * @param key    * @param baseHashIndex    * @return the index of the given key, or 0 as 'Ground' if the key wasn't    *         found.    */
 DECL|method|findForRemove
 specifier|private
 name|int

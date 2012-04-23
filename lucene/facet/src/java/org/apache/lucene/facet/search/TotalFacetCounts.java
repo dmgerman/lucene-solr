@@ -391,7 +391,7 @@ specifier|final
 name|CreationType
 name|createType4test
 decl_stmt|;
-comment|/**     * Construct by key - from index Directory or by recomputing.    * @param key the key mapping of this total facet counts (index, taxonomy, category lists...)     */
+comment|/**     * Construct by key - from index Directory or by recomputing.    */
 DECL|method|TotalFacetCounts
 specifier|private
 name|TotalFacetCounts

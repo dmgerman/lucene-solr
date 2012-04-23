@@ -2217,7 +2217,7 @@ return|return
 name|memoryUsage
 return|;
 block|}
-comment|/**    * Opens the file and reloads the CompactLabelToOrdinal. The file it expects    * is generated from the {@link #flush()} command.    */
+comment|/**    * Opens the file and reloads the CompactLabelToOrdinal. The file it expects    * is generated from the {@link #flush(File)} command.    */
 DECL|method|open
 specifier|static
 name|CompactLabelToOrdinal
