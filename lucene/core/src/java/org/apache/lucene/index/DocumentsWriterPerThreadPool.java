@@ -767,8 +767,9 @@ parameter_list|)
 block|{
 comment|// don't recycle DWPT by default
 block|}
+comment|// you cannot subclass this without being in o.a.l.index package anyway, so
+comment|// the class is already pkg-private... fix me: see LUCENE-4013
 DECL|method|getAndLock
-specifier|public
 specifier|abstract
 name|ThreadState
 name|getAndLock
