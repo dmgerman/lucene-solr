@@ -262,7 +262,6 @@ throws|throws
 name|IOException
 function_decl|;
 DECL|method|collectTerms
-specifier|protected
 specifier|final
 name|void
 name|collectTerms
@@ -480,7 +479,6 @@ block|}
 block|}
 block|}
 DECL|class|TermCollector
-specifier|protected
 specifier|static
 specifier|abstract
 class|class
