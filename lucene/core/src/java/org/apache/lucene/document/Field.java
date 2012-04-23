@@ -907,7 +907,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Expert: change the value of this field. See<a    * href="#setValue(java.lang.String)">setValue(String)</a>.    */
+comment|/**    * Expert: change the value of this field. See     * {@link #setStringValue(String)}.    */
 DECL|method|setReaderValue
 specifier|public
 name|void
@@ -950,7 +950,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Expert: change the value of this field. See<a    * href="#setValue(java.lang.String)">setValue(String)</a>.    */
+comment|/**    * Expert: change the value of this field. See     * {@link #setStringValue(String)}.    */
 DECL|method|setBytesValue
 specifier|public
 name|void
@@ -971,7 +971,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: change the value of this field. See<a    * href="#setValue(java.lang.String)">setValue(String)</a>.    *    *<p>NOTE: the provided BytesRef is not copied so be sure    * not to change it until you're done with this field.    */
+comment|/**    * Expert: change the value of this field. See     * {@link #setStringValue(String)}.    *    *<p>NOTE: the provided BytesRef is not copied so be sure    * not to change it until you're done with this field.    */
 DECL|method|setBytesValue
 specifier|public
 name|void
