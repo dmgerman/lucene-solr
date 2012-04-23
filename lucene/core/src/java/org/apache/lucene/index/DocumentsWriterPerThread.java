@@ -260,7 +260,6 @@ end_import
 
 begin_class
 DECL|class|DocumentsWriterPerThread
-specifier|public
 class|class
 name|DocumentsWriterPerThread
 block|{

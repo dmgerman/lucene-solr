@@ -76,7 +76,6 @@ end_comment
 
 begin_class
 DECL|class|FlushPolicy
-specifier|public
 specifier|abstract
 class|class
 name|FlushPolicy

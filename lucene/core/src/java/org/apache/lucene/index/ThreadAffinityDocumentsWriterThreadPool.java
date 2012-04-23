@@ -64,7 +64,6 @@ end_comment
 
 begin_class
 DECL|class|ThreadAffinityDocumentsWriterThreadPool
-specifier|public
 class|class
 name|ThreadAffinityDocumentsWriterThreadPool
 extends|extends

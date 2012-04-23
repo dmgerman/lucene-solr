@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * A {@link DocumentsWriterPerThreadPool} that selects thread states at random.  *   * @lucene.internal  * @lucene.experimental  */
+comment|/**  *   * A<code>DocumentsWriterPerThreadPool<code> that selects thread states at random.  *   * @lucene.internal  * @lucene.experimental  */
 end_comment
 
 begin_class
