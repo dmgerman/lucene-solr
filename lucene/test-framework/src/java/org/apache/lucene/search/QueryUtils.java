@@ -2221,9 +2221,9 @@ block|}
 block|}
 block|}
 block|}
-comment|// check that first skip on just created scorers always goes to the right doc
+comment|/** check that first skip on just created scorers always goes to the right doc */
 DECL|method|checkFirstSkipTo
-specifier|private
+specifier|public
 specifier|static
 name|void
 name|checkFirstSkipTo
