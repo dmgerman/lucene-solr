@@ -62,6 +62,24 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Terms
+import|;
+end_import
+
+begin_comment
+comment|// javadocs only
+end_comment
+
 begin_comment
 comment|/** Add this {@link Attribute} to a fresh {@link AttributeSource} before calling  * {@link MultiTermQuery#getTermsEnum(Terms,AttributeSource)}.  * {@link FuzzyQuery} is using this to control its internal behaviour  * to only return competitive terms.  *<p><b>Please note:</b> This attribute is intended to be added by the {@link MultiTermQuery.RewriteMethod}  * to an empty {@link AttributeSource} that is shared for all segments  * during query rewrite. This attribute source is passed to all segment enums  * on {@link MultiTermQuery#getTermsEnum(Terms,AttributeSource)}.  * {@link TopTermsRewrite} uses this attribute to  * inform all enums about the current boost, that is not competitive.  * @lucene.internal  */
 end_comment

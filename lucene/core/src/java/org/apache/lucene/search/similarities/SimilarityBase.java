@@ -1145,7 +1145,7 @@ name|LOG_2
 return|;
 block|}
 comment|// --------------------------------- Classes ---------------------------------
-comment|/** Delegates the {@link #score(int, int)} and    * {@link #explain(int, Explanation)} methods to    * {@link SimilarityBase#score(BasicStats, float, int)} and    * {@link SimilarityBase#explain(BasicStats, int, Explanation, int)},    * respectively.    */
+comment|/** Delegates the {@link #score(int, int)} and    * {@link #explain(int, Explanation)} methods to    * {@link SimilarityBase#score(BasicStats, float, float)} and    * {@link SimilarityBase#explain(BasicStats, int, Explanation, float)},    * respectively.    */
 DECL|class|BasicExactDocScorer
 specifier|private
 class|class
@@ -1293,7 +1293,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Delegates the {@link #score(int, int)} and    * {@link #explain(int, Explanation)} methods to    * {@link SimilarityBase#score(BasicStats, float, int)} and    * {@link SimilarityBase#explain(BasicStats, int, Explanation, int)},    * respectively.    */
+comment|/** Delegates the {@link #score(int, float)} and    * {@link #explain(int, Explanation)} methods to    * {@link SimilarityBase#score(BasicStats, float, float)} and    * {@link SimilarityBase#explain(BasicStats, int, Explanation, float)},    * respectively.    */
 DECL|class|BasicSloppyDocScorer
 specifier|private
 class|class

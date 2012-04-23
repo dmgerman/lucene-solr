@@ -392,6 +392,24 @@ name|ThreadInterruptedException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexWriter
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_comment
 comment|/** Implements search over a single IndexReader.  *  *<p>Applications usually need only call the inherited  * {@link #search(Query,int)}  * or {@link #search(Query,Filter,int)} methods. For  * performance reasons, if your index is unchanging, you  * should share a single IndexSearcher instance across  * multiple searches instead of creating a new one  * per-search.  If your index has changed and you wish to  * see the changes reflected in searching, you should  * use {@link DirectoryReader#openIfChanged(DirectoryReader)}  * to obtain a new reader and  * then create a new IndexSearcher from that.  Also, for  * low-latency turnaround it's best to use a near-real-time  * reader ({@link DirectoryReader#open(IndexWriter,boolean)}).  * Once you have a new {@link IndexReader}, it's relatively  * cheap to create a new IndexSearcher from it.  *   *<a name="thread-safety"></a><p><b>NOTE</b>:<code>{@link  * IndexSearcher}</code> instances are completely  * thread safe, meaning multiple threads can call any of its  * methods, concurrently.  If your application requires  * external synchronization, you should<b>not</b>  * synchronize on the<code>IndexSearcher</code> instance;  * use your own (non-Lucene) objects instead.</p>  */
 end_comment

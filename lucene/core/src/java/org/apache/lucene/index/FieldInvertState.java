@@ -152,7 +152,7 @@ operator|=
 name|boost
 expr_stmt|;
 block|}
-comment|/**    * Re-initialize the state, using this boost value.    * @param docBoost boost value to use.    */
+comment|/**    * Re-initialize the state    */
 DECL|method|reset
 name|void
 name|reset

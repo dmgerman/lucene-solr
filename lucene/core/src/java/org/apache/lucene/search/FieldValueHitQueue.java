@@ -214,7 +214,7 @@ operator|=
 name|oneReverseMul
 expr_stmt|;
 block|}
-comment|/**      * Returns whether<code>a</code> is less relevant than<code>b</code>.      * @param a ScoreDoc      * @param b ScoreDoc      * @return<code>true</code> if document<code>a</code> should be sorted after document<code>b</code>.      */
+comment|/**      * Returns whether<code>hitA</code> is less relevant than<code>hitB</code>.      * @param hitA Entry      * @param hitB Entry      * @return<code>true</code> if document<code>hitA</code> should be sorted after document<code>hitB</code>.      */
 annotation|@
 name|Override
 DECL|method|lessThan
@@ -748,7 +748,7 @@ name|Entry
 name|b
 parameter_list|)
 function_decl|;
-comment|/**    * Given a queue Entry, creates a corresponding FieldDoc    * that contains the values used to sort the given document.    * These values are not the raw values out of the index, but the internal    * representation of them. This is so the given search hit can be collated by    * a MultiSearcher with other search hits.    *     * @param entry The Entry used to create a FieldDoc    * @return The newly created FieldDoc    * @see Searchable#search(Weight,Filter,int,Sort)    */
+comment|/**    * Given a queue Entry, creates a corresponding FieldDoc    * that contains the values used to sort the given document.    * These values are not the raw values out of the index, but the internal    * representation of them. This is so the given search hit can be collated by    * a MultiSearcher with other search hits.    *     * @param entry The Entry used to create a FieldDoc    * @return The newly created FieldDoc    * @see IndexSearcher#search(Query,Filter,int,Sort)    */
 DECL|method|fillFields
 name|FieldDoc
 name|fillFields

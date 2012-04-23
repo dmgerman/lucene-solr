@@ -264,7 +264,7 @@ specifier|public
 class|class
 name|DocumentsWriterPerThread
 block|{
-comment|/**    * The IndexingChain must define the {@link #getChain(DocumentsWriter)} method    * which returns the DocConsumer that the DocumentsWriter calls to process the    * documents.    */
+comment|/**    * The IndexingChain must define the {@link #getChain(DocumentsWriterPerThread)} method    * which returns the DocConsumer that the DocumentsWriter calls to process the    * documents.    */
 DECL|class|IndexingChain
 specifier|abstract
 specifier|static

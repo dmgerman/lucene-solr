@@ -227,7 +227,7 @@ name|docCountPercent
 init|=
 name|DEFAULT_DOC_COUNT_PERCENT
 decl_stmt|;
-comment|/** If the number of terms in this query is equal to or    *  larger than this setting then {@link    *  #CONSTANT_SCORE_FILTER_REWRITE} is used. */
+comment|/** If the number of terms in this query is equal to or    *  larger than this setting then {@link    *  MultiTermQuery#CONSTANT_SCORE_FILTER_REWRITE} is used. */
 DECL|method|setTermCountCutoff
 specifier|public
 name|void
@@ -253,7 +253,7 @@ return|return
 name|termCountCutoff
 return|;
 block|}
-comment|/** If the number of documents to be visited in the    *  postings exceeds this specified percentage of the    *  maxDoc() for the index, then {@link    *  #CONSTANT_SCORE_FILTER_REWRITE} is used.    *  @param percent 0.0 to 100.0 */
+comment|/** If the number of documents to be visited in the    *  postings exceeds this specified percentage of the    *  maxDoc() for the index, then {@link    *  MultiTermQuery#CONSTANT_SCORE_FILTER_REWRITE} is used.    *  @param percent 0.0 to 100.0 */
 DECL|method|setDocCountPercent
 specifier|public
 name|void
