@@ -1298,7 +1298,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|RAMPostingsWriterImpl
-specifier|public
 specifier|static
 class|class
 name|RAMPostingsWriterImpl
