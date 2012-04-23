@@ -2536,7 +2536,7 @@ specifier|public
 name|String
 name|qtype
 init|=
-literal|"standard"
+literal|null
 decl_stmt|;
 DECL|field|start
 specifier|public
