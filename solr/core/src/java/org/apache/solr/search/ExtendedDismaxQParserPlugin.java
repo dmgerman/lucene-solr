@@ -3914,7 +3914,7 @@ return|return
 name|lst
 return|;
 block|}
-comment|/**     * returns a field name or legal field alias from the current     * position of the string     * @param solrParams     */
+comment|/**     * returns a field name or legal field alias from the current     * position of the string     */
 DECL|method|getFieldName
 specifier|public
 name|String

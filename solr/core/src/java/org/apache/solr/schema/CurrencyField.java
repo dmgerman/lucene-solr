@@ -2712,7 +2712,7 @@ specifier|private
 name|ResourceLoader
 name|loader
 decl_stmt|;
-comment|/**    * Returns the currently known exchange rate between two currencies. If a direct rate has been loaded,    * it is used. Otherwise, if a rate is known to convert the target currency to the source, the inverse    * exchange rate is computed.    *    * @param sourceCurrencyCode The source currency being converted from.    * @param targetCurrencyCode The target currency being converted to.    * @return The exchange rate.    * @throws an exception if the requested currency pair cannot be found     */
+comment|/**    * Returns the currently known exchange rate between two currencies. If a direct rate has been loaded,    * it is used. Otherwise, if a rate is known to convert the target currency to the source, the inverse    * exchange rate is computed.    *    * @param sourceCurrencyCode The source currency being converted from.    * @param targetCurrencyCode The target currency being converted to.    * @return The exchange rate.    * @throws SolrException if the requested currency pair cannot be found    */
 DECL|method|getExchangeRate
 specifier|public
 name|double

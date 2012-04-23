@@ -340,7 +340,7 @@ name|DEFAULT_HTTP_CLIENT_PATTERNS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a formatter that can be use by the current thread if needed to    * convert Date objects to the Internal representation.    *    * @param d The input date to parse    * @return The parsed {@link java.util.Date}    * @throws java.text.ParseException If the input can't be parsed    * @throws org.apache.commons.httpclient.util.DateParseException    *                                  If the input can't be parsed    */
+comment|/**    * Returns a formatter that can be use by the current thread if needed to    * convert Date objects to the Internal representation.    *    * @param d The input date to parse    * @return The parsed {@link java.util.Date}    * @throws java.text.ParseException If the input can't be parsed    */
 DECL|method|parseDate
 specifier|public
 specifier|static

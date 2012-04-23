@@ -349,7 +349,7 @@ operator|=
 name|zkClient
 expr_stmt|;
 block|}
-comment|/**    * Check if the candidate with the given n_* sequence number is the leader.    * If it is, set the leaderId on the leader zk node. If it is not, start    * watching the candidate that is in line before this one - if it goes down, check    * if this candidate is the leader again.    * @param leaderSeqPath     *     * @param seq    * @param context     * @param replacement has someone else been the leader already?    * @throws KeeperException    * @throws InterruptedException    * @throws IOException     * @throws UnsupportedEncodingException    */
+comment|/**    * Check if the candidate with the given n_* sequence number is the leader.    * If it is, set the leaderId on the leader zk node. If it is not, start    * watching the candidate that is in line before this one - if it goes down, check    * if this candidate is the leader again.    *    * @param seq    * @param context     * @param replacement has someone else been the leader already?    * @throws KeeperException    * @throws InterruptedException    * @throws IOException     * @throws UnsupportedEncodingException    */
 DECL|method|checkIfIamLeader
 specifier|private
 name|void
