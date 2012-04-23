@@ -1026,7 +1026,6 @@ specifier|final
 name|HttpClient
 name|httpClient
 decl_stmt|;
-comment|/**    * This defaults to false under the assumption that if you are following a    * redirect to get to a Solr installation, something is misconfigured    * somewhere.    */
 DECL|field|followRedirects
 specifier|private
 name|boolean
@@ -1034,7 +1033,6 @@ name|followRedirects
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Maximum number of retries to attempt in the event of transient errors.    * Default: 0 (no) retries. No more than 1 recommended.    */
 DECL|field|maxRetries
 specifier|private
 name|int
@@ -2738,7 +2736,7 @@ name|timeout
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * HttpClientParams.setRedirecting    *     * @see #followRedirects    */
+comment|/**    * HttpClientParams.setRedirecting    *<p>    * This defaults to false under the assumption that if you are following a    * redirect to get to a Solr installation, something is misconfigured    * somewhere.    *</p>    */
 DECL|method|setFollowRedirects
 specifier|public
 name|void
@@ -3142,7 +3140,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Set maximum number of retries to attempt in the event of transient errors.    *     * @param maxRetries    *          No more than 1 recommended    * @see #maxRetries    */
+comment|/**    * Set maximum number of retries to attempt in the event of transient errors.    *<p>    * Maximum number of retries to attempt in the event of transient errors.    * Default: 0 (no) retries. No more than 1 recommended.    *</p>    * @param maxRetries    *          No more than 1 recommended    */
 DECL|method|setMaxRetries
 specifier|public
 name|void

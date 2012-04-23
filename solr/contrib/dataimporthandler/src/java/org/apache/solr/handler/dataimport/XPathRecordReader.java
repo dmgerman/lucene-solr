@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A streaming xpath parser which uses StAX for XML parsing. It supports only  * a subset of xpath syntax.  *</p><pre>  * /a/b/subject[@qualifier='fullTitle']  * /a/b/subject[@qualifier=]/subtag  * /a/b/subject/@qualifier  * //a  * //a/b...  * /a//b  * /a//b...  * /a/b/c  *</pre>  * A record is a Map<String,Object> . The key is the provided name  * and the value is a String or a List<String>  *  * This class is thread-safe for parsing xml. But adding fields is not  * thread-safe. The recommended usage is to addField() in one thread and   * then share the instance across threads.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *<p>  *  * @since solr 1.3  */
+comment|/**  *<p>  * A streaming xpath parser which uses StAX for XML parsing. It supports only  * a subset of xpath syntax.  *</p><pre>  * /a/b/subject[@qualifier='fullTitle']  * /a/b/subject[@qualifier=]/subtag  * /a/b/subject/@qualifier  * //a  * //a/b...  * /a//b  * /a//b...  * /a/b/c  *</pre>  * A record is a Map&lt;String,Object&gt; . The key is the provided name  * and the value is a String or a List<String>  *  * This class is thread-safe for parsing xml. But adding fields is not  * thread-safe. The recommended usage is to addField() in one thread and   * then share the instance across threads.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *<p>  *  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -299,7 +299,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A wrapper around {@link #addField0 addField0()} to create a series of      * Nodes based on the supplied Xpath and a given fieldName. The created      * nodes are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    */
+comment|/**    * A wrapper around<code>addField0</code> to create a series of      * Nodes based on the supplied Xpath and a given fieldName. The created      * nodes are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    */
 DECL|method|addField
 specifier|public
 specifier|synchronized
@@ -333,7 +333,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * A wrapper around {@link #addField0 addField0()} to create a series of      * Nodes based on the supplied Xpath and a given fieldName. The created      * nodes are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    * @param flags FLATTEN: Recursivly combine text from all child XML elements    */
+comment|/**    * A wrapper around<code>addField0</code> to create a series of      * Nodes based on the supplied Xpath and a given fieldName. The created      * nodes are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    * @param flags FLATTEN: Recursivly combine text from all child XML elements    */
 DECL|method|addField
 specifier|public
 specifier|synchronized

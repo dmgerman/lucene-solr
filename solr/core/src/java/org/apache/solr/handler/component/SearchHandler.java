@@ -475,7 +475,7 @@ break|break;
 block|}
 block|}
 block|}
-comment|/**    * Initialize the components based on name.  Note, if using {@link #INIT_FIRST_COMPONENTS} or {@link #INIT_LAST_COMPONENTS},    * then the {@link DebugComponent} will always occur last.  If this is not desired, then one must explicitly declare all components using    * the {@link #INIT_COMPONENTS} syntax.    */
+comment|/**    * Initialize the components based on name.  Note, if using<code>INIT_FIRST_COMPONENTS</code> or<code>INIT_LAST_COMPONENTS</code>,    * then the {@link DebugComponent} will always occur last.  If this is not desired, then one must explicitly declare all components using    * the<code>INIT_COMPONENTS</code> syntax.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

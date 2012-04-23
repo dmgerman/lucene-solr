@@ -56,7 +56,7 @@ name|Properties
 name|initProps
 parameter_list|)
 function_decl|;
-comment|/**    * Get records for the given query.The return type depends on the    * implementation .    *    * @param query The query string. It can be a SQL for JdbcDataSource or a URL    *              for HttpDataSource or a file location for FileDataSource or a custom    *              format for your own custom DataSource.    * @return Depends on the implementation. For instance JdbcDataSource returns    *         an Iterator<Map<String,Object>>    */
+comment|/**    * Get records for the given query.The return type depends on the    * implementation .    *    * @param query The query string. It can be a SQL for JdbcDataSource or a URL    *              for HttpDataSource or a file location for FileDataSource or a custom    *              format for your own custom DataSource.    * @return Depends on the implementation. For instance JdbcDataSource returns    *         an Iterator&lt;Map&lt;String,Object&gt;&gt;    */
 DECL|method|getData
 specifier|public
 specifier|abstract

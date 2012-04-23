@@ -5673,7 +5673,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Gets a core by name and increase its refcount.    * @see SolrCore#open()     * @see SolrCore#close()     * @param name the core name    * @return the core if found    */
+comment|/** Gets a core by name and increase its refcount.    * @see SolrCore#close()     * @param name the core name    * @return the core if found    */
 DECL|method|getCore
 specifier|public
 name|SolrCore
