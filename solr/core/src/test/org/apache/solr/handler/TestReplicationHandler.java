@@ -5036,6 +5036,7 @@ name|commit
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
 name|backupThread
@@ -5053,7 +5054,6 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 name|File
 name|dataDir
