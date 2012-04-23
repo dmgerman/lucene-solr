@@ -429,7 +429,7 @@ specifier|protected
 name|QueryParserBase
 parameter_list|()
 block|{   }
-comment|/** Initializes a query parser.  Called by the QueryParser constructor    *  @param matchVersion  Lucene version to match. See<a href="QueryParser#version">here</a>.    *  @param f  the default field for query terms.    *  @param a   used to find terms in the query text.    */
+comment|/** Initializes a query parser.  Called by the QueryParser constructor    *  @param matchVersion  Lucene version to match. See<a href="QueryParser.html#version">here</a>.    *  @param f  the default field for query terms.    *  @param a   used to find terms in the query text.    */
 DECL|method|init
 specifier|public
 name|void
