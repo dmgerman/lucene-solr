@@ -3273,6 +3273,7 @@ block|}
 block|}
 comment|/**    * Determinizes the given automaton.    *<p>    * Worst case complexity: exponential in number of states.    */
 DECL|method|determinize
+specifier|public
 specifier|static
 name|void
 name|determinize
