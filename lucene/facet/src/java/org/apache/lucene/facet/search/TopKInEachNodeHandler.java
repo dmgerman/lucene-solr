@@ -2551,9 +2551,9 @@ name|val
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Maintains an array of {@link AggregatedCategory}. For space consideration, this is implemented as     * a pair of arrays,<i>ordinals</i> and<i>values</i>, rather than one array of pairs.    * Enumerated in<i>ordinals</i> are siblings,      * potential nodes of the {@link FacetResult} tree      * (i.e., the descendants of the root node, no deeper than the specified depth).    * No more than K ( = {@link FacetRequest#getNumResults()})     * siblings are enumerated, and      *<i>residue</i> holds the sum of values of the siblings rejected from the     * enumerated top K.    */
+comment|/**    * Maintains an array of<code>AggregatedCategory</code>. For space consideration, this is implemented as     * a pair of arrays,<i>ordinals</i> and<i>values</i>, rather than one array of pairs.    * Enumerated in<i>ordinals</i> are siblings,      * potential nodes of the {@link FacetResult} tree      * (i.e., the descendants of the root node, no deeper than the specified depth).    * No more than K ( = {@link FacetRequest#getNumResults()})     * siblings are enumerated, and      *<i>residue</i> holds the sum of values of the siblings rejected from the     * enumerated top K.    * @lucene.internal    */
 DECL|class|AACO
-specifier|private
+specifier|protected
 specifier|static
 specifier|final
 class|class
