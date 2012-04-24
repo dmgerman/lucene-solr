@@ -796,7 +796,7 @@ operator|=
 name|n
 expr_stmt|;
 block|}
-comment|/**     * Returns a cloned of this instance's concept of "now".    *    * If setNow was never called (or if null was specified) then this method     * first defines 'now' as the value dictated by the SolrRequestInfo if it     * exists -- otherwise it uses a new Date instance at the moment getNow()     * is first called.    * @see #setNow    * @see SolrRequestInfo#getNow    */
+comment|/**     * Returns a cloned of this instance's concept of "now".    *    * If setNow was never called (or if null was specified) then this method     * first defines 'now' as the value dictated by the SolrRequestInfo if it     * exists -- otherwise it uses a new Date instance at the moment getNow()     * is first called.    * @see #setNow    * @see SolrRequestInfo#getNOW    */
 DECL|method|getNow
 specifier|public
 name|Date
