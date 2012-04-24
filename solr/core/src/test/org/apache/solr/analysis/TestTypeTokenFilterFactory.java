@@ -52,20 +52,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
-operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|core
 operator|.
 name|SolrResourceLoader
@@ -594,13 +580,13 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"not supplying 'types' parameter should cause a SolrException"
+literal|"not supplying 'types' parameter should cause an InitializationException"
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|SolrException
+name|InitializationException
 name|e
 parameter_list|)
 block|{

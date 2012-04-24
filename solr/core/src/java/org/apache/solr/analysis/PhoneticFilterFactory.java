@@ -226,20 +226,6 @@ name|PhoneticFilter
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-import|;
-end_import
-
 begin_comment
 comment|/**  * Factory for {@link PhoneticFilter}.  *   * Create tokens based on phonetic encoders  *   * http://jakarta.apache.org/commons/codec/api-release/org/apache/commons/codec/language/package-summary.html  *   * This takes two arguments:  *  "encoder" required, one of "DoubleMetaphone", "Metaphone", "Soundex", "RefinedSoundex"  *   * "inject" (default=true) add tokens to the stream with the offset=0  *  *<pre class="prettyprint">  *&lt;fieldType name="text_phonetic" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.PhoneticFilterFactory" encoder="DoubleMetaphone" inject="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   *  * @see PhoneticFilter  */
 end_comment
@@ -494,14 +480,8 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"Missing required parameter: "
 operator|+
 name|ENCODER
@@ -638,14 +618,8 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"Error initializing: "
 operator|+
 name|name
@@ -719,14 +693,8 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"Unknown encoder: "
 operator|+
 name|name
@@ -751,14 +719,8 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"Not an encoder: "
 operator|+
 name|name

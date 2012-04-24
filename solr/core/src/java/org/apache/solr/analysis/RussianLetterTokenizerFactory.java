@@ -52,36 +52,6 @@ name|RussianLetterTokenizer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-operator|.
-name|ErrorCode
-import|;
-end_import
-
 begin_comment
 comment|/** @deprecated Use {@link StandardTokenizerFactory} instead.  *  This tokenizer has no Russian-specific functionality.  */
 end_comment
@@ -130,12 +100,8 @@ argument_list|)
 condition|)
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"The charset parameter is no longer supported.  "
 operator|+
 literal|"Please process your documents as Unicode instead."

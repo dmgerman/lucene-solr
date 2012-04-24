@@ -306,8 +306,10 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
+literal|"IOException thrown while loading protected words"
+argument_list|,
 name|e
 argument_list|)
 throw|;
@@ -406,8 +408,10 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
+literal|"IOException while loading types"
+argument_list|,
 name|e
 argument_list|)
 throw|;
@@ -714,7 +718,7 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
 literal|"Invalid Mapping Rule : ["
 operator|+
@@ -766,7 +770,7 @@ literal|1
 condition|)
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
 literal|"Invalid Mapping Rule : ["
 operator|+
@@ -783,7 +787,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
 literal|"Invalid Mapping Rule : ["
 operator|+
@@ -1058,7 +1062,7 @@ name|len
 condition|)
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
 literal|"Invalid escaped char in ["
 operator|+
@@ -1143,7 +1147,7 @@ name|len
 condition|)
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
 literal|"Invalid escaped char in ["
 operator|+

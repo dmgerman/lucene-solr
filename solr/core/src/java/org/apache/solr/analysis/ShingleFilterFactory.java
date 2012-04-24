@@ -48,36 +48,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-operator|.
-name|ErrorCode
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -166,12 +136,8 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"Invalid maxShingleSize ("
 operator|+
 name|maxShingleSize
@@ -200,12 +166,8 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"Invalid minShingleSize ("
 operator|+
 name|minShingleSize
@@ -223,12 +185,8 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"Invalid minShingleSize ("
 operator|+
 name|minShingleSize

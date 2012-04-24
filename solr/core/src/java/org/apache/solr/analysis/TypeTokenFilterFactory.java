@@ -70,20 +70,6 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|StrUtils
@@ -282,8 +268,10 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
+literal|"IOException thrown while loading types"
+argument_list|,
 name|e
 argument_list|)
 throw|;
@@ -293,14 +281,8 @@ else|else
 block|{
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"Missing required parameter: types."
 argument_list|)
 throw|;

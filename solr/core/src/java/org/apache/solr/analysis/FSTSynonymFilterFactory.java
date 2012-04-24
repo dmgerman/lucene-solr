@@ -298,20 +298,6 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|StrUtils
@@ -594,7 +580,7 @@ block|{
 comment|// TODO: somehow make this more pluggable
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
 literal|"Unrecognized synonyms format: "
 operator|+
@@ -611,8 +597,10 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
+literal|"Exception thrown while loading synonyms"
+argument_list|,
 name|e
 argument_list|)
 throw|;
@@ -688,14 +676,8 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"Missing required argument 'synonyms'."
 argument_list|)
 throw|;
@@ -884,14 +866,8 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"Missing required argument 'synonyms'."
 argument_list|)
 throw|;

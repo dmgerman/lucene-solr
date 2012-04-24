@@ -193,7 +193,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|InitializationException
 argument_list|(
 literal|"You must specify luceneMatchVersion>= 3.4 to use alternate synonyms formats"
 argument_list|)

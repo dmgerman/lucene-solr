@@ -198,7 +198,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|RuntimeException
+name|InitializationException
 name|expected
 parameter_list|)
 block|{}

@@ -56,36 +56,6 @@ name|GreekLowerCaseFilter
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-operator|.
-name|ErrorCode
-import|;
-end_import
-
 begin_comment
 comment|/**   * Factory for {@link GreekLowerCaseFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_glc" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.GreekLowerCaseFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
 end_comment
@@ -137,12 +107,8 @@ argument_list|)
 condition|)
 throw|throw
 operator|new
-name|SolrException
+name|InitializationException
 argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
 literal|"The charset parameter is no longer supported.  "
 operator|+
 literal|"Please process your documents as Unicode instead."

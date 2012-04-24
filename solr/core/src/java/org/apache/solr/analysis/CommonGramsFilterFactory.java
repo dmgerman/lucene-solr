@@ -223,8 +223,10 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|InitializationException
 argument_list|(
+literal|"IOException thrown while loading common word file"
+argument_list|,
 name|e
 argument_list|)
 throw|;
