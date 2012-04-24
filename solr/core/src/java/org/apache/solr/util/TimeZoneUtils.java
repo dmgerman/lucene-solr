@@ -141,7 +141,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**    * This method is provided as a replacement for TimeZone.getTimeZone but     * with out the anoying behavior of returning "GMT" for gibberish input.    *<p>    * This method will return null unless the input is either:    *</p>    *<ul>    *<li>Included in the set of known TimeZone IDs    *<li>A "CustomID" specified as a numeric offset from "GMT"</li>    *</ul>    *     * @param ID Either a TimeZone ID found in KNOWN_TIMEZONE_IDS, or a "CustomID" specified as a GMT offset.    * @return A TImeZone object corrisponding to the input, or null if no such TimeZone is supported.    * @see #KNOWN_TIMEZONE_IDS    * @see TimeZone    */
+comment|/**    * This method is provided as a replacement for TimeZone.getTimeZone but     * without the annoying behavior of returning "GMT" for gibberish input.    *<p>    * This method will return null unless the input is either:    *</p>    *<ul>    *<li>Included in the set of known TimeZone IDs</li>    *<li>A "CustomID" specified as a numeric offset from "GMT"</li>    *</ul>    *     * @param ID Either a TimeZone ID found in KNOWN_TIMEZONE_IDS, or a "CustomID" specified as a GMT offset.    * @return A TimeZone object corresponding to the input, or null if no such TimeZone is supported.    * @see #KNOWN_TIMEZONE_IDS    * @see TimeZone    */
 DECL|method|getTimeZone
 specifier|public
 specifier|static
