@@ -175,16 +175,6 @@ operator|.
 name|setCollectionName
 argument_list|(
 name|name
-operator|.
-name|isEmpty
-argument_list|()
-condition|?
-name|coreContainer
-operator|.
-name|getDefaultCoreName
-argument_list|()
-else|:
-name|name
 argument_list|)
 expr_stmt|;
 block|}
