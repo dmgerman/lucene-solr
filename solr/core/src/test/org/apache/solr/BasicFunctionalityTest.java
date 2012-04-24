@@ -3976,6 +3976,48 @@ argument_list|,
 literal|"*[count(//doc)=4]"
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"check counts using fixed NOW"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"bday:[NOW/DAY TO NOW/DAY+1DAY]"
+argument_list|,
+literal|"NOW"
+argument_list|,
+literal|"205369736000"
+comment|// 1976-07-04T23:08:56.235Z
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=1]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"check counts using fixed NOW and TZ rounding"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"bday:[NOW/DAY TO NOW/DAY+1DAY]"
+argument_list|,
+literal|"TZ"
+argument_list|,
+literal|"GMT-23"
+argument_list|,
+literal|"NOW"
+argument_list|,
+literal|"205369736000"
+comment|// 1976-07-04T23:08:56.235Z
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=0]"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testDateRoundtrip
 specifier|public

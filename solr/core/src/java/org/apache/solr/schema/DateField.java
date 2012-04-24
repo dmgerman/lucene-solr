@@ -349,8 +349,7 @@ argument_list|(
 literal|"UTC"
 argument_list|)
 decl_stmt|;
-comment|/* :TODO: let Locale/TimeZone come from init args for rounding only */
-comment|/** TimeZone for DateMath (UTC) */
+comment|/**     * No longer used    * @deprecated use DateMathParser.DEFAULT_MATH_TZ    * @see DateMathParser#DEFAULT_MATH_TZ    */
 DECL|field|MATH_TZ
 specifier|protected
 specifier|static
@@ -358,9 +357,11 @@ specifier|final
 name|TimeZone
 name|MATH_TZ
 init|=
-name|UTC
+name|DateMathParser
+operator|.
+name|DEFAULT_MATH_TZ
 decl_stmt|;
-comment|/** Locale for DateMath (Locale.US) */
+comment|/**     * No longer used    * @deprecated use DateMathParser.DEFAULT_MATH_LOCALE    * @see DateMathParser#DEFAULT_MATH_LOCALE    */
 DECL|field|MATH_LOCALE
 specifier|protected
 specifier|static
@@ -368,9 +369,9 @@ specifier|final
 name|Locale
 name|MATH_LOCALE
 init|=
-name|Locale
+name|DateMathParser
 operator|.
-name|US
+name|DEFAULT_MATH_LOCALE
 decl_stmt|;
 comment|/**     * Fixed TimeZone (UTC) needed for parsing/formating Dates in the     * canonical representation.    */
 DECL|field|CANONICAL_TZ
@@ -475,11 +476,7 @@ name|p
 init|=
 operator|new
 name|DateMathParser
-argument_list|(
-name|MATH_TZ
-argument_list|,
-name|MATH_LOCALE
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -1115,11 +1112,7 @@ name|p
 init|=
 operator|new
 name|DateMathParser
-argument_list|(
-name|MATH_TZ
-argument_list|,
-name|MATH_LOCALE
-argument_list|)
+argument_list|()
 decl_stmt|;
 if|if
 condition|(

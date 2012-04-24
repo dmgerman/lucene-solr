@@ -122,6 +122,41 @@ specifier|public
 class|class
 name|DateMathParser
 block|{
+DECL|field|UTC
+specifier|public
+specifier|static
+name|TimeZone
+name|UTC
+init|=
+name|TimeZone
+operator|.
+name|getTimeZone
+argument_list|(
+literal|"UTC"
+argument_list|)
+decl_stmt|;
+comment|/** Default TimeZone for DateMath rounding (UTC) */
+DECL|field|DEFAULT_MATH_TZ
+specifier|public
+specifier|static
+specifier|final
+name|TimeZone
+name|DEFAULT_MATH_TZ
+init|=
+name|UTC
+decl_stmt|;
+comment|/** Default Locale for DateMath rounding (Locale.US) */
+DECL|field|DEFAULT_MATH_LOCALE
+specifier|public
+specifier|static
+specifier|final
+name|Locale
+name|DEFAULT_MATH_LOCALE
+init|=
+name|Locale
+operator|.
+name|US
+decl_stmt|;
 comment|/**    * A mapping from (uppercased) String labels idenyifying time units,    * to the corresponding Calendar constant used to set/add/roll that unit    * of measurement.    *    *<p>    * A single logical unit of time might be represented by multiple labels    * for convenience (ie:<code>DATE==DAY</code>,    *<code>MILLI==MILLISECOND</code>)    *</p>    *    * @see Calendar    */
 DECL|field|CALENDAR_UNITS
 specifier|public
@@ -155,6 +190,10 @@ comment|// NOTE: consciously choosing not to support WEEK at this time,
 comment|// because of complexity in rounding down to the nearest week
 comment|// arround a month/year boundry.
 comment|// (Not to mention: it's not clear what people would *expect*)
+comment|//
+comment|// If we consider adding some time of "week" support, then
+comment|// we probably need to change "Locale loc" to default to something
+comment|// from a param via SolrRequestInfo as well.
 name|Map
 argument_list|<
 name|String
@@ -660,7 +699,21 @@ specifier|private
 name|Date
 name|now
 decl_stmt|;
-comment|/**    * @param tz The TimeZone used for rounding (to determine when hours/days begin)    * @param l The Locale used for rounding (to determine when weeks begin)    * @see Calendar#getInstance(TimeZone,Locale)    */
+comment|/**    * Default constructor that assumes UTC should be used for rounding unless     * otherwise specified in the SolrRequestInfo    *     * @see #DEFAULT_MATH_TZ    * @see #DEFAULT_MATH_LOCALE    */
+DECL|method|DateMathParser
+specifier|public
+name|DateMathParser
+parameter_list|()
+block|{
+name|this
+argument_list|(
+literal|null
+argument_list|,
+name|DEFAULT_MATH_LOCALE
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * @param tz The TimeZone used for rounding (to determine when hours/days begin).  If null, then this method defaults to the value dicated by the SolrRequestInfo if it     * exists -- otherwise it uses UTC.    * @param l The Locale used for rounding (to determine when weeks begin).  If null, then this method defaults to en_US.    * @see #DEFAULT_MATH_TZ    * @see #DEFAULT_MATH_LOCALE    * @see Calendar#getInstance(TimeZone,Locale)    * @see SolrRequestInfo#getClientTimeZone    */
 DECL|method|DateMathParser
 specifier|public
 name|DateMathParser
@@ -672,16 +725,63 @@ name|Locale
 name|l
 parameter_list|)
 block|{
-name|zone
-operator|=
-name|tz
-expr_stmt|;
 name|loc
 operator|=
+operator|(
+literal|null
+operator|!=
 name|l
+operator|)
+condition|?
+name|l
+else|:
+name|DEFAULT_MATH_LOCALE
+expr_stmt|;
+if|if
+condition|(
+literal|null
+operator|==
+name|tz
+condition|)
+block|{
+name|SolrRequestInfo
+name|reqInfo
+init|=
+name|SolrRequestInfo
+operator|.
+name|getRequestInfo
+argument_list|()
+decl_stmt|;
+name|tz
+operator|=
+operator|(
+literal|null
+operator|!=
+name|reqInfo
+operator|)
+condition|?
+name|reqInfo
+operator|.
+name|getClientTimeZone
+argument_list|()
+else|:
+name|DEFAULT_MATH_TZ
 expr_stmt|;
 block|}
-comment|/** Redefines this instance's concept of "now" */
+name|zone
+operator|=
+operator|(
+literal|null
+operator|!=
+name|tz
+operator|)
+condition|?
+name|tz
+else|:
+name|DEFAULT_MATH_TZ
+expr_stmt|;
+block|}
+comment|/**     * Defines this instance's concept of "now".    * @see #getNow    */
 DECL|method|setNow
 specifier|public
 name|void
@@ -696,7 +796,7 @@ operator|=
 name|n
 expr_stmt|;
 block|}
-comment|/** Returns a cloned of this instance's concept of "now" */
+comment|/**     * Returns a cloned of this instance's concept of "now".    *    * If setNow was never called (or if null was specified) then this method     * first defines 'now' as the value dictated by the SolrRequestInfo if it     * exists -- otherwise it uses a new Date instance at the moment getNow()     * is first called.    * @see #setNow    * @see SolrRequestInfo#getNow    */
 DECL|method|getNow
 specifier|public
 name|Date

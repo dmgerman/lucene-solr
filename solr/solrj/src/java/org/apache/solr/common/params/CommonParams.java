@@ -38,6 +38,26 @@ specifier|public
 interface|interface
 name|CommonParams
 block|{
+comment|/**     * Override for the concept of "NOW" to be used throughout this request,     * expressed as milliseconds since epoch.  This is primarily used in     * distributed search to ensure consistent time values are used across     * multiple sub-requests.    */
+DECL|field|NOW
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|NOW
+init|=
+literal|"NOW"
+decl_stmt|;
+comment|/**     * Specifies the TimeZone used by the client for the purposes of     * any DateMath rounding that may take place when executing the request    */
+DECL|field|TZ
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TZ
+init|=
+literal|"TZ"
+decl_stmt|;
 comment|/** the query type - which query handler should handle the request */
 DECL|field|QT
 specifier|public
