@@ -98,13 +98,6 @@ name|args
 parameter_list|)
 block|{
 comment|//System.setProperty("solr.solr.home", "../../../example/solr");
-name|javax
-operator|.
-name|servlet
-operator|.
-name|FilterRegistration
-name|xx
-decl_stmt|;
 name|Server
 name|server
 init|=

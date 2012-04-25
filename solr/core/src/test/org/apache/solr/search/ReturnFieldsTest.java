@@ -36,6 +36,36 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|response
 operator|.
 name|transform
@@ -176,6 +206,127 @@ name|assertU
 argument_list|(
 name|commit
 argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testCopyRename
+specifier|public
+name|void
+name|testCopyRename
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// original
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1'] "
+argument_list|,
+literal|"*[count(//doc/str)=1] "
+argument_list|,
+literal|"*//doc[1]/str[1][.='1'] "
+argument_list|)
+expr_stmt|;
+comment|// rename
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"xxx:id"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1'] "
+argument_list|,
+literal|"*[count(//doc/str)=1] "
+argument_list|,
+literal|"*//doc[1]/str[1][.='1'] "
+argument_list|)
+expr_stmt|;
+comment|// original and copy
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,xxx:id"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1'] "
+argument_list|,
+literal|"*[count(//doc/str)=2] "
+argument_list|,
+literal|"*//doc[1]/str[1][.='1'] "
+argument_list|,
+literal|"*//doc[1]/str[2][.='1'] "
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"xxx:id,id"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1'] "
+argument_list|,
+literal|"*[count(//doc/str)=2] "
+argument_list|,
+literal|"*//doc[1]/str[1][.='1'] "
+argument_list|,
+literal|"*//doc[1]/str[2][.='1'] "
+argument_list|)
+expr_stmt|;
+comment|// two copies
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"xxx:id,yyy:id"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1'] "
+argument_list|,
+literal|"*[count(//doc/str)=2] "
+argument_list|,
+literal|"*//doc[1]/str[1][.='1'] "
+argument_list|,
+literal|"*//doc[1]/str[2][.='1'] "
 argument_list|)
 expr_stmt|;
 block|}
@@ -1458,16 +1609,6 @@ name|wantsAllFields
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|rf
-operator|.
-name|getTransformer
-argument_list|()
-operator|instanceof
-name|RenameFieldsTransformer
-argument_list|)
-expr_stmt|;
 name|rf
 operator|=
 operator|new
@@ -1591,7 +1732,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2
+literal|5
 argument_list|,
 operator|(
 operator|(
@@ -1607,6 +1748,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// 4 rename and score
 block|}
 comment|// hyphens in field names are not supported in all contexts, but we wanted
 comment|// the simplest case of fl=foo-bar to work
