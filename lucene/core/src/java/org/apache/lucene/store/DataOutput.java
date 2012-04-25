@@ -75,7 +75,7 @@ specifier|abstract
 class|class
 name|DataOutput
 block|{
-comment|/** Writes a single byte.    * @see IndexInput#readByte()    */
+comment|/** Writes a single byte.    *<p>    * The most primitive data type is an eight-bit byte. Files are     * accessed as sequences of bytes. All other data types are defined     * as sequences of bytes, so file formats are byte-order independent.    *     * @see IndexInput#readByte()    */
 DECL|method|writeByte
 specifier|public
 specifier|abstract
@@ -134,7 +134,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Writes an int as four bytes.    * @see DataInput#readInt()    */
+comment|/** Writes an int as four bytes.    *<p>    * 32-bit unsigned integer written as four bytes, high-order bytes first.    *     * @see DataInput#readInt()    */
 DECL|method|writeInt
 specifier|public
 name|void
@@ -279,7 +279,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Writes a long as eight bytes.    * @see DataInput#readLong()    */
+comment|/** Writes a long as eight bytes.    *<p>    * 64-bit unsigned integer written as eight bytes, high-order bytes first.    *     * @see DataInput#readLong()    */
 DECL|method|writeLong
 specifier|public
 name|void
@@ -372,7 +372,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Writes a string.    * @see DataInput#readString()    */
+comment|/** Writes a string.    *<p>    * Writes strings as UTF-8 encoded bytes. First the length, in bytes, is    * written as a {@link #writeVInt VInt}, followed by the bytes.    *     * @see DataInput#readString()    */
 DECL|method|writeString
 specifier|public
 name|void
@@ -543,6 +543,7 @@ name|toCopy
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Writes a String map.    *<p>    * First the size is written as an {@link #writeInt(int) Int32},    * followed by each key-value pair written as two consecutive     * {@link #writeString(String) String}s.    *     * @param map Input map. May be null (equivalent to an empty map)    */
 DECL|method|writeStringStringMap
 specifier|public
 name|void
