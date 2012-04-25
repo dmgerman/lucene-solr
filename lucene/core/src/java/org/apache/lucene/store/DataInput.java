@@ -221,7 +221,7 @@ literal|0xFF
 operator|)
 return|;
 block|}
-comment|/** Reads an int stored in variable-length format.  Reads between one and    * five bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported.    * @see DataOutput#writeVInt(int)    */
+comment|/** Reads an int stored in variable-length format.  Reads between one and    * five bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported.    *<p>    * The format is described further in {@link DataOutput#writeVInt(int)}.    *     * @see DataOutput#writeVInt(int)    */
 DECL|method|readVInt
 specifier|public
 name|int
@@ -392,7 +392,7 @@ literal|0xFFFFFFFFL
 operator|)
 return|;
 block|}
-comment|/** Reads a long stored in variable-length format.  Reads between one and    * nine bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported. */
+comment|/** Reads a long stored in variable-length format.  Reads between one and    * nine bytes.  Smaller values take fewer bytes.  Negative numbers are not    * supported.    *<p>    * The format is described further in {@link DataOutput#writeVInt(int)}.    *     * @see DataOutput#writeVLong(long)    */
 DECL|method|readVLong
 specifier|public
 name|long
