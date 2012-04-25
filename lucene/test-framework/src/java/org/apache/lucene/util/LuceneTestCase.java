@@ -6951,6 +6951,10 @@ name|length
 condition|)
 block|{
 case|case
+literal|4
+case|:
+comment|/* fallthrough for special cases */
+case|case
 literal|3
 case|:
 return|return
