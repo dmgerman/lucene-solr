@@ -1433,6 +1433,8 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// TODO: the fact these are static final means they're initialized on class load and they should
+comment|// be reinitialized on before suite hooks (to allow proper tests).
 comment|// by default we randomly pick a different codec for
 comment|// each test case (non-J4 tests) and each test class (J4
 comment|// tests)
@@ -1466,40 +1468,6 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"tests.postingsformat"
-argument_list|,
-literal|"random"
-argument_list|)
-decl_stmt|;
-comment|/** Gets the locale to run tests with */
-DECL|field|TEST_LOCALE
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|TEST_LOCALE
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"tests.locale"
-argument_list|,
-literal|"random"
-argument_list|)
-decl_stmt|;
-comment|/** Gets the timezone to run tests with */
-DECL|field|TEST_TIMEZONE
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|TEST_TIMEZONE
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"tests.timezone"
 argument_list|,
 literal|"random"
 argument_list|)
@@ -1643,6 +1611,20 @@ else|:
 name|Throttling
 operator|.
 name|NEVER
+decl_stmt|;
+comment|/** Gets the locale to run tests with */
+DECL|field|TEST_LOCALE
+specifier|public
+specifier|static
+name|String
+name|TEST_LOCALE
+decl_stmt|;
+comment|/** Gets the timezone to run tests with */
+DECL|field|TEST_TIMEZONE
+specifier|public
+specifier|static
+name|String
+name|TEST_TIMEZONE
 decl_stmt|;
 comment|/**    * A random multiplier which you should use when writing random tests:    * multiply it by the number of iterations    */
 DECL|field|RANDOM_MULTIPLIER
@@ -2760,6 +2742,39 @@ comment|// ignore if no ICU is in classpath
 block|}
 block|}
 comment|// END hack
+comment|// Initialize locale/ timezone.
+name|TEST_LOCALE
+operator|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.locale"
+argument_list|,
+literal|"random"
+argument_list|)
+expr_stmt|;
+name|TEST_TIMEZONE
+operator|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.timezone"
+argument_list|,
+literal|"random"
+argument_list|)
+expr_stmt|;
+comment|// Always pick a random one for consistency (whether TEST_LOCALE was specified or not).
+name|Locale
+name|randomLocale
+init|=
+name|randomLocale
+argument_list|(
+name|random
+argument_list|()
+argument_list|)
+decl_stmt|;
 name|locale
 operator|=
 name|TEST_LOCALE
@@ -2770,10 +2785,6 @@ literal|"random"
 argument_list|)
 condition|?
 name|randomLocale
-argument_list|(
-name|random
-argument_list|()
-argument_list|)
 else|:
 name|localeForName
 argument_list|(
@@ -2810,6 +2821,15 @@ operator|.
 name|getDefault
 argument_list|()
 expr_stmt|;
+name|TimeZone
+name|randomTimeZone
+init|=
+name|randomTimeZone
+argument_list|(
+name|random
+argument_list|()
+argument_list|)
+decl_stmt|;
 name|timeZone
 operator|=
 name|TEST_TIMEZONE
@@ -2820,10 +2840,6 @@ literal|"random"
 argument_list|)
 condition|?
 name|randomTimeZone
-argument_list|(
-name|random
-argument_list|()
-argument_list|)
 else|:
 name|TimeZone
 operator|.
@@ -8148,6 +8164,45 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|locale
+operator|!=
+literal|null
+condition|)
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|" -Dtests.locale="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|locale
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|timeZone
+operator|!=
+literal|null
+condition|)
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|" -Dtests.timezone="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|timeZone
+operator|.
+name|getID
+argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
 operator|!
 name|TEST_CODEC
 operator|.
@@ -8188,50 +8243,6 @@ operator|.
 name|append
 argument_list|(
 name|TEST_POSTINGSFORMAT
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|TEST_LOCALE
-operator|.
-name|equals
-argument_list|(
-literal|"random"
-argument_list|)
-condition|)
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|" -Dtests.locale="
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|TEST_LOCALE
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|TEST_TIMEZONE
-operator|.
-name|equals
-argument_list|(
-literal|"random"
-argument_list|)
-condition|)
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|" -Dtests.timezone="
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|TEST_TIMEZONE
 argument_list|)
 expr_stmt|;
 if|if
