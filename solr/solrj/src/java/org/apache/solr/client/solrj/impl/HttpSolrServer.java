@@ -1881,7 +1881,7 @@ name|MultipartEntity
 argument_list|(
 name|HttpMultipartMode
 operator|.
-name|BROWSER_COMPATIBLE
+name|STRICT
 argument_list|)
 decl_stmt|;
 for|for
