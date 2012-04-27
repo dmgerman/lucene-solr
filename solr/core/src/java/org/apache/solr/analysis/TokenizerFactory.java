@@ -50,6 +50,20 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/**  * A<code>TokenizerFactory</code> breaks up a stream of characters   * into tokens.  *  *<p>  * TokenizerFactories are registered for<code>FieldType</code>s with the  *<code>IndexSchema</code> through the<code>schema.xml</code> file.  *</p>  *<p>  * Example<code>schema.xml</code> entry to register a TokenizerFactory   * implementation to tokenize fields of type "cool"  *</p>  *<pre>  *&lt;fieldtype name="cool" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *      ...  *</pre>  *<p>  * A single instance of any registered TokenizerFactory is created  * via the default constructor and is reused for each FieldType.  *</p>  *  */
 end_comment
@@ -73,6 +87,15 @@ argument_list|,
 name|String
 argument_list|>
 name|args
+parameter_list|)
+function_decl|;
+DECL|method|setLuceneMatchVersion
+specifier|public
+name|void
+name|setLuceneMatchVersion
+parameter_list|(
+name|Version
+name|luceneMatchVersion
 parameter_list|)
 function_decl|;
 comment|/**    * Accessor method for reporting the args used to initialize this factory.    *<p>    * Implementations are<strong>strongly</strong> encouraged to return     * the contents of the Map passed to to the init method    *</p>    */

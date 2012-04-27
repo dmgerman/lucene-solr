@@ -119,9 +119,9 @@ argument_list|()
 decl_stmt|;
 name|factory
 operator|.
-name|init
+name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION_PARAM
+name|DEFAULT_VERSION
 argument_list|)
 expr_stmt|;
 name|Tokenizer

@@ -204,9 +204,7 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-argument_list|(
-name|DEFAULT_VERSION_PARAM
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|args
 operator|.
@@ -215,6 +213,13 @@ argument_list|(
 literal|"dictionary"
 argument_list|,
 literal|"compoundDictionary.txt"
+argument_list|)
+expr_stmt|;
+name|factory
+operator|.
+name|setLuceneMatchVersion
+argument_list|(
+name|DEFAULT_VERSION
 argument_list|)
 expr_stmt|;
 name|factory

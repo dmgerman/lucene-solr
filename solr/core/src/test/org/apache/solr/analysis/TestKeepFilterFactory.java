@@ -142,9 +142,7 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-argument_list|(
-name|DEFAULT_VERSION_PARAM
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|args
 operator|.
@@ -162,6 +160,13 @@ argument_list|(
 literal|"ignoreCase"
 argument_list|,
 literal|"true"
+argument_list|)
+expr_stmt|;
+name|factory
+operator|.
+name|setLuceneMatchVersion
+argument_list|(
+name|DEFAULT_VERSION
 argument_list|)
 expr_stmt|;
 name|factory
@@ -229,6 +234,13 @@ argument_list|(
 literal|"words"
 argument_list|,
 literal|"keep-1.txt, keep-2.txt"
+argument_list|)
+expr_stmt|;
+name|factory
+operator|.
+name|setLuceneMatchVersion
+argument_list|(
+name|DEFAULT_VERSION
 argument_list|)
 expr_stmt|;
 name|factory

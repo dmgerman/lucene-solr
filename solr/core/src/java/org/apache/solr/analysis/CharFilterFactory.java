@@ -40,6 +40,20 @@ name|CharStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/** * * @since Solr 1.4 * */
 end_comment
@@ -74,6 +88,15 @@ name|String
 argument_list|>
 name|getArgs
 parameter_list|()
+function_decl|;
+DECL|method|setLuceneMatchVersion
+specifier|public
+name|void
+name|setLuceneMatchVersion
+parameter_list|(
+name|Version
+name|luceneMatchVersion
+parameter_list|)
 function_decl|;
 DECL|method|create
 specifier|public

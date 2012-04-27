@@ -93,9 +93,16 @@ argument_list|()
 decl_stmt|;
 name|tokenizerFactory
 operator|.
+name|setLuceneMatchVersion
+argument_list|(
+name|DEFAULT_VERSION
+argument_list|)
+expr_stmt|;
+name|tokenizerFactory
+operator|.
 name|init
 argument_list|(
-name|DEFAULT_VERSION_PARAM
+name|EMPTY_PARAMS
 argument_list|)
 expr_stmt|;
 name|tokenizerFactory
