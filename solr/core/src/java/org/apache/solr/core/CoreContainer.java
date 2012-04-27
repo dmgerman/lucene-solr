@@ -2449,21 +2449,19 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|Throwable
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
+name|log
 operator|.
-name|SERVER_ERROR
+name|warn
+argument_list|(
+literal|"Unable to load LogWatcher"
 argument_list|,
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 if|if
