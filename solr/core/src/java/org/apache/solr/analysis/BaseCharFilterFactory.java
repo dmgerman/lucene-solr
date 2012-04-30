@@ -18,16 +18,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -42,21 +32,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|slf4j
+name|util
 operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|LoggerFactory
+name|Map
 import|;
 end_import
 
@@ -73,22 +53,6 @@ name|BaseCharFilterFactory
 implements|implements
 name|CharFilterFactory
 block|{
-DECL|field|log
-specifier|public
-specifier|static
-specifier|final
-name|Logger
-name|log
-init|=
-name|LoggerFactory
-operator|.
-name|getLogger
-argument_list|(
-name|BaseCharFilterFactory
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 DECL|field|luceneMatchVersion
 specifier|protected
 name|Version

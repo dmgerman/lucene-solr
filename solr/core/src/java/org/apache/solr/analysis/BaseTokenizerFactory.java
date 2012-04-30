@@ -16,26 +16,6 @@ name|analysis
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|LoggerFactory
-import|;
-end_import
-
 begin_comment
 comment|/**  * Simple abstract implementation that handles init arg processing.  *   *  */
 end_comment
@@ -50,24 +30,7 @@ extends|extends
 name|BaseTokenStreamFactory
 implements|implements
 name|TokenizerFactory
-block|{
-DECL|field|log
-specifier|public
-specifier|static
-specifier|final
-name|Logger
-name|log
-init|=
-name|LoggerFactory
-operator|.
-name|getLogger
-argument_list|(
-name|BaseTokenizerFactory
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-block|}
+block|{  }
 end_class
 
 end_unit

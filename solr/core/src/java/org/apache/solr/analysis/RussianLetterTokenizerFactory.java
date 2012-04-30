@@ -52,6 +52,26 @@ name|RussianLetterTokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/** @deprecated Use {@link StandardTokenizerFactory} instead.  *  This tokenizer has no Russian-specific functionality.  */
 end_comment
@@ -66,6 +86,22 @@ name|RussianLetterTokenizerFactory
 extends|extends
 name|BaseTokenizerFactory
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|RussianLetterTokenizerFactory
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|init
@@ -110,9 +146,17 @@ throw|;
 name|assureMatchVersion
 argument_list|()
 expr_stmt|;
-name|warnDeprecated
+name|log
+operator|.
+name|warn
 argument_list|(
-literal|"Use StandardTokenizerFactory instead."
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|" is deprecated. Use StandardTokenizerFactory instead."
 argument_list|)
 expr_stmt|;
 block|}
