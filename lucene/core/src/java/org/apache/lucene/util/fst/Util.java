@@ -2410,7 +2410,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Holds a single input (IntsRef) + output, returned by    *  {@link #shortestPaths}. */
+comment|/** Holds a single input (IntsRef) + output, returned by    *  {@link #shortestPaths shortestPaths()}. */
 DECL|class|MinResult
 specifier|public
 specifier|final

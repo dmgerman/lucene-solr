@@ -525,7 +525,7 @@ name|String
 argument_list|>
 name|userData
 decl_stmt|;
-comment|/** Holds the status of each segment in the index.      *  See {@link #segmentInfos}.      *      *<p><b>WARNING</b>: this API is new and experimental and is      * subject to suddenly change in the next release.      */
+comment|/** Holds the status of each segment in the index.      *  See {@link #segmentInfos}.      *      * @lucene.experimental      */
 DECL|class|SegmentInfoStatus
 specifier|public
 specifier|static
@@ -812,6 +812,7 @@ init|=
 literal|null
 decl_stmt|;
 block|}
+comment|/**      * Status from testing DocValues      */
 DECL|class|DocValuesStatus
 specifier|public
 specifier|static

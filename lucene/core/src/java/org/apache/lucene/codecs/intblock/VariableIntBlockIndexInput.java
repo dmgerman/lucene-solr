@@ -269,7 +269,7 @@ name|IOException
 function_decl|;
 block|}
 DECL|class|Reader
-specifier|public
+specifier|private
 specifier|static
 class|class
 name|Reader

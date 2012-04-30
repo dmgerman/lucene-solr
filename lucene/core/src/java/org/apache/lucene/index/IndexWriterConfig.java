@@ -171,20 +171,23 @@ name|IndexWriterConfig
 implements|implements
 name|Cloneable
 block|{
-comment|/**    * Specifies the open mode for {@link IndexWriter}:    *<ul>    * {@link #CREATE} - creates a new index or overwrites an existing one.    * {@link #CREATE_OR_APPEND} - creates a new index if one does not exist,    * otherwise it opens the index and documents will be appended.    * {@link #APPEND} - opens an existing index.    *</ul>    */
+comment|/**    * Specifies the open mode for {@link IndexWriter}.    */
 DECL|enum|OpenMode
-DECL|enum constant|CREATE
-DECL|enum constant|APPEND
-DECL|enum constant|CREATE_OR_APPEND
 specifier|public
 specifier|static
 enum|enum
 name|OpenMode
 block|{
+comment|/**       * Creates a new index or overwrites an existing one.       */
+DECL|enum constant|CREATE
 name|CREATE
 block|,
+comment|/**       * Opens an existing index.       */
+DECL|enum constant|APPEND
 name|APPEND
 block|,
+comment|/**       * Creates a new index if one does not exist,      * otherwise it opens the index and documents will be appended.       */
+DECL|enum constant|CREATE_OR_APPEND
 name|CREATE_OR_APPEND
 block|}
 comment|/** Default value is 32. Change using {@link #setTermIndexInterval(int)}. */

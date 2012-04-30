@@ -235,20 +235,23 @@ name|terms
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Return value if the match should be accepted {@code YES}, rejected {@code NO},    * or rejected and enumeration should advance to the next document {@code NO_AND_ADVANCE}.    * @see #acceptPosition(Spans)    */
+comment|/**     * Return value for {@link SpanPositionCheckQuery#acceptPosition(Spans)}.    */
 DECL|enum|AcceptStatus
-DECL|enum constant|YES
-DECL|enum constant|NO
-DECL|enum constant|NO_AND_ADVANCE
 specifier|protected
 specifier|static
 enum|enum
 name|AcceptStatus
 block|{
+comment|/** Indicates the match should be accepted */
+DECL|enum constant|YES
 name|YES
 block|,
+comment|/** Indicates the match should be rejected */
+DECL|enum constant|NO
 name|NO
 block|,
+comment|/**       * Indicates the match should be rejected, and the enumeration should advance      * to the next document.      */
+DECL|enum constant|NO_AND_ADVANCE
 name|NO_AND_ADVANCE
 block|}
 empty_stmt|;

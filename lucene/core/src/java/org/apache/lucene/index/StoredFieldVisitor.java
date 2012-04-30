@@ -162,6 +162,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{   }
+comment|/**    * Hook before processing a field.    * Before a field is processed, this method is invoked so that    * subclasses can return a {@link Status} representing whether    * they need that particular field or not, or to stop processing    * entirely.    */
 DECL|method|needsField
 specifier|public
 specifier|abstract
@@ -174,21 +175,22 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Enumeration of possible return values for {@link #needsField}.    */
 DECL|enum|Status
 specifier|public
 specifier|static
 enum|enum
 name|Status
 block|{
-comment|/** yes, i want the field */
+comment|/** YES: the field should be visited. */
 DECL|enum constant|YES
 name|YES
 block|,
-comment|/** no, i do not */
+comment|/** NO: don't visit this field, but continue processing fields for this document. */
 DECL|enum constant|NO
 name|NO
 block|,
-comment|/** stop loading fields for this document entirely */
+comment|/** STOP: don't visit this field and stop processing any other fields for this document. */
 DECL|enum constant|STOP
 name|STOP
 block|}

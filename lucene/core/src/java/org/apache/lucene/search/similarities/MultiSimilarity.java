@@ -426,7 +426,6 @@ argument_list|)
 return|;
 block|}
 DECL|class|MultiExactDocScorer
-specifier|public
 specifier|static
 class|class
 name|MultiExactDocScorer
@@ -563,7 +562,6 @@ return|;
 block|}
 block|}
 DECL|class|MultiSloppyDocScorer
-specifier|public
 specifier|static
 class|class
 name|MultiSloppyDocScorer
@@ -758,7 +756,6 @@ return|;
 block|}
 block|}
 DECL|class|MultiStats
-specifier|public
 specifier|static
 class|class
 name|MultiStats

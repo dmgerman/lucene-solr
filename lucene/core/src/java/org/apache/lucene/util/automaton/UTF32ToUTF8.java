@@ -75,7 +75,7 @@ comment|//   - do we really need the .bits...?  if not we can make util in Unico
 end_comment
 
 begin_comment
-comment|/** @lucene.internal */
+comment|/**   * Converts UTF-32 automata to the equivalent UTF-8 representation.  * @lucene.internal   */
 end_comment
 
 begin_class
