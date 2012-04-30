@@ -72,9 +72,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|common
+name|analysis
+operator|.
+name|util
 operator|.
 name|ResourceLoader
 import|;

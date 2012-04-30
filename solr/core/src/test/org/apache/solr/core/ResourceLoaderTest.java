@@ -134,11 +134,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
+operator|.
+name|analysis
 operator|.
 name|util
-operator|.
-name|plugin
 operator|.
 name|ResourceLoaderAware
 import|;

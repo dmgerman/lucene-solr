@@ -4,37 +4,19 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.util.plugin
+DECL|package|org.apache.lucene.analysis.util
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
+operator|.
+name|analysis
 operator|.
 name|util
-operator|.
-name|plugin
 package|;
 end_package
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|ResourceLoader
-import|;
-end_import
-
-begin_comment
-comment|/**  * @since solr 1.3  */
-end_comment
 
 begin_interface
 DECL|interface|ResourceLoaderAware

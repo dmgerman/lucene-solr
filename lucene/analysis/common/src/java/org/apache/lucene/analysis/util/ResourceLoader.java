@@ -1,14 +1,16 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.common
+DECL|package|org.apache.lucene.analysis.util
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|common
+name|analysis
+operator|.
+name|util
 package|;
 end_package
 
@@ -45,10 +47,6 @@ operator|.
 name|List
 import|;
 end_import
-
-begin_comment
-comment|/**  * @since solr 1.3  */
-end_comment
 
 begin_interface
 DECL|interface|ResourceLoader
