@@ -766,7 +766,7 @@ return|return
 name|clean
 return|;
 block|}
-comment|/**    * Returns null if we are to run all entities, otherwise just run the entities named in the list.    * @return    */
+comment|/**    * Returns null if we are to run all entities, otherwise just run the entities named in the list.    */
 DECL|method|getEntitiesToRun
 specifier|public
 name|List
