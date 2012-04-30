@@ -5618,7 +5618,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 name|logid
 operator|+
