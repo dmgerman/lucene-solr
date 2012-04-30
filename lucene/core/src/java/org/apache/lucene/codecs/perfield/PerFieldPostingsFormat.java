@@ -286,6 +286,24 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|DataOutput
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|Directory
 import|;
 end_import
@@ -361,7 +379,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Enables per field format support.  *<p>  * Note, when extending this class, the name ({@link #getName}) is   * written into the index. In order for the field to be read, the  * name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} to resolve format names.  *<p>  * @see ServiceLoader  * @lucene.experimental  */
+comment|/**  * Enables per field format support.  *<p>  * Note, when extending this class, the name ({@link #getName}) is   * written into the index. In order for the field to be read, the  * name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} to resolve format names.  *<p>  * PerFieldFile format:  *<ul>  *<li>PerFieldFile (.per) --&gt; Header, IdToFormat, FieldToFormat</li>  *<li>Header --&gt; {@link CodecUtil#checkHeader CodecHeader}</li>  *<li>IdToFormat,FieldToFormat --&gt; {@link DataOutput#writeStringStringMap(Map) Map&lt;String,String&gt;}</li>   *</ul>  *<p>Notes:</p>  *<ul>  *<li>each format is assigned an id, and files written by that posting format  *       have an additional suffix containing the id. For example, in a per-field  *       configuration instead of<tt>_1.prx</tt> filenames would look like   *<tt>_1_0.prx</tt>.</li>  *<li>IdToFormat is a mapping between these ids and the available formats.</li>  *<li>FieldToFormat is a mapping between field names and format names.</li>  *</ul>  * @see ServiceLoader  * @lucene.experimental  */
 end_comment
 
 begin_class
