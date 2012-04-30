@@ -916,7 +916,7 @@ literal|"Setting {} to: {}"
 argument_list|,
 name|configKey
 argument_list|,
-name|soTimeout
+name|toReturn
 argument_list|)
 expr_stmt|;
 return|return
