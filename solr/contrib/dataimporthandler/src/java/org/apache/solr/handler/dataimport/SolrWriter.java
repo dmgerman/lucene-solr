@@ -195,6 +195,7 @@ name|class
 argument_list|)
 decl_stmt|;
 DECL|field|LAST_INDEX_KEY
+specifier|public
 specifier|static
 specifier|final
 name|String

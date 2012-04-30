@@ -154,9 +154,11 @@ operator|.
 name|getDocBuilder
 argument_list|()
 operator|.
-name|requestParameters
+name|getReqParams
+argument_list|()
 operator|.
-name|contentStream
+name|getContentStream
+argument_list|()
 expr_stmt|;
 if|if
 condition|(

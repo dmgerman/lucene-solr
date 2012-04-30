@@ -93,15 +93,11 @@ operator|.
 name|SolrWriterImpl
 argument_list|()
 decl_stmt|;
-name|DataImporter
-operator|.
-name|RequestParams
+name|RequestInfo
 name|rp
 init|=
 operator|new
-name|DataImporter
-operator|.
-name|RequestParams
+name|RequestInfo
 argument_list|(
 name|createMap
 argument_list|(
@@ -109,6 +105,8 @@ literal|"command"
 argument_list|,
 literal|"full-import"
 argument_list|)
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|di
