@@ -431,6 +431,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**    * Represents a sub-Bits from     * {@link MultiBits#getMatchingSub(org.apache.lucene.util.ReaderUtil.Slice) getMatchingSub()}.    */
 DECL|class|SubResult
 specifier|public
 specifier|final
@@ -449,6 +450,7 @@ name|Bits
 name|result
 decl_stmt|;
 block|}
+comment|/**    * Returns a sub-Bits matching the provided<code>slice</code>    *<p>    * Because<code>null</code> usually has a special meaning for    * Bits (e.g. no deleted documents), you must check    * {@link SubResult#matches} instead to ensure the sub was     * actually found.    */
 DECL|method|getMatchingSub
 specifier|public
 name|SubResult

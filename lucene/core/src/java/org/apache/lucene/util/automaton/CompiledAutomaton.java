@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Immutable class holding compiled details for a given  * Automaton.  The Automaton is deterministic, must not have  * dead states but may not be minimal.  *  * @lucene.experimental  */
+comment|/**  * Immutable class holding compiled details for a given  * Automaton.  The Automaton is deterministic, must not have  * dead states but is not necessarily minimal.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -128,24 +128,30 @@ specifier|public
 class|class
 name|CompiledAutomaton
 block|{
+comment|/**    * Automata are compiled into different internal forms for the    * most efficient execution depending upon the language they accept.    */
 DECL|enum|AUTOMATON_TYPE
-DECL|enum constant|NONE
-DECL|enum constant|ALL
-DECL|enum constant|SINGLE
-DECL|enum constant|PREFIX
-DECL|enum constant|NORMAL
 specifier|public
 enum|enum
 name|AUTOMATON_TYPE
 block|{
+comment|/** Automaton that accepts no strings. */
+DECL|enum constant|NONE
 name|NONE
 block|,
+comment|/** Automaton that accepts all possible strings. */
+DECL|enum constant|ALL
 name|ALL
 block|,
+comment|/** Automaton that accepts only a single fixed string. */
+DECL|enum constant|SINGLE
 name|SINGLE
 block|,
+comment|/** Automaton that matches all Strings with a constant prefix. */
+DECL|enum constant|PREFIX
 name|PREFIX
 block|,
+comment|/** Catch-all for any other automata. */
+DECL|enum constant|NORMAL
 name|NORMAL
 block|}
 empty_stmt|;
@@ -155,16 +161,14 @@ specifier|final
 name|AUTOMATON_TYPE
 name|type
 decl_stmt|;
-comment|// For PREFIX, this is the prefix term; for SINGLE this is
-comment|// the singleton term:
+comment|/**     * For {@link AUTOMATON_TYPE#PREFIX}, this is the prefix term;     * for {@link AUTOMATON_TYPE#SINGLE} this is the singleton term.    */
 DECL|field|term
 specifier|public
 specifier|final
 name|BytesRef
 name|term
 decl_stmt|;
-comment|// NOTE: the next 4 members are only non-null if type ==
-comment|// NORMAL:
+comment|/**     * Matcher for quickly determining if a byte[] is accepted.    * only valid for {@link AUTOMATON_TYPE#NORMAL}.    */
 DECL|field|runAutomaton
 specifier|public
 specifier|final
@@ -173,6 +177,7 @@ name|runAutomaton
 decl_stmt|;
 comment|// TODO: would be nice if these sortedTransitions had "int
 comment|// to;" instead of "State to;" somehow:
+comment|/**    * Two dimensional array of transitions, indexed by state    * number for traversal. The state numbering is consistent with    * {@link #runAutomaton}.     * Only valid for {@link AUTOMATON_TYPE#NORMAL}.    */
 DECL|field|sortedTransitions
 specifier|public
 specifier|final
@@ -181,12 +186,14 @@ index|[]
 index|[]
 name|sortedTransitions
 decl_stmt|;
+comment|/**    * Shared common suffix accepted by the automaton. Only valid    * for {@link AUTOMATON_TYPE#NORMAL}, and only when the    * automaton accepts an infinite language.    */
 DECL|field|commonSuffixRef
 specifier|public
 specifier|final
 name|BytesRef
 name|commonSuffixRef
 decl_stmt|;
+comment|/**    * Indicates if the automaton accepts a finite set of strings.    * Null if this was not computed.    * Only valid for {@link AUTOMATON_TYPE#NORMAL}.    */
 DECL|field|finite
 specifier|public
 specifier|final

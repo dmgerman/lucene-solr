@@ -211,7 +211,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Appending postings impl  */
+comment|/**  * Appending postings impl.  */
 end_comment
 
 begin_class

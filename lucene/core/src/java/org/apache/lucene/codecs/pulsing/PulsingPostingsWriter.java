@@ -183,7 +183,7 @@ comment|// presumably rare in practice...
 end_comment
 
 begin_comment
-comment|/** @lucene.experimental */
+comment|/**   * Writer for the pulsing format.   *<p>  * Wraps another postings implementation and decides   * (based on total number of occurrences), whether a terms   * postings should be inlined into the term dictionary,  * or passed through to the wrapped writer.  *  * @lucene.experimental */
 end_comment
 
 begin_class

@@ -58,6 +58,10 @@ name|IndexOutput
 import|;
 end_import
 
+begin_comment
+comment|/**  * Append-only SegmentInfos writer.  *<p>  * Extends {@link Lucene40SegmentInfosWriter}, writing the same  * format, but the first phase of a two-phase commit   * ({@link #prepareCommit(IndexOutput)}) is not implemented.  */
+end_comment
+
 begin_class
 DECL|class|AppendingSegmentInfosWriter
 specifier|public

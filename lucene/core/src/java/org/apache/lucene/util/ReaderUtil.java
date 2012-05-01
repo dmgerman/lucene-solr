@@ -123,6 +123,7 @@ name|ReaderUtil
 parameter_list|()
 block|{}
 comment|// no instance
+comment|/**    * Subreader slice from a parent composite reader.    */
 DECL|class|Slice
 specifier|public
 specifier|static

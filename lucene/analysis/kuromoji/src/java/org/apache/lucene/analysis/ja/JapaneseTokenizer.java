@@ -1692,8 +1692,8 @@ name|Type
 name|backType
 parameter_list|)
 block|{
-comment|// NOTE: this isn't quite a true Viterbit search,
-comment|// becase we should check if lastRightID is
+comment|// NOTE: this isn't quite a true Viterbi search,
+comment|// because we should check if lastRightID is
 comment|// already present here, and only update if the new
 comment|// cost is less than the current cost, instead of
 comment|// simply appending.  However, that will likely hurt
@@ -3129,11 +3129,11 @@ comment|// backtrace now.  We find the least-cost partial
 comment|// path, across all paths, backtrace from it, and
 comment|// then prune all others.  Note that this, in
 comment|// general, can produce the wrong result, if the
-comment|// total bast path did not in fact back trace
+comment|// total best path did not in fact back trace
 comment|// through this partial best path.  But it's the
 comment|// best we can do... (short of not having a
 comment|// safety!).
-comment|// First pass: find least cost parital path so far,
+comment|// First pass: find least cost partial path so far,
 comment|// including ending at future positions:
 name|int
 name|leastIDX
@@ -5081,7 +5081,7 @@ comment|// back trace has all info needed to generate the
 comment|// token.  So, we could just directly set the attrs,
 comment|// from the backtrace, in incrementToken w/o ever
 comment|// creating Token; we'd have to defer calling freeBefore
-comment|// until after the bactrace was fully "consumed" by
+comment|// until after the backtrace was fully "consumed" by
 comment|// incrementToken.
 while|while
 condition|(

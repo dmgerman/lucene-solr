@@ -325,7 +325,7 @@ comment|// (FSTEnum, Util) have problems with this!!
 end_comment
 
 begin_comment
-comment|/** Represents an finite state machine (FST), using a  *  compact byte[] format.  *<p> The format is similar to what's used by Morfologik  *  (http://sourceforge.net/projects/morfologik).  *  *<p><b>NOTE</b>: the FST cannot be larger than ~2.1 GB  *  because it uses int to address the byte[].  *  * @lucene.experimental  */
+comment|/** Represents an finite state machine (FST), using a  *  compact byte[] format.  *<p> The format is similar to what's used by Morfologik  *  (http://sourceforge.net/projects/morfologik).  *    *<p> See the {@link org.apache.lucene.util.fst package  *      documentation} for some simple examples.  *<p><b>NOTE</b>: the FST cannot be larger than ~2.1 GB  *  because it uses int to address the byte[].  *  * @lucene.experimental  */
 end_comment
 
 begin_class

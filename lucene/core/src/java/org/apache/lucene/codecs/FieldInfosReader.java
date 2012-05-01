@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Codec API for reading {@link FieldInfos}.  * @lucene.experimental  */
 end_comment
 
 begin_class

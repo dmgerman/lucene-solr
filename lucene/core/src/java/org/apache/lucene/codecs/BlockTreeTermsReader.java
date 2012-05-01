@@ -1359,6 +1359,7 @@ return|;
 block|}
 block|}
 block|}
+comment|/**    * BlockTree statistics for a single field     * returned by {@link FieldReader#computeStats()}.    */
 DECL|class|Stats
 specifier|public
 specifier|static

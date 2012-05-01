@@ -177,12 +177,6 @@ name|position
 expr_stmt|;
 name|this
 operator|.
-name|positionLength
-operator|=
-name|positionLength
-expr_stmt|;
-name|this
-operator|.
 name|dictionary
 operator|=
 name|dictionary

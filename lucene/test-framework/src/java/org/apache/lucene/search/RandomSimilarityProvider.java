@@ -556,6 +556,10 @@ name|Similarity
 import|;
 end_import
 
+begin_comment
+comment|/**  * Similarity implementation that randomizes Similarity implementations  * per-field.  *<p>  * The choices are 'sticky', so the selected algorithm is always used  * for the same field.  */
+end_comment
+
 begin_class
 DECL|class|RandomSimilarityProvider
 specifier|public

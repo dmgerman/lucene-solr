@@ -48,8 +48,28 @@ name|Lucene40PostingsBaseFormat
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene40
+operator|.
+name|Lucene40PostingsFormat
+import|;
+end_import
+
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|// javadocs
+end_comment
+
+begin_comment
+comment|/**  * Concrete pulsing implementation over {@link Lucene40PostingsFormat}.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
