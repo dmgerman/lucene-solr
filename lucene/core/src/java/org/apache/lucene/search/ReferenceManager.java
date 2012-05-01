@@ -480,7 +480,7 @@ finally|finally
 block|{
 name|refreshLock
 operator|.
-name|lock
+name|unlock
 argument_list|()
 expr_stmt|;
 block|}
