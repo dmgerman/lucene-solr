@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Exception representing an error occuring during the initialization of a Factory.  */
+comment|/**  * Exception representing an error occurring during the initialization of a Factory.  */
 end_comment
 
 begin_class
