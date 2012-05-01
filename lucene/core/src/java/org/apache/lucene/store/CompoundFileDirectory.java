@@ -24,6 +24,42 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|Codec
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|LiveDocsFormat
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|CorruptIndexException
@@ -43,6 +79,24 @@ operator|.
 name|IndexFileNames
 import|;
 end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|DataOutput
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -119,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class for accessing a compound stream.  * This class implements a directory, but is limited to only read operations.  * Directory methods that would normally modify data throw an exception.  * @lucene.experimental  */
+comment|/**  * Class for accessing a compound stream.  * This class implements a directory, but is limited to only read operations.  * Directory methods that would normally modify data throw an exception.  *<p>  * All files belonging to a segment have the same name with varying extensions.  * The extensions correspond to the different file formats used by the {@link Codec}.   * When using the Compound File format these files are collapsed into a   * single<tt>.cfs</tt> file (except for the {@link LiveDocsFormat}, with a   * corresponding<tt>.cfe</tt> file indexing its sub-files.  *<p>  * Files:  *<ul>  *<li><tt>.cfs</tt>: An optional "virtual" file consisting of all the other   *    index files for systems that frequently run out of file handles.  *<li><tt>.cfe</tt>: The "virtual" compound file's entry table holding all   *    entries in the corresponding .cfs file.  *</ul>  *<p>Description:</p>  *<ul>  *<li>Compound (.cfs) --&gt; FileData<sup>FileCount</sup></li>  *<li>Compound Entry Table (.cfe) --&gt; Version, FileCount,&lt;FileName,  *       DataOffset, DataLength&gt;<sup>FileCount</sup></li>  *<li>Version --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>FileCount --&gt; {@link DataOutput#writeVInt VInt}</li>  *<li>DataOffset,DataLength --&gt; {@link DataOutput#writeLong UInt64}</li>  *<li>FileName --&gt; {@link DataOutput#writeString String}</li>  *<li>FileData --&gt; raw file data</li>  *</ul>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
