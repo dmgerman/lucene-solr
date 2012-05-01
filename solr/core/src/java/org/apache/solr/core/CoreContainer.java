@@ -2358,9 +2358,12 @@ operator|>
 literal|0
 condition|)
 block|{
-name|fname
-operator|=
-literal|"Log4j"
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Log watching is not yet implemented for log4j"
+argument_list|)
 expr_stmt|;
 block|}
 elseif|else
@@ -2393,8 +2396,8 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Unable to read SLF4J version"
-argument_list|,
+literal|"Unable to read SLF4J version.  LogWatcher will be disabled: "
+operator|+
 name|ex
 argument_list|)
 expr_stmt|;
