@@ -44,7 +44,23 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|Semaphore
+name|locks
+operator|.
+name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|locks
+operator|.
+name|ReentrantLock
 import|;
 end_import
 
@@ -93,17 +109,15 @@ specifier|volatile
 name|G
 name|current
 decl_stmt|;
-DECL|field|reopenLock
+DECL|field|refreshLock
 specifier|private
 specifier|final
-name|Semaphore
-name|reopenLock
+name|Lock
+name|refreshLock
 init|=
 operator|new
-name|Semaphore
-argument_list|(
-literal|1
-argument_list|)
+name|ReentrantLock
+argument_list|()
 decl_stmt|;
 DECL|method|ensureOpen
 specifier|private
@@ -281,34 +295,25 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{   }
-comment|/**    * You must call this, periodically, if you want that {@link #acquire()} will    * return refreshed instances.    *     *<p>    *<b>Threads</b>: it's fine for more than one thread to call this at once.    * Only the first thread will attempt the refresh; subsequent threads will see    * that another thread is already handling refresh and will return    * immediately. Note that this means if another thread is already refreshing    * then subsequent threads will return right away without waiting for the    * refresh to complete.    *     *<p>    * If this method returns true it means the calling thread either refreshed    * or that there were no changes to refresh.  If it returns false it means another    * thread is currently refreshing.    */
-DECL|method|maybeRefresh
-specifier|public
-specifier|final
-name|boolean
-name|maybeRefresh
+DECL|method|doMaybeRefresh
+specifier|private
+name|void
+name|doMaybeRefresh
 parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|ensureOpen
+comment|// it's ok to call lock() here (blocking) because we're supposed to get here
+comment|// from either maybeRefreh() or maybeRefreshBlocking(), after the lock has
+comment|// already been obtained. Doing that protects us from an accidental bug
+comment|// where this method will be called outside the scope of refreshLock.
+comment|// Per ReentrantLock's javadoc, calling lock() by the same thread more than
+comment|// once is ok, as long as unlock() is called a matching number of times.
+name|refreshLock
+operator|.
+name|lock
 argument_list|()
 expr_stmt|;
-comment|// Ensure only 1 thread does reopen at once; other threads just return immediately:
-specifier|final
-name|boolean
-name|doTryRefresh
-init|=
-name|reopenLock
-operator|.
-name|tryAcquire
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|doTryRefresh
-condition|)
-block|{
 try|try
 block|{
 specifier|final
@@ -390,9 +395,52 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|reopenLock
+name|refreshLock
 operator|.
-name|release
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|/**    * You must call this (or {@link #maybeRefreshBlocking()}), periodically, if    * you want that {@link #acquire()} will return refreshed instances.    *     *<p>    *<b>Threads</b>: it's fine for more than one thread to call this at once.    * Only the first thread will attempt the refresh; subsequent threads will see    * that another thread is already handling refresh and will return    * immediately. Note that this means if another thread is already refreshing    * then subsequent threads will return right away without waiting for the    * refresh to complete.    *     *<p>    * If this method returns true it means the calling thread either refreshed or    * that there were no changes to refresh. If it returns false it means another    * thread is currently refreshing.    */
+DECL|method|maybeRefresh
+specifier|public
+specifier|final
+name|boolean
+name|maybeRefresh
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+comment|// Ensure only 1 thread does reopen at once; other threads just return immediately:
+specifier|final
+name|boolean
+name|doTryRefresh
+init|=
+name|refreshLock
+operator|.
+name|tryLock
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|doTryRefresh
+condition|)
+block|{
+try|try
+block|{
+name|doMaybeRefresh
+argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|refreshLock
+operator|.
+name|unlock
 argument_list|()
 expr_stmt|;
 block|}
@@ -400,6 +448,42 @@ block|}
 return|return
 name|doTryRefresh
 return|;
+block|}
+comment|/**    * You must call this (or {@link #maybeRefresh()}), periodically, if you want    * that {@link #acquire()} will return refreshed instances.    *     *<p>    *<b>Threads</b>: unlike {@link #maybeRefresh()}, if another thread is    * currently refreshing, this method blocks until that thread completes. It is    * useful if you want to guarantee that the next call to {@link #acquire()}    * will return a refreshed instance. Otherwise, consider using the    * non-blocking {@link #maybeRefresh()}.    */
+DECL|method|maybeRefreshBlocking
+specifier|public
+specifier|final
+name|void
+name|maybeRefreshBlocking
+parameter_list|()
+throws|throws
+name|IOException
+throws|,
+name|InterruptedException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+comment|// Ensure only 1 thread does reopen at once
+name|refreshLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
+name|doMaybeRefresh
+argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|refreshLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/** Called after swapReference has installed a new    *  instance. */
 DECL|method|afterRefresh
