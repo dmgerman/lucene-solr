@@ -48,6 +48,10 @@ name|List
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstraction for loading resources (streams, files, and classes).  */
+end_comment
+
 begin_interface
 DECL|interface|ResourceLoader
 specifier|public

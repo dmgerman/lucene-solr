@@ -434,17 +434,21 @@ name|Mode
 operator|.
 name|SEARCH
 decl_stmt|;
+comment|/**    * Token type reflecting the original source of this token    */
 DECL|enum|Type
 specifier|public
 enum|enum
 name|Type
 block|{
+comment|/**      * Known words from the system dictionary.      */
 DECL|enum constant|KNOWN
 name|KNOWN
 block|,
+comment|/**      * Unknown words (heuristically segmented).      */
 DECL|enum constant|UNKNOWN
 name|UNKNOWN
 block|,
+comment|/**      * Known words from the user dictionary.      */
 DECL|enum constant|USER
 name|USER
 block|}

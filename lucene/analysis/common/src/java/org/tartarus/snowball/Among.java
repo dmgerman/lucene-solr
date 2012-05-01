@@ -26,6 +26,10 @@ name|Method
 import|;
 end_import
 
+begin_comment
+comment|/**  * This is the rev 502 of the Snowball SVN trunk,  * but modified:  * made abstract and introduced abstract method stem to avoid expensive reflection in filter class.  * refactored StringBuffers to StringBuilder  * uses char[] as buffer instead of StringBuffer/StringBuilder  * eq_s,eq_s_b,insert,replace_s take CharSequence like eq_v and eq_v_b  * reflection calls (Lovins, etc) use EMPTY_ARGS/EMPTY_PARAMS  */
+end_comment
+
 begin_class
 DECL|class|Among
 specifier|public
