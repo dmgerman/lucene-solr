@@ -1089,7 +1089,7 @@ block|}
 block|}
 comment|// for debugging
 comment|/*   private String toString(BytesRef b) {     try {       return b.utf8ToString() + " " + b;     } catch (Throwable t) {       return b.toString();     }   }   */
-comment|/** It's OK to add the same input twice in a row with    *  different outputs, as long as outputs impls the merge    *  method. */
+comment|/** It's OK to add the same input twice in a row with    *  different outputs, as long as outputs impls the merge    *  method. Note that input is fully consumed after this    *  method is returned (so caller is free to reuse), but    *  output is not.  So if your outputs are changeable (eg    *  {@link ByteSequenceOutputs} or {@link    *  IntSequenceOutputs}) then you cannot reuse across    *  calls. */
 DECL|method|add
 specifier|public
 name|void
