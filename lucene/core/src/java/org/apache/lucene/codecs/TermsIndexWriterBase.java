@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** @lucene.experimental */
+comment|/**   * Base class for terms index implementations to plug  * into {@link BlockTermsWriter}.  *   * @see TermsIndexReaderBase  * @lucene.experimental   */
 end_comment
 
 begin_class
@@ -77,6 +77,7 @@ name|TermsIndexWriterBase
 implements|implements
 name|Closeable
 block|{
+comment|/**    * Terms index API for a single field.    */
 DECL|class|FieldWriter
 specifier|public
 specifier|abstract

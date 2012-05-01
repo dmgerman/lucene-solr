@@ -426,6 +426,10 @@ name|Version
 import|;
 end_import
 
+begin_comment
+comment|/**  * Example servlet that uses the XML queryparser.  *<p>  * NOTE: you must provide CSV data in<code>/WEB-INF/data.tsv</code>  * for the demo to work!  */
+end_comment
+
 begin_class
 DECL|class|FormBasedXmlQueryDemo
 specifier|public

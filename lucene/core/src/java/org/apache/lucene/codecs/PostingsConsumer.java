@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Abstract API that consumes postings for an individual term.  *<p>  * The lifecycle is:  *<ol>  *<li>PostingsConsumer is returned for each term by  *        {@link TermsConsumer#startTerm(BytesRef)}.   *<li>{@link #startDoc(int, int)} is called for each  *        document where the term occurs, specifying id   *        and term frequency for that document.  *<li>If positions are enabled for the field, then  *        {@link #addPosition(int, BytesRef, int, int)}  *        will be called for each occurrence in the   *        document.  *<li>{@link #finishDoc()} is called when the producer  *        is done adding positions to the document.  *</ol>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -148,31 +148,11 @@ name|int
 name|docID
 parameter_list|,
 name|int
-name|termDocFreq
+name|freq
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-DECL|class|PostingsMergeState
-specifier|public
-specifier|static
-class|class
-name|PostingsMergeState
-block|{
-DECL|field|docsEnum
-name|DocsEnum
-name|docsEnum
-decl_stmt|;
-DECL|field|docMap
-name|int
-index|[]
-name|docMap
-decl_stmt|;
-DECL|field|docBase
-name|int
-name|docBase
-decl_stmt|;
-block|}
 comment|/** Add a new position& payload, and start/end offset.  A    *  null payload means no payload; a non-null payload with    *  zero length also means no payload.  Caller may reuse    *  the {@link BytesRef} for the payload between calls    *  (method must fully consume the payload). */
 DECL|method|addPosition
 specifier|public

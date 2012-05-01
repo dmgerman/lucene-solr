@@ -204,7 +204,6 @@ argument_list|)
 return|;
 block|}
 DECL|class|WindowsIndexInput
-specifier|protected
 specifier|static
 class|class
 name|WindowsIndexInput

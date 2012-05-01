@@ -30,6 +30,10 @@ name|*
 import|;
 end_import
 
+begin_comment
+comment|/**  * Ternary Search Trie implementation.  *   * @see TernaryTreeNode  */
+end_comment
+
 begin_class
 DECL|class|TSTAutocomplete
 specifier|public

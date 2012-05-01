@@ -194,6 +194,10 @@ name|UnicodeUtil
 import|;
 end_import
 
+begin_comment
+comment|/**  * Suggest implementation based on a   *<a href="http://en.wikipedia.org/wiki/Ternary_search_tree">Ternary Search Tree</a>  *   * @see TSTAutocomplete  */
+end_comment
+
 begin_class
 DECL|class|TSTLookup
 specifier|public

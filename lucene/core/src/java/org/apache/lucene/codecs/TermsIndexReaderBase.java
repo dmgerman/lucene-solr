@@ -81,7 +81,7 @@ comment|//     frequent indexing
 end_comment
 
 begin_comment
-comment|/**  * TermsDictReader interacts with an instance of this class  * to manage its terms index.  The writer must accept  * indexed terms (many pairs of CharSequence text + long  * fileOffset), and then this reader must be able to  * retrieve the nearest index term to a provided term  * text.   * @lucene.experimental */
+comment|/**  * {@link BlockTermsReader} interacts with an instance of this class  * to manage its terms index.  The writer must accept  * indexed terms (many pairs of BytesRef text + long  * fileOffset), and then this reader must be able to  * retrieve the nearest index term to a provided term  * text.   * @lucene.experimental */
 end_comment
 
 begin_class
@@ -126,9 +126,7 @@ name|int
 name|getDivisor
 parameter_list|()
 function_decl|;
-comment|// Similar to TermsEnum, except, the only "metadata" it
-comment|// reports for a given indexed term is the long fileOffset
-comment|// into the main terms dict (_X.tis) file:
+comment|/**     * Similar to TermsEnum, except, the only "metadata" it    * reports for a given indexed term is the long fileOffset    * into the main terms dictionary file:    */
 DECL|class|FieldIndexEnum
 specifier|public
 specifier|static
@@ -136,7 +134,7 @@ specifier|abstract
 class|class
 name|FieldIndexEnum
 block|{
-comment|/** Seeks to "largest" indexed term that's<=      *  term; retruns file pointer index (into the main      *  terms index file) for that term */
+comment|/** Seeks to "largest" indexed term that's<=      *  term; returns file pointer index (into the main      *  terms index file) for that term */
 DECL|method|seek
 specifier|public
 specifier|abstract
@@ -166,7 +164,7 @@ name|BytesRef
 name|term
 parameter_list|()
 function_decl|;
-comment|// Only impl'd if supportsOrd() returns true!
+comment|/** Only implemented if {@link TermsIndexReaderBase#supportsOrd()} returns true. */
 DECL|method|seek
 specifier|public
 specifier|abstract
@@ -179,6 +177,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Only implemented if {@link TermsIndexReaderBase#supportsOrd()} returns true. */
 DECL|method|ord
 specifier|public
 specifier|abstract

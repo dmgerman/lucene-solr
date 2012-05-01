@@ -243,6 +243,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Interface for variable-size block decoders.    *<p>    * Implementations should decode into the buffer in {@link #readBlock}.    */
 DECL|interface|BlockReader
 specifier|public
 interface|interface

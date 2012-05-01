@@ -47,6 +47,24 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|FieldInfo
 operator|.
 name|IndexOptions
 import|;
@@ -137,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Abstract API that consumes terms for an individual field.  *<p>  * The lifecycle is:  *<ol>  *<li>TermsConsumer is returned for each field   *       by {@link FieldsConsumer#addField(FieldInfo)}.  *<li>TermsConsumer returns a {@link PostingsConsumer} for  *       each term in {@link #startTerm(BytesRef)}.  *<li>When the producer (e.g. IndexWriter)  *       is done adding documents for the term, it calls   *       {@link #finishTerm(BytesRef, TermStats)}, passing in  *       the accumulated term statistics.  *<li>Producer calls {@link #finish(long, long, int)} with  *       the accumulated collection statistics when it is finished  *       adding terms to the field.  *</ol>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -208,7 +226,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Default merge impl */
 DECL|field|docsEnum
 specifier|private
 name|MappingMultiDocsEnum
@@ -224,6 +241,7 @@ specifier|private
 name|MappingMultiDocsAndPositionsEnum
 name|postingsEnum
 decl_stmt|;
+comment|/** Default merge impl */
 DECL|method|merge
 specifier|public
 name|void

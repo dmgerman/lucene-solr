@@ -46,6 +46,10 @@ name|ByteBuffer
 import|;
 end_import
 
+begin_comment
+comment|/**  * Provides JNI access to native methods such as madvise() for  * {@link NativeUnixDirectory}  */
+end_comment
+
 begin_class
 DECL|class|NativePosixUtil
 specifier|public

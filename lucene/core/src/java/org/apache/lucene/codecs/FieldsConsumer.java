@@ -102,12 +102,30 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|SegmentWriteState
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Terms
 import|;
 end_import
 
 begin_comment
-comment|/** Abstract API that consumes terms, doc, freq, prox, offset and  *  payloads postings.  Concrete implementations of this  *  actually do "something" with the postings (write it into  *  the index in a specific format).  *  * @lucene.experimental  */
+comment|/**   * Abstract API that consumes terms, doc, freq, prox, offset and  * payloads postings.  Concrete implementations of this  * actually do "something" with the postings (write it into  * the index in a specific format).  *<p>  * The lifecycle is:  *<ol>  *<li>FieldsConsumer is created by   *       {@link PostingsFormat#fieldsConsumer(SegmentWriteState)}.  *<li>For each field, {@link #addField(FieldInfo)} is called,  *       returning a {@link TermsConsumer} for the field.  *<li>After all fields are added, the consumer is {@link #close}d.  *</ol>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
