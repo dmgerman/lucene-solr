@@ -557,17 +557,6 @@ name|IOException
 block|{
 if|if
 condition|(
-name|termInstances
-operator|==
-literal|0
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-if|if
-condition|(
 name|indexedTermsArray
 operator|==
 literal|null
@@ -1909,6 +1898,7 @@ name|maxDoc
 condition|)
 break|break;
 block|}
+block|}
 if|if
 condition|(
 name|indexedTerms
@@ -1932,7 +1922,6 @@ argument_list|()
 index|]
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|long
 name|endTime
