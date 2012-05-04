@@ -11302,6 +11302,10 @@ name|termExists
 operator|=
 literal|true
 expr_stmt|;
+name|subCode
+operator|=
+literal|0
+expr_stmt|;
 name|state
 operator|.
 name|termBlockOrd
@@ -11318,14 +11322,18 @@ name|termExists
 operator|=
 literal|false
 expr_stmt|;
-name|lastSubFP
+name|subCode
 operator|=
-name|fp
-operator|-
 name|suffixesReader
 operator|.
 name|readVLong
 argument_list|()
+expr_stmt|;
+name|lastSubFP
+operator|=
+name|fp
+operator|-
+name|subCode
 expr_stmt|;
 comment|//if (DEBUG) {
 comment|//System.out.println("    lastSubFP=" + lastSubFP);
