@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * @deprecated This interface has ben kept for backwards compatibility and will  * be removed in (5.0). Use {@link org.apache.lucene.analysis.util.ResourceLoader}  */
+comment|/**  * @deprecated This interface has been kept for backwards compatibility and will  * be removed in (5.0). Use {@link org.apache.lucene.analysis.util.ResourceLoader}  */
 end_comment
 
 begin_interface
