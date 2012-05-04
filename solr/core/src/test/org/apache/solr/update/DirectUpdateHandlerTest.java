@@ -401,6 +401,30 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assertNull
+argument_list|(
+literal|"This test requires a schema that has no version field, "
+operator|+
+literal|"it appears the schema file in use has been edited to violate "
+operator|+
+literal|"this requirement"
+argument_list|,
+name|h
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getSchema
+argument_list|()
+operator|.
+name|getFieldOrNull
+argument_list|(
+name|VersionInfo
+operator|.
+name|VERSION_FIELD
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|assertU
 argument_list|(
 name|adoc
@@ -411,18 +435,36 @@ literal|"5"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// search - not committed - "5" should not be found.
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"6"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// search - not committed - docs should not be found.
 name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"qt"
-argument_list|,
-literal|"standard"
-argument_list|,
 literal|"q"
 argument_list|,
 literal|"id:5"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='0']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:6"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='0']"
@@ -434,7 +476,7 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// now it should be there
+comment|// now they should be there
 name|assertQ
 argument_list|(
 name|req
@@ -447,7 +489,19 @@ argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|)
 expr_stmt|;
-comment|// now delete it
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:6"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// now delete one
 name|assertU
 argument_list|(
 name|delI
@@ -475,7 +529,7 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// should be gone
+comment|// 5 should be gone
 name|assertQ
 argument_list|(
 name|req
@@ -483,6 +537,59 @@ argument_list|(
 literal|"q"
 argument_list|,
 literal|"id:5"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='0']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:6"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// now delete all
+name|assertU
+argument_list|(
+name|delQ
+argument_list|(
+literal|"*:*"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// not committed yet
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:6"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// 6 should be gone
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:6"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='0']"
