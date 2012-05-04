@@ -460,6 +460,64 @@ comment|// fixed length payload
 break|break;
 block|}
 block|}
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+if|if
+condition|(
+name|val
+operator|==
+name|Integer
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"MockAnalyzer: field="
+operator|+
+name|fieldName
+operator|+
+literal|" gets variable length payloads"
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|val
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"MockAnalyzer: field="
+operator|+
+name|fieldName
+operator|+
+literal|" gets fixed length="
+operator|+
+name|val
+operator|+
+literal|" payloads"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 name|previousMappings
 operator|.
 name|put
