@@ -2181,9 +2181,12 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|te
+name|dto
+operator|.
+name|numTerms
+argument_list|()
 operator|==
-literal|null
+literal|0
 condition|)
 block|{
 if|if
