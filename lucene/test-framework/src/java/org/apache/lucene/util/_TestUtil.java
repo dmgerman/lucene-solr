@@ -4843,6 +4843,28 @@ name|PostingsFormat
 name|format
 parameter_list|)
 block|{
+comment|// TODO: we really need for postings impls etc to announce themselves
+comment|// (and maybe their params, too) to infostream on flush and merge.
+comment|// otherwise in a real debugging situation we won't know whats going on!
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"forcing postings format to:"
+operator|+
+name|format
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 operator|new
 name|Lucene40Codec
