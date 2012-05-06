@@ -112,6 +112,26 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|PayloadProcessorProvider
+operator|.
+name|ReaderPayloadProcessor
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SegmentReader
 import|;
 end_import
@@ -349,6 +369,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**    * {@link ReaderPayloadProcessor} that processes     * facet ordinals according to the passed in {@link FacetIndexingParams}.    */
 DECL|class|FacetsDirPayloadProcessor
 specifier|public
 specifier|static

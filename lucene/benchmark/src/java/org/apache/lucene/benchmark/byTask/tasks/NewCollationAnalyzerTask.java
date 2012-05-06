@@ -120,6 +120,7 @@ name|NewCollationAnalyzerTask
 extends|extends
 name|PerfTask
 block|{
+comment|/**    * Different Collation implementations: currently     * limited to what is provided in the JDK and ICU.    *     * @see<a href="http://site.icu-project.org/charts/collation-icu4j-sun">    *      Comparison of implementations</a>    */
 DECL|enum|Implementation
 specifier|public
 enum|enum

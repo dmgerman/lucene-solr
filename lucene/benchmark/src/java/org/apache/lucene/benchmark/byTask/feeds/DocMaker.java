@@ -353,6 +353,7 @@ specifier|private
 name|int
 name|updateDocIDLimit
 decl_stmt|;
+comment|/**    * Document state, supports reuse of field instances    * across documents (see<code>reuseFields</code> parameter).    */
 DECL|class|DocState
 specifier|protected
 specifier|static

@@ -68,6 +68,7 @@ name|LruTaxonomyWriterCache
 implements|implements
 name|TaxonomyWriterCache
 block|{
+comment|/**    * Determines cache type.    * For guaranteed correctness - not relying on no-collisions in the hash    * function, LRU_STRING should be used.    */
 DECL|enum|LRUType
 DECL|enum constant|LRU_HASHED
 DECL|enum constant|LRU_STRING

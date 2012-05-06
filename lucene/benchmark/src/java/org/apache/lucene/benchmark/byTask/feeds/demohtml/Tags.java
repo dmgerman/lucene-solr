@@ -28,16 +28,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashSet
 import|;
 end_import
@@ -51,6 +41,10 @@ operator|.
 name|Set
 import|;
 end_import
+
+begin_comment
+comment|/**  * Utility class storing set of commonly-used html tags.  */
+end_comment
 
 begin_class
 DECL|class|Tags
@@ -69,21 +63,18 @@ argument_list|<
 name|String
 argument_list|>
 name|WS_ELEMS
-init|=
-name|Collections
-operator|.
-name|synchronizedSet
-argument_list|(
+decl_stmt|;
+static|static
+block|{
+name|WS_ELEMS
+operator|=
 operator|new
 name|HashSet
 argument_list|<
 name|String
 argument_list|>
 argument_list|()
-argument_list|)
-decl_stmt|;
-static|static
-block|{
+expr_stmt|;
 name|WS_ELEMS
 operator|.
 name|add

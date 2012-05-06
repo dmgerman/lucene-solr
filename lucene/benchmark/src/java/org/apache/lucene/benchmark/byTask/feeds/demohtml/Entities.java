@@ -42,6 +42,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * Utility class for encoding and decoding HTML entities.  */
+end_comment
+
 begin_class
 DECL|class|Entities
 specifier|public
