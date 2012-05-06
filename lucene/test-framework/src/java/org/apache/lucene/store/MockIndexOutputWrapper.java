@@ -286,6 +286,25 @@ name|realUsage
 init|=
 literal|0
 decl_stmt|;
+if|if
+condition|(
+name|dir
+operator|.
+name|rateLimiter
+operator|!=
+literal|null
+condition|)
+block|{
+name|dir
+operator|.
+name|rateLimiter
+operator|.
+name|pause
+argument_list|(
+name|len
+argument_list|)
+expr_stmt|;
+block|}
 comment|// If MockRAMDir crashed since we were opened, then
 comment|// don't write anything:
 if|if
