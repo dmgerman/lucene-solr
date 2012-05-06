@@ -122,6 +122,14 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// note: this order is important!
+name|setMergeFactor
+argument_list|(
+name|params
+operator|.
+name|_mergeFactor
+argument_list|)
+expr_stmt|;
 name|setPartialExpunge
 argument_list|(
 name|params
@@ -148,13 +156,6 @@ argument_list|(
 name|params
 operator|.
 name|_doPartialExpunge
-argument_list|)
-expr_stmt|;
-name|setMergeFactor
-argument_list|(
-name|params
-operator|.
-name|_mergeFactor
 argument_list|)
 expr_stmt|;
 name|setUseCompoundFile
