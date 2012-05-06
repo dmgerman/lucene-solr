@@ -440,13 +440,15 @@ decl_stmt|;
 if|if
 condition|(
 name|currentFieldStoresPayloads
+operator|||
+name|currentFieldStoresOffsets
 condition|)
 block|{
-comment|// the current field stores payloads.
+comment|// the current field stores payloads and/or offsets.
 comment|// if the doc delta is odd then we have
-comment|// to read the current payload length
-comment|// because it differs from the length of the
-comment|// previous payload
+comment|// to read the current payload/offset lengths
+comment|// because it differs from the lengths of the
+comment|// previous payload/offset
 name|delta
 operator|=
 name|skipStream
@@ -465,25 +467,15 @@ operator|!=
 literal|0
 condition|)
 block|{
+if|if
+condition|(
+name|currentFieldStoresPayloads
+condition|)
+block|{
 name|payloadLength
 index|[
 name|level
 index|]
-operator|=
-name|skipStream
-operator|.
-name|readVInt
-argument_list|()
-expr_stmt|;
-block|}
-name|delta
-operator|>>>=
-literal|1
-expr_stmt|;
-block|}
-else|else
-block|{
-name|delta
 operator|=
 name|skipStream
 operator|.
@@ -500,6 +492,22 @@ name|offsetLength
 index|[
 name|level
 index|]
+operator|=
+name|skipStream
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+name|delta
+operator|>>>=
+literal|1
+expr_stmt|;
+block|}
+else|else
+block|{
+name|delta
 operator|=
 name|skipStream
 operator|.

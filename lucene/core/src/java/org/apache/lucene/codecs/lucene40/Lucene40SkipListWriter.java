@@ -90,6 +90,12 @@ name|int
 index|[]
 name|lastSkipPayloadLength
 decl_stmt|;
+DECL|field|lastSkipOffsetLength
+specifier|private
+name|int
+index|[]
+name|lastSkipOffsetLength
+decl_stmt|;
 DECL|field|lastSkipFreqPointer
 specifier|private
 name|long
@@ -204,6 +210,14 @@ index|[
 name|numberOfSkipLevels
 index|]
 expr_stmt|;
+name|lastSkipOffsetLength
+operator|=
+operator|new
+name|int
+index|[
+name|numberOfSkipLevels
+index|]
+expr_stmt|;
 name|lastSkipFreqPointer
 operator|=
 operator|new
@@ -243,6 +257,22 @@ name|int
 name|offsetLength
 parameter_list|)
 block|{
+assert|assert
+name|storePayloads
+operator|||
+name|payloadLength
+operator|==
+operator|-
+literal|1
+assert|;
+assert|assert
+name|storeOffsets
+operator|||
+name|offsetLength
+operator|==
+operator|-
+literal|1
+assert|;
 name|this
 operator|.
 name|curDoc
@@ -335,6 +365,17 @@ name|Arrays
 operator|.
 name|fill
 argument_list|(
+name|lastSkipOffsetLength
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+comment|// we don't have to write the first length in the skip list
+name|Arrays
+operator|.
+name|fill
+argument_list|(
 name|lastSkipFreqPointer
 argument_list|,
 name|freqOutput
@@ -378,31 +419,26 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// To efficiently store payloads in the posting lists we do not store the length of
-comment|// every payload. Instead we omit the length for a payload if the previous payload had
-comment|// the same length.
-comment|// However, in order to support skipping the payload length at every skip point must be known.
+comment|// To efficiently store payloads/offsets in the posting lists we do not store the length of
+comment|// every payload/offset. Instead we omit the length if the previous lengths were the same
+comment|//
+comment|// However, in order to support skipping, the length at every skip point must be known.
 comment|// So we use the same length encoding that we use for the posting lists for the skip data as well:
-comment|// Case 1: current field does not store payloads
+comment|// Case 1: current field does not store payloads/offsets
 comment|//           SkipDatum                 --> DocSkip, FreqSkip, ProxSkip
 comment|//           DocSkip,FreqSkip,ProxSkip --> VInt
 comment|//           DocSkip records the document number before every SkipInterval th  document in TermFreqs.
 comment|//           Document numbers are represented as differences from the previous value in the sequence.
-comment|// Case 2: current field stores payloads
-comment|//           SkipDatum                 --> DocSkip, PayloadLength?, FreqSkip,ProxSkip
+comment|// Case 2: current field stores payloads/offsets
+comment|//           SkipDatum                 --> DocSkip, PayloadLength?,OffsetLength?,FreqSkip,ProxSkip
 comment|//           DocSkip,FreqSkip,ProxSkip --> VInt
-comment|//           PayloadLength             --> VInt
+comment|//           PayloadLength,OffsetLength--> VInt
 comment|//         In this case DocSkip/2 is the difference between
 comment|//         the current and the previous value. If DocSkip
 comment|//         is odd, then a PayloadLength encoded as VInt follows,
 comment|//         if DocSkip is even, then it is assumed that the
-comment|//         current payload length equals the length at the previous
+comment|//         current payload/offset lengths equals the lengths at the previous
 comment|//         skip point
-if|if
-condition|(
-name|curStorePayloads
-condition|)
-block|{
 name|int
 name|delta
 init|=
@@ -415,41 +451,80 @@ index|]
 decl_stmt|;
 if|if
 condition|(
+name|curStorePayloads
+operator|||
+name|curStoreOffsets
+condition|)
+block|{
+assert|assert
+name|curStorePayloads
+operator|||
 name|curPayloadLength
 operator|==
 name|lastSkipPayloadLength
 index|[
 name|level
 index|]
+assert|;
+assert|assert
+name|curStoreOffsets
+operator|||
+name|curOffsetLength
+operator|==
+name|lastSkipOffsetLength
+index|[
+name|level
+index|]
+assert|;
+if|if
+condition|(
+name|curPayloadLength
+operator|==
+name|lastSkipPayloadLength
+index|[
+name|level
+index|]
+operator|&&
+name|curOffsetLength
+operator|==
+name|lastSkipOffsetLength
+index|[
+name|level
+index|]
 condition|)
 block|{
-comment|// the current payload length equals the length at the previous skip point,
-comment|// so we don't store the length again
+comment|// the current payload/offset lengths equals the lengths at the previous skip point,
+comment|// so we don't store the lengths again
 name|skipBuffer
 operator|.
 name|writeVInt
 argument_list|(
 name|delta
-operator|*
-literal|2
+operator|<<
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
-comment|// the payload length is different from the previous one. We shift the DocSkip,
-comment|// set the lowest bit and store the current payload length as VInt.
+comment|// the payload and/or offset length is different from the previous one. We shift the DocSkip,
+comment|// set the lowest bit and store the current payload and/or offset lengths as VInts.
 name|skipBuffer
 operator|.
 name|writeVInt
 argument_list|(
 name|delta
-operator|*
-literal|2
-operator|+
+operator|<<
+literal|1
+operator||
 literal|1
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|curStorePayloads
+condition|)
+block|{
 name|skipBuffer
 operator|.
 name|writeVInt
@@ -465,24 +540,6 @@ operator|=
 name|curPayloadLength
 expr_stmt|;
 block|}
-block|}
-else|else
-block|{
-comment|// current field does not store payloads
-name|skipBuffer
-operator|.
-name|writeVInt
-argument_list|(
-name|curDoc
-operator|-
-name|lastSkipDoc
-index|[
-name|level
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-comment|// TODO: not sure it really helps to shove this somewhere else if its the same as the last skip
 if|if
 condition|(
 name|curStoreOffsets
@@ -493,6 +550,26 @@ operator|.
 name|writeVInt
 argument_list|(
 name|curOffsetLength
+argument_list|)
+expr_stmt|;
+name|lastSkipOffsetLength
+index|[
+name|level
+index|]
+operator|=
+name|curOffsetLength
+expr_stmt|;
+block|}
+block|}
+block|}
+else|else
+block|{
+comment|// current field does not store payloads or offsets
+name|skipBuffer
+operator|.
+name|writeVInt
+argument_list|(
+name|delta
 argument_list|)
 expr_stmt|;
 block|}

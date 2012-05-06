@@ -646,6 +646,7 @@ operator|.
 name|getFilePointer
 argument_list|()
 expr_stmt|;
+block|}
 comment|// force first payload to write its length
 name|lastPayloadLength
 operator|=
@@ -658,7 +659,6 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
-block|}
 name|skipListWriter
 operator|.
 name|resetSkip
