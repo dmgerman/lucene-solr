@@ -1086,11 +1086,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|FuzzyTermsEnum
+name|SlowFuzzyTermsEnum
 name|fe
 init|=
 operator|new
-name|FuzzyTermsEnum
+name|SlowFuzzyTermsEnum
 argument_list|(
 name|MultiFields
 operator|.
@@ -1115,8 +1115,6 @@ argument_list|,
 name|f
 operator|.
 name|prefixLength
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 comment|//store the df so all variants use same idf

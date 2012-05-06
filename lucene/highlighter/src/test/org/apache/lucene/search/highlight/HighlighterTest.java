@@ -4679,7 +4679,7 @@ argument_list|,
 literal|"kinnedy"
 argument_list|)
 argument_list|,
-literal|0.5f
+literal|2
 argument_list|)
 decl_stmt|;
 name|fuzzyQuery
@@ -4723,7 +4723,7 @@ literal|" found"
 argument_list|,
 name|numHighlights
 operator|==
-literal|5
+literal|4
 argument_list|)
 expr_stmt|;
 block|}

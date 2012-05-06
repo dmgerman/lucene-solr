@@ -271,11 +271,11 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"ubersetzung ubersetzung~0.9"
+literal|"ubersetzung ubersetzung~1"
 block|,
-literal|"motley crue motley~0.75 crue~0.5"
+literal|"motley crue motley~1 crue~2"
 block|,
-literal|"renee zellweger renee~0.9 zellweger~2.0"
+literal|"renee zellweger renee~0 zellweger~2"
 block|}
 expr_stmt|;
 name|a
