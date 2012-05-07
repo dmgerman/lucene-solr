@@ -40,20 +40,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|FieldComparator
@@ -71,20 +57,6 @@ operator|.
 name|search
 operator|.
 name|FieldComparatorSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Scorer
 import|;
 end_import
 
@@ -118,35 +90,11 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
 operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
 import|;
 end_import
 
@@ -180,8 +128,6 @@ specifier|public
 specifier|abstract
 class|class
 name|ValueSource
-implements|implements
-name|Serializable
 block|{
 comment|/**    * Gets the values for this reader and the context that was previously    * passed to createWeight()    */
 DECL|method|getValues

@@ -334,16 +334,6 @@ name|TooManyClauses
 argument_list|()
 throw|;
 block|}
-comment|// Make sure we are still a singleton even after deserializing
-specifier|protected
-name|Object
-name|readResolve
-parameter_list|()
-block|{
-return|return
-name|SCORING_BOOLEAN_QUERY_REWRITE
-return|;
-block|}
 block|}
 decl_stmt|;
 comment|/** Like {@link #SCORING_BOOLEAN_QUERY_REWRITE} except    *  scores are not computed.  Instead, each matching    *  document receives a constant score equal to the    *  query's boost.    *     *<p><b>NOTE</b>: This rewrite method will hit {@link    *  BooleanQuery.TooManyClauses} if the number of terms    *  exceeds {@link BooleanQuery#getMaxClauseCount}.    *    *  @see MultiTermQuery#setRewriteMethod */
@@ -423,16 +413,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|result
-return|;
-block|}
-comment|// Make sure we are still a singleton even after deserializing
-specifier|protected
-name|Object
-name|readResolve
-parameter_list|()
-block|{
-return|return
-name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
 return|;
 block|}
 block|}

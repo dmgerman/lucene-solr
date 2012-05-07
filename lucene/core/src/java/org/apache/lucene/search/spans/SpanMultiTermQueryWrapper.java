@@ -732,16 +732,6 @@ name|query
 argument_list|)
 return|;
 block|}
-comment|// Make sure we are still a singleton even after deserializing
-specifier|protected
-name|Object
-name|readResolve
-parameter_list|()
-block|{
-return|return
-name|SCORING_SPAN_QUERY_REWRITE
-return|;
-block|}
 block|}
 decl_stmt|;
 comment|/**    * A rewrite method that first translates each term into a SpanTermQuery in a    * {@link Occur#SHOULD} clause in a BooleanQuery, and keeps the    * scores as computed by the query.    *     *<p>    * This rewrite method only uses the top scoring terms so it will not overflow    * the boolean max clause count.    *     * @see #setRewriteMethod    */
