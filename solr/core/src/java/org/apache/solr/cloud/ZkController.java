@@ -4496,17 +4496,30 @@ argument_list|(
 literal|"Looking for collection configName"
 argument_list|)
 expr_stmt|;
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|configNames
+init|=
+literal|null
+decl_stmt|;
 name|int
 name|retry
 init|=
 literal|1
+decl_stmt|;
+name|int
+name|retryLimt
+init|=
+literal|6
 decl_stmt|;
 for|for
 control|(
 init|;
 name|retry
 operator|<
-literal|6
+name|retryLimt
 condition|;
 name|retry
 operator|++
@@ -4558,14 +4571,6 @@ block|{
 break|break;
 block|}
 block|}
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|configNames
-init|=
-literal|null
-decl_stmt|;
 comment|// if there is only one conf, use that
 try|try
 block|{
@@ -4657,7 +4662,7 @@ if|if
 condition|(
 name|retry
 operator|==
-literal|10
+name|retryLimt
 condition|)
 block|{
 name|log
@@ -4682,6 +4687,10 @@ argument_list|,
 literal|"Could not find configName for collection "
 operator|+
 name|collection
+operator|+
+literal|" found:"
+operator|+
+name|configNames
 argument_list|)
 throw|;
 block|}
