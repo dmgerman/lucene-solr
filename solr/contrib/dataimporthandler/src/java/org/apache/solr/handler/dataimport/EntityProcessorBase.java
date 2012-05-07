@@ -192,14 +192,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|rowIterator
-operator|=
-literal|null
-expr_stmt|;
-name|query
-operator|=
-literal|null
-expr_stmt|;
 name|cacheSupport
 operator|.
 name|initNewParent
