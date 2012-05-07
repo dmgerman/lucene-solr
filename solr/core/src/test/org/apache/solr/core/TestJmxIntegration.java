@@ -521,12 +521,8 @@ expr_stmt|;
 name|int
 name|oldNumDocs
 init|=
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 operator|(
-name|String
+name|Integer
 operator|)
 name|mbeanServer
 operator|.
@@ -535,7 +531,6 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|"numDocs"
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertU
@@ -559,12 +554,8 @@ expr_stmt|;
 name|int
 name|numDocs
 init|=
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 operator|(
-name|String
+name|Integer
 operator|)
 name|mbeanServer
 operator|.
@@ -573,7 +564,6 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|"numDocs"
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertTrue
