@@ -223,7 +223,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Lucene 4.0 FieldInfos reader.  *   * @lucene.experimental  * @see Lucene40FieldInfosFormat  */
 end_comment
 
 begin_class

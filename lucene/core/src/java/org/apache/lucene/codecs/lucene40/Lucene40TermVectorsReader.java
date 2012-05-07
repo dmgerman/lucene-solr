@@ -358,6 +358,10 @@ name|IOUtils
 import|;
 end_import
 
+begin_comment
+comment|/**  * Lucene 4.0 Term Vectors reader.  *<p>  * It reads .tvd, .tvf, and .tvx files.  *   * @see Lucene40TermVectorsFormat  */
+end_comment
+
 begin_class
 DECL|class|Lucene40TermVectorsReader
 specifier|public

@@ -208,8 +208,26 @@ name|SegmentReadState
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|CompoundFileDirectory
+import|;
+end_import
+
 begin_comment
-comment|/**  * Norms Format for the default codec.   * @lucene.experimental  */
+comment|// javadocs
+end_comment
+
+begin_comment
+comment|/**  * Lucene 4.0 Norms Format.  *<p>  * Files:  *<ul>  *<li><tt>.nrm.cfs</tt>: {@link CompoundFileDirectory compound container}</li>  *<li><tt>.nrm.cfe</tt>: {@link CompoundFileDirectory compound entries}</li>  *</ul>  * Norms are implemented as DocValues, so other than file extension, norms are   * written exactly the same way as {@link Lucene40DocValuesFormat DocValues}.  *   * @see Lucene40DocValuesFormat  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -304,6 +322,7 @@ name|files
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Lucene 4.0 PerDocProducer implementation that uses compound file.    *     * @see Lucene40DocValuesFormat    */
 DECL|class|Lucene40NormsDocValuesProducer
 specifier|public
 specifier|static
@@ -388,6 +407,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/**    * Lucene 4.0 PerDocConsumer implementation that uses compound file.    *     * @see Lucene40DocValuesFormat    * @lucene.experimental    */
 DECL|class|Lucene40NormsDocValuesConsumer
 specifier|public
 specifier|static

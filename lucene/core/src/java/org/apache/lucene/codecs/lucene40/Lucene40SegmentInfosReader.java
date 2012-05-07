@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default implementation of {@link SegmentInfosReader}.  * @lucene.experimental  */
+comment|/**  * Lucene 4.0 implementation of {@link SegmentInfosReader}.  *   * @see Lucene40SegmentInfosFormat  * @lucene.experimental  */
 end_comment
 
 begin_class

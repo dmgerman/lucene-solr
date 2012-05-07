@@ -18,6 +18,10 @@ name|mutable
 package|;
 end_package
 
+begin_comment
+comment|/**  * {@link MutableValue} implementation of type   *<code>double</code>.  */
+end_comment
+
 begin_class
 DECL|class|MutableValueDouble
 specifier|public

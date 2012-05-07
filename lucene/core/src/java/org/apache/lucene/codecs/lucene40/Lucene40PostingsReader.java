@@ -279,7 +279,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Concrete class that reads the current doc/freq/skip  *  postings format.   *  @lucene.experimental */
+comment|/**   * Concrete class that reads the 4.0 frq/prox  * postings format.   *    *  @see Lucene40PostingsFormat  *  @lucene.experimental */
 end_comment
 
 begin_class

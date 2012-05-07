@@ -269,7 +269,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** @lucene.experimental */
+comment|/**   * Class responsible for writing stored document fields.  *<p/>  * It uses&lt;segment&gt;.fdt and&lt;segment&gt;.fdx; files.  *   * @see Lucene40StoredFieldsFormat  * @lucene.experimental   */
 end_comment
 
 begin_class

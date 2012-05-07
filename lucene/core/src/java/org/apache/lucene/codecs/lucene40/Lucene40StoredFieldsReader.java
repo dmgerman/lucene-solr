@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class responsible for access to stored document fields.  *<p/>  * It uses&lt;segment&gt;.fdt and&lt;segment&gt;.fdx; files.  *   * @lucene.internal  */
+comment|/**  * Class responsible for access to stored document fields.  *<p/>  * It uses&lt;segment&gt;.fdt and&lt;segment&gt;.fdx; files.  *   * @see Lucene40StoredFieldsFormat  * @lucene.internal  */
 end_comment
 
 begin_class

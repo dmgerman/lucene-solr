@@ -1092,7 +1092,7 @@ comment|/**      * A fixed length straight byte[]. All values added to      * su
 DECL|enum constant|BYTES_FIXED_STRAIGHT
 name|BYTES_FIXED_STRAIGHT
 block|,
-comment|/**      * A fixed length dereferenced byte[] variant. Fields with      * this type only store distinct byte values and store an additional offset      * pointer per document to dereference the shared byte[].      * Use this type if your documents may share the same byte[].      *<p>      * NOTE: Fields of this type will not store values for documents without and      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference. Custom default values must be assigned explicitly.      *</p>      */
+comment|/**      * A fixed length dereferenced byte[] variant. Fields with      * this type only store distinct byte values and store an additional offset      * pointer per document to dereference the shared byte[].      * Use this type if your documents may share the same byte[].      *<p>      * NOTE: Fields of this type will not store values for documents without an      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference. Custom default values must be assigned explicitly.      *</p>      */
 DECL|enum constant|BYTES_FIXED_DEREF
 name|BYTES_FIXED_DEREF
 block|,
@@ -1100,15 +1100,15 @@ comment|/**      * Variable length straight stored byte[] variant. All bytes are
 DECL|enum constant|BYTES_VAR_STRAIGHT
 name|BYTES_VAR_STRAIGHT
 block|,
-comment|/**      * A variable length dereferenced byte[]. Just like      * {@link #BYTES_FIXED_DEREF}, but allowing each      * document's value to be a different length.      *<p>      * NOTE: Fields of this type will not store values for documents without and      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference. Custom default values must be assigned explicitly.      *</p>      */
+comment|/**      * A variable length dereferenced byte[]. Just like      * {@link #BYTES_FIXED_DEREF}, but allowing each      * document's value to be a different length.      *<p>      * NOTE: Fields of this type will not store values for documents without an      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference. Custom default values must be assigned explicitly.      *</p>      */
 DECL|enum constant|BYTES_VAR_DEREF
 name|BYTES_VAR_DEREF
 block|,
-comment|/**      * A variable length pre-sorted byte[] variant. Just like      * {@link #BYTES_FIXED_SORTED}, but allowing each      * document's value to be a different length.      *<p>      * NOTE: Fields of this type will not store values for documents without and      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference.Custom default values must be assigned explicitly.      *</p>      *       * @see SortedSource      */
+comment|/**      * A variable length pre-sorted byte[] variant. Just like      * {@link #BYTES_FIXED_SORTED}, but allowing each      * document's value to be a different length.      *<p>      * NOTE: Fields of this type will not store values for documents without an      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference.Custom default values must be assigned explicitly.      *</p>      *       * @see SortedSource      */
 DECL|enum constant|BYTES_VAR_SORTED
 name|BYTES_VAR_SORTED
 block|,
-comment|/**      * A fixed length pre-sorted byte[] variant. Fields with this type only      * store distinct byte values and store an additional offset pointer per      * document to dereference the shared byte[]. The stored      * byte[] is presorted, by default by unsigned byte order,      * and allows access via document id, ordinal and by-value.      * Use this type if your documents may share the same byte[].      *<p>      * NOTE: Fields of this type will not store values for documents without and      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference. Custom default values must be assigned      * explicitly.      *</p>      *       * @see SortedSource      */
+comment|/**      * A fixed length pre-sorted byte[] variant. Fields with this type only      * store distinct byte values and store an additional offset pointer per      * document to dereference the shared byte[]. The stored      * byte[] is presorted, by default by unsigned byte order,      * and allows access via document id, ordinal and by-value.      * Use this type if your documents may share the same byte[].      *<p>      * NOTE: Fields of this type will not store values for documents without an      * explicitly provided value. If a documents value is accessed while no      * explicit value is stored the returned {@link BytesRef} will be a 0-length      * reference. Custom default values must be assigned      * explicitly.      *</p>      *       * @see SortedSource      */
 DECL|enum constant|BYTES_FIXED_SORTED
 name|BYTES_FIXED_SORTED
 block|}

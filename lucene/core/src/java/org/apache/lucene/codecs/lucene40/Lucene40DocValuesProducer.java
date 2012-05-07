@@ -261,7 +261,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default PerDocProducer implementation that uses compound file.  * @lucene.experimental  */
+comment|/**  * Lucene 4.0 PerDocProducer implementation that uses compound file.  *   * @see Lucene40DocValuesFormat  * @lucene.experimental  */
 end_comment
 
 begin_class

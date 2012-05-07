@@ -310,6 +310,10 @@ begin_comment
 comment|//     saves a byte in tvd)
 end_comment
 
+begin_comment
+comment|/**  * Lucene 4.0 Term Vectors writer.  *<p>  * It writes .tvd, .tvf, and .tvx files.  *   * @see Lucene40TermVectorsFormat  */
+end_comment
+
 begin_class
 DECL|class|Lucene40TermVectorsWriter
 specifier|public

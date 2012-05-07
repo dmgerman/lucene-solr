@@ -32,6 +32,10 @@ name|BytesRef
 import|;
 end_import
 
+begin_comment
+comment|/**  * {@link MutableValue} implementation of type   * {@link String}.  */
+end_comment
+
 begin_class
 DECL|class|MutableValueStr
 specifier|public

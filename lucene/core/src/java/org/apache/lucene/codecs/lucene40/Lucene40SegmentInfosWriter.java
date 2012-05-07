@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default implementation of {@link SegmentInfosWriter}.  * @lucene.experimental  */
+comment|/**  * Lucene 4.0 implementation of {@link SegmentInfosWriter}.  *   * @see Lucene40SegmentInfosFormat  * @lucene.experimental  */
 end_comment
 
 begin_class

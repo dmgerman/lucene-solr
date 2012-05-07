@@ -3033,7 +3033,7 @@ name|enums
 parameter_list|()
 function_decl|;
 block|}
-comment|/** @lucene.internal */
+comment|/**     * Implementation of {@link PulsingEnumAttribute} for reuse of    * wrapped postings readers underneath pulsing.    *     * @lucene.internal */
 DECL|class|PulsingEnumAttributeImpl
 specifier|public
 specifier|static

@@ -237,7 +237,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** @lucene.experimental */
+comment|/**  * Concrete class that writes the 4.0 frq/prx postings format.  *   * @see Lucene40PostingsFormat  * @lucene.experimental   */
 end_comment
 
 begin_class
