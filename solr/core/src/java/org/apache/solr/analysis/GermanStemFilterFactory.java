@@ -46,6 +46,22 @@ name|TokenStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**   * Factory for {@link GermanStemFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_destem" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;filter class="solr.GermanStemFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
 end_comment
@@ -56,7 +72,7 @@ specifier|public
 class|class
 name|GermanStemFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 block|{
 DECL|method|create
 specifier|public

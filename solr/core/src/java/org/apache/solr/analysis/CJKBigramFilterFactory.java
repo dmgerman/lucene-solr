@@ -56,6 +56,22 @@ name|CJKBigramFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**   * Factory for {@link CJKBigramFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_cjk" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.CJKWidthFilterFactory"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;filter class="solr.CJKBigramFilterFactory"   *       han="true" hiragana="true"   *       katakana="true" hangul="true" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
@@ -66,7 +82,7 @@ specifier|public
 class|class
 name|CJKBigramFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 block|{
 DECL|field|flags
 name|int

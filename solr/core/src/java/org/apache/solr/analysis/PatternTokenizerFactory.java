@@ -88,6 +88,38 @@ name|PatternTokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|InitializationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenizerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link PatternTokenizer}.  * This tokenizer uses regex pattern matching to construct distinct tokens  * for the input stream.  It takes two arguments:  "pattern" and "group".  *<p/>  *<ul>  *<li>"pattern" is the regular expression.</li>  *<li>"group" says which group to extract into tokens.</li>  *</ul>  *<p>  * group=-1 (the default) is equivalent to "split".  In this case, the tokens will  * be equivalent to the output from (without empty tokens):  * {@link String#split(java.lang.String)}  *</p>  *<p>  * Using group>= 0 selects the matching group as the token.  For example, if you have:<br/>  *<pre>  *  pattern = \'([^\']+)\'  *  group = 0  *  input = aaa 'bbb' 'ccc'  *</pre>  * the output will be two tokens: 'bbb' and 'ccc' (including the ' marks).  With the same input  * but using group=1, the output would be: bbb and ccc (no ' marks)  *</p>  *<p>NOTE: This Tokenizer does not output tokens that are of zero length.</p>  *  *<pre class="prettyprint">  *&lt;fieldType name="text_ptn" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.PatternTokenizerFactory" pattern="\'([^\']+)\'" group="1"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *   * @see PatternTokenizer  * @since solr1.2  *  */
 end_comment
@@ -98,7 +130,7 @@ specifier|public
 class|class
 name|PatternTokenizerFactory
 extends|extends
-name|BaseTokenizerFactory
+name|TokenizerFactory
 block|{
 DECL|field|PATTERN
 specifier|public

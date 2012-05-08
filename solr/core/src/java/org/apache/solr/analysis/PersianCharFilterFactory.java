@@ -46,6 +46,22 @@ name|PersianCharFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link PersianCharFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_fa" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;charFilter class="solr.PersianCharFilterFactory"/&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  */
 end_comment
@@ -56,7 +72,7 @@ specifier|public
 class|class
 name|PersianCharFilterFactory
 extends|extends
-name|BaseCharFilterFactory
+name|CharFilterFactory
 implements|implements
 name|MultiTermAwareComponent
 block|{

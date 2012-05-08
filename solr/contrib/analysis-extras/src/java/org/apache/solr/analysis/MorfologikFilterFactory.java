@@ -88,6 +88,22 @@ name|MorfologikFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Filter factory for {@link MorfologikFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_polish" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.MorfologikFilterFactory" dictionary="MORFOLOGIK" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   *<p>Any of Morfologik dictionaries can be used, these are at the moment:  *<code>MORFOLOGIK</code> (Morfologik's original dictionary),  *<code>MORFEUSZ</code> (Morfeusz-SIAT),  *<code>COMBINED</code> (both of the dictionaries above, combined).  *   * @see<a href="http://morfologik.blogspot.com/">Morfologik web site</a>  */
 end_comment
@@ -98,7 +114,7 @@ specifier|public
 class|class
 name|MorfologikFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 block|{
 comment|/** Dictionary. */
 DECL|field|dictionary

@@ -88,6 +88,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenFilterFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|ibm
@@ -138,7 +154,7 @@ specifier|public
 class|class
 name|ICUNormalizer2FilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 implements|implements
 name|MultiTermAwareComponent
 block|{

@@ -30,6 +30,22 @@ name|CharStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link LegacyHTMLStripCharFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_html_legacy" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;charFilter class="solr.LegacyHTMLStripCharFilterFactory"/&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  *<p>  * This factory is<b>NOT</b> recommended for new users and should be  * considered<b>UNSUPPORTED</b>.  *</p>  *<p>  * In Solr version 3.5 and earlier,<tt>HTMLStripCharFilter(Factory)</tt>  * had known bugs in the offsets it provided, triggering e.g. exceptions in  * highlighting.  *</p>  *<p>  * This class is provided as possible alternative for people who depend on  * the "broken" behavior of<tt>HTMLStripCharFilter</tt> in Solr version 3.5  * and earlier, and/or who don't like the changes introduced by the Solr 3.6+  * version of<tt>HTMLStripCharFilterFactory</tt>.  (See the 3.6.0 release  * section of lucene/CHANGES.txt for a list of differences in behavior.)  *</p>  * @deprecated use {@link HTMLStripCharFilterFactory}  */
 end_comment
@@ -42,7 +58,7 @@ specifier|public
 class|class
 name|LegacyHTMLStripCharFilterFactory
 extends|extends
-name|BaseCharFilterFactory
+name|CharFilterFactory
 block|{
 DECL|method|create
 specifier|public

@@ -56,6 +56,38 @@ name|GreekLowerCaseFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|InitializationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**   * Factory for {@link GreekLowerCaseFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_glc" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.GreekLowerCaseFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
 end_comment
@@ -66,7 +98,7 @@ specifier|public
 class|class
 name|GreekLowerCaseFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 implements|implements
 name|MultiTermAwareComponent
 block|{

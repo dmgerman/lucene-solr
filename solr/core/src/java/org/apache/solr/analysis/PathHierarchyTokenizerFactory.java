@@ -82,6 +82,38 @@ name|ReversePathHierarchyTokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|InitializationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenizerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link PathHierarchyTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_path" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="\" replace="/"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
 end_comment
@@ -92,7 +124,7 @@ specifier|public
 class|class
 name|PathHierarchyTokenizerFactory
 extends|extends
-name|BaseTokenizerFactory
+name|TokenizerFactory
 block|{
 DECL|field|delimiter
 specifier|private

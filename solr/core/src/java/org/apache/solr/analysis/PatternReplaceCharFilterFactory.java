@@ -80,6 +80,38 @@ name|PatternReplaceCharFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharFilterFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|InitializationException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link PatternReplaceCharFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_ptnreplace" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([^a-z])" replacement=""  *                 maxBlockChars="10000" blockDelimiters="|"/&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   *  * @since Solr 3.1  */
 end_comment
@@ -90,7 +122,7 @@ specifier|public
 class|class
 name|PatternReplaceCharFilterFactory
 extends|extends
-name|BaseCharFilterFactory
+name|CharFilterFactory
 block|{
 DECL|field|p
 specifier|private

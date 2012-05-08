@@ -114,16 +114,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -268,9 +258,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
 name|util
 operator|.
-name|Version
+name|*
 import|;
 end_import
 
@@ -282,11 +274,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
 name|util
 operator|.
-name|ResourceLoader
+name|Version
 import|;
 end_import
 
@@ -303,22 +293,6 @@ operator|.
 name|util
 operator|.
 name|StrUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|ResourceLoaderAware
 import|;
 end_import
 
@@ -358,7 +332,7 @@ specifier|final
 class|class
 name|FSTSynonymFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 implements|implements
 name|ResourceLoaderAware
 block|{

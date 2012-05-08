@@ -46,6 +46,22 @@ name|JapaneseBaseFormFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link org.apache.lucene.analysis.ja.JapaneseBaseFormFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"/&gt;  *&lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
 end_comment
@@ -56,7 +72,7 @@ specifier|public
 class|class
 name|JapaneseBaseFormFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 block|{
 annotation|@
 name|Override

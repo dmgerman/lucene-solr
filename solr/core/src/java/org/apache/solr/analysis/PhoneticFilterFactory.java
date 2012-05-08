@@ -130,6 +130,38 @@ name|PhoneticFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|InitializationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link PhoneticFilter}.  *   * Create tokens based on phonetic encoders from<a href="  * http://commons.apache.org/codec/api-release/org/apache/commons/codec/language/package-summary.html  * ">Apache Commons Codec</a>.  *<p>  * This takes one required argument, "encoder", and the rest are optional:  *<dl>  *<dt>encoder<dd> required, one of "DoubleMetaphone", "Metaphone", "Soundex", "RefinedSoundex", "Caverphone" (v2.0),  *  or "ColognePhonetic" (case insensitive). If encoder isn't one of these, it'll be resolved as a class name either by  *  itself if it already contains a '.' or otherwise as in the same package as these others.  *<dt>inject<dd> (default=true) add tokens to the stream with the offset=0  *<dt>maxCodeLength<dd>The maximum length of the phonetic codes, as defined by the encoder. If an encoder doesn't  *  support this then specifying this is an error.  *</dl>  *  *<pre class="prettyprint">  *&lt;fieldType name="text_phonetic" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.PhoneticFilterFactory" encoder="DoubleMetaphone" inject="true"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   * @see PhoneticFilter  */
 end_comment
@@ -140,7 +172,7 @@ specifier|public
 class|class
 name|PhoneticFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 block|{
 DECL|field|ENCODER
 specifier|public

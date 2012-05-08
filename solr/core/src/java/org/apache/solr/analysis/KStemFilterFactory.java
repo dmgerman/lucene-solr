@@ -60,6 +60,22 @@ name|KStemFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for {@link KStemFilter}  */
 end_comment
@@ -70,7 +86,7 @@ specifier|public
 class|class
 name|KStemFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 block|{
 DECL|method|create
 specifier|public

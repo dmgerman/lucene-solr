@@ -28,23 +28,7 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|ResourceLoader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|ResourceLoaderAware
+name|*
 import|;
 end_import
 
@@ -75,22 +59,6 @@ operator|.
 name|miscellaneous
 operator|.
 name|KeepWordFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|CharArraySet
 import|;
 end_import
 
@@ -134,7 +102,7 @@ specifier|public
 class|class
 name|KeepWordFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 implements|implements
 name|ResourceLoaderAware
 block|{

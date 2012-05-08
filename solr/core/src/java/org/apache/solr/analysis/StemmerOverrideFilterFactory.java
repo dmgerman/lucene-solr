@@ -78,23 +78,7 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|CharArrayMap
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|ResourceLoader
+name|*
 import|;
 end_import
 
@@ -114,22 +98,6 @@ name|StrUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|ResourceLoaderAware
-import|;
-end_import
-
 begin_comment
 comment|/**  * Factory for {@link StemmerOverrideFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_dicstem" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.StemmerOverrideFilterFactory" dictionary="dictionary.txt" ignoreCase="false"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  */
 end_comment
@@ -140,7 +108,7 @@ specifier|public
 class|class
 name|StemmerOverrideFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 implements|implements
 name|ResourceLoaderAware
 block|{

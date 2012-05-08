@@ -48,6 +48,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenizerFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -76,7 +92,7 @@ specifier|public
 class|class
 name|NGramTokenizerFactory
 extends|extends
-name|BaseTokenizerFactory
+name|TokenizerFactory
 block|{
 DECL|field|maxGramSize
 specifier|private

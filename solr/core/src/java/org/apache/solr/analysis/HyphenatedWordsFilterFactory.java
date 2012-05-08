@@ -52,11 +52,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
 operator|.
-name|BaseTokenFilterFactory
+name|util
+operator|.
+name|TokenFilterFactory
 import|;
 end_import
 
@@ -70,7 +72,7 @@ specifier|public
 class|class
 name|HyphenatedWordsFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 block|{
 DECL|method|create
 specifier|public

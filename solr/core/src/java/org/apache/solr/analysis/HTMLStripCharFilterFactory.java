@@ -48,6 +48,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|CharFilterFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -110,7 +126,7 @@ specifier|public
 class|class
 name|HTMLStripCharFilterFactory
 extends|extends
-name|BaseCharFilterFactory
+name|CharFilterFactory
 block|{
 DECL|field|escapedTags
 name|Set

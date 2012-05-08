@@ -62,6 +62,22 @@ name|WordTokenFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Factory for the SmartChineseAnalyzer {@link WordTokenFilter}  *<p>  * Note: this class will currently emit tokens for punctuation. So you should either add  * a WordDelimiterFilter after to remove these (with concatenate off), or use the   * SmartChinese stoplist with a StopFilterFactory via:  *<code>words="org/apache/lucene/analysis/cn/smart/stopwords.txt"</code>  * @lucene.experimental  */
 end_comment
@@ -72,7 +88,7 @@ specifier|public
 class|class
 name|SmartChineseWordTokenFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 block|{
 DECL|method|create
 specifier|public

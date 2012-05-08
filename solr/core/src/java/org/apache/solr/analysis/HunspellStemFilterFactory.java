@@ -104,6 +104,22 @@ name|analysis
 operator|.
 name|util
 operator|.
+name|InitializationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
 name|ResourceLoader
 import|;
 end_import
@@ -124,6 +140,22 @@ name|ResourceLoaderAware
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenFilterFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * TokenFilterFactory that creates instances of {@link org.apache.lucene.analysis.hunspell.HunspellStemFilter}.  * Example config for British English including a custom dictionary, case insensitive matching:  *<pre class="prettyprint">  *&lt;filter class=&quot;solr.HunspellStemFilterFactory&quot;  *    dictionary=&quot;en_GB.dic,my_custom.dic&quot;  *    affix=&quot;en_GB.aff&quot;  *    ignoreCase=&quot;true&quot; /&gt;</pre>  * Both parameters dictionary and affix are mandatory.  *<br/>  * The parameter ignoreCase (true/false) controls whether matching is case sensitive or not. Default false.  *<br/>   * Dictionaries for many languages are available through the OpenOffice project.  *   * See<a href="http://wiki.apache.org/solr/Hunspell">http://wiki.apache.org/solr/Hunspell</a>  */
 end_comment
@@ -134,7 +166,7 @@ specifier|public
 class|class
 name|HunspellStemFilterFactory
 extends|extends
-name|BaseTokenFilterFactory
+name|TokenFilterFactory
 implements|implements
 name|ResourceLoaderAware
 block|{

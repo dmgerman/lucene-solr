@@ -98,6 +98,38 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|InitializationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|TokenizerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|LuceneTestCase
@@ -194,7 +226,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"RuntimeException must be thrown."
+literal|"InitializationException must be thrown."
 argument_list|)
 expr_stmt|;
 block|}
@@ -1696,7 +1728,7 @@ name|SlowSynonymMap
 name|synMap
 decl_stmt|;
 comment|// prepare bi-gram tokenizer factory
-name|BaseTokenizerFactory
+name|TokenizerFactory
 name|tf
 init|=
 operator|new
