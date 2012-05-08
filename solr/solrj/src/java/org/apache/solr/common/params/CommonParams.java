@@ -190,6 +190,16 @@ name|DF
 init|=
 literal|"df"
 decl_stmt|;
+comment|/** Transformer param -- used with XSLT */
+DECL|field|TR
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TR
+init|=
+literal|"tr"
+decl_stmt|;
 comment|/** whether to include debug data for all components pieces, including doing explains*/
 DECL|field|DEBUG_QUERY
 specifier|public

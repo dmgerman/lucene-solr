@@ -102,6 +102,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|handler
+operator|.
+name|loader
+operator|.
+name|ContentStreamLoader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|SolrQueryRequest
@@ -175,7 +191,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Shares common code between various handlers that manipulate {@link org.apache.solr.common.util.ContentStream} objects.  *  **/
+comment|/**  * Shares common code between various handlers that manipulate   * {@link org.apache.solr.common.util.ContentStream} objects.  */
 end_comment
 
 begin_class
@@ -415,6 +431,8 @@ argument_list|,
 name|rsp
 argument_list|,
 name|stream
+argument_list|,
+name|processor
 argument_list|)
 expr_stmt|;
 block|}

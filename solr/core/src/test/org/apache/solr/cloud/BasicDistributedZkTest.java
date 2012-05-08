@@ -2685,7 +2685,7 @@ init|=
 operator|new
 name|ContentStreamUpdateRequest
 argument_list|(
-literal|"/update/csv"
+literal|"/update"
 argument_list|)
 decl_stmt|;
 name|up
@@ -2696,6 +2696,8 @@ name|getFile
 argument_list|(
 literal|"books_numeric_ids.csv"
 argument_list|)
+argument_list|,
+literal|"application/csv"
 argument_list|)
 expr_stmt|;
 name|up

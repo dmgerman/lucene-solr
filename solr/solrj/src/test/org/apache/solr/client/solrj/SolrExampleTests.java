@@ -3668,7 +3668,7 @@ init|=
 operator|new
 name|ContentStreamUpdateRequest
 argument_list|(
-literal|"/update/csv"
+literal|"/update"
 argument_list|)
 decl_stmt|;
 name|up
@@ -3679,6 +3679,8 @@ name|getFile
 argument_list|(
 literal|"solrj/books.csv"
 argument_list|)
+argument_list|,
+literal|"application/csv"
 argument_list|)
 expr_stmt|;
 name|up
@@ -3820,6 +3822,8 @@ name|getFile
 argument_list|(
 literal|"solrj/docs1.xml"
 argument_list|)
+argument_list|,
+literal|"application/xml"
 argument_list|)
 expr_stmt|;
 comment|// 2
@@ -3831,6 +3835,8 @@ name|getFile
 argument_list|(
 literal|"solrj/docs2.xml"
 argument_list|)
+argument_list|,
+literal|"application/xml"
 argument_list|)
 expr_stmt|;
 comment|// 3

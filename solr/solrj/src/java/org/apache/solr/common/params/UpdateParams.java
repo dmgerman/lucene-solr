@@ -118,6 +118,16 @@ name|UPDATE_CHAIN
 init|=
 literal|"update.chain"
 decl_stmt|;
+comment|/** Override the content type used for UpdateLoader **/
+DECL|field|ASSUME_CONTENT_TYPE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ASSUME_CONTENT_TYPE
+init|=
+literal|"update.contentType"
+decl_stmt|;
 comment|/**    * If optimizing, set the maximum number of segments left in the index after optimization.  1 is the default (and is equivalent to calling IndexWriter.optimize() in Lucene).    */
 DECL|field|MAX_OPTIMIZE_SEGMENTS
 specifier|public

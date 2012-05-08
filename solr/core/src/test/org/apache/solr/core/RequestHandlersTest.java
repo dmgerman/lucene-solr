@@ -345,7 +345,7 @@ name|core
 operator|.
 name|getRequestHandler
 argument_list|(
-literal|"/update/csv"
+literal|"/update"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -360,7 +360,7 @@ name|core
 operator|.
 name|getRequestHandler
 argument_list|(
-literal|"/update/csv/"
+literal|"/update/"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -382,7 +382,7 @@ name|core
 operator|.
 name|getRequestHandler
 argument_list|(
-literal|"/update/csv/asdgadsgas"
+literal|"/update/asdgadsgas"
 argument_list|)
 argument_list|)
 expr_stmt|;
