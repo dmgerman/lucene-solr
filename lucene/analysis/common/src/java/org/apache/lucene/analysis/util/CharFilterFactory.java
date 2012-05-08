@@ -32,6 +32,10 @@ name|CharStream
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract parent class for analysis factories that create {@link CharStream}  * instances.  */
+end_comment
+
 begin_class
 DECL|class|CharFilterFactory
 specifier|public

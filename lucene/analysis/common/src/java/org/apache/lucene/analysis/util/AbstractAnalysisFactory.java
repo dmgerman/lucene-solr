@@ -166,6 +166,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract parent class for analysis factories {@link TokenizerFactory},  * {@link TokenFilterFactory} and {@link CharFilterFactory}.  */
+end_comment
+
 begin_class
 DECL|class|AbstractAnalysisFactory
 specifier|abstract

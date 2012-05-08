@@ -32,6 +32,10 @@ name|TokenStream
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract parent class for analysis factories that create {@link org.apache.lucene.analysis.TokenFilter}  * instances.  */
+end_comment
+
 begin_class
 DECL|class|TokenFilterFactory
 specifier|public
