@@ -122,6 +122,12 @@ argument_list|(
 literal|404
 argument_list|)
 block|,
+DECL|enum constant|CONFLICT
+name|CONFLICT
+argument_list|(
+literal|409
+argument_list|)
+block|,
 DECL|enum constant|SERVER_ERROR
 name|SERVER_ERROR
 argument_list|(

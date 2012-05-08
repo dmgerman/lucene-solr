@@ -2287,6 +2287,12 @@ name|HttpStatus
 operator|.
 name|SC_BAD_REQUEST
 case|:
+case|case
+name|HttpStatus
+operator|.
+name|SC_CONFLICT
+case|:
+comment|// 409
 break|break;
 case|case
 name|HttpStatus

@@ -1467,10 +1467,7 @@ block|}
 name|String
 name|shardQt
 init|=
-name|req
-operator|.
-name|getParams
-argument_list|()
+name|params
 operator|.
 name|get
 argument_list|(
