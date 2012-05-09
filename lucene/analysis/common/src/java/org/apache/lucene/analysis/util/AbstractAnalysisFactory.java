@@ -172,6 +172,7 @@ end_comment
 
 begin_class
 DECL|class|AbstractAnalysisFactory
+specifier|public
 specifier|abstract
 class|class
 name|AbstractAnalysisFactory

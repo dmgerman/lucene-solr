@@ -28,7 +28,7 @@ name|analysis
 operator|.
 name|core
 operator|.
-name|LowerCaseFilter
+name|LowerCaseTokenizer
 import|;
 end_import
 
@@ -42,9 +42,25 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
+name|util
 operator|.
-name|LowerCaseTokenizer
+name|AbstractAnalysisFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|MultiTermAwareComponent
 import|;
 end_import
 
@@ -148,7 +164,7 @@ annotation|@
 name|Override
 DECL|method|getMultiTermComponent
 specifier|public
-name|Object
+name|AbstractAnalysisFactory
 name|getMultiTermComponent
 parameter_list|()
 block|{

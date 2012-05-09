@@ -66,7 +66,7 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|TokenFilterFactory
+name|*
 import|;
 end_import
 
@@ -81,22 +81,6 @@ operator|.
 name|collation
 operator|.
 name|ICUCollationKeyFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|ResourceLoader
 import|;
 end_import
 
@@ -127,22 +111,6 @@ operator|.
 name|SolrException
 operator|.
 name|ErrorCode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|ResourceLoaderAware
 import|;
 end_import
 
@@ -870,7 +838,7 @@ annotation|@
 name|Override
 DECL|method|getMultiTermComponent
 specifier|public
-name|Object
+name|AbstractAnalysisFactory
 name|getMultiTermComponent
 parameter_list|()
 block|{
