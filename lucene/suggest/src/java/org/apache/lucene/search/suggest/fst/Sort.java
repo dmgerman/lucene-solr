@@ -238,7 +238,7 @@ name|MB
 argument_list|)
 return|;
 block|}
-comment|/**       * Approximately half of the currently available free heap, but no less      * than {@link #MIN_BUFFER_SIZE_MB}. However if current heap allocation       * is insufficient for sorting consult with max allowed heap size.       */
+comment|/**       * Approximately half of the currently available free heap, but no less      * than {@link #ABSOLUTE_MIN_SORT_BUFFER_SIZE}. However if current heap allocation       * is insufficient or if there is a large portion of unallocated heap-space available       * for sorting consult with max allowed heap size.       */
 DECL|method|automatic
 specifier|public
 specifier|static
@@ -255,6 +255,7 @@ name|getRuntime
 argument_list|()
 decl_stmt|;
 comment|// take sizes in "conservative" order
+specifier|final
 name|long
 name|max
 init|=
@@ -263,6 +264,8 @@ operator|.
 name|maxMemory
 argument_list|()
 decl_stmt|;
+comment|// max allocated
+specifier|final
 name|long
 name|total
 init|=
@@ -271,6 +274,8 @@ operator|.
 name|totalMemory
 argument_list|()
 decl_stmt|;
+comment|// currently allocated
+specifier|final
 name|long
 name|free
 init|=
@@ -279,49 +284,81 @@ operator|.
 name|freeMemory
 argument_list|()
 decl_stmt|;
+comment|// unused portion of currently allocated
+specifier|final
+name|long
+name|totalAvailableBytes
+init|=
+name|max
+operator|-
+name|total
+operator|+
+name|free
+decl_stmt|;
 comment|// by free mem (attempting to not grow the heap for this)
 name|long
-name|half
+name|sortBufferByteSize
 init|=
 name|free
 operator|/
 literal|2
 decl_stmt|;
-if|if
-condition|(
-name|half
-operator|>=
-name|ABSOLUTE_MIN_SORT_BUFFER_SIZE
-condition|)
-block|{
-return|return
-operator|new
-name|BufferSize
-argument_list|(
-name|Math
-operator|.
-name|min
-argument_list|(
+specifier|final
+name|long
+name|minBufferSizeBytes
+init|=
 name|MIN_BUFFER_SIZE_MB
 operator|*
 name|MB
-argument_list|,
-name|half
-argument_list|)
-argument_list|)
-return|;
-block|}
-comment|// by max mem (heap will grow)
-name|half
+decl_stmt|;
+if|if
+condition|(
+name|sortBufferByteSize
+argument_list|<
+name|minBufferSizeBytes
+operator|||
+name|totalAvailableBytes
+argument_list|>
+literal|10
+operator|*
+name|minBufferSizeBytes
+condition|)
+block|{
+comment|// lets see if we need/should to grow the heap
+if|if
+condition|(
+name|totalAvailableBytes
+operator|/
+literal|2
+operator|>
+name|minBufferSizeBytes
+condition|)
+block|{
+comment|// there is enough mem for a reasonable buffer
+name|sortBufferByteSize
 operator|=
-operator|(
-name|max
-operator|-
-name|total
-operator|)
+name|totalAvailableBytes
 operator|/
 literal|2
 expr_stmt|;
+comment|// grow the heap
+block|}
+else|else
+block|{
+comment|//heap seems smallish lets be conservative fall back to the free/2
+name|sortBufferByteSize
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|ABSOLUTE_MIN_SORT_BUFFER_SIZE
+argument_list|,
+name|sortBufferByteSize
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 return|return
 operator|new
 name|BufferSize
@@ -330,11 +367,11 @@ name|Math
 operator|.
 name|min
 argument_list|(
-name|MIN_BUFFER_SIZE_MB
-operator|*
-name|MB
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|,
-name|half
+name|sortBufferByteSize
 argument_list|)
 argument_list|)
 return|;
