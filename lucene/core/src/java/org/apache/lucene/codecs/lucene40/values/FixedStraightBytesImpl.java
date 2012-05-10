@@ -100,7 +100,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DocValuesField
+name|StraightBytesDocValuesField
 import|;
 end_import
 
@@ -402,11 +402,11 @@ block|{
 DECL|field|bytesSpareField
 specifier|protected
 specifier|final
-name|DocValuesField
+name|StraightBytesDocValuesField
 name|bytesSpareField
 init|=
 operator|new
-name|DocValuesField
+name|StraightBytesDocValuesField
 argument_list|(
 literal|""
 argument_list|,
@@ -414,9 +414,7 @@ operator|new
 name|BytesRef
 argument_list|()
 argument_list|,
-name|Type
-operator|.
-name|BYTES_FIXED_STRAIGHT
+literal|true
 argument_list|)
 decl_stmt|;
 DECL|field|lastDocID

@@ -951,7 +951,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DocValuesField
+name|SortedBytesDocValuesField
 argument_list|(
 name|groupField
 argument_list|,
@@ -960,10 +960,6 @@ name|BytesRef
 argument_list|(
 name|value
 argument_list|)
-argument_list|,
-name|Type
-operator|.
-name|BYTES_VAR_SORTED
 argument_list|)
 argument_list|)
 expr_stmt|;

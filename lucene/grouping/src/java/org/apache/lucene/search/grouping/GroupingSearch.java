@@ -20,6 +20,26 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -28,7 +48,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DocValuesField
+name|DerefBytesDocValuesField
 import|;
 end_import
 
@@ -336,26 +356,6 @@ name|MutableValue
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * Convenience class to perform grouping in a non distributed environment.  *  * @lucene.experimental  */
 end_comment
@@ -524,7 +524,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a<code>GroupingSearch</code> instance that groups documents by doc values.    * This constructor can only be used when the groupField is a {@link DocValuesField}.    *    * @param groupField            The name of the field to group by that contains doc values    * @param docValuesType         The doc values type of the specified groupField    * @param diskResidentDocValues Whether the values to group by should be disk resident    */
+comment|/**    * Constructs a<code>GroupingSearch</code> instance that groups documents by doc values.    * This constructor can only be used when the groupField    * is a<code>*DocValuesField</code> (eg, {@link DerefBytesDocValuesField}.    *    * @param groupField            The name of the field to group by that contains doc values    * @param docValuesType         The doc values type of the specified groupField    * @param diskResidentDocValues Whether the values to group by should be disk resident    */
 DECL|method|GroupingSearch
 specifier|public
 name|GroupingSearch

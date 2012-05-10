@@ -402,7 +402,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DocValuesField
+name|PackedLongDocValuesField
 import|;
 end_import
 
@@ -7615,17 +7615,11 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DocValuesField
+name|PackedLongDocValuesField
 argument_list|(
 literal|"dv"
 argument_list|,
 literal|1
-argument_list|,
-name|DocValues
-operator|.
-name|Type
-operator|.
-name|VAR_INTS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -7693,17 +7687,11 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DocValuesField
+name|PackedLongDocValuesField
 argument_list|(
 literal|"dv"
 argument_list|,
 literal|2
-argument_list|,
-name|DocValues
-operator|.
-name|Type
-operator|.
-name|VAR_INTS
 argument_list|)
 argument_list|)
 expr_stmt|;
