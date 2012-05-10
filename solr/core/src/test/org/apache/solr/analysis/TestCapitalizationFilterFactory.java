@@ -56,6 +56,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|BaseTokenStreamTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|MockTokenizer
 import|;
 end_import
@@ -98,7 +112,7 @@ specifier|public
 class|class
 name|TestCapitalizationFilterFactory
 extends|extends
-name|BaseTokenTestCase
+name|BaseTokenStreamTestCase
 block|{
 DECL|method|testCapitalization
 specifier|public
@@ -158,7 +172,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|factory
@@ -544,7 +558,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|args
@@ -750,7 +764,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|factory
@@ -931,7 +945,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|factory
@@ -1033,7 +1047,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|factory
@@ -1139,7 +1153,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|factory
@@ -1239,7 +1253,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|factory
@@ -1356,7 +1370,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|factory

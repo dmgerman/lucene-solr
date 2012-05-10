@@ -26,6 +26,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|BaseTokenStreamTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|util
 operator|.
 name|CharArraySet
@@ -92,7 +106,7 @@ specifier|public
 class|class
 name|TestStopFilterFactory
 extends|extends
-name|BaseTokenTestCase
+name|BaseTokenStreamTestCase
 block|{
 DECL|method|testInform
 specifier|public
@@ -168,7 +182,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|factory
@@ -261,7 +275,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|factory
@@ -344,7 +358,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|args

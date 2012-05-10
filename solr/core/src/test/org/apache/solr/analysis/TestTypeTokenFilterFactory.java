@@ -26,6 +26,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|BaseTokenStreamTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|NumericTokenStream
 import|;
 end_import
@@ -126,7 +140,7 @@ specifier|public
 class|class
 name|TestTypeTokenFilterFactory
 extends|extends
-name|BaseTokenTestCase
+name|BaseTokenStreamTestCase
 block|{
 annotation|@
 name|Test
@@ -195,7 +209,7 @@ name|factory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|factory
@@ -415,7 +429,7 @@ name|typeTokenFilterFactory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|typeTokenFilterFactory
@@ -512,7 +526,7 @@ name|typeTokenFilterFactory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|typeTokenFilterFactory
@@ -593,7 +607,7 @@ name|typeTokenFilterFactory
 operator|.
 name|setLuceneMatchVersion
 argument_list|(
-name|DEFAULT_VERSION
+name|TEST_VERSION_CURRENT
 argument_list|)
 expr_stmt|;
 name|typeTokenFilterFactory

@@ -274,11 +274,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
 operator|.
-name|BaseTokenTestCase
+name|BaseTokenStreamTestCase
 operator|.
 name|*
 import|;

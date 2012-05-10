@@ -46,6 +46,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|BaseTokenStreamTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenStream
 import|;
 end_import
@@ -62,7 +76,7 @@ specifier|public
 class|class
 name|TestCJKTokenizerFactory
 extends|extends
-name|BaseTokenTestCase
+name|BaseTokenStreamTestCase
 block|{
 comment|/**    * Ensure the tokenizer actually tokenizes CJK text correctly    */
 DECL|method|testTokenizer

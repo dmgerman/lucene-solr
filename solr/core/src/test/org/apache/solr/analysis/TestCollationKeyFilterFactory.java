@@ -126,6 +126,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|BaseTokenStreamTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|MockTokenizer
 import|;
 end_import
@@ -182,7 +196,7 @@ specifier|public
 class|class
 name|TestCollationKeyFilterFactory
 extends|extends
-name|BaseTokenTestCase
+name|BaseTokenStreamTestCase
 block|{
 comment|/*    * Turkish has some funny casing.    * This test shows how you can solve this kind of thing easily with collation.    * Instead of using LowerCaseFilter, use a turkish collator with primary strength.    * Then things will sort and match correctly.    */
 DECL|method|testBasicUsage
