@@ -1433,6 +1433,22 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
+DECL|field|DEFAULT_LINE_DOCS_FILE
+specifier|private
+specifier|static
+name|String
+name|DEFAULT_LINE_DOCS_FILE
+init|=
+literal|"europarl.lines.txt.gz"
+decl_stmt|;
+DECL|field|JENKINS_LARGE_LINE_DOCS_FILE
+specifier|private
+specifier|static
+name|String
+name|JENKINS_LARGE_LINE_DOCS_FILE
+init|=
+literal|"enwiki.random.lines.txt"
+decl_stmt|;
 comment|// TODO: the fact these are static final means they're initialized on class load and they should
 comment|// be reinitialized on before suite hooks (to allow proper tests).
 comment|// by default we randomly pick a different codec for
@@ -1574,7 +1590,7 @@ name|getProperty
 argument_list|(
 literal|"tests.linedocsfile"
 argument_list|,
-literal|"europarl.lines.txt.gz"
+name|DEFAULT_LINE_DOCS_FILE
 argument_list|)
 decl_stmt|;
 comment|/** whether or not to clean threads between test invocations: "false", "perMethod", "perClass" */
@@ -8150,6 +8166,26 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|TEST_LINE_DOCS_FILE
+operator|.
+name|endsWith
+argument_list|(
+name|JENKINS_LARGE_LINE_DOCS_FILE
+argument_list|)
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: download the large Jenkins line-docs file by running 'ant get-jenkins-line-docs' in the lucene directory"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|// extra params that were overridden needed to reproduce the command
 DECL|method|reproduceWithExtraParams
@@ -8298,6 +8334,25 @@ operator|.
 name|append
 argument_list|(
 literal|" -Dtests.nightly=true"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|TEST_LINE_DOCS_FILE
+operator|.
+name|equals
+argument_list|(
+name|DEFAULT_LINE_DOCS_FILE
+argument_list|)
+condition|)
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|" -Dtests.linedocsfile="
+operator|+
+name|TEST_LINE_DOCS_FILE
 argument_list|)
 expr_stmt|;
 comment|// TODO we can't randomize this yet (it drives ant crazy) but this makes tests reproduceable
