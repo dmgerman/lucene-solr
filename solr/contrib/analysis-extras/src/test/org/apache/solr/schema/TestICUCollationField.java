@@ -72,9 +72,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
+name|util
 operator|.
-name|Codec
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -147,6 +149,11 @@ comment|/**  * Tests {@link ICUCollationField} with TermQueries, RangeQueries, a
 end_comment
 
 begin_class
+annotation|@
+name|SuppressCodecs
+argument_list|(
+literal|"Lucene3x"
+argument_list|)
 DECL|class|TestICUCollationField
 specifier|public
 class|class
@@ -165,24 +172,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeFalse
-argument_list|(
-literal|"preflex format only supports UTF-8 encoded bytes"
-argument_list|,
-literal|"Lucene3x"
-operator|.
-name|equals
-argument_list|(
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|String
 name|home
 init|=

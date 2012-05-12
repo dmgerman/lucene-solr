@@ -196,7 +196,7 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
-name|UseNoMemoryExpensiveCodec
+name|SuppressCodecs
 import|;
 end_import
 
@@ -206,7 +206,14 @@ end_comment
 
 begin_class
 annotation|@
-name|UseNoMemoryExpensiveCodec
+name|SuppressCodecs
+argument_list|(
+block|{
+literal|"SimpleText"
+block|,
+literal|"Memory"
+block|}
+argument_list|)
 DECL|class|Test2BPostings
 specifier|public
 class|class

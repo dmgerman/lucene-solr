@@ -58,20 +58,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|Document
@@ -246,9 +232,15 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|apache
 operator|.
-name|Before
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -256,7 +248,20 @@ begin_comment
 comment|/**  *   */
 end_comment
 
+begin_comment
+comment|// TODO: what is the problem with SimpleText
+end_comment
+
 begin_class
+annotation|@
+name|SuppressCodecs
+argument_list|(
+block|{
+literal|"SimpleText"
+block|,
+literal|"Lucene3x"
+block|}
+argument_list|)
 DECL|class|TestCustomNorms
 specifier|public
 class|class
@@ -278,58 +283,6 @@ name|exceptionTestField
 init|=
 literal|"normsTestExcp"
 decl_stmt|;
-annotation|@
-name|Before
-DECL|method|setUp
-specifier|public
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"cannot work with preflex codec"
-argument_list|,
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"cannot work with simple text codec"
-argument_list|,
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"SimpleText"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testFloatNorms
 specifier|public
 name|void
@@ -344,6 +297,7 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+comment|// TODO: what is the checkindex problem?
 name|dir
 operator|.
 name|setCheckIndexOnClose
