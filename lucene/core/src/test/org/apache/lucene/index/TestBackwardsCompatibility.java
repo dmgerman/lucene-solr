@@ -452,6 +452,22 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|_TestUtil
 import|;
 end_import
@@ -480,7 +496,20 @@ begin_comment
 comment|/*   Verify we can read the pre-4.0 file format, do searches   against it, and add documents to it. */
 end_comment
 
+begin_comment
+comment|// don't use 3.x codec, its unrealistic since it means
+end_comment
+
+begin_comment
+comment|// we won't even be running the actual code, only the impostor
+end_comment
+
 begin_class
+annotation|@
+name|SuppressCodecs
+argument_list|(
+literal|"Lucene3x"
+argument_list|)
 DECL|class|TestBackwardsCompatibility
 specifier|public
 class|class
