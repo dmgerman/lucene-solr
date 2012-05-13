@@ -746,6 +746,69 @@ block|{}
 name|resetExceptionIgnores
 argument_list|()
 expr_stmt|;
+comment|// in core0
+name|doc
+operator|=
+operator|new
+name|SolrInputDocument
+argument_list|()
+expr_stmt|;
+name|doc
+operator|.
+name|setField
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"BBB1"
+argument_list|)
+expr_stmt|;
+name|doc
+operator|.
+name|setField
+argument_list|(
+literal|"name"
+argument_list|,
+literal|"AAA1"
+argument_list|)
+expr_stmt|;
+name|doc
+operator|.
+name|setField
+argument_list|(
+literal|"type"
+argument_list|,
+literal|"BBB"
+argument_list|)
+expr_stmt|;
+name|doc
+operator|.
+name|setField
+argument_list|(
+literal|"core0"
+argument_list|,
+literal|"AAA1"
+argument_list|)
+expr_stmt|;
+name|up
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|up
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+name|up
+operator|.
+name|process
+argument_list|(
+name|getSolrCore0
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// now Make sure AAA is in 0 and BBB in 1
 name|SolrQuery
 name|q
@@ -928,7 +991,7 @@ expr_stmt|;
 comment|// normal join
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|getSolrCore0
 argument_list|()
@@ -972,6 +1035,32 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// test that no rewrite happens in core0 (if it does, it will rewrite to BBB1 and nothing will be found in core1)
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|getSolrCore0
+argument_list|()
+operator|.
+name|query
+argument_list|(
+operator|new
+name|SolrQuery
+argument_list|(
+literal|"{!join from=type to=name fromIndex=core1}id:BB~"
+argument_list|)
+argument_list|)
+operator|.
+name|getResults
+argument_list|()
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// test that query is parsed in the fromCore  - TODO
+comment|// assertEquals( 2, getSolrCore0().query( new SolrQuery( "{!join from=type to=name fromIndex=core1}core1:yup" ) ).getResults().size() );
 comment|// Now test reloading it should have a newer open time
 name|String
 name|name
