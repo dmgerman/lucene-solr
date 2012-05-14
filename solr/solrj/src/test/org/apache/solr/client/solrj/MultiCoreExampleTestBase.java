@@ -1059,8 +1059,30 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// test that query is parsed in the fromCore  - TODO
-comment|// assertEquals( 2, getSolrCore0().query( new SolrQuery( "{!join from=type to=name fromIndex=core1}core1:yup" ) ).getResults().size() );
+comment|// test that query is parsed in the fromCore
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|getSolrCore0
+argument_list|()
+operator|.
+name|query
+argument_list|(
+operator|new
+name|SolrQuery
+argument_list|(
+literal|"{!join from=type to=name fromIndex=core1}core1:yup"
+argument_list|)
+argument_list|)
+operator|.
+name|getResults
+argument_list|()
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Now test reloading it should have a newer open time
 name|String
 name|name
