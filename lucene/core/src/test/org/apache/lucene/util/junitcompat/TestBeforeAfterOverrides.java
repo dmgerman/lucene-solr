@@ -119,6 +119,12 @@ name|void
 name|before
 parameter_list|()
 block|{}
+DECL|method|testEmpty
+specifier|public
+name|void
+name|testEmpty
+parameter_list|()
+block|{}
 block|}
 DECL|class|Before2
 specifier|public
@@ -161,6 +167,12 @@ DECL|method|after
 specifier|public
 name|void
 name|after
+parameter_list|()
+block|{}
+DECL|method|testEmpty
+specifier|public
+name|void
+name|testEmpty
 parameter_list|()
 block|{}
 block|}
