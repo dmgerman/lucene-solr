@@ -935,7 +935,6 @@ name|classNameRule
 decl_stmt|;
 comment|/**    * Class environment setup rule.    */
 DECL|field|classEnvRule
-specifier|public
 specifier|static
 specifier|final
 name|TestRuleSetupAndRestoreClassEnv
