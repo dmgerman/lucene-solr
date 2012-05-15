@@ -2863,12 +2863,12 @@ operator|+
 literal|"==['1',3, '2',3, '3',2, '4',1, '5',1]"
 argument_list|)
 expr_stmt|;
-name|purgeFieldCache
-argument_list|(
 name|FieldCache
 operator|.
 name|DEFAULT
-argument_list|)
+operator|.
+name|purgeAllCaches
+argument_list|()
 expr_stmt|;
 comment|// avoid FC insanity
 comment|// test that grouping works with highlighting

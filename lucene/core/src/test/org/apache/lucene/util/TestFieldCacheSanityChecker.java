@@ -789,7 +789,15 @@ name|length
 condition|)
 name|dumpArray
 argument_list|(
-name|getTestLabel
+name|getTestClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"#"
+operator|+
+name|getTestName
 argument_list|()
 operator|+
 literal|" INSANITY"

@@ -24,20 +24,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
-operator|.
-name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|Document
@@ -132,6 +118,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|AfterClass
@@ -148,8 +148,22 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ThreadLeaks
+import|;
+end_import
+
 begin_comment
-comment|/**  * https://issues.apache.org/jira/browse/LUCENE-1974  *  * represent the bug of   *   *    BooleanScorer.score(Collector collector, int max, int firstDocID)  *   * Line 273, end=8192, subScorerDocID=11378, then more got false?  *   */
+comment|/**  * https://issues.apache.org/jira/browse/LUCENE-1974  *  * represent the bug of   *   *    BooleanScorer.score(Collector collector, int max, int firstDocID)  *   * Line 273, end=8192, subScorerDocID=11378, then more got false?  */
 end_comment
 
 begin_class

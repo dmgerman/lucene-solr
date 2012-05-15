@@ -22,27 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringWriter
+name|*
 import|;
 end_import
 
@@ -52,27 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
+name|*
 import|;
 end_import
 
@@ -108,20 +68,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|SystemPropertiesRestoreRule
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -138,35 +84,7 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrInputDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrInputField
+name|*
 import|;
 end_import
 
@@ -236,37 +154,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|AfterClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|BeforeClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|ClassRule
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Rule
+name|*
 import|;
 end_import
 
@@ -323,6 +211,34 @@ operator|.
 name|sax
 operator|.
 name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ThreadLeaks
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|rules
+operator|.
+name|SystemPropertiesRestoreRule
 import|;
 end_import
 
@@ -461,7 +377,6 @@ specifier|protected
 name|File
 name|dataDir
 decl_stmt|;
-comment|/**    * Initializes things your test might need    *    *<ul>    *<li>Creates a dataDir in the "java.io.tmpdir"</li>    *<li>initializes the TestHarness h using this data directory, and getSchemaPath()</li>    *<li>initializes the LocalRequestFactory lrf using sensible defaults.</li>    *</ul>    *    */
 DECL|field|log
 specifier|public
 specifier|static
@@ -482,6 +397,7 @@ specifier|private
 name|String
 name|factoryProp
 decl_stmt|;
+comment|/**    * Initializes things your test might need    *    *<ul>    *<li>Creates a dataDir in the "java.io.tmpdir"</li>    *<li>initializes the TestHarness h using this data directory, and getSchemaPath()</li>    *<li>initializes the LocalRequestFactory lrf using sensible defaults.</li>    *</ul>    */
 annotation|@
 name|Override
 DECL|method|setUp
@@ -503,7 +419,7 @@ name|info
 argument_list|(
 literal|"####SETUP_START "
 operator|+
-name|getName
+name|getTestName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -639,7 +555,7 @@ name|info
 argument_list|(
 literal|"####SETUP_END "
 operator|+
-name|getName
+name|getTestName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -717,7 +633,7 @@ name|info
 argument_list|(
 literal|"####POSTSETUP "
 operator|+
-name|getName
+name|getTestName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -735,7 +651,7 @@ name|info
 argument_list|(
 literal|"####PRETEARDOWN "
 operator|+
-name|getName
+name|getTestName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -757,7 +673,7 @@ name|info
 argument_list|(
 literal|"####TEARDOWN_START "
 operator|+
-name|getName
+name|getTestName
 argument_list|()
 argument_list|)
 expr_stmt|;

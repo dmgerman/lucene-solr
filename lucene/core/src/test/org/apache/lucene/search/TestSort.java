@@ -5152,7 +5152,7 @@ argument_list|)
 expr_stmt|;
 name|assertSaneFieldCaches
 argument_list|(
-name|getName
+name|getTestName
 argument_list|()
 operator|+
 literal|" IntParser"
@@ -5228,7 +5228,7 @@ argument_list|)
 expr_stmt|;
 name|assertSaneFieldCaches
 argument_list|(
-name|getName
+name|getTestName
 argument_list|()
 operator|+
 literal|" FloatParser"
@@ -5302,7 +5302,7 @@ argument_list|)
 expr_stmt|;
 name|assertSaneFieldCaches
 argument_list|(
-name|getName
+name|getTestName
 argument_list|()
 operator|+
 literal|" LongParser"
@@ -5388,7 +5388,7 @@ argument_list|)
 expr_stmt|;
 name|assertSaneFieldCaches
 argument_list|(
-name|getName
+name|getTestName
 argument_list|()
 operator|+
 literal|" DoubleParser"
@@ -5463,7 +5463,7 @@ argument_list|)
 expr_stmt|;
 name|assertSaneFieldCaches
 argument_list|(
-name|getName
+name|getTestName
 argument_list|()
 operator|+
 literal|" ByteParser"
@@ -5538,7 +5538,7 @@ argument_list|)
 expr_stmt|;
 name|assertSaneFieldCaches
 argument_list|(
-name|getName
+name|getTestName
 argument_list|()
 operator|+
 literal|" ShortParser"
@@ -10166,7 +10166,7 @@ comment|// up to this point, all of the searches should have "sane"
 comment|// FieldCache behavior, and should have reused hte cache in several cases
 name|assertSaneFieldCaches
 argument_list|(
-name|getName
+name|getTestName
 argument_list|()
 operator|+
 literal|" various"

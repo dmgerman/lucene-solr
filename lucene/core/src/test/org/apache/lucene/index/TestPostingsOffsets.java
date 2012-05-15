@@ -420,10 +420,9 @@ name|setUp
 argument_list|()
 expr_stmt|;
 comment|// Currently only SimpleText and Lucene40 can index offsets into postings:
-name|assumeTrue
-argument_list|(
-literal|"codec does not support offsets"
-argument_list|,
+name|String
+name|codecName
+init|=
 name|Codec
 operator|.
 name|getDefault
@@ -431,19 +430,21 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
+decl_stmt|;
+name|assumeTrue
+argument_list|(
+literal|"Codec does not support offsets: "
+operator|+
+name|codecName
+argument_list|,
+name|codecName
 operator|.
 name|equals
 argument_list|(
 literal|"SimpleText"
 argument_list|)
 operator|||
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
+name|codecName
 operator|.
 name|equals
 argument_list|(
@@ -467,13 +468,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
+name|codecName
 operator|.
 name|equals
 argument_list|(
@@ -481,7 +476,7 @@ literal|"Lucene40"
 argument_list|)
 condition|)
 block|{
-comment|// sep etc are not implemented
+comment|// Sep etc are not implemented
 switch|switch
 condition|(
 name|random

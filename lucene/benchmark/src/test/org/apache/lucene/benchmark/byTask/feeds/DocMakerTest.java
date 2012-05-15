@@ -537,7 +537,7 @@ name|TaskSequence
 argument_list|(
 name|runData
 argument_list|,
-name|getName
+name|getTestName
 argument_list|()
 argument_list|,
 literal|null

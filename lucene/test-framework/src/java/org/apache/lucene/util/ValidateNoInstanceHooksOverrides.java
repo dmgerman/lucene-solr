@@ -26,49 +26,7 @@ name|randomizedtesting
 operator|.
 name|MethodCollector
 operator|.
-name|allDeclaredMethods
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|MethodCollector
-operator|.
-name|annotatedWith
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|MethodCollector
-operator|.
-name|flatten
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|MethodCollector
-operator|.
-name|removeShadowed
+name|*
 import|;
 end_import
 
@@ -93,6 +51,16 @@ operator|.
 name|reflect
 operator|.
 name|Method
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
 import|;
 end_import
 
@@ -142,7 +110,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|AfterClass
+name|After
 import|;
 end_import
 
@@ -152,7 +120,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|BeforeClass
+name|Before
 import|;
 end_import
 
@@ -168,11 +136,15 @@ name|ClassValidator
 import|;
 end_import
 
+begin_comment
+comment|/**  * Don't allow {@link Before} and {@link After} hook overrides as it is most  * likely a user error and will result in superclass methods not being called  * (requires manual chaining).   */
+end_comment
+
 begin_class
-DECL|class|NoStaticHooksShadowing
+DECL|class|ValidateNoInstanceHooksOverrides
 specifier|public
 class|class
-name|NoStaticHooksShadowing
+name|ValidateNoInstanceHooksOverrides
 implements|implements
 name|ClassValidator
 block|{
@@ -212,7 +184,7 @@ name|clazz
 argument_list|,
 name|all
 argument_list|,
-name|BeforeClass
+name|Before
 operator|.
 name|class
 argument_list|)
@@ -223,7 +195,7 @@ name|clazz
 argument_list|,
 name|all
 argument_list|,
-name|AfterClass
+name|After
 operator|.
 name|class
 argument_list|)
@@ -267,11 +239,14 @@ argument_list|>
 argument_list|>
 name|methodHierarchy
 init|=
+name|filterIgnored
+argument_list|(
 name|annotatedWith
 argument_list|(
 name|all
 argument_list|,
 name|ann
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|List
@@ -281,9 +256,9 @@ argument_list|<
 name|Method
 argument_list|>
 argument_list|>
-name|noShadows
+name|noOverrides
 init|=
-name|removeShadowed
+name|removeOverrides
 argument_list|(
 name|methodHierarchy
 argument_list|)
@@ -291,7 +266,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|noShadows
+name|noOverrides
 operator|.
 name|equals
 argument_list|(
@@ -323,7 +298,7 @@ name|removeAll
 argument_list|(
 name|flatten
 argument_list|(
-name|noShadows
+name|noOverrides
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -393,7 +368,7 @@ literal|"#"
 operator|+
 name|sig
 operator|+
-literal|" possibly shadowed by "
+literal|" possibly overriden by "
 operator|+
 name|other
 operator|.
@@ -417,7 +392,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"There are shadowed methods annotated with "
+literal|"There are overridden methods annotated with "
 operator|+
 name|ann
 operator|.
@@ -426,7 +401,7 @@ argument_list|()
 operator|+
 literal|". These methods would not be executed by JUnit and need to manually chain themselves which can lead to"
 operator|+
-literal|" maintenance problems.\n"
+literal|" maintenance problems. Consider using different method names or make hook methods private.\n"
 operator|+
 name|b
 operator|.
@@ -438,6 +413,111 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+block|}
+DECL|method|filterIgnored
+specifier|private
+name|List
+argument_list|<
+name|List
+argument_list|<
+name|Method
+argument_list|>
+argument_list|>
+name|filterIgnored
+parameter_list|(
+name|List
+argument_list|<
+name|List
+argument_list|<
+name|Method
+argument_list|>
+argument_list|>
+name|methods
+parameter_list|)
+block|{
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|ignored
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|String
+argument_list|>
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"setUp"
+argument_list|,
+literal|"tearDown"
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|List
+argument_list|<
+name|List
+argument_list|<
+name|Method
+argument_list|>
+argument_list|>
+name|copy
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|List
+argument_list|<
+name|Method
+argument_list|>
+argument_list|>
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|List
+argument_list|<
+name|Method
+argument_list|>
+name|m
+range|:
+name|methods
+control|)
+block|{
+if|if
+condition|(
+operator|!
+name|ignored
+operator|.
+name|contains
+argument_list|(
+name|m
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|copy
+operator|.
+name|add
+argument_list|(
+name|m
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|copy
+return|;
 block|}
 DECL|method|signature
 specifier|private

@@ -33,10 +33,10 @@ comment|/**  * Require assertions for Lucene/Solr packages.  */
 end_comment
 
 begin_class
-DECL|class|RequireAssertions
+DECL|class|ValidateAssertionsRequired
 specifier|public
 class|class
-name|RequireAssertions
+name|ValidateAssertionsRequired
 implements|implements
 name|ClassValidator
 block|{

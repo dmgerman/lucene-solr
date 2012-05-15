@@ -450,7 +450,7 @@ condition|)
 block|{
 name|printHits
 argument_list|(
-name|getName
+name|getTestName
 argument_list|()
 argument_list|,
 name|h

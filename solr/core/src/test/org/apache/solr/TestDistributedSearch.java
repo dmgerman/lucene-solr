@@ -2741,12 +2741,12 @@ comment|// TODO: This test currently fails because debug info is obtained only
 comment|// on shards with matches.
 comment|// query("q","matchesnothing","fl","*,score", "debugQuery", "true");
 comment|// Thread.sleep(10000000000L);
-name|purgeFieldCache
-argument_list|(
 name|FieldCache
 operator|.
 name|DEFAULT
-argument_list|)
+operator|.
+name|purgeAllCaches
+argument_list|()
 expr_stmt|;
 comment|// avoid FC insanity
 block|}

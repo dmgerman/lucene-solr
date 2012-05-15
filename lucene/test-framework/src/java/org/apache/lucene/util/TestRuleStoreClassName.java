@@ -55,10 +55,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|StoreClassNameRule
+DECL|class|TestRuleStoreClassName
 specifier|public
 class|class
-name|StoreClassNameRule
+name|TestRuleStoreClassName
 implements|implements
 name|TestRule
 block|{

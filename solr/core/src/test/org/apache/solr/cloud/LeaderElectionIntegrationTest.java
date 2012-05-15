@@ -526,7 +526,7 @@ name|info
 argument_list|(
 literal|"####SETUP_START "
 operator|+
-name|getName
+name|getTestName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -799,7 +799,7 @@ name|info
 argument_list|(
 literal|"####SETUP_END "
 operator|+
-name|getName
+name|getTestName
 argument_list|()
 argument_list|)
 expr_stmt|;

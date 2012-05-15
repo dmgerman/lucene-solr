@@ -1013,12 +1013,12 @@ literal|" FAILED !!!!!"
 argument_list|)
 expr_stmt|;
 block|}
-name|purgeFieldCache
-argument_list|(
 name|FieldCache
 operator|.
 name|DEFAULT
-argument_list|)
+operator|.
+name|purgeAllCaches
+argument_list|()
 expr_stmt|;
 comment|// avoid FC insanity
 name|super
