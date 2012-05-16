@@ -287,7 +287,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reusable base class for UpdateProcessors that will consider   * AddUpdateCommands and mutate the values assocaited with configured   * fields.  *<p>  * Subclasses should override the mutate method to specify how individual   * SolrInputFields identified by the selector associated with this instance   * will be mutated.  *</p>  *  * @see FieldMutatingUpdateProcessorFactory  * @see FieldValueMutatingUpdateProcessor  * @see FieldNameSelector  */
+comment|/**  * Reusable base class for UpdateProcessors that will consider   * AddUpdateCommands and mutate the values associated with configured  * fields.  *<p>  * Subclasses should override the mutate method to specify how individual   * SolrInputFields identified by the selector associated with this instance   * will be mutated.  *</p>  *  * @see FieldMutatingUpdateProcessorFactory  * @see FieldValueMutatingUpdateProcessor  * @see FieldNameSelector  */
 end_comment
 
 begin_class
