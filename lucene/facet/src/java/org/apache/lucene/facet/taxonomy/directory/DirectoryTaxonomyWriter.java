@@ -374,6 +374,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|AtomicReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|CorruptIndexException
 import|;
 end_import
@@ -545,20 +559,6 @@ operator|.
 name|index
 operator|.
 name|TieredMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DocIdSetIterator
 import|;
 end_import
 
@@ -1313,52 +1313,6 @@ name|closeResources
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Returns the number of memory bytes used by the cache.    * @return Number of cache bytes in memory, for CL2O only; zero otherwise.    */
-DECL|method|getCacheMemoryUsage
-specifier|public
-name|int
-name|getCacheMemoryUsage
-parameter_list|()
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|this
-operator|.
-name|cache
-operator|==
-literal|null
-operator|||
-operator|!
-operator|(
-name|this
-operator|.
-name|cache
-operator|instanceof
-name|Cl2oTaxonomyWriterCache
-operator|)
-condition|)
-block|{
-return|return
-literal|0
-return|;
-block|}
-return|return
-operator|(
-operator|(
-name|Cl2oTaxonomyWriterCache
-operator|)
-name|this
-operator|.
-name|cache
-operator|)
-operator|.
-name|getMemoryUsage
-argument_list|()
-return|;
-block|}
 comment|/**    * A hook for extending classes to close additional resources that were used.    * The default implementation closes the {@link IndexReader} as well as the    * {@link TaxonomyWriterCache} instances that were used.<br>    *<b>NOTE:</b> if you override this method, you should include a    *<code>super.closeResources()</code> call in your implementation.    */
 DECL|method|closeResources
 specifier|protected
@@ -1492,27 +1446,36 @@ name|openReader
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO (Facet): avoid Multi*?
-name|Bits
-name|liveDocs
+name|int
+name|base
 init|=
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|reader
-argument_list|)
+literal|0
 decl_stmt|;
+name|int
+name|doc
+init|=
+operator|-
+literal|1
+decl_stmt|;
+for|for
+control|(
+name|AtomicReader
+name|r
+range|:
+name|reader
+operator|.
+name|getSequentialSubReaders
+argument_list|()
+control|)
+block|{
 name|DocsEnum
 name|docs
 init|=
-name|MultiFields
+name|r
 operator|.
-name|getTermDocsEnum
+name|termDocsEnum
 argument_list|(
-name|reader
-argument_list|,
-name|liveDocs
+literal|null
 argument_list|,
 name|Consts
 operator|.
@@ -1535,45 +1498,52 @@ decl_stmt|;
 if|if
 condition|(
 name|docs
-operator|==
+operator|!=
 literal|null
-operator|||
+condition|)
+block|{
+name|doc
+operator|=
 name|docs
 operator|.
 name|nextDoc
 argument_list|()
-operator|==
-name|DocIdSetIterator
+operator|+
+name|base
+expr_stmt|;
+break|break;
+block|}
+name|base
+operator|+=
+name|r
 operator|.
-name|NO_MORE_DOCS
-condition|)
-block|{
-return|return
-operator|-
-literal|1
-return|;
-comment|// category does not exist in taxonomy
+name|maxDoc
+argument_list|()
+expr_stmt|;
+comment|// we don't have deletions, so it's ok to call maxDoc
 block|}
 comment|// Note: we do NOT add to the cache the fact that the category
 comment|// does not exist. The reason is that our only use for this
 comment|// method is just before we actually add this category. If
 comment|// in the future this usage changes, we should consider caching
 comment|// the fact that the category is not in the taxonomy.
+if|if
+condition|(
+name|doc
+operator|>
+literal|0
+condition|)
+block|{
 name|addToCache
 argument_list|(
 name|categoryPath
 argument_list|,
-name|docs
-operator|.
-name|docID
-argument_list|()
+name|doc
 argument_list|)
 expr_stmt|;
+block|}
 return|return
-name|docs
-operator|.
-name|docID
-argument_list|()
+name|doc
 return|;
 block|}
 comment|/**    * Look up the given prefix of the given category in the cache and/or the    * on-disk storage, returning that prefix's ordinal, or a negative number in    * case the category does not yet exist in the taxonomy.    */
@@ -1657,26 +1627,36 @@ name|openReader
 argument_list|()
 expr_stmt|;
 block|}
-name|Bits
-name|liveDocs
+name|int
+name|base
 init|=
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|reader
-argument_list|)
+literal|0
 decl_stmt|;
+name|int
+name|doc
+init|=
+operator|-
+literal|1
+decl_stmt|;
+for|for
+control|(
+name|AtomicReader
+name|r
+range|:
+name|reader
+operator|.
+name|getSequentialSubReaders
+argument_list|()
+control|)
+block|{
 name|DocsEnum
 name|docs
 init|=
-name|MultiFields
+name|r
 operator|.
-name|getTermDocsEnum
+name|termDocsEnum
 argument_list|(
-name|reader
-argument_list|,
-name|liveDocs
+literal|null
 argument_list|,
 name|Consts
 operator|.
@@ -1701,54 +1681,55 @@ decl_stmt|;
 if|if
 condition|(
 name|docs
-operator|==
+operator|!=
 literal|null
-operator|||
+condition|)
+block|{
+name|doc
+operator|=
 name|docs
 operator|.
 name|nextDoc
 argument_list|()
-operator|==
-name|DocIdSetIterator
+operator|+
+name|base
+expr_stmt|;
+break|break;
+block|}
+name|base
+operator|+=
+name|r
 operator|.
-name|NO_MORE_DOCS
+name|maxDoc
+argument_list|()
+expr_stmt|;
+comment|// we don't have deletions, so it's ok to call maxDoc
+block|}
+if|if
+condition|(
+name|doc
+operator|>
+literal|0
 condition|)
 block|{
-return|return
-operator|-
-literal|1
-return|;
-comment|// category does not exist in taxonomy
-block|}
 name|addToCache
 argument_list|(
 name|categoryPath
 argument_list|,
 name|prefixLen
 argument_list|,
-name|docs
-operator|.
-name|docID
-argument_list|()
+name|doc
 argument_list|)
 expr_stmt|;
+block|}
 return|return
-name|docs
-operator|.
-name|docID
-argument_list|()
+name|doc
 return|;
 block|}
-comment|// TODO (Facet): addCategory() is synchronized. This means that if indexing is
-comment|// multi-threaded, a new category that needs to be written to disk (and
-comment|// potentially even trigger a lengthy merge) locks out other addCategory()
-comment|// calls - even those which could immediately return a cached value.
-comment|// We definitely need to fix this situation!
 annotation|@
 name|Override
 DECL|method|addCategory
 specifier|public
-specifier|synchronized
 name|int
 name|addCategory
 parameter_list|(
@@ -1762,7 +1743,7 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 comment|// If the category is already in the cache and/or the taxonomy, we
-comment|// should return its existing ordinal:
+comment|// should return its existing ordinal
 name|int
 name|res
 init|=
@@ -1778,12 +1759,33 @@ operator|<
 literal|0
 condition|)
 block|{
+comment|// the category is neither in the cache nor in the index - following code
+comment|// cannot be executed in parallel.
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+name|res
+operator|=
+name|findCategory
+argument_list|(
+name|categoryPath
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|res
+operator|<
+literal|0
+condition|)
+block|{
 comment|// This is a new category, and we need to insert it into the index
 comment|// (and the cache). Actually, we might also need to add some of
 comment|// the category's ancestors before we can add the category itself
 comment|// (while keeping the invariant that a parent is always added to
 comment|// the taxonomy before its child). internalAddCategory() does all
-comment|// this recursively:
+comment|// this recursively
 name|res
 operator|=
 name|internalAddCategory
@@ -1796,6 +1798,8 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 block|}
 return|return
 name|res
@@ -1814,8 +1818,6 @@ name|int
 name|length
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 comment|// Find our parent's ordinal (recursively adding the parent category
@@ -1927,13 +1929,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// Note that the methods calling addCategoryDocument() are synchornized,
-comment|// so this method is effectively synchronized as well, but we'll add
-comment|// synchronized to be on the safe side, and we can reuse class-local objects
-comment|// instead of allocating them every time
+comment|/**    * Note that the methods calling addCategoryDocument() are synchornized, so    * this method is effectively synchronized as well.    */
 DECL|method|addCategoryDocument
-specifier|protected
-specifier|synchronized
+specifier|private
 name|int
 name|addCategoryDocument
 parameter_list|(
@@ -1947,8 +1945,6 @@ name|int
 name|parent
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 comment|// Before Lucene 2.9, position increments>=0 were supported, so we
@@ -2170,8 +2166,6 @@ name|int
 name|id
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 if|if
@@ -2220,8 +2214,6 @@ name|int
 name|id
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 if|if
@@ -2627,25 +2619,44 @@ operator|new
 name|CategoryPath
 argument_list|()
 decl_stmt|;
+name|TermsEnum
+name|termsEnum
+init|=
+literal|null
+decl_stmt|;
+name|DocsEnum
+name|docsEnum
+init|=
+literal|null
+decl_stmt|;
+name|int
+name|base
+init|=
+literal|0
+decl_stmt|;
+for|for
+control|(
+name|AtomicReader
+name|r
+range|:
+name|reader
+operator|.
+name|getSequentialSubReaders
+argument_list|()
+control|)
+block|{
 name|Terms
 name|terms
 init|=
-name|MultiFields
+name|r
 operator|.
-name|getTerms
+name|terms
 argument_list|(
-name|reader
-argument_list|,
 name|Consts
 operator|.
 name|FULL
 argument_list|)
 decl_stmt|;
-comment|// The check is done here to avoid checking it on every iteration of the
-comment|// below loop. A null term wlil be returned if there are no terms in the
-comment|// lexicon, or after the Consts.FULL term. However while the loop is
-comment|// executed we're safe, because we only iterate as long as there are next()
-comment|// terms.
 if|if
 condition|(
 name|terms
@@ -2653,31 +2664,16 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|TermsEnum
+comment|// cannot really happen, but be on the safe side
 name|termsEnum
-init|=
+operator|=
 name|terms
 operator|.
 name|iterator
 argument_list|(
-literal|null
+name|termsEnum
 argument_list|)
-decl_stmt|;
-name|Bits
-name|liveDocs
-init|=
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|reader
-argument_list|)
-decl_stmt|;
-name|DocsEnum
-name|docsEnum
-init|=
-literal|null
-decl_stmt|;
+expr_stmt|;
 while|while
 condition|(
 name|termsEnum
@@ -2701,30 +2697,11 @@ comment|// one document. Also, since we do not allow removing categories (and
 comment|// hence documents), there are no deletions in the index. Therefore, it
 comment|// is sufficient to call next(), and then doc(), exactly once with no
 comment|// 'validation' checks.
-name|docsEnum
-operator|=
-name|termsEnum
-operator|.
-name|docs
-argument_list|(
-name|liveDocs
-argument_list|,
-name|docsEnum
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|docsEnum
-operator|.
-name|nextDoc
-argument_list|()
-expr_stmt|;
 name|cp
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-comment|// TODO (Facet): avoid String creation/use bytes?
 name|cp
 operator|.
 name|add
@@ -2737,6 +2714,19 @@ argument_list|,
 name|delimiter
 argument_list|)
 expr_stmt|;
+name|docsEnum
+operator|=
+name|termsEnum
+operator|.
+name|docs
+argument_list|(
+literal|null
+argument_list|,
+name|docsEnum
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 name|cache
 operator|.
 name|put
@@ -2745,12 +2735,24 @@ name|cp
 argument_list|,
 name|docsEnum
 operator|.
-name|docID
+name|nextDoc
 argument_list|()
+operator|+
+name|base
 argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|base
+operator|+=
+name|r
+operator|.
+name|maxDoc
+argument_list|()
+expr_stmt|;
+comment|// we don't have any deletions, so we're ok
+block|}
+comment|/*Terms terms = MultiFields.getTerms(reader, Consts.FULL);     // The check is done here to avoid checking it on every iteration of the     // below loop. A null term wlil be returned if there are no terms in the     // lexicon, or after the Consts.FULL term. However while the loop is     // executed we're safe, because we only iterate as long as there are next()     // terms.     if (terms != null) {       TermsEnum termsEnum = terms.iterator(null);       Bits liveDocs = MultiFields.getLiveDocs(reader);       DocsEnum docsEnum = null;       while (termsEnum.next() != null) {         BytesRef t = termsEnum.term();         // Since we guarantee uniqueness of categories, each term has exactly         // one document. Also, since we do not allow removing categories (and         // hence documents), there are no deletions in the index. Therefore, it         // is sufficient to call next(), and then doc(), exactly once with no         // 'validation' checks.         docsEnum = termsEnum.docs(liveDocs, docsEnum, false);         docsEnum.nextDoc();         cp.clear();         cp.add(t.utf8ToString(), delimiter);         cache.put(cp, docsEnum.docID());       }     }*/
 name|cacheIsComplete
 operator|=
 literal|true
@@ -2884,7 +2886,7 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|IndexReader
+name|DirectoryReader
 name|r
 init|=
 name|DirectoryReader
@@ -2925,46 +2927,53 @@ operator|new
 name|CategoryPath
 argument_list|()
 decl_stmt|;
-name|Terms
-name|terms
+name|int
+name|base
 init|=
-name|MultiFields
-operator|.
-name|getTerms
-argument_list|(
-name|r
-argument_list|,
-name|Consts
-operator|.
-name|FULL
-argument_list|)
+literal|0
 decl_stmt|;
 name|TermsEnum
 name|te
 init|=
-name|terms
-operator|.
-name|iterator
-argument_list|(
 literal|null
-argument_list|)
-decl_stmt|;
-name|Bits
-name|liveDocs
-init|=
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|r
-argument_list|)
 decl_stmt|;
 name|DocsEnum
 name|docs
 init|=
 literal|null
 decl_stmt|;
-comment|// we call next() first, to skip the root category which always exists.
+for|for
+control|(
+name|AtomicReader
+name|ar
+range|:
+name|r
+operator|.
+name|getSequentialSubReaders
+argument_list|()
+control|)
+block|{
+name|Terms
+name|terms
+init|=
+name|ar
+operator|.
+name|terms
+argument_list|(
+name|Consts
+operator|.
+name|FULL
+argument_list|)
+decl_stmt|;
+name|te
+operator|=
+name|terms
+operator|.
+name|iterator
+argument_list|(
+name|te
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|te
@@ -3034,7 +3043,7 @@ name|te
 operator|.
 name|docs
 argument_list|(
-name|liveDocs
+literal|null
 argument_list|,
 name|docs
 argument_list|,
@@ -3049,23 +3058,22 @@ name|docs
 operator|.
 name|nextDoc
 argument_list|()
+operator|+
+name|base
 argument_list|,
 name|ordinal
 argument_list|)
 expr_stmt|;
 block|}
-comment|// we must add the root ordinal map, so that the map will be complete
-comment|// (otherwise e.g. DiskOrdinalMap may fail because it expects more
-comment|// categories to exist in the file).
-name|ordinalMap
+name|base
+operator|+=
+name|ar
 operator|.
-name|addMapping
-argument_list|(
-literal|0
-argument_list|,
-literal|0
-argument_list|)
+name|maxDoc
+argument_list|()
 expr_stmt|;
+comment|// no deletions, so we're ok
+block|}
 name|ordinalMap
 operator|.
 name|addDone
