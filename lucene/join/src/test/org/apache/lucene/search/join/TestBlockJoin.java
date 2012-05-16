@@ -3420,15 +3420,6 @@ argument_list|(
 name|r
 argument_list|)
 decl_stmt|;
-name|s
-operator|.
-name|setDefaultFieldSortScoring
-argument_list|(
-literal|true
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
 specifier|final
 name|IndexSearcher
 name|joinS
