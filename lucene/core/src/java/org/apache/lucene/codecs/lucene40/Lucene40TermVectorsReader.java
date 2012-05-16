@@ -1377,7 +1377,7 @@ block|{
 return|return
 name|fieldInfos
 operator|.
-name|fieldName
+name|fieldInfo
 argument_list|(
 name|fieldNumbers
 index|[
@@ -1385,6 +1385,8 @@ name|fieldUpto
 operator|++
 index|]
 argument_list|)
+operator|.
+name|name
 return|;
 block|}
 else|else
@@ -1412,7 +1414,7 @@ name|terms
 argument_list|(
 name|fieldInfos
 operator|.
-name|fieldName
+name|fieldInfo
 argument_list|(
 name|fieldNumbers
 index|[
@@ -1421,6 +1423,8 @@ operator|-
 literal|1
 index|]
 argument_list|)
+operator|.
+name|name
 argument_list|)
 return|;
 block|}

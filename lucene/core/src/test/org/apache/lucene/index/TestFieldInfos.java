@@ -943,12 +943,14 @@ name|name
 argument_list|,
 name|modifiable
 operator|.
-name|fieldName
+name|fieldInfo
 argument_list|(
 name|fi
 operator|.
 name|number
 argument_list|)
+operator|.
+name|name
 argument_list|)
 expr_stmt|;
 block|}
