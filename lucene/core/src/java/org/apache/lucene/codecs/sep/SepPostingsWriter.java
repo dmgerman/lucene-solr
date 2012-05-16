@@ -942,7 +942,8 @@ name|indexOptions
 operator|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -983,7 +984,8 @@ name|DOCS_AND_FREQS_AND_POSITIONS
 operator|&&
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** Adds a new doc in this term.  If this returns null    *  then we just skip consuming positions/payloads. */

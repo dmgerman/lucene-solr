@@ -1071,12 +1071,18 @@ range|:
 name|readerFieldInfos
 control|)
 block|{
+comment|// nocommit: ugly
 name|FieldInfo
 name|merged
 init|=
+operator|(
+operator|(
+name|MutableFieldInfos
+operator|)
 name|mergeState
 operator|.
 name|fieldInfos
+operator|)
 operator|.
 name|add
 argument_list|(

@@ -648,7 +648,8 @@ argument_list|(
 literal|"f1"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -666,7 +667,8 @@ argument_list|(
 literal|"f2"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|reader
@@ -919,7 +921,8 @@ argument_list|(
 literal|"f1"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -937,7 +940,8 @@ argument_list|(
 literal|"f2"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|reader
@@ -1146,7 +1150,8 @@ argument_list|(
 literal|"f1"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1164,7 +1169,8 @@ argument_list|(
 literal|"f2"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|reader

@@ -690,7 +690,8 @@ name|indexOptions
 operator|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 expr_stmt|;
 name|storeOffsets
 operator|=
@@ -709,7 +710,8 @@ name|storePayloads
 operator|=
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 expr_stmt|;
 comment|//System.out.println("  set init blockFreqStart=" + freqStart);
 comment|//System.out.println("  set init blockProxStart=" + proxStart);

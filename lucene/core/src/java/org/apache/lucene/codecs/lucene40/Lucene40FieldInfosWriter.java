@@ -331,9 +331,15 @@ range|:
 name|infos
 control|)
 block|{
-assert|assert
+name|IndexOptions
+name|indexOptions
+init|=
 name|fi
 operator|.
+name|getIndexOptions
+argument_list|()
+decl_stmt|;
+assert|assert
 name|indexOptions
 operator|.
 name|compareTo
@@ -348,7 +354,8 @@ operator|||
 operator|!
 name|fi
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 assert|;
 name|byte
 name|bits
@@ -360,6 +367,7 @@ condition|(
 name|fi
 operator|.
 name|isIndexed
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -369,7 +377,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|storeTermVector
+name|hasVectors
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -379,7 +388,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|omitNorms
+name|omitsNorms
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -389,7 +399,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -397,8 +408,6 @@ name|STORE_PAYLOADS
 expr_stmt|;
 if|if
 condition|(
-name|fi
-operator|.
 name|indexOptions
 operator|==
 name|IndexOptions
@@ -414,8 +423,6 @@ block|}
 elseif|else
 if|if
 condition|(
-name|fi
-operator|.
 name|indexOptions
 operator|==
 name|IndexOptions
@@ -431,8 +438,6 @@ block|}
 elseif|else
 if|if
 condition|(
-name|fi
-operator|.
 name|indexOptions
 operator|==
 name|IndexOptions

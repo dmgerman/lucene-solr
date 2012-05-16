@@ -123,16 +123,11 @@ name|ParallelAtomicReader
 extends|extends
 name|AtomicReader
 block|{
-comment|// nocommit: make this read-only.
 DECL|field|fieldInfos
 specifier|private
 specifier|final
-name|MutableFieldInfos
+name|FieldInfos
 name|fieldInfos
-init|=
-operator|new
-name|MutableFieldInfos
-argument_list|()
 decl_stmt|;
 DECL|field|fields
 specifier|private
@@ -471,6 +466,14 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|// TODO: make this read-only in a cleaner way?
+name|MutableFieldInfos
+name|builder
+init|=
+operator|new
+name|MutableFieldInfos
+argument_list|()
+decl_stmt|;
 comment|// build FieldInfos and fieldToReader map:
 for|for
 control|(
@@ -514,7 +517,7 @@ name|name
 argument_list|)
 condition|)
 block|{
-name|fieldInfos
+name|builder
 operator|.
 name|add
 argument_list|(
@@ -536,7 +539,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|storeTermVector
+name|hasVectors
+argument_list|()
 condition|)
 block|{
 name|tvFieldToReader
@@ -554,6 +558,13 @@ block|}
 block|}
 block|}
 block|}
+name|fieldInfos
+operator|=
+name|builder
+operator|.
+name|asReadOnly
+argument_list|()
+expr_stmt|;
 comment|// build Fields instance
 for|for
 control|(

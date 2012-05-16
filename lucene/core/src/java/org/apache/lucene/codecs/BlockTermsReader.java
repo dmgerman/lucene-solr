@@ -722,7 +722,8 @@ name|sumTotalTermFreq
 init|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -2902,7 +2903,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -2925,7 +2927,8 @@ name|needsOffsets
 operator|&&
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -3501,7 +3504,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|!=
 name|IndexOptions
 operator|.

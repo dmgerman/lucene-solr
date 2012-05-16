@@ -475,7 +475,8 @@ if|if
 condition|(
 name|field
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -589,7 +590,8 @@ name|omitTF
 operator|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -599,7 +601,8 @@ name|storePayloads
 operator|=
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 expr_stmt|;
 block|}
 DECL|class|PostingsWriter

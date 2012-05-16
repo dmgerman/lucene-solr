@@ -1321,7 +1321,6 @@ argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
-comment|// nocommit: this should be read-only
 specifier|final
 name|MutableFieldInfos
 name|fieldInfos
@@ -1351,6 +1350,9 @@ expr_stmt|;
 block|}
 return|return
 name|fieldInfos
+operator|.
+name|asReadOnly
+argument_list|()
 return|;
 block|}
 DECL|method|getIndexedFields
@@ -1396,6 +1398,7 @@ condition|(
 name|fieldInfo
 operator|.
 name|isIndexed
+argument_list|()
 condition|)
 block|{
 name|fields

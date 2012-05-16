@@ -535,6 +535,7 @@ condition|(
 name|fieldInfo
 operator|.
 name|isIndexed
+argument_list|()
 condition|)
 block|{
 name|indexedFieldNames
@@ -559,7 +560,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|storeTermVector
+name|hasVectors
+argument_list|()
 condition|)
 block|{
 name|tvFieldNames
@@ -576,6 +578,7 @@ condition|(
 name|fieldInfo
 operator|.
 name|isIndexed
+argument_list|()
 condition|)
 block|{
 name|noTVFieldNames

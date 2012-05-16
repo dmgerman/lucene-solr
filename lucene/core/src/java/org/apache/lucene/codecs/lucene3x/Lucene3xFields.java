@@ -603,6 +603,7 @@ condition|(
 name|fi
 operator|.
 name|isIndexed
+argument_list|()
 condition|)
 block|{
 name|fields
@@ -635,7 +636,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -4443,7 +4445,8 @@ name|needsFreqs
 operator|&&
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -4550,7 +4553,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|!=
 name|IndexOptions
 operator|.

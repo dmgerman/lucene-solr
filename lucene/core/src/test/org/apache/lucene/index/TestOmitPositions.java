@@ -915,7 +915,8 @@ argument_list|(
 literal|"f1"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// docs + docs/freqs = docs
@@ -932,7 +933,8 @@ argument_list|(
 literal|"f2"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// docs + docs/freqs/pos = docs
@@ -949,7 +951,8 @@ argument_list|(
 literal|"f3"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// docs/freqs + docs = docs
@@ -966,7 +969,8 @@ argument_list|(
 literal|"f4"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// docs/freqs + docs/freqs = docs/freqs
@@ -983,7 +987,8 @@ argument_list|(
 literal|"f5"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// docs/freqs + docs/freqs/pos = docs/freqs
@@ -1000,7 +1005,8 @@ argument_list|(
 literal|"f6"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// docs/freqs/pos + docs = docs
@@ -1017,7 +1023,8 @@ argument_list|(
 literal|"f7"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// docs/freqs/pos + docs/freqs = docs/freqs
@@ -1034,7 +1041,8 @@ argument_list|(
 literal|"f8"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// docs/freqs/pos + docs/freqs/pos = docs/freqs/pos
@@ -1051,7 +1059,8 @@ argument_list|(
 literal|"f9"
 argument_list|)
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|reader

@@ -1381,7 +1381,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|!=
 name|IndexOptions
 operator|.
@@ -1405,7 +1406,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -1431,7 +1433,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 condition|)
 block|{
 if|if
@@ -1557,7 +1560,8 @@ name|needsFreqs
 operator|&&
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -1672,7 +1676,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -1700,7 +1705,8 @@ block|}
 assert|assert
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -2004,7 +2010,8 @@ name|indexOptions
 operator|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 expr_stmt|;
 name|omitTF
 operator|=
@@ -2018,7 +2025,8 @@ name|storePayloads
 operator|=
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 expr_stmt|;
 comment|// TODO: can't we only do this if consumer
 comment|// skipped consuming the previous docs?
@@ -2639,7 +2647,8 @@ name|storePayloads
 operator|=
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 expr_stmt|;
 comment|//System.out.println("Sep D&P init");
 comment|// TODO: can't we only do this if consumer

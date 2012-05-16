@@ -3366,6 +3366,7 @@ operator|!
 name|fi
 operator|.
 name|isIndexed
+argument_list|()
 condition|)
 block|{
 throw|throw
@@ -7041,7 +7042,8 @@ condition|(
 operator|!
 name|fieldInfo
 operator|.
-name|storeTermVector
+name|hasVectors
+argument_list|()
 condition|)
 block|{
 throw|throw

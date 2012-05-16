@@ -381,20 +381,19 @@ specifier|private
 name|SegmentInfo
 name|seg
 decl_stmt|;
-comment|// nocommit: make a fieldInfos.empty for stuff like this?
 DECL|field|fieldInfos
 specifier|private
 name|FieldInfos
 name|fieldInfos
 init|=
 operator|new
-name|MutableFieldInfos
+name|ReadOnlyFieldInfos
 argument_list|(
 operator|new
-name|MutableFieldInfos
-operator|.
-name|FieldNumberBiMap
-argument_list|()
+name|FieldInfo
+index|[
+literal|0
+index|]
 argument_list|)
 decl_stmt|;
 DECL|field|TERM_FREQ

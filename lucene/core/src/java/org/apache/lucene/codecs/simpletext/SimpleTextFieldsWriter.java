@@ -602,7 +602,8 @@ name|indexOptions
 operator|=
 name|field
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 expr_stmt|;
 name|writePositions
 operator|=

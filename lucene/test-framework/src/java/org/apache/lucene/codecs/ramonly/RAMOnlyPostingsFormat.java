@@ -1040,7 +1040,8 @@ if|if
 condition|(
 name|field
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(

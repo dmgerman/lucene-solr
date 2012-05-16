@@ -294,7 +294,8 @@ literal|null
 operator|&&
 name|fieldInfo
 operator|.
-name|omitNorms
+name|omitsNorms
+argument_list|()
 return|;
 block|}
 block|}

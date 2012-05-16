@@ -55,10 +55,10 @@ specifier|final
 name|int
 name|number
 decl_stmt|;
-DECL|field|isIndexed
-specifier|public
+DECL|field|indexed
+specifier|private
 name|boolean
-name|isIndexed
+name|indexed
 decl_stmt|;
 DECL|field|docValueType
 specifier|private
@@ -69,7 +69,7 @@ name|docValueType
 decl_stmt|;
 comment|// True if any document indexed term vectors
 DECL|field|storeTermVector
-specifier|public
+specifier|private
 name|boolean
 name|storeTermVector
 decl_stmt|;
@@ -81,18 +81,18 @@ name|Type
 name|normType
 decl_stmt|;
 DECL|field|omitNorms
-specifier|public
+specifier|private
 name|boolean
 name|omitNorms
 decl_stmt|;
 comment|// omit norms associated with indexed fields
 DECL|field|indexOptions
-specifier|public
+specifier|private
 name|IndexOptions
 name|indexOptions
 decl_stmt|;
 DECL|field|storePayloads
-specifier|public
+specifier|private
 name|boolean
 name|storePayloads
 decl_stmt|;
@@ -134,7 +134,7 @@ name|String
 name|name
 parameter_list|,
 name|boolean
-name|isIndexed
+name|indexed
 parameter_list|,
 name|int
 name|number
@@ -170,9 +170,9 @@ name|name
 expr_stmt|;
 name|this
 operator|.
-name|isIndexed
+name|indexed
 operator|=
-name|isIndexed
+name|indexed
 expr_stmt|;
 name|this
 operator|.
@@ -188,7 +188,7 @@ name|docValues
 expr_stmt|;
 if|if
 condition|(
-name|isIndexed
+name|indexed
 condition|)
 block|{
 name|this
@@ -293,7 +293,7 @@ name|FieldInfo
 argument_list|(
 name|name
 argument_list|,
-name|isIndexed
+name|indexed
 argument_list|,
 name|number
 argument_list|,
@@ -317,7 +317,7 @@ name|void
 name|update
 parameter_list|(
 name|boolean
-name|isIndexed
+name|indexed
 parameter_list|,
 name|boolean
 name|storeTermVector
@@ -336,14 +336,14 @@ if|if
 condition|(
 name|this
 operator|.
-name|isIndexed
+name|indexed
 operator|!=
-name|isIndexed
+name|indexed
 condition|)
 block|{
 name|this
 operator|.
-name|isIndexed
+name|indexed
 operator|=
 literal|true
 expr_stmt|;
@@ -351,7 +351,7 @@ comment|// once indexed, always index
 block|}
 if|if
 condition|(
-name|isIndexed
+name|indexed
 condition|)
 block|{
 comment|// if updated field data is not for indexing, leave the updates out
@@ -532,6 +532,17 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** @return IndexOptions for the field */
+DECL|method|getIndexOptions
+specifier|public
+name|IndexOptions
+name|getIndexOptions
+parameter_list|()
+block|{
+return|return
+name|indexOptions
+return|;
+block|}
 comment|/**    * @return true if this field has any docValues.    */
 DECL|method|hasDocValues
 specifier|public
@@ -572,7 +583,6 @@ name|normType
 return|;
 block|}
 DECL|method|setStoreTermVectors
-specifier|public
 name|void
 name|setStoreTermVectors
 parameter_list|()
@@ -582,8 +592,17 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+DECL|method|setStorePayloads
+name|void
+name|setStorePayloads
+parameter_list|()
+block|{
+name|storePayloads
+operator|=
+literal|true
+expr_stmt|;
+block|}
 DECL|method|setNormValueType
-specifier|public
 name|void
 name|setNormValueType
 parameter_list|(
@@ -628,10 +647,10 @@ throw|;
 block|}
 block|}
 comment|/**    * @return true if norms are explicitly omitted for this field    */
-DECL|method|omitNorms
+DECL|method|omitsNorms
 specifier|public
 name|boolean
-name|omitNorms
+name|omitsNorms
 parameter_list|()
 block|{
 return|return
@@ -646,7 +665,7 @@ name|hasNorms
 parameter_list|()
 block|{
 return|return
-name|isIndexed
+name|indexed
 operator|&&
 operator|!
 name|omitNorms
@@ -654,6 +673,39 @@ operator|&&
 name|normType
 operator|!=
 literal|null
+return|;
+block|}
+comment|/**    * @return true if this field is indexed.    */
+DECL|method|isIndexed
+specifier|public
+name|boolean
+name|isIndexed
+parameter_list|()
+block|{
+return|return
+name|indexed
+return|;
+block|}
+comment|/**    * @return true if any payloads exist for this field.    */
+DECL|method|hasPayloads
+specifier|public
+name|boolean
+name|hasPayloads
+parameter_list|()
+block|{
+return|return
+name|storePayloads
+return|;
+block|}
+comment|/**    * @return true if any term vectors exist for this field.    */
+DECL|method|hasVectors
+specifier|public
+name|boolean
+name|hasVectors
+parameter_list|()
+block|{
+return|return
+name|storeTermVector
 return|;
 block|}
 block|}

@@ -318,7 +318,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -330,14 +331,19 @@ operator|>=
 literal|0
 condition|)
 block|{
-name|fieldInfo
-operator|.
-name|storePayloads
-operator||=
+if|if
+condition|(
 name|fieldWriter
 operator|.
 name|hasPayloads
+condition|)
+block|{
+name|fieldInfo
+operator|.
+name|setStorePayloads
+argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|// If this field has postings then add them to the
 comment|// segment
