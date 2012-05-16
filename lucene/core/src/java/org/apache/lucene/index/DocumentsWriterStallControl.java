@@ -13,7 +13,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements. See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements. See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -43,6 +43,20 @@ operator|.
 name|DocumentsWriterPerThreadPool
 operator|.
 name|ThreadState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|ThreadInterruptedException
 import|;
 end_import
 
@@ -140,9 +154,11 @@ name|oldState
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|compareAndSetState
@@ -153,13 +169,11 @@ literal|0
 argument_list|)
 condition|)
 block|{
+return|return
 name|releaseShared
 argument_list|(
 literal|0
 argument_list|)
-expr_stmt|;
-return|return
-literal|true
 return|;
 block|}
 return|return
@@ -274,8 +288,8 @@ DECL|method|updateStalled
 name|void
 name|updateStalled
 parameter_list|(
-name|DocumentsWriterFlushControl
-name|flushControl
+name|MemoryController
+name|controller
 parameter_list|)
 block|{
 do|do
@@ -284,12 +298,12 @@ comment|// if we have more flushing / blocked DWPT than numActiveDWPT we stall!
 comment|// don't stall if we have queued flushes - threads should be hijacked instead
 while|while
 condition|(
-name|flushControl
+name|controller
 operator|.
 name|netBytes
 argument_list|()
 operator|>
-name|flushControl
+name|controller
 operator|.
 name|stallLimitBytes
 argument_list|()
@@ -327,13 +341,30 @@ name|void
 name|waitIfStalled
 parameter_list|()
 block|{
+try|try
+block|{
 name|sync
 operator|.
-name|acquireShared
+name|acquireSharedInterruptibly
 argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ThreadInterruptedException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 DECL|method|hasBlocked
 name|boolean
@@ -346,6 +377,22 @@ name|sync
 operator|.
 name|hasBlockedThreads
 return|;
+block|}
+DECL|interface|MemoryController
+specifier|static
+interface|interface
+name|MemoryController
+block|{
+DECL|method|netBytes
+name|long
+name|netBytes
+parameter_list|()
+function_decl|;
+DECL|method|stallLimitBytes
+name|long
+name|stallLimitBytes
+parameter_list|()
+function_decl|;
 block|}
 block|}
 end_class
