@@ -442,87 +442,12 @@ specifier|final
 name|FieldNumberBiMap
 name|globalFieldNumbers
 decl_stmt|;
-DECL|field|hasFreq
-specifier|private
-name|boolean
-name|hasFreq
-decl_stmt|;
-comment|// only set if readonly
-DECL|field|hasProx
-specifier|private
-name|boolean
-name|hasProx
-decl_stmt|;
-comment|// only set if readonly
-DECL|field|hasVectors
-specifier|private
-name|boolean
-name|hasVectors
-decl_stmt|;
-comment|// only set if readonly
 DECL|field|version
 specifier|private
 name|long
 name|version
 decl_stmt|;
 comment|// internal use to track changes
-comment|/**    * Creates a new read-only FieldInfos: only public to be accessible    * from the codecs package    *     * @lucene.internal    */
-DECL|method|MutableFieldInfos
-specifier|public
-name|MutableFieldInfos
-parameter_list|(
-name|FieldInfo
-index|[]
-name|infos
-parameter_list|,
-name|boolean
-name|hasFreq
-parameter_list|,
-name|boolean
-name|hasProx
-parameter_list|,
-name|boolean
-name|hasVectors
-parameter_list|)
-block|{
-name|this
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|hasFreq
-operator|=
-name|hasFreq
-expr_stmt|;
-name|this
-operator|.
-name|hasProx
-operator|=
-name|hasProx
-expr_stmt|;
-name|this
-operator|.
-name|hasVectors
-operator|=
-name|hasVectors
-expr_stmt|;
-for|for
-control|(
-name|FieldInfo
-name|info
-range|:
-name|infos
-control|)
-block|{
-name|putInternal
-argument_list|(
-name|info
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 DECL|method|MutableFieldInfos
 specifier|public
 name|MutableFieldInfos
@@ -560,7 +485,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Creates a new FieldInfos instance with the given {@link FieldNumberBiMap}.     * If the {@link FieldNumberBiMap} is<code>null</code> this instance will be read-only.    * @see #isReadOnly()    */
+comment|/**    * Creates a new FieldInfos instance with the given {@link FieldNumberBiMap}.     */
 DECL|method|MutableFieldInfos
 name|MutableFieldInfos
 parameter_list|(
@@ -568,6 +493,11 @@ name|FieldNumberBiMap
 name|globalFieldNumbers
 parameter_list|)
 block|{
+assert|assert
+name|globalFieldNumbers
+operator|!=
+literal|null
+assert|;
 name|this
 operator|.
 name|globalFieldNumbers
@@ -718,24 +648,6 @@ argument_list|(
 name|globalFieldNumbers
 argument_list|)
 decl_stmt|;
-name|fis
-operator|.
-name|hasFreq
-operator|=
-name|hasFreq
-expr_stmt|;
-name|fis
-operator|.
-name|hasProx
-operator|=
-name|hasProx
-expr_stmt|;
-name|fis
-operator|.
-name|hasVectors
-operator|=
-name|hasVectors
-expr_stmt|;
 for|for
 control|(
 name|FieldInfo
@@ -771,17 +683,6 @@ name|boolean
 name|hasProx
 parameter_list|()
 block|{
-if|if
-condition|(
-name|isReadOnly
-argument_list|()
-condition|)
-block|{
-return|return
-name|hasProx
-return|;
-block|}
-comment|// mutable FIs must check!
 for|for
 control|(
 name|FieldInfo
@@ -826,17 +727,6 @@ name|boolean
 name|hasFreq
 parameter_list|()
 block|{
-if|if
-condition|(
-name|isReadOnly
-argument_list|()
-condition|)
-block|{
-return|return
-name|hasFreq
-return|;
-block|}
-comment|// mutable FIs must check!
 for|for
 control|(
 name|FieldInfo
@@ -1518,17 +1408,6 @@ name|boolean
 name|hasVectors
 parameter_list|()
 block|{
-if|if
-condition|(
-name|isReadOnly
-argument_list|()
-condition|)
-block|{
-return|return
-name|hasVectors
-return|;
-block|}
-comment|// mutable FIs must check
 for|for
 control|(
 name|FieldInfo
@@ -1583,20 +1462,6 @@ block|}
 block|}
 return|return
 literal|false
-return|;
-block|}
-comment|/**    * Returns<code>true</code> iff this instance is not backed by a    * {@link org.apache.lucene.index.FieldInfos.FieldNumberBiMap}. Instances read from a directory via    * {@link FieldInfos#FieldInfos(FieldInfo[], boolean, boolean, boolean)} will always be read-only    * since no {@link org.apache.lucene.index.FieldInfos.FieldNumberBiMap} is supplied, otherwise     *<code>false</code>.    */
-DECL|method|isReadOnly
-specifier|public
-specifier|final
-name|boolean
-name|isReadOnly
-parameter_list|()
-block|{
-return|return
-name|globalFieldNumbers
-operator|==
-literal|null
 return|;
 block|}
 DECL|method|getVersion
@@ -1753,7 +1618,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Creates a new {@link FieldInfo} instance from the given instance. If the given instance is    * read-only this instance will be read-only too.    *     * @see #isReadOnly()    */
+comment|/**    * Creates a new instance from the given instance.     */
 comment|// nocommit
 DECL|method|from
 specifier|static
