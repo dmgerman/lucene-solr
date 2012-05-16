@@ -335,15 +335,6 @@ argument_list|()
 operator|==
 literal|null
 assert|;
-name|fi
-operator|.
-name|setNormValueType
-argument_list|(
-literal|null
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}
