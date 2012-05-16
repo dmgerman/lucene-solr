@@ -675,6 +675,9 @@ parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
+name|int
+name|newDelCount
+parameter_list|,
 name|IOContext
 name|context
 parameter_list|)
@@ -723,7 +726,7 @@ name|LIVEDOCS_EXTENSION
 argument_list|,
 name|info
 operator|.
-name|getDelGen
+name|getNextDelGen
 argument_list|()
 argument_list|)
 decl_stmt|;

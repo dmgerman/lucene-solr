@@ -1020,43 +1020,9 @@ name|info
 operator|.
 name|docCount
 assert|;
-comment|// Save in case we need to rollback on failure:
-specifier|final
-name|SegmentInfo
-name|sav
-init|=
-name|info
-operator|.
-name|clone
-argument_list|()
-decl_stmt|;
-name|info
-operator|.
-name|advanceDelGen
-argument_list|()
-expr_stmt|;
-name|info
-operator|.
-name|setDelCount
-argument_list|(
-name|info
-operator|.
-name|getDelCount
-argument_list|()
-operator|+
-name|pendingDeleteCount
-argument_list|)
-expr_stmt|;
 comment|// We can write directly to the actual name (vs to a
 comment|// .tmp& renaming it) because the file is not live
 comment|// until segments file is written:
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
 name|info
 operator|.
 name|getCodec
@@ -1076,33 +1042,33 @@ name|dir
 argument_list|,
 name|info
 argument_list|,
+name|pendingDeleteCount
+argument_list|,
 name|IOContext
 operator|.
 name|DEFAULT
 argument_list|)
 expr_stmt|;
-name|success
-operator|=
-literal|true
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-operator|!
-name|success
-condition|)
-block|{
+comment|// If we hit an exc in the line above (eg disk full)
+comment|// then info remains pointing to the previous
+comment|// (successfully written) del docs:
 name|info
 operator|.
-name|reset
+name|advanceDelGen
+argument_list|()
+expr_stmt|;
+name|info
+operator|.
+name|setDelCount
 argument_list|(
-name|sav
+name|info
+operator|.
+name|getDelCount
+argument_list|()
+operator|+
+name|pendingDeleteCount
 argument_list|)
 expr_stmt|;
-block|}
-block|}
 name|pendingDeleteCount
 operator|=
 literal|0

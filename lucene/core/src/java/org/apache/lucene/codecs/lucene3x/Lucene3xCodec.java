@@ -426,6 +426,9 @@ parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
+name|int
+name|newDelCount
+parameter_list|,
 name|IOContext
 name|context
 parameter_list|)
