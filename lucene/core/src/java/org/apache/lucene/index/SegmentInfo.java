@@ -1388,29 +1388,6 @@ block|}
 comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
 annotation|@
 name|Deprecated
-DECL|method|setDocStoreIsCompoundFile
-specifier|public
-name|void
-name|setDocStoreIsCompoundFile
-parameter_list|(
-name|boolean
-name|docStoreIsCompoundFile
-parameter_list|)
-block|{
-comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
-name|this
-operator|.
-name|docStoreIsCompoundFile
-operator|=
-name|docStoreIsCompoundFile
-expr_stmt|;
-name|clearFilesCache
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
-annotation|@
-name|Deprecated
 DECL|method|setDocStore
 name|void
 name|setDocStore
@@ -1455,46 +1432,6 @@ comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc st
 return|return
 name|docStoreSegment
 return|;
-block|}
-comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
-annotation|@
-name|Deprecated
-DECL|method|setDocStoreOffset
-name|void
-name|setDocStoreOffset
-parameter_list|(
-name|int
-name|offset
-parameter_list|)
-block|{
-comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
-name|docStoreOffset
-operator|=
-name|offset
-expr_stmt|;
-name|clearFilesCache
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * @deprecated shared doc stores are not supported in 4.0    */
-annotation|@
-name|Deprecated
-DECL|method|setDocStoreSegment
-specifier|public
-name|void
-name|setDocStoreSegment
-parameter_list|(
-name|String
-name|docStoreSegment
-parameter_list|)
-block|{
-comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
-name|this
-operator|.
-name|docStoreSegment
-operator|=
-name|docStoreSegment
-expr_stmt|;
 block|}
 DECL|method|getHasProx
 specifier|public
