@@ -1524,11 +1524,34 @@ name|fisVersion
 init|=
 name|fieldInfosVersion
 decl_stmt|;
-comment|// nocommit: fix this once we detangle
+comment|// nocommit
+name|FieldInfos
+name|infos
+init|=
+name|getFieldInfos
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
-literal|true
-comment|/* fisVersion != (fieldInfosVersion = getFieldInfos().getVersion()) */
+name|infos
+operator|instanceof
+name|MutableFieldInfos
+operator|&&
+name|fisVersion
+operator|!=
+operator|(
+name|fieldInfosVersion
+operator|=
+operator|(
+operator|(
+name|MutableFieldInfos
+operator|)
+name|infos
+operator|)
+operator|.
+name|getVersion
+argument_list|()
+operator|)
 condition|)
 block|{
 name|clearFilesCache
