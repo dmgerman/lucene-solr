@@ -1076,10 +1076,10 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|FieldInfos
+name|MutableFieldInfos
 argument_list|(
 operator|new
-name|FieldInfos
+name|MutableFieldInfos
 operator|.
 name|FieldNumberBiMap
 argument_list|()

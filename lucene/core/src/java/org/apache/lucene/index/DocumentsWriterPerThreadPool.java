@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfos
+name|MutableFieldInfos
 operator|.
 name|FieldNumberBiMap
 import|;
@@ -372,11 +372,11 @@ operator|++
 control|)
 block|{
 specifier|final
-name|FieldInfos
+name|MutableFieldInfos
 name|infos
 init|=
 operator|new
-name|FieldInfos
+name|MutableFieldInfos
 argument_list|(
 name|globalFieldMap
 argument_list|)
@@ -696,11 +696,11 @@ name|closed
 condition|)
 block|{
 specifier|final
-name|FieldInfos
+name|MutableFieldInfos
 name|infos
 init|=
 operator|new
-name|FieldInfos
+name|MutableFieldInfos
 argument_list|(
 name|globalFieldMap
 operator|.

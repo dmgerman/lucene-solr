@@ -596,6 +596,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|MutableFieldInfos
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Terms
 import|;
 end_import
@@ -5573,6 +5587,7 @@ throw|;
 block|}
 block|}
 comment|/** Adds field info for a Document. */
+comment|// nocommit: what uses this?
 DECL|method|add
 specifier|public
 specifier|static
@@ -5582,7 +5597,7 @@ parameter_list|(
 name|Document
 name|doc
 parameter_list|,
-name|FieldInfos
+name|MutableFieldInfos
 name|fieldInfos
 parameter_list|)
 block|{

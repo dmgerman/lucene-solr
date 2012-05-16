@@ -407,7 +407,7 @@ decl_stmt|;
 DECL|field|fieldInfos
 specifier|private
 specifier|static
-name|FieldInfos
+name|MutableFieldInfos
 name|fieldInfos
 init|=
 literal|null
@@ -426,10 +426,10 @@ block|{
 name|fieldInfos
 operator|=
 operator|new
-name|FieldInfos
+name|MutableFieldInfos
 argument_list|(
 operator|new
-name|FieldInfos
+name|MutableFieldInfos
 operator|.
 name|FieldNumberBiMap
 argument_list|()

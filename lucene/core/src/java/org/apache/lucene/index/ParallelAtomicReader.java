@@ -123,14 +123,15 @@ name|ParallelAtomicReader
 extends|extends
 name|AtomicReader
 block|{
+comment|// nocommit: make this read-only.
 DECL|field|fieldInfos
 specifier|private
 specifier|final
-name|FieldInfos
+name|MutableFieldInfos
 name|fieldInfos
 init|=
 operator|new
-name|FieldInfos
+name|MutableFieldInfos
 argument_list|()
 decl_stmt|;
 DECL|field|fields

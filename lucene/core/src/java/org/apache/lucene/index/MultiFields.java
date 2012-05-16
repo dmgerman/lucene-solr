@@ -1321,12 +1321,13 @@ argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
+comment|// nocommit: this should be read-only
 specifier|final
-name|FieldInfos
+name|MutableFieldInfos
 name|fieldInfos
 init|=
 operator|new
-name|FieldInfos
+name|MutableFieldInfos
 argument_list|()
 decl_stmt|;
 for|for

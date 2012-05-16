@@ -74,10 +74,11 @@ specifier|final
 name|boolean
 name|negate
 decl_stmt|;
+comment|// nocommit: make read only
 DECL|field|fieldInfos
 specifier|private
 specifier|final
-name|FieldInfos
+name|MutableFieldInfos
 name|fieldInfos
 decl_stmt|;
 DECL|method|FieldFilterAtomicReader
@@ -119,7 +120,7 @@ operator|.
 name|fieldInfos
 operator|=
 operator|new
-name|FieldInfos
+name|MutableFieldInfos
 argument_list|()
 expr_stmt|;
 for|for

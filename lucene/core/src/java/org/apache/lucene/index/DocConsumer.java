@@ -37,7 +37,7 @@ specifier|abstract
 name|void
 name|processDocument
 parameter_list|(
-name|FieldInfos
+name|MutableFieldInfos
 name|fieldInfos
 parameter_list|)
 throws|throws
