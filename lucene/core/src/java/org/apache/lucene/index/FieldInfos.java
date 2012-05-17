@@ -53,23 +53,11 @@ specifier|abstract
 class|class
 name|FieldInfos
 implements|implements
-name|Cloneable
-implements|,
 name|Iterable
 argument_list|<
 name|FieldInfo
 argument_list|>
 block|{
-comment|/**    * Returns a deep clone of this FieldInfos instance.    */
-annotation|@
-name|Override
-DECL|method|clone
-specifier|public
-specifier|abstract
-name|FieldInfos
-name|clone
-parameter_list|()
-function_decl|;
 comment|/**    * Return the fieldinfo object referenced by the field name    * @return the FieldInfo object or null when the given fieldName    * doesn't exist.    */
 DECL|method|fieldInfo
 specifier|public
