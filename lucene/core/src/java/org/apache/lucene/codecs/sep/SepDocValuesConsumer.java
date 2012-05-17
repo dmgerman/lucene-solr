@@ -355,11 +355,6 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-assert|assert
-literal|false
-operator|:
-literal|"sep is broken for now!!"
-assert|;
 name|files
 argument_list|(
 name|segmentName

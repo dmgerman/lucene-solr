@@ -2163,27 +2163,6 @@ name|fieldInfos
 operator|.
 name|hasVectors
 argument_list|()
-argument_list|,
-name|flushState
-operator|.
-name|fieldInfos
-operator|.
-name|hasDocValues
-argument_list|()
-argument_list|,
-name|flushState
-operator|.
-name|fieldInfos
-operator|.
-name|hasNorms
-argument_list|()
-argument_list|,
-name|flushState
-operator|.
-name|fieldInfos
-operator|.
-name|hasFreq
-argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -2236,9 +2215,11 @@ argument_list|,
 literal|"new segment has "
 operator|+
 operator|(
-name|newSegment
+name|flushState
 operator|.
-name|getHasVectors
+name|fieldInfos
+operator|.
+name|hasVectors
 argument_list|()
 condition|?
 literal|"vectors"
@@ -2249,9 +2230,11 @@ operator|+
 literal|"; "
 operator|+
 operator|(
-name|newSegment
+name|flushState
 operator|.
-name|getHasNorms
+name|fieldInfos
+operator|.
+name|hasNorms
 argument_list|()
 condition|?
 literal|"norms"
@@ -2262,9 +2245,11 @@ operator|+
 literal|"; "
 operator|+
 operator|(
-name|newSegment
+name|flushState
 operator|.
-name|getHasDocValues
+name|fieldInfos
+operator|.
+name|hasDocValues
 argument_list|()
 condition|?
 literal|"docValues"
@@ -2275,9 +2260,11 @@ operator|+
 literal|"; "
 operator|+
 operator|(
-name|newSegment
+name|flushState
 operator|.
-name|getHasProx
+name|fieldInfos
+operator|.
+name|hasProx
 argument_list|()
 condition|?
 literal|"prox"
@@ -2288,9 +2275,11 @@ operator|+
 literal|"; "
 operator|+
 operator|(
-name|newSegment
+name|flushState
 operator|.
-name|getHasProx
+name|fieldInfos
+operator|.
+name|hasFreq
 argument_list|()
 condition|?
 literal|"freqs"

@@ -518,14 +518,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|segmentInfo
-operator|.
-name|getHasNorms
-argument_list|()
-condition|)
-block|{
 specifier|final
 name|String
 name|normsFileName
@@ -578,7 +570,6 @@ argument_list|(
 name|normsEntriesFileName
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

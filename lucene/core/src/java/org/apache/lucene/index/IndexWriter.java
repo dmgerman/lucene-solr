@@ -6848,27 +6848,6 @@ name|fieldInfos
 operator|.
 name|hasVectors
 argument_list|()
-argument_list|,
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasDocValues
-argument_list|()
-argument_list|,
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasNorms
-argument_list|()
-argument_list|,
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasFreq
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|setDiagnostics
@@ -11765,48 +11744,6 @@ name|hasProx
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|merge
-operator|.
-name|info
-operator|.
-name|setHasFreq
-argument_list|(
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasFreq
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|merge
-operator|.
-name|info
-operator|.
-name|setHasDocValues
-argument_list|(
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasDocValues
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|merge
-operator|.
-name|info
-operator|.
-name|setHasNorms
-argument_list|(
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasNorms
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// Record which codec was used to write the segment
 comment|// nocommit stop doing this once we call non-wimpy
 comment|// ctor when we make the merge.info:
@@ -11846,11 +11783,11 @@ operator|+
 literal|"; merged segment has "
 operator|+
 operator|(
-name|merge
+name|mergeState
 operator|.
-name|info
+name|fieldInfos
 operator|.
-name|getHasVectors
+name|hasVectors
 argument_list|()
 condition|?
 literal|"vectors"
@@ -11861,11 +11798,11 @@ operator|+
 literal|"; "
 operator|+
 operator|(
-name|merge
+name|mergeState
 operator|.
-name|info
+name|fieldInfos
 operator|.
-name|getHasNorms
+name|hasNorms
 argument_list|()
 condition|?
 literal|"norms"
@@ -11876,11 +11813,11 @@ operator|+
 literal|"; "
 operator|+
 operator|(
-name|merge
+name|mergeState
 operator|.
-name|info
+name|fieldInfos
 operator|.
-name|getHasDocValues
+name|hasDocValues
 argument_list|()
 condition|?
 literal|"docValues"
@@ -11891,11 +11828,11 @@ operator|+
 literal|"; "
 operator|+
 operator|(
-name|merge
+name|mergeState
 operator|.
-name|info
+name|fieldInfos
 operator|.
-name|getHasProx
+name|hasProx
 argument_list|()
 condition|?
 literal|"prox"
@@ -11906,11 +11843,11 @@ operator|+
 literal|"; "
 operator|+
 operator|(
-name|merge
+name|mergeState
 operator|.
-name|info
+name|fieldInfos
 operator|.
-name|getHasProx
+name|hasProx
 argument_list|()
 condition|?
 literal|"freqs"

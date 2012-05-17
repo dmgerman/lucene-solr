@@ -568,13 +568,6 @@ name|filesInternal
 argument_list|(
 name|state
 operator|.
-name|fieldInfos
-operator|.
-name|hasNorms
-argument_list|()
-argument_list|,
-name|state
-operator|.
 name|segmentName
 argument_list|,
 name|files
@@ -634,11 +627,6 @@ name|filesInternal
 argument_list|(
 name|segmentInfo
 operator|.
-name|getHasNorms
-argument_list|()
-argument_list|,
-name|segmentInfo
-operator|.
 name|name
 argument_list|,
 name|files
@@ -653,9 +641,6 @@ specifier|static
 name|void
 name|filesInternal
 parameter_list|(
-name|boolean
-name|hasNorms
-parameter_list|,
 name|String
 name|segmentName
 parameter_list|,
@@ -668,11 +653,6 @@ parameter_list|,
 name|String
 name|segmentSuffix
 parameter_list|)
-block|{
-if|if
-condition|(
-name|hasNorms
-condition|)
 block|{
 name|String
 name|id
@@ -698,7 +678,6 @@ name|segmentSuffix
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

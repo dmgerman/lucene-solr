@@ -446,6 +446,10 @@ name|dir
 argument_list|,
 name|state
 operator|.
+name|fieldInfos
+argument_list|,
+name|state
+operator|.
 name|segmentInfo
 argument_list|,
 name|state
