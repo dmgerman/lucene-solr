@@ -810,14 +810,6 @@ name|FREQ_EXTENSION
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|info
-operator|.
-name|getHasProx
-argument_list|()
-condition|)
-block|{
 comment|// LUCENE-1739: for certain versions of 2.9-dev,
 comment|// hasProx would be incorrectly computed during
 comment|// indexing as true, and then stored into the segments
@@ -861,7 +853,6 @@ argument_list|(
 name|prx
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 annotation|@

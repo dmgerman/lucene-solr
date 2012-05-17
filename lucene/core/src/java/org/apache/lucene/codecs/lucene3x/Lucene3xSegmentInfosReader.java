@@ -774,7 +774,9 @@ operator|.
 name|readStringStringMap
 argument_list|()
 decl_stmt|;
-comment|// nocommit cleane up
+comment|// nocommit we can use hasProx/hasVectors from the 3.x
+comment|// si... if we can pass this to the other components...?
+comment|// nocommit clean up
 specifier|final
 name|boolean
 name|hasVectors
@@ -878,8 +880,6 @@ argument_list|,
 name|isCompoundFile
 argument_list|,
 name|delCount
-argument_list|,
-name|hasProx
 argument_list|,
 name|codec
 argument_list|,

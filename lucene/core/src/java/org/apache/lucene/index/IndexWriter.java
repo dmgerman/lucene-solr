@@ -6831,13 +6831,6 @@ literal|false
 argument_list|,
 literal|0
 argument_list|,
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasProx
-argument_list|()
-argument_list|,
 name|codec
 argument_list|,
 literal|null
@@ -11698,21 +11691,6 @@ operator|=
 name|mergeState
 operator|.
 name|mergedDocCount
-expr_stmt|;
-comment|// LUCENE-3403: set hasVectors after merge(), so that it is properly set.
-name|merge
-operator|.
-name|info
-operator|.
-name|setHasProx
-argument_list|(
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasProx
-argument_list|()
-argument_list|)
 expr_stmt|;
 comment|// Record which codec was used to write the segment
 comment|// nocommit stop doing this once we call non-wimpy

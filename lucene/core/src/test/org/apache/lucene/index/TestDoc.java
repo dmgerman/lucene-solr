@@ -1177,13 +1177,6 @@ literal|false
 argument_list|,
 literal|0
 argument_list|,
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasProx
-argument_list|()
-argument_list|,
 name|codec
 argument_list|,
 literal|null

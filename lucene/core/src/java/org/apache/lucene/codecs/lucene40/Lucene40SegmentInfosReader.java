@@ -490,17 +490,6 @@ operator|<=
 name|docCount
 assert|;
 specifier|final
-name|boolean
-name|hasProx
-init|=
-name|input
-operator|.
-name|readByte
-argument_list|()
-operator|==
-literal|1
-decl_stmt|;
-specifier|final
 name|Codec
 name|codec
 init|=
@@ -553,8 +542,6 @@ argument_list|,
 name|isCompoundFile
 argument_list|,
 name|delCount
-argument_list|,
-name|hasProx
 argument_list|,
 name|codec
 argument_list|,

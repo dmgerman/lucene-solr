@@ -618,12 +618,6 @@ DECL|field|numFields
 name|int
 name|numFields
 decl_stmt|;
-comment|/** True if at least one of the fields in this segment        *  has position data        *  @see FieldType#setIndexOptions(org.apache.lucene.index.FieldInfo.IndexOptions) */
-DECL|field|hasProx
-specifier|public
-name|boolean
-name|hasProx
-decl_stmt|;
 comment|/** Map that includes certain        *  debugging details that IndexWriter records into        *  each segment it creates */
 DECL|field|diagnostics
 specifier|public
@@ -1911,25 +1905,6 @@ operator|=
 name|info
 operator|.
 name|getUseCompoundFile
-argument_list|()
-expr_stmt|;
-name|msg
-argument_list|(
-literal|"    hasProx="
-operator|+
-name|info
-operator|.
-name|getHasProx
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|segInfoStat
-operator|.
-name|hasProx
-operator|=
-name|info
-operator|.
-name|getHasProx
 argument_list|()
 expr_stmt|;
 name|msg

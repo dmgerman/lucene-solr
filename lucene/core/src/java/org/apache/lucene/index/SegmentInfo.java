@@ -207,7 +207,6 @@ name|SegmentInfo
 implements|implements
 name|Cloneable
 block|{
-comment|// TODO: remove with hasVector and hasProx
 DECL|field|CHECK_FIELDINFO
 specifier|public
 specifier|static
@@ -340,12 +339,6 @@ name|int
 name|delCount
 decl_stmt|;
 comment|// How many deleted docs in this segment
-DECL|field|hasProx
-specifier|private
-name|boolean
-name|hasProx
-decl_stmt|;
-comment|// True if this segment has any fields with positional information
 DECL|field|codec
 specifier|private
 name|Codec
@@ -535,9 +528,6 @@ parameter_list|,
 name|int
 name|delCount
 parameter_list|,
-name|boolean
-name|hasProx
-parameter_list|,
 name|Codec
 name|codec
 parameter_list|,
@@ -616,13 +606,6 @@ name|delCount
 operator|=
 name|delCount
 expr_stmt|;
-comment|// nocommit remove these now that we can do regexp instead!
-name|this
-operator|.
-name|hasProx
-operator|=
-name|hasProx
-expr_stmt|;
 name|this
 operator|.
 name|codec
@@ -686,38 +669,6 @@ block|}
 return|return
 name|sizeInBytes
 return|;
-block|}
-comment|// nocommit: ideally codec stores this info privately:
-DECL|method|getHasProx
-specifier|public
-name|boolean
-name|getHasProx
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-name|hasProx
-return|;
-block|}
-DECL|method|setHasProx
-specifier|public
-name|void
-name|setHasProx
-parameter_list|(
-name|boolean
-name|hasProx
-parameter_list|)
-block|{
-name|this
-operator|.
-name|hasProx
-operator|=
-name|hasProx
-expr_stmt|;
-name|clearFilesCache
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|hasDeletions
 specifier|public
@@ -902,8 +853,6 @@ argument_list|,
 name|isCompoundFile
 argument_list|,
 name|delCount
-argument_list|,
-name|hasProx
 argument_list|,
 name|codec
 argument_list|,
