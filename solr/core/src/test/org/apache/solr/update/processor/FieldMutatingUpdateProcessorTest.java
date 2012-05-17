@@ -3752,7 +3752,7 @@ literal|0.0F
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Convinience method for building up SolrInputDocuments    */
+comment|/**     * Convenience method for building up SolrInputDocuments    */
 DECL|method|doc
 name|SolrInputDocument
 name|doc
@@ -3794,7 +3794,7 @@ return|return
 name|d
 return|;
 block|}
-comment|/**     * Convinience method for building up SolrInputFields    */
+comment|/**     * Convenience method for building up SolrInputFields    */
 DECL|method|field
 name|SolrInputField
 name|field
@@ -3848,7 +3848,7 @@ return|return
 name|f
 return|;
 block|}
-comment|/**     * Convinience method for building up SolrInputFields with default boost    */
+comment|/**     * Convenience method for building up SolrInputFields with default boost    */
 DECL|method|f
 name|SolrInputField
 name|f
@@ -3872,7 +3872,7 @@ name|values
 argument_list|)
 return|;
 block|}
-comment|/**    * Runs a document through the specified chain, and returns the final     * document used when the chain is completed (NOTE: some chains may     * modifiy the document in place    */
+comment|/**    * Runs a document through the specified chain, and returns the final     * document used when the chain is completed (NOTE: some chains may     * modify the document in place    */
 DECL|method|processAdd
 name|SolrInputDocument
 name|processAdd
