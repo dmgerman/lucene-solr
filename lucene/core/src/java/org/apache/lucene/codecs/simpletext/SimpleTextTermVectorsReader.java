@@ -1248,14 +1248,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|info
-operator|.
-name|getHasVectors
-argument_list|()
-condition|)
-block|{
 name|files
 operator|.
 name|add
@@ -1274,7 +1266,6 @@ name|VECTORS_EXTENSION
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|readLine
 specifier|private

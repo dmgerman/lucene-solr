@@ -3371,14 +3371,6 @@ if|if
 condition|(
 name|info
 operator|.
-name|getHasVectors
-argument_list|()
-condition|)
-block|{
-if|if
-condition|(
-name|info
-operator|.
 name|getDocStoreOffset
 argument_list|()
 operator|!=
@@ -3549,7 +3541,6 @@ name|VECTORS_DOCUMENTS_EXTENSION
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|// If this returns, we do the surrogates shuffle so that the

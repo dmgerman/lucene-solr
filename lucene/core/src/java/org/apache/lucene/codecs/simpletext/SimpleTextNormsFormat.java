@@ -589,6 +589,10 @@ name|findMatchingFiles
 argument_list|(
 name|state
 operator|.
+name|segmentName
+argument_list|,
+name|state
+operator|.
 name|directory
 argument_list|,
 name|files
@@ -654,6 +658,16 @@ name|String
 name|segmentSuffix
 parameter_list|)
 block|{
+comment|// nocommit simplify this: weird that we get suffix as
+comment|// an arg... it's always a constant
+assert|assert
+name|segmentSuffix
+operator|.
+name|equals
+argument_list|(
+name|NORMS_SEG_SUFFIX
+argument_list|)
+assert|;
 name|String
 name|id
 init|=

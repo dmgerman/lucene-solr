@@ -6841,13 +6841,6 @@ argument_list|,
 name|codec
 argument_list|,
 literal|null
-argument_list|,
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasVectors
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|setDiagnostics
@@ -11379,15 +11372,6 @@ name|merge
 operator|.
 name|segments
 argument_list|)
-operator|+
-literal|" mergeVectors="
-operator|+
-name|merge
-operator|.
-name|info
-operator|.
-name|getHasVectors
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -11716,20 +11700,6 @@ operator|.
 name|mergedDocCount
 expr_stmt|;
 comment|// LUCENE-3403: set hasVectors after merge(), so that it is properly set.
-name|merge
-operator|.
-name|info
-operator|.
-name|setHasVectors
-argument_list|(
-name|mergeState
-operator|.
-name|fieldInfos
-operator|.
-name|hasVectors
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|merge
 operator|.
 name|info

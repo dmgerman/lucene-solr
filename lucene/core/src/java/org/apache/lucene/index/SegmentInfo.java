@@ -290,6 +290,17 @@ specifier|private
 name|boolean
 name|isCompoundFile
 decl_stmt|;
+DECL|field|files
+specifier|private
+specifier|volatile
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|files
+decl_stmt|;
+comment|// Cached list of files that this segment uses
+comment|// in the Directory
 DECL|field|sizeInBytes
 specifier|private
 specifier|volatile
@@ -329,12 +340,6 @@ name|int
 name|delCount
 decl_stmt|;
 comment|// How many deleted docs in this segment
-DECL|field|hasVectors
-specifier|private
-name|boolean
-name|hasVectors
-decl_stmt|;
-comment|// True if this segment has any term vectors fields
 DECL|field|hasProx
 specifier|private
 name|boolean
@@ -543,9 +548,6 @@ argument_list|,
 name|String
 argument_list|>
 name|diagnostics
-parameter_list|,
-name|boolean
-name|hasVectors
 parameter_list|)
 block|{
 name|this
@@ -614,30 +616,24 @@ name|delCount
 operator|=
 name|delCount
 expr_stmt|;
-name|this
-operator|.
-name|hasProx
-operator|=
-name|hasProx
-expr_stmt|;
-name|this
-operator|.
-name|codec
-operator|=
-name|codec
-expr_stmt|;
-name|this
-operator|.
-name|diagnostics
-operator|=
-name|diagnostics
-expr_stmt|;
 comment|// nocommit remove these now that we can do regexp instead!
 name|this
 operator|.
-name|hasVectors
+name|hasProx
 operator|=
-name|hasVectors
+name|hasProx
+expr_stmt|;
+name|this
+operator|.
+name|codec
+operator|=
+name|codec
+expr_stmt|;
+name|this
+operator|.
+name|diagnostics
+operator|=
+name|diagnostics
 expr_stmt|;
 block|}
 comment|/**    * Returns total size in bytes of all of files used by this segment    */
@@ -718,38 +714,6 @@ operator|.
 name|hasProx
 operator|=
 name|hasProx
-expr_stmt|;
-name|clearFilesCache
-argument_list|()
-expr_stmt|;
-block|}
-comment|// nocommit: ideally codec stores this info privately:
-DECL|method|getHasVectors
-specifier|public
-name|boolean
-name|getHasVectors
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-name|hasVectors
-return|;
-block|}
-DECL|method|setHasVectors
-specifier|public
-name|void
-name|setHasVectors
-parameter_list|(
-name|boolean
-name|hasVectors
-parameter_list|)
-block|{
-name|this
-operator|.
-name|hasVectors
-operator|=
-name|hasVectors
 expr_stmt|;
 name|clearFilesCache
 argument_list|()
@@ -953,8 +917,6 @@ argument_list|>
 argument_list|(
 name|diagnostics
 argument_list|)
-argument_list|,
-name|hasVectors
 argument_list|)
 return|;
 block|}
@@ -1202,6 +1164,9 @@ name|String
 argument_list|>
 name|findMatchingFiles
 parameter_list|(
+name|String
+name|segmentName
+parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
@@ -1256,6 +1221,19 @@ name|ioe
 argument_list|)
 throw|;
 block|}
+name|List
+argument_list|<
+name|Pattern
+argument_list|>
+name|compiledPatterns
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|Pattern
+argument_list|>
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|String
@@ -1305,6 +1283,22 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// nocommit can i test whether the regexp matches only 1 string...?  maybe... make into autamaton and union them all....?
+name|compiledPatterns
+operator|.
+name|add
+argument_list|(
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+name|nameOrPattern
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|// nocommit this is DOG SLOW: try TestBoolean2 w/ seed 1F7F3638C719C665
 for|for
 control|(
 name|String
@@ -1315,14 +1309,33 @@ control|)
 block|{
 if|if
 condition|(
-name|Pattern
+name|file
 operator|.
-name|matches
+name|startsWith
 argument_list|(
-name|nameOrPattern
-argument_list|,
+name|segmentName
+argument_list|)
+condition|)
+block|{
+for|for
+control|(
+name|Pattern
+name|pattern
+range|:
+name|compiledPatterns
+control|)
+block|{
+if|if
+condition|(
+name|pattern
+operator|.
+name|matcher
+argument_list|(
 name|file
 argument_list|)
+operator|.
+name|matches
+argument_list|()
 condition|)
 block|{
 name|files
@@ -1332,6 +1345,7 @@ argument_list|(
 name|file
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 block|}
 block|}
@@ -1352,6 +1366,14 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|files
+operator|==
+literal|null
+condition|)
+block|{
+comment|// nocommit can we remove this again....?
 specifier|final
 name|Set
 argument_list|<
@@ -1375,13 +1397,20 @@ argument_list|,
 name|fileSet
 argument_list|)
 expr_stmt|;
-return|return
+name|files
+operator|=
 name|findMatchingFiles
 argument_list|(
+name|name
+argument_list|,
 name|dir
 argument_list|,
 name|fileSet
 argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|files
 return|;
 block|}
 comment|/* Called whenever any change is made that affects which    * files this segment has. */
@@ -1395,6 +1424,10 @@ name|sizeInBytes
 operator|=
 operator|-
 literal|1
+expr_stmt|;
+name|files
+operator|=
+literal|null
 expr_stmt|;
 block|}
 comment|/** {@inheritDoc} */
@@ -1499,43 +1532,6 @@ operator|.
 name|append
 argument_list|(
 literal|'x'
-argument_list|)
-expr_stmt|;
-block|}
-try|try
-block|{
-if|if
-condition|(
-name|getHasVectors
-argument_list|()
-condition|)
-block|{
-name|s
-operator|.
-name|append
-argument_list|(
-literal|'v'
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|e
-parameter_list|)
-block|{
-comment|// Messy: because getHasVectors may be used in an
-comment|// thread-unsafe way, and may attempt to open an fnm
-comment|// file that has since (legitimately) been deleted by
-comment|// IndexWriter, instead of throwing these exceptions
-comment|// up, just add v? to indicate we don't know if this
-comment|// segment has vectors:
-name|s
-operator|.
-name|append
-argument_list|(
-literal|"v?"
 argument_list|)
 expr_stmt|;
 block|}

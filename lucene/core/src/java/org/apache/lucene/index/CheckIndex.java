@@ -3186,7 +3186,6 @@ name|status
 return|;
 block|}
 comment|/**    * checks Fields api is consistent with itself.    * searcher is optional, to verify with queries. Can be null.    */
-comment|// TODO: cutover term vectors to this!
 DECL|method|checkFields
 specifier|private
 name|Status
@@ -3208,6 +3207,9 @@ name|fieldInfos
 parameter_list|,
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|boolean
+name|doPrint
 parameter_list|)
 throws|throws
 name|IOException
@@ -5533,6 +5535,11 @@ operator|)
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|doPrint
+condition|)
+block|{
 name|msg
 argument_list|(
 literal|"OK ["
@@ -5556,6 +5563,7 @@ operator|+
 literal|" tokens]"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|verbose
@@ -5730,6 +5738,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 name|is
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -5766,6 +5776,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|null
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -6940,6 +6952,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// Again, with the one doc deleted:
@@ -6954,6 +6968,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// Only agg stats if the doc is live:

@@ -372,6 +372,8 @@ name|SegmentInfo
 operator|.
 name|findMatchingFiles
 argument_list|(
+name|segmentName
+argument_list|,
 name|directory
 argument_list|,
 name|files
