@@ -869,12 +869,13 @@ argument_list|()
 expr_stmt|;
 name|fieldInfos
 operator|=
-name|seg
+name|_TestUtil
 operator|.
 name|getFieldInfos
-argument_list|()
+argument_list|(
+name|seg
+argument_list|)
 expr_stmt|;
-comment|//new FieldInfos(dir, IndexFileNames.segmentFileName(seg.name, "", IndexFileNames.FIELD_INFOS_EXTENSION));
 block|}
 annotation|@
 name|Override

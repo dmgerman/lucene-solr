@@ -103,6 +103,7 @@ specifier|abstract
 class|class
 name|TermVectorsFormat
 block|{
+comment|/** Returns a {@link TermVectorsReader} to read term    *  vectors. */
 DECL|method|vectorsReader
 specifier|public
 specifier|abstract
@@ -124,6 +125,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns a {@link TermVectorsWriter} to write term    *  vectors. */
 DECL|method|vectorsWriter
 specifier|public
 specifier|abstract
@@ -142,6 +144,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Gathers files (exact file name or a Pattern regex)    *  associated with this segment. */
 DECL|method|files
 specifier|public
 specifier|abstract

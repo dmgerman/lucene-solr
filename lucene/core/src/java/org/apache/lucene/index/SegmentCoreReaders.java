@@ -94,6 +94,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|FieldInfosReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|FieldsProducer
 import|;
 end_import
@@ -511,22 +525,28 @@ operator|=
 name|dir
 expr_stmt|;
 block|}
-name|si
+name|fieldInfos
+operator|=
+name|codec
 operator|.
-name|loadFieldInfos
+name|fieldInfosFormat
+argument_list|()
+operator|.
+name|getFieldInfosReader
+argument_list|()
+operator|.
+name|read
 argument_list|(
 name|cfsDir
 argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// prevent opening the CFS to load fieldInfos
-name|fieldInfos
-operator|=
 name|si
 operator|.
-name|getFieldInfos
-argument_list|()
+name|name
+argument_list|,
+name|IOContext
+operator|.
+name|READONCE
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -579,6 +599,7 @@ assert|;
 comment|// ask codec for its Norms:
 comment|// TODO: since we don't write any norms file if there are no norms,
 comment|// kinda jaky to assume the codec handles the case of no norms file at all gracefully?!
+comment|// nocommit shouldn't we check si.getHasNorms()/si.getHasDocValues()...?
 name|norms
 operator|=
 name|codec

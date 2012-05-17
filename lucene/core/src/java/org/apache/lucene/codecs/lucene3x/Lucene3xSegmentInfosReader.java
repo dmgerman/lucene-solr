@@ -739,13 +739,15 @@ operator|<=
 name|docCount
 assert|;
 specifier|final
-name|int
+name|boolean
 name|hasProx
 init|=
 name|input
 operator|.
 name|readByte
 argument_list|()
+operator|==
+literal|1
 decl_stmt|;
 specifier|final
 name|Codec
@@ -773,7 +775,7 @@ name|readStringStringMap
 argument_list|()
 decl_stmt|;
 specifier|final
-name|int
+name|boolean
 name|hasVectors
 decl_stmt|;
 if|if
@@ -791,6 +793,8 @@ name|input
 operator|.
 name|readByte
 argument_list|()
+operator|==
+literal|1
 expr_stmt|;
 block|}
 else|else
@@ -910,14 +914,6 @@ operator|.
 name|VECTORS_INDEX_EXTENSION
 argument_list|)
 argument_list|)
-condition|?
-name|SegmentInfo
-operator|.
-name|YES
-else|:
-name|SegmentInfo
-operator|.
-name|NO
 expr_stmt|;
 block|}
 finally|finally
@@ -935,6 +931,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// nocommit 3x always has norms?
 return|return
 operator|new
 name|SegmentInfo
@@ -968,6 +965,12 @@ argument_list|,
 name|diagnostics
 argument_list|,
 name|hasVectors
+argument_list|,
+literal|false
+argument_list|,
+literal|true
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}

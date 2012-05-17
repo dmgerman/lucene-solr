@@ -202,7 +202,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Gathers files associated with this segment    *     * @param segmentInfo the {@link SegmentInfo} for this segment     * @param segmentSuffix the format's suffix within this segment    * @param files the of files to add the codec files to.    */
+comment|/**    * Gathers files (exact file name or a Pattern regex) associated with this segment    *     * @param segmentInfo the {@link SegmentInfo} for this segment     * @param segmentSuffix the format's suffix within this segment    * @param files the of files to add the codec files to.    */
 DECL|method|files
 specifier|public
 specifier|abstract

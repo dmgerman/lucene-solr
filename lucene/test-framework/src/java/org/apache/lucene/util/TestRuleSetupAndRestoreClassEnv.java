@@ -28,6 +28,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Date
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -284,7 +294,7 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
-name|VERBOSE
+name|*
 import|;
 end_import
 
@@ -332,7 +342,7 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
-name|*
+name|VERBOSE
 import|;
 end_import
 
@@ -784,6 +794,87 @@ name|System
 operator|.
 name|out
 argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|message
+parameter_list|(
+name|String
+name|component
+parameter_list|,
+name|String
+name|message
+parameter_list|)
+block|{
+specifier|final
+name|String
+name|name
+decl_stmt|;
+if|if
+condition|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"TEST-"
+argument_list|)
+condition|)
+block|{
+comment|// The name of the main thread is way too
+comment|// long when looking at IW verbose output...:
+name|name
+operator|=
+literal|"main"
+expr_stmt|;
+block|}
+else|else
+block|{
+name|name
+operator|=
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
+block|}
+name|stream
+operator|.
+name|println
+argument_list|(
+name|component
+operator|+
+literal|" "
+operator|+
+name|messageID
+operator|+
+literal|" ["
+operator|+
+operator|new
+name|Date
+argument_list|()
+operator|+
+literal|"; "
+operator|+
+name|name
+operator|+
+literal|"]: "
+operator|+
+name|message
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 argument_list|)
 expr_stmt|;
 block|}

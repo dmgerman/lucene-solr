@@ -428,10 +428,7 @@ if|if
 condition|(
 name|segmentInfo
 operator|.
-name|getFieldInfos
-argument_list|()
-operator|.
-name|hasFreq
+name|getHasFreq
 argument_list|()
 condition|)
 block|{
@@ -623,10 +620,7 @@ if|if
 condition|(
 name|segmentInfo
 operator|.
-name|getFieldInfos
-argument_list|()
-operator|.
-name|hasFreq
+name|getHasFreq
 argument_list|()
 condition|)
 block|{

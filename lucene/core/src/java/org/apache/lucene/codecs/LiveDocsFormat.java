@@ -187,7 +187,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Records all files in use by this {@link SegmentInfo}    *  into the files argument. */
+comment|/** Records all files (exact file name or a Pattern regex)    *  in use by this {@link SegmentInfo} into the files argument. */
 DECL|method|files
 specifier|public
 specifier|abstract

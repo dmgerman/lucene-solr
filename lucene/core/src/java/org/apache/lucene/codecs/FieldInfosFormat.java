@@ -79,6 +79,7 @@ specifier|abstract
 class|class
 name|FieldInfosFormat
 block|{
+comment|/** Returns a {@link FieldInfosReader} to read field infos    *  from the index */
 DECL|method|getFieldInfosReader
 specifier|public
 specifier|abstract
@@ -88,6 +89,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns a {@link FieldInfosWriter} to write field infos    *  to the index */
 DECL|method|getFieldInfosWriter
 specifier|public
 specifier|abstract
@@ -97,6 +99,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Gathers files (exact file name or a Pattern regex)    *  associated with this segment. */
 DECL|method|files
 specifier|public
 specifier|abstract

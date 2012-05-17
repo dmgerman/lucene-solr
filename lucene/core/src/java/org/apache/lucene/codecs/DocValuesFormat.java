@@ -107,6 +107,7 @@ specifier|abstract
 class|class
 name|DocValuesFormat
 block|{
+comment|/** Consumes (writes) doc values during indexing. */
 DECL|method|docsConsumer
 specifier|public
 specifier|abstract
@@ -119,6 +120,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Produces (reads) doc values during reading/searching. */
 DECL|method|docsProducer
 specifier|public
 specifier|abstract
@@ -131,6 +133,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Gathers files (exact file name or a Pattern regex)    *  associated with this segment. */
 DECL|method|files
 specifier|public
 specifier|abstract
