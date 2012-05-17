@@ -502,20 +502,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MultiFields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|SegmentInfos
 import|;
 end_import
@@ -629,20 +615,6 @@ operator|.
 name|store
 operator|.
 name|SimpleFSLockFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
 import|;
 end_import
 
@@ -1074,7 +1046,7 @@ name|CategoryPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|refreshReader
+name|refreshInternalReader
 argument_list|()
 expr_stmt|;
 block|}
@@ -1159,26 +1131,40 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|// Currently overridden by a unit test that verifies that every index we open is close()ed.
-comment|/**    * Open an {@link IndexReader} from the internal {@link IndexWriter}, by    * calling {@link IndexReader#open(IndexWriter, boolean)}. Extending classes can override    * this method to return their own {@link IndexReader}.    */
-DECL|method|openReader
-specifier|protected
-name|DirectoryReader
-name|openReader
+comment|/** Opens a {@link DirectoryReader} from the internal {@link IndexWriter}. */
+DECL|method|openInternalReader
+specifier|private
+specifier|synchronized
+name|void
+name|openInternalReader
 parameter_list|()
 throws|throws
 name|IOException
 block|{
-return|return
+comment|// verify that the taxo-writer hasn't been closed on us. the method is
+comment|// synchronized since it may be called from a non sync'ed block, and it
+comment|// needs to protect against close() happening concurrently.
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+assert|assert
+name|reader
+operator|==
+literal|null
+operator|:
+literal|"a reader is already open !"
+assert|;
+name|reader
+operator|=
 name|DirectoryReader
 operator|.
 name|open
 argument_list|(
 name|indexWriter
 argument_list|,
-literal|true
+literal|false
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 comment|/**    * Creates a new instance with a default cached as defined by    * {@link #defaultTaxonomyWriterCache()}.    */
 DECL|method|DirectoryTaxonomyWriter
@@ -1440,9 +1426,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|reader
-operator|=
-name|openReader
+name|openInternalReader
 argument_list|()
 expr_stmt|;
 block|}
@@ -1621,9 +1605,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|reader
-operator|=
-name|openReader
+name|openInternalReader
 argument_list|()
 expr_stmt|;
 block|}
@@ -2190,7 +2172,7 @@ comment|// now refresh the reader.
 comment|// Because this is a slow operation, cache implementations are
 comment|// expected not to delete entries one-by-one but rather in bulk
 comment|// (LruTaxonomyWriterCache removes the 2/3rd oldest entries).
-name|refreshReader
+name|refreshInternalReader
 argument_list|()
 expr_stmt|;
 name|cacheIsComplete
@@ -2230,7 +2212,7 @@ name|id
 argument_list|)
 condition|)
 block|{
-name|refreshReader
+name|refreshInternalReader
 argument_list|()
 expr_stmt|;
 name|cacheIsComplete
@@ -2239,11 +2221,11 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-DECL|method|refreshReader
-specifier|protected
+DECL|method|refreshInternalReader
+specifier|private
 specifier|synchronized
 name|void
-name|refreshReader
+name|refreshInternalReader
 parameter_list|()
 throws|throws
 name|IOException
@@ -2311,7 +2293,7 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|refreshReader
+name|refreshInternalReader
 argument_list|()
 expr_stmt|;
 block|}
@@ -2423,7 +2405,7 @@ name|commitUserData
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|refreshReader
+name|refreshInternalReader
 argument_list|()
 expr_stmt|;
 block|}
@@ -2588,9 +2570,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|reader
-operator|=
-name|openReader
+name|openInternalReader
 argument_list|()
 expr_stmt|;
 block|}
@@ -2800,9 +2780,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|reader
-operator|=
-name|openReader
+name|openInternalReader
 argument_list|()
 expr_stmt|;
 block|}
@@ -3088,21 +3066,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-comment|/**    * Expert:  This method is only for expert use.    * Note also that any call to refresh() will invalidate the returned reader,    * so the caller needs to take care of appropriate locking.    *     * @return lucene indexReader    */
-DECL|method|getInternalIndexReader
-name|DirectoryReader
-name|getInternalIndexReader
-parameter_list|()
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-return|return
-name|this
-operator|.
-name|reader
-return|;
 block|}
 comment|/**    * Mapping from old ordinal to new ordinals, used when merging indexes     * wit separate taxonomies.    *<p>     * addToTaxonomies() merges one or more taxonomies into the given taxonomy    * (this). An OrdinalMap is filled for each of the added taxonomies,    * containing the new ordinal (in the merged taxonomy) of each of the    * categories in the old taxonomy.    *<P>      * There exist two implementations of OrdinalMap: MemoryOrdinalMap and    * DiskOrdinalMap. As their names suggest, the former keeps the map in    * memory and the latter in a temporary disk file. Because these maps will    * later be needed one by one (to remap the counting lists), not all at the    * same time, it is recommended to put the first taxonomy's map in memory,    * and all the rest on disk (later to be automatically read into memory one    * by one, when needed).    */
 DECL|interface|OrdinalMap
