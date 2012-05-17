@@ -488,10 +488,9 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
-name|uniqueValues
-operator|.
-name|size
-argument_list|()
+name|j
+operator|+
+literal|1
 argument_list|,
 name|queue
 operator|.
