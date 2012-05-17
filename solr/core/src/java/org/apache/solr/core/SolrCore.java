@@ -4812,7 +4812,40 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**   * Return the newest normal {@link RefCounted}&lt;{@link SolrIndexSearcher}&gt; with   * the reference count incremented.  It<b>must</b> be decremented when no longer needed.   * If no searcher is currently open, then if openNew==true a new searcher will be opened,   * or null is returned if openNew==false.   */
+comment|/**   * Returns the current registered searcher with its reference count incremented, or null if none are registered.   */
+DECL|method|getRegisteredSearcher
+specifier|public
+name|RefCounted
+argument_list|<
+name|SolrIndexSearcher
+argument_list|>
+name|getRegisteredSearcher
+parameter_list|()
+block|{
+synchronized|synchronized
+init|(
+name|searcherLock
+init|)
+block|{
+if|if
+condition|(
+name|_searcher
+operator|!=
+literal|null
+condition|)
+block|{
+name|_searcher
+operator|.
+name|incref
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|_searcher
+return|;
+block|}
+block|}
+comment|/**    * Return the newest normal {@link RefCounted}&lt;{@link SolrIndexSearcher}&gt; with    * the reference count incremented.  It<b>must</b> be decremented when no longer needed.    * If no searcher is currently open, then if openNew==true a new searcher will be opened,    * or null is returned if openNew==false.    */
 DECL|method|getNewestSearcher
 specifier|public
 name|RefCounted
