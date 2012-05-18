@@ -156,7 +156,7 @@ name|flush
 parameter_list|(
 name|Map
 argument_list|<
-name|FieldInfo
+name|String
 argument_list|,
 name|TermsHashConsumerPerField
 argument_list|>
@@ -312,39 +312,6 @@ argument_list|(
 name|fieldNumber
 argument_list|)
 decl_stmt|;
-comment|// Aggregate the storePayload as seen by the same
-comment|// field across multiple threads
-if|if
-condition|(
-name|fieldInfo
-operator|.
-name|getIndexOptions
-argument_list|()
-operator|.
-name|compareTo
-argument_list|(
-name|IndexOptions
-operator|.
-name|DOCS_AND_FREQS_AND_POSITIONS
-argument_list|)
-operator|>=
-literal|0
-condition|)
-block|{
-if|if
-condition|(
-name|fieldWriter
-operator|.
-name|hasPayloads
-condition|)
-block|{
-name|fieldInfo
-operator|.
-name|setStorePayloads
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 comment|// If this field has postings then add them to the
 comment|// segment
 name|fieldWriter

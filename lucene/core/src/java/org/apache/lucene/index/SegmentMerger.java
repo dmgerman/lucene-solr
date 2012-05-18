@@ -1011,7 +1011,8 @@ throws|throws
 name|IOException
 block|{
 comment|// mapping from all docvalues fields found to their promoted types
-comment|// this is because FieldInfos does not store the valueSize
+comment|// this is because FieldInfos does not store the
+comment|// valueSize
 name|Map
 argument_list|<
 name|FieldInfo

@@ -327,7 +327,7 @@ name|IOException
 block|{
 name|Map
 argument_list|<
-name|FieldInfo
+name|String
 argument_list|,
 name|DocFieldConsumerPerField
 argument_list|>
@@ -336,7 +336,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|FieldInfo
+name|String
 argument_list|,
 name|DocFieldConsumerPerField
 argument_list|>
@@ -367,6 +367,8 @@ name|f
 operator|.
 name|getFieldInfo
 argument_list|()
+operator|.
+name|name
 argument_list|,
 name|f
 argument_list|)

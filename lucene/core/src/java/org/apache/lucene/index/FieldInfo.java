@@ -242,6 +242,12 @@ name|storePayloads
 operator|=
 literal|false
 expr_stmt|;
+comment|// nocommit these trip ... which is spooky... means
+comment|// the FI we are cloning was in a bad state...
+comment|//assert !storeTermVector;
+comment|//assert !storePayloads;
+comment|//assert !omitNorms;
+comment|//assert normsType == null;
 name|this
 operator|.
 name|omitNorms
@@ -562,10 +568,27 @@ name|void
 name|setStorePayloads
 parameter_list|()
 block|{
+if|if
+condition|(
+name|indexed
+operator|&&
+name|indexOptions
+operator|.
+name|compareTo
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
+argument_list|)
+operator|>=
+literal|0
+condition|)
+block|{
 name|storePayloads
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 DECL|method|setNormValueType
 name|void

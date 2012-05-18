@@ -207,7 +207,7 @@ name|flush
 parameter_list|(
 name|Map
 argument_list|<
-name|FieldInfo
+name|String
 argument_list|,
 name|InvertedDocEndConsumerPerField
 argument_list|>
@@ -263,6 +263,8 @@ operator|.
 name|get
 argument_list|(
 name|fi
+operator|.
+name|name
 argument_list|)
 decl_stmt|;
 comment|// we must check the final value of omitNorms for the fieldinfo, it could have
@@ -334,6 +336,19 @@ name|getNormType
 argument_list|()
 operator|==
 literal|null
+operator|:
+literal|"got "
+operator|+
+name|fi
+operator|.
+name|getNormType
+argument_list|()
+operator|+
+literal|"; field="
+operator|+
+name|fi
+operator|.
+name|name
 assert|;
 block|}
 block|}
