@@ -242,12 +242,6 @@ name|storePayloads
 operator|=
 literal|false
 expr_stmt|;
-comment|// nocommit these trip ... which is spooky... means
-comment|// the FI we are cloning was in a bad state...
-comment|//assert !storeTermVector;
-comment|//assert !storePayloads;
-comment|//assert !omitNorms;
-comment|//assert normsType == null;
 name|this
 operator|.
 name|omitNorms
@@ -270,6 +264,10 @@ literal|null
 expr_stmt|;
 block|}
 assert|assert
+name|checkConsistency
+argument_list|()
+assert|;
+assert|assert
 name|indexOptions
 operator|.
 name|compareTo
@@ -284,6 +282,81 @@ operator|||
 operator|!
 name|storePayloads
 assert|;
+block|}
+DECL|method|checkConsistency
+specifier|private
+name|boolean
+name|checkConsistency
+parameter_list|()
+block|{
+comment|// nocommit more checks here
+if|if
+condition|(
+operator|!
+name|indexed
+condition|)
+block|{
+assert|assert
+operator|!
+name|storeTermVector
+assert|;
+assert|assert
+operator|!
+name|storePayloads
+assert|;
+assert|assert
+operator|!
+name|omitNorms
+assert|;
+assert|assert
+name|normType
+operator|==
+literal|null
+assert|;
+assert|assert
+name|indexOptions
+operator|==
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
+assert|;
+block|}
+else|else
+block|{
+assert|assert
+name|omitNorms
+operator|||
+name|normsType
+operator|!=
+literal|null
+assert|;
+assert|assert
+name|indexOptions
+operator|!=
+literal|null
+assert|;
+block|}
+comment|// Cannot store payloads unless positions are indexed:
+assert|assert
+name|indexOptions
+operator|.
+name|compareTo
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
+argument_list|)
+operator|>=
+literal|0
+operator|||
+operator|!
+name|this
+operator|.
+name|storePayloads
+assert|;
+return|return
+literal|true
+return|;
 block|}
 annotation|@
 name|Override
@@ -487,6 +560,10 @@ name|this
 operator|.
 name|storePayloads
 assert|;
+assert|assert
+name|checkConsistency
+argument_list|()
+assert|;
 block|}
 DECL|method|setDocValuesType
 name|void
@@ -502,6 +579,10 @@ name|docValueType
 operator|=
 name|type
 expr_stmt|;
+assert|assert
+name|checkConsistency
+argument_list|()
+assert|;
 block|}
 comment|/** @return IndexOptions for the field */
 DECL|method|getIndexOptions
@@ -562,6 +643,10 @@ name|storeTermVector
 operator|=
 literal|true
 expr_stmt|;
+assert|assert
+name|checkConsistency
+argument_list|()
+assert|;
 block|}
 DECL|method|setStorePayloads
 name|void
@@ -589,6 +674,10 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+assert|assert
+name|checkConsistency
+argument_list|()
+assert|;
 block|}
 DECL|method|setNormValueType
 name|void
@@ -602,6 +691,10 @@ name|normType
 operator|=
 name|type
 expr_stmt|;
+assert|assert
+name|checkConsistency
+argument_list|()
+assert|;
 block|}
 comment|/**    * @return true if norms are explicitly omitted for this field    */
 DECL|method|omitsNorms
