@@ -943,6 +943,13 @@ name|RuleChain
 operator|.
 name|outerRule
 argument_list|(
+operator|new
+name|TestRuleIgnoreTestSuites
+argument_list|()
+argument_list|)
+operator|.
+name|around
+argument_list|(
 name|suiteFailureMarker
 operator|=
 operator|new
