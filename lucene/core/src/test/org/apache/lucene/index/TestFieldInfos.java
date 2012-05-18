@@ -245,7 +245,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 name|MutableFieldInfos
-name|fieldInfos
+name|builder
 init|=
 operator|new
 name|MutableFieldInfos
@@ -265,7 +265,7 @@ range|:
 name|testDoc
 control|)
 block|{
-name|fieldInfos
+name|builder
 operator|.
 name|addOrUpdate
 argument_list|(
@@ -281,6 +281,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|FieldInfos
+name|fieldInfos
+init|=
+name|builder
+operator|.
+name|finish
+argument_list|()
+decl_stmt|;
 comment|//Since the complement is stored as well in the fields map
 name|assertTrue
 argument_list|(

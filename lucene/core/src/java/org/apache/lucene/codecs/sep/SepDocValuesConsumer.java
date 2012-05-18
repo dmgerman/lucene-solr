@@ -196,12 +196,6 @@ specifier|final
 name|Directory
 name|directory
 decl_stmt|;
-DECL|field|fieldInfos
-specifier|private
-specifier|final
-name|FieldInfos
-name|fieldInfos
-decl_stmt|;
 DECL|method|SepDocValuesConsumer
 specifier|public
 name|SepDocValuesConsumer
@@ -224,12 +218,6 @@ operator|=
 name|state
 operator|.
 name|directory
-expr_stmt|;
-name|fieldInfos
-operator|=
-name|state
-operator|.
-name|fieldInfos
 expr_stmt|;
 block|}
 annotation|@

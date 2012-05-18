@@ -2649,8 +2649,6 @@ name|directory
 argument_list|,
 name|segment
 argument_list|,
-name|fieldInfos
-argument_list|,
 name|bytesUsed
 argument_list|,
 name|segmentSuffix
