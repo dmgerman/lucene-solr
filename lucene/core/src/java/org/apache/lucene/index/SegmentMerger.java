@@ -287,7 +287,9 @@ decl_stmt|;
 DECL|field|fieldInfosBuilder
 specifier|private
 specifier|final
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 name|fieldInfosBuilder
 decl_stmt|;
 DECL|method|SegmentMerger
@@ -313,7 +315,9 @@ parameter_list|,
 name|PayloadProcessorProvider
 name|payloadProcessorProvider
 parameter_list|,
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 name|fieldInfosBuilder
 parameter_list|,
 name|Codec

@@ -387,7 +387,7 @@ name|FieldInfos
 name|fieldInfos
 init|=
 operator|new
-name|ReadOnlyFieldInfos
+name|FieldInfos
 argument_list|(
 operator|new
 name|FieldInfo

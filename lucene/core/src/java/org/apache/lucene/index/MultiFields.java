@@ -1322,11 +1322,15 @@ name|reader
 argument_list|)
 expr_stmt|;
 specifier|final
-name|MutableFieldInfos
-name|fieldInfos
+name|FieldInfos
+operator|.
+name|Builder
+name|builder
 init|=
 operator|new
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 for|for
@@ -1337,7 +1341,7 @@ range|:
 name|subReaders
 control|)
 block|{
-name|fieldInfos
+name|builder
 operator|.
 name|add
 argument_list|(
@@ -1349,7 +1353,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|fieldInfos
+name|builder
 operator|.
 name|finish
 argument_list|()

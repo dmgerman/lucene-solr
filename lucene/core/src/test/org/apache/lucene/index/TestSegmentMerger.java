@@ -456,14 +456,10 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|MutableFieldInfos
-argument_list|(
-operator|new
-name|MutableFieldInfos
+name|FieldInfos
 operator|.
-name|FieldNumberBiMap
+name|Builder
 argument_list|()
-argument_list|)
 argument_list|,
 name|codec
 argument_list|,

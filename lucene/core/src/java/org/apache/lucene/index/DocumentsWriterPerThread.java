@@ -735,7 +735,9 @@ decl_stmt|;
 comment|// True if the last exception throws by #updateDocument was aborting
 DECL|field|fieldInfos
 specifier|private
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 name|fieldInfos
 decl_stmt|;
 DECL|field|infoStream
@@ -788,7 +790,9 @@ parameter_list|,
 name|DocumentsWriter
 name|parent
 parameter_list|,
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 name|fieldInfos
 parameter_list|,
 name|IndexingChain
@@ -906,7 +910,9 @@ parameter_list|(
 name|DocumentsWriterPerThread
 name|other
 parameter_list|,
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 name|fieldInfos
 parameter_list|)
 block|{
@@ -1793,7 +1799,9 @@ argument_list|()
 expr_stmt|;
 name|fieldInfos
 operator|=
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 operator|.
 name|from
 argument_list|(
@@ -1899,6 +1907,9 @@ argument_list|,
 name|segment
 argument_list|,
 name|fieldInfos
+operator|.
+name|finish
+argument_list|()
 argument_list|,
 name|numDocsInRAM
 argument_list|,

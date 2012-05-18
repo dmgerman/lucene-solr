@@ -467,11 +467,15 @@ throw|;
 block|}
 block|}
 comment|// TODO: make this read-only in a cleaner way?
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 name|builder
 init|=
 operator|new
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 comment|// build FieldInfos and fieldToReader map:

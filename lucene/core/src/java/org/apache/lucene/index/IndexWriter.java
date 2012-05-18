@@ -204,7 +204,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MutableFieldInfos
+name|FieldInfos
 operator|.
 name|FieldNumberBiMap
 import|;
@@ -6755,7 +6755,9 @@ argument_list|,
 name|payloadProcessorProvider
 argument_list|,
 operator|new
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 argument_list|(
 name|globalFieldNumberMap
 argument_list|)
@@ -11331,7 +11333,9 @@ comment|// nocommit
 name|payloadProcessorProvider
 argument_list|,
 operator|new
-name|MutableFieldInfos
+name|FieldInfos
+operator|.
+name|Builder
 argument_list|(
 name|globalFieldNumberMap
 argument_list|)
