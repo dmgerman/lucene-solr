@@ -1799,13 +1799,14 @@ argument_list|()
 expr_stmt|;
 name|fieldInfos
 operator|=
+operator|new
 name|FieldInfos
 operator|.
 name|Builder
-operator|.
-name|from
 argument_list|(
 name|fieldInfos
+operator|.
+name|globalFieldNumbers
 argument_list|)
 expr_stmt|;
 name|parent
