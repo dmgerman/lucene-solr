@@ -284,6 +284,12 @@ operator|new
 name|MergeState
 argument_list|()
 decl_stmt|;
+DECL|field|fieldInfosBuilder
+specifier|private
+specifier|final
+name|MutableFieldInfos
+name|fieldInfosBuilder
+decl_stmt|;
 DECL|method|SegmentMerger
 name|SegmentMerger
 parameter_list|(
@@ -308,7 +314,7 @@ name|PayloadProcessorProvider
 name|payloadProcessorProvider
 parameter_list|,
 name|MutableFieldInfos
-name|fieldInfos
+name|fieldInfosBuilder
 parameter_list|,
 name|Codec
 name|codec
@@ -335,12 +341,6 @@ operator|.
 name|IndexReaderAndLiveDocs
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|mergeState
-operator|.
-name|fieldInfos
-operator|=
-name|fieldInfos
 expr_stmt|;
 name|mergeState
 operator|.
@@ -379,6 +379,12 @@ operator|.
 name|context
 operator|=
 name|context
+expr_stmt|;
+name|this
+operator|.
+name|fieldInfosBuilder
+operator|=
+name|fieldInfosBuilder
 expr_stmt|;
 block|}
 comment|/**    * Add an IndexReader to the collection of readers that are to be merged    * @param reader    */
@@ -991,6 +997,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
+comment|// NOTE: this is actually merging all the fieldinfos
 DECL|method|mergeDocValuesAndNormsFieldInfos
 specifier|public
 name|void
@@ -1071,18 +1078,10 @@ range|:
 name|readerFieldInfos
 control|)
 block|{
-comment|// nocommit: ugly
 name|FieldInfo
 name|merged
 init|=
-operator|(
-operator|(
-name|MutableFieldInfos
-operator|)
-name|mergeState
-operator|.
-name|fieldInfos
-operator|)
+name|fieldInfosBuilder
 operator|.
 name|add
 argument_list|(
@@ -1185,6 +1184,15 @@ name|docValuesTypes
 argument_list|,
 literal|false
 argument_list|)
+expr_stmt|;
+name|mergeState
+operator|.
+name|fieldInfos
+operator|=
+name|fieldInfosBuilder
+operator|.
+name|finish
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|updatePromoted

@@ -562,7 +562,7 @@ name|fieldInfos
 operator|=
 name|builder
 operator|.
-name|asReadOnly
+name|finish
 argument_list|()
 expr_stmt|;
 comment|// build Fields instance
