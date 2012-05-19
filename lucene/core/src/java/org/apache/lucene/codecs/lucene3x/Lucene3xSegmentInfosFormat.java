@@ -14,6 +14,20 @@ name|lucene3x
 package|;
 end_package
 
+begin_comment
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_import
 import|import
 name|org
@@ -56,9 +70,33 @@ name|SegmentInfosWriter
 import|;
 end_import
 
-begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexFileNames
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SegmentInfo
+import|;
+end_import
 
 begin_comment
 comment|/**  * Lucene3x ReadOnly SegmentInfosFormat implementation  * @deprecated (4.0) This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
@@ -68,6 +106,7 @@ begin_class
 annotation|@
 name|Deprecated
 DECL|class|Lucene3xSegmentInfosFormat
+specifier|public
 class|class
 name|Lucene3xSegmentInfosFormat
 extends|extends
@@ -82,6 +121,82 @@ init|=
 operator|new
 name|Lucene3xSegmentInfosReader
 argument_list|()
+decl_stmt|;
+comment|// nocommit explain or remove this!:
+DECL|field|SI_EXTENSION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SI_EXTENSION
+init|=
+literal|"si"
+decl_stmt|;
+comment|/** This format adds optional per-segment String    *  diagnostics storage, and switches userData to Map */
+DECL|field|FORMAT_DIAGNOSTICS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_DIAGNOSTICS
+init|=
+operator|-
+literal|9
+decl_stmt|;
+comment|/** Each segment records whether it has term vectors */
+DECL|field|FORMAT_HAS_VECTORS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_HAS_VECTORS
+init|=
+operator|-
+literal|10
+decl_stmt|;
+comment|/** Each segment records the Lucene version that created it. */
+DECL|field|FORMAT_3_1
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_3_1
+init|=
+operator|-
+literal|11
+decl_stmt|;
+comment|// nocommit we should nuke FORMAT_4_0!?
+comment|/** Each segment records whether its postings are written    *  in the new flex format */
+DECL|field|FORMAT_4_0
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_4_0
+init|=
+operator|-
+literal|12
+decl_stmt|;
+comment|/** This must always point to the most recent file format.    * whenever you add a new format, make it 1 smaller (negative version logic)! */
+comment|// TODO: move this, as its currently part of required preamble
+DECL|field|FORMAT_CURRENT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_CURRENT
+init|=
+name|FORMAT_4_0
+decl_stmt|;
+comment|/** This must always point to the first supported file format. */
+DECL|field|FORMAT_MINIMUM
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FORMAT_MINIMUM
+init|=
+name|FORMAT_DIAGNOSTICS
 decl_stmt|;
 annotation|@
 name|Override
@@ -110,6 +225,60 @@ argument_list|(
 literal|"this codec can only be used for reading"
 argument_list|)
 throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|files
+specifier|public
+name|void
+name|files
+parameter_list|(
+name|SegmentInfo
+name|info
+parameter_list|,
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|files
+parameter_list|)
+block|{
+comment|// nocommit hacky!
+if|if
+condition|(
+literal|true
+operator|||
+operator|!
+name|info
+operator|.
+name|getVersion
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"3."
+argument_list|)
+condition|)
+block|{
+name|files
+operator|.
+name|add
+argument_list|(
+name|IndexFileNames
+operator|.
+name|segmentFileName
+argument_list|(
+name|info
+operator|.
+name|name
+argument_list|,
+literal|""
+argument_list|,
+name|SI_EXTENSION
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

@@ -459,6 +459,9 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+comment|// nocommit this isn't quite right: it should be only
+comment|// the fields indexed by us...?  maybe... we shouldn't
+comment|// bother w/ this opto?  just create empty prx file...?
 if|if
 condition|(
 name|state

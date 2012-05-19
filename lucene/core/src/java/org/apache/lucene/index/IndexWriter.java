@@ -2344,57 +2344,8 @@ operator|>
 literal|0
 condition|)
 block|{
-if|if
-condition|(
-name|segmentInfos
-operator|.
-name|getFormat
-argument_list|()
-operator|>
-name|SegmentInfos
-operator|.
-name|FORMAT_DIAGNOSTICS
-condition|)
-block|{
-comment|// Pre-3.1 index.  In this case we sweep all
-comment|// segments, merging their FieldInfos:
-for|for
-control|(
-name|SegmentInfo
-name|info
-range|:
-name|segmentInfos
-control|)
-block|{
-for|for
-control|(
-name|FieldInfo
-name|fi
-range|:
-name|getFieldInfos
-argument_list|(
-name|info
-argument_list|)
-control|)
-block|{
-name|map
-operator|.
-name|addOrGet
-argument_list|(
-name|fi
-operator|.
-name|name
-argument_list|,
-name|fi
-operator|.
-name|number
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-else|else
-block|{
+comment|// nocommit fixme for 3.x indices...
+comment|/*       if (segmentInfos.getFormat()> SegmentInfos.FORMAT_DIAGNOSTICS) {         // Pre-3.1 index.  In this case we sweep all         // segments, merging their FieldInfos:         for(SegmentInfo info : segmentInfos) {           for(FieldInfo fi : getFieldInfos(info)) {             map.addOrGet(fi.name, fi.number);           }         }       } else {       */
 comment|// Already>= 3.1 index; just seed the FieldInfos
 comment|// from the last segment
 for|for
@@ -2432,7 +2383,10 @@ name|number
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+comment|// nocommit we can also pull the DV types of the
+comment|// fields... and catch DV type change on addDoc
+comment|// instead of much later in merge
+comment|//}
 block|}
 return|return
 name|map
@@ -5741,6 +5695,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Now build compound file
+comment|// nocommit factor to use craeteCompoundFile method!?
 specifier|final
 name|Directory
 name|cfsDir
@@ -5838,6 +5793,35 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Have codec write SegmentInfo.  Must do this after
+comment|// creating CFS so that 1) .si isn't slurped into CFS,
+comment|// and 2) .si reflects useCompoundFile=true change
+comment|// above:
+name|codec
+operator|.
+name|segmentInfosFormat
+argument_list|()
+operator|.
+name|getSegmentInfosWriter
+argument_list|()
+operator|.
+name|write
+argument_list|(
+name|newSegment
+argument_list|,
+name|flushedSegment
+operator|.
+name|fieldInfos
+argument_list|)
+expr_stmt|;
+name|newSegment
+operator|.
+name|clearFilesCache
+argument_list|()
+expr_stmt|;
+comment|// nocommit ideally we would freeze merge.info here!!
+comment|// because any changes after writing the .si will be
+comment|// lost...
 comment|// Must write deleted docs after the CFS so we don't
 comment|// slurp the del file into CFS:
 if|if
@@ -6470,6 +6454,20 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|copiedFiles
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|String
+argument_list|>
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|SegmentInfo
@@ -6574,6 +6572,10 @@ literal|1
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|infos
+operator|.
+name|add
+argument_list|(
 name|copySegmentAsIs
 argument_list|(
 name|info
@@ -6585,13 +6587,9 @@ argument_list|,
 name|dsFilesCopied
 argument_list|,
 name|context
+argument_list|,
+name|copiedFiles
 argument_list|)
-expr_stmt|;
-name|infos
-operator|.
-name|add
-argument_list|(
-name|info
 argument_list|)
 expr_stmt|;
 block|}
@@ -6816,10 +6814,6 @@ name|mergedName
 argument_list|,
 name|docCount
 argument_list|,
-name|SegmentInfo
-operator|.
-name|NO
-argument_list|,
 operator|-
 literal|1
 argument_list|,
@@ -6946,6 +6940,32 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Have codec write SegmentInfo.  Must do this after
+comment|// creating CFS so that 1) .si isn't slurped into CFS,
+comment|// and 2) .si reflects useCompoundFile=true change
+comment|// above:
+name|codec
+operator|.
+name|segmentInfosFormat
+argument_list|()
+operator|.
+name|getSegmentInfosWriter
+argument_list|()
+operator|.
+name|write
+argument_list|(
+name|info
+argument_list|,
+name|mergeState
+operator|.
+name|fieldInfos
+argument_list|)
+expr_stmt|;
+name|info
+operator|.
+name|clearFilesCache
+argument_list|()
+expr_stmt|;
 comment|// Register the new segment
 synchronized|synchronized
 init|(
@@ -7002,7 +7022,7 @@ block|}
 comment|/** Copies the segment files as-is into the IndexWriter's directory. */
 DECL|method|copySegmentAsIs
 specifier|private
-name|void
+name|SegmentInfo
 name|copySegmentAsIs
 parameter_list|(
 name|SegmentInfo
@@ -7027,6 +7047,12 @@ name|dsFilesCopied
 parameter_list|,
 name|IOContext
 name|context
+parameter_list|,
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|copiedFiles
 parameter_list|)
 throws|throws
 name|IOException
@@ -7113,7 +7139,10 @@ literal|1
 condition|)
 block|{
 comment|// only violate the codec this way if its preflex
-name|codec
+name|info
+operator|.
+name|getCodec
+argument_list|()
 operator|.
 name|storedFieldsFormat
 argument_list|()
@@ -7125,7 +7154,10 @@ argument_list|,
 name|codecDocStoreFiles
 argument_list|)
 expr_stmt|;
-name|codec
+name|info
+operator|.
+name|getCodec
+argument_list|()
 operator|.
 name|termVectorsFormat
 argument_list|()
@@ -7138,6 +7170,7 @@ name|codecDocStoreFiles
 argument_list|)
 expr_stmt|;
 block|}
+comment|//System.out.println("copy seg=" + info.name + " version=" + info.getVersion());
 comment|// Copy the segment files
 for|for
 control|(
@@ -7150,6 +7183,21 @@ name|files
 argument_list|()
 control|)
 block|{
+comment|// nocommit messy: insteda we should pull .files()
+comment|// from the codec's SIFormat and check if it's in
+comment|// there...
+if|if
+condition|(
+name|file
+operator|.
+name|endsWith
+argument_list|(
+literal|".si"
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
 specifier|final
 name|String
 name|newFileName
@@ -7224,6 +7272,29 @@ name|newFileName
 operator|+
 literal|"\" already exists"
 assert|;
+assert|assert
+operator|!
+name|copiedFiles
+operator|.
+name|contains
+argument_list|(
+name|file
+argument_list|)
+operator|:
+literal|"file \""
+operator|+
+name|file
+operator|+
+literal|"\" is being copied more than once"
+assert|;
+name|copiedFiles
+operator|.
+name|add
+argument_list|(
+name|file
+argument_list|)
+expr_stmt|;
+comment|//System.out.println("COPY " + file + " -> " + newFileName);
 name|info
 operator|.
 name|dir
@@ -7240,10 +7311,26 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Same SI as before but we change directory and name:
+name|SegmentInfo
+name|newInfo
+init|=
+operator|new
+name|SegmentInfo
+argument_list|(
+name|directory
+argument_list|,
 name|info
 operator|.
-name|setDocStore
-argument_list|(
+name|getVersion
+argument_list|()
+argument_list|,
+name|segName
+argument_list|,
+name|info
+operator|.
+name|docCount
+argument_list|,
 name|info
 operator|.
 name|getDocStoreOffset
@@ -7255,20 +7342,84 @@ name|info
 operator|.
 name|getDocStoreIsCompoundFile
 argument_list|()
+argument_list|,
+name|info
+operator|.
+name|getNormGen
+argument_list|()
+argument_list|,
+name|info
+operator|.
+name|getUseCompoundFile
+argument_list|()
+argument_list|,
+name|info
+operator|.
+name|getDelCount
+argument_list|()
+argument_list|,
+name|info
+operator|.
+name|getCodec
+argument_list|()
+argument_list|,
+name|info
+operator|.
+name|getDiagnostics
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|newInfo
+operator|.
+name|setDelGen
+argument_list|(
+name|info
+operator|.
+name|getDelGen
+argument_list|()
 argument_list|)
 expr_stmt|;
-name|info
+comment|// nocommit need to pass real FIS...
+comment|// nocommit maybe we don't pass FIS......?
+comment|// nocommit messy....
+comment|//if (!newInfo.getCodec().getName().equals("Lucene3x")) {
+if|if
+condition|(
+operator|!
+name|newInfo
 operator|.
-name|dir
-operator|=
-name|directory
-expr_stmt|;
-name|info
+name|getVersion
+argument_list|()
 operator|.
-name|name
-operator|=
-name|segName
+name|startsWith
+argument_list|(
+literal|"3."
+argument_list|)
+condition|)
+block|{
+comment|//System.out.println("  now write si for seg=" + newInfo.name + " codec=" + newInfo.getCodec());
+name|newInfo
+operator|.
+name|getCodec
+argument_list|()
+operator|.
+name|segmentInfosFormat
+argument_list|()
+operator|.
+name|getSegmentInfosWriter
+argument_list|()
+operator|.
+name|write
+argument_list|(
+name|newInfo
+argument_list|,
+literal|null
+argument_list|)
 expr_stmt|;
+block|}
+return|return
+name|newInfo
+return|;
 block|}
 comment|/**    * A hook for extending classes to execute operations after pending added and    * deleted documents have been flushed to the Directory but before the change    * is committed (new segments_N file written).    */
 DECL|method|doAfterFlush
@@ -7864,8 +8015,6 @@ operator|.
 name|finishCommit
 argument_list|(
 name|directory
-argument_list|,
-name|codec
 argument_list|)
 expr_stmt|;
 if|if
@@ -10401,8 +10550,6 @@ literal|"this writer hit an OutOfMemoryError; cannot merge"
 argument_list|)
 throw|;
 block|}
-comment|// TODO: is there any perf benefit to sorting
-comment|// merged segments?  eg biggest to smallest?
 if|if
 condition|(
 name|merge
@@ -10411,8 +10558,10 @@ name|info
 operator|!=
 literal|null
 condition|)
+block|{
 comment|// mergeInit already done
 return|return;
+block|}
 if|if
 condition|(
 name|merge
@@ -10420,7 +10569,9 @@ operator|.
 name|isAborted
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 comment|// Bind a new segment name here so even with
 comment|// ConcurrentMergePolicy we keep deterministic segment
 comment|// names.
@@ -11708,6 +11859,8 @@ argument_list|(
 name|codec
 argument_list|)
 expr_stmt|;
+comment|// nocommit should segment merger do this!?  else
+comment|// other places must do so...??? addIndexes...
 if|if
 condition|(
 name|infoStream
@@ -12108,6 +12261,41 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|// nocommit need try/success thingy...?  ie must
+comment|// remove all seg files if we fail to write the .si?
+comment|// Have codec write SegmentInfo.  Must do this after
+comment|// creating CFS so that 1) .si isn't slurped into CFS,
+comment|// and 2) .si reflects useCompoundFile=true change
+comment|// above:
+name|codec
+operator|.
+name|segmentInfosFormat
+argument_list|()
+operator|.
+name|getSegmentInfosWriter
+argument_list|()
+operator|.
+name|write
+argument_list|(
+name|merge
+operator|.
+name|info
+argument_list|,
+name|mergeState
+operator|.
+name|fieldInfos
+argument_list|)
+expr_stmt|;
+name|merge
+operator|.
+name|info
+operator|.
+name|clearFilesCache
+argument_list|()
+expr_stmt|;
+comment|// nocommit ideally we would freeze merge.info here!!
+comment|// because any changes after writing the .si will be
+comment|// lost...
 if|if
 condition|(
 name|infoStream
@@ -12911,22 +13099,6 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-comment|// This call can take a long time -- 10s of seconds
-comment|// or more.  We do it without sync:
-name|directory
-operator|.
-name|sync
-argument_list|(
-name|toSync
-operator|.
-name|files
-argument_list|(
-name|directory
-argument_list|,
-literal|false
-argument_list|)
-argument_list|)
-expr_stmt|;
 assert|assert
 name|testPoint
 argument_list|(
@@ -12962,10 +13134,9 @@ operator|.
 name|prepareCommit
 argument_list|(
 name|directory
-argument_list|,
-name|codec
 argument_list|)
 expr_stmt|;
+comment|//System.out.println("DONE prepareCommit");
 name|pendingCommitSet
 operator|=
 literal|true
@@ -12974,6 +13145,71 @@ name|pendingCommit
 operator|=
 name|toSync
 expr_stmt|;
+block|}
+comment|// nocommit move this back above...?  problem is
+comment|// prepareCommit writes on the _X.si files... which
+comment|// of course need to be sync'd too...
+comment|// This call can take a long time -- 10s of seconds
+comment|// or more.  We do it without sync:
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+specifier|final
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|filesToSync
+init|=
+name|toSync
+operator|.
+name|files
+argument_list|(
+name|directory
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|directory
+operator|.
+name|sync
+argument_list|(
+name|filesToSync
+argument_list|)
+expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+block|{
+name|pendingCommitSet
+operator|=
+literal|false
+expr_stmt|;
+name|pendingCommit
+operator|=
+literal|null
+expr_stmt|;
+name|toSync
+operator|.
+name|rollbackCommit
+argument_list|(
+name|directory
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -12991,7 +13227,9 @@ name|message
 argument_list|(
 literal|"IW"
 argument_list|,
-literal|"done all syncs"
+literal|"done all syncs: "
+operator|+
+name|filesToSync
 argument_list|)
 expr_stmt|;
 block|}

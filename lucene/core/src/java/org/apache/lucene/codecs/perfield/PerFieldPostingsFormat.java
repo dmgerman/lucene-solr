@@ -727,6 +727,9 @@ name|consumerAndId
 argument_list|)
 expr_stmt|;
 block|}
+comment|// nocommit we should only provide the "slice" of FIS
+comment|// that this PF actually sees ... then stuff like
+comment|// .hasProx could work correctly?
 return|return
 name|consumerAndId
 operator|.

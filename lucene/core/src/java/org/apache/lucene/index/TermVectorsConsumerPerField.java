@@ -372,7 +372,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|termsWriter
 operator|.
 name|addFieldToFlush
@@ -641,7 +643,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-comment|// commit the termVectors once successful success - FI will otherwise reset them
+comment|// commit the termVectors once successful - FI will otherwise reset them
 name|fieldInfo
 operator|.
 name|setStoreTermVectors

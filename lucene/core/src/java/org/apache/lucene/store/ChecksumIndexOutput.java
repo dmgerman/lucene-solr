@@ -54,6 +54,10 @@ begin_comment
 comment|/** Writes bytes through to a primary IndexOutput, computing  *  checksum.  Note that you cannot use seek().  *  * @lucene.internal  */
 end_comment
 
+begin_comment
+comment|// nocommit fixme to not seek backwards...
+end_comment
+
 begin_class
 DECL|class|ChecksumIndexOutput
 specifier|public
@@ -260,36 +264,9 @@ comment|// because we want to 1) test, as best we can, that we
 comment|// are able to write a long to the file, but 2) not
 comment|// actually "commit" the file yet.  This (prepare
 comment|// commit) is phase 1 of a two-phase commit.
-specifier|final
-name|long
-name|pos
-init|=
-name|main
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
-name|main
-operator|.
-name|writeLong
-argument_list|(
-name|checksum
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-name|main
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-name|main
-operator|.
-name|seek
-argument_list|(
-name|pos
-argument_list|)
-expr_stmt|;
+comment|// nocommit fixme... or just nuke?  appending codec
+comment|// fails w/ this:
+comment|/*     final long pos = main.getFilePointer();     main.writeLong(checksum-1);     main.flush();     main.seek(pos);     */
 block|}
 comment|/** See {@link #prepareCommit} */
 DECL|method|finishCommit

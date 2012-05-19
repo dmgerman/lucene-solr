@@ -314,6 +314,16 @@ name|files
 argument_list|)
 expr_stmt|;
 block|}
+name|segmentInfosFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
 comment|// never inside CFS
 name|liveDocsFormat
 argument_list|()

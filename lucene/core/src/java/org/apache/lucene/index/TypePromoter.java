@@ -53,6 +53,14 @@ import|;
 end_import
 
 begin_comment
+comment|// nocommit remove this?  (require DV type does not change
+end_comment
+
+begin_comment
+comment|// for a given field)
+end_comment
+
+begin_comment
 comment|/**  * Type promoter that promotes {@link DocValues} during merge based on  * their {@link Type} and {@link #getValueSize()}  *   * @lucene.internal  */
 end_comment
 

@@ -747,6 +747,16 @@ argument_list|,
 name|files
 argument_list|)
 expr_stmt|;
+name|segmentInfosFormat
+argument_list|()
+operator|.
+name|files
+argument_list|(
+name|info
+argument_list|,
+name|files
+argument_list|)
+expr_stmt|;
 comment|// shared docstores: these guys check the hair
 if|if
 condition|(

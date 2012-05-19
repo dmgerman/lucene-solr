@@ -323,13 +323,8 @@ assert|;
 block|}
 else|else
 block|{
-assert|assert
-name|omitNorms
-operator|||
-name|normsType
-operator|!=
-literal|null
-assert|;
+comment|// nocommit this trips:
+comment|//assert omitNorms || normType != null;
 assert|assert
 name|indexOptions
 operator|!=

@@ -319,6 +319,26 @@ name|info
 operator|.
 name|getDelCount
 argument_list|()
+operator|:
+literal|"liveDocs.count()="
+operator|+
+name|liveDocs
+operator|.
+name|count
+argument_list|()
+operator|+
+literal|" info.docCount="
+operator|+
+name|info
+operator|.
+name|docCount
+operator|+
+literal|" info.getDelCount()="
+operator|+
+name|info
+operator|.
+name|getDelCount
+argument_list|()
 assert|;
 assert|assert
 name|liveDocs

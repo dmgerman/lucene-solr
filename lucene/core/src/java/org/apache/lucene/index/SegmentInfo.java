@@ -201,22 +201,11 @@ end_comment
 begin_class
 DECL|class|SegmentInfo
 specifier|public
-specifier|final
 class|class
 name|SegmentInfo
 implements|implements
 name|Cloneable
 block|{
-DECL|field|CHECK_FIELDINFO
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|CHECK_FIELDINFO
-init|=
-operator|-
-literal|2
-decl_stmt|;
 comment|// TODO: remove these from this class, for now this is the representation
 DECL|field|NO
 specifier|public
@@ -251,10 +240,12 @@ decl_stmt|;
 comment|// a file name that has no GEN in it.
 DECL|field|name
 specifier|public
+specifier|final
 name|String
 name|name
 decl_stmt|;
 comment|// unique name in dir
+comment|// nocommit make me final:
 DECL|field|docCount
 specifier|public
 name|int
@@ -263,10 +254,12 @@ decl_stmt|;
 comment|// number of docs in seg
 DECL|field|dir
 specifier|public
+specifier|final
 name|Directory
 name|dir
 decl_stmt|;
 comment|// where segment resides
+comment|// nocommit what other members can we make final?
 comment|/*    * Current generation of del file:    * - NO if there are no deletes    * - YES or higher if there are deletes at generation N    */
 DECL|field|delGen
 specifier|private
@@ -502,9 +495,6 @@ parameter_list|,
 name|int
 name|docCount
 parameter_list|,
-name|long
-name|delGen
-parameter_list|,
 name|int
 name|docStoreOffset
 parameter_list|,
@@ -568,7 +558,7 @@ name|this
 operator|.
 name|delGen
 operator|=
-name|delGen
+name|NO
 expr_stmt|;
 name|this
 operator|.
@@ -753,6 +743,7 @@ name|clearFilesCache
 argument_list|()
 expr_stmt|;
 block|}
+comment|// nocommit this is dangerous... because we lose the codec's customzied class...
 annotation|@
 name|Override
 DECL|method|clone
@@ -828,7 +819,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-return|return
+name|SegmentInfo
+name|newInfo
+init|=
 operator|new
 name|SegmentInfo
 argument_list|(
@@ -839,8 +832,6 @@ argument_list|,
 name|name
 argument_list|,
 name|docCount
-argument_list|,
-name|delGen
 argument_list|,
 name|docStoreOffset
 argument_list|,
@@ -867,6 +858,16 @@ argument_list|(
 name|diagnostics
 argument_list|)
 argument_list|)
+decl_stmt|;
+name|newInfo
+operator|.
+name|setDelGen
+argument_list|(
+name|delGen
+argument_list|)
+expr_stmt|;
+return|return
+name|newInfo
 return|;
 block|}
 comment|/**    * @deprecated separate norms are not supported in>= 4.0    */
@@ -977,6 +978,22 @@ name|delCount
 operator|<=
 name|docCount
 assert|;
+block|}
+DECL|method|setDelGen
+specifier|public
+name|void
+name|setDelGen
+parameter_list|(
+name|long
+name|delGen
+parameter_list|)
+block|{
+name|this
+operator|.
+name|delGen
+operator|=
+name|delGen
+expr_stmt|;
 block|}
 comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
 annotation|@
@@ -1103,7 +1120,7 @@ return|return
 name|codec
 return|;
 block|}
-comment|// nocommit move elsewhere?  IndexFileNames?
+comment|// noocmmit nuke this and require, once again, that a codec puts PRECISELY the files that exist into the file set...
 DECL|method|findMatchingFiles
 specifier|public
 specifier|static
@@ -1196,6 +1213,16 @@ name|exists
 init|=
 literal|false
 decl_stmt|;
+comment|// nocommit hack -- remove (needed now because si's -1 gen will return null file name):
+if|if
+condition|(
+name|nameOrPattern
+operator|==
+literal|null
+condition|)
+block|{
+continue|continue;
+block|}
 try|try
 block|{
 name|exists
@@ -1363,8 +1390,8 @@ name|files
 return|;
 block|}
 comment|/* Called whenever any change is made that affects which    * files this segment has. */
+comment|// nocommit make private again
 DECL|method|clearFilesCache
-specifier|private
 name|void
 name|clearFilesCache
 parameter_list|()

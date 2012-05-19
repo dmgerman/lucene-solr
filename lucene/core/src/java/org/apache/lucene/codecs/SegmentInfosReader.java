@@ -36,6 +36,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|SegmentInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SegmentInfos
 import|;
 end_import
@@ -86,6 +100,10 @@ begin_comment
 comment|/**  * Specifies an API for classes that can read {@link SegmentInfos} information.  * @lucene.experimental  */
 end_comment
 
+begin_comment
+comment|// nocommit rename (remove the s?)
+end_comment
+
 begin_class
 DECL|class|SegmentInfosReader
 specifier|public
@@ -97,23 +115,14 @@ comment|/**    * Read {@link SegmentInfos} data from a directory.    * @param di
 DECL|method|read
 specifier|public
 specifier|abstract
-name|void
+name|SegmentInfo
 name|read
 parameter_list|(
 name|Directory
 name|directory
 parameter_list|,
 name|String
-name|segmentsFileName
-parameter_list|,
-name|ChecksumIndexInput
-name|header
-parameter_list|,
-name|SegmentInfos
-name|infos
-parameter_list|,
-name|IOContext
-name|context
+name|segmentName
 parameter_list|)
 throws|throws
 name|IOException
