@@ -6238,6 +6238,20 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|copiedFiles
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|String
+argument_list|>
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|SegmentInfo
@@ -6353,6 +6367,8 @@ argument_list|,
 name|dsFilesCopied
 argument_list|,
 name|context
+argument_list|,
+name|copiedFiles
 argument_list|)
 expr_stmt|;
 name|infos
@@ -6780,6 +6796,12 @@ name|dsFilesCopied
 parameter_list|,
 name|IOContext
 name|context
+parameter_list|,
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|copiedFiles
 parameter_list|)
 throws|throws
 name|IOException
@@ -6866,7 +6888,10 @@ literal|1
 condition|)
 block|{
 comment|// only violate the codec this way if its preflex
-name|codec
+name|info
+operator|.
+name|getCodec
+argument_list|()
 operator|.
 name|storedFieldsFormat
 argument_list|()
@@ -6878,7 +6903,10 @@ argument_list|,
 name|codecDocStoreFiles
 argument_list|)
 expr_stmt|;
-name|codec
+name|info
+operator|.
+name|getCodec
+argument_list|()
 operator|.
 name|termVectorsFormat
 argument_list|()
@@ -6977,6 +7005,28 @@ name|newFileName
 operator|+
 literal|"\" already exists"
 assert|;
+assert|assert
+operator|!
+name|copiedFiles
+operator|.
+name|contains
+argument_list|(
+name|file
+argument_list|)
+operator|:
+literal|"file \""
+operator|+
+name|file
+operator|+
+literal|"\" is being copied more than once"
+assert|;
+name|copiedFiles
+operator|.
+name|add
+argument_list|(
+name|file
+argument_list|)
+expr_stmt|;
 name|info
 operator|.
 name|dir
