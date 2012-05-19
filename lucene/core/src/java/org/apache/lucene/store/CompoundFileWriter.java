@@ -439,11 +439,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|IndexOutput
-name|dataOutput
-init|=
-literal|null
-decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -451,7 +446,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|dataOutput
+name|dataOut
 operator|=
 name|directory
 operator|.
@@ -464,16 +459,12 @@ operator|.
 name|DEFAULT
 argument_list|)
 expr_stmt|;
-name|dataOutput
+name|dataOut
 operator|.
 name|writeVInt
 argument_list|(
 name|FORMAT_CURRENT
 argument_list|)
-expr_stmt|;
-name|dataOut
-operator|=
-name|dataOutput
 expr_stmt|;
 name|success
 operator|=
@@ -492,7 +483,7 @@ name|IOUtils
 operator|.
 name|closeWhileHandlingException
 argument_list|(
-name|dataOutput
+name|dataOut
 argument_list|)
 expr_stmt|;
 block|}
