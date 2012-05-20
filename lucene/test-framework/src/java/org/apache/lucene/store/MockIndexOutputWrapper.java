@@ -293,6 +293,10 @@ operator|.
 name|rateLimiter
 operator|!=
 literal|null
+operator|&&
+name|len
+operator|>=
+literal|10
 condition|)
 block|{
 name|dir
