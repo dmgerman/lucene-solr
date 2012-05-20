@@ -288,6 +288,8 @@ specifier|public
 name|int
 name|freq
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|current

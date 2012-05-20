@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -64,13 +74,15 @@ name|atts
 init|=
 literal|null
 decl_stmt|;
-comment|/** Returns term frequency in the current document.  Do    *  not call this before {@link #nextDoc} is first called,    *  nor after {@link #nextDoc} returns NO_MORE_DOCS. */
+comment|/** Returns term frequency in the current document.  Do    *  not call this before {@link #nextDoc} is first called,    *  nor after {@link #nextDoc} returns NO_MORE_DOCS.     **/
 DECL|method|freq
 specifier|public
 specifier|abstract
 name|int
 name|freq
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Returns the related attributes. */
 DECL|method|attributes
