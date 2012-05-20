@@ -295,8 +295,6 @@ operator|new
 name|SimpleTextNormsPerDocConsumer
 argument_list|(
 name|state
-argument_list|,
-name|NORMS_SEG_SUFFIX
 argument_list|)
 return|;
 block|}
@@ -323,8 +321,6 @@ name|BytesRef
 operator|.
 name|getUTF8SortedAsUnicodeComparator
 argument_list|()
-argument_list|,
-name|NORMS_SEG_SUFFIX
 argument_list|)
 return|;
 block|}
@@ -378,9 +374,6 @@ argument_list|<
 name|BytesRef
 argument_list|>
 name|comp
-parameter_list|,
-name|String
-name|segmentSuffix
 parameter_list|)
 throws|throws
 name|IOException
@@ -391,7 +384,7 @@ name|state
 argument_list|,
 name|comp
 argument_list|,
-name|segmentSuffix
+name|NORMS_SEG_SUFFIX
 argument_list|)
 expr_stmt|;
 block|}
@@ -465,9 +458,6 @@ name|SimpleTextNormsPerDocConsumer
 parameter_list|(
 name|PerDocWriteState
 name|state
-parameter_list|,
-name|String
-name|segmentSuffix
 parameter_list|)
 throws|throws
 name|IOException
@@ -476,7 +466,7 @@ name|super
 argument_list|(
 name|state
 argument_list|,
-name|segmentSuffix
+name|NORMS_SEG_SUFFIX
 argument_list|)
 expr_stmt|;
 block|}
@@ -571,8 +561,6 @@ operator|.
 name|segmentName
 argument_list|,
 name|files
-argument_list|,
-name|segmentSuffix
 argument_list|)
 expr_stmt|;
 name|IOUtils
@@ -634,8 +622,6 @@ operator|.
 name|name
 argument_list|,
 name|files
-argument_list|,
-name|NORMS_SEG_SUFFIX
 argument_list|)
 expr_stmt|;
 block|}
@@ -653,21 +639,8 @@ argument_list|<
 name|String
 argument_list|>
 name|files
-parameter_list|,
-name|String
-name|segmentSuffix
 parameter_list|)
 block|{
-comment|// nocommit simplify this: weird that we get suffix as
-comment|// an arg... it's always a constant
-assert|assert
-name|segmentSuffix
-operator|.
-name|equals
-argument_list|(
-name|NORMS_SEG_SUFFIX
-argument_list|)
-assert|;
 name|String
 name|id
 init|=
@@ -688,7 +661,7 @@ name|id
 argument_list|,
 literal|""
 argument_list|,
-name|segmentSuffix
+name|NORMS_SEG_SUFFIX
 argument_list|)
 argument_list|)
 expr_stmt|;

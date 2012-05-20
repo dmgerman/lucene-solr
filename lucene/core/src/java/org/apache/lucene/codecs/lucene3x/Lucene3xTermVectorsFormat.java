@@ -40,20 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_comment
-comment|//nocommit
-end_comment
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache

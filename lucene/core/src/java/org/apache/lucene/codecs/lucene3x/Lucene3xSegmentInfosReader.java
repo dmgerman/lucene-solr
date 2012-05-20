@@ -544,6 +544,9 @@ name|directory
 parameter_list|,
 name|String
 name|segmentName
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -557,7 +560,9 @@ name|segmentName
 argument_list|,
 name|Lucene3xSegmentInfosFormat
 operator|.
-name|FORMAT_4_0
+name|FORMAT_4X_UPGRADE
+argument_list|,
+name|context
 argument_list|)
 return|;
 block|}
@@ -574,6 +579,9 @@ name|segmentName
 parameter_list|,
 name|int
 name|format
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -595,7 +603,6 @@ operator|.
 name|SI_EXTENSION
 argument_list|)
 decl_stmt|;
-comment|// nocommit what IOCtx
 name|boolean
 name|success
 init|=
@@ -610,9 +617,7 @@ name|openInput
 argument_list|(
 name|fileName
 argument_list|,
-name|IOContext
-operator|.
-name|READONCE
+name|context
 argument_list|)
 decl_stmt|;
 try|try
@@ -692,7 +697,7 @@ name|format
 operator|>
 name|Lucene3xSegmentInfosFormat
 operator|.
-name|FORMAT_MINIMUM
+name|FORMAT_DIAGNOSTICS
 condition|)
 block|{
 throw|throw
@@ -705,11 +710,11 @@ name|format
 argument_list|,
 name|Lucene3xSegmentInfosFormat
 operator|.
-name|FORMAT_MINIMUM
+name|FORMAT_DIAGNOSTICS
 argument_list|,
 name|Lucene3xSegmentInfosFormat
 operator|.
-name|FORMAT_CURRENT
+name|FORMAT_4X_UPGRADE
 argument_list|)
 throw|;
 block|}
@@ -719,7 +724,7 @@ name|format
 operator|<
 name|Lucene3xSegmentInfosFormat
 operator|.
-name|FORMAT_CURRENT
+name|FORMAT_4X_UPGRADE
 condition|)
 block|{
 throw|throw
@@ -732,11 +737,11 @@ name|format
 argument_list|,
 name|Lucene3xSegmentInfosFormat
 operator|.
-name|FORMAT_MINIMUM
+name|FORMAT_DIAGNOSTICS
 argument_list|,
 name|Lucene3xSegmentInfosFormat
 operator|.
-name|FORMAT_CURRENT
+name|FORMAT_4X_UPGRADE
 argument_list|)
 throw|;
 block|}

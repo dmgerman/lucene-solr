@@ -212,6 +212,9 @@ name|dir
 parameter_list|,
 name|String
 name|segment
+parameter_list|,
+name|IOContext
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -243,9 +246,7 @@ name|openInput
 argument_list|(
 name|fileName
 argument_list|,
-name|IOContext
-operator|.
-name|READONCE
+name|context
 argument_list|)
 decl_stmt|;
 name|boolean

@@ -261,6 +261,7 @@ decl_stmt|;
 comment|// where segment resides
 comment|// nocommit what other members can we make final?
 comment|/*    * Current generation of del file:    * - NO if there are no deletes    * - YES or higher if there are deletes at generation N    */
+comment|// nocommit explain that codec need not save this....:
 DECL|field|delGen
 specifier|private
 name|long
@@ -326,6 +327,7 @@ name|boolean
 name|docStoreIsCompoundFile
 decl_stmt|;
 comment|// whether doc store files are stored in compound file (*.cfx)
+comment|// nocommit explain that codec need not save this....:
 DECL|field|delCount
 specifier|private
 name|int

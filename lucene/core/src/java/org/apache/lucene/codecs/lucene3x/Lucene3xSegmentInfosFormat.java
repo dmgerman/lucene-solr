@@ -122,16 +122,6 @@ operator|new
 name|Lucene3xSegmentInfosReader
 argument_list|()
 decl_stmt|;
-comment|// nocommit explain or remove this!:
-DECL|field|SI_EXTENSION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|SI_EXTENSION
-init|=
-literal|"si"
-decl_stmt|;
 comment|/** This format adds optional per-segment String    *  diagnostics storage, and switches userData to Map */
 DECL|field|FORMAT_DIAGNOSTICS
 specifier|public
@@ -165,38 +155,26 @@ init|=
 operator|-
 literal|11
 decl_stmt|;
-comment|// nocommit we should nuke FORMAT_4_0!?
 comment|/** Each segment records whether its postings are written    *  in the new flex format */
-DECL|field|FORMAT_4_0
+DECL|field|FORMAT_4X_UPGRADE
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|FORMAT_4_0
+name|FORMAT_4X_UPGRADE
 init|=
 operator|-
 literal|12
 decl_stmt|;
-comment|/** This must always point to the most recent file format.    * whenever you add a new format, make it 1 smaller (negative version logic)! */
-comment|// TODO: move this, as its currently part of required preamble
-DECL|field|FORMAT_CURRENT
+comment|/** Extension used for saving each SegmentInfo, once a 3.x    *  index is first committed to with 4.0. */
+DECL|field|SI_EXTENSION
 specifier|public
 specifier|static
 specifier|final
-name|int
-name|FORMAT_CURRENT
+name|String
+name|SI_EXTENSION
 init|=
-name|FORMAT_4_0
-decl_stmt|;
-comment|/** This must always point to the first supported file format. */
-DECL|field|FORMAT_MINIMUM
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|FORMAT_MINIMUM
-init|=
-name|FORMAT_DIAGNOSTICS
+literal|"si"
 decl_stmt|;
 annotation|@
 name|Override

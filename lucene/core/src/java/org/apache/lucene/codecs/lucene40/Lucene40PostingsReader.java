@@ -330,7 +330,6 @@ name|int
 name|skipMinimum
 decl_stmt|;
 comment|// private String segment;
-comment|// nocommit don't pass FIS here...
 DECL|method|Lucene40PostingsReader
 specifier|public
 name|Lucene40PostingsReader
@@ -377,6 +376,8 @@ argument_list|,
 name|ioContext
 argument_list|)
 expr_stmt|;
+comment|// nocommit don't consult FieldInfos here... then nuke
+comment|// fieldInfos arg...
 comment|// nocommit we can assert FIS.hasProx == our hasProx here...
 comment|// this.segment = segmentInfo.name;
 if|if

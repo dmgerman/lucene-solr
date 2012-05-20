@@ -457,7 +457,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit add dest to created files!?
+name|createdFileNames
+operator|.
+name|add
+argument_list|(
+name|dest
+argument_list|)
+expr_stmt|;
 name|other
 operator|.
 name|copy
@@ -503,10 +509,6 @@ name|context
 argument_list|)
 return|;
 block|}
-comment|// nocommit no?
-comment|//@Override
-comment|//protected final void ensureOpen() throws
-comment|//AlreadyClosedException {
 DECL|method|getCreatedFiles
 specifier|public
 name|Set

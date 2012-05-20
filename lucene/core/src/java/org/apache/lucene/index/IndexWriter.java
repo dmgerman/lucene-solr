@@ -2087,7 +2087,7 @@ expr_stmt|;
 comment|// start with previous field numbers, but new FieldInfos
 name|globalFieldNumberMap
 operator|=
-name|getOrLoadGlobalFieldNumberMap
+name|getFieldNumberMap
 argument_list|()
 expr_stmt|;
 name|docWriter
@@ -2348,10 +2348,10 @@ block|}
 block|}
 block|}
 comment|/**    * Loads or returns the already loaded the global field number map for this {@link SegmentInfos}.    * If this {@link SegmentInfos} has no global field number map the returned instance is empty    */
-DECL|method|getOrLoadGlobalFieldNumberMap
+DECL|method|getFieldNumberMap
 specifier|private
 name|FieldNumberBiMap
-name|getOrLoadGlobalFieldNumberMap
+name|getFieldNumberMap
 parameter_list|()
 throws|throws
 name|IOException
@@ -2364,20 +2364,61 @@ operator|new
 name|FieldNumberBiMap
 argument_list|()
 decl_stmt|;
+name|SegmentInfo
+name|biggest
+init|=
+literal|null
+decl_stmt|;
+for|for
+control|(
+name|SegmentInfo
+name|info
+range|:
+name|segmentInfos
+control|)
+block|{
 if|if
 condition|(
-name|segmentInfos
+name|biggest
+operator|==
+literal|null
+operator|||
+operator|(
+name|info
 operator|.
-name|size
+name|docCount
+operator|-
+name|info
+operator|.
+name|getDelCount
 argument_list|()
+operator|)
 operator|>
-literal|0
+operator|(
+name|biggest
+operator|.
+name|docCount
+operator|-
+name|biggest
+operator|.
+name|getDelCount
+argument_list|()
+operator|)
 condition|)
 block|{
-comment|// nocommit fixme for 3.x indices...
-comment|/*       if (segmentInfos.getFormat()> SegmentInfos.FORMAT_DIAGNOSTICS) {         // Pre-3.1 index.  In this case we sweep all         // segments, merging their FieldInfos:         for(SegmentInfo info : segmentInfos) {           for(FieldInfo fi : getFieldInfos(info)) {             map.addOrGet(fi.name, fi.number);           }         }       } else {       */
-comment|// Already>= 3.1 index; just seed the FieldInfos
-comment|// from the last segment
+name|biggest
+operator|=
+name|info
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|biggest
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|FieldInfo
@@ -2385,17 +2426,7 @@ name|fi
 range|:
 name|getFieldInfos
 argument_list|(
-name|segmentInfos
-operator|.
-name|info
-argument_list|(
-name|segmentInfos
-operator|.
-name|size
-argument_list|()
-operator|-
-literal|1
-argument_list|)
+name|biggest
 argument_list|)
 control|)
 block|{
@@ -2413,11 +2444,11 @@ name|number
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|// nocommit we can also pull the DV types of the
 comment|// fields... and catch DV type change on addDoc
 comment|// instead of much later in merge
 comment|//}
-block|}
 return|return
 name|map
 return|;
@@ -5702,103 +5733,39 @@ operator|.
 name|COMPOUND_FILE_EXTENSION
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|infoStream
-operator|.
-name|isEnabled
-argument_list|(
-literal|"IW"
-argument_list|)
-condition|)
-block|{
-name|infoStream
-operator|.
-name|message
-argument_list|(
-literal|"IW"
-argument_list|,
-literal|"creating compound file "
-operator|+
-name|compoundFileName
-argument_list|)
-expr_stmt|;
-block|}
 comment|// Now build compound file
-comment|// nocommit factor to use craeteCompoundFile method!?
-specifier|final
-name|Directory
-name|cfsDir
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|files
 init|=
-operator|new
-name|CompoundFileDirectory
+name|createCompoundFile
 argument_list|(
+name|infoStream
+argument_list|,
 name|directory
 argument_list|,
 name|compoundFileName
 argument_list|,
-name|context
+name|MergeState
+operator|.
+name|CheckAbort
+operator|.
+name|NONE
 argument_list|,
-literal|true
+name|newSegment
+argument_list|,
+name|context
 argument_list|)
 decl_stmt|;
-name|IOException
-name|prior
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-for|for
-control|(
-name|String
-name|fileName
-range|:
 name|newSegment
 operator|.
-name|files
-argument_list|()
-control|)
-block|{
-name|directory
-operator|.
-name|copy
+name|setUseCompoundFile
 argument_list|(
-name|cfsDir
-argument_list|,
-name|fileName
-argument_list|,
-name|fileName
-argument_list|,
-name|context
+literal|true
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ex
-parameter_list|)
-block|{
-name|prior
-operator|=
-name|ex
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|IOUtils
-operator|.
-name|closeWhileHandlingException
-argument_list|(
-name|prior
-argument_list|,
-name|cfsDir
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Perform the merge
 synchronized|synchronized
 init|(
 name|this
@@ -5808,20 +5775,10 @@ name|deleter
 operator|.
 name|deleteNewFiles
 argument_list|(
-name|newSegment
-operator|.
 name|files
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|newSegment
-operator|.
-name|setUseCompoundFile
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 block|}
 comment|// Have codec write SegmentInfo.  Must do this after
 comment|// creating CFS so that 1) .si isn't slurped into CFS,
@@ -6922,6 +6879,8 @@ condition|)
 block|{
 name|createCompoundFile
 argument_list|(
+name|infoStream
+argument_list|,
 name|directory
 argument_list|,
 name|IndexFileNames
@@ -11503,11 +11462,6 @@ name|info
 operator|.
 name|name
 decl_stmt|;
-name|int
-name|mergedDocCount
-init|=
-literal|0
-decl_stmt|;
 name|List
 argument_list|<
 name|SegmentInfo
@@ -11565,7 +11519,6 @@ name|mergedName
 argument_list|,
 name|checkAbort
 argument_list|,
-comment|// nocommit
 name|payloadProcessorProvider
 argument_list|,
 operator|new
@@ -11920,8 +11873,6 @@ operator|.
 name|merge
 argument_list|()
 decl_stmt|;
-name|mergedDocCount
-operator|=
 name|merge
 operator|.
 name|info
@@ -11944,8 +11895,6 @@ argument_list|(
 name|codec
 argument_list|)
 expr_stmt|;
-comment|// nocommit should segment merger do this!?  else
-comment|// other places must do so...??? addIndexes...
 if|if
 condition|(
 name|infoStream
@@ -11968,7 +11917,11 @@ name|codec
 operator|+
 literal|" docCount="
 operator|+
-name|mergedDocCount
+name|merge
+operator|.
+name|info
+operator|.
+name|docCount
 operator|+
 literal|"; merged segment has "
 operator|+
@@ -12102,30 +12055,10 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-if|if
-condition|(
-name|infoStream
-operator|.
-name|isEnabled
-argument_list|(
-literal|"IW"
-argument_list|)
-condition|)
-block|{
-name|infoStream
-operator|.
-name|message
-argument_list|(
-literal|"IW"
-argument_list|,
-literal|"create compound file "
-operator|+
-name|compoundFileName
-argument_list|)
-expr_stmt|;
-block|}
 name|createCompoundFile
 argument_list|(
+name|infoStream
+argument_list|,
 name|directory
 argument_list|,
 name|compoundFileName
@@ -12266,6 +12199,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// nocommit why do we set success back to false here!?
 name|success
 operator|=
 literal|false
@@ -12339,12 +12273,17 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit need try/success thingy...?  ie must
-comment|// remove all seg files if we fail to write the .si?
 comment|// Have codec write SegmentInfo.  Must do this after
 comment|// creating CFS so that 1) .si isn't slurped into CFS,
 comment|// and 2) .si reflects useCompoundFile=true change
 comment|// above:
+name|boolean
+name|success2
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 name|codec
 operator|.
 name|segmentInfosFormat
@@ -12368,6 +12307,39 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
+name|success2
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success2
+condition|)
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+name|deleter
+operator|.
+name|deleteNewFiles
+argument_list|(
+name|merge
+operator|.
+name|info
+operator|.
+name|files
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 name|merge
 operator|.
 name|info
@@ -12543,7 +12515,11 @@ expr_stmt|;
 block|}
 block|}
 return|return
-name|mergedDocCount
+name|merge
+operator|.
+name|info
+operator|.
+name|docCount
 return|;
 block|}
 DECL|method|addMergeException
@@ -13228,9 +13204,6 @@ operator|=
 name|toSync
 expr_stmt|;
 block|}
-comment|// nocommit move this back above...?  problem is
-comment|// prepareCommit writes on the _X.si files... which
-comment|// of course need to be sync'd too...
 comment|// This call can take a long time -- 10s of seconds
 comment|// or more.  We do it without sync:
 name|boolean
@@ -13712,6 +13685,9 @@ name|String
 argument_list|>
 name|createCompoundFile
 parameter_list|(
+name|InfoStream
+name|infoStream
+parameter_list|,
 name|Directory
 name|directory
 parameter_list|,
@@ -13731,6 +13707,28 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"IW"
+argument_list|,
+literal|"create compound file "
+operator|+
+name|fileName
+argument_list|)
+expr_stmt|;
+block|}
 assert|assert
 name|info
 operator|.
@@ -13766,6 +13764,11 @@ name|context
 argument_list|,
 literal|true
 argument_list|)
+decl_stmt|;
+name|IOException
+name|prior
+init|=
+literal|null
 decl_stmt|;
 try|try
 block|{
@@ -13804,12 +13807,27 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+name|prior
+operator|=
+name|ex
+expr_stmt|;
+block|}
 finally|finally
 block|{
-name|cfsDir
+name|IOUtils
 operator|.
-name|close
-argument_list|()
+name|closeWhileHandlingException
+argument_list|(
+name|prior
+argument_list|,
+name|cfsDir
+argument_list|)
 expr_stmt|;
 block|}
 return|return
