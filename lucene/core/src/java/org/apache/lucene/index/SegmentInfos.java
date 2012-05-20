@@ -433,7 +433,6 @@ comment|// to FORMAT_FLEX? because the 'preamble' is just FORMAT_CURRENT + codec
 comment|// after that the codec takes over.
 comment|// also i think this class should write this, somehow we let
 comment|// preflexrw hackishly override this (like seek backwards and overwrite it)
-comment|// nocommit fix to read 3.x...
 DECL|field|VERSION_40
 specifier|public
 specifier|static
@@ -1180,8 +1179,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// nocommit 3.x needs normGens too ... we can push
-comment|// down to make this 3.x private????
 name|Lucene3xSegmentInfosReader
 operator|.
 name|readLegacyInfos

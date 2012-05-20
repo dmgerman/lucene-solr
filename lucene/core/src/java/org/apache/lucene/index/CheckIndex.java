@@ -429,12 +429,6 @@ specifier|public
 name|int
 name|numSegments
 decl_stmt|;
-comment|/** String description of the version of the index. */
-DECL|field|segmentFormat
-specifier|public
-name|String
-name|segmentFormat
-decl_stmt|;
 comment|/** Empty unless you passed specific segments list to check as optional 3rd argument.      *  @see CheckIndex#checkIndex(List) */
 DECL|field|segmentsChecked
 specifier|public
@@ -1327,12 +1321,6 @@ name|skip
 init|=
 literal|false
 decl_stmt|;
-comment|// nocommit fixme
-comment|/*     if (format == SegmentInfos.FORMAT_DIAGNOSTICS) {       sFormat = "FORMAT_DIAGNOSTICS [Lucene 2.9]";     } else if (format == SegmentInfos.FORMAT_HAS_VECTORS) {       sFormat = "FORMAT_HAS_VECTORS [Lucene 3.1]";     } else if (format == SegmentInfos.FORMAT_3_1) {       sFormat = "FORMAT_3_1 [Lucene 3.1+]";     } else if (format == SegmentInfos.FORMAT_4_0) {       sFormat = "FORMAT_4_0 [Lucene 4.0]";     } else if (format == SegmentInfos.FORMAT_CURRENT) {       throw new RuntimeException("BUG: You should update this tool!");     } else if (format< SegmentInfos.FORMAT_CURRENT) {       sFormat = "int=" + format + " [newer version of Lucene than this tool supports]";       skip = true;     } else if (format> SegmentInfos.FORMAT_MINIMUM) {       sFormat = "int=" + format + " [older version of Lucene than this tool supports]";       skip = true;     }     */
-name|sFormat
-operator|=
-literal|"nocommit not working yet"
-expr_stmt|;
 name|result
 operator|.
 name|segmentsFileName
@@ -1344,12 +1332,6 @@ operator|.
 name|numSegments
 operator|=
 name|numSegments
-expr_stmt|;
-name|result
-operator|.
-name|segmentFormat
-operator|=
-name|sFormat
 expr_stmt|;
 name|result
 operator|.

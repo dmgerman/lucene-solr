@@ -198,6 +198,10 @@ begin_comment
 comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *  * @lucene.experimental  */
 end_comment
 
+begin_comment
+comment|// nocommit final...?
+end_comment
+
 begin_class
 DECL|class|SegmentInfo
 specifier|public
@@ -745,7 +749,6 @@ name|clearFilesCache
 argument_list|()
 expr_stmt|;
 block|}
-comment|// nocommit this is dangerous... because we lose the codec's customzied class...
 annotation|@
 name|Override
 DECL|method|clone
