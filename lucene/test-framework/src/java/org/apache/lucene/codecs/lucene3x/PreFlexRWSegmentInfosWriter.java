@@ -215,6 +215,10 @@ name|PreFlexRWSegmentInfosWriter
 extends|extends
 name|SegmentInfosWriter
 block|{
+comment|// NOTE: this is not "really" 3.x format, because we are
+comment|// writing each SI to its own file, vs 3.x where the list
+comment|// of segments and SI for each segment is written into a
+comment|// single segments_N file
 comment|/** Save a single segment's info. */
 annotation|@
 name|Override
@@ -223,16 +227,21 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+name|Directory
+name|dir
+parameter_list|,
 name|SegmentInfo
 name|si
 parameter_list|,
 name|FieldInfos
 name|fis
+parameter_list|,
+name|IOContext
+name|ioContext
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// NOTE: this is NOT how 3.x is really written...
 name|String
 name|fileName
 init|=
@@ -251,7 +260,6 @@ operator|.
 name|SI_EXTENSION
 argument_list|)
 decl_stmt|;
-comment|// nocommit what IOCtx
 name|boolean
 name|success
 init|=
@@ -260,25 +268,13 @@ decl_stmt|;
 name|IndexOutput
 name|output
 init|=
-name|si
-operator|.
 name|dir
 operator|.
 name|createOutput
 argument_list|(
 name|fileName
 argument_list|,
-operator|new
-name|IOContext
-argument_list|(
-operator|new
-name|FlushInfo
-argument_list|(
-literal|0
-argument_list|,
-literal|0
-argument_list|)
-argument_list|)
+name|ioContext
 argument_list|)
 decl_stmt|;
 try|try

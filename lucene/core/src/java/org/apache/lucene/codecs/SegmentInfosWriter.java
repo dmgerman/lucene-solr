@@ -132,11 +132,17 @@ specifier|abstract
 name|void
 name|write
 parameter_list|(
+name|Directory
+name|dir
+parameter_list|,
 name|SegmentInfo
 name|info
 parameter_list|,
 name|FieldInfos
 name|fis
+parameter_list|,
+name|IOContext
+name|ioContext
 parameter_list|)
 throws|throws
 name|IOException

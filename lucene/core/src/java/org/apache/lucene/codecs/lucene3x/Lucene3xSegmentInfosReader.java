@@ -318,6 +318,8 @@ name|reader
 operator|.
 name|readSegmentInfo
 argument_list|(
+literal|null
+argument_list|,
 name|directory
 argument_list|,
 name|format
@@ -620,6 +622,8 @@ name|si
 init|=
 name|readSegmentInfo
 argument_list|(
+name|segmentName
+argument_list|,
 name|directory
 argument_list|,
 name|format
@@ -666,6 +670,9 @@ specifier|private
 name|SegmentInfo
 name|readSegmentInfo
 parameter_list|(
+name|String
+name|segmentName
+parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
@@ -761,6 +768,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|// NOTE: we ignore this and use the incoming arg
+comment|// instead, if it's non-null:
 specifier|final
 name|String
 name|name
@@ -770,6 +779,18 @@ operator|.
 name|readString
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|segmentName
+operator|==
+literal|null
+condition|)
+block|{
+name|segmentName
+operator|=
+name|name
+expr_stmt|;
+block|}
 specifier|final
 name|int
 name|docCount
@@ -852,49 +873,7 @@ operator|.
 name|readByte
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"version="
-operator|+
-name|version
-operator|+
-literal|" name="
-operator|+
-name|name
-operator|+
-literal|" docCount="
-operator|+
-name|docCount
-operator|+
-literal|" delGen="
-operator|+
-name|delGen
-operator|+
-literal|" dso="
-operator|+
-name|docStoreOffset
-operator|+
-literal|" dss="
-operator|+
-name|docStoreSegment
-operator|+
-literal|" dssCFs="
-operator|+
-name|docStoreIsCompoundFile
-operator|+
-literal|" b="
-operator|+
-name|b
-operator|+
-literal|" format="
-operator|+
-name|format
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("version=" + version + " name=" + name + " docCount=" + docCount + " delGen=" + delGen + " dso=" + docStoreOffset + " dss=" + docStoreSegment + " dssCFs=" + docStoreIsCompoundFile + " b=" + b + " format=" + format);
 assert|assert
 literal|1
 operator|==
@@ -1061,7 +1040,7 @@ name|dir
 argument_list|,
 name|version
 argument_list|,
-name|name
+name|segmentName
 argument_list|,
 name|docCount
 argument_list|,

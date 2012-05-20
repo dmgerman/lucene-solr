@@ -243,23 +243,8 @@ argument_list|>
 name|files
 parameter_list|)
 block|{
-comment|// nocommit hacky!
-if|if
-condition|(
-literal|true
-operator|||
-operator|!
-name|info
-operator|.
-name|getVersion
-argument_list|()
-operator|.
-name|startsWith
-argument_list|(
-literal|"3."
-argument_list|)
-condition|)
-block|{
+comment|// nocommit must take care to filter this out if we are
+comment|// "really" an old 3.x index
 name|files
 operator|.
 name|add
@@ -278,7 +263,6 @@ name|SI_EXTENSION
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 end_class
