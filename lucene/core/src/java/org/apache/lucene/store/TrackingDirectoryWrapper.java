@@ -509,6 +509,8 @@ name|context
 argument_list|)
 return|;
 block|}
+comment|// maybe clone before returning.... all callers are
+comment|// cloning anyway....
 DECL|method|getCreatedFiles
 specifier|public
 name|Set

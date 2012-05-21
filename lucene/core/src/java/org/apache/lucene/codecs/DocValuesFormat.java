@@ -133,25 +133,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Gathers files (exact file name or a Pattern regex)    *  associated with this segment. */
-DECL|method|files
-specifier|public
-specifier|abstract
-name|void
-name|files
-parameter_list|(
-name|SegmentInfo
-name|info
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 block|}
 end_class
 

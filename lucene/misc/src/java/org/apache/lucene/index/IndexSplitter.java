@@ -102,6 +102,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -827,7 +837,7 @@ name|newInfo
 argument_list|)
 expr_stmt|;
 comment|// now copy files over
-name|List
+name|Collection
 argument_list|<
 name|String
 argument_list|>

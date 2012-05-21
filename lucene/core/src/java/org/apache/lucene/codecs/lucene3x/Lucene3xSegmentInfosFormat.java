@@ -204,44 +204,6 @@ literal|"this codec can only be used for reading"
 argument_list|)
 throw|;
 block|}
-annotation|@
-name|Override
-DECL|method|files
-specifier|public
-name|void
-name|files
-parameter_list|(
-name|SegmentInfo
-name|info
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-block|{
-comment|// nocommit must take care to filter this out if we are
-comment|// "really" an old 3.x index
-name|files
-operator|.
-name|add
-argument_list|(
-name|IndexFileNames
-operator|.
-name|segmentFileName
-argument_list|(
-name|info
-operator|.
-name|name
-argument_list|,
-literal|""
-argument_list|,
-name|SI_EXTENSION
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 

@@ -115,22 +115,6 @@ name|SegmentInfosWriter
 name|getSegmentInfosWriter
 parameter_list|()
 function_decl|;
-DECL|method|files
-specifier|public
-specifier|abstract
-name|void
-name|files
-parameter_list|(
-name|SegmentInfo
-name|info
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-function_decl|;
 block|}
 end_class
 
