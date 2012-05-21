@@ -823,6 +823,12 @@ name|IClusteringAlgorithm
 argument_list|>
 name|clusteringAlgorithmClass
 decl_stmt|;
+comment|/** Solr core we're bound to. */
+DECL|field|core
+specifier|private
+name|SolrCore
+name|core
+decl_stmt|;
 DECL|class|SolrResourceLocator
 specifier|private
 specifier|static
@@ -1409,6 +1415,41 @@ name|attributes
 argument_list|)
 expr_stmt|;
 comment|// Perform clustering and convert to named list
+comment|// Carrot2 uses current thread's context class loader to get
+comment|// certain classes (e.g. custom tokenizer/stemmer) at runtime.
+comment|// To make sure classes from contrib JARs are available,
+comment|// we swap the context class loader for the time of clustering.
+name|Thread
+name|ct
+init|=
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+decl_stmt|;
+name|ClassLoader
+name|prev
+init|=
+name|ct
+operator|.
+name|getContextClassLoader
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|ct
+operator|.
+name|setContextClassLoader
+argument_list|(
+name|core
+operator|.
+name|getResourceLoader
+argument_list|()
+operator|.
+name|getClassLoader
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|clustersToNamedList
 argument_list|(
@@ -1430,6 +1471,17 @@ name|getParams
 argument_list|()
 argument_list|)
 return|;
+block|}
+finally|finally
+block|{
+name|ct
+operator|.
+name|setContextClassLoader
+argument_list|(
+name|prev
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1485,6 +1537,12 @@ name|SolrCore
 name|core
 parameter_list|)
 block|{
+name|this
+operator|.
+name|core
+operator|=
+name|core
+expr_stmt|;
 name|String
 name|result
 init|=
@@ -1660,6 +1718,41 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// Carrot2 uses current thread's context class loader to get
+comment|// certain classes (e.g. custom tokenizer/stemmer) at initialization time.
+comment|// To make sure classes from contrib JARs are available,
+comment|// we swap the context class loader for the time of clustering.
+name|Thread
+name|ct
+init|=
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+decl_stmt|;
+name|ClassLoader
+name|prev
+init|=
+name|ct
+operator|.
+name|getContextClassLoader
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|ct
+operator|.
+name|setContextClassLoader
+argument_list|(
+name|core
+operator|.
+name|getResourceLoader
+argument_list|()
+operator|.
+name|getClassLoader
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|controller
@@ -1669,6 +1762,17 @@ argument_list|(
 name|initAttributes
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|ct
+operator|.
+name|setContextClassLoader
+argument_list|(
+name|prev
+argument_list|)
+expr_stmt|;
+block|}
 name|SchemaField
 name|uniqueField
 init|=
