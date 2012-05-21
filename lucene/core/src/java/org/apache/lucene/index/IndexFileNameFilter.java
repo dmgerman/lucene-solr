@@ -89,7 +89,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"^_[a-z0-9]+(_[a-z0-9]+)?\\.[a-z0-9]+$"
+literal|"^_[a-z0-9]+(_[a-zA-Z0-9]+)?\\.[a-z0-9]+$"
 argument_list|)
 decl_stmt|;
 comment|/* (non-Javadoc)    * @see java.io.FilenameFilter#accept(java.io.File, java.lang.String)    */

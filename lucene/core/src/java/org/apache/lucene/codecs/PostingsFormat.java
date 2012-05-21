@@ -157,6 +157,9 @@ name|String
 name|name
 parameter_list|)
 block|{
+comment|// nocommit: check that name is a-zA-Z0-9 and< some reasonable length
+comment|// also fix this for Codec
+comment|// also make NamedSPILoader's map case-insensitive (like Charset)
 name|this
 operator|.
 name|name
