@@ -5795,11 +5795,6 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
-name|newSegment
-operator|.
-name|clearFilesCache
-argument_list|()
-expr_stmt|;
 comment|// nocommit ideally we would freeze merge.info here!!
 comment|// because any changes after writing the .si will be
 comment|// lost...
@@ -6976,11 +6971,6 @@ name|fieldInfos
 argument_list|,
 name|context
 argument_list|)
-expr_stmt|;
-name|info
-operator|.
-name|clearFilesCache
-argument_list|()
 expr_stmt|;
 name|info
 operator|.
@@ -12595,13 +12585,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|merge
-operator|.
-name|info
-operator|.
-name|clearFilesCache
-argument_list|()
-expr_stmt|;
 comment|// nocommit ideally we would freeze merge.info here!!
 comment|// because any changes after writing the .si will be
 comment|// lost...
