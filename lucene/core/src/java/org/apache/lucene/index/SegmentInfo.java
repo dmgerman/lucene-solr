@@ -177,7 +177,35 @@ import|;
 end_import
 
 begin_comment
+comment|// nocommit fix jdocs for all codec's SI writer impls to
+end_comment
+
+begin_comment
+comment|// describe their format
+end_comment
+
+begin_comment
+comment|// nocommit fix codec api to pass this around so they can
+end_comment
+
+begin_comment
+comment|// store attrs
+end_comment
+
+begin_comment
+comment|// nocommit add attrs api like FI
+end_comment
+
+begin_comment
+comment|// nocommit fix PFPF to use attrs api instead of its .per file
+end_comment
+
+begin_comment
 comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *  * @lucene.experimental  */
+end_comment
+
+begin_comment
+comment|// nocommit make final again once atts are working here
 end_comment
 
 begin_class
