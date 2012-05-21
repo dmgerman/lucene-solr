@@ -413,6 +413,14 @@ name|numDocs
 argument_list|)
 expr_stmt|;
 block|}
+comment|// close perDocConsumer during flush to ensure all files are flushed due to PerCodec CFS
+name|IOUtils
+operator|.
+name|close
+argument_list|(
+name|perDocConsumer
+argument_list|)
+expr_stmt|;
 comment|// Important to save after asking consumer to flush so
 comment|// consumer can alter the FieldInfo* if necessary.  EG,
 comment|// FreqProxTermsWriter does this with
@@ -447,14 +455,6 @@ argument_list|,
 name|IOContext
 operator|.
 name|DEFAULT
-argument_list|)
-expr_stmt|;
-comment|// close perDocConsumer during flush to ensure all files are flushed due to PerCodec CFS
-name|IOUtils
-operator|.
-name|close
-argument_list|(
-name|perDocConsumer
 argument_list|)
 expr_stmt|;
 block|}

@@ -1287,7 +1287,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/** Call this to get the (merged) FieldInfos for a    *  composite reader */
+comment|/** Call this to get the (merged) FieldInfos for a    *  composite reader.     *<p>    *  NOTE: the returned field numbers will likely not    *  correspond to the actual field numbers in the underlying    *  readers, and codec metadata ({@link FieldInfo#getAttribute(String)}    *  will be unavailable.    */
 DECL|method|getMergedFieldInfos
 specifier|public
 specifier|static

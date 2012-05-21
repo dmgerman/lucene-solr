@@ -658,6 +658,8 @@ operator|.
 name|FIXED_INTS_8
 else|:
 literal|null
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}

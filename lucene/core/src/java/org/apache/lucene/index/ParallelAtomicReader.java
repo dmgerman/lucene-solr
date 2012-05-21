@@ -984,6 +984,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * NOTE: the returned field numbers will likely not    * correspond to the actual field numbers in the underlying    * readers, and codec metadata ({@link FieldInfo#getAttribute(String)}    * will be unavailable.    */
 annotation|@
 name|Override
 DECL|method|getFieldInfos

@@ -491,6 +491,15 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+assert|assert
+name|fi
+operator|.
+name|attributes
+argument_list|()
+operator|==
+literal|null
+assert|;
+comment|// not used or supported
 block|}
 block|}
 finally|finally
