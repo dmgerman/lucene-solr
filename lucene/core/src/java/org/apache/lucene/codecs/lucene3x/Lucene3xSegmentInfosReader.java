@@ -34,20 +34,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_comment
-comment|// nocommit
-end_comment
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -1092,11 +1078,6 @@ operator|.
 name|readStringStringMap
 argument_list|()
 decl_stmt|;
-comment|// nocommit unused...
-specifier|final
-name|int
-name|hasVectors
-decl_stmt|;
 if|if
 condition|(
 name|format
@@ -1106,21 +1087,16 @@ operator|.
 name|FORMAT_HAS_VECTORS
 condition|)
 block|{
+comment|// NOTE: unused
+specifier|final
+name|int
 name|hasVectors
-operator|=
+init|=
 name|input
 operator|.
 name|readByte
 argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
-name|hasVectors
-operator|=
-operator|-
-literal|1
-expr_stmt|;
+decl_stmt|;
 block|}
 specifier|final
 name|Set
@@ -1624,13 +1600,10 @@ comment|// nocommit -- i thought _X_N.sY files were pre-3.0...????
 assert|assert
 literal|false
 assert|;
-comment|/*             System.out.println("FILES: " + Arrays.toString(dir.listAll()) + "; seg=" + segmentName);             addIfExists(dir, files, IndexFileNames.fileNameFromGeneration(segmentName, "s" + ent.getKey(), gen));             assert false: "gen=" + gen;             */
 block|}
 block|}
 block|}
 block|}
-comment|// nocommit we can use hasProx/hasVectors from the 3.x
-comment|// si... if we can pass this to the other components...?
 name|SegmentInfo
 name|info
 init|=

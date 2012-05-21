@@ -272,14 +272,13 @@ name|SegmentInfos
 name|lastSegmentInfos
 decl_stmt|;
 comment|/** Change to true to see details of reference counts when    *  infoStream is enabled */
-comment|// nocommit back to false:
 DECL|field|VERBOSE_REF_COUNTS
 specifier|public
 specifier|static
 name|boolean
 name|VERBOSE_REF_COUNTS
 init|=
-literal|true
+literal|false
 decl_stmt|;
 comment|// Used only for assert
 DECL|field|writer

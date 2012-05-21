@@ -599,7 +599,6 @@ assert|;
 comment|// ask codec for its Norms:
 comment|// TODO: since we don't write any norms file if there are no norms,
 comment|// kinda jaky to assume the codec handles the case of no norms file at all gracefully?!
-comment|// nocommit shouldn't we check si.getHasNorms()/si.getHasDocValues()...?
 name|norms
 operator|=
 name|codec

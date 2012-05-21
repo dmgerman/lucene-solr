@@ -4041,7 +4041,8 @@ name|mergeMaxNumSegments
 operator|=
 name|maxNumSegments
 expr_stmt|;
-comment|// Now mark all pending& running merges as isMaxNumSegments:
+comment|// Now mark all pending& running merges for forced
+comment|// merge:
 for|for
 control|(
 specifier|final
@@ -4058,19 +4059,6 @@ operator|.
 name|maxNumSegments
 operator|=
 name|maxNumSegments
-expr_stmt|;
-name|segmentsToMerge
-operator|.
-name|put
-argument_list|(
-name|merge
-operator|.
-name|info
-argument_list|,
-name|Boolean
-operator|.
-name|TRUE
-argument_list|)
 expr_stmt|;
 block|}
 for|for
@@ -4089,19 +4077,6 @@ operator|.
 name|maxNumSegments
 operator|=
 name|maxNumSegments
-expr_stmt|;
-name|segmentsToMerge
-operator|.
-name|put
-argument_list|(
-name|merge
-operator|.
-name|info
-argument_list|,
-name|Boolean
-operator|.
-name|TRUE
-argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -5795,7 +5770,7 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
-comment|// nocommit ideally we would freeze merge.info here!!
+comment|// nocommit ideally we would freeze newSegment here!!
 comment|// because any changes after writing the .si will be
 comment|// lost...
 comment|// Must write deleted docs after the CFS so we don't
@@ -6776,13 +6751,6 @@ name|merge
 argument_list|()
 decl_stmt|;
 comment|// merge 'em
-name|int
-name|docCount
-init|=
-name|mergeState
-operator|.
-name|mergedDocCount
-decl_stmt|;
 name|SegmentInfo
 name|info
 init|=
@@ -6797,7 +6765,9 @@ name|LUCENE_MAIN_VERSION
 argument_list|,
 name|mergedName
 argument_list|,
-name|docCount
+name|mergeState
+operator|.
+name|mergedDocCount
 argument_list|,
 operator|-
 literal|1
@@ -8819,6 +8789,19 @@ name|info
 argument_list|)
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"drop all del seg="
+operator|+
+name|info
+operator|.
+name|name
+argument_list|)
+expr_stmt|;
 name|segmentInfos
 operator|.
 name|remove
@@ -11021,17 +11004,8 @@ argument_list|,
 name|details
 argument_list|)
 expr_stmt|;
-name|merge
-operator|.
-name|info
-operator|.
-name|setBufferedDeletesGen
-argument_list|(
-name|result
-operator|.
-name|gen
-argument_list|)
-expr_stmt|;
+comment|// nocommit
+comment|// merge.info.setBufferedDeletesGen(result.gen);
 comment|// Lock order: IW -> BD
 name|bufferedDeletesStream
 operator|.
@@ -11140,22 +11114,6 @@ operator|)
 expr_stmt|;
 block|}
 block|}
-comment|// TODO: I think this should no longer be needed (we
-comment|// now build CFS before adding segment to the infos);
-comment|// however, on removing it, tests fail for some reason!
-comment|// Also enroll the merged segment into mergingSegments;
-comment|// this prevents it from getting selected for a merge
-comment|// after our merge is done but while we are building the
-comment|// CFS:
-name|mergingSegments
-operator|.
-name|add
-argument_list|(
-name|merge
-operator|.
-name|info
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|setDiagnostics
 specifier|static
@@ -11371,17 +11329,6 @@ name|info
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: if we remove the add in _mergeInit, we should
-comment|// also remove this:
-name|mergingSegments
-operator|.
-name|remove
-argument_list|(
-name|merge
-operator|.
-name|info
-argument_list|)
-expr_stmt|;
 name|merge
 operator|.
 name|registerDone
