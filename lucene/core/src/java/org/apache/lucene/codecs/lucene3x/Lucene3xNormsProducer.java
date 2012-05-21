@@ -1037,8 +1037,6 @@ name|bytes
 return|;
 block|}
 block|}
-comment|/*   static void files(SegmentInfo info, Set<String> files) throws IOException {     // TODO: This is what SI always did... but we can do this cleaner?     // like first FI that has norms but doesn't have separate norms?     final String normsFileName = IndexFileNames.segmentFileName(info.name, "", NORMS_EXTENSION);     if (info.dir.fileExists(normsFileName)) {       // only needed to do this in 3x - 4x can decide if the norms are present       files.add(normsFileName);     }   }   */
-comment|/*   static void separateFiles(SegmentInfo info, Set<String> files) throws IOException {     Map<Integer,Long> normGen = info.getNormGen();     if (normGen != null) {       for (Entry<Integer,Long> entry : normGen.entrySet()) {         long gen = entry.getValue();         if (gen>= SegmentInfo.YES) {           // Definitely a separate norm file, with generation:           files.add(IndexFileNames.fileNameFromGeneration(info.name, SEPARATE_NORMS_EXTENSION + entry.getKey(), gen));         }       }     }   }   */
 DECL|class|NormsDocValues
 specifier|private
 class|class

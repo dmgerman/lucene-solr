@@ -1586,9 +1586,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// note: if there are shared docstores, we are also called by Lucene3xCodec even in
-comment|// the CFS case. so logic here must handle this.
-comment|/*   public static void files(SegmentInfo info, Set<String> files) throws IOException {     if (info.getDocStoreOffset() != -1) {       assert info.getDocStoreSegment() != null;       if (info.getDocStoreIsCompoundFile()) {         files.add(IndexFileNames.segmentFileName(info.getDocStoreSegment(), "", Lucene3xCodec.COMPOUND_FILE_STORE_EXTENSION));       } else {         files.add(IndexFileNames.segmentFileName(info.getDocStoreSegment(), "", FIELDS_INDEX_EXTENSION));         files.add(IndexFileNames.segmentFileName(info.getDocStoreSegment(), "", FIELDS_EXTENSION));       }     } else if (!info.getUseCompoundFile()) {       files.add(IndexFileNames.segmentFileName(info.name, "", FIELDS_INDEX_EXTENSION));       files.add(IndexFileNames.segmentFileName(info.name, "", FIELDS_EXTENSION));     }   }   */
 block|}
 end_class
 

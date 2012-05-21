@@ -185,18 +185,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|// We only write the _X.nrm file at flush
-DECL|method|files
-name|void
-name|files
-parameter_list|(
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-block|{}
 comment|/** Produce _X.nrm if any document had a field with norms    *  not disabled */
 annotation|@
 name|Override
