@@ -10810,28 +10810,6 @@ condition|)
 block|{
 return|return;
 block|}
-comment|// Bind a new segment name here so even with
-comment|// ConcurrentMergePolicy we keep deterministic segment
-comment|// names.
-name|merge
-operator|.
-name|info
-operator|=
-operator|new
-name|SegmentInfo
-argument_list|(
-name|newSegmentName
-argument_list|()
-argument_list|,
-literal|0
-argument_list|,
-name|directory
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
 comment|// TODO: in the non-pool'd case this is somewhat
 comment|// wasteful, because we open these readers, close them,
 comment|// and then open them again for merging.  Maybe  we
@@ -10959,25 +10937,6 @@ name|checkpoint
 argument_list|()
 expr_stmt|;
 block|}
-name|merge
-operator|.
-name|info
-operator|.
-name|setBufferedDeletesGen
-argument_list|(
-name|result
-operator|.
-name|gen
-argument_list|)
-expr_stmt|;
-comment|// Lock order: IW -> BD
-name|bufferedDeletesStream
-operator|.
-name|prune
-argument_list|(
-name|segmentInfos
-argument_list|)
-expr_stmt|;
 name|Map
 argument_list|<
 name|String
@@ -11027,15 +10986,68 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|setDiagnostics
-argument_list|(
+comment|// Bind a new segment name here so even with
+comment|// ConcurrentMergePolicy we keep deterministic segment
+comment|// names.
+specifier|final
+name|String
+name|mergeSegmentName
+init|=
+name|newSegmentName
+argument_list|()
+decl_stmt|;
 name|merge
 operator|.
 name|info
+operator|=
+operator|new
+name|SegmentInfo
+argument_list|(
+name|directory
 argument_list|,
-literal|"merge"
+name|Constants
+operator|.
+name|LUCENE_MAIN_VERSION
+argument_list|,
+name|mergeSegmentName
+argument_list|,
+literal|0
+argument_list|,
+operator|-
+literal|1
+argument_list|,
+name|mergeSegmentName
+argument_list|,
+literal|false
+argument_list|,
+literal|null
+argument_list|,
+literal|false
+argument_list|,
+literal|0
+argument_list|,
+name|codec
 argument_list|,
 name|details
+argument_list|)
+expr_stmt|;
+name|merge
+operator|.
+name|info
+operator|.
+name|setBufferedDeletesGen
+argument_list|(
+name|result
+operator|.
+name|gen
+argument_list|)
+expr_stmt|;
+comment|// Lock order: IW -> BD
+name|bufferedDeletesStream
+operator|.
+name|prune
+argument_list|(
+name|segmentInfos
 argument_list|)
 expr_stmt|;
 if|if
@@ -12107,17 +12119,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Record which codec was used to write the segment
-comment|// nocommit stop doing this once we call non-wimpy
-comment|// ctor when we make the merge.info:
-name|merge
-operator|.
-name|info
-operator|.
-name|setCodec
-argument_list|(
-name|codec
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|infoStream

@@ -180,10 +180,6 @@ begin_comment
 comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *  * @lucene.experimental  */
 end_comment
 
-begin_comment
-comment|// nocommit final...?
-end_comment
-
 begin_class
 DECL|class|SegmentInfo
 specifier|public
@@ -247,6 +243,7 @@ decl_stmt|;
 comment|// where segment resides
 comment|// nocommit what other members can we make final?
 comment|/*    * Current generation of del file:    * - NO if there are no deletes    * - YES or higher if there are deletes at generation N    */
+comment|// nocommit move this "out" somewhere...
 comment|// nocommit explain that codec need not save this....:
 DECL|field|delGen
 specifier|private
@@ -317,6 +314,7 @@ name|boolean
 name|docStoreIsCompoundFile
 decl_stmt|;
 comment|// whether doc store files are stored in compound file (*.cfx)
+comment|// nocommit move this out:
 comment|// nocommit explain that codec need not save this....:
 DECL|field|delCount
 specifier|private
@@ -344,6 +342,9 @@ comment|// indicates an older than 3.0 index, and it's used to detect a too old 
 comment|// The format expected is "x.y" - "2.x" for pre-3.0 indexes (or null), and
 comment|// specific versions afterwards ("3.0", "3.1" etc.).
 comment|// see Constants.LUCENE_MAIN_VERSION.
+comment|// nocommit why does ctor even take this?  shuldn't we
+comment|// always be the current version!?
+comment|// nocommit final?
 DECL|field|version
 specifier|private
 name|String
@@ -356,67 +357,6 @@ specifier|private
 name|long
 name|bufferedDeletesGen
 decl_stmt|;
-comment|// nocommit why do we have this wimpy ctor...?
-DECL|method|SegmentInfo
-specifier|public
-name|SegmentInfo
-parameter_list|(
-name|String
-name|name
-parameter_list|,
-name|int
-name|docCount
-parameter_list|,
-name|Directory
-name|dir
-parameter_list|,
-name|boolean
-name|isCompoundFile
-parameter_list|,
-name|Codec
-name|codec
-parameter_list|)
-block|{
-comment|// nocommit
-comment|/*     this.name = name;     this.docCount = docCount;     this.dir = dir;     delGen = NO;     this.isCompoundFile = isCompoundFile;     this.docStoreOffset = -1;     this.docStoreSegment = name;     this.codec = codec;     delCount = 0;     version = Constants.LUCENE_MAIN_VERSION;     */
-name|this
-argument_list|(
-name|dir
-argument_list|,
-name|Constants
-operator|.
-name|LUCENE_MAIN_VERSION
-argument_list|,
-name|name
-argument_list|,
-name|docCount
-argument_list|,
-operator|-
-literal|1
-argument_list|,
-name|name
-argument_list|,
-literal|false
-argument_list|,
-literal|null
-argument_list|,
-name|isCompoundFile
-argument_list|,
-literal|0
-argument_list|,
-name|codec
-argument_list|,
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|setDiagnostics
 name|void
 name|setDiagnostics
@@ -1787,15 +1727,13 @@ argument_list|>
 name|files
 parameter_list|)
 block|{
-comment|//System.out.println("set files=" + files);
-comment|//if (files.size() == 0) {
-comment|//new Throwable().printStackTrace(System.out);
-comment|//}
 name|setFiles
 operator|=
 name|files
 expr_stmt|;
 block|}
+comment|// nocommit remove this!  it's only needed for
+comment|// clearing/adding the files set...
 DECL|method|getFiles
 specifier|public
 name|Set
@@ -1807,50 +1745,6 @@ parameter_list|()
 block|{
 return|return
 name|setFiles
-return|;
-block|}
-DECL|method|getFiles2
-specifier|public
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|getFiles2
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
-init|=
-operator|new
-name|HashSet
-argument_list|<
-name|String
-argument_list|>
-argument_list|(
-name|setFiles
-argument_list|)
-decl_stmt|;
-comment|// nocommit make this take list instead...?
-comment|// Must separately add any live docs files:
-name|codec
-operator|.
-name|liveDocsFormat
-argument_list|()
-operator|.
-name|files
-argument_list|(
-name|this
-argument_list|,
-name|files
-argument_list|)
-expr_stmt|;
-return|return
-name|files
 return|;
 block|}
 block|}
