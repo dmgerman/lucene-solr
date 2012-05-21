@@ -270,6 +270,7 @@ comment|// total byte size of all files (computed on demand)
 comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreOffset
 specifier|private
+specifier|final
 name|int
 name|docStoreOffset
 decl_stmt|;
@@ -278,6 +279,7 @@ comment|// offset is where in that file this segment's docs begin
 comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreSegment
 specifier|private
+specifier|final
 name|String
 name|docStoreSegment
 decl_stmt|;
@@ -286,6 +288,7 @@ comment|// other segments
 comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
 DECL|field|docStoreIsCompoundFile
 specifier|private
+specifier|final
 name|boolean
 name|docStoreIsCompoundFile
 decl_stmt|;
@@ -966,40 +969,6 @@ comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc st
 return|return
 name|docStoreIsCompoundFile
 return|;
-block|}
-comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
-annotation|@
-name|Deprecated
-DECL|method|setDocStore
-name|void
-name|setDocStore
-parameter_list|(
-name|int
-name|offset
-parameter_list|,
-name|String
-name|segment
-parameter_list|,
-name|boolean
-name|isCompoundFile
-parameter_list|)
-block|{
-comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
-name|docStoreOffset
-operator|=
-name|offset
-expr_stmt|;
-name|docStoreSegment
-operator|=
-name|segment
-expr_stmt|;
-name|docStoreIsCompoundFile
-operator|=
-name|isCompoundFile
-expr_stmt|;
-name|clearFilesCache
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
 annotation|@
