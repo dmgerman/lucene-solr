@@ -183,7 +183,7 @@ name|args
 operator|.
 name|get
 argument_list|(
-literal|"deaultValue"
+literal|"defaultValue"
 argument_list|)
 expr_stmt|;
 block|}

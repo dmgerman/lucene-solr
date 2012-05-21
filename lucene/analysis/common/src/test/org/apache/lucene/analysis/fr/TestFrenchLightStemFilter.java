@@ -834,6 +834,78 @@ argument_list|,
 literal|"dispos"
 argument_list|)
 expr_stmt|;
+comment|// SOLR-3463 : abusive compression of repeated characters in numbers
+comment|// Trailing repeated char elision :
+name|checkOneTerm
+argument_list|(
+name|analyzer
+argument_list|,
+literal|"1234555"
+argument_list|,
+literal|"1234555"
+argument_list|)
+expr_stmt|;
+comment|// Repeated char within numbers with more than 4 characters :
+name|checkOneTerm
+argument_list|(
+name|analyzer
+argument_list|,
+literal|"12333345"
+argument_list|,
+literal|"12333345"
+argument_list|)
+expr_stmt|;
+comment|// Short numbers weren't affected already:
+name|checkOneTerm
+argument_list|(
+name|analyzer
+argument_list|,
+literal|"1234"
+argument_list|,
+literal|"1234"
+argument_list|)
+expr_stmt|;
+comment|// Ensure behaviour is preserved for words!
+comment|// Trailing repeated char elision :
+name|checkOneTerm
+argument_list|(
+name|analyzer
+argument_list|,
+literal|"abcdeff"
+argument_list|,
+literal|"abcdef"
+argument_list|)
+expr_stmt|;
+comment|// Repeated char within words with more than 4 characters :
+name|checkOneTerm
+argument_list|(
+name|analyzer
+argument_list|,
+literal|"abcccddeef"
+argument_list|,
+literal|"abcdef"
+argument_list|)
+expr_stmt|;
+name|checkOneTerm
+argument_list|(
+name|analyzer
+argument_list|,
+literal|"crÃ©Ã©es"
+argument_list|,
+literal|"cre"
+argument_list|)
+expr_stmt|;
+comment|// Combined letter and digit repetition
+name|checkOneTerm
+argument_list|(
+name|analyzer
+argument_list|,
+literal|"22hh00"
+argument_list|,
+literal|"22h00"
+argument_list|)
+expr_stmt|;
+comment|// 10:00pm
 block|}
 comment|/** Test against a vocabulary from the reference impl */
 DECL|method|testVocabulary

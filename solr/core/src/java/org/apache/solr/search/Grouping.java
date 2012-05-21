@@ -3238,8 +3238,14 @@ name|int
 name|len
 init|=
 name|docsGathered
+operator|>
+name|offset
+condition|?
+name|docsGathered
 operator|-
 name|offset
+else|:
+literal|0
 decl_stmt|;
 name|int
 index|[]

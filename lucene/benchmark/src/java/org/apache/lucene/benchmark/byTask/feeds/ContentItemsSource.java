@@ -418,11 +418,6 @@ name|totalItemCount
 return|;
 block|}
 comment|/**    * Resets the input for this content source, so that the test would behave as    * if it was just started, input-wise.    *<p>    *<b>NOTE:</b> the default implementation resets the number of bytes and    * items generated since the last reset, so it's important to call    * super.resetInputs in case you override this method.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 DECL|method|resetInputs
 specifier|public
 name|void

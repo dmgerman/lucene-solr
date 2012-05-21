@@ -380,21 +380,11 @@ block|{
 comment|// merge the taxonomies
 name|destTaxWriter
 operator|.
-name|addTaxonomies
+name|addTaxonomy
 argument_list|(
-operator|new
-name|Directory
-index|[]
-block|{
 name|srcTaxDir
-block|}
 argument_list|,
-operator|new
-name|OrdinalMap
-index|[]
-block|{
 name|map
-block|}
 argument_list|)
 expr_stmt|;
 name|PayloadProcessorProvider

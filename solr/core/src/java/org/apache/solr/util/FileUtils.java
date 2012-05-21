@@ -48,7 +48,7 @@ specifier|public
 class|class
 name|FileUtils
 block|{
-comment|/**    * Resolves a path relative a base directory.    *    *<p>    * This method does what "new File(base,path)"<b>Should</b> do, it wasn't    * completely lame: If path is absolute, then a File for that path is returned;    * if it's not absoluve, then a File is returnd using "path" as a child     * of "base")    *</p>    */
+comment|/**    * Resolves a path relative a base directory.    *    *<p>    * This method does what "new File(base,path)"<b>Should</b> do, if it wasn't    * completely lame: If path is absolute, then a File for that path is returned;    * if it's not absolute, then a File is returned using "path" as a child    * of "base")    *</p>    */
 DECL|method|resolvePath
 specifier|public
 specifier|static

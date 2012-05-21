@@ -136,6 +136,14 @@ begin_comment
 comment|/**  * Query that is boosted by a ValueSource  */
 end_comment
 
+begin_comment
+comment|// TODO: BoostedQuery and BoostingQuery in the same module?
+end_comment
+
+begin_comment
+comment|// something has to give
+end_comment
+
 begin_class
 DECL|class|BoostedQuery
 specifier|public
@@ -1008,13 +1016,13 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|getClass
-argument_list|()
-operator|!=
-name|o
+operator|!
+name|super
 operator|.
-name|getClass
-argument_list|()
+name|equals
+argument_list|(
+name|o
+argument_list|)
 condition|)
 return|return
 literal|false
@@ -1028,16 +1036,6 @@ operator|)
 name|o
 decl_stmt|;
 return|return
-name|this
-operator|.
-name|getBoost
-argument_list|()
-operator|==
-name|other
-operator|.
-name|getBoost
-argument_list|()
-operator|&&
 name|this
 operator|.
 name|q
