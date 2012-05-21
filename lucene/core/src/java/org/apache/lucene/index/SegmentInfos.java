@@ -500,11 +500,6 @@ name|emptyMap
 argument_list|()
 decl_stmt|;
 comment|// Opaque Map<String, String> that user can specify during IndexWriter.commit
-DECL|field|format
-specifier|private
-name|int
-name|format
-decl_stmt|;
 DECL|field|segments
 specifier|private
 name|List
@@ -544,11 +539,6 @@ name|SegmentInfo
 argument_list|>
 name|cachedUnmodifiableList
 decl_stmt|;
-DECL|field|codecFormat
-specifier|private
-name|Codec
-name|codecFormat
-decl_stmt|;
 comment|/**    * If non-null, information about loading segments_N files    * will be printed here.  @see #setInfoStream.    */
 DECL|field|infoStream
 specifier|private
@@ -558,32 +548,6 @@ name|infoStream
 init|=
 literal|null
 decl_stmt|;
-DECL|method|setFormat
-specifier|public
-name|void
-name|setFormat
-parameter_list|(
-name|int
-name|format
-parameter_list|)
-block|{
-name|this
-operator|.
-name|format
-operator|=
-name|format
-expr_stmt|;
-block|}
-DECL|method|getFormat
-specifier|public
-name|int
-name|getFormat
-parameter_list|()
-block|{
-return|return
-name|format
-return|;
-block|}
 DECL|method|info
 specifier|public
 name|SegmentInfo
@@ -3851,12 +3815,6 @@ name|other
 operator|.
 name|lastGeneration
 expr_stmt|;
-name|format
-operator|=
-name|other
-operator|.
-name|format
-expr_stmt|;
 block|}
 comment|/** Returns sum of all segment's docCounts.  Note that    *  this does not include deletions */
 DECL|method|totalDocCount
@@ -4215,16 +4173,6 @@ argument_list|(
 name|infos
 argument_list|)
 expr_stmt|;
-block|}
-comment|/**    * Returns the codec used to decode this SegmentInfos from disk     * @lucene.internal    */
-DECL|method|codecFormat
-name|Codec
-name|codecFormat
-parameter_list|()
-block|{
-return|return
-name|codecFormat
-return|;
 block|}
 comment|/** Returns an<b>unmodifiable</b> {@link Iterator} of contained segments in order. */
 comment|// @Override (comment out until Java 6)
