@@ -164,7 +164,7 @@ name|index
 operator|.
 name|FieldInfos
 operator|.
-name|FieldNumberBiMap
+name|FieldNumbers
 import|;
 end_import
 
@@ -368,7 +368,7 @@ parameter_list|,
 name|IndexWriter
 name|writer
 parameter_list|,
-name|FieldNumberBiMap
+name|FieldNumbers
 name|globalFieldNumbers
 parameter_list|,
 name|BufferedDeletesStream

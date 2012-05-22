@@ -1176,7 +1176,7 @@ argument_list|,
 operator|new
 name|FieldInfos
 operator|.
-name|Builder
+name|FieldNumbers
 argument_list|()
 argument_list|,
 name|codec

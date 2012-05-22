@@ -42,7 +42,7 @@ name|index
 operator|.
 name|FieldInfos
 operator|.
-name|FieldNumberBiMap
+name|FieldNumbers
 import|;
 end_import
 
@@ -256,14 +256,14 @@ specifier|private
 specifier|final
 name|SetOnce
 argument_list|<
-name|FieldNumberBiMap
+name|FieldNumbers
 argument_list|>
 name|globalFieldMap
 init|=
 operator|new
 name|SetOnce
 argument_list|<
-name|FieldNumberBiMap
+name|FieldNumbers
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -328,7 +328,7 @@ parameter_list|(
 name|DocumentsWriter
 name|documentsWriter
 parameter_list|,
-name|FieldNumberBiMap
+name|FieldNumbers
 name|globalFieldMap
 parameter_list|,
 name|IndexWriterConfig

@@ -313,8 +313,8 @@ name|payloadProcessorProvider
 parameter_list|,
 name|FieldInfos
 operator|.
-name|Builder
-name|fieldInfosBuilder
+name|FieldNumbers
+name|fieldNumbers
 parameter_list|,
 name|Codec
 name|codec
@@ -386,7 +386,13 @@ name|this
 operator|.
 name|fieldInfosBuilder
 operator|=
-name|fieldInfosBuilder
+operator|new
+name|FieldInfos
+operator|.
+name|Builder
+argument_list|(
+name|fieldNumbers
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Add an IndexReader to the collection of readers that are to be merged    * @param reader    */
