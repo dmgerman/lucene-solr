@@ -6867,6 +6867,8 @@ argument_list|,
 name|codec
 argument_list|,
 literal|null
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|SegmentInfoPerCommit
@@ -7475,6 +7477,13 @@ operator|.
 name|info
 operator|.
 name|getDiagnostics
+argument_list|()
+argument_list|,
+name|info
+operator|.
+name|info
+operator|.
+name|attributes
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -11152,6 +11161,8 @@ argument_list|,
 name|codec
 argument_list|,
 name|details
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|merge

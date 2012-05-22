@@ -42,6 +42,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -107,20 +117,13 @@ comment|// store attrs
 end_comment
 
 begin_comment
-comment|// nocommit add attrs api like FI
-end_comment
-
-begin_comment
 comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *  * @lucene.experimental  */
-end_comment
-
-begin_comment
-comment|// nocommit make final again once atts are working here
 end_comment
 
 begin_class
 DECL|class|SegmentInfo
 specifier|public
+specifier|final
 class|class
 name|SegmentInfo
 block|{
@@ -236,6 +239,16 @@ name|String
 argument_list|>
 name|diagnostics
 decl_stmt|;
+DECL|field|attributes
+specifier|private
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|attributes
+decl_stmt|;
 comment|// Tracks the Lucene version this segment was created with, since 3.1. Null
 comment|// indicates an older than 3.0 index, and it's used to detect a too old index.
 comment|// The format expected is "x.y" - "2.x" for pre-3.0 indexes (or null), and
@@ -329,6 +342,14 @@ argument_list|,
 name|String
 argument_list|>
 name|diagnostics
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|attributes
 parameter_list|)
 block|{
 assert|assert
@@ -404,6 +425,12 @@ operator|.
 name|diagnostics
 operator|=
 name|diagnostics
+expr_stmt|;
+name|this
+operator|.
+name|attributes
+operator|=
+name|attributes
 expr_stmt|;
 block|}
 comment|/**    * Returns total size in bytes of all of files used by this segment    */
@@ -1036,6 +1063,98 @@ parameter_list|()
 block|{
 return|return
 name|setFiles
+return|;
+block|}
+comment|/**    * Get a codec attribute value, or null if it does not exist    */
+DECL|method|getAttribute
+specifier|public
+name|String
+name|getAttribute
+parameter_list|(
+name|String
+name|key
+parameter_list|)
+block|{
+if|if
+condition|(
+name|attributes
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+else|else
+block|{
+return|return
+name|attributes
+operator|.
+name|get
+argument_list|(
+name|key
+argument_list|)
+return|;
+block|}
+block|}
+comment|/**    * Puts a codec attribute value.    *<p>    * This is a key-value mapping for the field that the codec can use    * to store additional metadata, and will be available to the codec    * when reading the segment via {@link #getAttribute(String)}    *<p>    * If a value already exists for the field, it will be replaced with     * the new value.    */
+DECL|method|putAttribute
+specifier|public
+name|String
+name|putAttribute
+parameter_list|(
+name|String
+name|key
+parameter_list|,
+name|String
+name|value
+parameter_list|)
+block|{
+if|if
+condition|(
+name|attributes
+operator|==
+literal|null
+condition|)
+block|{
+name|attributes
+operator|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|attributes
+operator|.
+name|put
+argument_list|(
+name|key
+argument_list|,
+name|value
+argument_list|)
+return|;
+block|}
+comment|/**    * @return internal codec attributes map. May be null if no mappings exist.    */
+DECL|method|attributes
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|attributes
+parameter_list|()
+block|{
+return|return
+name|attributes
 return|;
 block|}
 block|}

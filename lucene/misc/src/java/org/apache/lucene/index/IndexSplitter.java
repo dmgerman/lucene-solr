@@ -835,6 +835,11 @@ name|info
 operator|.
 name|getDiagnostics
 argument_list|()
+argument_list|,
+name|info
+operator|.
+name|attributes
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|destInfos
