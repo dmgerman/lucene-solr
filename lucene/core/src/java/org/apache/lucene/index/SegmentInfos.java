@@ -999,7 +999,7 @@ name|info
 init|=
 name|codec
 operator|.
-name|segmentInfosFormat
+name|segmentInfoFormat
 argument_list|()
 operator|.
 name|getSegmentInfosReader

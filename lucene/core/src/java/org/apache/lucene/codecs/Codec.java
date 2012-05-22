@@ -228,13 +228,12 @@ name|FieldInfosFormat
 name|fieldInfosFormat
 parameter_list|()
 function_decl|;
-comment|/** Encodes/decodes segments file */
-comment|// nocommit rename
-DECL|method|segmentInfosFormat
+comment|/** Encodes/decodes segment info file */
+DECL|method|segmentInfoFormat
 specifier|public
 specifier|abstract
 name|SegmentInfoFormat
-name|segmentInfosFormat
+name|segmentInfoFormat
 parameter_list|()
 function_decl|;
 comment|/** Encodes/decodes document normalization values */

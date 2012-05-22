@@ -351,10 +351,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|segmentInfosFormat
+DECL|method|segmentInfoFormat
 specifier|public
 name|SegmentInfoFormat
-name|segmentInfosFormat
+name|segmentInfoFormat
 parameter_list|()
 block|{
 if|if
@@ -373,7 +373,7 @@ block|{
 return|return
 name|super
 operator|.
-name|segmentInfosFormat
+name|segmentInfoFormat
 argument_list|()
 return|;
 block|}

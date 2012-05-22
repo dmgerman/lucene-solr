@@ -425,10 +425,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|segmentInfosFormat
+DECL|method|segmentInfoFormat
 specifier|public
 name|SegmentInfoFormat
-name|segmentInfosFormat
+name|segmentInfoFormat
 parameter_list|()
 block|{
 return|return
