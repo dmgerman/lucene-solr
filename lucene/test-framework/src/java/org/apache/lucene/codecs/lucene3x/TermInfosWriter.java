@@ -683,7 +683,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|// nocommit: temporary hacknuke this.
+comment|/** note: -1 is the empty field: "" !!!! */
 DECL|method|fieldName
 specifier|static
 name|String

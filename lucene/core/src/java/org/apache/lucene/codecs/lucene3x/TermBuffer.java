@@ -304,7 +304,7 @@ name|currentFieldNumber
 operator|=
 name|fieldNumber
 expr_stmt|;
-comment|// nocommit: too much sneakiness here, seriously this is a negative vint?!
+comment|// NOTE: too much sneakiness here, seriously this is a negative vint?!
 if|if
 condition|(
 name|currentFieldNumber

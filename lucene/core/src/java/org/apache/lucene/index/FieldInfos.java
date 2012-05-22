@@ -962,7 +962,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** If the field is not yet known, adds it. If it is known, checks to make      *  sure that the isIndexed flag is the same as was given previously for this      *  field. If not - marks it as being indexed.  Same goes for the TermVector      * parameters.      *      * @param name The name of the field      * @param isIndexed true if the field is indexed      * @param storeTermVector true if the term vector should be stored      * @param omitNorms true if the norms for the indexed field should be omitted      * @param storePayloads true if payloads should be stored for this field      * @param indexOptions if term freqs should be omitted for this field      */
-comment|// nocommit: fix testCodecs to do this another way, its the only user of this
+comment|// TODO: fix testCodecs to do this another way, its the only user of this
 DECL|method|addOrUpdate
 name|FieldInfo
 name|addOrUpdate
