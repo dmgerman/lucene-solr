@@ -108,11 +108,11 @@ specifier|final
 name|Directory
 name|directory
 decl_stmt|;
-DECL|field|segmentName
+DECL|field|segmentInfo
 specifier|public
 specifier|final
-name|String
-name|segmentName
+name|SegmentInfo
+name|segmentInfo
 decl_stmt|;
 DECL|field|fieldInfos
 specifier|public
@@ -183,8 +183,8 @@ parameter_list|,
 name|Directory
 name|directory
 parameter_list|,
-name|String
-name|segmentName
+name|SegmentInfo
+name|segmentInfo
 parameter_list|,
 name|FieldInfos
 name|fieldInfos
@@ -223,11 +223,13 @@ name|directory
 operator|=
 name|directory
 expr_stmt|;
+comment|// nocommit a lot of this is redundant w/ SI!  BUT not
+comment|// the Directory!!!!  one is tracking one is not!!!
 name|this
 operator|.
-name|segmentName
+name|segmentInfo
 operator|=
-name|segmentName
+name|segmentInfo
 expr_stmt|;
 name|this
 operator|.
@@ -288,11 +290,11 @@ name|state
 operator|.
 name|directory
 expr_stmt|;
-name|segmentName
+name|segmentInfo
 operator|=
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
 expr_stmt|;
 name|fieldInfos
 operator|=

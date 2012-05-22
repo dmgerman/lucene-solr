@@ -1127,7 +1127,9 @@ literal|"MockRandomCodec: writing to seg="
 operator|+
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
+operator|.
+name|name
 operator|+
 literal|" formatID="
 operator|+
@@ -1151,7 +1153,9 @@ name|segmentFileName
 argument_list|(
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
+operator|.
+name|name
 argument_list|,
 name|state
 operator|.

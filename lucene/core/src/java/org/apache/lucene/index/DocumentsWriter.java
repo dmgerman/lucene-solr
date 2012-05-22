@@ -1909,6 +1909,13 @@ name|newSegment
 operator|!=
 literal|null
 assert|;
+assert|assert
+name|newSegment
+operator|.
+name|segmentInfo
+operator|!=
+literal|null
+assert|;
 specifier|final
 name|SegmentInfoPerCommit
 name|segInfo

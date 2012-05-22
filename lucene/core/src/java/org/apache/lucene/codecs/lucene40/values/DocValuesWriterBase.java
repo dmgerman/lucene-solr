@@ -290,13 +290,16 @@ name|boolean
 name|fasterButMoreRam
 parameter_list|)
 block|{
+comment|// nocommit save away SegmentInfo instead?
 name|this
 operator|.
 name|segmentName
 operator|=
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
+operator|.
+name|name
 expr_stmt|;
 name|this
 operator|.

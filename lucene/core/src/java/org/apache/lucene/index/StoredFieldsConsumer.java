@@ -273,6 +273,10 @@ name|finish
 argument_list|(
 name|state
 operator|.
+name|fieldInfos
+argument_list|,
+name|state
+operator|.
 name|numDocs
 argument_list|)
 expr_stmt|;
@@ -329,7 +333,7 @@ name|directory
 argument_list|,
 name|docWriter
 operator|.
-name|getSegment
+name|getSegmentInfo
 argument_list|()
 argument_list|,
 name|context

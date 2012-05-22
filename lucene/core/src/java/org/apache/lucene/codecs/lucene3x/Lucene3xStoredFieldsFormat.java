@@ -195,8 +195,8 @@ parameter_list|(
 name|Directory
 name|directory
 parameter_list|,
-name|String
-name|segment
+name|SegmentInfo
+name|si
 parameter_list|,
 name|IOContext
 name|context

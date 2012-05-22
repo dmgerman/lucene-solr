@@ -153,6 +153,11 @@ name|liveDocs
 expr_stmt|;
 block|}
 block|}
+DECL|field|segmentInfo
+specifier|public
+name|SegmentInfo
+name|segmentInfo
+decl_stmt|;
 DECL|field|fieldInfos
 specifier|public
 name|FieldInfos

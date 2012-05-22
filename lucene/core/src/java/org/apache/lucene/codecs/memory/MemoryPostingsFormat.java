@@ -1632,7 +1632,9 @@ name|segmentFileName
 argument_list|(
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
+operator|.
+name|name
 argument_list|,
 name|state
 operator|.

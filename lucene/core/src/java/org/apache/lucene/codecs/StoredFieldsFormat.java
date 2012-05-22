@@ -93,6 +93,10 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
+comment|// nocommit fix other formats to get SI/FIS too...
+end_comment
+
+begin_comment
 comment|/**  * Controls the format of stored fields  */
 end_comment
 
@@ -135,8 +139,8 @@ parameter_list|(
 name|Directory
 name|directory
 parameter_list|,
-name|String
-name|segment
+name|SegmentInfo
+name|si
 parameter_list|,
 name|IOContext
 name|context

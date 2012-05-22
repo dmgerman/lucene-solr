@@ -12,6 +12,10 @@ name|codecs
 package|;
 end_package
 
+begin_comment
+comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not  * use this file except in compliance with the License. You may obtain a copy of  * the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the  * License for the specific language governing permissions and limitations under  * the License.  */
+end_comment
+
 begin_import
 import|import
 name|java
@@ -117,10 +121,6 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Copyright 2004 The Apache Software Foundation  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not  * use this file except in compliance with the License. You may obtain a copy of  * the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the  * License for the specific language governing permissions and limitations under  * the License.  */
-end_comment
-
-begin_comment
 comment|/**  * Codec API for writing stored fields:  *<p>  *<ol>  *<li>For every document, {@link #startDocument(int)} is called,  *       informing the Codec how many fields will be written.  *<li>{@link #writeField(FieldInfo, IndexableField)} is called for   *       each field in the document.  *<li>After all documents have been written, {@link #finish(int)}   *       is called for verification/sanity-checks.  *<li>Finally the writer is closed ({@link #close()})  *</ol>  *   * @lucene.experimental  */
 end_comment
 
@@ -177,6 +177,9 @@ specifier|abstract
 name|void
 name|finish
 parameter_list|(
+name|FieldInfos
+name|fis
+parameter_list|,
 name|int
 name|numDocs
 parameter_list|)
@@ -307,6 +310,10 @@ block|}
 block|}
 name|finish
 argument_list|(
+name|mergeState
+operator|.
+name|fieldInfos
+argument_list|,
 name|docCount
 argument_list|)
 expr_stmt|;
