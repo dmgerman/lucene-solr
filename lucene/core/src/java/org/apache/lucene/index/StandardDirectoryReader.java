@@ -505,7 +505,7 @@ decl_stmt|;
 try|try
 block|{
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 init|=
 name|infos
@@ -516,6 +516,8 @@ name|i
 argument_list|)
 decl_stmt|;
 assert|assert
+name|info
+operator|.
 name|info
 operator|.
 name|dir
@@ -840,6 +842,8 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
+name|info
+operator|.
 name|name
 argument_list|)
 decl_stmt|;
@@ -910,6 +914,8 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
+name|info
+operator|.
 name|getUseCompoundFile
 argument_list|()
 operator|!=
@@ -920,6 +926,8 @@ index|]
 operator|.
 name|getSegmentInfo
 argument_list|()
+operator|.
+name|info
 operator|.
 name|getUseCompoundFile
 argument_list|()
@@ -1023,6 +1031,8 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
+name|info
+operator|.
 name|dir
 operator|==
 name|newReaders
@@ -1032,6 +1042,8 @@ index|]
 operator|.
 name|getSegmentInfo
 argument_list|()
+operator|.
+name|info
 operator|.
 name|dir
 assert|;

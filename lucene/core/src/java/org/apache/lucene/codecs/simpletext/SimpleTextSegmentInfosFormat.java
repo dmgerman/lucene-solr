@@ -99,6 +99,10 @@ import|;
 end_import
 
 begin_comment
+comment|// nocommit rename (remove s)
+end_comment
+
+begin_comment
 comment|/**  * plain text segments file format.  *<p>  *<b><font color="red">FOR RECREATIONAL USE ONLY</font></B>  * @lucene.experimental  */
 end_comment
 

@@ -1730,7 +1730,7 @@ comment|/**    * Writes the document to the directory using a segment    * named
 DECL|method|writeDoc
 specifier|public
 specifier|static
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|writeDoc
 parameter_list|(
 name|Random
@@ -1774,7 +1774,7 @@ comment|/**    * Writes the document to the directory using the analyzer    * an
 DECL|method|writeDoc
 specifier|public
 specifier|static
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|writeDoc
 parameter_list|(
 name|Random
@@ -1831,7 +1831,7 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 init|=
 name|writer

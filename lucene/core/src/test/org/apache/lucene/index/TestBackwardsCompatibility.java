@@ -4435,7 +4435,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|si
 range|:
 name|infos
@@ -4448,6 +4448,8 @@ operator|.
 name|LUCENE_MAIN_VERSION
 argument_list|,
 name|si
+operator|.
+name|info
 operator|.
 name|getVersion
 argument_list|()

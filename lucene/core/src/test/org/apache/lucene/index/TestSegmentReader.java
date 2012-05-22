@@ -211,7 +211,7 @@ argument_list|(
 name|testDoc
 argument_list|)
 expr_stmt|;
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 init|=
 name|DocHelper

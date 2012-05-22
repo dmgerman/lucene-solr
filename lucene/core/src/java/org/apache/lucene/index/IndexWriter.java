@@ -573,7 +573,7 @@ DECL|field|rollbackSegments
 specifier|private
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|rollbackSegments
 decl_stmt|;
@@ -623,7 +623,7 @@ DECL|field|segmentsToMerge
 specifier|private
 name|Map
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|,
 name|Boolean
 argument_list|>
@@ -632,7 +632,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|,
 name|Boolean
 argument_list|>
@@ -666,14 +666,14 @@ DECL|field|mergingSegments
 specifier|private
 name|HashSet
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|mergingSegments
 init|=
 operator|new
 name|HashSet
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1101,7 +1101,7 @@ specifier|private
 specifier|final
 name|Map
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|,
 name|ReadersAndLiveDocs
 argument_list|>
@@ -1110,7 +1110,7 @@ init|=
 operator|new
 name|HashMap
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|,
 name|ReadersAndLiveDocs
 argument_list|>
@@ -1123,7 +1123,7 @@ specifier|synchronized
 name|boolean
 name|infoIsLive
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|)
 block|{
@@ -1175,7 +1175,7 @@ specifier|synchronized
 name|void
 name|drop
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|)
 throws|throws
@@ -1328,7 +1328,7 @@ name|Map
 operator|.
 name|Entry
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|,
 name|ReadersAndLiveDocs
 argument_list|>
@@ -1439,7 +1439,7 @@ name|IOException
 block|{
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|infos
@@ -1509,7 +1509,7 @@ specifier|synchronized
 name|ReadersAndLiveDocs
 name|get
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|,
 name|boolean
@@ -1519,12 +1519,16 @@ block|{
 assert|assert
 name|info
 operator|.
+name|info
+operator|.
 name|dir
 operator|==
 name|directory
 operator|:
 literal|"info.dir="
 operator|+
+name|info
+operator|.
 name|info
 operator|.
 name|dir
@@ -1642,7 +1646,7 @@ specifier|public
 name|int
 name|numDeletedDocs
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|)
 throws|throws
@@ -2090,9 +2094,7 @@ operator|=
 name|segmentInfos
 operator|.
 name|createBackupSegmentInfos
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 comment|// start with previous field numbers, but new FieldInfos
 name|globalFieldNumberMap
@@ -2251,7 +2253,7 @@ specifier|private
 name|FieldInfos
 name|getFieldInfos
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|)
 throws|throws
@@ -2266,6 +2268,8 @@ try|try
 block|{
 if|if
 condition|(
+name|info
+operator|.
 name|info
 operator|.
 name|getUseCompoundFile
@@ -2283,6 +2287,8 @@ name|IndexFileNames
 operator|.
 name|segmentFileName
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|name
@@ -2312,6 +2318,8 @@ block|}
 return|return
 name|info
 operator|.
+name|info
+operator|.
 name|getCodec
 argument_list|()
 operator|.
@@ -2327,6 +2335,8 @@ name|cfsDir
 argument_list|,
 name|info
 operator|.
+name|info
+operator|.
 name|name
 argument_list|,
 name|IOContext
@@ -2339,6 +2349,8 @@ finally|finally
 block|{
 if|if
 condition|(
+name|info
+operator|.
 name|info
 operator|.
 name|getUseCompoundFile
@@ -2374,14 +2386,14 @@ operator|new
 name|FieldNumberBiMap
 argument_list|()
 decl_stmt|;
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|biggest
 init|=
 literal|null
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|segmentInfos
@@ -2396,6 +2408,8 @@ operator|||
 operator|(
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 operator|-
 name|info
@@ -2406,6 +2420,8 @@ operator|)
 operator|>
 operator|(
 name|biggest
+operator|.
+name|info
 operator|.
 name|docCount
 operator|-
@@ -3041,7 +3057,7 @@ expr_stmt|;
 for|for
 control|(
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|segmentInfos
@@ -3049,6 +3065,8 @@ control|)
 block|{
 name|count
 operator|+=
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -3102,7 +3120,7 @@ block|}
 for|for
 control|(
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|segmentInfos
@@ -3818,6 +3836,8 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
+name|info
+operator|.
 name|docCount
 return|;
 block|}
@@ -4019,7 +4039,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|segmentInfos
@@ -4550,10 +4570,12 @@ argument_list|(
 name|merge
 argument_list|)
 condition|)
+block|{
 name|running
 operator|=
 literal|true
 expr_stmt|;
+block|}
 name|Throwable
 name|t
 init|=
@@ -4874,7 +4896,7 @@ specifier|public
 specifier|synchronized
 name|Collection
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|getMergingSegments
 parameter_list|()
@@ -4902,9 +4924,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 else|else
 block|{
 comment|// Advance the merge from pending to running
@@ -5667,7 +5691,7 @@ expr_stmt|;
 block|}
 comment|/**    * Prepares the {@link SegmentInfo} for the new flushed segment and persists    * the deleted documents {@link MutableBits}. Use    * {@link #publishFlushedSegment(SegmentInfo, FrozenBufferedDeletes, FrozenBufferedDeletes)} to    * publish the returned {@link SegmentInfo} together with its segment private    * delete packet.    *     * @see #publishFlushedSegment(SegmentInfo, FrozenBufferedDeletes, FrozenBufferedDeletes)    */
 DECL|method|prepareFlushedSegment
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|prepareFlushedSegment
 parameter_list|(
 name|FlushedSegment
@@ -5681,7 +5705,7 @@ name|flushedSegment
 operator|!=
 literal|null
 assert|;
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|newSegment
 init|=
 name|flushedSegment
@@ -5691,6 +5715,8 @@ decl_stmt|;
 name|setDiagnostics
 argument_list|(
 name|newSegment
+operator|.
+name|info
 argument_list|,
 literal|"flush"
 argument_list|)
@@ -5706,9 +5732,13 @@ name|FlushInfo
 argument_list|(
 name|newSegment
 operator|.
+name|info
+operator|.
 name|docCount
 argument_list|,
 name|newSegment
+operator|.
+name|info
 operator|.
 name|sizeInBytes
 argument_list|()
@@ -5750,11 +5780,15 @@ operator|.
 name|NONE
 argument_list|,
 name|newSegment
+operator|.
+name|info
 argument_list|,
 name|context
 argument_list|)
 decl_stmt|;
 name|newSegment
+operator|.
+name|info
 operator|.
 name|setUseCompoundFile
 argument_list|(
@@ -5792,6 +5826,8 @@ argument_list|(
 name|directory
 argument_list|,
 name|newSegment
+operator|.
+name|info
 argument_list|,
 name|flushedSegment
 operator|.
@@ -5863,7 +5899,7 @@ comment|// this del vector over to the
 comment|// shortly-to-be-opened SegmentReader and let it
 comment|// carry the changes; there's no reason to use
 comment|// filesystem as intermediary here.
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 init|=
 name|flushedSegment
@@ -5873,6 +5909,8 @@ decl_stmt|;
 name|Codec
 name|codec
 init|=
+name|info
+operator|.
 name|info
 operator|.
 name|getCodec
@@ -5946,6 +5984,8 @@ literal|"reating compound file for newly flushed segment "
 operator|+
 name|newSegment
 operator|.
+name|info
+operator|.
 name|name
 argument_list|)
 expr_stmt|;
@@ -5960,6 +6000,8 @@ operator|.
 name|refresh
 argument_list|(
 name|newSegment
+operator|.
+name|info
 operator|.
 name|name
 argument_list|)
@@ -6012,7 +6054,7 @@ specifier|synchronized
 name|void
 name|publishFlushedSegment
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|newSegment
 parameter_list|,
 name|FrozenBufferedDeletes
@@ -6160,7 +6202,7 @@ specifier|synchronized
 name|boolean
 name|useCompoundFile
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|segmentInfo
 parameter_list|)
 throws|throws
@@ -6347,14 +6389,14 @@ argument_list|)
 expr_stmt|;
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|infos
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -6451,7 +6493,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|sis
@@ -6470,10 +6512,14 @@ literal|"dup info dir="
 operator|+
 name|info
 operator|.
+name|info
+operator|.
 name|dir
 operator|+
 literal|" name="
 operator|+
+name|info
+operator|.
 name|info
 operator|.
 name|name
@@ -6487,6 +6533,8 @@ decl_stmt|;
 name|String
 name|dsName
 init|=
+name|info
+operator|.
 name|info
 operator|.
 name|getDocStoreSegment
@@ -6510,6 +6558,8 @@ literal|"IW"
 argument_list|,
 literal|"addIndexes: process segment origName="
 operator|+
+name|info
+operator|.
 name|info
 operator|.
 name|name
@@ -6539,8 +6589,12 @@ name|MergeInfo
 argument_list|(
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 argument_list|,
+name|info
+operator|.
 name|info
 operator|.
 name|sizeInBytes
@@ -6810,11 +6864,23 @@ literal|null
 argument_list|,
 literal|false
 argument_list|,
-literal|0
-argument_list|,
 name|codec
 argument_list|,
 literal|null
+argument_list|)
+decl_stmt|;
+name|SegmentInfoPerCommit
+name|infoPerCommit
+init|=
+operator|new
+name|SegmentInfoPerCommit
+argument_list|(
+name|info
+argument_list|,
+literal|0
+argument_list|,
+operator|-
+literal|1L
 argument_list|)
 decl_stmt|;
 name|info
@@ -6867,7 +6933,7 @@ name|deleter
 operator|.
 name|deleteNewFiles
 argument_list|(
-name|info
+name|infoPerCommit
 operator|.
 name|files
 argument_list|()
@@ -6886,7 +6952,7 @@ name|useCompoundFile
 argument_list|(
 name|segmentInfos
 argument_list|,
-name|info
+name|infoPerCommit
 argument_list|)
 expr_stmt|;
 block|}
@@ -6902,7 +6968,7 @@ name|String
 argument_list|>
 name|filesToDelete
 init|=
-name|info
+name|infoPerCommit
 operator|.
 name|files
 argument_list|()
@@ -7015,7 +7081,7 @@ name|segmentInfos
 operator|.
 name|add
 argument_list|(
-name|info
+name|infoPerCommit
 argument_list|)
 expr_stmt|;
 name|checkpoint
@@ -7041,10 +7107,10 @@ block|}
 comment|/** Copies the segment files as-is into the IndexWriter's directory. */
 DECL|method|copySegmentAsIs
 specifier|private
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|copySegmentAsIs
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|,
 name|String
@@ -7083,6 +7149,8 @@ comment|// just want to update the DS name of this SegmentInfo.
 name|String
 name|dsName
 init|=
+name|info
+operator|.
 name|info
 operator|.
 name|getDocStoreSegment
@@ -7152,6 +7220,8 @@ name|hasSharedDocStore
 init|=
 name|info
 operator|.
+name|info
+operator|.
 name|getDocStoreOffset
 argument_list|()
 operator|!=
@@ -7166,6 +7236,8 @@ name|IndexFileNames
 operator|.
 name|segmentFileName
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|name
@@ -7187,6 +7259,8 @@ comment|// shares doc stores
 assert|assert
 name|info
 operator|.
+name|info
+operator|.
 name|getDocStoreSegment
 argument_list|()
 operator|!=
@@ -7195,6 +7269,8 @@ assert|;
 comment|// nocommit what to do....
 if|if
 condition|(
+name|info
+operator|.
 name|info
 operator|.
 name|getDocStoreIsCompoundFile
@@ -7209,6 +7285,8 @@ name|IndexFileNames
 operator|.
 name|segmentFileName
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|getDocStoreSegment
@@ -7233,6 +7311,8 @@ name|segmentFileName
 argument_list|(
 name|info
 operator|.
+name|info
+operator|.
 name|getDocStoreSegment
 argument_list|()
 argument_list|,
@@ -7250,6 +7330,8 @@ name|IndexFileNames
 operator|.
 name|segmentFileName
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|getDocStoreSegment
@@ -7271,6 +7353,8 @@ name|segmentFileName
 argument_list|(
 name|info
 operator|.
+name|info
+operator|.
 name|getDocStoreSegment
 argument_list|()
 argument_list|,
@@ -7288,6 +7372,8 @@ name|IndexFileNames
 operator|.
 name|segmentFileName
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|getDocStoreSegment
@@ -7309,6 +7395,8 @@ name|segmentFileName
 argument_list|(
 name|info
 operator|.
+name|info
+operator|.
 name|getDocStoreSegment
 argument_list|()
 argument_list|,
@@ -7320,7 +7408,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//System.out.println("copy seg=" + info.name + " version=" + info.getVersion());
+comment|//System.out.println("copy seg=" + info.info.name + " version=" + info.info.getVersion());
 comment|// Same SI as before but we change directory, name and docStoreSegment:
 name|SegmentInfo
 name|newInfo
@@ -7332,6 +7420,8 @@ name|directory
 argument_list|,
 name|info
 operator|.
+name|info
+operator|.
 name|getVersion
 argument_list|()
 argument_list|,
@@ -7339,8 +7429,12 @@ name|segName
 argument_list|,
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 argument_list|,
+name|info
+operator|.
 name|info
 operator|.
 name|getDocStoreOffset
@@ -7350,9 +7444,13 @@ name|newDsName
 argument_list|,
 name|info
 operator|.
+name|info
+operator|.
 name|getDocStoreIsCompoundFile
 argument_list|()
 argument_list|,
+name|info
+operator|.
 name|info
 operator|.
 name|getNormGen
@@ -7360,8 +7458,33 @@ argument_list|()
 argument_list|,
 name|info
 operator|.
+name|info
+operator|.
 name|getUseCompoundFile
 argument_list|()
+argument_list|,
+name|info
+operator|.
+name|info
+operator|.
+name|getCodec
+argument_list|()
+argument_list|,
+name|info
+operator|.
+name|info
+operator|.
+name|getDiagnostics
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|SegmentInfoPerCommit
+name|newInfoPerCommit
+init|=
+operator|new
+name|SegmentInfoPerCommit
+argument_list|(
+name|newInfo
 argument_list|,
 name|info
 operator|.
@@ -7370,25 +7493,10 @@ argument_list|()
 argument_list|,
 name|info
 operator|.
-name|getCodec
-argument_list|()
-argument_list|,
-name|info
-operator|.
-name|getDiagnostics
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|newInfo
-operator|.
-name|setDelGen
-argument_list|(
-name|info
-operator|.
 name|getDelGen
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|Set
 argument_list|<
 name|String
@@ -7631,6 +7739,8 @@ argument_list|)
 expr_stmt|;
 name|info
 operator|.
+name|info
+operator|.
 name|dir
 operator|.
 name|copy
@@ -7646,7 +7756,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|newInfo
+name|newInfoPerCommit
 return|;
 block|}
 comment|/**    * A hook for extending classes to execute operations after pending added and    * deleted documents have been flushed to the Directory but before the change    * is committed (new segments_N file written).    */
@@ -8298,9 +8408,7 @@ operator|=
 name|pendingCommit
 operator|.
 name|createBackupSegmentInfos
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|deleter
 operator|.
@@ -8796,7 +8904,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|result
@@ -8931,7 +9039,7 @@ name|IOException
 block|{
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|merge
@@ -8958,6 +9066,8 @@ name|MergeException
 argument_list|(
 literal|"MergePolicy selected a segment ("
 operator|+
+name|info
+operator|.
 name|info
 operator|.
 name|name
@@ -8997,7 +9107,7 @@ assert|;
 specifier|final
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|sourceSegments
 init|=
@@ -9070,7 +9180,7 @@ name|i
 operator|++
 control|)
 block|{
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 init|=
 name|sourceSegments
@@ -9098,6 +9208,8 @@ specifier|final
 name|int
 name|docCount
 init|=
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -9140,6 +9252,8 @@ literal|null
 operator|:
 literal|"seg="
 operator|+
+name|info
+operator|.
 name|info
 operator|.
 name|name
@@ -9297,6 +9411,8 @@ name|docUpto
 operator|+=
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 operator|-
 name|info
@@ -9401,6 +9517,8 @@ name|docUpto
 operator|+=
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 expr_stmt|;
 block|}
@@ -9409,6 +9527,8 @@ assert|assert
 name|docUpto
 operator|==
 name|merge
+operator|.
+name|info
 operator|.
 name|info
 operator|.
@@ -9607,6 +9727,8 @@ name|merge
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 operator|==
 literal|0
@@ -9662,6 +9784,8 @@ name|merge
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 operator|==
 literal|0
@@ -9677,6 +9801,8 @@ name|getPendingDeleteCount
 argument_list|()
 operator|==
 name|merge
+operator|.
+name|info
 operator|.
 name|info
 operator|.
@@ -9748,6 +9874,8 @@ name|dropSegment
 assert|;
 assert|assert
 name|merge
+operator|.
+name|info
 operator|.
 name|info
 operator|.
@@ -10203,6 +10331,8 @@ name|merge
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|name
 argument_list|)
 expr_stmt|;
@@ -10306,6 +10436,8 @@ name|merge
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 operator|+
 literal|" docs"
@@ -10399,7 +10531,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|merge
@@ -10438,6 +10570,8 @@ return|;
 block|}
 if|if
 condition|(
+name|info
+operator|.
 name|info
 operator|.
 name|dir
@@ -10553,7 +10687,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|mergingSegments
@@ -10563,6 +10697,8 @@ name|builder
 operator|.
 name|append
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|name
@@ -10609,7 +10745,7 @@ block|}
 block|}
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|merge
@@ -10871,7 +11007,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|result
@@ -10986,10 +11122,9 @@ init|=
 name|newSegmentName
 argument_list|()
 decl_stmt|;
-name|merge
-operator|.
-name|info
-operator|=
+name|SegmentInfo
+name|si
+init|=
 operator|new
 name|SegmentInfo
 argument_list|(
@@ -11014,11 +11149,24 @@ literal|null
 argument_list|,
 literal|false
 argument_list|,
-literal|0
-argument_list|,
 name|codec
 argument_list|,
 name|details
+argument_list|)
+decl_stmt|;
+name|merge
+operator|.
+name|info
+operator|=
+operator|new
+name|SegmentInfoPerCommit
+argument_list|(
+name|si
+argument_list|,
+literal|0
+argument_list|,
+operator|-
+literal|1L
 argument_list|)
 expr_stmt|;
 comment|// Lock order: IW -> BD
@@ -11051,6 +11199,8 @@ name|merge
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|name
 argument_list|)
 expr_stmt|;
@@ -11064,7 +11214,7 @@ literal|0
 assert|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|merge
@@ -11074,6 +11224,8 @@ control|)
 block|{
 if|if
 condition|(
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -11095,6 +11247,8 @@ name|delCount
 operator|<=
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 assert|;
 specifier|final
@@ -11110,12 +11264,16 @@ operator|)
 operator|/
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 decl_stmt|;
 name|merge
 operator|.
 name|estimatedMergeBytes
 operator|+=
+name|info
+operator|.
 name|info
 operator|.
 name|sizeInBytes
@@ -11320,7 +11478,7 @@ block|{
 specifier|final
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|sourceSegments
 init|=
@@ -11330,7 +11488,7 @@ name|segments
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|sourceSegments
@@ -11618,11 +11776,13 @@ name|merge
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|name
 decl_stmt|;
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|sourceSegments
 init|=
@@ -11776,7 +11936,7 @@ argument_list|()
 condition|)
 block|{
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 init|=
 name|sourceSegments
@@ -11976,6 +12136,8 @@ name|delCount
 operator|<=
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 operator|:
 literal|"delCount="
@@ -11984,6 +12146,8 @@ name|delCount
 operator|+
 literal|" info.docCount="
 operator|+
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -12006,6 +12170,8 @@ if|if
 condition|(
 name|delCount
 operator|<
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -12045,6 +12211,8 @@ name|merge
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 operator|=
 name|mergeState
@@ -12052,6 +12220,8 @@ operator|.
 name|mergedDocCount
 expr_stmt|;
 name|merge
+operator|.
+name|info
 operator|.
 name|info
 operator|.
@@ -12094,6 +12264,8 @@ operator|+
 literal|" docCount="
 operator|+
 name|merge
+operator|.
+name|info
 operator|.
 name|info
 operator|.
@@ -12238,6 +12410,8 @@ argument_list|,
 name|checkAbort
 argument_list|,
 name|merge
+operator|.
+name|info
 operator|.
 name|info
 argument_list|,
@@ -12474,6 +12648,8 @@ name|merge
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|setUseCompoundFile
 argument_list|(
 literal|true
@@ -12504,6 +12680,8 @@ argument_list|(
 name|directory
 argument_list|,
 name|merge
+operator|.
+name|info
 operator|.
 name|info
 argument_list|,
@@ -12573,6 +12751,8 @@ argument_list|(
 literal|"merged segment size=%.3f MB vs estimate=%.3f MB"
 argument_list|,
 name|merge
+operator|.
+name|info
 operator|.
 name|info
 operator|.
@@ -12719,6 +12899,8 @@ name|merge
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 return|;
 block|}
@@ -12757,6 +12939,7 @@ name|merge
 operator|.
 name|mergeGen
 condition|)
+block|{
 name|mergeExceptions
 operator|.
 name|add
@@ -12764,6 +12947,7 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// For test purposes.
 DECL|method|getBufferedDeleteTermsSize
@@ -12796,7 +12980,7 @@ block|}
 comment|// utility routines for tests
 DECL|method|newestSegment
 specifier|synchronized
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|newestSegment
 parameter_list|()
 block|{
@@ -12849,7 +13033,7 @@ name|segString
 parameter_list|(
 name|Iterable
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|infos
 parameter_list|)
@@ -12867,7 +13051,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|infos
@@ -12916,7 +13100,7 @@ specifier|synchronized
 name|String
 name|segString
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|)
 throws|throws
@@ -12927,6 +13111,8 @@ name|info
 operator|.
 name|toString
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|dir
@@ -13097,24 +13283,24 @@ decl_stmt|;
 specifier|final
 name|Map
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|liveSIS
 init|=
 operator|new
 name|HashMap
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|segmentInfos
@@ -13132,13 +13318,13 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|sis
 control|)
 block|{
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|liveInfo
 init|=
 name|liveSIS

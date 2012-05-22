@@ -153,7 +153,7 @@ class|class
 name|OneMerge
 block|{
 DECL|field|info
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 decl_stmt|;
 comment|// used by IndexWriter
@@ -207,7 +207,7 @@ specifier|public
 specifier|final
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|segments
 decl_stmt|;
@@ -235,7 +235,7 @@ name|OneMerge
 parameter_list|(
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|segments
 parameter_list|)
@@ -264,7 +264,7 @@ operator|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 argument_list|(
 name|segments
@@ -277,7 +277,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|segments
@@ -285,6 +285,8 @@ control|)
 block|{
 name|count
 operator|+=
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -546,6 +548,7 @@ name|info
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 operator|.
 name|append
@@ -557,9 +560,12 @@ name|append
 argument_list|(
 name|info
 operator|.
+name|info
+operator|.
 name|name
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|maxNumSegments
@@ -614,7 +620,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|segments
@@ -622,6 +628,8 @@ control|)
 block|{
 name|total
 operator|+=
+name|info
+operator|.
 name|info
 operator|.
 name|sizeInBytes
@@ -648,7 +656,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|segments
@@ -656,6 +664,8 @@ control|)
 block|{
 name|total
 operator|+=
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -996,7 +1006,7 @@ name|maxSegmentCount
 parameter_list|,
 name|Map
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|,
 name|Boolean
 argument_list|>
@@ -1040,7 +1050,7 @@ parameter_list|(
 name|SegmentInfos
 name|segments
 parameter_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|newSegment
 parameter_list|)
 throws|throws

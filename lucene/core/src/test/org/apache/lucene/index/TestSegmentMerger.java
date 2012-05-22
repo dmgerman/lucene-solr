@@ -254,7 +254,7 @@ argument_list|(
 name|doc1
 argument_list|)
 expr_stmt|;
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info1
 init|=
 name|DocHelper
@@ -276,7 +276,7 @@ argument_list|(
 name|doc2
 argument_list|)
 expr_stmt|;
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info2
 init|=
 name|DocHelper
@@ -514,6 +514,9 @@ operator|new
 name|SegmentReader
 argument_list|(
 operator|new
+name|SegmentInfoPerCommit
+argument_list|(
+operator|new
 name|SegmentInfo
 argument_list|(
 name|mergedDir
@@ -537,11 +540,15 @@ literal|null
 argument_list|,
 literal|false
 argument_list|,
-literal|0
-argument_list|,
 name|codec
 argument_list|,
 literal|null
+argument_list|)
+argument_list|,
+literal|0
+argument_list|,
+operator|-
+literal|1L
 argument_list|)
 argument_list|,
 name|DirectoryReader

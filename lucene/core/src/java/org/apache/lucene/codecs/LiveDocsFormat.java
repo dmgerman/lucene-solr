@@ -32,6 +32,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -46,7 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfo
+name|SegmentInfoPerCommit
 import|;
 end_import
 
@@ -153,7 +163,7 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|,
 name|IOContext
@@ -162,7 +172,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Persist live docs bits.  Use {@link    *  SegmentInfo#getNextDelGen} to determine the    *  generation of the deletes file you should write to. */
+comment|/** Persist live docs bits.  Use {@link    *  SegmentInfoPerCommit#getNextDelGen} to determine the    *  generation of the deletes file you should write to. */
 DECL|method|writeLiveDocs
 specifier|public
 specifier|abstract
@@ -175,7 +185,7 @@ parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|,
 name|int
@@ -187,17 +197,17 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Records all files (exact file name or a Pattern regex)    *  in use by this {@link SegmentInfo} into the files argument. */
+comment|/** Records all files (exact file name or a Pattern regex)    *  in use by this {@link SegmentInfoPerCommit} into the files argument. */
 DECL|method|files
 specifier|public
 specifier|abstract
 name|void
 name|files
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|,
-name|Set
+name|Collection
 argument_list|<
 name|String
 argument_list|>

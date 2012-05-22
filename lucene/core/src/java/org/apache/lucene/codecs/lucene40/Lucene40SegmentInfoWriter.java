@@ -175,35 +175,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
-name|si
-operator|.
-name|getDelCount
-argument_list|()
-operator|<=
-name|si
-operator|.
-name|docCount
-operator|:
-literal|"delCount="
-operator|+
-name|si
-operator|.
-name|getDelCount
-argument_list|()
-operator|+
-literal|" docCount="
-operator|+
-name|si
-operator|.
-name|docCount
-operator|+
-literal|" segment="
-operator|+
-name|si
-operator|.
-name|name
-assert|;
 specifier|final
 name|String
 name|fileName

@@ -1910,7 +1910,7 @@ operator|!=
 literal|null
 assert|;
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|segInfo
 init|=
 name|indexWriter

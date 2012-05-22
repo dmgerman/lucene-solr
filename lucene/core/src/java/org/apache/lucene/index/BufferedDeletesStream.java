@@ -519,7 +519,7 @@ specifier|public
 specifier|final
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|allDeleted
 decl_stmt|;
@@ -534,7 +534,7 @@ name|gen
 parameter_list|,
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|allDeleted
 parameter_list|)
@@ -566,14 +566,14 @@ specifier|static
 specifier|final
 name|Comparator
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|sortSegInfoByDelGen
 init|=
 operator|new
 name|Comparator
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 argument_list|()
 block|{
@@ -583,10 +583,10 @@ specifier|public
 name|int
 name|compare
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|si1
 parameter_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|si2
 parameter_list|)
 block|{
@@ -651,7 +651,7 @@ name|readerPool
 parameter_list|,
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|infos
 parameter_list|)
@@ -765,14 +765,14 @@ expr_stmt|;
 block|}
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|infos2
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -824,7 +824,7 @@ literal|1
 decl_stmt|;
 name|List
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 name|allDeleted
 init|=
@@ -856,7 +856,7 @@ else|:
 literal|null
 decl_stmt|;
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 init|=
 name|infos2
@@ -1073,6 +1073,8 @@ name|rld
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 assert|;
 name|segAllDeletes
@@ -1080,6 +1082,8 @@ operator|=
 name|fullDelCount
 operator|==
 name|rld
+operator|.
+name|info
 operator|.
 name|info
 operator|.
@@ -1126,7 +1130,7 @@ operator|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 argument_list|()
 expr_stmt|;
@@ -1329,6 +1333,8 @@ name|rld
 operator|.
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 assert|;
 name|segAllDeletes
@@ -1336,6 +1342,8 @@ operator|=
 name|fullDelCount
 operator|==
 name|rld
+operator|.
+name|info
 operator|.
 name|info
 operator|.
@@ -1382,7 +1390,7 @@ operator|=
 operator|new
 name|ArrayList
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|>
 argument_list|()
 expr_stmt|;
@@ -1543,7 +1551,7 @@ name|MAX_VALUE
 decl_stmt|;
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 range|:
 name|segmentInfos

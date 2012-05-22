@@ -326,8 +326,6 @@ name|normGen
 argument_list|,
 name|isCompoundFile
 argument_list|,
-literal|0
-argument_list|,
 literal|null
 argument_list|,
 name|diagnostics

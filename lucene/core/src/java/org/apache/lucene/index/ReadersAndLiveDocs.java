@@ -132,7 +132,7 @@ comment|// change it and it's been shared:
 DECL|field|info
 specifier|public
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 decl_stmt|;
 comment|// Tracks how many consumers are using this instance:
@@ -203,7 +203,7 @@ parameter_list|(
 name|IndexWriter
 name|writer
 parameter_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|)
 block|{
@@ -334,6 +334,8 @@ name|docID
 operator|<
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 condition|;
 name|docID
@@ -362,10 +364,14 @@ name|count
 operator|=
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 expr_stmt|;
 block|}
 assert|assert
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -381,6 +387,8 @@ name|count
 operator|:
 literal|"info.docCount="
 operator|+
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -400,7 +408,6 @@ literal|" count="
 operator|+
 name|count
 assert|;
-empty_stmt|;
 return|return
 literal|true
 return|;
@@ -638,10 +645,14 @@ literal|" seg="
 operator|+
 name|info
 operator|.
+name|info
+operator|.
 name|name
 operator|+
 literal|" docCount="
 operator|+
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -799,6 +810,8 @@ name|liveDocs
 argument_list|,
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 operator|-
 name|info
@@ -850,6 +863,8 @@ assert|;
 assert|assert
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 operator|>
 literal|0
@@ -867,6 +882,8 @@ comment|// change it:
 name|LiveDocsFormat
 name|liveDocsFormat
 init|=
+name|info
+operator|.
 name|info
 operator|.
 name|getCodec
@@ -889,6 +906,8 @@ name|liveDocsFormat
 operator|.
 name|newLiveDocs
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|docCount
@@ -1018,11 +1037,15 @@ argument_list|()
 operator|==
 name|info
 operator|.
+name|info
+operator|.
 name|docCount
 assert|;
 comment|// We can write directly to the actual name (vs to a
 comment|// .tmp& renaming it) because the file is not live
 comment|// until segments file is written:
+name|info
+operator|.
 name|info
 operator|.
 name|getCodec

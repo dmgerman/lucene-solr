@@ -539,7 +539,7 @@ name|FlushedSegment
 block|{
 DECL|field|segmentInfo
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|segmentInfo
 decl_stmt|;
 DECL|field|fieldInfos
@@ -566,7 +566,7 @@ DECL|method|FlushedSegment
 specifier|private
 name|FlushedSegment
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|segmentInfo
 parameter_list|,
 name|FieldInfos
@@ -2221,8 +2221,6 @@ literal|null
 argument_list|,
 literal|false
 argument_list|,
-literal|0
-argument_list|,
 name|flushState
 operator|.
 name|codec
@@ -2521,7 +2519,16 @@ return|return
 operator|new
 name|FlushedSegment
 argument_list|(
+operator|new
+name|SegmentInfoPerCommit
+argument_list|(
 name|newSegment
+argument_list|,
+literal|0
+argument_list|,
+operator|-
+literal|1L
+argument_list|)
 argument_list|,
 name|flushState
 operator|.

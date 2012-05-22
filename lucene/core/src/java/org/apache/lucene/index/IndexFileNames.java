@@ -138,9 +138,8 @@ if|if
 condition|(
 name|gen
 operator|==
-name|SegmentInfo
-operator|.
-name|NO
+operator|-
+literal|1
 condition|)
 block|{
 return|return
@@ -152,9 +151,7 @@ if|if
 condition|(
 name|gen
 operator|==
-name|SegmentInfo
-operator|.
-name|WITHOUT_GEN
+literal|0
 condition|)
 block|{
 return|return
@@ -170,6 +167,11 @@ return|;
 block|}
 else|else
 block|{
+assert|assert
+name|gen
+operator|>
+literal|0
+assert|;
 comment|// The '6' part in the length is: 1 for '.', 1 for '_' and 4 as estimate
 comment|// to the gen length as string (hopefully an upper limit so SB won't
 comment|// expand in the middle.
