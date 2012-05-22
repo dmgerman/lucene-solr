@@ -948,7 +948,8 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|close
+name|isClosed
+argument_list|()
 condition|)
 name|retries
 operator|=
@@ -1572,7 +1573,8 @@ operator|!
 name|successfulRecovery
 operator|&&
 operator|!
-name|close
+name|isClosed
+argument_list|()
 operator|&&
 operator|!
 name|isInterrupted
