@@ -237,10 +237,10 @@ comment|/**  * writes plaintext segments files  *<p>  *<b><font color="red">FOR 
 end_comment
 
 begin_class
-DECL|class|SimpleTextSegmentInfosWriter
+DECL|class|SimpleTextSegmentInfoWriter
 specifier|public
 class|class
-name|SimpleTextSegmentInfosWriter
+name|SimpleTextSegmentInfoWriter
 extends|extends
 name|SegmentInfoWriter
 block|{
@@ -411,7 +411,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|SimpleTextSegmentInfosFormat
+name|SimpleTextSegmentInfoFormat
 operator|.
 name|SI_EXTENSION
 argument_list|)

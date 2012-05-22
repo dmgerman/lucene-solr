@@ -267,7 +267,7 @@ name|SegmentInfoFormat
 name|segmentInfos
 init|=
 operator|new
-name|PreFlexRWSegmentInfosFormat
+name|PreFlexRWSegmentInfoFormat
 argument_list|()
 decl_stmt|;
 DECL|field|storedFields

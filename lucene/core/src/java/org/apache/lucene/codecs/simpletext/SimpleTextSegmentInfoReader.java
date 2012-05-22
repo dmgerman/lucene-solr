@@ -276,7 +276,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextSegmentInfosWriter
+name|SimpleTextSegmentInfoWriter
 operator|.
 name|*
 import|;
@@ -291,10 +291,10 @@ comment|/**  * reads plaintext segments files  *<p>  *<b><font color="red">FOR R
 end_comment
 
 begin_class
-DECL|class|SimpleTextSegmentInfosReader
+DECL|class|SimpleTextSegmentInfoReader
 specifier|public
 class|class
-name|SimpleTextSegmentInfosReader
+name|SimpleTextSegmentInfoReader
 extends|extends
 name|SegmentInfoReader
 block|{
@@ -335,7 +335,7 @@ name|segmentName
 argument_list|,
 literal|""
 argument_list|,
-name|SimpleTextSegmentInfosFormat
+name|SimpleTextSegmentInfoFormat
 operator|.
 name|SI_EXTENSION
 argument_list|)

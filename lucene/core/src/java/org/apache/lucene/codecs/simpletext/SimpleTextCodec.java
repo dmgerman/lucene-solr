@@ -184,7 +184,7 @@ name|SegmentInfoFormat
 name|segmentInfos
 init|=
 operator|new
-name|SimpleTextSegmentInfosFormat
+name|SimpleTextSegmentInfoFormat
 argument_list|()
 decl_stmt|;
 DECL|field|fieldInfosFormat
