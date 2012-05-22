@@ -212,8 +212,8 @@ parameter_list|(
 name|Directory
 name|directory
 parameter_list|,
-name|String
-name|segment
+name|SegmentInfo
+name|segmentInfo
 parameter_list|,
 name|IOContext
 name|context
@@ -227,7 +227,9 @@ name|Lucene40TermVectorsWriter
 argument_list|(
 name|directory
 argument_list|,
-name|segment
+name|segmentInfo
+operator|.
+name|name
 argument_list|,
 name|context
 argument_list|)

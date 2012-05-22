@@ -135,8 +135,8 @@ parameter_list|(
 name|Directory
 name|directory
 parameter_list|,
-name|String
-name|segment
+name|SegmentInfo
+name|segmentInfo
 parameter_list|,
 name|IOContext
 name|context

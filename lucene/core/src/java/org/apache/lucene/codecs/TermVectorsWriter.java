@@ -312,6 +312,9 @@ specifier|abstract
 name|void
 name|finish
 parameter_list|(
+name|FieldInfos
+name|fis
+parameter_list|,
 name|int
 name|numDocs
 parameter_list|)
@@ -565,6 +568,10 @@ block|}
 block|}
 name|finish
 argument_list|(
+name|mergeState
+operator|.
+name|fieldInfos
+argument_list|,
 name|docCount
 argument_list|)
 expr_stmt|;
