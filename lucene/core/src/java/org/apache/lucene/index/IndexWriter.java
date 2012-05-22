@@ -190,7 +190,7 @@ name|codecs
 operator|.
 name|lucene3x
 operator|.
-name|Lucene3xSegmentInfosFormat
+name|Lucene3xSegmentInfoFormat
 import|;
 end_import
 
@@ -7172,7 +7172,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|Lucene3xSegmentInfosFormat
+name|Lucene3xSegmentInfoFormat
 operator|.
 name|SI_EXTENSION
 argument_list|)

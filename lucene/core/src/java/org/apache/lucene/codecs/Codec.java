@@ -224,7 +224,7 @@ comment|/** Encodes/decodes segments file */
 DECL|method|segmentInfosFormat
 specifier|public
 specifier|abstract
-name|SegmentInfosFormat
+name|SegmentInfoFormat
 name|segmentInfosFormat
 parameter_list|()
 function_decl|;

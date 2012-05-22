@@ -34,26 +34,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 import|;
 end_import
@@ -78,21 +58,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|SegmentInfosReader
+name|SegmentInfoReader
 import|;
 end_import
 
@@ -121,34 +87,6 @@ operator|.
 name|index
 operator|.
 name|SegmentInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentInfos
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|ChecksumIndexInput
 import|;
 end_import
 
@@ -209,16 +147,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 4.0 implementation of {@link SegmentInfosReader}.  *   * @see Lucene40SegmentInfosFormat  * @lucene.experimental  */
+comment|/**  * Lucene 4.0 implementation of {@link SegmentInfoReader}.  *   * @see Lucene40SegmentInfoFormat  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|Lucene40SegmentInfosReader
+DECL|class|Lucene40SegmentInfoReader
 specifier|public
 class|class
-name|Lucene40SegmentInfosReader
+name|Lucene40SegmentInfoReader
 extends|extends
-name|SegmentInfosReader
+name|SegmentInfoReader
 block|{
 annotation|@
 name|Override
@@ -251,7 +189,7 @@ name|segment
 argument_list|,
 literal|""
 argument_list|,
-name|Lucene40SegmentInfosFormat
+name|Lucene40SegmentInfoFormat
 operator|.
 name|SI_EXTENSION
 argument_list|)

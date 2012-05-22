@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SegmentInfosFormat
+name|SegmentInfoFormat
 import|;
 end_import
 
@@ -180,7 +180,7 @@ decl_stmt|;
 DECL|field|segmentInfos
 specifier|private
 specifier|final
-name|SegmentInfosFormat
+name|SegmentInfoFormat
 name|segmentInfos
 init|=
 operator|new
@@ -314,7 +314,7 @@ annotation|@
 name|Override
 DECL|method|segmentInfosFormat
 specifier|public
-name|SegmentInfosFormat
+name|SegmentInfoFormat
 name|segmentInfosFormat
 parameter_list|()
 block|{

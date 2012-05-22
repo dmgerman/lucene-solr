@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SegmentInfosFormat
+name|SegmentInfoFormat
 import|;
 end_import
 
@@ -52,7 +52,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SegmentInfosReader
+name|SegmentInfoReader
 import|;
 end_import
 
@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SegmentInfosWriter
+name|SegmentInfoWriter
 import|;
 end_import
 
@@ -99,27 +99,27 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene3x ReadOnly SegmentInfosFormat implementation  * @deprecated (4.0) This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
+comment|/**  * Lucene3x ReadOnly SegmentInfoFormat implementation  * @deprecated (4.0) This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
 end_comment
 
 begin_class
 annotation|@
 name|Deprecated
-DECL|class|Lucene3xSegmentInfosFormat
+DECL|class|Lucene3xSegmentInfoFormat
 specifier|public
 class|class
-name|Lucene3xSegmentInfosFormat
+name|Lucene3xSegmentInfoFormat
 extends|extends
-name|SegmentInfosFormat
+name|SegmentInfoFormat
 block|{
 DECL|field|reader
 specifier|private
 specifier|final
-name|SegmentInfosReader
+name|SegmentInfoReader
 name|reader
 init|=
 operator|new
-name|Lucene3xSegmentInfosReader
+name|Lucene3xSegmentInfoReader
 argument_list|()
 decl_stmt|;
 comment|/** This format adds optional per-segment String    *  diagnostics storage, and switches userData to Map */
@@ -180,7 +180,7 @@ annotation|@
 name|Override
 DECL|method|getSegmentInfosReader
 specifier|public
-name|SegmentInfosReader
+name|SegmentInfoReader
 name|getSegmentInfosReader
 parameter_list|()
 block|{
@@ -192,7 +192,7 @@ annotation|@
 name|Override
 DECL|method|getSegmentInfosWriter
 specifier|public
-name|SegmentInfosWriter
+name|SegmentInfoWriter
 name|getSegmentInfosWriter
 parameter_list|()
 block|{

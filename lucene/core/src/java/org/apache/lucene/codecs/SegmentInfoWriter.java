@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfo
+name|FieldInfos
 import|;
 end_import
 
@@ -50,21 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfos
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|ChecksumIndexInput
+name|SegmentInfo
 import|;
 end_import
 
@@ -97,35 +83,34 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Specifies an API for classes that can read {@link SegmentInfos} information.  * @lucene.experimental  */
-end_comment
-
-begin_comment
-comment|// nocommit rename (remove the s?)
+comment|/**  * Specifies an API for classes that can write out {@link SegmentInfo} data.  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|SegmentInfosReader
+DECL|class|SegmentInfoWriter
 specifier|public
 specifier|abstract
 class|class
-name|SegmentInfosReader
+name|SegmentInfoWriter
 block|{
-comment|/**    * Read {@link SegmentInfos} data from a directory.    * @param directory directory to read from    * @param segmentsFileName name of the "segments_N" file    * @param header input of "segments_N" file after reading preamble    * @param infos empty instance to be populated with data    * @throws IOException    */
-DECL|method|read
+comment|/**    * Write {@link SegmentInfo} data.     * @throws IOException    */
+DECL|method|write
 specifier|public
 specifier|abstract
-name|SegmentInfo
-name|read
+name|void
+name|write
 parameter_list|(
 name|Directory
-name|directory
+name|dir
 parameter_list|,
-name|String
-name|segmentName
+name|SegmentInfo
+name|info
+parameter_list|,
+name|FieldInfos
+name|fis
 parameter_list|,
 name|IOContext
-name|context
+name|ioContext
 parameter_list|)
 throws|throws
 name|IOException

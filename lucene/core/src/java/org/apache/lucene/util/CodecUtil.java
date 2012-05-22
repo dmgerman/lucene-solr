@@ -295,7 +295,7 @@ name|maxVersion
 argument_list|)
 return|;
 block|}
-comment|/** Like {@link    *  checkHeader(DataInput,String,int,int)} except this    *  version assumes the first int has already been read    *  and validated from the input. */
+comment|/** Like {@link    *  #checkHeader(DataInput,String,int,int)} except this    *  version assumes the first int has already been read    *  and validated from the input. */
 DECL|method|checkHeaderNoMagic
 specifier|public
 specifier|static

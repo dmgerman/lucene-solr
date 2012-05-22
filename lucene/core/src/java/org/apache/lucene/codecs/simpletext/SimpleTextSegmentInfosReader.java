@@ -92,7 +92,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SegmentInfosReader
+name|SegmentInfoReader
 import|;
 end_import
 
@@ -292,7 +292,7 @@ specifier|public
 class|class
 name|SimpleTextSegmentInfosReader
 extends|extends
-name|SegmentInfosReader
+name|SegmentInfoReader
 block|{
 annotation|@
 name|Override

@@ -959,7 +959,6 @@ name|state
 argument_list|)
 return|;
 block|}
-comment|// nocommit simplify now that we don't have files()...?
 comment|// NOTE: only called during writing; for reading we read
 comment|// all we need from the index (ie we save the field ->
 comment|// format mapping)

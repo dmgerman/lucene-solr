@@ -239,7 +239,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** See {@link #prepareCommit} */
+comment|/** writes the checksum */
 DECL|method|finishCommit
 specifier|public
 name|void

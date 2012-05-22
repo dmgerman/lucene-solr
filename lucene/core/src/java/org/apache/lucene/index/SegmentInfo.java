@@ -177,14 +177,6 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit fix jdocs for all codec's SI writer impls to
-end_comment
-
-begin_comment
-comment|// describe their format
-end_comment
-
-begin_comment
 comment|// nocommit fix codec api to pass this around so they can
 end_comment
 
@@ -194,10 +186,6 @@ end_comment
 
 begin_comment
 comment|// nocommit add attrs api like FI
-end_comment
-
-begin_comment
-comment|// nocommit fix PFPF to use attrs api instead of its .per file
 end_comment
 
 begin_comment

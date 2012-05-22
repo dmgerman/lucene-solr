@@ -170,21 +170,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SegmentInfosReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|SegmentInfosWriter
+name|LiveDocsFormat
 import|;
 end_import
 
@@ -216,7 +202,7 @@ name|codecs
 operator|.
 name|lucene3x
 operator|.
-name|Lucene3xSegmentInfosFormat
+name|Lucene3xSegmentInfoFormat
 import|;
 end_import
 
@@ -232,7 +218,7 @@ name|codecs
 operator|.
 name|lucene3x
 operator|.
-name|Lucene3xSegmentInfosReader
+name|Lucene3xSegmentInfoReader
 import|;
 end_import
 
@@ -293,20 +279,6 @@ operator|.
 name|store
 operator|.
 name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|FlushInfo
 import|;
 end_import
 
@@ -409,7 +381,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection of segmentInfo objects with methods for operating on  * those segments in relation to the file system.  *<p>  * The active segments in the index are stored in the segment info file,  *<tt>segments_N</tt>. There may be one or more<tt>segments_N</tt> files in the  * index; however, the one with the largest generation is the active one (when  * older segments_N files are present it's because they temporarily cannot be  * deleted, or, a writer is in the process of committing, or a custom   * {@link org.apache.lucene.index.IndexDeletionPolicy IndexDeletionPolicy}  * is in use). This file lists each segment by name, has details about the  * separate norms and deletion files, and also contains the size of each  * segment.  *</p>  *<p>There is also a file<tt>segments.gen</tt>. This file contains  * the current generation (the<tt>_N</tt> in<tt>segments_N</tt>) of the index.  * This is used only as a fallback in case the current generation cannot be  * accurately determined by directory listing alone (as is the case for some NFS  * clients with time-based directory cache expiration). This file simply contains  * an {@link DataOutput#writeInt Int32} version header   * ({@link #FORMAT_SEGMENTS_GEN_CURRENT}), followed by the  * generation recorded as {@link DataOutput#writeLong Int64}, written twice.</p>  *   * @lucene.experimental  */
+comment|/**  * A collection of segmentInfo objects with methods for operating on  * those segments in relation to the file system.  *<p>  * The active segments in the index are stored in the segment info file,  *<tt>segments_N</tt>. There may be one or more<tt>segments_N</tt> files in the  * index; however, the one with the largest generation is the active one (when  * older segments_N files are present it's because they temporarily cannot be  * deleted, or, a writer is in the process of committing, or a custom   * {@link org.apache.lucene.index.IndexDeletionPolicy IndexDeletionPolicy}  * is in use). This file lists each segment by name and has details about the  * codec and generation of deletes.  *</p>  *<p>There is also a file<tt>segments.gen</tt>. This file contains  * the current generation (the<tt>_N</tt> in<tt>segments_N</tt>) of the index.  * This is used only as a fallback in case the current generation cannot be  * accurately determined by directory listing alone (as is the case for some NFS  * clients with time-based directory cache expiration). This file simply contains  * an {@link DataOutput#writeInt Int32} version header   * ({@link #FORMAT_SEGMENTS_GEN_CURRENT}), followed by the  * generation recorded as {@link DataOutput#writeLong Int64}, written twice.</p>  *<p>  * Files:  *<ul>  *<li><tt>segments.gen</tt>: GenHeader, Generation, Generation  *<li><tt>segments_N</tt>: Header, Version, NameCounter, SegCount,  *&lt;SegName, SegCodec, DelGen, DeletionCount&gt;<sup>SegCount</sup>,   *    CommitUserData, Checksum  *</ul>  *</p>  * Data types:  *<p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>GenHeader, NameCounter, SegCount, DeletionCount --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>Generation, Version, DelGen, Checksum --&gt; {@link DataOutput#writeLong Int64}</li>  *<li>SegName, SegCodec --&gt; {@link DataOutput#writeString String}</li>  *<li>CommitUserData --&gt; {@link DataOutput#writeStringStringMap Map&lt;String,String&gt;}</li>  *</ul>  *</p>  * Field Descriptions:  *<p>  *<ul>  *<li>Version counts how often the index has been changed by adding or deleting  *       documents.</li>  *<li>NameCounter is used to generate names for new segment files.</li>  *<li>SegName is the name of the segment, and is used as the file name prefix for  *       all of the files that compose the segment's index.</li>  *<li>DelGen is the generation count of the deletes file. If this is -1,  *       there are no deletes. Anything above zero means there are deletes   *       stored by {@link LiveDocsFormat}.</li>  *<li>DeletionCount records the number of deleted documents in this segment.</li>  *<li>Checksum contains the CRC32 checksum of all bytes in the segments_N file up  *       until the checksum. This is used to verify integrity of the file on opening the  *       index.</li>  *<li>SegCodec is the {@link Codec#getName() name} of the Codec that encoded  *       this segment.</li>  *<li>CommitUserData stores an optional user-supplied opaque  *       Map&lt;String,String&gt; that was passed to {@link IndexWriter#commit(java.util.Map)}   *       or {@link IndexWriter#prepareCommit(java.util.Map)}.</li>  *</ul>  *</p>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -426,13 +398,7 @@ argument_list|<
 name|SegmentInfo
 argument_list|>
 block|{
-comment|/*     * The file format version, a negative number.    *      * NOTE: future format numbers must always be one smaller     * than the latest. With time, support for old formats will    * be removed, however the numbers should continue to decrease.     */
-comment|// TODO: i don't think we need *all* these version numbers here?
-comment|// most codecs only need FORMAT_CURRENT? and we should rename it
-comment|// to FORMAT_FLEX? because the 'preamble' is just FORMAT_CURRENT + codecname
-comment|// after that the codec takes over.
-comment|// also i think this class should write this, somehow we let
-comment|// preflexrw hackishly override this (like seek backwards and overwrite it)
+comment|/**    * The file format version for the segments_N codec header    */
 DECL|field|VERSION_40
 specifier|public
 specifier|static
@@ -941,9 +907,6 @@ name|lastGeneration
 operator|=
 name|generation
 expr_stmt|;
-comment|// TODO: scary to have default impl reopen the file... but to make it a bit more flexible,
-comment|// maybe we could use a plain indexinput here... could default impl rewind/wrap with checksumII,
-comment|// and any checksumming is then up to implementation?
 name|ChecksumIndexInput
 name|input
 init|=
@@ -972,10 +935,6 @@ name|input
 operator|.
 name|readInt
 argument_list|()
-decl_stmt|;
-specifier|final
-name|boolean
-name|checkCheckSum
 decl_stmt|;
 if|if
 condition|(
@@ -1134,7 +1093,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|Lucene3xSegmentInfosReader
+name|Lucene3xSegmentInfoReader
 operator|.
 name|readLegacyInfos
 argument_list|(
@@ -1360,7 +1319,7 @@ name|success
 init|=
 literal|false
 decl_stmt|;
-comment|// nocommit document somewhere taht we store this
+comment|// nocommit document somewhere that we store this
 comment|// list-of-segs plus delGen plus other stuff
 comment|// "generically" and then codec gets to write SI
 specifier|final
@@ -1431,16 +1390,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// write infos
-name|Codec
-name|codec3X
-init|=
-name|Codec
-operator|.
-name|forName
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
-decl_stmt|;
 for|for
 control|(
 name|SegmentInfo
@@ -1535,7 +1484,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|Lucene3xSegmentInfosFormat
+name|Lucene3xSegmentInfoFormat
 operator|.
 name|SI_EXTENSION
 argument_list|)
@@ -1687,7 +1636,7 @@ name|name
 argument_list|,
 literal|""
 argument_list|,
-name|Lucene3xSegmentInfosFormat
+name|Lucene3xSegmentInfoFormat
 operator|.
 name|SI_EXTENSION
 argument_list|)
