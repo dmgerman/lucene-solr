@@ -468,9 +468,11 @@ name|consumer
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit we should only provide the "slice" of FIS
+comment|// TODO: we should only provide the "slice" of FIS
 comment|// that this PF actually sees ... then stuff like
 comment|// .hasProx could work correctly?
+comment|// NOTE: .hasProx is already broken in the same way for the non-perfield case,
+comment|// if there is a fieldinfo with prox that has no postings, you get a 0 byte file.
 return|return
 name|consumer
 operator|.
