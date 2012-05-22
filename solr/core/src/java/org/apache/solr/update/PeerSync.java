@@ -1423,6 +1423,9 @@ name|newList
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Long
+argument_list|>
 argument_list|(
 name|ourUpdates
 argument_list|)
@@ -2643,6 +2646,10 @@ name|get
 argument_list|(
 literal|0
 argument_list|)
+operator|&
+name|UpdateLog
+operator|.
+name|OPERATION_MASK
 decl_stmt|;
 name|long
 name|version
