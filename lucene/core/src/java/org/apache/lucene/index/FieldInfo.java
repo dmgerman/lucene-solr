@@ -333,7 +333,6 @@ name|boolean
 name|checkConsistency
 parameter_list|()
 block|{
-comment|// nocommit more checks here
 if|if
 condition|(
 operator|!
@@ -372,6 +371,17 @@ name|indexOptions
 operator|!=
 literal|null
 assert|;
+if|if
+condition|(
+name|omitNorms
+condition|)
+block|{
+assert|assert
+name|normType
+operator|==
+literal|null
+assert|;
+block|}
 block|}
 comment|// Cannot store payloads unless positions are indexed:
 assert|assert
@@ -488,6 +498,12 @@ operator|=
 literal|true
 expr_stmt|;
 comment|// if one require omitNorms at least once, it remains off for life
+name|this
+operator|.
+name|normType
+operator|=
+literal|null
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -720,11 +736,6 @@ name|hasNorms
 parameter_list|()
 block|{
 return|return
-name|indexed
-operator|&&
-operator|!
-name|omitNorms
-operator|&&
 name|normType
 operator|!=
 literal|null
