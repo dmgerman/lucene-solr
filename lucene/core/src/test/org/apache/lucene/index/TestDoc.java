@@ -1165,8 +1165,6 @@ name|IndexWriterConfig
 operator|.
 name|DEFAULT_TERM_INDEX_INTERVAL
 argument_list|,
-name|merged
-argument_list|,
 name|MergeState
 operator|.
 name|CheckAbort

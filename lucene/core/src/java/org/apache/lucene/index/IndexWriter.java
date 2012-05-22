@@ -6822,8 +6822,6 @@ operator|.
 name|getTermIndexInterval
 argument_list|()
 argument_list|,
-name|mergedName
-argument_list|,
 name|MergeState
 operator|.
 name|CheckAbort
@@ -11839,8 +11837,6 @@ name|config
 operator|.
 name|getTermIndexInterval
 argument_list|()
-argument_list|,
-name|mergedName
 argument_list|,
 name|checkAbort
 argument_list|,

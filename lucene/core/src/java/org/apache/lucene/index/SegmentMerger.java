@@ -250,12 +250,6 @@ specifier|final
 name|Directory
 name|directory
 decl_stmt|;
-DECL|field|segment
-specifier|private
-specifier|final
-name|String
-name|segment
-decl_stmt|;
 DECL|field|termIndexInterval
 specifier|private
 specifier|final
@@ -308,9 +302,6 @@ name|dir
 parameter_list|,
 name|int
 name|termIndexInterval
-parameter_list|,
-name|String
-name|name
 parameter_list|,
 name|MergeState
 operator|.
@@ -372,10 +363,6 @@ expr_stmt|;
 name|directory
 operator|=
 name|dir
-expr_stmt|;
-name|segment
-operator|=
-name|name
 expr_stmt|;
 name|this
 operator|.
@@ -652,7 +639,11 @@ name|write
 argument_list|(
 name|directory
 argument_list|,
-name|segment
+name|mergeState
+operator|.
+name|segmentInfo
+operator|.
+name|name
 argument_list|,
 name|mergeState
 operator|.
