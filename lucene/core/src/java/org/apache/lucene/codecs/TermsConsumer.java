@@ -287,7 +287,10 @@ name|FixedBitSet
 argument_list|(
 name|mergeState
 operator|.
-name|mergedDocCount
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|IndexOptions
