@@ -4487,8 +4487,6 @@ name|si
 argument_list|,
 name|fieldInfos
 argument_list|,
-literal|10000
-argument_list|,
 name|termIndexInterval
 argument_list|,
 literal|null

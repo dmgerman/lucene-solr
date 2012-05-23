@@ -106,12 +106,6 @@ specifier|final
 name|FieldInfos
 name|fieldInfos
 decl_stmt|;
-DECL|field|numDocs
-specifier|public
-specifier|final
-name|int
-name|numDocs
-decl_stmt|;
 DECL|field|delCountOnFlush
 specifier|public
 name|int
@@ -170,9 +164,6 @@ name|FieldInfos
 name|fieldInfos
 parameter_list|,
 name|int
-name|numDocs
-parameter_list|,
-name|int
 name|termIndexInterval
 parameter_list|,
 name|BufferedDeletes
@@ -200,8 +191,6 @@ name|directory
 operator|=
 name|directory
 expr_stmt|;
-comment|// nocommit a lot of this is redundant w/ SI!  BUT not
-comment|// the Directory!!!!  one is tracking one is not!!!
 name|this
 operator|.
 name|segmentInfo
@@ -213,12 +202,6 @@ operator|.
 name|fieldInfos
 operator|=
 name|fieldInfos
-expr_stmt|;
-name|this
-operator|.
-name|numDocs
-operator|=
-name|numDocs
 expr_stmt|;
 name|this
 operator|.
@@ -272,12 +255,6 @@ operator|=
 name|state
 operator|.
 name|fieldInfos
-expr_stmt|;
-name|numDocs
-operator|=
-name|state
-operator|.
-name|numDocs
 expr_stmt|;
 name|termIndexInterval
 operator|=

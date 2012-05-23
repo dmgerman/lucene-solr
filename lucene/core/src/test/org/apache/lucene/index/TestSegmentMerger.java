@@ -443,7 +443,8 @@ name|LUCENE_MAIN_VERSION
 argument_list|,
 name|mergedSegment
 argument_list|,
-literal|10000
+operator|-
+literal|1
 argument_list|,
 operator|-
 literal|1

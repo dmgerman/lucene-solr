@@ -409,7 +409,10 @@ name|finish
 argument_list|(
 name|state
 operator|.
-name|numDocs
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

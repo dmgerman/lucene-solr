@@ -517,12 +517,24 @@ comment|// method that will spend alot of time.  The frequency
 comment|// of this check impacts how long
 comment|// IndexWriter.close(false) takes to actually stop the
 comment|// threads.
+comment|// nocommit: can we nuke this count too?
 name|mergeState
 operator|.
 name|mergedDocCount
 operator|=
 name|setDocMaps
 argument_list|()
+expr_stmt|;
+name|mergeState
+operator|.
+name|segmentInfo
+operator|.
+name|setDocCount
+argument_list|(
+name|mergeState
+operator|.
+name|mergedDocCount
+argument_list|)
 expr_stmt|;
 name|mergeDocValuesAndNormsFieldInfos
 argument_list|()
@@ -563,10 +575,6 @@ argument_list|,
 name|mergeState
 operator|.
 name|fieldInfos
-argument_list|,
-name|mergeState
-operator|.
-name|mergedDocCount
 argument_list|,
 name|termIndexInterval
 argument_list|,

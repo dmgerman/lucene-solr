@@ -746,7 +746,10 @@ name|totalNumDocs
 operator|=
 name|state
 operator|.
-name|numDocs
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
 expr_stmt|;
 name|skipListWriter
 operator|=
@@ -757,9 +760,7 @@ name|skipInterval
 argument_list|,
 name|maxSkipLevels
 argument_list|,
-name|state
-operator|.
-name|numDocs
+name|totalNumDocs
 argument_list|,
 name|freqOut
 argument_list|,

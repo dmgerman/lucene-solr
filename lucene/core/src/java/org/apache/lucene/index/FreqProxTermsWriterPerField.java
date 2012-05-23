@@ -2081,7 +2081,10 @@ name|FixedBitSet
 argument_list|(
 name|state
 operator|.
-name|numDocs
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|long
@@ -2421,7 +2424,10 @@ name|docID
 operator|<
 name|state
 operator|.
-name|numDocs
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
 operator|:
 literal|"doc="
 operator|+
@@ -2431,7 +2437,10 @@ literal|" maxDoc="
 operator|+
 name|state
 operator|.
-name|numDocs
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
 assert|;
 comment|// NOTE: we could check here if the docID was
 comment|// deleted, and skip it.  However, this is somewhat
@@ -2497,7 +2506,10 @@ name|newLiveDocs
 argument_list|(
 name|state
 operator|.
-name|numDocs
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

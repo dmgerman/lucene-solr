@@ -292,7 +292,10 @@ name|flush
 argument_list|(
 name|state
 operator|.
-name|numDocs
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
 argument_list|)
 decl_stmt|;
 assert|assert
