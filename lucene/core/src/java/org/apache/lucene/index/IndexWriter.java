@@ -6832,8 +6832,6 @@ name|payloadProcessorProvider
 argument_list|,
 name|globalFieldNumberMap
 argument_list|,
-name|codec
-argument_list|,
 name|context
 argument_list|)
 decl_stmt|;
@@ -11837,8 +11835,6 @@ argument_list|,
 name|payloadProcessorProvider
 argument_list|,
 name|globalFieldNumberMap
-argument_list|,
-name|codec
 argument_list|,
 name|context
 argument_list|)

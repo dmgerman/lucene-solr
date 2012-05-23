@@ -316,9 +316,6 @@ operator|.
 name|FieldNumbers
 name|fieldNumbers
 parameter_list|,
-name|Codec
-name|codec
-parameter_list|,
 name|IOContext
 name|context
 parameter_list|)
@@ -374,7 +371,10 @@ name|this
 operator|.
 name|codec
 operator|=
-name|codec
+name|segmentInfo
+operator|.
+name|getCodec
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
