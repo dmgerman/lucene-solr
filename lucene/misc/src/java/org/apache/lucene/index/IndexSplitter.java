@@ -864,7 +864,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// nocommit is this right...?
 comment|// now copy files over
 name|Collection
 argument_list|<

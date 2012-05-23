@@ -10519,8 +10519,6 @@ name|hasVectors
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// nocommit
-comment|/*       Set<String> files = new HashSet<String>();       s.getCodec().termVectorsFormat().files(s, files);       List<String> filesExisting = SegmentInfo.findMatchingFiles(s.name, dir, files);       assertTrue(filesExisting.isEmpty());       */
 block|}
 name|r0
 operator|.
