@@ -6861,6 +6861,7 @@ name|merge
 argument_list|()
 decl_stmt|;
 comment|// merge 'em
+comment|// nocommit use setter and make this a SetOnce:
 name|info
 operator|.
 name|docCount
@@ -12184,6 +12185,7 @@ operator|.
 name|merge
 argument_list|()
 decl_stmt|;
+comment|// nocommit use setter and make this a SetOnce:
 name|merge
 operator|.
 name|info

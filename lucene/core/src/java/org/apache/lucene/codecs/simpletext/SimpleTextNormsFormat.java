@@ -512,8 +512,8 @@ name|void
 name|abort
 parameter_list|()
 block|{
-comment|// nocommit must we really delete the files...?  IFD
-comment|// will do so I think?
+comment|// We don't have to remove files here: IndexFileDeleter
+comment|// will do so
 block|}
 block|}
 block|}
