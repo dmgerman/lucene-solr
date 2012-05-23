@@ -1190,8 +1190,6 @@ name|hasVectors
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// nocommit
-comment|/*       Set<String> files = new HashSet<String>();       s.getCodec().termVectorsFormat().files(s, files);       assertFalse(files.isEmpty());       for (String file : files) {         assertTrue(dir.fileExists(file));       }       */
 block|}
 name|reader
 operator|.

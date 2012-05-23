@@ -376,10 +376,14 @@ argument_list|,
 name|ioContext
 argument_list|)
 expr_stmt|;
-comment|// nocommit don't consult FieldInfos here... then nuke
-comment|// fieldInfos arg...
-comment|// nocommit we can assert FIS.hasProx == our hasProx here...
-comment|// this.segment = segmentInfo.name;
+comment|// TODO: hasProx should (somehow!) become codec private,
+comment|// but it's tricky because 1) FIS.hasProx is global (it
+comment|// could be all fields that have prox are written by a
+comment|// different codec), 2) the field may have had prox in
+comment|// the past but all docs w/ that field were deleted.
+comment|// Really we'd need to init prxOut lazily on write, and
+comment|// then somewhere record that we actually wrote it so we
+comment|// know whether to open on read:
 if|if
 condition|(
 name|fieldInfos

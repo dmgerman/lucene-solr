@@ -42,6 +42,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -109,14 +119,6 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit fix codec api to pass this around so they can
-end_comment
-
-begin_comment
-comment|// store attrs
-end_comment
-
-begin_comment
 comment|/**  * Information about a segment such as it's name, directory, and files related  * to the segment.  *  * @lucene.experimental  */
 end_comment
 
@@ -156,7 +158,6 @@ name|String
 name|name
 decl_stmt|;
 comment|// unique name in dir
-comment|// nocommit make me final:
 DECL|field|docCount
 specifier|public
 name|int
@@ -170,7 +171,6 @@ name|Directory
 name|dir
 decl_stmt|;
 comment|// where segment resides
-comment|// nocommit what other members can we make final?
 comment|/*    * Current generation of each field's norm file. If this array is null,    * means no separate norms. If this array is not null, its values mean:    * - NO says this field has no separate norms    *>= YES says this field has separate norms with the specified generation    */
 DECL|field|normGen
 specifier|private
@@ -254,7 +254,6 @@ comment|// indicates an older than 3.0 index, and it's used to detect a too old 
 comment|// The format expected is "x.y" - "2.x" for pre-3.0 indexes (or null), and
 comment|// specific versions afterwards ("3.0", "3.1" etc.).
 comment|// see Constants.LUCENE_MAIN_VERSION.
-comment|// nocommit final?
 DECL|field|version
 specifier|private
 name|String
@@ -433,8 +432,7 @@ operator|=
 name|attributes
 expr_stmt|;
 block|}
-comment|/**    * Returns total size in bytes of all of files used by this segment    */
-comment|// nocommit fails to take live docs into account... hmmm
+comment|/**    * Returns total size in bytes of all of files used by    * this segment.  Note that this will not include any live    * docs for the segment; to include that use {@link    * SegmentInfoPerCommit.sizeInBytes} instead.    */
 DECL|method|sizeInBytes
 specifier|public
 name|long
@@ -484,17 +482,6 @@ block|}
 return|return
 name|sizeInBytes
 return|;
-block|}
-DECL|method|clearSizeInBytes
-name|void
-name|clearSizeInBytes
-parameter_list|()
-block|{
-name|sizeInBytes
-operator|=
-operator|-
-literal|1
-expr_stmt|;
 block|}
 comment|/**    * @deprecated separate norms are not supported in>= 4.0    */
 annotation|@
@@ -664,11 +651,9 @@ name|codec
 return|;
 block|}
 comment|/*    * Return all files referenced by this SegmentInfo.  The    * returns List is a locally cached List so you should not    * modify it.    */
-comment|// nocommit remove this temporarily to see who is calling
-comment|// it ...  very dangerous having this one AND SIPC.files()
 DECL|method|files
 specifier|public
-name|Collection
+name|Set
 argument_list|<
 name|String
 argument_list|>
@@ -677,8 +662,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// nocommit make sure when we are called we really have
-comment|// files set ...
 if|if
 condition|(
 name|setFiles
@@ -695,7 +678,12 @@ argument_list|)
 throw|;
 block|}
 return|return
+name|Collections
+operator|.
+name|unmodifiableSet
+argument_list|(
 name|setFiles
+argument_list|)
 return|;
 block|}
 comment|/** {@inheritDoc} */
@@ -1026,8 +1014,6 @@ name|String
 argument_list|>
 name|setFiles
 decl_stmt|;
-comment|// nocommit now on building a CFS we erase the files that
-comment|// are in it... maybe we should somehow preserve it...
 DECL|method|setFiles
 specifier|public
 name|void
@@ -1050,20 +1036,42 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|// nocommit remove this!  it's only needed for
-comment|// clearing/adding the files set...
-DECL|method|getFiles
+DECL|method|addFiles
 specifier|public
-name|Set
+name|void
+name|addFiles
+parameter_list|(
+name|Collection
 argument_list|<
 name|String
 argument_list|>
-name|getFiles
-parameter_list|()
+name|files
+parameter_list|)
 block|{
-return|return
 name|setFiles
-return|;
+operator|.
+name|addAll
+argument_list|(
+name|files
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|addFile
+specifier|public
+name|void
+name|addFile
+parameter_list|(
+name|String
+name|file
+parameter_list|)
+block|{
+name|setFiles
+operator|.
+name|add
+argument_list|(
+name|file
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Get a codec attribute value, or null if it does not exist    */
 DECL|method|getAttribute

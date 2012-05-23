@@ -1636,10 +1636,7 @@ argument_list|)
 decl_stmt|;
 name|si
 operator|.
-name|getFiles
-argument_list|()
-operator|.
-name|add
+name|addFile
 argument_list|(
 name|fileName
 argument_list|)
@@ -1916,7 +1913,7 @@ name|writeStringSet
 argument_list|(
 name|si
 operator|.
-name|getFiles
+name|files
 argument_list|()
 argument_list|)
 expr_stmt|;

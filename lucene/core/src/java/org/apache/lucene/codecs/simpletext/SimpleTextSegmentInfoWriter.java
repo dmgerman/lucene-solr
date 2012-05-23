@@ -414,10 +414,7 @@ argument_list|)
 decl_stmt|;
 name|si
 operator|.
-name|getFiles
-argument_list|()
-operator|.
-name|add
+name|addFile
 argument_list|(
 name|segFileName
 argument_list|)
@@ -847,7 +844,7 @@ name|files
 init|=
 name|si
 operator|.
-name|getFiles
+name|files
 argument_list|()
 decl_stmt|;
 name|int
