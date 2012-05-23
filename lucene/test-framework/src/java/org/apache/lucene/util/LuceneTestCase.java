@@ -3376,6 +3376,14 @@ name|FieldType
 name|type
 parameter_list|)
 block|{
+name|name
+operator|=
+operator|new
+name|String
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|usually
