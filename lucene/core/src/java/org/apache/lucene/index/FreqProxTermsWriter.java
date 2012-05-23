@@ -250,7 +250,10 @@ name|consumer
 init|=
 name|state
 operator|.
-name|codec
+name|segmentInfo
+operator|.
+name|getCodec
+argument_list|()
 operator|.
 name|postingsFormat
 argument_list|()

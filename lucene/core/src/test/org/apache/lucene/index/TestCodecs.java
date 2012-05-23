@@ -4491,8 +4491,6 @@ literal|10000
 argument_list|,
 name|termIndexInterval
 argument_list|,
-name|codec
-argument_list|,
 literal|null
 argument_list|,
 name|newIOContext

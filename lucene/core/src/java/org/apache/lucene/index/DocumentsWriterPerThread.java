@@ -1833,17 +1833,6 @@ return|return
 name|numDocsInRAM
 return|;
 block|}
-DECL|method|getCodec
-name|Codec
-name|getCodec
-parameter_list|()
-block|{
-return|return
-name|flushState
-operator|.
-name|codec
-return|;
-block|}
 comment|/** Reset after a flush */
 DECL|method|doAfterFlush
 specifier|private
@@ -1994,8 +1983,6 @@ argument_list|()
 operator|.
 name|getTermIndexInterval
 argument_list|()
-argument_list|,
-name|codec
 argument_list|,
 name|pendingDeletes
 argument_list|,
