@@ -2473,10 +2473,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// nocommit we can also pull the DV types of the
-comment|// fields... and catch DV type change on addDoc
-comment|// instead of much later in merge
-comment|//}
+comment|// TODO: we could also pull DV type of each field here,
+comment|// and use that to make sure new segment(s) don't change
+comment|// the type...
 return|return
 name|map
 return|;
@@ -12570,7 +12569,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// nocommit why on earth do we suddenly set success back to false here!?
+comment|// So that, if we hit exc in deleteNewFiles (next)
+comment|// or in commitMerge (later), we close the
+comment|// per-segment readers in the finally clause below:
 name|success
 operator|=
 literal|false
@@ -12668,6 +12669,16 @@ name|setUseCompoundFile
 argument_list|(
 literal|true
 argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// So that, if we hit exc in commitMerge (later),
+comment|// we close the per-segment readers in the finally
+comment|// clause below:
+name|success
+operator|=
+literal|false
 expr_stmt|;
 block|}
 comment|// Have codec write SegmentInfo.  Must do this after

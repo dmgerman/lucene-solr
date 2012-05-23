@@ -1219,7 +1219,6 @@ index|[
 name|i
 index|]
 decl_stmt|;
-comment|// nocommit nuke this filtering
 if|if
 condition|(
 operator|(
