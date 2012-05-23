@@ -46,6 +46,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spell
+operator|.
+name|SuggestMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|common
@@ -95,7 +111,7 @@ specifier|public
 name|IndexReader
 name|reader
 decl_stmt|;
-comment|/**    * The number of suggestions to return, if there are any.  Defaults to 1.    */
+comment|/**    * The number of suggestions to return, if there are any. Defaults to 1.    */
 DECL|field|count
 specifier|public
 name|int
@@ -103,11 +119,21 @@ name|count
 init|=
 literal|1
 decl_stmt|;
-comment|/**    * Return only those results that are more popular, as defined by the implementation    */
-DECL|field|onlyMorePopular
+DECL|field|alternativeTermCount
 specifier|public
-name|boolean
-name|onlyMorePopular
+name|Integer
+name|alternativeTermCount
+init|=
+literal|null
+decl_stmt|;
+DECL|field|suggestMode
+specifier|public
+name|SuggestMode
+name|suggestMode
+init|=
+name|SuggestMode
+operator|.
+name|SUGGEST_WHEN_NOT_IN_INDEX
 decl_stmt|;
 comment|/**    * Provide additional, per implementation, information about the results    */
 DECL|field|extendedResults
@@ -115,7 +141,7 @@ specifier|public
 name|boolean
 name|extendedResults
 decl_stmt|;
-comment|/**    * Optionally restrict the results to have a minimum accuracy level.  Per Implementation.    * By default set to Float.MIN_VALUE.    */
+comment|/**    * Optionally restrict the results to have a minimum accuracy level. Per    * Implementation. By default set to Float.MIN_VALUE.    */
 DECL|field|accuracy
 specifier|public
 name|float
@@ -125,7 +151,7 @@ name|Float
 operator|.
 name|MIN_VALUE
 decl_stmt|;
-comment|/**    * Any other custom params can be passed through.  May be null and is null by default.    */
+comment|/**    * Any other custom params can be passed through. May be null and is null by    * default.    */
 DECL|field|customParams
 specifier|public
 name|SolrParams
@@ -135,8 +161,8 @@ DECL|method|SpellingOptions
 specifier|public
 name|SpellingOptions
 parameter_list|()
-block|{   }
-comment|//A couple of convenience ones
+block|{}
+comment|// A couple of convenience ones
 DECL|method|SpellingOptions
 specifier|public
 name|SpellingOptions
@@ -243,8 +269,8 @@ parameter_list|,
 name|int
 name|count
 parameter_list|,
-name|boolean
-name|onlyMorePopular
+name|SuggestMode
+name|suggestMode
 parameter_list|,
 name|boolean
 name|extendedResults
@@ -276,9 +302,90 @@ name|count
 expr_stmt|;
 name|this
 operator|.
-name|onlyMorePopular
+name|suggestMode
 operator|=
-name|onlyMorePopular
+name|suggestMode
+expr_stmt|;
+name|this
+operator|.
+name|extendedResults
+operator|=
+name|extendedResults
+expr_stmt|;
+name|this
+operator|.
+name|accuracy
+operator|=
+name|accuracy
+expr_stmt|;
+name|this
+operator|.
+name|customParams
+operator|=
+name|customParams
+expr_stmt|;
+block|}
+DECL|method|SpellingOptions
+specifier|public
+name|SpellingOptions
+parameter_list|(
+name|Collection
+argument_list|<
+name|Token
+argument_list|>
+name|tokens
+parameter_list|,
+name|IndexReader
+name|reader
+parameter_list|,
+name|int
+name|count
+parameter_list|,
+name|Integer
+name|alternativeTermCount
+parameter_list|,
+name|SuggestMode
+name|suggestMode
+parameter_list|,
+name|boolean
+name|extendedResults
+parameter_list|,
+name|float
+name|accuracy
+parameter_list|,
+name|SolrParams
+name|customParams
+parameter_list|)
+block|{
+name|this
+operator|.
+name|tokens
+operator|=
+name|tokens
+expr_stmt|;
+name|this
+operator|.
+name|reader
+operator|=
+name|reader
+expr_stmt|;
+name|this
+operator|.
+name|count
+operator|=
+name|count
+expr_stmt|;
+name|this
+operator|.
+name|alternativeTermCount
+operator|=
+name|alternativeTermCount
+expr_stmt|;
+name|this
+operator|.
+name|suggestMode
+operator|=
+name|suggestMode
 expr_stmt|;
 name|this
 operator|.

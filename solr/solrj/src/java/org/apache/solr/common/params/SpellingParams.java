@@ -49,7 +49,7 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"dictionary"
 decl_stmt|;
-comment|/**    * The count of suggestions needed for a given query.    *<p/>    * If this parameter is absent in the request then only one suggestion is    * returned. If it is more than one then a maximum of given suggestions are    * returned for each token in the query.    */
+comment|/**    * The count of suggestions to return for each query term not in the index and/or dictionary.    *<p/>    * If this parameter is absent in the request then only one suggestion is    * returned. If it is more than one then a maximum of given suggestions are    * returned for each token in the query.    */
 DECL|field|SPELLCHECK_COUNT
 specifier|public
 specifier|static
@@ -60,6 +60,30 @@ init|=
 name|SPELLCHECK_PREFIX
 operator|+
 literal|"count"
+decl_stmt|;
+comment|/**    * The count of suggestions to return for each query term existing in the index and/or dictionary.    *<p/>    * If this parameter is absent in the request then no suggestions are generated.  This parameter allows    * for receiving alternative terms to use in context-sensitive spelling corrections.    */
+DECL|field|SPELLCHECK_ALTERNATIVE_TERM_COUNT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SPELLCHECK_ALTERNATIVE_TERM_COUNT
+init|=
+name|SPELLCHECK_PREFIX
+operator|+
+literal|"alternativeTermCount"
+decl_stmt|;
+comment|/**    *<p>    * The maximum number of hits the request can return in order to both     * generate spelling suggestions and set the "correctlySpelled" element to "false".       * Note that this parameter is typically of use only in conjunction with "spellcheck.alternativeTermCount".    *</p>    *<p>    * If left unspecified, the default behavior will prevail.  That is, "correctlySpelled" will be false and suggestions    * will be returned only if one or more of the query terms are absent from the dictionary and/or index.  If set to zero,    * the "correctlySpelled" flag will be false only if the response returns zero hits.  If set to a value greater than zero,     * suggestions will be returned even if hits are returned (up to the specified number).  This number also will serve as    * the threshold in determining the value of "correctlySpelled".  Specifying a value greater than zero is useful     * for creating "did-you-mean" suggestions for queries that return a low number of hits.    *</p>    */
+DECL|field|SPELLCHECK_MAX_RESULTS_FOR_SUGGEST
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SPELLCHECK_MAX_RESULTS_FOR_SUGGEST
+init|=
+name|SPELLCHECK_PREFIX
+operator|+
+literal|"maxResultsForSuggest"
 decl_stmt|;
 comment|/**    * When this parameter is set to true and the misspelled word exists in the    * user field, only words that occur more frequently in the Solr field than    * the one given will be returned. The default value is false.    *<p/>    *<b>This is applicable only for dictionaries built from Solr fields.</b>    */
 DECL|field|SPELLCHECK_ONLY_MORE_POPULAR
