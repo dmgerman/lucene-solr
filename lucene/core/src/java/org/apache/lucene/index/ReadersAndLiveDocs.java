@@ -336,7 +336,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 condition|;
 name|docID
 operator|++
@@ -366,7 +367,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 expr_stmt|;
 block|}
 assert|assert
@@ -374,7 +376,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|info
 operator|.
@@ -391,7 +394,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|+
 literal|" info.getDelCount()="
 operator|+
@@ -655,7 +659,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 assert|;
 assert|assert
 operator|!
@@ -812,7 +817,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|info
 operator|.
@@ -865,7 +871,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|>
 literal|0
 assert|;
@@ -910,7 +917,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1039,7 +1047,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 assert|;
 comment|// We can write directly to the actual name (vs to a
 comment|// .tmp& renaming it) because the file is not live

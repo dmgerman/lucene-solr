@@ -159,7 +159,7 @@ name|name
 decl_stmt|;
 comment|// unique name in dir
 DECL|field|docCount
-specifier|public
+specifier|private
 name|int
 name|docCount
 decl_stmt|;
@@ -649,6 +649,68 @@ block|{
 return|return
 name|codec
 return|;
+block|}
+DECL|method|getDocCount
+specifier|public
+name|int
+name|getDocCount
+parameter_list|()
+block|{
+if|if
+condition|(
+name|this
+operator|.
+name|docCount
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"docCount isn't set yet"
+argument_list|)
+throw|;
+block|}
+return|return
+name|docCount
+return|;
+block|}
+comment|// NOTE: leave package private
+DECL|method|setDocCount
+name|void
+name|setDocCount
+parameter_list|(
+name|int
+name|docCount
+parameter_list|)
+block|{
+if|if
+condition|(
+name|this
+operator|.
+name|docCount
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"docCount was already set"
+argument_list|)
+throw|;
+block|}
+name|this
+operator|.
+name|docCount
+operator|=
+name|docCount
+expr_stmt|;
 block|}
 comment|/*    * Return all files referenced by this SegmentInfo.  The    * returns List is a locally cached List so you should not    * modify it.    */
 DECL|method|files

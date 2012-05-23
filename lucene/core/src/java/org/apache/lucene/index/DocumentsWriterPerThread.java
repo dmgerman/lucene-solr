@@ -1292,7 +1292,8 @@ name|LUCENE_MAIN_VERSION
 argument_list|,
 name|segment
 argument_list|,
-literal|0
+operator|-
+literal|1
 argument_list|,
 operator|-
 literal|1
@@ -2197,11 +2198,12 @@ expr_stmt|;
 comment|// nocommit use setter and make this a SetOnce:
 name|segmentInfo
 operator|.
-name|docCount
-operator|=
+name|setDocCount
+argument_list|(
 name|flushState
 operator|.
 name|numDocs
+argument_list|)
 expr_stmt|;
 name|segmentInfo
 operator|.

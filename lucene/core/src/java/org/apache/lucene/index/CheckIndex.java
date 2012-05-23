@@ -1710,7 +1710,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|segInfoStat
@@ -1731,7 +1732,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 expr_stmt|;
 name|int
 name|toLoseDocCount
@@ -1740,7 +1742,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 decl_stmt|;
 name|SegmentReader
 name|reader
@@ -2085,7 +2088,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|info
 operator|.
@@ -2104,7 +2108,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|info
 operator|.
@@ -2128,7 +2133,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|reader
 operator|.
@@ -2160,7 +2166,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|reader
 operator|.
@@ -2176,7 +2183,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|numDocs
 operator|!=
@@ -2204,7 +2212,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|numDocs
 operator|)
@@ -2304,7 +2313,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|numDocs
 expr_stmt|;
@@ -2352,7 +2362,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|numDocs
 operator|)
@@ -2435,7 +2446,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 condition|)
 block|{
 throw|throw
@@ -2455,7 +2467,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -5797,7 +5810,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 condition|;
 operator|++
 name|j
@@ -6814,7 +6828,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 condition|;
 operator|++
 name|j

@@ -799,7 +799,8 @@ name|name
 argument_list|,
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 argument_list|,
 name|info
 operator|.

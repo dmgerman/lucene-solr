@@ -278,7 +278,8 @@ name|si
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|si
 operator|.
@@ -362,7 +363,8 @@ name|si
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|si
 operator|.
@@ -615,7 +617,8 @@ name|si
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 return|;
 block|}
 comment|/** @lucene.internal */
@@ -702,7 +705,8 @@ name|si
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|numDocs
 operator|-

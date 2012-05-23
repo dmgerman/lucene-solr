@@ -364,7 +364,8 @@ name|state
 operator|.
 name|segmentInfo
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 argument_list|,
 name|cfs
 argument_list|,

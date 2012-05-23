@@ -429,7 +429,8 @@ name|maxdoc
 operator|=
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 expr_stmt|;
 name|String
 name|segmentName

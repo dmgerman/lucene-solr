@@ -656,7 +656,8 @@ name|size
 init|=
 name|si
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 decl_stmt|;
 name|boolean
 name|success

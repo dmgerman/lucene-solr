@@ -452,7 +452,8 @@ name|delCount
 operator|<=
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 assert|;
 block|}
 DECL|method|toString

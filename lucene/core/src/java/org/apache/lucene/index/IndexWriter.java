@@ -2410,7 +2410,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|info
 operator|.
@@ -2423,7 +2424,8 @@ name|biggest
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|biggest
 operator|.
@@ -3069,7 +3071,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|numDeletedDocs
 argument_list|(
@@ -3838,7 +3841,8 @@ argument_list|)
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 return|;
 block|}
 else|else
@@ -5730,7 +5734,8 @@ name|newSegment
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 argument_list|,
 name|newSegment
 operator|.
@@ -6587,7 +6592,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 argument_list|,
 name|info
 operator|.
@@ -6781,7 +6787,8 @@ name|LUCENE_MAIN_VERSION
 argument_list|,
 name|mergedName
 argument_list|,
-literal|0
+operator|-
+literal|1
 argument_list|,
 operator|-
 literal|1
@@ -6857,14 +6864,14 @@ name|merge
 argument_list|()
 decl_stmt|;
 comment|// merge 'em
-comment|// nocommit use setter and make this a SetOnce:
 name|info
 operator|.
-name|docCount
-operator|=
+name|setDocCount
+argument_list|(
 name|mergeState
 operator|.
 name|mergedDocCount
+argument_list|)
 expr_stmt|;
 name|SegmentInfoPerCommit
 name|infoPerCommit
@@ -7397,7 +7404,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 argument_list|,
 name|info
 operator|.
@@ -9207,7 +9215,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 decl_stmt|;
 specifier|final
 name|Bits
@@ -9408,7 +9417,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|-
 name|info
 operator|.
@@ -9514,7 +9524,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -9527,7 +9538,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 assert|;
 if|if
 condition|(
@@ -9724,7 +9736,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|==
 literal|0
 condition|?
@@ -9781,7 +9794,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|==
 literal|0
 operator|||
@@ -9801,7 +9815,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|)
 decl_stmt|;
 if|if
@@ -9874,7 +9889,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|!=
 literal|0
 operator|||
@@ -10396,6 +10412,12 @@ operator|.
 name|info
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|merge
+operator|.
+name|isAborted
+argument_list|()
 condition|)
 block|{
 if|if
@@ -10433,7 +10455,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|+
 literal|" docs"
 argument_list|)
@@ -11131,7 +11154,8 @@ name|LUCENE_MAIN_VERSION
 argument_list|,
 name|mergeSegmentName
 argument_list|,
-literal|0
+operator|-
+literal|1
 argument_list|,
 operator|-
 literal|1
@@ -11225,7 +11249,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -11246,7 +11271,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 assert|;
 specifier|final
 name|double
@@ -11263,7 +11289,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 decl_stmt|;
 name|merge
 operator|.
@@ -12131,7 +12158,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|:
 literal|"delCount="
 operator|+
@@ -12143,7 +12171,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|+
 literal|" rld.pendingDeleteCount="
 operator|+
@@ -12167,7 +12196,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 condition|)
 block|{
 name|merger
@@ -12206,11 +12236,12 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
-operator|=
+name|setDocCount
+argument_list|(
 name|mergeState
 operator|.
 name|mergedDocCount
+argument_list|)
 expr_stmt|;
 name|merge
 operator|.
@@ -12262,7 +12293,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|+
 literal|"; merged segment has "
 operator|+
@@ -12894,7 +12926,8 @@ name|info
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 return|;
 block|}
 DECL|method|addMergeException

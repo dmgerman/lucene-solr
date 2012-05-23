@@ -1237,13 +1237,15 @@ name|si1
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 operator|+
 name|si2
 operator|.
 name|info
 operator|.
-name|docCount
+name|getDocCount
+argument_list|()
 argument_list|,
 operator|-
 literal|1
