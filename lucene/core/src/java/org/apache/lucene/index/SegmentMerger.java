@@ -286,8 +286,7 @@ operator|.
 name|Builder
 name|fieldInfosBuilder
 decl_stmt|;
-comment|// nocommit nuke name since SI has it.... but Directory is
-comment|// NOT the same!!
+comment|// note, just like in codec apis Directory 'dir' is NOT the same as segmentInfo.dir!!
 DECL|method|SegmentMerger
 name|SegmentMerger
 parameter_list|(
