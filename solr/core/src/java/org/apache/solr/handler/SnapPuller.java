@@ -4167,7 +4167,7 @@ literal|" to: "
 operator|+
 name|indexFileInIndex
 operator|+
-literal|"Trying to do a copy"
+literal|" Trying to do a copy"
 argument_list|)
 expr_stmt|;
 name|FileUtils

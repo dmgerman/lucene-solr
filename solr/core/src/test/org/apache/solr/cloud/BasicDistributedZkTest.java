@@ -917,11 +917,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|setLoggingLevel
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
+comment|// setLoggingLevel(null);
 name|del
 argument_list|(
 literal|"*:*"

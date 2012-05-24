@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -99,7 +99,7 @@ DECL|field|MB
 specifier|public
 specifier|final
 specifier|static
-name|int
+name|long
 name|MB
 init|=
 literal|1024
@@ -110,7 +110,7 @@ DECL|field|GB
 specifier|public
 specifier|final
 specifier|static
-name|int
+name|long
 name|GB
 init|=
 name|MB
@@ -122,7 +122,7 @@ DECL|field|MIN_BUFFER_SIZE_MB
 specifier|public
 specifier|final
 specifier|static
-name|int
+name|long
 name|MIN_BUFFER_SIZE_MB
 init|=
 literal|32
@@ -132,7 +132,7 @@ DECL|field|ABSOLUTE_MIN_SORT_BUFFER_SIZE
 specifier|public
 specifier|static
 specifier|final
-name|int
+name|long
 name|ABSOLUTE_MIN_SORT_BUFFER_SIZE
 init|=
 name|MB
@@ -158,7 +158,7 @@ name|MAX_TEMPFILES
 init|=
 literal|128
 decl_stmt|;
-comment|/**     * A bit more descriptive unit for constructors.    *     * @see #automatic()    * @see #megabytes(int)    */
+comment|/**     * A bit more descriptive unit for constructors.    *     * @see #automatic()    * @see #megabytes(long)    */
 DECL|class|BufferSize
 specifier|public
 specifier|static
@@ -208,6 +208,25 @@ name|bytes
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|bytes
+operator|<
+name|ABSOLUTE_MIN_SORT_BUFFER_SIZE
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|MIN_BUFFER_SIZE_MSG
+operator|+
+literal|": "
+operator|+
+name|bytes
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|bytes
@@ -218,13 +237,14 @@ operator|)
 name|bytes
 expr_stmt|;
 block|}
+comment|/**      * Creates a {@link BufferSize} in MB. The given       * values must be $gt; 0 and&lt; 2048.      */
 DECL|method|megabytes
 specifier|public
 specifier|static
 name|BufferSize
 name|megabytes
 parameter_list|(
-name|int
+name|long
 name|mb
 parameter_list|)
 block|{
@@ -367,6 +387,9 @@ name|Math
 operator|.
 name|min
 argument_list|(
+operator|(
+name|long
+operator|)
 name|Integer
 operator|.
 name|MAX_VALUE

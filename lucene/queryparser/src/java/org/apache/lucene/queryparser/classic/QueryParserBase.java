@@ -4293,7 +4293,7 @@ throw|throw
 operator|new
 name|ParseException
 argument_list|(
-literal|"None-hex character in unicode escape sequence: "
+literal|"Non-hex character in Unicode escape sequence: "
 operator|+
 name|c
 argument_list|)
