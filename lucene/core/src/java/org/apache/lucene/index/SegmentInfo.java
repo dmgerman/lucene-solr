@@ -198,32 +198,6 @@ operator|-
 literal|1
 decl_stmt|;
 comment|// total byte size of all files (computed on demand)
-comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
-DECL|field|docStoreOffset
-specifier|private
-specifier|final
-name|int
-name|docStoreOffset
-decl_stmt|;
-comment|// if this segment shares stored fields& vectors, this
-comment|// offset is where in that file this segment's docs begin
-comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
-DECL|field|docStoreSegment
-specifier|private
-specifier|final
-name|String
-name|docStoreSegment
-decl_stmt|;
-comment|// name used to derive fields/vectors file we share with
-comment|// other segments
-comment|//TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
-DECL|field|docStoreIsCompoundFile
-specifier|private
-specifier|final
-name|boolean
-name|docStoreIsCompoundFile
-decl_stmt|;
-comment|// whether doc store files are stored in compound file (*.cfx)
 DECL|field|codec
 specifier|private
 name|Codec
@@ -311,15 +285,6 @@ parameter_list|,
 name|int
 name|docCount
 parameter_list|,
-name|int
-name|docStoreOffset
-parameter_list|,
-name|String
-name|docStoreSegment
-parameter_list|,
-name|boolean
-name|docStoreIsCompoundFile
-parameter_list|,
 name|Map
 argument_list|<
 name|Integer
@@ -382,24 +347,6 @@ operator|.
 name|docCount
 operator|=
 name|docCount
-expr_stmt|;
-name|this
-operator|.
-name|docStoreOffset
-operator|=
-name|docStoreOffset
-expr_stmt|;
-name|this
-operator|.
-name|docStoreSegment
-operator|=
-name|docStoreSegment
-expr_stmt|;
-name|this
-operator|.
-name|docStoreIsCompoundFile
-operator|=
-name|docStoreIsCompoundFile
 expr_stmt|;
 name|this
 operator|.
@@ -557,48 +504,6 @@ parameter_list|()
 block|{
 return|return
 name|isCompoundFile
-return|;
-block|}
-comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
-annotation|@
-name|Deprecated
-DECL|method|getDocStoreOffset
-specifier|public
-name|int
-name|getDocStoreOffset
-parameter_list|()
-block|{
-comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
-return|return
-name|docStoreOffset
-return|;
-block|}
-comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
-annotation|@
-name|Deprecated
-DECL|method|getDocStoreIsCompoundFile
-specifier|public
-name|boolean
-name|getDocStoreIsCompoundFile
-parameter_list|()
-block|{
-comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
-return|return
-name|docStoreIsCompoundFile
-return|;
-block|}
-comment|/**    * @deprecated shared doc stores are not supported in>= 4.0    */
-annotation|@
-name|Deprecated
-DECL|method|getDocStoreSegment
-specifier|public
-name|String
-name|getDocStoreSegment
-parameter_list|()
-block|{
-comment|// TODO: LUCENE-2555: remove once we don't need to support shared doc stores (pre 4.0)
-return|return
-name|docStoreSegment
 return|;
 block|}
 comment|/** Can only be called once. */
@@ -766,7 +671,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/** Used for debugging.  Format may suddenly change.    *    *<p>Current format looks like    *<code>_a(3.1):c45/4->_1</code>, which means the segment's    *  name is<code>_a</code>; it was created with Lucene 3.1 (or    *  '?' if it's unknown); it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions); it's using the    *  shared doc stores named<code>_1</code> (this part is    *  left off if doc stores are private).</p>    */
+comment|/** Used for debugging.  Format may suddenly change.    *    *<p>Current format looks like    *<code>_a(3.1):c45/4</code>, which means the segment's    *  name is<code>_a</code>; it was created with Lucene 3.1 (or    *  '?' if it's unknown); it's using compound file    *  format (would be<code>C</code> if not compound); it    *  has 45 documents; it has 4 deletions (this part is    *  left off when there are no deletions).</p>    */
 DECL|method|toString
 specifier|public
 name|String
@@ -880,62 +785,7 @@ name|delCount
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|docStoreOffset
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-name|s
-operator|.
-name|append
-argument_list|(
-literal|"->"
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|docStoreSegment
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|docStoreIsCompoundFile
-condition|)
-block|{
-name|s
-operator|.
-name|append
-argument_list|(
-literal|'c'
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|s
-operator|.
-name|append
-argument_list|(
-literal|'C'
-argument_list|)
-expr_stmt|;
-block|}
-name|s
-operator|.
-name|append
-argument_list|(
-literal|'+'
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|docStoreOffset
-argument_list|)
-expr_stmt|;
-block|}
+comment|// TODO: we could append toString of attributes() here?
 return|return
 name|s
 operator|.
