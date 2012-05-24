@@ -7220,27 +7220,6 @@ operator|!=
 operator|-
 literal|1
 decl_stmt|;
-specifier|final
-name|String
-name|segmentInfoFileName3X
-init|=
-name|IndexFileNames
-operator|.
-name|segmentFileName
-argument_list|(
-name|info
-operator|.
-name|info
-operator|.
-name|name
-argument_list|,
-literal|""
-argument_list|,
-name|Lucene3xSegmentInfoFormat
-operator|.
-name|SI_EXTENSION
-argument_list|)
-decl_stmt|;
 comment|// copy the attributes map, we modify it for the preflex case
 specifier|final
 name|Map
