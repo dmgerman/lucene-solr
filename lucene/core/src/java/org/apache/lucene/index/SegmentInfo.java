@@ -369,7 +369,7 @@ operator|=
 name|attributes
 expr_stmt|;
 block|}
-comment|/**    * Returns total size in bytes of all of files used by    * this segment.  Note that this will not include any live    * docs for the segment; to include that use {@link    * SegmentInfoPerCommit.sizeInBytes} instead.    */
+comment|/**    * Returns total size in bytes of all of files used by    * this segment.  Note that this will not include any live    * docs for the segment; to include that use {@link    * SegmentInfoPerCommit#sizeInBytes()} instead.    */
 DECL|method|sizeInBytes
 specifier|public
 name|long

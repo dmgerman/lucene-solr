@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -53,20 +43,6 @@ end_import
 begin_comment
 comment|// javadocs
 end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentInfo
-import|;
-end_import
 
 begin_comment
 comment|/**  * Encodes/decodes {@link FieldInfos}  * @lucene.experimental  */
