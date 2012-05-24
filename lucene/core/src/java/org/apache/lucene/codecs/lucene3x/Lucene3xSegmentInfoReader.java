@@ -1689,12 +1689,6 @@ operator|.
 name|readString
 argument_list|()
 decl_stmt|;
-comment|// nocommit: we ignore this and use the incoming arg: don't write this
-name|input
-operator|.
-name|readString
-argument_list|()
-expr_stmt|;
 specifier|final
 name|int
 name|docCount
@@ -1702,16 +1696,6 @@ init|=
 name|input
 operator|.
 name|readInt
-argument_list|()
-decl_stmt|;
-comment|// nocommit: dont write this
-specifier|final
-name|long
-name|delGen
-init|=
-name|input
-operator|.
-name|readLong
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1728,26 +1712,6 @@ operator|.
 name|readStringStringMap
 argument_list|()
 decl_stmt|;
-comment|// pre-4.0 indexes write a byte if there is a single norms file
-name|byte
-name|b
-init|=
-name|input
-operator|.
-name|readByte
-argument_list|()
-decl_stmt|;
-comment|//System.out.println("version=" + version + " name=" + name + " docCount=" + docCount + " delGen=" + delGen + " dso=" + docStoreOffset + " dss=" + docStoreSegment + " dssCFs=" + docStoreIsCompoundFile + " b=" + b + " format=" + format);
-comment|// nocommit: don't write this
-assert|assert
-literal|1
-operator|==
-name|b
-operator|:
-literal|"expected 1 but was: "
-operator|+
-name|b
-assert|;
 specifier|final
 name|int
 name|numNormGen
@@ -1836,32 +1800,6 @@ operator|.
 name|YES
 decl_stmt|;
 specifier|final
-name|int
-name|delCount
-init|=
-name|input
-operator|.
-name|readInt
-argument_list|()
-decl_stmt|;
-assert|assert
-name|delCount
-operator|<=
-name|docCount
-assert|;
-comment|// nocommit: unused, dont write this
-specifier|final
-name|boolean
-name|hasProx
-init|=
-name|input
-operator|.
-name|readByte
-argument_list|()
-operator|==
-literal|1
-decl_stmt|;
-specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1873,16 +1811,6 @@ init|=
 name|input
 operator|.
 name|readStringStringMap
-argument_list|()
-decl_stmt|;
-comment|// nocommit: unused, dont write this
-specifier|final
-name|int
-name|hasVectors
-init|=
-name|input
-operator|.
-name|readByte
 argument_list|()
 decl_stmt|;
 specifier|final
