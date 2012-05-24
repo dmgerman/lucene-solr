@@ -7304,6 +7304,8 @@ block|{
 comment|// only violate the codec this way if it's preflex&
 comment|// shares doc stores
 comment|// nocommit what to do....
+comment|// cant we determine a file is a 3.x shared doc store file if hasSharedDocStore=true
+comment|// and the segment prefix != info.info.name instead of this stuff?
 if|if
 condition|(
 name|Lucene3xSegmentInfoFormat
