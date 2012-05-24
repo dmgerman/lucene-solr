@@ -271,14 +271,6 @@ name|getDocCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-assert|assert
-name|si
-operator|.
-name|getNormGen
-argument_list|()
-operator|==
-literal|null
-assert|;
 name|output
 operator|.
 name|writeByte

@@ -276,17 +276,6 @@ name|readInt
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Map
-argument_list|<
-name|Integer
-argument_list|,
-name|Long
-argument_list|>
-name|normGen
-init|=
-literal|null
-decl_stmt|;
-specifier|final
 name|boolean
 name|isCompoundFile
 init|=
@@ -353,8 +342,6 @@ argument_list|,
 name|segment
 argument_list|,
 name|docCount
-argument_list|,
-name|normGen
 argument_list|,
 name|isCompoundFile
 argument_list|,

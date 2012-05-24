@@ -804,11 +804,6 @@ argument_list|()
 argument_list|,
 name|info
 operator|.
-name|getNormGen
-argument_list|()
-argument_list|,
-name|info
-operator|.
 name|getUseCompoundFile
 argument_list|()
 argument_list|,

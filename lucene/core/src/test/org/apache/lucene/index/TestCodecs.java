@@ -1799,8 +1799,6 @@ name|SEGMENT
 argument_list|,
 literal|10000
 argument_list|,
-literal|null
-argument_list|,
 literal|false
 argument_list|,
 name|codec
@@ -2237,8 +2235,6 @@ argument_list|,
 name|SEGMENT
 argument_list|,
 literal|10000
-argument_list|,
-literal|null
 argument_list|,
 literal|false
 argument_list|,
@@ -4436,8 +4432,6 @@ argument_list|,
 name|SEGMENT
 argument_list|,
 literal|10000
-argument_list|,
-literal|null
 argument_list|,
 literal|false
 argument_list|,
