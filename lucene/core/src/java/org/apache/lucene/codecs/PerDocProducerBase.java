@@ -495,22 +495,6 @@ operator|+
 name|fieldId
 return|;
 block|}
-DECL|method|docValuesRegex
-specifier|public
-specifier|static
-name|String
-name|docValuesRegex
-parameter_list|(
-name|String
-name|segmentsName
-parameter_list|)
-block|{
-return|return
-name|segmentsName
-operator|+
-literal|"_\\d+"
-return|;
-block|}
 comment|/**    * Loads a {@link DocValues} instance depending on the given {@link Type}.    * Codecs that use different implementations for a certain {@link Type} can    * simply override this method and return their custom implementations.    *     * @param docCount    *          number of documents in the segment    * @param dir    *          the {@link Directory} to load the {@link DocValues} from    * @param id    *          the unique file ID within the segment    * @param type    *          the type to load    * @return a {@link DocValues} instance for the given type    * @throws IOException    *           if an {@link IOException} occurs    * @throws IllegalArgumentException    *           if the given {@link Type} is not supported    */
 DECL|method|loadDocValues
 specifier|protected

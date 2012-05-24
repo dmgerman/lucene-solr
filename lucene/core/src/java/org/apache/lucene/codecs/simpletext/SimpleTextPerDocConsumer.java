@@ -239,21 +239,6 @@ operator|+
 name|fieldId
 return|;
 block|}
-DECL|method|docValuesIdRegexp
-specifier|static
-name|String
-name|docValuesIdRegexp
-parameter_list|(
-name|String
-name|segmentsName
-parameter_list|)
-block|{
-return|return
-name|segmentsName
-operator|+
-literal|"_\\d+"
-return|;
-block|}
 block|}
 end_class
 
