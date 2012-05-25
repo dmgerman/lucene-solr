@@ -9055,7 +9055,37 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// bit of a hack to tell if a set is sorted - do it better in the futute.
+if|if
+condition|(
+name|nDocs
+operator|==
+literal|0
+condition|)
+block|{
+comment|// SOLR-2923
+return|return
+operator|new
+name|DocSlice
+argument_list|(
+literal|0
+argument_list|,
+literal|0
+argument_list|,
+operator|new
+name|int
+index|[
+literal|0
+index|]
+argument_list|,
+literal|null
+argument_list|,
+literal|0
+argument_list|,
+literal|0f
+argument_list|)
+return|;
+block|}
+comment|// bit of a hack to tell if a set is sorted - do it better in the future.
 name|boolean
 name|inOrder
 init|=
