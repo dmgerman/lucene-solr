@@ -126,6 +126,22 @@ name|Counter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract API for per-document stored primitive values of type<tt>byte[]</tt>  * ,<tt>long</tt> or<tt>double</tt>. The API accepts a single value for each  * document. The underlying storage mechanism, file formats, data-structures and  * representations depend on the actual implementation.  *<p>  * Document IDs passed to this API must always be increasing unless stated  * otherwise.  *</p>  *   * @lucene.experimental  */
 end_comment
@@ -186,7 +202,7 @@ return|return
 name|type
 return|;
 block|}
-comment|/**    * Factory method to create a {@link Writer} instance for a given type. This    * method returns default implementations for each of the different types    * defined in the {@link Type} enumeration.    *     * @param type    *          the {@link Type} to create the {@link Writer} for    * @param id    *          the file name id used to create files within the writer.    * @param directory    *          the {@link Directory} to create the files from.    * @param bytesUsed    *          a byte-usage tracking reference    * @param fasterButMoreRam Whether the space used for packed ints should be rounded up for higher lookup performance.    *                         Currently this parameter only applies for types {@link Type#BYTES_VAR_SORTED}    *                         and {@link Type#BYTES_FIXED_SORTED}.    * @return a new {@link Writer} instance for the given {@link Type}    * @throws IOException    */
+comment|/**    * Factory method to create a {@link Writer} instance for a given type. This    * method returns default implementations for each of the different types    * defined in the {@link Type} enumeration.    *     * @param type    *          the {@link Type} to create the {@link Writer} for    * @param id    *          the file name id used to create files within the writer.    * @param directory    *          the {@link Directory} to create the files from.    * @param bytesUsed    *          a byte-usage tracking reference    * @param acceptableOverheadRatio    *          how to trade space for speed. This option is only applicable for    *          docvalues of type {@link Type#BYTES_FIXED_SORTED} and    *          {@link Type#BYTES_VAR_SORTED}.    * @return a new {@link Writer} instance for the given {@link Type}    * @throws IOException    * @see PackedInts#getReader(org.apache.lucene.store.DataInput, float)    */
 DECL|method|create
 specifier|public
 specifier|static
@@ -214,8 +230,8 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|,
-name|boolean
-name|fasterButMoreRam
+name|float
+name|acceptableOverheadRatio
 parameter_list|)
 throws|throws
 name|IOException
@@ -335,7 +351,7 @@ name|bytesUsed
 argument_list|,
 name|context
 argument_list|,
-name|fasterButMoreRam
+name|acceptableOverheadRatio
 argument_list|)
 return|;
 case|case
@@ -364,7 +380,7 @@ name|bytesUsed
 argument_list|,
 name|context
 argument_list|,
-name|fasterButMoreRam
+name|acceptableOverheadRatio
 argument_list|)
 return|;
 case|case
@@ -393,7 +409,7 @@ name|bytesUsed
 argument_list|,
 name|context
 argument_list|,
-name|fasterButMoreRam
+name|acceptableOverheadRatio
 argument_list|)
 return|;
 case|case
@@ -422,7 +438,7 @@ name|bytesUsed
 argument_list|,
 name|context
 argument_list|,
-name|fasterButMoreRam
+name|acceptableOverheadRatio
 argument_list|)
 return|;
 case|case
@@ -451,7 +467,7 @@ name|bytesUsed
 argument_list|,
 name|context
 argument_list|,
-name|fasterButMoreRam
+name|acceptableOverheadRatio
 argument_list|)
 return|;
 case|case
@@ -480,7 +496,7 @@ name|bytesUsed
 argument_list|,
 name|context
 argument_list|,
-name|fasterButMoreRam
+name|acceptableOverheadRatio
 argument_list|)
 return|;
 default|default:

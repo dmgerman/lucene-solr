@@ -434,8 +434,8 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|,
-name|boolean
-name|fasterButMoreRam
+name|float
+name|acceptableOverheadRatio
 parameter_list|)
 throws|throws
 name|IOException
@@ -456,7 +456,7 @@ name|bytesUsed
 argument_list|,
 name|context
 argument_list|,
-name|fasterButMoreRam
+name|acceptableOverheadRatio
 argument_list|,
 name|Type
 operator|.
@@ -611,6 +611,10 @@ name|bitsRequired
 argument_list|(
 name|maxOrd
 argument_list|)
+argument_list|,
+name|PackedInts
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 for|for

@@ -908,6 +908,10 @@ name|bitsRequired
 argument_list|(
 name|termsFilePointer
 argument_list|)
+argument_list|,
+name|PackedInts
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 comment|// relative to our indexStart
@@ -977,6 +981,10 @@ name|bitsRequired
 argument_list|(
 name|totTermLength
 argument_list|)
+argument_list|,
+name|PackedInts
+operator|.
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 name|upto

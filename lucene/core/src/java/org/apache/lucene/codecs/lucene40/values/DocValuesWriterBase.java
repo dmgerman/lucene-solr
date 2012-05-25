@@ -204,6 +204,22 @@ name|Counter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract base class for PerDocConsumer implementations  *  * @lucene.experimental  */
 end_comment
@@ -235,11 +251,11 @@ specifier|final
 name|IOContext
 name|context
 decl_stmt|;
-DECL|field|fasterButMoreRam
+DECL|field|acceptableOverheadRatio
 specifier|private
 specifier|final
-name|boolean
-name|fasterButMoreRam
+name|float
+name|acceptableOverheadRatio
 decl_stmt|;
 comment|/**    * Filename extension for index files    */
 DECL|field|INDEX_EXTENSION
@@ -274,11 +290,13 @@ name|this
 argument_list|(
 name|state
 argument_list|,
-literal|true
+name|PackedInts
+operator|.
+name|FAST
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param state The state to initiate a {@link PerDocConsumer} instance    * @param fasterButMoreRam whether packed ints for docvalues should be optimized for speed by rounding up the bytes    *                         used for a value to either 8, 16, 32 or 64 bytes. This option is only applicable for    *                         docvalues of type {@link Type#BYTES_FIXED_SORTED} and {@link Type#BYTES_VAR_SORTED}.    */
+comment|/**    * @param state The state to initiate a {@link PerDocConsumer} instance    * @param acceptableOverheadRatio    *          how to trade space for speed. This option is only applicable for    *          docvalues of type {@link Type#BYTES_FIXED_SORTED} and    *          {@link Type#BYTES_VAR_SORTED}.    * @see PackedInts#getReader(org.apache.lucene.store.DataInput)    */
 DECL|method|DocValuesWriterBase
 specifier|protected
 name|DocValuesWriterBase
@@ -286,8 +304,8 @@ parameter_list|(
 name|PerDocWriteState
 name|state
 parameter_list|,
-name|boolean
-name|fasterButMoreRam
+name|float
+name|acceptableOverheadRatio
 parameter_list|)
 block|{
 name|this
@@ -316,9 +334,9 @@ name|context
 expr_stmt|;
 name|this
 operator|.
-name|fasterButMoreRam
+name|acceptableOverheadRatio
 operator|=
-name|fasterButMoreRam
+name|acceptableOverheadRatio
 expr_stmt|;
 block|}
 DECL|method|getDirectory
@@ -384,7 +402,7 @@ name|bytesUsed
 argument_list|,
 name|context
 argument_list|,
-name|fasterButMoreRam
+name|acceptableOverheadRatio
 argument_list|)
 return|;
 block|}

@@ -371,7 +371,9 @@ name|bitEstimate
 argument_list|,
 name|indexSize
 argument_list|,
-literal|false
+name|PackedInts
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 name|String

@@ -164,6 +164,20 @@ literal|1
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|getFormat
+specifier|protected
+name|int
+name|getFormat
+parameter_list|()
+block|{
+return|return
+name|PackedInts
+operator|.
+name|PACKED
+return|;
+block|}
 comment|/**    * Do not call this after finish    */
 annotation|@
 name|Override

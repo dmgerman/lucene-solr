@@ -626,6 +626,10 @@ name|maxValue
 operator|-
 name|minValue
 argument_list|)
+argument_list|,
+name|PackedInts
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 for|for

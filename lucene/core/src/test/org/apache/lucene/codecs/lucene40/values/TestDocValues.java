@@ -330,6 +330,22 @@ name|_TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+import|;
+end_import
+
 begin_comment
 comment|// TODO: some of this should be under lucene40 codec tests? is talking to codec directly?f
 end_comment
@@ -534,8 +550,12 @@ argument_list|,
 name|random
 argument_list|()
 operator|.
-name|nextBoolean
+name|nextFloat
 argument_list|()
+operator|*
+name|PackedInts
+operator|.
+name|FAST
 argument_list|)
 decl_stmt|;
 name|int
