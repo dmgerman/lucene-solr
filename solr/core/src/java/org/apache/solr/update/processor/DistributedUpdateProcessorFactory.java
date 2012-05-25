@@ -69,6 +69,8 @@ class|class
 name|DistributedUpdateProcessorFactory
 extends|extends
 name|UpdateRequestProcessorFactory
+implements|implements
+name|DistributingUpdateProcessorFactory
 block|{
 annotation|@
 name|Override

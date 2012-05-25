@@ -148,9 +148,12 @@ name|UpdateRequestProcessor
 name|next
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+operator|new
+name|CustomUpdateRequestProcessor
+argument_list|(
+name|next
+argument_list|)
 return|;
 block|}
 block|}

@@ -346,24 +346,6 @@ name|verbose
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|update
-operator|.
-name|processor
-operator|.
-name|DistributedUpdateProcessor
-operator|.
-name|SEEN_LEADER
-import|;
-end_import
-
 begin_class
 DECL|class|TestUpdate
 specifier|public
