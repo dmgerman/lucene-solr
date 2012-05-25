@@ -3223,6 +3223,72 @@ argument_list|,
 literal|"//doc[1]/str[@name='id'][.='s1']"
 argument_list|)
 expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"ps/ps2/ps3 with default slop overrides not working"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"zzzz xxxx cccc vvvv"
+argument_list|,
+literal|"qf"
+argument_list|,
+literal|"phrase_sw"
+argument_list|,
+literal|"pf"
+argument_list|,
+literal|"phrase_sw~1^10 phrase_sw~2^20 phrase_sw^30"
+argument_list|,
+literal|"pf2"
+argument_list|,
+literal|"phrase_sw~2^22 phrase_sw^33"
+argument_list|,
+literal|"pf3"
+argument_list|,
+literal|"phrase_sw~2^222 phrase_sw^333"
+argument_list|,
+literal|"ps"
+argument_list|,
+literal|"3"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"zzzz xxxx cccc vvvv\"~1^10.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"zzzz xxxx cccc vvvv\"~2^20.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"zzzz xxxx cccc vvvv\"~3^30.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"zzzz xxxx\"~2^22.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"xxxx cccc\"~2^22.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"cccc vvvv\"~2^22.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"zzzz xxxx\"~3^33.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"xxxx cccc\"~3^33.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"cccc vvvv\"~3^33.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"zzzz xxxx cccc\"~2^222.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"xxxx cccc vvvv\"~2^222.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"zzzz xxxx cccc\"~3^333.0')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"xxxx cccc vvvv\"~3^333.0')]"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
