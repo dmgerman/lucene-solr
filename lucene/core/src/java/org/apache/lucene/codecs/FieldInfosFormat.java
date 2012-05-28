@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -54,20 +44,6 @@ begin_comment
 comment|// javadocs
 end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentInfo
-import|;
-end_import
-
 begin_comment
 comment|/**  * Encodes/decodes {@link FieldInfos}  * @lucene.experimental  */
 end_comment
@@ -79,6 +55,7 @@ specifier|abstract
 class|class
 name|FieldInfosFormat
 block|{
+comment|/** Returns a {@link FieldInfosReader} to read field infos    *  from the index */
 DECL|method|getFieldInfosReader
 specifier|public
 specifier|abstract
@@ -88,30 +65,13 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns a {@link FieldInfosWriter} to write field infos    *  to the index */
 DECL|method|getFieldInfosWriter
 specifier|public
 specifier|abstract
 name|FieldInfosWriter
 name|getFieldInfosWriter
 parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-DECL|method|files
-specifier|public
-specifier|abstract
-name|void
-name|files
-parameter_list|(
-name|SegmentInfo
-name|info
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
 throws|throws
 name|IOException
 function_decl|;

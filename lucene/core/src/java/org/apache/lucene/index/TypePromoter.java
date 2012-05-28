@@ -53,6 +53,18 @@ import|;
 end_import
 
 begin_comment
+comment|// TODO: maybe we should not automagically promote
+end_comment
+
+begin_comment
+comment|// types... and instead require a given field always has the
+end_comment
+
+begin_comment
+comment|// same type?
+end_comment
+
+begin_comment
 comment|/**  * Type promoter that promotes {@link DocValues} during merge based on  * their {@link Type} and {@link #getValueSize()}  *   * @lucene.internal  */
 end_comment
 

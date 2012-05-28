@@ -785,7 +785,7 @@ DECL|method|segThere
 name|boolean
 name|segThere
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|,
 name|SegmentInfos
@@ -794,7 +794,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|si
 range|:
 name|infos
@@ -804,10 +804,14 @@ if|if
 condition|(
 name|si
 operator|.
+name|info
+operator|.
 name|name
 operator|.
 name|equals
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|name
@@ -1170,7 +1174,7 @@ name|maxSegmentCount
 parameter_list|,
 name|Map
 argument_list|<
-name|SegmentInfo
+name|SegmentInfoPerCommit
 argument_list|,
 name|Boolean
 argument_list|>
@@ -1214,7 +1218,7 @@ parameter_list|(
 name|SegmentInfos
 name|segments
 parameter_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|newSegment
 parameter_list|)
 block|{

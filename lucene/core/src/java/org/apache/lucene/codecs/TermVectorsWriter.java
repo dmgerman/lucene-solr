@@ -215,7 +215,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Codec API for writing term vectors:  *<p>  *<ol>  *<li>For every document, {@link #startDocument(int)} is called,  *       informing the Codec how many fields will be written.  *<li>{@link #startField(FieldInfo, int, boolean, boolean)} is called for   *       each field in the document, informing the codec how many terms  *       will be written for that field, and whether or not positions  *       or offsets are enabled.  *<li>Within each field, {@link #startTerm(BytesRef, int)} is called  *       for each term.  *<li>If offsets and/or positions are enabled, then   *       {@link #addPosition(int, int, int)} will be called for each term  *       occurrence.  *<li>After all documents have been written, {@link #finish(int)}   *       is called for verification/sanity-checks.  *<li>Finally the writer is closed ({@link #close()})  *</ol>  *   * @lucene.experimental  */
+comment|/**  * Codec API for writing term vectors:  *<p>  *<ol>  *<li>For every document, {@link #startDocument(int)} is called,  *       informing the Codec how many fields will be written.  *<li>{@link #startField(FieldInfo, int, boolean, boolean)} is called for   *       each field in the document, informing the codec how many terms  *       will be written for that field, and whether or not positions  *       or offsets are enabled.  *<li>Within each field, {@link #startTerm(BytesRef, int)} is called  *       for each term.  *<li>If offsets and/or positions are enabled, then   *       {@link #addPosition(int, int, int)} will be called for each term  *       occurrence.  *<li>After all documents have been written, {@link #finish(FieldInfos, int)}   *       is called for verification/sanity-checks.  *<li>Finally the writer is closed ({@link #close()})  *</ol>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -312,6 +312,9 @@ specifier|abstract
 name|void
 name|finish
 parameter_list|(
+name|FieldInfos
+name|fis
+parameter_list|,
 name|int
 name|numDocs
 parameter_list|)
@@ -445,7 +448,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Merges in the term vectors from the readers in     *<code>mergeState</code>. The default implementation skips    *  over deleted documents, and uses {@link #startDocument(int)},    *  {@link #startField(FieldInfo, int, boolean, boolean)},     *  {@link #startTerm(BytesRef, int)}, {@link #addPosition(int, int, int)},    *  and {@link #finish(int)},    *  returning the number of documents that were written.    *  Implementations can override this method for more sophisticated    *  merging (bulk-byte copying, etc). */
+comment|/** Merges in the term vectors from the readers in     *<code>mergeState</code>. The default implementation skips    *  over deleted documents, and uses {@link #startDocument(int)},    *  {@link #startField(FieldInfo, int, boolean, boolean)},     *  {@link #startTerm(BytesRef, int)}, {@link #addPosition(int, int, int)},    *  and {@link #finish(FieldInfos, int)},    *  returning the number of documents that were written.    *  Implementations can override this method for more sophisticated    *  merging (bulk-byte copying, etc). */
 DECL|method|merge
 specifier|public
 name|int
@@ -565,6 +568,10 @@ block|}
 block|}
 name|finish
 argument_list|(
+name|mergeState
+operator|.
+name|fieldInfos
+argument_list|,
 name|docCount
 argument_list|)
 expr_stmt|;

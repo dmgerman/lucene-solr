@@ -144,7 +144,7 @@ block|{
 DECL|field|si
 specifier|private
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|si
 decl_stmt|;
 DECL|field|liveDocs
@@ -172,7 +172,7 @@ DECL|method|SegmentReader
 specifier|public
 name|SegmentReader
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|si
 parameter_list|,
 name|int
@@ -198,6 +198,8 @@ argument_list|(
 name|this
 argument_list|,
 name|si
+operator|.
+name|info
 operator|.
 name|dir
 argument_list|,
@@ -227,6 +229,8 @@ comment|// NOTE: the bitvector is stored using the regular directory, not cfs
 name|liveDocs
 operator|=
 name|si
+operator|.
+name|info
 operator|.
 name|getCodec
 argument_list|()
@@ -272,7 +276,10 @@ name|numDocs
 operator|=
 name|si
 operator|.
-name|docCount
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 operator|-
 name|si
 operator|.
@@ -311,7 +318,7 @@ comment|// deletes file.  Used by openIfChanged.
 DECL|method|SegmentReader
 name|SegmentReader
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|si
 parameter_list|,
 name|SegmentCoreReaders
@@ -331,6 +338,8 @@ name|core
 argument_list|,
 name|si
 operator|.
+name|info
+operator|.
 name|getCodec
 argument_list|()
 operator|.
@@ -341,6 +350,8 @@ name|readLiveDocs
 argument_list|(
 name|si
 operator|.
+name|info
+operator|.
 name|dir
 argument_list|,
 name|si
@@ -350,7 +361,10 @@ argument_list|)
 argument_list|,
 name|si
 operator|.
-name|docCount
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 operator|-
 name|si
 operator|.
@@ -366,7 +380,7 @@ comment|// reader:
 DECL|method|SegmentReader
 name|SegmentReader
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|si
 parameter_list|,
 name|SegmentCoreReaders
@@ -601,7 +615,10 @@ comment|// Don't call ensureOpen() here (it could affect performance)
 return|return
 name|si
 operator|.
-name|docCount
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 return|;
 block|}
 comment|/** @lucene.internal */
@@ -680,11 +697,16 @@ name|toString
 argument_list|(
 name|si
 operator|.
+name|info
+operator|.
 name|dir
 argument_list|,
 name|si
 operator|.
-name|docCount
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 operator|-
 name|numDocs
 operator|-
@@ -705,12 +727,14 @@ block|{
 return|return
 name|si
 operator|.
+name|info
+operator|.
 name|name
 return|;
 block|}
-comment|/**    * Return the SegmentInfo of the segment this reader is reading.    */
+comment|/**    * Return the SegmentInfoPerCommit of the segment this reader is reading.    */
 DECL|method|getSegmentInfo
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|getSegmentInfo
 parameter_list|()
 block|{
@@ -730,6 +754,8 @@ comment|// cloned/reopened reader needs to commit, it may call
 comment|// this method on the closed original reader
 return|return
 name|si
+operator|.
+name|info
 operator|.
 name|dir
 return|;

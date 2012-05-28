@@ -522,7 +522,9 @@ name|segmentFileName
 argument_list|(
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
+operator|.
+name|name
 argument_list|,
 name|state
 operator|.
@@ -575,7 +577,9 @@ name|segmentFileName
 argument_list|(
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
+operator|.
+name|name
 argument_list|,
 name|state
 operator|.
@@ -629,7 +633,9 @@ name|segmentFileName
 argument_list|(
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
+operator|.
+name|name
 argument_list|,
 name|state
 operator|.
@@ -673,7 +679,9 @@ name|segmentFileName
 argument_list|(
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
+operator|.
+name|name
 argument_list|,
 name|state
 operator|.
@@ -708,7 +716,9 @@ name|segmentFileName
 argument_list|(
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
+operator|.
+name|name
 argument_list|,
 name|state
 operator|.
@@ -736,7 +746,10 @@ name|totalNumDocs
 operator|=
 name|state
 operator|.
-name|numDocs
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
 expr_stmt|;
 name|skipListWriter
 operator|=
@@ -747,9 +760,7 @@ name|skipInterval
 argument_list|,
 name|maxSkipLevels
 argument_list|,
-name|state
-operator|.
-name|numDocs
+name|totalNumDocs
 argument_list|,
 name|freqOut
 argument_list|,
@@ -942,7 +953,8 @@ name|indexOptions
 operator|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -983,7 +995,8 @@ name|DOCS_AND_FREQS_AND_POSITIONS
 operator|&&
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** Adds a new doc in this term.  If this returns null    *  then we just skip consuming positions/payloads. */

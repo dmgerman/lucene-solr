@@ -38,6 +38,8 @@ name|void
 name|processDocument
 parameter_list|(
 name|FieldInfos
+operator|.
+name|Builder
 name|fieldInfos
 parameter_list|)
 throws|throws

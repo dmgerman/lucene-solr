@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|io
 operator|.
 name|IOException
@@ -90,20 +80,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|SegmentWriteState
 import|;
 end_import
@@ -123,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Codec that reads the pre-flex-indexing postings  *  format.  It does not provide a writer because newly  *  written segments should use StandardCodec.  *  * @deprecated (4.0) This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
+comment|/** Codec that reads the pre-flex-indexing postings  *  format.  It does not provide a writer because newly  *  written segments should use the Codec configured on IndexWriter.  *  * @deprecated (4.0) This is only used to read indexes created  * before 4.0.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -245,39 +221,6 @@ operator|.
 name|termsIndexDivisor
 argument_list|)
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|files
-specifier|public
-name|void
-name|files
-parameter_list|(
-name|SegmentInfo
-name|info
-parameter_list|,
-name|String
-name|segmentSuffix
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-comment|// preflex fields have no segmentSuffix - we ignore it here
-name|Lucene3xFields
-operator|.
-name|files
-argument_list|(
-name|info
-argument_list|,
-name|files
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

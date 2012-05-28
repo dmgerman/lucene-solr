@@ -158,6 +158,20 @@ name|IndexOutput
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|CodecUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * Lucene 4.0 FieldInfos writer.  *   * @see Lucene40FieldInfosFormat  * @lucene.experimental  */
 end_comment
@@ -179,17 +193,22 @@ name|FIELD_INFOS_EXTENSION
 init|=
 literal|"fnm"
 decl_stmt|;
-comment|// per-field codec support, records index values for fields
+DECL|field|CODEC_NAME
+specifier|static
+specifier|final
+name|String
+name|CODEC_NAME
+init|=
+literal|"Lucene40FieldInfos"
+decl_stmt|;
 DECL|field|FORMAT_START
 specifier|static
 specifier|final
 name|int
 name|FORMAT_START
 init|=
-operator|-
-literal|4
+literal|0
 decl_stmt|;
-comment|// whenever you add a new format, make it 1 smaller (negative version logic)!
 DECL|field|FORMAT_CURRENT
 specifier|static
 specifier|final
@@ -306,10 +325,14 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|output
+name|CodecUtil
 operator|.
-name|writeVInt
+name|writeHeader
 argument_list|(
+name|output
+argument_list|,
+name|CODEC_NAME
+argument_list|,
 name|FORMAT_CURRENT
 argument_list|)
 expr_stmt|;
@@ -331,9 +354,15 @@ range|:
 name|infos
 control|)
 block|{
-assert|assert
+name|IndexOptions
+name|indexOptions
+init|=
 name|fi
 operator|.
+name|getIndexOptions
+argument_list|()
+decl_stmt|;
+assert|assert
 name|indexOptions
 operator|.
 name|compareTo
@@ -348,7 +377,8 @@ operator|||
 operator|!
 name|fi
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 assert|;
 name|byte
 name|bits
@@ -360,6 +390,7 @@ condition|(
 name|fi
 operator|.
 name|isIndexed
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -369,7 +400,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|storeTermVector
+name|hasVectors
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -379,7 +411,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|omitNorms
+name|omitsNorms
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -389,7 +422,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -397,8 +431,6 @@ name|STORE_PAYLOADS
 expr_stmt|;
 if|if
 condition|(
-name|fi
-operator|.
 name|indexOptions
 operator|==
 name|IndexOptions
@@ -414,8 +446,6 @@ block|}
 elseif|else
 if|if
 condition|(
-name|fi
-operator|.
 name|indexOptions
 operator|==
 name|IndexOptions
@@ -431,8 +461,6 @@ block|}
 elseif|else
 if|if
 condition|(
-name|fi
-operator|.
 name|indexOptions
 operator|==
 name|IndexOptions
@@ -456,7 +484,7 @@ argument_list|)
 expr_stmt|;
 name|output
 operator|.
-name|writeInt
+name|writeVInt
 argument_list|(
 name|fi
 operator|.
@@ -543,6 +571,16 @@ operator|.
 name|writeByte
 argument_list|(
 name|val
+argument_list|)
+expr_stmt|;
+name|output
+operator|.
+name|writeStringStringMap
+argument_list|(
+name|fi
+operator|.
+name|attributes
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

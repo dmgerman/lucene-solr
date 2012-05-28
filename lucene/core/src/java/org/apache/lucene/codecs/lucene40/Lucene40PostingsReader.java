@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -105,6 +95,8 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|IndexOptions
 import|;
 end_import
 
@@ -119,8 +111,20 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|IndexOptions
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|FieldInfos
 import|;
 end_import
 
@@ -323,6 +327,9 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
+name|FieldInfos
+name|fieldInfos
+parameter_list|,
 name|SegmentInfo
 name|segmentInfo
 parameter_list|,
@@ -359,12 +366,19 @@ argument_list|,
 name|ioContext
 argument_list|)
 expr_stmt|;
-comment|// this.segment = segmentInfo.name;
+comment|// TODO: hasProx should (somehow!) become codec private,
+comment|// but it's tricky because 1) FIS.hasProx is global (it
+comment|// could be all fields that have prox are written by a
+comment|// different codec), 2) the field may have had prox in
+comment|// the past but all docs w/ that field were deleted.
+comment|// Really we'd need to init prxOut lazily on write, and
+comment|// then somewhere record that we actually wrote it so we
+comment|// know whether to open on read:
 if|if
 condition|(
-name|segmentInfo
+name|fieldInfos
 operator|.
-name|getHasProx
+name|hasProx
 argument_list|()
 condition|)
 block|{
@@ -425,77 +439,6 @@ block|{
 name|proxIn
 operator|=
 literal|null
-expr_stmt|;
-block|}
-block|}
-DECL|method|files
-specifier|public
-specifier|static
-name|void
-name|files
-parameter_list|(
-name|SegmentInfo
-name|segmentInfo
-parameter_list|,
-name|String
-name|segmentSuffix
-parameter_list|,
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|files
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|files
-operator|.
-name|add
-argument_list|(
-name|IndexFileNames
-operator|.
-name|segmentFileName
-argument_list|(
-name|segmentInfo
-operator|.
-name|name
-argument_list|,
-name|segmentSuffix
-argument_list|,
-name|Lucene40PostingsFormat
-operator|.
-name|FREQ_EXTENSION
-argument_list|)
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|segmentInfo
-operator|.
-name|getHasProx
-argument_list|()
-condition|)
-block|{
-name|files
-operator|.
-name|add
-argument_list|(
-name|IndexFileNames
-operator|.
-name|segmentFileName
-argument_list|(
-name|segmentInfo
-operator|.
-name|name
-argument_list|,
-name|segmentSuffix
-argument_list|,
-name|Lucene40PostingsFormat
-operator|.
-name|PROX_EXTENSION
-argument_list|)
-argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -1003,7 +946,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -1080,7 +1024,8 @@ name|needsFreqs
 operator|&&
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -1284,7 +1229,8 @@ name|hasOffsets
 init|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -1313,7 +1259,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 operator|||
 name|hasOffsets
 condition|)
@@ -1672,7 +1619,8 @@ name|indexOmitsTF
 operator|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -1682,13 +1630,15 @@ name|storePayloads
 operator|=
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 expr_stmt|;
 name|storeOffsets
 operator|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -3494,7 +3444,8 @@ block|{
 assert|assert
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -3504,7 +3455,8 @@ assert|assert
 operator|!
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 assert|;
 name|this
 operator|.
@@ -4233,7 +4185,8 @@ name|storeOffsets
 operator|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(
@@ -4248,12 +4201,14 @@ name|storePayloads
 operator|=
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 expr_stmt|;
 assert|assert
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|.
 name|compareTo
 argument_list|(

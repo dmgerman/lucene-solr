@@ -314,7 +314,9 @@ name|segmentName
 operator|=
 name|state
 operator|.
-name|segmentName
+name|segmentInfo
+operator|.
+name|name
 expr_stmt|;
 name|this
 operator|.

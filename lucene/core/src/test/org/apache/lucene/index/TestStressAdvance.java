@@ -252,6 +252,23 @@ argument_list|(
 literal|4097
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: numDocs="
+operator|+
+name|num
+argument_list|)
+expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -321,6 +338,23 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nTEST: doc upto "
+operator|+
+name|id
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|w
 operator|.

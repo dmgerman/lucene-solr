@@ -498,7 +498,8 @@ name|indexOptions
 operator|=
 name|fieldInfo
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -525,7 +526,8 @@ name|storePayloads
 operator|=
 name|fieldInfo
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 expr_stmt|;
 name|wrappedPostingsWriter
 operator|.

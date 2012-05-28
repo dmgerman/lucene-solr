@@ -330,7 +330,8 @@ block|{
 assert|assert
 name|fi
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -339,7 +340,8 @@ operator|||
 operator|!
 name|fi
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 assert|;
 name|byte
 name|bits
@@ -351,6 +353,7 @@ condition|(
 name|fi
 operator|.
 name|isIndexed
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -360,7 +363,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|storeTermVector
+name|hasVectors
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -370,7 +374,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|omitNorms
+name|omitsNorms
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -380,7 +385,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|storePayloads
+name|hasPayloads
+argument_list|()
 condition|)
 name|bits
 operator||=
@@ -390,7 +396,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -407,7 +414,8 @@ if|if
 condition|(
 name|fi
 operator|.
-name|indexOptions
+name|getIndexOptions
+argument_list|()
 operator|==
 name|IndexOptions
 operator|.
@@ -450,11 +458,13 @@ condition|(
 name|fi
 operator|.
 name|isIndexed
+argument_list|()
 operator|&&
 operator|!
 name|fi
 operator|.
-name|omitNorms
+name|omitsNorms
+argument_list|()
 condition|)
 block|{
 comment|// to allow null norm types we need to indicate if norms are written
@@ -481,6 +491,15 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+assert|assert
+name|fi
+operator|.
+name|attributes
+argument_list|()
+operator|==
+literal|null
+assert|;
+comment|// not used or supported
 block|}
 block|}
 finally|finally

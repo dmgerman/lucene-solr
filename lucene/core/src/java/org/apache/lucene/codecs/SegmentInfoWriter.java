@@ -36,7 +36,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfos
+name|FieldInfos
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SegmentInfo
 import|;
 end_import
 
@@ -65,81 +79,38 @@ operator|.
 name|store
 operator|.
 name|IOContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|IndexOutput
 import|;
 end_import
 
 begin_comment
-comment|/**  * Specifies an API for classes that can write out {@link SegmentInfos} data.  * @lucene.experimental  */
+comment|/**  * Specifies an API for classes that can write out {@link SegmentInfo} data.  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|SegmentInfosWriter
+DECL|class|SegmentInfoWriter
 specifier|public
 specifier|abstract
 class|class
-name|SegmentInfosWriter
+name|SegmentInfoWriter
 block|{
-comment|/**    * Write {@link SegmentInfos} data without closing the output. The returned    * output will become finished only after a successful completion of    * "two phase commit" that first calls {@link #prepareCommit(IndexOutput)} and    * then {@link #finishCommit(IndexOutput)}.    * @param dir directory to write data to    * @param segmentsFileName name of the "segments_N" file to create    * @param infos data to write    * @return an instance of {@link IndexOutput} to be used in subsequent "two    * phase commit" operations as described above.    * @throws IOException    */
-DECL|method|writeInfos
+comment|/**    * Write {@link SegmentInfo} data.     * @throws IOException    */
+DECL|method|write
 specifier|public
 specifier|abstract
-name|IndexOutput
-name|writeInfos
+name|void
+name|write
 parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|String
-name|segmentsFileName
+name|SegmentInfo
+name|info
 parameter_list|,
-name|String
-name|codecID
-parameter_list|,
-name|SegmentInfos
-name|infos
+name|FieldInfos
+name|fis
 parameter_list|,
 name|IOContext
-name|context
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * First phase of the two-phase commit - ensure that all output can be    * successfully written out.    * @param out an instance of {@link IndexOutput} returned from a previous    * call to {@link #writeInfos(Directory, String, String, SegmentInfos, IOContext)}.    * @throws IOException    */
-DECL|method|prepareCommit
-specifier|public
-specifier|abstract
-name|void
-name|prepareCommit
-parameter_list|(
-name|IndexOutput
-name|out
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Second phase of the two-phase commit. In this step the output should be    * finalized and closed.    * @param out an instance of {@link IndexOutput} returned from a previous    * call to {@link #writeInfos(Directory, String, String, SegmentInfos, IOContext)}.    * @throws IOException    */
-DECL|method|finishCommit
-specifier|public
-specifier|abstract
-name|void
-name|finishCommit
-parameter_list|(
-name|IndexOutput
-name|out
+name|ioContext
 parameter_list|)
 throws|throws
 name|IOException

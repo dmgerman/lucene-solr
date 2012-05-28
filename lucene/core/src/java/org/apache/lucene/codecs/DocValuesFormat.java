@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -78,20 +68,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|SegmentReadState
 import|;
 end_import
@@ -107,6 +83,7 @@ specifier|abstract
 class|class
 name|DocValuesFormat
 block|{
+comment|/** Consumes (writes) doc values during indexing. */
 DECL|method|docsConsumer
 specifier|public
 specifier|abstract
@@ -119,6 +96,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Produces (reads) doc values during reading/searching. */
 DECL|method|docsProducer
 specifier|public
 specifier|abstract
@@ -127,24 +105,6 @@ name|docsProducer
 parameter_list|(
 name|SegmentReadState
 name|state
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-DECL|method|files
-specifier|public
-specifier|abstract
-name|void
-name|files
-parameter_list|(
-name|SegmentInfo
-name|info
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|files
 parameter_list|)
 throws|throws
 name|IOException

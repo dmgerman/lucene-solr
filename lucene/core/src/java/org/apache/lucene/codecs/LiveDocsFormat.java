@@ -32,7 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Set
+name|Collection
 import|;
 end_import
 
@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfo
+name|SegmentInfoPerCommit
 import|;
 end_import
 
@@ -117,7 +117,7 @@ specifier|abstract
 class|class
 name|LiveDocsFormat
 block|{
-comment|/** creates a new mutablebits, with all bits set, for the specified size */
+comment|/** Creates a new MutableBits, with all bits set, for the specified size. */
 DECL|method|newLiveDocs
 specifier|public
 specifier|abstract
@@ -130,7 +130,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** creates a new mutablebits of the same bits set and size of existing */
+comment|/** Creates a new mutablebits of the same bits set and size of existing. */
 DECL|method|newLiveDocs
 specifier|public
 specifier|abstract
@@ -143,7 +143,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** reads bits from a file */
+comment|/** Read live docs bits. */
 DECL|method|readLiveDocs
 specifier|public
 specifier|abstract
@@ -153,7 +153,7 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|,
 name|IOContext
@@ -162,7 +162,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** writes bits to a file */
+comment|/** Persist live docs bits.  Use {@link    *  SegmentInfoPerCommit#getNextDelGen} to determine the    *  generation of the deletes file you should write to. */
 DECL|method|writeLiveDocs
 specifier|public
 specifier|abstract
@@ -175,8 +175,11 @@ parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
+parameter_list|,
+name|int
+name|newDelCount
 parameter_list|,
 name|IOContext
 name|context
@@ -184,16 +187,17 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Records all files in use by this {@link SegmentInfoPerCommit} into the files argument. */
 DECL|method|files
 specifier|public
 specifier|abstract
 name|void
 name|files
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|,
-name|Set
+name|Collection
 argument_list|<
 name|String
 argument_list|>

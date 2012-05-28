@@ -128,6 +128,15 @@ name|long
 name|bytes
 parameter_list|)
 block|{
+if|if
+condition|(
+name|bytes
+operator|==
+literal|1
+condition|)
+block|{
+return|return;
+block|}
 comment|// TODO: this is purely instantaneous rate; maybe we
 comment|// should also offer decayed recent history one?
 specifier|final

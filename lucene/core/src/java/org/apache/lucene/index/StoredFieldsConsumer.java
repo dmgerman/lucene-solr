@@ -231,10 +231,18 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
+name|int
+name|numDocs
+init|=
 name|state
 operator|.
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
 name|numDocs
 operator|>
 literal|0
@@ -252,8 +260,6 @@ argument_list|)
 expr_stmt|;
 name|fill
 argument_list|(
-name|state
-operator|.
 name|numDocs
 argument_list|)
 expr_stmt|;
@@ -273,6 +279,8 @@ name|finish
 argument_list|(
 name|state
 operator|.
+name|fieldInfos
+argument_list|,
 name|numDocs
 argument_list|)
 expr_stmt|;
@@ -329,7 +337,7 @@ name|directory
 argument_list|,
 name|docWriter
 operator|.
-name|getSegment
+name|getSegmentInfo
 argument_list|()
 argument_list|,
 name|context

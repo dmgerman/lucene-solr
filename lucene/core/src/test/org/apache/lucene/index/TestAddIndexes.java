@@ -174,7 +174,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SegmentInfosFormat
+name|SegmentInfoFormat
 import|;
 end_import
 
@@ -298,7 +298,7 @@ name|codecs
 operator|.
 name|lucene40
 operator|.
-name|Lucene40SegmentInfosFormat
+name|Lucene40SegmentInfoFormat
 import|;
 end_import
 
@@ -6814,7 +6814,7 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// we should now see segments_X,
-comment|// segments.gen,_Y.cfs,_Y.cfe, _Z.fnx
+comment|// segments.gen,_Y.cfs,_Y.cfe, _Z.si
 name|assertEquals
 argument_list|(
 literal|"Only one compound segment should exist, but got: "
@@ -6829,7 +6829,7 @@ name|listAll
 argument_list|()
 argument_list|)
 argument_list|,
-literal|4
+literal|5
 argument_list|,
 name|dir
 operator|.
@@ -6939,15 +6939,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|segmentInfosFormat
+DECL|method|segmentInfoFormat
 specifier|public
-name|SegmentInfosFormat
-name|segmentInfosFormat
+name|SegmentInfoFormat
+name|segmentInfoFormat
 parameter_list|()
 block|{
 return|return
 operator|new
-name|Lucene40SegmentInfosFormat
+name|Lucene40SegmentInfoFormat
 argument_list|()
 return|;
 block|}

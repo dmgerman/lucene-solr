@@ -873,7 +873,8 @@ name|assertFalse
 argument_list|(
 name|fieldInfo
 operator|.
-name|omitNorms
+name|omitsNorms
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -881,6 +882,7 @@ argument_list|(
 name|fieldInfo
 operator|.
 name|isIndexed
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -998,7 +1000,8 @@ name|assertFalse
 argument_list|(
 name|fi
 operator|.
-name|omitNorms
+name|omitsNorms
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1006,6 +1009,7 @@ argument_list|(
 name|fi
 operator|.
 name|isIndexed
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertFalse
@@ -1036,7 +1040,8 @@ name|assertFalse
 argument_list|(
 name|fi
 operator|.
-name|omitNorms
+name|omitsNorms
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1044,6 +1049,7 @@ argument_list|(
 name|fi
 operator|.
 name|isIndexed
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertTrue

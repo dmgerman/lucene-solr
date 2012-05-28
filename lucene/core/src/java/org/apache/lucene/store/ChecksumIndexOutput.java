@@ -239,59 +239,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Starts but does not complete the commit of this file (=    * writing of the final checksum at the end).  After this    * is called must call {@link #finishCommit} and the    * {@link #close} to complete the commit.    */
-DECL|method|prepareCommit
-specifier|public
-name|void
-name|prepareCommit
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-specifier|final
-name|long
-name|checksum
-init|=
-name|getChecksum
-argument_list|()
-decl_stmt|;
-comment|// Intentionally write a mismatched checksum.  This is
-comment|// because we want to 1) test, as best we can, that we
-comment|// are able to write a long to the file, but 2) not
-comment|// actually "commit" the file yet.  This (prepare
-comment|// commit) is phase 1 of a two-phase commit.
-specifier|final
-name|long
-name|pos
-init|=
-name|main
-operator|.
-name|getFilePointer
-argument_list|()
-decl_stmt|;
-name|main
-operator|.
-name|writeLong
-argument_list|(
-name|checksum
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-name|main
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-name|main
-operator|.
-name|seek
-argument_list|(
-name|pos
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** See {@link #prepareCommit} */
+comment|/** writes the checksum */
 DECL|method|finishCommit
 specifier|public
 name|void

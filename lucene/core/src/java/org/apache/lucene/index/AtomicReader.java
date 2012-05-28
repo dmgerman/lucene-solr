@@ -691,7 +691,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Get the {@link FieldInfos} describing all fields in    * this reader.  NOTE: do not make any changes to the    * returned FieldInfos!    *    * @lucene.experimental    */
+comment|/**    * Get the {@link FieldInfos} describing all fields in    * this reader.    * @lucene.experimental    */
 DECL|method|getFieldInfos
 specifier|public
 specifier|abstract

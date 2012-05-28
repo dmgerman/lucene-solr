@@ -164,7 +164,7 @@ name|index
 operator|.
 name|FieldInfos
 operator|.
-name|FieldNumberBiMap
+name|FieldNumbers
 import|;
 end_import
 
@@ -368,7 +368,7 @@ parameter_list|,
 name|IndexWriter
 name|writer
 parameter_list|,
-name|FieldNumberBiMap
+name|FieldNumbers
 name|globalFieldNumbers
 parameter_list|,
 name|BufferedDeletesStream
@@ -1909,8 +1909,15 @@ name|newSegment
 operator|!=
 literal|null
 assert|;
+assert|assert
+name|newSegment
+operator|.
+name|segmentInfo
+operator|!=
+literal|null
+assert|;
 specifier|final
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|segInfo
 init|=
 name|indexWriter

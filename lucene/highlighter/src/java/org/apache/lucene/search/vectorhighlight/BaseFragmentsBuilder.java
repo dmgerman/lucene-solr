@@ -917,7 +917,8 @@ name|setStoreTermVectors
 argument_list|(
 name|fieldInfo
 operator|.
-name|storeTermVector
+name|hasVectors
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|fields

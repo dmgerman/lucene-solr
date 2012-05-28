@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.appending
+DECL|package|org.apache.lucene.codecs
 package|package
 name|org
 operator|.
@@ -9,8 +9,6 @@ operator|.
 name|lucene
 operator|.
 name|codecs
-operator|.
-name|appending
 package|;
 end_package
 
@@ -26,62 +24,37 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
+name|index
 operator|.
-name|SegmentInfosWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|Lucene40SegmentInfosFormat
+name|SegmentInfo
 import|;
 end_import
 
 begin_comment
-comment|/**  * Append-only SegmentInfos format.  *<p>  * Only a writer is supplied, as the format is written   * the same as {@link Lucene40SegmentInfosFormat}.  *   * @see AppendingSegmentInfosWriter  */
+comment|/**  * Expert: Controls the format of the   * {@link SegmentInfo} (segment metadata file).  *<p>  *   * @see SegmentInfo  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|AppendingSegmentInfosFormat
+DECL|class|SegmentInfoFormat
 specifier|public
+specifier|abstract
 class|class
-name|AppendingSegmentInfosFormat
-extends|extends
-name|Lucene40SegmentInfosFormat
+name|SegmentInfoFormat
 block|{
-DECL|field|writer
-specifier|private
-specifier|final
-name|SegmentInfosWriter
-name|writer
-init|=
-operator|new
-name|AppendingSegmentInfosWriter
-argument_list|()
-decl_stmt|;
-annotation|@
-name|Override
+DECL|method|getSegmentInfosReader
+specifier|public
+specifier|abstract
+name|SegmentInfoReader
+name|getSegmentInfosReader
+parameter_list|()
+function_decl|;
 DECL|method|getSegmentInfosWriter
 specifier|public
-name|SegmentInfosWriter
+specifier|abstract
+name|SegmentInfoWriter
 name|getSegmentInfosWriter
 parameter_list|()
-block|{
-return|return
-name|writer
-return|;
-block|}
+function_decl|;
 block|}
 end_class
 

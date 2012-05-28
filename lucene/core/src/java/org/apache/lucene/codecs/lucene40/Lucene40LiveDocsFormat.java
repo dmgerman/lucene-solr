@@ -34,7 +34,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Set
+name|Collection
 import|;
 end_import
 
@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfo
+name|SegmentInfoPerCommit
 import|;
 end_import
 
@@ -263,7 +263,7 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|,
 name|IOContext
@@ -279,6 +279,8 @@ name|IndexFileNames
 operator|.
 name|fileNameFromGeneration
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|name
@@ -313,8 +315,34 @@ argument_list|()
 operator|==
 name|info
 operator|.
-name|docCount
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 operator|-
+name|info
+operator|.
+name|getDelCount
+argument_list|()
+operator|:
+literal|"liveDocs.count()="
+operator|+
+name|liveDocs
+operator|.
+name|count
+argument_list|()
+operator|+
+literal|" info.docCount="
+operator|+
+name|info
+operator|.
+name|info
+operator|.
+name|getDocCount
+argument_list|()
+operator|+
+literal|" info.getDelCount()="
+operator|+
 name|info
 operator|.
 name|getDelCount
@@ -328,7 +356,10 @@ argument_list|()
 operator|==
 name|info
 operator|.
-name|docCount
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 assert|;
 return|return
 name|liveDocs
@@ -347,8 +378,11 @@ parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
+parameter_list|,
+name|int
+name|newDelCount
 parameter_list|,
 name|IOContext
 name|context
@@ -365,13 +399,15 @@ name|fileNameFromGeneration
 argument_list|(
 name|info
 operator|.
+name|info
+operator|.
 name|name
 argument_list|,
 name|DELETES_EXTENSION
 argument_list|,
 name|info
 operator|.
-name|getDelGen
+name|getNextDelGen
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -392,12 +428,17 @@ argument_list|()
 operator|==
 name|info
 operator|.
-name|docCount
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 operator|-
 name|info
 operator|.
 name|getDelCount
 argument_list|()
+operator|-
+name|newDelCount
 assert|;
 assert|assert
 name|liveDocs
@@ -407,7 +448,10 @@ argument_list|()
 operator|==
 name|info
 operator|.
-name|docCount
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 assert|;
 name|liveDocs
 operator|.
@@ -428,10 +472,10 @@ specifier|public
 name|void
 name|files
 parameter_list|(
-name|SegmentInfo
+name|SegmentInfoPerCommit
 name|info
 parameter_list|,
-name|Set
+name|Collection
 argument_list|<
 name|String
 argument_list|>
@@ -456,6 +500,8 @@ name|IndexFileNames
 operator|.
 name|fileNameFromGeneration
 argument_list|(
+name|info
+operator|.
 name|info
 operator|.
 name|name

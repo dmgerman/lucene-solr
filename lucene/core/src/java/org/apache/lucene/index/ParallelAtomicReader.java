@@ -128,10 +128,6 @@ specifier|private
 specifier|final
 name|FieldInfos
 name|fieldInfos
-init|=
-operator|new
-name|FieldInfos
-argument_list|()
 decl_stmt|;
 DECL|field|fields
 specifier|private
@@ -470,6 +466,18 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|// TODO: make this read-only in a cleaner way?
+name|FieldInfos
+operator|.
+name|Builder
+name|builder
+init|=
+operator|new
+name|FieldInfos
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
 comment|// build FieldInfos and fieldToReader map:
 for|for
 control|(
@@ -513,7 +521,7 @@ name|name
 argument_list|)
 condition|)
 block|{
-name|fieldInfos
+name|builder
 operator|.
 name|add
 argument_list|(
@@ -535,7 +543,8 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|storeTermVector
+name|hasVectors
+argument_list|()
 condition|)
 block|{
 name|tvFieldToReader
@@ -553,6 +562,13 @@ block|}
 block|}
 block|}
 block|}
+name|fieldInfos
+operator|=
+name|builder
+operator|.
+name|finish
+argument_list|()
+expr_stmt|;
 comment|// build Fields instance
 for|for
 control|(
@@ -968,6 +984,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * NOTE: the returned field numbers will likely not    * correspond to the actual field numbers in the underlying    * readers, and codec metadata ({@link FieldInfo#getAttribute(String)}    * will be unavailable.    */
 annotation|@
 name|Override
 DECL|method|getFieldInfos

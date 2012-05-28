@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -26,66 +36,67 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfos
+name|SegmentInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
 import|;
 end_import
 
 begin_comment
-comment|// javadocs
-end_comment
-
-begin_comment
-comment|/**  * Expert: Controls the format of the   * {@link SegmentInfos} (segments file).  *<p>  * NOTE: This isn't a per-segment file. If you change the format, other versions  * of lucene won't be able to read it.  *   * @see SegmentInfos  * @lucene.experimental  */
-end_comment
-
-begin_comment
-comment|// TODO: would be great to handle this situation better.
-end_comment
-
-begin_comment
-comment|// ideally a custom implementation could implement two-phase commit differently,
-end_comment
-
-begin_comment
-comment|// (e.g. atomic rename), and ideally all versions of lucene could still read it.
-end_comment
-
-begin_comment
-comment|// but this is just reflecting reality as it is today...
-end_comment
-
-begin_comment
-comment|//
-end_comment
-
-begin_comment
-comment|// also, perhaps the name should change (to cover all global files like .fnx?)
-end_comment
-
-begin_comment
-comment|// then again, maybe we can just remove that file...
+comment|/**  * Specifies an API for classes that can read {@link SegmentInfo} information.  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|SegmentInfosFormat
+DECL|class|SegmentInfoReader
 specifier|public
 specifier|abstract
 class|class
-name|SegmentInfosFormat
+name|SegmentInfoReader
 block|{
-DECL|method|getSegmentInfosReader
+comment|/**    * Read {@link SegmentInfo} data from a directory.    * @param directory directory to read from    * @param segmentName name of the segment to read    * @return infos instance to be populated with data    * @throws IOException    */
+DECL|method|read
 specifier|public
 specifier|abstract
-name|SegmentInfosReader
-name|getSegmentInfosReader
-parameter_list|()
-function_decl|;
-DECL|method|getSegmentInfosWriter
-specifier|public
-specifier|abstract
-name|SegmentInfosWriter
-name|getSegmentInfosWriter
-parameter_list|()
+name|SegmentInfo
+name|read
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|,
+name|String
+name|segmentName
+parameter_list|,
+name|IOContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_class
