@@ -640,6 +640,19 @@ return|return
 name|numTermsInField
 return|;
 block|}
+comment|/**    * @return Whether this<code>DocTermOrds</code> instance is empty.    */
+DECL|method|isEmpty
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|index
+operator|==
+literal|null
+return|;
+block|}
 comment|/** Subclass can override this */
 DECL|method|visitTerm
 specifier|protected

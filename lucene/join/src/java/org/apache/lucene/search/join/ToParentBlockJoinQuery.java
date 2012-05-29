@@ -226,22 +226,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Scorer
-operator|.
-name|ChildScorer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|Weight
 import|;
 end_import
@@ -316,30 +300,6 @@ name|ToParentBlockJoinQuery
 extends|extends
 name|Query
 block|{
-comment|/** How to aggregate multiple child hit scores into a    *  single parent score. */
-DECL|enum|ScoreMode
-specifier|public
-specifier|static
-enum|enum
-name|ScoreMode
-block|{
-comment|/** Do no scoring. */
-DECL|enum constant|None
-name|None
-block|,
-comment|/** Parent hit's score is the average of all child         scores. */
-DECL|enum constant|Avg
-name|Avg
-block|,
-comment|/** Parent hit's score is the max of all child         scores. */
-DECL|enum constant|Max
-name|Max
-block|,
-comment|/** Parent hit's score is the sum of all child         scores. */
-DECL|enum constant|Total
-name|Total
-block|}
-empty_stmt|;
 DECL|field|parentsFilter
 specifier|private
 specifier|final
