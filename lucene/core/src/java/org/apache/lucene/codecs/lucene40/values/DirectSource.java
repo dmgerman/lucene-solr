@@ -223,6 +223,12 @@ argument_list|)
 decl_stmt|;
 name|ref
 operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
+name|ref
+operator|.
 name|grow
 argument_list|(
 name|sizeToRead
@@ -246,12 +252,6 @@ operator|.
 name|length
 operator|=
 name|sizeToRead
-expr_stmt|;
-name|ref
-operator|.
-name|offset
-operator|=
-literal|0
 expr_stmt|;
 return|return
 name|ref

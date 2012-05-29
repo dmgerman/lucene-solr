@@ -1532,6 +1532,12 @@ argument_list|)
 decl_stmt|;
 name|bytesRef
 operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
+name|bytesRef
+operator|.
 name|grow
 argument_list|(
 name|length
@@ -1555,12 +1561,6 @@ operator|.
 name|length
 operator|=
 name|length
-expr_stmt|;
-name|bytesRef
-operator|.
-name|offset
-operator|=
-literal|0
 expr_stmt|;
 return|return
 name|bytesRef

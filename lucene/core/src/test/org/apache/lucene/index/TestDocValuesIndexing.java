@@ -5955,8 +5955,9 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 name|expected
-operator|.
-name|copyChars
+operator|=
+operator|new
+name|BytesRef
 argument_list|(
 name|entry
 operator|.
