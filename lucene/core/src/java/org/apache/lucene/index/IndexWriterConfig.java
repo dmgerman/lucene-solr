@@ -28,6 +28,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicBoolean
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -141,6 +155,20 @@ operator|.
 name|util
 operator|.
 name|PrintStreamInfoStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SetOnce
 import|;
 end_import
 
@@ -453,6 +481,15 @@ specifier|private
 name|Version
 name|matchVersion
 decl_stmt|;
+comment|// Used directly by IndexWriter:
+DECL|field|inUseByIndexWriter
+name|AtomicBoolean
+name|inUseByIndexWriter
+init|=
+operator|new
+name|AtomicBoolean
+argument_list|()
+decl_stmt|;
 comment|/**    * Creates a new config that with defaults that match the specified    * {@link Version} as well as the default {@link    * Analyzer}. If matchVersion is>= {@link    * Version#LUCENE_32}, {@link TieredMergePolicy} is used    * for merging; else {@link LogByteSizeMergePolicy}.    * Note that {@link TieredMergePolicy} is free to select    * non-contiguous merges, which means docIDs may not    * remain montonic over time.  If this is a problem you    * should switch to {@link LogByteSizeMergePolicy} or    * {@link LogDocMergePolicy}.    */
 DECL|method|IndexWriterConfig
 specifier|public
@@ -614,11 +651,29 @@ name|IndexWriterConfig
 name|clone
 parameter_list|()
 block|{
-comment|// Shallow clone is the only thing that's possible, since parameters like
-comment|// analyzer, index commit etc. do not implement Cloneable.
+name|IndexWriterConfig
+name|clone
+decl_stmt|;
+if|if
+condition|(
+name|inUseByIndexWriter
+operator|.
+name|get
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"cannot clone: this IndexWriterConfig is private to IndexWriter; make a new one instead"
+argument_list|)
+throw|;
+block|}
 try|try
 block|{
-return|return
+name|clone
+operator|=
 operator|(
 name|IndexWriterConfig
 operator|)
@@ -626,7 +681,7 @@ name|super
 operator|.
 name|clone
 argument_list|()
-return|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -643,6 +698,47 @@ name|e
 argument_list|)
 throw|;
 block|}
+comment|// Mostly shallow clone, but do a deepish clone of
+comment|// certain objects that have state that cannot be shared
+comment|// across IW instances:
+name|clone
+operator|.
+name|inUseByIndexWriter
+operator|=
+operator|new
+name|AtomicBoolean
+argument_list|()
+expr_stmt|;
+name|clone
+operator|.
+name|flushPolicy
+operator|=
+name|flushPolicy
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+name|clone
+operator|.
+name|indexerThreadPool
+operator|=
+name|indexerThreadPool
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+name|clone
+operator|.
+name|mergePolicy
+operator|=
+name|mergePolicy
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+return|return
+name|clone
+return|;
 block|}
 comment|/** Returns the default analyzer to use for indexing documents. */
 DECL|method|getAnalyzer

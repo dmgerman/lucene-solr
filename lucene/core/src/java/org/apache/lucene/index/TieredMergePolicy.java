@@ -735,19 +735,6 @@ throw|;
 block|}
 block|}
 block|}
-DECL|field|segmentByteSizeDescending
-specifier|private
-specifier|final
-name|Comparator
-argument_list|<
-name|SegmentInfoPerCommit
-argument_list|>
-name|segmentByteSizeDescending
-init|=
-operator|new
-name|SegmentByteSizeDescending
-argument_list|()
-decl_stmt|;
 comment|/** Holds score and explanation for a single candidate    *  merge. */
 DECL|class|MergeScore
 specifier|protected
@@ -869,7 +856,9 @@ name|sort
 argument_list|(
 name|infosSorted
 argument_list|,
-name|segmentByteSizeDescending
+operator|new
+name|SegmentByteSizeDescending
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Compute total index bytes& print details about the index
@@ -2153,7 +2142,9 @@ name|sort
 argument_list|(
 name|eligible
 argument_list|,
-name|segmentByteSizeDescending
+operator|new
+name|SegmentByteSizeDescending
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -2503,7 +2494,9 @@ name|sort
 argument_list|(
 name|eligible
 argument_list|,
-name|segmentByteSizeDescending
+operator|new
+name|SegmentByteSizeDescending
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
