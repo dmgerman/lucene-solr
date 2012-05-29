@@ -605,7 +605,7 @@ name|TEST_VERSION_CURRENT
 init|=
 name|Version
 operator|.
-name|LUCENE_40
+name|LUCENE_50
 decl_stmt|;
 comment|/**    * True if and only if tests are run in verbose mode. If this flag is false    * tests are not expected to print any messages.    */
 DECL|field|VERBOSE

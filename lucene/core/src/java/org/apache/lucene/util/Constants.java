@@ -491,7 +491,7 @@ name|LUCENE_MAIN_VERSION
 init|=
 name|ident
 argument_list|(
-literal|"4.0"
+literal|"5.0"
 argument_list|)
 decl_stmt|;
 DECL|field|LUCENE_VERSION

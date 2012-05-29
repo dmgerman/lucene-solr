@@ -98,9 +98,16 @@ name|Deprecated
 DECL|enum constant|LUCENE_36
 name|LUCENE_36
 block|,
-comment|/** Match settings and bugs in Lucene's 4.0 release.     *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
+comment|/**    * Match settings and bugs in Lucene's 4.0 release.    * @deprecated (5.0) Use latest    */
+DECL|enum constant|Deprecated
+annotation|@
+name|Deprecated
 DECL|enum constant|LUCENE_40
 name|LUCENE_40
+block|,
+comment|/** Match settings and bugs in Lucene's 5.0 release.     *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
+DECL|enum constant|LUCENE_50
+name|LUCENE_50
 block|,
 comment|/* Add new constants for later versions **here** to respect order! */
 comment|/**    *<p><b>WARNING</b>: if you use this setting, and then    * upgrade to a newer release of Lucene, sizable changes    * may happen.  If backwards compatibility is important    * then you should instead explicitly specify an actual    * version.    *<p>    * If you use this constant then you  may need to     *<b>re-index all of your documents</b> when upgrading    * Lucene, as the way text is indexed may have changed.     * Additionally, you may need to<b>re-test your entire    * application</b> to ensure it behaves as expected, as     * some defaults may have changed and may break functionality     * in your application.     * @deprecated Use an actual version instead.     */
