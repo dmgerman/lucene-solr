@@ -1749,13 +1749,14 @@ name|docBases
 argument_list|()
 argument_list|,
 operator|new
-name|int
+name|MergeState
+operator|.
+name|DocMap
 index|[
 name|values
 operator|.
 name|length
 index|]
-index|[]
 argument_list|,
 name|values
 argument_list|,
