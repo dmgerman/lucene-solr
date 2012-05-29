@@ -403,6 +403,18 @@ name|indexOptions
 decl_stmt|;
 if|if
 condition|(
+operator|!
+name|isIndexed
+condition|)
+block|{
+name|indexOptions
+operator|=
+literal|null
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
 operator|(
 name|bits
 operator|&
@@ -477,6 +489,8 @@ comment|// storePayloads=true when omitTFAP is also true,
 comment|// which is invalid.  We correct that, here:
 if|if
 condition|(
+name|isIndexed
+operator|&&
 name|indexOptions
 operator|.
 name|compareTo

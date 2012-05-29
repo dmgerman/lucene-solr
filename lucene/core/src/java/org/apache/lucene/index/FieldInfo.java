@@ -290,9 +290,7 @@ name|this
 operator|.
 name|indexOptions
 operator|=
-name|IndexOptions
-operator|.
-name|DOCS_AND_FREQS_AND_POSITIONS
+literal|null
 expr_stmt|;
 name|this
 operator|.
@@ -310,21 +308,6 @@ expr_stmt|;
 assert|assert
 name|checkConsistency
 argument_list|()
-assert|;
-assert|assert
-name|indexOptions
-operator|.
-name|compareTo
-argument_list|(
-name|IndexOptions
-operator|.
-name|DOCS_AND_FREQS_AND_POSITIONS
-argument_list|)
-operator|>=
-literal|0
-operator|||
-operator|!
-name|storePayloads
 assert|;
 block|}
 DECL|method|checkConsistency
@@ -359,9 +342,7 @@ assert|;
 assert|assert
 name|indexOptions
 operator|==
-name|IndexOptions
-operator|.
-name|DOCS_AND_FREQS_AND_POSITIONS
+literal|null
 assert|;
 block|}
 else|else
@@ -382,7 +363,6 @@ operator|==
 literal|null
 assert|;
 block|}
-block|}
 comment|// Cannot store payloads unless positions are indexed:
 assert|assert
 name|indexOptions
@@ -401,6 +381,7 @@ name|this
 operator|.
 name|storePayloads
 assert|;
+block|}
 return|return
 literal|true
 return|;
@@ -514,6 +495,24 @@ operator|!=
 name|indexOptions
 condition|)
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|indexOptions
+operator|==
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|indexOptions
+operator|=
+name|indexOptions
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|// downgrade
 name|this
 operator|.
@@ -536,6 +535,7 @@ name|indexOptions
 else|:
 name|indexOptions
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|this
@@ -563,25 +563,6 @@ block|}
 block|}
 block|}
 assert|assert
-name|this
-operator|.
-name|indexOptions
-operator|.
-name|compareTo
-argument_list|(
-name|IndexOptions
-operator|.
-name|DOCS_AND_FREQS_AND_POSITIONS
-argument_list|)
-operator|>=
-literal|0
-operator|||
-operator|!
-name|this
-operator|.
-name|storePayloads
-assert|;
-assert|assert
 name|checkConsistency
 argument_list|()
 assert|;
@@ -605,7 +586,7 @@ name|checkConsistency
 argument_list|()
 assert|;
 block|}
-comment|/** @return IndexOptions for the field */
+comment|/** @return IndexOptions for the field, or null if the field is not indexed */
 DECL|method|getIndexOptions
 specifier|public
 name|IndexOptions
