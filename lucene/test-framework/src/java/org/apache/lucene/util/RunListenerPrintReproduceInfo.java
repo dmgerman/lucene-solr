@@ -553,10 +553,9 @@ name|println
 argument_list|(
 literal|"NOTE: test params are: codec="
 operator|+
-name|Codec
+name|classEnvRule
 operator|.
-name|getDefault
-argument_list|()
+name|codec
 operator|+
 literal|", sim="
 operator|+
