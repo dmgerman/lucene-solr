@@ -176,6 +176,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+comment|/**    *<p>    * Determines the order to list word break suggestions    *</p>    */
 DECL|enum|BreakSuggestionSortMethod
 specifier|public
 enum|enum
