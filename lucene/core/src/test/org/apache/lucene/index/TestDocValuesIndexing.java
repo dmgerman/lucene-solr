@@ -80,20 +80,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|ByteDocValuesField
@@ -473,11 +459,6 @@ comment|/**  *   * Tests DocValues integration into IndexWriter& Codecs  *   */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
 DECL|class|TestDocValuesIndexing
 specifier|public
 class|class

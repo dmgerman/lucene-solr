@@ -398,34 +398,9 @@ argument_list|(
 name|field
 argument_list|)
 expr_stmt|;
-comment|// we generate aweful prefixes: good for testing.
-comment|// but for preflex codec, the test can be very slow, so use less iterations.
-specifier|final
-name|String
-name|codec
-init|=
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-decl_stmt|;
 name|int
 name|num
 init|=
-name|codec
-operator|.
-name|equals
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
-condition|?
-literal|200
-operator|*
-name|RANDOM_MULTIPLIER
-else|:
 name|atLeast
 argument_list|(
 literal|1000

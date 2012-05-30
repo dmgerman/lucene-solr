@@ -493,23 +493,26 @@ import|;
 end_import
 
 begin_comment
-comment|/*   Verify we can read the pre-4.0 file format, do searches   against it, and add documents to it. */
+comment|/*   Verify we can read the pre-5.0 file format, do searches   against it, and add documents to it. */
 end_comment
 
 begin_comment
-comment|// don't use 3.x codec, its unrealistic since it means
+comment|// note: add this if we make a 4.x impersonator
+end_comment
+
+begin_comment
+comment|// TODO: don't use 4.x codec, its unrealistic since it means
 end_comment
 
 begin_comment
 comment|// we won't even be running the actual code, only the impostor
 end_comment
 
+begin_comment
+comment|// @SuppressCodecs("Lucene4x")
+end_comment
+
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
 DECL|class|TestBackwardsCompatibility
 specifier|public
 class|class
@@ -526,7 +529,7 @@ comment|// index.<VERSION>.nocfs.zip *".  Then move those 2 zip
 comment|// files to your trunk checkout and add them to the
 comment|// oldNames array.
 comment|/*   public void testCreateCFS() throws IOException {     createIndex("index.cfs", true, false);   }    public void testCreateNoCFS() throws IOException {     createIndex("index.nocfs", false, false);   }   */
-comment|/*   // These are only needed for the special upgrade test to verify   // that also single-segment indexes are correctly upgraded by IndexUpgrader.   // You don't need them to be build for non-3.1 (the test is happy with just one   // "old" segment format, version is unimportant:      public void testCreateSingleSegmentCFS() throws IOException {     createIndex("index.singlesegment.cfs", true, true);   }    public void testCreateSingleSegmentNoCFS() throws IOException {     createIndex("index.singlesegment.nocfs", false, true);   }  */
+comment|/*   // These are only needed for the special upgrade test to verify   // that also single-segment indexes are correctly upgraded by IndexUpgrader.   // You don't need them to be build for non-4.0 (the test is happy with just one   // "old" segment format, version is unimportant:      public void testCreateSingleSegmentCFS() throws IOException {     createIndex("index.singlesegment.cfs", true, true);   }    public void testCreateSingleSegmentNoCFS() throws IOException {     createIndex("index.singlesegment.nocfs", false, true);   }  */
 DECL|field|oldNames
 specifier|final
 specifier|static
@@ -535,21 +538,9 @@ index|[]
 name|oldNames
 init|=
 block|{
-literal|"30.cfs"
+literal|"40.cfs"
 block|,
-literal|"30.nocfs"
-block|,
-literal|"31.cfs"
-block|,
-literal|"31.nocfs"
-block|,
-literal|"32.cfs"
-block|,
-literal|"32.nocfs"
-block|,
-literal|"34.cfs"
-block|,
-literal|"34.nocfs"
+literal|"40.nocfs"
 block|,   }
 decl_stmt|;
 DECL|field|unsupportedNames
@@ -586,7 +577,23 @@ block|,
 literal|"29.cfs"
 block|,
 literal|"29.nocfs"
-block|,   }
+block|,
+literal|"30.cfs"
+block|,
+literal|"30.nocfs"
+block|,
+literal|"31.cfs"
+block|,
+literal|"31.nocfs"
+block|,
+literal|"32.cfs"
+block|,
+literal|"32.nocfs"
+block|,
+literal|"34.cfs"
+block|,
+literal|"34.nocfs"
+block|}
 decl_stmt|;
 DECL|field|oldSingleSegmentNames
 specifier|final
@@ -596,9 +603,9 @@ index|[]
 name|oldSingleSegmentNames
 init|=
 block|{
-literal|"31.optimized.cfs"
+literal|"40.optimized.cfs"
 block|,
-literal|"31.optimized.nocfs"
+literal|"40.optimized.nocfs"
 block|,   }
 decl_stmt|;
 DECL|field|oldIndexDirs
@@ -1914,8 +1921,7 @@ argument_list|)
 operator|.
 name|scoreDocs
 decl_stmt|;
-comment|// First document should be #21 since it's norm was
-comment|// increased:
+comment|// First document should be #0
 name|Document
 name|d
 init|=
@@ -1938,7 +1944,7 @@ name|assertEquals
 argument_list|(
 literal|"didn't get the right document first"
 argument_list|,
-literal|"21"
+literal|"0"
 argument_list|,
 name|d
 operator|.
@@ -2012,7 +2018,7 @@ argument_list|(
 literal|"utf8"
 argument_list|)
 argument_list|,
-literal|"Lu\uD834\uDD1Ece\uD834\uDD60ne"
+literal|"lu\uD834\uDD1Ece\uD834\uDD60ne"
 argument_list|)
 argument_list|)
 argument_list|,
@@ -2160,6 +2166,12 @@ name|OpenMode
 operator|.
 name|APPEND
 argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// add 10 docs
@@ -2303,7 +2315,7 @@ name|assertEquals
 argument_list|(
 literal|"wrong first document"
 argument_list|,
-literal|"21"
+literal|"0"
 argument_list|,
 name|d
 operator|.
@@ -2354,6 +2366,12 @@ argument_list|(
 name|OpenMode
 operator|.
 name|APPEND
+argument_list|)
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2452,7 +2470,7 @@ name|assertEquals
 argument_list|(
 literal|"wrong first document"
 argument_list|,
-literal|"21"
+literal|"0"
 argument_list|,
 name|d
 operator|.
@@ -2559,7 +2577,7 @@ name|assertEquals
 argument_list|(
 literal|"wrong first document"
 argument_list|,
-literal|"21"
+literal|"0"
 argument_list|,
 name|d
 operator|.
@@ -4910,67 +4928,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-DECL|field|surrogatesIndexName
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|surrogatesIndexName
-init|=
-literal|"index.36.surrogates.zip"
-decl_stmt|;
-DECL|method|testSurrogates
-specifier|public
-name|void
-name|testSurrogates
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|File
-name|oldIndexDir
-init|=
-name|_TestUtil
-operator|.
-name|getTempDir
-argument_list|(
-literal|"surrogates"
-argument_list|)
-decl_stmt|;
-name|_TestUtil
-operator|.
-name|unzip
-argument_list|(
-name|getDataFile
-argument_list|(
-name|surrogatesIndexName
-argument_list|)
-argument_list|,
-name|oldIndexDir
-argument_list|)
-expr_stmt|;
-name|Directory
-name|dir
-init|=
-name|newFSDirectory
-argument_list|(
-name|oldIndexDir
-argument_list|)
-decl_stmt|;
-comment|// TODO: more tests
-name|_TestUtil
-operator|.
-name|checkIndex
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
-name|dir
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 end_class

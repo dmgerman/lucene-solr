@@ -1144,16 +1144,6 @@ name|docValuesFieldPrefix
 decl_stmt|;
 if|if
 condition|(
-literal|"Lucene3x"
-operator|.
-name|equals
-argument_list|(
-name|codec
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-operator|||
 name|doc
 operator|.
 name|getField
@@ -2147,25 +2137,11 @@ name|doRandomForceMerge
 argument_list|()
 expr_stmt|;
 block|}
-comment|// If we are writing with PreFlexRW, force a full
-comment|// IndexReader.open so terms are sorted in codepoint
-comment|// order during searching:
 if|if
 condition|(
 operator|!
 name|applyDeletions
 operator|||
-operator|!
-name|codec
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
-operator|&&
 name|r
 operator|.
 name|nextBoolean

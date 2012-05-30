@@ -634,26 +634,6 @@ name|TestSort
 extends|extends
 name|LuceneTestCase
 block|{
-comment|// true if our codec supports docvalues: true unless codec is preflex (3.x)
-DECL|field|supportsDocValues
-name|boolean
-name|supportsDocValues
-init|=
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
-operator|==
-literal|false
-decl_stmt|;
 DECL|field|NUM_STRINGS
 specifier|private
 specifier|static
@@ -1591,11 +1571,6 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -1620,7 +1595,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(
@@ -1654,11 +1628,6 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -1683,7 +1652,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(
@@ -1717,11 +1685,6 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 switch|switch
 condition|(
 name|stringDVType
@@ -1913,7 +1876,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-block|}
 if|if
 condition|(
 name|data
@@ -2039,11 +2001,6 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -2068,7 +2025,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(
@@ -2409,11 +2365,6 @@ name|num
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -2431,7 +2382,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|String
 name|num2
 init|=
@@ -2462,11 +2412,6 @@ name|num2
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -2484,7 +2429,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|doc
 operator|.
 name|add
@@ -2578,11 +2522,6 @@ name|numFixed
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -2602,7 +2541,6 @@ literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|String
 name|num2Fixed
 init|=
@@ -2628,11 +2566,6 @@ name|num2Fixed
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|doc
 operator|.
 name|add
@@ -2652,7 +2585,6 @@ literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|doc
 operator|.
 name|add
@@ -3585,11 +3517,6 @@ argument_list|,
 literal|"DJHFB"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|sort
 operator|.
 name|setSort
@@ -3771,7 +3698,6 @@ argument_list|,
 literal|"DJHFB"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|getDVStringSortType
 specifier|private
@@ -4531,24 +4457,6 @@ name|sort
 argument_list|)
 expr_stmt|;
 comment|// Doc values field, var length
-name|assumeFalse
-argument_list|(
-literal|"cannot work with preflex codec"
-argument_list|,
-literal|"Lucene3x"
-operator|.
-name|equals
-argument_list|(
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|sort
 operator|.
 name|setSort
@@ -6497,11 +6405,6 @@ argument_list|,
 literal|"BFHJD"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|sort
 operator|.
 name|setSort
@@ -6631,7 +6534,6 @@ argument_list|,
 literal|"BFHJD"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|// test sorting when the sort field is empty (undefined) for some of the documents
 DECL|method|testEmptyFieldSort
@@ -7258,11 +7160,6 @@ argument_list|,
 literal|"GICEA"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|sort
 operator|.
 name|setSort
@@ -7402,7 +7299,6 @@ argument_list|,
 literal|"GICEA"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|// test a variety of sorts using a parallel multisearcher
 DECL|method|testParallelMultiSort
@@ -9725,11 +9621,6 @@ argument_list|,
 literal|"IJZ"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|supportsDocValues
-condition|)
-block|{
 name|sort
 operator|.
 name|setSort
@@ -10227,7 +10118,6 @@ argument_list|,
 literal|"IJZ"
 argument_list|)
 expr_stmt|;
-block|}
 comment|// up to this point, all of the searches should have "sane"
 comment|// FieldCache behavior, and should have reused hte cache in several cases
 name|assertSaneFieldCaches
@@ -11252,14 +11142,6 @@ name|nextLong
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|assumeTrue
-argument_list|(
-literal|"cannot work with Lucene3x codec"
-argument_list|,
-name|defaultCodecSupportsDocValues
-argument_list|()
-argument_list|)
-expr_stmt|;
 specifier|final
 name|int
 name|NUM_DOCS

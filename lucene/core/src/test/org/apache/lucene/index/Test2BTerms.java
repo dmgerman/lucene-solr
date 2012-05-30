@@ -209,23 +209,7 @@ import|;
 end_import
 
 begin_comment
-comment|// NOTE: this test will fail w/ PreFlexRW codec!  (Because
-end_comment
-
-begin_comment
-comment|// this test uses full binary term space, but PreFlex cannot
-end_comment
-
-begin_comment
-comment|// handle this since it requires the terms are UTF8 bytes).
-end_comment
-
-begin_comment
-comment|//
-end_comment
-
-begin_comment
-comment|// Also, SimpleText codec will consume very large amounts of
+comment|// NOTE: SimpleText codec will consume very large amounts of
 end_comment
 
 begin_comment
@@ -233,7 +217,7 @@ comment|// disk (but, should run successfully).  Best to run w/
 end_comment
 
 begin_comment
-comment|// -Dtests.codec=Standard, and w/ plenty of RAM, eg:
+comment|// -Dtests.codec=<current codec>, and w/ plenty of RAM, eg:
 end_comment
 
 begin_comment
@@ -696,30 +680,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-literal|"Lucene3x"
-operator|.
-name|equals
-argument_list|(
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"this test cannot run with PreFlex codec"
-argument_list|)
-throw|;
-block|}
 name|System
 operator|.
 name|out

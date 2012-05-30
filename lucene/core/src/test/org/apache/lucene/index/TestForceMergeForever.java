@@ -326,8 +326,7 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-name|defaultCodecSupportsDocValues
-argument_list|()
+literal|true
 argument_list|)
 decl_stmt|;
 for|for

@@ -256,11 +256,7 @@ begin_class
 annotation|@
 name|SuppressCodecs
 argument_list|(
-block|{
 literal|"SimpleText"
-block|,
-literal|"Lucene3x"
-block|}
 argument_list|)
 DECL|class|TestCustomNorms
 specifier|public

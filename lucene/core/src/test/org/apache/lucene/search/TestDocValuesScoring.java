@@ -277,11 +277,6 @@ comment|/**  * Tests the use of indexdocvalues in scoring.  *   * In the example
 end_comment
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
 DECL|class|TestDocValuesScoring
 specifier|public
 class|class

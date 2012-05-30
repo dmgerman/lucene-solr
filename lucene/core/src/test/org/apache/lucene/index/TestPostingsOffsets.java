@@ -357,8 +357,6 @@ annotation|@
 name|SuppressCodecs
 argument_list|(
 block|{
-literal|"Lucene3x"
-block|,
 literal|"MockFixedIntBlock"
 block|,
 literal|"MockVariableIntBlock"

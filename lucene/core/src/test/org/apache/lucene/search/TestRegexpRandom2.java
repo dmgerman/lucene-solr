@@ -925,28 +925,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// we generate aweful regexps: good for testing.
-comment|// but for preflex codec, the test can be very slow, so use less iterations.
 name|int
 name|num
 init|=
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
-condition|?
-literal|100
-operator|*
-name|RANDOM_MULTIPLIER
-else|:
 name|atLeast
 argument_list|(
 literal|1000

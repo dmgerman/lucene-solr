@@ -347,11 +347,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
 DECL|class|TestTypePromotion
 specifier|public
 class|class

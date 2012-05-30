@@ -326,25 +326,11 @@ block|}
 block|}
 else|else
 block|{
+comment|// note: re-enable this if we create a 4.x impersonator,
+comment|// and if its format is actually different than the real 4.x (unlikely)
 comment|// TODO: the non-fork code could simply enable impersonation?
-name|assumeFalse
-argument_list|(
-literal|"does not support PreFlex, see LUCENE-3992"
-argument_list|,
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|// assumeFalse("does not support PreFlex, see LUCENE-3992",
+comment|//    Codec.getDefault().getName().equals("Lucene4x"));
 comment|// we are the fork, setup a crashing thread
 specifier|final
 name|int

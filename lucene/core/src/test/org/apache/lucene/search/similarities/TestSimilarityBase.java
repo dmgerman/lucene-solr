@@ -3117,24 +3117,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|assumeFalse
-argument_list|(
-literal|"PreFlex codec does not support the stats necessary for this test!"
-argument_list|,
-literal|"Lucene3x"
-operator|.
-name|equals
-argument_list|(
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Query
 name|q
 init|=

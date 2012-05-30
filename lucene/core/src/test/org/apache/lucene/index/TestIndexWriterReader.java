@@ -6082,24 +6082,6 @@ name|Exception
 block|{
 comment|// Some Codecs don't honor the ReaderTermsIndexDivisor, so skip the test if
 comment|// they're picked.
-name|assumeFalse
-argument_list|(
-literal|"PreFlex codec does not support ReaderTermsIndexDivisor!"
-argument_list|,
-literal|"Lucene3x"
-operator|.
-name|equals
-argument_list|(
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|IndexWriterConfig
 name|conf
 init|=

@@ -431,27 +431,8 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-comment|// we generate aweful regexps: good for testing.
-comment|// but for preflex codec, the test can be very slow, so use less iterations.
 name|numIterations
 operator|=
-name|Codec
-operator|.
-name|getDefault
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"Lucene3x"
-argument_list|)
-condition|?
-literal|10
-operator|*
-name|RANDOM_MULTIPLIER
-else|:
 name|atLeast
 argument_list|(
 literal|50

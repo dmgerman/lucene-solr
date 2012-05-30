@@ -2756,14 +2756,6 @@ return|return
 operator|!
 name|hasDeletions
 operator|&&
-operator|!
-name|info
-operator|.
-name|info
-operator|.
-name|hasSeparateNorms
-argument_list|()
-operator|&&
 name|info
 operator|.
 name|info

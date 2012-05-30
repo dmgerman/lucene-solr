@@ -64,7 +64,7 @@ literal|"): "
 operator|+
 name|version
 operator|+
-literal|". This version of Lucene only supports indexes created with release 3.0 and later."
+literal|". This version of Lucene only supports indexes created with release 4.0 and later."
 argument_list|)
 expr_stmt|;
 assert|assert
@@ -132,7 +132,7 @@ literal|" and "
 operator|+
 name|maxVersion
 operator|+
-literal|"). This version of Lucene only supports indexes created with release 3.0 and later."
+literal|"). This version of Lucene only supports indexes created with release 4.0 and later."
 argument_list|)
 expr_stmt|;
 assert|assert
