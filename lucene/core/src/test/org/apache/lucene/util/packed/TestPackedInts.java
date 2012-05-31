@@ -2102,6 +2102,12 @@ decl_stmt|;
 name|Packed64
 name|p64
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|p64
+operator|=
 operator|new
 name|Packed64
 argument_list|(
@@ -2109,7 +2115,27 @@ name|INDEX
 argument_list|,
 name|BITS
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|OutOfMemoryError
+name|oome
+parameter_list|)
+block|{
+comment|// This can easily happen: we're allocating a
+comment|// long[] that needs 256-273 MB.  Heap is 512 MB,
+comment|// but not all of that is available for large
+comment|// objects ... empirical testing shows we only
+comment|// have ~ 67 MB free.
+block|}
+if|if
+condition|(
+name|p64
+operator|!=
+literal|null
+condition|)
+block|{
 name|p64
 operator|.
 name|set
@@ -2149,6 +2175,7 @@ name|p64
 operator|=
 literal|null
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -2196,6 +2223,12 @@ decl_stmt|;
 name|Packed64SingleBlock
 name|p64sb
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|p64sb
+operator|=
 name|Packed64SingleBlock
 operator|.
 name|create
@@ -2204,7 +2237,17 @@ name|index
 argument_list|,
 name|bits
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|OutOfMemoryError
+name|oome
+parameter_list|)
+block|{
+comment|// Ignore: see comment above
+continue|continue;
+block|}
 name|p64sb
 operator|.
 name|set
@@ -2264,12 +2307,34 @@ decl_stmt|;
 name|Packed8ThreeBlocks
 name|p8
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|p8
+operator|=
 operator|new
 name|Packed8ThreeBlocks
 argument_list|(
 name|index
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|OutOfMemoryError
+name|oome
+parameter_list|)
+block|{
+comment|// Ignore: see comment above
+block|}
+if|if
+condition|(
+name|p8
+operator|!=
+literal|null
+condition|)
+block|{
 name|p8
 operator|.
 name|set
@@ -2309,6 +2374,7 @@ name|p8
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|index
 operator|=
 name|Integer
@@ -2322,12 +2388,34 @@ expr_stmt|;
 name|Packed16ThreeBlocks
 name|p16
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|p16
+operator|=
 operator|new
 name|Packed16ThreeBlocks
 argument_list|(
 name|index
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|OutOfMemoryError
+name|oome
+parameter_list|)
+block|{
+comment|// Ignore: see comment above
+block|}
+if|if
+condition|(
+name|p16
+operator|!=
+literal|null
+condition|)
+block|{
 name|p16
 operator|.
 name|set
@@ -2367,6 +2455,7 @@ name|p16
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class
