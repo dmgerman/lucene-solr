@@ -449,11 +449,6 @@ literal|null
 assert|;
 assert|assert
 name|o
-operator|instanceof
-name|Long
-assert|;
-assert|assert
-name|o
 operator|==
 name|NO_OUTPUT
 operator|||
