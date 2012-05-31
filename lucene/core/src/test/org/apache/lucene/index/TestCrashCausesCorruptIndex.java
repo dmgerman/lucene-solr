@@ -495,7 +495,7 @@ decl_stmt|;
 name|IndexReader
 name|indexReader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

@@ -571,7 +571,7 @@ operator|=
 operator|new
 name|HighFrequencyDictionary
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

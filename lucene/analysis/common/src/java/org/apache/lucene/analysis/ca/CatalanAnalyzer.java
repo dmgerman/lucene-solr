@@ -263,7 +263,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for Catalan.  *<p>  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating CatalanAnalyzer:  *<ul>  *<li> As of 3.6, ElisionFilter with a set of Catalan   *        contractions is used by default.  *</ul>  */
+comment|/**  * {@link Analyzer} for Catalan.  */
 end_comment
 
 begin_class
@@ -479,7 +479,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided and {@link SnowballFilter}.    */
+comment|/**    * Creates a    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * which tokenizes all the text in the provided {@link Reader}.    *     * @return A    *         {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from an {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link ElisionFilter}, {@link LowerCaseFilter},     *         {@link StopFilter}, {@link KeywordMarkerFilter} if a stem exclusion set is    *         provided and {@link SnowballFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -517,18 +517,6 @@ argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_36
-argument_list|)
-condition|)
-block|{
 name|result
 operator|=
 operator|new
@@ -541,7 +529,6 @@ argument_list|,
 name|DEFAULT_ARTICLES
 argument_list|)
 expr_stmt|;
-block|}
 name|result
 operator|=
 operator|new

@@ -49,55 +49,6 @@ specifier|public
 enum|enum
 name|Version
 block|{
-comment|/**    * Match settings and bugs in Lucene's 3.0 release.    * @deprecated (4.0) Use latest    */
-DECL|enum constant|Deprecated
-annotation|@
-name|Deprecated
-DECL|enum constant|LUCENE_30
-name|LUCENE_30
-block|,
-comment|/**    * Match settings and bugs in Lucene's 3.1 release.    * @deprecated (4.0) Use latest    */
-DECL|enum constant|Deprecated
-annotation|@
-name|Deprecated
-DECL|enum constant|LUCENE_31
-name|LUCENE_31
-block|,
-comment|/**    * Match settings and bugs in Lucene's 3.2 release.    * @deprecated (4.0) Use latest    */
-DECL|enum constant|Deprecated
-annotation|@
-name|Deprecated
-DECL|enum constant|LUCENE_32
-name|LUCENE_32
-block|,
-comment|/**    * Match settings and bugs in Lucene's 3.3 release.    * @deprecated (4.0) Use latest    */
-DECL|enum constant|Deprecated
-annotation|@
-name|Deprecated
-DECL|enum constant|LUCENE_33
-name|LUCENE_33
-block|,
-comment|/**    * Match settings and bugs in Lucene's 3.4 release.    * @deprecated (4.0) Use latest    */
-DECL|enum constant|Deprecated
-annotation|@
-name|Deprecated
-DECL|enum constant|LUCENE_34
-name|LUCENE_34
-block|,
-comment|/**    * Match settings and bugs in Lucene's 3.5 release.    * @deprecated (4.0) Use latest    */
-DECL|enum constant|Deprecated
-annotation|@
-name|Deprecated
-DECL|enum constant|LUCENE_35
-name|LUCENE_35
-block|,
-comment|/**    * Match settings and bugs in Lucene's 3.6 release.    * @deprecated (4.0) Use latest    */
-DECL|enum constant|Deprecated
-annotation|@
-name|Deprecated
-DECL|enum constant|LUCENE_36
-name|LUCENE_36
-block|,
 comment|/**    * Match settings and bugs in Lucene's 4.0 release.    * @deprecated (5.0) Use latest    */
 DECL|enum constant|Deprecated
 annotation|@

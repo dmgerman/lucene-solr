@@ -310,7 +310,7 @@ block|{
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1208,7 +1208,7 @@ name|numSnapshots
 argument_list|)
 expr_stmt|;
 comment|// open a reader on a snapshot - should succeed.
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

@@ -502,7 +502,7 @@ condition|)
 block|{
 name|r
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -656,7 +656,7 @@ argument_list|)
 expr_stmt|;
 name|r
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -750,9 +750,7 @@ init|=
 operator|new
 name|IndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_32
+name|TEST_VERSION_CURRENT
 argument_list|,
 name|analyzer
 argument_list|)
@@ -862,7 +860,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

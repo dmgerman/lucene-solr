@@ -617,7 +617,7 @@ name|reader
 init|=
 name|getOnlySegmentReader
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -890,7 +890,7 @@ name|reader
 init|=
 name|getOnlySegmentReader
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1119,7 +1119,7 @@ name|reader
 init|=
 name|getOnlySegmentReader
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1666,7 +1666,7 @@ comment|/*      * Verify the index      */
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

@@ -106,22 +106,6 @@ name|analysis
 operator|.
 name|ar
 operator|.
-name|ArabicLetterTokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|ar
-operator|.
 name|ArabicNormalizationFilter
 import|;
 end_import
@@ -221,7 +205,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for Persian.  *<p>  * This Analyzer uses {@link ArabicLetterTokenizer} which implies tokenizing around  * zero-width non-joiner in addition to whitespace. Some persian-specific variant forms (such as farsi  * yeh and keheh) are standardized. "Stemming" is accomplished via stopwords.  *</p>  */
+comment|/**  * {@link Analyzer} for Persian.  *<p>  * This Analyzer uses {@link PersianCharFilter} which implies tokenizing around  * zero-width non-joiner in addition to whitespace. Some persian-specific variant forms (such as farsi  * yeh and keheh) are standardized. "Stemming" is accomplished via stopwords.  *</p>  */
 end_comment
 
 begin_class
@@ -375,21 +359,7 @@ block|{
 specifier|final
 name|Tokenizer
 name|source
-decl_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-condition|)
-block|{
-name|source
-operator|=
+init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
@@ -397,21 +367,7 @@ name|matchVersion
 argument_list|,
 name|reader
 argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|source
-operator|=
-operator|new
-name|ArabicLetterTokenizer
-argument_list|(
-name|matchVersion
-argument_list|,
-name|reader
-argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 name|TokenStream
 name|result
 init|=
@@ -472,15 +428,6 @@ name|reader
 parameter_list|)
 block|{
 return|return
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-condition|?
 operator|new
 name|PersianCharFilter
 argument_list|(
@@ -491,8 +438,6 @@ argument_list|(
 name|reader
 argument_list|)
 argument_list|)
-else|:
-name|reader
 return|;
 block|}
 block|}

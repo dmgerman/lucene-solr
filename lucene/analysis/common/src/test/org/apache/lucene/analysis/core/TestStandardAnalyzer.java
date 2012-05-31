@@ -1749,69 +1749,6 @@ argument_list|)
 expr_stmt|;
 comment|// hangul
 block|}
-comment|/** @deprecated remove this and sophisticated backwards layer in 5.0 */
-annotation|@
-name|Deprecated
-DECL|method|testCombiningMarksBackwards
-specifier|public
-name|void
-name|testCombiningMarksBackwards
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|Analyzer
-name|a
-init|=
-operator|new
-name|StandardAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_33
-argument_list|)
-decl_stmt|;
-name|checkOneTerm
-argument_list|(
-name|a
-argument_list|,
-literal|"ãã"
-argument_list|,
-literal|"ã"
-argument_list|)
-expr_stmt|;
-comment|// hiragana Bug
-name|checkOneTerm
-argument_list|(
-name|a
-argument_list|,
-literal|"ãµã"
-argument_list|,
-literal|"ãµã"
-argument_list|)
-expr_stmt|;
-comment|// katakana Works
-name|checkOneTerm
-argument_list|(
-name|a
-argument_list|,
-literal|"å£¹ã"
-argument_list|,
-literal|"å£¹"
-argument_list|)
-expr_stmt|;
-comment|// ideographic Bug
-name|checkOneTerm
-argument_list|(
-name|a
-argument_list|,
-literal|"ìã"
-argument_list|,
-literal|"ìã"
-argument_list|)
-expr_stmt|;
-comment|// hangul Works
-block|}
 comment|/** blast some random strings through the analyzer */
 DECL|method|testRandomStrings
 specifier|public

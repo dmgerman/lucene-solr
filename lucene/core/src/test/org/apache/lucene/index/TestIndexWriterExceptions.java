@@ -1593,7 +1593,7 @@ comment|// Confirm that when doc hits exception partway through tokenization, it
 name|IndexReader
 name|r2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1899,7 +1899,7 @@ comment|// Confirm that when doc hits exception partway through tokenization, it
 name|IndexReader
 name|r2
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2971,7 +2971,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3439,7 +3439,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3825,7 +3825,7 @@ block|}
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -4032,7 +4032,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -4582,7 +4582,7 @@ block|}
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -4803,7 +4803,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -5246,7 +5246,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -6529,7 +6529,7 @@ try|try
 block|{
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -6790,7 +6790,7 @@ try|try
 block|{
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -7030,7 +7030,7 @@ try|try
 block|{
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -7285,7 +7285,7 @@ try|try
 block|{
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -7809,7 +7809,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

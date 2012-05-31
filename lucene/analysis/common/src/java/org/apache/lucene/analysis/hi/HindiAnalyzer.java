@@ -186,22 +186,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|in
-operator|.
-name|IndicTokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|Version
@@ -209,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Analyzer for Hindi.  *<p>  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating HindiAnalyzer:  *<ul>  *<li> As of 3.6, StandardTokenizer is used for tokenization  *</ul>  */
+comment|/**  * Analyzer for Hindi.  */
 end_comment
 
 begin_class
@@ -413,21 +397,7 @@ block|{
 specifier|final
 name|Tokenizer
 name|source
-decl_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_36
-argument_list|)
-condition|)
-block|{
-name|source
-operator|=
+init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
@@ -435,21 +405,7 @@ name|matchVersion
 argument_list|,
 name|reader
 argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|source
-operator|=
-operator|new
-name|IndicTokenizer
-argument_list|(
-name|matchVersion
-argument_list|,
-name|reader
-argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 name|TokenStream
 name|result
 init|=

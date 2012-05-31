@@ -62,24 +62,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|standard
-operator|.
-name|std31
-operator|.
-name|StandardTokenizerImpl31
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|tokenattributes
 operator|.
 name|CharTermAttribute
@@ -163,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A grammar-based tokenizer constructed with JFlex.  *<p>  * As of Lucene version 3.1, this class implements the Word Break rules from the  * Unicode Text Segmentation algorithm, as specified in   *<a href="http://unicode.org/reports/tr29/">Unicode Standard Annex #29</a>.  *<p/>  *<p>Many applications have specific tokenizer needs.  If this tokenizer does  * not suit your application, please consider copying this source code  * directory to your project and maintaining your own grammar-based tokenizer.  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating StandardTokenizer:  *<ul>  *<li> As of 3.4, Hiragana and Han characters are no longer wrongly split  *   from their combining characters. If you use a previous version number,  *   you get the exact broken behavior for backwards compatibility.  *<li> As of 3.1, StandardTokenizer implements Unicode text segmentation.  *   If you use a previous version number, you get the exact behavior of  *   {@link ClassicTokenizer} for backwards compatibility.  *</ul>  */
+comment|/** A grammar-based tokenizer constructed with JFlex.  *<p>  * This class implements the Word Break rules from the  * Unicode Text Segmentation algorithm, as specified in   *<a href="http://unicode.org/reports/tr29/">Unicode Standard Annex #29</a>.  *<p/>  *<p>Many applications have specific tokenizer needs.  If this tokenizer does  * not suit your application, please consider copying this source code  * directory to your project and maintaining your own grammar-based tokenizer.  */
 end_comment
 
 begin_class
@@ -181,6 +163,7 @@ specifier|private
 name|StandardTokenizerInterface
 name|scanner
 decl_stmt|;
+comment|// TODO: how can we remove these old types?!
 DECL|field|ALPHANUM
 specifier|public
 specifier|static
@@ -493,18 +476,6 @@ name|Version
 name|matchVersion
 parameter_list|)
 block|{
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_34
-argument_list|)
-condition|)
-block|{
 name|this
 operator|.
 name|scanner
@@ -515,44 +486,6 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-condition|)
-block|{
-name|this
-operator|.
-name|scanner
-operator|=
-operator|new
-name|StandardTokenizerImpl31
-argument_list|(
-name|input
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|this
-operator|.
-name|scanner
-operator|=
-operator|new
-name|ClassicTokenizerImpl
-argument_list|(
-name|input
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|// this tokenizer generates three attributes:
 comment|// term offset, positionIncrement and type
@@ -707,48 +640,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// This 'if' should be removed in the next release. For now, it converts
-comment|// invalid acronyms to HOST. When removed, only the 'else' part should
-comment|// remain.
-if|if
-condition|(
-name|tokenType
-operator|==
-name|StandardTokenizer
-operator|.
-name|ACRONYM_DEP
-condition|)
-block|{
-name|typeAtt
-operator|.
-name|setType
-argument_list|(
-name|StandardTokenizer
-operator|.
-name|TOKEN_TYPES
-index|[
-name|StandardTokenizer
-operator|.
-name|HOST
-index|]
-argument_list|)
-expr_stmt|;
-name|termAtt
-operator|.
-name|setLength
-argument_list|(
-name|termAtt
-operator|.
-name|length
-argument_list|()
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-comment|// remove extra '.'
-block|}
-else|else
-block|{
 name|typeAtt
 operator|.
 name|setType
@@ -761,7 +652,6 @@ name|tokenType
 index|]
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 literal|true
 return|;

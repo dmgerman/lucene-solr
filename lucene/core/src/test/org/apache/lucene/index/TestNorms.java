@@ -637,7 +637,7 @@ name|SlowCompositeReaderWrapper
 operator|.
 name|wrap
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -843,7 +843,7 @@ name|SlowCompositeReaderWrapper
 operator|.
 name|wrap
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

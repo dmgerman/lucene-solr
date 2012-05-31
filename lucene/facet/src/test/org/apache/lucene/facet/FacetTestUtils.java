@@ -627,7 +627,7 @@ name|pair
 operator|.
 name|indexReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

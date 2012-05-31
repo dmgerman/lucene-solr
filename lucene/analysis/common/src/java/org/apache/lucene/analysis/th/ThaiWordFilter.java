@@ -98,22 +98,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|LowerCaseFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|tokenattributes
 operator|.
 name|CharTermAttribute
@@ -197,7 +181,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link TokenFilter} that use {@link java.text.BreakIterator} to break each   * Token that is Thai into separate Token(s) for each Thai word.  *<p>Please note: Since matchVersion 3.1 on, this filter no longer lowercases non-thai text.  * {@link ThaiAnalyzer} will insert a {@link LowerCaseFilter} before this filter  * so the behaviour of the Analyzer does not change. With version 3.1, the filter handles  * position increments correctly.  *<p>WARNING: this filter may not be supported by all JREs.  *    It is known to work with Sun/Oracle and Harmony JREs.  *    If your application needs to be fully portable, consider using ICUTokenizer instead,  *    which uses an ICU Thai BreakIterator that will always be available.  */
+comment|/**  * {@link TokenFilter} that use {@link java.text.BreakIterator} to break each   * Token that is Thai into separate Token(s) for each Thai word.  *<p>WARNING: this filter may not be supported by all JREs.  *    It is known to work with Sun/Oracle and Harmony JREs.  *    If your application needs to be fully portable, consider using ICUTokenizer instead,  *    which uses an ICU Thai BreakIterator that will always be available.  */
 end_comment
 
 begin_class
@@ -279,12 +263,6 @@ name|CharArrayIterator
 operator|.
 name|newWordInstance
 argument_list|()
-decl_stmt|;
-DECL|field|handlePosIncr
-specifier|private
-specifier|final
-name|boolean
-name|handlePosIncr
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
@@ -375,24 +353,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-condition|?
 name|input
-else|:
-operator|new
-name|LowerCaseFilter
-argument_list|(
-name|matchVersion
-argument_list|,
-name|input
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -407,17 +368,6 @@ argument_list|(
 literal|"This JRE does not have support for Thai segmentation"
 argument_list|)
 throw|;
-name|handlePosIncr
-operator|=
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -525,10 +475,6 @@ name|end
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|handlePosIncr
-condition|)
 name|posAtt
 operator|.
 name|setPositionIncrement

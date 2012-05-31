@@ -490,7 +490,7 @@ operator|new
 name|AtomicBoolean
 argument_list|()
 decl_stmt|;
-comment|/**    * Creates a new config that with defaults that match the specified    * {@link Version} as well as the default {@link    * Analyzer}. If matchVersion is>= {@link    * Version#LUCENE_32}, {@link TieredMergePolicy} is used    * for merging; else {@link LogByteSizeMergePolicy}.    * Note that {@link TieredMergePolicy} is free to select    * non-contiguous merges, which means docIDs may not    * remain montonic over time.  If this is a problem you    * should switch to {@link LogByteSizeMergePolicy} or    * {@link LogDocMergePolicy}.    */
+comment|/**    * Creates a new config that with defaults that match the specified    * {@link Version} as well as the default {@link    * Analyzer}. By default, {@link TieredMergePolicy} is used    * for merging;    * Note that {@link TieredMergePolicy} is free to select    * non-contiguous merges, which means docIDs may not    * remain monotonic over time.  If this is a problem you    * should switch to {@link LogByteSizeMergePolicy} or    * {@link LogDocMergePolicy}.    */
 DECL|method|IndexWriterConfig
 specifier|public
 name|IndexWriterConfig
@@ -588,34 +588,12 @@ operator|.
 name|getDefault
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_32
-argument_list|)
-condition|)
-block|{
 name|mergePolicy
 operator|=
 operator|new
 name|TieredMergePolicy
 argument_list|()
 expr_stmt|;
-block|}
-else|else
-block|{
-name|mergePolicy
-operator|=
-operator|new
-name|LogByteSizeMergePolicy
-argument_list|()
-expr_stmt|;
-block|}
 name|flushPolicy
 operator|=
 operator|new

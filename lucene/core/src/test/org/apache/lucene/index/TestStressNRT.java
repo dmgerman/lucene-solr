@@ -794,7 +794,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

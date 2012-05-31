@@ -1726,9 +1726,7 @@ init|=
 operator|new
 name|CharArraySet
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
+name|TEST_VERSION_CURRENT
 argument_list|,
 literal|1
 argument_list|,

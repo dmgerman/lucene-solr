@@ -2416,9 +2416,7 @@ name|config
 init|=
 name|newIndexWriterConfig
 argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
+name|TEST_VERSION_CURRENT
 argument_list|,
 operator|new
 name|MockAnalyzer
@@ -2428,6 +2426,14 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|config
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|config
 operator|.
 name|setCodec

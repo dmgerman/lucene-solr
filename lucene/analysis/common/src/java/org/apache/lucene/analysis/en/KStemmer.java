@@ -2141,7 +2141,7 @@ argument_list|>
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_31
+name|LUCENE_50
 argument_list|,
 literal|1000
 argument_list|,
@@ -2158,7 +2158,7 @@ argument_list|>
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_31
+name|LUCENE_50
 argument_list|,
 literal|1000
 argument_list|,

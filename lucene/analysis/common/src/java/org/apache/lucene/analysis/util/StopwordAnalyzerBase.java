@@ -261,7 +261,7 @@ name|CharArraySet
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_31
+name|LUCENE_CURRENT
 argument_list|,
 literal|16
 argument_list|,

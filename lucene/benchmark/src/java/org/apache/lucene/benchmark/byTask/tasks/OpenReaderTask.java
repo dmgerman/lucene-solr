@@ -197,7 +197,7 @@ condition|)
 block|{
 name|r
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -216,7 +216,7 @@ else|else
 block|{
 name|r
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

@@ -754,7 +754,7 @@ name|open
 init|=
 name|maybeWrapReader
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2480,7 +2480,7 @@ comment|// do a real merge here
 name|IndexReader
 name|open
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

@@ -13620,7 +13620,7 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** If {@link IndexReader#open(IndexWriter,boolean)} has    *  been called (ie, this writer is in near real-time    *  mode), then after a merge completes, this class can be    *  invoked to warm the reader on the newly merged    *  segment, before the merge commits.  This is not    *  required for near real-time search, but will reduce    *  search latency on opening a new near real-time reader    *  after a merge completes.    *    * @lucene.experimental    *    *<p><b>NOTE</b>: warm is called before any deletes have    * been carried over to the merged segment. */
+comment|/** If {@link DirectoryReader#open(IndexWriter,boolean)} has    *  been called (ie, this writer is in near real-time    *  mode), then after a merge completes, this class can be    *  invoked to warm the reader on the newly merged    *  segment, before the merge commits.  This is not    *  required for near real-time search, but will reduce    *  search latency on opening a new near real-time reader    *  after a merge completes.    *    * @lucene.experimental    *    *<p><b>NOTE</b>: warm is called before any deletes have    * been carried over to the merged segment. */
 DECL|class|IndexReaderWarmer
 specifier|public
 specifier|static

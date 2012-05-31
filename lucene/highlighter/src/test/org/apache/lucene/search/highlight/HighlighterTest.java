@@ -284,6 +284,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DirectoryReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexReader
 import|;
 end_import
@@ -10746,7 +10760,7 @@ decl_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -10886,7 +10900,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*    *     * public void testBigramAnalyzer() throws IOException, ParseException {    * //test to ensure analyzers with none-consecutive start/end offsets //dont    * double-highlight text //setup index 1 RAMDirectory ramDir = new    * RAMDirectory(); Analyzer bigramAnalyzer=new CJKAnalyzer(); IndexWriter    * writer = new IndexWriter(ramDir,bigramAnalyzer , true); Document d = new    * Document(); Field f = new Field(FIELD_NAME, "java abc def", true, true,    * true); d.add(f); writer.addDocument(d); writer.close(); IndexReader reader =    * IndexReader.open(ramDir);    *     * IndexSearcher searcher=new IndexSearcher(reader); query =    * QueryParser.parse("abc", FIELD_NAME, bigramAnalyzer);    * System.out.println("Searching for: " + query.toString(FIELD_NAME)); hits =    * searcher.search(query);    *     * Highlighter highlighter = new Highlighter(this,new    * QueryFragmentScorer(query));    *     * for (int i = 0; i< hits.totalHits; i++) { String text =    * searcher.doc2(hits.scoreDocs[i].doc).get(FIELD_NAME); TokenStream    * tokenStream=bigramAnalyzer.tokenStream(FIELD_NAME,new StringReader(text));    * String highlightedText = highlighter.getBestFragment(tokenStream,text);    * System.out.println(highlightedText); } }    */
+comment|/*    *     * public void testBigramAnalyzer() throws IOException, ParseException {    * //test to ensure analyzers with none-consecutive start/end offsets //dont    * double-highlight text //setup index 1 RAMDirectory ramDir = new    * RAMDirectory(); Analyzer bigramAnalyzer=new CJKAnalyzer(); IndexWriter    * writer = new IndexWriter(ramDir,bigramAnalyzer , true); Document d = new    * Document(); Field f = new Field(FIELD_NAME, "java abc def", true, true,    * true); d.add(f); writer.addDocument(d); writer.close(); IndexReader reader =    * DirectoryReader.open(ramDir);    *     * IndexSearcher searcher=new IndexSearcher(reader); query =    * QueryParser.parse("abc", FIELD_NAME, bigramAnalyzer);    * System.out.println("Searching for: " + query.toString(FIELD_NAME)); hits =    * searcher.search(query);    *     * Highlighter highlighter = new Highlighter(this,new    * QueryFragmentScorer(query));    *     * for (int i = 0; i< hits.totalHits; i++) { String text =    * searcher.doc2(hits.scoreDocs[i].doc).get(FIELD_NAME); TokenStream    * tokenStream=bigramAnalyzer.tokenStream(FIELD_NAME,new StringReader(text));    * String highlightedText = highlighter.getBestFragment(tokenStream,text);    * System.out.println(highlightedText); } }    */
 DECL|method|highlightTerm
 specifier|public
 name|String
@@ -11428,7 +11442,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

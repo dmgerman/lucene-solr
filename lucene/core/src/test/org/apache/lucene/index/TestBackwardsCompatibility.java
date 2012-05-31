@@ -890,7 +890,7 @@ try|try
 block|{
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -899,7 +899,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"IndexReader.open should not pass for "
+literal|"DirectoryReader.open should not pass for "
 operator|+
 name|unsupportedNames
 index|[
@@ -1333,7 +1333,7 @@ block|{
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1628,7 +1628,7 @@ comment|//Query query = parser.parse("handle:1");
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2250,7 +2250,7 @@ comment|// make sure searching sees right # hits
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2389,7 +2389,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2501,10 +2501,10 @@ throws|throws
 name|IOException
 block|{
 comment|// make sure searching sees right # hits
-name|IndexReader
+name|DirectoryReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2634,7 +2634,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3734,7 +3734,7 @@ decl_stmt|;
 name|IndexReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -4030,7 +4030,7 @@ decl_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

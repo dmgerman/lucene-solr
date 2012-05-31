@@ -952,7 +952,7 @@ init|)
 block|{
 name|r1
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -961,7 +961,7 @@ argument_list|)
 expr_stmt|;
 name|r2
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

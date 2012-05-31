@@ -479,7 +479,7 @@ expr_stmt|;
 name|IndexReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -636,7 +636,7 @@ expr_stmt|;
 block|}
 name|r
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

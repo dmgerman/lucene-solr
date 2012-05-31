@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reverse token string, for example "country" => "yrtnuoc".  *<p>  * If<code>marker</code> is supplied, then tokens will be also prepended by  * that character. For example, with a marker of&#x5C;u0001, "country" =>  * "&#x5C;u0001yrtnuoc". This is useful when implementing efficient leading  * wildcards search.  *</p>  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating ReverseStringFilter, or when using any of  * its static methods:  *<ul>  *<li> As of 3.1, supplementary characters are handled correctly  *</ul>  */
+comment|/**  * Reverse token string, for example "country" => "yrtnuoc".  *<p>  * If<code>marker</code> is supplied, then tokens will be also prepended by  * that character. For example, with a marker of&#x5C;u0001, "country" =>  * "&#x5C;u0001yrtnuoc". This is useful when implementing efficient leading  * wildcards search.  */
 end_comment
 
 begin_class
@@ -173,7 +173,7 @@ name|RTL_DIRECTION_MARKER
 init|=
 literal|'\u200F'
 decl_stmt|;
-comment|/**    * Create a new ReverseStringFilter that reverses all tokens in the     * supplied {@link TokenStream}.    *<p>    * The reversed tokens will not be marked.     *</p>    *     * @param matchVersion See<a href="#version">above</a>    * @param in {@link TokenStream} to filter    */
+comment|/**    * Create a new ReverseStringFilter that reverses all tokens in the     * supplied {@link TokenStream}.    *<p>    * The reversed tokens will not be marked.     *</p>    *     * @param matchVersion Lucene compatibility version    * @param in {@link TokenStream} to filter    */
 DECL|method|ReverseStringFilter
 specifier|public
 name|ReverseStringFilter
@@ -195,7 +195,7 @@ name|NOMARKER
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a new ReverseStringFilter that reverses and marks all tokens in the    * supplied {@link TokenStream}.    *<p>    * The reversed tokens will be prepended (marked) by the<code>marker</code>    * character.    *</p>    *     * @param matchVersion See<a href="#version">above</a>    * @param in {@link TokenStream} to filter    * @param marker A character used to mark reversed tokens    */
+comment|/**    * Create a new ReverseStringFilter that reverses and marks all tokens in the    * supplied {@link TokenStream}.    *<p>    * The reversed tokens will be prepended (marked) by the<code>marker</code>    * character.    *</p>    *     * @param matchVersion compatibility version    * @param in {@link TokenStream} to filter    * @param marker A character used to mark reversed tokens    */
 DECL|method|ReverseStringFilter
 specifier|public
 name|ReverseStringFilter
@@ -316,7 +316,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Reverses the given input string    *     * @param matchVersion See<a href="#version">above</a>    * @param input the string to reverse    * @return the given input string in reversed order    */
+comment|/**    * Reverses the given input string    *     * @param matchVersion compatibility version    * @param input the string to reverse    * @return the given input string in reversed order    */
 DECL|method|reverse
 specifier|public
 specifier|static
@@ -362,7 +362,7 @@ name|charInput
 argument_list|)
 return|;
 block|}
-comment|/**    * Reverses the given input buffer in-place    * @param matchVersion See<a href="#version">above</a>    * @param buffer the input char array to reverse    */
+comment|/**    * Reverses the given input buffer in-place    * @param matchVersion compatibility version    * @param buffer the input char array to reverse    */
 DECL|method|reverse
 specifier|public
 specifier|static
@@ -392,7 +392,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Partially reverses the given input buffer in-place from offset 0    * up to the given length.    * @param matchVersion See<a href="#version">above</a>    * @param buffer the input char array to reverse    * @param len the length in the buffer up to where the    *        buffer should be reversed    */
+comment|/**    * Partially reverses the given input buffer in-place from offset 0    * up to the given length.    * @param matchVersion compatibility version    * @param buffer the input char array to reverse    * @param len the length in the buffer up to where the    *        buffer should be reversed    */
 DECL|method|reverse
 specifier|public
 specifier|static
@@ -424,103 +424,7 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated (3.1) Remove this when support for 3.0 indexes is no longer needed.    */
-annotation|@
-name|Deprecated
-DECL|method|reverseUnicode3
-specifier|private
-specifier|static
-name|void
-name|reverseUnicode3
-parameter_list|(
-name|char
-index|[]
-name|buffer
-parameter_list|,
-name|int
-name|start
-parameter_list|,
-name|int
-name|len
-parameter_list|)
-block|{
-if|if
-condition|(
-name|len
-operator|<=
-literal|1
-condition|)
-return|return;
-name|int
-name|num
-init|=
-name|len
-operator|>>
-literal|1
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-name|start
-init|;
-name|i
-operator|<
-operator|(
-name|start
-operator|+
-name|num
-operator|)
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|char
-name|c
-init|=
-name|buffer
-index|[
-name|i
-index|]
-decl_stmt|;
-name|buffer
-index|[
-name|i
-index|]
-operator|=
-name|buffer
-index|[
-name|start
-operator|*
-literal|2
-operator|+
-name|len
-operator|-
-name|i
-operator|-
-literal|1
-index|]
-expr_stmt|;
-name|buffer
-index|[
-name|start
-operator|*
-literal|2
-operator|+
-name|len
-operator|-
-name|i
-operator|-
-literal|1
-index|]
-operator|=
-name|c
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Partially reverses the given input buffer in-place from the given offset    * up to the given length.    * @param matchVersion See<a href="#version">above</a>    * @param buffer the input char array to reverse    * @param start the offset from where to reverse the buffer    * @param len the length in the buffer up to where the    *        buffer should be reversed    */
+comment|/**    * Partially reverses the given input buffer in-place from the given offset    * up to the given length.    * @param matchVersion compatibility version    * @param buffer the input char array to reverse    * @param start the offset from where to reverse the buffer    * @param len the length in the buffer up to where the    *        buffer should be reversed    */
 DECL|method|reverse
 specifier|public
 specifier|static
@@ -544,30 +448,6 @@ name|int
 name|len
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-condition|)
-block|{
-name|reverseUnicode3
-argument_list|(
-name|buffer
-argument_list|,
-name|start
-argument_list|,
-name|len
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
 comment|/* modified version of Apache Harmony AbstractStringBuilder reverse0() */
 if|if
 condition|(

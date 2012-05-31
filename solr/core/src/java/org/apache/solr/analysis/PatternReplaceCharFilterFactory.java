@@ -40,18 +40,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|PatternSyntaxException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -96,24 +84,8 @@ name|CharFilterFactory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|InitializationException
-import|;
-end_import
-
 begin_comment
-comment|/**  * Factory for {@link PatternReplaceCharFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_ptnreplace" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([^a-z])" replacement=""  *                 maxBlockChars="10000" blockDelimiters="|"/&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   *  * @since Solr 3.1  */
+comment|/**  * Factory for {@link PatternReplaceCharFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_ptnreplace" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;charFilter class="solr.PatternReplaceCharFilterFactory"   *                    pattern="([^a-z])" replacement=""/&gt;  *&lt;tokenizer class="solr.KeywordTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   *  * @since Solr 3.1  */
 end_comment
 
 begin_class
@@ -133,16 +105,6 @@ DECL|field|replacement
 specifier|private
 name|String
 name|replacement
-decl_stmt|;
-DECL|field|maxBlockChars
-specifier|private
-name|int
-name|maxBlockChars
-decl_stmt|;
-DECL|field|blockDelimiters
-specifier|private
-name|String
-name|blockDelimiters
 decl_stmt|;
 annotation|@
 name|Override
@@ -193,26 +155,7 @@ name|replacement
 operator|=
 literal|""
 expr_stmt|;
-name|maxBlockChars
-operator|=
-name|getInt
-argument_list|(
-literal|"maxBlockChars"
-argument_list|,
-name|PatternReplaceCharFilter
-operator|.
-name|DEFAULT_MAX_BLOCK_CHARS
-argument_list|)
-expr_stmt|;
-name|blockDelimiters
-operator|=
-name|args
-operator|.
-name|get
-argument_list|(
-literal|"blockDelimiters"
-argument_list|)
-expr_stmt|;
+comment|// TODO: throw exception if you set maxBlockChars or blockDelimiters ?
 block|}
 DECL|method|create
 specifier|public
@@ -230,10 +173,6 @@ argument_list|(
 name|p
 argument_list|,
 name|replacement
-argument_list|,
-name|maxBlockChars
-argument_list|,
-name|blockDelimiters
 argument_list|,
 name|input
 argument_list|)

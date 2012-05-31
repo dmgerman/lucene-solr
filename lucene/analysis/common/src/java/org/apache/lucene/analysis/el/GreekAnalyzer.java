@@ -191,7 +191,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for the Greek language.   *<p>  * Supports an external list of stopwords (words  * that will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *</p>  *  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating GreekAnalyzer:  *<ul>  *<li> As of 3.1, StandardFilter and GreekStemmer are used by default.  *<li> As of 2.9, StopFilter preserves position  *        increments  *</ul>  *   *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
+comment|/**  * {@link Analyzer} for the Greek language.   *<p>  * Supports an external list of stopwords (words  * that will not be indexed at all).  * A default set of stopwords is used unless an alternative list is specified.  *</p>  *   *<p><b>NOTE</b>: This class uses the same {@link Version}  * dependent settings as {@link StandardAnalyzer}.</p>  */
 end_comment
 
 begin_class
@@ -279,7 +279,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Builds an analyzer with the default stop words.    * @param matchVersion Lucene compatibility version,    *   See<a href="#version">above</a>    */
+comment|/**    * Builds an analyzer with the default stop words.    * @param matchVersion Lucene compatibility version    */
 DECL|method|GreekAnalyzer
 specifier|public
 name|GreekAnalyzer
@@ -298,7 +298,7 @@ name|DEFAULT_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.     *<p>    *<b>NOTE:</b> The stopwords set should be pre-processed with the logic of     * {@link GreekLowerCaseFilter} for best results.    *      * @param matchVersion Lucene compatibility version,    *   See<a href="#version">above</a>    * @param stopwords a stopword set    */
+comment|/**    * Builds an analyzer with the given stop words.     *<p>    *<b>NOTE:</b> The stopwords set should be pre-processed with the logic of     * {@link GreekLowerCaseFilter} for best results.    *      * @param matchVersion Lucene compatibility version    * @param stopwords a stopword set    */
 DECL|method|GreekAnalyzer
 specifier|public
 name|GreekAnalyzer
@@ -356,17 +356,6 @@ argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-condition|)
 name|result
 operator|=
 operator|new
@@ -389,17 +378,6 @@ argument_list|,
 name|stopwords
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-condition|)
 name|result
 operator|=
 operator|new

@@ -733,7 +733,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -780,7 +780,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1186,7 +1186,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1423,7 +1423,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1552,7 +1552,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1623,7 +1623,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1706,7 +1706,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1835,7 +1835,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1876,7 +1876,7 @@ expr_stmt|;
 comment|// Delete all shouldn't be on disk yet
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -1926,7 +1926,7 @@ expr_stmt|;
 comment|// Validate there are no docs left
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2065,7 +2065,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2107,7 +2107,7 @@ expr_stmt|;
 comment|// Validate that the docs are still there
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2313,7 +2313,7 @@ expr_stmt|;
 comment|// Validate that the docs are still there
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2551,7 +2551,7 @@ block|{
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3414,7 +3414,7 @@ try|try
 block|{
 name|newReader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

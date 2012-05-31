@@ -278,22 +278,8 @@ name|Version
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|tartarus
-operator|.
-name|snowball
-operator|.
-name|ext
-operator|.
-name|ItalianStemmer
-import|;
-end_import
-
 begin_comment
-comment|/**  * {@link Analyzer} for Italian.  *<p>  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating ItalianAnalyzer:  *<ul>  *<li> As of 3.6, ItalianLightStemFilter is used for less aggressive stemming.  *<li> As of 3.2, ElisionFilter with a set of Italian   *        contractions is used by default.  *</ul>  */
+comment|/**  * {@link Analyzer} for Italian.  */
 end_comment
 
 begin_class
@@ -588,18 +574,6 @@ argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_32
-argument_list|)
-condition|)
-block|{
 name|result
 operator|=
 operator|new
@@ -612,7 +586,6 @@ argument_list|,
 name|DEFAULT_ARTICLES
 argument_list|)
 expr_stmt|;
-block|}
 name|result
 operator|=
 operator|new
@@ -653,18 +626,6 @@ argument_list|,
 name|stemExclusionSet
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_36
-argument_list|)
-condition|)
-block|{
 name|result
 operator|=
 operator|new
@@ -673,22 +634,6 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|result
-operator|=
-operator|new
-name|SnowballFilter
-argument_list|(
-name|result
-argument_list|,
-operator|new
-name|ItalianStemmer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 operator|new
 name|TokenStreamComponents

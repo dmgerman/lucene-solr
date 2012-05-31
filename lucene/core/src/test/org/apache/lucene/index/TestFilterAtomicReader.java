@@ -765,7 +765,7 @@ init|=
 operator|new
 name|TestReader
 argument_list|(
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -792,7 +792,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

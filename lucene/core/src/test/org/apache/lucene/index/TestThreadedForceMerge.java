@@ -906,7 +906,7 @@ expr_stmt|;
 name|DirectoryReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

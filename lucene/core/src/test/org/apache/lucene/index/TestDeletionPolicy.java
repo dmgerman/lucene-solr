@@ -1487,7 +1487,7 @@ block|{
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2020,7 +2020,7 @@ block|{
 name|IndexReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2064,7 +2064,7 @@ block|{
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2650,7 +2650,7 @@ argument_list|()
 expr_stmt|;
 name|r
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2725,7 +2725,7 @@ comment|// Reader still sees fully merged index, because writer
 comment|// opened on the prior commit has not yet committed:
 name|r
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -2767,7 +2767,7 @@ expr_stmt|;
 comment|// Now reader sees not-fully-merged index:
 name|r
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3052,7 +3052,7 @@ comment|// readable:
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3321,7 +3321,7 @@ block|{
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3749,7 +3749,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3870,7 +3870,7 @@ expr_stmt|;
 name|IndexReader
 name|rwReader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3965,7 +3965,7 @@ block|{
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

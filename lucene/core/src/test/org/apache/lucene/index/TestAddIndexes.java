@@ -2748,7 +2748,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3070,7 +3070,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3162,7 +3162,7 @@ argument_list|()
 expr_stmt|;
 name|reader
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3453,7 +3453,7 @@ block|{
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -3506,7 +3506,7 @@ block|{
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -4445,7 +4445,7 @@ index|[
 name|i
 index|]
 operator|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -5123,7 +5123,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -6007,7 +6007,7 @@ expr_stmt|;
 name|IndexReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -6707,7 +6707,7 @@ operator|new
 name|IndexReader
 index|[]
 block|{
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -6717,7 +6717,7 @@ literal|0
 index|]
 argument_list|)
 block|,
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -7176,7 +7176,7 @@ expr_stmt|;
 name|IndexReader
 name|open
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -7206,7 +7206,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(

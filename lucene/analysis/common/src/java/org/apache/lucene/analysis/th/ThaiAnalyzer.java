@@ -207,7 +207,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for Thai language. It uses {@link java.text.BreakIterator} to break words.  *<p>  *<a name="version"/>  *<p>You must specify the required {@link Version}  * compatibility when creating ThaiAnalyzer:  *<ul>  *<li> As of 3.6, a set of Thai stopwords is used by default  *</ul>  */
+comment|/**  * {@link Analyzer} for Thai language. It uses {@link java.text.BreakIterator} to break words.  */
 end_comment
 
 begin_class
@@ -317,22 +317,9 @@ name|this
 argument_list|(
 name|matchVersion
 argument_list|,
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_36
-argument_list|)
-condition|?
 name|DefaultSetHolder
 operator|.
 name|DEFAULT_STOP_SET
-else|:
-name|StopAnalyzer
-operator|.
-name|ENGLISH_STOP_WORDS_SET
 argument_list|)
 expr_stmt|;
 block|}
@@ -394,17 +381,6 @@ argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-condition|)
 name|result
 operator|=
 operator|new

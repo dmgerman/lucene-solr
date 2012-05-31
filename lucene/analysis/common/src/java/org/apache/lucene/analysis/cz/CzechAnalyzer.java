@@ -227,7 +227,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Analyzer} for Czech language.  *<p>  * Supports an external list of stopwords (words that will not be indexed at  * all). A default set of stopwords is used unless an alternative list is  * specified.  *</p>  *   *<a name="version"/>  *<p>  * You must specify the required {@link Version} compatibility when creating  * CzechAnalyzer:  *<ul>  *<li>As of 3.1, words are stemmed with {@link CzechStemFilter}  *<li>As of 2.9, StopFilter preserves position increments  *<li>As of 2.4, Tokens incorrectly identified as acronyms are corrected (see  *<a href="https://issues.apache.org/jira/browse/LUCENE-1068">LUCENE-1068</a>)  *</ul>  */
+comment|/**  * {@link Analyzer} for Czech language.  *<p>  * Supports an external list of stopwords (words that will not be indexed at  * all). A default set of stopwords is used unless an alternative list is  * specified.  *</p>  */
 end_comment
 
 begin_class
@@ -334,7 +334,7 @@ specifier|final
 name|CharArraySet
 name|stemExclusionTable
 decl_stmt|;
-comment|/**    * Builds an analyzer with the default stop words ({@link #getDefaultStopSet()}).    *    * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    */
+comment|/**    * Builds an analyzer with the default stop words ({@link #getDefaultStopSet()}).    *    * @param matchVersion Lucene version to match    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer
@@ -353,7 +353,7 @@ name|DEFAULT_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words.    *    * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param stopwords a stopword set    */
+comment|/**    * Builds an analyzer with the given stop words.    *    * @param matchVersion Lucene version to match    * @param stopwords a stopword set    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer
@@ -377,7 +377,7 @@ name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds an analyzer with the given stop words and a set of work to be    * excluded from the {@link CzechStemFilter}.    *     * @param matchVersion Lucene version to match See    *          {@link<a href="#version">above</a>}    * @param stopwords a stopword set    * @param stemExclusionTable a stemming exclusion set    */
+comment|/**    * Builds an analyzer with the given stop words and a set of work to be    * excluded from the {@link CzechStemFilter}.    *     * @param matchVersion Lucene version to match    * @param stopwords a stopword set    * @param stemExclusionTable a stemming exclusion set    */
 DECL|method|CzechAnalyzer
 specifier|public
 name|CzechAnalyzer
@@ -418,7 +418,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , and {@link CzechStemFilter} (only if version is>= LUCENE_31). If    *         a version is>= LUCENE_31 and a stem exclusion set is provided via    *         {@link #CzechAnalyzer(Version, CharArraySet, CharArraySet)} a    *         {@link KeywordMarkerFilter} is added before    *         {@link CzechStemFilter}.    */
+comment|/**    * Creates    * {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    * used to tokenize all the text in the provided {@link Reader}.    *     * @return {@link org.apache.lucene.analysis.Analyzer.TokenStreamComponents}    *         built from a {@link StandardTokenizer} filtered with    *         {@link StandardFilter}, {@link LowerCaseFilter}, {@link StopFilter}    *         , and {@link CzechStemFilter} (only if version is>= LUCENE_31). If    *         a stem exclusion set is provided via    *         {@link #CzechAnalyzer(Version, CharArraySet, CharArraySet)} a    *         {@link KeywordMarkerFilter} is added before    *         {@link CzechStemFilter}.    */
 annotation|@
 name|Override
 DECL|method|createComponents
@@ -480,18 +480,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
 operator|!
 name|this
 operator|.
@@ -518,7 +506,6 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 operator|new
 name|TokenStreamComponents

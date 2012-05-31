@@ -429,7 +429,7 @@ specifier|protected
 name|QueryParserBase
 parameter_list|()
 block|{   }
-comment|/** Initializes a query parser.  Called by the QueryParser constructor    *  @param matchVersion  Lucene version to match. See<a href="QueryParser.html#version">here</a>.    *  @param f  the default field for query terms.    *  @param a   used to find terms in the query text.    */
+comment|/** Initializes a query parser.  Called by the QueryParser constructor    *  @param matchVersion  Lucene version to match.    *  @param f  the default field for query terms.    *  @param a   used to find terms in the query text.    */
 DECL|method|init
 specifier|public
 name|void
@@ -453,32 +453,11 @@ name|field
 operator|=
 name|f
 expr_stmt|;
-if|if
-condition|(
-name|matchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_31
-argument_list|)
-condition|)
-block|{
 name|setAutoGeneratePhraseQueries
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|setAutoGeneratePhraseQueries
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|// the generated parser will create these in QueryParser
 DECL|method|ReInit

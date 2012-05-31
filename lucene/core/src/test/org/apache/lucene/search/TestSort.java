@@ -2655,7 +2655,7 @@ expr_stmt|;
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -10466,7 +10466,7 @@ expr_stmt|;
 name|IndexReader
 name|r
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
@@ -10710,7 +10710,7 @@ comment|// this should not throw AIOOBE or RuntimeEx
 name|IndexReader
 name|reader
 init|=
-name|IndexReader
+name|DirectoryReader
 operator|.
 name|open
 argument_list|(
