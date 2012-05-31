@@ -2162,15 +2162,7 @@ name|message
 argument_list|(
 literal|"DWFC"
 argument_list|,
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": addFlushableState "
+literal|"addFlushableState "
 operator|+
 name|perThread
 operator|.
