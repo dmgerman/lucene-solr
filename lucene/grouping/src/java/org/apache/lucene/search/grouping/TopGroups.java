@@ -145,6 +145,13 @@ name|SortField
 index|[]
 name|withinGroupSort
 decl_stmt|;
+comment|/** Highest score across all hits, or    *<code>Float.NaN</code> if scores were not computed. */
+DECL|field|maxScore
+specifier|public
+specifier|final
+name|float
+name|maxScore
+decl_stmt|;
 DECL|method|TopGroups
 specifier|public
 name|TopGroups
@@ -169,6 +176,9 @@ name|GROUP_VALUE_TYPE
 argument_list|>
 index|[]
 name|groups
+parameter_list|,
+name|float
+name|maxScore
 parameter_list|)
 block|{
 name|this
@@ -206,6 +216,12 @@ operator|.
 name|totalGroupCount
 operator|=
 literal|null
+expr_stmt|;
+name|this
+operator|.
+name|maxScore
+operator|=
+name|maxScore
 expr_stmt|;
 block|}
 DECL|method|TopGroups
@@ -264,11 +280,38 @@ name|groups
 expr_stmt|;
 name|this
 operator|.
+name|maxScore
+operator|=
+name|oldTopGroups
+operator|.
+name|maxScore
+expr_stmt|;
+name|this
+operator|.
 name|totalGroupCount
 operator|=
 name|totalGroupCount
 expr_stmt|;
 block|}
+comment|/** How the GroupDocs score (if any) should be merged. */
+DECL|enum|ScoreMergeMode
+specifier|public
+enum|enum
+name|ScoreMergeMode
+block|{
+comment|/** Set score to Float.NaN */
+DECL|enum constant|None
+name|None
+block|,
+comment|/* Sum score across all shards for this group. */
+DECL|enum constant|Total
+name|Total
+block|,
+comment|/* Avg score across all shards for this group. */
+DECL|enum constant|Avg
+name|Avg
+block|,   }
+empty_stmt|;
 comment|/** Merges an array of TopGroups, for example obtained    *  from the second-pass collector across multiple    *  shards.  Each TopGroups must have been sorted by the    *  same groupSort and docSort, and the top groups passed    *  to all second-pass collectors must be the same.    *    *<b>NOTE</b>: We can't always compute an exact totalGroupCount.    * Documents belonging to a group may occur on more than    * one shard and thus the merged totalGroupCount can be    * higher than the actual totalGroupCount. In this case the    * totalGroupCount represents a upper bound. If the documents    * of one group do only reside in one shard then the    * totalGroupCount is exact.    *    *<b>NOTE</b>: the topDocs in each GroupDocs is actually    * an instance of TopDocsAndShards    */
 DECL|method|merge
 specifier|public
@@ -300,6 +343,9 @@ name|docOffset
 parameter_list|,
 name|int
 name|docTopN
+parameter_list|,
+name|ScoreMergeMode
+name|scoreMergeMode
 parameter_list|)
 throws|throws
 name|IOException
@@ -454,6 +500,13 @@ operator|.
 name|length
 index|]
 decl_stmt|;
+name|float
+name|totalMaxScore
+init|=
+name|Float
+operator|.
+name|MIN_VALUE
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -497,6 +550,11 @@ name|int
 name|totalHits
 init|=
 literal|0
+decl_stmt|;
+name|double
+name|scoreSum
+init|=
+literal|0.0
 decl_stmt|;
 for|for
 control|(
@@ -630,6 +688,12 @@ name|shardGroupDocs
 operator|.
 name|totalHits
 expr_stmt|;
+name|scoreSum
+operator|+=
+name|shardGroupDocs
+operator|.
+name|score
+expr_stmt|;
 block|}
 specifier|final
 name|TopDocs
@@ -729,6 +793,79 @@ name|docOffset
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
+name|float
+name|groupScore
+decl_stmt|;
+switch|switch
+condition|(
+name|scoreMergeMode
+condition|)
+block|{
+case|case
+name|None
+case|:
+name|groupScore
+operator|=
+name|Float
+operator|.
+name|NaN
+expr_stmt|;
+break|break;
+case|case
+name|Avg
+case|:
+if|if
+condition|(
+name|totalHits
+operator|>
+literal|0
+condition|)
+block|{
+name|groupScore
+operator|=
+call|(
+name|float
+call|)
+argument_list|(
+name|scoreSum
+operator|/
+name|totalHits
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|groupScore
+operator|=
+name|Float
+operator|.
+name|NaN
+expr_stmt|;
+block|}
+break|break;
+case|case
+name|Total
+case|:
+name|groupScore
+operator|=
+operator|(
+name|float
+operator|)
+name|scoreSum
+expr_stmt|;
+break|break;
+default|default:
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"can't handle ScoreMergeMode "
+operator|+
+name|scoreMergeMode
+argument_list|)
+throw|;
+block|}
 comment|//System.out.println("SHARDS=" + Arrays.toString(mergedTopDocs.shardIndex));
 name|mergedGroupDocs
 index|[
@@ -741,6 +878,8 @@ argument_list|<
 name|T
 argument_list|>
 argument_list|(
+name|groupScore
+argument_list|,
 name|maxScore
 argument_list|,
 name|totalHits
@@ -760,6 +899,17 @@ name|groupIDX
 index|]
 operator|.
 name|groupSortValues
+argument_list|)
+expr_stmt|;
+name|totalMaxScore
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|totalMaxScore
+argument_list|,
+name|maxScore
 argument_list|)
 expr_stmt|;
 block|}
@@ -803,6 +953,8 @@ argument_list|,
 name|totalGroupedHitCount
 argument_list|,
 name|mergedGroupDocs
+argument_list|,
+name|totalMaxScore
 argument_list|)
 decl_stmt|;
 return|return
@@ -848,6 +1000,8 @@ argument_list|,
 name|totalGroupedHitCount
 argument_list|,
 name|mergedGroupDocs
+argument_list|,
+name|totalMaxScore
 argument_list|)
 return|;
 block|}

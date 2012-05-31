@@ -322,6 +322,18 @@ name|trackMaxScore
 operator|=
 name|trackMaxScore
 expr_stmt|;
+if|if
+condition|(
+name|trackMaxScore
+condition|)
+block|{
+name|maxScore
+operator|=
+name|Float
+operator|.
+name|MIN_VALUE
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|trackScores
@@ -557,18 +569,17 @@ operator|.
 name|score
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|score
-operator|>
-name|maxScore
-condition|)
-block|{
 name|maxScore
 operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|maxScore
+argument_list|,
 name|score
+argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|// TODO: we could sweep all joinScorers here and
 comment|// aggregate total child hit count, so we can fill this
@@ -803,7 +814,24 @@ name|parentDoc
 argument_list|)
 expr_stmt|;
 block|}
-comment|//System.out.println("  startup: new OG doc=" + (docBase+parentDoc));
+comment|//System.out.println("  startup: new OG doc=" +
+comment|//(docBase+parentDoc));
+if|if
+condition|(
+operator|!
+name|trackMaxScore
+operator|&&
+name|trackScores
+condition|)
+block|{
+name|score
+operator|=
+name|scorer
+operator|.
+name|score
+argument_list|()
+expr_stmt|;
+block|}
 specifier|final
 name|OneGroup
 name|og
@@ -1996,6 +2024,10 @@ argument_list|<
 name|Integer
 argument_list|>
 argument_list|(
+name|og
+operator|.
+name|score
+argument_list|,
 name|topDocs
 operator|.
 name|getMaxScore
@@ -2054,10 +2086,23 @@ argument_list|,
 name|totalGroupedHitCount
 argument_list|,
 name|groups
+argument_list|,
+name|maxScore
 argument_list|)
 argument_list|,
 name|totalHitCount
 argument_list|)
+return|;
+block|}
+comment|/** Returns the highest score across all collected parent    *  hits, as long as<code>trackMaxScores=true</code> was passed {@link    *  #ToParentBlockJoinCollector on construction}.  Else,    *  this returns<code>Float.NaN</code> */
+DECL|method|getMaxScore
+specifier|public
+name|float
+name|getMaxScore
+parameter_list|()
+block|{
+return|return
+name|maxScore
 return|;
 block|}
 block|}

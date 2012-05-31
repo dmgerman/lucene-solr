@@ -792,6 +792,12 @@ argument_list|,
 name|groupOffsetDefault
 argument_list|,
 name|docsPerGroupDefault
+argument_list|,
+name|TopGroups
+operator|.
+name|ScoreMergeMode
+operator|.
+name|None
 argument_list|)
 argument_list|)
 expr_stmt|;

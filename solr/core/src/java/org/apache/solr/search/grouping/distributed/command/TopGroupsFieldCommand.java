@@ -727,6 +727,10 @@ name|GroupDocs
 index|[
 literal|0
 index|]
+argument_list|,
+name|Float
+operator|.
+name|NaN
 argument_list|)
 return|;
 block|}
