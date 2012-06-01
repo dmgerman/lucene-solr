@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TokenFilterFactory that creates instances of {@link org.apache.lucene.analysis.hunspell.HunspellStemFilter}.  * Example config for British English including a custom dictionary, case insensitive matching:  *<pre class="prettyprint">  *&lt;filter class=&quot;solr.HunspellStemFilterFactory&quot;  *    dictionary=&quot;en_GB.dic,my_custom.dic&quot;  *    affix=&quot;en_GB.aff&quot;  *    ignoreCase=&quot;true&quot; /&gt;</pre>  * Both parameters dictionary and affix are mandatory.  *<br/>  * The parameter ignoreCase (true/false) controls whether matching is case sensitive or not. Default false.  *<br/>   * Dictionaries for many languages are available through the OpenOffice project.  *   * See<a href="http://wiki.apache.org/solr/Hunspell">http://wiki.apache.org/solr/Hunspell</a>  */
+comment|/**  * TokenFilterFactory that creates instances of {@link org.apache.lucene.analysis.hunspell.HunspellStemFilter}.  * Example config for British English including a custom dictionary, case insensitive matching:  *<pre class="prettyprint">  *&lt;filter class=&quot;solr.HunspellStemFilterFactory&quot;  *    dictionary=&quot;en_GB.dic,my_custom.dic&quot;  *    affix=&quot;en_GB.aff&quot;  *    ignoreCase=&quot;true&quot; /&gt;</pre>  * Both parameters dictionary and affix are mandatory.  *<br/>  * The parameter ignoreCase (true/false) controls whether matching is case sensitive or not. Default false.  *<br/>  * The parameter strictAffixParsing (true/false) controls whether the affix parsing is strict or not. Default true.  * If strict an error while reading an affix rule causes a ParseException, otherwise is ignored.  *<br/>  * Dictionaries for many languages are available through the OpenOffice project.  *   * See<a href="http://wiki.apache.org/solr/Hunspell">http://wiki.apache.org/solr/Hunspell</a>  */
 end_comment
 
 begin_class
@@ -196,6 +196,15 @@ name|String
 name|PARAM_IGNORE_CASE
 init|=
 literal|"ignoreCase"
+decl_stmt|;
+DECL|field|PARAM_STRICT_AFFIX_PARSING
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|PARAM_STRICT_AFFIX_PARSING
+init|=
+literal|"strictAffixParsing"
 decl_stmt|;
 DECL|field|TRUE
 specifier|private
@@ -327,6 +336,72 @@ literal|". Must be true or false"
 argument_list|)
 throw|;
 block|}
+name|String
+name|strictAffixParsingParam
+init|=
+name|args
+operator|.
+name|get
+argument_list|(
+name|PARAM_STRICT_AFFIX_PARSING
+argument_list|)
+decl_stmt|;
+name|boolean
+name|strictAffixParsing
+init|=
+literal|true
+decl_stmt|;
+if|if
+condition|(
+name|strictAffixParsingParam
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|strictAffixParsingParam
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+name|FALSE
+argument_list|)
+condition|)
+name|strictAffixParsing
+operator|=
+literal|false
+expr_stmt|;
+elseif|else
+if|if
+condition|(
+name|strictAffixParsingParam
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+name|TRUE
+argument_list|)
+condition|)
+name|strictAffixParsing
+operator|=
+literal|true
+expr_stmt|;
+else|else
+throw|throw
+operator|new
+name|InitializationException
+argument_list|(
+literal|"Unknown value for "
+operator|+
+name|PARAM_STRICT_AFFIX_PARSING
+operator|+
+literal|": "
+operator|+
+name|strictAffixParsingParam
+operator|+
+literal|". Must be true or false"
+argument_list|)
+throw|;
+block|}
 try|try
 block|{
 name|List
@@ -382,6 +457,8 @@ argument_list|,
 name|luceneMatchVersion
 argument_list|,
 name|ignoreCase
+argument_list|,
+name|strictAffixParsing
 argument_list|)
 expr_stmt|;
 block|}
