@@ -951,7 +951,7 @@ argument_list|(
 operator|new
 name|StringBuffer
 argument_list|(
-literal|"Analazying text"
+literal|"Analyzing text"
 argument_list|)
 operator|.
 name|toString
