@@ -166,6 +166,7 @@ class|class
 name|WeightedFragInfo
 block|{
 DECL|field|subInfos
+specifier|private
 name|List
 argument_list|<
 name|SubInfo
@@ -173,14 +174,17 @@ argument_list|>
 name|subInfos
 decl_stmt|;
 DECL|field|totalBoost
+specifier|private
 name|float
 name|totalBoost
 decl_stmt|;
 DECL|field|startOffset
+specifier|private
 name|int
 name|startOffset
 decl_stmt|;
 DECL|field|endOffset
+specifier|private
 name|int
 name|endOffset
 decl_stmt|;
@@ -238,15 +242,18 @@ name|SubInfo
 argument_list|(
 name|phraseInfo
 operator|.
-name|text
+name|getText
+argument_list|()
 argument_list|,
 name|phraseInfo
 operator|.
-name|termsOffsets
+name|getTermsOffsets
+argument_list|()
 argument_list|,
 name|phraseInfo
 operator|.
-name|seqnum
+name|getSeqnum
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|subInfos
@@ -260,7 +267,8 @@ name|totalBoost
 operator|+=
 name|phraseInfo
 operator|.
-name|boost
+name|getBoost
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -397,12 +405,14 @@ class|class
 name|SubInfo
 block|{
 DECL|field|text
+specifier|private
 specifier|final
 name|String
 name|text
 decl_stmt|;
 comment|// unnecessary member, just exists for debugging purpose
 DECL|field|termsOffsets
+specifier|private
 specifier|final
 name|List
 argument_list|<
@@ -413,10 +423,12 @@ decl_stmt|;
 comment|// usually termsOffsets.size() == 1,
 comment|// but if position-gap> 1 and slop> 0 then size() could be greater than 1
 DECL|field|seqnum
+specifier|private
 name|int
 name|seqnum
 decl_stmt|;
 DECL|method|SubInfo
+specifier|public
 name|SubInfo
 parameter_list|(
 name|String

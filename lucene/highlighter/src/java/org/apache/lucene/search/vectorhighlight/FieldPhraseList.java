@@ -411,6 +411,7 @@ block|}
 block|}
 block|}
 DECL|method|addIfNoOverlap
+specifier|public
 name|void
 name|addIfNoOverlap
 parameter_list|(
@@ -452,11 +453,13 @@ class|class
 name|WeightedPhraseInfo
 block|{
 DECL|field|text
+specifier|private
 name|String
 name|text
 decl_stmt|;
 comment|// unnecessary member, just exists for debugging purpose
 DECL|field|termsOffsets
+specifier|private
 name|List
 argument_list|<
 name|Toffs
@@ -466,14 +469,52 @@ decl_stmt|;
 comment|// usually termsOffsets.size() == 1,
 comment|// but if position-gap> 1 and slop> 0 then size() could be greater than 1
 DECL|field|boost
+specifier|private
 name|float
 name|boost
 decl_stmt|;
 comment|// query boost
 DECL|field|seqnum
+specifier|private
 name|int
 name|seqnum
 decl_stmt|;
+comment|/**      * @return the text      */
+DECL|method|getText
+specifier|public
+name|String
+name|getText
+parameter_list|()
+block|{
+return|return
+name|text
+return|;
+block|}
+comment|/**      * @return the termsOffsets      */
+DECL|method|getTermsOffsets
+specifier|public
+name|List
+argument_list|<
+name|Toffs
+argument_list|>
+name|getTermsOffsets
+parameter_list|()
+block|{
+return|return
+name|termsOffsets
+return|;
+block|}
+comment|/**      * @return the boost      */
+DECL|method|getBoost
+specifier|public
+name|float
+name|getBoost
+parameter_list|()
+block|{
+return|return
+name|boost
+return|;
+block|}
 DECL|method|WeightedPhraseInfo
 specifier|public
 name|WeightedPhraseInfo
@@ -512,7 +553,7 @@ name|float
 name|boost
 parameter_list|,
 name|int
-name|number
+name|seqnum
 parameter_list|)
 block|{
 name|this
@@ -525,7 +566,7 @@ name|this
 operator|.
 name|seqnum
 operator|=
-name|number
+name|seqnum
 expr_stmt|;
 name|termsOffsets
 operator|=
@@ -926,6 +967,17 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**      * @return the seqnum      */
+DECL|method|getSeqnum
+specifier|public
+name|int
+name|getSeqnum
+parameter_list|()
+block|{
+return|return
+name|seqnum
+return|;
+block|}
 DECL|class|Toffs
 specifier|public
 specifier|static
@@ -933,10 +985,12 @@ class|class
 name|Toffs
 block|{
 DECL|field|startOffset
+specifier|private
 name|int
 name|startOffset
 decl_stmt|;
 DECL|field|endOffset
+specifier|private
 name|int
 name|endOffset
 decl_stmt|;
