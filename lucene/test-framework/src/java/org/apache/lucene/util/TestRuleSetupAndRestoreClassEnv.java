@@ -12,6 +12,10 @@ name|util
 package|;
 end_package
 
+begin_comment
+comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|java
@@ -282,58 +286,6 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|INFOSTREAM
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|TEST_CODEC
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|VERBOSE
-import|;
-end_import
-
-begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
-
 begin_comment
 comment|/**  * Setup and restore suite-level environment (fine grained junk that   * doesn't fit anywhere else).  */
 end_comment
@@ -525,35 +477,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-block|{
-literal|"unchecked"
-block|,
-literal|"rawtypes"
-block|}
-argument_list|)
-specifier|final
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|Codec
-argument_list|>
-name|serviceMap
-init|=
-operator|(
-name|Map
-operator|)
-name|modifiableServicesField
-operator|.
-name|get
-argument_list|(
-name|spiLoader
-argument_list|)
-decl_stmt|;
-comment|/* note: re-enable this if we make a Lucene4x impersonator        if (!(Codec.forName("Lucene3x") instanceof PreFlexRWCodec)) {         if (Constants.JAVA_VENDOR.startsWith("IBM")) {           // definitely a buggy version           System.err.println("ERROR: Your VM's java.util.ServiceLoader implementation is buggy"+             " and does not respect classpath order, please report this to the vendor.");         } else {           // could just be a classpath issue           System.err.println("ERROR: fix your classpath to have tests-framework.jar before lucene-core.jar!"+               " If you have already done this, then your VM's java.util.ServiceLoader implementation is buggy"+               " and does not respect classpath order, please report this to the vendor.");         }         serviceMap.put("Lucene3x", new PreFlexRWCodec());       } */
+comment|/* note: re-enable this if we make a Lucene4x impersonator        @SuppressWarnings({"unchecked","rawtypes"}) final Map<String,Codec> serviceMap =         (Map) modifiableServicesField.get(spiLoader);       if (!(Codec.forName("Lucene3x") instanceof PreFlexRWCodec)) {         if (Constants.JAVA_VENDOR.startsWith("IBM")) {           // definitely a buggy version           System.err.println("ERROR: Your VM's java.util.ServiceLoader implementation is buggy"+             " and does not respect classpath order, please report this to the vendor.");         } else {           // could just be a classpath issue           System.err.println("ERROR: fix your classpath to have tests-framework.jar before lucene-core.jar!"+               " If you have already done this, then your VM's java.util.ServiceLoader implementation is buggy"+               " and does not respect classpath order, please report this to the vendor.");         }         serviceMap.put("Lucene3x", new PreFlexRWCodec());       } */
 block|}
 catch|catch
 parameter_list|(
@@ -926,7 +850,7 @@ argument_list|(
 literal|10
 argument_list|)
 decl_stmt|;
-comment|/* note: re-enable this if we make a 4.x impersonator      * if ("Lucene3x".equals(TEST_CODEC) || ("random".equals(TEST_CODEC)&& randomVal< 2&& !shouldAvoidCodec("Lucene3x"))) { // preflex-only setup       codec = Codec.forName("Lucene3x");       assert (codec instanceof PreFlexRWCodec) : "fix your classpath to have tests-framework.jar before lucene-core.jar";       PREFLEX_IMPERSONATION_IS_ACTIVE = true;     } else */
+comment|/* note: re-enable this if we make a 4.x impersonator       if ("Lucene3x".equals(TEST_CODEC) || ("random".equals(TEST_CODEC)&&                                           "random".equals(TEST_POSTINGSFORMAT)&&                                           randomVal< 2&&                                           !shouldAvoidCodec("Lucene3x"))) { // preflex-only setup       codec = Codec.forName("Lucene3x");       assert (codec instanceof PreFlexRWCodec) : "fix your classpath to have tests-framework.jar before lucene-core.jar";       PREFLEX_IMPERSONATION_IS_ACTIVE = true;     } else */
 if|if
 condition|(
 literal|"SimpleText"
