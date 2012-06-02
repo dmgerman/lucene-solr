@@ -1539,8 +1539,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit remove this (just do the check at the
-comment|// end); useful to catch exact copy that was wrong:
 comment|/*         for(int i=0;i<valueCount;i++) {           assertEquals("value " + i, packed1.get(i), packed2.get(i));         }         */
 block|}
 for|for
