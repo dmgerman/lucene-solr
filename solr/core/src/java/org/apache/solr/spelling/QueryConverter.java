@@ -109,6 +109,46 @@ specifier|protected
 name|Analyzer
 name|analyzer
 decl_stmt|;
+comment|/**    *<p>This term is marked prohibited in the query with the minus sign.</p>    *     */
+DECL|field|PROHIBITED_TERM_FLAG
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|PROHIBITED_TERM_FLAG
+init|=
+literal|16384
+decl_stmt|;
+comment|/**    *<p>This term is marked required in the query with the plus sign.</p>    */
+DECL|field|REQUIRED_TERM_FLAG
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|REQUIRED_TERM_FLAG
+init|=
+literal|32768
+decl_stmt|;
+comment|/**    *<p>    * This term is directly followed by a boolean operator (AND/OR/NOT)    * and this operator differs from the prior boolean operator    * in the query (this signifies this term is likely part of a different    * query clause than the next term in the query)    *</p>    */
+DECL|field|TERM_PRECEDES_NEW_BOOLEAN_OPERATOR_FLAG
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|TERM_PRECEDES_NEW_BOOLEAN_OPERATOR_FLAG
+init|=
+literal|65536
+decl_stmt|;
+comment|/**    *<p>    * This term exists in a query that contains boolean operators    * (AND/OR/NOT)    *</p>    */
+DECL|field|TERM_IN_BOOLEAN_QUERY_FLAG
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|TERM_IN_BOOLEAN_QUERY_FLAG
+init|=
+literal|131072
+decl_stmt|;
 DECL|method|init
 specifier|public
 name|void
