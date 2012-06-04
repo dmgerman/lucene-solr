@@ -314,7 +314,7 @@ init|=
 operator|new
 name|SolrQuery
 argument_list|(
-literal|"*:*"
+literal|"name:samsang"
 argument_list|)
 decl_stmt|;
 name|query
@@ -335,17 +335,6 @@ argument_list|(
 literal|"spellcheck"
 argument_list|,
 literal|true
-argument_list|)
-expr_stmt|;
-name|query
-operator|.
-name|set
-argument_list|(
-name|SpellingParams
-operator|.
-name|SPELLCHECK_Q
-argument_list|,
-literal|"samsang"
 argument_list|)
 expr_stmt|;
 name|query
