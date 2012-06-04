@@ -315,11 +315,11 @@ specifier|public
 enum|enum
 name|BreakSuggestionTieBreaker
 block|{
-comment|/**      * See      * {@link WordBreakSpellChecker.BreakSuggestionSortMethod#NUM_CHANGES_THEN_MAX_FREQUENCY}      * #      */
+comment|/**      * See      * {@link BreakSuggestionSortMethod#NUM_CHANGES_THEN_MAX_FREQUENCY}      * #      */
 DECL|enum constant|MAX_FREQ
 name|MAX_FREQ
 block|,
-comment|/**      * See      * {@link WordBreakSpellChecker.BreakSuggestionSortMethod#NUM_CHANGES_THEN_SUMMED_FREQUENCY}      */
+comment|/**      * See      * {@link BreakSuggestionSortMethod#NUM_CHANGES_THEN_SUMMED_FREQUENCY}      */
 DECL|enum constant|SUM_FREQ
 name|SUM_FREQ
 block|}
