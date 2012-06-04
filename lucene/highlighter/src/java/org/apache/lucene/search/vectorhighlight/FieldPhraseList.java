@@ -132,6 +132,20 @@ name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * return the list of WeightedPhraseInfo.    *     * @return phraseList.    */
+DECL|method|getPhraseList
+specifier|public
+name|List
+argument_list|<
+name|WeightedPhraseInfo
+argument_list|>
+name|getPhraseList
+parameter_list|()
+block|{
+return|return
+name|phraseList
+return|;
+block|}
 comment|/**    * a constructor.    *     * @param fieldTermStack FieldTermStack object    * @param fieldQuery FieldQuery object    * @param phraseLimit maximum size of phraseList    */
 DECL|method|FieldPhraseList
 specifier|public
