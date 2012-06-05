@@ -438,7 +438,8 @@ control|(
 name|WeightedPhraseInfo
 name|existWpi
 range|:
-name|phraseList
+name|getPhraseList
+argument_list|()
 control|)
 block|{
 if|if
@@ -450,9 +451,27 @@ argument_list|(
 name|wpi
 argument_list|)
 condition|)
+block|{
+comment|// WeightedPhraseInfo.addIfNoOverlap() dumps the second part of, for example, hyphenated words (social-economics).
+comment|// The result is that all informations in TermInfo are lost and not available for further operations.
+name|existWpi
+operator|.
+name|getTermsInfos
+argument_list|()
+operator|.
+name|addAll
+argument_list|(
+name|wpi
+operator|.
+name|getTermsInfos
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return;
 block|}
-name|phraseList
+block|}
+name|getPhraseList
+argument_list|()
 operator|.
 name|add
 argument_list|(
@@ -493,6 +512,14 @@ specifier|private
 name|int
 name|seqnum
 decl_stmt|;
+DECL|field|termsInfos
+specifier|private
+name|ArrayList
+argument_list|<
+name|TermInfo
+argument_list|>
+name|termsInfos
+decl_stmt|;
 comment|/**      * @return the text      */
 DECL|method|getText
 specifier|public
@@ -527,6 +554,20 @@ parameter_list|()
 block|{
 return|return
 name|boost
+return|;
+block|}
+comment|/**      * @return the termInfos      */
+DECL|method|getTermsInfos
+specifier|public
+name|List
+argument_list|<
+name|TermInfo
+argument_list|>
+name|getTermsInfos
+parameter_list|()
+block|{
+return|return
+name|termsInfos
 return|;
 block|}
 DECL|method|WeightedPhraseInfo
@@ -581,6 +622,18 @@ operator|.
 name|seqnum
 operator|=
 name|seqnum
+expr_stmt|;
+comment|// now we keep TermInfos for further operations
+name|termsInfos
+operator|=
+operator|new
+name|ArrayList
+argument_list|<
+name|TermInfo
+argument_list|>
+argument_list|(
+name|terms
+argument_list|)
 expr_stmt|;
 name|termsOffsets
 operator|=
