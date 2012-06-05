@@ -1114,51 +1114,69 @@ literal|"//lst[@name='paintable']/int[@name='startOffset']=11"
 argument_list|,
 literal|"//lst[@name='paintable']/int[@name='endOffset']=20"
 argument_list|,
-literal|"//lst[@name='paintable']/arr[@name='suggestion']/str[1]='printable'"
+literal|"//lst[@name='paintable']/int[@name='origFreq']=0"
+argument_list|,
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[1]/str[@name='word']='printable'"
 argument_list|,
 comment|//SolrSpellChecker result interleaved
-literal|"//lst[@name='paintable']/arr[@name='suggestion']/str[2]='paint able'"
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[1]/int[@name='freq']=3"
 argument_list|,
-comment|//1 op ; max doc freq=5
-literal|"//lst[@name='paintable']/arr[@name='suggestion']/str[3]='pintable'"
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[2]/str[@name='word']='paint able'"
 argument_list|,
-comment|//SolrSpellChecker result interleaved
-literal|"//lst[@name='paintable']/arr[@name='suggestion']/str[4]='pain table'"
+comment|//1 op
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[2]/int[@name='freq']=5"
 argument_list|,
-comment|//1 op ; max doc freq=4
-literal|"//lst[@name='paintable']/arr[@name='suggestion']/str[5]='pointable'"
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[3]/str[@name='word']='pintable'"
 argument_list|,
 comment|//SolrSpellChecker result interleaved
-literal|"//lst[@name='paintable']/arr[@name='suggestion']/str[6]='pa in table'"
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[3]/int[@name='freq']=1"
+argument_list|,
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[4]/str[@name='word']='pain table'"
+argument_list|,
+comment|//1 op
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[4]/int[@name='freq']=2"
+argument_list|,
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[5]/str[@name='word']='pointable'"
+argument_list|,
+comment|//SolrSpellChecker result interleaved
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[5]/int[@name='freq']=1"
+argument_list|,
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[6]/str[@name='word']='pa in table'"
 argument_list|,
 comment|//2 ops
-literal|"//lst[@name='paintable']/arr[@name='suggestion']/str[7]='plantable'"
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[6]/int[@name='freq']=7"
+argument_list|,
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[7]/str[@name='word']='plantable'"
 argument_list|,
 comment|//SolrSpellChecker result interleaved
-literal|"//lst[@name='paintable']/arr[@name='suggestion']/str[8]='puntable'"
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[7]/int[@name='freq']=1"
+argument_list|,
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[8]/str[@name='word']='puntable'"
 argument_list|,
 comment|//SolrSpellChecker result interleaved
+literal|"//lst[@name='paintable']/arr[@name='suggestion']/lst[8]/int[@name='freq']=1"
+argument_list|,
 literal|"//lst[@name='pine']/int[@name='numFound']=2"
 argument_list|,
 literal|"//lst[@name='pine']/int[@name='startOffset']=21"
 argument_list|,
 literal|"//lst[@name='pine']/int[@name='endOffset']=25"
 argument_list|,
-literal|"//lst[@name='pine']/arr[@name='suggestion']/str[1]='line'"
+literal|"//lst[@name='pine']/arr[@name='suggestion']/lst[1]/str[@name='word']='line'"
 argument_list|,
-literal|"//lst[@name='pine']/arr[@name='suggestion']/str[2]='pi ne'"
+literal|"//lst[@name='pine']/arr[@name='suggestion']/lst[2]/str[@name='word']='pi ne'"
 argument_list|,
 literal|"//lst[@name='apple']/int[@name='numFound']=1"
 argument_list|,
-literal|"//lst[@name='apple']/arr[@name='suggestion']/str[1]='ample'"
+literal|"//lst[@name='apple']/arr[@name='suggestion']/lst[1]/str[@name='word']='ample'"
 argument_list|,
 literal|"//lst[@name='good']/int[@name='numFound']=1"
 argument_list|,
-literal|"//lst[@name='good']/arr[@name='suggestion']/str[1]='food'"
+literal|"//lst[@name='good']/arr[@name='suggestion']/lst[1]/str[@name='word']='food'"
 argument_list|,
 literal|"//lst[@name='ness']/int[@name='numFound']=1"
 argument_list|,
-literal|"//lst[@name='ness']/arr[@name='suggestion']/str[1]='mess'"
+literal|"//lst[@name='ness']/arr[@name='suggestion']/lst[1]/str[@name='word']='mess'"
 argument_list|,
 literal|"//lst[@name='pine apple']/int[@name='numFound']=1"
 argument_list|,
@@ -1166,7 +1184,7 @@ literal|"//lst[@name='pine apple']/int[@name='startOffset']=21"
 argument_list|,
 literal|"//lst[@name='pine apple']/int[@name='endOffset']=31"
 argument_list|,
-literal|"//lst[@name='pine apple']/arr[@name='suggestion']/str[1]='pineapple'"
+literal|"//lst[@name='pine apple']/arr[@name='suggestion']/lst[1]/str[@name='word']='pineapple'"
 argument_list|,
 literal|"//lst[@name='paintable pine']/int[@name='numFound']=1"
 argument_list|,
@@ -1174,7 +1192,7 @@ literal|"//lst[@name='paintable pine']/int[@name='startOffset']=11"
 argument_list|,
 literal|"//lst[@name='paintable pine']/int[@name='endOffset']=25"
 argument_list|,
-literal|"//lst[@name='paintable pine']/arr[@name='suggestion']/str[1]='paintablepine'"
+literal|"//lst[@name='paintable pine']/arr[@name='suggestion']/lst[1]/str[@name='word']='paintablepine'"
 argument_list|,
 literal|"//lst[@name='good ness']/int[@name='numFound']=1"
 argument_list|,
@@ -1182,7 +1200,7 @@ literal|"//lst[@name='good ness']/int[@name='startOffset']=32"
 argument_list|,
 literal|"//lst[@name='good ness']/int[@name='endOffset']=41"
 argument_list|,
-literal|"//lst[@name='good ness']/arr[@name='suggestion']/str[1]='goodness'"
+literal|"//lst[@name='good ness']/arr[@name='suggestion']/lst[1]/str[@name='word']='goodness'"
 argument_list|,
 literal|"//lst[@name='pine apple good ness']/int[@name='numFound']=1"
 argument_list|,
@@ -1190,7 +1208,7 @@ literal|"//lst[@name='pine apple good ness']/int[@name='startOffset']=21"
 argument_list|,
 literal|"//lst[@name='pine apple good ness']/int[@name='endOffset']=41"
 argument_list|,
-literal|"//lst[@name='pine apple good ness']/arr[@name='suggestion']/str[1]='pineapplegoodness'"
+literal|"//lst[@name='pine apple good ness']/arr[@name='suggestion']/lst[1]/str[@name='word']='pineapplegoodness'"
 argument_list|)
 expr_stmt|;
 block|}
