@@ -8331,6 +8331,8 @@ argument_list|()
 operator|+
 literal|" package will be used.\n"
 operator|+
+literal|"\n"
+operator|+
 literal|"**WARNING**: -fix should only be used on an emergency basis as it will cause\n"
 operator|+
 literal|"documents (perhaps many) to be permanently removed from the index.  Always make\n"
