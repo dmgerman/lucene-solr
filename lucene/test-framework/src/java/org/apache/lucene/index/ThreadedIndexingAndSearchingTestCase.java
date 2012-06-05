@@ -2305,8 +2305,13 @@ literal|"sub reader "
 operator|+
 name|sub
 operator|+
-literal|" wasn't warmed"
+literal|" wasn't warmed: "
+operator|+
+name|warmed
 argument_list|,
+operator|!
+name|assertMergedSegmentsWarmed
+operator|||
 name|warmed
 operator|.
 name|containsKey
@@ -2670,6 +2675,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{   }
+DECL|field|assertMergedSegmentsWarmed
+specifier|protected
+name|boolean
+name|assertMergedSegmentsWarmed
+init|=
+literal|true
+decl_stmt|;
 DECL|field|warmed
 specifier|private
 specifier|final
