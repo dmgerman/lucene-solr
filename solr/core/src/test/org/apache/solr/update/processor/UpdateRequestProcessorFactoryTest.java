@@ -183,9 +183,11 @@ argument_list|(
 literal|"standard"
 argument_list|)
 decl_stmt|;
-comment|// Make sure it got 3 items and configured the Log chain ok
+comment|// Make sure it got 3 items (4 configured, 1 is enable=false)
 name|assertEquals
 argument_list|(
+literal|"wrong number of (enabled) factories in chain"
+argument_list|,
 literal|3
 argument_list|,
 name|chained
@@ -196,12 +198,10 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|LogUpdateProcessorFactory
-name|log
+comment|// first one should be log, and it should be configured properly
+name|UpdateRequestProcessorFactory
+name|first
 init|=
-operator|(
-name|LogUpdateProcessorFactory
-operator|)
 name|chained
 operator|.
 name|getFactories
@@ -212,6 +212,30 @@ index|]
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"wrong factory at front of chain"
+argument_list|,
+name|LogUpdateProcessorFactory
+operator|.
+name|class
+argument_list|,
+name|first
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|LogUpdateProcessorFactory
+name|log
+init|=
+operator|(
+name|LogUpdateProcessorFactory
+operator|)
+name|first
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"wrong config for LogUpdateProcessorFactory"
+argument_list|,
 literal|100
 argument_list|,
 name|log
