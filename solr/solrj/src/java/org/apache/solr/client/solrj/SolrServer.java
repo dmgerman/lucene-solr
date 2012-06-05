@@ -693,7 +693,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Performs an explicit commit, causing pending documents to be committed for indexing    * @param waitFlush  block until index changes are flushed to disk    * @param waitSearcher  block until a new searcher is opened and registered as the main query searcher, making the changes visible    * @throws SolrServerException    * @throws IOException    */
+comment|/**    * Performs an explicit commit, causing pending documents to be committed for indexing    * @param waitFlush  block until index changes are flushed to disk    * @param waitSearcher  block until a new searcher is opened and registered as the main query searcher, making the changes visible    * @param softCommit makes index changes visible while neither fsync-ing index files nor writing a new index descriptor    * @throws SolrServerException    * @throws IOException    */
 DECL|method|commit
 specifier|public
 name|UpdateResponse
