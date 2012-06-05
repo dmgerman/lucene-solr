@@ -2693,6 +2693,10 @@ name|Boolean
 argument_list|>
 name|warmed
 init|=
+name|Collections
+operator|.
+name|synchronizedMap
+argument_list|(
 operator|new
 name|WeakHashMap
 argument_list|<
@@ -2701,6 +2705,7 @@ argument_list|,
 name|Boolean
 argument_list|>
 argument_list|()
+argument_list|)
 decl_stmt|;
 DECL|method|runTest
 specifier|public
