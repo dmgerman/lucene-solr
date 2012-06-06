@@ -1907,6 +1907,30 @@ name|exception
 operator|=
 literal|null
 expr_stmt|;
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|SolrCore
+operator|.
+name|log
+argument_list|,
+literal|"forwarding update to "
+operator|+
+name|sreq
+operator|.
+name|node
+operator|.
+name|getUrl
+argument_list|()
+operator|+
+literal|" failed - retrying ... "
+argument_list|,
+name|sreq
+operator|.
+name|exception
+argument_list|)
+expr_stmt|;
 name|Thread
 operator|.
 name|sleep
