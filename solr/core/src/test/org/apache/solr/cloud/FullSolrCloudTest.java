@@ -3899,7 +3899,7 @@ comment|// long cloudClientDocs = cloudClient.query(new
 comment|// SolrQuery("*:*")).getResults().getNumFound();
 comment|// System.out.println("clouddocs:" + cloudClientDocs);
 comment|// try to index to a living shard at shard2
-comment|// we are careful to make sure the downed node is not longer in the state,
+comment|// we are careful to make sure the downed node is no longer in the state,
 comment|// because on some systems (especially freebsd w/ blackhole enabled), trying
 comment|// to talk to a downed node causes grief
 name|tries
