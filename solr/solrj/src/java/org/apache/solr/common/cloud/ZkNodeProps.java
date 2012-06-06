@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|// Immutable
+comment|/**  * ZkNodeProps contains immutable properties for a shard/solr core.  */
 end_comment
 
 begin_class
@@ -107,6 +107,7 @@ name|String
 argument_list|>
 name|propMap
 decl_stmt|;
+comment|/**    * Construct ZKNodeProps from map.    */
 DECL|method|ZkNodeProps
 specifier|public
 name|ZkNodeProps
@@ -143,6 +144,7 @@ name|propMap
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Construct ZKNodeProps from information of an existingZKNodeProps.    */
 DECL|method|ZkNodeProps
 specifier|public
 name|ZkNodeProps
@@ -176,23 +178,7 @@ name|propMap
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|ZkNodeProps
-specifier|public
-name|ZkNodeProps
-parameter_list|()
-block|{
-name|propMap
-operator|=
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|()
-expr_stmt|;
-block|}
+comment|/**    * Constructor that populates the from array of Strings in form key1, value1,    * key2, value2, ..., keyN, valueN    */
 DECL|method|ZkNodeProps
 specifier|public
 name|ZkNodeProps
@@ -269,6 +255,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Get property keys.    */
 DECL|method|keySet
 specifier|public
 name|Set
@@ -290,6 +277,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Get all properties as map.    */
 DECL|method|getProperties
 specifier|public
 name|Map
@@ -310,6 +298,7 @@ name|propMap
 argument_list|)
 return|;
 block|}
+comment|/**    * Create ZkNodeProps from json string that is typically stored in zookeeper.    */
 DECL|method|load
 specifier|public
 specifier|static
@@ -371,6 +360,7 @@ name|propMap
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Get property value.    */
 DECL|method|get
 specifier|public
 name|String
@@ -460,6 +450,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**    * Check if property key exists.    */
 DECL|method|containsKey
 specifier|public
 name|boolean

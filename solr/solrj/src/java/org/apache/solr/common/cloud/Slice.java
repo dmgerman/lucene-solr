@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|// immutable
+comment|/**  * A Slice contains immutable information about all shards that share the same  * shard id (shard leader and replicas).  */
 end_comment
 
 begin_class
@@ -120,6 +120,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
+comment|/**    * Get properties for all shards in this slice.    *     * @return map containing coreNodeName as the key, see    *         {@link ZkStateReader#getCoreNodeName(String, String)}, ZKNodeProps    *         as the value.    */
 DECL|method|getShards
 specifier|public
 name|Map
@@ -140,6 +141,7 @@ name|shards
 argument_list|)
 return|;
 block|}
+comment|/**    * Get a copy of the shards data this object holds.    */
 DECL|method|getShardsCopy
 specifier|public
 name|Map
@@ -217,6 +219,7 @@ return|return
 name|shards
 return|;
 block|}
+comment|/**    * Return slice name (shard id).    */
 DECL|method|getName
 specifier|public
 name|String
