@@ -358,6 +358,26 @@ name|DefaultSolrThreadFactory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_class
 DECL|class|SolrCmdDistributor
 specifier|public
@@ -372,6 +392,21 @@ name|int
 name|MAX_RETRIES_ON_FORWARD
 init|=
 literal|6
+decl_stmt|;
+DECL|field|log
+specifier|public
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|SolrCmdDistributor
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 comment|// TODO: shut this thing down
 comment|// TODO: this cannot be per instance...
@@ -1920,7 +1955,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|SolrCore
+name|SolrCmdDistributor
 operator|.
 name|log
 argument_list|,
@@ -1934,10 +1969,6 @@ name|getUrl
 argument_list|()
 operator|+
 literal|" failed - retrying ... "
-argument_list|,
-name|sreq
-operator|.
-name|exception
 argument_list|)
 expr_stmt|;
 name|Thread
@@ -2007,7 +2038,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|SolrCore
+name|SolrCmdDistributor
 operator|.
 name|log
 argument_list|,
