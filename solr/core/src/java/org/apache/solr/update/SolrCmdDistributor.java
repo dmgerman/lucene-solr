@@ -364,6 +364,15 @@ specifier|public
 class|class
 name|SolrCmdDistributor
 block|{
+DECL|field|MAX_RETRIES_ON_FORWARD
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|MAX_RETRIES_ON_FORWARD
+init|=
+literal|6
+decl_stmt|;
 comment|// TODO: shut this thing down
 comment|// TODO: this cannot be per instance...
 DECL|field|commExecutor
@@ -1880,7 +1889,7 @@ name|sreq
 operator|.
 name|retries
 operator|<
-literal|5
+name|MAX_RETRIES_ON_FORWARD
 operator|&&
 name|sreq
 operator|.
