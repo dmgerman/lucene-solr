@@ -672,6 +672,11 @@ name|INDEX_CREATE_TIME
 init|=
 literal|"index.create.time"
 decl_stmt|;
+DECL|field|dir
+specifier|private
+name|Directory
+name|dir
+decl_stmt|;
 DECL|field|indexWriter
 specifier|private
 name|IndexWriter
@@ -735,10 +740,9 @@ specifier|private
 name|int
 name|cacheMisses
 decl_stmt|;
-comment|/** Records the taxonomy index creation time. */
+comment|/** Records the taxonomy index creation time, updated on replaceTaxonomy as well. */
 DECL|field|createTime
 specifier|private
-specifier|final
 name|String
 name|createTime
 decl_stmt|;
@@ -912,6 +916,10 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+name|dir
+operator|=
+name|directory
+expr_stmt|;
 name|IndexWriterConfig
 name|config
 init|=
@@ -924,7 +932,7 @@ name|indexWriter
 operator|=
 name|openIndexWriter
 argument_list|(
-name|directory
+name|dir
 argument_list|,
 name|config
 argument_list|)
@@ -1111,7 +1119,7 @@ name|IndexWriterConfig
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_40
+name|LUCENE_50
 argument_list|,
 operator|new
 name|KeywordAnalyzer
@@ -3486,6 +3494,81 @@ expr_stmt|;
 name|doClose
 argument_list|()
 expr_stmt|;
+block|}
+comment|/**    * Replaces the current taxonomy with the given one. This method should    * generally be called in conjunction with    * {@link IndexWriter#addIndexes(Directory...)} to replace both the taxonomy    * as well as the search index content.    */
+DECL|method|replaceTaxonomy
+specifier|public
+name|void
+name|replaceTaxonomy
+parameter_list|(
+name|Directory
+name|taxoDir
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// replace the taxonomy by doing IW optimized operations
+name|indexWriter
+operator|.
+name|deleteAll
+argument_list|()
+expr_stmt|;
+name|indexWriter
+operator|.
+name|addIndexes
+argument_list|(
+name|taxoDir
+argument_list|)
+expr_stmt|;
+name|refreshInternalReader
+argument_list|()
+expr_stmt|;
+name|nextID
+operator|=
+name|indexWriter
+operator|.
+name|maxDoc
+argument_list|()
+expr_stmt|;
+comment|// need to clear the cache, so that addCategory won't accidentally return
+comment|// old categories that are in the cache.
+name|cache
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|cacheIsComplete
+operator|=
+literal|false
+expr_stmt|;
+name|alreadyCalledFillCache
+operator|=
+literal|false
+expr_stmt|;
+comment|// update createTime as a taxonomy replace is just like it has be recreated
+name|createTime
+operator|=
+name|Long
+operator|.
+name|toString
+argument_list|(
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Returns the {@link Directory} of this taxonomy writer. */
+DECL|method|getDirectory
+specifier|public
+name|Directory
+name|getDirectory
+parameter_list|()
+block|{
+return|return
+name|dir
+return|;
 block|}
 block|}
 end_class
