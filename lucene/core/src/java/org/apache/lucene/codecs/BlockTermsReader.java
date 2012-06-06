@@ -2819,6 +2819,24 @@ throws|throws
 name|IOException
 block|{
 comment|//System.out.println("BTR.docs this=" + this);
+if|if
+condition|(
+name|needsFreqs
+operator|&&
+name|fieldInfo
+operator|.
+name|getIndexOptions
+argument_list|()
+operator|==
+name|IndexOptions
+operator|.
+name|DOCS_ONLY
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 name|decodeMetaData
 argument_list|()
 expr_stmt|;

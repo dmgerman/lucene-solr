@@ -1020,25 +1020,6 @@ name|IOException
 block|{
 if|if
 condition|(
-name|needsFreqs
-operator|&&
-name|fieldInfo
-operator|.
-name|getIndexOptions
-argument_list|()
-operator|==
-name|IndexOptions
-operator|.
-name|DOCS_ONLY
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-elseif|else
-if|if
-condition|(
 name|canReuse
 argument_list|(
 name|reuse
@@ -1241,19 +1222,6 @@ argument_list|)
 operator|>=
 literal|0
 decl_stmt|;
-if|if
-condition|(
-name|needsOffsets
-operator|&&
-operator|!
-name|hasOffsets
-condition|)
-block|{
-return|return
-literal|null
-return|;
-comment|// not available
-block|}
 comment|// TODO: refactor
 if|if
 condition|(
