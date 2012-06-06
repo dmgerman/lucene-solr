@@ -4128,6 +4128,24 @@ comment|//   System.out.println("SAVED to " + dotFileName);
 comment|//   w.close();
 comment|// }
 block|}
+else|else
+block|{
+assert|assert
+name|sumTotalTermFreq
+operator|==
+literal|0
+assert|;
+assert|assert
+name|sumDocFreq
+operator|==
+literal|0
+assert|;
+assert|assert
+name|docCount
+operator|==
+literal|0
+assert|;
+block|}
 block|}
 DECL|field|bytesWriter
 specifier|private
