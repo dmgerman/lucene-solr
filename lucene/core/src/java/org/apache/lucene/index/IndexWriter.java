@@ -5825,7 +5825,7 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfosWriter
+name|getSegmentInfoWriter
 argument_list|()
 operator|.
 name|write
@@ -7016,7 +7016,7 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfosWriter
+name|getSegmentInfoWriter
 argument_list|()
 operator|.
 name|write
@@ -7408,7 +7408,7 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfosWriter
+name|getSegmentInfoWriter
 argument_list|()
 operator|.
 name|write
@@ -12502,7 +12502,7 @@ operator|.
 name|segmentInfoFormat
 argument_list|()
 operator|.
-name|getSegmentInfosWriter
+name|getSegmentInfoWriter
 argument_list|()
 operator|.
 name|write
