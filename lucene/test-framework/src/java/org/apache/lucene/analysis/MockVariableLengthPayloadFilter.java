@@ -60,9 +60,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|Payload
+name|BytesRef
 import|;
 end_import
 
@@ -123,7 +123,7 @@ decl_stmt|;
 DECL|field|payload
 specifier|private
 specifier|final
-name|Payload
+name|BytesRef
 name|payload
 decl_stmt|;
 DECL|method|MockVariableLengthPayloadFilter
@@ -153,7 +153,7 @@ operator|.
 name|payload
 operator|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 name|bytes
 argument_list|)
@@ -186,18 +186,13 @@ argument_list|)
 expr_stmt|;
 name|payload
 operator|.
-name|setData
-argument_list|(
-name|bytes
-argument_list|,
-literal|0
-argument_list|,
+name|length
+operator|=
 name|random
 operator|.
 name|nextInt
 argument_list|(
 name|MAXLENGTH
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|payloadAtt

@@ -150,9 +150,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|Payload
+name|BytesRef
 import|;
 end_import
 
@@ -471,7 +471,7 @@ name|nextToken
 argument_list|)
 expr_stmt|;
 comment|// Make it a deep copy
-name|Payload
+name|BytesRef
 name|p
 init|=
 name|previousPrefixToken

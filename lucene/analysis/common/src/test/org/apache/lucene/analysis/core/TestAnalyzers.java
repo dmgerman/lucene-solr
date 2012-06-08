@@ -128,9 +128,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|Payload
+name|BytesRef
 import|;
 end_import
 
@@ -563,8 +563,7 @@ operator|.
 name|getPayload
 argument_list|()
 operator|.
-name|toByteArray
-argument_list|()
+name|bytes
 index|[
 literal|0
 index|]
@@ -1263,11 +1262,11 @@ literal|1
 index|]
 decl_stmt|;
 DECL|field|p
-name|Payload
+name|BytesRef
 name|p
 init|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 name|data
 argument_list|,

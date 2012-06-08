@@ -94,9 +94,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|Payload
+name|BytesRef
 import|;
 end_import
 
@@ -190,11 +190,11 @@ decl_stmt|;
 comment|/** The object used for constructing payloads. */
 DECL|field|payload
 specifier|protected
-name|Payload
+name|BytesRef
 name|payload
 init|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|()
 decl_stmt|;
 comment|/** Indexing params for creating term text **/

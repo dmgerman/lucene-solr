@@ -303,8 +303,7 @@ operator|.
 name|getPayload
 argument_list|()
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|,
 literal|"UTF-8"
 argument_list|)

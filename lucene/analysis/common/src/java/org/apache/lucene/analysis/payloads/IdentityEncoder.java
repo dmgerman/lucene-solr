@@ -20,20 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Payload
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|nio
@@ -61,6 +47,20 @@ operator|.
 name|charset
 operator|.
 name|Charset
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
@@ -112,7 +112,7 @@ expr_stmt|;
 block|}
 DECL|method|encode
 specifier|public
-name|Payload
+name|BytesRef
 name|encode
 parameter_list|(
 name|char
@@ -156,7 +156,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 name|bb
 operator|.
@@ -206,7 +206,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 name|b
 argument_list|)

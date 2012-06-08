@@ -26,9 +26,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|Payload
+name|ArrayUtil
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ArrayUtil
+name|BytesRef
 import|;
 end_import
 
@@ -62,7 +62,7 @@ name|PayloadEncoder
 block|{
 DECL|method|encode
 specifier|public
-name|Payload
+name|BytesRef
 name|encode
 parameter_list|(
 name|char
@@ -76,13 +76,6 @@ name|int
 name|length
 parameter_list|)
 block|{
-name|Payload
-name|result
-init|=
-operator|new
-name|Payload
-argument_list|()
-decl_stmt|;
 name|int
 name|payload
 init|=
@@ -109,13 +102,15 @@ argument_list|(
 name|payload
 argument_list|)
 decl_stmt|;
+name|BytesRef
 name|result
-operator|.
-name|setData
+init|=
+operator|new
+name|BytesRef
 argument_list|(
 name|bytes
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 name|result
 return|;

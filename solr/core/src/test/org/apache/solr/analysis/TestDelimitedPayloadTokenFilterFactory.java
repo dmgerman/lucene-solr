@@ -330,8 +330,7 @@ operator|.
 name|getPayload
 argument_list|()
 operator|.
-name|getData
-argument_list|()
+name|bytes
 decl_stmt|;
 name|assertTrue
 argument_list|(
@@ -532,8 +531,7 @@ operator|.
 name|getPayload
 argument_list|()
 operator|.
-name|getData
-argument_list|()
+name|bytes
 decl_stmt|;
 name|assertTrue
 argument_list|(

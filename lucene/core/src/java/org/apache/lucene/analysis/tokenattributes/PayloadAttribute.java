@@ -26,9 +26,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|Payload
+name|Attribute
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Attribute
+name|BytesRef
 import|;
 end_import
 
@@ -61,7 +61,7 @@ block|{
 comment|/**    * Returns this Token's payload.    */
 DECL|method|getPayload
 specifier|public
-name|Payload
+name|BytesRef
 name|getPayload
 parameter_list|()
 function_decl|;
@@ -71,7 +71,7 @@ specifier|public
 name|void
 name|setPayload
 parameter_list|(
-name|Payload
+name|BytesRef
 name|payload
 parameter_list|)
 function_decl|;

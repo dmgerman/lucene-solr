@@ -176,20 +176,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Payload
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|RandomIndexWriter
 import|;
 end_import
@@ -331,6 +317,20 @@ operator|.
 name|store
 operator|.
 name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
 import|;
 end_import
 
@@ -521,7 +521,7 @@ operator|.
 name|setPayload
 argument_list|(
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -4211,11 +4211,11 @@ literal|"five"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Payload
+name|BytesRef
 name|pay
 init|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -4241,8 +4241,7 @@ name|singletonList
 argument_list|(
 name|pay
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4446,7 +4445,7 @@ index|[]
 argument_list|>
 name|list
 decl_stmt|;
-name|Payload
+name|BytesRef
 name|pay2
 decl_stmt|;
 name|clauses
@@ -4486,7 +4485,7 @@ expr_stmt|;
 name|pay
 operator|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -4501,7 +4500,7 @@ expr_stmt|;
 name|pay2
 operator|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -4529,8 +4528,7 @@ name|add
 argument_list|(
 name|pay
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|)
 expr_stmt|;
 name|list
@@ -4539,8 +4537,7 @@ name|add
 argument_list|(
 name|pay2
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|)
 expr_stmt|;
 name|query
@@ -4817,7 +4814,7 @@ expr_stmt|;
 name|pay
 operator|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -4832,7 +4829,7 @@ expr_stmt|;
 name|pay2
 operator|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -4844,11 +4841,11 @@ name|getBytes
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Payload
+name|BytesRef
 name|pay3
 init|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -4876,8 +4873,7 @@ name|add
 argument_list|(
 name|pay
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|)
 expr_stmt|;
 name|list
@@ -4886,8 +4882,7 @@ name|add
 argument_list|(
 name|pay2
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|)
 expr_stmt|;
 name|list
@@ -4896,8 +4891,7 @@ name|add
 argument_list|(
 name|pay3
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|)
 expr_stmt|;
 name|query
@@ -5134,11 +5128,11 @@ index|[]
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|Payload
+name|BytesRef
 name|pay
 init|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -5150,11 +5144,11 @@ name|getBytes
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Payload
+name|BytesRef
 name|pay2
 init|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -5166,11 +5160,11 @@ name|getBytes
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Payload
+name|BytesRef
 name|pay3
 init|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -5182,11 +5176,11 @@ name|getBytes
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Payload
+name|BytesRef
 name|pay4
 init|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 operator|(
 literal|"pos: "
@@ -5204,8 +5198,7 @@ name|add
 argument_list|(
 name|pay
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|)
 expr_stmt|;
 name|payloads
@@ -5214,8 +5207,7 @@ name|add
 argument_list|(
 name|pay2
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|)
 expr_stmt|;
 name|payloads
@@ -5224,8 +5216,7 @@ name|add
 argument_list|(
 name|pay3
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|)
 expr_stmt|;
 name|payloads
@@ -5234,8 +5225,7 @@ name|add
 argument_list|(
 name|pay4
 operator|.
-name|getData
-argument_list|()
+name|bytes
 argument_list|)
 expr_stmt|;
 name|query

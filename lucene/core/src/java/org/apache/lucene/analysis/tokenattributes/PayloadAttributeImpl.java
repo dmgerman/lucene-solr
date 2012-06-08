@@ -26,9 +26,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|Payload
+name|AttributeImpl
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|AttributeImpl
+name|BytesRef
 import|;
 end_import
 
@@ -64,7 +64,7 @@ name|Cloneable
 block|{
 DECL|field|payload
 specifier|private
-name|Payload
+name|BytesRef
 name|payload
 decl_stmt|;
 comment|/**    * Initialize this attribute with no payload.    */
@@ -78,7 +78,7 @@ DECL|method|PayloadAttributeImpl
 specifier|public
 name|PayloadAttributeImpl
 parameter_list|(
-name|Payload
+name|BytesRef
 name|payload
 parameter_list|)
 block|{
@@ -92,7 +92,7 @@ block|}
 comment|/**    * Returns this Token's payload.    */
 DECL|method|getPayload
 specifier|public
-name|Payload
+name|BytesRef
 name|getPayload
 parameter_list|()
 block|{
@@ -108,7 +108,7 @@ specifier|public
 name|void
 name|setPayload
 parameter_list|(
-name|Payload
+name|BytesRef
 name|payload
 parameter_list|)
 block|{

@@ -96,9 +96,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|Payload
+name|BytesRef
 import|;
 end_import
 
@@ -211,11 +211,11 @@ argument_list|,
 literal|4
 argument_list|)
 expr_stmt|;
-name|Payload
+name|BytesRef
 name|payload
 init|=
 operator|new
-name|Payload
+name|BytesRef
 argument_list|(
 name|data
 argument_list|)

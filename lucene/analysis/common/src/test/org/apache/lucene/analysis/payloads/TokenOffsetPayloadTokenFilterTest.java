@@ -86,9 +86,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|Payload
+name|BytesRef
 import|;
 end_import
 
@@ -198,7 +198,7 @@ name|incrementToken
 argument_list|()
 condition|)
 block|{
-name|Payload
+name|BytesRef
 name|pay
 init|=
 name|payloadAtt
@@ -221,8 +221,7 @@ name|data
 init|=
 name|pay
 operator|.
-name|getData
-argument_list|()
+name|bytes
 decl_stmt|;
 name|int
 name|start
