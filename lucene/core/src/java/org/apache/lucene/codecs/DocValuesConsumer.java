@@ -339,6 +339,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Returns the value size this consumer accepts or<tt>-1</tt> iff this    * consumer is value size agnostic ie. accepts variable length values.    *<p>    * NOTE: the return value is undefined until the consumer has successfully    * consumed at least one value.    *     * @return the value size this consumer accepts or<tt>-1</tt> iff this    *         consumer is value size agnostic ie. accepts variable length values.    */
+DECL|method|getValueSize
+specifier|public
+specifier|abstract
+name|int
+name|getValueSize
+parameter_list|()
+function_decl|;
 comment|/**    * Merges the given {@link org.apache.lucene.index.MergeState} into    * this {@link DocValuesConsumer}.    *     * @param mergeState    *          the state to merge    * @param docValues docValues array containing one instance per reader (    *          {@link org.apache.lucene.index.MergeState#readers}) or<code>null</code> if the reader has    *          no {@link DocValues} instance.    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|merge
 specifier|public
