@@ -698,13 +698,13 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|version
-operator|+
-literal|" should start with: "
-operator|+
 name|Constants
 operator|.
 name|LUCENE_VERSION
+operator|+
+literal|" should start with: "
+operator|+
+name|version
 argument_list|,
 name|Constants
 operator|.
