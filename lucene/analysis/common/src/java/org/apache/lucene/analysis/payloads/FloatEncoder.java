@@ -33,7 +33,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  *  Encode a character array Float as a {@link org.apache.lucene.index.Payload}.  *<p/>  * @see org.apache.lucene.analysis.payloads.PayloadHelper#encodeFloat(float, byte[], int)  *  **/
+comment|/**  *  Encode a character array Float as a {@link BytesRef}.  *<p/>  * @see org.apache.lucene.analysis.payloads.PayloadHelper#encodeFloat(float, byte[], int)  *  **/
 end_comment
 
 begin_class

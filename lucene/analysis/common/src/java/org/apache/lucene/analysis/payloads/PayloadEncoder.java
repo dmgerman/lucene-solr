@@ -33,7 +33,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Mainly for use with the DelimitedPayloadTokenFilter, converts char buffers to Payload.  *<p/>  * NOTE: This interface is subject to change   *  **/
+comment|/**  * Mainly for use with the DelimitedPayloadTokenFilter, converts char buffers to  * {@link BytesRef}.  *<p/>  * NOTE: This interface is subject to change   *  **/
 end_comment
 
 begin_interface
@@ -51,7 +51,7 @@ index|[]
 name|buffer
 parameter_list|)
 function_decl|;
-comment|/**    * Convert a char array to a {@link org.apache.lucene.index.Payload}    * @param buffer    * @param offset    * @param length    * @return encoded {@link BytesRef}    */
+comment|/**    * Convert a char array to a {@link BytesRef}    * @param buffer    * @param offset    * @param length    * @return encoded {@link BytesRef}    */
 DECL|method|encode
 name|BytesRef
 name|encode

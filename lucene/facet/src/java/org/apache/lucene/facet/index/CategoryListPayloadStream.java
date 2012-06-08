@@ -55,7 +55,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/**  * Accumulates category IDs for a single document, for writing in byte array  * form, for example, to a Lucene Payload.  *   * @lucene.experimental  */
+comment|/**  * Accumulates category IDs for a single document, for writing in byte array  * form, for example, to a Lucene payload.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -80,7 +80,7 @@ specifier|private
 name|IntEncoder
 name|encoder
 decl_stmt|;
-comment|/** Creates a Payload stream using the specified encoder. */
+comment|/** Creates a payload stream using the specified encoder. */
 DECL|method|CategoryListPayloadStream
 specifier|public
 name|CategoryListPayloadStream
