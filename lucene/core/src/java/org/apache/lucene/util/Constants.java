@@ -482,6 +482,7 @@ block|}
 comment|// NOTE: we track per-segment version as a String with the "X.Y" format, e.g.
 comment|// "4.0", "3.1", "3.0". Therefore when we change this constant, we should keep
 comment|// the format.
+comment|/**    * This is the internal Lucene version, recorded into each segment.    */
 DECL|field|LUCENE_MAIN_VERSION
 specifier|public
 specifier|static
@@ -494,6 +495,7 @@ argument_list|(
 literal|"5.0"
 argument_list|)
 decl_stmt|;
+comment|/**    * This is the Lucene version for display purposes.    */
 DECL|field|LUCENE_VERSION
 specifier|public
 specifier|static
