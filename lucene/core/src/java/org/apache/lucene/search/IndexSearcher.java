@@ -957,7 +957,7 @@ name|n
 argument_list|)
 return|;
 block|}
-comment|/** Lower-level search API.    *    *<p>{@link Collector#collect(int)} is called for every matching    * document.    *<br>Collector-based access to remote indexes is discouraged.    *    *<p>Applications should only use this if they need<i>all</i> of the    * matching documents.  The high-level search API ({@link    * IndexSearcher#search(Query, Filter, int)}) is usually more efficient, as it skips    * non-high-scoring hits.    *    * @param query to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
+comment|/** Lower-level search API.    *    *<p>{@link Collector#collect(int)} is called for every matching    * document.    *    * @param query to match documents    * @param filter if non-null, used to permit documents to be collected.    * @param results to receive hits    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 specifier|public
 name|void
@@ -993,7 +993,7 @@ name|results
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Lower-level search API.   *   *<p>{@link Collector#collect(int)} is called for every matching document.   *   *<p>Applications should only use this if they need<i>all</i> of the   * matching documents.  The high-level search API ({@link   * IndexSearcher#search(Query, int)}) is usually more efficient, as it skips   * non-high-scoring hits.   *<p>Note: The<code>score</code> passed to this method is a raw score.   * In other words, the score will not necessarily be a float whose value is   * between 0 and 1.   * @throws BooleanQuery.TooManyClauses   */
+comment|/** Lower-level search API.   *   *<p>{@link Collector#collect(int)} is called for every matching document.   *   * @throws BooleanQuery.TooManyClauses   */
 DECL|method|search
 specifier|public
 name|void
@@ -2118,7 +2118,7 @@ name|topDocs
 argument_list|()
 return|;
 block|}
-comment|/**    * Lower-level search API.    *     *<p>    * {@link Collector#collect(int)} is called for every document.<br>    * Collector-based access to remote indexes is discouraged.    *     *<p>    * Applications should only use this if they need<i>all</i> of the matching    * documents. The high-level search API ({@link IndexSearcher#search(Query,int)}) is    * usually more efficient, as it skips non-high-scoring hits.    *     *<p>    * NOTE: this method executes the searches on all given leaves exclusively.    * To search across all the searchers leaves use {@link #leafContexts}.    *     * @param leaves     *          the searchers leaves to execute the searches on    * @param weight    *          to match documents    * @param collector    *          to receive hits    * @throws BooleanQuery.TooManyClauses    */
+comment|/**    * Lower-level search API.    *     *<p>    * {@link Collector#collect(int)} is called for every document.<br>    *     *<p>    * NOTE: this method executes the searches on all given leaves exclusively.    * To search across all the searchers leaves use {@link #leafContexts}.    *     * @param leaves     *          the searchers leaves to execute the searches on    * @param weight    *          to match documents    * @param collector    *          to receive hits    * @throws BooleanQuery.TooManyClauses    */
 DECL|method|search
 specifier|protected
 name|void
