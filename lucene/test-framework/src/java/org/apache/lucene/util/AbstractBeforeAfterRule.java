@@ -150,9 +150,6 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|before
-argument_list|()
-expr_stmt|;
 specifier|final
 name|ArrayList
 argument_list|<
@@ -169,6 +166,9 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|before
+argument_list|()
+expr_stmt|;
 name|s
 operator|.
 name|evaluate

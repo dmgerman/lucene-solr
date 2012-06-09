@@ -4799,25 +4799,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * @see SuppressCodecs     */
-DECL|method|shouldAvoidCodec
-specifier|static
-name|boolean
-name|shouldAvoidCodec
-parameter_list|(
-name|String
-name|codec
-parameter_list|)
-block|{
-return|return
-name|classEnvRule
-operator|.
-name|shouldAvoidCodec
-argument_list|(
-name|codec
-argument_list|)
-return|;
-block|}
 block|}
 end_class
 
