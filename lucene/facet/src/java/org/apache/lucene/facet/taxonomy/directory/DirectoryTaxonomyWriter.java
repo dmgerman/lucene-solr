@@ -1950,9 +1950,16 @@ name|parentStream
 operator|.
 name|set
 argument_list|(
+name|Math
+operator|.
+name|max
+argument_list|(
 name|parent
 operator|+
 literal|1
+argument_list|,
+literal|1
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Document

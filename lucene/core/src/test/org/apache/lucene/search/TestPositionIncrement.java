@@ -466,7 +466,7 @@ index|[]
 name|INCREMENTS
 init|=
 block|{
-literal|0
+literal|1
 block|,
 literal|2
 block|,
@@ -1612,14 +1612,9 @@ name|freq
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|int
-name|expected
-init|=
-literal|0
-decl_stmt|;
 name|assertEquals
 argument_list|(
-name|expected
+literal|0
 argument_list|,
 name|tp
 operator|.
