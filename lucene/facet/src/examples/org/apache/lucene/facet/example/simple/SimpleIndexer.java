@@ -362,7 +362,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 name|SimpleUtils
 operator|.
@@ -375,9 +375,11 @@ index|[
 name|docNum
 index|]
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -398,6 +400,12 @@ name|docTexts
 index|[
 name|docNum
 index|]
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

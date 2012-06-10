@@ -772,7 +772,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType2

@@ -124,7 +124,9 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|TextField
+name|Field
+operator|.
+name|Store
 import|;
 end_import
 
@@ -1815,15 +1817,15 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"foo"
 argument_list|,
 literal|"bar"
 argument_list|,
-name|TextField
+name|Store
 operator|.
-name|TYPE_STORED
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -157,7 +157,7 @@ name|FieldType
 argument_list|(
 name|DoubleField
 operator|.
-name|TYPE
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|fieldType

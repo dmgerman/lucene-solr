@@ -108,16 +108,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -155,6 +145,20 @@ operator|.
 name|document
 operator|.
 name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|Field
 import|;
 end_import
 
@@ -1001,6 +1005,12 @@ name|FileReader
 argument_list|(
 name|file
 argument_list|)
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

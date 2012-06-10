@@ -966,7 +966,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|ft
@@ -993,7 +993,7 @@ expr_stmt|;
 name|fullPathField
 operator|=
 operator|new
-name|Field
+name|StringField
 argument_list|(
 name|Consts
 operator|.
@@ -1001,9 +1001,11 @@ name|FULL
 argument_list|,
 literal|""
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 expr_stmt|;
 name|this

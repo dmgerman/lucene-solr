@@ -84,21 +84,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StringField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|TextField
+name|Field
 import|;
 end_import
 
@@ -349,7 +335,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"dc"
 argument_list|,
@@ -357,9 +343,11 @@ literal|""
 operator|+
 name|docCount
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -367,15 +355,17 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"field"
 argument_list|,
 literal|"here is some text"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;

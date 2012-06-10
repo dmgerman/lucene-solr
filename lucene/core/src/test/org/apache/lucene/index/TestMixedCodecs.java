@@ -88,7 +88,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StringField
+name|Field
 import|;
 end_import
 
@@ -310,7 +310,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -321,9 +321,11 @@ argument_list|(
 name|docUpto
 argument_list|)
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;

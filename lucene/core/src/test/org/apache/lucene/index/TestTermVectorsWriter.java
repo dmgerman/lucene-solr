@@ -337,7 +337,7 @@ name|FieldType
 argument_list|(
 name|StringField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -767,7 +767,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -1027,7 +1027,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -1322,7 +1322,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -1595,7 +1595,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -1855,7 +1855,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -2196,7 +2196,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -2492,7 +2492,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -2903,7 +2903,7 @@ name|FieldType
 argument_list|(
 name|StringField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType2
@@ -3262,7 +3262,7 @@ name|FieldType
 argument_list|(
 name|StringField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType2
@@ -3486,7 +3486,7 @@ name|FieldType
 argument_list|(
 name|StringField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType2
@@ -3736,7 +3736,7 @@ name|FieldType
 argument_list|(
 name|StringField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType2
@@ -3791,15 +3791,17 @@ name|document
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"tvtest"
 argument_list|,
 literal|"x y z"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3824,7 +3826,7 @@ name|FieldType
 argument_list|(
 name|StringField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -3930,7 +3932,7 @@ name|FieldType
 argument_list|(
 name|StringField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -3976,15 +3978,17 @@ name|document
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"tvtest"
 argument_list|,
 literal|"x y z"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4016,7 +4020,7 @@ name|FieldType
 argument_list|(
 name|StringField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType2

@@ -1795,7 +1795,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -1803,9 +1803,11 @@ name|i
 operator|+
 literal|""
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;

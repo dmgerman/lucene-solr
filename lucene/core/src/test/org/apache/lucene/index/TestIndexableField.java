@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StringField
+name|Field
 import|;
 end_import
 
@@ -939,7 +939,7 @@ operator|=
 literal|1
 expr_stmt|;
 return|return
-name|newField
+name|newStringField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -947,9 +947,11 @@ literal|""
 operator|+
 name|finalDocCount
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 return|;
 block|}

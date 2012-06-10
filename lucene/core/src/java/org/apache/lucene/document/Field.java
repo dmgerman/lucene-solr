@@ -1981,6 +1981,21 @@ literal|"Field must have either TokenStream, String, Reader or Number value"
 argument_list|)
 throw|;
 block|}
+comment|/** Specifies whether and how a field should be stored. */
+DECL|enum|Store
+specifier|public
+specifier|static
+enum|enum
+name|Store
+block|{
+comment|/** Store the original field value in the index. This is useful for short texts      * like a document's title which should be displayed with the results. The      * value is stored in its original form, i.e. no analyzer is used before it is      * stored.      */
+DECL|enum constant|YES
+name|YES
+block|,
+comment|/** Do not store the field value in the index. */
+DECL|enum constant|NO
+name|NO
+block|}
 block|}
 end_class
 

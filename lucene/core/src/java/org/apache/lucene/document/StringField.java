@@ -33,7 +33,7 @@ comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or mor
 end_comment
 
 begin_comment
-comment|/** A field that is indexed but not tokenized: the entire  *  String value is indexed as a single token.  For example  *  this might be used for a 'country' field or an 'id'  *  field, or any field that you intend to use for sorting  *  or access through the field cache.  *  *<p/>This field's value is not stored by default; use the  *  {@link StringField#TYPE_STORED} type (pass it to<code>new  *  Field</code>) to store the value. */
+comment|/** A field that is indexed but not tokenized: the entire  *  String value is indexed as a single token.  For example  *  this might be used for a 'country' field or an 'id'  *  field, or any field that you intend to use for sorting  *  or access through the field cache. */
 end_comment
 
 begin_class
@@ -46,12 +46,12 @@ extends|extends
 name|Field
 block|{
 comment|/** Indexed, not tokenized, omits norms, indexes    *  DOCS_ONLY, not stored. */
-DECL|field|TYPE_UNSTORED
+DECL|field|TYPE_NOT_STORED
 specifier|public
 specifier|static
 specifier|final
 name|FieldType
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 init|=
 operator|new
 name|FieldType
@@ -71,21 +71,21 @@ argument_list|()
 decl_stmt|;
 static|static
 block|{
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 operator|.
 name|setIndexed
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 operator|.
 name|setOmitNorms
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 operator|.
 name|setIndexOptions
 argument_list|(
@@ -94,7 +94,7 @@ operator|.
 name|DOCS_ONLY
 argument_list|)
 expr_stmt|;
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 operator|.
 name|freeze
 argument_list|()
@@ -104,6 +104,22 @@ operator|.
 name|setIndexed
 argument_list|(
 literal|true
+argument_list|)
+expr_stmt|;
+name|TYPE_STORED
+operator|.
+name|setOmitNorms
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|TYPE_STORED
+operator|.
+name|setIndexOptions
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_ONLY
 argument_list|)
 expr_stmt|;
 name|TYPE_STORED
@@ -115,27 +131,11 @@ argument_list|)
 expr_stmt|;
 name|TYPE_STORED
 operator|.
-name|setOmitNorms
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|TYPE_STORED
-operator|.
-name|setIndexOptions
-argument_list|(
-name|IndexOptions
-operator|.
-name|DOCS_ONLY
-argument_list|)
-expr_stmt|;
-name|TYPE_STORED
-operator|.
 name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Creates a new un-stored StringField */
+comment|/** Creates a new StringField. */
 DECL|method|StringField
 specifier|public
 name|StringField
@@ -145,6 +145,9 @@ name|name
 parameter_list|,
 name|String
 name|value
+parameter_list|,
+name|Store
+name|stored
 parameter_list|)
 block|{
 name|super
@@ -153,7 +156,15 @@ name|name
 argument_list|,
 name|value
 argument_list|,
-name|TYPE_UNSTORED
+name|stored
+operator|==
+name|Store
+operator|.
+name|YES
+condition|?
+name|TYPE_STORED
+else|:
+name|TYPE_NOT_STORED
 argument_list|)
 expr_stmt|;
 block|}

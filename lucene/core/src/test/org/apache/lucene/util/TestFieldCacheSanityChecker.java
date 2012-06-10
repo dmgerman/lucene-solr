@@ -54,7 +54,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StringField
+name|Field
 import|;
 end_import
 
@@ -378,7 +378,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"theLong"
 argument_list|,
@@ -390,9 +390,11 @@ name|theLong
 operator|--
 argument_list|)
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -400,7 +402,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"theDouble"
 argument_list|,
@@ -412,9 +414,11 @@ name|theDouble
 operator|--
 argument_list|)
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -422,7 +426,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"theByte"
 argument_list|,
@@ -434,9 +438,11 @@ name|theByte
 operator|--
 argument_list|)
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -444,7 +450,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"theShort"
 argument_list|,
@@ -456,9 +462,11 @@ name|theShort
 operator|--
 argument_list|)
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -466,7 +474,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"theInt"
 argument_list|,
@@ -478,9 +486,11 @@ name|theInt
 operator|--
 argument_list|)
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -488,7 +498,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"theFloat"
 argument_list|,
@@ -500,9 +510,11 @@ name|theFloat
 operator|--
 argument_list|)
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

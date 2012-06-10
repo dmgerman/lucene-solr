@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StringField
+name|Field
 import|;
 end_import
 
@@ -286,7 +286,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 name|FIELD
 argument_list|,
@@ -295,9 +295,11 @@ index|[
 name|i
 index|]
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -804,6 +806,12 @@ argument_list|(
 literal|"field"
 argument_list|,
 literal|"0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33"
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -830,6 +838,12 @@ argument_list|(
 literal|"field"
 argument_list|,
 literal|"33"
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

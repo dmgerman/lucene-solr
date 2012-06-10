@@ -239,7 +239,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|ft
@@ -447,7 +447,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|ft
@@ -524,7 +524,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|ft2
@@ -602,7 +602,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|ft3
@@ -1235,7 +1235,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|ft
@@ -1306,15 +1306,17 @@ argument_list|()
 expr_stmt|;
 name|f1
 operator|=
-name|newField
+name|newTextField
 argument_list|(
 literal|"f1"
 argument_list|,
 literal|"This field has positions"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 expr_stmt|;
 name|d

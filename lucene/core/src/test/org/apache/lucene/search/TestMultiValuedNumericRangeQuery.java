@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|Field
 import|;
 end_import
 
@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StringField
+name|IntField
 import|;
 end_import
 
@@ -323,7 +323,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"asc"
 argument_list|,
@@ -334,9 +334,11 @@ argument_list|(
 name|value
 argument_list|)
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -350,6 +352,12 @@ argument_list|(
 literal|"trie"
 argument_list|,
 name|value
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

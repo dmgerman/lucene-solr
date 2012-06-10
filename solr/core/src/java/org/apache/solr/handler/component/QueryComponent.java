@@ -3279,6 +3279,12 @@ argument_list|(
 literal|"dummy"
 argument_list|,
 literal|""
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 decl_stmt|;
 comment|// a dummy Field

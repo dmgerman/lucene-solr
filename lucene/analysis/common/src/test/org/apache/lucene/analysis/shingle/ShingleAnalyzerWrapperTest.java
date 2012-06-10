@@ -375,15 +375,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"content"
 argument_list|,
 literal|"please divide this sentence into shingles"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -405,15 +407,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"content"
 argument_list|,
 literal|"just another test sentence"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -435,15 +439,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"content"
 argument_list|,
 literal|"a sentence which contains no test"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;

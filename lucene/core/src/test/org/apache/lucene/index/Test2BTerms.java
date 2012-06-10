@@ -112,20 +112,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|*
@@ -195,16 +181,6 @@ operator|.
 name|util
 operator|.
 name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
 import|;
 end_import
 
@@ -890,7 +866,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType

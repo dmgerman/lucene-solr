@@ -24,6 +24,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|Field
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -128,20 +142,6 @@ name|Document
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|StringField
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests {@link PrefixQuery} class.  *  */
 end_comment
@@ -223,7 +223,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"category"
 argument_list|,
@@ -232,9 +232,11 @@ index|[
 name|i
 index|]
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;

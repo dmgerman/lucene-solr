@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|FieldType
+name|Field
 import|;
 end_import
 
@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StringField
+name|FieldType
 import|;
 end_import
 
@@ -308,7 +308,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -734,7 +734,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -1352,7 +1352,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -1921,7 +1921,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType
@@ -2287,15 +2287,17 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"foo"
 argument_list|,
 literal|"bar"
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2519,15 +2521,17 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"foo"
 argument_list|,
 literal|"bar"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -270,15 +270,17 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"f"
 argument_list|,
 literal|"a b c d b c d c d d"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -299,15 +301,17 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"f"
 argument_list|,
 literal|"a b c d"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

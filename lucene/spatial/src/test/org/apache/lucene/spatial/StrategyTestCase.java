@@ -491,7 +491,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|StringField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -499,9 +499,11 @@ name|data
 operator|.
 name|id
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -510,7 +512,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|StringField
 argument_list|(
 literal|"name"
 argument_list|,
@@ -518,9 +520,11 @@ name|data
 operator|.
 name|name
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;

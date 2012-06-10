@@ -191,7 +191,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|StringField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -199,9 +199,11 @@ literal|""
 operator|+
 name|i
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

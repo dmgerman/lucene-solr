@@ -54,7 +54,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|StringField
+name|Field
 import|;
 end_import
 
@@ -395,7 +395,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newStringField
 argument_list|(
 literal|"data"
 argument_list|,
@@ -406,9 +406,11 @@ argument_list|(
 name|i
 argument_list|)
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

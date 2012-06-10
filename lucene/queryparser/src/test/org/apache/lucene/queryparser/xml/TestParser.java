@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|Field
 import|;
 end_import
 
@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|TextField
+name|IntField
 import|;
 end_import
 
@@ -538,15 +538,17 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"date"
 argument_list|,
 name|date
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -554,15 +556,17 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"contents"
 argument_list|,
 name|content
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -581,6 +585,12 @@ name|valueOf
 argument_list|(
 name|date
 argument_list|)
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

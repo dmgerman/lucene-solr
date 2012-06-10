@@ -232,20 +232,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|*
@@ -319,20 +305,6 @@ operator|.
 name|util
 operator|.
 name|OpenBitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderUtil
 import|;
 end_import
 
@@ -2607,7 +2579,7 @@ name|FieldType
 argument_list|(
 name|IntField
 operator|.
-name|TYPE
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|ft
@@ -2667,7 +2639,7 @@ name|FieldType
 argument_list|(
 name|LongField
 operator|.
-name|TYPE
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|ft
@@ -2727,7 +2699,7 @@ name|FieldType
 argument_list|(
 name|FloatField
 operator|.
-name|TYPE
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|ft
@@ -2787,7 +2759,7 @@ name|FieldType
 argument_list|(
 name|DoubleField
 operator|.
-name|TYPE
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|ft

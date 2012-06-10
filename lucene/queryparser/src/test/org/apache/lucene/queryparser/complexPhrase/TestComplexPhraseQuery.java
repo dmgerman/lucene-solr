@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|TextField
+name|Field
 import|;
 end_import
 
@@ -739,7 +739,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"name"
 argument_list|,
@@ -750,9 +750,11 @@ index|]
 operator|.
 name|name
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -760,7 +762,7 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"id"
 argument_list|,
@@ -771,9 +773,11 @@ index|]
 operator|.
 name|id
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;

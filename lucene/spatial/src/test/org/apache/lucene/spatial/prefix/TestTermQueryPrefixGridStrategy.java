@@ -281,15 +281,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|StringField
 argument_list|(
 literal|"name"
 argument_list|,
 literal|"Los Angeles"
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -134,35 +134,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|CompoundFileDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|IOContext
 import|;
 end_import
 
@@ -297,15 +269,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|StringField
 argument_list|(
 literal|"f1"
 argument_list|,
 literal|"first field"
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -314,15 +288,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|StringField
 argument_list|(
 literal|"f2"
 argument_list|,
 literal|"second field"
 argument_list|,
-name|StringField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -416,6 +392,12 @@ argument_list|(
 literal|"f2"
 argument_list|,
 literal|"second field"
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -444,6 +426,12 @@ argument_list|(
 literal|"f3"
 argument_list|,
 literal|"third field"
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -457,6 +445,12 @@ argument_list|(
 literal|"f4"
 argument_list|,
 literal|"fourth field"
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -811,15 +805,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"f1"
 argument_list|,
 literal|"first field"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -828,15 +824,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"f2"
 argument_list|,
 literal|"second field"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -909,15 +907,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"f2"
 argument_list|,
 literal|"second field"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -941,15 +941,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"f3"
 argument_list|,
 literal|"third field"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -958,15 +960,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"f4"
 argument_list|,
 literal|"fourth field"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1253,15 +1257,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"f1"
 argument_list|,
 literal|"d1 first field"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1270,15 +1276,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"f2"
 argument_list|,
 literal|"d1 second field"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1415,15 +1423,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"f1"
 argument_list|,
 literal|"d2 first field"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1637,15 +1647,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"f1"
 argument_list|,
 literal|"d3 first field"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1654,15 +1666,17 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|TextField
 argument_list|(
 literal|"f2"
 argument_list|,
 literal|"d3 second field"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_STORED
+name|Store
+operator|.
+name|YES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2450,7 +2464,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType3
@@ -2468,7 +2482,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType4
@@ -2500,7 +2514,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType5
@@ -2557,7 +2571,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType7
@@ -2621,7 +2635,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType9
@@ -2678,7 +2692,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType11
@@ -2742,7 +2756,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType13
@@ -2813,7 +2827,7 @@ name|FieldType
 argument_list|(
 name|TextField
 operator|.
-name|TYPE_UNSTORED
+name|TYPE_NOT_STORED
 argument_list|)
 decl_stmt|;
 name|customType15
@@ -2873,6 +2887,12 @@ argument_list|(
 name|fieldName
 argument_list|,
 literal|"some text"
+argument_list|,
+name|Field
+operator|.
+name|Store
+operator|.
+name|NO
 argument_list|)
 return|;
 case|case

@@ -84,7 +84,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|TextField
+name|Field
 import|;
 end_import
 
@@ -288,15 +288,17 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"field"
 argument_list|,
 literal|"the quick brown fox"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -318,15 +320,17 @@ name|doc2
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"field"
 argument_list|,
 literal|"quick brown fox"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

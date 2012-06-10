@@ -188,7 +188,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|TextField
+name|Field
 import|;
 end_import
 
@@ -7341,15 +7341,17 @@ name|doc
 operator|.
 name|add
 argument_list|(
-name|newField
+name|newTextField
 argument_list|(
 literal|"f"
 argument_list|,
 literal|"the wizard of ozzy"
 argument_list|,
-name|TextField
+name|Field
 operator|.
-name|TYPE_UNSTORED
+name|Store
+operator|.
+name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
