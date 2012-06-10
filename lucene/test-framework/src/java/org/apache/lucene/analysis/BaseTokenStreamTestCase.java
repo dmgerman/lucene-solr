@@ -997,39 +997,6 @@ operator|.
 name|endOffset
 argument_list|()
 decl_stmt|;
-name|assertTrue
-argument_list|(
-literal|"startOffset must be>= 0"
-argument_list|,
-name|startOffset
-operator|>=
-literal|0
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"endOffset must be>= 0"
-argument_list|,
-name|endOffset
-operator|>=
-literal|0
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"endOffset must be>= startOffset, got startOffset="
-operator|+
-name|startOffset
-operator|+
-literal|",endOffset="
-operator|+
-name|endOffset
-argument_list|,
-name|endOffset
-operator|>=
-name|startOffset
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|finalOffset

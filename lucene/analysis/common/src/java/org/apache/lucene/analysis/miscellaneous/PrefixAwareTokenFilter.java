@@ -847,7 +847,7 @@ parameter_list|)
 block|{
 name|suffixToken
 operator|.
-name|setStartOffset
+name|setOffset
 argument_list|(
 name|lastPrefixToken
 operator|.
@@ -858,12 +858,7 @@ name|suffixToken
 operator|.
 name|startOffset
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|suffixToken
-operator|.
-name|setEndOffset
-argument_list|(
+argument_list|,
 name|lastPrefixToken
 operator|.
 name|endOffset

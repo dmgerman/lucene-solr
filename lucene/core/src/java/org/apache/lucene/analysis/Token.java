@@ -297,6 +297,13 @@ name|int
 name|end
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|start
+argument_list|,
+name|end
+argument_list|)
+expr_stmt|;
 name|startOffset
 operator|=
 name|start
@@ -321,6 +328,13 @@ name|String
 name|typ
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|start
+argument_list|,
+name|end
+argument_list|)
+expr_stmt|;
 name|startOffset
 operator|=
 name|start
@@ -349,6 +363,13 @@ name|int
 name|flags
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|start
+argument_list|,
+name|end
+argument_list|)
+expr_stmt|;
 name|startOffset
 operator|=
 name|start
@@ -379,6 +400,13 @@ name|int
 name|end
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|start
+argument_list|,
+name|end
+argument_list|)
+expr_stmt|;
 name|append
 argument_list|(
 name|text
@@ -411,6 +439,13 @@ name|String
 name|typ
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|start
+argument_list|,
+name|end
+argument_list|)
+expr_stmt|;
 name|append
 argument_list|(
 name|text
@@ -447,6 +482,13 @@ name|int
 name|flags
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|start
+argument_list|,
+name|end
+argument_list|)
+expr_stmt|;
 name|append
 argument_list|(
 name|text
@@ -489,6 +531,13 @@ name|int
 name|end
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|start
+argument_list|,
+name|end
+argument_list|)
+expr_stmt|;
 name|copyBuffer
 argument_list|(
 name|startTermBuffer
@@ -594,23 +643,6 @@ return|return
 name|startOffset
 return|;
 block|}
-comment|/** Set the starting offset.       @see #startOffset() */
-DECL|method|setStartOffset
-specifier|public
-name|void
-name|setStartOffset
-parameter_list|(
-name|int
-name|offset
-parameter_list|)
-block|{
-name|this
-operator|.
-name|startOffset
-operator|=
-name|offset
-expr_stmt|;
-block|}
 comment|/** Returns this Token's ending offset, one greater than the position of the     last character corresponding to this token in the source text. The length     of the token in the source text is (endOffset - startOffset). */
 DECL|method|endOffset
 specifier|public
@@ -622,23 +654,6 @@ block|{
 return|return
 name|endOffset
 return|;
-block|}
-comment|/** Set the ending offset.       @see #endOffset() */
-DECL|method|setEndOffset
-specifier|public
-name|void
-name|setEndOffset
-parameter_list|(
-name|int
-name|offset
-parameter_list|)
-block|{
-name|this
-operator|.
-name|endOffset
-operator|=
-name|offset
-expr_stmt|;
 block|}
 comment|/** Set the starting and ending offset.   @see #startOffset() and #endOffset()*/
 DECL|method|setOffset
@@ -653,6 +668,13 @@ name|int
 name|endOffset
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|startOffset
+argument_list|,
+name|endOffset
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|startOffset
@@ -1144,7 +1166,7 @@ operator|=
 name|DEFAULT_TYPE
 expr_stmt|;
 block|}
-comment|/** Shorthand for calling {@link #clear},    *  {@link #copyBuffer(char[], int, int)},    *  {@link #setStartOffset},    *  {@link #setEndOffset},    *  {@link #setType}    *  @return this Token instance */
+comment|/** Shorthand for calling {@link #clear},    *  {@link #copyBuffer(char[], int, int)},    *  {@link #setOffset},    *  {@link #setType}    *  @return this Token instance */
 DECL|method|reinit
 specifier|public
 name|Token
@@ -1170,6 +1192,13 @@ name|String
 name|newType
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|newStartOffset
+argument_list|,
+name|newEndOffset
+argument_list|)
+expr_stmt|;
 name|clearNoTermBuffer
 argument_list|()
 expr_stmt|;
@@ -1206,7 +1235,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Shorthand for calling {@link #clear},    *  {@link #copyBuffer(char[], int, int)},    *  {@link #setStartOffset},    *  {@link #setEndOffset}    *  {@link #setType} on Token.DEFAULT_TYPE    *  @return this Token instance */
+comment|/** Shorthand for calling {@link #clear},    *  {@link #copyBuffer(char[], int, int)},    *  {@link #setOffset},    *  {@link #setType} on Token.DEFAULT_TYPE    *  @return this Token instance */
 DECL|method|reinit
 specifier|public
 name|Token
@@ -1229,6 +1258,13 @@ name|int
 name|newEndOffset
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|newStartOffset
+argument_list|,
+name|newEndOffset
+argument_list|)
+expr_stmt|;
 name|clearNoTermBuffer
 argument_list|()
 expr_stmt|;
@@ -1257,7 +1293,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Shorthand for calling {@link #clear},    *  {@link #append(CharSequence)},    *  {@link #setStartOffset},    *  {@link #setEndOffset}    *  {@link #setType}    *  @return this Token instance */
+comment|/** Shorthand for calling {@link #clear},    *  {@link #append(CharSequence)},    *  {@link #setOffset},    *  {@link #setType}    *  @return this Token instance */
 DECL|method|reinit
 specifier|public
 name|Token
@@ -1276,6 +1312,13 @@ name|String
 name|newType
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|newStartOffset
+argument_list|,
+name|newEndOffset
+argument_list|)
+expr_stmt|;
 name|clear
 argument_list|()
 expr_stmt|;
@@ -1300,7 +1343,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Shorthand for calling {@link #clear},    *  {@link #append(CharSequence, int, int)},    *  {@link #setStartOffset},    *  {@link #setEndOffset}    *  {@link #setType}    *  @return this Token instance */
+comment|/** Shorthand for calling {@link #clear},    *  {@link #append(CharSequence, int, int)},    *  {@link #setOffset},    *  {@link #setType}    *  @return this Token instance */
 DECL|method|reinit
 specifier|public
 name|Token
@@ -1325,6 +1368,13 @@ name|String
 name|newType
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|newStartOffset
+argument_list|,
+name|newEndOffset
+argument_list|)
+expr_stmt|;
 name|clear
 argument_list|()
 expr_stmt|;
@@ -1355,7 +1405,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Shorthand for calling {@link #clear},    *  {@link #append(CharSequence)},    *  {@link #setStartOffset},    *  {@link #setEndOffset}    *  {@link #setType} on Token.DEFAULT_TYPE    *  @return this Token instance */
+comment|/** Shorthand for calling {@link #clear},    *  {@link #append(CharSequence)},    *  {@link #setOffset},    *  {@link #setType} on Token.DEFAULT_TYPE    *  @return this Token instance */
 DECL|method|reinit
 specifier|public
 name|Token
@@ -1371,6 +1421,13 @@ name|int
 name|newEndOffset
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|newStartOffset
+argument_list|,
+name|newEndOffset
+argument_list|)
+expr_stmt|;
 name|clear
 argument_list|()
 expr_stmt|;
@@ -1395,7 +1452,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Shorthand for calling {@link #clear},    *  {@link #append(CharSequence, int, int)},    *  {@link #setStartOffset},    *  {@link #setEndOffset}    *  {@link #setType} on Token.DEFAULT_TYPE    *  @return this Token instance */
+comment|/** Shorthand for calling {@link #clear},    *  {@link #append(CharSequence, int, int)},    *  {@link #setOffset},    *  {@link #setType} on Token.DEFAULT_TYPE    *  @return this Token instance */
 DECL|method|reinit
 specifier|public
 name|Token
@@ -1417,6 +1474,13 @@ name|int
 name|newEndOffset
 parameter_list|)
 block|{
+name|checkOffsets
+argument_list|(
+name|newStartOffset
+argument_list|,
+name|newEndOffset
+argument_list|)
+expr_stmt|;
 name|clear
 argument_list|()
 expr_stmt|;
@@ -1866,6 +1930,46 @@ argument_list|,
 name|type
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|checkOffsets
+specifier|private
+name|void
+name|checkOffsets
+parameter_list|(
+name|int
+name|startOffset
+parameter_list|,
+name|int
+name|endOffset
+parameter_list|)
+block|{
+if|if
+condition|(
+name|startOffset
+operator|<
+literal|0
+operator|||
+name|endOffset
+operator|<
+name|startOffset
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"startOffset must be non-negative, and endOffset must be>= startOffset, "
+operator|+
+literal|"startOffset="
+operator|+
+name|startOffset
+operator|+
+literal|",endOffset="
+operator|+
+name|endOffset
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/** Convenience factory that returns<code>Token</code> as implementation for the basic    * attributes and return the default impl (with&quot;Impl&quot; appended) for all other    * attributes.    * @since 3.0    */
 DECL|field|TOKEN_ATTRIBUTE_FACTORY

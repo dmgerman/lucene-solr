@@ -87,10 +87,33 @@ comment|// current values are -1?  Very few token filters should
 comment|// change offsets once set by the tokenizer... and
 comment|// tokenizer should call clearAtts before re-using
 comment|// OffsetAtt
-comment|// TODO: check that these are valid!  IE, each should be
-comment|//>= 0, and endOffset should be>= startOffset.
-comment|// Problem is this could "break" existing
-comment|// tokenizers/filters.
+if|if
+condition|(
+name|startOffset
+operator|<
+literal|0
+operator|||
+name|endOffset
+operator|<
+name|startOffset
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"startOffset must be non-negative, and endOffset must be>= startOffset, "
+operator|+
+literal|"startOffset="
+operator|+
+name|startOffset
+operator|+
+literal|",endOffset="
+operator|+
+name|endOffset
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|startOffset
