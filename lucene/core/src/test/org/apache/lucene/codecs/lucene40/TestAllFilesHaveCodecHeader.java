@@ -478,7 +478,36 @@ name|COMPOUND_FILE_EXTENSION
 argument_list|)
 condition|)
 block|{
-comment|/* TODO: enable this after resolving LUCENE-4130          * CompoundFileDirectory cfsDir = new CompoundFileDirectory(dir, file, newIOContext(random()), false);          * checkHeaders(cfsDir); // recurse into cfs          * cfsDir.close();          */
+name|CompoundFileDirectory
+name|cfsDir
+init|=
+operator|new
+name|CompoundFileDirectory
+argument_list|(
+name|dir
+argument_list|,
+name|file
+argument_list|,
+name|newIOContext
+argument_list|(
+name|random
+argument_list|()
+argument_list|)
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+name|checkHeaders
+argument_list|(
+name|cfsDir
+argument_list|)
+expr_stmt|;
+comment|// recurse into cfs
+name|cfsDir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 continue|continue;
 comment|// .cfs has its own header... would be nice to fix
 block|}
