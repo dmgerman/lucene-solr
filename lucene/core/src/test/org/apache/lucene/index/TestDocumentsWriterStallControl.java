@@ -644,6 +644,8 @@ literal|100
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Nightly
 DECL|method|testAccquireReleaseRace
 specifier|public
 name|void
