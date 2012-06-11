@@ -582,6 +582,241 @@ operator|+
 literal|" 'uniqueKeyFieldName':'id'}"
 argument_list|)
 expr_stmt|;
+comment|// tv.fl diff from fl
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"json.nl"
+argument_list|,
+literal|"map"
+argument_list|,
+literal|"qt"
+argument_list|,
+name|tv
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"id:0"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"tv.fl"
+argument_list|,
+literal|"test_basictv,test_offtv"
+argument_list|,
+name|TermVectorComponent
+operator|.
+name|COMPONENT_NAME
+argument_list|,
+literal|"true"
+argument_list|,
+name|TermVectorParams
+operator|.
+name|TF
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"/termVectors=={'doc-0':{'uniqueKey':'0',"
+operator|+
+literal|" 'test_basictv':{'anoth':{'tf':1},'titl':{'tf':2}},"
+operator|+
+literal|" 'test_offtv':{'anoth':{'tf':1},'titl':{'tf':2}}},"
+operator|+
+literal|" 'uniqueKeyFieldName':'id'}"
+argument_list|)
+expr_stmt|;
+comment|// multi-valued tv.fl
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"json.nl"
+argument_list|,
+literal|"map"
+argument_list|,
+literal|"qt"
+argument_list|,
+name|tv
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"id:0"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"tv.fl"
+argument_list|,
+literal|"test_basictv"
+argument_list|,
+literal|"tv.fl"
+argument_list|,
+literal|"test_offtv"
+argument_list|,
+name|TermVectorComponent
+operator|.
+name|COMPONENT_NAME
+argument_list|,
+literal|"true"
+argument_list|,
+name|TermVectorParams
+operator|.
+name|TF
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"/termVectors=={'doc-0':{'uniqueKey':'0',"
+operator|+
+literal|" 'test_basictv':{'anoth':{'tf':1},'titl':{'tf':2}},"
+operator|+
+literal|" 'test_offtv':{'anoth':{'tf':1},'titl':{'tf':2}}},"
+operator|+
+literal|" 'uniqueKeyFieldName':'id'}"
+argument_list|)
+expr_stmt|;
+comment|// re-use fl glob
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"json.nl"
+argument_list|,
+literal|"map"
+argument_list|,
+literal|"qt"
+argument_list|,
+name|tv
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"id:0"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+name|TermVectorComponent
+operator|.
+name|COMPONENT_NAME
+argument_list|,
+literal|"true"
+argument_list|,
+name|TermVectorParams
+operator|.
+name|TF
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"/termVectors=={'doc-0':{'uniqueKey':'0',"
+operator|+
+literal|" 'test_basictv':{'anoth':{'tf':1},'titl':{'tf':2}},"
+operator|+
+literal|" 'test_offtv':{'anoth':{'tf':1},'titl':{'tf':2}},"
+operator|+
+literal|" 'test_posofftv':{'anoth':{'tf':1},'titl':{'tf':2}},"
+operator|+
+literal|" 'test_postv':{'anoth':{'tf':1},'titl':{'tf':2}}},"
+operator|+
+literal|" 'uniqueKeyFieldName':'id'}"
+argument_list|)
+expr_stmt|;
+comment|// re-use fl, ignore things we can't handle
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"json.nl"
+argument_list|,
+literal|"map"
+argument_list|,
+literal|"qt"
+argument_list|,
+name|tv
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"id:0"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"score,test_basictv,[docid],test_postv,val:sum(3,4)"
+argument_list|,
+name|TermVectorComponent
+operator|.
+name|COMPONENT_NAME
+argument_list|,
+literal|"true"
+argument_list|,
+name|TermVectorParams
+operator|.
+name|TF
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"/termVectors=={'doc-0':{'uniqueKey':'0',"
+operator|+
+literal|" 'test_basictv':{'anoth':{'tf':1},'titl':{'tf':2}},"
+operator|+
+literal|" 'test_postv':{'anoth':{'tf':1},'titl':{'tf':2}}},"
+operator|+
+literal|" 'uniqueKeyFieldName':'id'}"
+argument_list|)
+expr_stmt|;
+comment|// re-use (multi-valued) fl, ignore things we can't handle
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"json.nl"
+argument_list|,
+literal|"map"
+argument_list|,
+literal|"qt"
+argument_list|,
+name|tv
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"id:0"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"score,test_basictv"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"[docid],test_postv,val:sum(3,4)"
+argument_list|,
+name|TermVectorComponent
+operator|.
+name|COMPONENT_NAME
+argument_list|,
+literal|"true"
+argument_list|,
+name|TermVectorParams
+operator|.
+name|TF
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"/termVectors=={'doc-0':{'uniqueKey':'0',"
+operator|+
+literal|" 'test_basictv':{'anoth':{'tf':1},'titl':{'tf':2}},"
+operator|+
+literal|" 'test_postv':{'anoth':{'tf':1},'titl':{'tf':2}}},"
+operator|+
+literal|" 'uniqueKeyFieldName':'id'}"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
