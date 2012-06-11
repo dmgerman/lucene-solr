@@ -304,7 +304,7 @@ return|return
 literal|1
 return|;
 block|}
-comment|/** The default implementation computes the average as<code>sumTotalTermFreq / maxDoc</code>,    * or returns<code>1</code> if the index does not store sumTotalTermFreq (Lucene 3.x indexes    * or any field that omits frequency information). */
+comment|/** The default implementation computes the average as<code>sumTotalTermFreq / maxDoc</code>,    * or returns<code>1</code> if the index does not store sumTotalTermFreq:    * any field that omits frequency information). */
 DECL|method|avgFieldLength
 specifier|protected
 name|float
