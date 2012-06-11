@@ -446,6 +446,9 @@ condition|(
 name|head
 operator|!=
 literal|null
+operator|&&
+name|amILeader
+argument_list|()
 condition|)
 block|{
 specifier|final
@@ -2778,6 +2781,14 @@ operator|+
 name|id
 operator|+
 literal|") starting"
+argument_list|)
+expr_stmt|;
+name|createOverseerNode
+argument_list|(
+name|reader
+operator|.
+name|getZkClient
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//launch cluster state updater thread
