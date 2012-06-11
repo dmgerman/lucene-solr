@@ -371,9 +371,9 @@ literal|"  java -Ddata=args  -jar post.jar '<delete><id>42</id></delete>'\n"
 operator|+
 literal|"  java -Ddata=stdin -jar post.jar< hd.xml\n"
 operator|+
-literal|"  java -Durl=http://localhost:8983/solr/update/csv -Dtype=text/csv -jar post.jar *.csv\n"
+literal|"  java -Dtype=text/csv -jar post.jar *.csv\n"
 operator|+
-literal|"  java -Durl=http://localhost:8983/solr/update/json -Dtype=application/json -jar post.jar *.json\n"
+literal|"  java -Dtype=application/json -jar post.jar *.json\n"
 operator|+
 literal|"  java -Durl=http://localhost:8983/solr/update/extract?literal.id=a -Dtype=application/pdf -jar post.jar a.pdf\n"
 operator|+
