@@ -737,11 +737,11 @@ literal|1
 argument_list|)
 decl_stmt|;
 specifier|final
-name|Synchonizer
+name|Synchronizer
 name|sync
 init|=
 operator|new
-name|Synchonizer
+name|Synchronizer
 argument_list|(
 name|numStallers
 operator|+
@@ -1411,7 +1411,7 @@ name|Thread
 block|{
 DECL|field|sync
 specifier|private
-name|Synchonizer
+name|Synchronizer
 name|sync
 decl_stmt|;
 DECL|field|ctrl
@@ -1450,7 +1450,7 @@ parameter_list|,
 name|DocumentsWriterStallControl
 name|ctrl
 parameter_list|,
-name|Synchonizer
+name|Synchronizer
 name|sync
 parameter_list|,
 name|List
@@ -1601,7 +1601,7 @@ name|Thread
 block|{
 DECL|field|sync
 specifier|private
-name|Synchonizer
+name|Synchronizer
 name|sync
 decl_stmt|;
 DECL|field|ctrl
@@ -1645,7 +1645,7 @@ parameter_list|,
 name|DocumentsWriterStallControl
 name|ctrl
 parameter_list|,
-name|Synchonizer
+name|Synchronizer
 name|sync
 parameter_list|,
 name|boolean
@@ -2259,12 +2259,12 @@ name|flushBytes
 return|;
 block|}
 block|}
-DECL|class|Synchonizer
+DECL|class|Synchronizer
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|Synchonizer
+name|Synchronizer
 block|{
 DECL|field|waiter
 specifier|volatile
@@ -2281,9 +2281,9 @@ specifier|volatile
 name|CountDownLatch
 name|leftCheckpoint
 decl_stmt|;
-DECL|method|Synchonizer
+DECL|method|Synchronizer
 specifier|public
-name|Synchonizer
+name|Synchronizer
 parameter_list|(
 name|int
 name|numUpdater
