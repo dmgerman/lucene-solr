@@ -205,6 +205,18 @@ name|SPELLCHECK_PREFIX
 operator|+
 literal|"collateExtendedResults"
 decl_stmt|;
+comment|/**    *<p>    * For use with {@link SpellingParams#SPELLCHECK_MAX_COLLATION_TRIES}, use this to override any original query parameters    * when issuing test queries.  For instance, if the original query has "mm=1" but it is preferred to test collations    * with "mm=100%", then use "spellcheck.collateParam.mm=100%".    *</p>    */
+DECL|field|SPELLCHECK_COLLATE_PARAM_OVERRIDE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SPELLCHECK_COLLATE_PARAM_OVERRIDE
+init|=
+name|SPELLCHECK_PREFIX
+operator|+
+literal|"collateParam."
+decl_stmt|;
 comment|/**    * Certain spelling implementations may allow for an accuracy setting.    */
 DECL|field|SPELLCHECK_ACCURACY
 specifier|public
