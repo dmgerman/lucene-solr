@@ -785,10 +785,10 @@ name|plugin
 argument_list|)
 return|;
 block|}
-comment|// The point here is that, if no multitermanalyzer was specified in the schema file, do one of several things:
+comment|// The point here is that, if no multiterm analyzer was specified in the schema file, do one of several things:
 comment|// 1> If legacyMultiTerm == false, assemble a new analyzer composed of all of the charfilters,
 comment|//    lowercase filters and asciifoldingfilter.
-comment|// 2> If letacyMultiTerm == true just construct the analyzer from a KeywordTokenizer. That should mimic current behavior.
+comment|// 2> If legacyMultiTerm == true just construct the analyzer from a KeywordTokenizer. That should mimic current behavior.
 comment|//    Do the same if they've specified that the old behavior is required (legacyMultiTerm="true")
 DECL|method|constructMultiTermAnalyzer
 specifier|private
