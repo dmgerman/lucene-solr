@@ -249,13 +249,29 @@ name|Lucene40PostingsWriter
 extends|extends
 name|PostingsWriterBase
 block|{
-DECL|field|CODEC
+DECL|field|TERMS_CODEC
 specifier|final
 specifier|static
 name|String
-name|CODEC
+name|TERMS_CODEC
 init|=
-literal|"Lucene40PostingsWriter"
+literal|"Lucene40PostingsWriterTerms"
+decl_stmt|;
+DECL|field|FRQ_CODEC
+specifier|final
+specifier|static
+name|String
+name|FRQ_CODEC
+init|=
+literal|"Lucene40PostingsWriterFrq"
+decl_stmt|;
+DECL|field|PRX_CODEC
+specifier|final
+specifier|static
+name|String
+name|PRX_CODEC
+init|=
+literal|"Lucene40PostingsWriterPrx"
 decl_stmt|;
 comment|//private static boolean DEBUG = BlockTreeTermsWriter.DEBUG;
 comment|// Increment version to change it:
@@ -459,8 +475,24 @@ name|success
 init|=
 literal|false
 decl_stmt|;
+name|IndexOutput
+name|proxOut
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
+name|CodecUtil
+operator|.
+name|writeHeader
+argument_list|(
+name|freqOut
+argument_list|,
+name|FRQ_CODEC
+argument_list|,
+name|VERSION_CURRENT
+argument_list|)
+expr_stmt|;
 comment|// TODO: this is a best effort, if one of these fields has no postings
 comment|// then we make an empty prx file, same as if we are wrapped in
 comment|// per-field postingsformat. maybe... we shouldn't
@@ -513,6 +545,17 @@ operator|.
 name|context
 argument_list|)
 expr_stmt|;
+name|CodecUtil
+operator|.
+name|writeHeader
+argument_list|(
+name|proxOut
+argument_list|,
+name|PRX_CODEC
+argument_list|,
+name|VERSION_CURRENT
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -522,6 +565,12 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|proxOut
+operator|=
+name|proxOut
+expr_stmt|;
 name|success
 operator|=
 literal|true
@@ -540,6 +589,8 @@ operator|.
 name|closeWhileHandlingException
 argument_list|(
 name|freqOut
+argument_list|,
+name|proxOut
 argument_list|)
 expr_stmt|;
 block|}
@@ -595,7 +646,7 @@ name|writeHeader
 argument_list|(
 name|termsOut
 argument_list|,
-name|CODEC
+name|TERMS_CODEC
 argument_list|,
 name|VERSION_CURRENT
 argument_list|)
