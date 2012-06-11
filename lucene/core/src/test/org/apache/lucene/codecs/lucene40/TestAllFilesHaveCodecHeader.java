@@ -508,23 +508,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-continue|continue;
-comment|// .cfs has its own header... would be nice to fix
-block|}
-if|if
-condition|(
-name|file
-operator|.
-name|endsWith
-argument_list|(
-name|IndexFileNames
-operator|.
-name|COMPOUND_FILE_ENTRIES_EXTENSION
-argument_list|)
-condition|)
-block|{
-continue|continue;
-comment|// .cfe has its own header... would be nice to fix
 block|}
 name|IndexInput
 name|in

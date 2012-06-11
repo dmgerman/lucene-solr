@@ -108,6 +108,24 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|CodecUtil
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|IOUtils
 import|;
 end_import
@@ -173,7 +191,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class for accessing a compound stream.  * This class implements a directory, but is limited to only read operations.  * Directory methods that would normally modify data throw an exception.  *<p>  * All files belonging to a segment have the same name with varying extensions.  * The extensions correspond to the different file formats used by the {@link Codec}.   * When using the Compound File format these files are collapsed into a   * single<tt>.cfs</tt> file (except for the {@link LiveDocsFormat}, with a   * corresponding<tt>.cfe</tt> file indexing its sub-files.  *<p>  * Files:  *<ul>  *<li><tt>.cfs</tt>: An optional "virtual" file consisting of all the other   *    index files for systems that frequently run out of file handles.  *<li><tt>.cfe</tt>: The "virtual" compound file's entry table holding all   *    entries in the corresponding .cfs file.  *</ul>  *<p>Description:</p>  *<ul>  *<li>Compound (.cfs) --&gt; FileData<sup>FileCount</sup></li>  *<li>Compound Entry Table (.cfe) --&gt; Version, FileCount,&lt;FileName,  *       DataOffset, DataLength&gt;<sup>FileCount</sup></li>  *<li>Version --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>FileCount --&gt; {@link DataOutput#writeVInt VInt}</li>  *<li>DataOffset,DataLength --&gt; {@link DataOutput#writeLong UInt64}</li>  *<li>FileName --&gt; {@link DataOutput#writeString String}</li>  *<li>FileData --&gt; raw file data</li>  *</ul>  *   * @lucene.experimental  */
+comment|/**  * Class for accessing a compound stream.  * This class implements a directory, but is limited to only read operations.  * Directory methods that would normally modify data throw an exception.  *<p>  * All files belonging to a segment have the same name with varying extensions.  * The extensions correspond to the different file formats used by the {@link Codec}.   * When using the Compound File format these files are collapsed into a   * single<tt>.cfs</tt> file (except for the {@link LiveDocsFormat}, with a   * corresponding<tt>.cfe</tt> file indexing its sub-files.  *<p>  * Files:  *<ul>  *<li><tt>.cfs</tt>: An optional "virtual" file consisting of all the other   *    index files for systems that frequently run out of file handles.  *<li><tt>.cfe</tt>: The "virtual" compound file's entry table holding all   *    entries in the corresponding .cfs file.  *</ul>  *<p>Description:</p>  *<ul>  *<li>Compound (.cfs) --&gt; Header, FileData<sup>FileCount</sup></li>  *<li>Compound Entry Table (.cfe) --&gt; Header, FileCount,&lt;FileName,  *       DataOffset, DataLength&gt;<sup>FileCount</sup></li>  *<li>Header --&gt; {@link CodecUtil#writeHeader CodecHeader}</li>  *<li>FileCount --&gt; {@link DataOutput#writeVInt VInt}</li>  *<li>DataOffset,DataLength --&gt; {@link DataOutput#writeLong UInt64}</li>  *<li>FileName --&gt; {@link DataOutput#writeString String}</li>  *<li>FileData --&gt; raw file data</li>  *</ul>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -458,8 +476,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// read the first VInt. If it is negative, it's the version number
-comment|// otherwise it's the count (pre-3.1 indexes)
 specifier|final
 name|IndexInput
 name|stream
@@ -491,18 +507,39 @@ name|firstInt
 init|=
 name|stream
 operator|.
-name|readVInt
+name|readInt
 argument_list|()
 decl_stmt|;
+comment|// NOTE: as long as we want to throw indexformattooold (vs corruptindexexception), we need
+comment|// to read the magic ourselves. See SegmentInfos which also has this.
 if|if
 condition|(
 name|firstInt
 operator|==
-name|CompoundFileWriter
+name|CodecUtil
 operator|.
-name|FORMAT_CURRENT
+name|CODEC_MAGIC
 condition|)
 block|{
+name|CodecUtil
+operator|.
+name|checkHeaderNoMagic
+argument_list|(
+name|stream
+argument_list|,
+name|CompoundFileWriter
+operator|.
+name|DATA_CODEC
+argument_list|,
+name|CompoundFileWriter
+operator|.
+name|VERSION_START
+argument_list|,
+name|CompoundFileWriter
+operator|.
+name|VERSION_START
+argument_list|)
+expr_stmt|;
 name|IndexInput
 name|input
 init|=
@@ -545,23 +582,25 @@ operator|.
 name|READONCE
 argument_list|)
 expr_stmt|;
-specifier|final
-name|int
-name|readInt
-init|=
-name|input
+name|CodecUtil
 operator|.
-name|readInt
-argument_list|()
-decl_stmt|;
-comment|// unused right now
-assert|assert
-name|readInt
-operator|==
+name|checkHeader
+argument_list|(
+name|input
+argument_list|,
 name|CompoundFileWriter
 operator|.
-name|ENTRY_FORMAT_CURRENT
-assert|;
+name|ENTRY_CODEC
+argument_list|,
+name|CompoundFileWriter
+operator|.
+name|VERSION_START
+argument_list|,
+name|CompoundFileWriter
+operator|.
+name|VERSION_START
+argument_list|)
+expr_stmt|;
 specifier|final
 name|int
 name|numEntries
@@ -690,13 +729,13 @@ name|stream
 argument_list|,
 name|firstInt
 argument_list|,
-name|CompoundFileWriter
+name|CodecUtil
 operator|.
-name|FORMAT_CURRENT
+name|CODEC_MAGIC
 argument_list|,
-name|CompoundFileWriter
+name|CodecUtil
 operator|.
-name|FORMAT_CURRENT
+name|CODEC_MAGIC
 argument_list|)
 throw|;
 block|}
