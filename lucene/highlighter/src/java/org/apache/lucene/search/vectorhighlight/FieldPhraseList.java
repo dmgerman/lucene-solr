@@ -556,7 +556,7 @@ return|return
 name|boost
 return|;
 block|}
-comment|/**      * @return the termInfos      */
+comment|/**      * @return the termInfos       */
 DECL|method|getTermsInfos
 specifier|public
 name|List
@@ -623,7 +623,7 @@ name|seqnum
 operator|=
 name|seqnum
 expr_stmt|;
-comment|// now we keep TermInfos for further operations
+comment|// We keep TermInfos for further operations
 name|termsInfos
 operator|=
 operator|new
