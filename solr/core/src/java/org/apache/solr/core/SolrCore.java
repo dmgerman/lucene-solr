@@ -1246,10 +1246,45 @@ name|s
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+operator|!
+name|result
+operator|.
+name|equals
+argument_list|(
+name|lastNewIndexDir
+argument_list|)
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"New index directory detected: old="
+operator|+
+name|lastNewIndexDir
+operator|+
+literal|" new="
+operator|+
+name|result
+argument_list|)
+expr_stmt|;
+block|}
+name|lastNewIndexDir
+operator|=
+name|result
+expr_stmt|;
 return|return
 name|result
 return|;
 block|}
+DECL|field|lastNewIndexDir
+specifier|private
+name|String
+name|lastNewIndexDir
+decl_stmt|;
+comment|// for debugging purposes only... access not synchronized, but that's ok
 DECL|method|getDirectoryFactory
 specifier|public
 name|DirectoryFactory
