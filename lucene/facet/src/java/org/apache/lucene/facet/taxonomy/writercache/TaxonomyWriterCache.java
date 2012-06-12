@@ -123,15 +123,12 @@ name|int
 name|ordinal
 parameter_list|)
 function_decl|;
-comment|/**    * Sometimes the cache is either unlimited in size, or limited by a very    * big size, and in that case when we add a lot of categories it might    * make sense to pre-load the cache with all the existing categories.    * However, this pre-load does not make sense when the allowed cache    * size is small. The hasRoom() method allows to differentiate between    * these cases.    *<P>      * After hasRoom(n) returned<code>true</code>, the following n put()    * should return false (meaning that the cache was not cleared).    */
-DECL|method|hasRoom
+comment|/**    * Returns true if the cache is full, such that the next {@link #put} will    * evict entries from it, false otherwise.    */
+DECL|method|isFull
 specifier|public
 name|boolean
-name|hasRoom
-parameter_list|(
-name|int
-name|numberOfEntries
-parameter_list|)
+name|isFull
+parameter_list|()
 function_decl|;
 comment|/**    * Clears the content of the cache. Unlike {@link #close()}, the caller can    * assume that the cache is still operable after this method returns.    */
 DECL|method|clear

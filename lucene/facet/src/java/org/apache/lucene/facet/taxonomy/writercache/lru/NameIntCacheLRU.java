@@ -398,14 +398,12 @@ name|isCacheFull
 parameter_list|()
 block|{
 return|return
-operator|(
 name|cache
 operator|.
 name|size
 argument_list|()
 operator|>
 name|maxCacheSize
-operator|)
 return|;
 block|}
 DECL|method|clear

@@ -128,6 +128,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicInteger
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -502,6 +516,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|ReaderManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SegmentInfos
 import|;
 end_import
@@ -674,13 +702,39 @@ literal|"index.create.time"
 decl_stmt|;
 DECL|field|dir
 specifier|private
+specifier|final
 name|Directory
 name|dir
 decl_stmt|;
 DECL|field|indexWriter
 specifier|private
+specifier|final
 name|IndexWriter
 name|indexWriter
+decl_stmt|;
+DECL|field|cache
+specifier|private
+specifier|final
+name|TaxonomyWriterCache
+name|cache
+decl_stmt|;
+DECL|field|cacheMisses
+specifier|private
+specifier|final
+name|AtomicInteger
+name|cacheMisses
+init|=
+operator|new
+name|AtomicInteger
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+comment|/** Records the taxonomy index creation time, updated on replaceTaxonomy as well. */
+DECL|field|createTime
+specifier|private
+name|String
+name|createTime
 decl_stmt|;
 DECL|field|nextID
 specifier|private
@@ -719,32 +773,52 @@ specifier|private
 name|Field
 name|fullPathField
 decl_stmt|;
-DECL|field|cache
+DECL|field|cacheMissesUntilFill
 specifier|private
-name|TaxonomyWriterCache
-name|cache
+name|int
+name|cacheMissesUntilFill
+init|=
+literal|11
+decl_stmt|;
+DECL|field|shouldFillCache
+specifier|private
+name|boolean
+name|shouldFillCache
+init|=
+literal|true
 decl_stmt|;
 comment|/**    * We call the cache "complete" if we know that every category in our    * taxonomy is in the cache. When the cache is<B>not</B> complete, and    * we can't find a category in the cache, we still need to look for it    * in the on-disk index; Therefore when the cache is not complete, we    * need to open a "reader" to the taxonomy index.    * The cache becomes incomplete if it was never filled with the existing    * categories, or if a put() to the cache ever returned true (meaning    * that some of the cached data was cleared).    */
 DECL|field|cacheIsComplete
 specifier|private
+specifier|volatile
 name|boolean
 name|cacheIsComplete
 decl_stmt|;
-DECL|field|reader
+DECL|field|readerManager
 specifier|private
-name|DirectoryReader
-name|reader
+specifier|volatile
+name|ReaderManager
+name|readerManager
 decl_stmt|;
-DECL|field|cacheMisses
+DECL|field|shouldRefreshReaderManager
 specifier|private
-name|int
-name|cacheMisses
+specifier|volatile
+name|boolean
+name|shouldRefreshReaderManager
 decl_stmt|;
-comment|/** Records the taxonomy index creation time, updated on replaceTaxonomy as well. */
-DECL|field|createTime
+DECL|field|isClosed
 specifier|private
-name|String
-name|createTime
+specifier|volatile
+name|boolean
+name|isClosed
+init|=
+literal|false
+decl_stmt|;
+DECL|field|parentArray
+specifier|private
+specifier|volatile
+name|ParentArray
+name|parentArray
 decl_stmt|;
 comment|/** Reads the commit data from a Directory. */
 DECL|method|readCommitData
@@ -954,10 +1028,6 @@ operator|)
 operator|:
 literal|"for preserving category docids, merging none-adjacent segments is not allowed"
 assert|;
-name|reader
-operator|=
-literal|null
-expr_stmt|;
 name|FieldType
 name|ft
 init|=
@@ -1056,15 +1126,12 @@ name|CategoryPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|refreshInternalReader
-argument_list|()
-expr_stmt|;
 block|}
 else|else
 block|{
 comment|// There are some categories on the disk, which we have not yet
 comment|// read into the cache, and therefore the cache is incomplete.
-comment|// We chose not to read all the categories into the cache now,
+comment|// We choose not to read all the categories into the cache now,
 comment|// to avoid terrible performance when a taxonomy index is opened
 comment|// to add just a single category. We will do it later, after we
 comment|// notice a few cache misses.
@@ -1073,10 +1140,6 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-name|cacheMisses
-operator|=
-literal|0
-expr_stmt|;
 block|}
 comment|/**    * Open internal index writer, which contains the taxonomy data.    *<p>    * Extensions may provide their own {@link IndexWriter} implementation or instance.     *<br><b>NOTE:</b> the instance this method returns will be closed upon calling    * to {@link #close()}.    *<br><b>NOTE:</b> the merge policy in effect must not merge none adjacent segments. See    * comment in {@link #createIndexWriterConfig(IndexWriterConfig.OpenMode)} for the logic behind this.    *      * @see #createIndexWriterConfig(IndexWriterConfig.OpenMode)    *     * @param directory    *          the {@link Directory} on top of which an {@link IndexWriter}    *          should be opened.    * @param config    *          configuration for the internal index writer.    */
 DECL|method|openIndexWriter
@@ -1141,34 +1204,42 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Opens a {@link DirectoryReader} from the internal {@link IndexWriter}. */
-DECL|method|openInternalReader
+comment|/** Opens a {@link ReaderManager} from the internal {@link IndexWriter}. */
+DECL|method|initReaderManager
 specifier|private
-specifier|synchronized
 name|void
-name|openInternalReader
+name|initReaderManager
 parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// verify that the taxo-writer hasn't been closed on us. the method is
-comment|// synchronized since it may be called from a non sync'ed block, and it
-comment|// needs to protect against close() happening concurrently.
+if|if
+condition|(
+name|readerManager
+operator|==
+literal|null
+condition|)
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+comment|// verify that the taxo-writer hasn't been closed on us.
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-assert|assert
-name|reader
+if|if
+condition|(
+name|readerManager
 operator|==
 literal|null
-operator|:
-literal|"a reader is already open !"
-assert|;
-name|reader
+condition|)
+block|{
+name|readerManager
 operator|=
-name|DirectoryReader
-operator|.
-name|open
+operator|new
+name|ReaderManager
 argument_list|(
 name|indexWriter
 argument_list|,
@@ -1176,7 +1247,10 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance with a default cached as defined by    * {@link #defaultTaxonomyWriterCache()}.    */
+block|}
+block|}
+block|}
+comment|/**    * Creates a new instance with a default cache as defined by    * {@link #defaultTaxonomyWriterCache()}.    */
 DECL|method|DirectoryTaxonomyWriter
 specifier|public
 name|DirectoryTaxonomyWriter
@@ -1266,9 +1340,8 @@ name|IOException
 block|{
 if|if
 condition|(
-name|indexWriter
-operator|!=
-literal|null
+operator|!
+name|isClosed
 condition|)
 block|{
 name|indexWriter
@@ -1301,9 +1374,9 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|indexWriter
+name|isClosed
 operator|=
-literal|null
+literal|true
 expr_stmt|;
 name|closeResources
 argument_list|()
@@ -1321,17 +1394,17 @@ name|IOException
 block|{
 if|if
 condition|(
-name|reader
+name|readerManager
 operator|!=
 literal|null
 condition|)
 block|{
-name|reader
+name|readerManager
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|reader
+name|readerManager
 operator|=
 literal|null
 expr_stmt|;
@@ -1347,10 +1420,6 @@ name|cache
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|cache
-operator|=
-literal|null
 expr_stmt|;
 block|}
 block|}
@@ -1366,8 +1435,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// If we can find the category in our cache, we can return the
-comment|// response directly from it:
+comment|// If we can find the category in the cache, or we know the cache is
+comment|// complete, we can return the response directly from it
 name|int
 name|res
 init|=
@@ -1383,73 +1452,77 @@ condition|(
 name|res
 operator|>=
 literal|0
+operator|||
+name|cacheIsComplete
 condition|)
 block|{
 return|return
 name|res
 return|;
 block|}
-comment|// If we know that the cache is complete, i.e., contains every category
-comment|// which exists, we can return -1 immediately. However, if the cache is
-comment|// not complete, we need to check the disk.
-if|if
-condition|(
-name|cacheIsComplete
-condition|)
-block|{
-return|return
-operator|-
-literal|1
-return|;
-block|}
 name|cacheMisses
-operator|++
+operator|.
+name|incrementAndGet
+argument_list|()
 expr_stmt|;
 comment|// After a few cache misses, it makes sense to read all the categories
 comment|// from disk and into the cache. The reason not to do this on the first
 comment|// cache miss (or even when opening the writer) is that it will
 comment|// significantly slow down the case when a taxonomy is opened just to
 comment|// add one category. The idea only spending a long time on reading
-comment|// after enough time was spent on cache misses is known as a "online
+comment|// after enough time was spent on cache misses is known as an "online
 comment|// algorithm".
-if|if
-condition|(
 name|perhapsFillCache
 argument_list|()
-condition|)
-block|{
-return|return
+expr_stmt|;
+name|res
+operator|=
 name|cache
 operator|.
 name|get
 argument_list|(
 name|categoryPath
 argument_list|)
-return|;
-block|}
-comment|// We need to get an answer from the on-disk index. If a reader
-comment|// is not yet open, do it now:
+expr_stmt|;
 if|if
 condition|(
-name|reader
-operator|==
-literal|null
+name|res
+operator|>=
+literal|0
+operator|||
+name|cacheIsComplete
 condition|)
 block|{
-name|openInternalReader
+comment|// if after filling the cache from the info on disk, the category is in it
+comment|// or the cache is complete, return whatever cache.get returned.
+return|return
+name|res
+return|;
+block|}
+comment|// We need to get an answer from the on-disk index.
+name|initReaderManager
 argument_list|()
 expr_stmt|;
-block|}
-name|int
-name|base
-init|=
-literal|0
-decl_stmt|;
 name|int
 name|doc
 init|=
 operator|-
 literal|1
+decl_stmt|;
+name|DirectoryReader
+name|reader
+init|=
+name|readerManager
+operator|.
+name|acquire
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|int
+name|base
+init|=
+literal|0
 decl_stmt|;
 for|for
 control|(
@@ -1516,11 +1589,17 @@ argument_list|()
 expr_stmt|;
 comment|// we don't have deletions, so it's ok to call maxDoc
 block|}
-comment|// Note: we do NOT add to the cache the fact that the category
-comment|// does not exist. The reason is that our only use for this
-comment|// method is just before we actually add this category. If
-comment|// in the future this usage changes, we should consider caching
-comment|// the fact that the category is not in the taxonomy.
+block|}
+finally|finally
+block|{
+name|readerManager
+operator|.
+name|release
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|doc
@@ -1572,32 +1651,24 @@ condition|(
 name|res
 operator|>=
 literal|0
+operator|||
+name|cacheIsComplete
 condition|)
 block|{
 return|return
 name|res
 return|;
 block|}
-if|if
-condition|(
-name|cacheIsComplete
-condition|)
-block|{
-return|return
-operator|-
-literal|1
-return|;
-block|}
 name|cacheMisses
-operator|++
+operator|.
+name|incrementAndGet
+argument_list|()
 expr_stmt|;
-if|if
-condition|(
 name|perhapsFillCache
 argument_list|()
-condition|)
-block|{
-return|return
+expr_stmt|;
+name|res
+operator|=
 name|cache
 operator|.
 name|get
@@ -1606,29 +1677,43 @@ name|categoryPath
 argument_list|,
 name|prefixLen
 argument_list|)
-return|;
-block|}
+expr_stmt|;
 if|if
 condition|(
-name|reader
-operator|==
-literal|null
+name|res
+operator|>=
+literal|0
+operator|||
+name|cacheIsComplete
 condition|)
 block|{
-name|openInternalReader
+return|return
+name|res
+return|;
+block|}
+name|initReaderManager
 argument_list|()
 expr_stmt|;
-block|}
-name|int
-name|base
-init|=
-literal|0
-decl_stmt|;
 name|int
 name|doc
 init|=
 operator|-
 literal|1
+decl_stmt|;
+name|DirectoryReader
+name|reader
+init|=
+name|readerManager
+operator|.
+name|acquire
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|int
+name|base
+init|=
+literal|0
 decl_stmt|;
 for|for
 control|(
@@ -1696,6 +1781,17 @@ name|maxDoc
 argument_list|()
 expr_stmt|;
 comment|// we don't have deletions, so it's ok to call maxDoc
+block|}
+block|}
+finally|finally
+block|{
+name|readerManager
+operator|.
+name|release
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1907,9 +2003,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|indexWriter
-operator|==
-literal|null
+name|isClosed
 condition|)
 block|{
 throw|throw
@@ -2023,6 +2117,11 @@ name|length
 argument_list|,
 name|id
 argument_list|)
+expr_stmt|;
+comment|// added a category document, mark that ReaderManager is not up-to-date
+name|shouldRefreshReaderManager
+operator|=
+literal|true
 expr_stmt|;
 comment|// also add to the parent array
 name|getParentArray
@@ -2144,11 +2243,9 @@ return|return
 literal|false
 return|;
 block|}
+return|return
 name|returned
 operator|=
-literal|true
-expr_stmt|;
-return|return
 literal|true
 return|;
 block|}
@@ -2180,16 +2277,11 @@ argument_list|)
 condition|)
 block|{
 comment|// If cache.put() returned true, it means the cache was limited in
-comment|// size, became full, so parts of it had to be cleared.
-comment|// Unfortunately we don't know which part was cleared - it is
-comment|// possible that a relatively-new category that hasn't yet been
-comment|// committed to disk (and therefore isn't yet visible in our
-comment|// "reader") was deleted from the cache, and therefore we must
-comment|// now refresh the reader.
-comment|// Because this is a slow operation, cache implementations are
-comment|// expected not to delete entries one-by-one but rather in bulk
-comment|// (LruTaxonomyWriterCache removes the 2/3rd oldest entries).
-name|refreshInternalReader
+comment|// size, became full, and parts of it had to be evicted. It is
+comment|// possible that a relatively-new category that isn't yet visible
+comment|// to our 'reader' was evicted, and therefore we must now refresh
+comment|// the reader.
+name|refreshReaderManager
 argument_list|()
 expr_stmt|;
 name|cacheIsComplete
@@ -2229,7 +2321,7 @@ name|id
 argument_list|)
 condition|)
 block|{
-name|refreshInternalReader
+name|refreshReaderManager
 argument_list|()
 expr_stmt|;
 name|cacheIsComplete
@@ -2238,49 +2330,40 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-DECL|method|refreshInternalReader
+DECL|method|refreshReaderManager
 specifier|private
 specifier|synchronized
 name|void
-name|refreshInternalReader
+name|refreshReaderManager
 parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// this method is synchronized since it cannot happen concurrently with
+comment|// addCategoryDocument -- when this method returns, we must know that the
+comment|// reader manager's state is current. also, it sets shouldRefresh to false,
+comment|// and this cannot overlap with addCatDoc too.
+comment|// NOTE: since this method is sync'ed, it can call maybeRefresh, instead of
+comment|// maybeRefreshBlocking. If ever this is changed, make sure to change the
+comment|// call too.
 if|if
 condition|(
-name|reader
+name|shouldRefreshReaderManager
+operator|&&
+name|readerManager
 operator|!=
 literal|null
 condition|)
 block|{
-name|DirectoryReader
-name|r2
-init|=
-name|DirectoryReader
+name|readerManager
 operator|.
-name|openIfChanged
-argument_list|(
-name|reader
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|r2
-operator|!=
-literal|null
-condition|)
-block|{
-name|reader
-operator|.
-name|close
+name|maybeRefresh
 argument_list|()
 expr_stmt|;
-name|reader
+name|shouldRefreshReaderManager
 operator|=
-name|r2
+literal|false
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|/**    * Calling commit() ensures that all the categories written so far are    * visible to a reader that is opened (or reopened) after that call.    * When the index is closed(), commit() is also implicitly done.    * See {@link TaxonomyWriter#commit()}    */
@@ -2309,9 +2392,6 @@ argument_list|(
 literal|null
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|refreshInternalReader
-argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Combine original user data with that of the taxonomy creation time    */
@@ -2422,9 +2502,6 @@ name|commitUserData
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|refreshInternalReader
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**    * prepare most of the work needed for a two-phase commit.    * See {@link IndexWriter#prepareCommit}.    */
 annotation|@
@@ -2510,13 +2587,6 @@ name|maxDoc
 argument_list|()
 return|;
 block|}
-DECL|field|alreadyCalledFillCache
-specifier|private
-name|boolean
-name|alreadyCalledFillCache
-init|=
-literal|false
-decl_stmt|;
 comment|/**    * Set the number of cache misses before an attempt is made to read the    * entire taxonomy into the in-memory cache.    *<P>     * LuceneTaxonomyWriter holds an in-memory cache of recently seen    * categories to speed up operation. On each cache-miss, the on-disk index    * needs to be consulted. When an existing taxonomy is opened, a lot of    * slow disk reads like that are needed until the cache is filled, so it    * is more efficient to read the entire taxonomy into memory at once.    * We do this complete read after a certain number (defined by this method)    * of cache misses.    *<P>    * If the number is set to<CODE>0</CODE>, the entire taxonomy is read    * into the cache on first use, without fetching individual categories    * first.    *<P>    * Note that if the memory cache of choice is limited in size, and cannot    * hold the entire content of the on-disk taxonomy, then it is never    * read in its entirety into the cache, regardless of the setting of this    * method.     */
 DECL|method|setCacheMissesUntilFill
 specifier|public
@@ -2535,80 +2605,61 @@ operator|=
 name|i
 expr_stmt|;
 block|}
-DECL|field|cacheMissesUntilFill
-specifier|private
-name|int
-name|cacheMissesUntilFill
-init|=
-literal|11
-decl_stmt|;
+comment|// we need to guarantee that if several threads call this concurrently, only
+comment|// one executes it, and after it returns, the cache is updated and is either
+comment|// complete or not.
 DECL|method|perhapsFillCache
 specifier|private
-name|boolean
+specifier|synchronized
+name|void
 name|perhapsFillCache
 parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// Note: we assume that we're only called when cacheIsComplete==false.
-comment|// TODO (Facet): parametrize this criterion:
 if|if
 condition|(
 name|cacheMisses
+operator|.
+name|get
+argument_list|()
 operator|<
 name|cacheMissesUntilFill
 condition|)
 block|{
-return|return
-literal|false
-return|;
-block|}
-comment|// If the cache was already filled (or we decided not to fill it because
-comment|// there was no room), there is no sense in trying it again.
-if|if
-condition|(
-name|alreadyCalledFillCache
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-name|alreadyCalledFillCache
-operator|=
-literal|true
-expr_stmt|;
-comment|// TODO (Facet): we should probably completely clear the cache before starting
-comment|// to read it?
-if|if
-condition|(
-name|reader
-operator|==
-literal|null
-condition|)
-block|{
-name|openInternalReader
-argument_list|()
-expr_stmt|;
+return|return;
 block|}
 if|if
 condition|(
 operator|!
-name|cache
-operator|.
-name|hasRoom
-argument_list|(
-name|reader
-operator|.
-name|numDocs
-argument_list|()
-argument_list|)
+name|shouldFillCache
 condition|)
 block|{
-return|return
-literal|false
-return|;
+comment|// we already filled the cache once, there's no need to re-fill it
+return|return;
 block|}
+name|shouldFillCache
+operator|=
+literal|false
+expr_stmt|;
+name|initReaderManager
+argument_list|()
+expr_stmt|;
+name|boolean
+name|aborted
+init|=
+literal|false
+decl_stmt|;
+name|DirectoryReader
+name|reader
+init|=
+name|readerManager
+operator|.
+name|acquire
+argument_list|()
+decl_stmt|;
+try|try
+block|{
 name|CategoryPath
 name|cp
 init|=
@@ -2681,6 +2732,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+operator|!
+name|cache
+operator|.
+name|isFull
+argument_list|()
+condition|)
+block|{
 name|BytesRef
 name|t
 init|=
@@ -2724,6 +2784,9 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|boolean
+name|res
+init|=
 name|cache
 operator|.
 name|put
@@ -2737,8 +2800,31 @@ argument_list|()
 operator|+
 name|base
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+assert|assert
+operator|!
+name|res
+operator|:
+literal|"entries should not have been evicted from the cache"
+assert|;
 block|}
+else|else
+block|{
+comment|// the cache is full and the next put() will evict entries from it, therefore abort the iteration.
+name|aborted
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+block|}
+block|}
+block|}
+if|if
+condition|(
+name|aborted
+condition|)
+block|{
+break|break;
 block|}
 name|base
 operator|+=
@@ -2749,34 +2835,49 @@ argument_list|()
 expr_stmt|;
 comment|// we don't have any deletions, so we're ok
 block|}
-comment|/*Terms terms = MultiFields.getTerms(reader, Consts.FULL);     // The check is done here to avoid checking it on every iteration of the     // below loop. A null term wlil be returned if there are no terms in the     // lexicon, or after the Consts.FULL term. However while the loop is     // executed we're safe, because we only iterate as long as there are next()     // terms.     if (terms != null) {       TermsEnum termsEnum = terms.iterator(null);       Bits liveDocs = MultiFields.getLiveDocs(reader);       DocsEnum docsEnum = null;       while (termsEnum.next() != null) {         BytesRef t = termsEnum.term();         // Since we guarantee uniqueness of categories, each term has exactly         // one document. Also, since we do not allow removing categories (and         // hence documents), there are no deletions in the index. Therefore, it         // is sufficient to call next(), and then doc(), exactly once with no         // 'validation' checks.         docsEnum = termsEnum.docs(liveDocs, docsEnum, false);         docsEnum.nextDoc();         cp.clear();         cp.add(t.utf8ToString(), delimiter);         cache.put(cp, docsEnum.docID());       }     }*/
+block|}
+finally|finally
+block|{
+name|readerManager
+operator|.
+name|release
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
 name|cacheIsComplete
 operator|=
-literal|true
+operator|!
+name|aborted
 expr_stmt|;
-comment|// No sense to keep the reader open - we will not need to read from it
-comment|// if everything is in the cache.
-name|reader
+if|if
+condition|(
+name|cacheIsComplete
+condition|)
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+comment|// everything is in the cache, so no need to keep readerManager open.
+comment|// this block is executed in a sync block so that it works well with
+comment|// initReaderManager called in parallel.
+name|readerManager
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|reader
+name|readerManager
 operator|=
 literal|null
 expr_stmt|;
-return|return
-literal|true
-return|;
 block|}
-DECL|field|parentArray
-specifier|private
-name|ParentArray
-name|parentArray
-decl_stmt|;
+block|}
+block|}
 DECL|method|getParentArray
 specifier|private
-specifier|synchronized
 name|ParentArray
 name|getParentArray
 parameter_list|()
@@ -2790,23 +2891,37 @@ operator|==
 literal|null
 condition|)
 block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 if|if
 condition|(
-name|reader
+name|parentArray
 operator|==
 literal|null
 condition|)
 block|{
-name|openInternalReader
+name|initReaderManager
 argument_list|()
 expr_stmt|;
-block|}
 name|parentArray
 operator|=
 operator|new
 name|ParentArray
 argument_list|()
 expr_stmt|;
+name|DirectoryReader
+name|reader
+init|=
+name|readerManager
+operator|.
+name|acquire
+argument_list|()
+decl_stmt|;
+try|try
+block|{
 name|parentArray
 operator|.
 name|refresh
@@ -2814,6 +2929,19 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|readerManager
+operator|.
+name|release
+argument_list|(
+name|reader
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 block|}
 return|return
 name|parentArray
@@ -3507,6 +3635,7 @@ block|}
 comment|/**    * Replaces the current taxonomy with the given one. This method should    * generally be called in conjunction with    * {@link IndexWriter#addIndexes(Directory...)} to replace both the taxonomy    * as well as the search index content.    */
 DECL|method|replaceTaxonomy
 specifier|public
+specifier|synchronized
 name|void
 name|replaceTaxonomy
 parameter_list|(
@@ -3529,8 +3658,9 @@ argument_list|(
 name|taxoDir
 argument_list|)
 expr_stmt|;
-name|refreshInternalReader
-argument_list|()
+name|shouldRefreshReaderManager
+operator|=
+literal|true
 expr_stmt|;
 name|nextID
 operator|=
@@ -3550,9 +3680,9 @@ name|cacheIsComplete
 operator|=
 literal|false
 expr_stmt|;
-name|alreadyCalledFillCache
+name|shouldFillCache
 operator|=
-literal|false
+literal|true
 expr_stmt|;
 comment|// update createTime as a taxonomy replace is just like it has be recreated
 name|createTime

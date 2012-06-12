@@ -123,6 +123,7 @@ name|loadFactor
 decl_stmt|;
 DECL|field|cache
 specifier|private
+specifier|volatile
 name|CompactLabelToOrdinal
 name|cache
 decl_stmt|;
@@ -181,6 +182,16 @@ name|void
 name|clear
 parameter_list|()
 block|{
+name|lock
+operator|.
+name|writeLock
+argument_list|()
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 name|cache
 operator|=
 operator|new
@@ -193,6 +204,18 @@ argument_list|,
 name|numHashArrays
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|lock
+operator|.
+name|writeLock
+argument_list|()
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -210,18 +233,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|hasRoom
+DECL|method|isFull
 specifier|public
 name|boolean
-name|hasRoom
-parameter_list|(
-name|int
-name|n
-parameter_list|)
+name|isFull
+parameter_list|()
 block|{
-comment|// This cache is unlimited, so we always have room for remembering more:
+comment|// This cache is never full
 return|return
-literal|true
+literal|false
 return|;
 block|}
 annotation|@
