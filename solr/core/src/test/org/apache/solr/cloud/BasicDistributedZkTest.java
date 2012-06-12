@@ -5435,7 +5435,7 @@ condition|)
 block|{
 name|solrj
 operator|.
-name|close
+name|shutdown
 argument_list|()
 expr_stmt|;
 block|}

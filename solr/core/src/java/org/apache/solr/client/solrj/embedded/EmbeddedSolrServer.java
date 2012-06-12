@@ -1379,6 +1379,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Shutdown all cores within the EmbeddedSolrServer instance    */
+annotation|@
+name|Override
 DECL|method|shutdown
 specifier|public
 name|void
