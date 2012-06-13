@@ -286,8 +286,9 @@ implements|implements
 name|SolrCoreAware
 block|{
 DECL|class|SelectorParams
-specifier|private
+specifier|public
 specifier|static
+specifier|final
 class|class
 name|SelectorParams
 block|{
@@ -413,9 +414,8 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 DECL|method|parseSelectorParams
-specifier|private
+specifier|public
 specifier|static
-specifier|final
 name|SelectorParams
 name|parseSelectorParams
 parameter_list|(
@@ -868,7 +868,7 @@ return|;
 block|}
 comment|/**    * Removes all instance of the key from NamedList, returning the Set of     * Strings that key refered to.  Throws an error if the key didn't refer     * to one or more strings (or arrays of strings)    * @exception SolrException invalid arr/str structure.    */
 DECL|method|oneOrMany
-specifier|private
+specifier|public
 specifier|static
 name|Collection
 argument_list|<
