@@ -582,13 +582,12 @@ name|boolean
 name|writeOffsets
 decl_stmt|;
 comment|// for assert:
-DECL|field|lastEndOffset
+DECL|field|lastStartOffset
 specifier|private
 name|int
-name|lastEndOffset
+name|lastStartOffset
 init|=
-operator|-
-literal|1
+literal|0
 decl_stmt|;
 DECL|method|SimpleTextPostingsWriter
 specifier|public
@@ -723,10 +722,9 @@ name|newline
 argument_list|()
 expr_stmt|;
 block|}
-name|lastEndOffset
+name|lastStartOffset
 operator|=
-operator|-
-literal|1
+literal|0
 expr_stmt|;
 block|}
 DECL|method|reset
@@ -811,19 +809,19 @@ assert|;
 assert|assert
 name|startOffset
 operator|>=
-name|lastEndOffset
+name|lastStartOffset
 operator|:
 literal|"startOffset="
 operator|+
 name|startOffset
 operator|+
-literal|" lastEndOffset="
+literal|" lastStartOffset="
 operator|+
-name|lastEndOffset
+name|lastStartOffset
 assert|;
-name|lastEndOffset
+name|lastStartOffset
 operator|=
-name|endOffset
+name|startOffset
 expr_stmt|;
 name|write
 argument_list|(
