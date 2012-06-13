@@ -438,6 +438,31 @@ name|anyOpenDelFiles
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|doAfterWriter
+specifier|protected
+name|void
+name|doAfterWriter
+parameter_list|(
+name|ExecutorService
+name|es
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+comment|// Force writer to do reader pooling, always, so that
+comment|// all merged segments, even for merges before
+comment|// doSearching is called, are warmed:
+name|writer
+operator|.
+name|getReader
+argument_list|()
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 DECL|field|fixedSearcher
 specifier|private
 name|IndexSearcher
