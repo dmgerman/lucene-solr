@@ -191,6 +191,26 @@ name|maxDoc
 argument_list|()
 expr_stmt|;
 comment|// compute maxDocs
+if|if
+condition|(
+name|maxDoc
+operator|<
+literal|0
+comment|/* overflow */
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Too many documents, composite IndexReaders cannot exceed "
+operator|+
+name|Integer
+operator|.
+name|MAX_VALUE
+argument_list|)
+throw|;
+block|}
 name|numDocs
 operator|+=
 name|r
