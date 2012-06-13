@@ -3159,6 +3159,14 @@ operator|>
 literal|0
 condition|)
 block|{
+name|reader
+operator|.
+name|updateCloudState
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+comment|// poll state
 name|ZkNodeProps
 name|props
 init|=
@@ -3680,6 +3688,15 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|field|killCounter
+specifier|private
+name|AtomicInteger
+name|killCounter
+init|=
+operator|new
+name|AtomicInteger
+argument_list|()
+decl_stmt|;
 DECL|class|OverseerRestarter
 specifier|private
 class|class
@@ -3739,15 +3756,6 @@ argument_list|(
 name|zkAddress
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|//t.printStackTrace();
-block|}
 name|Random
 name|rnd
 init|=
@@ -3761,18 +3769,28 @@ condition|)
 block|{
 if|if
 condition|(
-name|rnd
+name|killCounter
 operator|.
-name|nextInt
-argument_list|(
-literal|20
-argument_list|)
-operator|==
-literal|1
+name|get
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
 try|try
 block|{
+name|killCounter
+operator|.
+name|decrementAndGet
+argument_list|()
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Killing overseer."
+argument_list|)
+expr_stmt|;
 name|overseerClient
 operator|.
 name|close
@@ -3792,7 +3810,7 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
-comment|//e.printStackTrace();
+comment|// e.printStackTrace();
 block|}
 block|}
 try|try
@@ -3811,9 +3829,27 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
-comment|//e.printStackTrace();
+comment|// e.printStackTrace();
 block|}
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// ignore
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|overseerClient
+operator|!=
+literal|null
+condition|)
+block|{
 try|try
 block|{
 name|overseerClient
@@ -3825,10 +3861,12 @@ block|}
 catch|catch
 parameter_list|(
 name|Throwable
-name|e
+name|t
 parameter_list|)
 block|{
-comment|//e.printStackTrace();
+comment|// ignore
+block|}
+block|}
 block|}
 block|}
 block|}
@@ -3979,11 +4017,7 @@ argument_list|(
 name|controllerClient
 argument_list|)
 expr_stmt|;
-name|reader
-operator|.
-name|createClusterStateWatchersAndUpdate
-argument_list|()
-expr_stmt|;
+comment|//no watches, we'll poll
 for|for
 control|(
 name|int
@@ -4002,6 +4036,12 @@ name|i
 operator|++
 control|)
 block|{
+name|killCounter
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
+comment|//for each round allow 1 kill
 name|mockController
 operator|=
 operator|new
