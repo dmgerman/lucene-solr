@@ -250,6 +250,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|ibm
@@ -1033,6 +1049,10 @@ argument_list|(
 literal|2
 argument_list|,
 literal|100000
+argument_list|,
+name|PackedInts
+operator|.
+name|DEFAULT
 argument_list|)
 decl_stmt|;
 name|System

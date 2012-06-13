@@ -208,6 +208,11 @@ argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
+argument_list|,
+name|random
+operator|.
+name|nextFloat
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)

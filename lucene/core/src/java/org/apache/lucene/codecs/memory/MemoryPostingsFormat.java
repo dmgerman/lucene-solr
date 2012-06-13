@@ -514,6 +514,22 @@ name|Util
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+import|;
+end_import
+
 begin_comment
 comment|// TODO: would be nice to somehow allow this to act like
 end_comment
@@ -564,6 +580,12 @@ specifier|final
 name|boolean
 name|doPackFST
 decl_stmt|;
+DECL|field|acceptableOverheadRatio
+specifier|private
+specifier|final
+name|float
+name|acceptableOverheadRatio
+decl_stmt|;
 DECL|method|MemoryPostingsFormat
 specifier|public
 name|MemoryPostingsFormat
@@ -572,6 +594,10 @@ block|{
 name|this
 argument_list|(
 literal|false
+argument_list|,
+name|PackedInts
+operator|.
+name|DEFAULT
 argument_list|)
 expr_stmt|;
 block|}
@@ -581,6 +607,9 @@ name|MemoryPostingsFormat
 parameter_list|(
 name|boolean
 name|doPackFST
+parameter_list|,
+name|float
+name|acceptableOverheadRatio
 parameter_list|)
 block|{
 name|super
@@ -593,6 +622,12 @@ operator|.
 name|doPackFST
 operator|=
 name|doPackFST
+expr_stmt|;
+name|this
+operator|.
+name|acceptableOverheadRatio
+operator|=
+name|acceptableOverheadRatio
 expr_stmt|;
 block|}
 annotation|@
@@ -663,6 +698,12 @@ specifier|final
 name|boolean
 name|doPackFST
 decl_stmt|;
+DECL|field|acceptableOverheadRatio
+specifier|private
+specifier|final
+name|float
+name|acceptableOverheadRatio
+decl_stmt|;
 DECL|field|termCount
 specifier|private
 name|int
@@ -680,6 +721,9 @@ name|field
 parameter_list|,
 name|boolean
 name|doPackFST
+parameter_list|,
+name|float
+name|acceptableOverheadRatio
 parameter_list|)
 block|{
 name|this
@@ -699,6 +743,12 @@ operator|.
 name|doPackFST
 operator|=
 name|doPackFST
+expr_stmt|;
+name|this
+operator|.
+name|acceptableOverheadRatio
+operator|=
+name|acceptableOverheadRatio
 expr_stmt|;
 name|builder
 operator|=
@@ -731,6 +781,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|doPackFST
+argument_list|,
+name|acceptableOverheadRatio
 argument_list|)
 expr_stmt|;
 block|}
@@ -1545,6 +1597,8 @@ argument_list|()
 operator|/
 literal|4
 argument_list|)
+argument_list|,
+name|acceptableOverheadRatio
 argument_list|)
 expr_stmt|;
 block|}
@@ -1661,6 +1715,8 @@ argument_list|,
 name|field
 argument_list|,
 name|doPackFST
+argument_list|,
+name|acceptableOverheadRatio
 argument_list|)
 return|;
 block|}
