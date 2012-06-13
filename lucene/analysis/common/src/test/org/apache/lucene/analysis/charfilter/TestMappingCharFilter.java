@@ -1365,6 +1365,9 @@ specifier|protected
 name|Reader
 name|initReader
 parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
 name|Reader
 name|reader
 parameter_list|)
@@ -1504,6 +1507,9 @@ specifier|protected
 name|Reader
 name|initReader
 parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
 name|Reader
 name|reader
 parameter_list|)
@@ -1633,6 +1639,9 @@ specifier|protected
 name|Reader
 name|initReader
 parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
 name|Reader
 name|reader
 parameter_list|)

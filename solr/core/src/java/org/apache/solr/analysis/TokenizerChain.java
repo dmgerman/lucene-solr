@@ -263,6 +263,7 @@ name|result
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: what is going on here?
 annotation|@
 name|Override
 DECL|method|reset
@@ -283,6 +284,8 @@ name|r
 init|=
 name|initReader
 argument_list|(
+literal|null
+argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
@@ -302,6 +305,9 @@ specifier|public
 name|Reader
 name|initReader
 parameter_list|(
+name|String
+name|fieldName
+parameter_list|,
 name|Reader
 name|reader
 parameter_list|)
@@ -379,6 +385,8 @@ name|create
 argument_list|(
 name|initReader
 argument_list|(
+name|fieldName
+argument_list|,
 name|aReader
 argument_list|)
 argument_list|)
