@@ -501,7 +501,7 @@ name|getStringFromContext
 argument_list|(
 literal|"fetchMailsSince"
 argument_list|,
-literal|""
+literal|null
 argument_list|)
 decl_stmt|;
 if|if
