@@ -603,23 +603,6 @@ block|{
 break|break;
 comment|// this is expected
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"Exception while processing update request"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-break|break;
-block|}
 if|if
 condition|(
 name|update
