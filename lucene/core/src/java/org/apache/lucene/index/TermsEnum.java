@@ -152,7 +152,7 @@ block|,
 name|NOT_FOUND
 block|}
 empty_stmt|;
-comment|/** Attemps to seek to the exact term, returning    *  true if the term is found.  If this returns false, the    *  enum is unpositioned.  For some codecs, seekExact may    *  be substantially faster than {@link #seekCeil}. */
+comment|/** Attempts to seek to the exact term, returning    *  true if the term is found.  If this returns false, the    *  enum is unpositioned.  For some codecs, seekExact may    *  be substantially faster than {@link #seekCeil}. */
 DECL|method|seekExact
 specifier|public
 name|boolean
