@@ -1308,6 +1308,11 @@ comment|// TODO: doesn't handle graph inputs (or even look at positionIncrement)
 name|HyphenatedWordsFilter
 operator|.
 name|class
+argument_list|,
+comment|// LUCENE-4065: only if you pass 'false' to enablePositionIncrements!
+name|TypeTokenFilter
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 block|}
