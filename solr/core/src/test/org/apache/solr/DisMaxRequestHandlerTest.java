@@ -743,35 +743,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Test
-DECL|method|testSimplestParams
-specifier|public
-name|void
-name|testSimplestParams
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|assertQ
-argument_list|(
-literal|"match w/o only q param"
-argument_list|,
-name|req
-argument_list|(
-literal|"qt"
-argument_list|,
-literal|"dismaxNoDefaults"
-argument_list|,
-literal|"q"
-argument_list|,
-literal|"guide"
-argument_list|)
-argument_list|,
-literal|"//*[@numFound='2']"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 
