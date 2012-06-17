@@ -827,7 +827,7 @@ return|return
 name|queryAnalyzer
 return|;
 block|}
-comment|/**    * Name of the default search field specified in the schema file    */
+comment|/**    * Name of the default search field specified in the schema file.    *<br/><b>Note:</b>Avoid calling this, try to use this method so that the 'df' param is consulted as an override:    * {@link org.apache.solr.search.QueryParsing#getDefaultField(IndexSchema, String)}    */
 DECL|method|getDefaultSearchFieldName
 specifier|public
 name|String
@@ -2029,7 +2029,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warn
+name|debug
 argument_list|(
 literal|"no default search field specified in schema."
 argument_list|)
@@ -2109,7 +2109,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"default search field is "
+literal|"default search field in schema is "
 operator|+
 name|defaultSearchFieldName
 argument_list|)

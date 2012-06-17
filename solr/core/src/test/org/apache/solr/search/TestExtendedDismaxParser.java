@@ -567,6 +567,28 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
+literal|"qf defaults to df"
+argument_list|,
+name|req
+argument_list|(
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"trait_ss"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"Tool"
+argument_list|)
+argument_list|,
+name|twor
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
 literal|"qf defaults to defaultSearchField"
 argument_list|,
 name|req
