@@ -272,7 +272,7 @@ name|Object
 name|value
 decl_stmt|;
 block|}
-comment|/**    * Hack: When thrown from a Parser (NUMERIC_UTILS_* ones), this stops    * processing terms and returns the current FieldCache    * array.    */
+comment|/**    * Hack: When thrown from a Parser (NUMERIC_UTILS_* ones), this stops    * processing terms and returns the current FieldCache    * array.    * @lucene.internal    */
 DECL|class|StopFillCacheException
 specifier|public
 specifier|static
@@ -782,8 +782,6 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|FieldCacheImpl
-operator|.
 name|StopFillCacheException
 argument_list|()
 throw|;
@@ -849,8 +847,6 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|FieldCacheImpl
-operator|.
 name|StopFillCacheException
 argument_list|()
 throw|;
@@ -921,8 +917,6 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|FieldCacheImpl
-operator|.
 name|StopFillCacheException
 argument_list|()
 throw|;
@@ -988,8 +982,6 @@ literal|0
 condition|)
 throw|throw
 operator|new
-name|FieldCacheImpl
-operator|.
 name|StopFillCacheException
 argument_list|()
 throw|;
