@@ -537,6 +537,14 @@ name|maxDoc
 argument_list|()
 expr_stmt|;
 block|}
+assert|assert
+name|newDocBase
+operator|==
+name|cr
+operator|.
+name|maxDoc
+argument_list|()
+assert|;
 return|return
 name|newParent
 return|;
