@@ -791,7 +791,7 @@ comment|// to allow users to query an IndexWriter settings.
 DECL|field|config
 specifier|private
 specifier|final
-name|IndexWriterConfig
+name|LiveIndexWriterConfig
 name|config
 decl_stmt|;
 comment|// The PayloadProcessorProvider to use when segments are merged
@@ -1753,38 +1753,15 @@ name|LockObtainFailedException
 throws|,
 name|IOException
 block|{
-if|if
-condition|(
-name|conf
-operator|.
-name|inUseByIndexWriter
-operator|.
-name|get
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"the provided IndexWriterConfig was previously used by a different IndexWriter; please make a new one instead"
-argument_list|)
-throw|;
-block|}
 name|config
 operator|=
+operator|new
+name|LiveIndexWriterConfig
+argument_list|(
 name|conf
 operator|.
 name|clone
 argument_list|()
-expr_stmt|;
-name|config
-operator|.
-name|inUseByIndexWriter
-operator|.
-name|set
-argument_list|(
-literal|true
 argument_list|)
 expr_stmt|;
 name|directory
@@ -2487,10 +2464,10 @@ return|return
 name|map
 return|;
 block|}
-comment|/**    * Returns the private {@link IndexWriterConfig}, cloned    * from the {@link IndexWriterConfig} passed to    * {@link #IndexWriter(Directory, IndexWriterConfig)}.    *<p>    *<b>NOTE:</b> some settings may be changed on the    * returned {@link IndexWriterConfig}, and will take    * effect in the current IndexWriter instance.  See the    * javadocs for the specific setters in {@link    * IndexWriterConfig} for details.    */
+comment|/**    * Returns a {@link LiveIndexWriterConfig}, which can be used to query the IndexWriter    * current settings, as well as modify "live" ones.    */
 DECL|method|getConfig
 specifier|public
-name|IndexWriterConfig
+name|LiveIndexWriterConfig
 name|getConfig
 parameter_list|()
 block|{

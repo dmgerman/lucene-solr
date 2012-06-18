@@ -359,7 +359,7 @@ parameter_list|(
 name|Codec
 name|codec
 parameter_list|,
-name|IndexWriterConfig
+name|LiveIndexWriterConfig
 name|config
 parameter_list|,
 name|Directory

@@ -99,7 +99,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|indexWriterConfig
 specifier|protected
-name|IndexWriterConfig
+name|LiveIndexWriterConfig
 name|indexWriterConfig
 decl_stmt|;
 comment|/**    * Called for each delete term. If this is a delete triggered due to an update    * the given {@link ThreadState} is non-null.    *<p>    * Note: This method is called synchronized on the given    * {@link DocumentsWriterFlushControl} and it is guaranteed that the calling    * thread holds the lock on the given {@link ThreadState}    */

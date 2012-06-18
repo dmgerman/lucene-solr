@@ -330,7 +330,7 @@ parameter_list|,
 name|FieldNumbers
 name|globalFieldMap
 parameter_list|,
-name|IndexWriterConfig
+name|LiveIndexWriterConfig
 name|config
 parameter_list|)
 block|{
