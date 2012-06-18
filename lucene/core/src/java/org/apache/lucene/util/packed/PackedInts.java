@@ -603,6 +603,17 @@ name|len
 parameter_list|)
 block|{
 assert|assert
+name|len
+operator|>
+literal|0
+operator|:
+literal|"len must be> 0 (got "
+operator|+
+name|len
+operator|+
+literal|")"
+assert|;
+assert|assert
 name|index
 operator|>=
 literal|0
@@ -732,6 +743,12 @@ assert|assert
 name|len
 operator|>
 literal|0
+operator|:
+literal|"len must be> 0 (got "
+operator|+
+name|len
+operator|+
+literal|")"
 assert|;
 assert|assert
 name|index
