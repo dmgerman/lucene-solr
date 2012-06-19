@@ -394,16 +394,6 @@ name|_TestUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Assume
-import|;
-end_import
-
 begin_comment
 comment|/**   * Base class for all Lucene unit tests that use TokenStreams.   *<p>  * When writing unit tests for analysis components, its highly recommended  * to use the helper methods here (especially in conjunction with {@link MockAnalyzer} or  * {@link MockTokenizer}), as they contain many assertions and checks to   * catch bugs.  *   * @see MockAnalyzer  * @see MockTokenizer  */
 end_comment
@@ -3286,14 +3276,6 @@ name|iw
 init|=
 literal|null
 decl_stmt|;
-if|if
-condition|(
-name|rarely
-argument_list|(
-name|random
-argument_list|)
-condition|)
-block|{
 specifier|final
 name|String
 name|postingsFormat
@@ -3305,10 +3287,9 @@ argument_list|(
 literal|"dummy"
 argument_list|)
 decl_stmt|;
-name|Assume
-operator|.
-name|assumeTrue
-argument_list|(
+name|boolean
+name|codecOk
+init|=
 name|iterations
 operator|*
 name|maxWordLength
@@ -3331,8 +3312,17 @@ argument_list|(
 literal|"SimpleText"
 argument_list|)
 operator|)
+decl_stmt|;
+if|if
+condition|(
+name|rarely
+argument_list|(
+name|random
 argument_list|)
-expr_stmt|;
+operator|&&
+name|codecOk
+condition|)
+block|{
 name|dir
 operator|=
 name|newFSDirectory
