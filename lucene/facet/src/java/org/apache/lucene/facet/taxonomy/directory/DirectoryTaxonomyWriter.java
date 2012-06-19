@@ -1246,6 +1246,10 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|shouldRefreshReaderManager
+operator|=
+literal|false
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -1499,6 +1503,8 @@ return|return
 name|res
 return|;
 block|}
+comment|// if we get here, it means the category is not in the cache, and it is not
+comment|// complete, and therefore we must look for the category on disk.
 comment|// We need to get an answer from the on-disk index.
 name|initReaderManager
 argument_list|()
@@ -1519,6 +1525,21 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
+name|BytesRef
+name|catTerm
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+name|categoryPath
+operator|.
+name|toString
+argument_list|(
+name|delimiter
+argument_list|)
+argument_list|)
+decl_stmt|;
 name|int
 name|base
 init|=
@@ -1548,16 +1569,7 @@ name|Consts
 operator|.
 name|FULL
 argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
-name|categoryPath
-operator|.
-name|toString
-argument_list|(
-name|delimiter
-argument_list|)
-argument_list|)
+name|catTerm
 argument_list|,
 literal|false
 argument_list|)
@@ -1710,6 +1722,23 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
+name|BytesRef
+name|catTerm
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+name|categoryPath
+operator|.
+name|toString
+argument_list|(
+name|delimiter
+argument_list|,
+name|prefixLen
+argument_list|)
+argument_list|)
+decl_stmt|;
 name|int
 name|base
 init|=
@@ -1739,18 +1768,7 @@ name|Consts
 operator|.
 name|FULL
 argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
-name|categoryPath
-operator|.
-name|toString
-argument_list|(
-name|delimiter
-argument_list|,
-name|prefixLen
-argument_list|)
-argument_list|)
+name|catTerm
 argument_list|,
 literal|false
 argument_list|)
@@ -1893,7 +1911,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**    * Add a new category into the index (and the cache), and return its new    * ordinal.    *<P>    * Actually, we might also need to add some of the category's ancestors    * before we can add the category itself (while keeping the invariant that a    * parent is always added to the taxonomy before its child). We do this by    * recursion.    */
+comment|/**    * Add a new category into the index (and the cache), and return its new    * ordinal.    *<p>    * Actually, we might also need to add some of the category's ancestors    * before we can add the category itself (while keeping the invariant that a    * parent is always added to the taxonomy before its child). We do this by    * recursion.    */
 DECL|method|internalAddCategory
 specifier|private
 name|int
@@ -2109,6 +2127,11 @@ init|=
 name|nextID
 operator|++
 decl_stmt|;
+comment|// added a category document, mark that ReaderManager is not up-to-date
+name|shouldRefreshReaderManager
+operator|=
+literal|true
+expr_stmt|;
 name|addToCache
 argument_list|(
 name|categoryPath
@@ -2117,11 +2140,6 @@ name|length
 argument_list|,
 name|id
 argument_list|)
-expr_stmt|;
-comment|// added a category document, mark that ReaderManager is not up-to-date
-name|shouldRefreshReaderManager
-operator|=
-literal|true
 expr_stmt|;
 comment|// also add to the parent array
 name|getParentArray
