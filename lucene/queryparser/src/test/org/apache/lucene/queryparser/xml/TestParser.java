@@ -354,6 +354,16 @@ name|InputStreamReader
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
 begin_class
 DECL|class|TestParser
 specifier|public
@@ -1283,9 +1293,11 @@ name|ParserException
 throws|,
 name|IOException
 block|{
+name|List
+argument_list|<
 name|AtomicReaderContext
+argument_list|>
 name|leaves
-index|[]
 init|=
 name|searcher
 operator|.
@@ -1300,12 +1312,9 @@ operator|.
 name|assumeTrue
 argument_list|(
 name|leaves
-operator|==
-literal|null
-operator|||
-name|leaves
 operator|.
-name|length
+name|size
+argument_list|()
 operator|==
 literal|1
 argument_list|)

@@ -688,7 +688,9 @@ argument_list|()
 operator|.
 name|leaves
 argument_list|()
-index|[
+operator|.
+name|get
+argument_list|(
 call|(
 name|int
 call|)
@@ -697,7 +699,7 @@ name|lookup
 operator|>>
 literal|32
 argument_list|)
-index|]
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|long

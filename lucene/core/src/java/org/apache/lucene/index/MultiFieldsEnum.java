@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ReaderUtil
+name|ReaderSlice
 import|;
 end_import
 
@@ -130,9 +130,7 @@ name|FieldsEnum
 index|[]
 name|subs
 parameter_list|,
-name|ReaderUtil
-operator|.
-name|Slice
+name|ReaderSlice
 index|[]
 name|subSlices
 parameter_list|)
@@ -471,9 +469,7 @@ name|fields
 decl_stmt|;
 DECL|field|slice
 specifier|final
-name|ReaderUtil
-operator|.
-name|Slice
+name|ReaderSlice
 name|slice
 decl_stmt|;
 DECL|field|index
@@ -492,9 +488,7 @@ parameter_list|(
 name|FieldsEnum
 name|fields
 parameter_list|,
-name|ReaderUtil
-operator|.
-name|Slice
+name|ReaderSlice
 name|slice
 parameter_list|,
 name|int

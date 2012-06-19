@@ -238,7 +238,8 @@ operator|.
 name|leaves
 argument_list|()
 operator|.
-name|length
+name|size
+argument_list|()
 expr_stmt|;
 block|}
 name|states
@@ -344,32 +345,17 @@ argument_list|(
 name|context
 argument_list|)
 decl_stmt|;
+comment|//if (DEBUG) System.out.println("prts.build term=" + term);
+for|for
+control|(
 specifier|final
 name|AtomicReaderContext
-index|[]
-name|leaves
-init|=
+name|ctx
+range|:
 name|context
 operator|.
 name|leaves
 argument_list|()
-decl_stmt|;
-comment|//if (DEBUG) System.out.println("prts.build term=" + term);
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|leaves
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 comment|//if (DEBUG) System.out.println("  r=" + leaves[i].reader);
@@ -377,10 +363,7 @@ specifier|final
 name|Fields
 name|fields
 init|=
-name|leaves
-index|[
-name|i
-index|]
+name|ctx
 operator|.
 name|reader
 argument_list|()
@@ -452,10 +435,7 @@ name|register
 argument_list|(
 name|termState
 argument_list|,
-name|leaves
-index|[
-name|i
-index|]
+name|ctx
 operator|.
 name|ord
 argument_list|,

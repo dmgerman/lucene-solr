@@ -6180,9 +6180,11 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|IndexReader
+name|SegmentReader
 name|r
 init|=
+name|getOnlySegmentReader
+argument_list|(
 name|DirectoryReader
 operator|.
 name|open
@@ -6191,12 +6193,7 @@ name|w
 argument_list|,
 literal|true
 argument_list|)
-operator|.
-name|getSequentialSubReaders
-argument_list|()
-index|[
-literal|0
-index|]
+argument_list|)
 decl_stmt|;
 try|try
 block|{

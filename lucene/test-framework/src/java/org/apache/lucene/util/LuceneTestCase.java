@@ -1398,8 +1398,12 @@ name|DirectoryReader
 name|reader
 parameter_list|)
 block|{
+name|List
+argument_list|<
+name|?
+extends|extends
 name|IndexReader
-index|[]
+argument_list|>
 name|subReaders
 init|=
 name|reader
@@ -1411,7 +1415,8 @@ if|if
 condition|(
 name|subReaders
 operator|.
-name|length
+name|size
+argument_list|()
 operator|!=
 literal|1
 condition|)
@@ -1425,17 +1430,26 @@ literal|" has "
 operator|+
 name|subReaders
 operator|.
-name|length
+name|size
+argument_list|()
 operator|+
 literal|" segments instead of exactly one"
 argument_list|)
 throw|;
+specifier|final
+name|IndexReader
+name|r
+init|=
+name|subReaders
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
-name|subReaders
-index|[
-literal|0
-index|]
+name|r
 operator|instanceof
 name|SegmentReader
 argument_list|)
@@ -1444,10 +1458,7 @@ return|return
 operator|(
 name|SegmentReader
 operator|)
-name|subReaders
-index|[
-literal|0
-index|]
+name|r
 return|;
 block|}
 comment|/**    * Returns true if and only if the calling thread is the primary thread     * executing the test case.     */

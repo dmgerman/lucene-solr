@@ -68,24 +68,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
-operator|.
-name|ReaderUtil
-import|;
-end_import
-
-begin_comment
-comment|// javadoc
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|DirectoryReader
@@ -115,7 +97,7 @@ comment|// javadoc
 end_comment
 
 begin_comment
-comment|/**  * This class forces a composite reader (eg a {@link  * MultiReader} or {@link DirectoryReader}) to emulate an  * atomic reader.  This requires implementing the postings  * APIs on-the-fly, using the static methods in {@link  * MultiFields}, {@link MultiDocValues},   * by stepping through the sub-readers to merge fields/terms,   * appending docs, etc.  *  *<p><b>NOTE</b>: this class almost always results in a  * performance hit.  If this is important to your use case,  * it's better to get the sequential sub readers (see {@link  * ReaderUtil#gatherSubReaders}, instead, and iterate through them  * yourself.</p>  */
+comment|/**  * This class forces a composite reader (eg a {@link  * MultiReader} or {@link DirectoryReader}) to emulate an  * atomic reader.  This requires implementing the postings  * APIs on-the-fly, using the static methods in {@link  * MultiFields}, {@link MultiDocValues}, by stepping through  * the sub-readers to merge fields/terms, appending docs, etc.  *  *<p><b>NOTE</b>: this class almost always results in a  * performance hit.  If this is important to your use case,  * you'll get better performance by gathering the sub readers using  * {@link IndexReader#getTopReaderContext()} to get the  * atomic leaves and then operate per-AtomicReader,  * instead of using this class.  */
 end_comment
 
 begin_class

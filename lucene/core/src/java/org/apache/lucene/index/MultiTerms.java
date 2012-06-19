@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ReaderUtil
+name|ReaderSlice
 import|;
 end_import
 
@@ -123,9 +123,7 @@ decl_stmt|;
 DECL|field|subSlices
 specifier|private
 specifier|final
-name|ReaderUtil
-operator|.
-name|Slice
+name|ReaderSlice
 index|[]
 name|subSlices
 decl_stmt|;
@@ -146,9 +144,7 @@ name|Terms
 index|[]
 name|subs
 parameter_list|,
-name|ReaderUtil
-operator|.
-name|Slice
+name|ReaderSlice
 index|[]
 name|subSlices
 parameter_list|)

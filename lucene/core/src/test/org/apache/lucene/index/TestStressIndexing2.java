@@ -1842,8 +1842,12 @@ parameter_list|)
 throws|throws
 name|Throwable
 block|{
-name|IndexReader
-index|[]
+name|List
+argument_list|<
+name|?
+extends|extends
+name|AtomicReader
+argument_list|>
 name|subs
 init|=
 name|r

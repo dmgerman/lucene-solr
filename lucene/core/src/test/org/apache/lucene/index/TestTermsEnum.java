@@ -4812,13 +4812,10 @@ expr_stmt|;
 name|AtomicReader
 name|sub
 init|=
+name|getOnlySegmentReader
+argument_list|(
 name|r
-operator|.
-name|getSequentialSubReaders
-argument_list|()
-index|[
-literal|0
-index|]
+argument_list|)
 decl_stmt|;
 name|Terms
 name|terms
