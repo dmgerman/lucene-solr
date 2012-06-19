@@ -270,6 +270,22 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|UnicodeUtil
 import|;
 end_import
@@ -289,6 +305,13 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|SuppressCodecs
+argument_list|(
+block|{
+literal|"Memory"
+block|}
+argument_list|)
 DECL|class|TestJapaneseTokenizer
 specifier|public
 class|class
