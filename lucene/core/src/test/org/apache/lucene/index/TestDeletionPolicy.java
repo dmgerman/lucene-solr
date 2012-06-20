@@ -228,6 +228,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/*   Verify we can read the pre-2.1 file format, do searches   against it, and add documents to it. */
 end_comment
@@ -1217,31 +1231,35 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-specifier|final
-name|int
-name|ITER
-init|=
-literal|9
-decl_stmt|;
 name|long
 name|lastDeleteTime
 init|=
 literal|0
 decl_stmt|;
-for|for
-control|(
+specifier|final
 name|int
-name|i
+name|targetNumDelete
 init|=
-literal|0
-init|;
-name|i
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|1
+argument_list|,
+literal|5
+argument_list|)
+decl_stmt|;
+while|while
+condition|(
+name|policy
+operator|.
+name|numDelete
 operator|<
-name|ITER
-condition|;
-name|i
-operator|++
-control|)
+name|targetNumDelete
+condition|)
 block|{
 comment|// Record last time when writer performed deletes of
 comment|// past commits
@@ -1376,17 +1394,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|i
-operator|<
-name|ITER
-operator|-
-literal|1
-condition|)
-block|{
-comment|// Make sure to sleep long enough so that some commit
-comment|// points will be deleted:
 name|Thread
 operator|.
 name|sleep
@@ -1406,19 +1413,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|// First, make sure the policy in fact deleted something:
-name|assertTrue
-argument_list|(
-literal|"no commits were deleted"
-argument_list|,
-name|policy
-operator|.
-name|numDelete
-operator|>
-literal|0
-argument_list|)
-expr_stmt|;
 comment|// Then simplistic check: just verify that the
 comment|// segments_N's that still exist are in fact within SECONDS
 comment|// seconds of the last one's mod time, and, that I can
