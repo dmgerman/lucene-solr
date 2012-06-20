@@ -736,11 +736,6 @@ specifier|private
 name|String
 name|createTime
 decl_stmt|;
-DECL|field|nextID
-specifier|private
-name|int
-name|nextID
-decl_stmt|;
 DECL|field|delimiter
 specifier|private
 name|char
@@ -820,6 +815,12 @@ specifier|volatile
 name|ParentArray
 name|parentArray
 decl_stmt|;
+DECL|field|nextID
+specifier|private
+specifier|volatile
+name|int
+name|nextID
+decl_stmt|;
 comment|/** Reads the commit data from a Directory. */
 DECL|method|readCommitData
 specifier|private
@@ -859,7 +860,7 @@ name|getUserData
 argument_list|()
 return|;
 block|}
-comment|/**    * setDelimiter changes the character that the taxonomy uses in its internal    * storage as a delimiter between category components. Do not use this    * method unless you really know what you are doing. It has nothing to do    * with whatever character the application may be using to represent    * categories for its own use.    *<P>    * If you do use this method, make sure you call it before any other methods    * that actually queries the taxonomy. Moreover, make sure you always pass    * the same delimiter for all LuceneTaxonomyWriter and LuceneTaxonomyReader    * objects you create for the same directory.    */
+comment|/**    * Changes the character that the taxonomy uses in its internal storage as a    * delimiter between category components. Do not use this method unless you    * really know what you are doing. It has nothing to do with whatever    * character the application may be using to represent categories for its own    * use.    *<p>    * If you do use this method, make sure you call it before any other methods    * that actually queries the taxonomy. Moreover, make sure you always pass the    * same delimiter for all taxonomy writer and reader instances you create for    * the same directory.    */
 DECL|method|setDelimiter
 specifier|public
 name|void
@@ -1078,8 +1079,6 @@ operator|.
 name|YES
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
 name|nextID
 operator|=
 name|indexWriter
@@ -2585,11 +2584,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * getSize() returns the number of categories in the taxonomy.    *<P>    * Because categories are numbered consecutively starting with 0, it means    * the taxonomy contains ordinals 0 through getSize()-1.    *<P>    * Note that the number returned by getSize() is often slightly higher than    * the number of categories inserted into the taxonomy; This is because when    * a category is added to the taxonomy, its ancestors are also added    * automatically (including the root, which always get ordinal 0).    */
 annotation|@
 name|Override
 DECL|method|getSize
-specifier|synchronized
 specifier|public
 name|int
 name|getSize
@@ -2599,13 +2596,10 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 return|return
-name|indexWriter
-operator|.
-name|maxDoc
-argument_list|()
+name|nextID
 return|;
 block|}
-comment|/**    * Set the number of cache misses before an attempt is made to read the    * entire taxonomy into the in-memory cache.    *<P>     * LuceneTaxonomyWriter holds an in-memory cache of recently seen    * categories to speed up operation. On each cache-miss, the on-disk index    * needs to be consulted. When an existing taxonomy is opened, a lot of    * slow disk reads like that are needed until the cache is filled, so it    * is more efficient to read the entire taxonomy into memory at once.    * We do this complete read after a certain number (defined by this method)    * of cache misses.    *<P>    * If the number is set to<CODE>0</CODE>, the entire taxonomy is read    * into the cache on first use, without fetching individual categories    * first.    *<P>    * Note that if the memory cache of choice is limited in size, and cannot    * hold the entire content of the on-disk taxonomy, then it is never    * read in its entirety into the cache, regardless of the setting of this    * method.     */
+comment|/**    * Set the number of cache misses before an attempt is made to read the entire    * taxonomy into the in-memory cache.    *<p>    * This taxonomy writer holds an in-memory cache of recently seen categories    * to speed up operation. On each cache-miss, the on-disk index needs to be    * consulted. When an existing taxonomy is opened, a lot of slow disk reads    * like that are needed until the cache is filled, so it is more efficient to    * read the entire taxonomy into memory at once. We do this complete read    * after a certain number (defined by this method) of cache misses.    *<p>    * If the number is set to {@code 0}, the entire taxonomy is read into the    * cache on first use, without fetching individual categories first.    *<p>    * NOTE: it is assumed that this method is called immediately after the    * taxonomy writer has been created.    */
 DECL|method|setCacheMissesUntilFill
 specifier|public
 name|void
@@ -2988,14 +2982,15 @@ if|if
 condition|(
 name|ordinal
 operator|>=
-name|getSize
-argument_list|()
+name|nextID
 condition|)
 block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
-argument_list|()
+argument_list|(
+literal|"requested ordinal is bigger than the largest ordinal in the taxonomy"
+argument_list|)
 throw|;
 block|}
 return|return
