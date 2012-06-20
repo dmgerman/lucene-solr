@@ -124,24 +124,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexWriter
-import|;
-end_import
-
-begin_comment
-comment|// Required for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|FSDirectory
@@ -149,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Command-line tool that enables listing segments in an  * index, copying specific segments to another index, and  * deleting segments from an index.  *  *<p>This tool does file-level copying of segments files.  * This means it's unable to split apart a single segment  * into multiple segments.  For example if your index is a  * single segment, this tool won't help.  Also, it does basic  * file-level copying (using simple  * File{In,Out}putStream) so it will not work with non  * FSDirectory Directory impls.</p>  *  * @lucene.experimental You can easily  * accidentally remove segments from your index so be  * careful!  *  *<p><b>NOTE</b>: this tool is unaware of documents added  * atomically via {@link IndexWriter#addDocuments} or {@link  * IndexWriter#updateDocuments}, which means it can easily  * break up such document groups.  */
+comment|/**  * Command-line tool that enables listing segments in an  * index, copying specific segments to another index, and  * deleting segments from an index.  *  *<p>This tool does file-level copying of segments files.  * This means it's unable to split apart a single segment  * into multiple segments.  For example if your index is a  * single segment, this tool won't help.  Also, it does basic  * file-level copying (using simple  * File{In,Out}putStream) so it will not work with non  * FSDirectory Directory impls.</p>  *  * @lucene.experimental You can easily  * accidentally remove segments from your index so be  * careful!  */
 end_comment
 
 begin_class
