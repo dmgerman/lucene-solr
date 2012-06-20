@@ -26,24 +26,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|util
-operator|.
-name|ClientUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|common
 operator|.
 name|params
@@ -145,16 +127,6 @@ operator|.
 name|util
 operator|.
 name|DateUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|NumberFormat
 import|;
 end_import
 
@@ -3230,11 +3202,11 @@ name|START
 argument_list|)
 return|;
 block|}
-comment|/**    * Query type used to determine the request handler.     * @see org.apache.solr.client.solrj.request.QueryRequest#getPath()    *     * @param qt Query Type that corresponds to the query request handler on the server.    * @return this    */
-DECL|method|setQueryType
+comment|/**    * The Request Handler to use (see the solrconfig.xml), which is stored in the "qt" parameter.    * Normally it starts with a '/' and if so it will be used by    * {@link org.apache.solr.client.solrj.request.QueryRequest#getPath()} in the URL instead of the "qt" parameter.    * If this is left blank, then the default of "/select" is assumed.    *    * @param qt The Request Handler name corresponding to one in solrconfig.xml on the server.    * @return this    */
+DECL|method|setRequestHandler
 specifier|public
 name|SolrQuery
-name|setQueryType
+name|setRequestHandler
 parameter_list|(
 name|String
 name|qt
@@ -3255,10 +3227,10 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|getQueryType
+DECL|method|getRequestHandler
 specifier|public
 name|String
-name|getQueryType
+name|getRequestHandler
 parameter_list|()
 block|{
 return|return
@@ -3270,6 +3242,39 @@ name|CommonParams
 operator|.
 name|QT
 argument_list|)
+return|;
+block|}
+comment|/**    * @deprecated See {@link #setRequestHandler(String)}.    */
+annotation|@
+name|Deprecated
+DECL|method|setQueryType
+specifier|public
+name|SolrQuery
+name|setQueryType
+parameter_list|(
+name|String
+name|qt
+parameter_list|)
+block|{
+return|return
+name|setRequestHandler
+argument_list|(
+name|qt
+argument_list|)
+return|;
+block|}
+comment|/**    * @deprecated See {@link #getRequestHandler()}.    */
+annotation|@
+name|Deprecated
+DECL|method|getQueryType
+specifier|public
+name|String
+name|getQueryType
+parameter_list|()
+block|{
+return|return
+name|getRequestHandler
+argument_list|()
 return|;
 block|}
 comment|/**    * @see ModifiableSolrParams#set(String,String[])    * @param name    * @param values    *      * @return this    */

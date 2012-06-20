@@ -298,7 +298,7 @@ argument_list|()
 decl_stmt|;
 name|query
 operator|.
-name|setQueryType
+name|setRequestHandler
 argument_list|(
 literal|"/terms"
 argument_list|)

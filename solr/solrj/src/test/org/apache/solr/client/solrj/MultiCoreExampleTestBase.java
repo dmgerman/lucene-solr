@@ -1332,7 +1332,7 @@ operator|new
 name|SolrQuery
 argument_list|()
 operator|.
-name|setQueryType
+name|setRequestHandler
 argument_list|(
 literal|"/admin/system"
 argument_list|)

@@ -1369,12 +1369,12 @@ literal|"foo"
 argument_list|,
 name|q
 operator|.
-name|setQueryType
+name|setRequestHandler
 argument_list|(
 literal|"foo"
 argument_list|)
 operator|.
-name|getQueryType
+name|getRequestHandler
 argument_list|()
 argument_list|)
 expr_stmt|;

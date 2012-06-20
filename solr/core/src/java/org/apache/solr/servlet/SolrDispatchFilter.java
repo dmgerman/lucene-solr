@@ -1476,7 +1476,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Invalid query type.  Do not use /select to access: "
+literal|"Invalid Request Handler ('qt').  Do not use /select to access: "
 operator|+
 name|qt
 argument_list|)

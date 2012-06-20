@@ -58,7 +58,7 @@ name|TZ
 init|=
 literal|"TZ"
 decl_stmt|;
-comment|/** the query type - which query handler should handle the request */
+comment|/** the Request Handler (formerly known as the Query Type) - which Request Handler should handle the request */
 DECL|field|QT
 specifier|public
 specifier|static
