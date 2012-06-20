@@ -768,7 +768,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"no field name specified in query and no defaultSearchField defined in schema.xml"
+literal|"no field name specified in query and no default specified via 'df' param"
 argument_list|)
 throw|;
 block|}
@@ -1161,6 +1161,11 @@ parameter_list|)
 throws|throws
 name|ParseException
 block|{
+name|checkNullField
+argument_list|(
+name|field
+argument_list|)
+expr_stmt|;
 comment|// *:* -> MatchAllDocsQuery
 if|if
 condition|(
