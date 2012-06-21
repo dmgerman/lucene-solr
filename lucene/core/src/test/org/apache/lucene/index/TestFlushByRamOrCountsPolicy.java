@@ -736,6 +736,7 @@ operator|.
 name|stallControl
 operator|.
 name|wasStalled
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1589,6 +1590,7 @@ operator|.
 name|stallControl
 operator|.
 name|wasStalled
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertFalse
@@ -2006,6 +2008,7 @@ operator|.
 name|stallControl
 operator|.
 name|wasStalled
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
