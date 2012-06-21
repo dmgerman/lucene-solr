@@ -3,10 +3,6 @@ begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
-begin_comment
-comment|/*  * This parser was originally derived from DismaxQParser from Solr.  * All changes are Copyright 2008, Lucid Imagination, Inc.  */
-end_comment
-
 begin_package
 DECL|package|org.apache.solr.search
 package|package
@@ -395,7 +391,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An advanced multi-field query parser.  * @lucene.experimental  */
+comment|/**  * An advanced multi-field query parser based on the DisMax parser.  * See Wiki page http://wiki.apache.org/solr/ExtendedDisMax  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -676,6 +672,71 @@ argument_list|,
 name|solrParams
 argument_list|)
 expr_stmt|;
+comment|// Phrase slop array
+name|int
+name|pslop
+index|[]
+init|=
+operator|new
+name|int
+index|[
+literal|4
+index|]
+decl_stmt|;
+name|pslop
+index|[
+literal|0
+index|]
+operator|=
+name|solrParams
+operator|.
+name|getInt
+argument_list|(
+name|DisMaxParams
+operator|.
+name|PS
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|pslop
+index|[
+literal|2
+index|]
+operator|=
+name|solrParams
+operator|.
+name|getInt
+argument_list|(
+name|DisMaxParams
+operator|.
+name|PS2
+argument_list|,
+name|pslop
+index|[
+literal|0
+index|]
+argument_list|)
+expr_stmt|;
+name|pslop
+index|[
+literal|3
+index|]
+operator|=
+name|solrParams
+operator|.
+name|getInt
+argument_list|(
+name|DisMaxParams
+operator|.
+name|PS3
+argument_list|,
+name|pslop
+index|[
+literal|0
+index|]
+argument_list|)
+expr_stmt|;
 comment|// Boosted phrase of the full query string
 name|List
 argument_list|<
@@ -697,6 +758,11 @@ name|PF
 argument_list|)
 argument_list|,
 literal|0
+argument_list|,
+name|pslop
+index|[
+literal|0
+index|]
 argument_list|)
 decl_stmt|;
 comment|// Boosted Bi-Term Shingles from the query string
@@ -714,10 +780,17 @@ name|solrParams
 operator|.
 name|getParams
 argument_list|(
-literal|"pf2"
+name|DMP
+operator|.
+name|PF2
 argument_list|)
 argument_list|,
 literal|2
+argument_list|,
+name|pslop
+index|[
+literal|2
+index|]
 argument_list|)
 decl_stmt|;
 comment|// Boosted Tri-Term Shingles from the query string
@@ -735,10 +808,17 @@ name|solrParams
 operator|.
 name|getParams
 argument_list|(
-literal|"pf3"
+name|DMP
+operator|.
+name|PF3
 argument_list|)
 argument_list|,
 literal|3
+argument_list|,
+name|pslop
+index|[
+literal|3
+index|]
 argument_list|)
 decl_stmt|;
 name|float
@@ -753,20 +833,6 @@ operator|.
 name|TIE
 argument_list|,
 literal|0.0f
-argument_list|)
-decl_stmt|;
-name|int
-name|pslop
-init|=
-name|solrParams
-operator|.
-name|getInt
-argument_list|(
-name|DisMaxParams
-operator|.
-name|PS
-argument_list|,
-literal|0
 argument_list|)
 decl_stmt|;
 name|int
@@ -1755,25 +1821,6 @@ range|:
 name|allPhraseFields
 control|)
 block|{
-name|int
-name|slop
-init|=
-operator|(
-name|phraseField
-operator|.
-name|getSlop
-argument_list|()
-operator|==
-literal|0
-operator|)
-condition|?
-name|pslop
-else|:
-name|phraseField
-operator|.
-name|getSlop
-argument_list|()
-decl_stmt|;
 name|Map
 argument_list|<
 name|String
@@ -1823,7 +1870,10 @@ argument_list|()
 argument_list|,
 name|tiebreaker
 argument_list|,
-name|slop
+name|phraseField
+operator|.
+name|getSlop
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -55,6 +55,24 @@ name|PF
 init|=
 literal|"pf"
 decl_stmt|;
+comment|/** query and init param for bigram phrase boost fields */
+DECL|field|PF2
+specifier|public
+specifier|static
+name|String
+name|PF2
+init|=
+literal|"pf2"
+decl_stmt|;
+comment|/** query and init param for trigram phrase boost fields */
+DECL|field|PF3
+specifier|public
+specifier|static
+name|String
+name|PF3
+init|=
+literal|"pf3"
+decl_stmt|;
 comment|/** query and init param for MinShouldMatch specification */
 DECL|field|MM
 specifier|public
@@ -72,6 +90,24 @@ name|String
 name|PS
 init|=
 literal|"ps"
+decl_stmt|;
+comment|/** default phrase slop for bigram phrases (pf2)  */
+DECL|field|PS2
+specifier|public
+specifier|static
+name|String
+name|PS2
+init|=
+literal|"ps2"
+decl_stmt|;
+comment|/** default phrase slop for bigram phrases (pf3)  */
+DECL|field|PS3
+specifier|public
+specifier|static
+name|String
+name|PS3
+init|=
+literal|"ps3"
 decl_stmt|;
 comment|/**    * query and init param for phrase Slop value in phrases    * explicitly included in the user's query string ( in qf fields)    */
 DECL|field|QS
