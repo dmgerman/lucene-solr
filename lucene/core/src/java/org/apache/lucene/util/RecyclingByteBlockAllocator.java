@@ -96,7 +96,7 @@ name|DEFAULT_BUFFERED_BLOCKS
 init|=
 literal|64
 decl_stmt|;
-comment|/**    * Creates a new {@link RecyclingByteBlockAllocator}    *     * @param blockSize    *          the block size in bytes    * @param maxBufferedBlocks    *          maximum number of buffered byte block    * @param bytesUsed    *          {@link AtomicLong} reference counting internally allocated bytes    *     * @see DummyConcurrentLock    */
+comment|/**    * Creates a new {@link RecyclingByteBlockAllocator}    *     * @param blockSize    *          the block size in bytes    * @param maxBufferedBlocks    *          maximum number of buffered byte block    * @param bytesUsed    *          {@link AtomicLong} reference counting internally allocated bytes    */
 DECL|method|RecyclingByteBlockAllocator
 specifier|public
 name|RecyclingByteBlockAllocator
@@ -145,7 +145,7 @@ operator|=
 name|bytesUsed
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link RecyclingByteBlockAllocator} with a    * {@link DummyConcurrentLock} instance.    *     * @param blockSize    *          the block size in bytes    * @param maxBufferedBlocks    *          maximum number of buffered byte block    */
+comment|/**    * Creates a new {@link RecyclingByteBlockAllocator}.    *     * @param blockSize    *          the block size in bytes    * @param maxBufferedBlocks    *          maximum number of buffered byte block    */
 DECL|method|RecyclingByteBlockAllocator
 specifier|public
 name|RecyclingByteBlockAllocator
@@ -169,7 +169,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link RecyclingByteBlockAllocator} with a block size of    * {@link ByteBlockPool#BYTE_BLOCK_SIZE}, upper buffered docs limit of    * {@link #DEFAULT_BUFFERED_BLOCKS} ({@value #DEFAULT_BUFFERED_BLOCKS}) and a    * {@link DummyConcurrentLock} instance.    *     */
+comment|/**    * Creates a new {@link RecyclingByteBlockAllocator} with a block size of    * {@link ByteBlockPool#BYTE_BLOCK_SIZE}, upper buffered docs limit of    * {@link #DEFAULT_BUFFERED_BLOCKS} ({@value #DEFAULT_BUFFERED_BLOCKS}).    *     */
 DECL|method|RecyclingByteBlockAllocator
 specifier|public
 name|RecyclingByteBlockAllocator
