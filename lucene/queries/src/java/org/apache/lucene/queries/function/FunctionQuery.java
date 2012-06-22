@@ -145,6 +145,7 @@ extends|extends
 name|Query
 block|{
 DECL|field|func
+specifier|final
 name|ValueSource
 name|func
 decl_stmt|;
@@ -215,6 +216,7 @@ name|Weight
 block|{
 DECL|field|searcher
 specifier|protected
+specifier|final
 name|IndexSearcher
 name|searcher
 decl_stmt|;
@@ -230,6 +232,7 @@ name|queryWeight
 decl_stmt|;
 DECL|field|context
 specifier|protected
+specifier|final
 name|Map
 name|context
 decl_stmt|;

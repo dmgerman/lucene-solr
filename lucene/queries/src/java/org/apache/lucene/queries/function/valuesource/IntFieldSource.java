@@ -834,7 +834,6 @@ return|return
 name|h
 return|;
 block|}
-empty_stmt|;
 block|}
 end_class
 

@@ -1115,7 +1115,6 @@ name|exists
 operator|=
 literal|true
 expr_stmt|;
-return|return;
 block|}
 catch|catch
 parameter_list|(

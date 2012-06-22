@@ -162,6 +162,7 @@ name|FieldCacheSource
 block|{
 DECL|field|parser
 specifier|protected
+specifier|final
 name|FieldCache
 operator|.
 name|FloatParser
@@ -528,7 +529,6 @@ return|return
 name|h
 return|;
 block|}
-empty_stmt|;
 block|}
 end_class
 

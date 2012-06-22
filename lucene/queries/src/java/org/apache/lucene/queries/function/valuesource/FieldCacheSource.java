@@ -65,11 +65,13 @@ name|ValueSource
 block|{
 DECL|field|field
 specifier|protected
+specifier|final
 name|String
 name|field
 decl_stmt|;
 DECL|field|cache
 specifier|protected
+specifier|final
 name|FieldCache
 name|cache
 init|=
@@ -196,7 +198,6 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-empty_stmt|;
 block|}
 end_class
 
