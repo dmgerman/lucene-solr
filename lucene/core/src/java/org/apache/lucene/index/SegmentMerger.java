@@ -220,34 +220,6 @@ name|InfoStream
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderSlice
-import|;
-end_import
-
 begin_comment
 comment|/**  * The SegmentMerger class combines two or more Segments, represented by an IndexReader ({@link #add},  * into a single Segment.  After adding the appropriate readers, call the merge method to combine the  * segments.  *  * @see #merge  * @see #add  */
 end_comment

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|index
 package|;
 end_package
 
@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Subreader slice from a parent composite reader.  */
+comment|/**  * Subreader slice from a parent composite reader.  *  * @lucene.internal  */
 end_comment
 
 begin_class

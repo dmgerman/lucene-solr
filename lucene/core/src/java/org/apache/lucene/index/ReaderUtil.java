@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|index
 package|;
 end_package
 
@@ -26,50 +26,8 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReaderContext
-import|;
-end_import
-
 begin_comment
-comment|/**  * Common util methods for dealing with {@link IndexReader}s.  *  * @lucene.internal  */
+comment|/**  * Common util methods for dealing with {@link IndexReader}s and {@link IndexReaderContext}s.  *  * @lucene.internal  */
 end_comment
 
 begin_class

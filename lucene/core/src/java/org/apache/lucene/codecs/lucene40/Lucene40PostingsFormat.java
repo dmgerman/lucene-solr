@@ -66,6 +66,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|CodecUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|FieldsConsumer
 import|;
 end_import
@@ -221,24 +235,6 @@ operator|.
 name|store
 operator|.
 name|DataOutput
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|CodecUtil
 import|;
 end_import
 
