@@ -704,6 +704,22 @@ argument_list|,
 name|random
 argument_list|)
 expr_stmt|;
+comment|// Avoid too many open files:
+name|formats
+operator|.
+name|subList
+argument_list|(
+literal|4
+argument_list|,
+name|formats
+operator|.
+name|size
+argument_list|()
+argument_list|)
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|RandomCodec
 specifier|public
