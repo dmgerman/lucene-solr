@@ -2705,6 +2705,49 @@ name|void
 name|waitIfStalled
 parameter_list|()
 block|{
+if|if
+condition|(
+name|documentsWriter
+operator|.
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"DWFC"
+argument_list|)
+condition|)
+block|{
+name|documentsWriter
+operator|.
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"DWFC"
+argument_list|,
+literal|"waitIfStalled: numFlushesPending: "
+operator|+
+name|flushQueue
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" netBytes: "
+operator|+
+name|netBytes
+argument_list|()
+operator|+
+literal|" flushBytes: "
+operator|+
+name|flushBytes
+argument_list|()
+operator|+
+literal|" fullFlush: "
+operator|+
+name|fullFlush
+argument_list|)
+expr_stmt|;
+block|}
 name|stallControl
 operator|.
 name|waitIfStalled

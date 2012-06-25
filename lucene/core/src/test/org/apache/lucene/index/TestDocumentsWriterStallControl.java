@@ -341,12 +341,6 @@ control|)
 block|{
 specifier|final
 name|int
-name|threadId
-init|=
-name|i
-decl_stmt|;
-specifier|final
-name|int
 name|stallProbability
 init|=
 literal|1
