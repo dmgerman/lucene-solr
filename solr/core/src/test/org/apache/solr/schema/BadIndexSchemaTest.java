@@ -359,6 +359,22 @@ literal|"can not be configured with a default value"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testPerFieldtypeSimButNoSchemaSimFactory
+specifier|public
+name|void
+name|testPerFieldtypeSimButNoSchemaSimFactory
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-sim-global-vs-ft-mismatch.xml"
+argument_list|,
+literal|"global similarity does not support it"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
