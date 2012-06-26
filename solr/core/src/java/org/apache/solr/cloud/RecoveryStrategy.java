@@ -987,8 +987,6 @@ operator|.
 name|MASTER_URL
 argument_list|,
 name|leaderUrl
-operator|+
-literal|"replication"
 argument_list|)
 expr_stmt|;
 if|if
