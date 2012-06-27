@@ -118,6 +118,16 @@ name|CAPTURE_ATTRIBUTES
 init|=
 literal|"captureAttr"
 decl_stmt|;
+comment|/**    * Literal field values will by default override other values such as metadata and content. Set this to false to revert to pre-4.0 behaviour    */
+DECL|field|LITERALS_OVERRIDE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|LITERALS_OVERRIDE
+init|=
+literal|"literalsOverride"
+decl_stmt|;
 comment|/**    * Capture the specified fields (and everything included below it that isn't capture by some other capture field) separately from the default.  This is different    * then the case of passing in an XPath expression.    *<p/>    * The Capture field is based on the localName returned to the {@link SolrContentHandler}    * by Tika, not to be confused by the mapped field.  The field name can then    * be mapped into the index schema.    *<p/>    * For instance, a Tika document may look like:    *<pre>    *&lt;html&gt;    *    ...    *&lt;body&gt;    *&lt;p&gt;some text here.&lt;div&gt;more text&lt;/div&gt;&lt;/p&gt;    *      Some more text    *&lt;/body&gt;    *</pre>    * By passing in the p tag, you could capture all P tags separately from the rest of the t    * Thus, in the example, the capture of the P tag would be: "some text here.  more text"    *    */
 DECL|field|CAPTURE_ELEMENTS
 specifier|public
