@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -161,7 +171,17 @@ init|=
 operator|new
 name|SolrConfig
 argument_list|(
+literal|"solr"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
+literal|"collection1"
+argument_list|,
 literal|"solrconfig-mergepolicy.xml"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|SolrIndexConfig

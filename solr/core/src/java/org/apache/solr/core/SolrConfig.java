@@ -594,6 +594,7 @@ expr_stmt|;
 block|}
 comment|/** Creates a configuration instance from a resource loader, a configuration name and a stream.    * If the stream is null, the resource loader will open the configuration stream.    * If the stream is not null, no attempt to load the resource will occur (the name is not used).    *@param loader the resource loader    *@param name the configuration name    *@param is the configuration stream    */
 DECL|method|SolrConfig
+specifier|public
 name|SolrConfig
 parameter_list|(
 name|SolrResourceLoader

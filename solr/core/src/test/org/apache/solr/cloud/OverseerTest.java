@@ -1255,7 +1255,7 @@ literal|"bootstrap_confdir"
 argument_list|,
 name|getFile
 argument_list|(
-literal|"solr/conf"
+literal|"solr/collection1/conf"
 argument_list|)
 operator|.
 name|getAbsolutePath
@@ -1796,7 +1796,7 @@ literal|"bootstrap_confdir"
 argument_list|,
 name|getFile
 argument_list|(
-literal|"solr/conf"
+literal|"solr/collection1/conf"
 argument_list|)
 operator|.
 name|getAbsolutePath
@@ -2536,6 +2536,16 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|nodeExecutors
+index|[
+name|i
+index|]
+operator|!=
+literal|null
+condition|)
+block|{
 name|nodeExecutors
 index|[
 name|i
@@ -2544,6 +2554,7 @@ operator|.
 name|shutdownNow
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

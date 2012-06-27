@@ -450,6 +450,9 @@ name|TestHarness
 operator|.
 name|createConfig
 argument_list|(
+name|getSolrHome
+argument_list|()
+argument_list|,
 literal|"solrconfig.xml"
 argument_list|)
 expr_stmt|;

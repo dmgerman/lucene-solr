@@ -346,6 +346,12 @@ name|File
 operator|.
 name|separator
 operator|+
+literal|"collection1"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
 literal|"conf"
 operator|+
 name|File
@@ -1745,6 +1751,8 @@ operator|new
 name|File
 argument_list|(
 name|homeDir
+operator|+
+literal|"/collection1"
 argument_list|,
 literal|"data"
 argument_list|)
@@ -1755,6 +1763,8 @@ operator|new
 name|File
 argument_list|(
 name|homeDir
+operator|+
+literal|"/collection1"
 argument_list|,
 literal|"conf"
 argument_list|)

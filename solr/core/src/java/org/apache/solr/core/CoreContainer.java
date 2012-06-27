@@ -7271,7 +7271,7 @@ literal|"<core name=\""
 operator|+
 name|DEFAULT_DEFAULT_CORE_NAME
 operator|+
-literal|"\" shard=\"${shard:}\" instanceDir=\".\" />\n"
+literal|"\" shard=\"${shard:}\" instanceDir=\"collection1\" />\n"
 operator|+
 literal|"</cores>\n"
 operator|+

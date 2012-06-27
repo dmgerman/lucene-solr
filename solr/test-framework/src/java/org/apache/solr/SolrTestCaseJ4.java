@@ -775,6 +775,10 @@ name|schemaString
 operator|=
 name|schema
 expr_stmt|;
+name|testSolrHome
+operator|=
+name|solrHome
+expr_stmt|;
 if|if
 condition|(
 name|solrHome
@@ -1274,6 +1278,12 @@ specifier|static
 name|String
 name|schemaString
 decl_stmt|;
+DECL|field|testSolrHome
+specifier|protected
+specifier|static
+name|String
+name|testSolrHome
+decl_stmt|;
 DECL|field|solrConfig
 specifier|protected
 specifier|static
@@ -1518,6 +1528,8 @@ name|TestHarness
 operator|.
 name|createConfig
 argument_list|(
+name|testSolrHome
+argument_list|,
 name|getSolrConfigFile
 argument_list|()
 argument_list|)
@@ -7431,7 +7443,7 @@ block|{
 return|return
 name|getFile
 argument_list|(
-literal|"solr/conf"
+literal|"solr/collection1"
 argument_list|)
 operator|.
 name|getParent

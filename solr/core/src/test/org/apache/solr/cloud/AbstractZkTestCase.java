@@ -592,6 +592,12 @@ name|File
 operator|.
 name|separator
 operator|+
+literal|"collection1"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
 literal|"conf"
 operator|+
 name|File

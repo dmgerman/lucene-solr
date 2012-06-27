@@ -86,9 +86,9 @@ name|Exception
 block|{
 name|initCore
 argument_list|(
-literal|"solr/conf/solrconfig.xml"
+literal|"solr/collection1/conf/solrconfig.xml"
 argument_list|,
-literal|"solr/conf/schema-minimal.xml"
+literal|"solr/collection1/conf/schema-minimal.xml"
 argument_list|)
 expr_stmt|;
 comment|/* make sure some misguided soul doesn't inadvertently give us         a uniqueKey field and defeat the point of the tests     */

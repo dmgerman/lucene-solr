@@ -384,13 +384,15 @@ operator|new
 name|File
 argument_list|(
 name|tmpFile
+operator|+
+literal|"/collection1"
 argument_list|,
 literal|"conf"
 argument_list|)
 decl_stmt|;
 name|confDir
 operator|.
-name|mkdir
+name|mkdirs
 argument_list|()
 expr_stmt|;
 comment|// copy over configuration files
@@ -400,7 +402,7 @@ name|copyFile
 argument_list|(
 name|getFile
 argument_list|(
-literal|"solr/conf/solrconfig-basic.xml"
+literal|"solr/collection1/conf/solrconfig-basic.xml"
 argument_list|)
 argument_list|,
 operator|new
@@ -418,7 +420,7 @@ name|copyFile
 argument_list|(
 name|getFile
 argument_list|(
-literal|"solr/conf/schema-collate.xml"
+literal|"solr/collection1/conf/schema-collate.xml"
 argument_list|)
 argument_list|,
 operator|new

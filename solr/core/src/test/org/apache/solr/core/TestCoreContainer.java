@@ -1000,6 +1000,8 @@ name|SolrTestCaseJ4
 operator|.
 name|TEST_HOME
 argument_list|()
+operator|+
+literal|"/collection1"
 argument_list|)
 decl_stmt|;
 name|SolrCore

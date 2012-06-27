@@ -337,6 +337,8 @@ name|File
 argument_list|(
 name|TEST_HOME
 argument_list|()
+operator|+
+literal|"/collection1"
 argument_list|,
 literal|"conf"
 argument_list|)

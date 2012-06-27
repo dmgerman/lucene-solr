@@ -509,6 +509,9 @@ name|TestHarness
 operator|.
 name|createConfig
 argument_list|(
+name|getSolrHome
+argument_list|()
+argument_list|,
 name|getSolrConfigFile
 argument_list|()
 argument_list|)
