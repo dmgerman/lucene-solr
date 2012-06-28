@@ -84,6 +84,22 @@ name|queries
 operator|.
 name|function
 operator|.
+name|FunctionQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queries
+operator|.
+name|function
+operator|.
 name|ValueSource
 import|;
 end_import
@@ -99,6 +115,20 @@ operator|.
 name|search
 operator|.
 name|Filter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|FilteredQuery
 import|;
 end_import
 
@@ -239,6 +269,7 @@ argument_list|)
 block|}
 return|;
 block|}
+comment|/**    * The value source yields a number that is proportional to the distance between the query shape and indexed data.    * @param args    * @param fieldInfo    * @return    */
 DECL|method|makeValueSource
 specifier|public
 specifier|abstract
@@ -252,10 +283,9 @@ name|T
 name|fieldInfo
 parameter_list|)
 function_decl|;
-comment|/**    * Make a query    */
+comment|/**    * Make a query which has a score based on the distance from the data to the query shape.    * The default implementation constructs a {@link FilteredQuery} based on    * {@link #makeFilter(com.spatial4j.core.query.SpatialArgs, SpatialFieldInfo)} and    * {@link #makeValueSource(com.spatial4j.core.query.SpatialArgs, SpatialFieldInfo)}.    */
 DECL|method|makeQuery
 specifier|public
-specifier|abstract
 name|Query
 name|makeQuery
 parameter_list|(
@@ -265,7 +295,41 @@ parameter_list|,
 name|T
 name|fieldInfo
 parameter_list|)
-function_decl|;
+block|{
+name|Filter
+name|filter
+init|=
+name|makeFilter
+argument_list|(
+name|args
+argument_list|,
+name|fieldInfo
+argument_list|)
+decl_stmt|;
+name|ValueSource
+name|vs
+init|=
+name|makeValueSource
+argument_list|(
+name|args
+argument_list|,
+name|fieldInfo
+argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|FilteredQuery
+argument_list|(
+operator|new
+name|FunctionQuery
+argument_list|(
+name|vs
+argument_list|)
+argument_list|,
+name|filter
+argument_list|)
+return|;
+block|}
 comment|/**    * Make a Filter    */
 DECL|method|makeFilter
 specifier|public
