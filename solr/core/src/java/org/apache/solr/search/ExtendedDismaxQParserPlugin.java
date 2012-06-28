@@ -2901,360 +2901,81 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|partialEscape
-specifier|public
-specifier|static
-name|CharSequence
-name|partialEscape
-parameter_list|(
-name|CharSequence
-name|s
-parameter_list|)
-block|{
-name|StringBuilder
-name|sb
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-name|int
-name|len
-init|=
-name|s
-operator|.
-name|length
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|len
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|char
-name|c
-init|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|c
-operator|==
-literal|':'
-condition|)
-block|{
-comment|// look forward to make sure it's something that won't
-comment|// cause a parse exception (something that won't be escaped... like
-comment|// +,-,:, whitespace
-if|if
-condition|(
-name|i
-operator|+
-literal|1
-operator|<
-name|len
-operator|&&
-name|i
-operator|>
-literal|0
-condition|)
-block|{
-name|char
-name|ch
-init|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|i
-operator|+
-literal|1
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|Character
-operator|.
-name|isWhitespace
-argument_list|(
-name|ch
-argument_list|)
-operator|||
-name|ch
-operator|==
-literal|'+'
-operator|||
-name|ch
-operator|==
-literal|'-'
-operator|||
-name|ch
-operator|==
-literal|':'
-operator|)
-condition|)
-block|{
-comment|// OK, at this point the chars after the ':' will be fine.
-comment|// now look back and try to determine if this is a fieldname
-comment|// [+,-]? [letter,_] [letter digit,_,-,.]*
-comment|// This won't cover *all* possible lucene fieldnames, but we should
-comment|// only pick nice names to begin with
-name|int
-name|start
-decl_stmt|,
-name|pos
-decl_stmt|;
-for|for
-control|(
-name|start
-operator|=
-name|i
-operator|-
-literal|1
-init|;
-name|start
-operator|>=
-literal|0
-condition|;
-name|start
-operator|--
-control|)
-block|{
-name|ch
-operator|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|start
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|Character
-operator|.
-name|isWhitespace
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-break|break;
-block|}
-comment|// skip whitespace
-name|pos
-operator|=
-name|start
-operator|+
-literal|1
-expr_stmt|;
-comment|// skip leading + or -
-name|ch
-operator|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|pos
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|ch
-operator|==
-literal|'+'
-operator|||
-name|ch
-operator|==
-literal|'-'
-condition|)
-block|{
-name|pos
-operator|++
-expr_stmt|;
-block|}
-comment|// we don't need to explicitly check for end of string
-comment|// since ':' will act as our sentinal
-comment|// first char can't be '-' or '.'
-name|ch
-operator|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|pos
-operator|++
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|Character
-operator|.
-name|isJavaIdentifierPart
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-block|{
-for|for
-control|(
-init|;
-condition|;
-control|)
-block|{
-name|ch
-operator|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|pos
-operator|++
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|Character
-operator|.
-name|isJavaIdentifierPart
-argument_list|(
-name|ch
-argument_list|)
-operator|||
-name|ch
-operator|==
-literal|'-'
-operator|||
-name|ch
-operator|==
-literal|'.'
-operator|)
-condition|)
-block|{
-break|break;
-block|}
-block|}
-if|if
-condition|(
-name|pos
-operator|<=
-name|i
-condition|)
-block|{
-comment|// OK, we got to the ':' and everything looked like a valid fieldname, so
-comment|// don't escape the ':'
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|':'
-argument_list|)
-expr_stmt|;
-continue|continue;
-comment|// jump back to start of outer-most loop
-block|}
-block|}
-block|}
-block|}
-comment|// we fell through to here, so we should escape this like other reserved chars.
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|'\\'
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|c
-operator|==
-literal|'\\'
-operator|||
-name|c
-operator|==
-literal|'!'
-operator|||
-name|c
-operator|==
-literal|'('
-operator|||
-name|c
-operator|==
-literal|')'
-operator|||
-name|c
-operator|==
-literal|'^'
-operator|||
-name|c
-operator|==
-literal|'['
-operator|||
-name|c
-operator|==
-literal|']'
-operator|||
-name|c
-operator|==
-literal|'{'
-operator|||
-name|c
-operator|==
-literal|'}'
-operator|||
-name|c
-operator|==
-literal|'~'
-operator|||
-name|c
-operator|==
-literal|'*'
-operator|||
-name|c
-operator|==
-literal|'?'
-condition|)
-block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|'\\'
-argument_list|)
-expr_stmt|;
-block|}
-name|sb
-operator|.
-name|append
-argument_list|(
-name|c
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|sb
-return|;
-block|}
+comment|// FIXME: Not in use
+comment|//  public static CharSequence partialEscape(CharSequence s) {
+comment|//    StringBuilder sb = new StringBuilder();
+comment|//
+comment|//    int len = s.length();
+comment|//    for (int i = 0; i< len; i++) {
+comment|//      char c = s.charAt(i);
+comment|//      if (c == ':') {
+comment|//        // look forward to make sure it's something that won't
+comment|//        // cause a parse exception (something that won't be escaped... like
+comment|//        // +,-,:, whitespace
+comment|//        if (i+1<len&& i>0) {
+comment|//          char ch = s.charAt(i+1);
+comment|//          if (!(Character.isWhitespace(ch) || ch=='+' || ch=='-' || ch==':')) {
+comment|//            // OK, at this point the chars after the ':' will be fine.
+comment|//            // now look back and try to determine if this is a fieldname
+comment|//            // [+,-]? [letter,_] [letter digit,_,-,.]*
+comment|//            // This won't cover *all* possible lucene fieldnames, but we should
+comment|//            // only pick nice names to begin with
+comment|//            int start, pos;
+comment|//            for (start=i-1; start>=0; start--) {
+comment|//              ch = s.charAt(start);
+comment|//              if (Character.isWhitespace(ch)) break;
+comment|//            }
+comment|//
+comment|//            // skip whitespace
+comment|//            pos = start+1;
+comment|//
+comment|//            // skip leading + or -
+comment|//            ch = s.charAt(pos);
+comment|//            if (ch=='+' || ch=='-') {
+comment|//              pos++;
+comment|//            }
+comment|//
+comment|//            // we don't need to explicitly check for end of string
+comment|//            // since ':' will act as our sentinal
+comment|//
+comment|//              // first char can't be '-' or '.'
+comment|//              ch = s.charAt(pos++);
+comment|//              if (Character.isJavaIdentifierPart(ch)) {
+comment|//
+comment|//                for(;;) {
+comment|//                  ch = s.charAt(pos++);
+comment|//                  if (!(Character.isJavaIdentifierPart(ch) || ch=='-' || ch=='.')) {
+comment|//                    break;
+comment|//                  }
+comment|//                }
+comment|//
+comment|//                if (pos<=i) {
+comment|//                  // OK, we got to the ':' and everything looked like a valid fieldname, so
+comment|//                  // don't escape the ':'
+comment|//                  sb.append(':');
+comment|//                  continue;  // jump back to start of outer-most loop
+comment|//                }
+comment|//
+comment|//              }
+comment|//
+comment|//
+comment|//          }
+comment|//        }
+comment|//
+comment|//        // we fell through to here, so we should escape this like other reserved chars.
+comment|//        sb.append('\\');
+comment|//      }
+comment|//      else if (c == '\\' || c == '!' || c == '(' || c == ')' ||
+comment|//          c == '^' || c == '[' || c == ']' ||
+comment|//          c == '{'  || c == '}' || c == '~' || c == '*' || c == '?'
+comment|//          )
+comment|//      {
+comment|//        sb.append('\\');
+comment|//      }
+comment|//      sb.append(c);
+comment|//    }
+comment|//    return sb;
+comment|//  }
 DECL|class|Clause
 specifier|static
 class|class
@@ -3741,6 +3462,18 @@ literal|'+'
 case|:
 case|case
 literal|'-'
+case|:
+case|case
+literal|'\\'
+case|:
+case|case
+literal|'|'
+case|:
+case|case
+literal|'&'
+case|:
+case|case
+literal|'/'
 case|:
 name|clause
 operator|.

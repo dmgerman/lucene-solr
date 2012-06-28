@@ -54,6 +54,16 @@ name|AbstractSolrTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_class
 DECL|class|TestExtendedDismaxParser
 specifier|public
@@ -3648,6 +3658,117 @@ literal|"true"
 argument_list|)
 argument_list|,
 literal|"//str[@name='parsedquery'][contains(.,'phrase_sw:\"zzzz xxxx\"~2^22.0')]"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * verify that all reserved characters are properly escaped when being set in    * {@link org.apache.solr.search.ExtendedDismaxQParser.Clause#val}.    *    * @see ExtendedDismaxQParser#splitIntoClauses(String, boolean)    */
+annotation|@
+name|Test
+DECL|method|testEscapingOfReservedCharacters
+specifier|public
+name|void
+name|testEscapingOfReservedCharacters
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// create a document that contains all reserved characters
+name|String
+name|allReservedCharacters
+init|=
+literal|"!():^[]{}~*?\"+-\\|&/"
+decl_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"reservedChars"
+argument_list|,
+literal|"name"
+argument_list|,
+name|allReservedCharacters
+argument_list|,
+literal|"cat_s"
+argument_list|,
+literal|"foo/"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// the backslash needs to be manually escaped (the query parser sees the raw backslash as an escape the subsequent
+comment|// character)
+name|String
+name|query
+init|=
+name|allReservedCharacters
+operator|.
+name|replace
+argument_list|(
+literal|"\\"
+argument_list|,
+literal|"\\\\"
+argument_list|)
+decl_stmt|;
+comment|// query for all those reserved characters. This will fail to parse in the initial parse, meaning that the escaped
+comment|// query will then be used
+name|assertQ
+argument_list|(
+literal|"Escaping reserved characters"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+name|query
+argument_list|,
+literal|"qf"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"mm"
+argument_list|,
+literal|"100%"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=1]"
+argument_list|)
+expr_stmt|;
+comment|// Query string field 'cat_s' for special char / - causes ParseException without patch SOLR-3467
+name|assertQ
+argument_list|(
+literal|"Escaping string with reserved / character"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"foo/"
+argument_list|,
+literal|"qf"
+argument_list|,
+literal|"cat_s"
+argument_list|,
+literal|"mm"
+argument_list|,
+literal|"100%"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=1]"
 argument_list|)
 expr_stmt|;
 block|}
