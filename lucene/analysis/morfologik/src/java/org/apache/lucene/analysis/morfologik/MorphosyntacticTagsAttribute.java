@@ -24,6 +24,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -41,28 +51,34 @@ comment|/**   * Morfologik dictionaries provide morphosyntactic annotations for 
 end_comment
 
 begin_interface
-DECL|interface|MorphosyntacticTagAttribute
+DECL|interface|MorphosyntacticTagsAttribute
 specifier|public
 interface|interface
-name|MorphosyntacticTagAttribute
+name|MorphosyntacticTagsAttribute
 extends|extends
 name|Attribute
 block|{
-comment|/**     * Set the POS tag. The default value (no-value) is null.    * @param pos POS tag corresponding to current lemma    */
-DECL|method|setTag
+comment|/**     * Set the POS tag. The default value (no-value) is null.    *     * @param tags A list of POS tags corresponding to current lemma.    */
+DECL|method|setTags
 specifier|public
 name|void
-name|setTag
+name|setTags
 parameter_list|(
-name|CharSequence
-name|pos
+name|List
+argument_list|<
+name|StringBuilder
+argument_list|>
+name|tags
 parameter_list|)
 function_decl|;
-comment|/** Returns the POS tag of the term. */
-DECL|method|getTag
+comment|/**     * Returns the POS tag of the term.    */
+DECL|method|getTags
 specifier|public
-name|CharSequence
-name|getTag
+name|List
+argument_list|<
+name|StringBuilder
+argument_list|>
+name|getTags
 parameter_list|()
 function_decl|;
 comment|/** Clear to default value. */
