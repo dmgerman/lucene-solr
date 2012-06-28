@@ -774,6 +774,10 @@ operator|(
 name|shape
 operator|instanceof
 name|Rectangle
+operator|||
+name|shape
+operator|instanceof
+name|Circle
 operator|)
 condition|)
 block|{
@@ -781,12 +785,16 @@ throw|throw
 operator|new
 name|InvalidShapeException
 argument_list|(
-literal|"A rectangle is the only supported shape (so far), not "
+literal|"Only Rectangles and Circles are currently supported, "
+operator|+
+literal|"found ["
 operator|+
 name|shape
 operator|.
 name|getClass
 argument_list|()
+operator|+
+literal|"]"
 argument_list|)
 throw|;
 comment|//TODO
@@ -794,10 +802,10 @@ block|}
 name|Rectangle
 name|bbox
 init|=
-operator|(
-name|Rectangle
-operator|)
 name|shape
+operator|.
+name|getBoundingBox
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
