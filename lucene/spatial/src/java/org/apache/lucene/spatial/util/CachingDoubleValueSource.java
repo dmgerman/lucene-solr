@@ -94,6 +94,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * @lucene.internal  */
+end_comment
+
 begin_class
 DECL|class|CachingDoubleValueSource
 specifier|public

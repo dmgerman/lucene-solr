@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Spatial Prefix Tree, or Trie, which decomposes shapes into prefixed strings at variable lengths corresponding to  * variable precision.  Each string corresponds to a spatial region.  *  * Implementations of this class should be thread-safe and immutable once initialized.  */
+comment|/**  * A Spatial Prefix Tree, or Trie, which decomposes shapes into prefixed strings at variable lengths corresponding to  * variable precision.  Each string corresponds to a spatial region.  *  * Implementations of this class should be thread-safe and immutable once initialized.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -226,7 +226,7 @@ operator|+
 literal|")"
 return|;
 block|}
-comment|/**    * See {@link com.spatial4j.core.query.SpatialArgs#getDistPrecision()}.    * A grid level looked up via {@link #getLevelForDistance(double)} is returned.    *    * @param shape    * @param precision 0-0.5    * @return 1-maxLevels    */
+comment|/**    * See {@link com.spatial4j.core.query.SpatialArgs#getDistPrecision()}.    * A grid level looked up via {@link #getLevelForDistance(double)} is returned.    *    * @param precision 0-0.5    * @return 1-maxLevels    */
 DECL|method|getMaxLevelForPrecision
 specifier|public
 name|int

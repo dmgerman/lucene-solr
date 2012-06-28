@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A basic implementation using a large {@link TermsFilter} of all the nodes from  * {@link SpatialPrefixTree#getNodes(com.spatial4j.core.shape.Shape, int, boolean)}.  */
+comment|/**  * A basic implementation using a large {@link TermsFilter} of all the nodes from  * {@link SpatialPrefixTree#getNodes(com.spatial4j.core.shape.Shape, int, boolean)}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A SpatialPrefixGrid based on Geohashes.  Uses {@link GeohashUtils} to do all the geohash work.  */
+comment|/**  * A SpatialPrefixGrid based on Geohashes.  Uses {@link GeohashUtils} to do all the geohash work.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

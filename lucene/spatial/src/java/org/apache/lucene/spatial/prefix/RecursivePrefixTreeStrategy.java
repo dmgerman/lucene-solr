@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Based on {@link RecursivePrefixTreeFilter}.  */
+comment|/**  * Based on {@link RecursivePrefixTreeFilter}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

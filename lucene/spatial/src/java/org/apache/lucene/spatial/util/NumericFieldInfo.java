@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Hold some of the parameters used by solr...  */
+comment|/**  * Hold some of the parameters used by solr...  * @lucene.experimental  */
 end_comment
 
 begin_class

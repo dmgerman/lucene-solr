@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * must be thread safe  */
+comment|/**  * must be thread safe  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -269,7 +269,7 @@ argument_list|)
 block|}
 return|;
 block|}
-comment|/**    * The value source yields a number that is proportional to the distance between the query shape and indexed data.    * @param args    * @param fieldInfo    */
+comment|/**    * The value source yields a number that is proportional to the distance between the query shape and indexed data.    */
 DECL|method|makeValueSource
 specifier|public
 specifier|abstract

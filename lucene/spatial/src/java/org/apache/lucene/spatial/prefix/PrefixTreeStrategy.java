@@ -298,6 +298,10 @@ name|ConcurrentHashMap
 import|;
 end_import
 
+begin_comment
+comment|/**  * @lucene.internal  */
+end_comment
+
 begin_class
 DECL|class|PrefixTreeStrategy
 specifier|public
@@ -506,6 +510,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO is CellTokenStream supposed to be re-used somehow? see Uwe's comments:
+comment|//  http://code.google.com/p/lucene-spatial-playground/issues/detail?id=4
 name|String
 name|fname
 init|=
