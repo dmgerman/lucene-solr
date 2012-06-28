@@ -269,7 +269,7 @@ argument_list|)
 block|}
 return|;
 block|}
-comment|/**    * The value source yields a number that is proportional to the distance between the query shape and indexed data.    * @param args    * @param fieldInfo    * @return    */
+comment|/**    * The value source yields a number that is proportional to the distance between the query shape and indexed data.    * @param args    * @param fieldInfo    */
 DECL|method|makeValueSource
 specifier|public
 specifier|abstract
