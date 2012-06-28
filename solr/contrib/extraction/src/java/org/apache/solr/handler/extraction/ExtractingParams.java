@@ -158,6 +158,16 @@ name|RESOURCE_NAME
 init|=
 literal|"resource.name"
 decl_stmt|;
+comment|/**    * Optional. The password for this resource. Will be used instead of the rule based password lookup mechanisms     */
+DECL|field|RESOURCE_PASSWORD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RESOURCE_PASSWORD
+init|=
+literal|"resource.password"
+decl_stmt|;
 comment|/**    * Optional.  If specified, the prefix will be prepended to all Metadata, such that it would be possible    * to setup a dynamic field to automatically capture it    */
 DECL|field|UNKNOWN_FIELD_PREFIX
 specifier|public
@@ -177,6 +187,16 @@ name|String
 name|DEFAULT_FIELD
 init|=
 literal|"defaultField"
+decl_stmt|;
+comment|/**    * Optional. If specified, loads the file as a source for password lookups for Tika encrypted documents.    *<p>    * File format is Java properties format with one key=value per line.    * The key is evaluated as a regex against the file name, and the value is the password    * The rules are evaluated top-bottom, i.e. the first match will be used    * If you want a fallback password to be always used, supply a .*=<defaultmypassword> at the end      */
+DECL|field|PASSWORD_MAP_FILE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PASSWORD_MAP_FILE
+init|=
+literal|"passwordsFile"
 decl_stmt|;
 block|}
 end_interface
