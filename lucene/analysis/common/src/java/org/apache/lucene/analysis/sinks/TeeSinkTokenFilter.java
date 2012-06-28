@@ -682,8 +682,6 @@ specifier|final
 name|boolean
 name|incrementToken
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|// lazy init the iterator
 if|if
@@ -741,8 +739,6 @@ specifier|final
 name|void
 name|end
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

@@ -1512,8 +1512,6 @@ parameter_list|,
 name|String
 name|value
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|uniqValues
 operator|.
@@ -1535,8 +1533,6 @@ parameter_list|,
 name|int
 name|value
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|uniqValues
 operator|.
@@ -1563,8 +1559,6 @@ parameter_list|,
 name|long
 name|value
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|uniqValues
 operator|.
@@ -1588,8 +1582,6 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 operator|(

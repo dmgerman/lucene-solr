@@ -114,18 +114,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ExecutionException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|Future
 import|;
 end_import
@@ -2177,7 +2165,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * @param collection    * @return config value    * @throws KeeperException    * @throws InterruptedException    * @throws IOException     */
+comment|/**    * @param collection    * @return config value    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|readConfigName
 specifier|public
 name|String
@@ -2190,8 +2178,6 @@ throws|throws
 name|KeeperException
 throws|,
 name|InterruptedException
-throws|,
-name|IOException
 block|{
 name|String
 name|configName
@@ -3179,7 +3165,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param coreName    * @param desc    * @param recoverReloadedCores    * @param isLeader    * @param cloudDesc    * @param collection    * @param shardZkNodeName    * @param shardId    * @param leaderProps    * @param core    * @param cc    * @return whether or not a recovery was started    * @throws InterruptedException    * @throws KeeperException    * @throws IOException    * @throws ExecutionException    */
+comment|/**    * @param coreName    * @param desc    * @param recoverReloadedCores    * @param isLeader    * @param cloudDesc    * @param collection    * @param shardZkNodeName    * @param shardId    * @param leaderProps    * @param core    * @param cc    * @return whether or not a recovery was started    */
 DECL|method|checkRecovery
 specifier|private
 name|boolean
@@ -3223,14 +3209,6 @@ parameter_list|,
 name|CoreContainer
 name|cc
 parameter_list|)
-throws|throws
-name|InterruptedException
-throws|,
-name|KeeperException
-throws|,
-name|IOException
-throws|,
-name|ExecutionException
 block|{
 if|if
 condition|(
@@ -3750,8 +3728,6 @@ throws|throws
 name|KeeperException
 throws|,
 name|InterruptedException
-throws|,
-name|IOException
 block|{
 name|String
 name|collection
@@ -4478,8 +4454,6 @@ parameter_list|,
 name|CloudDescriptor
 name|descriptor
 parameter_list|)
-throws|throws
-name|InterruptedException
 block|{
 specifier|final
 name|String
@@ -4811,8 +4785,6 @@ block|{
 name|String
 name|shardId
 decl_stmt|;
-try|try
-block|{
 name|shardId
 operator|=
 name|doGetShardIdProcess
@@ -4828,25 +4800,6 @@ name|getCloudDescriptor
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|"Interrupted"
-argument_list|)
-throw|;
-block|}
 name|cd
 operator|.
 name|getCloudDescriptor

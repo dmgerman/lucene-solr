@@ -889,8 +889,6 @@ parameter_list|(
 name|File
 name|dir
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|fsDir
 operator|=

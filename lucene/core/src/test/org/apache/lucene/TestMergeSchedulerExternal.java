@@ -90,20 +90,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CorruptIndexException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexWriter
 import|;
 end_import
@@ -291,8 +277,6 @@ operator|.
 name|OneMerge
 name|merge
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -684,8 +668,6 @@ name|IndexWriter
 name|writer
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|OneMerge
@@ -749,8 +731,6 @@ name|void
 name|close
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{}
 block|}

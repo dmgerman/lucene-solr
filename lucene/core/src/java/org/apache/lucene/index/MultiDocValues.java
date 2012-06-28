@@ -235,8 +235,6 @@ parameter_list|,
 name|String
 name|field
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|// for norms we drop all norms if one leaf reader has no norms and the field is present
 name|FieldInfos
@@ -383,8 +381,6 @@ parameter_list|,
 name|String
 name|field
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 literal|false
@@ -2312,8 +2308,6 @@ parameter_list|,
 name|long
 name|offset
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|pagedBytes
 operator|.

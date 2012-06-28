@@ -489,10 +489,6 @@ name|Templates
 name|template
 parameter_list|)
 throws|throws
-name|SAXException
-throws|,
-name|IOException
-throws|,
 name|ParserConfigurationException
 throws|,
 name|TransformerException
@@ -597,10 +593,6 @@ name|Templates
 name|template
 parameter_list|)
 throws|throws
-name|SAXException
-throws|,
-name|IOException
-throws|,
 name|ParserConfigurationException
 throws|,
 name|TransformerException
@@ -791,10 +783,6 @@ name|Result
 name|result
 parameter_list|)
 throws|throws
-name|SAXException
-throws|,
-name|IOException
-throws|,
 name|ParserConfigurationException
 throws|,
 name|TransformerException
@@ -828,10 +816,6 @@ name|Result
 name|result
 parameter_list|)
 throws|throws
-name|SAXException
-throws|,
-name|IOException
-throws|,
 name|ParserConfigurationException
 throws|,
 name|TransformerException

@@ -183,8 +183,6 @@ parameter_list|(
 name|Reader
 name|input
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|delegate
 operator|.

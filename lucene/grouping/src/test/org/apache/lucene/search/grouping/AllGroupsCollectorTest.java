@@ -252,16 +252,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|HashMap
@@ -978,8 +968,6 @@ parameter_list|,
 name|boolean
 name|canUseIDV
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|AbstractAllGroupsCollector
 argument_list|<

@@ -1096,8 +1096,6 @@ parameter_list|(
 name|long
 name|seed
 parameter_list|)
-throws|throws
-name|Exception
 block|{
 name|Random
 name|random

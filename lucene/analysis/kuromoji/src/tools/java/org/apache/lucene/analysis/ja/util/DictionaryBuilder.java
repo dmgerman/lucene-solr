@@ -249,8 +249,6 @@ name|args
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|ClassNotFoundException
 block|{
 name|DictionaryFormat
 name|format

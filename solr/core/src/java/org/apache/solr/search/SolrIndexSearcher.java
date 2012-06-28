@@ -6900,8 +6900,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{           }
 annotation|@
 name|Override
@@ -6912,8 +6910,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|numHits
 index|[
@@ -6931,8 +6927,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{           }
 annotation|@
 name|Override
@@ -6968,8 +6962,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -7030,8 +7022,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{           }
 annotation|@
 name|Override
@@ -7751,8 +7741,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -7807,8 +7795,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{            }
 annotation|@
 name|Override

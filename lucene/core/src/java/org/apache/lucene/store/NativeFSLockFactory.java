@@ -97,8 +97,6 @@ DECL|method|NativeFSLockFactory
 specifier|public
 name|NativeFSLockFactory
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|this
 argument_list|(
@@ -117,8 +115,6 @@ parameter_list|(
 name|String
 name|lockDirName
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 argument_list|(
@@ -138,8 +134,6 @@ parameter_list|(
 name|File
 name|lockDir
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|setLockDir
 argument_list|(

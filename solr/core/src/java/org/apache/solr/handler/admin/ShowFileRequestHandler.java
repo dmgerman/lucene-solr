@@ -1044,8 +1044,6 @@ parameter_list|,
 name|SolrQueryResponse
 name|rsp
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|File
 name|adminFile

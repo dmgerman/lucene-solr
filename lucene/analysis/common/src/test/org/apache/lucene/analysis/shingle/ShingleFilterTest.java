@@ -309,8 +309,6 @@ specifier|final
 name|boolean
 name|incrementToken
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|clearAttributes
 argument_list|()

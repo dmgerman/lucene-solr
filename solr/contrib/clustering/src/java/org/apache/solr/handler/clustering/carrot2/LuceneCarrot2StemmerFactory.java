@@ -960,8 +960,6 @@ DECL|method|LuceneStemmerAdapter
 specifier|private
 name|LuceneStemmerAdapter
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|delegate
 operator|=

@@ -210,8 +210,6 @@ parameter_list|(
 name|BytesRef
 name|term
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

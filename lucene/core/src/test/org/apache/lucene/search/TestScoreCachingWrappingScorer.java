@@ -163,8 +163,6 @@ specifier|public
 name|float
 name|score
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|// advance idx on purpose, so that consecutive calls to score will get
 comment|// different results. This is to emulate computation of a score. If
@@ -207,8 +205,6 @@ specifier|public
 name|int
 name|nextDoc
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 operator|++
@@ -233,8 +229,6 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|doc
 operator|=
@@ -366,8 +360,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{     }
 DECL|method|setScorer
 annotation|@
@@ -379,8 +371,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

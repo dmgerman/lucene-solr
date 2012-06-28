@@ -1196,8 +1196,6 @@ parameter_list|(
 name|IndexReader
 name|r
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 try|try
 block|{
@@ -1840,8 +1838,6 @@ parameter_list|(
 name|IndexReader
 name|ignored
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new

@@ -24,22 +24,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|common
@@ -266,7 +250,27 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|LinkedList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -861,12 +865,6 @@ name|rsp
 parameter_list|)
 throws|throws
 name|Exception
-throws|,
-name|ParseException
-throws|,
-name|InstantiationException
-throws|,
-name|IllegalAccessException
 block|{
 comment|// int sleep = req.getParams().getInt("sleep",0);
 comment|// if (sleep> 0) {log.error("SLEEPING for " + sleep);  Thread.sleep(sleep);}

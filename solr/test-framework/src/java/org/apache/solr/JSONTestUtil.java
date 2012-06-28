@@ -311,8 +311,6 @@ parameter_list|,
 name|double
 name|delta
 parameter_list|)
-throws|throws
-name|Exception
 block|{
 name|CollectionTester
 name|tester

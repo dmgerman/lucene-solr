@@ -46,20 +46,6 @@ name|Set
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FilterAtomicReader
-import|;
-end_import
-
 begin_class
 DECL|class|FieldFilterAtomicReader
 specifier|public
@@ -296,8 +282,6 @@ name|StoredFieldVisitor
 name|visitor
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|super

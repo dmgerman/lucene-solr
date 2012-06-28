@@ -479,8 +479,6 @@ parameter_list|,
 name|SolrParams
 name|params
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

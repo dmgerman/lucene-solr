@@ -448,8 +448,6 @@ specifier|static
 name|void
 name|beforeClass
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|setupLogging
 argument_list|()
@@ -1519,8 +1517,6 @@ specifier|static
 name|void
 name|createCore
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|solrConfig
 operator|=
@@ -1613,8 +1609,6 @@ specifier|static
 name|void
 name|deleteCore
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|log
 operator|.

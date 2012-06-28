@@ -609,8 +609,6 @@ DECL|method|abort
 name|void
 name|abort
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|hasAborted
 operator|=
@@ -1653,8 +1651,6 @@ parameter_list|(
 name|Term
 name|delTerm
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|/*      * here we actually finish the document in two steps 1. push the delete into      * the queue and update our slice. 2. increment the DWPT private document      * id.      *       * the updated slice we get from 1. holds all the deletes that have occurred      * since we updated the slice the last time.      */
 if|if
@@ -1820,8 +1816,6 @@ specifier|private
 name|void
 name|doAfterFlush
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|segmentInfo
 operator|=

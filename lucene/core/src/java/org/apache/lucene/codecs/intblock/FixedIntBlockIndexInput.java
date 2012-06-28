@@ -340,8 +340,6 @@ specifier|final
 name|BlockReader
 name|blockReader
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

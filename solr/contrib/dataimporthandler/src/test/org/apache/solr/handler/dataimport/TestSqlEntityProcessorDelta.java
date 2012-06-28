@@ -72,16 +72,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|FileOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -247,8 +237,6 @@ specifier|static
 name|void
 name|afterClass
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 if|if
 condition|(

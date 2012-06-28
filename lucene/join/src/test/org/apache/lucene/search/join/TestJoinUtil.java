@@ -2605,8 +2605,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|docBase
 operator|=
@@ -4159,8 +4157,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -4335,8 +4331,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -4637,8 +4631,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{}
 block|}
 argument_list|)
@@ -4684,8 +4676,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|JoinScore
 name|joinScore
@@ -4774,8 +4764,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{}
 block|}
 argument_list|)
@@ -4830,8 +4818,6 @@ parameter_list|,
 name|IndexIterationContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|Map
 argument_list|<

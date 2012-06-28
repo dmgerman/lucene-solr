@@ -790,8 +790,6 @@ parameter_list|(
 name|TermsEnum
 name|tenum
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(

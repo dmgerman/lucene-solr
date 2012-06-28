@@ -228,8 +228,6 @@ specifier|static
 name|IndexWriterConfig
 name|newWriterConfig
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|IndexWriterConfig
 name|conf

@@ -124,8 +124,6 @@ parameter_list|,
 name|int
 name|numScorers
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(

@@ -1044,8 +1044,6 @@ name|SegmentInfos
 name|segmentInfos
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 function_decl|;
 comment|/**    * Determine what set of merge operations is necessary in    * order to merge to<= the specified segment count. {@link IndexWriter} calls this when its    * {@link IndexWriter#forceMerge} method is called. This call is always    * synchronized on the {@link IndexWriter} instance so only one thread at a    * time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    * @param maxSegmentCount    *          requested maximum number of segments in the index (currently this    *          is always 1)    * @param segmentsToMerge    *          contains the specific SegmentInfo instances that must be merged    *          away. This may be a subset of all    *          SegmentInfos.  If the value is True for a    *          given SegmentInfo, that means this segment was    *          an original segment present in the    *          to-be-merged index; else, it was a segment    *          produced by a cascaded merge.    */
@@ -1070,8 +1068,6 @@ argument_list|>
 name|segmentsToMerge
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 function_decl|;
 comment|/**    * Determine what set of merge operations is necessary in order to expunge all    * deletes from the index.    *     * @param segmentInfos    *          the total set of segments in the index    */
@@ -1085,8 +1081,6 @@ name|SegmentInfos
 name|segmentInfos
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 function_decl|;
 comment|/**    * Release all resources for the policy.    */

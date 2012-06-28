@@ -374,8 +374,6 @@ parameter_list|,
 name|BufferedDeletesStream
 name|bufferedDeletesStream
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -674,8 +672,6 @@ specifier|synchronized
 name|void
 name|abort
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|boolean
 name|success
@@ -775,14 +771,6 @@ operator|.
 name|abort
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ex
-parameter_list|)
-block|{
-comment|// continue
 block|}
 finally|finally
 block|{
@@ -985,8 +973,6 @@ name|boolean
 name|preUpdate
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -1235,8 +1221,6 @@ name|Term
 name|delTerm
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|boolean
@@ -1389,8 +1373,6 @@ name|Term
 name|delTerm
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|boolean

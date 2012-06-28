@@ -146,8 +146,6 @@ parameter_list|(
 name|MultiDocsEnum
 name|docsEnum
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -256,8 +254,6 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new

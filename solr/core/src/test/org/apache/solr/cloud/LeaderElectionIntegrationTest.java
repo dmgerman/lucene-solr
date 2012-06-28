@@ -216,18 +216,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|zookeeper
-operator|.
-name|KeeperException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|AfterClass
@@ -413,8 +401,6 @@ specifier|static
 name|void
 name|beforeClass
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|System
 operator|.
@@ -1431,8 +1417,6 @@ name|getLeader
 parameter_list|()
 throws|throws
 name|InterruptedException
-throws|,
-name|KeeperException
 block|{
 name|ZkNodeProps
 name|props

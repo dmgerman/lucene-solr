@@ -18,16 +18,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -2089,8 +2079,6 @@ name|void
 name|testAliasing
 parameter_list|()
 throws|throws
-name|IOException
-throws|,
 name|Exception
 block|{
 name|String
@@ -2387,8 +2375,6 @@ name|void
 name|testAliasingBoost
 parameter_list|()
 throws|throws
-name|IOException
-throws|,
 name|Exception
 block|{
 name|assertQ
@@ -2452,8 +2438,6 @@ name|void
 name|testCyclicAliasing
 parameter_list|()
 throws|throws
-name|IOException
-throws|,
 name|Exception
 block|{
 try|try

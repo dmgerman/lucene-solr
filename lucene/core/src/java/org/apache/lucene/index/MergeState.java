@@ -1137,10 +1137,6 @@ parameter_list|(
 name|double
 name|units
 parameter_list|)
-throws|throws
-name|MergePolicy
-operator|.
-name|MergeAbortedException
 block|{
 comment|// do nothing
 block|}

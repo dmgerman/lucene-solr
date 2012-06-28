@@ -214,20 +214,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CorruptIndexException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|DirectoryReader
 import|;
 end_import
@@ -719,8 +705,6 @@ name|int
 name|docID
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return
@@ -745,8 +729,6 @@ name|StoredFieldVisitor
 name|fieldVisitor
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|reader
@@ -776,8 +758,6 @@ argument_list|>
 name|fieldsToLoad
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return

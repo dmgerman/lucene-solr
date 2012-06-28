@@ -442,8 +442,6 @@ parameter_list|,
 name|float
 name|acceptableOverheadRatio
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(

@@ -1015,8 +1015,6 @@ parameter_list|(
 name|IndexReader
 name|reader
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -1037,8 +1035,6 @@ parameter_list|(
 name|IndexReader
 name|reader
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 specifier|final
 name|List
@@ -1169,8 +1165,6 @@ specifier|protected
 name|void
 name|doClose
 parameter_list|()
-throws|throws
-name|IOException
 block|{}
 comment|// no need to override numDocs/hasDeletions,
 comment|// as we pass the subreaders directly to IW.addIndexes().

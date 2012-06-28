@@ -24,25 +24,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
-name|*
+name|Query
 import|;
 end_import
 
@@ -188,8 +172,6 @@ specifier|public
 name|Query
 name|parse
 parameter_list|()
-throws|throws
-name|ParseException
 block|{
 name|String
 name|field

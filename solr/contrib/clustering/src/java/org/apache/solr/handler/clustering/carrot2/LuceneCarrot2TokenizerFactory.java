@@ -631,8 +631,6 @@ parameter_list|(
 name|Reader
 name|input
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 try|try
 block|{

@@ -202,7 +202,7 @@ return|return
 name|type
 return|;
 block|}
-comment|/**    * Factory method to create a {@link Writer} instance for a given type. This    * method returns default implementations for each of the different types    * defined in the {@link Type} enumeration.    *     * @param type    *          the {@link Type} to create the {@link Writer} for    * @param id    *          the file name id used to create files within the writer.    * @param directory    *          the {@link Directory} to create the files from.    * @param bytesUsed    *          a byte-usage tracking reference    * @param acceptableOverheadRatio    *          how to trade space for speed. This option is only applicable for    *          docvalues of type {@link Type#BYTES_FIXED_SORTED} and    *          {@link Type#BYTES_VAR_SORTED}.    * @return a new {@link Writer} instance for the given {@link Type}    * @throws IOException    * @see PackedInts#getReader(org.apache.lucene.store.DataInput, float)    */
+comment|/**    * Factory method to create a {@link Writer} instance for a given type. This    * method returns default implementations for each of the different types    * defined in the {@link Type} enumeration.    *     * @param type    *          the {@link Type} to create the {@link Writer} for    * @param id    *          the file name id used to create files within the writer.    * @param directory    *          the {@link Directory} to create the files from.    * @param bytesUsed    *          a byte-usage tracking reference    * @param acceptableOverheadRatio    *          how to trade space for speed. This option is only applicable for    *          docvalues of type {@link Type#BYTES_FIXED_SORTED} and    *          {@link Type#BYTES_VAR_SORTED}.    * @return a new {@link Writer} instance for the given {@link Type}    * @see PackedInts#getReader(org.apache.lucene.store.DataInput, float)    */
 DECL|method|create
 specifier|public
 specifier|static
@@ -233,8 +233,6 @@ parameter_list|,
 name|float
 name|acceptableOverheadRatio
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

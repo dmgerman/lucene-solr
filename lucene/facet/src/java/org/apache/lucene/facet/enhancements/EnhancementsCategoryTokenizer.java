@@ -18,16 +18,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List
@@ -143,7 +133,7 @@ specifier|private
 name|int
 name|nStart
 decl_stmt|;
-comment|/**    * Constructor.    *     * @param input    *            The stream of category tokens.    * @param indexingParams    *            The indexing params to use.    * @throws IOException    */
+comment|/**    * Constructor.    *     * @param input    *            The stream of category tokens.    * @param indexingParams    *            The indexing params to use.    */
 DECL|method|EnhancementsCategoryTokenizer
 specifier|public
 name|EnhancementsCategoryTokenizer
@@ -154,8 +144,6 @@ parameter_list|,
 name|EnhancementsIndexingParams
 name|indexingParams
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(

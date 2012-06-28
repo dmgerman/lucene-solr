@@ -3485,8 +3485,6 @@ DECL|method|getFloat
 name|float
 name|getFloat
 parameter_list|()
-throws|throws
-name|ParseException
 block|{
 name|eatws
 argument_list|()
@@ -3602,8 +3600,6 @@ DECL|method|getNumber
 name|Number
 name|getNumber
 parameter_list|()
-throws|throws
-name|ParseException
 block|{
 name|eatws
 argument_list|()
@@ -3731,8 +3727,6 @@ DECL|method|getDouble
 name|double
 name|getDouble
 parameter_list|()
-throws|throws
-name|ParseException
 block|{
 name|eatws
 argument_list|()
@@ -3848,8 +3842,6 @@ DECL|method|getInt
 name|int
 name|getInt
 parameter_list|()
-throws|throws
-name|ParseException
 block|{
 name|eatws
 argument_list|()

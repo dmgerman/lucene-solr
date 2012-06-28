@@ -200,8 +200,6 @@ specifier|public
 name|boolean
 name|next
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -221,8 +219,6 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -259,8 +255,6 @@ index|[]
 argument_list|>
 name|getPayload
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -332,8 +326,6 @@ name|TermContext
 argument_list|>
 name|termContexts
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -382,8 +374,6 @@ index|[]
 argument_list|>
 name|getPayload
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -448,8 +438,6 @@ specifier|public
 name|boolean
 name|next
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -469,8 +457,6 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -540,8 +526,6 @@ specifier|protected
 name|boolean
 name|setFreqCurrentDoc
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new

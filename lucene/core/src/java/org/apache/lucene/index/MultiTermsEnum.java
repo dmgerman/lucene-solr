@@ -1292,8 +1292,6 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -1308,8 +1306,6 @@ specifier|public
 name|long
 name|ord
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new

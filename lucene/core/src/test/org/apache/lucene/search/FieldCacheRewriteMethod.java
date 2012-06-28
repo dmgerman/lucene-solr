@@ -409,8 +409,6 @@ name|BytesRef
 argument_list|>
 name|getComparator
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|BytesRef
@@ -428,8 +426,6 @@ parameter_list|(
 name|TermsEnum
 name|reuse
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|fcsi
@@ -456,8 +452,6 @@ specifier|public
 name|long
 name|getSumDocFreq
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 operator|-
@@ -470,8 +464,6 @@ specifier|public
 name|int
 name|getDocCount
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 operator|-
@@ -484,8 +476,6 @@ specifier|public
 name|long
 name|size
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 operator|-

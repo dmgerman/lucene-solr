@@ -2705,8 +2705,6 @@ name|String
 index|[]
 name|args
 parameter_list|)
-throws|throws
-name|Exception
 block|{
 name|TernaryTree
 name|tt

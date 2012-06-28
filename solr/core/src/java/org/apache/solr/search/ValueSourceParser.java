@@ -3272,8 +3272,6 @@ parameter_list|(
 name|FunctionQParser
 name|fp
 parameter_list|)
-throws|throws
-name|ParseException
 block|{
 return|return
 operator|new
@@ -3305,8 +3303,6 @@ parameter_list|(
 name|FunctionQParser
 name|fp
 parameter_list|)
-throws|throws
-name|ParseException
 block|{
 return|return
 operator|new
@@ -3695,8 +3691,6 @@ parameter_list|(
 name|FunctionQParser
 name|fp
 parameter_list|)
-throws|throws
-name|ParseException
 block|{
 return|return
 operator|new
@@ -3724,8 +3718,6 @@ parameter_list|(
 name|FunctionQParser
 name|fp
 parameter_list|)
-throws|throws
-name|ParseException
 block|{
 return|return
 operator|new
@@ -3753,8 +3745,6 @@ parameter_list|(
 name|FunctionQParser
 name|fp
 parameter_list|)
-throws|throws
-name|ParseException
 block|{
 return|return
 operator|new
@@ -3784,8 +3774,6 @@ parameter_list|(
 name|FunctionQParser
 name|fp
 parameter_list|)
-throws|throws
-name|ParseException
 block|{
 return|return
 operator|new

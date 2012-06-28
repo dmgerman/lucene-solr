@@ -20,16 +20,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|Reader
 import|;
 end_import
@@ -459,8 +449,6 @@ parameter_list|(
 name|int
 name|readAheadLimit
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -491,8 +479,6 @@ specifier|public
 name|int
 name|read
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -512,8 +498,6 @@ name|char
 index|[]
 name|cbuf
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -532,8 +516,6 @@ parameter_list|(
 name|CharBuffer
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -549,8 +531,6 @@ specifier|public
 name|boolean
 name|ready
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -566,8 +546,6 @@ specifier|public
 name|void
 name|reset
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -586,8 +564,6 @@ parameter_list|(
 name|long
 name|n
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -621,8 +597,6 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -648,8 +622,6 @@ parameter_list|,
 name|int
 name|arg2
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new

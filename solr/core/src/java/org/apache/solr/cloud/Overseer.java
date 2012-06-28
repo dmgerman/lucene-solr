@@ -878,10 +878,6 @@ specifier|final
 name|String
 name|operation
 parameter_list|)
-throws|throws
-name|KeeperException
-throws|,
-name|InterruptedException
 block|{
 if|if
 condition|(
@@ -1183,7 +1179,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**        * Try to assign core to the cluster.         * @throws KeeperException         * @throws InterruptedException         */
+comment|/**        * Try to assign core to the cluster.         */
 DECL|method|updateState
 specifier|private
 name|CloudState
@@ -1196,10 +1192,6 @@ specifier|final
 name|ZkNodeProps
 name|message
 parameter_list|)
-throws|throws
-name|KeeperException
-throws|,
-name|InterruptedException
 block|{
 specifier|final
 name|String
@@ -2767,10 +2759,6 @@ specifier|final
 name|String
 name|id
 parameter_list|)
-throws|throws
-name|KeeperException
-throws|,
-name|InterruptedException
 block|{
 name|log
 operator|.

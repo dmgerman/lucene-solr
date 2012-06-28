@@ -507,8 +507,6 @@ specifier|public
 name|long
 name|size
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 operator|-

@@ -469,7 +469,7 @@ DECL|enum constant|SORTED
 name|SORTED
 block|}
 empty_stmt|;
-comment|/**    * Creates a new<tt>byte[]</tt> {@link Writer} instances for the given    * directory.    *     * @param dir    *          the directory to write the values to    * @param id    *          the id used to create a unique file name. Usually composed out of    *          the segment name and a unique id per segment.    * @param mode    *          the writers store mode    * @param fixedSize    *<code>true</code> if all bytes subsequently passed to the    *          {@link Writer} will have the same length    * @param sortComparator {@link BytesRef} comparator used by sorted variants.     *        If<code>null</code> {@link BytesRef#getUTF8SortedAsUnicodeComparator()}    *        is used instead    * @param bytesUsed    *          an {@link AtomicLong} instance to track the used bytes within the    *          {@link Writer}. A call to {@link Writer#finish(int)} will release    *          all internally used resources and frees the memory tracking    *          reference.    * @param acceptableOverheadRatio    *          how to trade space for speed. This option is only applicable for    *          docvalues of type {@link Type#BYTES_FIXED_SORTED} and    *          {@link Type#BYTES_VAR_SORTED}.    * @param context I/O Context    * @return a new {@link Writer} instance    * @throws IOException    *           if the files for the writer can not be created.    * @see PackedInts#getReader(org.apache.lucene.store.DataInput)    */
+comment|/**    * Creates a new<tt>byte[]</tt> {@link Writer} instances for the given    * directory.    *     * @param dir    *          the directory to write the values to    * @param id    *          the id used to create a unique file name. Usually composed out of    *          the segment name and a unique id per segment.    * @param mode    *          the writers store mode    * @param fixedSize    *<code>true</code> if all bytes subsequently passed to the    *          {@link Writer} will have the same length    * @param sortComparator {@link BytesRef} comparator used by sorted variants.     *        If<code>null</code> {@link BytesRef#getUTF8SortedAsUnicodeComparator()}    *        is used instead    * @param bytesUsed    *          an {@link AtomicLong} instance to track the used bytes within the    *          {@link Writer}. A call to {@link Writer#finish(int)} will release    *          all internally used resources and frees the memory tracking    *          reference.    * @param acceptableOverheadRatio    *          how to trade space for speed. This option is only applicable for    *          docvalues of type {@link Type#BYTES_FIXED_SORTED} and    *          {@link Type#BYTES_VAR_SORTED}.    * @param context I/O Context    * @return a new {@link Writer} instance    * @see PackedInts#getReader(org.apache.lucene.store.DataInput)    */
 DECL|method|getWriter
 specifier|public
 specifier|static
@@ -503,8 +503,6 @@ parameter_list|,
 name|float
 name|acceptableOverheadRatio
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|// TODO -- i shouldn't have to specify fixed? can
 comment|// track itself& do the write thing at write time?
@@ -1178,8 +1176,6 @@ parameter_list|,
 name|Type
 name|type
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -1862,8 +1858,6 @@ parameter_list|,
 name|Type
 name|type
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 argument_list|(
@@ -1930,8 +1924,6 @@ parameter_list|,
 name|Type
 name|type
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 argument_list|(
@@ -1999,8 +1991,6 @@ parameter_list|,
 name|Type
 name|type
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(

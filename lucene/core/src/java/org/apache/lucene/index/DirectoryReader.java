@@ -129,7 +129,7 @@ specifier|final
 name|Directory
 name|directory
 decl_stmt|;
-comment|/** Returns a IndexReader reading the index in the given    *  Directory    * @param directory the index directory    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Returns a IndexReader reading the index in the given    *  Directory    * @param directory the index directory    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -141,8 +141,6 @@ name|Directory
 name|directory
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return
@@ -158,7 +156,7 @@ name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
-comment|/** Expert: Returns a IndexReader reading the index in the given    *  Directory with the given termInfosIndexDivisor.    * @param directory the index directory    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: Returns a IndexReader reading the index in the given    *  Directory with the given termInfosIndexDivisor.    * @param directory the index directory    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -173,8 +171,6 @@ name|int
 name|termInfosIndexDivisor
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return
@@ -205,8 +201,6 @@ name|boolean
 name|applyAllDeletes
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return
@@ -218,7 +212,7 @@ name|applyAllDeletes
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit}.    * @param commit the commit point to open    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit}.    * @param commit the commit point to open    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -230,8 +224,6 @@ name|IndexCommit
 name|commit
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return
@@ -250,7 +242,7 @@ name|DEFAULT_TERMS_INDEX_DIVISOR
 argument_list|)
 return|;
 block|}
-comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit} and termInfosIndexDivisor.    * @param commit the commit point to open    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/** Expert: returns an IndexReader reading the index in the given    *  {@link IndexCommit} and termInfosIndexDivisor.    * @param commit the commit point to open    * @param termInfosIndexDivisor Subsamples which indexed    *  terms are loaded into RAM. This has the same effect as {@link    *  IndexWriterConfig#setTermIndexInterval} except that setting    *  must be done at indexing time while this setting can be    *  set per reader.  When set to N, then one in every    *  N*termIndexInterval terms in the index is loaded into    *  memory.  By setting this to a value> 1 you can reduce    *  memory usage, at the expense of higher latency when    *  loading a TermInfo.  The default value is 1.  Set this    *  to -1 to skip loading the terms index entirely.    * @throws IOException if there is a low-level IO error    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -265,8 +257,6 @@ name|int
 name|termInfosIndexDivisor
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return
@@ -601,7 +591,7 @@ return|return
 name|commits
 return|;
 block|}
-comment|/**    * Returns<code>true</code> if an index exists at the specified directory.    * @param  directory the directory to check for an index    * @return<code>true</code> if an index exists;<code>false</code> otherwise    * @throws IOException if there is a problem with accessing the index    */
+comment|/**    * Returns<code>true</code> if an index exists at the specified directory.    * @param  directory the directory to check for an index    * @return<code>true</code> if an index exists;<code>false</code> otherwise    */
 DECL|method|indexExists
 specifier|public
 specifier|static
@@ -611,8 +601,6 @@ parameter_list|(
 name|Directory
 name|directory
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 try|try
 block|{
@@ -652,10 +640,6 @@ name|AtomicReader
 index|[]
 name|segmentReaders
 parameter_list|)
-throws|throws
-name|CorruptIndexException
-throws|,
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -684,7 +668,7 @@ return|return
 name|directory
 return|;
 block|}
-comment|/** Implement this method to support {@link #openIfChanged(DirectoryReader)}.    * If this reader does not support reopen, return {@code null}, so    * client code is happy. This should be consistent with {@link #isCurrent}    * (should always return {@code true}) if reopen is not supported.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * DirectoryReader instance.    */
+comment|/** Implement this method to support {@link #openIfChanged(DirectoryReader)}.    * If this reader does not support reopen, return {@code null}, so    * client code is happy. This should be consistent with {@link #isCurrent}    * (should always return {@code true}) if reopen is not supported.    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * DirectoryReader instance.    */
 DECL|method|doOpenIfChanged
 specifier|protected
 specifier|abstract
@@ -692,11 +676,9 @@ name|DirectoryReader
 name|doOpenIfChanged
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 function_decl|;
-comment|/** Implement this method to support {@link #openIfChanged(DirectoryReader,IndexCommit)}.    * If this reader does not support reopen from a specific {@link IndexCommit},    * throw {@link UnsupportedOperationException}.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * DirectoryReader instance.    */
+comment|/** Implement this method to support {@link #openIfChanged(DirectoryReader,IndexCommit)}.    * If this reader does not support reopen from a specific {@link IndexCommit},    * throw {@link UnsupportedOperationException}.    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * DirectoryReader instance.    */
 DECL|method|doOpenIfChanged
 specifier|protected
 specifier|abstract
@@ -708,11 +690,9 @@ name|IndexCommit
 name|commit
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 function_decl|;
-comment|/** Implement this method to support {@link #openIfChanged(DirectoryReader,IndexWriter,boolean)}.    * If this reader does not support reopen from {@link IndexWriter},    * throw {@link UnsupportedOperationException}.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * DirectoryReader instance.    */
+comment|/** Implement this method to support {@link #openIfChanged(DirectoryReader,IndexWriter,boolean)}.    * If this reader does not support reopen from {@link IndexWriter},    * throw {@link UnsupportedOperationException}.    * @throws IOException if there is a low-level IO error    * @return null if there are no changes; else, a new    * DirectoryReader instance.    */
 DECL|method|doOpenIfChanged
 specifier|protected
 specifier|abstract
@@ -726,8 +706,6 @@ name|boolean
 name|applyAllDeletes
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 function_decl|;
 comment|/**    * Version number when this IndexReader was opened.    *    *<p>This method    * returns the version recorded in the commit that the    * reader opened.  This version is advanced every time    * a change is made with {@link IndexWriter}.</p>    */
@@ -738,7 +716,7 @@ name|long
 name|getVersion
 parameter_list|()
 function_decl|;
-comment|/**    * Check whether any new changes have occurred to the    * index since this reader was opened.    *    *<p>If this reader was created by calling {@link #open},      * then this method checks if any further commits     * (see {@link IndexWriter#commit}) have occurred in the     * directory.</p>    *    *<p>If instead this reader is a near real-time reader    * (ie, obtained by a call to {@link    * DirectoryReader#open(IndexWriter,boolean)}, or by calling {@link #openIfChanged}    * on a near real-time reader), then this method checks if    * either a new commit has occurred, or any new    * uncommitted changes have taken place via the writer.    * Note that even if the writer has only performed    * merging, this method will still return false.</p>    *    *<p>In any event, if this returns false, you should call    * {@link #openIfChanged} to get a new reader that sees the    * changes.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException           if there is a low-level IO error    */
+comment|/**    * Check whether any new changes have occurred to the    * index since this reader was opened.    *    *<p>If this reader was created by calling {@link #open},      * then this method checks if any further commits     * (see {@link IndexWriter#commit}) have occurred in the     * directory.</p>    *    *<p>If instead this reader is a near real-time reader    * (ie, obtained by a call to {@link    * DirectoryReader#open(IndexWriter,boolean)}, or by calling {@link #openIfChanged}    * on a near real-time reader), then this method checks if    * either a new commit has occurred, or any new    * uncommitted changes have taken place via the writer.    * Note that even if the writer has only performed    * merging, this method will still return false.</p>    *    *<p>In any event, if this returns false, you should call    * {@link #openIfChanged} to get a new reader that sees the    * changes.</p>    *    * @throws IOException           if there is a low-level IO error    */
 DECL|method|isCurrent
 specifier|public
 specifier|abstract
@@ -746,8 +724,6 @@ name|boolean
 name|isCurrent
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 function_decl|;
 comment|/**    * Expert: return the IndexCommit that this reader has opened.    *<p/>    * @lucene.experimental    */
@@ -758,8 +734,6 @@ name|IndexCommit
 name|getIndexCommit
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 function_decl|;
 block|}

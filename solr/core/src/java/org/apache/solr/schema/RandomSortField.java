@@ -431,8 +431,6 @@ parameter_list|,
 name|boolean
 name|reversed
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new
@@ -513,8 +511,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|bottomVal
@@ -539,8 +535,6 @@ parameter_list|,
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|values
 index|[
@@ -564,8 +558,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|seed
 operator|=

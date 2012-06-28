@@ -72,16 +72,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|UnsupportedEncodingException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|Writer
 import|;
 end_import
@@ -602,8 +592,6 @@ name|bytes
 parameter_list|)
 throws|throws
 name|ParserConfigurationException
-throws|,
-name|UnsupportedEncodingException
 throws|,
 name|IOException
 throws|,

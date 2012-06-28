@@ -1318,8 +1318,6 @@ specifier|private
 name|void
 name|pushTop
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|// call next() on each top, and put back into queue
 for|for

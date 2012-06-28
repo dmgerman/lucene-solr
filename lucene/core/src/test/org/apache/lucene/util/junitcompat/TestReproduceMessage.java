@@ -1659,8 +1659,6 @@ specifier|private
 name|String
 name|runAndReturnSyserr
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|JUnitCore
 operator|.

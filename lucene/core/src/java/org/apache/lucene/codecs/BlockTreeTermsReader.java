@@ -2496,8 +2496,6 @@ specifier|public
 name|int
 name|getDocCount
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|docCount
@@ -4434,8 +4432,6 @@ specifier|public
 name|BytesRef
 name|term
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|term
@@ -5798,8 +5794,6 @@ parameter_list|,
 name|boolean
 name|useCache
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -5817,8 +5811,6 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -5833,8 +5825,6 @@ specifier|public
 name|long
 name|ord
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -5855,8 +5845,6 @@ parameter_list|,
 name|boolean
 name|useCache
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -10210,8 +10198,6 @@ parameter_list|,
 name|TermState
 name|otherState
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|// if (DEBUG) {
 comment|//   System.out.println("BTTR.seekExact termState seg=" + segment + " target=" + target.utf8ToString() + " " + target + " state=" + otherState);
@@ -10336,8 +10322,6 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -10970,8 +10954,6 @@ DECL|method|rewind
 name|void
 name|rewind
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|// Force reload:
 name|fp

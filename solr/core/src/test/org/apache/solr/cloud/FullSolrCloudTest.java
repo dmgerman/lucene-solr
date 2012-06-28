@@ -50,9 +50,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
+name|util
 operator|.
-name|URISyntaxException
+name|ArrayList
 import|;
 end_import
 
@@ -62,7 +62,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|HashMap
 import|;
 end_import
 
@@ -72,9 +72,37 @@ name|java
 operator|.
 name|util
 operator|.
-name|concurrent
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|TimeoutException
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
 import|;
 end_import
 
@@ -430,18 +458,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|zookeeper
-operator|.
-name|KeeperException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|After
@@ -478,16 +494,6 @@ name|BeforeClass
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
 begin_comment
 comment|/**  *   * TODO: we should still test this works as a custom update chain as well as  * what we test now - the default update chain  *   */
 end_comment
@@ -508,8 +514,6 @@ specifier|static
 name|void
 name|beforeFullSolrCloudTest
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 comment|// shorten the log output more for this test type
 if|if
@@ -1014,8 +1018,6 @@ specifier|static
 name|void
 name|beforeClass
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|System
 operator|.
@@ -1976,12 +1978,6 @@ name|clients
 parameter_list|)
 throws|throws
 name|Exception
-throws|,
-name|IOException
-throws|,
-name|KeeperException
-throws|,
-name|URISyntaxException
 block|{
 name|zkStateReader
 operator|.
@@ -3335,10 +3331,6 @@ name|testUpdateAndDelete
 parameter_list|()
 throws|throws
 name|Exception
-throws|,
-name|SolrServerException
-throws|,
-name|IOException
 block|{
 name|long
 name|docId
@@ -3556,18 +3548,6 @@ name|addNewReplica
 parameter_list|()
 throws|throws
 name|Exception
-throws|,
-name|InterruptedException
-throws|,
-name|TimeoutException
-throws|,
-name|IOException
-throws|,
-name|KeeperException
-throws|,
-name|URISyntaxException
-throws|,
-name|SolrServerException
 block|{
 name|JettySolrRunner
 name|newReplica
@@ -3674,12 +3654,6 @@ name|brindDownShardIndexSomeDocsAndRecover
 parameter_list|()
 throws|throws
 name|Exception
-throws|,
-name|SolrServerException
-throws|,
-name|IOException
-throws|,
-name|InterruptedException
 block|{
 name|SolrQuery
 name|query

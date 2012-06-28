@@ -172,8 +172,6 @@ specifier|static
 name|void
 name|beforeSuperClass
 parameter_list|()
-throws|throws
-name|Exception
 block|{    }
 annotation|@
 name|AfterClass
@@ -183,8 +181,6 @@ specifier|static
 name|void
 name|afterSuperClass
 parameter_list|()
-throws|throws
-name|Exception
 block|{    }
 DECL|method|RecoveryZkTest
 specifier|public

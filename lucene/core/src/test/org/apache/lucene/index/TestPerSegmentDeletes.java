@@ -1116,8 +1116,6 @@ name|SegmentInfos
 name|segmentInfos
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|MergeSpecification
@@ -1194,8 +1192,6 @@ argument_list|>
 name|segmentsToMerge
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return
@@ -1213,8 +1209,6 @@ name|SegmentInfos
 name|segmentInfos
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return

@@ -1429,8 +1429,6 @@ modifier|...
 name|tests
 parameter_list|)
 throws|throws
-name|IOException
-throws|,
 name|Exception
 block|{
 name|String
@@ -1460,8 +1458,6 @@ name|SolrQueryRequest
 name|req
 parameter_list|)
 throws|throws
-name|IOException
-throws|,
 name|Exception
 block|{
 return|return
@@ -1496,8 +1492,6 @@ name|SolrQueryRequest
 name|req
 parameter_list|)
 throws|throws
-name|IOException
-throws|,
 name|Exception
 block|{
 try|try

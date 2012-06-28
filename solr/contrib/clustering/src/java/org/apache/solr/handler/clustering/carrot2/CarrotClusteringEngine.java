@@ -1033,8 +1033,6 @@ specifier|public
 name|InputStream
 name|open
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new

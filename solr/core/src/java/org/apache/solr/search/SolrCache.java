@@ -60,16 +60,6 @@ name|LoggerFactory
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/**  * Primary API for dealing with Solr's internal caches.  *   *  */
 end_comment
@@ -223,8 +213,6 @@ name|V
 argument_list|>
 name|old
 parameter_list|)
-throws|throws
-name|IOException
 function_decl|;
 comment|// Q: an alternative to passing the searcher here would be to pass it in
 comment|// init and have the cache implementation save it.

@@ -897,8 +897,6 @@ parameter_list|,
 name|String
 name|value
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|FieldType
 name|ft
@@ -948,8 +946,6 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|fieldInfo

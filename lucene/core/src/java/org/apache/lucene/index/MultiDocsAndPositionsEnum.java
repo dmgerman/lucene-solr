@@ -151,8 +151,6 @@ specifier|final
 name|int
 name|numSubs
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

@@ -281,8 +281,6 @@ specifier|public
 name|boolean
 name|incrementToken
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -541,8 +539,6 @@ specifier|public
 name|void
 name|end
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 specifier|final
 name|int

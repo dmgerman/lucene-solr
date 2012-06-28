@@ -566,8 +566,6 @@ name|int
 index|[]
 name|buffer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new

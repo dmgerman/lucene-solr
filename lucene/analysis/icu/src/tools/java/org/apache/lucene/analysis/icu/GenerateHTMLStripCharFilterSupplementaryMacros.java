@@ -235,8 +235,6 @@ name|String
 name|args
 index|[]
 parameter_list|)
-throws|throws
-name|Exception
 block|{
 name|outputHeader
 argument_list|()

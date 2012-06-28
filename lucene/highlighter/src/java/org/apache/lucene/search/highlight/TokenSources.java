@@ -676,8 +676,6 @@ specifier|public
 name|boolean
 name|incrementToken
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

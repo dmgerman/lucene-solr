@@ -432,8 +432,6 @@ specifier|public
 name|float
 name|getValueForNormalization
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new

@@ -6368,8 +6368,6 @@ parameter_list|,
 name|SolrQueryResponse
 name|response
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new

@@ -354,8 +354,6 @@ specifier|final
 name|BlockReader
 name|blockReader
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -394,8 +392,6 @@ specifier|final
 name|int
 name|upto
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|// TODO: should we do this in real-time, not lazy?
 name|pendingFP

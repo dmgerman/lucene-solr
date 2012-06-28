@@ -805,8 +805,6 @@ parameter_list|,
 name|IndexOptions
 name|indexOptions
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

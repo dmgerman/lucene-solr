@@ -357,8 +357,6 @@ parameter_list|,
 name|PostingsWriterBase
 name|wrappedPostingsWriter
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|pending
 operator|=

@@ -20,16 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -243,8 +233,6 @@ specifier|public
 name|int
 name|nextDoc
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|docid
 operator|++
@@ -272,8 +260,6 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 while|while
 condition|(
@@ -648,8 +634,6 @@ parameter_list|,
 name|Bits
 name|acceptDocs
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 literal|null
@@ -810,8 +794,6 @@ parameter_list|,
 name|Bits
 name|acceptDocs
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 specifier|final
 name|DocIdSet

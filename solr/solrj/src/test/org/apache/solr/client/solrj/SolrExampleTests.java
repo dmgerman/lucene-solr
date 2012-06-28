@@ -3369,8 +3369,6 @@ throws|,
 name|NoSuchFieldException
 throws|,
 name|IllegalArgumentException
-throws|,
-name|IllegalAccessException
 block|{
 name|Field
 name|field

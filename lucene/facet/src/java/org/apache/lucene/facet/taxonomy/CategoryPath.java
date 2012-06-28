@@ -4175,8 +4175,6 @@ name|in
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|ClassNotFoundException
 block|{
 name|InputStreamReader
 name|isr

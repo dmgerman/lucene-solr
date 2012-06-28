@@ -1472,7 +1472,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Obtain a ReadersAndLiveDocs instance from the      * readerPool.  If create is true, you must later call      * {@link #release(ReadersAndLiveDocs)}.      * @throws IOException      */
+comment|/**      * Obtain a ReadersAndLiveDocs instance from the      * readerPool.  If create is true, you must later call      * {@link #release(ReadersAndLiveDocs)}.      */
 DECL|method|get
 specifier|public
 specifier|synchronized
@@ -1619,8 +1619,6 @@ parameter_list|(
 name|SegmentInfoPerCommit
 name|info
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|ensureOpen
 argument_list|(
@@ -1721,7 +1719,7 @@ name|Codec
 name|codec
 decl_stmt|;
 comment|// for writing new segments
-comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is    * privately cloned; if you need to make subsequent "live"    * changes to the configuration use {@link #getConfig}.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws CorruptIndexException    *           if the index is corrupt    * @throws LockObtainFailedException    *           if another writer has this index open (<code>write.lock</code>    *           could not be obtained)    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
+comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * Note that the passed in {@link IndexWriterConfig} is    * privately cloned; if you need to make subsequent "live"    * changes to the configuration use {@link #getConfig}.    *<p>    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -1733,10 +1731,6 @@ name|IndexWriterConfig
 name|conf
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
-name|LockObtainFailedException
-throws|,
 name|IOException
 block|{
 name|config
@@ -2471,8 +2465,6 @@ specifier|private
 name|void
 name|messageState
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -2519,15 +2511,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Commits all changes to an index and closes all    * associated files.  Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit()} for    * caveats about write caching done by some IO devices.    *    *<p> If an Exception is hit during close, eg due to disk    * full or some other reason, then both the on-disk index    * and the internal state of the IndexWriter instance will    * be consistent.  However, the close will not be complete    * even though part of it (flushing buffered documents)    * may have succeeded, so the write lock will still be    * held.</p>    *    *<p> If you can correct the underlying cause (eg free up    * some disk space) then you can call close() again.    * Failing that, if you want to force the write lock to be    * released (dangerous, because you may then lose buffered    * docs in the IndexWriter instance) then you can do    * something like this:</p>    *    *<pre>    * try {    *   writer.close();    * } finally {    *   if (IndexWriter.isLocked(directory)) {    *     IndexWriter.unlock(directory);    *   }    * }    *</pre>    *    * after which, you must be certain not to use the writer    * instance anymore.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer, again.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Commits all changes to an index and closes all    * associated files.  Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit()} for    * caveats about write caching done by some IO devices.    *    *<p> If an Exception is hit during close, eg due to disk    * full or some other reason, then both the on-disk index    * and the internal state of the IndexWriter instance will    * be consistent.  However, the close will not be complete    * even though part of it (flushing buffered documents)    * may have succeeded, so the write lock will still be    * held.</p>    *    *<p> If you can correct the underlying cause (eg free up    * some disk space) then you can call close() again.    * Failing that, if you want to force the write lock to be    * released (dangerous, because you may then lose buffered    * docs in the IndexWriter instance) then you can do    * something like this:</p>    *    *<pre>    * try {    *   writer.close();    * } finally {    *   if (IndexWriter.isLocked(directory)) {    *     IndexWriter.unlock(directory);    *   }    * }    *</pre>    *    * after which, you must be certain not to use the writer    * instance anymore.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer, again.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws IOException if there is a low-level IO error    */
 DECL|method|close
 specifier|public
 name|void
 name|close
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|close
@@ -2546,8 +2536,6 @@ name|boolean
 name|waitForMerges
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 comment|// Ensure that only one thread actually gets to do the
@@ -2654,8 +2642,6 @@ name|boolean
 name|doFlush
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 try|try
@@ -3024,8 +3010,6 @@ specifier|synchronized
 name|int
 name|numDocs
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|ensureOpen
 argument_list|()
@@ -3085,8 +3069,6 @@ specifier|synchronized
 name|boolean
 name|hasDeletions
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|ensureOpen
 argument_list|()
@@ -3156,8 +3138,6 @@ argument_list|>
 name|doc
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|addDocument
@@ -3186,8 +3166,6 @@ name|Analyzer
 name|analyzer
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|updateDocument
@@ -3220,8 +3198,6 @@ argument_list|>
 name|docs
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|addDocuments
@@ -3255,8 +3231,6 @@ name|Analyzer
 name|analyzer
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|updateDocuments
@@ -3292,8 +3266,6 @@ argument_list|>
 name|docs
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|updateDocuments
@@ -3332,8 +3304,6 @@ name|Analyzer
 name|analyzer
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -3436,8 +3406,6 @@ name|Term
 name|term
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -3479,8 +3447,6 @@ modifier|...
 name|terms
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -3521,8 +3487,6 @@ name|Query
 name|query
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -3564,8 +3528,6 @@ modifier|...
 name|queries
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -3614,8 +3576,6 @@ argument_list|>
 name|doc
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -3653,8 +3613,6 @@ name|Analyzer
 name|analyzer
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -3937,8 +3895,6 @@ name|int
 name|maxNumSegments
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|forceMerge
@@ -3962,8 +3918,6 @@ name|boolean
 name|doWait
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -4355,8 +4309,6 @@ name|boolean
 name|doWait
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -4636,8 +4588,6 @@ name|void
 name|forceMergeDeletes
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|forceMergeDeletes
@@ -4654,8 +4604,6 @@ name|void
 name|maybeMerge
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|maybeMerge
@@ -4675,8 +4623,6 @@ name|int
 name|maxNumSegments
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -4707,8 +4653,6 @@ name|int
 name|maxNumSegments
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 assert|assert
@@ -5384,8 +5328,6 @@ parameter_list|(
 name|boolean
 name|waitForMerges
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -6034,8 +5976,6 @@ parameter_list|(
 name|FrozenBufferedDeletes
 name|packet
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|packet
@@ -6362,8 +6302,6 @@ modifier|...
 name|dirs
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -6691,8 +6629,6 @@ modifier|...
 name|readers
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -7575,8 +7511,6 @@ name|void
 name|prepareCommit
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -7604,8 +7538,6 @@ argument_list|>
 name|commitUserData
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -7940,8 +7872,6 @@ name|void
 name|commit
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|commit
@@ -7966,8 +7896,6 @@ argument_list|>
 name|commitUserData
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -7994,8 +7922,6 @@ argument_list|>
 name|commitUserData
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 if|if
@@ -8117,8 +8043,6 @@ name|void
 name|finishCommit
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 if|if
@@ -8315,8 +8239,6 @@ name|boolean
 name|applyAllDeletes
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 comment|// NOTE: this method cannot be sync'd because
@@ -8355,8 +8277,6 @@ name|boolean
 name|applyAllDeletes
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 if|if
@@ -8836,8 +8756,6 @@ operator|.
 name|OneMerge
 name|merge
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 for|for
 control|(
@@ -9985,8 +9903,6 @@ name|OneMerge
 name|merge
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|boolean
@@ -10287,10 +10203,6 @@ name|OneMerge
 name|merge
 parameter_list|)
 throws|throws
-name|MergePolicy
-operator|.
-name|MergeAbortedException
-throws|,
 name|IOException
 block|{
 if|if
@@ -11284,8 +11196,6 @@ operator|.
 name|OneMerge
 name|merge
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|// forceMerge, addIndexes or finishMerges may be waiting
 comment|// on merges to finish.
@@ -11583,8 +11493,6 @@ name|OneMerge
 name|merge
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|merge
@@ -12863,8 +12771,6 @@ specifier|synchronized
 name|String
 name|segString
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|segString
@@ -12886,8 +12792,6 @@ name|SegmentInfoPerCommit
 argument_list|>
 name|infos
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 specifier|final
 name|StringBuilder
@@ -12952,8 +12856,6 @@ parameter_list|(
 name|SegmentInfoPerCommit
 name|info
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|info

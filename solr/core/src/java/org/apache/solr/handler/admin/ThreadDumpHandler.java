@@ -454,8 +454,6 @@ parameter_list|,
 name|ThreadMXBean
 name|tmbean
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|SimpleOrderedMap
 argument_list|<

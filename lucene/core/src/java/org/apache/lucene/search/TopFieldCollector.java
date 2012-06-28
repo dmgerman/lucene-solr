@@ -135,8 +135,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -407,8 +405,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -596,8 +592,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -834,8 +828,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -1043,8 +1035,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -1289,8 +1279,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -1518,8 +1506,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -1953,8 +1939,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -2272,8 +2256,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -2653,8 +2635,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -2993,8 +2973,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -3366,8 +3344,6 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -3788,8 +3764,6 @@ parameter_list|,
 name|boolean
 name|trackMaxScore
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -4347,8 +4321,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

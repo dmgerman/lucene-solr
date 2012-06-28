@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|concurrent
@@ -425,8 +415,6 @@ throws|throws
 name|InterruptedException
 throws|,
 name|TimeoutException
-throws|,
-name|IOException
 block|{
 synchronized|synchronized
 init|(
@@ -571,8 +559,6 @@ throws|throws
 name|InterruptedException
 throws|,
 name|TimeoutException
-throws|,
-name|IOException
 block|{
 name|long
 name|expire

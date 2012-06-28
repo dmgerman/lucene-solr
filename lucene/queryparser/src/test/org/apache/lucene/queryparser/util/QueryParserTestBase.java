@@ -3785,8 +3785,6 @@ operator|.
 name|Resolution
 name|resolution
 parameter_list|)
-throws|throws
-name|Exception
 block|{
 return|return
 name|DateTools
@@ -5682,8 +5680,6 @@ parameter_list|,
 name|String
 name|termStr
 parameter_list|)
-throws|throws
-name|ParseException
 block|{
 comment|// override error checking of superclass
 name|type
@@ -5719,8 +5715,6 @@ parameter_list|,
 name|String
 name|termStr
 parameter_list|)
-throws|throws
-name|ParseException
 block|{
 comment|// override error checking of superclass
 name|type

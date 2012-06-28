@@ -1529,8 +1529,6 @@ parameter_list|(
 name|String
 name|baseDir
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|baseDir

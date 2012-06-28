@@ -18,16 +18,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|text
 operator|.
 name|Collator
@@ -553,8 +543,6 @@ parameter_list|,
 name|boolean
 name|reversed
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new

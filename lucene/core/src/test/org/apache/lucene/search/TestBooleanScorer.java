@@ -20,16 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -565,8 +555,6 @@ specifier|public
 name|float
 name|score
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 literal|0
@@ -581,8 +569,6 @@ return|;
 block|}
 function|@Override public int nextDoc
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|doc
@@ -602,8 +588,6 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|doc
@@ -685,8 +669,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|hits
 operator|.
@@ -1027,8 +1009,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|count
 index|[

@@ -146,7 +146,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|*
+name|AlreadyClosedException
 import|;
 end_import
 
@@ -821,8 +821,6 @@ name|StoredFieldVisitor
 name|visitor
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 function_decl|;
 comment|/**    * Returns the stored fields of the<code>n</code><sup>th</sup>    *<code>Document</code> in this index.  This is just    * sugar for using {@link DocumentStoredFieldVisitor}.    *<p>    *<b>NOTE:</b> for performance reasons, this method does not check if the    * requested document is deleted, and therefore asking for a deleted document    * may yield unspecified results. Usually this is not required, however you    * can test if the doc is deleted by checking the {@link    * Bits} returned from {@link MultiFields#getLiveDocs}.    *    *<b>NOTE:</b> only the content of a field is returned,    * if that field was stored during indexing.  Metadata    * like boost, omitNorm, IndexOptions, tokenized, etc.,    * are not preserved.    *     * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
@@ -839,8 +837,6 @@ name|int
 name|docID
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 specifier|final
@@ -882,8 +878,6 @@ argument_list|>
 name|fieldsToLoad
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 specifier|final

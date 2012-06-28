@@ -178,8 +178,6 @@ name|SegmentInfos
 name|segmentInfos
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return
@@ -213,8 +211,6 @@ argument_list|>
 name|segmentsToMerge
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 comment|// first find all old segments
@@ -469,8 +465,6 @@ name|SegmentInfos
 name|segmentInfos
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 return|return

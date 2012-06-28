@@ -106,20 +106,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CorruptIndexException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|DocsAndPositionsEnum
 import|;
 end_import
@@ -575,8 +561,6 @@ name|IOContext
 name|context
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 specifier|final
@@ -1336,8 +1320,6 @@ specifier|public
 name|String
 name|next
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -1793,8 +1775,6 @@ DECL|method|TVTermsEnum
 specifier|public
 name|TVTermsEnum
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

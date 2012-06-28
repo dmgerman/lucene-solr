@@ -710,11 +710,7 @@ name|String
 name|dctFilePath
 parameter_list|)
 throws|throws
-name|FileNotFoundException
-throws|,
 name|IOException
-throws|,
-name|UnsupportedEncodingException
 block|{
 name|int
 name|i

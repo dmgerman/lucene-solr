@@ -674,8 +674,6 @@ name|SolrQueryRequest
 name|req
 parameter_list|)
 throws|throws
-name|IOException
-throws|,
 name|Exception
 block|{
 name|SolrQueryResponse

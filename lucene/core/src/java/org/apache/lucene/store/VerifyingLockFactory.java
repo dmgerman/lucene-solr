@@ -227,8 +227,6 @@ name|long
 name|lockWaitTimeout
 parameter_list|)
 throws|throws
-name|LockObtainFailedException
-throws|,
 name|IOException
 block|{
 name|boolean
@@ -266,8 +264,6 @@ name|boolean
 name|obtain
 parameter_list|()
 throws|throws
-name|LockObtainFailedException
-throws|,
 name|IOException
 block|{
 return|return
@@ -345,8 +341,6 @@ parameter_list|,
 name|int
 name|port
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

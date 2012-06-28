@@ -140,8 +140,6 @@ name|R
 index|[]
 name|subReaders
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -398,8 +396,6 @@ name|StoredFieldVisitor
 name|visitor
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen

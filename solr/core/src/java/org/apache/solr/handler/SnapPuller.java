@@ -4139,8 +4139,6 @@ parameter_list|,
 name|File
 name|indexDir
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|String
 name|segmentsFile
@@ -4271,8 +4269,6 @@ parameter_list|(
 name|File
 name|tmpconfDir
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|File
 name|confDir

@@ -438,8 +438,6 @@ parameter_list|(
 name|SolrCore
 name|core
 parameter_list|)
-throws|throws
-name|Exception
 block|{
 name|SimpleOrderedMap
 argument_list|<
@@ -637,8 +635,6 @@ name|Object
 argument_list|>
 name|getSystemInfo
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|SimpleOrderedMap
 argument_list|<
@@ -1487,8 +1483,6 @@ name|Object
 argument_list|>
 name|getLuceneInfo
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|SimpleOrderedMap
 argument_list|<

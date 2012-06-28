@@ -81,8 +81,6 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|NO_MORE_DOCS
@@ -105,8 +103,6 @@ specifier|public
 name|int
 name|nextDoc
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|NO_MORE_DOCS
@@ -143,8 +139,6 @@ specifier|public
 name|Bits
 name|bits
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 literal|null

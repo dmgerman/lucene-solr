@@ -158,8 +158,6 @@ parameter_list|,
 name|Term
 name|term
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
