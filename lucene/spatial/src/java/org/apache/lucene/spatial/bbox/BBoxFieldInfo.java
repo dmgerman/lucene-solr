@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The Bounding Box gets stored as four fields for x/y min/max and a flag   * that says if the box crosses the dateline (xdl)  */
+comment|/**  * The Bounding Box gets stored as four fields for x/y min/max and a flag   * that says if the box crosses the dateline (xdl).  *  * @lucene.experimental  */
 end_comment
 
 begin_class
