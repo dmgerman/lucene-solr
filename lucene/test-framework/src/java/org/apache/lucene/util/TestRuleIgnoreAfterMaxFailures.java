@@ -115,15 +115,13 @@ name|TestRuleIgnoreAfterMaxFailures
 implements|implements
 name|TestRule
 block|{
-comment|/**    * Maximum failures.    */
+comment|/**    * Maximum failures. Package scope for tests.    */
 DECL|field|maxFailures
-specifier|private
 name|int
 name|maxFailures
 decl_stmt|;
-comment|/**    * Current count of failures.    */
+comment|/**    * Current count of failures. Package scope for tests.    */
 DECL|field|failuresSoFar
-specifier|private
 name|int
 name|failuresSoFar
 decl_stmt|;
@@ -236,17 +234,6 @@ name|t
 argument_list|)
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"#"
-operator|+
-name|d
-argument_list|)
-expr_stmt|;
 name|failuresSoFar
 operator|++
 expr_stmt|;
@@ -257,31 +244,6 @@ throw|;
 block|}
 block|}
 block|}
-return|;
-block|}
-comment|/** For tests only. */
-DECL|method|setMaxFailures
-name|void
-name|setMaxFailures
-parameter_list|(
-name|int
-name|maxFailures
-parameter_list|)
-block|{
-name|this
-operator|.
-name|maxFailures
-operator|=
-name|maxFailures
-expr_stmt|;
-block|}
-DECL|method|getMaxFailures
-name|int
-name|getMaxFailures
-parameter_list|()
-block|{
-return|return
-name|maxFailures
 return|;
 block|}
 block|}
