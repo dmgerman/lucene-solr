@@ -403,17 +403,6 @@ name|indexed
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertFalse
-argument_list|(
-name|binaryFld
-operator|.
-name|fieldType
-argument_list|()
-operator|.
-name|tokenized
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|String
 name|binaryTest
 init|=

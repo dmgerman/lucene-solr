@@ -137,6 +137,8 @@ DECL|field|tokenized
 specifier|private
 name|boolean
 name|tokenized
+init|=
+literal|true
 decl_stmt|;
 DECL|field|storeTermVectors
 specifier|private
