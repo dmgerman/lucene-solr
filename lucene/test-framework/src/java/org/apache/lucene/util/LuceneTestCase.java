@@ -642,7 +642,7 @@ name|bugUrl
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Annotation for tests that are really slow and should be run only when specifically     * asked to run.    */
+comment|/**    * Annotation for tests that are slow. Slow tests do run by default but can be    * disabled if a quick run is needed.    */
 annotation|@
 name|Documented
 annotation|@
@@ -659,7 +659,7 @@ name|TestGroup
 argument_list|(
 name|enabled
 operator|=
-literal|false
+literal|true
 argument_list|,
 name|sysProperty
 operator|=

@@ -74,6 +74,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -315,6 +331,8 @@ comment|/**  * TestCase for {@link UIMAUpdateRequestProcessor}  *   *  */
 end_comment
 
 begin_class
+annotation|@
+name|Slow
 DECL|class|UIMAUpdateRequestProcessorTest
 specifier|public
 class|class

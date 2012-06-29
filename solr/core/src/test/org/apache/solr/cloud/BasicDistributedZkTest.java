@@ -196,6 +196,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|JSONTestUtil
@@ -568,11 +584,9 @@ begin_comment
 comment|/**  *  */
 end_comment
 
-begin_comment
-comment|// @LuceneTestCase.AwaitsFix(bugUrl = "https://issues.apache.org/jira/browse/SOLR-2161")
-end_comment
-
 begin_class
+annotation|@
+name|Slow
 DECL|class|BasicDistributedZkTest
 specifier|public
 class|class

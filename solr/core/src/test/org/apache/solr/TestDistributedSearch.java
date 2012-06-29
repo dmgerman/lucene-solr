@@ -88,6 +88,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|client
@@ -247,6 +263,8 @@ comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/Ser
 end_comment
 
 begin_class
+annotation|@
+name|Slow
 DECL|class|TestDistributedSearch
 specifier|public
 class|class

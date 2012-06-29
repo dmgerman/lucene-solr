@@ -100,6 +100,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|common
@@ -181,6 +197,8 @@ comment|/**  * Test auto commit functionality in a way that doesn't suck.  *<p> 
 end_comment
 
 begin_class
+annotation|@
+name|Slow
 DECL|class|SoftAutoCommitTest
 specifier|public
 class|class

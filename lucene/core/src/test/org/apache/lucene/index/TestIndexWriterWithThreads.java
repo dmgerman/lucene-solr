@@ -304,11 +304,29 @@ name|_TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
 begin_comment
 comment|/**  * MultiThreaded IndexWriter tests  */
 end_comment
 
 begin_class
+annotation|@
+name|Slow
 DECL|class|TestIndexWriterWithThreads
 specifier|public
 class|class
