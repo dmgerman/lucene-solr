@@ -365,7 +365,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Based off of Solr 3's SpatialFilterTest.  * @author dsmiley  */
+comment|/**  * Based off of Solr 3's SpatialFilterTest.  */
 end_comment
 
 begin_class
