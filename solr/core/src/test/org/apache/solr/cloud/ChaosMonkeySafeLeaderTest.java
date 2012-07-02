@@ -126,11 +126,12 @@ name|Ignore
 import|;
 end_import
 
-begin_comment
-comment|//@Ignore("SOLR-3126")
-end_comment
-
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"SOLR-3126"
+argument_list|)
 DECL|class|ChaosMonkeySafeLeaderTest
 specifier|public
 class|class
