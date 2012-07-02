@@ -63,7 +63,13 @@ name|getSolrHome
 parameter_list|()
 block|{
 return|return
-literal|"clustering/solr"
+name|getFile
+argument_list|(
+literal|"clustering/solr/collection1"
+argument_list|)
+operator|.
+name|getParent
+argument_list|()
 return|;
 block|}
 annotation|@

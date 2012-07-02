@@ -146,16 +146,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -1042,7 +1032,12 @@ name|controlJetty
 operator|=
 name|createJetty
 argument_list|(
-name|testDir
+operator|new
+name|File
+argument_list|(
+name|getSolrHome
+argument_list|()
+argument_list|)
 argument_list|,
 name|testDir
 operator|+
@@ -1118,7 +1113,12 @@ name|j
 init|=
 name|createJetty
 argument_list|(
-name|testDir
+operator|new
+name|File
+argument_list|(
+name|getSolrHome
+argument_list|()
+argument_list|)
 argument_list|,
 name|testDir
 operator|+
@@ -1455,7 +1455,7 @@ name|JettySolrRunner
 name|createJetty
 parameter_list|(
 name|File
-name|baseDir
+name|solrHome
 parameter_list|,
 name|String
 name|dataDir
@@ -1466,7 +1466,7 @@ block|{
 return|return
 name|createJetty
 argument_list|(
-name|baseDir
+name|solrHome
 argument_list|,
 name|dataDir
 argument_list|,
@@ -1484,7 +1484,7 @@ name|JettySolrRunner
 name|createJetty
 parameter_list|(
 name|File
-name|baseDir
+name|solrHome
 parameter_list|,
 name|String
 name|dataDir
@@ -1498,7 +1498,7 @@ block|{
 return|return
 name|createJetty
 argument_list|(
-name|baseDir
+name|solrHome
 argument_list|,
 name|dataDir
 argument_list|,
@@ -1516,7 +1516,7 @@ name|JettySolrRunner
 name|createJetty
 parameter_list|(
 name|File
-name|baseDir
+name|solrHome
 parameter_list|,
 name|String
 name|dataDir
@@ -1539,7 +1539,9 @@ init|=
 operator|new
 name|JettySolrRunner
 argument_list|(
-name|getSolrHome
+name|solrHome
+operator|.
+name|getAbsolutePath
 argument_list|()
 argument_list|,
 literal|"/solr"
