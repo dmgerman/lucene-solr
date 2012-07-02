@@ -189,7 +189,7 @@ operator|=
 name|retryDelay
 expr_stmt|;
 block|}
-comment|/**    * Perform the given operation, retrying if the connection fails    *     * @param operation    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Perform the given operation, retrying if the connection fails    *     * @param operation    * @throws KeeperException    * @throws InterruptedException    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
