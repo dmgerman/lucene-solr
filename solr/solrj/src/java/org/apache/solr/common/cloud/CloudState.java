@@ -857,7 +857,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @return Map<collectionName, Map<sliceName,Slice>> 	 */
+comment|/** 	 * @return Map&lt;collectionName, Map&lt;sliceName,Slice&gt;&gt; 	 */
 DECL|method|getCollectionStates
 specifier|public
 name|Map
