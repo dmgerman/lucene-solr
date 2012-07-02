@@ -790,7 +790,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * this must be MT safe... may be called concurrently from multiple threads.    *    * @param    * @param    */
+comment|/**    * this must be MT safe... may be called concurrently from multiple threads.    *    */
 DECL|method|doAdd
 name|void
 name|doAdd

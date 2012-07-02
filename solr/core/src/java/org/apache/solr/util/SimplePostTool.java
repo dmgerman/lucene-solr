@@ -1109,7 +1109,7 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Opens the file and posts it's contents to the solrUrl,    * writes to response to output.    * @throws UnsupportedEncodingException     */
+comment|/**    * Opens the file and posts it's contents to the solrUrl,    * writes to response to output.     */
 DECL|method|postFile
 specifier|public
 name|void

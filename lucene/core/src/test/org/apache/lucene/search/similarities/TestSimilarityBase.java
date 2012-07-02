@@ -287,7 +287,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests the {@link SimilarityBase}-based Similarities. Contains unit tests and   * integration tests for all Similarities and correctness tests for a select  * few.  *<p>This class maintains a list of  * {@code SimilarityBase} subclasses. Each test case performs its test on all  * items in the list. If a test case fails, the name of the Similarity that  * caused the failure is returned as part of the assertion error message.</p>  *<p>Unit testing is performed by constructing statistics manually and calling  * the {@link SimilarityBase#score(BasicStats, float, int)} method of the  * Similarities. The statistics represent corner cases of corpus distributions.  *</p>  *<p>For the integration tests, a small (8-document) collection is indexed. The  * tests verify that for a specific query, all relevant documents are returned  * in the correct order. The collection consists of two poems of English poet  *<a href="http://en.wikipedia.org/wiki/William_blake">William Blake</a>.</p>  *<p>Note: the list of Similarities is maintained by hand. If a new Similarity  * is added to the {@code org.apache.lucene.search.similarities} package, the  * list should be updated accordingly.</p>  *<p>  * In the correctness tests, the score is verified against the result of manual  * computation. Since it would be impossible to test all Similarities  * (e.g. all possible DFR combinations, all parameter values for LM), only   * the best performing setups in the original papers are verified.  *</p>  */
+comment|/**  * Tests the {@link SimilarityBase}-based Similarities. Contains unit tests and   * integration tests for all Similarities and correctness tests for a select  * few.  *<p>This class maintains a list of  * {@code SimilarityBase} subclasses. Each test case performs its test on all  * items in the list. If a test case fails, the name of the Similarity that  * caused the failure is returned as part of the assertion error message.</p>  *<p>Unit testing is performed by constructing statistics manually and calling  * the {@link SimilarityBase#score(BasicStats, float, float)} method of the  * Similarities. The statistics represent corner cases of corpus distributions.  *</p>  *<p>For the integration tests, a small (8-document) collection is indexed. The  * tests verify that for a specific query, all relevant documents are returned  * in the correct order. The collection consists of two poems of English poet  *<a href="http://en.wikipedia.org/wiki/William_blake">William Blake</a>.</p>  *<p>Note: the list of Similarities is maintained by hand. If a new Similarity  * is added to the {@code org.apache.lucene.search.similarities} package, the  * list should be updated accordingly.</p>  *<p>  * In the correctness tests, the score is verified against the result of manual  * computation. Since it would be impossible to test all Similarities  * (e.g. all possible DFR combinations, all parameter values for LM), only   * the best performing setups in the original papers are verified.  *</p>  */
 end_comment
 
 begin_class
@@ -925,7 +925,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * The generic test core called by all unit test methods. It calls the    * {@link SimilarityBase#score(BasicStats, float, int)} method of all    * Similarities in {@link #sims} and checks if the score is valid; i.e. it    * is a finite positive real number.    */
+comment|/**    * The generic test core called by all unit test methods. It calls the    * {@link SimilarityBase#score(BasicStats, float, float)} method of all    * Similarities in {@link #sims} and checks if the score is valid; i.e. it    * is a finite positive real number.    */
 DECL|method|unitTestCore
 specifier|private
 name|void
@@ -2933,7 +2933,7 @@ name|gold
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * The generic test core called by all correctness test methods. It calls the    * {@link SimilarityBase#score(BasicStats, float, int)} method of all    * Similarities in {@link #sims} and compares the score against the manually    * computed {@code gold}.    */
+comment|/**    * The generic test core called by all correctness test methods. It calls the    * {@link SimilarityBase#score(BasicStats, float, float)} method of all    * Similarities in {@link #sims} and compares the score against the manually    * computed {@code gold}.    */
 DECL|method|correctnessTestCore
 specifier|private
 name|void

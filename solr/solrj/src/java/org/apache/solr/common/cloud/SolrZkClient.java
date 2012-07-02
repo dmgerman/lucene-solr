@@ -912,7 +912,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * @param path    * @return true if path exists    * @throws KeeperException    * @param retryOnConnLoss      * @throws InterruptedException    */
+comment|/**    * @param path    * @return true if path exists    * @param retryOnConnLoss      * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|exists
 specifier|public
 name|Boolean

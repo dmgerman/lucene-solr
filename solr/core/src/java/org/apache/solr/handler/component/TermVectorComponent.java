@@ -529,7 +529,7 @@ name|TERM_VECTORS
 init|=
 literal|"termVectors"
 decl_stmt|;
-comment|/**    * Helper method for determining the list of fields that we should     * try to find term vectors on.      *<p>    * Does simple (non-glob-supporting) parsing on the     * {@link TermVectorParams#FIELDS} param if specified, otherwise it returns     * the concrete field values specified in {@link CommonParams.FL} --     * ignoring functions, transformers, or literals.      *</p>    *<p>    * If "fl=*" is used, or neither param is specified, then<code>null</code>     * will be returned.  If the empty set is returned, it means the "fl"     * specified consisted entirely of things that are not real fields     * (ie: functions, transformers, partial-globs, score, etc...) and not     * supported by this component.     *</p>    */
+comment|/**    * Helper method for determining the list of fields that we should     * try to find term vectors on.      *<p>    * Does simple (non-glob-supporting) parsing on the     * {@link TermVectorParams#FIELDS} param if specified, otherwise it returns     * the concrete field values specified in {@link CommonParams#FL} --     * ignoring functions, transformers, or literals.      *</p>    *<p>    * If "fl=*" is used, or neither param is specified, then<code>null</code>     * will be returned.  If the empty set is returned, it means the "fl"     * specified consisted entirely of things that are not real fields     * (ie: functions, transformers, partial-globs, score, etc...) and not     * supported by this component.     *</p>    */
 DECL|method|getFields
 specifier|private
 name|Set

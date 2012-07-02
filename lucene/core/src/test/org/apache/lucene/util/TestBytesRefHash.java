@@ -463,7 +463,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Test method for    * {@link org.apache.lucene.util.BytesRefHash#get(org.apache.lucene.util.BytesRefHash.Entry)}    * .    */
+comment|/**    * Test method for    * {@link org.apache.lucene.util.BytesRefHash#get(int, BytesRef)}    * .    */
 annotation|@
 name|Test
 DECL|method|testGet

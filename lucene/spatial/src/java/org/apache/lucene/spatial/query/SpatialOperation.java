@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A clause that compares a stored geometry to a supplied geometry.  *  * @see<a href="http://edndoc.esri.com/arcsde/9.1/general_topics/understand_spatial_relations.htm">  *   ESRI's docs on spatial relations</a>  * @see<a href="http://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate">  *   GeoServer ECQL Spatial Predicates</a>  *  * @lucene.experimental  */
+comment|/**  * A clause that compares a stored geometry to a supplied geometry.  *  * @see<a href="http://edndoc.esri.com/arcsde/9.1/general_topics/understand_spatial_relations.htm">  *   ESRIs docs on spatial relations</a>  * @see<a href="http://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate">  *   GeoServer ECQL Spatial Predicates</a>  *  * @lucene.experimental  */
 end_comment
 
 begin_class

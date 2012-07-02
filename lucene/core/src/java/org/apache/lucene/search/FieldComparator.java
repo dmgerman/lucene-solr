@@ -4581,7 +4581,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/** Sorts by field's natural Term sort order, using    *  ordinals.  This is functionally equivalent to {@link    *  TermValComparator}, but it first resolves the string    *  to their relative ordinal positions (using the index    *  returned by {@link FieldCache#getTermsIndex}), and    *  does most comparisons using the ordinals.  For medium    *  to large results, this comparator will be much faster    *  than {@link TermValComparator}.  For very small    *  result sets it may be slower. */
+comment|/** Sorts by field's natural Term sort order, using    *  ordinals.  This is functionally equivalent to {@link    *  org.apache.lucene.search.FieldComparator.TermValComparator}, but it first resolves the string    *  to their relative ordinal positions (using the index    *  returned by {@link FieldCache#getTermsIndex}), and    *  does most comparisons using the ordinals.  For medium    *  to large results, this comparator will be much faster    *  than {@link org.apache.lucene.search.FieldComparator.TermValComparator}.  For very small    *  result sets it may be slower. */
 DECL|class|TermOrdValComparator
 specifier|public
 specifier|static
@@ -6365,7 +6365,7 @@ index|]
 return|;
 block|}
 block|}
-comment|/** Sorts by field's natural Term sort order, using    *  ordinals; this is just like {@link    *  TermOrdValComparator} except it uses DocValues to    *  retrieve the sort ords saved during indexing. */
+comment|/** Sorts by field's natural Term sort order, using    *  ordinals; this is just like {@link    *  org.apache.lucene.search.FieldComparator.TermValComparator} except it uses DocValues to    *  retrieve the sort ords saved during indexing. */
 DECL|class|TermOrdValDocValuesComparator
 specifier|public
 specifier|static

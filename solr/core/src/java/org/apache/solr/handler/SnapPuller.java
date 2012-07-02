@@ -1588,12 +1588,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * This command downloads all the necessary files from master to install a index commit point. Only changed files are    * downloaded. It also downloads the conf files (if they are modified).    *    * @param core the SolrCore    * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|field|successfulInstall
 specifier|private
 name|boolean
@@ -1601,6 +1595,12 @@ name|successfulInstall
 init|=
 literal|false
 decl_stmt|;
+comment|/**    * This command downloads all the necessary files from master to install a index commit point. Only changed files are    * downloaded. It also downloads the conf files (if they are modified).    *    * @param core the SolrCore    * @param force force a replication in all cases     * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|fetchLatestIndex
 name|boolean
 name|fetchLatestIndex

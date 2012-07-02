@@ -471,7 +471,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Run an example search.    *     * @throws IOException    * @throws ParseException    */
+comment|/**    * Run an example search.    *     * @throws IOException    */
 DECL|method|searchForFleas
 specifier|private
 name|void

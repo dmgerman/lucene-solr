@@ -575,7 +575,7 @@ operator|=
 name|zkClientTimeout
 expr_stmt|;
 block|}
-comment|/**    * Connect to the zookeeper ensemble.    * This is an optional method that may be used to force a connect before any other requests are sent.    *    * @throws IOException    * @throws TimeoutException    * @throws InterruptedException    */
+comment|/**    * Connect to the zookeeper ensemble.    * This is an optional method that may be used to force a connect before any other requests are sent.    *    */
 DECL|method|connect
 specifier|public
 name|void

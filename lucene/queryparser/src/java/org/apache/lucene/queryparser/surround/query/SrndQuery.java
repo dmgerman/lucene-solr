@@ -307,7 +307,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** For subclasses of {@link SrndQuery} within the package    *  {@link org.apache.lucene.queryparser.surround.query}    *  it is not necessary to override this method,    *  @see #toString().    */
+comment|/** For subclasses of {@link SrndQuery} within the package    *  {@link org.apache.lucene.queryparser.surround.query}    *  it is not necessary to override this method,    *  @see #toString()    */
 annotation|@
 name|Override
 DECL|method|hashCode
@@ -330,7 +330,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/** For subclasses of {@link SrndQuery} within the package    *  {@link org.apache.lucene.queryparser.surround.query}    *  it is not necessary to override this method,    *  @see #toString().    */
+comment|/** For subclasses of {@link SrndQuery} within the package    *  {@link org.apache.lucene.queryparser.surround.query}    *  it is not necessary to override this method,    *  @see #toString()    */
 annotation|@
 name|Override
 DECL|method|equals

@@ -51,7 +51,7 @@ specifier|abstract
 class|class
 name|ZkOperation
 block|{
-comment|/**      * Performs the operation - which may be involved multiple times if the connection      * to ZooKeeper closes during this operation      *      * @return the result of the operation or null      * @throws KeeperException      * @throws InterruptedException      * @throws IOException       */
+comment|/**      * Performs the operation - which may be involved multiple times if the connection      * to ZooKeeper closes during this operation      *      * @return the result of the operation or null      * @throws KeeperException      * @throws InterruptedException      */
 DECL|method|execute
 specifier|public
 specifier|abstract

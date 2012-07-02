@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List
@@ -199,7 +189,7 @@ operator|=
 name|retryDelay
 expr_stmt|;
 block|}
-comment|/**    * Perform the given operation, retrying if the connection fails    *     * @throws IOException     */
+comment|/**    * Perform the given operation, retrying if the connection fails    *     * @param operation    * @return    * @throws KeeperException    * @throws InterruptedException    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
