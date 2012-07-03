@@ -59,7 +59,6 @@ end_comment
 begin_class
 DECL|class|ForUtil
 specifier|public
-specifier|final
 class|class
 name|ForUtil
 block|{
@@ -73,7 +72,7 @@ init|=
 literal|1
 decl_stmt|;
 DECL|field|MASK
-specifier|private
+specifier|protected
 specifier|static
 specifier|final
 name|int
@@ -146,22 +145,6 @@ block|,
 literal|0x7fffffff
 block|,
 literal|0xffffffff
-block|}
-decl_stmt|;
-DECL|field|PER_EXCEPTION_SIZE
-specifier|private
-specifier|static
-specifier|final
-name|int
-index|[]
-name|PER_EXCEPTION_SIZE
-init|=
-block|{
-literal|1
-block|,
-literal|2
-block|,
-literal|4
 block|}
 decl_stmt|;
 DECL|method|compress
@@ -309,7 +292,7 @@ operator|)
 operator|+
 literal|1
 decl_stmt|;
-comment|// TODO: ForDecompressImpl is hardewired to size==128 only
+comment|// TODO: PackedIntsDecompress is hardewired to size==128 only
 switch|switch
 condition|(
 name|numBits
@@ -318,7 +301,7 @@ block|{
 case|case
 literal|1
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode1
 argument_list|(
@@ -331,7 +314,7 @@ break|break;
 case|case
 literal|2
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode2
 argument_list|(
@@ -344,7 +327,7 @@ break|break;
 case|case
 literal|3
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode3
 argument_list|(
@@ -357,7 +340,7 @@ break|break;
 case|case
 literal|4
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode4
 argument_list|(
@@ -370,7 +353,7 @@ break|break;
 case|case
 literal|5
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode5
 argument_list|(
@@ -383,7 +366,7 @@ break|break;
 case|case
 literal|6
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode6
 argument_list|(
@@ -396,7 +379,7 @@ break|break;
 case|case
 literal|7
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode7
 argument_list|(
@@ -409,7 +392,7 @@ break|break;
 case|case
 literal|8
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode8
 argument_list|(
@@ -422,7 +405,7 @@ break|break;
 case|case
 literal|9
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode9
 argument_list|(
@@ -435,7 +418,7 @@ break|break;
 case|case
 literal|10
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode10
 argument_list|(
@@ -448,7 +431,7 @@ break|break;
 case|case
 literal|11
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode11
 argument_list|(
@@ -461,7 +444,7 @@ break|break;
 case|case
 literal|12
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode12
 argument_list|(
@@ -474,7 +457,7 @@ break|break;
 case|case
 literal|13
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode13
 argument_list|(
@@ -487,7 +470,7 @@ break|break;
 case|case
 literal|14
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode14
 argument_list|(
@@ -500,7 +483,7 @@ break|break;
 case|case
 literal|15
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode15
 argument_list|(
@@ -513,7 +496,7 @@ break|break;
 case|case
 literal|16
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode16
 argument_list|(
@@ -526,7 +509,7 @@ break|break;
 case|case
 literal|17
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode17
 argument_list|(
@@ -539,7 +522,7 @@ break|break;
 case|case
 literal|18
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode18
 argument_list|(
@@ -552,7 +535,7 @@ break|break;
 case|case
 literal|19
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode19
 argument_list|(
@@ -565,7 +548,7 @@ break|break;
 case|case
 literal|20
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode20
 argument_list|(
@@ -578,7 +561,7 @@ break|break;
 case|case
 literal|21
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode21
 argument_list|(
@@ -591,7 +574,7 @@ break|break;
 case|case
 literal|22
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode22
 argument_list|(
@@ -604,7 +587,7 @@ break|break;
 case|case
 literal|23
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode23
 argument_list|(
@@ -617,7 +600,7 @@ break|break;
 case|case
 literal|24
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode24
 argument_list|(
@@ -630,7 +613,7 @@ break|break;
 case|case
 literal|25
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode25
 argument_list|(
@@ -643,7 +626,7 @@ break|break;
 case|case
 literal|26
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode26
 argument_list|(
@@ -656,7 +639,7 @@ break|break;
 case|case
 literal|27
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode27
 argument_list|(
@@ -669,7 +652,7 @@ break|break;
 case|case
 literal|28
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode28
 argument_list|(
@@ -682,7 +665,7 @@ break|break;
 case|case
 literal|29
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode29
 argument_list|(
@@ -695,7 +678,7 @@ break|break;
 case|case
 literal|30
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode30
 argument_list|(
@@ -708,7 +691,7 @@ break|break;
 case|case
 literal|31
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode31
 argument_list|(
@@ -721,7 +704,7 @@ break|break;
 case|case
 literal|32
 case|:
-name|ForDecompressImpl
+name|PackedIntsDecompress
 operator|.
 name|decode32
 argument_list|(

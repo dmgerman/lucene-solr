@@ -3640,6 +3640,11 @@ argument_list|(
 literal|"For"
 argument_list|)
 expr_stmt|;
+name|add
+argument_list|(
+literal|"PFor"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 decl_stmt|;

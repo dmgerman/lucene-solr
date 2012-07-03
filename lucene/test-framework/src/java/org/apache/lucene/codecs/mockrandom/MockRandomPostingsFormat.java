@@ -832,6 +832,15 @@ name|ForFactory
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|delegates
+operator|.
+name|add
+argument_list|(
+operator|new
+name|PForFactory
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|getExtension
 specifier|private

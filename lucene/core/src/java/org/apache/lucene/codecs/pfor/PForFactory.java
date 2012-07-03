@@ -203,11 +203,11 @@ comment|/**   * Stuff to pass to PostingsReader/WriterBase.  * Things really mak
 end_comment
 
 begin_class
-DECL|class|ForFactory
+DECL|class|PForFactory
 specifier|public
 specifier|final
 class|class
-name|ForFactory
+name|PForFactory
 extends|extends
 name|IntStreamFactory
 block|{
@@ -217,16 +217,16 @@ specifier|final
 name|int
 name|blockSize
 decl_stmt|;
-DECL|method|ForFactory
+DECL|method|PForFactory
 specifier|public
-name|ForFactory
+name|PForFactory
 parameter_list|()
 block|{
 name|this
 operator|.
 name|blockSize
 operator|=
-name|ForPostingsFormat
+name|PForPostingsFormat
 operator|.
 name|DEFAULT_BLOCK_SIZE
 expr_stmt|;
@@ -273,7 +273,7 @@ name|FixedIntBlockIndexOutput
 name|ret
 init|=
 operator|new
-name|ForIndexOutput
+name|PForIndexOutput
 argument_list|(
 name|out
 argument_list|,
@@ -331,7 +331,7 @@ name|FixedIntBlockIndexInput
 name|ret
 init|=
 operator|new
-name|ForIndexInput
+name|PForIndexInput
 argument_list|(
 name|dir
 operator|.
@@ -348,15 +348,15 @@ name|ret
 return|;
 block|}
 comment|// wrap input and output with buffer support
-DECL|class|ForIndexInput
+DECL|class|PForIndexInput
 specifier|private
 class|class
-name|ForIndexInput
+name|PForIndexInput
 extends|extends
 name|FixedIntBlockIndexInput
 block|{
-DECL|method|ForIndexInput
-name|ForIndexInput
+DECL|method|PForIndexInput
+name|PForIndexInput
 parameter_list|(
 specifier|final
 name|IndexInput
@@ -371,9 +371,9 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-DECL|class|ForBlockReader
+DECL|class|PForBlockReader
 class|class
-name|ForBlockReader
+name|PForBlockReader
 implements|implements
 name|FixedIntBlockIndexInput
 operator|.
@@ -397,8 +397,8 @@ DECL|field|encodedBuffer
 name|IntBuffer
 name|encodedBuffer
 decl_stmt|;
-DECL|method|ForBlockReader
-name|ForBlockReader
+DECL|method|PForBlockReader
+name|PForBlockReader
 parameter_list|(
 specifier|final
 name|IndexInput
@@ -498,7 +498,7 @@ argument_list|,
 name|numBytes
 argument_list|)
 expr_stmt|;
-name|ForUtil
+name|PForUtil
 operator|.
 name|decompress
 argument_list|(
@@ -530,7 +530,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|ForBlockReader
+name|PForBlockReader
 argument_list|(
 name|in
 argument_list|,
@@ -539,10 +539,10 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|class|ForIndexOutput
+DECL|class|PForIndexOutput
 specifier|private
 class|class
-name|ForIndexOutput
+name|PForIndexOutput
 extends|extends
 name|FixedIntBlockIndexOutput
 block|{
@@ -557,8 +557,8 @@ specifier|private
 name|IntBuffer
 name|encodedBuffer
 decl_stmt|;
-DECL|method|ForIndexOutput
-name|ForIndexOutput
+DECL|method|PForIndexOutput
+name|PForIndexOutput
 parameter_list|(
 name|IndexOutput
 name|out
@@ -619,7 +619,7 @@ specifier|final
 name|int
 name|numBytes
 init|=
-name|ForUtil
+name|PForUtil
 operator|.
 name|compress
 argument_list|(

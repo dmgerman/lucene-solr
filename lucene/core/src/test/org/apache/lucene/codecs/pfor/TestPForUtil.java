@@ -79,10 +79,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestForUtil
+DECL|class|TestPForUtil
 specifier|public
 class|class
-name|TestForUtil
+name|TestPForUtil
 extends|extends
 name|LuceneTestCase
 block|{
@@ -308,7 +308,7 @@ operator|.
 name|nextInt
 argument_list|()
 operator|&
-literal|0
+literal|1
 expr_stmt|;
 name|buff
 index|[
@@ -370,7 +370,7 @@ expr_stmt|;
 name|int
 name|ensz
 init|=
-name|ForUtil
+name|PForUtil
 operator|.
 name|compress
 argument_list|(
@@ -423,7 +423,7 @@ operator|.
 name|rewind
 argument_list|()
 expr_stmt|;
-name|ForUtil
+name|PForUtil
 operator|.
 name|decompress
 argument_list|(
@@ -432,9 +432,9 @@ argument_list|,
 name|copy
 argument_list|)
 expr_stmt|;
-comment|//    println(getHex(data,sz)+"\n");
-comment|//    println(getHex(res,ensz)+"\n");
-comment|//    println(getHex(copy,sz)+"\n");
+comment|//println(getHex(data,sz)+"\n");
+comment|//println(getHex(res,ensz)+"\n");
+comment|//println(getHex(copy,sz)+"\n");
 assert|assert
 name|cmp
 argument_list|(
@@ -682,7 +682,7 @@ expr_stmt|;
 name|int
 name|ensz
 init|=
-name|ForUtil
+name|PForUtil
 operator|.
 name|compress
 argument_list|(
@@ -740,7 +740,7 @@ index|[
 name|sz
 index|]
 decl_stmt|;
-name|ForUtil
+name|PForUtil
 operator|.
 name|decompress
 argument_list|(
