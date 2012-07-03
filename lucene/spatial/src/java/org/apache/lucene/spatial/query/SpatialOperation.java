@@ -48,12 +48,52 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
 begin_comment
-comment|/**  * A clause that compares a stored geometry to a supplied geometry.  *  * @see<a href="http://edndoc.esri.com/arcsde/9.1/general_topics/understand_spatial_relations.htm">  *   ESRIs docs on spatial relations</a>  * @see<a href="http://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate">  *   GeoServer ECQL Spatial Predicates</a>  *  * @lucene.experimental  */
+comment|/**  * A clause that compares a stored geometry to a supplied geometry.  *  * @see<a href="http://edndoc.esri.com/arcsde/9.1/general_topics/understand_spatial_relations.htm">  *   ESRIs docs on spatial relations</a>  *  * @lucene.experimental  */
 end_comment
 
 begin_class

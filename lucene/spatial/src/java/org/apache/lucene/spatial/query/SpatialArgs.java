@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Principally holds the query {@link Shape} and the {@link SpatialOperation}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -162,7 +162,7 @@ operator|=
 name|shape
 expr_stmt|;
 block|}
-comment|/**    * Check if the arguments make sense -- throw an exception if not    */
+comment|/** Check if the arguments make sense -- throw an exception if not */
 DECL|method|validate
 specifier|public
 name|void
@@ -360,7 +360,7 @@ operator|=
 name|operation
 expr_stmt|;
 block|}
-comment|/**    * Considers {@link SpatialOperation#BBoxWithin} in returning the shape.    */
+comment|/** Considers {@link SpatialOperation#BBoxWithin} in returning the shape. */
 DECL|method|getShape
 specifier|public
 name|Shape
@@ -413,7 +413,7 @@ operator|=
 name|shape
 expr_stmt|;
 block|}
-comment|/**    * The fraction of the distance from the center of the query shape to its nearest edge that is considered acceptable    * error. The algorithm for computing the distance to the nearest edge is actually a little different. It normalizes    * the shape to a square given it's bounding box area:    *<pre>sqrt(shape.bbox.area)/2</pre>    * And the error distance is beyond the shape such that the shape is a minimum shape.    */
+comment|/**    * The fraction of the distance from the center of the query shape to its nearest edge    * that is considered acceptable error. The algorithm for computing the distance to the    * nearest edge is actually a little different. It normalizes the shape to a square    * given it's bounding box area:    *<pre>sqrt(shape.bbox.area)/2</pre>    * And the error distance is beyond the shape such that the shape is a minimum shape.    */
 DECL|method|getDistPrecision
 specifier|public
 name|Double
