@@ -1181,6 +1181,19 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Reordered DBQs detected.  Update="
+operator|+
+name|cmd
+operator|+
+literal|" DBQs="
+operator|+
+name|deletesAfter
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|Query
