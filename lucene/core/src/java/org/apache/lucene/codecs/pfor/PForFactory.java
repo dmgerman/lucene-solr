@@ -380,20 +380,28 @@ operator|.
 name|BlockReader
 block|{
 DECL|field|encoded
+specifier|private
+specifier|final
 name|byte
 index|[]
 name|encoded
 decl_stmt|;
 DECL|field|buffer
+specifier|private
+specifier|final
 name|int
 index|[]
 name|buffer
 decl_stmt|;
 DECL|field|in
+specifier|private
+specifier|final
 name|IndexInput
 name|in
 decl_stmt|;
 DECL|field|encodedBuffer
+specifier|private
+specifier|final
 name|IntBuffer
 name|encodedBuffer
 decl_stmt|;
@@ -459,7 +467,7 @@ parameter_list|(
 name|long
 name|pos
 parameter_list|)
-block|{}
+block|{       }
 comment|// TODO: implement public void skipBlock() {} ?
 DECL|method|readBlock
 specifier|public
