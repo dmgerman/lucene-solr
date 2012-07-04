@@ -5714,16 +5714,9 @@ specifier|final
 name|int
 name|deleteByQueryPercent
 init|=
-literal|1
-operator|+
-name|random
-argument_list|()
-operator|.
-name|nextInt
-argument_list|(
-literal|7
-argument_list|)
+literal|0
 decl_stmt|;
+comment|// 1+random().nextInt(7);
 specifier|final
 name|int
 name|ndocs
