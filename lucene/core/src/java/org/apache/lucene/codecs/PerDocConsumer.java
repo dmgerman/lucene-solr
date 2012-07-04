@@ -224,8 +224,6 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-operator|.
-name|reader
 argument_list|,
 name|fieldInfo
 argument_list|)

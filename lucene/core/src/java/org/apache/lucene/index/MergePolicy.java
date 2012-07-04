@@ -94,20 +94,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|SetOnce
 operator|.
 name|AlreadySetException
@@ -194,14 +180,6 @@ argument_list|<
 name|SegmentReader
 argument_list|>
 name|readers
-decl_stmt|;
-comment|// used by IndexWriter
-DECL|field|readerLiveDocs
-name|List
-argument_list|<
-name|Bits
-argument_list|>
-name|readerLiveDocs
 decl_stmt|;
 comment|// used by IndexWriter
 DECL|field|segments
