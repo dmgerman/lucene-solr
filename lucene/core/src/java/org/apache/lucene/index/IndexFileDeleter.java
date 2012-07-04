@@ -463,6 +463,24 @@ name|IndexFileNames
 operator|.
 name|SEGMENTS_GEN
 argument_list|)
+operator|&&
+operator|(
+name|fileName
+operator|.
+name|startsWith
+argument_list|(
+literal|"_"
+argument_list|)
+operator|||
+name|fileName
+operator|.
+name|startsWith
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS
+argument_list|)
+operator|)
 condition|)
 block|{
 comment|// Add this file to refCounts with initial count 0:
