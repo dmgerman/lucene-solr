@@ -459,16 +459,9 @@ name|asIntBuffer
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|seek
-specifier|public
-name|void
-name|seek
-parameter_list|(
-name|long
-name|pos
-parameter_list|)
-block|{       }
 comment|// TODO: implement public void skipBlock() {} ?
+annotation|@
+name|Override
 DECL|method|readBlock
 specifier|public
 name|void
