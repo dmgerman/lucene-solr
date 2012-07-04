@@ -453,10 +453,47 @@ name|DEFAULT_BLOCK_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit: can't expose this until we write blockSize
+comment|// nocommit: can't make this public until we write blockSize
 comment|// into index somewhere (where/how? private file?  pass through to
 comment|// sep somehow?)
-comment|/*   public BulkVIntPostingsFormat(int minBlockSize, int maxBlockSize, int blockSize) {     super("BulkVInt");     this.blockSize = blockSize;     this.minBlockSize = minBlockSize;     this.maxBlockSize = maxBlockSize;   }   */
+DECL|method|BulkVIntPostingsFormat
+specifier|private
+name|BulkVIntPostingsFormat
+parameter_list|(
+name|int
+name|minBlockSize
+parameter_list|,
+name|int
+name|maxBlockSize
+parameter_list|,
+name|int
+name|blockSize
+parameter_list|)
+block|{
+name|super
+argument_list|(
+literal|"BulkVInt"
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|blockSize
+operator|=
+name|blockSize
+expr_stmt|;
+name|this
+operator|.
+name|minBlockSize
+operator|=
+name|minBlockSize
+expr_stmt|;
+name|this
+operator|.
+name|maxBlockSize
+operator|=
+name|maxBlockSize
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString
