@@ -1620,6 +1620,10 @@ operator|.
 name|getReaderIterator
 argument_list|(
 name|clone1
+argument_list|,
+name|PackedInts
+operator|.
+name|DEFAULT_BUFFER_SIZE
 argument_list|)
 decl_stmt|;
 name|clone2
@@ -1640,6 +1644,10 @@ operator|.
 name|getReaderIterator
 argument_list|(
 name|clone2
+argument_list|,
+name|PackedInts
+operator|.
+name|DEFAULT_BUFFER_SIZE
 argument_list|)
 decl_stmt|;
 comment|// TODO: often we can get by w/ fewer bits per
