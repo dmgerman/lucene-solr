@@ -326,10 +326,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|set
+DECL|method|copyFrom
 specifier|public
 name|void
-name|set
+name|copyFrom
 parameter_list|(
 name|IntIndexInput
 operator|.

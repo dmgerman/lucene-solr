@@ -144,11 +144,11 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-DECL|method|set
+DECL|method|copyFrom
 specifier|public
 specifier|abstract
 name|void
-name|set
+name|copyFrom
 parameter_list|(
 name|Index
 name|other

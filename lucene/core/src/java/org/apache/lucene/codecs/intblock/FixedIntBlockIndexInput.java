@@ -622,10 +622,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|set
+DECL|method|copyFrom
 specifier|public
 name|void
-name|set
+name|copyFrom
 parameter_list|(
 specifier|final
 name|IntIndexInput
