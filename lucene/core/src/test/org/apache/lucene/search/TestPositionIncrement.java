@@ -1879,6 +1879,8 @@ operator|new
 name|String
 argument_list|(
 name|bytes
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2010,6 +2012,8 @@ operator|new
 name|String
 argument_list|(
 name|bytes
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 decl_stmt|;
 comment|//System.out.println(s);
