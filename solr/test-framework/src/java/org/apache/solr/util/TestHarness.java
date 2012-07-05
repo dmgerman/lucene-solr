@@ -1846,7 +1846,7 @@ name|RuntimeException
 argument_list|(
 literal|"SolrCore.getOpenCount()=="
 operator|+
-name|core
+name|c
 operator|.
 name|getOpenCount
 argument_list|()
