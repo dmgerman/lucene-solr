@@ -873,7 +873,7 @@ name|addVmOpt
 argument_list|(
 name|b
 argument_list|,
-literal|"randomized.file.encoding"
+literal|"tests.file.encoding"
 argument_list|,
 name|System
 operator|.
