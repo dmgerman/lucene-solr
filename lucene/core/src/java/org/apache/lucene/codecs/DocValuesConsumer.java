@@ -176,6 +176,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|StoredField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|StraightBytesDocValuesField
 import|;
 end_import
@@ -264,6 +278,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|StorableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|MergeState
 import|;
 end_import
@@ -297,7 +325,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract API that consumes {@link IndexableField}s.  * {@link DocValuesConsumer} are always associated with a specific field and  * segments. Concrete implementations of this API write the given  * {@link IndexableField} into a implementation specific format depending on  * the fields meta-data.  *   * @lucene.experimental  */
+comment|/**  * Abstract API that consumes {@link StorableField}s.  * {@link DocValuesConsumer} are always associated with a specific field and  * segments. Concrete implementations of this API write the given  * {@link StorableField} into a implementation specific format depending on  * the fields meta-data.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -324,7 +352,7 @@ name|Type
 name|getType
 parameter_list|()
 function_decl|;
-comment|/**    * Adds the given {@link IndexableField} instance to this    * {@link DocValuesConsumer}    *     * @param docID    *          the document ID to add the value for. The docID must always    *          increase or be<tt>0</tt> if it is the first call to this method.    * @param value    *          the value to add    * @throws IOException    *           if an {@link IOException} occurs    */
+comment|/**    * Adds the given {@link StorableField} instance to this    * {@link DocValuesConsumer}    *     * @param docID    *          the document ID to add the value for. The docID must always    *          increase or be<tt>0</tt> if it is the first call to this method.    * @param value    *          the value to add    * @throws IOException    *           if an {@link IOException} occurs    */
 DECL|method|add
 specifier|public
 specifier|abstract
@@ -334,13 +362,13 @@ parameter_list|(
 name|int
 name|docID
 parameter_list|,
-name|IndexableField
+name|StorableField
 name|value
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Called when the consumer of this API is done adding values.    *     * @param docCount    *          the total number of documents in this {@link DocValuesConsumer}.    *          Must be greater than or equal the last given docID to    *          {@link #add(int, IndexableField)}.    * @throws IOException    */
+comment|/**    * Called when the consumer of this API is done adding values.    *     * @param docCount    *          the total number of documents in this {@link DocValuesConsumer}.    *          Must be greater than or equal the last given docID to    *          {@link #add(int, StorableField)}.    * @throws IOException    */
 DECL|method|finish
 specifier|public
 specifier|abstract
@@ -543,7 +571,7 @@ name|getType
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Field
+name|StoredField
 name|scratchField
 decl_stmt|;
 switch|switch
@@ -830,7 +858,7 @@ specifier|protected
 name|void
 name|mergeDoc
 parameter_list|(
-name|Field
+name|StoredField
 name|scratchField
 parameter_list|,
 name|Source

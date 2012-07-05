@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|ByteDocValuesField
 extends|extends
-name|Field
+name|StoredField
 block|{
 DECL|field|TYPE
 specifier|public

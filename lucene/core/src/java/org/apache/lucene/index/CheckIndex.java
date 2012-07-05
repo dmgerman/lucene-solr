@@ -174,6 +174,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|StoredDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|DocValues
@@ -6176,7 +6190,7 @@ control|)
 block|{
 comment|// Intentionally pull even deleted documents to
 comment|// make sure they too are not corrupt:
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|reader

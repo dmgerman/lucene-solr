@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|IntDocValuesField
 extends|extends
-name|Field
+name|StoredField
 block|{
 DECL|field|TYPE
 specifier|public

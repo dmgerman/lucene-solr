@@ -54,7 +54,7 @@ specifier|public
 class|class
 name|SortedBytesDocValuesField
 extends|extends
-name|Field
+name|StoredField
 block|{
 comment|// TODO: ideally indexer figures out var vs fixed on its own!?
 DECL|field|TYPE_FIXED_LEN

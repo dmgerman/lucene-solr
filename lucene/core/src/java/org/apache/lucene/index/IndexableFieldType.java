@@ -42,20 +42,6 @@ specifier|public
 interface|interface
 name|IndexableFieldType
 block|{
-comment|/** True if this field should be indexed (inverted) */
-DECL|method|indexed
-specifier|public
-name|boolean
-name|indexed
-parameter_list|()
-function_decl|;
-comment|/** True if the field's value should be stored */
-DECL|method|stored
-specifier|public
-name|boolean
-name|stored
-parameter_list|()
-function_decl|;
 comment|/** True if this field's value should be analyzed */
 DECL|method|tokenized
 specifier|public
@@ -96,15 +82,6 @@ DECL|method|indexOptions
 specifier|public
 name|IndexOptions
 name|indexOptions
-parameter_list|()
-function_decl|;
-comment|/** DocValues type; if non-null then the field's value    *  will be indexed into docValues */
-DECL|method|docValueType
-specifier|public
-name|DocValues
-operator|.
-name|Type
-name|docValueType
 parameter_list|()
 function_decl|;
 block|}

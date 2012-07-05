@@ -254,7 +254,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|IndexableField
+name|StorableField
 name|field
 init|=
 name|norm
@@ -282,6 +282,9 @@ name|docState
 operator|.
 name|docID
 argument_list|,
+operator|(
+name|StorableField
+operator|)
 name|field
 argument_list|)
 expr_stmt|;

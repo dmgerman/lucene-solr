@@ -1050,10 +1050,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-name|fieldType
-operator|.
-name|indexed
-argument_list|()
+literal|true
 argument_list|,
 literal|false
 argument_list|,

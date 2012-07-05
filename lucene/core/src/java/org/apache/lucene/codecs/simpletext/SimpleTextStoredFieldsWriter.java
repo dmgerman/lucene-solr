@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexableField
+name|StorableField
 import|;
 end_import
 
@@ -515,7 +515,7 @@ parameter_list|(
 name|FieldInfo
 name|info
 parameter_list|,
-name|IndexableField
+name|StorableField
 name|field
 parameter_list|)
 throws|throws
