@@ -158,11 +158,6 @@ specifier|public
 specifier|abstract
 class|class
 name|SpatialStrategy
-parameter_list|<
-name|T
-extends|extends
-name|SpatialFieldInfo
-parameter_list|>
 block|{
 DECL|field|ignoreIncompatibleGeometry
 specifier|protected
@@ -177,19 +172,68 @@ specifier|final
 name|SpatialContext
 name|ctx
 decl_stmt|;
+DECL|field|fieldName
+specifier|private
+specifier|final
+name|String
+name|fieldName
+decl_stmt|;
+comment|/**    * Constructs the spatial strategy with its mandatory arguments.    */
 DECL|method|SpatialStrategy
 specifier|public
 name|SpatialStrategy
 parameter_list|(
 name|SpatialContext
 name|ctx
+parameter_list|,
+name|String
+name|fieldName
 parameter_list|)
 block|{
+if|if
+condition|(
+name|ctx
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"ctx is required"
+argument_list|)
+throw|;
 name|this
 operator|.
 name|ctx
 operator|=
 name|ctx
+expr_stmt|;
+if|if
+condition|(
+name|fieldName
+operator|==
+literal|null
+operator|||
+name|fieldName
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"fieldName is required"
+argument_list|)
+throw|;
+name|this
+operator|.
+name|fieldName
+operator|=
+name|fieldName
 expr_stmt|;
 block|}
 DECL|method|getSpatialContext
@@ -213,6 +257,17 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**    * The name of the field or the prefix of them if there are multiple    * fields needed internally.    * @return Not null.    */
+DECL|method|getFieldName
+specifier|public
+name|String
+name|getFieldName
+parameter_list|()
+block|{
+return|return
+name|fieldName
+return|;
+block|}
 comment|/**    * Corresponds with Solr's FieldType.createField().    *    * This may return a null field if it does not want to make anything.    * This is reasonable behavior if 'ignoreIncompatibleGeometry=true' and the    * geometry is incompatible    */
 DECL|method|createField
 specifier|public
@@ -220,9 +275,6 @@ specifier|abstract
 name|IndexableField
 name|createField
 parameter_list|(
-name|T
-name|fieldInfo
-parameter_list|,
 name|Shape
 name|shape
 parameter_list|,
@@ -240,9 +292,6 @@ name|IndexableField
 index|[]
 name|createFields
 parameter_list|(
-name|T
-name|fieldInfo
-parameter_list|,
 name|Shape
 name|shape
 parameter_list|,
@@ -260,8 +309,6 @@ index|[]
 block|{
 name|createField
 argument_list|(
-name|fieldInfo
-argument_list|,
 name|shape
 argument_list|,
 name|index
@@ -280,12 +327,9 @@ name|makeValueSource
 parameter_list|(
 name|SpatialArgs
 name|args
-parameter_list|,
-name|T
-name|fieldInfo
 parameter_list|)
 function_decl|;
-comment|/**    * Make a query which has a score based on the distance from the data to the query shape.    * The default implementation constructs a {@link FilteredQuery} based on    * {@link #makeFilter(org.apache.lucene.spatial.query.SpatialArgs, SpatialFieldInfo)} and    * {@link #makeValueSource(org.apache.lucene.spatial.query.SpatialArgs, SpatialFieldInfo)}.    */
+comment|/**    * Make a query which has a score based on the distance from the data to the query shape.    * The default implementation constructs a {@link FilteredQuery} based on    * {@link #makeFilter(org.apache.lucene.spatial.query.SpatialArgs)} and    * {@link #makeValueSource(org.apache.lucene.spatial.query.SpatialArgs)}.    */
 DECL|method|makeQuery
 specifier|public
 name|Query
@@ -293,9 +337,6 @@ name|makeQuery
 parameter_list|(
 name|SpatialArgs
 name|args
-parameter_list|,
-name|T
-name|fieldInfo
 parameter_list|)
 block|{
 name|Filter
@@ -304,8 +345,6 @@ init|=
 name|makeFilter
 argument_list|(
 name|args
-argument_list|,
-name|fieldInfo
 argument_list|)
 decl_stmt|;
 name|ValueSource
@@ -314,8 +353,6 @@ init|=
 name|makeValueSource
 argument_list|(
 name|args
-argument_list|,
-name|fieldInfo
 argument_list|)
 decl_stmt|;
 return|return
@@ -341,9 +378,6 @@ name|makeFilter
 parameter_list|(
 name|SpatialArgs
 name|args
-parameter_list|,
-name|T
-name|fieldInfo
 parameter_list|)
 function_decl|;
 DECL|method|isIgnoreIncompatibleGeometry
@@ -371,6 +405,30 @@ name|ignoreIncompatibleGeometry
 operator|=
 name|ignoreIncompatibleGeometry
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|" field:"
+operator|+
+name|fieldName
+operator|+
+literal|" ctx="
+operator|+
+name|ctx
+return|;
 block|}
 block|}
 end_class

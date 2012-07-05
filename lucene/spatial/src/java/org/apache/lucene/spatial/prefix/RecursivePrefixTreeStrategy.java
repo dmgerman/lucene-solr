@@ -56,20 +56,6 @@ name|lucene
 operator|.
 name|spatial
 operator|.
-name|SimpleSpatialFieldInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
 name|prefix
 operator|.
 name|tree
@@ -143,18 +129,22 @@ specifier|private
 name|int
 name|prefixGridScanLevel
 decl_stmt|;
-comment|//TODO how is this customized?
 DECL|method|RecursivePrefixTreeStrategy
 specifier|public
 name|RecursivePrefixTreeStrategy
 parameter_list|(
 name|SpatialPrefixTree
 name|grid
+parameter_list|,
+name|String
+name|fieldName
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|grid
+argument_list|,
+name|fieldName
 argument_list|)
 expr_stmt|;
 name|prefixGridScanLevel
@@ -177,6 +167,7 @@ name|int
 name|prefixGridScanLevel
 parameter_list|)
 block|{
+comment|//TODO if negative then subtract from maxlevels
 name|this
 operator|.
 name|prefixGridScanLevel
@@ -219,9 +210,6 @@ name|makeFilter
 parameter_list|(
 name|SpatialArgs
 name|args
-parameter_list|,
-name|SimpleSpatialFieldInfo
-name|fieldInfo
 parameter_list|)
 block|{
 specifier|final
@@ -293,8 +281,6 @@ return|return
 operator|new
 name|RecursivePrefixTreeFilter
 argument_list|(
-name|fieldInfo
-operator|.
 name|getFieldName
 argument_list|()
 argument_list|,
