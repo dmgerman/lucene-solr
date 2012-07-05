@@ -869,15 +869,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Randomize this: LUCENE-4094
 name|addVmOpt
 argument_list|(
 name|b
 argument_list|,
-literal|"args"
+literal|"randomized.file.encoding"
 argument_list|,
-literal|"-Dfile.encoding="
-operator|+
 name|System
 operator|.
 name|getProperty

@@ -3435,9 +3435,14 @@ name|b
 operator|<
 literal|0xf8
 operator|:
-literal|"b="
+literal|"b = 0x"
 operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
 name|b
+argument_list|)
 assert|;
 name|int
 name|ch
