@@ -671,7 +671,7 @@ name|si1
 argument_list|,
 name|si2
 argument_list|,
-literal|"_merge"
+literal|"merge"
 argument_list|,
 literal|false
 argument_list|)
@@ -694,7 +694,7 @@ name|si1
 argument_list|,
 name|si2
 argument_list|,
-literal|"_merge2"
+literal|"merge2"
 argument_list|,
 literal|false
 argument_list|)
@@ -717,7 +717,7 @@ name|siMerge
 argument_list|,
 name|siMerge2
 argument_list|,
-literal|"_merge3"
+literal|"merge3"
 argument_list|,
 literal|false
 argument_list|)
@@ -869,7 +869,7 @@ name|si1
 argument_list|,
 name|si2
 argument_list|,
-literal|"_merge"
+literal|"merge"
 argument_list|,
 literal|true
 argument_list|)
@@ -891,7 +891,7 @@ name|si1
 argument_list|,
 name|si2
 argument_list|,
-literal|"_merge2"
+literal|"merge2"
 argument_list|,
 literal|true
 argument_list|)
@@ -913,7 +913,7 @@ name|siMerge
 argument_list|,
 name|siMerge2
 argument_list|,
-literal|"_merge3"
+literal|"merge3"
 argument_list|,
 literal|true
 argument_list|)
