@@ -1563,7 +1563,7 @@ name|numIterations
 init|=
 name|atLeast
 argument_list|(
-literal|10
+literal|3
 argument_list|)
 decl_stmt|;
 for|for
@@ -1828,7 +1828,7 @@ name|numIterations
 init|=
 name|atLeast
 argument_list|(
-literal|10
+literal|3
 argument_list|)
 decl_stmt|;
 for|for

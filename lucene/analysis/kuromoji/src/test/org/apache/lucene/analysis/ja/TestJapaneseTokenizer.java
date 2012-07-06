@@ -1321,7 +1321,7 @@ argument_list|()
 argument_list|,
 name|analyzer
 argument_list|,
-literal|10000
+literal|1000
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
@@ -1333,7 +1333,7 @@ argument_list|()
 argument_list|,
 name|analyzerNoPunct
 argument_list|,
-literal|10000
+literal|1000
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
@@ -1360,7 +1360,7 @@ name|random
 argument_list|,
 name|analyzer
 argument_list|,
-literal|200
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
@@ -1373,7 +1373,7 @@ name|random
 argument_list|,
 name|analyzerNoPunct
 argument_list|,
-literal|200
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
@@ -1459,7 +1459,7 @@ return|;
 block|}
 block|}
 argument_list|,
-literal|200
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,

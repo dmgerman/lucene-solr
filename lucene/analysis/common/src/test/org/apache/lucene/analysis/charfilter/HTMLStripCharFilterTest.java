@@ -2586,7 +2586,7 @@ name|numRounds
 init|=
 name|RANDOM_MULTIPLIER
 operator|*
-literal|10000
+literal|1000
 decl_stmt|;
 name|checkRandomData
 argument_list|(
@@ -2613,7 +2613,7 @@ name|numRounds
 init|=
 name|RANDOM_MULTIPLIER
 operator|*
-literal|200
+literal|100
 decl_stmt|;
 name|checkRandomData
 argument_list|(

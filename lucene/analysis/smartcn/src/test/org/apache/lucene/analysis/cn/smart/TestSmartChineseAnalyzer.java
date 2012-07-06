@@ -1455,7 +1455,7 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
-literal|10000
+literal|1000
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
@@ -1486,7 +1486,7 @@ argument_list|(
 name|TEST_VERSION_CURRENT
 argument_list|)
 argument_list|,
-literal|200
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
