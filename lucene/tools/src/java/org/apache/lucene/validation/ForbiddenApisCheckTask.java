@@ -479,7 +479,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Task to check if a set of class files contains calls to forbidden methods  * from a given classpath and list of methods (either inline or as pointer to files).  */
+comment|/**  * Task to check if a set of class files contains calls to forbidden APIs  * from a given classpath and list of API signatures (either inline or as pointer to files).  */
 end_comment
 
 begin_class
@@ -1326,7 +1326,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Reads a list of method signatures. Closes the Reader when done (on Exception, too)! */
+comment|/** Reads a list of API signatures. Closes the Reader when done (on Exception, too)! */
 DECL|method|parseApiFile
 specifier|private
 name|void
@@ -1714,7 +1714,7 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"Scanned %d class file(s) for forbidden method invocations (in %.2fs), %d error(s)."
+literal|"Scanned %d class file(s) for forbidden API invocations (in %.2fs), %d error(s)."
 argument_list|,
 name|checked
 argument_list|,
@@ -1756,7 +1756,7 @@ throw|throw
 operator|new
 name|BuildException
 argument_list|(
-literal|"Check for forbidden method calls failed, see log."
+literal|"Check for forbidden API calls failed, see log."
 argument_list|)
 throw|;
 block|}
@@ -1794,7 +1794,7 @@ name|rc
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** A file with method signatures apiFile= attribute */
+comment|/** A file with API signatures apiFile= attribute */
 DECL|method|setApiFile
 specifier|public
 name|void
@@ -1819,7 +1819,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Set of files with method signatures as<apiFileSet/> nested element */
+comment|/** Set of files with API signatures as<apiFileSet/> nested element */
 DECL|method|createApiFileSet
 specifier|public
 name|FileSet
