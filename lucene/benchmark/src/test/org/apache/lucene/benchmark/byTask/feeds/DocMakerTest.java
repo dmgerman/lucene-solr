@@ -1069,6 +1069,8 @@ operator|new
 name|PrintStream
 argument_list|(
 name|f
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 decl_stmt|;
 name|ps

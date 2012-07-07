@@ -66,6 +66,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -393,6 +403,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 name|headerFormat
 argument_list|,
 literal|"Encoder"
@@ -424,6 +438,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 name|headerFormat
 argument_list|,
 literal|""
@@ -951,6 +969,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 name|resultsFormat
 argument_list|,
 name|encoder

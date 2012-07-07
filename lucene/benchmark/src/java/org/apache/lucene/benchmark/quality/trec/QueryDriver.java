@@ -168,7 +168,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileReader
+name|OutputStreamWriter
 import|;
 end_import
 
@@ -179,6 +179,18 @@ operator|.
 name|io
 operator|.
 name|PrintWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|Charset
 import|;
 end_import
 
@@ -424,9 +436,18 @@ init|=
 operator|new
 name|PrintWriter
 argument_list|(
+operator|new
+name|OutputStreamWriter
+argument_list|(
 name|System
 operator|.
 name|out
+argument_list|,
+name|Charset
+operator|.
+name|defaultCharset
+argument_list|()
+argument_list|)
 argument_list|,
 literal|true
 argument_list|)
