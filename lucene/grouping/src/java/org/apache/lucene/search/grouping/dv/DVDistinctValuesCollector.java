@@ -427,6 +427,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"ValueType %s not supported"
 argument_list|,
 name|type
