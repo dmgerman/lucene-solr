@@ -609,7 +609,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|,
 operator|(
 name|r
@@ -634,7 +634,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|,
 name|TWO_DIGIT
 argument_list|,

@@ -99,7 +99,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|,
 literal|"%.0f [+- %.2f]"
 argument_list|,

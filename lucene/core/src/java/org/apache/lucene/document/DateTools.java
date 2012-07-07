@@ -168,7 +168,7 @@ name|GMT
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 return|;
 block|}
@@ -677,7 +677,7 @@ argument_list|)
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 expr_stmt|;
 name|this
@@ -709,7 +709,7 @@ name|toLowerCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 return|;
 block|}

@@ -926,7 +926,7 @@ literal|"yyyy-MM-dd'T'HH:mm:ss"
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 decl_stmt|;
 name|dateFormat

@@ -1250,7 +1250,7 @@ name|sb
 argument_list|,
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 operator|.
 name|format
@@ -1712,7 +1712,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|,
 literal|"Scanned %d class file(s) for forbidden method invocations (in %.2fs), %d error(s)."
 argument_list|,

@@ -1341,7 +1341,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*   private Date parseDate(String s) throws ParseException {     return new SimpleDateFormat("yyyy MMM dd", Locale.US).parse(s);   }   */
+comment|/*   private Date parseDate(String s) throws ParseException {     return new SimpleDateFormat("yyyy MMM dd", Locale.ROOT).parse(s);   }   */
 DECL|method|testWithCachingFilter
 specifier|public
 name|void

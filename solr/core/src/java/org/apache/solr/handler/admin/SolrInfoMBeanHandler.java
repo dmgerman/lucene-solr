@@ -1751,7 +1751,7 @@ name|getIntegerInstance
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 decl_stmt|;
 if|if
@@ -1777,7 +1777,7 @@ name|getInstance
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 expr_stmt|;
 block|}

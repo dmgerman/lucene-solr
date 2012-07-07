@@ -545,7 +545,7 @@ name|toLowerCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 argument_list|)
 expr_stmt|;

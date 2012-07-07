@@ -697,7 +697,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|,
 literal|"%-15s input: %d, time[ms]: %s"
 argument_list|,
@@ -774,7 +774,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|,
 literal|"%-15s size[B]:%,13d"
 argument_list|,
@@ -977,7 +977,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|,
 literal|"-- prefixes: %d-%d, num: %d, onlyMorePopular: %s"
 argument_list|,
@@ -1156,7 +1156,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|,
 literal|"%-15s queries: %d, time[ms]: %s, ~kQPS: %.0f"
 argument_list|,

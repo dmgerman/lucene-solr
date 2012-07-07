@@ -663,7 +663,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|,
 literal|"Scanned %d JAR file(s) for licenses (in %.2fs.), %d error(s)."
 argument_list|,
@@ -1379,7 +1379,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|,
 literal|"%02x"
 argument_list|,
