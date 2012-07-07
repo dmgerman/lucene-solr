@@ -70,7 +70,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileReader
+name|IOException
 import|;
 end_import
 
@@ -80,7 +80,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|InputStreamReader
 import|;
 end_import
 
@@ -121,6 +121,20 @@ operator|.
 name|util
 operator|.
 name|StringTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
 import|;
 end_import
 
@@ -537,9 +551,17 @@ operator|new
 name|BufferedReader
 argument_list|(
 operator|new
-name|FileReader
+name|InputStreamReader
+argument_list|(
+operator|new
+name|FileInputStream
 argument_list|(
 name|file
+argument_list|)
+argument_list|,
+name|IOUtils
+operator|.
+name|CHARSET_UTF_8
 argument_list|)
 argument_list|)
 argument_list|)
