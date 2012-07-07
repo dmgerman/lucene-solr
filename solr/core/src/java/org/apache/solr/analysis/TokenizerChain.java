@@ -84,38 +84,12 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|Reader
 import|;
 end_import
 
 begin_comment
-comment|/**  *  */
-end_comment
-
-begin_comment
-comment|//
-end_comment
-
-begin_comment
-comment|// An analyzer that uses a tokenizer and a list of token filters to
-end_comment
-
-begin_comment
-comment|// create a TokenStream.
-end_comment
-
-begin_comment
-comment|//
+comment|/**  * An analyzer that uses a tokenizer and a list of token filters to  * create a TokenStream.  */
 end_comment
 
 begin_class
@@ -236,68 +210,6 @@ return|return
 name|filters
 return|;
 block|}
-DECL|class|SolrTokenStreamComponents
-class|class
-name|SolrTokenStreamComponents
-extends|extends
-name|TokenStreamComponents
-block|{
-DECL|method|SolrTokenStreamComponents
-specifier|public
-name|SolrTokenStreamComponents
-parameter_list|(
-specifier|final
-name|Tokenizer
-name|source
-parameter_list|,
-specifier|final
-name|TokenStream
-name|result
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|source
-argument_list|,
-name|result
-argument_list|)
-expr_stmt|;
-block|}
-comment|// TODO: what is going on here?
-annotation|@
-name|Override
-DECL|method|reset
-specifier|protected
-name|void
-name|reset
-parameter_list|(
-name|Reader
-name|reader
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-comment|// the tokenizers are currently reset by the indexing process, so only
-comment|// the tokenizer needs to be reset.
-name|Reader
-name|r
-init|=
-name|initReader
-argument_list|(
-literal|null
-argument_list|,
-name|reader
-argument_list|)
-decl_stmt|;
-name|super
-operator|.
-name|reset
-argument_list|(
-name|r
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 annotation|@
 name|Override
 DECL|method|initReader
@@ -383,12 +295,7 @@ name|tokenizer
 operator|.
 name|create
 argument_list|(
-name|initReader
-argument_list|(
-name|fieldName
-argument_list|,
 name|aReader
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|TokenStream
@@ -416,7 +323,7 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|SolrTokenStreamComponents
+name|TokenStreamComponents
 argument_list|(
 name|tk
 argument_list|,
