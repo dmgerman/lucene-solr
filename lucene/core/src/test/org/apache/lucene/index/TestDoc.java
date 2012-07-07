@@ -32,7 +32,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileReader
+name|FileInputStream
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileWriter
+name|FileOutputStream
 import|;
 end_import
 
@@ -53,6 +53,26 @@ operator|.
 name|io
 operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStreamWriter
 import|;
 end_import
 
@@ -73,6 +93,16 @@ operator|.
 name|io
 operator|.
 name|StringWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Writer
 import|;
 end_import
 
@@ -454,7 +484,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|FileWriter
+name|Writer
 name|fw
 init|=
 literal|null
@@ -492,9 +522,15 @@ expr_stmt|;
 name|fw
 operator|=
 operator|new
-name|FileWriter
+name|OutputStreamWriter
+argument_list|(
+operator|new
+name|FileOutputStream
 argument_list|(
 name|f
+argument_list|)
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 name|pw
@@ -991,6 +1027,21 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
+name|InputStreamReader
+name|is
+init|=
+operator|new
+name|InputStreamReader
+argument_list|(
+operator|new
+name|FileInputStream
+argument_list|(
+name|file
+argument_list|)
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+decl_stmt|;
 name|doc
 operator|.
 name|add
@@ -1000,11 +1051,7 @@ name|TextField
 argument_list|(
 literal|"contents"
 argument_list|,
-operator|new
-name|FileReader
-argument_list|(
-name|file
-argument_list|)
+name|is
 argument_list|,
 name|Field
 operator|.
@@ -1024,6 +1071,11 @@ expr_stmt|;
 name|writer
 operator|.
 name|commit
+argument_list|()
+expr_stmt|;
+name|is
+operator|.
+name|close
 argument_list|()
 expr_stmt|;
 return|return
