@@ -407,21 +407,7 @@ parameter_list|(
 name|IOException
 name|e
 parameter_list|)
-block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"Caught: "
-operator|+
-name|e
-operator|+
-literal|"; ignoring."
-argument_list|)
-expr_stmt|;
-block|}
+block|{     }
 block|}
 DECL|method|getColumn
 specifier|public
