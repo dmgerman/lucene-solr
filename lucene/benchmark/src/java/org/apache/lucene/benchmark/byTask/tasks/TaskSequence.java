@@ -2167,7 +2167,11 @@ operator|+
 name|NumberFormat
 operator|.
 name|getNumberInstance
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 operator|.
 name|format
 argument_list|(

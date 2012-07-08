@@ -4332,6 +4332,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+comment|// we use the default Locale since LuceneTestCase randomizes it
 name|DateFormat
 name|df
 init|=
@@ -4342,6 +4343,11 @@ argument_list|(
 name|DateFormat
 operator|.
 name|SHORT
+argument_list|,
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
 argument_list|)
 decl_stmt|;
 return|return
@@ -4433,6 +4439,7 @@ name|int
 name|day
 parameter_list|)
 block|{
+comment|// we use the default Locale since LuceneTestCase randomizes it
 name|DateFormat
 name|df
 init|=
@@ -4443,6 +4450,11 @@ argument_list|(
 name|DateFormat
 operator|.
 name|SHORT
+argument_list|,
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Calendar
