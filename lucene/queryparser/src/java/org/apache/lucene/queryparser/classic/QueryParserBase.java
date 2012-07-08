@@ -913,7 +913,7 @@ return|return
 name|multiTermRewriteMethod
 return|;
 block|}
-comment|/**    * Set locale used by date range parsing.    */
+comment|/**    * Set locale used by date range parsing, lowercasing, and other    * locale-sensitive operations.    */
 DECL|method|setLocale
 specifier|public
 name|void
@@ -2418,7 +2418,9 @@ else|:
 name|part1
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|locale
+argument_list|)
 expr_stmt|;
 name|part2
 operator|=
@@ -2431,7 +2433,9 @@ else|:
 name|part2
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|locale
+argument_list|)
 expr_stmt|;
 block|}
 name|DateFormat
@@ -3359,7 +3363,9 @@ operator|=
 name|termStr
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|locale
+argument_list|)
 expr_stmt|;
 block|}
 name|Term
@@ -3405,7 +3411,9 @@ operator|=
 name|termStr
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|locale
+argument_list|)
 expr_stmt|;
 block|}
 name|Term
@@ -3470,7 +3478,9 @@ operator|=
 name|termStr
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|locale
+argument_list|)
 expr_stmt|;
 block|}
 name|Term
@@ -3519,7 +3529,9 @@ operator|=
 name|termStr
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|locale
+argument_list|)
 expr_stmt|;
 block|}
 name|Term
