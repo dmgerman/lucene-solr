@@ -293,13 +293,19 @@ argument_list|(
 name|TEXT
 argument_list|)
 decl_stmt|;
+comment|// we test this with default locale, its randomized by LuceneTestCase
 name|BreakIterator
 name|bi
 init|=
 name|BreakIterator
 operator|.
 name|getSentenceInstance
+argument_list|(
+name|Locale
+operator|.
+name|getDefault
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|BoundaryScanner
 name|scanner
@@ -379,13 +385,19 @@ argument_list|(
 name|TEXT
 argument_list|)
 decl_stmt|;
+comment|// we test this with default locale, its randomized by LuceneTestCase
 name|BreakIterator
 name|bi
 init|=
 name|BreakIterator
 operator|.
 name|getLineInstance
+argument_list|(
+name|Locale
+operator|.
+name|getDefault
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|BoundaryScanner
 name|scanner
