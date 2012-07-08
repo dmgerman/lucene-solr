@@ -791,6 +791,21 @@ name|ch2
 argument_list|)
 return|;
 block|}
+else|else
+block|{
+assert|assert
+literal|false
+operator|:
+literal|"stream ends with unpaired high surrogate: "
+operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
+name|ch
+argument_list|)
+assert|;
+block|}
 block|}
 return|return
 name|ch
