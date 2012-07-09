@@ -59,50 +59,9 @@ DECL|interface|StorableField
 specifier|public
 interface|interface
 name|StorableField
-block|{
-comment|/** Field name */
-DECL|method|name
-specifier|public
-name|String
-name|name
-parameter_list|()
-function_decl|;
-comment|/** Field type */
-DECL|method|fieldType
-specifier|public
-name|FieldType
-name|fieldType
-parameter_list|()
-function_decl|;
-comment|/** Non-null if this field has a binary value */
-DECL|method|binaryValue
-specifier|public
-name|BytesRef
-name|binaryValue
-parameter_list|()
-function_decl|;
-comment|/** Non-null if this field has a string value */
-DECL|method|stringValue
-specifier|public
-name|String
-name|stringValue
-parameter_list|()
-function_decl|;
-comment|/** Non-null if this field has a Reader value */
-DECL|method|readerValue
-specifier|public
-name|Reader
-name|readerValue
-parameter_list|()
-function_decl|;
-comment|/** Non-null if this field has a numeric value */
-DECL|method|numericValue
-specifier|public
-name|Number
-name|numericValue
-parameter_list|()
-function_decl|;
-block|}
+extends|extends
+name|GeneralField
+block|{    }
 end_interface
 
 end_unit

@@ -68,20 +68,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|StorableFieldType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|NumericRangeQuery
@@ -117,8 +103,6 @@ class|class
 name|FieldType
 implements|implements
 name|IndexableFieldType
-implements|,
-name|StorableFieldType
 block|{
 comment|/** Data type of the numeric value    * @since 3.2    */
 DECL|enum|NumericType
@@ -991,6 +975,12 @@ expr_stmt|;
 name|docValueType
 operator|=
 name|type
+expr_stmt|;
+name|this
+operator|.
+name|stored
+operator|=
+literal|true
 expr_stmt|;
 block|}
 block|}

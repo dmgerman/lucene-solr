@@ -78,6 +78,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|StoredDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|DocIdSetIterator
@@ -347,7 +361,7 @@ operator|>=
 literal|1
 argument_list|)
 expr_stmt|;
-name|Document
+name|StoredDocument
 name|result
 init|=
 name|reader
@@ -391,7 +405,7 @@ argument_list|)
 expr_stmt|;
 name|List
 argument_list|<
-name|IndexableField
+name|StorableField
 argument_list|>
 name|fields
 init|=
@@ -403,7 +417,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|IndexableField
+name|StorableField
 name|field
 range|:
 name|fields

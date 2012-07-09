@@ -146,6 +146,13 @@ static|static
 block|{
 name|TYPE_NOT_STORED
 operator|.
+name|setIndexed
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|TYPE_NOT_STORED
+operator|.
 name|setTokenized
 argument_list|(
 literal|true

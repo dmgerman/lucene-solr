@@ -95,21 +95,9 @@ DECL|interface|IndexableField
 specifier|public
 interface|interface
 name|IndexableField
+extends|extends
+name|GeneralField
 block|{
-comment|/** Field name */
-DECL|method|name
-specifier|public
-name|String
-name|name
-parameter_list|()
-function_decl|;
-comment|/** {@link IndexableFieldType} describing the properties    * of this field. */
-DECL|method|fieldType
-specifier|public
-name|IndexableFieldType
-name|fieldType
-parameter_list|()
-function_decl|;
 comment|/**    * Creates the TokenStream used for indexing this field.  If appropriate,    * implementations should use the given Analyzer to create the TokenStreams.    *    * @param analyzer Analyzer that should be used to create the TokenStreams from    * @return TokenStream value for indexing the document.  Should always return    *         a non-null value if the field is to be indexed    * @throws IOException Can be thrown while creating the TokenStream    */
 DECL|method|tokenStream
 specifier|public

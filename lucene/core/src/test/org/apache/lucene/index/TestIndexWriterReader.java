@@ -156,6 +156,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|StoredDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|TextField
 import|;
 end_import
@@ -971,7 +985,7 @@ operator|.
 name|stringValue
 argument_list|()
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|newDoc
 init|=
 name|r1
@@ -1024,6 +1038,9 @@ name|id10
 argument_list|)
 argument_list|,
 name|newDoc
+operator|.
+name|asIndexable
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertFalse
@@ -1828,7 +1845,7 @@ name|index2df
 argument_list|)
 expr_stmt|;
 comment|// verify the docs are from different indexes
-name|Document
+name|StoredDocument
 name|doc5
 init|=
 name|r1
@@ -1850,7 +1867,7 @@ literal|"indexname"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Document
+name|StoredDocument
 name|doc150
 init|=
 name|r1

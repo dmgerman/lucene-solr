@@ -268,6 +268,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|StoredDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|StraightBytesDocValuesField
 import|;
 end_import
@@ -423,6 +437,20 @@ operator|.
 name|index
 operator|.
 name|RandomIndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StorableField
 import|;
 end_import
 
@@ -4710,7 +4738,7 @@ operator|++
 name|x
 control|)
 block|{
-name|Document
+name|StoredDocument
 name|doc2
 init|=
 name|searcher
@@ -4725,7 +4753,7 @@ operator|.
 name|doc
 argument_list|)
 decl_stmt|;
-name|IndexableField
+name|StorableField
 index|[]
 name|v
 init|=
@@ -4738,7 +4766,7 @@ operator|+
 name|fieldSuffix
 argument_list|)
 decl_stmt|;
-name|IndexableField
+name|StorableField
 index|[]
 name|v2
 init|=
@@ -10319,7 +10347,7 @@ operator|++
 name|i
 control|)
 block|{
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|searcher
@@ -10334,7 +10362,7 @@ operator|.
 name|doc
 argument_list|)
 decl_stmt|;
-name|IndexableField
+name|StorableField
 index|[]
 name|v
 init|=
