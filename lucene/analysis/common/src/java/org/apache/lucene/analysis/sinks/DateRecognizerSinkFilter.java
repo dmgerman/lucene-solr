@@ -121,7 +121,7 @@ specifier|protected
 name|CharTermAttribute
 name|termAtt
 decl_stmt|;
-comment|/**    * Uses {@link java.text.SimpleDateFormat#getDateInstance(DateFormat.DEFAULT, Locale.ROOT)} as     * the {@link java.text.DateFormat} object.    */
+comment|/**    * Uses {@link java.text.DateFormat#getDateInstance(int, Locale)    * DateFormat#getDateInstance(DateFormat.DEFAULT, Locale.ROOT)} as     * the {@link java.text.DateFormat} object.    */
 DECL|method|DateRecognizerSinkFilter
 specifier|public
 name|DateRecognizerSinkFilter
