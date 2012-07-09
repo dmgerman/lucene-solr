@@ -2236,6 +2236,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"The grouping cache is active, but not used because it exceeded the max cache limit of %d percent"
 argument_list|,
 name|maxDocsPercentageToCache

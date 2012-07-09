@@ -34,6 +34,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -284,12 +294,26 @@ name|LowercaseExpandedTermsQueryNodeProcessor
 extends|extends
 name|QueryNodeProcessorImpl
 block|{
+DECL|field|locale
+specifier|private
+specifier|final
+name|Locale
+name|locale
+decl_stmt|;
 DECL|method|LowercaseExpandedTermsQueryNodeProcessor
 specifier|public
 name|LowercaseExpandedTermsQueryNodeProcessor
-parameter_list|()
+parameter_list|(
+name|Locale
+name|locale
+parameter_list|)
 block|{
-comment|// empty constructor
+name|this
+operator|.
+name|locale
+operator|=
+name|locale
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -409,6 +433,8 @@ operator|.
 name|toLowerCase
 argument_list|(
 name|text
+argument_list|,
+name|locale
 argument_list|)
 else|:
 literal|null
