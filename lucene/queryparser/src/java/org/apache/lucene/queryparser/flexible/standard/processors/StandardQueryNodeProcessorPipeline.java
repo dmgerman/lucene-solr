@@ -282,17 +282,11 @@ name|NumericRangeQueryNodeProcessor
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO: queryConfig is null here!
 name|add
 argument_list|(
 operator|new
 name|LowercaseExpandedTermsQueryNodeProcessor
-argument_list|(
-name|Locale
-operator|.
-name|getDefault
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|add
