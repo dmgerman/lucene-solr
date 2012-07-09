@@ -204,22 +204,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
-operator|.
-name|Slow
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|automaton
 operator|.
 name|Automaton
@@ -295,8 +279,6 @@ comment|/**  * Compares MockTokenizer (which is simple with no optimizations) wi
 end_comment
 
 begin_class
-annotation|@
-name|Slow
 DECL|class|TestDuelingAnalyzers
 specifier|public
 class|class
@@ -498,7 +480,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10000
+literal|1000
 condition|;
 name|i
 operator|++
@@ -635,7 +617,7 @@ name|numIterations
 init|=
 name|atLeast
 argument_list|(
-literal|100
+literal|50
 argument_list|)
 decl_stmt|;
 for|for
@@ -775,7 +757,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10000
+literal|1000
 condition|;
 name|i
 operator|++
@@ -841,7 +823,7 @@ decl_stmt|;
 name|int
 name|maxLength
 init|=
-literal|2048
+literal|1024
 decl_stmt|;
 comment|// this is number of elements, not chars!
 name|MockAnalyzer
@@ -913,7 +895,7 @@ name|numIterations
 init|=
 name|atLeast
 argument_list|(
-literal|100
+literal|50
 argument_list|)
 decl_stmt|;
 for|for
@@ -1054,7 +1036,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10000
+literal|1000
 condition|;
 name|i
 operator|++
@@ -1118,9 +1100,9 @@ decl_stmt|;
 name|int
 name|maxLength
 init|=
-literal|8192
+literal|4300
 decl_stmt|;
-comment|// CharTokenizer.IO_BUFFER_SIZE*2
+comment|// CharTokenizer.IO_BUFFER_SIZE + fudge
 name|MockAnalyzer
 name|left
 init|=
@@ -1190,7 +1172,7 @@ name|numIterations
 init|=
 name|atLeast
 argument_list|(
-literal|100
+literal|50
 argument_list|)
 decl_stmt|;
 for|for

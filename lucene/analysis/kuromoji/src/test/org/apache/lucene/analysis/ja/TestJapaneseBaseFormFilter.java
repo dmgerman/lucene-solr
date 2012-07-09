@@ -238,7 +238,7 @@ name|analyzer
 argument_list|,
 name|atLeast
 argument_list|(
-literal|10000
+literal|1000
 argument_list|)
 argument_list|)
 expr_stmt|;
