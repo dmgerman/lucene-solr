@@ -257,25 +257,6 @@ block|}
 comment|// ======================================================
 comment|//  the constructor
 comment|// ======================================================
-comment|/**    * Default strategy for the parser follows the default {@link CSVStrategy}.    *     * @param input an InputStream containing "csv-formatted" stream    * @deprecated use {@link #CSVParser(Reader)}.    */
-DECL|method|CSVParser
-specifier|public
-name|CSVParser
-parameter_list|(
-name|InputStream
-name|input
-parameter_list|)
-block|{
-name|this
-argument_list|(
-operator|new
-name|InputStreamReader
-argument_list|(
-name|input
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * CSV parser using the default {@link CSVStrategy}.    *     * @param input a Reader containing "csv-formatted" input    */
 DECL|method|CSVParser
 specifier|public

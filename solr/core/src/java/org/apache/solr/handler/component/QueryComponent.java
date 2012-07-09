@@ -1461,6 +1461,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Illegal %s parameter"
 argument_list|,
 name|GroupParams
@@ -2925,6 +2929,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Cache limit of %d percent relative to maxdoc has exceeded. Please increase cache size or disable caching."
 argument_list|,
 name|maxDocsPercentageToCache

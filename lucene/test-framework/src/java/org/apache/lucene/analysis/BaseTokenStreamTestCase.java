@@ -4287,6 +4287,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"\\u%04x"
 argument_list|,
 name|c

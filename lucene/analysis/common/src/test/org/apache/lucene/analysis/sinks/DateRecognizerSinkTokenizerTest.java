@@ -115,7 +115,7 @@ literal|"MM/dd/yyyy"
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -152,7 +152,7 @@ name|UTC
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 decl_stmt|;
 annotation|@

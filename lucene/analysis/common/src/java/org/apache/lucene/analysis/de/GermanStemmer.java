@@ -14,6 +14,16 @@ name|de
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|// This file is encoded in UTF-8
 end_comment
@@ -50,6 +60,21 @@ name|substCount
 init|=
 literal|0
 decl_stmt|;
+DECL|field|locale
+specifier|private
+specifier|static
+specifier|final
+name|Locale
+name|locale
+init|=
+operator|new
+name|Locale
+argument_list|(
+literal|"de"
+argument_list|,
+literal|"DE"
+argument_list|)
+decl_stmt|;
 comment|/**      * Stemms the given term to an unique<tt>discriminator</tt>.      *      * @param term  The term that should be stemmed.      * @return      Discriminator for<tt>term</tt>      */
 DECL|method|stem
 specifier|protected
@@ -66,7 +91,9 @@ operator|=
 name|term
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|locale
+argument_list|)
 expr_stmt|;
 if|if
 condition|(

@@ -50,6 +50,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -111,7 +121,7 @@ specifier|protected
 name|CharTermAttribute
 name|termAtt
 decl_stmt|;
-comment|/**    * Uses {@link java.text.SimpleDateFormat#getDateInstance()} as the {@link java.text.DateFormat} object.    */
+comment|/**    * Uses {@link java.text.SimpleDateFormat#getDateInstance(DateFormat.DEFAULT, Locale.ROOT)} as     * the {@link java.text.DateFormat} object.    */
 DECL|method|DateRecognizerSinkFilter
 specifier|public
 name|DateRecognizerSinkFilter
@@ -122,7 +132,15 @@ argument_list|(
 name|DateFormat
 operator|.
 name|getDateInstance
-argument_list|()
+argument_list|(
+name|DateFormat
+operator|.
+name|DEFAULT
+argument_list|,
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

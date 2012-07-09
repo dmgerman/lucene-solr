@@ -1500,7 +1500,7 @@ name|toUpperCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 operator|+
 name|attribute

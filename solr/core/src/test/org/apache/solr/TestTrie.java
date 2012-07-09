@@ -1381,7 +1381,7 @@ literal|"yyyy-MM-dd'T'HH:mm:ss'Z'"
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 decl_stmt|;
 name|format
@@ -1416,7 +1416,7 @@ name|UTC
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 decl_stmt|;
 name|String
@@ -1829,7 +1829,7 @@ literal|"yyyy-MM-dd'T'HH:mm:ss'Z'"
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 decl_stmt|;
 name|format
@@ -1856,7 +1856,7 @@ name|UTC
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 decl_stmt|;
 for|for

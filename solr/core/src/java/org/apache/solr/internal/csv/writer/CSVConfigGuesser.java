@@ -50,6 +50,20 @@ name|InputStreamReader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tries to guess a config based on an InputStream.  *  */
 end_comment
@@ -159,10 +173,12 @@ argument_list|(
 operator|new
 name|InputStreamReader
 argument_list|(
-operator|(
 name|getInputStream
 argument_list|()
-operator|)
+argument_list|,
+name|IOUtils
+operator|.
+name|CHARSET_UTF_8
 argument_list|)
 argument_list|)
 decl_stmt|;
