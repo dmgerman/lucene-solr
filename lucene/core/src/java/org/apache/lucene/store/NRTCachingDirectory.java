@@ -211,6 +211,16 @@ literal|1024
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|getDelegate
+specifier|public
+name|Directory
+name|getDelegate
+parameter_list|()
+block|{
+return|return
+name|delegate
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|getLockFactory

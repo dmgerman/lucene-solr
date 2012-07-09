@@ -120,22 +120,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|WhitespaceTokenizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|tokenattributes
 operator|.
 name|CharTermAttribute
@@ -147,10 +131,10 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_class
-DECL|class|TestPerFieldAnalzyerWrapper
+DECL|class|TestPerFieldAnalyzerWrapper
 specifier|public
 class|class
-name|TestPerFieldAnalzyerWrapper
+name|TestPerFieldAnalyzerWrapper
 extends|extends
 name|BaseTokenStreamTestCase
 block|{

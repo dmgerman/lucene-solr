@@ -2404,7 +2404,7 @@ block|{
 name|dirFactory
 operator|=
 operator|new
-name|StandardDirectoryFactory
+name|NRTCachingDirectoryFactory
 argument_list|()
 expr_stmt|;
 block|}
