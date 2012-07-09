@@ -413,7 +413,9 @@ name|etagSeed
 operator|)
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"US-ASCII"
+argument_list|)
 argument_list|)
 argument_list|,
 literal|"US-ASCII"
