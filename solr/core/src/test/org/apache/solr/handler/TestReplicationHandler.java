@@ -42,7 +42,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileReader
+name|FileInputStream
 import|;
 end_import
 
@@ -52,7 +52,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileWriter
+name|FileOutputStream
 import|;
 end_import
 
@@ -83,6 +83,26 @@ operator|.
 name|io
 operator|.
 name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStreamWriter
 import|;
 end_import
 
@@ -5388,9 +5408,15 @@ operator|new
 name|BufferedReader
 argument_list|(
 operator|new
-name|FileReader
+name|InputStreamReader
+argument_list|(
+operator|new
+name|FileInputStream
 argument_list|(
 name|src
+argument_list|)
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -5398,9 +5424,15 @@ name|Writer
 name|out
 init|=
 operator|new
-name|FileWriter
+name|OutputStreamWriter
+argument_list|(
+operator|new
+name|FileOutputStream
 argument_list|(
 name|dst
+argument_list|)
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 decl_stmt|;
 for|for

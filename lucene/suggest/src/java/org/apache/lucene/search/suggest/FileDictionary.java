@@ -140,10 +140,15 @@ operator|=
 operator|new
 name|BufferedReader
 argument_list|(
-operator|new
-name|InputStreamReader
+name|IOUtils
+operator|.
+name|getDecodingReader
 argument_list|(
 name|dictFile
+argument_list|,
+name|IOUtils
+operator|.
+name|CHARSET_UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -2733,6 +2733,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Expected doc[%d] with id value %s"
 argument_list|,
 name|doc
@@ -2807,6 +2811,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Actual doc[%d] with id value %s"
 argument_list|,
 name|doc

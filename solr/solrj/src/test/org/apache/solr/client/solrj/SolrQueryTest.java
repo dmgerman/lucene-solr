@@ -104,6 +104,16 @@ name|Locale
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TimeZone
+import|;
+end_import
+
 begin_comment
 comment|/**  *   *  * @since solr 1.3  */
 end_comment
@@ -1013,6 +1023,13 @@ name|Calendar
 operator|.
 name|getInstance
 argument_list|(
+name|TimeZone
+operator|.
+name|getTimeZone
+argument_list|(
+literal|"UTC"
+argument_list|)
+argument_list|,
 name|Locale
 operator|.
 name|UK

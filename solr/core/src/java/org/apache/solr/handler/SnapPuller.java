@@ -3356,7 +3356,7 @@ name|DATE_FMT
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 operator|.
 name|format
@@ -4441,7 +4441,7 @@ name|DATE_FMT
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 operator|.
 name|format

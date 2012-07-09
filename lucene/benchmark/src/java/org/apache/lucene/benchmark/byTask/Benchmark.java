@@ -84,6 +84,20 @@ name|Config
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * Run the benchmark algorithm.  *<p>Usage: java Benchmark  algorithm-file  *<ol>  *<li>Read algorithm.</li>  *<li> Run the algorithm.</li>  *</ol>  * Things to be added/fixed in "Benchmarking by tasks":  *<ol>  *<li>TODO - report into Excel and/or graphed view.</li>  *<li>TODO - perf comparison between Lucene releases over the years.</li>  *<li>TODO - perf report adequate to include in Lucene nightly build site? (so we can easily track performance changes.)</li>  *<li>TODO - add overall time control for repeated execution (vs. current by-count only).</li>  *<li>TODO - query maker that is based on index statistics.</li>  *</ol>  */
 end_comment
@@ -362,10 +376,15 @@ operator|=
 operator|new
 name|Benchmark
 argument_list|(
-operator|new
-name|FileReader
+name|IOUtils
+operator|.
+name|getDecodingReader
 argument_list|(
 name|algFile
+argument_list|,
+name|IOUtils
+operator|.
+name|CHARSET_UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;

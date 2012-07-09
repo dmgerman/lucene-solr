@@ -52,6 +52,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Random
 import|;
 end_import
@@ -123,6 +133,10 @@ operator|new
 name|GregorianCalendar
 argument_list|(
 name|tz
+argument_list|,
+name|Locale
+operator|.
+name|ROOT
 argument_list|)
 expr_stmt|;
 name|this

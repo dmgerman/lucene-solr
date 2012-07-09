@@ -40,6 +40,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1310,7 +1320,11 @@ name|i
 index|]
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 expr_stmt|;
 name|assertTokenStreamContents
 argument_list|(
@@ -1441,7 +1455,11 @@ name|i
 argument_list|)
 operator|.
 name|toUpperCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 argument_list|)
 operator|.
 name|append

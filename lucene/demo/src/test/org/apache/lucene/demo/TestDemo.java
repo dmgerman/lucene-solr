@@ -48,6 +48,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|Charset
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -122,6 +134,16 @@ operator|new
 name|PrintStream
 argument_list|(
 name|bytes
+argument_list|,
+literal|false
+argument_list|,
+name|Charset
+operator|.
+name|defaultCharset
+argument_list|()
+operator|.
+name|name
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|System
@@ -163,7 +185,15 @@ init|=
 name|bytes
 operator|.
 name|toString
+argument_list|(
+name|Charset
+operator|.
+name|defaultCharset
 argument_list|()
+operator|.
+name|name
+argument_list|()
+argument_list|)
 decl_stmt|;
 comment|// intentionally use default encoding
 name|assertTrue
