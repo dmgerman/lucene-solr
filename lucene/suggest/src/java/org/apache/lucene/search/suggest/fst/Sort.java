@@ -902,17 +902,22 @@ operator|==
 literal|1
 condition|)
 block|{
-comment|// If simple rename doesn't work this means the output is
-comment|// on a different volume or something. Copy the input then.
-if|if
-condition|(
-operator|!
+name|File
+name|single
+init|=
 name|merges
 operator|.
 name|get
 argument_list|(
 literal|0
 argument_list|)
+decl_stmt|;
+comment|// If simple rename doesn't work this means the output is
+comment|// on a different volume or something. Copy the input then.
+if|if
+condition|(
+operator|!
+name|single
 operator|.
 name|renameTo
 argument_list|(
@@ -922,15 +927,15 @@ condition|)
 block|{
 name|copy
 argument_list|(
-name|merges
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
+name|single
 argument_list|,
 name|output
 argument_list|)
+expr_stmt|;
+name|single
+operator|.
+name|delete
+argument_list|()
 expr_stmt|;
 block|}
 block|}
