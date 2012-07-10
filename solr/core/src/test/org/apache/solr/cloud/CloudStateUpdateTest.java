@@ -405,14 +405,6 @@ argument_list|(
 literal|"solrcloud.skip.autorecovery"
 argument_list|)
 expr_stmt|;
-comment|// wait just a bit for any zk client threads to outlast timeout
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|2000
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override
