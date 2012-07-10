@@ -140,7 +140,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|SolrException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -372,6 +372,22 @@ argument_list|(
 literal|"bad-schema-sim-global-vs-ft-mismatch.xml"
 argument_list|,
 literal|"global similarity does not support it"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testPerFieldtypePostingsFormatButNoSchemaCodecFactory
+specifier|public
+name|void
+name|testPerFieldtypePostingsFormatButNoSchemaCodecFactory
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-codec-global-vs-ft-mismatch.xml"
+argument_list|,
+literal|"codec does not support"
 argument_list|)
 expr_stmt|;
 block|}
