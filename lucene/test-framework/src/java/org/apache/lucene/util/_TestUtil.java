@@ -802,6 +802,18 @@ name|carrotsearch
 operator|.
 name|randomizedtesting
 operator|.
+name|RandomizedContext
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
 name|generators
 operator|.
 name|RandomInts
@@ -5820,12 +5832,36 @@ decl_stmt|;
 name|File
 name|result
 decl_stmt|;
+comment|// just pull one long always: we don't want to rely upon what may or may not
+comment|// already exist. otherwise tests might not reproduce, depending on when you last
+comment|// ran 'ant clean'
+specifier|final
+name|Random
+name|random
+init|=
+operator|new
+name|Random
+argument_list|(
+name|RandomizedContext
+operator|.
+name|current
+argument_list|()
+operator|.
+name|getRandom
+argument_list|()
+operator|.
+name|nextLong
+argument_list|()
+argument_list|)
+decl_stmt|;
 do|do
 block|{
 name|result
 operator|=
 name|genTempFile
 argument_list|(
+name|random
+argument_list|,
 name|prefix
 argument_list|,
 name|newSuffix
@@ -5888,6 +5924,9 @@ specifier|static
 name|File
 name|genTempFile
 parameter_list|(
+name|Random
+name|random
+parameter_list|,
 name|String
 name|prefix
 parameter_list|,
@@ -5918,9 +5957,7 @@ block|{
 name|int
 name|newInt
 init|=
-operator|new
-name|Random
-argument_list|()
+name|random
 operator|.
 name|nextInt
 argument_list|()
