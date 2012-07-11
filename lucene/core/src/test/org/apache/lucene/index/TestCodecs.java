@@ -4013,6 +4013,11 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+name|boolean
+name|ended
+init|=
+literal|false
+decl_stmt|;
 while|while
 condition|(
 name|upto2
@@ -4158,6 +4163,10 @@ name|length
 operator|-
 literal|1
 assert|;
+name|ended
+operator|=
+literal|true
+expr_stmt|;
 break|break;
 block|}
 else|else
@@ -4283,6 +4292,12 @@ expr_stmt|;
 block|}
 block|}
 block|}
+if|if
+condition|(
+operator|!
+name|ended
+condition|)
+block|{
 name|assertEquals
 argument_list|(
 name|DocIdSetIterator
@@ -4295,6 +4310,7 @@ name|nextDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|upto
 operator|++
