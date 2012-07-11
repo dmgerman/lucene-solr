@@ -423,13 +423,11 @@ argument_list|(
 name|suffix
 argument_list|)
 condition|)
-name|System
-operator|.
-name|err
-operator|.
-name|println
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"warning: useless exception '"
+literal|"useless exception '"
 operator|+
 name|exceptions
 index|[
@@ -442,7 +440,7 @@ name|suffix
 operator|+
 literal|"'"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 name|this
 operator|.
@@ -580,11 +578,9 @@ argument_list|(
 name|suffix
 argument_list|)
 condition|)
-name|System
-operator|.
-name|err
-operator|.
-name|println
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
 literal|"warning: useless exception '"
 operator|+
@@ -599,7 +595,7 @@ name|suffix
 operator|+
 literal|"'"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 name|this
 operator|.

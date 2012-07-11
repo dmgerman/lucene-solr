@@ -110,6 +110,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|PrintStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|text
 operator|.
 name|NumberFormat
@@ -600,7 +610,10 @@ DECL|method|printInfo
 specifier|public
 name|void
 name|printInfo
-parameter_list|()
+parameter_list|(
+name|PrintStream
+name|out
+parameter_list|)
 block|{
 name|NumberFormat
 name|nf
@@ -650,8 +663,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
 name|out
 operator|.
 name|println

@@ -456,19 +456,7 @@ name|void
 name|startTerm
 parameter_list|()
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW   startTerm"
-argument_list|)
-expr_stmt|;
+comment|//if (DEBUG) System.out.println("PW   startTerm");
 assert|assert
 name|pendingCount
 operator|==
@@ -499,27 +487,7 @@ operator|.
 name|getIndexOptions
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW field="
-operator|+
-name|fieldInfo
-operator|.
-name|name
-operator|+
-literal|" indexOptions="
-operator|+
-name|indexOptions
-argument_list|)
-expr_stmt|;
+comment|//if (DEBUG) System.out.println("PW field=" + fieldInfo.name + " indexOptions=" + indexOptions);
 name|storePayloads
 operator|=
 name|fieldInfo
@@ -567,21 +535,7 @@ operator|+
 name|docID
 assert|;
 comment|/*     if (termID != -1) {       if (docID == 0) {         baseDocID = termID;       } else if (baseDocID + docID != termID) {         throw new RuntimeException("WRITE: baseDocID=" + baseDocID + " docID=" + docID + " termID=" + termID);       }     }     */
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW     doc="
-operator|+
-name|docID
-argument_list|)
-expr_stmt|;
+comment|//if (DEBUG) System.out.println("PW     doc=" + docID);
 if|if
 condition|(
 name|pendingCount
@@ -594,19 +548,7 @@ block|{
 name|push
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW: wrapped.finishDoc"
-argument_list|)
-expr_stmt|;
+comment|//if (DEBUG) System.out.println("PW: wrapped.finishDoc");
 name|wrappedPostingsWriter
 operator|.
 name|finishDoc
@@ -721,37 +663,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW       pos="
-operator|+
-name|position
-operator|+
-literal|" payload="
-operator|+
-operator|(
-name|payload
-operator|==
-literal|null
-condition|?
-literal|"null"
-else|:
-name|payload
-operator|.
-name|length
-operator|+
-literal|" bytes"
-operator|)
-argument_list|)
-expr_stmt|;
+comment|//if (DEBUG) System.out.println("PW       pos=" + position + " payload=" + (payload == null ? "null" : payload.length + " bytes"));
 if|if
 condition|(
 name|pendingCount
@@ -906,19 +818,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW     finishDoc"
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("PW     finishDoc");
 if|if
 condition|(
 name|pendingCount
@@ -959,34 +859,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW   finishTerm docCount="
-operator|+
-name|stats
-operator|.
-name|docFreq
-operator|+
-literal|" pendingCount="
-operator|+
-name|pendingCount
-operator|+
-literal|" pendingTerms.size()="
-operator|+
-name|pendingTerms
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("PW   finishTerm docCount=" + stats.docFreq + " pendingCount=" + pendingCount + " pendingTerms.size()=" + pendingTerms.size());
 assert|assert
 name|pendingCount
 operator|>
@@ -1100,29 +973,7 @@ name|doc
 operator|.
 name|docID
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  write doc="
-operator|+
-name|doc
-operator|.
-name|docID
-operator|+
-literal|" freq="
-operator|+
-name|doc
-operator|.
-name|termFreq
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("  write doc=" + doc.docID + " freq=" + doc.termFreq);
 if|if
 condition|(
 name|doc
@@ -1229,23 +1080,7 @@ name|pos
 operator|.
 name|pos
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    write pos="
-operator|+
-name|pos
-operator|.
-name|pos
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("    write pos=" + pos.pos);
 specifier|final
 name|int
 name|payloadLength
@@ -1687,32 +1522,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW: flushTermsBlock start="
-operator|+
-name|start
-operator|+
-literal|" count="
-operator|+
-name|count
-operator|+
-literal|" pendingTerms.size()="
-operator|+
-name|pendingTerms
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("PW: flushTermsBlock start=" + start + " count=" + count + " pendingTerms.size()=" + pendingTerms.size());
 name|int
 name|wrappedCount
 init|=
@@ -1909,39 +1719,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW:   len="
-operator|+
-name|buffer
-operator|.
-name|getFilePointer
-argument_list|()
-operator|+
-literal|" fp="
-operator|+
-name|termsOut
-operator|.
-name|getFilePointer
-argument_list|()
-operator|+
-literal|" futureWrappedCount="
-operator|+
-name|futureWrappedCount
-operator|+
-literal|" wrappedCount="
-operator|+
-name|wrappedCount
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("PW:   len=" + buffer.getFilePointer() + " fp=" + termsOut.getFilePointer() + " futureWrappedCount=" + futureWrappedCount + " wrappedCount=" + wrappedCount);
 comment|// TODO: can we avoid calling this if all terms
 comment|// were inlined...?  Eg for a "primary key" field, the
 comment|// wrapped codec is never invoked...
@@ -1966,25 +1744,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW now push @ "
-operator|+
-name|pendingCount
-operator|+
-literal|" wrapped="
-operator|+
-name|wrappedPostingsWriter
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("PW now push @ " + pendingCount + " wrapped=" + wrappedPostingsWriter);
 assert|assert
 name|pendingCount
 operator|==
@@ -2036,29 +1796,7 @@ name|doc
 operator|=
 name|pos
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW: wrapped.startDoc docID="
-operator|+
-name|doc
-operator|.
-name|docID
-operator|+
-literal|" tf="
-operator|+
-name|doc
-operator|.
-name|termFreq
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("PW: wrapped.startDoc docID=" + doc.docID + " tf=" + doc.termFreq);
 name|wrappedPostingsWriter
 operator|.
 name|startDoc
@@ -2094,19 +1832,7 @@ name|doc
 operator|.
 name|docID
 assert|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW: wrapped.finishDoc"
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("PW: wrapped.finishDoc");
 name|wrappedPostingsWriter
 operator|.
 name|finishDoc
@@ -2116,29 +1842,7 @@ name|doc
 operator|=
 name|pos
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW: wrapped.startDoc docID="
-operator|+
-name|doc
-operator|.
-name|docID
-operator|+
-literal|" tf="
-operator|+
-name|doc
-operator|.
-name|termFreq
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("PW: wrapped.startDoc docID=" + doc.docID + " tf=" + doc.termFreq);
 name|wrappedPostingsWriter
 operator|.
 name|startDoc
@@ -2153,23 +1857,7 @@ name|termFreq
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|DEBUG
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PW:   wrapped.addPos pos="
-operator|+
-name|pos
-operator|.
-name|pos
-argument_list|)
-expr_stmt|;
+comment|// if (DEBUG) System.out.println("PW:   wrapped.addPos pos=" + pos.pos);
 name|wrappedPostingsWriter
 operator|.
 name|addPosition
