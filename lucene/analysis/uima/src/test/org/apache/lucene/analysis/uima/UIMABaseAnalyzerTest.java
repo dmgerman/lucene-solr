@@ -508,7 +508,7 @@ operator|new
 name|MatchAllDocsQuery
 argument_list|()
 argument_list|,
-literal|10
+literal|1
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -693,7 +693,7 @@ operator|new
 name|MatchAllDocsQuery
 argument_list|()
 argument_list|,
-literal|10
+literal|2
 argument_list|)
 expr_stmt|;
 name|Document
@@ -787,7 +787,7 @@ operator|new
 name|MatchAllDocsQuery
 argument_list|()
 argument_list|,
-literal|10
+literal|2
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -841,7 +841,7 @@ argument_list|,
 literal|"org.apache.lucene.uima.ts.TokenAnnotation"
 argument_list|)
 argument_list|,
-literal|1000
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
