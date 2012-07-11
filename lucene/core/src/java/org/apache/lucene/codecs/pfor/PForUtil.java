@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -49,15 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|// Encode all small values and exception pointers in normal area,
-end_comment
-
-begin_comment
-comment|// Encode large values in exception area.
-end_comment
-
-begin_comment
-comment|// Size per exception is variable, possibly: 1byte, 2bytes, or 4bytes
+comment|/**  * Encode all small values and exception pointers in normal area;  * Encode large values in exception area;  * Size per exception is variable, possibly: 1byte, 2bytes, or 4bytes  */
 end_comment
 
 begin_class
@@ -85,6 +77,7 @@ block|,
 literal|4
 block|}
 decl_stmt|;
+comment|/** Compress given int[] into Integer buffer, with PFor format    *    * @param data        uncompressed data    * @param size        num of ints to compress    * @param intBuffer   integer buffer to hold compressed data    */
 DECL|method|compress
 specifier|public
 specifier|static
@@ -103,6 +96,7 @@ name|IntBuffer
 name|intBuffer
 parameter_list|)
 block|{
+comment|/** estimate minimum compress size to determine numFrameBits */
 name|int
 name|numBits
 init|=
@@ -137,31 +131,32 @@ name|excFirstPos
 init|=
 operator|-
 literal|1
-decl_stmt|;
-name|int
+decl_stmt|,
 name|excLastNonForcePos
 init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|// num of exception until the last non-forced exception
 name|int
 name|excNumBase
 init|=
 literal|0
 decl_stmt|;
-comment|// num of exception until the last non-force exception
+comment|// bytes per exception
 name|int
 name|excBytes
 init|=
 literal|1
 decl_stmt|;
-comment|// bytes per exception
+comment|// bytes before exception area, e.g. header and normal area
 name|int
 name|excByteOffset
 init|=
 literal|0
 decl_stmt|;
-comment|// bytes of preceeding codes like header and normal area
+comment|// the max value possible for current exception pointer,
+comment|// value of the first pointer is limited by header as 254
 name|long
 name|maxChain
 init|=
@@ -173,7 +168,6 @@ operator|)
 operator|-
 literal|2
 decl_stmt|;
-comment|// header bits limits this to 254
 name|boolean
 name|conValue
 decl_stmt|,
@@ -186,7 +180,7 @@ name|i
 init|=
 literal|0
 decl_stmt|;
-comment|// estimate exceptions
+comment|/** estimate exceptions */
 for|for
 control|(
 name|i
@@ -291,7 +285,7 @@ name|i
 expr_stmt|;
 block|}
 block|}
-comment|// encode normal area, record exception positions
+comment|/** encode normal area, record exception positions */
 name|i
 operator|=
 literal|0
@@ -526,7 +520,7 @@ expr_stmt|;
 comment|// mask out suppressed force exception
 block|}
 block|}
-comment|// encode exception area
+comment|/** encode exception area */
 name|i
 operator|=
 literal|0
@@ -626,7 +620,7 @@ argument_list|,
 name|excByteOffset
 argument_list|)
 expr_stmt|;
-comment|// encode header
+comment|/** encode header */
 name|encodeHeader
 argument_list|(
 name|intBuffer
@@ -658,6 +652,7 @@ operator|*
 literal|4
 return|;
 block|}
+comment|/** Decompress given Integer buffer into int array.    *    * @param intBuffer   integer buffer to hold compressed data    * @param data        int array to hold uncompressed data    */
 DECL|method|decompress
 specifier|public
 specifier|static
@@ -672,6 +667,7 @@ index|[]
 name|data
 parameter_list|)
 block|{
+comment|// since this buffer is reused at upper level, rewind first
 name|intBuffer
 operator|.
 name|rewind
@@ -770,439 +766,15 @@ operator|)
 operator|+
 literal|1
 decl_stmt|;
-comment|// TODO: PackedIntsDecompress is hardewired to size==128 only
-switch|switch
-condition|(
-name|numBits
-condition|)
-block|{
-case|case
-literal|1
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode1
+name|decompressCore
 argument_list|(
 name|intBuffer
 argument_list|,
 name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|2
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode2
-argument_list|(
-name|intBuffer
 argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|3
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode3
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|4
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode4
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|5
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode5
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|6
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode6
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|7
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode7
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|8
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode8
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|9
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode9
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|10
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode10
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|11
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode11
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|12
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode12
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|13
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode13
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|14
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode14
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|15
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode15
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|16
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode16
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|17
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode17
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|18
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode18
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|19
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode19
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|20
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode20
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|21
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode21
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|22
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode22
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|23
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode23
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|24
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode24
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|25
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode25
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|26
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode26
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|27
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode27
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|28
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode28
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|29
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode29
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|30
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode30
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|31
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode31
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-literal|32
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode32
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
-default|default:
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"Unknown numFrameBits "
-operator|+
 name|numBits
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|patchException
 argument_list|(
 name|intBuffer
@@ -1533,9 +1105,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// TODO: since numInts===128, we don't need to rewind intBuffer.
-comment|// however, tail of normal area may share a same int with head of exception area
-comment|// which means patchException may lose heading exceptions.
+comment|/**    * Decode exception values base on the exception pointers in normal area,    * and values in exception area.    * As for current implementation, numInts is hardwired as 128, so the    * tail of normal area is naturally aligned to 32 bits, and we don't need to    * rewind intBuffer here.    * However, the normal area may share a same int with exception area,     * when numFrameBits * numInts % 32 != 0,    * In this case we should preprocess patch several heading exceptions,     * before calling this method.    *    * TODO: blockSize is hardewired to size==128 only    */
 DECL|method|patchException
 specifier|public
 specifier|static
@@ -1586,6 +1156,7 @@ operator|==
 literal|1
 condition|)
 block|{
+comment|// each exception consumes 1 byte
 for|for
 control|(
 name|i
@@ -1760,6 +1331,7 @@ operator|==
 literal|2
 condition|)
 block|{
+comment|// each exception consumes 2 bytes
 for|for
 control|(
 name|i
@@ -1869,6 +1441,7 @@ operator|==
 literal|4
 condition|)
 block|{
+comment|// each exception consumes 4 bytes
 for|for
 control|(
 name|i
@@ -1944,7 +1517,7 @@ return|return
 name|nextPos
 return|;
 block|}
-comment|// TODO: shall we use 32 NumBits directly if it exceeds 28 bits?
+comment|/**    * Estimate best number of frame bits according to minimum compressed size.    * It will run 32 times.    */
 DECL|method|getNumBits
 specifier|static
 name|int
@@ -2024,8 +1597,7 @@ return|return
 name|optBits
 return|;
 block|}
-comment|// loosely estimate int size of each compressed block, based on parameter b
-comment|// ignore force exceptions
+comment|/**    * Iterate the whole block to get maximum exception bits,     * and estimate compressed size without forced exception.    * TODO: foresee forced exception for better estimation    */
 DECL|method|estimateCompressedSize
 specifier|static
 name|int
@@ -2226,7 +1798,7 @@ name|HEADER_INT_SIZE
 return|;
 comment|// round up to ints
 block|}
-comment|/** The 4 byte header (32 bits) contains (from lsb to msb):    *    * - 8 bits for uncompressed int num - 1 (use up to 7 bits i.e 128 actually)    *    * - 8 bits for exception num - 1 (when no exceptions, this is undefined)    *    * - 8 bits for the index of the first exception + 1 (when no exception, this is 0)    *    * - 5 bits for num of frame bits - 1    * - 2 bits for the exception code: 00: byte, 01: short, 10: int    * - 1 bit unused    *    */
+comment|/**     * Generate the 4 byte header, which contains (from lsb to msb):    *    * 8 bits for uncompressed int num - 1 (use up to 7 bits i.e 128 actually)    *    * 8 bits for exception num - 1 (when no exceptions, this is undefined)    *    * 8 bits for the index of the first exception + 1 (when no exception, this is 0)    *    * 5 bits for num of frame bits - 1    * 2 bits for the exception code: 00: byte, 01: short, 10: int    * 1 bit unused    *    */
 DECL|method|getHeader
 specifier|static
 name|int

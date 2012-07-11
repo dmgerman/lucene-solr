@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_import
@@ -24,7 +24,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|Collections
 import|;
 end_import
 
@@ -32,9 +32,19 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|*
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
 import|;
 end_import
 
@@ -44,7 +54,17 @@ name|java
 operator|.
 name|nio
 operator|.
-name|*
+name|IntBuffer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|ByteBuffer
 import|;
 end_import
 
@@ -60,7 +80,23 @@ name|codecs
 operator|.
 name|pfor
 operator|.
-name|*
+name|PForUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|pfor
+operator|.
+name|ForPostingsFormat
 import|;
 end_import
 
@@ -77,6 +113,10 @@ operator|.
 name|LuceneTestCase
 import|;
 end_import
+
+begin_comment
+comment|/**  * Test the core utility for PFor compress and decompress  * We don't provide test case for For encoder/decoder, since  * PFor is a extended version of For, and most methods will be reused   * here.  */
+end_comment
 
 begin_class
 DECL|class|TestPForUtil
@@ -165,38 +205,25 @@ DECL|field|gen
 name|Random
 name|gen
 decl_stmt|;
-DECL|field|seed
-name|long
-name|seed
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
-comment|//long seed=1338528171959L;
 DECL|method|initRandom
 specifier|public
 name|void
 name|initRandom
 parameter_list|()
 block|{
-comment|//  println("Seed: "+seed);
 name|this
 operator|.
 name|gen
 operator|=
-operator|new
-name|Random
-argument_list|(
-name|seed
-argument_list|)
+name|random
+argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testCompress
+comment|/**    * Test correctness of ignored forced exception.    * The trailing forced exceptions shouldn't be reverted    * since they're not necessary.     */
+DECL|method|testForcedException
 specifier|public
 name|void
-name|testCompress
+name|testForcedException
 parameter_list|()
 throws|throws
 name|Exception
@@ -204,26 +231,12 @@ block|{
 name|initRandom
 argument_list|()
 expr_stmt|;
-name|tryForcedException
-argument_list|()
-expr_stmt|;
-name|tryAllDistribution
-argument_list|()
-expr_stmt|;
-block|}
-comment|// Test correctness of ignored forced exception
-DECL|method|tryForcedException
-specifier|public
-name|void
-name|tryForcedException
-parameter_list|()
-throws|throws
-name|Exception
-block|{
 name|int
 name|sz
 init|=
-literal|128
+name|ForPostingsFormat
+operator|.
+name|DEFAULT_BLOCK_SIZE
 decl_stmt|;
 name|Integer
 index|[]
@@ -336,11 +349,7 @@ argument_list|(
 name|buff
 argument_list|)
 argument_list|,
-operator|new
-name|Random
-argument_list|(
-name|seed
-argument_list|)
+name|gen
 argument_list|)
 expr_stmt|;
 for|for
@@ -381,43 +390,18 @@ argument_list|,
 name|resBuffer
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|ensz
-operator|>
-name|sz
-operator|*
-literal|8
-operator|+
-literal|4
-condition|)
-block|{
-name|println
-argument_list|(
-literal|"Excceed? "
-operator|+
-name|ensz
-operator|+
-literal|">"
-operator|+
+assert|assert
 operator|(
+name|ensz
+operator|<=
 name|sz
 operator|*
 literal|8
 operator|+
 literal|4
 operator|)
-argument_list|)
-expr_stmt|;
-name|ensz
-operator|=
-name|sz
-operator|*
-literal|8
-operator|+
-literal|4
-expr_stmt|;
-block|}
+assert|;
+comment|// must not exceed the loose upperbound
 name|resBuffer
 operator|.
 name|rewind
@@ -450,15 +434,18 @@ operator|==
 literal|true
 assert|;
 block|}
-comment|// Test correctness of compressing and decompressing
-DECL|method|tryAllDistribution
+comment|/**    * Test correctness of compressing and decompressing.    * Here we randomly assign a rate of exception (i.e. 1-alpha),     * and test different scale of normal/exception values.    */
+DECL|method|testAllDistribution
 specifier|public
 name|void
-name|tryAllDistribution
+name|testAllDistribution
 parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|initRandom
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -501,7 +488,9 @@ control|)
 block|{
 name|tryDistribution
 argument_list|(
-literal|128
+name|ForPostingsFormat
+operator|.
+name|DEFAULT_BLOCK_SIZE
 argument_list|,
 name|alpha
 argument_list|,
@@ -649,11 +638,7 @@ argument_list|(
 name|buff
 argument_list|)
 argument_list|,
-operator|new
-name|Random
-argument_list|(
-name|seed
-argument_list|)
+name|gen
 argument_list|)
 expr_stmt|;
 for|for
@@ -693,43 +678,18 @@ argument_list|,
 name|resBuffer
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|ensz
-operator|>
-name|sz
-operator|*
-literal|8
-operator|+
-literal|4
-condition|)
-block|{
-name|println
-argument_list|(
-literal|"Excceed? "
-operator|+
-name|ensz
-operator|+
-literal|">"
-operator|+
+assert|assert
 operator|(
+name|ensz
+operator|<=
 name|sz
 operator|*
 literal|8
 operator|+
 literal|4
 operator|)
-argument_list|)
-expr_stmt|;
-name|ensz
-operator|=
-name|sz
-operator|*
-literal|8
-operator|+
-literal|4
-expr_stmt|;
-block|}
+assert|;
+comment|// must not exceed the loose upperbound
 name|int
 index|[]
 name|copy
