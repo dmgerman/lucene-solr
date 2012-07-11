@@ -52,6 +52,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|StoredField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|IndexableField
@@ -149,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * must be thread safe  *  * @lucene.experimental  */
+comment|/**  * The SpatialStrategy encapsulates an approach to indexing and searching based on shapes.  *<p/>  * Note that a SpatialStrategy is not involved with the Lucene stored field values of shapes, which is  * immaterial to indexing& search.  *<p/>  * Thread-safe.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -277,15 +291,9 @@ name|createField
 parameter_list|(
 name|Shape
 name|shape
-parameter_list|,
-name|boolean
-name|index
-parameter_list|,
-name|boolean
-name|store
 parameter_list|)
 function_decl|;
-comment|/** Corresponds with Solr's FieldType.createFields(). */
+comment|/**    * Corresponds with Solr's FieldType.createFields().    *<p/>    * Note: If you want to<i>store</i> the shape as a string for retrieval in search    * results, you could add it like this:    *<pre>document.add(new StoredField(fieldName,ctx.toString(shape)));</pre>    * The particular string representation used doesn't matter to the Strategy since it    * doesn't use it.    */
 DECL|method|createFields
 specifier|public
 name|IndexableField
@@ -294,12 +302,6 @@ name|createFields
 parameter_list|(
 name|Shape
 name|shape
-parameter_list|,
-name|boolean
-name|index
-parameter_list|,
-name|boolean
-name|store
 parameter_list|)
 block|{
 return|return
@@ -310,12 +312,34 @@ block|{
 name|createField
 argument_list|(
 name|shape
-argument_list|,
-name|index
-argument_list|,
-name|store
 argument_list|)
 block|}
+return|;
+block|}
+comment|/**    * A convenience method for storing the shape in Lucene for retrieval in search results.    * After calling this, add it to the document: {@link org.apache.lucene.document.Document#add(org.apache.lucene.index.IndexableField)}.    * All this does is:    *<pre>return new StoredField(getFieldName(),ctx.toString(shape));</pre>    */
+DECL|method|createStoredField
+specifier|public
+name|StoredField
+name|createStoredField
+parameter_list|(
+name|Shape
+name|shape
+parameter_list|)
+block|{
+return|return
+operator|new
+name|StoredField
+argument_list|(
+name|getFieldName
+argument_list|()
+argument_list|,
+name|ctx
+operator|.
+name|toString
+argument_list|(
+name|shape
+argument_list|)
+argument_list|)
 return|;
 block|}
 comment|/**    * The value source yields a number that is proportional to the distance between the query shape and indexed data.    */
