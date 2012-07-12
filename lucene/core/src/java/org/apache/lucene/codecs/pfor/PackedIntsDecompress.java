@@ -32,6 +32,16 @@ name|IntBuffer
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
 begin_class
 DECL|class|PackedIntsDecompress
 specifier|final
@@ -40,6 +50,32 @@ name|PackedIntsDecompress
 block|{
 comment|// nocommit: assess perf of this to see if specializing is really needed
 comment|// NOTE: hardwired to blockSize == 128
+DECL|method|decode0
+specifier|public
+specifier|static
+name|void
+name|decode0
+parameter_list|(
+specifier|final
+name|IntBuffer
+name|compressedBuffer
+parameter_list|,
+specifier|final
+name|int
+index|[]
+name|output
+parameter_list|)
+block|{
+name|Arrays
+operator|.
+name|fill
+argument_list|(
+name|output
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|decode1
 specifier|public
 specifier|static

@@ -284,11 +284,9 @@ operator|)
 operator|&
 name|MASK
 index|[
-literal|5
+literal|6
 index|]
 operator|)
-operator|+
-literal|1
 decl_stmt|;
 name|decompressCore
 argument_list|(
@@ -328,14 +326,27 @@ assert|;
 assert|assert
 name|numBits
 operator|>=
-literal|1
+literal|0
 assert|;
-comment|// TODO: PackedIntsDecompress is hardewired to size==129 only
+comment|// TODO: PackedIntsDecompress is hardewired to size==128 only
 switch|switch
 condition|(
 name|numBits
 condition|)
 block|{
+case|case
+literal|0
+case|:
+name|PackedIntsDecompress
+operator|.
+name|decode0
+argument_list|(
+name|intBuffer
+argument_list|,
+name|data
+argument_list|)
+expr_stmt|;
+break|break;
 case|case
 literal|1
 case|:
@@ -977,7 +988,7 @@ block|{
 name|int
 name|optBits
 init|=
-literal|1
+literal|0
 decl_stmt|;
 for|for
 control|(
@@ -1021,7 +1032,7 @@ return|return
 name|optBits
 return|;
 block|}
-comment|/**     * Generate the 4 byte header, which contains (from lsb to msb):    *    * - 8 bits for uncompressed int num - 1 (use up to 7 bits i.e 128 actually)    * - 5 bits for num of frame bits - 1    * - other bits unused    *    */
+comment|/**     * Generate the 4 byte header, which contains (from lsb to msb):    *    * - 8 bits for uncompressed int num - 1 (use up to 7 bits i.e 128 actually)    * - 6 bits for num of frame bits    * - other bits unused    *    */
 DECL|method|getHeader
 specifier|static
 name|int
@@ -1044,8 +1055,6 @@ operator||
 operator|(
 operator|(
 name|numBits
-operator|-
-literal|1
 operator|)
 operator|<<
 literal|8
