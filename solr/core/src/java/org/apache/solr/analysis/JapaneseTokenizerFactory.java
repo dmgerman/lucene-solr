@@ -247,7 +247,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link org.apache.lucene.analysis.ja.JapaneseTokenizer}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"  *       mode=NORMAL  *       userDictionary=user.txt  *       userDictionaryEncoding=UTF-8  *     /&gt;  *&lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
+comment|/**  * Factory for {@link org.apache.lucene.analysis.ja.JapaneseTokenizer}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"  *       mode="NORMAL"  *       userDictionary="user.txt"  *       userDictionaryEncoding="UTF-8"  *       discardPunctuation="true"  *     /&gt;  *&lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
 end_comment
 
 begin_class
@@ -287,6 +287,16 @@ name|USER_DICT_ENCODING
 init|=
 literal|"userDictionaryEncoding"
 decl_stmt|;
+DECL|field|DISCARD_PUNCTUATION
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|DISCARD_PUNCTUATION
+init|=
+literal|"discardPunctuation"
+decl_stmt|;
+comment|// Expert option
 DECL|field|userDictionary
 specifier|private
 name|UserDictionary
@@ -296,6 +306,11 @@ DECL|field|mode
 specifier|private
 name|Mode
 name|mode
+decl_stmt|;
+DECL|field|discardPunctuation
+specifier|private
+name|boolean
+name|discardPunctuation
 decl_stmt|;
 annotation|@
 name|Override
@@ -439,6 +454,15 @@ name|e
 argument_list|)
 throw|;
 block|}
+name|discardPunctuation
+operator|=
+name|getBoolean
+argument_list|(
+name|DISCARD_PUNCTUATION
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -459,7 +483,7 @@ name|input
 argument_list|,
 name|userDictionary
 argument_list|,
-literal|true
+name|discardPunctuation
 argument_list|,
 name|mode
 argument_list|)
