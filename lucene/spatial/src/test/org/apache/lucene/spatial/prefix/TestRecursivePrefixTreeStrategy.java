@@ -1185,7 +1185,7 @@ name|f
 range|:
 name|strategy
 operator|.
-name|createFields
+name|createIndexableFields
 argument_list|(
 name|shape
 argument_list|)

@@ -391,10 +391,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createField
+DECL|method|createIndexableFields
 specifier|public
 name|IndexableField
-name|createField
+index|[]
+name|createIndexableFields
 parameter_list|(
 name|Shape
 name|shape
@@ -479,7 +480,9 @@ expr_stmt|;
 block|}
 comment|//TODO is CellTokenStream supposed to be re-used somehow? see Uwe's comments:
 comment|//  http://code.google.com/p/lucene-spatial-playground/issues/detail?id=4
-return|return
+name|Field
+name|field
+init|=
 operator|new
 name|Field
 argument_list|(
@@ -497,6 +500,14 @@ argument_list|)
 argument_list|,
 name|FIELD_TYPE
 argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|IndexableField
+index|[]
+block|{
+name|field
+block|}
 return|;
 block|}
 comment|/* Indexed, tokenized, not stored. */

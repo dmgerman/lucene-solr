@@ -618,20 +618,12 @@ name|f
 range|:
 name|strategy
 operator|.
-name|createFields
+name|createIndexableFields
 argument_list|(
 name|shape
 argument_list|)
 control|)
 block|{
-if|if
-condition|(
-name|f
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// null if incompatibleGeometry&& ignore
 name|document
 operator|.
 name|add
@@ -639,7 +631,6 @@ argument_list|(
 name|f
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(

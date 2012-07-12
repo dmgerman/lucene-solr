@@ -246,17 +246,6 @@ return|return
 name|ctx
 return|;
 block|}
-comment|/** Corresponds with Solr's  FieldType.isPolyField(). */
-DECL|method|isPolyField
-specifier|public
-name|boolean
-name|isPolyField
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 comment|/**    * The name of the field or the prefix of them if there are multiple    * fields needed internally.    * @return Not null.    */
 DECL|method|getFieldName
 specifier|public
@@ -268,40 +257,18 @@ return|return
 name|fieldName
 return|;
 block|}
-comment|/**    * Corresponds with Solr's FieldType.createField().    *    * This may return a null field if it does not want to make anything.    * This is reasonable behavior if 'ignoreIncompatibleGeometry=true' and the    * geometry is incompatible    */
-DECL|method|createField
+comment|/**    * Returns the IndexableField(s) from the<code>shape</code> that are to be    * added to the {@link org.apache.lucene.document.Document}.  These fields    * are expected to be marked as indexed and not stored.    *<p/>    * Note: If you want to<i>store</i> the shape as a string for retrieval in    * search results, you could add it like this:    *<pre>document.add(new StoredField(fieldName,ctx.toString(shape)));</pre>    * The particular string representation used doesn't matter to the Strategy    * since it doesn't use it.    *    * @return Not null nor will it have null elements.    */
+DECL|method|createIndexableFields
 specifier|public
 specifier|abstract
 name|IndexableField
-name|createField
+index|[]
+name|createIndexableFields
 parameter_list|(
 name|Shape
 name|shape
 parameter_list|)
 function_decl|;
-comment|/**    * Corresponds with Solr's FieldType.createFields().    *<p/>    * Note: If you want to<i>store</i> the shape as a string for retrieval in search    * results, you could add it like this:    *<pre>document.add(new StoredField(fieldName,ctx.toString(shape)));</pre>    * The particular string representation used doesn't matter to the Strategy since it    * doesn't use it.    */
-DECL|method|createFields
-specifier|public
-name|IndexableField
-index|[]
-name|createFields
-parameter_list|(
-name|Shape
-name|shape
-parameter_list|)
-block|{
-return|return
-operator|new
-name|IndexableField
-index|[]
-block|{
-name|createField
-argument_list|(
-name|shape
-argument_list|)
-block|}
-return|;
-block|}
 comment|/**    * The value source yields a number that is proportional to the distance between the query shape and indexed data.    */
 DECL|method|makeValueSource
 specifier|public
