@@ -60,9 +60,12 @@ name|CollectionAction
 block|{
 DECL|enum constant|CREATE
 DECL|enum constant|DELETE
+DECL|enum constant|RELOAD
 name|CREATE
 block|,
 name|DELETE
+block|,
+name|RELOAD
 block|;
 DECL|method|get
 specifier|public
