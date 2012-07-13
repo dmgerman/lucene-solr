@@ -392,28 +392,9 @@ name|t
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
-name|cancelRecovery
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"Error cancelling recovery"
-argument_list|,
-name|t
-argument_list|)
-expr_stmt|;
-block|}
+comment|// TODO: we cannot cancel recovery here if its a CoreContainer shutdown
+comment|// it can cause deadlock - but perhaps we want to if we are stopping early
+comment|// and CoreContainer is not being shutdown?
 name|closed
 operator|=
 literal|true
@@ -574,6 +555,23 @@ operator|.
 name|warn
 argument_list|(
 literal|"Skipping recovery according to sys prop solrcloud.skip.autorecovery"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+if|if
+condition|(
+name|cc
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Skipping recovery because Solr is shutdown"
 argument_list|)
 expr_stmt|;
 return|return;

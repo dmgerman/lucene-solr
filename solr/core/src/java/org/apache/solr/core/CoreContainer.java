@@ -3388,6 +3388,10 @@ name|this
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|isShutDown
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|isZooKeeperAware
@@ -3490,10 +3494,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-name|isShutDown
-operator|=
-literal|true
-expr_stmt|;
 block|}
 block|}
 block|}

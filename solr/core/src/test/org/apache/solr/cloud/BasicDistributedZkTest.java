@@ -1101,6 +1101,29 @@ argument_list|(
 literal|"*:*"
 argument_list|)
 expr_stmt|;
+name|CloudSolrServer
+name|server
+init|=
+operator|new
+name|CloudSolrServer
+argument_list|(
+name|zkServer
+operator|.
+name|getZkAddress
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|server
+operator|.
+name|setDefaultCollection
+argument_list|(
+name|DEFAULT_COLLECTION
+argument_list|)
+expr_stmt|;
+name|solrj
+operator|=
+name|server
+expr_stmt|;
 name|indexr
 argument_list|(
 name|id
@@ -2555,39 +2578,21 @@ operator|.
 name|QUERY
 argument_list|)
 expr_stmt|;
-comment|// TODO: This test currently fails because debug info is obtained only
-comment|// on shards with matches.
-comment|// query("q","matchesnothing","fl","*,score", "debugQuery", "true");
-comment|// would be better if these where all separate tests - but much, much
-comment|// slower
-name|doOptimisticLockingAndUpdating
-argument_list|()
-expr_stmt|;
-name|testMultipleCollections
-argument_list|()
-expr_stmt|;
-name|testANewCollectionInOneInstance
-argument_list|()
-expr_stmt|;
-name|testSearchByCollectionName
-argument_list|()
-expr_stmt|;
-name|testANewCollectionInOneInstanceWithManualShardAssignement
-argument_list|()
-expr_stmt|;
-name|testNumberOfCommitsWithCommitAfterAdd
-argument_list|()
-expr_stmt|;
-name|testUpdateProcessorsRunOnlyOnce
-argument_list|(
-literal|"distrib-dup-test-chain-explicit"
-argument_list|)
-expr_stmt|;
-name|testUpdateProcessorsRunOnlyOnce
-argument_list|(
-literal|"distrib-dup-test-chain-implicit"
-argument_list|)
-expr_stmt|;
+comment|//    // TODO: This test currently fails because debug info is obtained only
+comment|//    // on shards with matches.
+comment|//    // query("q","matchesnothing","fl","*,score", "debugQuery", "true");
+comment|//
+comment|//    // would be better if these where all separate tests - but much, much
+comment|//    // slower
+comment|//    doOptimisticLockingAndUpdating();
+comment|//    testMultipleCollections();
+comment|//    testANewCollectionInOneInstance();
+comment|//    testSearchByCollectionName();
+comment|//    testANewCollectionInOneInstanceWithManualShardAssignement();
+comment|//    testNumberOfCommitsWithCommitAfterAdd();
+comment|//
+comment|//    testUpdateProcessorsRunOnlyOnce("distrib-dup-test-chain-explicit");
+comment|//    testUpdateProcessorsRunOnlyOnce("distrib-dup-test-chain-implicit");
 name|testCollectionsAPI
 argument_list|()
 expr_stmt|;
@@ -2645,7 +2650,7 @@ name|cnt
 init|=
 name|atLeast
 argument_list|(
-literal|3
+literal|9
 argument_list|)
 decl_stmt|;
 for|for
@@ -3993,7 +3998,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|+
-literal|60000
+literal|120000
 decl_stmt|;
 name|boolean
 name|found
