@@ -823,7 +823,7 @@ specifier|final
 name|int
 name|DEFAULT_ZK_CLIENT_TIMEOUT
 init|=
-literal|10000
+literal|15000
 decl_stmt|;
 DECL|field|DEFAULT_DEFAULT_CORE_NAME
 specifier|public
