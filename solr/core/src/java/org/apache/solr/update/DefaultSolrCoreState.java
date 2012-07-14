@@ -392,9 +392,28 @@ name|t
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: we cannot cancel recovery here if its a CoreContainer shutdown
-comment|// it can cause deadlock - but perhaps we want to if we are stopping early
-comment|// and CoreContainer is not being shutdown?
+try|try
+block|{
+name|cancelRecovery
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Error cancelling recovery"
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+block|}
 name|closed
 operator|=
 literal|true
