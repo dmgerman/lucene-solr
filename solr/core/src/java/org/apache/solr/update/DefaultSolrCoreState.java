@@ -624,6 +624,24 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{          }
+comment|// check again for those that were waiting
+if|if
+condition|(
+name|cc
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Skipping recovery because Solr is shutdown"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 if|if
 condition|(
 name|closed
