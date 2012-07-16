@@ -669,7 +669,7 @@ argument_list|)
 expr_stmt|;
 name|tokenizer
 operator|.
-name|reset
+name|setReader
 argument_list|(
 operator|new
 name|StringReader

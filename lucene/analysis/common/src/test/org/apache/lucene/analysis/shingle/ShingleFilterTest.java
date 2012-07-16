@@ -6575,7 +6575,7 @@ argument_list|)
 expr_stmt|;
 name|wsTokenizer
 operator|.
-name|reset
+name|setReader
 argument_list|(
 operator|new
 name|StringReader

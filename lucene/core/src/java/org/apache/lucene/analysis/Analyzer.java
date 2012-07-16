@@ -399,7 +399,7 @@ name|IOException
 block|{
 name|source
 operator|.
-name|reset
+name|setReader
 argument_list|(
 name|reader
 argument_list|)

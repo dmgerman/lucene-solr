@@ -226,10 +226,10 @@ name|currentOff
 return|;
 block|}
 comment|/** Expert: Reset the tokenizer to a new reader.  Typically, an    *  analyzer (in its tokenStream method) will use    *  this to re-use a previously created tokenizer. */
-DECL|method|reset
+DECL|method|setReader
 specifier|public
 name|void
-name|reset
+name|setReader
 parameter_list|(
 name|Reader
 name|input
