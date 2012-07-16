@@ -455,9 +455,11 @@ block|{
 return|return
 name|floorSegmentBytes
 operator|/
+operator|(
 literal|1024
 operator|*
 literal|1024.
+operator|)
 return|;
 block|}
 comment|/** When forceMergeDeletes is called, we only merge away a    *  segment if its delete percentage is over this    *  threshold.  Default is 10%. */
