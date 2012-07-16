@@ -635,6 +635,7 @@ argument_list|(
 name|header
 argument_list|)
 decl_stmt|;
+comment|// nocommit writeVInt instead?
 name|out
 operator|.
 name|writeInt
