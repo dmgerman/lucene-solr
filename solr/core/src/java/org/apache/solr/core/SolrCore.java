@@ -5862,7 +5862,10 @@ name|updateHandlerReopens
 condition|)
 block|{
 comment|// SolrCore.verbose("start reopen from",previousSearcher,"writer=",writer);
+name|RefCounted
+argument_list|<
 name|IndexWriter
+argument_list|>
 name|writer
 init|=
 name|getUpdateHandler
@@ -5876,6 +5879,8 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|newReader
 operator|=
 name|DirectoryReader
@@ -5885,10 +5890,22 @@ argument_list|(
 name|currentReader
 argument_list|,
 name|writer
+operator|.
+name|get
+argument_list|()
 argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|writer
+operator|.
+name|decref
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
