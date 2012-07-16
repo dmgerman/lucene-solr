@@ -72,7 +72,10 @@ name|fill
 argument_list|(
 name|output
 argument_list|,
-literal|0
+name|compressedBuffer
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
