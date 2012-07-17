@@ -58,23 +58,13 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharReader
+name|CharFilter
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|CharStream
-import|;
-end_import
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import
@@ -256,7 +246,7 @@ specifier|private
 name|int
 name|inputOff
 decl_stmt|;
-comment|/** Default constructor that takes a {@link CharStream}. */
+comment|/** Default constructor that takes a {@link Reader}. */
 DECL|method|MappingCharFilter
 specifier|public
 name|MappingCharFilter
@@ -264,7 +254,7 @@ parameter_list|(
 name|NormalizeCharMap
 name|normMap
 parameter_list|,
-name|CharStream
+name|Reader
 name|in
 parameter_list|)
 block|{
@@ -317,31 +307,6 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/** Easy-use constructor that takes a {@link Reader}. */
-DECL|method|MappingCharFilter
-specifier|public
-name|MappingCharFilter
-parameter_list|(
-name|NormalizeCharMap
-name|normMap
-parameter_list|,
-name|Reader
-name|in
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|normMap
-argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
-name|in
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 DECL|method|reset
@@ -361,7 +326,7 @@ name|buffer
 operator|.
 name|reset
 argument_list|(
-name|input
+name|in
 argument_list|)
 expr_stmt|;
 name|replacement

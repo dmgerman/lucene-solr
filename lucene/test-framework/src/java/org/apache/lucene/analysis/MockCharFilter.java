@@ -66,13 +66,8 @@ specifier|public
 class|class
 name|MockCharFilter
 extends|extends
-name|CharStream
+name|CharFilter
 block|{
-DECL|field|in
-specifier|final
-name|CharStream
-name|in
-decl_stmt|;
 DECL|field|remainder
 specifier|final
 name|int
@@ -90,13 +85,7 @@ name|int
 name|remainder
 parameter_list|)
 block|{
-name|this
-operator|.
-name|in
-operator|=
-name|CharReader
-operator|.
-name|get
+name|super
 argument_list|(
 name|in
 argument_list|)
@@ -379,10 +368,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|correctOffset
+DECL|method|correct
 specifier|public
 name|int
-name|correctOffset
+name|correct
 parameter_list|(
 name|int
 name|currentOff
@@ -447,14 +436,8 @@ name|currentOff
 operator|)
 assert|;
 return|return
-name|in
-operator|.
-name|correctOffset
-argument_list|(
 name|ret
-argument_list|)
 return|;
-comment|// chain the call
 block|}
 DECL|method|addOffCorrectMap
 specifier|protected
