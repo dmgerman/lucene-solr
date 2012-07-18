@@ -371,86 +371,6 @@ name|maxInclusive
 operator|=
 name|maxInclusive
 expr_stmt|;
-comment|// For bigger precisionSteps this query likely
-comment|// hits too many terms, so set to CONSTANT_SCORE_FILTER right off
-comment|// (especially as the FilteredTermsEnum is costly if wasted only for AUTO tests because it
-comment|// creates new enums from IndexReader for each sub-range)
-switch|switch
-condition|(
-name|dataType
-condition|)
-block|{
-case|case
-name|LONG
-case|:
-case|case
-name|DOUBLE
-case|:
-name|setRewriteMethod
-argument_list|(
-operator|(
-name|precisionStep
-operator|>
-literal|6
-operator|)
-condition|?
-name|CONSTANT_SCORE_FILTER_REWRITE
-else|:
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|INT
-case|:
-case|case
-name|FLOAT
-case|:
-name|setRewriteMethod
-argument_list|(
-operator|(
-name|precisionStep
-operator|>
-literal|8
-operator|)
-condition|?
-name|CONSTANT_SCORE_FILTER_REWRITE
-else|:
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
-argument_list|)
-expr_stmt|;
-break|break;
-default|default:
-comment|// should never happen
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Invalid numeric NumericType"
-argument_list|)
-throw|;
-block|}
-comment|// shortcut if upper bound == lower bound
-if|if
-condition|(
-name|min
-operator|!=
-literal|null
-operator|&&
-name|min
-operator|.
-name|equals
-argument_list|(
-name|max
-argument_list|)
-condition|)
-block|{
-name|setRewriteMethod
-argument_list|(
-name|CONSTANT_SCORE_BOOLEAN_QUERY_REWRITE
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|/**    * Factory that creates a<code>NumericRangeQuery</code>, that queries a<code>long</code>    * range using the given<a href="#precisionStepDesc"><code>precisionStep</code></a>.    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>. By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
 DECL|method|newLongRange
@@ -931,8 +851,8 @@ throws|throws
 name|IOException
 block|{
 comment|// very strange: java.lang.Number itsself is not Comparable, but all subclasses used here are
-return|return
-operator|(
+if|if
+condition|(
 name|min
 operator|!=
 literal|null
@@ -957,12 +877,15 @@ name|max
 argument_list|)
 operator|>
 literal|0
-operator|)
-condition|?
+condition|)
+block|{
+return|return
 name|TermsEnum
 operator|.
 name|EMPTY
-else|:
+return|;
+block|}
+return|return
 operator|new
 name|NumericRangeTermsEnum
 argument_list|(
