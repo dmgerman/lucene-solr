@@ -495,9 +495,6 @@ expr_stmt|;
 name|resetFactory
 argument_list|()
 expr_stmt|;
-name|resetFactory
-argument_list|()
-expr_stmt|;
 block|}
 DECL|field|changedFactory
 specifier|private
