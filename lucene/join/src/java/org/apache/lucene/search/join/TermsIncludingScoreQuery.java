@@ -1216,6 +1216,18 @@ return|return
 name|docId
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|freq
+specifier|public
+name|float
+name|freq
+parameter_list|()
+block|{
+return|return
+literal|1
+return|;
+block|}
 block|}
 comment|// This impl that tracks whether a docid has already been emitted. This check makes sure that docs aren't emitted
 comment|// twice for different join values. This means that the first encountered join value determines the score of a document

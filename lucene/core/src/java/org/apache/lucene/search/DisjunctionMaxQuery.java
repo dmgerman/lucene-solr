@@ -553,15 +553,6 @@ condition|(
 name|subScorer
 operator|!=
 literal|null
-operator|&&
-name|subScorer
-operator|.
-name|nextDoc
-argument_list|()
-operator|!=
-name|DocIdSetIterator
-operator|.
-name|NO_MORE_DOCS
 condition|)
 block|{
 name|scorers
