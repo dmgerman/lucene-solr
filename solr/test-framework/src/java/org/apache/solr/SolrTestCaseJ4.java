@@ -399,7 +399,7 @@ specifier|static
 name|int
 name|DEFAULT_CONNECTION_TIMEOUT
 init|=
-literal|500
+literal|1000
 decl_stmt|;
 comment|// default socket connection timeout in ms
 annotation|@
