@@ -422,6 +422,8 @@ name|e
 parameter_list|)
 block|{}
 block|}
+try|try
+block|{
 if|if
 condition|(
 name|indexWriter
@@ -439,8 +441,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
-name|e
+name|Throwable
+name|t
 parameter_list|)
 block|{
 name|SolrException
@@ -451,13 +453,11 @@ name|log
 argument_list|,
 literal|"Error closing old IndexWriter"
 argument_list|,
-name|e
+name|t
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-try|try
-block|{
 name|indexWriter
 operator|=
 name|createMainIndexWriter
