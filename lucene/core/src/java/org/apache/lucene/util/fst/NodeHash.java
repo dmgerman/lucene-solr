@@ -845,6 +845,27 @@ name|oldTable
 init|=
 name|table
 decl_stmt|;
+if|if
+condition|(
+name|oldTable
+operator|.
+name|length
+operator|>=
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|/
+literal|2
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"FST too large (> 2.1 GB)"
+argument_list|)
+throw|;
+block|}
 name|table
 operator|=
 operator|new

@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -142,8 +132,6 @@ specifier|public
 name|float
 name|score
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|idx
@@ -160,6 +148,18 @@ name|scores
 index|[
 name|idx
 index|]
+return|;
+block|}
+DECL|method|freq
+annotation|@
+name|Override
+specifier|public
+name|float
+name|freq
+parameter_list|()
+block|{
+return|return
+literal|1
 return|;
 block|}
 DECL|method|docID
@@ -181,8 +181,6 @@ specifier|public
 name|int
 name|nextDoc
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 operator|++
@@ -207,8 +205,6 @@ parameter_list|(
 name|int
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|idx
 operator|=

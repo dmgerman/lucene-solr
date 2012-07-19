@@ -94,11 +94,29 @@ name|Mode
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test Kuromoji Japanese morphological analyzer  */
 end_comment
 
 begin_class
+annotation|@
+name|Slow
 DECL|class|TestJapaneseAnalyzer
 specifier|public
 class|class
@@ -623,7 +641,7 @@ name|random
 argument_list|,
 name|a
 argument_list|,
-literal|200
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,

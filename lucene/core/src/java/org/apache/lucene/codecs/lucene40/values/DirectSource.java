@@ -538,8 +538,6 @@ parameter_list|(
 name|IndexInput
 name|input
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -590,8 +588,6 @@ parameter_list|(
 name|IndexInput
 name|input
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -659,8 +655,6 @@ parameter_list|(
 name|IndexInput
 name|input
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new

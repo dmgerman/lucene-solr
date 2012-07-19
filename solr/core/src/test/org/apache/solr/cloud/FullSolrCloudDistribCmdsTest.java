@@ -28,23 +28,17 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|net
+name|apache
 operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|lucene
 operator|.
 name|util
 operator|.
-name|concurrent
+name|LuceneTestCase
 operator|.
-name|TimeoutException
+name|Slow
 import|;
 end_import
 
@@ -343,6 +337,8 @@ comment|/**  * Super basic testing, no shard restarting or anything.  */
 end_comment
 
 begin_class
+annotation|@
+name|Slow
 DECL|class|FullSolrCloudDistribCmdsTest
 specifier|public
 class|class
@@ -358,8 +354,6 @@ specifier|static
 name|void
 name|beforeSuperClass
 parameter_list|()
-throws|throws
-name|Exception
 block|{   }
 DECL|method|FullSolrCloudDistribCmdsTest
 specifier|public
@@ -740,15 +734,7 @@ name|void
 name|testThatCantForwardToLeaderFails
 parameter_list|()
 throws|throws
-name|InterruptedException
-throws|,
 name|Exception
-throws|,
-name|TimeoutException
-throws|,
-name|IOException
-throws|,
-name|KeeperException
 block|{
 name|ZkNodeProps
 name|props
@@ -903,10 +889,6 @@ name|long
 name|docId
 parameter_list|)
 throws|throws
-name|SolrServerException
-throws|,
-name|IOException
-throws|,
 name|Exception
 block|{
 name|QueryResponse
@@ -1026,8 +1008,6 @@ name|addUpdateDelete
 parameter_list|()
 throws|throws
 name|Exception
-throws|,
-name|SolrServerException
 throws|,
 name|IOException
 block|{
@@ -1252,8 +1232,6 @@ name|testDeleteByQueryDistrib
 parameter_list|()
 throws|throws
 name|Exception
-throws|,
-name|SolrServerException
 block|{
 name|del
 argument_list|(
@@ -1286,8 +1264,6 @@ name|void
 name|testIndexingWithSuss
 parameter_list|()
 throws|throws
-name|MalformedURLException
-throws|,
 name|Exception
 block|{
 name|ConcurrentUpdateSolrServer

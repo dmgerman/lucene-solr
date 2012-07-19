@@ -965,8 +965,6 @@ parameter_list|,
 name|ModifiableSolrParams
 name|params
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|flushAdds
 argument_list|(

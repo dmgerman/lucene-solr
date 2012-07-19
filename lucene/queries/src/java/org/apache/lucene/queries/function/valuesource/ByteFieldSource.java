@@ -98,6 +98,7 @@ name|FieldCacheSource
 block|{
 DECL|field|parser
 specifier|private
+specifier|final
 name|FieldCache
 operator|.
 name|ByteParser

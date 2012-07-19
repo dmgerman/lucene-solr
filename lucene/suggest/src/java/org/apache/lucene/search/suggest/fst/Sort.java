@@ -466,7 +466,7 @@ name|format
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|,
 literal|"time=%.2f sec. total (%.2f reading, %.2f sorting, %.2f merging), lines=%d, temp files=%d, merges=%d, soft ram limit=%.2f MB"
 argument_list|,
@@ -743,6 +743,13 @@ name|File
 argument_list|>
 argument_list|()
 decl_stmt|;
+name|boolean
+name|success2
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 name|ByteSequencesReader
 name|is
 init|=
@@ -824,6 +831,8 @@ argument_list|,
 name|tempDirectory
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|mergePartitions
 argument_list|(
 name|merges
@@ -831,6 +840,9 @@ argument_list|,
 name|intermediate
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 for|for
 control|(
 name|File
@@ -857,6 +869,7 @@ argument_list|(
 name|intermediate
 argument_list|)
 expr_stmt|;
+block|}
 name|sortInfo
 operator|.
 name|tempMergeFiles
@@ -902,17 +915,22 @@ operator|==
 literal|1
 condition|)
 block|{
-comment|// If simple rename doesn't work this means the output is
-comment|// on a different volume or something. Copy the input then.
-if|if
-condition|(
-operator|!
+name|File
+name|single
+init|=
 name|merges
 operator|.
 name|get
 argument_list|(
 literal|0
 argument_list|)
+decl_stmt|;
+comment|// If simple rename doesn't work this means the output is
+comment|// on a different volume or something. Copy the input then.
+if|if
+condition|(
+operator|!
+name|single
 operator|.
 name|renameTo
 argument_list|(
@@ -922,12 +940,7 @@ condition|)
 block|{
 name|copy
 argument_list|(
-name|merges
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
+name|single
 argument_list|,
 name|output
 argument_list|)
@@ -944,6 +957,14 @@ argument_list|,
 name|output
 argument_list|)
 expr_stmt|;
+block|}
+name|success2
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
 for|for
 control|(
 name|File
@@ -953,6 +974,18 @@ name|merges
 control|)
 block|{
 name|file
+operator|.
+name|delete
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|success2
+condition|)
+block|{
+name|output
 operator|.
 name|delete
 argument_list|()

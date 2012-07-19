@@ -302,7 +302,7 @@ specifier|private
 name|Directory
 name|directory
 decl_stmt|;
-comment|/**    * Set up a new index in RAM with three test phrases and the supplied Analyzer.    *    * @param analyzer the analyzer to use    * @return an indexSearcher on the test index.    * @throws Exception if an error occurs with index writer or searcher    */
+comment|/**    * Set up a new index in RAM with three test phrases and the supplied Analyzer.    *    * @throws Exception if an error occurs with index writer or searcher    */
 annotation|@
 name|Override
 DECL|method|setUp

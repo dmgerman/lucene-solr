@@ -1295,7 +1295,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a<code>QParser</code> to parse<code>qstr</code>,    * assuming that the default query type is<code>defaultType</code>.    * The query type may be overridden by local parameters in the query    * string itself.  For example if defaultType=<code>"dismax"</code>    * and qstr=<code>foo</code>, then the dismax query parser will be used    * to parse and construct the query object.  However    * if qstr=<code>{!prefix f=myfield}foo</code>    * then the prefix query parser will be used.    */
+comment|/** Create a<code>QParser</code> to parse<code>qstr</code>,    * assuming that the default query parser is<code>defaultParser</code>.    * The query parser may be overridden by local parameters in the query    * string itself.  For example if defaultParser=<code>"dismax"</code>    * and qstr=<code>foo</code>, then the dismax query parser will be used    * to parse and construct the query object.  However    * if qstr=<code>{!prefix f=myfield}foo</code>    * then the prefix query parser will be used.    */
 DECL|method|getParser
 specifier|public
 specifier|static
@@ -1306,7 +1306,7 @@ name|String
 name|qstr
 parameter_list|,
 name|String
-name|defaultType
+name|defaultParser
 parameter_list|,
 name|SolrQueryRequest
 name|req
@@ -1455,7 +1455,7 @@ argument_list|)
 expr_stmt|;
 block|}
 name|String
-name|type
+name|parserName
 decl_stmt|;
 if|if
 condition|(
@@ -1464,14 +1464,14 @@ operator|==
 literal|null
 condition|)
 block|{
-name|type
+name|parserName
 operator|=
-name|defaultType
+name|defaultParser
 expr_stmt|;
 block|}
 else|else
 block|{
-name|type
+name|parserName
 operator|=
 name|localParams
 operator|.
@@ -1481,7 +1481,7 @@ name|QueryParsing
 operator|.
 name|TYPE
 argument_list|,
-name|defaultType
+name|defaultParser
 argument_list|)
 expr_stmt|;
 name|qstr
@@ -1494,9 +1494,9 @@ literal|"v"
 argument_list|)
 expr_stmt|;
 block|}
-name|type
+name|parserName
 operator|=
-name|type
+name|parserName
 operator|==
 literal|null
 condition|?
@@ -1504,7 +1504,7 @@ name|QParserPlugin
 operator|.
 name|DEFAULT_QTYPE
 else|:
-name|type
+name|parserName
 expr_stmt|;
 name|QParserPlugin
 name|qplug
@@ -1516,7 +1516,7 @@ argument_list|()
 operator|.
 name|getQueryPlugin
 argument_list|(
-name|type
+name|parserName
 argument_list|)
 decl_stmt|;
 name|QParser

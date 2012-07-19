@@ -458,6 +458,8 @@ name|getResourceAsStream
 argument_list|(
 literal|"reuters21578.txt"
 argument_list|)
+argument_list|,
+literal|"US-ASCII"
 argument_list|)
 argument_list|)
 decl_stmt|;

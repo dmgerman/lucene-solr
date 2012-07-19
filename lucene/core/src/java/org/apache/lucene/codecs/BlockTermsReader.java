@@ -32,16 +32,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Comparator
 import|;
 end_import
@@ -163,20 +153,6 @@ operator|.
 name|index
 operator|.
 name|IndexFileNames
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentInfo
 import|;
 end_import
 
@@ -317,20 +293,6 @@ operator|.
 name|util
 operator|.
 name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|CodecUtil
 import|;
 end_import
 
@@ -2956,8 +2918,6 @@ parameter_list|,
 name|TermState
 name|otherState
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|//System.out.println("BTR.seekExact termState target=" + target.utf8ToString() + " " + target + " this=" + this);
 assert|assert

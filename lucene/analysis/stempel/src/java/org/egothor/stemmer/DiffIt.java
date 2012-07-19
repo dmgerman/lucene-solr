@@ -30,7 +30,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileReader
+name|FileInputStream
 import|;
 end_import
 
@@ -40,7 +40,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|InputStreamReader
 import|;
 end_import
 
@@ -51,6 +51,16 @@ operator|.
 name|io
 operator|.
 name|LineNumberReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
 import|;
 end_import
 
@@ -132,6 +142,8 @@ name|String
 index|[]
 name|args
 parameter_list|)
+throws|throws
+name|Exception
 block|{
 name|int
 name|ins
@@ -221,8 +233,18 @@ argument_list|,
 name|nop
 argument_list|)
 decl_stmt|;
-try|try
-block|{
+name|String
+name|charset
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"egothor.stemmer.charset"
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+decl_stmt|;
 name|in
 operator|=
 operator|new
@@ -232,12 +254,18 @@ operator|new
 name|BufferedReader
 argument_list|(
 operator|new
-name|FileReader
+name|InputStreamReader
+argument_list|(
+operator|new
+name|FileInputStream
 argument_list|(
 name|args
 index|[
 name|i
 index|]
+argument_list|)
+argument_list|,
+name|charset
 argument_list|)
 argument_list|)
 argument_list|)
@@ -271,7 +299,11 @@ operator|=
 name|line
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 expr_stmt|;
 name|StringTokenizer
 name|st
@@ -364,19 +396,6 @@ parameter_list|)
 block|{
 comment|// no base token (stem) on a line
 block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|x
-parameter_list|)
-block|{
-name|x
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 block|}

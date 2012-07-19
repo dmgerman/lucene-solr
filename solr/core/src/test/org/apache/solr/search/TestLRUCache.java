@@ -572,8 +572,6 @@ name|int
 index|[]
 name|misses
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|LRUCache
 argument_list|<
@@ -1162,8 +1160,6 @@ parameter_list|,
 name|Object
 name|oldVal
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|newCache
 operator|.

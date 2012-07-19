@@ -26,20 +26,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|charfilter
 operator|.
 name|HTMLStripCharFilter
@@ -59,6 +45,16 @@ operator|.
 name|util
 operator|.
 name|CharFilterFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
 import|;
 end_import
 
@@ -153,7 +149,7 @@ specifier|public
 name|HTMLStripCharFilter
 name|create
 parameter_list|(
-name|CharStream
+name|Reader
 name|input
 parameter_list|)
 block|{

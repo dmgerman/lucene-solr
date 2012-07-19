@@ -1253,6 +1253,10 @@ operator|new
 name|PrintStream
 argument_list|(
 name|bos
+argument_list|,
+literal|false
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1278,7 +1282,9 @@ argument_list|(
 name|bos
 operator|.
 name|toString
-argument_list|()
+argument_list|(
+literal|"UTF-8"
+argument_list|)
 operator|.
 name|contains
 argument_list|(

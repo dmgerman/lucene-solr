@@ -376,7 +376,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-literal|"solr/conf/dataimport.properties"
+literal|"solr/collection1/conf/dataimport.properties"
 argument_list|)
 decl_stmt|;
 name|log

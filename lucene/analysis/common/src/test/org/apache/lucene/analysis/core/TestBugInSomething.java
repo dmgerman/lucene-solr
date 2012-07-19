@@ -20,7 +20,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|Reader
 import|;
 end_import
 
@@ -30,7 +30,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Reader
+name|StringReader
 import|;
 end_import
 
@@ -82,7 +82,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharStream
+name|CharFilter
 import|;
 end_import
 
@@ -443,12 +443,18 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|field|wrappedStream
-name|CharStream
+name|CharFilter
 name|wrappedStream
 init|=
 operator|new
-name|CharStream
-argument_list|()
+name|CharFilter
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+literal|"bogus"
+argument_list|)
+argument_list|)
 block|{
 annotation|@
 name|Override
@@ -459,8 +465,6 @@ parameter_list|(
 name|int
 name|readAheadLimit
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -491,8 +495,6 @@ specifier|public
 name|int
 name|read
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -512,8 +514,6 @@ name|char
 index|[]
 name|cbuf
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -532,8 +532,6 @@ parameter_list|(
 name|CharBuffer
 name|target
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -549,8 +547,6 @@ specifier|public
 name|boolean
 name|ready
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -566,8 +562,6 @@ specifier|public
 name|void
 name|reset
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -586,8 +580,6 @@ parameter_list|(
 name|long
 name|n
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -601,7 +593,7 @@ annotation|@
 name|Override
 specifier|public
 name|int
-name|correctOffset
+name|correct
 parameter_list|(
 name|int
 name|currentOff
@@ -611,7 +603,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"correctOffset(int)"
+literal|"correct(int)"
 argument_list|)
 throw|;
 block|}
@@ -621,8 +613,6 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -648,8 +638,6 @@ parameter_list|,
 name|int
 name|arg2
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 throw|throw
 operator|new
@@ -669,7 +657,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -918,7 +906,7 @@ parameter_list|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"correctOffset(int)"
+literal|"correct(int)"
 argument_list|,
 name|e
 operator|.

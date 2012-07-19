@@ -116,6 +116,20 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|freq
+specifier|public
+name|float
+name|freq
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+literal|0
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|docID
 specifier|public
 name|int
@@ -337,8 +351,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{}
 annotation|@
 name|Override
@@ -349,8 +361,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{}
 annotation|@
 name|Override
@@ -361,8 +371,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|assertEquals
 argument_list|(

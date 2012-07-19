@@ -465,8 +465,6 @@ parameter_list|,
 name|IntEncoder
 name|encoder
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

@@ -68,18 +68,21 @@ name|Query
 block|{
 DECL|field|boost
 specifier|private
+specifier|final
 name|float
 name|boost
 decl_stmt|;
 comment|// the amount to boost by
 DECL|field|match
 specifier|private
+specifier|final
 name|Query
 name|match
 decl_stmt|;
 comment|// query to match
 DECL|field|context
 specifier|private
+specifier|final
 name|Query
 name|context
 decl_stmt|;

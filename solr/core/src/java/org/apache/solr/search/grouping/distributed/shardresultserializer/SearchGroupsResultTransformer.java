@@ -497,8 +497,6 @@ parameter_list|,
 name|String
 name|shard
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|Map
 argument_list|<

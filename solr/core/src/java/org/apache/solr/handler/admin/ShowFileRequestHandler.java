@@ -476,7 +476,7 @@ name|toUpperCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -678,7 +678,7 @@ name|toUpperCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 argument_list|)
 condition|)
@@ -827,7 +827,7 @@ name|toUpperCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 argument_list|)
 condition|)
@@ -1044,8 +1044,6 @@ parameter_list|,
 name|SolrQueryResponse
 name|rsp
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|File
 name|adminFile
@@ -1183,7 +1181,7 @@ name|toUpperCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 argument_list|)
 condition|)
@@ -1404,7 +1402,7 @@ name|toUpperCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 argument_list|)
 condition|)

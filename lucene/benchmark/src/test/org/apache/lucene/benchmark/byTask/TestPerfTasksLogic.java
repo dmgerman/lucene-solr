@@ -44,7 +44,17 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileReader
+name|FileInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStreamReader
 import|;
 end_import
 
@@ -1955,9 +1965,15 @@ operator|new
 name|BufferedReader
 argument_list|(
 operator|new
-name|FileReader
+name|InputStreamReader
+argument_list|(
+operator|new
+name|FileInputStream
 argument_list|(
 name|lineFile
+argument_list|)
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 argument_list|)
 decl_stmt|;

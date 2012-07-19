@@ -18,20 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderSlice
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -143,8 +129,6 @@ specifier|final
 name|int
 name|numSubs
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -226,6 +210,11 @@ name|slice
 expr_stmt|;
 block|}
 name|upto
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+name|doc
 operator|=
 operator|-
 literal|1

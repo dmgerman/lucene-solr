@@ -1265,10 +1265,6 @@ name|OpenMode
 name|openMode
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
-name|LockObtainFailedException
-throws|,
 name|IOException
 block|{
 name|this
@@ -1311,10 +1307,6 @@ name|Directory
 name|d
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
-name|LockObtainFailedException
-throws|,
 name|IOException
 block|{
 name|this
@@ -1337,8 +1329,6 @@ name|void
 name|close
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 if|if
@@ -1368,8 +1358,6 @@ name|void
 name|doClose
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|indexWriter
@@ -2393,8 +2381,6 @@ name|void
 name|commit
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -2502,8 +2488,6 @@ argument_list|>
 name|commitUserData
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -2530,8 +2514,6 @@ name|void
 name|prepareCommit
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen
@@ -2566,8 +2548,6 @@ argument_list|>
 name|commitUserData
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen

@@ -307,7 +307,7 @@ name|writer
 argument_list|)
 return|;
 block|}
-comment|/**    * Initialize the deleter: find all previous commits in    * the Directory, incref the files they reference, call    * the policy to let it delete commits.  This will remove    * any files not referenced by any of the commits.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Initialize the deleter: find all previous commits in    * the Directory, incref the files they reference, call    * the policy to let it delete commits.  This will remove    * any files not referenced by any of the commits.    * @throws IOException if there is a low-level IO error    */
 DECL|method|IndexFileDeleter
 specifier|public
 name|IndexFileDeleter
@@ -328,8 +328,6 @@ name|IndexWriter
 name|writer
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|this
@@ -1757,8 +1755,6 @@ name|String
 argument_list|>
 name|files
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|locked
@@ -1787,8 +1783,6 @@ parameter_list|(
 name|String
 name|fileName
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|locked
@@ -2623,8 +2617,6 @@ name|String
 argument_list|>
 name|getFileNames
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|files

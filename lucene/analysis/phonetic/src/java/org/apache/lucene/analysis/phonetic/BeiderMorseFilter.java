@@ -300,7 +300,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**     * Calls {@link #BeiderMorseFilter(TokenStream, PhoneticEngine, Languages.LanguageSet)    *        BeiderMorseFilter(input, engine, null)}    */
+comment|/**    * Calls    * {@link #BeiderMorseFilter(TokenStream, PhoneticEngine, org.apache.commons.codec.language.bm.Languages.LanguageSet)}    *     * @param input    * @param engine    */
 DECL|method|BeiderMorseFilter
 specifier|public
 name|BeiderMorseFilter

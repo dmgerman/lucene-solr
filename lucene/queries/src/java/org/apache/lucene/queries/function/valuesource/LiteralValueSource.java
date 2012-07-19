@@ -312,9 +312,7 @@ name|LiteralValueSource
 operator|)
 name|o
 decl_stmt|;
-if|if
-condition|(
-operator|!
+return|return
 name|string
 operator|.
 name|equals
@@ -323,12 +321,6 @@ name|that
 operator|.
 name|string
 argument_list|)
-condition|)
-return|return
-literal|false
-return|;
-return|return
-literal|true
 return|;
 block|}
 DECL|field|hash

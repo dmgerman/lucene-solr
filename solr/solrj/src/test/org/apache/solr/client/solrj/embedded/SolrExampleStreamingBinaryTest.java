@@ -26,6 +26,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|client
@@ -91,6 +107,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|Slow
 DECL|class|SolrExampleStreamingBinaryTest
 specifier|public
 class|class

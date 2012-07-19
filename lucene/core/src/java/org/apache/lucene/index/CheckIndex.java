@@ -102,6 +102,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -960,7 +970,11 @@ init|=
 name|NumberFormat
 operator|.
 name|getInstance
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 decl_stmt|;
 name|SegmentInfos
 name|sis
@@ -2989,6 +3003,9 @@ name|fieldInfos
 parameter_list|,
 name|boolean
 name|doPrint
+parameter_list|,
+name|boolean
+name|isVectors
 parameter_list|)
 throws|throws
 name|IOException
@@ -3933,6 +3950,14 @@ operator|.
 name|endOffset
 argument_list|()
 decl_stmt|;
+comment|// NOTE: we cannot enforce any bounds whatsoever on vectors... they were a free-for-all before?
+comment|// but for offsets in the postings lists these checks are fine: they were always enforced by IndexWriter
+if|if
+condition|(
+operator|!
+name|isVectors
+condition|)
+block|{
 if|if
 condition|(
 name|startOffset
@@ -4060,6 +4085,7 @@ operator|+
 name|startOffset
 argument_list|)
 throw|;
+block|}
 block|}
 name|lastOffset
 operator|=
@@ -4537,6 +4563,14 @@ operator|.
 name|endOffset
 argument_list|()
 decl_stmt|;
+comment|// NOTE: we cannot enforce any bounds whatsoever on vectors... they were a free-for-all before?
+comment|// but for offsets in the postings lists these checks are fine: they were always enforced by IndexWriter
+if|if
+condition|(
+operator|!
+name|isVectors
+condition|)
+block|{
 if|if
 condition|(
 name|startOffset
@@ -4664,6 +4698,7 @@ operator|+
 name|startOffset
 argument_list|)
 throw|;
+block|}
 block|}
 name|lastOffset
 operator|=
@@ -6011,6 +6046,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 if|if
@@ -6046,6 +6083,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -7226,6 +7265,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// Again, with the one doc deleted:
@@ -7240,6 +7281,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// Only agg stats if the doc is live:

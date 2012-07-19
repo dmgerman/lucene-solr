@@ -362,6 +362,7 @@ operator|new
 name|Properties
 argument_list|()
 expr_stmt|;
+comment|// props.load always assumes iso8859-1...
 name|props
 operator|.
 name|load
@@ -375,7 +376,9 @@ name|toString
 argument_list|()
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"ISO-8859-1"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

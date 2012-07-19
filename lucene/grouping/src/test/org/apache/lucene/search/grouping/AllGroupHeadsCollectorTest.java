@@ -1507,6 +1507,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"TEST: iter=%d total=%d"
 argument_list|,
 name|iter
@@ -2228,6 +2232,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"%05d"
 argument_list|,
 name|i
@@ -2973,6 +2981,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Group:%10s score%5f Sort1:%10s Sort2:%10s Sort3:%10s doc:%5d"
 argument_list|,
 name|expectedGroup
@@ -3060,6 +3072,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Group:%10s score%5f Sort1:%10s Sort2:%10s Sort3:%10s doc:%5d"
 argument_list|,
 name|actualGroup
@@ -3385,8 +3401,6 @@ name|int
 index|[]
 name|fieldIdToDocID
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|Map
 argument_list|<
@@ -4129,8 +4143,6 @@ parameter_list|,
 name|Type
 name|valueType
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|AbstractAllGroupHeadsCollector
 argument_list|<

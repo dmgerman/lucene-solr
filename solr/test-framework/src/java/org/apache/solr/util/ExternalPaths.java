@@ -105,7 +105,7 @@ name|EXAMPLE_SCHEMA
 init|=
 name|EXAMPLE_HOME
 operator|+
-literal|"/conf/schema.xml"
+literal|"/collection1/conf/schema.xml"
 decl_stmt|;
 DECL|field|EXAMPLE_CONFIG
 specifier|public
@@ -115,7 +115,7 @@ name|EXAMPLE_CONFIG
 init|=
 name|EXAMPLE_HOME
 operator|+
-literal|"/conf/solrconfig.xml"
+literal|"/collection1/conf/solrconfig.xml"
 decl_stmt|;
 DECL|method|determineSourceHome
 specifier|static

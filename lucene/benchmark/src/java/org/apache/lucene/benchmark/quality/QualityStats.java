@@ -48,6 +48,16 @@ name|ArrayList
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**  * Results of quality benchmark run for a single query or for a set of queries.  */
 end_comment
@@ -569,7 +579,11 @@ init|=
 name|NumberFormat
 operator|.
 name|getInstance
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 decl_stmt|;
 name|nf
 operator|.

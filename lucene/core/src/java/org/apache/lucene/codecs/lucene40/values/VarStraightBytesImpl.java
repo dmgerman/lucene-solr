@@ -488,8 +488,6 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -843,6 +841,10 @@ operator|.
 name|getReaderIterator
 argument_list|(
 name|cloneIdx
+argument_list|,
+name|PackedInts
+operator|.
+name|DEFAULT_BUFFER_SIZE
 argument_list|)
 decl_stmt|;
 for|for

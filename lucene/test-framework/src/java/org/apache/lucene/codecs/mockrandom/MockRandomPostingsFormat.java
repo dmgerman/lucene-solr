@@ -675,12 +675,10 @@ specifier|public
 name|MockRandomPostingsFormat
 parameter_list|()
 block|{
-comment|// just for reading, we are gonna setSeed from the .seed file... right?
+comment|// This ctor should *only* be used at read-time: get NPE if you use it!
 name|this
 argument_list|(
-operator|new
-name|Random
-argument_list|()
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -697,6 +695,46 @@ argument_list|(
 literal|"MockRandom"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|random
+operator|==
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|seedRandom
+operator|=
+operator|new
+name|Random
+argument_list|(
+literal|0L
+argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|protected
+name|int
+name|next
+parameter_list|(
+name|int
+name|arg0
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Please use MockRandomPostingsFormat(Random)"
+argument_list|)
+throw|;
+block|}
+block|}
+expr_stmt|;
+block|}
+else|else
+block|{
 name|this
 operator|.
 name|seedRandom
@@ -710,6 +748,7 @@ name|nextLong
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Chooses random IntStreamFactory depending on file's extension
 DECL|class|MockIntStreamFactory

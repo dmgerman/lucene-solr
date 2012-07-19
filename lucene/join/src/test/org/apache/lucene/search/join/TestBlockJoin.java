@@ -200,6 +200,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_class
 DECL|class|TestBlockJoin
 specifier|public
@@ -5072,6 +5082,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Score based on child doc range from %d to %d"
 argument_list|,
 name|hit

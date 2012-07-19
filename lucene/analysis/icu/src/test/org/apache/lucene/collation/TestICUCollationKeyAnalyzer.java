@@ -289,7 +289,7 @@ name|getInstance
 argument_list|(
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -356,7 +356,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// The ICU Collator and java.text.Collator implementations differ in their
-comment|// orderings - "BFJHD" is the ordering for the ICU Collator for Locale.US.
+comment|// orderings - "BFJHD" is the ordering for the ICU Collator for Locale.ROOT.
 name|testCollationKeySort
 argument_list|(
 name|usAnalyzer

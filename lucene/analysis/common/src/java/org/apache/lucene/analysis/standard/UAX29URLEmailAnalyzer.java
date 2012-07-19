@@ -361,7 +361,7 @@ annotation|@
 name|Override
 specifier|protected
 name|void
-name|reset
+name|setReader
 parameter_list|(
 specifier|final
 name|Reader
@@ -383,7 +383,7 @@ argument_list|)
 expr_stmt|;
 name|super
 operator|.
-name|reset
+name|setReader
 argument_list|(
 name|reader
 argument_list|)

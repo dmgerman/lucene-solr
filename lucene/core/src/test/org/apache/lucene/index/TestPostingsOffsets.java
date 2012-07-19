@@ -2585,7 +2585,7 @@ condition|(
 operator|(
 name|doc
 operator|=
-name|docsAndPositions
+name|docsAndPositionsAndOffsets
 operator|.
 name|nextDoc
 argument_list|()
@@ -2631,7 +2631,7 @@ operator|.
 name|size
 argument_list|()
 argument_list|,
-name|docsAndPositions
+name|docsAndPositionsAndOffsets
 operator|.
 name|freq
 argument_list|()
@@ -2663,7 +2663,7 @@ name|assertEquals
 argument_list|(
 name|pos
 argument_list|,
-name|docsAndPositions
+name|docsAndPositionsAndOffsets
 operator|.
 name|nextPosition
 argument_list|()
@@ -2676,7 +2676,7 @@ operator|.
 name|startOffset
 argument_list|()
 argument_list|,
-name|docsAndPositions
+name|docsAndPositionsAndOffsets
 operator|.
 name|startOffset
 argument_list|()
@@ -2689,7 +2689,7 @@ operator|.
 name|endOffset
 argument_list|()
 argument_list|,
-name|docsAndPositions
+name|docsAndPositionsAndOffsets
 operator|.
 name|endOffset
 argument_list|()

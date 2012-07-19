@@ -145,7 +145,7 @@ name|DEFAULT_MATH_TZ
 init|=
 name|UTC
 decl_stmt|;
-comment|/** Default Locale for DateMath rounding (Locale.US) */
+comment|/** Default Locale for DateMath rounding (Locale.ROOT) */
 DECL|field|DEFAULT_MATH_LOCALE
 specifier|public
 specifier|static
@@ -155,7 +155,7 @@ name|DEFAULT_MATH_LOCALE
 init|=
 name|Locale
 operator|.
-name|US
+name|ROOT
 decl_stmt|;
 comment|/**    * A mapping from (uppercased) String labels idenyifying time units,    * to the corresponding Calendar constant used to set/add/roll that unit    * of measurement.    *    *<p>    * A single logical unit of time might be represented by multiple labels    * for convenience (ie:<code>DATE==DAY</code>,    *<code>MILLI==MILLISECOND</code>)    *</p>    *    * @see Calendar    */
 DECL|field|CALENDAR_UNITS

@@ -86,6 +86,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|ReaderUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queries
 operator|.
 name|function
@@ -139,20 +153,6 @@ operator|.
 name|search
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderUtil
 import|;
 end_import
 
@@ -431,8 +431,6 @@ parameter_list|,
 name|boolean
 name|reversed
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new
@@ -513,8 +511,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|bottomVal
@@ -539,8 +535,6 @@ parameter_list|,
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|values
 index|[
@@ -564,8 +558,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|seed
 operator|=

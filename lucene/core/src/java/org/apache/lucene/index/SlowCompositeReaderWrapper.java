@@ -259,8 +259,6 @@ specifier|public
 name|Fields
 name|fields
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|ensureOpen
 argument_list|()
@@ -426,8 +424,6 @@ name|StoredFieldVisitor
 name|visitor
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen

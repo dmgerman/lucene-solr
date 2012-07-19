@@ -271,6 +271,8 @@ name|AtomicReaderContext
 argument_list|>
 name|leaves
 parameter_list|()
+throws|throws
+name|UnsupportedOperationException
 block|{
 if|if
 condition|(

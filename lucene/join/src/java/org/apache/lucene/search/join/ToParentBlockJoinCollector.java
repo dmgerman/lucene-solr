@@ -1491,6 +1491,19 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|freq
+specifier|public
+name|float
+name|freq
+parameter_list|()
+block|{
+return|return
+literal|1
+return|;
+comment|// TODO: does anything else make sense?... duplicate of grouping's FakeScorer btw?
+block|}
+annotation|@
+name|Override
 DECL|method|docID
 specifier|public
 name|int

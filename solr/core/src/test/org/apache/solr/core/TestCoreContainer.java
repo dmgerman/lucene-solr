@@ -42,7 +42,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileWriter
+name|FileOutputStream
 import|;
 end_import
 
@@ -53,6 +53,16 @@ operator|.
 name|io
 operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStreamWriter
 import|;
 end_import
 
@@ -105,6 +115,20 @@ operator|.
 name|search
 operator|.
 name|MatchAllDocsQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
 import|;
 end_import
 
@@ -875,9 +899,17 @@ operator|new
 name|BufferedWriter
 argument_list|(
 operator|new
-name|FileWriter
+name|OutputStreamWriter
+argument_list|(
+operator|new
+name|FileOutputStream
 argument_list|(
 name|solrXmlFile
+argument_list|)
+argument_list|,
+name|IOUtils
+operator|.
+name|CHARSET_UTF_8
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1000,6 +1032,8 @@ name|SolrTestCaseJ4
 operator|.
 name|TEST_HOME
 argument_list|()
+operator|+
+literal|"/collection1"
 argument_list|)
 decl_stmt|;
 name|SolrCore

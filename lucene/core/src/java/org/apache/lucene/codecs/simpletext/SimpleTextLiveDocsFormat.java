@@ -618,8 +618,6 @@ parameter_list|,
 name|CharsRef
 name|scratch
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|UnicodeUtil
 operator|.

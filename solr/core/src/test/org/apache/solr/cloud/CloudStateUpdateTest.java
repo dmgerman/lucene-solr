@@ -62,6 +62,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -269,6 +285,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|Slow
 DECL|class|CloudStateUpdateTest
 specifier|public
 class|class
@@ -358,8 +376,6 @@ specifier|static
 name|void
 name|beforeClass
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|System
 operator|.
@@ -387,14 +403,6 @@ operator|.
 name|clearProperty
 argument_list|(
 literal|"solrcloud.skip.autorecovery"
-argument_list|)
-expr_stmt|;
-comment|// wait just a bit for any zk client threads to outlast timeout
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|2000
 argument_list|)
 expr_stmt|;
 block|}

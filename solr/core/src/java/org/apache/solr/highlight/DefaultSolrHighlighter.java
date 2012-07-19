@@ -1318,7 +1318,7 @@ return|return
 name|highlighter
 return|;
 block|}
-comment|/**    * Return a {@link org.apache.lucene.search.highlight.QueryScorer} suitable for this Query and field.    * @param query The current query    * @param tokenStream document text CachingTokenStream    * @param fieldName The name of the field    * @param request The SolrQueryRequest    * @throws IOException     */
+comment|/**    * Return a {@link org.apache.lucene.search.highlight.QueryScorer} suitable for this Query and field.    * @param query The current query    * @param tokenStream document text CachingTokenStream    * @param fieldName The name of the field    * @param request The SolrQueryRequest    */
 DECL|method|getSpanQueryScorer
 specifier|private
 name|QueryScorer
@@ -1336,8 +1336,6 @@ parameter_list|,
 name|SolrQueryRequest
 name|request
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|boolean
 name|reqFieldMatch

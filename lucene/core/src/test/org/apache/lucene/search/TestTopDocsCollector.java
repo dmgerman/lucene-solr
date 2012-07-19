@@ -272,8 +272,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 operator|++
 name|totalHits
@@ -308,8 +306,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|base
 operator|=
@@ -328,8 +324,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|// Don't do anything. Assign scores in random
 block|}

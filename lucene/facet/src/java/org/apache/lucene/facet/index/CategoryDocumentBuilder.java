@@ -434,7 +434,7 @@ argument_list|>
 argument_list|>
 name|categoriesMap
 decl_stmt|;
-comment|/**    * Creating a facets document builder with default facet indexing    * parameters.<br>    * See:    * {@link #CategoryDocumentBuilder(TaxonomyWriter, FacetIndexingParams)}    *     * @param taxonomyWriter    *            to which new categories will be added, as well as translating    *            known categories to ordinals    * @throws IOException    *     */
+comment|/**    * Creating a facets document builder with default facet indexing    * parameters.<br>    * See:    * {@link #CategoryDocumentBuilder(TaxonomyWriter, FacetIndexingParams)}    *     * @param taxonomyWriter    *            to which new categories will be added, as well as translating    *            known categories to ordinals    *    */
 DECL|method|CategoryDocumentBuilder
 specifier|public
 name|CategoryDocumentBuilder
@@ -442,8 +442,6 @@ parameter_list|(
 name|TaxonomyWriter
 name|taxonomyWriter
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 argument_list|(
@@ -455,7 +453,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creating a facets document builder with a given facet indexing parameters    * object.<br>    *     * @param taxonomyWriter    *            to which new categories will be added, as well as translating    *            known categories to ordinals    * @param params    *            holds all parameters the indexing process should use such as    *            category-list parameters    * @throws IOException    */
+comment|/**    * Creating a facets document builder with a given facet indexing parameters    * object.<br>    *     * @param taxonomyWriter    *            to which new categories will be added, as well as translating    *            known categories to ordinals    * @param params    *            holds all parameters the indexing process should use such as    *            category-list parameters    */
 DECL|method|CategoryDocumentBuilder
 specifier|public
 name|CategoryDocumentBuilder
@@ -466,8 +464,6 @@ parameter_list|,
 name|FacetIndexingParams
 name|params
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

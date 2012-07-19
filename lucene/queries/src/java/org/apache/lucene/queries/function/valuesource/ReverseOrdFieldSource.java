@@ -86,6 +86,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|ReaderUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SlowCompositeReaderWrapper
 import|;
 end_import
@@ -156,20 +170,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderUtil
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -202,6 +202,7 @@ name|ValueSource
 block|{
 DECL|field|field
 specifier|public
+specifier|final
 name|String
 name|field
 decl_stmt|;
@@ -441,7 +442,6 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-empty_stmt|;
 block|}
 end_class
 

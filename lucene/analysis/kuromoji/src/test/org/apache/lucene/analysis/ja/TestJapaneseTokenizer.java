@@ -288,7 +288,25 @@ name|_TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
 begin_class
+annotation|@
+name|Slow
 DECL|class|TestJapaneseTokenizer
 specifier|public
 class|class
@@ -1303,7 +1321,7 @@ argument_list|()
 argument_list|,
 name|analyzer
 argument_list|,
-literal|10000
+literal|1000
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
@@ -1315,7 +1333,7 @@ argument_list|()
 argument_list|,
 name|analyzerNoPunct
 argument_list|,
-literal|10000
+literal|1000
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
@@ -1342,7 +1360,7 @@ name|random
 argument_list|,
 name|analyzer
 argument_list|,
-literal|200
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
@@ -1355,7 +1373,7 @@ name|random
 argument_list|,
 name|analyzerNoPunct
 argument_list|,
-literal|200
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
@@ -1441,7 +1459,7 @@ return|;
 block|}
 block|}
 argument_list|,
-literal|200
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
@@ -3191,6 +3209,8 @@ name|getResourceAsStream
 argument_list|(
 literal|"bocchan.utf-8"
 argument_list|)
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 argument_list|)
 decl_stmt|;

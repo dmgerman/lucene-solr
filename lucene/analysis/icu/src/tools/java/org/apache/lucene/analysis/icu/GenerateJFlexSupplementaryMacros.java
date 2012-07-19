@@ -168,7 +168,7 @@ name|FULL
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 decl_stmt|;
 static|static
@@ -265,8 +265,6 @@ name|String
 name|args
 index|[]
 parameter_list|)
-throws|throws
-name|Exception
 block|{
 name|outputHeader
 argument_list|()

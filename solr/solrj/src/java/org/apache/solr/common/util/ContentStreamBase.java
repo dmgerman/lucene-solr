@@ -54,16 +54,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -208,7 +198,7 @@ name|toLowerCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 operator|.
 name|indexOf
@@ -269,8 +259,6 @@ parameter_list|(
 name|URL
 name|url
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -356,8 +344,6 @@ parameter_list|(
 name|File
 name|f
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|file
 operator|=
@@ -473,7 +459,7 @@ name|file
 argument_list|)
 return|;
 block|}
-comment|/**      * If an charset is defined (by the contentType) use that, otherwise       * use a file reader      */
+comment|/**      * If an charset is defined (by the contentType) use that, otherwise       * use a UTF-8 reader      */
 annotation|@
 name|Override
 DECL|method|getReader
@@ -498,9 +484,12 @@ operator|==
 literal|null
 condition|?
 operator|new
-name|FileReader
+name|InputStreamReader
 argument_list|(
-name|file
+name|getStream
+argument_list|()
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 else|:
 operator|new

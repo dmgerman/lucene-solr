@@ -82,6 +82,20 @@ name|SolrCore
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|RefCounted
+import|;
+end_import
+
 begin_comment
 comment|/**  * The state in this class can be easily shared between SolrCores across  * SolrCore reloads.  *   */
 end_comment
@@ -110,7 +124,10 @@ comment|/**    * Get the current IndexWriter. If a new IndexWriter must be creat
 DECL|method|getIndexWriter
 specifier|public
 specifier|abstract
+name|RefCounted
+argument_list|<
 name|IndexWriter
+argument_list|>
 name|getIndexWriter
 parameter_list|(
 name|SolrCore

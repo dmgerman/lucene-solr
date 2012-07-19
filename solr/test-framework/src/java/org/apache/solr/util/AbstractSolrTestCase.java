@@ -345,8 +345,6 @@ specifier|static
 name|void
 name|beforeClassAbstractSolrTestCase
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|SolrTestCaseJ4
 operator|.
@@ -362,8 +360,6 @@ specifier|static
 name|void
 name|afterClassAbstractSolrTestCase
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|SolrTestCaseJ4
 operator|.
@@ -509,6 +505,9 @@ name|TestHarness
 operator|.
 name|createConfig
 argument_list|(
+name|getSolrHome
+argument_list|()
+argument_list|,
 name|getSolrConfigFile
 argument_list|()
 argument_list|)
@@ -1852,8 +1851,6 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|SolrTestCaseJ4

@@ -72,6 +72,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|CodecUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|PostingsReaderBase
 import|;
 end_import
@@ -260,20 +274,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|CodecUtil
-import|;
-end_import
-
 begin_comment
 comment|/** Concrete class that reads the current doc/freq/skip  *  postings format   *  @lucene.experimental */
 end_comment
@@ -315,8 +315,6 @@ parameter_list|(
 name|PostingsReaderBase
 name|wrappedPostingsReader
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

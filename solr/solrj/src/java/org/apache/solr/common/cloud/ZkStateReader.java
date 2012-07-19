@@ -294,6 +294,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|Watcher
+operator|.
+name|Event
+operator|.
+name|EventType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -1052,6 +1068,25 @@ name|WatchedEvent
 name|event
 parameter_list|)
 block|{
+comment|// session events are not change events,
+comment|// and do not remove the watcher
+if|if
+condition|(
+name|EventType
+operator|.
+name|None
+operator|.
+name|equals
+argument_list|(
+name|event
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+condition|)
+block|{
+return|return;
+block|}
 name|log
 operator|.
 name|info
@@ -1257,6 +1292,25 @@ name|WatchedEvent
 name|event
 parameter_list|)
 block|{
+comment|// session events are not change events,
+comment|// and do not remove the watcher
+if|if
+condition|(
+name|EventType
+operator|.
+name|None
+operator|.
+name|equals
+argument_list|(
+name|event
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+condition|)
+block|{
+return|return;
+block|}
 name|log
 operator|.
 name|info

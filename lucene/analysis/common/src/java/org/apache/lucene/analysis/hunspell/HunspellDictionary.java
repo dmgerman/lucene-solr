@@ -320,7 +320,7 @@ name|aliasCount
 init|=
 literal|0
 decl_stmt|;
-comment|/**    * Creates a new HunspellDictionary containing the information read from the provided InputStreams to hunspell affix    * and dictionary files    *    * @param affix InputStream for reading the hunspell affix file    * @param dictionary InputStream for reading the hunspell dictionary file    * @param version Lucene Version    * @throws IOException Can be thrown while reading from the InputStreams    * @throws ParseException Can be thrown if the content of the files does not meet expected formats    */
+comment|/**    * Creates a new HunspellDictionary containing the information read from the provided InputStreams to hunspell affix    * and dictionary files.    * You have to close the provided InputStreams yourself.    *    * @param affix InputStream for reading the hunspell affix file (won't be closed).    * @param dictionary InputStream for reading the hunspell dictionary file (won't be closed).    * @param version Lucene Version    * @throws IOException Can be thrown while reading from the InputStreams    * @throws ParseException Can be thrown if the content of the files does not meet expected formats    */
 DECL|method|HunspellDictionary
 specifier|public
 name|HunspellDictionary
@@ -356,7 +356,7 @@ name|IGNORE_CASE_DEFAULT
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new HunspellDictionary containing the information read from the provided InputStreams to hunspell affix    * and dictionary files    *    * @param affix InputStream for reading the hunspell affix file    * @param dictionary InputStream for reading the hunspell dictionary file    * @param version Lucene Version    * @param ignoreCase If true, dictionary matching will be case insensitive    * @throws IOException Can be thrown while reading from the InputStreams    * @throws ParseException Can be thrown if the content of the files does not meet expected formats    */
+comment|/**    * Creates a new HunspellDictionary containing the information read from the provided InputStreams to hunspell affix    * and dictionary files.    * You have to close the provided InputStreams yourself.    *    * @param affix InputStream for reading the hunspell affix file (won't be closed).    * @param dictionary InputStream for reading the hunspell dictionary file (won't be closed).    * @param version Lucene Version    * @param ignoreCase If true, dictionary matching will be case insensitive    * @throws IOException Can be thrown while reading from the InputStreams    * @throws ParseException Can be thrown if the content of the files does not meet expected formats    */
 DECL|method|HunspellDictionary
 specifier|public
 name|HunspellDictionary
@@ -395,7 +395,7 @@ name|ignoreCase
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new HunspellDictionary containing the information read from the provided InputStreams to hunspell affix    * and dictionary files    *    * @param affix InputStream for reading the hunspell affix file    * @param dictionaries InputStreams for reading the hunspell dictionary file    * @param version Lucene Version    * @param ignoreCase If true, dictionary matching will be case insensitive    * @throws IOException Can be thrown while reading from the InputStreams    * @throws ParseException Can be thrown if the content of the files does not meet expected formats    */
+comment|/**    * Creates a new HunspellDictionary containing the information read from the provided InputStreams to hunspell affix    * and dictionary files.    * You have to close the provided InputStreams yourself.    *    * @param affix InputStream for reading the hunspell affix file (won't be closed).    * @param dictionaries InputStreams for reading the hunspell dictionary file (won't be closed).    * @param version Lucene Version    * @param ignoreCase If true, dictionary matching will be case insensitive    * @throws IOException Can be thrown while reading from the InputStreams    * @throws ParseException Can be thrown if the content of the files does not meet expected formats    */
 DECL|method|HunspellDictionary
 specifier|public
 name|HunspellDictionary
@@ -434,7 +434,7 @@ name|STRICT_AFFIX_PARSING_DEFAULT
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new HunspellDictionary containing the information read from the provided InputStreams to hunspell affix    * and dictionary files    *    * @param affix InputStream for reading the hunspell affix file    * @param dictionaries InputStreams for reading the hunspell dictionary file    * @param version Lucene Version    * @param ignoreCase If true, dictionary matching will be case insensitive    * @param strictAffixParsing Affix strict parsing enabled or not (an error while reading a rule causes exception or is ignored)    * @throws IOException Can be thrown while reading from the InputStreams    * @throws ParseException Can be thrown if the content of the files does not meet expected formats    */
+comment|/**    * Creates a new HunspellDictionary containing the information read from the provided InputStreams to hunspell affix    * and dictionary files.    * You have to close the provided InputStreams yourself.    *    * @param affix InputStream for reading the hunspell affix file (won't be closed).    * @param dictionaries InputStreams for reading the hunspell dictionary file (won't be closed).    * @param version Lucene Version    * @param ignoreCase If true, dictionary matching will be case insensitive    * @param strictAffixParsing Affix strict parsing enabled or not (an error while reading a rule causes exception or is ignored)    * @throws IOException Can be thrown while reading from the InputStreams    * @throws ParseException Can be thrown if the content of the files does not meet expected formats    */
 DECL|method|HunspellDictionary
 specifier|public
 name|HunspellDictionary
@@ -814,11 +814,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**    * Parses a specific affix rule putting the result into the provided affix map    *     * @param affixes Map where the result of the parsing will be put    * @param header Header line of the affix rule    * @param reader BufferedReader to read the content of the rule from    * @param conditionPattern {@link String#format(String, Object...)} pattern to be used to generate the condition regex    *                         pattern    * @throws IOException Can be thrown while reading the rule    */
 DECL|method|parseAffix
@@ -1122,6 +1117,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 name|conditionPattern
 argument_list|,
 name|condition
@@ -1685,7 +1684,7 @@ name|toLowerCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 expr_stmt|;
 block|}

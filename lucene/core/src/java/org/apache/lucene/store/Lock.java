@@ -97,8 +97,6 @@ name|long
 name|lockWaitTimeout
 parameter_list|)
 throws|throws
-name|LockObtainFailedException
-throws|,
 name|IOException
 block|{
 name|failureReason
@@ -328,8 +326,6 @@ name|Object
 name|run
 parameter_list|()
 throws|throws
-name|LockObtainFailedException
-throws|,
 name|IOException
 block|{
 name|boolean

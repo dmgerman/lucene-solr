@@ -410,8 +410,6 @@ parameter_list|(
 name|SegmentWriteState
 name|state
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|segmentWriteState
 operator|=
@@ -1029,8 +1027,6 @@ specifier|public
 name|String
 name|next
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

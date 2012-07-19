@@ -118,6 +118,16 @@ name|CAPTURE_ATTRIBUTES
 init|=
 literal|"captureAttr"
 decl_stmt|;
+comment|/**    * Literal field values will by default override other values such as metadata and content. Set this to false to revert to pre-4.0 behaviour    */
+DECL|field|LITERALS_OVERRIDE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|LITERALS_OVERRIDE
+init|=
+literal|"literalsOverride"
+decl_stmt|;
 comment|/**    * Capture the specified fields (and everything included below it that isn't capture by some other capture field) separately from the default.  This is different    * then the case of passing in an XPath expression.    *<p/>    * The Capture field is based on the localName returned to the {@link SolrContentHandler}    * by Tika, not to be confused by the mapped field.  The field name can then    * be mapped into the index schema.    *<p/>    * For instance, a Tika document may look like:    *<pre>    *&lt;html&gt;    *    ...    *&lt;body&gt;    *&lt;p&gt;some text here.&lt;div&gt;more text&lt;/div&gt;&lt;/p&gt;    *      Some more text    *&lt;/body&gt;    *</pre>    * By passing in the p tag, you could capture all P tags separately from the rest of the t    * Thus, in the example, the capture of the P tag would be: "some text here.  more text"    *    */
 DECL|field|CAPTURE_ELEMENTS
 specifier|public
@@ -148,6 +158,16 @@ name|RESOURCE_NAME
 init|=
 literal|"resource.name"
 decl_stmt|;
+comment|/**    * Optional. The password for this resource. Will be used instead of the rule based password lookup mechanisms     */
+DECL|field|RESOURCE_PASSWORD
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RESOURCE_PASSWORD
+init|=
+literal|"resource.password"
+decl_stmt|;
 comment|/**    * Optional.  If specified, the prefix will be prepended to all Metadata, such that it would be possible    * to setup a dynamic field to automatically capture it    */
 DECL|field|UNKNOWN_FIELD_PREFIX
 specifier|public
@@ -167,6 +187,16 @@ name|String
 name|DEFAULT_FIELD
 init|=
 literal|"defaultField"
+decl_stmt|;
+comment|/**    * Optional. If specified, loads the file as a source for password lookups for Tika encrypted documents.    *<p>    * File format is Java properties format with one key=value per line.    * The key is evaluated as a regex against the file name, and the value is the password    * The rules are evaluated top-bottom, i.e. the first match will be used    * If you want a fallback password to be always used, supply a .*=<defaultmypassword> at the end      */
+DECL|field|PASSWORD_MAP_FILE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PASSWORD_MAP_FILE
+init|=
+literal|"passwordsFile"
 decl_stmt|;
 block|}
 end_interface

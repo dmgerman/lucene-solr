@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * An implementation of the Lucene ValueSource model to support spatial relevance ranking.  *  */
+comment|/**  * An implementation of the Lucene ValueSource model to support spatial relevance ranking.  *  * @lucene.internal  */
 end_comment
 
 begin_class

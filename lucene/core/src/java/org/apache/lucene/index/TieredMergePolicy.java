@@ -32,6 +32,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -445,9 +455,11 @@ block|{
 return|return
 name|floorSegmentBytes
 operator|/
+operator|(
 literal|1024
 operator|*
 literal|1024.
+operator|)
 return|;
 block|}
 comment|/** When forceMergeDeletes is called, we only merge away a    *  segment if its delete percentage is over this    *  threshold.  Default is 10%. */
@@ -958,6 +970,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"%.3f"
 argument_list|,
 name|segBytes
@@ -1488,6 +1504,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"%.3f MB"
 argument_list|,
 name|totAfterMergeBytes
@@ -1631,6 +1651,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"%.3f MB"
 argument_list|,
 name|bestMergeBytes
@@ -1646,6 +1670,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"%.3f"
 argument_list|,
 name|bestScore
@@ -1892,6 +1920,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"%.3f"
 argument_list|,
 name|skew
@@ -1903,6 +1935,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"%.3f"
 argument_list|,
 name|nonDelRatio
@@ -2356,8 +2392,6 @@ name|SegmentInfos
 name|infos
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 if|if
@@ -2724,8 +2758,6 @@ parameter_list|(
 name|SegmentInfoPerCommit
 name|info
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|IndexWriter
 name|w

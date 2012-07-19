@@ -307,27 +307,7 @@ argument_list|,
 name|OrOperatorName
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|getClass
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|", fields expanded: "
-operator|+
-name|oq
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|/* needs testing */
+comment|// System.out.println(getClass().toString() + ", fields expanded: " + oq.toString()); /* needs testing */
 return|return
 name|oq
 operator|.

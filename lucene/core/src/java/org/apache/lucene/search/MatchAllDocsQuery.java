@@ -165,8 +165,6 @@ parameter_list|,
 name|float
 name|score
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -267,6 +265,18 @@ parameter_list|()
 block|{
 return|return
 name|score
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|freq
+specifier|public
+name|float
+name|freq
+parameter_list|()
+block|{
+return|return
+literal|1
 return|;
 block|}
 annotation|@

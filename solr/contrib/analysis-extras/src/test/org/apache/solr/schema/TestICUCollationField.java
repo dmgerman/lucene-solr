@@ -382,11 +382,13 @@ operator|new
 name|File
 argument_list|(
 name|tmpFile
+operator|+
+literal|"/collection1"
 argument_list|,
 literal|"data"
 argument_list|)
 operator|.
-name|mkdir
+name|mkdirs
 argument_list|()
 expr_stmt|;
 name|File
@@ -396,13 +398,15 @@ operator|new
 name|File
 argument_list|(
 name|tmpFile
+operator|+
+literal|"/collection1"
 argument_list|,
 literal|"conf"
 argument_list|)
 decl_stmt|;
 name|confDir
 operator|.
-name|mkdir
+name|mkdirs
 argument_list|()
 expr_stmt|;
 comment|// copy over configuration files
@@ -412,7 +416,7 @@ name|copyFile
 argument_list|(
 name|getFile
 argument_list|(
-literal|"analysis-extras/solr/conf/solrconfig-icucollate.xml"
+literal|"analysis-extras/solr/collection1/conf/solrconfig-icucollate.xml"
 argument_list|)
 argument_list|,
 operator|new
@@ -430,7 +434,7 @@ name|copyFile
 argument_list|(
 name|getFile
 argument_list|(
-literal|"analysis-extras/solr/conf/schema-icucollate.xml"
+literal|"analysis-extras/solr/collection1/conf/schema-icucollate.xml"
 argument_list|)
 argument_list|,
 operator|new

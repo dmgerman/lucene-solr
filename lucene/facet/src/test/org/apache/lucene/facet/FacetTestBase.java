@@ -186,20 +186,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CorruptIndexException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|DirectoryReader
 import|;
 end_import
@@ -766,8 +752,6 @@ specifier|static
 name|void
 name|beforeClassFacetTestBase
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|TEST_DIR
 operator|=
@@ -1333,8 +1317,6 @@ name|iParams
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|CorruptIndexException
 block|{
 comment|// add test documents
 name|int
@@ -1559,8 +1541,6 @@ name|categories
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|CorruptIndexException
 block|{
 name|Document
 name|d

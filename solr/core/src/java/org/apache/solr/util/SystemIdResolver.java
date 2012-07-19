@@ -462,8 +462,6 @@ name|String
 name|systemId
 parameter_list|)
 throws|throws
-name|IOException
-throws|,
 name|URISyntaxException
 block|{
 name|URI

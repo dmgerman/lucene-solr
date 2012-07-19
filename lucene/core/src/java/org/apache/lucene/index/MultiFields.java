@@ -116,34 +116,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|MultiBits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderSlice
-import|;
-end_import
-
 begin_comment
 comment|/**  * Exposes flex API, merged from flex API of sub-segments.  * This is useful when you're interacting with an {@link  * IndexReader} implementation that consists of sequential  * sub-readers (eg {@link DirectoryReader} or {@link  * MultiReader}).  *  *<p><b>NOTE</b>: for composite readers, you'll get better  * performance by gathering the sub readers using  * {@link IndexReader#getTopReaderContext()} to get the  * atomic leaves and then operate per-AtomicReader,  * instead of using this class.  *  * @lucene.experimental  */
 end_comment

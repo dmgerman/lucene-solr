@@ -393,7 +393,7 @@ name|CANONICAL_LOCALE
 init|=
 name|Locale
 operator|.
-name|US
+name|ROOT
 decl_stmt|;
 comment|// The XML (external) date format will sort correctly, except if
 comment|// fractions of seconds are present (because '.' is lower than 'Z').

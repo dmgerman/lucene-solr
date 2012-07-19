@@ -3112,7 +3112,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Empty {@link UnmodifiableCharArrayMap} optimized for speed.    * Contains checks will always return<code>false</code> or throw    * NPE if necessary.    */
+comment|/**    * Empty {@link org.apache.lucene.analysis.util.CharArrayMap.UnmodifiableCharArrayMap} optimized for speed.    * Contains checks will always return<code>false</code> or throw    * NPE if necessary.    */
 DECL|class|EmptyCharArrayMap
 specifier|private
 specifier|static

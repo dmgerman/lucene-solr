@@ -1894,7 +1894,7 @@ parameter_list|)
 block|{
 comment|// Add no statistics
 block|}
-comment|/**    * Determines which of the given Strings is the maximum, as computed by {@link String#compareTo(Object)}    *    * @param str1 String to compare against b    * @param str2 String compared against a    * @return str1 if it is considered greater by {@link String#compareTo(Object)}, str2 otherwise    */
+comment|/**    * Determines which of the given Strings is the maximum, as computed by {@link String#compareTo(String)}    *    * @param str1 String to compare against b    * @param str2 String compared against a    * @return str1 if it is considered greater by {@link String#compareTo(String)}, str2 otherwise    */
 DECL|method|max
 specifier|private
 specifier|static
@@ -1948,7 +1948,7 @@ else|:
 name|str2
 return|;
 block|}
-comment|/**    * Determines which of the given Strings is the minimum, as computed by {@link String#compareTo(Object)}    *    * @param str1 String to compare against b    * @param str2 String compared against a    * @return str1 if it is considered less by {@link String#compareTo(Object)}, str2 otherwise    */
+comment|/**    * Determines which of the given Strings is the minimum, as computed by {@link String#compareTo(String)}    *    * @param str1 String to compare against b    * @param str2 String compared against a    * @return str1 if it is considered less by {@link String#compareTo(String)}, str2 otherwise    */
 DECL|method|min
 specifier|private
 specifier|static

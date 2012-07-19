@@ -39,7 +39,6 @@ specifier|final
 name|int
 name|slop
 decl_stmt|;
-comment|// null defaults to ps parameter
 DECL|field|boost
 specifier|private
 specifier|final

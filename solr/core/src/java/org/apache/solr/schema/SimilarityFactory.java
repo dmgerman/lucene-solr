@@ -40,6 +40,42 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|schema
+operator|.
+name|SchemaAware
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|FieldType
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|params
@@ -47,6 +83,10 @@ operator|.
 name|SolrParams
 import|;
 end_import
+
+begin_comment
+comment|/**  * A factory interface for configuring a {@link Similarity} in the Solr   * schema.xml.    *   *<p>  * Subclasses of<code>SimilarityFactory</code> which are {@link SchemaAware}   * must take responsibility for either consulting the similarities configured   * on individual field types, or generating appropriate error/warning messages   * if field type specific similarities exist but are being ignored.  The   *<code>IndexSchema</code> will provide such error checking if a   * non-<code>SchemaAware</code> instance of<code>SimilarityFactory</code>   * is used.  *   * @see FieldType#getSimilarity  */
+end_comment
 
 begin_class
 DECL|class|SimilarityFactory

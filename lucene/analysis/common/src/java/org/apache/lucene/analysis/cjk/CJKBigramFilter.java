@@ -746,8 +746,6 @@ specifier|private
 name|void
 name|refill
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|// compact buffers to keep them smallish if they become large
 comment|// just a safety check, but technically we only need the last codepoint

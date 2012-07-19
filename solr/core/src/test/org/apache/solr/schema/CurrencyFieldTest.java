@@ -934,8 +934,7 @@ block|{
 name|Random
 name|r
 init|=
-operator|new
-name|Random
+name|random
 argument_list|()
 decl_stmt|;
 name|int

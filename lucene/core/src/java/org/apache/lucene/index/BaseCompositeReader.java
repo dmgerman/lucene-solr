@@ -70,20 +70,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderUtil
-import|;
-end_import
-
 begin_comment
 comment|/** Base class for implementing {@link CompositeReader}s based on an array  * of sub-readers. The implementing class has to add code for  * correctly refcounting and closing the sub-readers.  *   *<p>User code will most likely use {@link MultiReader} to build a  * composite reader on a set of sub-readers (like several  * {@link DirectoryReader}s).  *   *<p> For efficiency, in this API documents are often referred to via  *<i>document numbers</i>, non-negative integers which each name a unique  * document in the index.  These document numbers are ephemeral -- they may change  * as documents are added to and deleted from an index.  Clients should thus not  * rely on a given document having the same number between sessions.  *   *<p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  * IndexReader} instances are completely thread  * safe, meaning multiple threads can call any of its methods,  * concurrently.  If your application requires external  * synchronization, you should<b>not</b> synchronize on the  *<code>IndexReader</code> instance; use your own  * (non-Lucene) objects instead.  * @see MultiReader  * @lucene.internal  */
 end_comment
@@ -154,8 +140,6 @@ name|R
 index|[]
 name|subReaders
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -412,8 +396,6 @@ name|StoredFieldVisitor
 name|visitor
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen

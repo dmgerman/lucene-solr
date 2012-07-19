@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -77,30 +67,6 @@ operator|.
 name|params
 operator|.
 name|CommonParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|After
 import|;
 end_import
 
@@ -171,8 +137,6 @@ specifier|static
 name|void
 name|beforeClass
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|System
 operator|.
@@ -204,8 +168,6 @@ specifier|static
 name|void
 name|afterClass
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|System
 operator|.

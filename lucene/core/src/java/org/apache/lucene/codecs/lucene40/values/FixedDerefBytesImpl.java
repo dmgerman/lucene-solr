@@ -293,8 +293,6 @@ parameter_list|,
 name|IOContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(

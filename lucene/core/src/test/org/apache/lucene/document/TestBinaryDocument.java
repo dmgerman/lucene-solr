@@ -157,7 +157,9 @@ argument_list|,
 name|binaryValStored
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"UTF-8"
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|IndexableField
@@ -293,6 +295,8 @@ argument_list|,
 name|bytes
 operator|.
 name|length
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -365,7 +369,9 @@ argument_list|(
 name|binaryValCompressed
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"UTF-8"
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -476,6 +482,8 @@ argument_list|(
 literal|"binaryCompressed"
 argument_list|)
 argument_list|)
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 decl_stmt|;
 name|assertTrue

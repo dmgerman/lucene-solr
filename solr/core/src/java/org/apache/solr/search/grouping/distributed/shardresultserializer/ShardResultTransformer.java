@@ -88,7 +88,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Transforms the specified shard response into native structures.    *    * @param shardResponse The shard response containing data in a {@link NamedList} structure    * @param groupSort The group sort    * @param sortWithinGroup The sort inside a group    * @param shard The shard address where the response originated from    * @return native structure of the data    * @throws IOException If I/O related errors occur during transforming    */
+comment|/**    * Transforms the specified shard response into native structures.    *    * @param shardResponse The shard response containing data in a {@link NamedList} structure    * @param groupSort The group sort    * @param sortWithinGroup The sort inside a group    * @param shard The shard address where the response originated from    * @return native structure of the data    */
 DECL|method|transformToNative
 name|R
 name|transformToNative
@@ -108,8 +108,6 @@ parameter_list|,
 name|String
 name|shard
 parameter_list|)
-throws|throws
-name|IOException
 function_decl|;
 block|}
 end_interface

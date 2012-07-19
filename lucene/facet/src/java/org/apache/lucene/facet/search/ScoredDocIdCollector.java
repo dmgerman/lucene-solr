@@ -211,8 +211,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|docIds
 operator|.
@@ -246,8 +244,6 @@ specifier|public
 name|ScoredDocIDsIterator
 name|scoredDocIdsIterator
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new
@@ -357,8 +353,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{}
 block|}
 DECL|class|ScoringDocIdCollector
@@ -517,8 +511,6 @@ specifier|public
 name|ScoredDocIDsIterator
 name|scoredDocIdsIterator
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new
@@ -657,8 +649,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

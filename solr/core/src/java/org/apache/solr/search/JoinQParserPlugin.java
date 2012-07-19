@@ -865,8 +865,6 @@ parameter_list|(
 name|SolrIndexSearcher
 name|searcher
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -1060,8 +1058,6 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|ref
 operator|.
@@ -1087,8 +1083,6 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|fromCore
 operator|.
@@ -3092,6 +3086,20 @@ name|IOException
 block|{
 return|return
 name|score
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|freq
+specifier|public
+name|float
+name|freq
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+literal|1
 return|;
 block|}
 annotation|@

@@ -499,6 +499,11 @@ name|reader
 init|=
 literal|null
 decl_stmt|;
+name|ExternalRefSorter
+name|sorter
+init|=
+literal|null
+decl_stmt|;
 comment|// Push floats up front before sequences to sort them. For now, assume they are non-negative.
 comment|// If negative floats are allowed some trickery needs to be done to find their byte order.
 name|boolean
@@ -659,6 +664,8 @@ name|FSTCompletionBuilder
 argument_list|(
 name|buckets
 argument_list|,
+name|sorter
+operator|=
 operator|new
 name|ExternalRefSorter
 argument_list|(
@@ -883,6 +890,8 @@ argument_list|(
 name|reader
 argument_list|,
 name|writer
+argument_list|,
+name|sorter
 argument_list|)
 expr_stmt|;
 else|else
@@ -893,6 +902,8 @@ argument_list|(
 name|reader
 argument_list|,
 name|writer
+argument_list|,
+name|sorter
 argument_list|)
 expr_stmt|;
 name|tempInput

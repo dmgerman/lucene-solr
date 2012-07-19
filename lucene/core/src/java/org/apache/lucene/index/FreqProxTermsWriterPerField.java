@@ -373,8 +373,6 @@ DECL|method|skippingLongTerm
 name|void
 name|skippingLongTerm
 parameter_list|()
-throws|throws
-name|IOException
 block|{}
 DECL|method|compareTo
 specifier|public
@@ -1847,8 +1845,6 @@ name|SegmentWriteState
 name|state
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 if|if

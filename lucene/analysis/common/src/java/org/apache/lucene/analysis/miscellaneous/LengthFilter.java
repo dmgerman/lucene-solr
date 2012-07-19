@@ -20,16 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -39,20 +29,6 @@ operator|.
 name|analysis
 operator|.
 name|TokenStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|TokenFilter
 import|;
 end_import
 
@@ -171,8 +147,6 @@ specifier|public
 name|boolean
 name|accept
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 specifier|final
 name|int

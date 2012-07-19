@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderSlice
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -494,8 +480,6 @@ parameter_list|,
 name|int
 name|index
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

@@ -300,7 +300,6 @@ return|return
 literal|true
 return|;
 block|}
-empty_stmt|;
 comment|/** Native Java Object representation of the value */
 DECL|method|objectVal
 specifier|public

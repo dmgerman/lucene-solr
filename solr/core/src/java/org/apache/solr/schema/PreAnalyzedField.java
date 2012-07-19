@@ -999,7 +999,7 @@ name|parser
 operator|=
 name|parser
 expr_stmt|;
-name|reset
+name|setReader
 argument_list|(
 name|reader
 argument_list|)
@@ -1046,8 +1046,6 @@ specifier|final
 name|boolean
 name|incrementToken
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|// lazy init the iterator
 if|if
@@ -1120,10 +1118,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|reset
+DECL|method|setReader
 specifier|public
 name|void
-name|reset
+name|setReader
 parameter_list|(
 name|Reader
 name|input
@@ -1133,7 +1131,7 @@ name|IOException
 block|{
 name|super
 operator|.
-name|reset
+name|setReader
 argument_list|(
 name|input
 argument_list|)

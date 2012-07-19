@@ -1941,8 +1941,6 @@ parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

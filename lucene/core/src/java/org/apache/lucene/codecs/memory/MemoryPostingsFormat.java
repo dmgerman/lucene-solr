@@ -2353,8 +2353,6 @@ specifier|public
 name|int
 name|freq
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|indexOptions
@@ -3191,8 +3189,6 @@ specifier|public
 name|int
 name|freq
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|freq
@@ -3295,8 +3291,6 @@ specifier|private
 name|void
 name|decodeMetaData
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -3511,8 +3505,6 @@ parameter_list|,
 name|boolean
 name|needsFreqs
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|decodeMetaData
 argument_list|()
@@ -3647,8 +3639,6 @@ parameter_list|,
 name|boolean
 name|needsOffsets
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|boolean
 name|hasOffsets
@@ -3853,8 +3843,6 @@ specifier|public
 name|int
 name|docFreq
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|decodeMetaData
 argument_list|()
@@ -3870,8 +3858,6 @@ specifier|public
 name|long
 name|totalTermFreq
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|decodeMetaData
 argument_list|()
@@ -4105,8 +4091,6 @@ specifier|public
 name|long
 name|getSumDocFreq
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|sumDocFreq
@@ -4119,8 +4103,6 @@ specifier|public
 name|int
 name|getDocCount
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|docCount
@@ -4133,8 +4115,6 @@ specifier|public
 name|long
 name|size
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|termCount

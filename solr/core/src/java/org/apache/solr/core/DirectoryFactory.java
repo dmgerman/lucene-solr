@@ -58,6 +58,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|core
+operator|.
+name|CachingDirectoryFactory
+operator|.
+name|CloseListener
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|plugin
@@ -81,6 +97,33 @@ name|NamedListInitializedPlugin
 implements|,
 name|Closeable
 block|{
+comment|/**    * Indicates a Directory will no longer be used, and when it's ref count    * hits 0, it can be closed. On shutdown all directories will be closed    * with this has been called or not. This is simply to allow early cleanup.    *     * @param directory    * @throws IOException     */
+DECL|method|doneWithDirectory
+specifier|public
+specifier|abstract
+name|void
+name|doneWithDirectory
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Adds a close listener for a Directory.    *     * @param dir    * @param closeListener    */
+DECL|method|addCloseListener
+specifier|public
+specifier|abstract
+name|void
+name|addCloseListener
+parameter_list|(
+name|Directory
+name|dir
+parameter_list|,
+name|CloseListener
+name|closeListener
+parameter_list|)
+function_decl|;
 comment|/**    * Close the this and all of the Directories it contains.    *     * @throws IOException    */
 DECL|method|close
 specifier|public
@@ -131,7 +174,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path unless forceNew,    * in which case a new Directory is returned.    *     * @throws IOException    */
+comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path unless forceNew,    * in which case a new Directory is returned. There is no need to call    * {@link #doneWithDirectory(Directory)} in this case - the old Directory    * will be closed when it's ref count hits 0.    *     * @throws IOException    */
 DECL|method|get
 specifier|public
 specifier|abstract

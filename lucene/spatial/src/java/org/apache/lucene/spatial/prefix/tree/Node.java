@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a grid cell. These are not necessarily threadsafe, although new Cell("") (world cell) must be.  */
+comment|/**  * Represents a grid cell. These are not necessarily threadsafe, although new Cell("") (world cell) must be.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

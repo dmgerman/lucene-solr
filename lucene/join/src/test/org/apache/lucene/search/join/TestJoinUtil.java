@@ -442,6 +442,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Test
@@ -469,6 +485,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|Slow
 DECL|class|TestJoinUtil
 specifier|public
 class|class
@@ -2110,6 +2128,18 @@ argument_list|,
 name|maxIndexIter
 argument_list|,
 name|maxSearchIter
+argument_list|,
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|87
+argument_list|,
+literal|764
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2161,6 +2191,18 @@ argument_list|,
 name|maxIndexIter
 argument_list|,
 name|maxSearchIter
+argument_list|,
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|11
+argument_list|,
+literal|57
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2177,6 +2219,9 @@ name|maxIndexIter
 parameter_list|,
 name|int
 name|maxSearchIter
+parameter_list|,
+name|int
+name|numberOfDocumentsToIndex
 parameter_list|)
 throws|throws
 name|Exception
@@ -2253,21 +2298,6 @@ argument_list|(
 name|newLogMergePolicy
 argument_list|()
 argument_list|)
-argument_list|)
-decl_stmt|;
-name|int
-name|numberOfDocumentsToIndex
-init|=
-name|_TestUtil
-operator|.
-name|nextInt
-argument_list|(
-name|random
-argument_list|()
-argument_list|,
-literal|87
-argument_list|,
-literal|764
 argument_list|)
 decl_stmt|;
 name|IndexIterationContext
@@ -2605,8 +2635,6 @@ parameter_list|(
 name|AtomicReaderContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|docBase
 operator|=
@@ -2717,6 +2745,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Expected doc[%d] with id value %s"
 argument_list|,
 name|doc
@@ -2791,6 +2823,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Actual doc[%d] with id value %s"
 argument_list|,
 name|doc
@@ -4159,8 +4195,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -4335,8 +4369,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -4637,8 +4669,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{}
 block|}
 argument_list|)
@@ -4684,8 +4714,6 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|JoinScore
 name|joinScore
@@ -4774,8 +4802,6 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
-throws|throws
-name|IOException
 block|{}
 block|}
 argument_list|)
@@ -4830,8 +4856,6 @@ parameter_list|,
 name|IndexIterationContext
 name|context
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|Map
 argument_list|<

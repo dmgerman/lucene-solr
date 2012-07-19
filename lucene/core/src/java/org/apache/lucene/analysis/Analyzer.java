@@ -157,7 +157,7 @@ name|Reader
 name|reader
 parameter_list|)
 function_decl|;
-comment|/**    * Creates a TokenStream that is allowed to be re-use from the previous time    * that the same thread called this method.  Callers that do not need to use    * more than one TokenStream at the same time from this analyzer should use    * this method for better performance.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#reset(Reader)}.    *</p>    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    */
+comment|/**    * Creates a TokenStream that is allowed to be re-use from the previous time    * that the same thread called this method.  Callers that do not need to use    * more than one TokenStream at the same time from this analyzer should use    * this method for better performance.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *</p>    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -226,7 +226,7 @@ else|else
 block|{
 name|components
 operator|.
-name|reset
+name|setReader
 argument_list|(
 name|r
 argument_list|)
@@ -385,10 +385,10 @@ name|source
 expr_stmt|;
 block|}
 comment|/**      * Resets the encapsulated components with the given reader. If the components      * cannot be reset, an Exception should be thrown.      *       * @param reader      *          a reader to reset the source component      * @throws IOException      *           if the component's reset method throws an {@link IOException}      */
-DECL|method|reset
+DECL|method|setReader
 specifier|protected
 name|void
-name|reset
+name|setReader
 parameter_list|(
 specifier|final
 name|Reader
@@ -399,7 +399,7 @@ name|IOException
 block|{
 name|source
 operator|.
-name|reset
+name|setReader
 argument_list|(
 name|reader
 argument_list|)

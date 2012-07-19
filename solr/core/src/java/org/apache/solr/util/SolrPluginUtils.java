@@ -2048,7 +2048,7 @@ return|return
 name|out
 return|;
 block|}
-comment|/**      /**    * Like {@link #parseFieldBoosts}, but allows for an optional slop value prefixed by "~".    *    * @param fieldLists - an array of Strings eg.<code>{"fieldOne^2.3", "fieldTwo", fieldThree~5^-0.4}</code>    * @param wordGrams - (0=all words, 2,3 = shingle size)    * @return - FieldParams containing the fieldname,boost,slop,and shingle size    */
+comment|/**      /**    * Like {@link #parseFieldBoosts}, but allows for an optional slop value prefixed by "~".    *    * @param fieldLists - an array of Strings eg.<code>{"fieldOne^2.3", "fieldTwo", fieldThree~5^-0.4}</code>    * @param wordGrams - (0=all words, 2,3 = shingle size)    * @param defaultSlop - the default slop for this param    * @return - FieldParams containing the fieldname,boost,slop,and shingle size    */
 DECL|method|parseFieldBoostsAndSlop
 specifier|public
 specifier|static
@@ -2064,6 +2064,9 @@ name|fieldLists
 parameter_list|,
 name|int
 name|wordGrams
+parameter_list|,
+name|int
+name|defaultSlop
 parameter_list|)
 block|{
 if|if
@@ -2210,7 +2213,7 @@ literal|1
 index|]
 argument_list|)
 else|:
-literal|0
+name|defaultSlop
 decl_stmt|;
 name|Float
 name|boost

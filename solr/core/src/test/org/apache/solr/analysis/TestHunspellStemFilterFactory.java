@@ -209,7 +209,7 @@ argument_list|(
 operator|new
 name|SolrResourceLoader
 argument_list|(
-literal|"solr"
+literal|"solr/collection1"
 argument_list|)
 argument_list|)
 expr_stmt|;

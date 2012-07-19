@@ -631,14 +631,12 @@ parameter_list|(
 name|Reader
 name|input
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 try|try
 block|{
 name|sentenceTokenizer
 operator|.
-name|reset
+name|setReader
 argument_list|(
 name|input
 argument_list|)

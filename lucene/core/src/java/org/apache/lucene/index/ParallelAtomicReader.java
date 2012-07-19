@@ -821,8 +821,6 @@ specifier|public
 name|String
 name|next
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -858,8 +856,6 @@ specifier|public
 name|Terms
 name|terms
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|fields
@@ -913,8 +909,6 @@ parameter_list|,
 name|Terms
 name|terms
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|fields
 operator|.
@@ -933,8 +927,6 @@ specifier|public
 name|FieldsEnum
 name|iterator
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new
@@ -954,8 +946,6 @@ parameter_list|(
 name|String
 name|field
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|fields
@@ -973,8 +963,6 @@ specifier|public
 name|int
 name|size
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|fields
@@ -1092,8 +1080,6 @@ name|StoredFieldVisitor
 name|visitor
 parameter_list|)
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|ensureOpen

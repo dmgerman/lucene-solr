@@ -166,6 +166,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**  * An implementation of {@link AbstractGroupFacetCollector} that computes grouped facets based on docvalues.  *  * @lucene.experimental  */
 end_comment
@@ -290,6 +300,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Group valueType %s not supported"
 argument_list|,
 name|groupDvType
@@ -333,6 +347,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Group valueType %s not supported"
 argument_list|,
 name|groupDvType
@@ -581,6 +599,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Facet valueType %s not supported"
 argument_list|,
 name|facetDvType
@@ -623,6 +645,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Facet valueType %s not supported"
 argument_list|,
 name|facetDvType

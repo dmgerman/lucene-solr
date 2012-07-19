@@ -132,7 +132,7 @@ argument_list|(
 name|TEST_HOME
 argument_list|()
 argument_list|,
-literal|"solr/conf/solrconfig-nocache.xml"
+literal|"solr/collection1/conf/solrconfig-nocache.xml"
 argument_list|,
 literal|null
 argument_list|)

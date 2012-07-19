@@ -92,6 +92,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|CyclicBarrier
@@ -927,6 +937,10 @@ operator|new
 name|PrintStream
 argument_list|(
 name|bos
+argument_list|,
+literal|false
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -957,7 +971,9 @@ argument_list|(
 name|bos
 operator|.
 name|toString
-argument_list|()
+argument_list|(
+literal|"UTF-8"
+argument_list|)
 operator|.
 name|indexOf
 argument_list|(
@@ -2611,6 +2627,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Document[%d] misses field must be null. Has value %s for ord %d"
 argument_list|,
 name|i
@@ -2719,6 +2739,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Expected value %s for doc %d and ord %d, but was %s"
 argument_list|,
 name|expected

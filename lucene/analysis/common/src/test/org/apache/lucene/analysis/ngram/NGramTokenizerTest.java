@@ -80,6 +80,22 @@ name|Tokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests {@link NGramTokenizer} for correctness.  */
 end_comment
@@ -600,7 +616,7 @@ argument_list|)
 expr_stmt|;
 name|tokenizer
 operator|.
-name|reset
+name|setReader
 argument_list|(
 operator|new
 name|StringReader
@@ -702,7 +718,7 @@ name|reader
 argument_list|,
 literal|2
 argument_list|,
-literal|15
+literal|4
 argument_list|)
 decl_stmt|;
 return|return
@@ -724,7 +740,7 @@ argument_list|()
 argument_list|,
 name|a
 argument_list|,
-literal|10000
+literal|1000
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
@@ -742,11 +758,11 @@ argument_list|()
 argument_list|,
 name|a
 argument_list|,
-literal|200
+literal|50
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,
-literal|8192
+literal|1027
 argument_list|,
 literal|false
 argument_list|,

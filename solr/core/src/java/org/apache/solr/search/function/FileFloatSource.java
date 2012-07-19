@@ -184,6 +184,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|ReaderUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|TermsEnum
 import|;
 end_import
@@ -290,7 +304,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ReaderUtil
+name|IOUtils
 import|;
 end_import
 
@@ -1320,6 +1334,10 @@ operator|new
 name|InputStreamReader
 argument_list|(
 name|is
+argument_list|,
+name|IOUtils
+operator|.
+name|CHARSET_UTF_8
 argument_list|)
 argument_list|)
 decl_stmt|;

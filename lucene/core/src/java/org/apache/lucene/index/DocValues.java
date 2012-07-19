@@ -533,7 +533,7 @@ literal|"floats are not supported"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Returns a {@link BytesRef} for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>byte[]</tt> values.      * @throws IOException       *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>byte[]</tt> values.      */
+comment|/**      * Returns a {@link BytesRef} for the given document id or throws an      * {@link UnsupportedOperationException} if this source doesn't support      *<tt>byte[]</tt> values.      *       * @throws UnsupportedOperationException      *           if this source doesn't support<tt>byte[]</tt> values.      */
 DECL|method|getBytes
 specifier|public
 name|BytesRef

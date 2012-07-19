@@ -111,8 +111,6 @@ parameter_list|,
 name|IndexInput
 name|in
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(

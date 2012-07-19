@@ -30,6 +30,16 @@ name|NumberFormat
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**  * Formatting utilities (for reports).  */
 end_comment
@@ -51,17 +61,29 @@ block|{
 name|NumberFormat
 operator|.
 name|getInstance
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 block|,
 name|NumberFormat
 operator|.
 name|getInstance
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 block|,
 name|NumberFormat
 operator|.
 name|getInstance
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 block|,   }
 decl_stmt|;
 DECL|field|padd

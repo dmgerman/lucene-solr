@@ -30,16 +30,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
-operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Collections
@@ -77,18 +67,6 @@ operator|.
 name|concurrent
 operator|.
 name|Future
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeoutException
 import|;
 end_import
 
@@ -987,8 +965,6 @@ operator|.
 name|MASTER_URL
 argument_list|,
 name|leaderUrl
-operator|+
-literal|"replication"
 argument_list|)
 expr_stmt|;
 if|if
@@ -1055,8 +1031,6 @@ name|String
 name|leaderUrl
 parameter_list|)
 throws|throws
-name|MalformedURLException
-throws|,
 name|SolrServerException
 throws|,
 name|IOException
@@ -1152,8 +1126,6 @@ name|String
 name|leaderCoreName
 parameter_list|)
 throws|throws
-name|MalformedURLException
-throws|,
 name|SolrServerException
 throws|,
 name|IOException
@@ -2292,8 +2264,6 @@ throws|throws
 name|InterruptedException
 throws|,
 name|ExecutionException
-throws|,
-name|TimeoutException
 block|{
 name|Future
 argument_list|<

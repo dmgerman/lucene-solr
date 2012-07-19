@@ -1434,8 +1434,6 @@ specifier|synchronized
 name|void
 name|clearCrash
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|crashed
 operator|=
@@ -3172,8 +3170,6 @@ parameter_list|(
 name|Directory
 name|d
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|String
 name|files

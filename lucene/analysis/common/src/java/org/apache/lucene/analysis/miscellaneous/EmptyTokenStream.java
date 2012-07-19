@@ -32,16 +32,6 @@ name|TokenStream
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/**  * An always exhausted token stream.  */
 end_comment
@@ -63,8 +53,6 @@ specifier|final
 name|boolean
 name|incrementToken
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 literal|false

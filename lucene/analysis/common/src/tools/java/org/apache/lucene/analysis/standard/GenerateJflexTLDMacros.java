@@ -640,7 +640,7 @@ name|toLowerCase
 argument_list|(
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -679,7 +679,7 @@ name|toLowerCase
 argument_list|(
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -732,7 +732,7 @@ name|FULL
 argument_list|,
 name|Locale
 operator|.
-name|US
+name|ROOT
 argument_list|)
 decl_stmt|;
 name|dateFormat

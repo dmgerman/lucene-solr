@@ -248,7 +248,7 @@ name|toUpperCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 argument_list|,
 name|ppt
@@ -310,7 +310,7 @@ name|toUpperCase
 argument_list|(
 name|Locale
 operator|.
-name|ENGLISH
+name|ROOT
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -361,8 +361,6 @@ name|pathType
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|InterruptedException
 function_decl|;
 comment|/**     * strip tags from<code>buf</code>: each tag is replaced by a single blank.    * @return text obtained when stripping all tags from<code>buf</code> (Input StringBuilder is unmodified).    */
 DECL|method|stripTags

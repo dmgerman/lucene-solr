@@ -33,7 +33,7 @@ specifier|private
 name|MathUtil
 parameter_list|()
 block|{   }
-comment|/** returns x == 0 ? 0 : Math.floor(Math.log(x) / Math.log(base)) */
+comment|/**    * Returns {@code x<= 0 ? 0 : Math.floor(Math.log(x) / Math.log(base))}    * @param base must be {@code> 1}    */
 DECL|method|log
 specifier|public
 specifier|static
@@ -47,11 +47,21 @@ name|int
 name|base
 parameter_list|)
 block|{
-assert|assert
+if|if
+condition|(
 name|base
-operator|>
+operator|<=
 literal|1
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"base must be> 1"
+argument_list|)
+throw|;
+block|}
 name|int
 name|ret
 init|=

@@ -86,6 +86,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -479,9 +491,9 @@ name|LuceneTestCase
 extends|extends
 name|Assert
 block|{
-comment|// -----------------------------------------------------------------
-comment|// Test groups and other annotations modifying tests' behavior.
-comment|// -----------------------------------------------------------------
+comment|// --------------------------------------------------------------------
+comment|// Test groups, system properties and other annotations modifying tests
+comment|// --------------------------------------------------------------------
 DECL|field|SYSPROP_NIGHTLY
 specifier|public
 specifier|static
@@ -517,6 +529,26 @@ name|String
 name|SYSPROP_SLOW
 init|=
 literal|"tests.slow"
+decl_stmt|;
+comment|/** @see #ignoreAfterMaxFailures*/
+DECL|field|SYSPROP_MAXFAILURES
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|SYSPROP_MAXFAILURES
+init|=
+literal|"tests.maxfailures"
+decl_stmt|;
+comment|/** @see #ignoreAfterMaxFailures*/
+DECL|field|SYSPROP_FAILFAST
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|SYSPROP_FAILFAST
+init|=
+literal|"tests.failfast"
 decl_stmt|;
 comment|/**    * Annotation for tests that should only be run during nightly builds.    */
 annotation|@
@@ -610,7 +642,7 @@ name|bugUrl
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Annotation for tests that are really slow and should be run only when specifically     * asked to run.    */
+comment|/**    * Annotation for tests that are slow. Slow tests do run by default but can be    * disabled if a quick run is needed.    */
 annotation|@
 name|Documented
 annotation|@
@@ -627,7 +659,7 @@ name|TestGroup
 argument_list|(
 name|enabled
 operator|=
-literal|false
+literal|true
 argument_list|,
 name|sysProperty
 operator|=
@@ -1049,10 +1081,105 @@ decl_stmt|;
 comment|/**    * Suite failure marker (any error in the test or suite scope).    */
 DECL|field|suiteFailureMarker
 specifier|public
+specifier|final
 specifier|static
 name|TestRuleMarkFailure
 name|suiteFailureMarker
+init|=
+operator|new
+name|TestRuleMarkFailure
+argument_list|()
 decl_stmt|;
+comment|/**    * Ignore tests after hitting a designated number of initial failures.    */
+DECL|field|ignoreAfterMaxFailures
+specifier|final
+specifier|static
+name|TestRuleIgnoreAfterMaxFailures
+name|ignoreAfterMaxFailures
+decl_stmt|;
+static|static
+block|{
+name|int
+name|maxFailures
+init|=
+name|systemPropertyAsInt
+argument_list|(
+name|SYSPROP_MAXFAILURES
+argument_list|,
+name|Integer
+operator|.
+name|MAX_VALUE
+argument_list|)
+decl_stmt|;
+name|boolean
+name|failFast
+init|=
+name|systemPropertyAsBoolean
+argument_list|(
+name|SYSPROP_FAILFAST
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|failFast
+condition|)
+block|{
+if|if
+condition|(
+name|maxFailures
+operator|==
+name|Integer
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+name|maxFailures
+operator|=
+literal|1
+expr_stmt|;
+block|}
+else|else
+block|{
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|LuceneTestCase
+operator|.
+name|class
+operator|.
+name|getSimpleName
+argument_list|()
+argument_list|)
+operator|.
+name|warning
+argument_list|(
+literal|"Property '"
+operator|+
+name|SYSPROP_MAXFAILURES
+operator|+
+literal|"'="
+operator|+
+name|maxFailures
+operator|+
+literal|", 'failfast' is"
+operator|+
+literal|" ignored."
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|ignoreAfterMaxFailures
+operator|=
+operator|new
+name|TestRuleIgnoreAfterMaxFailures
+argument_list|(
+name|maxFailures
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * This controls how suite-level rules are nested. It is important that _all_ rules declared    * in {@link LuceneTestCase} are executed in proper order if they depend on each     * other.    */
 annotation|@
 name|ClassRule
@@ -1073,11 +1200,12 @@ argument_list|)
 operator|.
 name|around
 argument_list|(
+name|ignoreAfterMaxFailures
+argument_list|)
+operator|.
+name|around
+argument_list|(
 name|suiteFailureMarker
-operator|=
-operator|new
-name|TestRuleMarkFailure
-argument_list|()
 argument_list|)
 operator|.
 name|around
@@ -1165,7 +1293,7 @@ operator|new
 name|TestRuleThreadAndTestName
 argument_list|()
 decl_stmt|;
-comment|/** Taint test failures. */
+comment|/** Taint suite result with individual test failures. */
 DECL|field|testFailureMarker
 specifier|private
 name|TestRuleMarkFailure
@@ -1191,6 +1319,11 @@ operator|.
 name|outerRule
 argument_list|(
 name|testFailureMarker
+argument_list|)
+operator|.
+name|around
+argument_list|(
+name|ignoreAfterMaxFailures
 argument_list|)
 operator|.
 name|around
@@ -3054,8 +3187,6 @@ specifier|static
 name|MockDirectoryWrapper
 name|newDirectory
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|newDirectory
@@ -3075,8 +3206,6 @@ parameter_list|(
 name|Random
 name|r
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|Directory
 name|impl
@@ -3176,8 +3305,6 @@ parameter_list|(
 name|File
 name|f
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|newFSDirectory
@@ -3201,8 +3328,6 @@ parameter_list|,
 name|LockFactory
 name|lf
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|String
 name|fsdirClass
@@ -4304,7 +4429,7 @@ name|random
 operator|.
 name|nextInt
 argument_list|(
-literal|4
+literal|5
 argument_list|)
 condition|)
 block|{
@@ -4496,6 +4621,56 @@ literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
+break|break;
+case|case
+literal|4
+case|:
+comment|// HÃ¤ckidy-Hick-Hack: a standard Reader will cause FC insanity, so we use
+comment|// QueryUtils' reader with a fake cache key, so insanity checker cannot walk
+comment|// along our reader:
+if|if
+condition|(
+name|r
+operator|instanceof
+name|AtomicReader
+condition|)
+block|{
+name|r
+operator|=
+operator|new
+name|FCInvisibleMultiReader
+argument_list|(
+operator|new
+name|AssertingAtomicReader
+argument_list|(
+operator|(
+name|AtomicReader
+operator|)
+name|r
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|r
+operator|instanceof
+name|DirectoryReader
+condition|)
+block|{
+name|r
+operator|=
+operator|new
+name|FCInvisibleMultiReader
+argument_list|(
+operator|(
+name|DirectoryReader
+operator|)
+name|r
+argument_list|)
+expr_stmt|;
+block|}
 break|break;
 default|default:
 name|fail

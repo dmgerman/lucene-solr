@@ -281,8 +281,6 @@ specifier|public
 name|boolean
 name|incrementToken
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -541,8 +539,6 @@ specifier|public
 name|void
 name|end
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 specifier|final
 name|int
@@ -568,10 +564,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|reset
+DECL|method|setReader
 specifier|public
 name|void
-name|reset
+name|setReader
 parameter_list|(
 name|Reader
 name|input
@@ -581,7 +577,7 @@ name|IOException
 block|{
 name|super
 operator|.
-name|reset
+name|setReader
 argument_list|(
 name|input
 argument_list|)

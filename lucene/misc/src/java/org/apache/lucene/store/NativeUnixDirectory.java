@@ -763,8 +763,6 @@ specifier|public
 name|void
 name|flush
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 comment|// TODO -- I don't think this method is necessary?
 block|}
@@ -1026,8 +1024,6 @@ specifier|public
 name|long
 name|length
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|fileLength

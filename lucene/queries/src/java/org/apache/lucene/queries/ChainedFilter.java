@@ -204,6 +204,7 @@ comment|/**    * Logical operation when none is declared. Defaults to OR.    */
 DECL|field|DEFAULT
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|DEFAULT
 init|=

@@ -1756,12 +1756,31 @@ operator|!
 name|forwardToLeader
 condition|)
 block|{
+comment|// clone the original doc
+name|SolrInputDocument
+name|clonedDoc
+init|=
+name|cmd
+operator|.
+name|solrDoc
+operator|.
+name|deepCopy
+argument_list|()
+decl_stmt|;
 name|dropCmd
 operator|=
 name|versionAdd
 argument_list|(
 name|cmd
+argument_list|,
+name|clonedDoc
 argument_list|)
+expr_stmt|;
+name|cmd
+operator|.
+name|solrDoc
+operator|=
+name|clonedDoc
 expr_stmt|;
 block|}
 if|if
@@ -2180,7 +2199,7 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param cmd    * @return whether or not to drop this cmd    * @throws IOException    */
+comment|/**    * @param cmd    * @param cloneDoc needs the version if it's assigned    * @return whether or not to drop this cmd    * @throws IOException    */
 DECL|method|versionAdd
 specifier|private
 name|boolean
@@ -2188,6 +2207,9 @@ name|versionAdd
 parameter_list|(
 name|AddUpdateCommand
 name|cmd
+parameter_list|,
+name|SolrInputDocument
+name|cloneDoc
 parameter_list|)
 throws|throws
 name|IOException
@@ -2407,6 +2429,11 @@ comment|// will enable us to know what version happened first, and thus enable
 comment|// realtime-get to work reliably.
 comment|// TODO: if versions aren't stored, do we need to set on the cmd anyway for some reason?
 comment|// there may be other reasons in the future for a version on the commands
+name|boolean
+name|checkDeleteByQueries
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|versionsStored
@@ -2430,24 +2457,10 @@ init|=
 name|getUpdatedDocument
 argument_list|(
 name|cmd
+argument_list|,
+name|versionOnUpdate
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|updated
-operator|&&
-name|versionOnUpdate
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-name|versionOnUpdate
-operator|=
-literal|1
-expr_stmt|;
-comment|// implied "doc must exist" for now...
-block|}
 if|if
 condition|(
 name|versionOnUpdate
@@ -2567,6 +2580,17 @@ argument_list|,
 name|version
 argument_list|)
 expr_stmt|;
+name|cloneDoc
+operator|.
+name|setField
+argument_list|(
+name|VersionInfo
+operator|.
+name|VERSION_FIELD
+argument_list|,
+name|version
+argument_list|)
+expr_stmt|;
 name|bucket
 operator|.
 name|updateHighest
@@ -2651,7 +2675,7 @@ name|versionOnUpdate
 condition|)
 block|{
 comment|// we're OK... this update has a version higher than anything we've seen
-comment|// in this bucket so far, so we know that no reordering has yet occured.
+comment|// in this bucket so far, so we know that no reordering has yet occurred.
 name|bucket
 operator|.
 name|updateHighest
@@ -2698,9 +2722,15 @@ return|return
 literal|true
 return|;
 block|}
+comment|// also need to re-apply newer deleteByQuery commands
+name|checkDeleteByQueries
+operator|=
+literal|true
+expr_stmt|;
 block|}
 block|}
 block|}
+comment|// TODO: possibly set checkDeleteByQueries as a flag on the command?
 name|doLocalAdd
 argument_list|(
 name|cmd
@@ -2729,6 +2759,9 @@ name|getUpdatedDocument
 parameter_list|(
 name|AddUpdateCommand
 name|cmd
+parameter_list|,
+name|long
+name|versionOnUpdate
 parameter_list|)
 throws|throws
 name|IOException
@@ -2815,8 +2848,24 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// not found... allow this in the future (depending on the details of the update, or if the user explicitly sets it).
-comment|// could also just not change anything here and let the optimistic locking throw the error
+comment|// create a new doc by default if an old one wasn't found
+if|if
+condition|(
+name|versionOnUpdate
+operator|<=
+literal|0
+condition|)
+block|{
+name|oldDoc
+operator|=
+operator|new
+name|SolrInputDocument
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// could just let the optimistic locking throw the error
 throw|throw
 operator|new
 name|SolrException
@@ -2834,6 +2883,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+block|}
+else|else
+block|{
 name|oldDoc
 operator|.
 name|remove
@@ -2841,6 +2893,7 @@ argument_list|(
 name|VERSION_FIELD
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|SolrInputField
@@ -4117,7 +4170,6 @@ name|unblockUpdates
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO: need to handle reorders to replicas somehow
 comment|// forward to all replicas
 if|if
 condition|(

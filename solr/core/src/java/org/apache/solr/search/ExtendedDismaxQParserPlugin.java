@@ -3,10 +3,6 @@ begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
-begin_comment
-comment|/*  * This parser was originally derived from DismaxQParser from Solr.  * All changes are Copyright 2008, Lucid Imagination, Inc.  */
-end_comment
-
 begin_package
 DECL|package|org.apache.solr.search
 package|package
@@ -395,7 +391,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An advanced multi-field query parser.  * @lucene.experimental  */
+comment|/**  * An advanced multi-field query parser based on the DisMax parser.  * See Wiki page http://wiki.apache.org/solr/ExtendedDisMax  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -676,6 +672,71 @@ argument_list|,
 name|solrParams
 argument_list|)
 expr_stmt|;
+comment|// Phrase slop array
+name|int
+name|pslop
+index|[]
+init|=
+operator|new
+name|int
+index|[
+literal|4
+index|]
+decl_stmt|;
+name|pslop
+index|[
+literal|0
+index|]
+operator|=
+name|solrParams
+operator|.
+name|getInt
+argument_list|(
+name|DisMaxParams
+operator|.
+name|PS
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|pslop
+index|[
+literal|2
+index|]
+operator|=
+name|solrParams
+operator|.
+name|getInt
+argument_list|(
+name|DisMaxParams
+operator|.
+name|PS2
+argument_list|,
+name|pslop
+index|[
+literal|0
+index|]
+argument_list|)
+expr_stmt|;
+name|pslop
+index|[
+literal|3
+index|]
+operator|=
+name|solrParams
+operator|.
+name|getInt
+argument_list|(
+name|DisMaxParams
+operator|.
+name|PS3
+argument_list|,
+name|pslop
+index|[
+literal|0
+index|]
+argument_list|)
+expr_stmt|;
 comment|// Boosted phrase of the full query string
 name|List
 argument_list|<
@@ -697,6 +758,11 @@ name|PF
 argument_list|)
 argument_list|,
 literal|0
+argument_list|,
+name|pslop
+index|[
+literal|0
+index|]
 argument_list|)
 decl_stmt|;
 comment|// Boosted Bi-Term Shingles from the query string
@@ -714,10 +780,17 @@ name|solrParams
 operator|.
 name|getParams
 argument_list|(
-literal|"pf2"
+name|DMP
+operator|.
+name|PF2
 argument_list|)
 argument_list|,
 literal|2
+argument_list|,
+name|pslop
+index|[
+literal|2
+index|]
 argument_list|)
 decl_stmt|;
 comment|// Boosted Tri-Term Shingles from the query string
@@ -735,10 +808,17 @@ name|solrParams
 operator|.
 name|getParams
 argument_list|(
-literal|"pf3"
+name|DMP
+operator|.
+name|PF3
 argument_list|)
 argument_list|,
 literal|3
+argument_list|,
+name|pslop
+index|[
+literal|3
+index|]
 argument_list|)
 decl_stmt|;
 name|float
@@ -753,20 +833,6 @@ operator|.
 name|TIE
 argument_list|,
 literal|0.0f
-argument_list|)
-decl_stmt|;
-name|int
-name|pslop
-init|=
-name|solrParams
-operator|.
-name|getInt
-argument_list|(
-name|DisMaxParams
-operator|.
-name|PS
-argument_list|,
-literal|0
 argument_list|)
 decl_stmt|;
 name|int
@@ -1145,6 +1211,8 @@ decl_stmt|;
 comment|// and and or won't be operators at the start or end
 if|if
 condition|(
+name|lowercaseOperators
+operator|&&
 name|i
 operator|>
 literal|0
@@ -1753,25 +1821,6 @@ range|:
 name|allPhraseFields
 control|)
 block|{
-name|int
-name|slop
-init|=
-operator|(
-name|phraseField
-operator|.
-name|getSlop
-argument_list|()
-operator|==
-literal|0
-operator|)
-condition|?
-name|pslop
-else|:
-name|phraseField
-operator|.
-name|getSlop
-argument_list|()
-decl_stmt|;
 name|Map
 argument_list|<
 name|String
@@ -1821,7 +1870,10 @@ argument_list|()
 argument_list|,
 name|tiebreaker
 argument_list|,
-name|slop
+name|phraseField
+operator|.
+name|getSlop
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2321,7 +2373,7 @@ return|return
 name|topQuery
 return|;
 block|}
-comment|/**    * Extracts all the alised fields from the requests and adds them to up    * @param up    * @param tiebreaker    * @throws ParseException     */
+comment|/**    * Extracts all the alised fields from the requests and adds them to up    * @param up    * @param tiebreaker    */
 DECL|method|addAliasesFromRequest
 specifier|private
 name|void
@@ -2333,8 +2385,6 @@ parameter_list|,
 name|float
 name|tiebreaker
 parameter_list|)
-throws|throws
-name|ParseException
 block|{
 name|Iterator
 argument_list|<
@@ -2849,360 +2899,81 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|partialEscape
-specifier|public
-specifier|static
-name|CharSequence
-name|partialEscape
-parameter_list|(
-name|CharSequence
-name|s
-parameter_list|)
-block|{
-name|StringBuilder
-name|sb
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-name|int
-name|len
-init|=
-name|s
-operator|.
-name|length
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|len
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|char
-name|c
-init|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|c
-operator|==
-literal|':'
-condition|)
-block|{
-comment|// look forward to make sure it's something that won't
-comment|// cause a parse exception (something that won't be escaped... like
-comment|// +,-,:, whitespace
-if|if
-condition|(
-name|i
-operator|+
-literal|1
-operator|<
-name|len
-operator|&&
-name|i
-operator|>
-literal|0
-condition|)
-block|{
-name|char
-name|ch
-init|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|i
-operator|+
-literal|1
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|Character
-operator|.
-name|isWhitespace
-argument_list|(
-name|ch
-argument_list|)
-operator|||
-name|ch
-operator|==
-literal|'+'
-operator|||
-name|ch
-operator|==
-literal|'-'
-operator|||
-name|ch
-operator|==
-literal|':'
-operator|)
-condition|)
-block|{
-comment|// OK, at this point the chars after the ':' will be fine.
-comment|// now look back and try to determine if this is a fieldname
-comment|// [+,-]? [letter,_] [letter digit,_,-,.]*
-comment|// This won't cover *all* possible lucene fieldnames, but we should
-comment|// only pick nice names to begin with
-name|int
-name|start
-decl_stmt|,
-name|pos
-decl_stmt|;
-for|for
-control|(
-name|start
-operator|=
-name|i
-operator|-
-literal|1
-init|;
-name|start
-operator|>=
-literal|0
-condition|;
-name|start
-operator|--
-control|)
-block|{
-name|ch
-operator|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|start
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|Character
-operator|.
-name|isWhitespace
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-break|break;
-block|}
-comment|// skip whitespace
-name|pos
-operator|=
-name|start
-operator|+
-literal|1
-expr_stmt|;
-comment|// skip leading + or -
-name|ch
-operator|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|pos
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|ch
-operator|==
-literal|'+'
-operator|||
-name|ch
-operator|==
-literal|'-'
-condition|)
-block|{
-name|pos
-operator|++
-expr_stmt|;
-block|}
-comment|// we don't need to explicitly check for end of string
-comment|// since ':' will act as our sentinal
-comment|// first char can't be '-' or '.'
-name|ch
-operator|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|pos
-operator|++
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|Character
-operator|.
-name|isJavaIdentifierPart
-argument_list|(
-name|ch
-argument_list|)
-condition|)
-block|{
-for|for
-control|(
-init|;
-condition|;
-control|)
-block|{
-name|ch
-operator|=
-name|s
-operator|.
-name|charAt
-argument_list|(
-name|pos
-operator|++
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|Character
-operator|.
-name|isJavaIdentifierPart
-argument_list|(
-name|ch
-argument_list|)
-operator|||
-name|ch
-operator|==
-literal|'-'
-operator|||
-name|ch
-operator|==
-literal|'.'
-operator|)
-condition|)
-block|{
-break|break;
-block|}
-block|}
-if|if
-condition|(
-name|pos
-operator|<=
-name|i
-condition|)
-block|{
-comment|// OK, we got to the ':' and everything looked like a valid fieldname, so
-comment|// don't escape the ':'
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|':'
-argument_list|)
-expr_stmt|;
-continue|continue;
-comment|// jump back to start of outer-most loop
-block|}
-block|}
-block|}
-block|}
-comment|// we fell through to here, so we should escape this like other reserved chars.
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|'\\'
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|c
-operator|==
-literal|'\\'
-operator|||
-name|c
-operator|==
-literal|'!'
-operator|||
-name|c
-operator|==
-literal|'('
-operator|||
-name|c
-operator|==
-literal|')'
-operator|||
-name|c
-operator|==
-literal|'^'
-operator|||
-name|c
-operator|==
-literal|'['
-operator|||
-name|c
-operator|==
-literal|']'
-operator|||
-name|c
-operator|==
-literal|'{'
-operator|||
-name|c
-operator|==
-literal|'}'
-operator|||
-name|c
-operator|==
-literal|'~'
-operator|||
-name|c
-operator|==
-literal|'*'
-operator|||
-name|c
-operator|==
-literal|'?'
-condition|)
-block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|'\\'
-argument_list|)
-expr_stmt|;
-block|}
-name|sb
-operator|.
-name|append
-argument_list|(
-name|c
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|sb
-return|;
-block|}
+comment|// FIXME: Not in use
+comment|//  public static CharSequence partialEscape(CharSequence s) {
+comment|//    StringBuilder sb = new StringBuilder();
+comment|//
+comment|//    int len = s.length();
+comment|//    for (int i = 0; i< len; i++) {
+comment|//      char c = s.charAt(i);
+comment|//      if (c == ':') {
+comment|//        // look forward to make sure it's something that won't
+comment|//        // cause a parse exception (something that won't be escaped... like
+comment|//        // +,-,:, whitespace
+comment|//        if (i+1<len&& i>0) {
+comment|//          char ch = s.charAt(i+1);
+comment|//          if (!(Character.isWhitespace(ch) || ch=='+' || ch=='-' || ch==':')) {
+comment|//            // OK, at this point the chars after the ':' will be fine.
+comment|//            // now look back and try to determine if this is a fieldname
+comment|//            // [+,-]? [letter,_] [letter digit,_,-,.]*
+comment|//            // This won't cover *all* possible lucene fieldnames, but we should
+comment|//            // only pick nice names to begin with
+comment|//            int start, pos;
+comment|//            for (start=i-1; start>=0; start--) {
+comment|//              ch = s.charAt(start);
+comment|//              if (Character.isWhitespace(ch)) break;
+comment|//            }
+comment|//
+comment|//            // skip whitespace
+comment|//            pos = start+1;
+comment|//
+comment|//            // skip leading + or -
+comment|//            ch = s.charAt(pos);
+comment|//            if (ch=='+' || ch=='-') {
+comment|//              pos++;
+comment|//            }
+comment|//
+comment|//            // we don't need to explicitly check for end of string
+comment|//            // since ':' will act as our sentinal
+comment|//
+comment|//              // first char can't be '-' or '.'
+comment|//              ch = s.charAt(pos++);
+comment|//              if (Character.isJavaIdentifierPart(ch)) {
+comment|//
+comment|//                for(;;) {
+comment|//                  ch = s.charAt(pos++);
+comment|//                  if (!(Character.isJavaIdentifierPart(ch) || ch=='-' || ch=='.')) {
+comment|//                    break;
+comment|//                  }
+comment|//                }
+comment|//
+comment|//                if (pos<=i) {
+comment|//                  // OK, we got to the ':' and everything looked like a valid fieldname, so
+comment|//                  // don't escape the ':'
+comment|//                  sb.append(':');
+comment|//                  continue;  // jump back to start of outer-most loop
+comment|//                }
+comment|//
+comment|//              }
+comment|//
+comment|//
+comment|//          }
+comment|//        }
+comment|//
+comment|//        // we fell through to here, so we should escape this like other reserved chars.
+comment|//        sb.append('\\');
+comment|//      }
+comment|//      else if (c == '\\' || c == '!' || c == '(' || c == ')' ||
+comment|//          c == '^' || c == '[' || c == ']' ||
+comment|//          c == '{'  || c == '}' || c == '~' || c == '*' || c == '?'
+comment|//          )
+comment|//      {
+comment|//        sb.append('\\');
+comment|//      }
+comment|//      sb.append(c);
+comment|//    }
+comment|//    return sb;
+comment|//  }
 DECL|class|Clause
 specifier|static
 class|class
@@ -3226,6 +2997,11 @@ DECL|field|field
 name|String
 name|field
 decl_stmt|;
+DECL|field|rawField
+name|String
+name|rawField
+decl_stmt|;
+comment|// if the clause is +(foo:bar) then rawField=(foo
 DECL|field|isPhrase
 name|boolean
 name|isPhrase
@@ -3448,14 +3224,36 @@ name|disallowUserField
 operator|=
 literal|false
 expr_stmt|;
+name|int
+name|colon
+init|=
+name|s
+operator|.
+name|indexOf
+argument_list|(
+literal|':'
+argument_list|,
 name|pos
-operator|+=
+argument_list|)
+decl_stmt|;
 name|clause
 operator|.
-name|field
+name|rawField
+operator|=
+name|s
 operator|.
-name|length
-argument_list|()
+name|substring
+argument_list|(
+name|pos
+argument_list|,
+name|colon
+argument_list|)
+expr_stmt|;
+name|pos
+operator|+=
+name|colon
+operator|-
+name|pos
 expr_stmt|;
 comment|// skip the field name
 name|pos
@@ -3689,6 +3487,18 @@ literal|'+'
 case|:
 case|case
 literal|'-'
+case|:
+case|case
+literal|'\\'
+case|:
+case|case
+literal|'|'
+case|:
+case|case
+literal|'&'
+case|:
+case|case
+literal|'/'
 case|:
 name|clause
 operator|.
@@ -4053,6 +3863,43 @@ name|p
 operator|++
 argument_list|)
 decl_stmt|;
+while|while
+condition|(
+operator|(
+name|ch
+operator|==
+literal|'('
+operator|||
+name|ch
+operator|==
+literal|'+'
+operator|||
+name|ch
+operator|==
+literal|'-'
+operator|)
+operator|&&
+operator|(
+name|pos
+operator|<
+name|end
+operator|)
+condition|)
+block|{
+name|ch
+operator|=
+name|s
+operator|.
+name|charAt
+argument_list|(
+name|p
+operator|++
+argument_list|)
+expr_stmt|;
+name|pos
+operator|++
+expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -5705,8 +5552,6 @@ specifier|private
 name|Query
 name|getQuery
 parameter_list|()
-throws|throws
-name|ParseException
 block|{
 try|try
 block|{

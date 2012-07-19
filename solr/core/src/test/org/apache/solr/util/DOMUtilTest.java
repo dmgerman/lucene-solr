@@ -48,20 +48,6 @@ name|SimpleOrderedMap
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|DOMUtilTestBase
-import|;
-end_import
-
 begin_class
 DECL|class|DOMUtilTest
 specifier|public
@@ -404,8 +390,6 @@ parameter_list|,
 name|Object
 name|value
 parameter_list|)
-throws|throws
-name|Exception
 block|{
 name|Object
 name|v

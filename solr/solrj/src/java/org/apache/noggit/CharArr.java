@@ -989,8 +989,6 @@ parameter_list|(
 name|char
 name|c
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|write
 argument_list|(

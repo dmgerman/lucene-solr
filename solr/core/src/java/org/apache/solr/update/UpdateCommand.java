@@ -110,6 +110,15 @@ init|=
 literal|0x00000008
 decl_stmt|;
 comment|// this update should not count toward triggering of autocommits.
+DECL|field|CLEAR_CACHES
+specifier|public
+specifier|static
+name|int
+name|CLEAR_CACHES
+init|=
+literal|0x00000010
+decl_stmt|;
+comment|// clear caches associated with the update log.  used when applying reordered DBQ updates when doing an add.
 DECL|method|UpdateCommand
 specifier|public
 name|UpdateCommand

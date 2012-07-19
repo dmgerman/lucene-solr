@@ -132,6 +132,22 @@ operator|=
 name|doShare
 expr_stmt|;
 block|}
+comment|/** Returns the instance of PositiveIntOutputs. */
+DECL|method|getSingleton
+specifier|public
+specifier|static
+name|PositiveIntOutputs
+name|getSingleton
+parameter_list|()
+block|{
+return|return
+name|getSingleton
+argument_list|(
+literal|true
+argument_list|)
+return|;
+block|}
+comment|/** Expert: pass doShare=false to disable output sharing.    *  In some cases this may result in a smaller FST,    *  however it will also break methods like {@link    *  Util#getByOutput} and {@link Util#shortestPaths}. */
 DECL|method|getSingleton
 specifier|public
 specifier|static

@@ -84,6 +84,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|ReaderUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Term
 import|;
 end_import
@@ -191,20 +205,6 @@ operator|.
 name|util
 operator|.
 name|CharsRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ReaderUtil
 import|;
 end_import
 
@@ -1461,6 +1461,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Illegal %s parameter"
 argument_list|,
 name|GroupParams
@@ -2925,6 +2929,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Cache limit of %d percent relative to maxdoc has exceeded. Please increase cache size or disable caching."
 argument_list|,
 name|maxDocsPercentageToCache

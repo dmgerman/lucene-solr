@@ -169,8 +169,6 @@ specifier|static
 name|void
 name|afterClass
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 if|if
 condition|(
@@ -206,8 +204,6 @@ specifier|static
 name|void
 name|addDocs
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|assertU
 argument_list|(

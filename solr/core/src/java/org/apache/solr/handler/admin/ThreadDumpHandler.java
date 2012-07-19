@@ -66,6 +66,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -454,8 +464,6 @@ parameter_list|,
 name|ThreadMXBean
 name|tmbean
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|SimpleOrderedMap
 argument_list|<
@@ -736,6 +744,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"%.4fms"
 argument_list|,
 name|ns

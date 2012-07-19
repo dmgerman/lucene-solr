@@ -293,16 +293,14 @@ name|UnsupportedEncodingException
 name|e
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
 name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+argument_list|)
+throw|;
 block|}
-return|return
-operator|-
-literal|1
-return|;
 block|}
 comment|/**    * 32-bit FNV Hash Function    *     * @param c input character    * @return hashcode    */
 DECL|method|hash1

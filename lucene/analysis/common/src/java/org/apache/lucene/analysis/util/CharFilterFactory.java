@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -28,12 +38,12 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharStream
+name|CharFilter
 import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract parent class for analysis factories that create {@link CharStream}  * instances.  */
+comment|/**  * Abstract parent class for analysis factories that create {@link CharFilter}  * instances.  */
 end_comment
 
 begin_class
@@ -48,10 +58,10 @@ block|{
 DECL|method|create
 specifier|public
 specifier|abstract
-name|CharStream
+name|CharFilter
 name|create
 parameter_list|(
-name|CharStream
+name|Reader
 name|input
 parameter_list|)
 function_decl|;

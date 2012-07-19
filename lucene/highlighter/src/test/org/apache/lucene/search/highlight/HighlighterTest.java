@@ -8867,7 +8867,9 @@ argument_list|(
 name|xhtml
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"UTF-8"
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -9430,8 +9432,6 @@ specifier|public
 name|boolean
 name|incrementToken
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -9733,8 +9733,6 @@ specifier|public
 name|boolean
 name|incrementToken
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

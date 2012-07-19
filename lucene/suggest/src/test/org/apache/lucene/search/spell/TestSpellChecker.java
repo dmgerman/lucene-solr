@@ -74,6 +74,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|ExecutorService
@@ -143,20 +153,6 @@ operator|.
 name|document
 operator|.
 name|Field
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|CorruptIndexException
 import|;
 end_import
 
@@ -661,8 +657,6 @@ name|void
 name|testBuild
 parameter_list|()
 throws|throws
-name|CorruptIndexException
-throws|,
 name|IOException
 block|{
 name|IndexReader
@@ -2741,6 +2735,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"worker thread %d failed"
 argument_list|,
 name|i
@@ -2760,6 +2758,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"worker thread %d is still running but should be terminated"
 argument_list|,
 name|i

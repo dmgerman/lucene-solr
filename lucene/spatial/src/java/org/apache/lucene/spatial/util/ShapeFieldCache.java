@@ -52,6 +52,10 @@ name|List
 import|;
 end_import
 
+begin_comment
+comment|/**  * @lucene.internal  */
+end_comment
+
 begin_class
 DECL|class|ShapeFieldCache
 specifier|public

@@ -133,8 +133,6 @@ parameter_list|,
 name|String
 name|segmentSuffix
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

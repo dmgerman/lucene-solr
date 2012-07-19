@@ -20,26 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -77,22 +57,6 @@ operator|.
 name|client
 operator|.
 name|HttpClient
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|SolrServerException
 import|;
 end_import
 
@@ -958,12 +922,6 @@ parameter_list|,
 name|String
 name|shardId
 parameter_list|)
-throws|throws
-name|MalformedURLException
-throws|,
-name|SolrServerException
-throws|,
-name|IOException
 block|{
 name|List
 argument_list|<
@@ -1121,12 +1079,6 @@ parameter_list|,
 name|ZkNodeProps
 name|leaderProps
 parameter_list|)
-throws|throws
-name|MalformedURLException
-throws|,
-name|SolrServerException
-throws|,
-name|IOException
 block|{
 comment|// sync everyone else
 comment|// TODO: we should do this in parallel at least

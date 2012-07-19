@@ -309,8 +309,6 @@ specifier|final
 name|boolean
 name|incrementToken
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 name|clearAttributes
 argument_list|()
@@ -6577,7 +6575,7 @@ argument_list|)
 expr_stmt|;
 name|wsTokenizer
 operator|.
-name|reset
+name|setReader
 argument_list|(
 operator|new
 name|StringReader
@@ -7411,7 +7409,7 @@ argument_list|()
 argument_list|,
 name|a
 argument_list|,
-literal|10000
+literal|1000
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)
@@ -7489,7 +7487,7 @@ name|random
 argument_list|,
 name|a
 argument_list|,
-literal|200
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|,

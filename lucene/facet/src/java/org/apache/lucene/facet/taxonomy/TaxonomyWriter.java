@@ -42,7 +42,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|index
 operator|.
 name|TwoPhaseCommit
 import|;

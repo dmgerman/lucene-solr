@@ -343,6 +343,8 @@ operator|new
 name|File
 argument_list|(
 name|homeDir
+operator|+
+literal|"/collection1"
 argument_list|,
 literal|"data"
 argument_list|)
@@ -354,6 +356,8 @@ operator|new
 name|File
 argument_list|(
 name|homeDir
+operator|+
+literal|"/collection1"
 argument_list|,
 literal|"conf"
 argument_list|)
@@ -379,9 +383,7 @@ init|=
 operator|new
 name|SolrResourceLoader
 argument_list|(
-literal|null
-argument_list|,
-literal|null
+literal|"solr/collection1"
 argument_list|)
 decl_stmt|;
 name|File
@@ -398,7 +400,7 @@ decl_stmt|;
 name|String
 name|fname
 init|=
-literal|"solr/conf/solrconfig-slave1.xml"
+literal|"solr/collection1/conf/solrconfig-slave1.xml"
 decl_stmt|;
 name|FileOutputStream
 name|out
@@ -440,7 +442,7 @@ argument_list|)
 expr_stmt|;
 name|fname
 operator|=
-literal|"solr/conf/schema-binaryfield.xml"
+literal|"solr/collection1/conf/schema-binaryfield.xml"
 expr_stmt|;
 name|out
 operator|=

@@ -72,24 +72,6 @@ name|flexible
 operator|.
 name|core
 operator|.
-name|QueryNodeException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|flexible
-operator|.
-name|core
-operator|.
 name|messages
 operator|.
 name|QueryParserMessages
@@ -116,24 +98,6 @@ name|EscapeQuerySyntax
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|flexible
-operator|.
-name|core
-operator|.
-name|QueryNodeParseException
-import|;
-end_import
-
 begin_class
 DECL|class|PhraseSlopQueryNode
 specifier|public
@@ -151,7 +115,7 @@ name|value
 init|=
 literal|0
 decl_stmt|;
-comment|/**    * @throws QueryNodeException    * @throws QueryNodeParseException    * @exception QueryNodeParseException    *              throw in overridden method to disallow    */
+comment|/**    * @exception QueryNodeError throw in overridden method to disallow    */
 DECL|method|PhraseSlopQueryNode
 specifier|public
 name|PhraseSlopQueryNode
@@ -162,8 +126,6 @@ parameter_list|,
 name|int
 name|value
 parameter_list|)
-throws|throws
-name|QueryNodeException
 block|{
 if|if
 condition|(
