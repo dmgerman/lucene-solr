@@ -28,26 +28,6 @@ name|IntBuffer
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|ByteBuffer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
 begin_comment
 comment|/**  * Encode all values in normal area with fixed bit width,   * which is determined by the max value in this block.  */
 end_comment
@@ -293,6 +273,8 @@ operator|.
 name|rewind
 argument_list|()
 expr_stmt|;
+comment|// nocommit assert header isn't "malformed", ie besides
+comment|// numBytes / bit-width there is nothing else!
 name|int
 name|numBits
 init|=
