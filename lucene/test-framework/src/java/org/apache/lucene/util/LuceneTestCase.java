@@ -4664,14 +4664,10 @@ operator|=
 operator|new
 name|FCInvisibleMultiReader
 argument_list|(
-operator|new
-name|AssertingDirectoryReader
-argument_list|(
 operator|(
 name|DirectoryReader
 operator|)
 name|r
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
