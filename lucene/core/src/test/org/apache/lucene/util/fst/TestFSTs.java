@@ -723,7 +723,7 @@ argument_list|()
 expr_stmt|;
 name|dir
 operator|=
-name|newDirectory
+name|newMockDirectory
 argument_list|()
 expr_stmt|;
 name|dir
@@ -8224,7 +8224,7 @@ literal|"fstlines"
 argument_list|)
 decl_stmt|;
 specifier|final
-name|MockDirectoryWrapper
+name|Directory
 name|dir
 init|=
 name|newFSDirectory

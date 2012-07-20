@@ -94,6 +94,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|Directory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|MockDirectoryWrapper
 import|;
 end_import
@@ -323,7 +337,7 @@ block|{
 name|MockDirectoryWrapper
 name|directory
 init|=
-name|newDirectory
+name|newMockDirectory
 argument_list|()
 decl_stmt|;
 name|FailOnlyOnFlush
@@ -616,7 +630,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|directory
 init|=
 name|newDirectory
@@ -870,7 +884,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|directory
 init|=
 name|newDirectory
@@ -1049,7 +1063,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|directory
 init|=
 name|newDirectory

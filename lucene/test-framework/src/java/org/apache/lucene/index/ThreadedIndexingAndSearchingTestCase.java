@@ -274,7 +274,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|Directory
+name|BaseDirectoryWrapper
 import|;
 end_import
 
@@ -288,7 +288,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|MockDirectoryWrapper
+name|Directory
 import|;
 end_import
 
@@ -2785,7 +2785,7 @@ argument_list|)
 expr_stmt|;
 operator|(
 operator|(
-name|MockDirectoryWrapper
+name|BaseDirectoryWrapper
 operator|)
 name|dir
 operator|)

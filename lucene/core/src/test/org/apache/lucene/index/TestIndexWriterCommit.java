@@ -585,7 +585,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|dir
 init|=
 name|newDirectory
@@ -930,13 +930,26 @@ argument_list|)
 expr_stmt|;
 comment|// On abort, writer in fact may write to the same
 comment|// segments_N file:
+if|if
+condition|(
 name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
 operator|.
 name|setPreventDoubleWrite
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -1151,7 +1164,7 @@ expr_stmt|;
 name|MockDirectoryWrapper
 name|dir
 init|=
-name|newDirectory
+name|newMockDirectory
 argument_list|()
 decl_stmt|;
 name|Analyzer
@@ -1552,7 +1565,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|dir
 init|=
 name|newDirectory
@@ -1561,13 +1574,26 @@ decl_stmt|;
 comment|// Must disable throwing exc on double-write: this
 comment|// test uses IW.rollback which easily results in
 comment|// writing to same file more than once
+if|if
+condition|(
 name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
 operator|.
 name|setPreventDoubleWrite
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 name|IndexWriter
 name|writer
 init|=
@@ -3210,19 +3236,32 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|dir
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
 name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
 operator|.
 name|setPreventDoubleWrite
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 name|IndexWriter
 name|writer
 init|=
