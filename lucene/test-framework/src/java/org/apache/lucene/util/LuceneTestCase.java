@@ -4638,16 +4638,12 @@ block|{
 name|r
 operator|=
 operator|new
-name|FCInvisibleMultiReader
-argument_list|(
-operator|new
 name|AssertingAtomicReader
 argument_list|(
 operator|(
 name|AtomicReader
 operator|)
 name|r
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -4662,7 +4658,7 @@ block|{
 name|r
 operator|=
 operator|new
-name|FCInvisibleMultiReader
+name|AssertingDirectoryReader
 argument_list|(
 operator|(
 name|DirectoryReader
