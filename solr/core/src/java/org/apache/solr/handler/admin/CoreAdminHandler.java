@@ -3433,6 +3433,13 @@ operator|.
 name|getParams
 argument_list|()
 decl_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"The leader requested that we recover"
+argument_list|)
+expr_stmt|;
 name|String
 name|cname
 init|=

@@ -240,6 +240,26 @@ name|NodeExistsException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -387,6 +407,21 @@ name|ShardLeaderElectionContextBase
 extends|extends
 name|ElectionContext
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|ShardLeaderElectionContextBase
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|field|zkClient
 specifier|protected
 specifier|final
@@ -679,6 +714,21 @@ name|ShardLeaderElectionContext
 extends|extends
 name|ShardLeaderElectionContextBase
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|ShardLeaderElectionContext
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|field|zkController
 specifier|private
 name|ZkController
@@ -1003,6 +1053,13 @@ block|{
 comment|// remove our ephemeral and re join the election
 comment|// System.out.println("sync failed, delete our election node:"
 comment|// + leaderSeqPath);
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"There is a better leader candidate than us - going back into recovery"
+argument_list|)
+expr_stmt|;
 name|zkController
 operator|.
 name|publish
