@@ -108,6 +108,26 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|IntBuffer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|LongBuffer
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simplistic compression for array of unsigned long values.  * Each value is>= 0 and<= a specified maximum value.  The  * values are stored as packed ints, with each value  * consuming a fixed number of bits.  *  * @lucene.internal  */
 end_comment
@@ -844,6 +864,106 @@ argument_list|,
 name|actualBitsPerValue
 argument_list|)
 return|;
+block|}
+comment|/**    * A decoder for packed integers.    */
+DECL|interface|Decoder
+specifier|public
+specifier|static
+interface|interface
+name|Decoder
+block|{
+comment|/**      * The minimum number of long blocks to decode in a single call.      */
+DECL|method|blocks
+name|int
+name|blocks
+parameter_list|()
+function_decl|;
+comment|/**      * The number of values that can be stored in<code>blocks()</code> long      * blocks.      */
+DECL|method|values
+name|int
+name|values
+parameter_list|()
+function_decl|;
+comment|/**      * Read<code>iterations * blocks()</code> blocks from<code>blocks</code>,      * decode them and write<code>iterations * values()</code> values into      *<code>values</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param values       the values buffer      * @param iterations   controls how much data to decode      */
+DECL|method|decode
+name|void
+name|decode
+parameter_list|(
+name|LongBuffer
+name|blocks
+parameter_list|,
+name|LongBuffer
+name|values
+parameter_list|,
+name|int
+name|iterations
+parameter_list|)
+function_decl|;
+comment|/**      * Read<code>iterations * blocks()</code> blocks from<code>blocks</code>,      * decode them and write<code>iterations * values()</code> values into      *<code>values</code>. This method will throw an      * {@link UnsupportedOperationException} if the values require more than      * 32 bits of storage.      *      * @param blocks       the long blocks that hold packed integer values      * @param values       the values buffer      * @param iterations   controls how much data to decode      */
+DECL|method|decode
+name|void
+name|decode
+parameter_list|(
+name|LongBuffer
+name|blocks
+parameter_list|,
+name|IntBuffer
+name|values
+parameter_list|,
+name|int
+name|iterations
+parameter_list|)
+function_decl|;
+block|}
+comment|/**    * An encoder for packed integers.    */
+DECL|interface|Encoder
+specifier|public
+specifier|static
+interface|interface
+name|Encoder
+block|{
+comment|/**      * The minimum number of long blocks to encode in a single call.      */
+DECL|method|blocks
+name|int
+name|blocks
+parameter_list|()
+function_decl|;
+comment|/**      * The number of values that can be stored in<code>blocks()</code> long      * blocks.      */
+DECL|method|values
+name|int
+name|values
+parameter_list|()
+function_decl|;
+comment|/**      * Read<code>iterations * values()</code> values from<code>values</code>,      * encode them and write<code>iterations * blocks()</code> blocks into      *<code>blocks</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param values       the values buffer      * @param iterations   controls how much data to encode      */
+DECL|method|encode
+name|void
+name|encode
+parameter_list|(
+name|LongBuffer
+name|values
+parameter_list|,
+name|LongBuffer
+name|blocks
+parameter_list|,
+name|int
+name|iterations
+parameter_list|)
+function_decl|;
+comment|/**      * Read<code>iterations * values()</code> values from<code>values</code>,      * encode them and write<code>iterations * blocks()</code> blocks into      *<code>blocks</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param values       the values buffer      * @param iterations   controls how much data to encode      */
+DECL|method|encode
+name|void
+name|encode
+parameter_list|(
+name|IntBuffer
+name|values
+parameter_list|,
+name|LongBuffer
+name|blocks
+parameter_list|,
+name|int
+name|iterations
+parameter_list|)
+function_decl|;
 block|}
 comment|/**    * A read-only random access array of positive integers.    * @lucene.internal    */
 DECL|interface|Reader
@@ -1705,8 +1825,6 @@ parameter_list|,
 name|int
 name|bitsPerValue
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 assert|assert
 name|bitsPerValue
@@ -1845,6 +1963,62 @@ name|int
 name|ord
 parameter_list|()
 function_decl|;
+block|}
+comment|/**    * Get a {@link Decoder}.    *    * @param format         the format used to store packed ints    * @param version        the compatibility version    * @param bitsPerValue   the number of bits per value    * @return a decoder    */
+DECL|method|getDecoder
+specifier|public
+specifier|static
+name|Decoder
+name|getDecoder
+parameter_list|(
+name|Format
+name|format
+parameter_list|,
+name|int
+name|version
+parameter_list|,
+name|int
+name|bitsPerValue
+parameter_list|)
+block|{
+return|return
+name|BulkOperation
+operator|.
+name|of
+argument_list|(
+name|format
+argument_list|,
+name|bitsPerValue
+argument_list|)
+return|;
+block|}
+comment|/**    * Get an {@link Encoder}.    *    * @param format         the format used to store packed ints    * @param version        the compatibility version    * @param bitsPerValue   the number of bits per value    * @return an encoder    */
+DECL|method|getEncoder
+specifier|public
+specifier|static
+name|Encoder
+name|getEncoder
+parameter_list|(
+name|Format
+name|format
+parameter_list|,
+name|int
+name|version
+parameter_list|,
+name|int
+name|bitsPerValue
+parameter_list|)
+block|{
+return|return
+name|BulkOperation
+operator|.
+name|of
+argument_list|(
+name|format
+argument_list|,
+name|bitsPerValue
+argument_list|)
+return|;
 block|}
 comment|/**    * Expert: Restore a {@link Reader} from a stream without reading metadata at    * the beginning of the stream. This method is useful to restore data from    * streams which have been created using    * {@link PackedInts#getWriterNoHeader(DataOutput, Format, int, int, int)}.    *    * @param in           the stream to read data from, positioned at the beginning of the packed values    * @param format       the format used to serialize    * @param version      the version used to serialize the data    * @param valueCount   how many values the stream holds    * @param bitsPerValue the number of bits per value    * @return             a Reader    * @throws IOException    * @see PackedInts#getWriterNoHeader(DataOutput, Format, int, int, int)    * @lucene.internal    */
 DECL|method|getReaderNoHeader
@@ -2132,8 +2306,6 @@ parameter_list|,
 name|int
 name|mem
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new
@@ -2268,8 +2440,6 @@ parameter_list|,
 name|int
 name|bitsPerValue
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 switch|switch
 condition|(
@@ -2597,8 +2767,6 @@ parameter_list|,
 name|int
 name|mem
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new
