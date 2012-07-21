@@ -274,7 +274,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|BaseDirectoryWrapper
+name|Directory
 import|;
 end_import
 
@@ -288,7 +288,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|Directory
+name|MockDirectoryWrapper
 import|;
 end_import
 
@@ -457,7 +457,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|dir
 specifier|protected
-name|Directory
+name|MockDirectoryWrapper
 name|dir
 decl_stmt|;
 DECL|field|writer
@@ -2778,17 +2778,13 @@ argument_list|)
 decl_stmt|;
 name|dir
 operator|=
-name|newFSDirectory
+name|newMockFSDirectory
 argument_list|(
 name|tempDir
 argument_list|)
 expr_stmt|;
-operator|(
-operator|(
-name|BaseDirectoryWrapper
-operator|)
+comment|// some subclasses rely on this being MDW
 name|dir
-operator|)
 operator|.
 name|setCheckIndexOnClose
 argument_list|(
