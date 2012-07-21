@@ -1882,6 +1882,26 @@ literal|"\nTEST: now build index"
 argument_list|)
 expr_stmt|;
 block|}
+name|int
+name|maxIndexOptionNoOffsets
+init|=
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|IndexOptions
+operator|.
+name|values
+argument_list|()
+argument_list|)
+operator|.
+name|indexOf
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS
+argument_list|)
+decl_stmt|;
 comment|// nocommit use allowPayloads
 name|FieldInfo
 index|[]
@@ -1924,6 +1944,50 @@ argument_list|(
 name|fieldUpto
 argument_list|)
 decl_stmt|;
+name|String
+name|pf
+init|=
+name|_TestUtil
+operator|.
+name|getPostingsFormat
+argument_list|(
+name|oldFieldInfo
+operator|.
+name|name
+argument_list|)
+decl_stmt|;
+name|int
+name|fieldMaxIndexOption
+decl_stmt|;
+if|if
+condition|(
+name|doesntSupportOffsets
+operator|.
+name|contains
+argument_list|(
+name|pf
+argument_list|)
+condition|)
+block|{
+name|fieldMaxIndexOption
+operator|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|maxIndexOptionNoOffsets
+argument_list|,
+name|maxIndexOption
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|fieldMaxIndexOption
+operator|=
+name|maxIndexOption
+expr_stmt|;
+block|}
 comment|// Randomly picked the IndexOptions to index this
 comment|// field with:
 name|IndexOptions
@@ -1941,7 +2005,7 @@ name|nextInt
 argument_list|(
 literal|1
 operator|+
-name|maxIndexOption
+name|fieldMaxIndexOption
 argument_list|)
 index|]
 decl_stmt|;
@@ -2105,6 +2169,14 @@ argument_list|(
 name|field
 argument_list|)
 decl_stmt|;
+name|IndexOptions
+name|indexOptions
+init|=
+name|fieldInfo
+operator|.
+name|getIndexOptions
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|VERBOSE
@@ -2119,17 +2191,13 @@ argument_list|(
 literal|"field="
 operator|+
 name|field
+operator|+
+literal|" indexOtions="
+operator|+
+name|indexOptions
 argument_list|)
 expr_stmt|;
 block|}
-name|IndexOptions
-name|indexOptions
-init|=
-name|fieldInfo
-operator|.
-name|getIndexOptions
-argument_list|()
-decl_stmt|;
 name|boolean
 name|doFreq
 init|=
@@ -2507,6 +2575,11 @@ name|totalTF
 operator|++
 expr_stmt|;
 block|}
+name|postingsConsumer
+operator|.
+name|finishDoc
+argument_list|()
+expr_stmt|;
 name|docCount
 operator|++
 expr_stmt|;
@@ -3265,6 +3338,8 @@ expr_stmt|;
 block|}
 name|assertNotNull
 argument_list|(
+literal|"null DocsEnum"
+argument_list|,
 name|docsEnum
 argument_list|)
 expr_stmt|;
@@ -3278,6 +3353,8 @@ argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
+literal|"inital docID should be -1 or NO_MORE_DOCS"
+argument_list|,
 name|initialDocID
 operator|==
 operator|-
@@ -3699,6 +3776,8 @@ condition|)
 block|{
 name|assertEquals
 argument_list|(
+literal|"DocsEnum should have ended but didn't"
+argument_list|,
 name|DocsEnum
 operator|.
 name|NO_MORE_DOCS
@@ -3712,6 +3791,8 @@ expr_stmt|;
 comment|// Common bug is to forget to set this.doc=NO_MORE_DOCS in the enum!:
 name|assertEquals
 argument_list|(
+literal|"DocsEnum should have ended but didn't"
+argument_list|,
 name|DocsEnum
 operator|.
 name|NO_MORE_DOCS
@@ -3928,6 +4009,8 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
+literal|"DocsEnum should have ended but didn't"
+argument_list|,
 name|DocsEnum
 operator|.
 name|NO_MORE_DOCS
@@ -4037,6 +4120,8 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"docID is wrong"
+argument_list|,
 name|posting
 operator|.
 name|docID
@@ -4097,6 +4182,8 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"docID is wrong"
+argument_list|,
 name|posting
 operator|.
 name|docID
@@ -4150,6 +4237,8 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"freq is wrong"
+argument_list|,
 name|posting
 operator|.
 name|positions
@@ -4265,6 +4354,8 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
+literal|"position is wrong"
+argument_list|,
 name|position
 operator|.
 name|position
@@ -4343,6 +4434,8 @@ condition|)
 block|{
 name|assertFalse
 argument_list|(
+literal|"should not have payload"
+argument_list|,
 name|docsAndPositionsEnum
 operator|.
 name|hasPayload
@@ -4354,6 +4447,8 @@ else|else
 block|{
 name|assertTrue
 argument_list|(
+literal|"should have payload but doesn't"
+argument_list|,
 name|docsAndPositionsEnum
 operator|.
 name|hasPayload
@@ -4370,6 +4465,8 @@ argument_list|()
 decl_stmt|;
 name|assertFalse
 argument_list|(
+literal|"2nd call to hasPayload should be false"
+argument_list|,
 name|docsAndPositionsEnum
 operator|.
 name|hasPayload
@@ -4378,11 +4475,15 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
+literal|"payload should not be null"
+argument_list|,
 name|payload
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"payload length is wrong"
+argument_list|,
 name|position
 operator|.
 name|payload
@@ -4415,6 +4516,8 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
+literal|"payload bytes are wrong"
+argument_list|,
 name|position
 operator|.
 name|payload
@@ -4515,6 +4618,8 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
+literal|"startOffset is wrong"
+argument_list|,
 name|position
 operator|.
 name|startOffset
@@ -4527,6 +4632,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"endOffset is wrong"
+argument_list|,
 name|position
 operator|.
 name|endOffset
@@ -4559,8 +4666,25 @@ block|}
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"      now check offsets are -1"
+argument_list|)
+expr_stmt|;
+block|}
 name|assertEquals
 argument_list|(
+literal|"startOffset isn't -1"
+argument_list|,
 operator|-
 literal|1
 argument_list|,
@@ -4572,6 +4696,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"endOffset isn't -1"
+argument_list|,
 operator|-
 literal|1
 argument_list|,
@@ -5255,33 +5381,20 @@ comment|//testTerms(fieldsProducer, EnumSet.of(Option.TERM_STATE, Option.LIVE_DO
 comment|//testTerms(fieldsProducer, EnumSet.of(Option.SKIPPING), IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);
 comment|//testTerms(fieldsProducer, EnumSet.of(Option.THREADS, Option.TERM_STATE, Option.SKIPPING, Option.PARTIAL_DOC_CONSUME, Option.PARTIAL_POS_CONSUME), IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);
 comment|//testTerms(fieldsProducer, EnumSet.of(Option.TERM_STATE, Option.SKIPPING, Option.PARTIAL_DOC_CONSUME, Option.PARTIAL_POS_CONSUME), IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
+comment|//testTerms(fieldsProducer, EnumSet.of(Option.TERM_STATE, Option.PAYLOADS, Option.PARTIAL_DOC_CONSUME, Option.PARTIAL_POS_CONSUME, Option.SKIPPING), IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
+comment|// NOTE: you can also test "weaker" index options than
+comment|// you indexed with:
 name|testTerms
 argument_list|(
 name|fieldsProducer
 argument_list|,
 name|EnumSet
 operator|.
-name|of
+name|allOf
 argument_list|(
 name|Option
 operator|.
-name|TERM_STATE
-argument_list|,
-name|Option
-operator|.
-name|PAYLOADS
-argument_list|,
-name|Option
-operator|.
-name|PARTIAL_DOC_CONSUME
-argument_list|,
-name|Option
-operator|.
-name|PARTIAL_POS_CONSUME
-argument_list|,
-name|Option
-operator|.
-name|SKIPPING
+name|class
 argument_list|)
 argument_list|,
 name|IndexOptions
