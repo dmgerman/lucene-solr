@@ -1223,6 +1223,22 @@ name|coreName
 argument_list|)
 return|;
 block|}
+DECL|method|reload
+specifier|public
+name|void
+name|reload
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|container
+operator|.
+name|reload
+argument_list|(
+name|coreName
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Processes an "update" (add, commit or optimize) and    * returns the response as a String.    *    * @param xml The XML of the update    * @return The XML response to the update    */
 DECL|method|update
 specifier|public

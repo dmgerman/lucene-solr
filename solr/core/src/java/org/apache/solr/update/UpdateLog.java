@@ -921,7 +921,6 @@ operator|.
 name|FLUSH
 decl_stmt|;
 DECL|field|uhandler
-specifier|private
 specifier|volatile
 name|UpdateHandler
 name|uhandler
@@ -1105,6 +1104,11 @@ literal|" this is a reopen... nothing else to do."
 argument_list|)
 expr_stmt|;
 block|}
+name|versionInfo
+operator|.
+name|reload
+argument_list|()
+expr_stmt|;
 comment|// on a normal reopen, we currently shouldn't have to do anything
 return|return;
 block|}
@@ -1276,7 +1280,7 @@ operator|=
 operator|new
 name|VersionInfo
 argument_list|(
-name|uhandler
+name|this
 argument_list|,
 literal|256
 argument_list|)

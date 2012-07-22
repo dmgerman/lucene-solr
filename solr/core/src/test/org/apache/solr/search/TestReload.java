@@ -57,8 +57,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|Ignore
 DECL|class|TestReload
 specifier|public
 class|class
@@ -77,12 +75,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|useFactory
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-comment|// force FS directory
+comment|// useFactory(null);   // force FS directory
 name|initCore
 argument_list|(
 literal|"solrconfig-tlog.xml"
@@ -125,19 +118,42 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-comment|//  h.getCoreContainer().reload(h.getCore().getName());
 name|assertU
 argument_list|(
 name|commit
 argument_list|(
-literal|"openSearcher"
+literal|"softCommit"
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// should cause a RTG searcher to be opened
-comment|// should also use the RTG searcher (commit should have cleared the translog cache)
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"/get"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"1"
+argument_list|)
+argument_list|,
+literal|"=={'doc':{'id':'1','_version_':"
+operator|+
+name|version
+operator|+
+literal|"}}"
+argument_list|)
+expr_stmt|;
+name|h
+operator|.
+name|reload
+argument_list|()
+expr_stmt|;
 name|assertJQ
 argument_list|(
 name|req
@@ -169,20 +185,16 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// open a normal (caching) NRT searcher
-name|h
-operator|.
-name|getCoreContainer
-argument_list|()
-operator|.
-name|reload
+name|assertJQ
 argument_list|(
-name|h
-operator|.
-name|getCore
-argument_list|()
-operator|.
-name|getName
-argument_list|()
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
 argument_list|)
 expr_stmt|;
 name|Random
@@ -222,6 +234,7 @@ name|nextBoolean
 argument_list|()
 condition|)
 block|{
+comment|// System.out.println("!!! add");
 name|version
 operator|=
 name|addAndGetVersion
@@ -253,6 +266,7 @@ name|nextBoolean
 argument_list|()
 condition|)
 block|{
+comment|// System.out.println("!!! flush");
 name|assertU
 argument_list|(
 name|commit
@@ -267,21 +281,26 @@ comment|// should cause a RTG searcher to be opened as well
 block|}
 else|else
 block|{
-name|assertU
-argument_list|(
-name|commit
-argument_list|(
-literal|"softCommit"
-argument_list|,
-literal|""
-operator|+
+name|boolean
+name|softCommit
+init|=
 name|rand
 operator|.
 name|nextBoolean
 argument_list|()
-argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"!!! softCommit"
+operator|+
+name|softCommit
 argument_list|)
 expr_stmt|;
+comment|// assertU(commit("softCommit", ""+softCommit));
 block|}
 block|}
 if|if
@@ -293,6 +312,7 @@ argument_list|()
 condition|)
 block|{
 comment|// RTG should always be able to see the last version
+comment|// System.out.println("!!! rtg");
 name|assertJQ
 argument_list|(
 name|req
@@ -323,6 +343,7 @@ argument_list|()
 condition|)
 block|{
 comment|// a normal search should always find 1 doc
+comment|// System.out.println("!!! q");
 name|assertJQ
 argument_list|(
 name|req
@@ -336,8 +357,21 @@ literal|"/response/numFound==1"
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: randomly do a reload
-comment|// but the test currently fails without this!
+if|if
+condition|(
+name|rand
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+comment|// System.out.println("!!! reload");
+name|h
+operator|.
+name|reload
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|// test framework should ensure that all searchers opened have been closed.
 block|}
