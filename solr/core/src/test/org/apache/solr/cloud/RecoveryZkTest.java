@@ -159,11 +159,6 @@ end_import
 begin_class
 annotation|@
 name|Slow
-annotation|@
-name|Ignore
-argument_list|(
-literal|"FIXME: I fail so often it makes me ill!"
-argument_list|)
 DECL|class|RecoveryZkTest
 specifier|public
 class|class
