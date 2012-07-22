@@ -3210,6 +3210,12 @@ expr_stmt|;
 name|indexAbunchOfDocs
 argument_list|()
 expr_stmt|;
+comment|// check again
+name|waitForRecoveriesToFinish
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|commit
 argument_list|()
 expr_stmt|;
@@ -8488,7 +8494,7 @@ name|s
 operator|.
 name|setSoTimeout
 argument_list|(
-literal|15000
+literal|20000
 argument_list|)
 expr_stmt|;
 name|s
