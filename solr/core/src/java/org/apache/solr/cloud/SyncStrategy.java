@@ -524,6 +524,20 @@ name|ZkNodeProps
 name|leaderProps
 parameter_list|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Sync replicas to "
+operator|+
+name|ZkCoreNodeProps
+operator|.
+name|getCoreUrl
+argument_list|(
+name|leaderProps
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// TODO: look at our state usage of sync
 comment|// zkController.publish(core, ZkStateReader.SYNC);
 comment|// solrcloud_debug
@@ -1171,6 +1185,11 @@ argument_list|)
 expr_stmt|;
 name|requestSync
 argument_list|(
+name|node
+operator|.
+name|getCoreUrl
+argument_list|()
+argument_list|,
 name|zkLeader
 operator|.
 name|getCoreUrl
@@ -1247,7 +1266,7 @@ argument_list|(
 literal|"Sync failed - asking replica to recover."
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("Sync failed - asking replica to recover.");
+comment|// TODO: do this in background threads
 name|RequestRecovery
 name|recoverRequestCmd
 init|=
@@ -1287,12 +1306,26 @@ init|=
 operator|new
 name|HttpSolrServer
 argument_list|(
-name|zkLeader
+name|srsp
 operator|.
-name|getBaseUrl
+name|getShardAddress
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|server
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|45000
+argument_list|)
+expr_stmt|;
+name|server
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|45000
+argument_list|)
+expr_stmt|;
 name|server
 operator|.
 name|request
@@ -1385,6 +1418,9 @@ name|requestSync
 parameter_list|(
 name|String
 name|replica
+parameter_list|,
+name|String
+name|leaderUrl
 parameter_list|,
 name|String
 name|coreName
@@ -1501,7 +1537,7 @@ name|set
 argument_list|(
 literal|"sync"
 argument_list|,
-name|replica
+name|leaderUrl
 argument_list|)
 expr_stmt|;
 name|shardHandler

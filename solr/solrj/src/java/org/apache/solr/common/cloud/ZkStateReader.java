@@ -1553,13 +1553,6 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Manual update of cluster state initiated"
-argument_list|)
-expr_stmt|;
 comment|// build immutable CloudInfo
 if|if
 condition|(
