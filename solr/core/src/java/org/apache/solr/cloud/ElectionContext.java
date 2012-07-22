@@ -850,8 +850,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|// the first time we are run, we will get a startupCore - after
-comment|// we will get null and must use cc.getCore
 name|core
 operator|=
 name|cc
