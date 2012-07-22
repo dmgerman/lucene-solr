@@ -967,6 +967,11 @@ name|Node
 argument_list|>
 name|nodes
 decl_stmt|;
+DECL|field|numNodes
+specifier|private
+name|int
+name|numNodes
+decl_stmt|;
 DECL|method|DistributedUpdateProcessor
 specifier|public
 name|DistributedUpdateProcessor
@@ -1165,7 +1170,9 @@ name|cmdDistrib
 operator|=
 operator|new
 name|SolrCmdDistributor
-argument_list|()
+argument_list|(
+name|numNodes
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|setupRequest
@@ -1194,6 +1201,20 @@ condition|(
 name|zkEnabled
 condition|)
 block|{
+comment|// set num nodes
+name|numNodes
+operator|=
+name|zkController
+operator|.
+name|getCloudState
+argument_list|()
+operator|.
+name|getLiveNodes
+argument_list|()
+operator|.
+name|size
+argument_list|()
+expr_stmt|;
 comment|// the leader is...
 comment|// TODO: if there is no leader, wait and look again
 comment|// TODO: we are reading the leader from zk every time - we should cache
