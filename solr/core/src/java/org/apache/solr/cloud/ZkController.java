@@ -5688,6 +5688,13 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"bootstraping config into ZooKeeper using solr.xml"
+argument_list|)
+expr_stmt|;
 name|NodeList
 name|nodes
 init|=
@@ -5845,12 +5852,10 @@ argument_list|,
 literal|"conf"
 argument_list|)
 decl_stmt|;
-name|SolrException
+name|log
 operator|.
-name|log
+name|info
 argument_list|(
-name|log
-argument_list|,
 literal|"Uploading directory "
 operator|+
 name|udir
