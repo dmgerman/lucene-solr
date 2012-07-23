@@ -343,15 +343,15 @@ comment|/* NOTE: This test focuses on the postings  * (docs/freqs/positions/payl
 end_comment
 
 begin_comment
-comment|// nocommit can we make it easy for testing to pair up a "random terms dict impl" with your postings base format...
+comment|// TODO can we make it easy for testing to pair up a "random terms dict impl" with your postings base format...
 end_comment
 
 begin_comment
-comment|// nocommit test when you reuse after skipping a term or two, eg the block reuse case
+comment|// TODO test when you reuse after skipping a term or two, eg the block reuse case
 end_comment
 
 begin_comment
-comment|// nocommit hmm contract says .doc() can return NO_MORE_DOCS
+comment|// TODO hmm contract says .doc() can return NO_MORE_DOCS
 end_comment
 
 begin_comment
@@ -815,7 +815,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// nocommit
+comment|// TODO
 comment|//final int numTerms = atLeast(10);
 specifier|final
 name|int
@@ -932,7 +932,7 @@ literal|10
 condition|)
 block|{
 comment|// 10% of the time make a medium freq term:
-comment|// nocommit not high enough to test level 1 skipping:
+comment|// TODO not high enough to test level 1 skipping:
 name|numDocs
 operator|=
 name|atLeast
@@ -1131,7 +1131,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// nocommit: sometimes have a biggish gap here!
+comment|// TODO: sometimes have a biggish gap here!
 name|docID
 operator|+=
 name|_TestUtil
@@ -1794,7 +1794,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// nocommit maybe instead of @BeforeClass just make a single test run: build postings& index& test it?
+comment|// TODO maybe instead of @BeforeClass just make a single test run: build postings& index& test it?
 DECL|field|currentFieldInfos
 specifier|private
 name|FieldInfos
@@ -1902,7 +1902,7 @@ operator|.
 name|DOCS_AND_FREQS_AND_POSITIONS
 argument_list|)
 decl_stmt|;
-comment|// nocommit use allowPayloads
+comment|// TODO use allowPayloads
 name|FieldInfo
 index|[]
 name|newFieldInfoArray
@@ -2242,6 +2242,20 @@ literal|0
 operator|&&
 name|allowPayloads
 decl_stmt|;
+name|boolean
+name|doOffsets
+init|=
+name|indexOptions
+operator|.
+name|compareTo
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
+argument_list|)
+operator|>=
+literal|0
+decl_stmt|;
 name|TermsConsumer
 name|termsConsumer
 init|=
@@ -2542,13 +2556,23 @@ argument_list|)
 else|:
 literal|null
 argument_list|,
+name|doOffsets
+condition|?
 name|pos
 operator|.
 name|startOffset
+else|:
+operator|-
+literal|1
 argument_list|,
+name|doOffsets
+condition|?
 name|pos
 operator|.
 name|endOffset
+else|:
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -4366,7 +4390,7 @@ name|nextPosition
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// nocommit sometimes don't pull the payload even
+comment|// TODO sometimes don't pull the payload even
 comment|// though we pulled the position
 if|if
 condition|(
@@ -5360,7 +5384,7 @@ operator|.
 name|nextBoolean
 argument_list|()
 decl_stmt|;
-comment|// nocommit test thread safety of buildIndex too
+comment|// TODO test thread safety of buildIndex too
 name|FieldsProducer
 name|fieldsProducer
 init|=
@@ -5417,7 +5441,7 @@ block|}
 end_class
 
 begin_comment
-comment|// nocommit test that start/endOffset return -1 if field has
+comment|// TODO test that start/endOffset return -1 if field has
 end_comment
 
 begin_comment
