@@ -178,7 +178,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Finishes the current term; numDocs must be> 0. */
+comment|/** Finishes the current term; numDocs must be> 0.    *<code>stats.totalTermFreq</code> will be -1 when term     *  frequencies are omitted for the field. */
 DECL|method|finishTerm
 specifier|public
 specifier|abstract
@@ -194,7 +194,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Called when we are done adding terms to this field */
+comment|/** Called when we are done adding terms to this field.    *<code>sumTotalTermFreq</code> will be -1 when term     *  frequencies are omitted for the field. */
 DECL|method|finish
 specifier|public
 specifier|abstract
