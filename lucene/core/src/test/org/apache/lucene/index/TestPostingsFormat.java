@@ -2622,7 +2622,12 @@ operator|.
 name|size
 argument_list|()
 argument_list|,
+name|doFreq
+condition|?
 name|totalTF
+else|:
+operator|-
+literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2642,7 +2647,12 @@ name|termsConsumer
 operator|.
 name|finish
 argument_list|(
+name|doFreq
+condition|?
 name|sumTotalTF
+else|:
+operator|-
+literal|1
 argument_list|,
 name|sumDF
 argument_list|,

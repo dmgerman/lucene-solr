@@ -1102,6 +1102,15 @@ block|}
 block|}
 name|finish
 argument_list|(
+name|indexOptions
+operator|==
+name|IndexOptions
+operator|.
+name|DOCS_ONLY
+condition|?
+operator|-
+literal|1
+else|:
 name|sumTotalTermFreq
 argument_list|,
 name|sumDocFreq

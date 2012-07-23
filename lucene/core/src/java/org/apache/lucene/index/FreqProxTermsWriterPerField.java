@@ -2868,7 +2868,12 @@ name|TermStats
 argument_list|(
 name|numDocs
 argument_list|,
+name|writeTermFreq
+condition|?
 name|totTF
+else|:
+operator|-
+literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2885,7 +2890,12 @@ name|termsConsumer
 operator|.
 name|finish
 argument_list|(
+name|writeTermFreq
+condition|?
 name|sumTotalTermFreq
+else|:
+operator|-
+literal|1
 argument_list|,
 name|sumDocFreq
 argument_list|,

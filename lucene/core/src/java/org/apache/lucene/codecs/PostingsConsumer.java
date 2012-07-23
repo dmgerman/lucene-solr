@@ -674,6 +674,15 @@ name|TermStats
 argument_list|(
 name|df
 argument_list|,
+name|indexOptions
+operator|==
+name|IndexOptions
+operator|.
+name|DOCS_ONLY
+condition|?
+operator|-
+literal|1
+else|:
 name|totTF
 argument_list|)
 return|;
