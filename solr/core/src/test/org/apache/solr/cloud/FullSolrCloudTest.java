@@ -819,7 +819,7 @@ name|ZkStateReader
 name|zkStateReader
 decl_stmt|;
 DECL|field|shardToLeaderClient
-specifier|private
+specifier|protected
 name|Map
 argument_list|<
 name|String
