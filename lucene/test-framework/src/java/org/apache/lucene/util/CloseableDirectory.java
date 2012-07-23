@@ -32,6 +32,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|BaseDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|MockDirectoryWrapper
 import|;
 end_import
@@ -51,7 +65,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Attempts to close a {@link MockDirectoryWrapper}.  *   * @see LuceneTestCase#newDirectory(java.util.Random)  */
+comment|/**  * Attempts to close a {@link BaseDirectoryWrapper}.  *   * @see LuceneTestCase#newDirectory(java.util.Random)  */
 end_comment
 
 begin_class
@@ -65,7 +79,7 @@ block|{
 DECL|field|dir
 specifier|private
 specifier|final
-name|MockDirectoryWrapper
+name|BaseDirectoryWrapper
 name|dir
 decl_stmt|;
 DECL|field|failureMarker
@@ -78,7 +92,7 @@ DECL|method|CloseableDirectory
 specifier|public
 name|CloseableDirectory
 parameter_list|(
-name|MockDirectoryWrapper
+name|BaseDirectoryWrapper
 name|dir
 parameter_list|,
 name|TestRuleMarkFailure

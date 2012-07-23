@@ -5402,6 +5402,8 @@ operator|.
 name|reload
 argument_list|(
 name|solrLoader
+argument_list|,
+name|core
 argument_list|)
 decl_stmt|;
 comment|// keep core to orig name link

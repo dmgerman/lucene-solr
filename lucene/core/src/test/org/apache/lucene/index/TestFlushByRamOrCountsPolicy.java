@@ -1668,7 +1668,7 @@ decl_stmt|;
 name|MockDirectoryWrapper
 name|dir
 init|=
-name|newDirectory
+name|newMockDirectory
 argument_list|()
 decl_stmt|;
 comment|// mock a very slow harddisk sometimes here so that flushing is very slow

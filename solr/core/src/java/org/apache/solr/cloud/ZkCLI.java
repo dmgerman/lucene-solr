@@ -975,9 +975,9 @@ name|SolrZkClient
 argument_list|(
 name|zkServerAddress
 argument_list|,
-literal|15000
+literal|30000
 argument_list|,
-literal|5000
+literal|30000
 argument_list|,
 operator|new
 name|OnReconnect

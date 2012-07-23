@@ -83,7 +83,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns the payload at this position, or null if no    *  payload was indexed.  Only call this once per    *  position. */
+comment|/** Returns the payload at this position, or null if no    *  payload was indexed.  Only call this once per    *  position. You should not modify anything (neither    *  members of the returned BytesRef nor bytes in the    *  byte[]). */
 DECL|method|getPayload
 specifier|public
 specifier|abstract

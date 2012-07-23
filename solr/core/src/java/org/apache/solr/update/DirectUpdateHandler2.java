@@ -2066,7 +2066,7 @@ condition|)
 block|{
 synchronized|synchronized
 init|(
-name|this
+name|solrCoreState
 init|)
 block|{
 name|deleteAll
@@ -2088,7 +2088,7 @@ comment|// flag can be cleared.  If those thing happen concurrently, it's not th
 comment|//
 synchronized|synchronized
 init|(
-name|this
+name|solrCoreState
 init|)
 block|{
 if|if
@@ -2228,7 +2228,7 @@ decl_stmt|;
 comment|// see comment in deleteByQuery
 synchronized|synchronized
 init|(
-name|this
+name|solrCoreState
 init|)
 block|{
 name|RefCounted
@@ -2777,7 +2777,7 @@ condition|)
 block|{
 synchronized|synchronized
 init|(
-name|this
+name|solrCoreState
 init|)
 block|{
 comment|// sync is currently needed to prevent preCommit
@@ -2890,7 +2890,7 @@ block|{
 comment|// ulog.preSoftCommit();
 synchronized|synchronized
 init|(
-name|this
+name|solrCoreState
 init|)
 block|{
 if|if
@@ -2939,7 +2939,7 @@ else|else
 block|{
 synchronized|synchronized
 init|(
-name|this
+name|solrCoreState
 init|)
 block|{
 if|if
@@ -3558,7 +3558,7 @@ comment|// TODO: keep other commit callbacks from being called?
 comment|//  this.commit(cmd);        // too many test failures using this method... is it because of callbacks?
 synchronized|synchronized
 init|(
-name|this
+name|solrCoreState
 init|)
 block|{
 name|ulog
@@ -3616,7 +3616,7 @@ argument_list|)
 expr_stmt|;
 synchronized|synchronized
 init|(
-name|this
+name|solrCoreState
 init|)
 block|{
 name|ulog

@@ -132,7 +132,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OpenBitSet
+name|FixedBitSet
 import|;
 end_import
 
@@ -214,7 +214,7 @@ parameter_list|)
 block|{
 name|docIds
 operator|.
-name|fastSet
+name|set
 argument_list|(
 name|docBase
 operator|+
@@ -392,12 +392,14 @@ argument_list|(
 name|maxDoc
 argument_list|)
 expr_stmt|;
+comment|// only matching documents have an entry in the scores array. Therefore start with
+comment|// a small array and grow when needed.
 name|scores
 operator|=
 operator|new
 name|float
 index|[
-name|maxDoc
+literal|64
 index|]
 expr_stmt|;
 block|}
@@ -428,7 +430,7 @@ name|IOException
 block|{
 name|docIds
 operator|.
-name|fastSet
+name|set
 argument_list|(
 name|docBase
 operator|+
@@ -671,7 +673,7 @@ decl_stmt|;
 DECL|field|docIds
 specifier|protected
 specifier|final
-name|OpenBitSet
+name|FixedBitSet
 name|docIds
 decl_stmt|;
 comment|/**    * Creates a new {@link ScoredDocIdCollector} with the given parameters.    *     * @param maxDoc the number of documents that are expected to be collected.    *        Note that if more documents are collected, unexpected exceptions may    *        be thrown. Usually you should pass {@link IndexReader#maxDoc()} of    *        the same IndexReader with which the search is executed.    * @param enableScoring if scoring is enabled, a score will be computed for    *        every matching document, which might be expensive. Therefore if you    *        do not require scoring, it is better to set it to<i>false</i>.    */
@@ -719,7 +721,7 @@ expr_stmt|;
 name|docIds
 operator|=
 operator|new
-name|OpenBitSet
+name|FixedBitSet
 argument_list|(
 name|maxDoc
 argument_list|)
