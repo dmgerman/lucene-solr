@@ -450,7 +450,6 @@ name|services
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: do we even need this method?
 DECL|method|newInstance
 specifier|public
 name|S
