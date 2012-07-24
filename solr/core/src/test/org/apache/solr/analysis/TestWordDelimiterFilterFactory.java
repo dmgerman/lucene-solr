@@ -1,16 +1,14 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.analysis.miscellaneous
+DECL|package|org.apache.solr.analysis
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|analysis
-operator|.
-name|miscellaneous
 package|;
 end_package
 
@@ -112,6 +110,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|miscellaneous
+operator|.
+name|WordDelimiterFilterFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|util
 operator|.
 name|ResourceLoader
@@ -154,6 +168,10 @@ end_import
 
 begin_comment
 comment|/**  * New WordDelimiterFilter tests... most of the tests are in ConvertedLegacyTest  */
+end_comment
+
+begin_comment
+comment|// TODO: add a low-level test for this factory
 end_comment
 
 begin_class

@@ -74,7 +74,7 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|ResourceLoader
+name|ResourceAsStreamResourceLoader
 import|;
 end_import
 
@@ -84,11 +84,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|core
+name|analysis
 operator|.
-name|SolrResourceLoader
+name|util
+operator|.
+name|ResourceLoader
 import|;
 end_import
 
@@ -158,9 +160,10 @@ name|ResourceLoader
 name|loader
 init|=
 operator|new
-name|SolrResourceLoader
+name|ResourceAsStreamResourceLoader
 argument_list|(
-literal|"solr/collection1"
+name|getClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|TypeTokenFilterFactory
@@ -622,11 +625,10 @@ operator|.
 name|inform
 argument_list|(
 operator|new
-name|SolrResourceLoader
+name|ResourceAsStreamResourceLoader
 argument_list|(
-literal|null
-argument_list|,
-literal|null
+name|getClass
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -84,6 +84,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|core
+operator|.
+name|TestStopFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|util
 operator|.
 name|CharArraySet
@@ -102,7 +118,7 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|ResourceLoader
+name|ResourceAsStreamResourceLoader
 import|;
 end_import
 
@@ -112,11 +128,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|core
+name|analysis
 operator|.
-name|SolrResourceLoader
+name|util
+operator|.
+name|ResourceLoader
 import|;
 end_import
 
@@ -184,9 +202,11 @@ name|ResourceLoader
 name|loader
 init|=
 operator|new
-name|SolrResourceLoader
+name|ResourceAsStreamResourceLoader
 argument_list|(
-literal|"solr/collection1"
+name|TestStopFilter
+operator|.
+name|class
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -566,9 +586,11 @@ name|ResourceLoader
 name|loader
 init|=
 operator|new
-name|SolrResourceLoader
+name|ResourceAsStreamResourceLoader
 argument_list|(
-literal|"solr/collection1"
+name|TestStopFilter
+operator|.
+name|class
 argument_list|)
 decl_stmt|;
 name|assertTrue
