@@ -450,7 +450,6 @@ name|services
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: do we even need this method?
 DECL|method|newInstance
 specifier|public
 name|S
@@ -472,6 +471,13 @@ init|=
 name|lookupClass
 argument_list|(
 name|name
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 argument_list|)
 decl_stmt|;
 try|try
