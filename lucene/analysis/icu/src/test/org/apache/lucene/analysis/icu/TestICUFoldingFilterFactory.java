@@ -1,14 +1,16 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.analysis
+DECL|package|org.apache.lucene.analysis.icu
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|icu
 package|;
 end_package
 
@@ -33,26 +35,6 @@ operator|.
 name|io
 operator|.
 name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -115,22 +97,22 @@ import|;
 end_import
 
 begin_comment
-comment|/** basic tests for {@link ICUNormalizer2FilterFactory} */
+comment|/** basic tests for {@link ICUFoldingFilterFactory} */
 end_comment
 
 begin_class
-DECL|class|TestICUNormalizer2FilterFactory
+DECL|class|TestICUFoldingFilterFactory
 specifier|public
 class|class
-name|TestICUNormalizer2FilterFactory
+name|TestICUFoldingFilterFactory
 extends|extends
 name|BaseTokenStreamTestCase
 block|{
-comment|/** Test nfkc_cf defaults */
-DECL|method|testDefaults
+comment|/** basic tests to ensure the folding is working */
+DECL|method|test
 specifier|public
 name|void
-name|testDefaults
+name|test
 parameter_list|()
 throws|throws
 name|Exception
@@ -141,14 +123,14 @@ init|=
 operator|new
 name|StringReader
 argument_list|(
-literal|"This is a ï¼´ï½ï½ï½"
+literal|"RÃ©sumÃ©"
 argument_list|)
 decl_stmt|;
-name|ICUNormalizer2FilterFactory
+name|ICUFoldingFilterFactory
 name|factory
 init|=
 operator|new
-name|ICUNormalizer2FilterFactory
+name|ICUFoldingFilterFactory
 argument_list|()
 decl_stmt|;
 name|factory
@@ -156,26 +138,6 @@ operator|.
 name|setLuceneMatchVersion
 argument_list|(
 name|TEST_VERSION_CURRENT
-argument_list|)
-expr_stmt|;
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|args
-init|=
-name|Collections
-operator|.
-name|emptyMap
-argument_list|()
-decl_stmt|;
-name|factory
-operator|.
-name|init
-argument_list|(
-name|args
 argument_list|)
 expr_stmt|;
 name|Tokenizer
@@ -207,18 +169,11 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"this"
-block|,
-literal|"is"
-block|,
-literal|"a"
-block|,
-literal|"test"
+literal|"resume"
 block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: add tests for different forms
 block|}
 end_class
 
