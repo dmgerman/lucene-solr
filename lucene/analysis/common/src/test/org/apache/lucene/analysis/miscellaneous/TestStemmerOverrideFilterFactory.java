@@ -162,11 +162,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|core
+name|analysis
 operator|.
-name|SolrResourceLoader
+name|util
+operator|.
+name|StringMockResourceLoader
 import|;
 end_import
 
@@ -243,9 +245,9 @@ name|ResourceLoader
 name|loader
 init|=
 operator|new
-name|SolrResourceLoader
+name|StringMockResourceLoader
 argument_list|(
-literal|"solr/collection1"
+literal|"dogs\tcat"
 argument_list|)
 decl_stmt|;
 name|args
@@ -367,9 +369,9 @@ name|ResourceLoader
 name|loader
 init|=
 operator|new
-name|SolrResourceLoader
+name|StringMockResourceLoader
 argument_list|(
-literal|"solr/collection1"
+literal|"dogs\tcat"
 argument_list|)
 decl_stmt|;
 name|args

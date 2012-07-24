@@ -106,11 +106,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|core
+name|analysis
 operator|.
-name|SolrResourceLoader
+name|util
+operator|.
+name|ResourceAsStreamResourceLoader
 import|;
 end_import
 
@@ -164,7 +166,7 @@ name|put
 argument_list|(
 literal|"dictionary"
 argument_list|,
-literal|"hunspell-test.dic"
+literal|"test.dic"
 argument_list|)
 expr_stmt|;
 name|args
@@ -173,7 +175,7 @@ name|put
 argument_list|(
 literal|"affix"
 argument_list|,
-literal|"hunspell-test.aff"
+literal|"test.aff"
 argument_list|)
 expr_stmt|;
 name|factory
@@ -195,9 +197,10 @@ operator|.
 name|inform
 argument_list|(
 operator|new
-name|SolrResourceLoader
+name|ResourceAsStreamResourceLoader
 argument_list|(
-literal|"solr/collection1"
+name|getClass
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
