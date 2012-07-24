@@ -2656,10 +2656,7 @@ block|{
 name|boolean
 name|interrupted
 init|=
-name|Thread
-operator|.
-name|interrupted
-argument_list|()
+literal|false
 decl_stmt|;
 try|try
 block|{
@@ -2735,6 +2732,13 @@ block|}
 finally|finally
 block|{
 comment|// clean up merge scheduler in all cases, although flushing may have failed:
+name|interrupted
+operator|=
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|waitForMerges
