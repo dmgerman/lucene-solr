@@ -82,22 +82,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|StrUtils
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -312,8 +296,6 @@ name|String
 argument_list|>
 name|files
 init|=
-name|StrUtils
-operator|.
 name|splitFileNames
 argument_list|(
 name|types
