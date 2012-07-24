@@ -717,7 +717,7 @@ name|ROOT
 argument_list|,
 literal|"A SPI class of type %s with classname %s does not exist, "
 operator|+
-literal|"please fix the file '%s%s' in your classpath."
+literal|"please fix the file '%s%1$s' in your classpath."
 argument_list|,
 name|clazz
 operator|.
@@ -727,11 +727,6 @@ argument_list|,
 name|c
 argument_list|,
 name|META_INF_SERVICES
-argument_list|,
-name|clazz
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 argument_list|)
 throw|;
