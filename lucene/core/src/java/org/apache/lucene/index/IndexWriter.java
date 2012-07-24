@@ -2579,8 +2579,7 @@ name|closeInternal
 argument_list|(
 name|waitForMerges
 argument_list|,
-operator|!
-name|hitOOM
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -2654,6 +2653,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|boolean
+name|interrupted
+init|=
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 if|if
@@ -2726,6 +2733,9 @@ if|if
 condition|(
 name|waitForMerges
 condition|)
+block|{
+try|try
+block|{
 comment|// Give merge scheduler last chance to run, in case
 comment|// any pending merges are waiting:
 name|mergeScheduler
@@ -2735,6 +2745,20 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ThreadInterruptedException
+name|tie
+parameter_list|)
+block|{
+comment|// ignore any interruption, does not matter
+name|interrupted
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
 name|mergePolicy
 operator|.
 name|close
@@ -2745,16 +2769,45 @@ init|(
 name|this
 init|)
 block|{
+for|for
+control|(
+init|;
+condition|;
+control|)
+block|{
+try|try
+block|{
 name|finishMerges
 argument_list|(
 name|waitForMerges
+operator|&&
+operator|!
+name|interrupted
 argument_list|)
 expr_stmt|;
+break|break;
+block|}
+catch|catch
+parameter_list|(
+name|ThreadInterruptedException
+name|tie
+parameter_list|)
+block|{
+comment|// by setting the interrupted status, the
+comment|// next call to finishMerges will pass false,
+comment|// so it will not wait
+name|interrupted
+operator|=
+literal|true
+expr_stmt|;
+block|}
+block|}
 name|stopMerges
 operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|// shutdown scheduler and all threads (this call is not interruptible):
 name|mergeScheduler
 operator|.
 name|close
@@ -2943,6 +2996,19 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// finally, restore interrupt status:
+if|if
+condition|(
+name|interrupted
+condition|)
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/** Returns the Directory used by this index. */
