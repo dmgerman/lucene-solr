@@ -226,7 +226,7 @@ name|spatial
 operator|.
 name|util
 operator|.
-name|CachedDistanceValueSource
+name|ShapeFieldCacheDistanceValueSource
 import|;
 end_import
 
@@ -826,7 +826,7 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|CachedDistanceValueSource
+name|ShapeFieldCacheDistanceValueSource
 argument_list|(
 name|point
 argument_list|,
