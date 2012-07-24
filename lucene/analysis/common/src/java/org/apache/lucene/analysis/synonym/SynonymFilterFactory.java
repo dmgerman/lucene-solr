@@ -936,7 +936,6 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|// nocommit: spi-hack solr.xxx and o.a.solr.analysis.xxx via a delegator
 comment|// (there are no tests for this functionality)
 DECL|method|loadTokenizerFactory
 specifier|private

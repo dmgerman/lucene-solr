@@ -75,6 +75,32 @@ name|TokenizerFactory
 argument_list|>
 name|loader
 init|=
+name|getSPILoader
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getContextClassLoader
+argument_list|()
+argument_list|)
+decl_stmt|;
+comment|/**    * Used by e.g. Apache Solr to get a correctly configured instance    * of {@link AnalysisSPILoader} from Solr's classpath.    * @lucene.internal    */
+DECL|method|getSPILoader
+specifier|public
+specifier|static
+name|AnalysisSPILoader
+argument_list|<
+name|TokenizerFactory
+argument_list|>
+name|getSPILoader
+parameter_list|(
+name|ClassLoader
+name|classloader
+parameter_list|)
+block|{
+return|return
 operator|new
 name|AnalysisSPILoader
 argument_list|<
@@ -84,9 +110,12 @@ argument_list|(
 name|TokenizerFactory
 operator|.
 name|class
+argument_list|,
+name|classloader
 argument_list|)
-decl_stmt|;
-comment|/** looks up a tokenizer by name */
+return|;
+block|}
+comment|/** looks up a tokenizer by name from context classpath */
 DECL|method|forName
 specifier|public
 specifier|static
@@ -106,6 +135,7 @@ name|name
 argument_list|)
 return|;
 block|}
+comment|/** looks up a tokenizer class by name from context classpath */
 DECL|method|lookupClass
 specifier|public
 specifier|static
@@ -130,7 +160,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/** returns a list of all available tokenizer names */
+comment|/** returns a list of all available tokenizer names from context classpath */
 DECL|method|availableTokenizers
 specifier|public
 specifier|static

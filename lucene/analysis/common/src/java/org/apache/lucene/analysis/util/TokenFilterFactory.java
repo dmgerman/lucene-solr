@@ -65,6 +65,32 @@ name|TokenFilterFactory
 argument_list|>
 name|loader
 init|=
+name|getSPILoader
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getContextClassLoader
+argument_list|()
+argument_list|)
+decl_stmt|;
+comment|/**    * Used by e.g. Apache Solr to get a correctly configured instance    * of {@link AnalysisSPILoader} from Solr's classpath.    * @lucene.internal    */
+DECL|method|getSPILoader
+specifier|public
+specifier|static
+name|AnalysisSPILoader
+argument_list|<
+name|TokenFilterFactory
+argument_list|>
+name|getSPILoader
+parameter_list|(
+name|ClassLoader
+name|classloader
+parameter_list|)
+block|{
+return|return
 operator|new
 name|AnalysisSPILoader
 argument_list|<
@@ -83,9 +109,12 @@ literal|"TokenFilterFactory"
 block|,
 literal|"FilterFactory"
 block|}
+argument_list|,
+name|classloader
 argument_list|)
-decl_stmt|;
-comment|/** looks up a tokenfilter by name */
+return|;
+block|}
+comment|/** looks up a tokenfilter by name from context classpath */
 DECL|method|forName
 specifier|public
 specifier|static
@@ -105,6 +134,7 @@ name|name
 argument_list|)
 return|;
 block|}
+comment|/** looks up a tokenfilter class by name from context classpath */
 DECL|method|lookupClass
 specifier|public
 specifier|static
@@ -129,7 +159,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/** returns a list of all available tokenfilter names */
+comment|/** returns a list of all available tokenfilter names from context classpath */
 DECL|method|availableTokenFilters
 specifier|public
 specifier|static
