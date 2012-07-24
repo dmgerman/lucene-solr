@@ -555,7 +555,6 @@ extends|extends
 name|AbstractDistributedZkTestCase
 block|{
 DECL|field|log
-specifier|private
 specifier|static
 name|Logger
 name|log
@@ -2991,35 +2990,14 @@ argument_list|(
 name|q
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|SolrServer
-name|client
-range|:
-name|clients
-control|)
-block|{
-name|UpdateRequest
-name|ureq
-init|=
-operator|new
-name|UpdateRequest
-argument_list|()
-decl_stmt|;
-comment|// ureq.setParam("update.chain", DISTRIB_UPDATE_CHAIN);
-name|ureq
+name|cloudClient
 operator|.
 name|deleteByQuery
 argument_list|(
 name|q
 argument_list|)
-operator|.
-name|process
-argument_list|(
-name|client
-argument_list|)
 expr_stmt|;
-block|}
+comment|/***     for (SolrServer client : clients) {       UpdateRequest ureq = new UpdateRequest();       // ureq.setParam("update.chain", DISTRIB_UPDATE_CHAIN);       ureq.deleteByQuery(q).process(client);     }      ***/
 block|}
 comment|// serial commit...
 comment|/*    * (non-Javadoc)    *     * @see org.apache.solr.BaseDistributedSearchTestCase#doTest()    *     * Create 3 shards, each with one replica    */

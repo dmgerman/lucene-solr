@@ -442,8 +442,11 @@ expr_stmt|;
 name|waitForThingsToLevelOut
 argument_list|()
 expr_stmt|;
-comment|// something wrong with this?
-comment|//del("*:*");
+name|del
+argument_list|(
+literal|"*:*"
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|String
