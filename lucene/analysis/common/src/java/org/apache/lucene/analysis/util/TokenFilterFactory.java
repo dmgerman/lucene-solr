@@ -74,6 +74,15 @@ argument_list|(
 name|TokenFilterFactory
 operator|.
 name|class
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"TokenFilterFactory"
+block|,
+literal|"FilterFactory"
+block|}
 argument_list|)
 decl_stmt|;
 comment|/** looks up a tokenfilter by name */
