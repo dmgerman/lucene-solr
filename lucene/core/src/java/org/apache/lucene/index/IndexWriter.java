@@ -2731,6 +2731,8 @@ block|}
 block|}
 finally|finally
 block|{
+try|try
+block|{
 comment|// clean up merge scheduler in all cases, although flushing may have failed:
 name|interrupted
 operator|=
@@ -2789,11 +2791,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|mergePolicy
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 synchronized|synchronized
 init|(
 name|this
@@ -2857,12 +2854,20 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|// shutdown scheduler and all threads (this call is not interruptible):
-name|mergeScheduler
+block|}
+finally|finally
+block|{
+comment|// shutdown policy, scheduler and all threads (this call is not interruptible):
+name|IOUtils
 operator|.
-name|close
-argument_list|()
+name|closeWhileHandlingException
+argument_list|(
+name|mergePolicy
+argument_list|,
+name|mergeScheduler
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
