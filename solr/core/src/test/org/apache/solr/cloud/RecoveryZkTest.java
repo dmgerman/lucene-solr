@@ -314,6 +314,8 @@ literal|"shard1"
 argument_list|,
 literal|1
 argument_list|)
+operator|.
+name|jetty
 decl_stmt|;
 comment|// wait a moment - lets allow some docs to be indexed so replication time is non 0
 name|Thread
