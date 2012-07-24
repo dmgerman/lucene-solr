@@ -1,16 +1,16 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.uima.analysis
+DECL|package|org.apache.lucene.analysis.uima
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
-operator|.
-name|uima
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|uima
 package|;
 end_package
 
