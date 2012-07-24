@@ -3392,7 +3392,9 @@ argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"inital docID should be -1 or NO_MORE_DOCS"
+literal|"inital docID should be -1 or NO_MORE_DOCS: "
+operator|+
+name|docsEnum
 argument_list|,
 name|initialDocID
 operator|==

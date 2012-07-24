@@ -8532,6 +8532,8 @@ name|freqs
 operator|=
 name|freqs
 expr_stmt|;
+name|docID
+operator|=
 name|upto
 operator|=
 operator|-
