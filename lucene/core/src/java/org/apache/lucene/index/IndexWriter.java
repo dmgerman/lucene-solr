@@ -2705,6 +2705,8 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 comment|// Only allow a new merge to be triggered if we are
 comment|// going to wait for merges:
 if|if
@@ -2729,6 +2731,10 @@ argument_list|()
 expr_stmt|;
 comment|// already closed
 block|}
+block|}
+finally|finally
+block|{
+comment|// clean up merge scheduler in all cases, although flushing may have failed:
 if|if
 condition|(
 name|waitForMerges
@@ -2757,6 +2763,26 @@ name|interrupted
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"IW"
+argument_list|,
+literal|"interrupted while waiting for final merges"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 name|mergePolicy
@@ -2800,6 +2826,26 @@ name|interrupted
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"IW"
+argument_list|,
+literal|"interrupted while waiting for merges to finish"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 name|stopMerges
@@ -2813,6 +2859,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|infoStream
