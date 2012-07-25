@@ -266,6 +266,35 @@ name|assureMatchVersion
 argument_list|()
 expr_stmt|;
 name|String
+name|dictionaryArg
+init|=
+name|args
+operator|.
+name|get
+argument_list|(
+name|PARAM_DICTIONARY
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|dictionaryArg
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|InitializationException
+argument_list|(
+literal|"Parameter "
+operator|+
+name|PARAM_DICTIONARY
+operator|+
+literal|" is mandatory."
+argument_list|)
+throw|;
+block|}
+name|String
 name|dictionaryFiles
 index|[]
 init|=

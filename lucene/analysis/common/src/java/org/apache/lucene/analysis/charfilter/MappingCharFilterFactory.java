@@ -102,20 +102,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|charfilter
 operator|.
 name|MappingCharFilter
@@ -340,18 +326,42 @@ operator|.
 name|build
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|normMap
+operator|.
+name|map
+operator|==
+literal|null
+condition|)
+block|{
+comment|// if the inner FST is null, it means it accepts nothing (e.g. the file is empty)
+comment|// so just set the whole map to null
+name|normMap
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|create
 specifier|public
-name|CharFilter
+name|Reader
 name|create
 parameter_list|(
 name|Reader
 name|input
 parameter_list|)
 block|{
+comment|// if the map is null, it means there's actually no mappings... just return the original stream
+comment|// as there is nothing to do here.
 return|return
+name|normMap
+operator|==
+literal|null
+condition|?
+name|input
+else|:
 operator|new
 name|MappingCharFilter
 argument_list|(

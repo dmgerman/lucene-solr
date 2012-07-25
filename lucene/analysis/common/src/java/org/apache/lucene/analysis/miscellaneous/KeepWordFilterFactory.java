@@ -328,14 +328,21 @@ return|;
 block|}
 DECL|method|create
 specifier|public
-name|KeepWordFilter
+name|TokenStream
 name|create
 parameter_list|(
 name|TokenStream
 name|input
 parameter_list|)
 block|{
+comment|// if the set is null, it means it was empty
 return|return
+name|words
+operator|==
+literal|null
+condition|?
+name|input
+else|:
 operator|new
 name|KeepWordFilter
 argument_list|(

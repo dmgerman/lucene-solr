@@ -297,6 +297,25 @@ decl_stmt|;
 if|if
 condition|(
 name|encoderClass
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|InitializationException
+argument_list|(
+literal|"Parameter "
+operator|+
+name|ENCODER_ATTR
+operator|+
+literal|" is mandatory"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|encoderClass
 operator|.
 name|equals
 argument_list|(

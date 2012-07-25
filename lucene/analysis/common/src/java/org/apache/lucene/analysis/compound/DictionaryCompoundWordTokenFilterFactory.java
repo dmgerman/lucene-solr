@@ -249,14 +249,21 @@ block|}
 block|}
 DECL|method|create
 specifier|public
-name|DictionaryCompoundWordTokenFilter
+name|TokenStream
 name|create
 parameter_list|(
 name|TokenStream
 name|input
 parameter_list|)
 block|{
+comment|// if the dictionary is null, it means it was empty
 return|return
+name|dictionary
+operator|==
+literal|null
+condition|?
+name|input
+else|:
 operator|new
 name|DictionaryCompoundWordTokenFilter
 argument_list|(

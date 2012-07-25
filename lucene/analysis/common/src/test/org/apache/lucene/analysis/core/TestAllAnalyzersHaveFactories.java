@@ -674,7 +674,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-comment|// don't waste time with abstract classes or deprecated known-buggy ones
+comment|// don't waste time with abstract classes
 name|Modifier
 operator|.
 name|isAbstract
@@ -729,15 +729,6 @@ operator|.
 name|contains
 argument_list|(
 name|c
-argument_list|)
-operator|||
-name|c
-operator|.
-name|isAnnotationPresent
-argument_list|(
-name|Deprecated
-operator|.
-name|class
 argument_list|)
 operator|||
 operator|!
