@@ -2078,6 +2078,7 @@ name|deleteTmpIdxDir
 init|=
 literal|true
 decl_stmt|;
+comment|// make sure it's the newest known index dir...
 specifier|final
 name|File
 name|indexDir
@@ -2087,7 +2088,7 @@ name|File
 argument_list|(
 name|core
 operator|.
-name|getIndexDir
+name|getNewIndexDir
 argument_list|()
 argument_list|)
 decl_stmt|;
