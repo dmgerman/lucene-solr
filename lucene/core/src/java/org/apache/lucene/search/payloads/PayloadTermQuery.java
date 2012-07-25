@@ -192,6 +192,22 @@ name|search
 operator|.
 name|spans
 operator|.
+name|SpanQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spans
+operator|.
 name|TermSpans
 import|;
 end_import
@@ -975,6 +991,20 @@ comment|// QUESTION: Is there a way to avoid this skipTo call? We need to know
 comment|// whether to load the payload or not
 comment|// GSI: I suppose we could toString the payload, but I don't think that
 comment|// would be a good idea
+name|String
+name|field
+init|=
+operator|(
+operator|(
+name|SpanQuery
+operator|)
+name|getQuery
+argument_list|()
+operator|)
+operator|.
+name|getField
+argument_list|()
+decl_stmt|;
 name|Explanation
 name|payloadExpl
 init|=
@@ -983,6 +1013,8 @@ operator|.
 name|explain
 argument_list|(
 name|doc
+argument_list|,
+name|field
 argument_list|,
 name|scorer
 operator|.
