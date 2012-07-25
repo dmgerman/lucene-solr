@@ -403,7 +403,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests that any newly added Tokenizers/TokenFilters/CharFilters have a  * corresponding factory.  */
+comment|/**  * Tests that any newly added Tokenizers/TokenFilters/CharFilters have a  * corresponding factory (and that the SPI configuration is correct)  */
 end_comment
 
 begin_class
