@@ -169,6 +169,21 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|typeMatch
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"typeMatch cannot be null"
+argument_list|)
+throw|;
+block|}
 comment|//Need to encode the payload
 name|thePayload
 operator|=
