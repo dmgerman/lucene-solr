@@ -236,6 +236,18 @@ begin_comment
 comment|/**  * Sanity check some things about all factories,  * we do our best to see if we can sanely initialize it with  * no parameters and smoke test it, etc.  */
 end_comment
 
+begin_comment
+comment|// TODO: move this, TestRandomChains, and TestAllAnalyzersHaveFactories
+end_comment
+
+begin_comment
+comment|// to an integration test module that sucks in all analysis modules.
+end_comment
+
+begin_comment
+comment|// currently the only way to do this is via eclipse etc (LUCENE-3974)
+end_comment
+
 begin_class
 DECL|class|TestFactories
 specifier|public
