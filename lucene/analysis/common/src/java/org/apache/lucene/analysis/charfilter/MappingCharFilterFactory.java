@@ -221,10 +221,10 @@ condition|)
 block|{
 name|wlist
 operator|=
-name|loader
-operator|.
 name|getLines
 argument_list|(
+name|loader
+argument_list|,
 name|mapping
 argument_list|)
 expr_stmt|;
@@ -265,10 +265,10 @@ name|String
 argument_list|>
 name|lines
 init|=
-name|loader
-operator|.
 name|getLines
 argument_list|(
+name|loader
+argument_list|,
 name|file
 operator|.
 name|trim

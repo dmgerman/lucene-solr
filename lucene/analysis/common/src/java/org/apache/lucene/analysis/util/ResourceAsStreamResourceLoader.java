@@ -39,16 +39,44 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstraction for loading resources (streams, files, and classes).  */
+comment|/**  * Simple ResourceLoader that uses Class.getResourceAsStream  * and Class.forName to open resources and classes, respectively.  */
 end_comment
 
-begin_interface
-DECL|interface|ResourceLoader
+begin_class
+DECL|class|ResourceAsStreamResourceLoader
 specifier|public
-interface|interface
+class|class
+name|ResourceAsStreamResourceLoader
+implements|implements
 name|ResourceLoader
 block|{
-comment|/**    * Opens a named resource    */
+DECL|field|clazz
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|clazz
+decl_stmt|;
+DECL|method|ResourceAsStreamResourceLoader
+specifier|public
+name|ResourceAsStreamResourceLoader
+parameter_list|(
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|clazz
+parameter_list|)
+block|{
+name|this
+operator|.
+name|clazz
+operator|=
+name|clazz
+expr_stmt|;
+block|}
+annotation|@
+name|Override
 DECL|method|openResource
 specifier|public
 name|InputStream
@@ -59,8 +87,19 @@ name|resource
 parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
-comment|/**    * Creates a class of the name and expected type    */
+block|{
+return|return
+name|clazz
+operator|.
+name|getResourceAsStream
+argument_list|(
+name|resource
+argument_list|)
+return|;
+block|}
+comment|// TODO: do this subpackages thing... wtf is that?
+annotation|@
+name|Override
 DECL|method|newInstance
 specifier|public
 parameter_list|<
@@ -82,9 +121,53 @@ name|String
 modifier|...
 name|subpackages
 parameter_list|)
-function_decl|;
+block|{
+try|try
+block|{
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|T
+argument_list|>
+name|clazz
+init|=
+name|Class
+operator|.
+name|forName
+argument_list|(
+name|cname
+argument_list|)
+operator|.
+name|asSubclass
+argument_list|(
+name|expectedType
+argument_list|)
+decl_stmt|;
+return|return
+name|clazz
+operator|.
+name|newInstance
+argument_list|()
+return|;
 block|}
-end_interface
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
+end_class
 
 end_unit
 

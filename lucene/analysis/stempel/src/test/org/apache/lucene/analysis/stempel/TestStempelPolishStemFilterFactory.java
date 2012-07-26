@@ -72,6 +72,22 @@ name|WhitespaceTokenizer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|ResourceAsStreamResourceLoader
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests for {@link StempelPolishStemFilterFactory}  */
 end_comment
