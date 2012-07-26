@@ -96,22 +96,6 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|InitializationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
 name|TokenizerFactory
 import|;
 end_import
@@ -207,7 +191,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"delimiter should be a char. \""
 operator|+
@@ -267,7 +251,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"replace should be a char. \""
 operator|+

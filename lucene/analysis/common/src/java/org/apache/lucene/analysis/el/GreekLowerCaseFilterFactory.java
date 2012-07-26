@@ -86,22 +86,6 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|InitializationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
 name|MultiTermAwareComponent
 import|;
 end_import
@@ -173,7 +157,7 @@ argument_list|)
 condition|)
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"The charset parameter is no longer supported.  "
 operator|+

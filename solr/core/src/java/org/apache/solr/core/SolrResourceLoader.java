@@ -3232,6 +3232,8 @@ parameter_list|(
 name|ResourceLoader
 name|loader
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|// make a copy to avoid potential deadlock of a callback adding to the list
 name|ResourceLoaderAware

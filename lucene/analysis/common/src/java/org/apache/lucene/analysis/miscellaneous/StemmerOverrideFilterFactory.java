@@ -121,6 +121,8 @@ parameter_list|(
 name|ResourceLoader
 name|loader
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|String
 name|dictionaryFiles
@@ -162,8 +164,6 @@ argument_list|(
 name|dictionaryFiles
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 if|if
 condition|(
 name|files
@@ -256,23 +256,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|InitializationException
-argument_list|(
-literal|"IOException thrown while loading dictionary"
-argument_list|,
-name|e
-argument_list|)
-throw|;
 block|}
 block|}
 block|}

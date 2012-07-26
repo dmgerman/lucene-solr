@@ -273,7 +273,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Configuration Error: Factory '"
 operator|+
@@ -405,7 +405,7 @@ return|;
 block|}
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Configuration Error: missing parameter '"
 operator|+
@@ -488,7 +488,7 @@ name|defaultVal
 return|;
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Configuration Error: missing parameter '"
 operator|+
@@ -537,7 +537,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Configuration Error: missing parameter '"
 operator|+
@@ -569,7 +569,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Configuration Error: '"
 operator|+

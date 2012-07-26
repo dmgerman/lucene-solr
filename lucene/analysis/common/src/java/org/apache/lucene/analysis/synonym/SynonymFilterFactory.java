@@ -349,6 +349,8 @@ parameter_list|(
 name|ResourceLoader
 name|loader
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 specifier|final
 name|boolean
@@ -534,7 +536,7 @@ block|{
 comment|// TODO: somehow make this more pluggable
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Unrecognized synonyms format: "
 operator|+
@@ -545,15 +547,15 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|ParseException
 name|e
 parameter_list|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IOException
 argument_list|(
-literal|"Exception thrown while loading synonyms"
+literal|"Error parsing synonyms file:"
 argument_list|,
 name|e
 argument_list|)
@@ -609,7 +611,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Missing required argument 'synonyms'."
 argument_list|)
@@ -797,7 +799,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Missing required argument 'synonyms'."
 argument_list|)
@@ -948,6 +950,8 @@ parameter_list|,
 name|String
 name|cname
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|TokenizerFactory
 name|tokFactory

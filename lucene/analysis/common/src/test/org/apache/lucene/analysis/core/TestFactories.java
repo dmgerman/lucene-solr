@@ -148,22 +148,6 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|InitializationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
 name|MultiTermAwareComponent
 import|;
 end_import
@@ -641,7 +625,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|InitializationException
+name|IllegalArgumentException
 name|ignored
 parameter_list|)
 block|{
@@ -683,11 +667,19 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|InitializationException
+name|IOException
 name|ignored
 parameter_list|)
 block|{
 comment|// its ok if the right files arent available or whatever to throw this
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|ignored
+parameter_list|)
+block|{
+comment|// is this ok? I guess so
 block|}
 block|}
 return|return

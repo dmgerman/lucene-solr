@@ -24,7 +24,27 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|ParseException
 import|;
 end_import
 
@@ -91,22 +111,6 @@ operator|.
 name|hunspell
 operator|.
 name|HunspellStemFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|InitializationException
 import|;
 end_import
 
@@ -261,6 +265,8 @@ parameter_list|(
 name|ResourceLoader
 name|loader
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|assureMatchVersion
 argument_list|()
@@ -284,7 +290,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Parameter "
 operator|+
@@ -367,7 +373,7 @@ expr_stmt|;
 else|else
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Unknown value for "
 operator|+
@@ -433,7 +439,7 @@ expr_stmt|;
 else|else
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Unknown value for "
 operator|+
@@ -527,13 +533,13 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|ParseException
 name|e
 parameter_list|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IOException
 argument_list|(
 literal|"Unable to load hunspell data! [dictionary="
 operator|+

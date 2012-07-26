@@ -156,7 +156,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Missing required parameter: dictionary"
 argument_list|)
@@ -213,8 +213,8 @@ parameter_list|(
 name|ResourceLoader
 name|loader
 parameter_list|)
-block|{
-try|try
+throws|throws
+name|IOException
 block|{
 name|dictionary
 operator|=
@@ -229,23 +229,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|InitializationException
-argument_list|(
-literal|"IOException thrown while loading dictionary"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 DECL|method|create
 specifier|public

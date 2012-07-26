@@ -102,22 +102,6 @@ name|analysis
 operator|.
 name|util
 operator|.
-name|InitializationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
 name|TokenizerFactory
 import|;
 end_import
@@ -216,8 +200,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-try|try
-block|{
 name|group
 operator|=
 name|Integer
@@ -227,23 +209,6 @@ argument_list|(
 name|g
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|ex
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|InitializationException
-argument_list|(
-literal|"invalid group argument: "
-operator|+
-name|g
-argument_list|)
-throw|;
-block|}
 block|}
 block|}
 comment|/**    * Split the input using configured pattern    */
@@ -279,7 +244,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|RuntimeException
 argument_list|(
 literal|"IOException thrown creating PatternTokenizer instance"
 argument_list|,

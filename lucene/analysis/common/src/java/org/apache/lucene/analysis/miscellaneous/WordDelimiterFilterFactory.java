@@ -222,6 +222,8 @@ parameter_list|(
 name|ResourceLoader
 name|loader
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|String
 name|wordFiles
@@ -240,8 +242,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-try|try
-block|{
 name|protectedWords
 operator|=
 name|getWordSet
@@ -253,23 +253,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|InitializationException
-argument_list|(
-literal|"IOException thrown while loading protected words"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 name|String
 name|types
@@ -287,8 +270,6 @@ name|types
 operator|!=
 literal|null
 condition|)
-block|{
-try|try
 block|{
 name|List
 argument_list|<
@@ -353,23 +334,6 @@ argument_list|(
 name|wlist
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|InitializationException
-argument_list|(
-literal|"IOException while loading types"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 block|}
 DECL|field|protectedWords
@@ -672,7 +636,7 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Invalid Mapping Rule : ["
 operator|+
@@ -724,7 +688,7 @@ literal|1
 condition|)
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Invalid Mapping Rule : ["
 operator|+
@@ -741,7 +705,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Invalid Mapping Rule : ["
 operator|+
@@ -1016,7 +980,7 @@ name|len
 condition|)
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Invalid escaped char in ["
 operator|+
@@ -1101,7 +1065,7 @@ name|len
 condition|)
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Invalid escaped char in ["
 operator|+

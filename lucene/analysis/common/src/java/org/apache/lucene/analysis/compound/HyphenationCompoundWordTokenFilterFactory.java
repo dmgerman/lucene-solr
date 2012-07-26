@@ -128,6 +128,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|InputStream
 import|;
 end_import
@@ -274,7 +284,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Missing required parameter: hyphenator"
 argument_list|)
@@ -331,6 +341,8 @@ parameter_list|(
 name|ResourceLoader
 name|loader
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|InputStream
 name|stream
@@ -402,23 +414,6 @@ argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-comment|// TODO: getHyphenationTree really shouldn't throw "Exception"
-throw|throw
-operator|new
-name|InitializationException
-argument_list|(
-literal|"Exception thrown while loading dictionary and hyphenation file"
-argument_list|,
-name|e
-argument_list|)
-throw|;
 block|}
 finally|finally
 block|{

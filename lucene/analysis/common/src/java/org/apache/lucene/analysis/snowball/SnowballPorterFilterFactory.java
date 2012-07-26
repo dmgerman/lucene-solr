@@ -172,6 +172,8 @@ parameter_list|(
 name|ResourceLoader
 name|loader
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|String
 name|wordFiles
@@ -190,8 +192,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-try|try
-block|{
 name|protectedWords
 operator|=
 name|getWordSet
@@ -203,23 +203,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|InitializationException
-argument_list|(
-literal|"IOException thrown while loading protected words"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 block|}
 DECL|field|protectedWords
@@ -297,7 +280,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Can't find class for stemmer language "
 operator|+
@@ -341,7 +324,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|RuntimeException
 argument_list|(
 literal|"Error instantiating stemmer for language "
 operator|+
