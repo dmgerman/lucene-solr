@@ -75,32 +75,6 @@ name|TokenizerFactory
 argument_list|>
 name|loader
 init|=
-name|getSPILoader
-argument_list|(
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getContextClassLoader
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|/**    * Used by e.g. Apache Solr to get a correctly configured instance    * of {@link AnalysisSPILoader} from Solr's classpath.    * @lucene.internal    */
-DECL|method|getSPILoader
-specifier|public
-specifier|static
-name|AnalysisSPILoader
-argument_list|<
-name|TokenizerFactory
-argument_list|>
-name|getSPILoader
-parameter_list|(
-name|ClassLoader
-name|classloader
-parameter_list|)
-block|{
-return|return
 operator|new
 name|AnalysisSPILoader
 argument_list|<
@@ -110,11 +84,8 @@ argument_list|(
 name|TokenizerFactory
 operator|.
 name|class
-argument_list|,
-name|classloader
 argument_list|)
-return|;
-block|}
+decl_stmt|;
 comment|/** looks up a tokenizer by name from context classpath */
 DECL|method|forName
 specifier|public
@@ -177,6 +148,25 @@ operator|.
 name|availableServices
 argument_list|()
 return|;
+block|}
+comment|/**     * Reloads the factory list from the given {@link ClassLoader}.    * Changes to the factories are visible after the method ends, all    * iterators ({@link #availableTokenizers()},...) stay consistent.     *     *<p><b>NOTE:</b> Only new factories are added, existing ones are    * never removed or replaced.    *     *<p><em>This method is expensive and should only be called for discovery    * of new factories on the given classpath/classloader!</em>    */
+DECL|method|reloadTokenizers
+specifier|public
+specifier|static
+name|void
+name|reloadTokenizers
+parameter_list|(
+name|ClassLoader
+name|classloader
+parameter_list|)
+block|{
+name|loader
+operator|.
+name|reload
+argument_list|(
+name|classloader
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Creates a TokenStream of the specified input */
 DECL|method|create

@@ -250,6 +250,25 @@ name|availableServices
 argument_list|()
 return|;
 block|}
+comment|/**     * Reloads the postings format list from the given {@link ClassLoader}.    * Changes to the postings formats are visible after the method ends, all    * iterators ({@link #availablePostingsFormats()},...) stay consistent.     *     *<p><b>NOTE:</b> Only new postings formats are added, existing ones are    * never removed or replaced.    *     *<p><em>This method is expensive and should only be called for discovery    * of new postings formats on the given classpath/classloader!</em>    */
+DECL|method|reloadPostingsFormats
+specifier|public
+specifier|static
+name|void
+name|reloadPostingsFormats
+parameter_list|(
+name|ClassLoader
+name|classloader
+parameter_list|)
+block|{
+name|loader
+operator|.
+name|reload
+argument_list|(
+name|classloader
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

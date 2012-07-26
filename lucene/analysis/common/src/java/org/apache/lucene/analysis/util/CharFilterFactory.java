@@ -75,32 +75,6 @@ name|CharFilterFactory
 argument_list|>
 name|loader
 init|=
-name|getSPILoader
-argument_list|(
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getContextClassLoader
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|/**    * Used by e.g. Apache Solr to get a correctly configured instance    * of {@link AnalysisSPILoader} from Solr's classpath.    * @lucene.internal    */
-DECL|method|getSPILoader
-specifier|public
-specifier|static
-name|AnalysisSPILoader
-argument_list|<
-name|CharFilterFactory
-argument_list|>
-name|getSPILoader
-parameter_list|(
-name|ClassLoader
-name|classloader
-parameter_list|)
-block|{
-return|return
 operator|new
 name|AnalysisSPILoader
 argument_list|<
@@ -110,11 +84,8 @@ argument_list|(
 name|CharFilterFactory
 operator|.
 name|class
-argument_list|,
-name|classloader
 argument_list|)
-return|;
-block|}
+decl_stmt|;
 comment|/** looks up a charfilter by name from context classpath */
 DECL|method|forName
 specifier|public
@@ -178,6 +149,26 @@ name|availableServices
 argument_list|()
 return|;
 block|}
+comment|/**     * Reloads the factory list from the given {@link ClassLoader}.    * Changes to the factories are visible after the method ends, all    * iterators ({@link #availableCharFilters()},...) stay consistent.     *     *<p><b>NOTE:</b> Only new factories are added, existing ones are    * never removed or replaced.    *     *<p><em>This method is expensive and should only be called for discovery    * of new factories on the given classpath/classloader!</em>    */
+DECL|method|reloadCharFilters
+specifier|public
+specifier|static
+name|void
+name|reloadCharFilters
+parameter_list|(
+name|ClassLoader
+name|classloader
+parameter_list|)
+block|{
+name|loader
+operator|.
+name|reload
+argument_list|(
+name|classloader
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Wraps the given Reader with a CharFilter. */
 DECL|method|create
 specifier|public
 specifier|abstract

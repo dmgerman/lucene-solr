@@ -120,7 +120,7 @@ parameter_list|>
 block|{
 DECL|field|services
 specifier|private
-specifier|final
+specifier|volatile
 name|Map
 argument_list|<
 name|String
@@ -133,6 +133,11 @@ name|S
 argument_list|>
 argument_list|>
 name|services
+init|=
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
 decl_stmt|;
 DECL|field|clazz
 specifier|private
@@ -142,6 +147,13 @@ argument_list|<
 name|S
 argument_list|>
 name|clazz
+decl_stmt|;
+DECL|field|suffixes
+specifier|private
+specifier|final
+name|String
+index|[]
+name|suffixes
 decl_stmt|;
 DECL|method|AnalysisSPILoader
 specifier|public
@@ -257,6 +269,28 @@ name|clazz
 operator|=
 name|clazz
 expr_stmt|;
+name|this
+operator|.
+name|suffixes
+operator|=
+name|suffixes
+expr_stmt|;
+name|reload
+argument_list|(
+name|classloader
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**     * Reloads the internal SPI list from the given {@link ClassLoader}.    * Changes to the service list are visible after the method ends, all    * iterators (e.g., from {@link #availableServices()},...) stay consistent.     *     *<p><b>NOTE:</b> Only new service providers are added, existing ones are    * never removed or replaced.    *     *<p><em>This method is expensive and should only be called for discovery    * of new service providers on the given classpath/classloader!</em>    */
+DECL|method|reload
+specifier|public
+name|void
+name|reload
+parameter_list|(
+name|ClassLoader
+name|classloader
+parameter_list|)
+block|{
 specifier|final
 name|SPIClassIterator
 argument_list|<
@@ -416,6 +450,11 @@ block|}
 comment|// only add the first one for each name, later services will be ignored
 comment|// this allows to place services before others in classpath to make
 comment|// them used instead of others
+comment|//
+comment|// TODO: Should we disallow duplicate names here?
+comment|// Allowing it may get confusing on collisions, as different packages
+comment|// could contain same factory class, which is a naming bug!
+comment|// When changing this be careful to allow reload()!
 if|if
 condition|(
 operator|!
