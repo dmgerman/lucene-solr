@@ -196,7 +196,7 @@ parameter_list|)
 block|{}
 block|}
 block|}
-comment|/**    * Copied from Lucene's FSDirectory.fsync(String)<!-- protected -->    *    * @param fullFile the File to be synced to disk    * @throws IOException if the file could not be synced    */
+comment|/**    * Copied from Lucene's FSDirectory.fsync(String)    *    * @param fullFile the File to be synced to disk    * @throws IOException if the file could not be synced    */
 DECL|method|sync
 specifier|public
 specifier|static
