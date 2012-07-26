@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Manages a chain of UpdateRequestProcessorFactories.  *<p>  * Chain can be configured via solrconfig.xml:  *</p>  *<pre>  *&lt;updateRequestProcessors name="key" default="true"&gt;  *&lt;processor class="PathToClass1" /&gt;  *&lt;processor class="PathToClass2" /&gt;  *&lt;processor class="solr.LogUpdateProcessorFactory"&gt;  *&lt;int name="maxNumToLog"&gt;100&lt;/int&gt;  *&lt;/processor&gt;  *&lt;processor class="solr.RunUpdateProcessorFactory" /&gt;  *&lt;/updateRequestProcessors&gt;  *</pre>  *  * @see UpdateRequestProcessorFactory  * @see #init  * @since solr 1.3  */
+comment|/**  * Manages a chain of UpdateRequestProcessorFactories.  *<p>  * Chain can be configured via solrconfig.xml:  *</p>  *<pre class="prettyprint">  *&lt;updateRequestProcessors name="key" default="true"&gt;  *&lt;processor class="PathToClass1" /&gt;  *&lt;processor class="PathToClass2" /&gt;  *&lt;processor class="solr.LogUpdateProcessorFactory"&gt;  *&lt;int name="maxNumToLog"&gt;100&lt;/int&gt;  *&lt;/processor&gt;  *&lt;processor class="solr.RunUpdateProcessorFactory" /&gt;  *&lt;/updateRequestProcessors&gt;  *</pre>  *<p>  * Allmost all processor chains should end with an instance of   * {@link RunUpdateProcessorFactory} unless the user is explicitly   * executing the update commands in an alternative custom   *<code>UpdateRequestProcessorFactory</code>.  *</p>  *  * @see UpdateRequestProcessorFactory  * @see #init  * @see #createProcessor  * @since solr 1.3  */
 end_comment
 
 begin_class
