@@ -5431,8 +5431,15 @@ block|{
 name|Directory
 name|dir
 init|=
-name|newDirectory
-argument_list|()
+name|newFSDirectory
+argument_list|(
+name|_TestUtil
+operator|.
+name|getTempDir
+argument_list|(
+literal|"testPostingsFormat"
+argument_list|)
+argument_list|)
 decl_stmt|;
 name|boolean
 name|indexPayloads
