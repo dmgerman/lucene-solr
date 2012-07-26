@@ -329,8 +329,8 @@ parameter_list|,
 name|SolrIndexSearcher
 name|searcher
 parameter_list|)
-block|{
-try|try
+throws|throws
+name|IOException
 block|{
 name|loadExternalFileDictionary
 argument_list|(
@@ -367,21 +367,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 comment|/**    * Override to return null, since there is no reader associated with a file based index    */
 annotation|@

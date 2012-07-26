@@ -664,6 +664,8 @@ operator|.
 name|getResourceLoader
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|is
@@ -702,8 +704,6 @@ argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|loader
 operator|.
 name|inform
