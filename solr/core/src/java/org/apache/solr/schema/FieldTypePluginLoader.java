@@ -424,7 +424,7 @@ specifier|protected
 name|FieldType
 name|create
 parameter_list|(
-name|ResourceLoader
+name|SolrResourceLoader
 name|loader
 parameter_list|,
 name|String

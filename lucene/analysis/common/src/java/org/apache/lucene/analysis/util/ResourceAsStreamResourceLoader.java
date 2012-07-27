@@ -97,7 +97,6 @@ name|resource
 argument_list|)
 return|;
 block|}
-comment|// TODO: do this subpackages thing... wtf is that?
 annotation|@
 name|Override
 DECL|method|newInstance
@@ -116,10 +115,6 @@ argument_list|<
 name|T
 argument_list|>
 name|expectedType
-parameter_list|,
-name|String
-modifier|...
-name|subpackages
 parameter_list|)
 block|{
 try|try

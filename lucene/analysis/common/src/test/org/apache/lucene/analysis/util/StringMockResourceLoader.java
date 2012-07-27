@@ -79,7 +79,6 @@ operator|=
 name|text
 expr_stmt|;
 block|}
-comment|// TODO: do this subpackages thing... wtf is that?
 DECL|method|newInstance
 specifier|public
 parameter_list|<
@@ -96,10 +95,6 @@ argument_list|<
 name|T
 argument_list|>
 name|expectedType
-parameter_list|,
-name|String
-modifier|...
-name|subpackages
 parameter_list|)
 block|{
 try|try
