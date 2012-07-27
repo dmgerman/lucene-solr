@@ -132,7 +132,22 @@ name|After
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"SOLR-3634: some errors are localized and tests fail in non en, disabling temporarily"
+argument_list|)
 DECL|class|CoreContainerCoreInitFailuresTest
 specifier|public
 class|class
