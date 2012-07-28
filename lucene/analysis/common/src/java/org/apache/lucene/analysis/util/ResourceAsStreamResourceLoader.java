@@ -51,6 +51,8 @@ implements|implements
 name|ResourceLoader
 block|{
 DECL|field|clazz
+specifier|private
+specifier|final
 name|Class
 argument_list|<
 name|?

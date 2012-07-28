@@ -108,7 +108,6 @@ end_comment
 
 begin_class
 DECL|class|AnalysisSPILoader
-specifier|public
 specifier|final
 class|class
 name|AnalysisSPILoader
