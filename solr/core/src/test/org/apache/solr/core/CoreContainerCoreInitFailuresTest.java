@@ -116,6 +116,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXParseException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Before
@@ -132,22 +144,7 @@ name|After
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
 begin_class
-annotation|@
-name|Ignore
-argument_list|(
-literal|"SOLR-3634: some errors are localized and tests fail in non en, disabling temporarily"
-argument_list|)
 DECL|class|CoreContainerCoreInitFailuresTest
 specifier|public
 class|class
@@ -1323,36 +1320,36 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"corrupd solrconfig.xml failed to trigger exception from reload"
+literal|"corrupt solrconfig.xml failed to trigger exception from reload"
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|SAXParseException
 name|e
 parameter_list|)
 block|{
 comment|// :TODO: should really tighten up the exceptions CoreContainer throws (ie: just SolrException)
 name|assertTrue
 argument_list|(
-literal|"reload exception doesn't mention bad prolog: "
+literal|"reload exception doesn't refer to slrconfig.xml "
 operator|+
 name|e
 operator|.
-name|getMessage
+name|getSystemId
 argument_list|()
 argument_list|,
 literal|0
 operator|<
 name|e
 operator|.
-name|getMessage
+name|getSystemId
 argument_list|()
 operator|.
 name|indexOf
 argument_list|(
-literal|"prolog"
+literal|"solrconfig.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1483,19 +1480,19 @@ literal|"init failure doesn't mention problem: "
 operator|+
 name|fail
 operator|.
-name|getMessage
+name|toString
 argument_list|()
 argument_list|,
 literal|0
 operator|<
 name|fail
 operator|.
-name|getMessage
+name|toString
 argument_list|()
 operator|.
 name|indexOf
 argument_list|(
-literal|"prolog"
+literal|"solrconfig.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
