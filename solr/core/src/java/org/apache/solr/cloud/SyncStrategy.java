@@ -20,6 +20,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -57,6 +67,22 @@ operator|.
 name|client
 operator|.
 name|HttpClient
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|SolrServerException
 import|;
 end_import
 
@@ -496,17 +522,22 @@ name|client
 argument_list|)
 expr_stmt|;
 block|}
-DECL|class|SyncShardRequest
+DECL|class|ShardCoreRequest
 specifier|private
 specifier|static
 class|class
-name|SyncShardRequest
+name|ShardCoreRequest
 extends|extends
 name|ShardRequest
 block|{
 DECL|field|coreName
 name|String
 name|coreName
+decl_stmt|;
+DECL|field|baseUrl
+specifier|public
+name|String
+name|baseUrl
 decl_stmt|;
 block|}
 DECL|method|sync
@@ -524,6 +555,20 @@ name|ZkNodeProps
 name|leaderProps
 parameter_list|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Sync replicas to "
+operator|+
+name|ZkCoreNodeProps
+operator|.
+name|getCoreUrl
+argument_list|(
+name|leaderProps
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// TODO: look at our state usage of sync
 comment|// zkController.publish(core, ZkStateReader.SYNC);
 comment|// solrcloud_debug
@@ -676,8 +721,13 @@ name|shardId
 argument_list|)
 condition|)
 block|{
-comment|//        System.out
-comment|//            .println("wasnt a success but no on else i active! I am the leader");
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Sync was not a success but no on else i active! I am the leader"
+argument_list|)
+expr_stmt|;
 name|success
 operator|=
 literal|true
@@ -688,9 +738,13 @@ condition|(
 name|success
 condition|)
 block|{
-comment|// solrcloud_debug
-comment|// System.out.println("Sync success");
-comment|// we are the leader - tell all of our replias to sync with us
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Sync Success - now sync replicas to me"
+argument_list|)
+expr_stmt|;
 name|syncToMe
 argument_list|(
 name|zkController
@@ -705,8 +759,16 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// solrcloud_debug
-comment|// System.out.println("Sync failure");
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+literal|"Sync Failed"
+argument_list|)
+expr_stmt|;
+comment|// lets see who seems ahead...
 block|}
 block|}
 catch|catch
@@ -964,11 +1026,7 @@ name|ACTIVE
 argument_list|)
 decl_stmt|;
 comment|// TODO:
-comment|// should
-comment|// there
-comment|// be a
-comment|// state
-comment|// filter?
+comment|// TODO should there be a state filter?
 if|if
 condition|(
 name|nodes
@@ -1129,11 +1187,22 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// System.out.println("I have no replicas");
-comment|// I have no replicas
+name|log
+operator|.
+name|info
+argument_list|(
+name|ZkCoreNodeProps
+operator|.
+name|getCoreUrl
+argument_list|(
+name|leaderProps
+argument_list|)
+operator|+
+literal|" has no replicas"
+argument_list|)
+expr_stmt|;
 return|return;
 block|}
-comment|//System.out.println("tell my replicas to sync");
 name|ZkCoreNodeProps
 name|zkLeader
 init|=
@@ -1153,13 +1222,18 @@ control|)
 block|{
 try|try
 block|{
-comment|//         System.out
-comment|//             .println("try and ask " + node.getCoreUrl() + " to sync");
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"try and ask "
+name|ZkCoreNodeProps
+operator|.
+name|getCoreUrl
+argument_list|(
+name|leaderProps
+argument_list|)
+operator|+
+literal|": try and ask "
 operator|+
 name|node
 operator|.
@@ -1171,6 +1245,16 @@ argument_list|)
 expr_stmt|;
 name|requestSync
 argument_list|(
+name|node
+operator|.
+name|getBaseUrl
+argument_list|()
+argument_list|,
+name|node
+operator|.
+name|getCoreUrl
+argument_list|()
+argument_list|,
 name|zkLeader
 operator|.
 name|getCoreUrl
@@ -1231,7 +1315,31 @@ argument_list|(
 name|srsp
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("got response:" + success);
+if|if
+condition|(
+name|srsp
+operator|.
+name|getException
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+literal|"Sync request error: "
+operator|+
+name|srsp
+operator|.
+name|getException
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1244,33 +1352,40 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Sync failed - asking replica to recover."
+name|ZkCoreNodeProps
+operator|.
+name|getCoreUrl
+argument_list|(
+name|leaderProps
 argument_list|)
-expr_stmt|;
-comment|//System.out.println("Sync failed - asking replica to recover.");
-name|RequestRecovery
-name|recoverRequestCmd
-init|=
-operator|new
-name|RequestRecovery
+operator|+
+literal|": Sync failed - asking replica ("
+operator|+
+name|srsp
+operator|.
+name|getShardAddress
 argument_list|()
-decl_stmt|;
-name|recoverRequestCmd
-operator|.
-name|setAction
-argument_list|(
-name|CoreAdminAction
-operator|.
-name|REQUESTRECOVERY
+operator|+
+literal|") to recover."
 argument_list|)
 expr_stmt|;
-name|recoverRequestCmd
-operator|.
-name|setCoreName
+name|requestRecovery
 argument_list|(
 operator|(
 operator|(
-name|SyncShardRequest
+name|ShardCoreRequest
+operator|)
+name|srsp
+operator|.
+name|getShardRequest
+argument_list|()
+operator|)
+operator|.
+name|baseUrl
+argument_list|,
+operator|(
+operator|(
+name|ShardCoreRequest
 operator|)
 name|srsp
 operator|.
@@ -1281,25 +1396,6 @@ operator|.
 name|coreName
 argument_list|)
 expr_stmt|;
-name|HttpSolrServer
-name|server
-init|=
-operator|new
-name|HttpSolrServer
-argument_list|(
-name|zkLeader
-operator|.
-name|getBaseUrl
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|server
-operator|.
-name|request
-argument_list|(
-name|recoverRequestCmd
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1307,22 +1403,49 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|log
+name|SolrException
 operator|.
-name|info
+name|log
 argument_list|(
-literal|"Could not tell a replica to recover"
+name|log
+argument_list|,
+name|ZkCoreNodeProps
+operator|.
+name|getCoreUrl
+argument_list|(
+name|leaderProps
+argument_list|)
+operator|+
+literal|": Could not tell a replica to recover"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|shardHandler
+block|}
+else|else
+block|{
+name|log
 operator|.
-name|cancelAll
+name|info
+argument_list|(
+name|ZkCoreNodeProps
+operator|.
+name|getCoreUrl
+argument_list|(
+name|leaderProps
+argument_list|)
+operator|+
+literal|": "
+operator|+
+literal|" sync completed with "
+operator|+
+name|srsp
+operator|.
+name|getShardAddress
 argument_list|()
+argument_list|)
 expr_stmt|;
-break|break;
 block|}
 block|}
 block|}
@@ -1361,7 +1484,7 @@ return|return
 literal|false
 return|;
 block|}
-name|boolean
+name|Boolean
 name|success
 init|=
 operator|(
@@ -1374,6 +1497,18 @@ argument_list|(
 literal|"sync"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|success
+operator|==
+literal|null
+condition|)
+block|{
+name|success
+operator|=
+literal|false
+expr_stmt|;
+block|}
 return|return
 name|success
 return|;
@@ -1384,17 +1519,23 @@ name|void
 name|requestSync
 parameter_list|(
 name|String
+name|baseUrl
+parameter_list|,
+name|String
 name|replica
+parameter_list|,
+name|String
+name|leaderUrl
 parameter_list|,
 name|String
 name|coreName
 parameter_list|)
 block|{
-name|SyncShardRequest
+name|ShardCoreRequest
 name|sreq
 init|=
 operator|new
-name|SyncShardRequest
+name|ShardCoreRequest
 argument_list|()
 decl_stmt|;
 name|sreq
@@ -1402,6 +1543,12 @@ operator|.
 name|coreName
 operator|=
 name|coreName
+expr_stmt|;
+name|sreq
+operator|.
+name|baseUrl
+operator|=
+name|baseUrl
 expr_stmt|;
 name|sreq
 operator|.
@@ -1501,7 +1648,7 @@ name|set
 argument_list|(
 literal|"sync"
 argument_list|,
-name|replica
+name|leaderUrl
 argument_list|)
 expr_stmt|;
 name|shardHandler
@@ -1515,6 +1662,77 @@ argument_list|,
 name|sreq
 operator|.
 name|params
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|requestRecovery
+specifier|private
+name|void
+name|requestRecovery
+parameter_list|(
+name|String
+name|baseUrl
+parameter_list|,
+name|String
+name|coreName
+parameter_list|)
+throws|throws
+name|SolrServerException
+throws|,
+name|IOException
+block|{
+comment|// TODO: do this in background threads
+name|RequestRecovery
+name|recoverRequestCmd
+init|=
+operator|new
+name|RequestRecovery
+argument_list|()
+decl_stmt|;
+name|recoverRequestCmd
+operator|.
+name|setAction
+argument_list|(
+name|CoreAdminAction
+operator|.
+name|REQUESTRECOVERY
+argument_list|)
+expr_stmt|;
+name|recoverRequestCmd
+operator|.
+name|setCoreName
+argument_list|(
+name|coreName
+argument_list|)
+expr_stmt|;
+name|HttpSolrServer
+name|server
+init|=
+operator|new
+name|HttpSolrServer
+argument_list|(
+name|baseUrl
+argument_list|)
+decl_stmt|;
+name|server
+operator|.
+name|setConnectionTimeout
+argument_list|(
+literal|45000
+argument_list|)
+expr_stmt|;
+name|server
+operator|.
+name|setSoTimeout
+argument_list|(
+literal|45000
+argument_list|)
+expr_stmt|;
+name|server
+operator|.
+name|request
+argument_list|(
+name|recoverRequestCmd
 argument_list|)
 expr_stmt|;
 block|}

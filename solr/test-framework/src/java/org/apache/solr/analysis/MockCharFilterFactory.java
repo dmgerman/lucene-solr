@@ -20,6 +20,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Map
@@ -36,7 +46,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharStream
+name|CharFilter
 import|;
 end_import
 
@@ -148,10 +158,10 @@ annotation|@
 name|Override
 DECL|method|create
 specifier|public
-name|CharStream
+name|CharFilter
 name|create
 parameter_list|(
-name|CharStream
+name|Reader
 name|input
 parameter_list|)
 block|{

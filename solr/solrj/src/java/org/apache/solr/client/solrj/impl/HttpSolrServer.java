@@ -2051,23 +2051,6 @@ argument_list|)
 throw|;
 block|}
 break|break;
-case|case
-name|HttpStatus
-operator|.
-name|SC_NOT_FOUND
-case|:
-throw|throw
-operator|new
-name|SolrServerException
-argument_list|(
-literal|"Server at "
-operator|+
-name|getBaseURL
-argument_list|()
-operator|+
-literal|" was not found (404)."
-argument_list|)
-throw|;
 default|default:
 throw|throw
 operator|new

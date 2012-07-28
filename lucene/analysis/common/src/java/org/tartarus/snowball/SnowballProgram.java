@@ -1964,15 +1964,23 @@ operator|>
 name|limit
 condition|)
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
+throw|throw
+operator|new
+name|IllegalArgumentException
 argument_list|(
-literal|"faulty slice operation"
+literal|"faulty slice operation: bra="
+operator|+
+name|bra
+operator|+
+literal|",ket="
+operator|+
+name|ket
+operator|+
+literal|",limit="
+operator|+
+name|limit
 argument_list|)
-expr_stmt|;
+throw|;
 comment|// FIXME: report error somehow.
 comment|/* 	    fprintf(stderr, "faulty slice operation:\n"); 	    debug(z, -1, 0); 	    exit(1); 	    */
 block|}

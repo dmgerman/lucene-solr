@@ -48,6 +48,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|PrintStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -629,6 +639,9 @@ specifier|public
 name|void
 name|printInfo
 parameter_list|(
+name|PrintStream
+name|out
+parameter_list|,
 name|CharSequence
 name|prefix
 parameter_list|)
@@ -649,6 +662,8 @@ name|trie
 operator|.
 name|printInfo
 argument_list|(
+name|out
+argument_list|,
 name|prefix
 operator|+
 literal|"["

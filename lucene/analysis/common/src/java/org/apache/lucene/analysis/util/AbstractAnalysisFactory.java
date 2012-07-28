@@ -273,7 +273,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Configuration Error: Factory '"
 operator|+
@@ -405,7 +405,7 @@ return|;
 block|}
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Configuration Error: missing parameter '"
 operator|+
@@ -488,7 +488,7 @@ name|defaultVal
 return|;
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Configuration Error: missing parameter '"
 operator|+
@@ -537,7 +537,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Configuration Error: missing parameter '"
 operator|+
@@ -569,7 +569,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|InitializationException
+name|IllegalArgumentException
 argument_list|(
 literal|"Configuration Error: '"
 operator|+
@@ -669,10 +669,10 @@ name|String
 argument_list|>
 name|wlist
 init|=
-name|loader
-operator|.
 name|getLines
 argument_list|(
+name|loader
+argument_list|,
 name|file
 operator|.
 name|trim
@@ -699,6 +699,41 @@ block|}
 block|}
 return|return
 name|words
+return|;
+block|}
+DECL|method|getLines
+specifier|protected
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|getLines
+parameter_list|(
+name|ResourceLoader
+name|loader
+parameter_list|,
+name|String
+name|resource
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|WordlistLoader
+operator|.
+name|getLines
+argument_list|(
+name|loader
+operator|.
+name|openResource
+argument_list|(
+name|resource
+argument_list|)
+argument_list|,
+name|IOUtils
+operator|.
+name|CHARSET_UTF_8
+argument_list|)
 return|;
 block|}
 comment|/** same as {@link #getWordSet(ResourceLoader, String, boolean)},    * except the input is in snowball format. */

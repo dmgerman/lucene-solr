@@ -237,15 +237,10 @@ operator|>
 literal|0
 condition|)
 block|{
-name|CharStream
+name|Reader
 name|cs
 init|=
-name|CharReader
-operator|.
-name|get
-argument_list|(
 name|reader
-argument_list|)
 decl_stmt|;
 for|for
 control|(

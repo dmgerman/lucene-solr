@@ -156,7 +156,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|dir
 init|=
 name|newDirectory
@@ -442,7 +442,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|dir
 init|=
 name|newDirectory
@@ -691,7 +691,7 @@ block|{
 name|MockDirectoryWrapper
 name|dir
 init|=
-name|newDirectory
+name|newMockDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter

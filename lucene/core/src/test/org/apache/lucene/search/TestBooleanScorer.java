@@ -560,6 +560,13 @@ return|return
 literal|0
 return|;
 block|}
+function|@Override public float freq
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
 function|@Override public int docID
 parameter_list|()
 block|{

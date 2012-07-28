@@ -1014,6 +1014,8 @@ parameter_list|,
 name|SolrIndexSearcher
 name|searcher
 parameter_list|)
+throws|throws
+name|IOException
 block|{}
 annotation|@
 name|Override

@@ -255,33 +255,17 @@ literal|0
 condition|)
 block|{
 comment|// Dictionary directory cannot be found.
-name|System
-operator|.
-name|err
-operator|.
-name|println
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
 literal|"WARNING: Can not find lexical dictionary directory!"
+operator|+
+literal|" This will cause unpredictable exceptions in your application!"
+operator|+
+literal|" Please refer to the manual to download the dictionaries."
 argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"WARNING: This will cause unpredictable exceptions in your application!"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"WARNING: Please refer to the manual to download the dictionaries."
-argument_list|)
-expr_stmt|;
+throw|;
 block|}
 block|}
 DECL|method|getAnalysisDataDir

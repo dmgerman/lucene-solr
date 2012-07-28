@@ -4377,7 +4377,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|dir1
 init|=
 name|newDirectory
@@ -4847,6 +4847,13 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|dir1
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
 specifier|final
 name|Collection
 argument_list|<
@@ -4854,7 +4861,12 @@ name|String
 argument_list|>
 name|openDeletedFiles
 init|=
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
 name|dir1
+operator|)
 operator|.
 name|getOpenDeletedFiles
 argument_list|()
@@ -4873,6 +4885,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|writer
 operator|.
 name|close
@@ -6150,6 +6163,13 @@ operator|.
 name|equals
 argument_list|(
 literal|"Memory"
+argument_list|)
+operator|||
+name|format
+operator|.
+name|equals
+argument_list|(
+literal|"Direct"
 argument_list|)
 operator|)
 argument_list|)

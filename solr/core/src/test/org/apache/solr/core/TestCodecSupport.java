@@ -113,7 +113,7 @@ name|Exception
 block|{
 name|initCore
 argument_list|(
-literal|"solrconfig-basic.xml"
+literal|"solrconfig_codec.xml"
 argument_list|,
 literal|"schema_codec.xml"
 argument_list|)

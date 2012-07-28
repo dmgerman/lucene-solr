@@ -3017,6 +3017,9 @@ name|fieldInfos
 parameter_list|,
 name|boolean
 name|doPrint
+parameter_list|,
+name|boolean
+name|isVectors
 parameter_list|)
 throws|throws
 name|IOException
@@ -3961,6 +3964,14 @@ operator|.
 name|endOffset
 argument_list|()
 decl_stmt|;
+comment|// NOTE: we cannot enforce any bounds whatsoever on vectors... they were a free-for-all before?
+comment|// but for offsets in the postings lists these checks are fine: they were always enforced by IndexWriter
+if|if
+condition|(
+operator|!
+name|isVectors
+condition|)
+block|{
 if|if
 condition|(
 name|startOffset
@@ -4088,6 +4099,7 @@ operator|+
 name|startOffset
 argument_list|)
 throw|;
+block|}
 block|}
 name|lastOffset
 operator|=
@@ -4565,6 +4577,14 @@ operator|.
 name|endOffset
 argument_list|()
 decl_stmt|;
+comment|// NOTE: we cannot enforce any bounds whatsoever on vectors... they were a free-for-all before?
+comment|// but for offsets in the postings lists these checks are fine: they were always enforced by IndexWriter
+if|if
+condition|(
+operator|!
+name|isVectors
+condition|)
+block|{
 if|if
 condition|(
 name|startOffset
@@ -4692,6 +4712,7 @@ operator|+
 name|startOffset
 argument_list|)
 throw|;
+block|}
 block|}
 name|lastOffset
 operator|=
@@ -6039,6 +6060,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 if|if
@@ -6074,6 +6097,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -7254,6 +7279,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// Again, with the one doc deleted:
@@ -7268,6 +7295,8 @@ argument_list|,
 name|fieldInfos
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// Only agg stats if the doc is live:
@@ -8178,6 +8207,28 @@ block|}
 block|}
 block|}
 block|}
+name|float
+name|vectorAvg
+init|=
+name|status
+operator|.
+name|docCount
+operator|==
+literal|0
+condition|?
+literal|0
+else|:
+name|status
+operator|.
+name|totVectors
+operator|/
+operator|(
+name|float
+operator|)
+name|status
+operator|.
+name|docCount
+decl_stmt|;
 name|msg
 argument_list|(
 literal|"OK ["
@@ -8192,20 +8243,7 @@ name|format
 operator|.
 name|format
 argument_list|(
-operator|(
-operator|(
-operator|(
-name|float
-operator|)
-name|status
-operator|.
-name|totVectors
-operator|)
-operator|/
-name|status
-operator|.
-name|docCount
-operator|)
+name|vectorAvg
 argument_list|)
 operator|+
 literal|" term/freq vector fields per doc]"

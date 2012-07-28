@@ -5324,6 +5324,30 @@ literal|"date facet infinite loop (is gap negative?)"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|high
+operator|.
+name|equals
+argument_list|(
+name|low
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"date facet infinite loop: gap is effectively zero"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|boolean
 name|includeLower
@@ -6472,6 +6496,42 @@ operator|.
 name|BAD_REQUEST
 argument_list|,
 literal|"range facet infinite loop (is gap negative? did the math overflow?)"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|high
+operator|.
+name|compareTo
+argument_list|(
+name|low
+argument_list|)
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"range facet infinite loop: gap is either zero, or too small relative start/end and caused underflow: "
+operator|+
+name|low
+operator|+
+literal|" + "
+operator|+
+name|gap
+operator|+
+literal|" = "
+operator|+
+name|high
 argument_list|)
 throw|;
 block|}

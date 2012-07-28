@@ -1014,6 +1014,8 @@ parameter_list|,
 name|SolrIndexSearcher
 name|searcher
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Get the value of {@link SpellingParams#SPELLCHECK_ACCURACY} if supported.      * Otherwise throws UnsupportedOperationException.    */
 DECL|method|getAccuracy

@@ -784,7 +784,7 @@ argument_list|)
 decl_stmt|;
 name|assumeFalse
 argument_list|(
-literal|"This test cannot run with Memory codec"
+literal|"This test cannot run with Memory postings format"
 argument_list|,
 name|fieldFormat
 operator|.
@@ -796,7 +796,19 @@ argument_list|)
 expr_stmt|;
 name|assumeFalse
 argument_list|(
-literal|"This test cannot run with SimpleText codec"
+literal|"This test cannot run with Direct postings format"
+argument_list|,
+name|fieldFormat
+operator|.
+name|equals
+argument_list|(
+literal|"Direct"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"This test cannot run with SimpleText postings format"
 argument_list|,
 name|fieldFormat
 operator|.

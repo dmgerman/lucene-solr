@@ -224,6 +224,8 @@ block|{
 literal|"SimpleText"
 block|,
 literal|"Memory"
+block|,
+literal|"Direct"
 block|}
 argument_list|)
 DECL|class|TestShardSearching

@@ -336,6 +336,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -682,6 +692,8 @@ operator|.
 name|getResourceLoader
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|is
@@ -727,6 +739,21 @@ argument_list|(
 name|loader
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/**    * @since solr 1.4    */
 DECL|method|getResourceLoader
@@ -3545,7 +3572,7 @@ specifier|static
 name|SimilarityFactory
 name|readSimilarity
 parameter_list|(
-name|ResourceLoader
+name|SolrResourceLoader
 name|loader
 parameter_list|,
 name|Node

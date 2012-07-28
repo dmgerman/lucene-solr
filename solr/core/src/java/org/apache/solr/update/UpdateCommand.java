@@ -157,7 +157,7 @@ literal|"{flags="
 operator|+
 name|flags
 operator|+
-literal|",version="
+literal|",_version_="
 operator|+
 name|version
 return|;

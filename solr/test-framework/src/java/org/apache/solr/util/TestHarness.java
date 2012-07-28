@@ -512,15 +512,14 @@ specifier|public
 class|class
 name|TestHarness
 block|{
+DECL|field|coreName
+name|String
+name|coreName
+decl_stmt|;
 DECL|field|container
 specifier|protected
 name|CoreContainer
 name|container
-decl_stmt|;
-DECL|field|core
-specifier|private
-name|SolrCore
-name|core
 decl_stmt|;
 DECL|field|builderTL
 specifier|private
@@ -726,27 +725,11 @@ name|CoreContainer
 operator|.
 name|DEFAULT_DEFAULT_CORE_NAME
 expr_stmt|;
-comment|// get the core& decrease its refcount:
-comment|// the container holds the core for the harness lifetime
-name|core
-operator|=
-name|container
+name|this
 operator|.
-name|getCore
-argument_list|(
 name|coreName
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|core
-operator|!=
-literal|null
-condition|)
-name|core
-operator|.
-name|close
-argument_list|()
+operator|=
+name|coreName
 expr_stmt|;
 name|updater
 operator|=
@@ -1190,15 +1173,71 @@ return|return
 name|container
 return|;
 block|}
+comment|/** Gets a core that does not have it's refcount incremented (i.e. there is no need to    * close when done).  This is not MT safe in conjunction with reloads!    */
 DECL|method|getCore
 specifier|public
 name|SolrCore
 name|getCore
 parameter_list|()
 block|{
+comment|// get the core& decrease its refcount:
+comment|// the container holds the core for the harness lifetime
+name|SolrCore
+name|core
+init|=
+name|container
+operator|.
+name|getCore
+argument_list|(
+name|coreName
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|core
+operator|!=
+literal|null
+condition|)
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 return|return
 name|core
 return|;
+block|}
+comment|/** Gets the core with it's reference count incremented.    * You must call core.close() when done!    */
+DECL|method|getCoreInc
+specifier|public
+name|SolrCore
+name|getCoreInc
+parameter_list|()
+block|{
+return|return
+name|container
+operator|.
+name|getCore
+argument_list|(
+name|coreName
+argument_list|)
+return|;
+block|}
+DECL|method|reload
+specifier|public
+name|void
+name|reload
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|container
+operator|.
+name|reload
+argument_list|(
+name|coreName
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Processes an "update" (add, commit or optimize) and    * returns the response as a String.    *    * @param xml The XML of the update    * @return The XML response to the update    */
 DECL|method|update
@@ -1210,6 +1249,12 @@ name|String
 name|xml
 parameter_list|)
 block|{
+name|SolrCore
+name|core
+init|=
+name|getCoreInc
+argument_list|()
+decl_stmt|;
 name|DirectSolrConnection
 name|connection
 init|=
@@ -1290,6 +1335,14 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/**    * Validates that an "update" (add, commit or optimize) results in success.    *    * :TODO: currently only deals with one add/doc at a time, this will need changed if/when SOLR-2 is resolved    *     * @param xml The XML of the update    * @return null if successful, otherwise the XML response to the update    */
@@ -1494,6 +1547,12 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+name|SolrCore
+name|core
+init|=
+name|getCoreInc
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 name|SolrQueryResponse
@@ -1603,6 +1662,11 @@ operator|.
 name|clearRequestInfo
 argument_list|()
 expr_stmt|;
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/** It is the users responsibility to close the request object when done with it.    * This method does not set/clear SolrRequestInfo */
@@ -1619,6 +1683,14 @@ name|req
 parameter_list|)
 throws|throws
 name|Exception
+block|{
+name|SolrCore
+name|core
+init|=
+name|getCoreInc
+argument_list|()
+decl_stmt|;
+try|try
 block|{
 name|SolrQueryResponse
 name|rsp
@@ -1663,6 +1735,15 @@ block|}
 return|return
 name|rsp
 return|;
+block|}
+finally|finally
+block|{
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**    * A helper method which valides a String against an array of XPath test    * strings.    *    * @param xml The xml String to validate    * @param tests Array of XPath strings to test (in boolean mode) on the xml    * @return null if all good, otherwise the first test that fails.    */
 DECL|method|validateXPath
@@ -2530,7 +2611,7 @@ specifier|public
 name|LocalRequestFactory
 parameter_list|()
 block|{     }
-comment|/**      * Creates a LocalSolrQueryRequest based on variable args; for      * historical reasons, this method has some peculiar behavior:      *<ul>      *<li>If there is a single arg, then it is treated as the "q"      *       param, and the LocalSolrQueryRequest consists of that query      *       string along with "qt", "start", and "rows" params (based      *       on the qtype, start, and limit properties of this factory)      *       along with any other default "args" set on this factory.      *</li>      *<li>If there are multiple args, then there must be an even number      *       of them, and each pair of args is used as a key=value param in      *       the LocalSolrQueryRequest.<b>NOTE: In this usage, the "qtype",      *       "start", "limit", and "args" properties of this factory are      *       ignored.</b>      *</li>      *</ul>      */
+comment|/**      * Creates a LocalSolrQueryRequest based on variable args; for      * historical reasons, this method has some peculiar behavior:      *<ul>      *<li>If there is a single arg, then it is treated as the "q"      *       param, and the LocalSolrQueryRequest consists of that query      *       string along with "qt", "start", and "rows" params (based      *       on the qtype, start, and limit properties of this factory)      *       along with any other default "args" set on this factory.      *</li>      *<li>If there are multiple args, then there must be an even number      *       of them, and each pair of args is used as a key=value param in      *       the LocalSolrQueryRequest.<b>NOTE: In this usage, the "qtype",      *       "start", "limit", and "args" properties of this factory are      *       ignored.</b>      *</li>      *</ul>      *      * TODO: this isn't really safe in the presense of core reloads!      * Perhaps the best we could do is increment the core reference count      * and decrement it in the request close() method?      */
 DECL|method|makeRequest
 specifier|public
 name|LocalSolrQueryRequest

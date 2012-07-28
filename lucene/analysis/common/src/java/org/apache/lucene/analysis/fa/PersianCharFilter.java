@@ -30,15 +30,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|CharStream
+name|Reader
 import|;
 end_import
 
@@ -51,8 +47,6 @@ operator|.
 name|lucene
 operator|.
 name|analysis
-operator|.
-name|charfilter
 operator|.
 name|CharFilter
 import|;
@@ -74,7 +68,7 @@ DECL|method|PersianCharFilter
 specifier|public
 name|PersianCharFilter
 parameter_list|(
-name|CharStream
+name|Reader
 name|in
 parameter_list|)
 block|{
@@ -165,6 +159,22 @@ block|}
 return|return
 name|charsRead
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|correct
+specifier|protected
+name|int
+name|correct
+parameter_list|(
+name|int
+name|currentOff
+parameter_list|)
+block|{
+return|return
+name|currentOff
+return|;
+comment|// we don't change the length of the string
 block|}
 block|}
 end_class

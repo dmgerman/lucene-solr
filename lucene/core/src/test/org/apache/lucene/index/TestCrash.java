@@ -147,7 +147,7 @@ name|initIndex
 argument_list|(
 name|random
 argument_list|,
-name|newDirectory
+name|newMockDirectory
 argument_list|(
 name|random
 argument_list|)

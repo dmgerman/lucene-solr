@@ -114,12 +114,7 @@ return|return
 operator|new
 name|MockCharFilter
 argument_list|(
-name|CharReader
-operator|.
-name|get
-argument_list|(
 name|reader
-argument_list|)
 argument_list|,
 literal|7
 argument_list|)

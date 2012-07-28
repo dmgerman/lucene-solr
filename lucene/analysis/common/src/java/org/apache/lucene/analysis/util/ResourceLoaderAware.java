@@ -18,6 +18,16 @@ name|util
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Interface for a component that needs to be initialized by  * an implementation of {@link ResourceLoader}.  *   * @see ResourceLoader  */
 end_comment
@@ -35,6 +45,8 @@ parameter_list|(
 name|ResourceLoader
 name|loader
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_interface

@@ -542,6 +542,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test for ReplicationHandler  *  *  * @since 1.4  */
 end_comment
@@ -837,6 +847,24 @@ name|slave
 operator|.
 name|tearDown
 argument_list|()
+expr_stmt|;
+name|masterJetty
+operator|=
+name|slaveJetty
+operator|=
+literal|null
+expr_stmt|;
+name|master
+operator|=
+name|slave
+operator|=
+literal|null
+expr_stmt|;
+name|masterClient
+operator|=
+name|slaveClient
+operator|=
+literal|null
 expr_stmt|;
 block|}
 DECL|method|createJetty
@@ -5140,7 +5168,7 @@ if|if
 condition|(
 name|waitCnt
 operator|==
-literal|10
+literal|20
 condition|)
 block|{
 name|fail

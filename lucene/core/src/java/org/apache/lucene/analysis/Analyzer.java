@@ -24,20 +24,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexableField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|AlreadyClosedException
@@ -157,7 +143,7 @@ name|Reader
 name|reader
 parameter_list|)
 function_decl|;
-comment|/**    * Creates a TokenStream that is allowed to be re-use from the previous time    * that the same thread called this method.  Callers that do not need to use    * more than one TokenStream at the same time from this analyzer should use    * this method for better performance.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#reset(Reader)}.    *</p>    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    */
+comment|/**    * Creates a TokenStream that is allowed to be re-use from the previous time    * that the same thread called this method.  Callers that do not need to use    * more than one TokenStream at the same time from this analyzer should use    * this method for better performance.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *</p>    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -226,7 +212,7 @@ else|else
 block|{
 name|components
 operator|.
-name|reset
+name|setReader
 argument_list|(
 name|r
 argument_list|)
@@ -270,37 +256,19 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**    * Just like {@link #getPositionIncrementGap}, except for    * Token offsets instead.  By default this returns 1 for    * tokenized fields and, as if the fields were joined    * with an extra space character, and 0 for un-tokenized    * fields.  This method is only called if the field    * produced at least one token for indexing.    *    * @param field the field just indexed    * @return offset gap, added to the next token emitted from {@link #tokenStream(String,Reader)}    */
+comment|/**    * Just like {@link #getPositionIncrementGap}, except for    * Token offsets instead.  By default this returns 1.    * This method is only called if the field    * produced at least one token for indexing.    *    * @param fieldName the field just indexed    * @return offset gap, added to the next token emitted from {@link #tokenStream(String,Reader)}    */
 DECL|method|getOffsetGap
 specifier|public
 name|int
 name|getOffsetGap
 parameter_list|(
-name|IndexableField
-name|field
+name|String
+name|fieldName
 parameter_list|)
-block|{
-if|if
-condition|(
-name|field
-operator|.
-name|fieldType
-argument_list|()
-operator|.
-name|tokenized
-argument_list|()
-condition|)
 block|{
 return|return
 literal|1
 return|;
-block|}
-else|else
-block|{
-return|return
-literal|0
-return|;
-block|}
 block|}
 comment|/** Frees persistent resources used by this Analyzer */
 DECL|method|close
@@ -385,10 +353,10 @@ name|source
 expr_stmt|;
 block|}
 comment|/**      * Resets the encapsulated components with the given reader. If the components      * cannot be reset, an Exception should be thrown.      *       * @param reader      *          a reader to reset the source component      * @throws IOException      *           if the component's reset method throws an {@link IOException}      */
-DECL|method|reset
+DECL|method|setReader
 specifier|protected
 name|void
-name|reset
+name|setReader
 parameter_list|(
 specifier|final
 name|Reader
@@ -399,7 +367,7 @@ name|IOException
 block|{
 name|source
 operator|.
-name|reset
+name|setReader
 argument_list|(
 name|reader
 argument_list|)

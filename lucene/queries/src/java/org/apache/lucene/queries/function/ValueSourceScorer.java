@@ -353,6 +353,20 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|freq
+specifier|public
+name|float
+name|freq
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+literal|1
+return|;
+block|}
 block|}
 end_class
 

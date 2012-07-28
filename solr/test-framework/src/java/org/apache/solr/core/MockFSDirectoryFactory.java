@@ -103,7 +103,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|dir
 init|=
 name|LuceneTestCase
@@ -121,13 +121,26 @@ comment|// Somehow removing unref'd files in Solr tests causes
 comment|// problems... there's some interaction w/
 comment|// CachingDirectoryFactory.  Once we track down where Solr
 comment|// isn't closing an IW, we can re-enable this:
+if|if
+condition|(
 name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+operator|(
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+operator|)
 operator|.
 name|setAssertNoUnrefencedFilesOnClose
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|dir
 return|;

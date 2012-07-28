@@ -284,7 +284,7 @@ argument_list|)
 expr_stmt|;
 name|wt
 operator|.
-name|reset
+name|setReader
 argument_list|(
 operator|new
 name|StringReader
@@ -418,7 +418,7 @@ argument_list|)
 expr_stmt|;
 name|wt
 operator|.
-name|reset
+name|setReader
 argument_list|(
 operator|new
 name|StringReader

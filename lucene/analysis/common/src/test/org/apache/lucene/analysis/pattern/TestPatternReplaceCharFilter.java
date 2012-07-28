@@ -120,21 +120,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CharReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|CharStream
+name|CharFilter
 import|;
 end_import
 
@@ -436,7 +422,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -449,15 +435,10 @@ argument_list|)
 argument_list|,
 name|replacement
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|input
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -711,7 +692,7 @@ name|BLOCK
 init|=
 literal|"this is test."
 decl_stmt|;
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -724,15 +705,10 @@ argument_list|)
 argument_list|,
 literal|"$1$2$3"
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|BLOCK
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -811,7 +787,7 @@ name|BLOCK
 init|=
 literal|"aa bb cc"
 decl_stmt|;
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -824,15 +800,10 @@ argument_list|)
 argument_list|,
 literal|""
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|BLOCK
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -879,7 +850,7 @@ name|BLOCK
 init|=
 literal|"aa bb cc"
 decl_stmt|;
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -892,15 +863,10 @@ argument_list|)
 argument_list|,
 literal|"$1#$2#$3"
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|BLOCK
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -969,7 +935,7 @@ name|BLOCK
 init|=
 literal|"aa bb cc dd"
 decl_stmt|;
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -982,15 +948,10 @@ argument_list|)
 argument_list|,
 literal|"$1##$2###$3"
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|BLOCK
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1064,7 +1025,7 @@ name|BLOCK
 init|=
 literal|" a  a"
 decl_stmt|;
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -1077,15 +1038,10 @@ argument_list|)
 argument_list|,
 literal|"aa"
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|BLOCK
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1160,7 +1116,7 @@ name|BLOCK
 init|=
 literal|"aa  bb   cc dd"
 decl_stmt|;
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -1173,15 +1129,10 @@ argument_list|)
 argument_list|,
 literal|"$1#$2"
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|BLOCK
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1256,7 +1207,7 @@ name|BLOCK
 init|=
 literal|"  aa bb cc --- aa bb aa   bb   cc"
 decl_stmt|;
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -1269,15 +1220,10 @@ argument_list|)
 argument_list|,
 literal|"$1  $2  $3"
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|BLOCK
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1395,7 +1341,7 @@ name|BLOCK
 init|=
 literal|"  aa bb cc --- aa bb aa. bb aa   bb cc"
 decl_stmt|;
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -1408,15 +1354,10 @@ argument_list|)
 argument_list|,
 literal|"$1##$2"
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|BLOCK
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1527,7 +1468,7 @@ name|BLOCK
 init|=
 literal|" a bb - ccc . --- bb a . ccc ccc bb"
 decl_stmt|;
-name|CharStream
+name|CharFilter
 name|cs
 init|=
 operator|new
@@ -1540,15 +1481,10 @@ argument_list|)
 argument_list|,
 literal|"aa"
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 operator|new
 name|StringReader
 argument_list|(
 name|BLOCK
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1966,12 +1902,7 @@ name|p
 argument_list|,
 name|replacement
 argument_list|,
-name|CharReader
-operator|.
-name|get
-argument_list|(
 name|reader
-argument_list|)
 argument_list|)
 return|;
 block|}

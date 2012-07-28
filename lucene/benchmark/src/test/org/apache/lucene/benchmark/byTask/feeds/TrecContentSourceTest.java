@@ -659,6 +659,8 @@ literal|"TEST-001 title\r\n"
 operator|+
 literal|"</title>\r\n"
 operator|+
+literal|"<meta name=\"date\" content=\"Tue&#44; 09 Dec 2003 22&#58;39&#58;08 GMT\">"
+operator|+
 literal|"</head>\r\n"
 operator|+
 literal|"\r\n"
@@ -746,7 +748,7 @@ name|source
 operator|.
 name|parseDate
 argument_list|(
-literal|"Sun, 11 Jan 2009 08:01:00 GMT"
+literal|"Tue, 09 Dec 2003 22:39:08 GMT"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1199,6 +1201,11 @@ argument_list|(
 literal|"Sun, 11 Jan 2009 08:00:00 GMT"
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|source
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 comment|// Don't test that NoMoreDataException is thrown, since the forever flag is
 comment|// turned on.

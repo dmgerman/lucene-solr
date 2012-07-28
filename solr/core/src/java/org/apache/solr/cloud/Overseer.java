@@ -3022,9 +3022,6 @@ operator|new
 name|DistributedQueue
 argument_list|(
 name|zkClient
-operator|.
-name|getSolrZooKeeper
-argument_list|()
 argument_list|,
 literal|"/overseer/queue"
 argument_list|,
@@ -3053,9 +3050,6 @@ operator|new
 name|DistributedQueue
 argument_list|(
 name|zkClient
-operator|.
-name|getSolrZooKeeper
-argument_list|()
 argument_list|,
 literal|"/overseer/queue-work"
 argument_list|,
@@ -3084,9 +3078,6 @@ operator|new
 name|DistributedQueue
 argument_list|(
 name|zkClient
-operator|.
-name|getSolrZooKeeper
-argument_list|()
 argument_list|,
 literal|"/overseer/collection-queue-work"
 argument_list|,

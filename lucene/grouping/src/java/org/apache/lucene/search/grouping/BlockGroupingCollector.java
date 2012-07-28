@@ -285,6 +285,21 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|freq
+specifier|public
+name|float
+name|freq
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+comment|// TODO: wtf does this class do?
+block|}
+annotation|@
+name|Override
 DECL|method|docID
 specifier|public
 name|int

@@ -193,22 +193,13 @@ function_decl|;
 comment|/** Returns number of matches for the current document.    *  This returns a float (not int) because    *  SloppyPhraseScorer discounts its freq according to how    *  "sloppy" the match was.    *    * @lucene.experimental */
 DECL|method|freq
 specifier|public
+specifier|abstract
 name|float
 name|freq
 parameter_list|()
 throws|throws
 name|IOException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-name|this
-operator|+
-literal|" does not implement freq()"
-argument_list|)
-throw|;
-block|}
+function_decl|;
 comment|/** returns parent Weight    * @lucene.experimental    */
 DECL|method|getWeight
 specifier|public

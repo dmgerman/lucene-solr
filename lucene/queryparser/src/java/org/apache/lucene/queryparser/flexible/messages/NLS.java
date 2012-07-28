@@ -790,32 +790,9 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|obj
-operator|==
-literal|null
-condition|)
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"WARN: Message with key:"
-operator|+
-name|key
-operator|+
-literal|" and locale: "
-operator|+
-name|Locale
-operator|.
-name|getDefault
-argument_list|()
-operator|+
-literal|" not found."
-argument_list|)
-expr_stmt|;
+comment|//if (obj == null)
+comment|//  System.err.println("WARN: Message with key:" + key + " and locale: "
+comment|//      + Locale.getDefault() + " not found.");
 block|}
 block|}
 catch|catch
@@ -824,26 +801,8 @@ name|MissingResourceException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"WARN: Message with key:"
-operator|+
-name|key
-operator|+
-literal|" and locale: "
-operator|+
-name|Locale
-operator|.
-name|getDefault
-argument_list|()
-operator|+
-literal|" not found."
-argument_list|)
-expr_stmt|;
+comment|//System.err.println("WARN: Message with key:" + key + " and locale: "
+comment|//    + Locale.getDefault() + " not found.");
 block|}
 catch|catch
 parameter_list|(

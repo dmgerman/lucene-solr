@@ -280,7 +280,7 @@ name|NUM_DOCS
 argument_list|)
 expr_stmt|;
 block|}
-name|MockDirectoryWrapper
+name|BaseDirectoryWrapper
 name|dir
 init|=
 name|newDirectory

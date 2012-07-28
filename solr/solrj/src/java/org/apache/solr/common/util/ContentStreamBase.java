@@ -128,20 +128,6 @@ name|Locale
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IOUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * Three concrete implementations for ContentStream - one for File/URL/String  *   *  * @since solr 1.2  */
 end_comment
@@ -503,9 +489,7 @@ argument_list|(
 name|getStream
 argument_list|()
 argument_list|,
-name|IOUtils
-operator|.
-name|CHARSET_UTF_8
+literal|"UTF-8"
 argument_list|)
 else|:
 operator|new

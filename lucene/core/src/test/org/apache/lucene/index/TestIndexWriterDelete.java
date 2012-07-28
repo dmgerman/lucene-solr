@@ -2679,7 +2679,7 @@ comment|// First build up a starting index:
 name|MockDirectoryWrapper
 name|startDir
 init|=
-name|newDirectory
+name|newMockDirectory
 argument_list|()
 decl_stmt|;
 comment|// TODO: find the resource leak that only occurs sometimes here.
@@ -4008,7 +4008,7 @@ decl_stmt|;
 name|MockDirectoryWrapper
 name|dir
 init|=
-name|newDirectory
+name|newMockDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter
@@ -4550,7 +4550,7 @@ decl_stmt|;
 name|MockDirectoryWrapper
 name|dir
 init|=
-name|newDirectory
+name|newMockDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriter

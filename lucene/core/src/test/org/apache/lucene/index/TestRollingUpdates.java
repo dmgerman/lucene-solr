@@ -156,7 +156,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
-name|MockDirectoryWrapper
+name|BaseDirectoryWrapper
 name|dir
 init|=
 name|newDirectory

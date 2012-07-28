@@ -824,12 +824,7 @@ init|=
 operator|new
 name|MockCharFilter
 argument_list|(
-name|CharReader
-operator|.
-name|get
-argument_list|(
 name|reader
-argument_list|)
 argument_list|,
 literal|2
 argument_list|)

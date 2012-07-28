@@ -1417,6 +1417,7 @@ block|}
 comment|/**    * Look up the given category in the cache and/or the on-disk storage,    * returning the category's ordinal, or a negative number in case the    * category does not yet exist in the taxonomy.    */
 DECL|method|findCategory
 specifier|protected
+specifier|synchronized
 name|int
 name|findCategory
 parameter_list|(
@@ -1835,12 +1836,14 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-comment|// If the category is already in the cache and/or the taxonomy, we
-comment|// should return its existing ordinal
+comment|// check the cache outside the synchronized block. this results in better
+comment|// concurrency when categories are there.
 name|int
 name|res
 init|=
-name|findCategory
+name|cache
+operator|.
+name|get
 argument_list|(
 name|categoryPath
 argument_list|)
@@ -1852,8 +1855,7 @@ operator|<
 literal|0
 condition|)
 block|{
-comment|// the category is neither in the cache nor in the index - following code
-comment|// cannot be executed in parallel.
+comment|// the category is not in the cache - following code cannot be executed in parallel.
 synchronized|synchronized
 init|(
 name|this

@@ -82,7 +82,13 @@ operator|.
 name|ExactSimScorer
 name|docScorer
 decl_stmt|;
-comment|/**    * Construct a<code>TermScorer</code>.    *     * @param weight    *          The weight of the<code>Term</code> in the query.    * @param td    *          An iterator over the documents matching the<code>Term</code>.    * @param docScorer    *          The</code>Similarity.ExactSimScorer</code> implementation     *          to be used for score computations.    */
+DECL|field|docFreq
+specifier|private
+specifier|final
+name|int
+name|docFreq
+decl_stmt|;
+comment|/**    * Construct a<code>TermScorer</code>.    *     * @param weight    *          The weight of the<code>Term</code> in the query.    * @param td    *          An iterator over the documents matching the<code>Term</code>.    * @param docScorer    *          The</code>Similarity.ExactSimScorer</code> implementation     *          to be used for score computations.    * @param docFreq    *          per-segment docFreq of this term    */
 DECL|method|TermScorer
 name|TermScorer
 parameter_list|(
@@ -96,6 +102,9 @@ name|Similarity
 operator|.
 name|ExactSimScorer
 name|docScorer
+parameter_list|,
+name|int
+name|docFreq
 parameter_list|)
 block|{
 name|super
@@ -114,6 +123,12 @@ operator|.
 name|docsEnum
 operator|=
 name|td
+expr_stmt|;
+name|this
+operator|.
+name|docFreq
+operator|=
+name|docFreq
 expr_stmt|;
 block|}
 annotation|@
@@ -237,6 +252,28 @@ operator|+
 name|weight
 operator|+
 literal|")"
+return|;
+block|}
+comment|// TODO: benchmark if the specialized conjunction really benefits
+comment|// from this, or if instead its from sorting by docFreq, or both
+DECL|method|getDocsEnum
+name|DocsEnum
+name|getDocsEnum
+parameter_list|()
+block|{
+return|return
+name|docsEnum
+return|;
+block|}
+comment|// TODO: generalize something like this for scorers?
+comment|// even this is just an estimation...
+DECL|method|getDocFreq
+name|int
+name|getDocFreq
+parameter_list|()
+block|{
+return|return
+name|docFreq
 return|;
 block|}
 block|}

@@ -72,16 +72,6 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|Test
 import|;
 end_import
@@ -240,11 +230,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-argument_list|(
-literal|"Where is TestAggregatedSentenceAE.xml"
-argument_list|)
 DECL|method|testRandomStrings
 specifier|public
 name|void
@@ -268,7 +253,7 @@ argument_list|,
 literal|"pos"
 argument_list|)
 argument_list|,
-literal|1000
+literal|100
 operator|*
 name|RANDOM_MULTIPLIER
 argument_list|)

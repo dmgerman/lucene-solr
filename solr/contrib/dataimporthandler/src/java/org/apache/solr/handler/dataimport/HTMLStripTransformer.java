@@ -36,20 +36,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|CharReader
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -382,10 +368,6 @@ init|=
 operator|new
 name|HTMLStripCharFilter
 argument_list|(
-name|CharReader
-operator|.
-name|get
-argument_list|(
 name|strReader
 operator|.
 name|markSupported
@@ -397,7 +379,6 @@ operator|new
 name|BufferedReader
 argument_list|(
 name|strReader
-argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
