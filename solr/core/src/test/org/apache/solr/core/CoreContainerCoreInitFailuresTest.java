@@ -1476,6 +1476,15 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
+literal|"init failure isn't SAXParseException"
+argument_list|,
+name|fail
+operator|instanceof
+name|SAXParseException
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 literal|"init failure doesn't mention problem: "
 operator|+
 name|fail
@@ -1485,9 +1494,14 @@ argument_list|()
 argument_list|,
 literal|0
 operator|<
+operator|(
+operator|(
+name|SAXParseException
+operator|)
 name|fail
+operator|)
 operator|.
-name|toString
+name|getSystemId
 argument_list|()
 operator|.
 name|indexOf
