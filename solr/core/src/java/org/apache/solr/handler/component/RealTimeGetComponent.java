@@ -40,9 +40,37 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|StoredDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|IndexableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StorableField
 import|;
 end_import
 
@@ -1179,7 +1207,7 @@ operator|<
 literal|0
 condition|)
 continue|continue;
-name|Document
+name|StoredDocument
 name|luceneDocument
 init|=
 name|searcher
@@ -1536,7 +1564,7 @@ condition|)
 return|return
 literal|null
 return|;
-name|Document
+name|StoredDocument
 name|luceneDocument
 init|=
 name|searcher
@@ -1586,7 +1614,7 @@ specifier|static
 name|SolrInputDocument
 name|toSolrInputDocument
 parameter_list|(
-name|Document
+name|StoredDocument
 name|doc
 parameter_list|,
 name|IndexSchema
@@ -1602,7 +1630,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|IndexableField
+name|StorableField
 name|f
 range|:
 name|doc
@@ -1725,7 +1753,7 @@ specifier|static
 name|SolrDocument
 name|toSolrDoc
 parameter_list|(
-name|Document
+name|StoredDocument
 name|doc
 parameter_list|,
 name|IndexSchema
@@ -1741,7 +1769,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|IndexableField
+name|StorableField
 name|f
 range|:
 name|doc
@@ -1903,11 +1931,11 @@ name|getFields
 argument_list|()
 decl_stmt|;
 comment|// copy the stored fields only
-name|Document
+name|StoredDocument
 name|out
 init|=
 operator|new
-name|Document
+name|StoredDocument
 argument_list|()
 decl_stmt|;
 for|for
@@ -1936,6 +1964,9 @@ name|out
 operator|.
 name|add
 argument_list|(
+operator|(
+name|StorableField
+operator|)
 name|f
 argument_list|)
 expr_stmt|;

@@ -66,6 +66,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|StoredDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -399,7 +413,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 comment|// rounding error
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|ir
@@ -797,7 +811,7 @@ operator|<=
 literal|1
 argument_list|)
 expr_stmt|;
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|ir

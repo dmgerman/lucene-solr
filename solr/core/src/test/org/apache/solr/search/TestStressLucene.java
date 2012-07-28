@@ -80,6 +80,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|StoredDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|DirectoryReader
@@ -1967,7 +1981,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|// we should have found the document, or it's tombstone
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|r

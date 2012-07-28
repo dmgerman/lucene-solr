@@ -282,9 +282,6 @@ name|docState
 operator|.
 name|docID
 argument_list|,
-operator|(
-name|StorableField
-operator|)
 name|field
 argument_list|)
 expr_stmt|;
