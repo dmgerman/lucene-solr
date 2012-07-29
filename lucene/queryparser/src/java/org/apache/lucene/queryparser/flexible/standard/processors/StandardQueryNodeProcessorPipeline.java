@@ -317,10 +317,11 @@ name|PhraseSlopQueryNodeProcessor
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//add(new GroupQueryNodeProcessor());
 name|add
 argument_list|(
 operator|new
-name|GroupQueryNodeProcessor
+name|BooleanQuery2ModifierNodeProcessor
 argument_list|()
 argument_list|)
 expr_stmt|;

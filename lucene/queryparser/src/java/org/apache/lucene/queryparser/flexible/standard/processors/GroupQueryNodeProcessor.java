@@ -347,7 +347,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The {@link SyntaxParser}  * generates query node trees that consider the boolean operator precedence, but  * Lucene current syntax does not support boolean precedence, so this processor  * remove all the precedence and apply the equivalent modifier according to the  * boolean operation defined on an specific query node.<br/>  *<br/>  * If there is a {@link GroupQueryNode} in the query node tree, the query node  * tree is not merged with the one above it.  *   * Example: TODO: describe a good example to show how this processor works  *   * @see org.apache.lucene.queryparser.flexible.standard.config.StandardQueryConfigHandler  */
+comment|/**  * The {@link SyntaxParser}  * generates query node trees that consider the boolean operator precedence, but  * Lucene current syntax does not support boolean precedence, so this processor  * remove all the precedence and apply the equivalent modifier according to the  * boolean operation defined on an specific query node.<br/>  *<br/>  * If there is a {@link GroupQueryNode} in the query node tree, the query node  * tree is not merged with the one above it.  *   * Example: TODO: describe a good example to show how this processor works  *   * @see org.apache.lucene.queryparser.flexible.standard.config.StandardQueryConfigHandler  * @deprecated use {@link BooleanQuery2ModifierNodeProcessor} instead  */
 end_comment
 
 begin_class
