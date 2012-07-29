@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -259,6 +269,13 @@ specifier|final
 name|boolean
 name|JRE_IS_MINIMUM_JAVA7
 decl_stmt|;
+DECL|field|JRE_IS_MINIMUM_JAVA8
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|JRE_IS_MINIMUM_JAVA8
+decl_stmt|;
 comment|/** True iff running on a 64bit JVM */
 DECL|field|JRE_IS_64BIT
 specifier|public
@@ -458,6 +475,52 @@ name|JRE_IS_MINIMUM_JAVA7
 operator|=
 name|v7
 expr_stmt|;
+if|if
+condition|(
+name|JRE_IS_MINIMUM_JAVA7
+condition|)
+block|{
+comment|// this method only exists in Java 8:
+name|boolean
+name|v8
+init|=
+literal|true
+decl_stmt|;
+try|try
+block|{
+name|Collections
+operator|.
+name|class
+operator|.
+name|getMethod
+argument_list|(
+literal|"emptySortedSet"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchMethodException
+name|nsme
+parameter_list|)
+block|{
+name|v8
+operator|=
+literal|false
+expr_stmt|;
+block|}
+name|JRE_IS_MINIMUM_JAVA8
+operator|=
+name|v8
+expr_stmt|;
+block|}
+else|else
+block|{
+name|JRE_IS_MINIMUM_JAVA8
+operator|=
+literal|false
+expr_stmt|;
+block|}
 block|}
 comment|// this method prevents inlining the final version constant in compiled classes,
 comment|// see: http://www.javaworld.com/community/node/3400

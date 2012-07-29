@@ -48,6 +48,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LuceneTestCase
 operator|.
 name|Slow
@@ -251,16 +265,6 @@ operator|.
 name|junit
 operator|.
 name|BeforeClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
 import|;
 end_import
 
@@ -654,11 +658,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-argument_list|(
-literal|"This test fails in most cases with Java 8+, looks like it depends on order of some HashSet/HashMap whatever"
-argument_list|)
 DECL|method|testPerDictionary
 specifier|public
 name|void
@@ -667,6 +666,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeFalse
+argument_list|(
+literal|"This test fails in most cases with Java 8+, looks like it depends on order of some HashSet/HashMap whatever"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA8
+argument_list|)
+expr_stmt|;
 name|assertJQ
 argument_list|(
 name|req
