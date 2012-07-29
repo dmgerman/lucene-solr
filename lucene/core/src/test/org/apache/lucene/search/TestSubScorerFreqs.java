@@ -941,11 +941,6 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-annotation|@
 name|Test
 DECL|method|testBooleanQuery
 specifier|public
@@ -1084,6 +1079,15 @@ operator|.
 name|MUST
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
+argument_list|)
 name|Set
 argument_list|<
 name|String
