@@ -666,15 +666,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeFalse
-argument_list|(
-literal|"This test fails in most cases with Java 8+, looks like it depends on order of some HashSet/HashMap whatever"
-argument_list|,
-name|Constants
-operator|.
-name|JRE_IS_MINIMUM_JAVA8
-argument_list|)
-expr_stmt|;
 name|assertJQ
 argument_list|(
 name|req
