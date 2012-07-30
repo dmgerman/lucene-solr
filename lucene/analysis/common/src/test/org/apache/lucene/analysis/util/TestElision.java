@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.analysis.fr
+DECL|package|org.apache.lucene.analysis.util
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|fr
+name|util
 package|;
 end_package
 
@@ -150,6 +150,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|fr
+operator|.
+name|FrenchAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|standard
 operator|.
 name|StandardTokenizer
@@ -252,8 +268,6 @@ init|=
 operator|new
 name|ElisionFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
 argument_list|,
 name|articles
@@ -415,9 +429,11 @@ argument_list|,
 operator|new
 name|ElisionFilter
 argument_list|(
-name|TEST_VERSION_CURRENT
-argument_list|,
 name|tokenizer
+argument_list|,
+name|FrenchAnalyzer
+operator|.
+name|DEFAULT_ARTICLES
 argument_list|)
 argument_list|)
 return|;
