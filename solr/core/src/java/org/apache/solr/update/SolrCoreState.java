@@ -107,7 +107,27 @@ specifier|abstract
 class|class
 name|SolrCoreState
 block|{
-comment|/**    * Force the creation of a new IndexWriter using the settings from the given    * SolrCore.    *     * @param core    * @throws IOException    */
+DECL|field|deleteLock
+specifier|private
+specifier|final
+name|Object
+name|deleteLock
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
+DECL|method|getUpdateLock
+specifier|public
+name|Object
+name|getUpdateLock
+parameter_list|()
+block|{
+return|return
+name|deleteLock
+return|;
+block|}
+comment|/**    * Force the creation of a new IndexWriter using the settings from the given    * SolrCore.    *     * @param core    * @param rollback close IndexWriter if false, else rollback    * @throws IOException    */
 DECL|method|newIndexWriter
 specifier|public
 specifier|abstract
@@ -116,6 +136,9 @@ name|newIndexWriter
 parameter_list|(
 name|SolrCore
 name|core
+parameter_list|,
+name|boolean
+name|rollback
 parameter_list|)
 throws|throws
 name|IOException
