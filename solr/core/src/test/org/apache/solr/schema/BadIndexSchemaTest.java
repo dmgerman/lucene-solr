@@ -222,6 +222,13 @@ argument_list|,
 literal|"can not be configured with a default value"
 argument_list|)
 expr_stmt|;
+name|doTest
+argument_list|(
+literal|"bad-schema-uniquekey-multivalued.xml"
+argument_list|,
+literal|"can not be configured to be multivalued"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testPerFieldtypeSimButNoSchemaSimFactory
 specifier|public
