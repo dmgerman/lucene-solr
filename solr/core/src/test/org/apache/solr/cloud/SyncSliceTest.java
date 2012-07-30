@@ -391,7 +391,7 @@ name|TEST_NIGHTLY
 condition|?
 literal|7
 else|:
-literal|3
+literal|4
 expr_stmt|;
 block|}
 annotation|@
@@ -972,13 +972,25 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|skipServers
+operator|.
+name|addAll
+argument_list|(
+name|getRandomOtherJetty
+argument_list|(
+name|leaderJetty
+argument_list|,
+literal|null
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// skip list should be
 comment|//System.out.println("leader:" + leaderJetty.url);
 comment|//System.out.println("skip list:" + skipServers);
-comment|// we are skipping the leader and one node
+comment|// we are skipping  one nodes
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|skipServers
 operator|.
@@ -1115,14 +1127,9 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// TODO: for now, we just check consistency -
-comment|// there will be 305 or 5 docs depending on who
-comment|// becomes the leader - eventually we want that to
-comment|// always be the 305
-comment|//checkShardConsistency(true, true);
 name|checkShardConsistency
 argument_list|(
-literal|false
+literal|true
 argument_list|,
 literal|true
 argument_list|)
