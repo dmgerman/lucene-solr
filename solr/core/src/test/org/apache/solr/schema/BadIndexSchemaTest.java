@@ -176,6 +176,13 @@ argument_list|,
 literal|"StrField (bad_type)"
 argument_list|)
 expr_stmt|;
+name|doTest
+argument_list|(
+literal|"bad-schema-analyzer-class-and-nested.xml"
+argument_list|,
+literal|"bad_type"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testBadExternalFileField
 specifier|public
