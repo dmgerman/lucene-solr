@@ -409,8 +409,6 @@ argument_list|(
 literal|null
 argument_list|,
 name|dpEnum
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -493,6 +491,19 @@ operator|+
 literal|1.0
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|dpEnum
+operator|.
+name|startOffset
+argument_list|()
+operator|<
+literal|0
+condition|)
+block|{
+return|return;
+comment|// no offsets, null snippet
+block|}
 name|termList
 operator|.
 name|add

@@ -1233,8 +1233,8 @@ parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -1400,7 +1400,7 @@ argument_list|(
 name|reuse
 argument_list|)
 argument_list|,
-name|needsOffsets
+name|flags
 argument_list|)
 decl_stmt|;
 name|setOther
@@ -1432,7 +1432,7 @@ name|liveDocs
 argument_list|,
 name|reuse
 argument_list|,
-name|needsOffsets
+name|flags
 argument_list|)
 return|;
 block|}

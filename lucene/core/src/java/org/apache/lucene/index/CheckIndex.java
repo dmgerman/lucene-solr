@@ -216,6 +216,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|FieldInfo
+operator|.
+name|IndexOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|DocIdSetIterator
@@ -3059,11 +3075,6 @@ name|postings
 init|=
 literal|null
 decl_stmt|;
-name|DocsAndPositionsEnum
-name|offsets
-init|=
-literal|null
-decl_stmt|;
 name|String
 name|lastField
 init|=
@@ -3139,7 +3150,7 @@ expr_stmt|;
 comment|// check that the field is in fieldinfos, and is indexed.
 comment|// TODO: add a separate test to check this for different reader impls
 name|FieldInfo
-name|fi
+name|fieldInfo
 init|=
 name|fieldInfos
 operator|.
@@ -3150,7 +3161,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|fi
+name|fieldInfo
 operator|==
 literal|null
 condition|)
@@ -3168,7 +3179,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|fi
+name|fieldInfo
 operator|.
 name|isIndexed
 argument_list|()
@@ -3421,21 +3432,6 @@ argument_list|(
 name|liveDocs
 argument_list|,
 name|postings
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|offsets
-operator|=
-name|termsEnum
-operator|.
-name|docsAndPositions
-argument_list|(
-name|liveDocs
-argument_list|,
-name|offsets
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -3532,42 +3528,23 @@ decl_stmt|;
 specifier|final
 name|boolean
 name|hasOffsets
+init|=
+name|fieldInfo
+operator|.
+name|getIndexOptions
+argument_list|()
+operator|.
+name|compareTo
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
+argument_list|)
+operator|>=
+literal|0
 decl_stmt|;
 if|if
 condition|(
-name|offsets
-operator|!=
-literal|null
-condition|)
-block|{
-name|docs2
-operator|=
-name|postings
-operator|=
-name|offsets
-expr_stmt|;
-name|docsAndFreqs2
-operator|=
-name|postings
-operator|=
-name|offsets
-expr_stmt|;
-name|hasOffsets
-operator|=
-literal|true
-expr_stmt|;
-name|hasPositions
-operator|=
-literal|true
-expr_stmt|;
-name|hasFreqs
-operator|=
-literal|true
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
 name|postings
 operator|!=
 literal|null
@@ -3580,10 +3557,6 @@ expr_stmt|;
 name|docsAndFreqs2
 operator|=
 name|postings
-expr_stmt|;
-name|hasOffsets
-operator|=
-literal|false
 expr_stmt|;
 name|hasPositions
 operator|=
@@ -3609,10 +3582,6 @@ expr_stmt|;
 name|docsAndFreqs2
 operator|=
 name|docsAndFreqs
-expr_stmt|;
-name|hasOffsets
-operator|=
-literal|false
 expr_stmt|;
 name|hasPositions
 operator|=
@@ -3632,10 +3601,6 @@ expr_stmt|;
 name|docsAndFreqs2
 operator|=
 literal|null
-expr_stmt|;
-name|hasOffsets
-operator|=
-literal|false
 expr_stmt|;
 name|hasPositions
 operator|=
@@ -4374,8 +4339,6 @@ argument_list|(
 name|liveDocs
 argument_list|,
 name|postings
-argument_list|,
-name|hasOffsets
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -7472,11 +7435,7 @@ condition|)
 block|{
 specifier|final
 name|boolean
-name|hasPositions
-decl_stmt|;
-specifier|final
-name|boolean
-name|hasOffsets
+name|hasProx
 decl_stmt|;
 specifier|final
 name|boolean
@@ -7485,6 +7444,7 @@ decl_stmt|;
 comment|// TODO: really we need a reflection/query
 comment|// API so we can just ask what was indexed
 comment|// instead of "probing"...
+comment|// TODO: cleanup:
 comment|// Try offsets:
 name|postings
 operator|=
@@ -7495,8 +7455,6 @@ argument_list|(
 literal|null
 argument_list|,
 name|postings
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -7506,32 +7464,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|hasOffsets
-operator|=
-literal|false
-expr_stmt|;
-comment|// Try only positions:
-name|postings
-operator|=
-name|termsEnum
-operator|.
-name|docsAndPositions
-argument_list|(
-literal|null
-argument_list|,
-name|postings
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|postings
-operator|==
-literal|null
-condition|)
-block|{
-name|hasPositions
+name|hasProx
 operator|=
 literal|false
 expr_stmt|;
@@ -7585,24 +7518,7 @@ block|}
 block|}
 else|else
 block|{
-name|hasPositions
-operator|=
-literal|true
-expr_stmt|;
-name|hasFreqs
-operator|=
-literal|true
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-name|hasOffsets
-operator|=
-literal|true
-expr_stmt|;
-comment|// NOTE: may be a lie... but we accept -1
-name|hasPositions
+name|hasProx
 operator|=
 literal|true
 expr_stmt|;
@@ -7617,9 +7533,7 @@ name|docs2
 decl_stmt|;
 if|if
 condition|(
-name|hasPositions
-operator|||
-name|hasOffsets
+name|hasProx
 condition|)
 block|{
 assert|assert
@@ -7692,8 +7606,6 @@ argument_list|(
 literal|null
 argument_list|,
 name|postingsPostings
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -7703,27 +7615,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// Term vectors were indexed w/ offsets but postings were not
-name|postingsPostings
-operator|=
-name|postingsTermsEnum
-operator|.
-name|docsAndPositions
-argument_list|(
-literal|null
-argument_list|,
-name|postingsPostings
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|postingsPostings
-operator|==
-literal|null
-condition|)
-block|{
+comment|// Term vectors were indexed w/ pos but postings were not
 name|postingsDocs
 operator|=
 name|postingsTermsEnum
@@ -7785,14 +7677,6 @@ operator|+
 name|j
 argument_list|)
 throw|;
-block|}
-block|}
-else|else
-block|{
-name|postingsHasFreq
-operator|=
-literal|true
-expr_stmt|;
 block|}
 block|}
 else|else
@@ -7958,9 +7842,7 @@ throw|;
 block|}
 if|if
 condition|(
-name|hasPositions
-operator|||
-name|hasOffsets
+name|hasProx
 condition|)
 block|{
 for|for
@@ -8045,11 +7927,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-if|if
-condition|(
-name|hasOffsets
-condition|)
-block|{
 comment|// Call the methods to at least make
 comment|// sure they don't throw exc:
 specifier|final
@@ -8071,7 +7948,7 @@ name|endOffset
 argument_list|()
 decl_stmt|;
 comment|// TODO: these are too anal...?
-comment|/*                           if (endOffset< startOffset) {                           throw new RuntimeException("vector startOffset=" + startOffset + " is> endOffset=" + endOffset);                           }                           if (startOffset< lastStartOffset) {                           throw new RuntimeException("vector startOffset=" + startOffset + " is< prior startOffset=" + lastStartOffset);                           }                           lastStartOffset = startOffset;                         */
+comment|/*                         if (endOffset< startOffset) {                         throw new RuntimeException("vector startOffset=" + startOffset + " is> endOffset=" + endOffset);                         }                         if (startOffset< lastStartOffset) {                         throw new RuntimeException("vector startOffset=" + startOffset + " is< prior startOffset=" + lastStartOffset);                         }                         lastStartOffset = startOffset;                       */
 if|if
 condition|(
 name|postingsPostings
@@ -8182,7 +8059,6 @@ operator|+
 name|postingsEndOffset
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 block|}

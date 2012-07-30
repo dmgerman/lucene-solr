@@ -713,8 +713,6 @@ name|BytesRef
 argument_list|(
 literal|"1"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|pos
@@ -761,8 +759,6 @@ name|BytesRef
 argument_list|(
 literal|"2"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|pos
@@ -1602,8 +1598,6 @@ name|BytesRef
 argument_list|(
 literal|"a"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|int

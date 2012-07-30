@@ -3636,8 +3636,8 @@ parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 block|{
 name|boolean
@@ -3657,19 +3657,6 @@ argument_list|)
 operator|>=
 literal|0
 decl_stmt|;
-if|if
-condition|(
-name|needsOffsets
-operator|&&
-operator|!
-name|hasOffsets
-condition|)
-block|{
-return|return
-literal|null
-return|;
-comment|// not available
-block|}
 if|if
 condition|(
 name|field

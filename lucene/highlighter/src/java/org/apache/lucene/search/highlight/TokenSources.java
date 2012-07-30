@@ -548,7 +548,9 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_PAYLOADS
 argument_list|)
 decl_stmt|;
 if|if
@@ -893,8 +895,6 @@ argument_list|(
 literal|null
 argument_list|,
 name|dpEnum
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -959,6 +959,24 @@ operator|.
 name|nextPosition
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dpEnum
+operator|.
+name|startOffset
+argument_list|()
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Required TermVector Offset information was not found"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|Token
 name|token

@@ -1724,8 +1724,6 @@ argument_list|(
 literal|null
 argument_list|,
 name|dpEnum
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1840,8 +1838,6 @@ argument_list|(
 literal|null
 argument_list|,
 name|dpEnum
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|doc
@@ -2235,8 +2231,6 @@ argument_list|(
 literal|null
 argument_list|,
 name|dpEnum
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2329,8 +2323,6 @@ argument_list|(
 literal|null
 argument_list|,
 name|dpEnum
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|assertTrue

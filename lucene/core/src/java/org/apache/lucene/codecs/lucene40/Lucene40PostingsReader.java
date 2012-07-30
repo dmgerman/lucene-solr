@@ -1277,8 +1277,8 @@ parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -1300,6 +1300,8 @@ argument_list|)
 operator|>=
 literal|0
 decl_stmt|;
+comment|// TODO: can we optimize if FLAG_PAYLOADS / FLAG_OFFSETS
+comment|// isn't passed?
 comment|// TODO: refactor
 if|if
 condition|(

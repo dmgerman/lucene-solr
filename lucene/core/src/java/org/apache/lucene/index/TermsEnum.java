@@ -310,6 +310,8 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|// TODO: cutover to flags / make needsFreqs "a hint" / add
+comment|// default w/ needsFreqs=true
 comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  may return null (if needsFreqs is true but freqs were    *  not indexed for this field).    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse    * @param needsFreqs true if the caller intends to call    * {@link DocsEnum#freq}.  If you pass false you must not    * call {@link DocsEnum#freq} in the returned DocsEnum. */
 DECL|method|docs
 specifier|public
@@ -329,7 +331,40 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link DocsAndPositionsEnum} for the current term.    *  Do not call this when the enum is unpositioned.    *  This method will only return null if needsOffsets is    *  true but offsets were not indexed.    *  @param liveDocs unset bits are documents that should not    *  be returned    *  @param reuse pass a prior DocsAndPositionsEnum for possible reuse    *  @param needsOffsets true if offsets are required */
+comment|/** Get {@link DocsAndPositionsEnum} for the current term.    *  Do not call this when the enum is unpositioned.  This    *  method will return null if positions were not    *  indexed.    *      *  @param liveDocs unset bits are documents that should not    *  be returned    *  @param reuse pass a prior DocsAndPositionsEnum for possible reuse    *  @see #docsAndPositions(Bits, DocsAndPositionsEnum, int) */
+DECL|method|docsAndPositions
+specifier|public
+specifier|final
+name|DocsAndPositionsEnum
+name|docsAndPositions
+parameter_list|(
+name|Bits
+name|liveDocs
+parameter_list|,
+name|DocsAndPositionsEnum
+name|reuse
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|docsAndPositions
+argument_list|(
+name|liveDocs
+argument_list|,
+name|reuse
+argument_list|,
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_OFFSETS
+operator||
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_PAYLOADS
+argument_list|)
+return|;
+block|}
+comment|/** Get {@link DocsAndPositionsEnum} for the current term,    *  with control over whether offsets and payloads are    *  required.  Some codecs may be able to optimize their    *  implementation when offsets and/or payloads are not required.    *  Do not call this when the enum is unpositioned.  This    *  will return null if positions were not indexed.     *  @param liveDocs unset bits are documents that should not    *  be returned    *  @param reuse pass a prior DocsAndPositionsEnum for possible reuse    *  @param flags specifies which optional per-position values you    *         require; see {@link DocsAndPositionsEnum#FLAG_OFFSETS} and     *         {@link DocsAndPositionsEnum#FLAG_PAYLOADS}. */
 DECL|method|docsAndPositions
 specifier|public
 specifier|abstract
@@ -342,8 +377,8 @@ parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -526,8 +561,8 @@ parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 block|{
 throw|throw

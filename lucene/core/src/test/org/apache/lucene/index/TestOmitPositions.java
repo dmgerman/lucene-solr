@@ -323,8 +323,6 @@ name|BytesRef
 argument_list|(
 literal|"test"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;

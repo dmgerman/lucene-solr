@@ -1212,7 +1212,7 @@ name|liveDocs
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 if|if
@@ -2715,7 +2715,7 @@ name|liveDocs
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 decl_stmt|;
 if|if

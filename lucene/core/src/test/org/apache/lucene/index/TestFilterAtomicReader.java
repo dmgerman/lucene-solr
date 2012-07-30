@@ -439,8 +439,8 @@ parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -470,7 +470,7 @@ operator|)
 operator|.
 name|in
 argument_list|,
-name|needsOffsets
+name|flags
 argument_list|)
 argument_list|)
 return|;
@@ -887,8 +887,6 @@ name|reader
 argument_list|)
 argument_list|,
 literal|null
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 while|while

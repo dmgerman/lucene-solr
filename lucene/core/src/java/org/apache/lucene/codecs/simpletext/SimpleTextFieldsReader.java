@@ -1419,8 +1419,8 @@ parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -1440,27 +1440,6 @@ literal|0
 condition|)
 block|{
 comment|// Positions were not indexed
-return|return
-literal|null
-return|;
-block|}
-if|if
-condition|(
-name|needsOffsets
-operator|&&
-name|indexOptions
-operator|.
-name|compareTo
-argument_list|(
-name|IndexOptions
-operator|.
-name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
-argument_list|)
-operator|<
-literal|0
-condition|)
-block|{
-comment|// Offsets were not indexed
 return|return
 literal|null
 return|;

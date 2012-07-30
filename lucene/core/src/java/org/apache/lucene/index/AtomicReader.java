@@ -465,7 +465,45 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Returns {@link DocsAndPositionsEnum} for the specified    *  field& term.  This may return null, if either the    *  field or term does not exist, or needsOffsets is    *  true but offsets were not indexed for this field. */
+comment|/** Returns {@link DocsAndPositionsEnum} for the specified    *  field& term.  This will return null if either the    *  field or term does not exist or positions weren't indexed.     *  @see #termPositionsEnum(Bits, String, BytesRef, int) */
+DECL|method|termPositionsEnum
+specifier|public
+specifier|final
+name|DocsAndPositionsEnum
+name|termPositionsEnum
+parameter_list|(
+name|Bits
+name|liveDocs
+parameter_list|,
+name|String
+name|field
+parameter_list|,
+name|BytesRef
+name|term
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|termPositionsEnum
+argument_list|(
+name|liveDocs
+argument_list|,
+name|field
+argument_list|,
+name|term
+argument_list|,
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_OFFSETS
+operator||
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_PAYLOADS
+argument_list|)
+return|;
+block|}
+comment|/** Returns {@link DocsAndPositionsEnum} for the specified    *  field& term, with control over whether offsets and payloads are    *  required.  Some codecs may be able to optimize their    *  implementation when offsets and/or payloads are not required.    *  This will return null, if either the field or term    *  does not exist or positions weren't indexed.  See    *  {@link TermsEnum#docsAndPositions(Bits,DocsAndPositionsEnum,int)}. */
 DECL|method|termPositionsEnum
 specifier|public
 specifier|final
@@ -481,8 +519,8 @@ parameter_list|,
 name|BytesRef
 name|term
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -561,7 +599,7 @@ name|liveDocs
 argument_list|,
 literal|null
 argument_list|,
-name|needsOffsets
+name|flags
 argument_list|)
 return|;
 block|}
