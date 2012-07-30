@@ -639,7 +639,7 @@ init|=
 name|getRandomSlice
 argument_list|()
 decl_stmt|;
-name|JettySolrRunner
+name|CloudJettyRunner
 name|jetty
 init|=
 name|getRandomJetty
@@ -648,8 +648,6 @@ name|sliceName
 argument_list|,
 name|aggressivelyKillLeaders
 argument_list|)
-operator|.
-name|jetty
 decl_stmt|;
 if|if
 condition|(
@@ -660,6 +658,8 @@ condition|)
 block|{
 name|expireSession
 argument_list|(
+name|jetty
+operator|.
 name|jetty
 argument_list|)
 expr_stmt|;
@@ -691,7 +691,7 @@ init|=
 name|getRandomSlice
 argument_list|()
 decl_stmt|;
-name|JettySolrRunner
+name|CloudJettyRunner
 name|jetty
 init|=
 name|getRandomJetty
@@ -700,8 +700,6 @@ name|sliceName
 argument_list|,
 name|aggressivelyKillLeaders
 argument_list|)
-operator|.
-name|jetty
 decl_stmt|;
 if|if
 condition|(
@@ -712,6 +710,8 @@ condition|)
 block|{
 name|causeConnectionLoss
 argument_list|(
+name|jetty
+operator|.
 name|jetty
 argument_list|)
 expr_stmt|;
