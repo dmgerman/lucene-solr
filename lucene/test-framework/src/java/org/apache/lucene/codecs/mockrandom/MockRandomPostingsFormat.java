@@ -628,22 +628,6 @@ name|_TestUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|pfor
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  * Randomly combines terms index impl w/ postings impls.  */
 end_comment
@@ -862,24 +846,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// TODO: others
-name|delegates
-operator|.
-name|add
-argument_list|(
-operator|new
-name|ForFactory
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|delegates
-operator|.
-name|add
-argument_list|(
-operator|new
-name|PForFactory
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|getExtension
 specifier|private
