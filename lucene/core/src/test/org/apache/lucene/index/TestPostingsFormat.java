@@ -895,12 +895,14 @@ literal|3
 operator|&&
 name|numBigTerms
 operator|<
-literal|3
+literal|2
 condition|)
 block|{
 comment|// 10% of the time make a highish freq term:
 name|numDocs
 operator|=
+name|RANDOM_MULTIPLIER
+operator|*
 name|_TestUtil
 operator|.
 name|nextInt
@@ -938,16 +940,25 @@ literal|3
 operator|&&
 name|numMediumTerms
 operator|<
-literal|10
+literal|5
 condition|)
 block|{
 comment|// 10% of the time make a medium freq term:
 comment|// TODO not high enough to test level 1 skipping:
 name|numDocs
 operator|=
-name|atLeast
+name|RANDOM_MULTIPLIER
+operator|*
+name|_TestUtil
+operator|.
+name|nextInt
 argument_list|(
+name|random
+argument_list|()
+argument_list|,
 literal|3000
+argument_list|,
+literal|6000
 argument_list|)
 expr_stmt|;
 name|numMediumTerms
@@ -960,11 +971,21 @@ operator|+
 name|term
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
 block|{
 comment|// Low freq term:
 name|numDocs
 operator|=
+name|RANDOM_MULTIPLIER
+operator|*
 name|_TestUtil
 operator|.
 name|nextInt
@@ -984,8 +1005,30 @@ operator|+
 name|term
 expr_stmt|;
 block|}
-comment|// TODO: reduce the ram usage of this test so we can safely do this
-comment|// numDocs *= RANDOM_MULTIPLIER;
+else|else
+block|{
+comment|// Very low freq term (don't multiply by RANDOM_MULTIPLIER):
+name|numDocs
+operator|=
+name|_TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|1
+argument_list|,
+literal|3
+argument_list|)
+expr_stmt|;
+name|term
+operator|=
+literal|"verylow_"
+operator|+
+name|term
+expr_stmt|;
+block|}
 name|List
 argument_list|<
 name|Posting
@@ -3167,7 +3210,6 @@ argument_list|)
 operator|<=
 literal|2
 decl_stmt|;
-empty_stmt|;
 name|DocsEnum
 name|prevDocsEnum
 init|=
