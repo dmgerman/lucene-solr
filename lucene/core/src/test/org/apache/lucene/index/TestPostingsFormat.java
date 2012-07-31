@@ -984,10 +984,8 @@ operator|+
 name|term
 expr_stmt|;
 block|}
-name|numDocs
-operator|*=
-name|RANDOM_MULTIPLIER
-expr_stmt|;
+comment|// TODO: reduce the ram usage of this test so we can safely do this
+comment|// numDocs *= RANDOM_MULTIPLIER;
 name|List
 argument_list|<
 name|Posting
