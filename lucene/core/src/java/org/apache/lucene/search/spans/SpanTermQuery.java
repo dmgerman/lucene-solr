@@ -700,7 +700,9 @@ name|acceptDocs
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_PAYLOADS
 argument_list|)
 decl_stmt|;
 if|if

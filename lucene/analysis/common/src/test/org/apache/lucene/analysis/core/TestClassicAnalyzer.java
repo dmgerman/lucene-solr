@@ -1897,8 +1897,6 @@ name|BytesRef
 argument_list|(
 literal|"another"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|assertTrue

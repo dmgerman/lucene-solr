@@ -333,6 +333,10 @@ name|reader
 operator|=
 literal|null
 expr_stmt|;
+name|writer
+operator|=
+literal|null
+expr_stmt|;
 block|}
 comment|/******************** Tests for getHighFreqTerms **********************************/
 comment|// test without specifying field (i.e. if we pass in field=null it should examine all fields)

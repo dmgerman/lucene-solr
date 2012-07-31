@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A marker interface for denoting that a factory is responsible for handling  * distributed communication of updates across a SolrCloud cluster.  *   * @see UpdateRequestProcessorChain  */
+comment|/**  * A marker interface for denoting that a factory is responsible for handling  * distributed communication of updates across a SolrCloud cluster.  *   * @see UpdateRequestProcessorChain#init  * @see UpdateRequestProcessorChain#createProcessor  */
 end_comment
 
 begin_interface

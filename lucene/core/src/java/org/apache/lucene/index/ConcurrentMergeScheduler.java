@@ -863,12 +863,19 @@ name|sync
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Wait for any running merge threads to finish */
+comment|/** Wait for any running merge threads to finish. This call is not interruptible as used by {@link #close()}. */
 DECL|method|sync
 specifier|public
 name|void
 name|sync
 parameter_list|()
+block|{
+name|boolean
+name|interrupted
+init|=
+literal|false
+decl_stmt|;
+try|try
 block|{
 while|while
 condition|(
@@ -930,19 +937,34 @@ name|InterruptedException
 name|ie
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|ThreadInterruptedException
-argument_list|(
-name|ie
-argument_list|)
-throw|;
+comment|// ignore this Exception, we will retry until all threads are dead
+name|interrupted
+operator|=
+literal|true
+expr_stmt|;
 block|}
 block|}
 else|else
 block|{
 break|break;
 block|}
+block|}
+block|}
+finally|finally
+block|{
+comment|// finally, restore interrupt status:
+if|if
+condition|(
+name|interrupted
+condition|)
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns the number of merge threads that are alive. Note that this number    * is&le; {@link #mergeThreads} size.    */

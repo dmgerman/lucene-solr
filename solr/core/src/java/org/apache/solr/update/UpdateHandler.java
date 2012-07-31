@@ -630,13 +630,16 @@ name|initLog
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Called when the Writer should be opened again - eg when replication replaces    * all of the index files.    *     * @throws IOException    */
+comment|/**    * Called when the Writer should be opened again - eg when replication replaces    * all of the index files.    *     * @param rollback IndexWriter if true else close    *     * @throws IOException    */
 DECL|method|newIndexWriter
 specifier|public
 specifier|abstract
 name|void
 name|newIndexWriter
-parameter_list|()
+parameter_list|(
+name|boolean
+name|rollback
+parameter_list|)
 throws|throws
 name|IOException
 function_decl|;

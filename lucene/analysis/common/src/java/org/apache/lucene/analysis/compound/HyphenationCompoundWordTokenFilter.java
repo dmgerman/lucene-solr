@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -318,7 +328,7 @@ name|DEFAULT_MAX_SUBWORD_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a hyphenator tree    *     * @param hyphenationFilename the filename of the XML grammar to load    * @return An object representing the hyphenation patterns    * @throws Exception    */
+comment|/**    * Create a hyphenator tree    *     * @param hyphenationFilename the filename of the XML grammar to load    * @return An object representing the hyphenation patterns    * @throws IOException    */
 DECL|method|getHyphenationTree
 specifier|public
 specifier|static
@@ -329,7 +339,7 @@ name|String
 name|hyphenationFilename
 parameter_list|)
 throws|throws
-name|Exception
+name|IOException
 block|{
 return|return
 name|getHyphenationTree
@@ -342,7 +352,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Create a hyphenator tree    *     * @param hyphenationFile the file of the XML grammar to load    * @return An object representing the hyphenation patterns    * @throws Exception    */
+comment|/**    * Create a hyphenator tree    *     * @param hyphenationFile the file of the XML grammar to load    * @return An object representing the hyphenation patterns    * @throws IOException    */
 DECL|method|getHyphenationTree
 specifier|public
 specifier|static
@@ -353,7 +363,7 @@ name|File
 name|hyphenationFile
 parameter_list|)
 throws|throws
-name|Exception
+name|IOException
 block|{
 return|return
 name|getHyphenationTree
@@ -372,7 +382,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Create a hyphenator tree    *     * @param hyphenationSource the InputSource pointing to the XML grammar    * @return An object representing the hyphenation patterns    * @throws Exception    */
+comment|/**    * Create a hyphenator tree    *     * @param hyphenationSource the InputSource pointing to the XML grammar    * @return An object representing the hyphenation patterns    * @throws IOException    */
 DECL|method|getHyphenationTree
 specifier|public
 specifier|static
@@ -383,7 +393,7 @@ name|InputSource
 name|hyphenationSource
 parameter_list|)
 throws|throws
-name|Exception
+name|IOException
 block|{
 name|HyphenationTree
 name|tree

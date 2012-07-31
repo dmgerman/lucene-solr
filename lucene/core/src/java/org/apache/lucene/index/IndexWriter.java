@@ -2579,8 +2579,7 @@ name|closeInternal
 argument_list|(
 name|waitForMerges
 argument_list|,
-operator|!
-name|hitOOM
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -2654,6 +2653,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|boolean
+name|interrupted
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 if|if
@@ -2698,6 +2702,8 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 comment|// Only allow a new merge to be triggered if we are
 comment|// going to wait for merges:
 if|if
@@ -2722,10 +2728,26 @@ argument_list|()
 expr_stmt|;
 comment|// already closed
 block|}
+block|}
+finally|finally
+block|{
+try|try
+block|{
+comment|// clean up merge scheduler in all cases, although flushing may have failed:
+name|interrupted
+operator|=
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|waitForMerges
 condition|)
+block|{
+try|try
+block|{
 comment|// Give merge scheduler last chance to run, in case
 comment|// any pending merges are waiting:
 name|mergeScheduler
@@ -2735,31 +2757,118 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|mergePolicy
-operator|.
-name|close
-argument_list|()
+block|}
+catch|catch
+parameter_list|(
+name|ThreadInterruptedException
+name|tie
+parameter_list|)
+block|{
+comment|// ignore any interruption, does not matter
+name|interrupted
+operator|=
+literal|true
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"IW"
+argument_list|,
+literal|"interrupted while waiting for final merges"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 synchronized|synchronized
 init|(
 name|this
 init|)
 block|{
+for|for
+control|(
+init|;
+condition|;
+control|)
+block|{
+try|try
+block|{
 name|finishMerges
 argument_list|(
 name|waitForMerges
+operator|&&
+operator|!
+name|interrupted
 argument_list|)
 expr_stmt|;
+break|break;
+block|}
+catch|catch
+parameter_list|(
+name|ThreadInterruptedException
+name|tie
+parameter_list|)
+block|{
+comment|// by setting the interrupted status, the
+comment|// next call to finishMerges will pass false,
+comment|// so it will not wait
+name|interrupted
+operator|=
+literal|true
+expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"IW"
+argument_list|,
+literal|"interrupted while waiting for merges to finish"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 name|stopMerges
 operator|=
 literal|true
 expr_stmt|;
 block|}
-name|mergeScheduler
+block|}
+finally|finally
+block|{
+comment|// shutdown policy, scheduler and all threads (this call is not interruptible):
+name|IOUtils
 operator|.
-name|close
-argument_list|()
+name|closeWhileHandlingException
+argument_list|(
+name|mergePolicy
+argument_list|,
+name|mergeScheduler
+argument_list|)
 expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|infoStream
@@ -2943,6 +3052,19 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// finally, restore interrupt status:
+if|if
+condition|(
+name|interrupted
+condition|)
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/** Returns the Directory used by this index. */
@@ -9709,7 +9831,7 @@ name|message
 argument_list|(
 literal|"IW"
 argument_list|,
-literal|"after commit: "
+literal|"after commitMerge: "
 operator|+
 name|segString
 argument_list|()

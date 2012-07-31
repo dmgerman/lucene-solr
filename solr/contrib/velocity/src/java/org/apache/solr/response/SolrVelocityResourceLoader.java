@@ -98,12 +98,22 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|InputStream
 import|;
 end_import
 
 begin_comment
-comment|// TODO: the name of this class seems ridiculous
+comment|/**   * Velocity resource loader wrapper around Solr resource loader   */
 end_comment
 
 begin_class
@@ -161,14 +171,33 @@ parameter_list|)
 throws|throws
 name|ResourceNotFoundException
 block|{
+try|try
+block|{
 return|return
 name|loader
 operator|.
 name|openResource
 argument_list|(
+literal|"velocity/"
+operator|+
 name|template_name
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ResourceNotFoundException
+argument_list|(
+name|ioe
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override

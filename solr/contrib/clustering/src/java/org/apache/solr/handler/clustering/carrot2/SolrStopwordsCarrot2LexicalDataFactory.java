@@ -92,9 +92,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|commongrams
 operator|.
 name|CommonGramsFilterFactory
 import|;
@@ -106,9 +108,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
 name|analysis
+operator|.
+name|core
 operator|.
 name|StopFilterFactory
 import|;

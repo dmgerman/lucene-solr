@@ -723,6 +723,27 @@ name|fname
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|fname
+operator|.
+name|startsWith
+argument_list|(
+literal|"/"
+argument_list|)
+condition|)
+block|{
+comment|// Only files relative to conf are valid
+name|fname
+operator|=
+name|fname
+operator|.
+name|substring
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 name|adminFile
 operator|=
 name|confPath

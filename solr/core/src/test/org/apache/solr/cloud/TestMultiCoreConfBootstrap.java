@@ -234,7 +234,16 @@ specifier|static
 name|void
 name|afterClass
 parameter_list|()
-block|{    }
+block|{
+name|zkServer
+operator|=
+literal|null
+expr_stmt|;
+name|zkDir
+operator|=
+literal|null
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 annotation|@

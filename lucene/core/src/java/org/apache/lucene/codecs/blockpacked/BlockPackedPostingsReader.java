@@ -341,6 +341,14 @@ import|;
 end_import
 
 begin_comment
+comment|// nocommit can we share more w/ BlockPF?  like make the
+end_comment
+
+begin_comment
+comment|// ForUtil class pluggable then pass it in...
+end_comment
+
+begin_comment
 comment|// nocommit javadocs
 end_comment
 
@@ -1473,8 +1481,8 @@ parameter_list|,
 name|DocsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsFreqs
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -1564,23 +1572,41 @@ parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit use needsPayloads here:
 if|if
 condition|(
-operator|!
-name|needsOffsets
+operator|(
+name|flags
+operator|&
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_OFFSETS
+operator|)
+operator|==
+literal|0
 operator|&&
+operator|(
 operator|!
 name|fieldInfo
 operator|.
 name|hasPayloads
 argument_list|()
+operator|||
+operator|(
+name|flags
+operator|&
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_PAYLOADS
+operator|)
+operator|==
+literal|0
+operator|)
 condition|)
 block|{
 name|BlockDocsAndPositionsEnum

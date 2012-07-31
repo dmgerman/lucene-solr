@@ -128,6 +128,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|FieldInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexableField
 import|;
 end_import
@@ -226,7 +240,7 @@ name|spatial
 operator|.
 name|util
 operator|.
-name|CachedDistanceValueSource
+name|ShapeFieldCacheDistanceValueSource
 import|;
 end_import
 
@@ -547,6 +561,17 @@ argument_list|)
 expr_stmt|;
 name|FIELD_TYPE
 operator|.
+name|setIndexOptions
+argument_list|(
+name|FieldInfo
+operator|.
+name|IndexOptions
+operator|.
+name|DOCS_ONLY
+argument_list|)
+expr_stmt|;
+name|FIELD_TYPE
+operator|.
 name|freeze
 argument_list|()
 expr_stmt|;
@@ -826,7 +851,7 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|CachedDistanceValueSource
+name|ShapeFieldCacheDistanceValueSource
 argument_list|(
 name|point
 argument_list|,

@@ -377,6 +377,8 @@ class|class
 name|StandardQueryParser
 extends|extends
 name|QueryParserHelper
+implements|implements
+name|CommonQueryParserConfiguration
 block|{
 comment|/**    * Constructs a {@link StandardQueryParser} object.    */
 DECL|method|StandardQueryParser
@@ -403,6 +405,11 @@ argument_list|,
 operator|new
 name|StandardQueryTreeBuilder
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|setEnablePositionIncrements
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 block|}

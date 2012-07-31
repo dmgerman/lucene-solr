@@ -67,6 +67,16 @@ name|DocsEnum
 extends|extends
 name|DocIdSetIterator
 block|{
+comment|/** Flag to pass to {@link TermsEnum#docs(Bits,DocsEnum,int)}    *  if you require term frequencies in the returned enum. */
+DECL|field|FLAG_FREQS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FLAG_FREQS
+init|=
+literal|0x1
+decl_stmt|;
 DECL|field|atts
 specifier|private
 name|AttributeSource

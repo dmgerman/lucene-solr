@@ -38,16 +38,6 @@ name|InputStream
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_comment
 comment|/**  * Abstraction for loading resources (streams, files, and classes).  */
 end_comment
@@ -58,6 +48,7 @@ specifier|public
 interface|interface
 name|ResourceLoader
 block|{
+comment|/**    * Opens a named resource    */
 DECL|method|openResource
 specifier|public
 name|InputStream
@@ -69,21 +60,8 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Accesses a resource by name and returns the (non comment) lines    * containing data.    *    *<p>    * A comment line is any line that starts with the character "#"    *</p>    *    * @param resource    * @return a list of non-blank non-comment lines with whitespace trimmed    * from front and back.    * @throws IOException    */
-DECL|method|getLines
-specifier|public
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|getLines
-parameter_list|(
-name|String
-name|resource
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
+comment|/**    * Creates a class of the name and expected type    */
+comment|// TODO: fix exception handling
 DECL|method|newInstance
 specifier|public
 parameter_list|<
@@ -100,10 +78,6 @@ argument_list|<
 name|T
 argument_list|>
 name|expectedType
-parameter_list|,
-name|String
-modifier|...
-name|subpackages
 parameter_list|)
 function_decl|;
 block|}

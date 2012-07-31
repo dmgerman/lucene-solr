@@ -547,8 +547,6 @@ operator|.
 name|text
 argument_list|()
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|checkSkipTo

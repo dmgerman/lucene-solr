@@ -1116,7 +1116,7 @@ name|acceptDocs
 argument_list|,
 name|reuse
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 block|}
@@ -1430,7 +1430,7 @@ name|acceptDocs
 argument_list|,
 name|reuse
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 block|}

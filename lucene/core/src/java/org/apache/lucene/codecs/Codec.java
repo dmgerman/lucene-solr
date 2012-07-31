@@ -252,6 +252,25 @@ name|availableServices
 argument_list|()
 return|;
 block|}
+comment|/**     * Reloads the codec list from the given {@link ClassLoader}.    * Changes to the codecs are visible after the method ends, all    * iterators ({@link #availableCodecs()},...) stay consistent.     *     *<p><b>NOTE:</b> Only new codecs are added, existing ones are    * never removed or replaced.    *     *<p><em>This method is expensive and should only be called for discovery    * of new codecs on the given classpath/classloader!</em>    */
+DECL|method|reloadCodecs
+specifier|public
+specifier|static
+name|void
+name|reloadCodecs
+parameter_list|(
+name|ClassLoader
+name|classloader
+parameter_list|)
+block|{
+name|loader
+operator|.
+name|reload
+argument_list|(
+name|classloader
+argument_list|)
+expr_stmt|;
+block|}
 DECL|field|defaultCodec
 specifier|private
 specifier|static

@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1090,8 +1100,8 @@ parameter_list|,
 name|DocsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsFreqs
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -1277,8 +1287,8 @@ parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -1300,6 +1310,8 @@ argument_list|)
 operator|>=
 literal|0
 decl_stmt|;
+comment|// TODO: can we optimize if FLAG_PAYLOADS / FLAG_OFFSETS
+comment|// isn't passed?
 comment|// TODO: refactor
 if|if
 condition|(
@@ -1755,6 +1767,25 @@ name|count
 operator|=
 literal|0
 expr_stmt|;
+name|freq
+operator|=
+literal|1
+expr_stmt|;
+if|if
+condition|(
+name|indexOmitsTF
+condition|)
+block|{
+name|Arrays
+operator|.
+name|fill
+argument_list|(
+name|freqs
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 name|maxBufferedDocId
 operator|=
 operator|-
@@ -1773,10 +1804,6 @@ name|int
 name|freq
 parameter_list|()
 block|{
-assert|assert
-operator|!
-name|indexOmitsTF
-assert|;
 return|return
 name|freq
 return|;
