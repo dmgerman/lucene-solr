@@ -567,8 +567,8 @@ parameter_list|,
 name|DocsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsFreqs
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -614,7 +614,7 @@ name|liveDocs
 argument_list|,
 name|reuse
 argument_list|,
-name|needsFreqs
+name|flags
 argument_list|)
 decl_stmt|;
 return|return

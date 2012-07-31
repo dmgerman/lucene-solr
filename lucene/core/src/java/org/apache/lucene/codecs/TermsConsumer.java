@@ -381,7 +381,7 @@ literal|null
 argument_list|,
 name|docsEnumIn
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 if|if
@@ -547,8 +547,6 @@ argument_list|(
 literal|null
 argument_list|,
 name|docsAndFreqsEnumIn
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 assert|assert

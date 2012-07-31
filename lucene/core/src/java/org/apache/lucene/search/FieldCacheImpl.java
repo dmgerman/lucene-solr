@@ -2184,7 +2184,7 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 while|while
@@ -2602,7 +2602,7 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 while|while
@@ -3186,7 +3186,7 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 while|while
@@ -3523,7 +3523,7 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 comment|// TODO: use bulk API
@@ -3969,7 +3969,7 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 while|while
@@ -4443,7 +4443,7 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 while|while
@@ -4918,7 +4918,7 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 while|while
@@ -5735,8 +5735,8 @@ parameter_list|,
 name|DocsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsFreqs
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -6330,7 +6330,7 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 while|while
@@ -6912,7 +6912,7 @@ literal|null
 argument_list|,
 name|docs
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 while|while

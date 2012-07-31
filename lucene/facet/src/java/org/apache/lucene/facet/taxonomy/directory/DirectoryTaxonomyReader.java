@@ -774,7 +774,7 @@ argument_list|(
 name|path
 argument_list|)
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 decl_stmt|;
 if|if

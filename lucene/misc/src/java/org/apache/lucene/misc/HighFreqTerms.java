@@ -1122,6 +1122,7 @@ continue|continue;
 block|}
 comment|// otherwise we fall-through
 block|}
+comment|// note: what should we do if field omits freqs? currently it counts as 1...
 name|DocsEnum
 name|de
 init|=
@@ -1134,8 +1135,6 @@ argument_list|,
 name|field
 argument_list|,
 name|termText
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 if|if

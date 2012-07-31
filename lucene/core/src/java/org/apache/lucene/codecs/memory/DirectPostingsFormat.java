@@ -1685,8 +1685,6 @@ argument_list|(
 literal|null
 argument_list|,
 name|docsEnum
-argument_list|,
-name|hasFreq
 argument_list|)
 expr_stmt|;
 block|}
@@ -4004,22 +4002,10 @@ parameter_list|,
 name|DocsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsFreqs
+name|int
+name|flags
 parameter_list|)
 block|{
-if|if
-condition|(
-name|needsFreqs
-operator|&&
-operator|!
-name|hasFreq
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
 comment|// TODO: implement reuse, something like Pulsing:
 comment|// it's hairy!
 if|if
@@ -6581,22 +6567,10 @@ parameter_list|,
 name|DocsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsFreqs
+name|int
+name|flags
 parameter_list|)
 block|{
-if|if
-condition|(
-name|needsFreqs
-operator|&&
-operator|!
-name|hasFreq
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
 comment|// TODO: implement reuse, something like Pulsing:
 comment|// it's hairy!
 if|if
@@ -7132,9 +7106,6 @@ name|int
 name|freq
 parameter_list|()
 block|{
-assert|assert
-literal|false
-assert|;
 return|return
 literal|1
 return|;
@@ -8617,12 +8588,26 @@ name|int
 name|freq
 parameter_list|()
 block|{
+if|if
+condition|(
+name|freqs
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|1
+return|;
+block|}
+else|else
+block|{
 return|return
 name|freqs
 index|[
 name|upto
 index|]
 return|;
+block|}
 block|}
 annotation|@
 name|Override

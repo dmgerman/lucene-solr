@@ -4007,7 +4007,9 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|,
-literal|true
+name|DocsEnum
+operator|.
+name|FLAG_FREQS
 argument_list|)
 decl_stmt|;
 name|td
@@ -8106,7 +8108,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -8140,7 +8142,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -8174,7 +8176,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -8208,7 +8210,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -8242,7 +8244,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -8276,7 +8278,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -8824,7 +8826,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 decl_stmt|;
 name|assertEquals

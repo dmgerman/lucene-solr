@@ -310,9 +310,36 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|// TODO: cutover to flags / make needsFreqs "a hint" / add
-comment|// default w/ needsFreqs=true
-comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  may return null (if needsFreqs is true but freqs were    *  not indexed for this field).    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse    * @param needsFreqs true if the caller intends to call    * {@link DocsEnum#freq}.  If you pass false you must not    * call {@link DocsEnum#freq} in the returned DocsEnum. */
+comment|/** Get {@link DocsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse */
+DECL|method|docs
+specifier|public
+specifier|final
+name|DocsEnum
+name|docs
+parameter_list|(
+name|Bits
+name|liveDocs
+parameter_list|,
+name|DocsEnum
+name|reuse
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|docs
+argument_list|(
+name|liveDocs
+argument_list|,
+name|reuse
+argument_list|,
+name|DocsEnum
+operator|.
+name|FLAG_FREQS
+argument_list|)
+return|;
+block|}
+comment|/** Get {@link DocsEnum} for the current term, with    *  control over whether freqs are required.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior DocsEnum for possible reuse    * @param flags specifies which optional per-document values    *        you require; see {@link DocsEnum#FLAG_FREQS}     * @see #docs(Bits, DocsEnum, int) */
 DECL|method|docs
 specifier|public
 specifier|abstract
@@ -325,8 +352,8 @@ parameter_list|,
 name|DocsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsFreqs
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -537,8 +564,8 @@ parameter_list|,
 name|DocsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsFreqs
+name|int
+name|flags
 parameter_list|)
 block|{
 throw|throw

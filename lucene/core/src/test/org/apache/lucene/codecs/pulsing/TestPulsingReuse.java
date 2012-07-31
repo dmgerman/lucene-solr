@@ -460,7 +460,7 @@ literal|null
 argument_list|,
 name|reuse
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 name|allEnums
@@ -738,7 +738,7 @@ literal|null
 argument_list|,
 name|reuse
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 name|allEnums

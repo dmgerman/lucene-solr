@@ -1943,7 +1943,7 @@ literal|null
 argument_list|,
 name|docsEnum
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3352,7 +3352,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 argument_list|,
 literal|false
@@ -3520,7 +3520,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 argument_list|,
 literal|false
@@ -3975,7 +3975,9 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|true
+name|DocsEnum
+operator|.
+name|FLAG_FREQS
 argument_list|)
 expr_stmt|;
 block|}
@@ -4005,7 +4007,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 block|}

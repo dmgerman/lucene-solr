@@ -1409,8 +1409,8 @@ parameter_list|,
 name|DocsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsFreqs
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -1908,6 +1908,10 @@ name|accum
 operator|=
 literal|0
 expr_stmt|;
+name|freq
+operator|=
+literal|1
+expr_stmt|;
 name|skipped
 operator|=
 literal|false
@@ -2006,10 +2010,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-assert|assert
-operator|!
-name|omitTF
-assert|;
 return|return
 name|freq
 return|;

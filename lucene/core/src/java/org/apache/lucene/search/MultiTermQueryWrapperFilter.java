@@ -440,7 +440,7 @@ name|acceptDocs
 argument_list|,
 name|docsEnum
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 name|int

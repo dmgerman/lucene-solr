@@ -350,7 +350,9 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|true
+name|DocsEnum
+operator|.
+name|FLAG_FREQS
 argument_list|)
 decl_stmt|;
 while|while
