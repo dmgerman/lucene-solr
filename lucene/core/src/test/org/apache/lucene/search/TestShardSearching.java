@@ -448,16 +448,6 @@ expr_stmt|;
 block|}
 name|start
 argument_list|(
-name|_TestUtil
-operator|.
-name|getTempDir
-argument_list|(
-literal|"TestShardSearching"
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|,
 name|numNodes
 argument_list|,
 name|runTimeSec
