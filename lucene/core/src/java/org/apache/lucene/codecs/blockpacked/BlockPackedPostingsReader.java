@@ -4947,10 +4947,10 @@ specifier|private
 name|int
 name|payloadLength
 decl_stmt|;
-DECL|field|lastEndOffset
+DECL|field|lastStartOffset
 specifier|private
 name|int
-name|lastEndOffset
+name|lastStartOffset
 decl_stmt|;
 DECL|field|startOffset
 specifier|private
@@ -6452,7 +6452,7 @@ name|payloadLength
 operator|=
 literal|0
 expr_stmt|;
-name|lastEndOffset
+name|lastStartOffset
 operator|=
 literal|0
 expr_stmt|;
@@ -6718,9 +6718,9 @@ operator|.
 name|getPayPointer
 argument_list|()
 operator|+
-literal|" lastEndOffset="
+literal|" lastStartOffset="
 operator|+
-name|lastEndOffset
+name|lastStartOffset
 argument_list|)
 expr_stmt|;
 block|}
@@ -6788,11 +6788,11 @@ operator|.
 name|getPosBufferUpto
 argument_list|()
 expr_stmt|;
-name|lastEndOffset
+name|lastStartOffset
 operator|=
 name|skipper
 operator|.
-name|getEndOffset
+name|getStartOffset
 argument_list|()
 expr_stmt|;
 name|payloadByteUpto
@@ -6945,7 +6945,7 @@ condition|(
 name|indexHasOffsets
 condition|)
 block|{
-name|lastEndOffset
+name|lastStartOffset
 operator|+=
 name|offsetStartDeltaBuffer
 index|[
@@ -7065,7 +7065,7 @@ name|indexHasOffsets
 condition|)
 block|{
 comment|// Must load offset blocks merely to sum
-comment|// up into lastEndOffset:
+comment|// up into lastStartOffset:
 name|readBlock
 argument_list|(
 name|payIn
@@ -7103,7 +7103,7 @@ name|i
 operator|++
 control|)
 block|{
-name|lastEndOffset
+name|lastStartOffset
 operator|+=
 name|offsetStartDeltaBuffer
 index|[
@@ -7158,7 +7158,7 @@ condition|(
 name|indexHasOffsets
 condition|)
 block|{
-name|lastEndOffset
+name|lastStartOffset
 operator|+=
 name|offsetStartDeltaBuffer
 index|[
@@ -7201,7 +7201,7 @@ name|payloadLength
 operator|=
 literal|0
 expr_stmt|;
-name|lastEndOffset
+name|lastStartOffset
 operator|=
 literal|0
 expr_stmt|;
@@ -7424,7 +7424,7 @@ condition|)
 block|{
 name|startOffset
 operator|=
-name|lastEndOffset
+name|lastStartOffset
 operator|+
 operator|(
 name|int
@@ -7446,9 +7446,9 @@ index|[
 name|posBufferUpto
 index|]
 expr_stmt|;
-name|lastEndOffset
+name|lastStartOffset
 operator|=
-name|endOffset
+name|startOffset
 expr_stmt|;
 block|}
 name|posBufferUpto
