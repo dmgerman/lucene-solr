@@ -5621,17 +5621,23 @@ comment|//testTerms(fieldsProducer, EnumSet.of(Option.TERM_STATE, Option.SKIPPIN
 comment|//testTerms(fieldsProducer, EnumSet.of(Option.TERM_STATE, Option.PAYLOADS, Option.PARTIAL_DOC_CONSUME, Option.PARTIAL_POS_CONSUME, Option.SKIPPING), IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
 comment|// NOTE: you can also test "weaker" index options than
 comment|// you indexed with:
+comment|//testTerms(fieldsProducer, EnumSet.allOf(Option.class), IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
 name|testTerms
 argument_list|(
 name|fieldsProducer
 argument_list|,
 name|EnumSet
 operator|.
-name|allOf
+name|complementOf
+argument_list|(
+name|EnumSet
+operator|.
+name|of
 argument_list|(
 name|Option
 operator|.
-name|class
+name|THREADS
+argument_list|)
 argument_list|)
 argument_list|,
 name|IndexOptions
