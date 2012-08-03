@@ -1695,6 +1695,13 @@ block|{
 comment|// last operation at the time of startup had the GAP flag set...
 comment|// this means we were previously doing a full index replication
 comment|// that probably didn't complete and buffering updates in the meantime.
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Looks like a previous replication recovery did not complete - skipping peer sync"
+argument_list|)
+expr_stmt|;
 name|firstTime
 operator|=
 literal|false
@@ -1960,6 +1967,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//System.out.println("Sync Recovery was not successful - trying replication");
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Starting replication recovery"
+argument_list|)
+expr_stmt|;
 name|log
 operator|.
 name|info
