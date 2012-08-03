@@ -2622,6 +2622,14 @@ name|cloudDesc
 operator|.
 name|getShardId
 argument_list|()
+operator|+
+literal|" our state says:"
+operator|+
+name|leaderUrl
+operator|+
+literal|" but zookeeper says:"
+operator|+
+name|cloudStateLeader
 argument_list|)
 throw|;
 block|}
