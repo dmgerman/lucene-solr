@@ -5446,11 +5446,12 @@ argument_list|(
 name|zkClient
 argument_list|)
 decl_stmt|;
-name|ElectionContext
-name|ec
+comment|// TODO: close Overseer
+name|Overseer
+name|overseer
 init|=
 operator|new
-name|OverseerElectionContext
+name|Overseer
 argument_list|(
 operator|new
 name|HttpShardHandlerFactory
@@ -5461,6 +5462,19 @@ argument_list|()
 argument_list|,
 literal|"/admin/cores"
 argument_list|,
+name|reader
+argument_list|)
+decl_stmt|;
+name|ElectionContext
+name|ec
+init|=
+operator|new
+name|OverseerElectionContext
+argument_list|(
+name|zkClient
+argument_list|,
+name|overseer
+argument_list|,
 name|address
 operator|.
 name|replaceAll
@@ -5469,8 +5483,6 @@ literal|"/"
 argument_list|,
 literal|"_"
 argument_list|)
-argument_list|,
-name|reader
 argument_list|)
 decl_stmt|;
 name|overseerElector
