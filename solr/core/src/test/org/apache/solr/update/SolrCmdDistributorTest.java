@@ -1121,10 +1121,22 @@ name|numFound
 argument_list|)
 expr_stmt|;
 comment|// debug stuff
-comment|//    for (SolrServer c : clients) {
-comment|//      c.optimize();
-comment|//      System.out.println(clients.get(0).request(new LukeRequest()));
-comment|//    }
+for|for
+control|(
+name|SolrServer
+name|c
+range|:
+name|clients
+control|)
+block|{
+name|c
+operator|.
+name|optimize
+argument_list|()
+expr_stmt|;
+comment|// distrib optimize is not working right yet, so call it on each client
+comment|//System.out.println(clients.get(0).request(new LukeRequest()));
+block|}
 name|int
 name|id
 init|=
