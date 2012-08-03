@@ -52,6 +52,26 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|lucene40
+operator|.
+name|Lucene40PostingsFormat
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|DocumentsWriterPerThread
@@ -615,7 +635,7 @@ return|return
 name|analyzer
 return|;
 block|}
-comment|/**    * Expert: set the interval between indexed terms. Large values cause less    * memory to be used by IndexReader, but slow random-access to terms. Small    * values cause more memory to be used by an IndexReader, and speed    * random-access to terms.    *<p>    * This parameter determines the amount of computation required per query    * term, regardless of the number of documents that contain that term. In    * particular, it is the maximum number of other terms that must be scanned    * before a term is located and its frequency and position information may be    * processed. In a large index with user-entered query terms, query processing    * time is likely to be dominated not by term lookup but rather by the    * processing of frequency and positional data. In a small index or when many    * uncommon query terms are generated (e.g., by wildcard queries) term lookup    * may become a dominant cost.    *<p>    * In particular,<code>numUniqueTerms/interval</code> terms are read into    * memory by an IndexReader, and, on average,<code>interval/2</code> terms    * must be scanned for each random term access.    *     *<p>    * Takes effect immediately, but only applies to newly flushed/merged    * segments.    *     * @see IndexWriterConfig#DEFAULT_TERM_INDEX_INTERVAL    */
+comment|/**    * Expert: set the interval between indexed terms. Large values cause less    * memory to be used by IndexReader, but slow random-access to terms. Small    * values cause more memory to be used by an IndexReader, and speed    * random-access to terms.    *<p>    * This parameter determines the amount of computation required per query    * term, regardless of the number of documents that contain that term. In    * particular, it is the maximum number of other terms that must be scanned    * before a term is located and its frequency and position information may be    * processed. In a large index with user-entered query terms, query processing    * time is likely to be dominated not by term lookup but rather by the    * processing of frequency and positional data. In a small index or when many    * uncommon query terms are generated (e.g., by wildcard queries) term lookup    * may become a dominant cost.    *<p>    * In particular,<code>numUniqueTerms/interval</code> terms are read into    * memory by an IndexReader, and, on average,<code>interval/2</code> terms    * must be scanned for each random term access.    *     *<p>    * Takes effect immediately, but only applies to newly flushed/merged    * segments.    *     *<p>    *<b>NOTE:</b> This parameter does not apply to all PostingsFormat implementations,    * including the default one in this release. It only makes sense for term indexes    * that are implemented as a fixed gap between terms. For example,     * {@link Lucene40PostingsFormat} implements the term index instead based upon how    * terms share prefixes. To configure its parameters (the minimum and maximum size    * for a block), you would instead use  {@link Lucene40PostingsFormat#Lucene40PostingsFormat(int, int)}.    * which can also be configured on a per-field basis:    *<pre class="prettyprint">    * //customize Lucene40PostingsFormat, passing minBlockSize=50, maxBlockSize=100    * final PostingsFormat tweakedPostings = new Lucene40PostingsFormat(50, 100);    * iwc.setCodec(new Lucene40Codec() {    *&#64;Override    *   public PostingsFormat getPostingsFormatForField(String field) {    *     if (field.equals("fieldWithTonsOfTerms"))    *       return tweakedPostings;    *     else    *       return super.getPostingsFormatForField(field);    *   }    * });    *</pre>    * Note that other implementations may have their own parameters, or no parameters at all.    *     * @see IndexWriterConfig#DEFAULT_TERM_INDEX_INTERVAL    */
 DECL|method|setTermIndexInterval
 specifier|public
 name|LiveIndexWriterConfig
@@ -881,7 +901,7 @@ return|return
 name|mergedSegmentWarmer
 return|;
 block|}
-comment|/**    * Sets the termsIndexDivisor passed to any readers that IndexWriter opens,    * for example when applying deletes or creating a near-real-time reader in    * {@link DirectoryReader#open(IndexWriter, boolean)}. If you pass -1, the    * terms index won't be loaded by the readers. This is only useful in advanced    * situations when you will only .next() through all terms; attempts to seek    * will hit an exception.    *     *<p>    * Takes effect immediately, but only applies to readers opened after this    * call    */
+comment|/**    * Sets the termsIndexDivisor passed to any readers that IndexWriter opens,    * for example when applying deletes or creating a near-real-time reader in    * {@link DirectoryReader#open(IndexWriter, boolean)}. If you pass -1, the    * terms index won't be loaded by the readers. This is only useful in advanced    * situations when you will only .next() through all terms; attempts to seek    * will hit an exception.    *     *<p>    * Takes effect immediately, but only applies to readers opened after this    * call    *<p>    *<b>NOTE:</b> divisor settings&gt; 1 do not apply to all PostingsFormat    * implementations, including the default one in this release. It only makes    * sense for terms indexes that can efficiently re-sample terms at load time.    */
 DECL|method|setReaderTermsIndexDivisor
 specifier|public
 name|LiveIndexWriterConfig
