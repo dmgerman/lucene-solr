@@ -880,7 +880,6 @@ return|;
 block|}
 comment|/**    * Expert: Controls when segments are flushed to disk during indexing.    * The {@link FlushPolicy} initialized during {@link IndexWriter} instantiation and once initialized    * the given instance is bound to this {@link IndexWriter} and should not be used with another writer.    * @see #setMaxBufferedDeleteTerms(int)    * @see #setMaxBufferedDocs(int)    * @see #setRAMBufferSizeMB(double)    */
 DECL|method|setFlushPolicy
-specifier|public
 name|IndexWriterConfig
 name|setFlushPolicy
 parameter_list|(
@@ -952,7 +951,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|getFlushPolicy
-specifier|public
 name|FlushPolicy
 name|getFlushPolicy
 parameter_list|()

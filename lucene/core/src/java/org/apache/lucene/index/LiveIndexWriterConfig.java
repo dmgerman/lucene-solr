@@ -1102,7 +1102,6 @@ return|;
 block|}
 comment|/**    * @see IndexWriterConfig#setFlushPolicy(FlushPolicy)    */
 DECL|method|getFlushPolicy
-specifier|public
 name|FlushPolicy
 name|getFlushPolicy
 parameter_list|()
@@ -1536,24 +1535,6 @@ operator|.
 name|append
 argument_list|(
 name|getReaderPooling
-argument_list|()
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"\n"
-argument_list|)
-expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"flushPolicy="
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|getFlushPolicy
 argument_list|()
 argument_list|)
 operator|.
