@@ -182,6 +182,26 @@ name|KeeperException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Immutable state of the cloud. Normally you can get the state by using  * {@link ZkStateReader#getCloudState()}.  */
 end_comment
@@ -196,6 +216,21 @@ name|JSONWriter
 operator|.
 name|Writable
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|CloudState
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|field|collectionStates
 specifier|private
 specifier|final
@@ -593,6 +628,8 @@ argument_list|,
 name|props
 argument_list|)
 expr_stmt|;
+break|break;
+comment|// we found the leader for this shard
 block|}
 block|}
 block|}
