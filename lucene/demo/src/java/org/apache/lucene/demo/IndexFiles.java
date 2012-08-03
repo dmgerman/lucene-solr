@@ -891,12 +891,6 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 argument_list|)
-argument_list|,
-name|Field
-operator|.
-name|Store
-operator|.
-name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

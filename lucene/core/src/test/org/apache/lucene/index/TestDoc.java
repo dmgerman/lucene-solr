@@ -1052,12 +1052,6 @@ argument_list|(
 literal|"contents"
 argument_list|,
 name|is
-argument_list|,
-name|Field
-operator|.
-name|Store
-operator|.
-name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;

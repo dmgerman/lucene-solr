@@ -1544,12 +1544,6 @@ name|StringReader
 argument_list|(
 literal|"a a b c d e a f g h i j a b k k"
 argument_list|)
-argument_list|,
-name|Field
-operator|.
-name|Store
-operator|.
-name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
