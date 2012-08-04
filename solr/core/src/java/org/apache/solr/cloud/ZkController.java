@@ -260,7 +260,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -1483,16 +1483,16 @@ literal|null
 return|;
 block|}
 comment|/**    * @return information about the cluster from ZooKeeper    */
-DECL|method|getCloudState
+DECL|method|getClusterState
 specifier|public
-name|CloudState
-name|getCloudState
+name|ClusterState
+name|getClusterState
 parameter_list|()
 block|{
 return|return
 name|zkStateReader
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 return|;
 block|}
@@ -2625,7 +2625,7 @@ argument_list|()
 decl_stmt|;
 comment|// now wait until our currently cloud state contains the latest leader
 name|String
-name|cloudStateLeader
+name|clusterStateLeader
 init|=
 name|zkStateReader
 operator|.
@@ -2650,7 +2650,7 @@ name|leaderUrl
 operator|.
 name|equals
 argument_list|(
-name|cloudStateLeader
+name|clusterStateLeader
 argument_list|)
 condition|)
 block|{
@@ -2678,7 +2678,7 @@ argument_list|()
 operator|+
 literal|" our state says:"
 operator|+
-name|cloudStateLeader
+name|clusterStateLeader
 operator|+
 literal|" but zookeeper says:"
 operator|+
@@ -2696,7 +2696,7 @@ expr_stmt|;
 name|tries
 operator|++
 expr_stmt|;
-name|cloudStateLeader
+name|clusterStateLeader
 operator|=
 name|zkStateReader
 operator|.
@@ -2952,7 +2952,7 @@ block|}
 comment|// make sure we have an update cluster state right away
 name|zkStateReader
 operator|.
-name|updateCloudState
+name|updateClusterState
 argument_list|(
 literal|true
 argument_list|)
@@ -3543,7 +3543,7 @@ name|CoreDescriptor
 name|desc
 parameter_list|,
 specifier|final
-name|CloudState
+name|ClusterState
 name|state
 parameter_list|,
 specifier|final
@@ -4575,7 +4575,7 @@ name|shardId
 init|=
 name|zkStateReader
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|getShardId
@@ -5070,7 +5070,7 @@ name|cd
 argument_list|,
 name|zkStateReader
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 argument_list|,
 name|shardZkNodeName

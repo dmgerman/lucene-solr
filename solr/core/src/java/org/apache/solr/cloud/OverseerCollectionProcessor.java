@@ -108,7 +108,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -775,7 +775,7 @@ name|createCollection
 argument_list|(
 name|zkStateReader
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 argument_list|,
 name|message
@@ -832,7 +832,7 @@ name|collectionCmd
 argument_list|(
 name|zkStateReader
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 argument_list|,
 name|message
@@ -880,7 +880,7 @@ name|collectionCmd
 argument_list|(
 name|zkStateReader
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 argument_list|,
 name|message
@@ -899,8 +899,8 @@ specifier|private
 name|boolean
 name|createCollection
 parameter_list|(
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 parameter_list|,
 name|ZkNodeProps
 name|message
@@ -1066,7 +1066,7 @@ name|String
 argument_list|>
 name|nodes
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getLiveNodes
 argument_list|()
@@ -1372,8 +1372,8 @@ specifier|private
 name|boolean
 name|collectionCmd
 parameter_list|(
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 parameter_list|,
 name|ZkNodeProps
 name|message
@@ -1409,7 +1409,7 @@ name|Slice
 argument_list|>
 name|slices
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getCollectionStates
 argument_list|()
@@ -1523,7 +1523,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|cloudState
+name|clusterState
 operator|.
 name|liveNodesContain
 argument_list|(

@@ -96,7 +96,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -287,10 +287,10 @@ end_import
 begin_class
 annotation|@
 name|Slow
-DECL|class|CloudStateUpdateTest
+DECL|class|ClusterStateUpdateTest
 specifier|public
 class|class
-name|CloudStateUpdateTest
+name|ClusterStateUpdateTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
@@ -631,7 +631,7 @@ name|setProperty
 argument_list|(
 literal|"solr.data.dir"
 argument_list|,
-name|CloudStateUpdateTest
+name|ClusterStateUpdateTest
 operator|.
 name|this
 operator|.
@@ -678,7 +678,7 @@ name|setProperty
 argument_list|(
 literal|"solr.data.dir"
 argument_list|,
-name|CloudStateUpdateTest
+name|ClusterStateUpdateTest
 operator|.
 name|this
 operator|.
@@ -728,7 +728,7 @@ name|setProperty
 argument_list|(
 literal|"solr.data.dir"
 argument_list|,
-name|CloudStateUpdateTest
+name|ClusterStateUpdateTest
 operator|.
 name|this
 operator|.
@@ -946,8 +946,8 @@ argument_list|()
 decl_stmt|;
 comment|// slight pause - TODO: takes an oddly long amount of time to schedule tasks
 comment|// with almost no delay ...
-name|CloudState
-name|cloudState2
+name|ClusterState
+name|clusterState2
 init|=
 literal|null
 decl_stmt|;
@@ -976,16 +976,16 @@ name|i
 operator|--
 control|)
 block|{
-name|cloudState2
+name|clusterState2
 operator|=
 name|zkController2
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 expr_stmt|;
 name|slices
 operator|=
-name|cloudState2
+name|clusterState2
 operator|.
 name|getSlices
 argument_list|(
@@ -1146,7 +1146,7 @@ name|String
 argument_list|>
 name|liveNodes
 init|=
-name|cloudState2
+name|clusterState2
 operator|.
 name|getLiveNodes
 argument_list|()
@@ -1195,7 +1195,7 @@ if|if
 condition|(
 name|zkController2
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|getLiveNodes
@@ -1223,7 +1223,7 @@ literal|2
 argument_list|,
 name|zkController2
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|getLiveNodes
@@ -1286,7 +1286,7 @@ operator|.
 name|getZkController
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|liveNodesContain
@@ -1318,7 +1318,7 @@ operator|.
 name|getZkController
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|liveNodesContain
@@ -1333,7 +1333,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// core.close();  // this core is managed by container1 now
+comment|// core.close();  // don't close - this core is managed by container1 now
 block|}
 annotation|@
 name|Override

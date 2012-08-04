@@ -203,14 +203,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Immutable state of the cloud. Normally you can get the state by using  * {@link ZkStateReader#getCloudState()}.  */
+comment|/**  * Immutable state of the cloud. Normally you can get the state by using  * {@link ZkStateReader#getClusterState()}.  */
 end_comment
 
 begin_class
-DECL|class|CloudState
+DECL|class|ClusterState
 specifier|public
 class|class
-name|CloudState
+name|ClusterState
 implements|implements
 name|JSONWriter
 operator|.
@@ -226,7 +226,7 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|CloudState
+name|ClusterState
 operator|.
 name|class
 argument_list|)
@@ -317,9 +317,9 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
-DECL|method|CloudState
+DECL|method|ClusterState
 specifier|public
-name|CloudState
+name|ClusterState
 parameter_list|(
 name|Set
 argument_list|<
@@ -1331,11 +1331,11 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Create CloudState by reading the current state from zookeeper.  	 */
+comment|/** 	 * Create ClusterState by reading the current state from zookeeper.  	 */
 DECL|method|load
 specifier|public
 specifier|static
-name|CloudState
+name|ClusterState
 name|load
 parameter_list|(
 name|SolrZkClient
@@ -1380,11 +1380,11 @@ name|liveNodes
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Create CloudState from json string that is typically stored in zookeeper. 	 */
+comment|/** 	 * Create ClusterState from json string that is typically stored in zookeeper. 	 */
 DECL|method|load
 specifier|public
 specifier|static
-name|CloudState
+name|ClusterState
 name|load
 parameter_list|(
 name|byte
@@ -1413,7 +1413,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|CloudState
+name|ClusterState
 argument_list|(
 name|liveNodes
 argument_list|,
@@ -1659,7 +1659,7 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|CloudState
+name|ClusterState
 argument_list|(
 name|liveNodes
 argument_list|,

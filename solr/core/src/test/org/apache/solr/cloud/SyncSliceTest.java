@@ -859,7 +859,7 @@ expr_stmt|;
 comment|// we are careful to make sure the downed node is no longer in the state,
 comment|// because on some systems (especially freebsd w/ blackhole enabled), trying
 comment|// to talk to a downed node causes grief
-name|waitToSeeDownInCloudState
+name|waitToSeeDownInClusterState
 argument_list|(
 name|leaderJetty
 argument_list|,
@@ -1108,7 +1108,7 @@ argument_list|(
 name|leaderJetty
 argument_list|)
 expr_stmt|;
-name|waitToSeeDownInCloudState
+name|waitToSeeDownInClusterState
 argument_list|(
 name|leaderJetty
 argument_list|,
@@ -1270,10 +1270,10 @@ return|return
 name|skipServers
 return|;
 block|}
-DECL|method|waitToSeeDownInCloudState
+DECL|method|waitToSeeDownInClusterState
 specifier|private
 name|void
-name|waitToSeeDownInCloudState
+name|waitToSeeDownInClusterState
 parameter_list|(
 name|CloudJettyRunner
 name|leaderJetty

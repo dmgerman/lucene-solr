@@ -264,7 +264,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -1185,7 +1185,7 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|getLiveNodes
@@ -1258,7 +1258,7 @@ name|numNodes
 operator|=
 name|zkController
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|getLiveNodes
@@ -1282,7 +1282,7 @@ name|collection
 argument_list|,
 name|zkController
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1648,14 +1648,14 @@ parameter_list|,
 name|String
 name|collection
 parameter_list|,
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 parameter_list|)
 block|{
 comment|// ranges should be part of the cloud state and eventually gotten from zk
 comment|// get the shard names
 return|return
-name|cloudState
+name|clusterState
 operator|.
 name|getShard
 argument_list|(
@@ -3807,7 +3807,7 @@ name|slices
 init|=
 name|zkController
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|getSlices
@@ -3838,7 +3838,7 @@ literal|" in "
 operator|+
 name|zkController
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|getCollections
@@ -5313,8 +5313,8 @@ name|String
 name|shardZkNodeName
 parameter_list|)
 block|{
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|req
 operator|.
@@ -5330,7 +5330,7 @@ operator|.
 name|getZkController
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|List
@@ -5354,7 +5354,7 @@ name|Slice
 argument_list|>
 name|slices
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getSlices
 argument_list|(
@@ -5378,7 +5378,7 @@ name|BAD_REQUEST
 argument_list|,
 literal|"Could not find collection in zk: "
 operator|+
-name|cloudState
+name|clusterState
 argument_list|)
 throw|;
 block|}
@@ -5456,7 +5456,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|cloudState
+name|clusterState
 operator|.
 name|liveNodesContain
 argument_list|(

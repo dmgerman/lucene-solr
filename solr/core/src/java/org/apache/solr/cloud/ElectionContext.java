@@ -74,7 +74,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -183,22 +183,6 @@ operator|.
 name|core
 operator|.
 name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|handler
-operator|.
-name|component
-operator|.
-name|ShardHandler
 import|;
 end_import
 
@@ -1110,15 +1094,15 @@ name|ZkNodeProps
 name|leaderProps
 parameter_list|)
 block|{
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|zkController
 operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|Map
@@ -1129,7 +1113,7 @@ name|Slice
 argument_list|>
 name|slices
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getSlices
 argument_list|(
@@ -1237,7 +1221,7 @@ operator|.
 name|ACTIVE
 argument_list|)
 operator|&&
-name|cloudState
+name|clusterState
 operator|.
 name|liveNodesContain
 argument_list|(
@@ -1274,7 +1258,7 @@ name|ACTIVE
 argument_list|)
 operator|)
 operator|&&
-name|cloudState
+name|clusterState
 operator|.
 name|liveNodesContain
 argument_list|(
@@ -1334,15 +1318,15 @@ name|boolean
 name|anyoneElseActive
 parameter_list|()
 block|{
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|zkController
 operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|Map
@@ -1353,7 +1337,7 @@ name|Slice
 argument_list|>
 name|slices
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getSlices
 argument_list|(
@@ -1431,7 +1415,7 @@ name|ACTIVE
 argument_list|)
 operator|)
 operator|&&
-name|cloudState
+name|clusterState
 operator|.
 name|liveNodesContain
 argument_list|(
