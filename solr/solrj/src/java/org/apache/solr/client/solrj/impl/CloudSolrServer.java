@@ -450,6 +450,22 @@ operator|new
 name|Random
 argument_list|()
 decl_stmt|;
+comment|// since the state shouldn't change often, should be very cheap reads
+DECL|field|urlList
+specifier|private
+specifier|volatile
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|urlList
+decl_stmt|;
+DECL|field|lastClusterStateHashCode
+specifier|private
+specifier|volatile
+name|int
+name|lastClusterStateHashCode
+decl_stmt|;
 comment|/**    * @param zkHost The client endpoint of the zookeeper quorum containing the cloud state,    * in the form HOST:PORT.    */
 DECL|method|CloudSolrServer
 specifier|public
@@ -901,6 +917,18 @@ decl_stmt|;
 comment|// IDEA: have versions on various things... like a global clusterState version
 comment|// or shardAddressVersion (which only changes when the shards change)
 comment|// to allow caching.
+if|if
+condition|(
+name|clusterState
+operator|.
+name|hashCode
+argument_list|()
+operator|!=
+name|this
+operator|.
+name|lastClusterStateHashCode
+condition|)
+block|{
 comment|// build a map of unique nodes
 comment|// TODO: allow filtering by group, role, etc
 name|Map
@@ -1033,6 +1061,22 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+name|this
+operator|.
+name|urlList
+operator|=
+name|urlList
+expr_stmt|;
+name|this
+operator|.
+name|lastClusterStateHashCode
+operator|=
+name|clusterState
+operator|.
+name|hashCode
+argument_list|()
+expr_stmt|;
 block|}
 name|Collections
 operator|.
