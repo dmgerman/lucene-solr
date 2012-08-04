@@ -116,6 +116,38 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
+name|PositionIncrementAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|PositionLengthAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
 name|TypeAttribute
 import|;
 end_import
@@ -135,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Forms bigrams of CJK terms that are generated from StandardTokenizer  * or ICUTokenizer.  *<p>  * CJK types are set by these tokenizers, but you can also use   * {@link #CJKBigramFilter(TokenStream, int)} to explicitly control which  * of the CJK scripts are turned into bigrams.  *<p>  * In all cases, all non-CJK input is passed thru unmodified.  */
+comment|/**  * Forms bigrams of CJK terms that are generated from StandardTokenizer  * or ICUTokenizer.  *<p>  * CJK types are set by these tokenizers, but you can also use   * {@link #CJKBigramFilter(TokenStream, int)} to explicitly control which  * of the CJK scripts are turned into bigrams.  *<p>  * By default, when a CJK character has no adjacent characters to form  * a bigram, it is output in unigram form. If you want to always output  * both unigrams and bigrams, set the<code>outputUnigrams</code>  * flag in {@link CJKBigramFilter#CJKBigramFilter(TokenStream, int, boolean)}.  * This can be used for a combined unigram+bigram approach.  *<p>  * In all cases, all non-CJK input is passed thru unmodified.  */
 end_comment
 
 begin_class
@@ -310,6 +342,19 @@ specifier|final
 name|Object
 name|doHangul
 decl_stmt|;
+comment|// true if we should output unigram tokens always
+DECL|field|outputUnigrams
+specifier|private
+specifier|final
+name|boolean
+name|outputUnigrams
+decl_stmt|;
+DECL|field|ngramState
+specifier|private
+name|boolean
+name|ngramState
+decl_stmt|;
+comment|// false = output unigram, true = output bigram
 DECL|field|termAtt
 specifier|private
 specifier|final
@@ -345,6 +390,32 @@ init|=
 name|addAttribute
 argument_list|(
 name|OffsetAttribute
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+DECL|field|posIncAtt
+specifier|private
+specifier|final
+name|PositionIncrementAttribute
+name|posIncAtt
+init|=
+name|addAttribute
+argument_list|(
+name|PositionIncrementAttribute
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+DECL|field|posLengthAtt
+specifier|private
+specifier|final
+name|PositionLengthAttribute
+name|posLengthAtt
+init|=
+name|addAttribute
+argument_list|(
+name|PositionLengthAttribute
 operator|.
 name|class
 argument_list|)
@@ -403,7 +474,7 @@ specifier|private
 name|boolean
 name|exhausted
 decl_stmt|;
-comment|/**     * Calls {@link CJKBigramFilter#CJKBigramFilter(TokenStream, int)    *       CJKBigramFilter(HAN | HIRAGANA | KATAKANA | HANGUL)}    */
+comment|/**     * Calls {@link CJKBigramFilter#CJKBigramFilter(TokenStream, int)    *       CJKBigramFilter(in, HAN | HIRAGANA | KATAKANA | HANGUL)}    */
 DECL|method|CJKBigramFilter
 specifier|public
 name|CJKBigramFilter
@@ -426,7 +497,7 @@ name|HANGUL
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Create a new CJKBigramFilter, specifying which writing systems should be bigrammed.    * @param flags OR'ed set from {@link CJKBigramFilter#HAN}, {@link CJKBigramFilter#HIRAGANA},     *        {@link CJKBigramFilter#KATAKANA}, {@link CJKBigramFilter#HANGUL}    */
+comment|/**     * Calls {@link CJKBigramFilter#CJKBigramFilter(TokenStream, int, boolean)    *       CJKBigramFilter(in, flags, false)}    */
 DECL|method|CJKBigramFilter
 specifier|public
 name|CJKBigramFilter
@@ -436,6 +507,31 @@ name|in
 parameter_list|,
 name|int
 name|flags
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|in
+argument_list|,
+name|flags
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Create a new CJKBigramFilter, specifying which writing systems should be bigrammed,    * and whether or not unigrams should also be output.    * @param flags OR'ed set from {@link CJKBigramFilter#HAN}, {@link CJKBigramFilter#HIRAGANA},     *        {@link CJKBigramFilter#KATAKANA}, {@link CJKBigramFilter#HANGUL}    * @param outputUnigrams true if unigrams for the selected writing systems should also be output.    *        when this is false, this is only done when there are no adjacent characters to form    *        a bigram.    */
+DECL|method|CJKBigramFilter
+specifier|public
+name|CJKBigramFilter
+parameter_list|(
+name|TokenStream
+name|in
+parameter_list|,
+name|int
+name|flags
+parameter_list|,
+name|boolean
+name|outputUnigrams
 parameter_list|)
 block|{
 name|super
@@ -499,6 +595,12 @@ name|NO
 else|:
 name|HANGUL_TYPE
 expr_stmt|;
+name|this
+operator|.
+name|outputUnigrams
+operator|=
+name|outputUnigrams
+expr_stmt|;
 block|}
 comment|/*    * much of this complexity revolves around handling the special case of a     * "lone cjk character" where cjktokenizer would output a unigram. this     * is also the only time we ever have to captureState.    */
 annotation|@
@@ -524,9 +626,46 @@ condition|)
 block|{
 comment|// case 1: we have multiple remaining codepoints buffered,
 comment|// so we can emit a bigram here.
+if|if
+condition|(
+name|outputUnigrams
+condition|)
+block|{
+comment|// when also outputting unigrams, we output the unigram first,
+comment|// then rewind back to revisit the bigram.
+comment|// so an input of ABC is A + (rewind)AB + B + (rewind)BC + C
+comment|// the logic in hasBufferedUnigram ensures we output the C,
+comment|// even though it did actually have adjacent CJK characters.
+if|if
+condition|(
+name|ngramState
+condition|)
+block|{
 name|flushBigram
 argument_list|()
 expr_stmt|;
+block|}
+else|else
+block|{
+name|flushUnigram
+argument_list|()
+expr_stmt|;
+name|index
+operator|--
+expr_stmt|;
+block|}
+name|ngramState
+operator|=
+operator|!
+name|ngramState
+expr_stmt|;
+block|}
+else|else
+block|{
+name|flushBigram
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -1120,6 +1259,27 @@ argument_list|(
 name|DOUBLE_TYPE
 argument_list|)
 expr_stmt|;
+comment|// when outputting unigrams, all bigrams are synonyms that span two unigrams
+if|if
+condition|(
+name|outputUnigrams
+condition|)
+block|{
+name|posIncAtt
+operator|.
+name|setPositionIncrement
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|posLengthAtt
+operator|.
+name|setPositionLength
+argument_list|(
+literal|2
+argument_list|)
+expr_stmt|;
+block|}
 name|index
 operator|++
 expr_stmt|;
@@ -1218,6 +1378,23 @@ name|boolean
 name|hasBufferedUnigram
 parameter_list|()
 block|{
+if|if
+condition|(
+name|outputUnigrams
+condition|)
+block|{
+comment|// when outputting unigrams always
+return|return
+name|bufferLen
+operator|-
+name|index
+operator|==
+literal|1
+return|;
+block|}
+else|else
+block|{
+comment|// otherwise its only when we have a lone CJK character
 return|return
 name|bufferLen
 operator|==
@@ -1227,6 +1404,7 @@ name|index
 operator|==
 literal|0
 return|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -1260,6 +1438,10 @@ operator|=
 literal|null
 expr_stmt|;
 name|exhausted
+operator|=
+literal|false
+expr_stmt|;
+name|ngramState
 operator|=
 literal|false
 expr_stmt|;
