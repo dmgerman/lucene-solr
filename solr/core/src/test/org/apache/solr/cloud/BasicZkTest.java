@@ -762,7 +762,7 @@ name|assertTrue
 argument_list|(
 name|zkController
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|getLiveNodes
@@ -773,7 +773,7 @@ argument_list|()
 argument_list|,
 name|zkController
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|liveNodesContain

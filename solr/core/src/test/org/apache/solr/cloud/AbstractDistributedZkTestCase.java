@@ -106,7 +106,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -849,17 +849,17 @@ literal|false
 decl_stmt|;
 name|zkStateReader
 operator|.
-name|updateCloudState
+name|updateClusterState
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|zkStateReader
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|Map
@@ -870,7 +870,7 @@ name|Slice
 argument_list|>
 name|slices
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getSlices
 argument_list|(
@@ -955,7 +955,7 @@ argument_list|)
 operator|+
 literal|" live:"
 operator|+
-name|cloudState
+name|clusterState
 operator|.
 name|liveNodesContain
 argument_list|(
@@ -1019,7 +1019,7 @@ name|DOWN
 argument_list|)
 operator|)
 operator|&&
-name|cloudState
+name|clusterState
 operator|.
 name|liveNodesContain
 argument_list|(
@@ -1143,17 +1143,17 @@ name|InterruptedException
 block|{
 name|zkStateReader
 operator|.
-name|updateCloudState
+name|updateClusterState
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|zkStateReader
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|Map
@@ -1164,7 +1164,7 @@ name|Slice
 argument_list|>
 name|slices
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getSlices
 argument_list|(

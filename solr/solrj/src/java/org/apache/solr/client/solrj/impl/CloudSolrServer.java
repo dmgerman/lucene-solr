@@ -228,7 +228,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -748,12 +748,12 @@ name|connect
 argument_list|()
 expr_stmt|;
 comment|// TODO: if you can hash here, you could favor the shard leader
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|zkStateReader
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|SolrParams
@@ -878,7 +878,7 @@ name|coll
 argument_list|,
 name|slices
 argument_list|,
-name|cloudState
+name|clusterState
 operator|.
 name|getSlices
 argument_list|(
@@ -893,12 +893,12 @@ name|String
 argument_list|>
 name|liveNodes
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getLiveNodes
 argument_list|()
 decl_stmt|;
-comment|// IDEA: have versions on various things... like a global cloudState version
+comment|// IDEA: have versions on various things... like a global clusterState version
 comment|// or shardAddressVersion (which only changes when the shards change)
 comment|// to allow caching.
 comment|// build a map of unique nodes

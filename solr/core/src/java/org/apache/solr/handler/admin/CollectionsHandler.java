@@ -154,7 +154,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -792,21 +792,21 @@ argument_list|(
 literal|"shard"
 argument_list|)
 decl_stmt|;
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|coreContainer
 operator|.
 name|getZkController
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|ZkNodeProps
 name|leaderProps
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getLeader
 argument_list|(

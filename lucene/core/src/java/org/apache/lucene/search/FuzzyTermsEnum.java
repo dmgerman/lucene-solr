@@ -676,18 +676,9 @@ name|this
 operator|.
 name|minSimilarity
 operator|=
-literal|1
-operator|-
-operator|(
-name|minSimilarity
-operator|+
-literal|1
-operator|)
-operator|/
-name|this
-operator|.
-name|termLength
+literal|0
 expr_stmt|;
+comment|// just driven by number of edits
 name|maxEdits
 operator|=
 operator|(

@@ -352,7 +352,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -1514,8 +1514,8 @@ condition|)
 block|{
 comment|// since the cost of grabbing cloud state is still up in the air, we grab it only
 comment|// if we need it.
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 literal|null
 decl_stmt|;
@@ -1696,11 +1696,11 @@ literal|null
 condition|)
 block|{
 comment|// we weren't provided with a list of slices to query, so find the list that will cover the complete index
-name|cloudState
+name|clusterState
 operator|=
 name|zkController
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 expr_stmt|;
 comment|// This can be more efficient... we only record the name, even though we
@@ -1793,7 +1793,7 @@ name|collection
 argument_list|,
 name|slices
 argument_list|,
-name|cloudState
+name|clusterState
 operator|.
 name|getSlices
 argument_list|(
@@ -1809,7 +1809,7 @@ comment|// If no collections were specified, default to the collection for
 comment|// this core.
 name|slices
 operator|=
-name|cloudState
+name|clusterState
 operator|.
 name|getSlices
 argument_list|(
@@ -1927,21 +1927,21 @@ condition|)
 block|{
 if|if
 condition|(
-name|cloudState
+name|clusterState
 operator|==
 literal|null
 condition|)
 block|{
-name|cloudState
+name|clusterState
 operator|=
 name|zkController
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 expr_stmt|;
 name|slices
 operator|=
-name|cloudState
+name|clusterState
 operator|.
 name|getSlices
 argument_list|(
@@ -2013,7 +2013,7 @@ name|String
 argument_list|>
 name|liveNodes
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getLiveNodes
 argument_list|()

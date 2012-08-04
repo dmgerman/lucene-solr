@@ -134,6 +134,10 @@ literal|"command"
 argument_list|,
 literal|"full-import"
 argument_list|,
+literal|"config"
+argument_list|,
+literal|"data-config-end-to-end.xml"
+argument_list|,
 literal|"clean"
 argument_list|,
 literal|"true"

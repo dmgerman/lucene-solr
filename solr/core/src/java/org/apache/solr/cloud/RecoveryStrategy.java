@@ -1695,6 +1695,13 @@ block|{
 comment|// last operation at the time of startup had the GAP flag set...
 comment|// this means we were previously doing a full index replication
 comment|// that probably didn't complete and buffering updates in the meantime.
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Looks like a previous replication recovery did not complete - skipping peer sync"
+argument_list|)
+expr_stmt|;
 name|firstTime
 operator|=
 literal|false
@@ -1905,7 +1912,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Sync Recovery was successful - registering as Active"
+literal|"PeerSync Recovery was successful - registering as Active"
 argument_list|)
 expr_stmt|;
 comment|// System.out
@@ -1955,11 +1962,18 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Sync Recovery was not successful - trying replication"
+literal|"PeerSync Recovery was not successful - trying replication"
 argument_list|)
 expr_stmt|;
 block|}
 comment|//System.out.println("Sync Recovery was not successful - trying replication");
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Starting Replication Recovery"
+argument_list|)
+expr_stmt|;
 name|log
 operator|.
 name|info
@@ -2005,7 +2019,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Recovery was successful - registering as Active"
+literal|"Replication Recovery was successful - registering as Active"
 argument_list|)
 expr_stmt|;
 comment|// if there are pending recovery requests, don't advert as active

@@ -80,7 +80,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -143,10 +143,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|CloudStateTest
+DECL|class|ClusterStateTest
 specifier|public
 class|class
-name|CloudStateTest
+name|ClusterStateTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
@@ -359,11 +359,11 @@ argument_list|,
 name|slices
 argument_list|)
 expr_stmt|;
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 operator|new
-name|CloudState
+name|ClusterState
 argument_list|(
 name|liveNodes
 argument_list|,
@@ -378,13 +378,13 @@ name|ZkStateReader
 operator|.
 name|toJSON
 argument_list|(
-name|cloudState
+name|clusterState
 argument_list|)
 decl_stmt|;
-name|CloudState
-name|loadedCloudState
+name|ClusterState
+name|loadedClusterState
 init|=
-name|CloudState
+name|ClusterState
 operator|.
 name|load
 argument_list|(
@@ -399,7 +399,7 @@ literal|"Provided liveNodes not used properly"
 argument_list|,
 literal|2
 argument_list|,
-name|loadedCloudState
+name|loadedClusterState
 operator|.
 name|getLiveNodes
 argument_list|()
@@ -414,7 +414,7 @@ literal|"No collections found"
 argument_list|,
 literal|2
 argument_list|,
-name|loadedCloudState
+name|loadedClusterState
 operator|.
 name|getCollections
 argument_list|()
@@ -434,7 +434,7 @@ argument_list|(
 literal|"prop1"
 argument_list|)
 argument_list|,
-name|loadedCloudState
+name|loadedClusterState
 operator|.
 name|getSlice
 argument_list|(
@@ -468,7 +468,7 @@ argument_list|(
 literal|"prop2"
 argument_list|)
 argument_list|,
-name|loadedCloudState
+name|loadedClusterState
 operator|.
 name|getSlice
 argument_list|(
@@ -491,9 +491,9 @@ literal|"prop2"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|loadedCloudState
+name|loadedClusterState
 operator|=
-name|CloudState
+name|ClusterState
 operator|.
 name|load
 argument_list|(
@@ -512,7 +512,7 @@ literal|"Provided liveNodes not used properly"
 argument_list|,
 literal|2
 argument_list|,
-name|loadedCloudState
+name|loadedClusterState
 operator|.
 name|getLiveNodes
 argument_list|()
@@ -527,7 +527,7 @@ literal|"Should not have collections"
 argument_list|,
 literal|0
 argument_list|,
-name|loadedCloudState
+name|loadedClusterState
 operator|.
 name|getCollections
 argument_list|()
@@ -536,9 +536,9 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|loadedCloudState
+name|loadedClusterState
 operator|=
-name|CloudState
+name|ClusterState
 operator|.
 name|load
 argument_list|(
@@ -557,7 +557,7 @@ literal|"Provided liveNodes not used properly"
 argument_list|,
 literal|2
 argument_list|,
-name|loadedCloudState
+name|loadedClusterState
 operator|.
 name|getLiveNodes
 argument_list|()
@@ -572,7 +572,7 @@ literal|"Should not have collections"
 argument_list|,
 literal|0
 argument_list|,
-name|loadedCloudState
+name|loadedClusterState
 operator|.
 name|getCollections
 argument_list|()

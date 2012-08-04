@@ -238,7 +238,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -4096,15 +4096,15 @@ operator|.
 name|getCloudDescriptor
 argument_list|()
 decl_stmt|;
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|coreContainer
 operator|.
 name|getZkController
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|String
@@ -4118,7 +4118,7 @@ decl_stmt|;
 name|Slice
 name|slice
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getSlice
 argument_list|(
@@ -4170,7 +4170,7 @@ argument_list|)
 expr_stmt|;
 name|live
 operator|=
-name|cloudState
+name|clusterState
 operator|.
 name|liveNodesContain
 argument_list|(

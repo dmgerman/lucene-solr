@@ -500,11 +500,11 @@ name|SYNC
 init|=
 literal|"sync"
 decl_stmt|;
-DECL|field|cloudState
+DECL|field|clusterState
 specifier|private
 specifier|volatile
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 decl_stmt|;
 DECL|field|SOLRCLOUD_UPDATE_DELAY
 specifier|private
@@ -801,10 +801,10 @@ name|ZKTF
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|field|cloudStateUpdateScheduled
+DECL|field|clusterStateUpdateScheduled
 specifier|private
 name|boolean
-name|cloudStateUpdateScheduled
+name|clusterStateUpdateScheduled
 decl_stmt|;
 DECL|field|zkClient
 specifier|private
@@ -974,10 +974,10 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// load and publish a new CollectionInfo
-DECL|method|updateCloudState
+DECL|method|updateClusterState
 specifier|public
 name|void
-name|updateCloudState
+name|updateClusterState
 parameter_list|(
 name|boolean
 name|immediate
@@ -987,7 +987,7 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-name|updateCloudState
+name|updateClusterState
 argument_list|(
 name|immediate
 argument_list|,
@@ -1006,7 +1006,7 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-name|updateCloudState
+name|updateClusterState
 argument_list|(
 literal|true
 argument_list|,
@@ -1091,13 +1091,13 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"A cluster state change has occurred"
+literal|"A cluster state change has occurred - updating..."
 argument_list|)
 expr_stmt|;
 try|try
 block|{
 comment|// delayed approach
-comment|// ZkStateReader.this.updateCloudState(false, false);
+comment|// ZkStateReader.this.updateClusterState(false, false);
 synchronized|synchronized
 init|(
 name|ZkStateReader
@@ -1132,10 +1132,10 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|CloudState
+name|ClusterState
 name|clusterState
 init|=
-name|CloudState
+name|ClusterState
 operator|.
 name|load
 argument_list|(
@@ -1145,14 +1145,18 @@ name|ZkStateReader
 operator|.
 name|this
 operator|.
-name|cloudState
+name|clusterState
 operator|.
 name|getLiveNodes
 argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// update volatile
-name|cloudState
+name|ZkStateReader
+operator|.
+name|this
+operator|.
+name|clusterState
 operator|=
 name|clusterState
 expr_stmt|;
@@ -1321,7 +1325,7 @@ expr_stmt|;
 try|try
 block|{
 comment|// delayed approach
-comment|// ZkStateReader.this.updateCloudState(false, true);
+comment|// ZkStateReader.this.updateClusterState(false, true);
 synchronized|synchronized
 init|(
 name|ZkStateReader
@@ -1369,11 +1373,11 @@ argument_list|(
 name|liveNodes
 argument_list|)
 expr_stmt|;
-name|CloudState
+name|ClusterState
 name|clusterState
 init|=
 operator|new
-name|CloudState
+name|ClusterState
 argument_list|(
 name|liveNodesSet
 argument_list|,
@@ -1381,7 +1385,7 @@ name|ZkStateReader
 operator|.
 name|this
 operator|.
-name|cloudState
+name|clusterState
 operator|.
 name|getCollectionStates
 argument_list|()
@@ -1391,7 +1395,7 @@ name|ZkStateReader
 operator|.
 name|this
 operator|.
-name|cloudState
+name|clusterState
 operator|=
 name|clusterState
 expr_stmt|;
@@ -1514,10 +1518,10 @@ argument_list|(
 name|liveNodes
 argument_list|)
 expr_stmt|;
-name|CloudState
+name|ClusterState
 name|clusterState
 init|=
-name|CloudState
+name|ClusterState
 operator|.
 name|load
 argument_list|(
@@ -1528,18 +1532,18 @@ argument_list|)
 decl_stmt|;
 name|this
 operator|.
-name|cloudState
+name|clusterState
 operator|=
 name|clusterState
 expr_stmt|;
 block|}
 block|}
 comment|// load and publish a new CollectionInfo
-DECL|method|updateCloudState
+DECL|method|updateClusterState
 specifier|private
 specifier|synchronized
 name|void
-name|updateCloudState
+name|updateClusterState
 parameter_list|(
 name|boolean
 name|immediate
@@ -1559,7 +1563,7 @@ condition|(
 name|immediate
 condition|)
 block|{
-name|CloudState
+name|ClusterState
 name|clusterState
 decl_stmt|;
 synchronized|synchronized
@@ -1620,7 +1624,7 @@ argument_list|)
 expr_stmt|;
 name|clusterState
 operator|=
-name|CloudState
+name|ClusterState
 operator|.
 name|load
 argument_list|(
@@ -1642,7 +1646,7 @@ expr_stmt|;
 name|clusterState
 operator|=
 operator|new
-name|CloudState
+name|ClusterState
 argument_list|(
 name|liveNodesSet
 argument_list|,
@@ -1650,7 +1654,7 @@ name|ZkStateReader
 operator|.
 name|this
 operator|.
-name|cloudState
+name|clusterState
 operator|.
 name|getCollectionStates
 argument_list|()
@@ -1660,7 +1664,7 @@ block|}
 block|}
 name|this
 operator|.
-name|cloudState
+name|clusterState
 operator|=
 name|clusterState
 expr_stmt|;
@@ -1669,7 +1673,7 @@ else|else
 block|{
 if|if
 condition|(
-name|cloudStateUpdateScheduled
+name|clusterStateUpdateScheduled
 condition|)
 block|{
 name|log
@@ -1688,7 +1692,7 @@ argument_list|(
 literal|"Scheduling cloud state update from ZooKeeper..."
 argument_list|)
 expr_stmt|;
-name|cloudStateUpdateScheduled
+name|clusterStateUpdateScheduled
 operator|=
 literal|true
 expr_stmt|;
@@ -1718,11 +1722,11 @@ name|getUpdateLock
 argument_list|()
 init|)
 block|{
-name|cloudStateUpdateScheduled
+name|clusterStateUpdateScheduled
 operator|=
 literal|false
 expr_stmt|;
-name|CloudState
+name|ClusterState
 name|clusterState
 decl_stmt|;
 try|try
@@ -1779,7 +1783,7 @@ argument_list|)
 expr_stmt|;
 name|clusterState
 operator|=
-name|CloudState
+name|ClusterState
 operator|.
 name|load
 argument_list|(
@@ -1801,7 +1805,7 @@ expr_stmt|;
 name|clusterState
 operator|=
 operator|new
-name|CloudState
+name|ClusterState
 argument_list|(
 name|liveNodesSet
 argument_list|,
@@ -1809,7 +1813,7 @@ name|ZkStateReader
 operator|.
 name|this
 operator|.
-name|cloudState
+name|clusterState
 operator|.
 name|getCollectionStates
 argument_list|()
@@ -1820,7 +1824,7 @@ name|ZkStateReader
 operator|.
 name|this
 operator|.
-name|cloudState
+name|clusterState
 operator|=
 name|clusterState
 expr_stmt|;
@@ -1935,9 +1939,9 @@ name|ZkStateReader
 operator|.
 name|this
 operator|.
-name|cloudState
+name|clusterState
 operator|=
-name|cloudState
+name|clusterState
 expr_stmt|;
 block|}
 block|}
@@ -1953,14 +1957,14 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * @return information about the cluster from ZooKeeper    */
-DECL|method|getCloudState
+DECL|method|getClusterState
 specifier|public
-name|CloudState
-name|getCloudState
+name|ClusterState
+name|getClusterState
 parameter_list|()
 block|{
 return|return
-name|cloudState
+name|clusterState
 return|;
 block|}
 DECL|method|getUpdateLock
@@ -2196,22 +2200,16 @@ condition|)
 block|{
 if|if
 condition|(
-name|cloudState
+name|clusterState
 operator|!=
 literal|null
 condition|)
 block|{
 specifier|final
-name|CloudState
-name|currentState
-init|=
-name|cloudState
-decl_stmt|;
-specifier|final
 name|ZkNodeProps
 name|nodeProps
 init|=
-name|currentState
+name|clusterState
 operator|.
 name|getLeader
 argument_list|(
@@ -2420,16 +2418,16 @@ name|String
 name|mustNotMatchStateFilter
 parameter_list|)
 block|{
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|this
 operator|.
-name|cloudState
+name|clusterState
 decl_stmt|;
 if|if
 condition|(
-name|cloudState
+name|clusterState
 operator|==
 literal|null
 condition|)
@@ -2446,7 +2444,7 @@ name|Slice
 argument_list|>
 name|slices
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getSlices
 argument_list|(
@@ -2474,7 +2472,7 @@ name|collection
 operator|+
 literal|" "
 operator|+
-name|cloudState
+name|clusterState
 operator|.
 name|getCollections
 argument_list|()
@@ -2597,7 +2595,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|cloudState
+name|clusterState
 operator|.
 name|liveNodesContain
 argument_list|(
