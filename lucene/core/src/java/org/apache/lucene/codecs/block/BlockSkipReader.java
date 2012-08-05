@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the skip list reader for the 4.0 posting list format  * that stores positions and payloads.  *   * @see Lucene40PostingsFormat  * @lucene.experimental  */
+comment|/**  * Implements the skip list reader for block postings format  * that stores positions and payloads.  *   * Although this skipper uses MultiLevelSkipListReader as an interface,   * its definition of skip position will be a little different.   *  * For example, when skipInterval = blockSize = 3, df = 2*skipInterval = 6,   *   * 0 1 2 3 4 5  * d d d d d d    (posting list)  *     ^     ^    (skip point in MultiLeveSkipWriter)  *       ^        (skip point in BlockSkipWriter)  *  * In this case, MultiLevelSkipListReader will use the last document as a skip point,   * while BlockSkipReader should assume no skip point will comes.   *  * If we use the interface directly in BlockSkipReader, it may silly try to read   * another skip data after the only skip point is loaded.   *  * To illustrate this, we can call skipTo(d[5]), since skip point d[3] has smaller docId,  * and numSkipped+blockSize== df, the MultiLevelSkipListReader will assume the skip list  * isn't exhausted yet, and try to load a non-existed skip point  *  * Therefore, we'll trim df before passing it to the interface. see trim(int)  *  */
 end_comment
 
 begin_class
@@ -86,6 +86,11 @@ init|=
 name|BlockPostingsReader
 operator|.
 name|DEBUG
+decl_stmt|;
+DECL|field|blockSize
+specifier|private
+name|int
+name|blockSize
 decl_stmt|;
 DECL|field|docPointer
 specifier|private
@@ -164,7 +169,7 @@ name|int
 name|maxSkipLevels
 parameter_list|,
 name|int
-name|skipInterval
+name|blockSize
 parameter_list|,
 name|boolean
 name|hasPos
@@ -182,8 +187,14 @@ name|skipStream
 argument_list|,
 name|maxSkipLevels
 argument_list|,
-name|skipInterval
+name|blockSize
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|blockSize
+operator|=
+name|blockSize
 expr_stmt|;
 name|docPointer
 operator|=
@@ -288,6 +299,30 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Trim original docFreq to tell skipReader read proper number of skip points.    *    * Since our definition in BlockSkip* is a little different from MultiLevelSkip*    * This trimed docFreq will prevent skipReader from:    * 1. silly reading a non-existed skip point after the last block boundary    * 2. moving into the vInt block    *    */
+DECL|method|trim
+specifier|protected
+name|int
+name|trim
+parameter_list|(
+name|int
+name|df
+parameter_list|)
+block|{
+return|return
+name|df
+operator|%
+name|blockSize
+operator|==
+literal|0
+condition|?
+name|df
+operator|-
+literal|1
+else|:
+name|df
+return|;
+block|}
 DECL|method|init
 specifier|public
 name|void
@@ -315,7 +350,10 @@ name|init
 argument_list|(
 name|skipPointer
 argument_list|,
+name|trim
+argument_list|(
 name|df
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|lastDocPointer

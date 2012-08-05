@@ -35,6 +35,7 @@ end_comment
 begin_class
 DECL|class|ForUtil
 specifier|public
+specifier|final
 class|class
 name|ForUtil
 block|{
@@ -114,7 +115,17 @@ block|,
 literal|0xffffffff
 block|}
 decl_stmt|;
-comment|/** Compress given int[] into Integer buffer, with For format    *    * @param data        uncompressed data    * @param size        num of ints to compress    * @param intBuffer   integer buffer to hold compressed data    * @return encoded block byte size    */
+DECL|field|blockSize
+specifier|final
+specifier|static
+name|int
+name|blockSize
+init|=
+name|BlockPostingsFormat
+operator|.
+name|BLOCK_SIZE
+decl_stmt|;
+comment|/** Compress given int[] into Integer buffer, with For format    *    * @param data        uncompressed data    * @param intBuffer   integer buffer to hold compressed data    * @return the header for current block     */
 DECL|method|compress
 specifier|public
 specifier|static
@@ -155,17 +166,10 @@ argument_list|)
 return|;
 block|}
 name|int
-name|size
-init|=
-name|data
-operator|.
-name|length
-decl_stmt|;
-name|int
 name|encodedSize
 init|=
 operator|(
-name|size
+name|blockSize
 operator|*
 name|numBits
 operator|+
@@ -183,7 +187,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|size
+name|blockSize
 condition|;
 operator|++
 name|i
@@ -249,7 +253,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/** Decompress given Integer buffer into int array.    *    * @param intBuffer   integer buffer to hold compressed data    * @param data        int array to hold uncompressed data    */
+comment|/** Decompress given Integer buffer into int array.    *    * @param intBuffer   integer buffer to hold compressed data    * @param data        int array to hold uncompressed data    * @param header      header of current block, which contains numFrameBits    */
 DECL|method|decompress
 specifier|public
 specifier|static
@@ -301,7 +305,6 @@ name|numBits
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * IntBuffer will not be rewinded in this method, therefore    * caller should ensure that the position is set to the first    * encoded int before decoding.    */
 DECL|method|decompressCore
 specifier|static
 name|void
@@ -318,17 +321,6 @@ name|int
 name|numBits
 parameter_list|)
 block|{
-assert|assert
-name|numBits
-operator|<=
-literal|32
-assert|;
-assert|assert
-name|numBits
-operator|>=
-literal|0
-assert|;
-comment|// TODO: PackedIntsDecompress is hardewired to size==128 only
 switch|switch
 condition|(
 name|numBits
@@ -1011,6 +1003,7 @@ return|return
 name|optBits
 return|;
 block|}
+comment|// nocommit: we must have a util function for this, hmm?
 DECL|method|isAllEqual
 specifier|protected
 specifier|static
@@ -1072,7 +1065,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**     * Generate the 4 byte header, which contains (from lsb to msb):    *    * 8 bits for encoded block int size (excluded header, this limits DEFAULT_BLOCK_SIZE<= 2^8)    * 6 bits for num of frame bits (when 0, values in this block are all the same)    * other bits unused    *    */
+comment|/**     * Generate the 4 byte header, which contains (from lsb to msb):    *    * 6 bits for num of frame bits (when 0, values in this block are all the same)    * other bits for encoded block int size (excluded header), so we can use crazy block size    *    */
 DECL|method|getHeader
 specifier|static
 name|int
@@ -1086,47 +1079,17 @@ name|numBits
 parameter_list|)
 block|{
 return|return
-operator|(
-name|encodedSize
-operator|)
+name|numBits
 operator||
 operator|(
-operator|(
-name|numBits
-operator|)
+name|encodedSize
 operator|<<
-literal|8
+literal|6
 operator|)
 return|;
 block|}
 comment|/**     * Expert: get metadata from header.     */
-DECL|method|getEncodedSize
-specifier|public
-specifier|static
-name|int
-name|getEncodedSize
-parameter_list|(
-name|int
-name|header
-parameter_list|)
-block|{
-return|return
-operator|(
-operator|(
-name|header
-operator|&
-name|MASK
-index|[
-literal|8
-index|]
-operator|)
-operator|)
-operator|*
-literal|4
-return|;
-block|}
 DECL|method|getNumBits
-specifier|public
 specifier|static
 name|int
 name|getNumBits
@@ -1139,15 +1102,34 @@ return|return
 operator|(
 operator|(
 name|header
-operator|>>
-literal|8
-operator|)
 operator|&
 name|MASK
 index|[
 literal|6
 index|]
 operator|)
+operator|)
+return|;
+block|}
+DECL|method|getEncodedSize
+specifier|static
+name|int
+name|getEncodedSize
+parameter_list|(
+name|int
+name|header
+parameter_list|)
+block|{
+return|return
+operator|(
+operator|(
+name|header
+operator|>>>
+literal|6
+operator|)
+operator|)
+operator|*
+literal|4
 return|;
 block|}
 block|}

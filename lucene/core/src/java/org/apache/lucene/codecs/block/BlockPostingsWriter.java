@@ -253,7 +253,7 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit javadocs
+comment|/**  * Concrete class that writes docId(maybe frq,pos,offset,payloads) list  * with postings format.  *  * Postings list for each term will be stored separately.   *  * @see BlockSkipWriter for details about skipping setting and postings layout.  *  */
 end_comment
 
 begin_class
@@ -347,18 +347,15 @@ specifier|final
 name|IndexOutput
 name|payOut
 decl_stmt|;
-DECL|field|DEFAULT_BLOCK_SIZE
-specifier|static
-specifier|final
-name|int
-name|DEFAULT_BLOCK_SIZE
-init|=
-literal|128
-decl_stmt|;
 DECL|field|blockSize
 specifier|final
+specifier|static
 name|int
 name|blockSize
+init|=
+name|BlockPostingsFormat
+operator|.
+name|BLOCK_SIZE
 decl_stmt|;
 DECL|field|termsOut
 specifier|private
@@ -464,11 +461,6 @@ specifier|private
 name|int
 name|lastBlockDocID
 decl_stmt|;
-DECL|field|saveNextPosBlock
-specifier|private
-name|boolean
-name|saveNextPosBlock
-decl_stmt|;
 DECL|field|lastBlockPosFP
 specifier|private
 name|long
@@ -537,21 +529,12 @@ name|BlockPostingsWriter
 parameter_list|(
 name|SegmentWriteState
 name|state
-parameter_list|,
-name|int
-name|blockSize
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|super
 argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|blockSize
-operator|=
-name|blockSize
 expr_stmt|;
 name|docOut
 operator|=
@@ -894,9 +877,9 @@ operator|=
 operator|new
 name|BlockSkipWriter
 argument_list|(
-name|blockSize
-argument_list|,
 name|maxSkipLevels
+argument_list|,
+name|blockSize
 argument_list|,
 name|state
 operator|.
@@ -919,8 +902,6 @@ name|byte
 index|[
 name|blockSize
 operator|*
-literal|4
-operator|+
 literal|4
 index|]
 expr_stmt|;
@@ -1095,14 +1076,14 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+name|lastDocID
+operator|=
+literal|0
+expr_stmt|;
 name|lastBlockDocID
 operator|=
 operator|-
 literal|1
-expr_stmt|;
-name|lastDocID
-operator|=
-literal|0
 expr_stmt|;
 if|if
 condition|(
@@ -1155,7 +1136,6 @@ argument_list|,
 name|encodedBuffer
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("    block has " + numBytes + " bytes");
 name|out
 operator|.
 name|writeVInt
@@ -1205,86 +1185,15 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"FPW.startDoc docID="
+literal|"FPW.startDoc docID["
+operator|+
+name|docBufferUpto
+operator|+
+literal|"]="
 operator|+
 name|docID
 argument_list|)
 expr_stmt|;
-block|}
-comment|// nocommit do this in finishDoc... but does it fail...?
-comment|// is it not always called...?
-if|if
-condition|(
-name|posOut
-operator|!=
-literal|null
-operator|&&
-name|saveNextPosBlock
-condition|)
-block|{
-name|lastBlockPosFP
-operator|=
-name|posOut
-operator|.
-name|getFilePointer
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|payOut
-operator|!=
-literal|null
-condition|)
-block|{
-name|lastBlockPayFP
-operator|=
-name|payOut
-operator|.
-name|getFilePointer
-argument_list|()
-expr_stmt|;
-block|}
-name|lastBlockPosBufferUpto
-operator|=
-name|posBufferUpto
-expr_stmt|;
-name|lastBlockStartOffset
-operator|=
-name|lastStartOffset
-expr_stmt|;
-name|lastBlockPayloadByteUpto
-operator|=
-name|payloadByteUpto
-expr_stmt|;
-name|saveNextPosBlock
-operator|=
-literal|false
-expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  now save lastBlockPosFP="
-operator|+
-name|lastBlockPosFP
-operator|+
-literal|" lastBlockPosBufferUpto="
-operator|+
-name|lastBlockPosBufferUpto
-operator|+
-literal|" lastBlockPayloadByteUpto="
-operator|+
-name|lastBlockPayloadByteUpto
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 specifier|final
 name|int
@@ -1331,10 +1240,6 @@ literal|")"
 argument_list|)
 throw|;
 block|}
-name|lastDocID
-operator|=
-name|docID
-expr_stmt|;
 name|docDeltaBuffer
 index|[
 name|docBufferUpto
@@ -1342,27 +1247,9 @@ index|]
 operator|=
 name|docDelta
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  docDeltaBuffer["
-operator|+
-name|docBufferUpto
-operator|+
-literal|"]="
-operator|+
-name|docDelta
-argument_list|)
-expr_stmt|;
-block|}
+comment|//    if (DEBUG) {
+comment|//      System.out.println("  docDeltaBuffer[" + docBufferUpto + "]=" + docDelta);
+comment|//    }
 if|if
 condition|(
 name|fieldHasFreqs
@@ -1389,78 +1276,6 @@ operator|==
 name|blockSize
 condition|)
 block|{
-comment|// nocommit maybe instead of buffering skip before
-comment|// writing a block based on last block's end data
-comment|// ... we could buffer after writing the block?  only
-comment|// iffiness with that approach is it could be a
-comment|// pointlness skip?  like we may stop adding docs
-comment|// right after that, then we have skip point AFTER
-comment|// last doc.  the thing is, in finishTerm we are
-comment|// already sometimes adding a skip point AFTER the
-comment|// last doc?
-if|if
-condition|(
-name|lastBlockDocID
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  bufferSkip at writeBlock: lastDocID="
-operator|+
-name|lastBlockDocID
-operator|+
-literal|" docCount="
-operator|+
-operator|(
-name|docCount
-operator|-
-name|blockSize
-operator|)
-argument_list|)
-expr_stmt|;
-block|}
-name|skipWriter
-operator|.
-name|bufferSkip
-argument_list|(
-name|lastBlockDocID
-argument_list|,
-name|docCount
-operator|-
-name|blockSize
-argument_list|,
-name|lastBlockPosFP
-argument_list|,
-name|lastBlockPayFP
-argument_list|,
-name|lastBlockPosBufferUpto
-argument_list|,
-name|lastBlockStartOffset
-argument_list|,
-name|lastBlockPayloadByteUpto
-argument_list|)
-expr_stmt|;
-block|}
-name|lastBlockDocID
-operator|=
-name|docID
-expr_stmt|;
-name|saveNextPosBlock
-operator|=
-literal|true
-expr_stmt|;
 if|if
 condition|(
 name|DEBUG
@@ -1521,11 +1336,14 @@ name|docOut
 argument_list|)
 expr_stmt|;
 block|}
-name|docBufferUpto
-operator|=
-literal|0
-expr_stmt|;
+comment|// NOTE: don't set docBufferUpto back to 0 here;
+comment|// finishDoc will do so (because it needs to see that
+comment|// the block was filled so it can save skip data)
 block|}
+name|lastDocID
+operator|=
+name|docID
+expr_stmt|;
 name|lastPosition
 operator|=
 literal|0
@@ -1558,37 +1376,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"FPW.addPosition pos="
-operator|+
-name|position
-operator|+
-literal|" posBufferUpto="
-operator|+
-name|posBufferUpto
-operator|+
-operator|(
-name|fieldHasPayloads
-condition|?
-literal|" payloadByteUpto="
-operator|+
-name|payloadByteUpto
-else|:
-literal|""
-operator|)
-argument_list|)
-expr_stmt|;
-block|}
+comment|//    if (DEBUG) {
+comment|//      System.out.println("FPW.addPosition pos=" + position + " posBufferUpto=" + posBufferUpto + (fieldHasPayloads ? " payloadByteUpto=" + payloadByteUpto: ""));
+comment|//    }
 name|posDeltaBuffer
 index|[
 name|posBufferUpto
@@ -1841,7 +1631,168 @@ specifier|public
 name|void
 name|finishDoc
 parameter_list|()
-block|{   }
+throws|throws
+name|IOException
+block|{
+comment|// Have collected a block of docs, and get a new doc.
+comment|// Should write skip data as well as postings list for
+comment|// current block
+if|if
+condition|(
+name|lastBlockDocID
+operator|!=
+operator|-
+literal|1
+operator|&&
+name|docBufferUpto
+operator|==
+literal|1
+condition|)
+block|{
+comment|// nocomit move to startDoc?  ie we can write skip
+comment|// data as soon as the next doc starts...
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  bufferSkip at writeBlock: lastDocID="
+operator|+
+name|lastBlockDocID
+operator|+
+literal|" docCount="
+operator|+
+operator|(
+name|docCount
+operator|-
+literal|1
+operator|)
+argument_list|)
+expr_stmt|;
+block|}
+name|skipWriter
+operator|.
+name|bufferSkip
+argument_list|(
+name|lastBlockDocID
+argument_list|,
+name|docCount
+operator|-
+literal|1
+argument_list|,
+name|lastBlockPosFP
+argument_list|,
+name|lastBlockPayFP
+argument_list|,
+name|lastBlockPosBufferUpto
+argument_list|,
+name|lastBlockStartOffset
+argument_list|,
+name|lastBlockPayloadByteUpto
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Since we don't know df for current term, we had to buffer
+comment|// those skip data for each block, and when a new doc comes,
+comment|// write them to skip file.
+if|if
+condition|(
+name|docBufferUpto
+operator|==
+name|blockSize
+condition|)
+block|{
+name|lastBlockDocID
+operator|=
+name|lastDocID
+expr_stmt|;
+if|if
+condition|(
+name|posOut
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|payOut
+operator|!=
+literal|null
+condition|)
+block|{
+name|lastBlockPayFP
+operator|=
+name|payOut
+operator|.
+name|getFilePointer
+argument_list|()
+expr_stmt|;
+block|}
+name|lastBlockPosFP
+operator|=
+name|posOut
+operator|.
+name|getFilePointer
+argument_list|()
+expr_stmt|;
+name|lastBlockPosBufferUpto
+operator|=
+name|posBufferUpto
+expr_stmt|;
+name|lastBlockStartOffset
+operator|=
+name|lastStartOffset
+expr_stmt|;
+name|lastBlockPayloadByteUpto
+operator|=
+name|payloadByteUpto
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  docBufferUpto="
+operator|+
+name|docBufferUpto
+operator|+
+literal|" now get lastBlockDocID="
+operator|+
+name|lastBlockDocID
+operator|+
+literal|" lastBlockPosFP="
+operator|+
+name|lastBlockPosFP
+operator|+
+literal|" lastBlockPosBufferUpto="
+operator|+
+name|lastBlockPosBufferUpto
+operator|+
+literal|" lastBlockPayloadByteUpto="
+operator|+
+name|lastBlockPayloadByteUpto
+argument_list|)
+expr_stmt|;
+block|}
+name|docBufferUpto
+operator|=
+literal|0
+expr_stmt|;
+block|}
+block|}
 DECL|class|PendingTerm
 specifier|private
 specifier|static
@@ -2000,71 +1951,6 @@ operator|+
 name|stats
 operator|.
 name|docFreq
-argument_list|)
-expr_stmt|;
-block|}
-comment|// nocommit silly that skipper must write skip when we no
-comment|// postings come after it, but if we don't do this, skip
-comment|// reader incorrectly thinks it can read another level 0
-comment|// skip entry here!:
-comment|//if (docCount> blockSize&& docBufferUpto> 0) {
-if|if
-condition|(
-name|docCount
-operator|>
-name|blockSize
-condition|)
-block|{
-specifier|final
-name|int
-name|lastDocCount
-init|=
-name|blockSize
-operator|*
-operator|(
-name|docCount
-operator|/
-name|blockSize
-operator|)
-decl_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  bufferSkip at finishTerm: lastDocID="
-operator|+
-name|lastBlockDocID
-operator|+
-literal|" docCount="
-operator|+
-name|lastDocCount
-argument_list|)
-expr_stmt|;
-block|}
-name|skipWriter
-operator|.
-name|bufferSkip
-argument_list|(
-name|lastBlockDocID
-argument_list|,
-name|lastDocCount
-argument_list|,
-name|lastBlockPosFP
-argument_list|,
-name|lastBlockPayFP
-argument_list|,
-name|lastBlockPosBufferUpto
-argument_list|,
-name|lastBlockStartOffset
-argument_list|,
-name|lastBlockPayloadByteUpto
 argument_list|)
 expr_stmt|;
 block|}
