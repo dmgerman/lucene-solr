@@ -1712,7 +1712,7 @@ operator|>=
 literal|0
 decl_stmt|;
 name|boolean
-name|indexHasPayloasd
+name|indexHasPayloads
 init|=
 name|fieldInfo
 operator|.
@@ -1738,10 +1738,7 @@ operator|)
 operator|&&
 operator|(
 operator|!
-name|fieldInfo
-operator|.
-name|hasPayloads
-argument_list|()
+name|indexHasPayloads
 operator|||
 operator|(
 name|flags
@@ -2896,22 +2893,97 @@ expr_stmt|;
 comment|// now point to the block we want to search
 block|}
 block|}
-comment|// Now scan:
+comment|// Now scan... this is an inlined/pared down version
+comment|// of nextDoc():
 while|while
 condition|(
-name|nextDoc
-argument_list|()
-operator|!=
-name|NO_MORE_DOCS
+literal|true
 condition|)
 block|{
 if|if
 condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  scan doc="
+operator|+
+name|accum
+operator|+
+literal|" docBufferUpto="
+operator|+
+name|docBufferUpto
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|docUpto
+operator|==
+name|docFreq
+condition|)
+block|{
+return|return
 name|doc
+operator|=
+name|NO_MORE_DOCS
+return|;
+block|}
+if|if
+condition|(
+name|docBufferUpto
+operator|==
+name|blockSize
+condition|)
+block|{
+comment|// nocommit hmm skip freq?  but: we don't ever
+comment|// scan over more than one block?
+name|refillDocs
+argument_list|()
+expr_stmt|;
+block|}
+name|accum
+operator|+=
+name|docDeltaBuffer
+index|[
+name|docBufferUpto
+index|]
+expr_stmt|;
+name|docUpto
+operator|++
+expr_stmt|;
+if|if
+condition|(
+name|accum
 operator|>=
 name|target
 condition|)
 block|{
+break|break;
+block|}
+name|docBufferUpto
+operator|++
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|liveDocs
+operator|==
+literal|null
+operator|||
+name|liveDocs
+operator|.
+name|get
+argument_list|(
+name|accum
+argument_list|)
+condition|)
+block|{
 if|if
 condition|(
 name|DEBUG
@@ -2923,17 +2995,30 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"  advance return doc="
+literal|"  return doc="
 operator|+
-name|doc
+name|accum
 argument_list|)
 expr_stmt|;
 block|}
+name|freq
+operator|=
+name|freqBuffer
+index|[
+name|docBufferUpto
+index|]
+expr_stmt|;
+name|docBufferUpto
+operator|++
+expr_stmt|;
 return|return
 name|doc
+operator|=
+name|accum
 return|;
 block|}
-block|}
+else|else
+block|{
 if|if
 condition|(
 name|DEBUG
@@ -2945,13 +3030,18 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"  advance return doc=END"
+literal|"  now do nextDoc()"
 argument_list|)
 expr_stmt|;
 block|}
+name|docBufferUpto
+operator|++
+expr_stmt|;
 return|return
-name|NO_MORE_DOCS
+name|nextDoc
+argument_list|()
 return|;
+block|}
 block|}
 block|}
 DECL|class|BlockDocsAndPositionsEnum
@@ -4302,6 +4392,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// nocommit inline nextDoc here
 comment|// Now scan:
 while|while
 condition|(
@@ -6558,6 +6649,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// nocommit inline nextDoc here
 comment|// Now scan:
 while|while
 condition|(
