@@ -286,6 +286,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test sync phase that occurs when Leader goes down and a new Leader is  * elected.  */
 end_comment
@@ -293,6 +303,11 @@ end_comment
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|Ignore
+argument_list|(
+literal|"ignore while i look into"
+argument_list|)
 DECL|class|SyncSliceTest
 specifier|public
 class|class
