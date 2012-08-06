@@ -188,6 +188,8 @@ argument_list|,
 name|maxSkipLevels
 argument_list|,
 name|blockSize
+argument_list|,
+literal|4
 argument_list|)
 expr_stmt|;
 name|this
