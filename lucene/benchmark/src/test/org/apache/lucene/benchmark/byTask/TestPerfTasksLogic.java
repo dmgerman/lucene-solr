@@ -957,15 +957,11 @@ argument_list|(
 name|algLines
 argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|CountingSearchTestTask
-operator|.
-name|numSearches
-operator|>
-literal|0
-argument_list|)
-expr_stmt|;
+comment|// NOTE: cannot assert this, because on a super-slow
+comment|// system, it could be after waiting 0.5 seconds that
+comment|// the search threads hadn't yet succeeded in starting
+comment|// up and then they start up and do no searching:
+comment|//assertTrue(CountingSearchTestTask.numSearches> 0);
 block|}
 DECL|method|testHighlighting
 specifier|public
