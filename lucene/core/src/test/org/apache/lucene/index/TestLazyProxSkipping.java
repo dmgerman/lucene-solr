@@ -760,6 +760,14 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testLazySkipping
 specifier|public
