@@ -2145,7 +2145,7 @@ argument_list|)
 expr_stmt|;
 comment|// nocommit should we send offsets/payloads to
 comment|// .pay...?  seems wasteful (have to store extra
-comment|// vLong for low (< blockSize) DF terms = vast vast
+comment|// vLong for low (< BLOCK_SIZE) DF terms = vast vast
 comment|// majority)
 comment|// vInt encode the remaining positions/payloads/offsets:
 name|int

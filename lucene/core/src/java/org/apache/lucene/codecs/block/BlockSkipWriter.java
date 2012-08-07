@@ -214,8 +214,6 @@ name|IndexOutput
 name|payOut
 parameter_list|)
 block|{
-comment|// nocommit figure out what skipMultiplier is best (4 is
-comment|// total guess):
 name|super
 argument_list|(
 name|blockSize
