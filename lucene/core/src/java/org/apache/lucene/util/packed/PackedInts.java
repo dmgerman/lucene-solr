@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -95,36 +105,6 @@ operator|.
 name|util
 operator|.
 name|LongsRef
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|IntBuffer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|LongBuffer
 import|;
 end_import
 
@@ -873,42 +853,58 @@ interface|interface
 name|Decoder
 block|{
 comment|/**      * The minimum number of long blocks to decode in a single call.      */
-DECL|method|blocks
+DECL|method|blockCount
 name|int
-name|blocks
+name|blockCount
 parameter_list|()
 function_decl|;
-comment|/**      * The number of values that can be stored in<code>blocks()</code> long      * blocks.      */
-DECL|method|values
+comment|/**      * The number of values that can be stored in<code>blockCount()</code> long      * blocks.      */
+DECL|method|valueCount
 name|int
-name|values
+name|valueCount
 parameter_list|()
 function_decl|;
-comment|/**      * Read<code>iterations * blocks()</code> blocks from<code>blocks</code>,      * decode them and write<code>iterations * values()</code> values into      *<code>values</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param values       the values buffer      * @param iterations   controls how much data to decode      */
+comment|/**      * Read<code>iterations * blockCount()</code> blocks from<code>blocks</code>,      * decode them and write<code>iterations * valueCount()</code> values into      *<code>values</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param blocksOffset the offset where to start reading blocks      * @param values       the values buffer      * @param valuesOffset the offset where to start writing values      * @param iterations   controls how much data to decode      */
 DECL|method|decode
 name|void
 name|decode
 parameter_list|(
-name|LongBuffer
+name|long
+index|[]
 name|blocks
 parameter_list|,
-name|LongBuffer
+name|int
+name|blocksOffset
+parameter_list|,
+name|long
+index|[]
 name|values
+parameter_list|,
+name|int
+name|valuesOffset
 parameter_list|,
 name|int
 name|iterations
 parameter_list|)
 function_decl|;
-comment|/**      * Read<code>iterations * blocks()</code> blocks from<code>blocks</code>,      * decode them and write<code>iterations * values()</code> values into      *<code>values</code>. This method will throw an      * {@link UnsupportedOperationException} if the values require more than      * 32 bits of storage.      *      * @param blocks       the long blocks that hold packed integer values      * @param values       the values buffer      * @param iterations   controls how much data to decode      */
+comment|/**      * Read<code>8 * iterations * blockCount()</code> blocks from<code>blocks</code>,      * decode them and write<code>iterations * valueCount()</code> values into      *<code>values</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param blocksOffset the offset where to start reading blocks      * @param values       the values buffer      * @param valuesOffset the offset where to start writing values      * @param iterations   controls how much data to decode      */
 DECL|method|decode
 name|void
 name|decode
 parameter_list|(
-name|LongBuffer
+name|byte
+index|[]
 name|blocks
 parameter_list|,
-name|IntBuffer
+name|int
+name|blocksOffset
+parameter_list|,
+name|long
+index|[]
 name|values
+parameter_list|,
+name|int
+name|valuesOffset
 parameter_list|,
 name|int
 name|iterations
@@ -923,42 +919,58 @@ interface|interface
 name|Encoder
 block|{
 comment|/**      * The minimum number of long blocks to encode in a single call.      */
-DECL|method|blocks
+DECL|method|blockCount
 name|int
-name|blocks
+name|blockCount
 parameter_list|()
 function_decl|;
-comment|/**      * The number of values that can be stored in<code>blocks()</code> long      * blocks.      */
-DECL|method|values
+comment|/**      * The number of values that can be stored in<code>blockCount()</code> long      * blocks.      */
+DECL|method|valueCount
 name|int
-name|values
+name|valueCount
 parameter_list|()
 function_decl|;
-comment|/**      * Read<code>iterations * values()</code> values from<code>values</code>,      * encode them and write<code>iterations * blocks()</code> blocks into      *<code>blocks</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param values       the values buffer      * @param iterations   controls how much data to encode      */
+comment|/**      * Read<code>iterations * valueCount()</code> values from<code>values</code>,      * encode them and write<code>iterations * blockCount()</code> blocks into      *<code>blocks</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param blocksOffset the offset where to start writing blocks      * @param values       the values buffer      * @param valuesOffset the offset where to start reading values      * @param iterations   controls how much data to encode      */
 DECL|method|encode
 name|void
 name|encode
 parameter_list|(
-name|LongBuffer
+name|long
+index|[]
 name|values
 parameter_list|,
-name|LongBuffer
+name|int
+name|valuesOffset
+parameter_list|,
+name|long
+index|[]
 name|blocks
+parameter_list|,
+name|int
+name|blocksOffset
 parameter_list|,
 name|int
 name|iterations
 parameter_list|)
 function_decl|;
-comment|/**      * Read<code>iterations * values()</code> values from<code>values</code>,      * encode them and write<code>iterations * blocks()</code> blocks into      *<code>blocks</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param values       the values buffer      * @param iterations   controls how much data to encode      */
+comment|/**      * Read<code>iterations * valueCount()</code> values from<code>values</code>,      * encode them and write<code>8 * iterations * blockCount()</code> blocks into      *<code>blocks</code>.      *      * @param blocks       the long blocks that hold packed integer values      * @param blocksOffset the offset where to start writing blocks      * @param values       the values buffer      * @param valuesOffset the offset where to start reading values      * @param iterations   controls how much data to encode      */
 DECL|method|encode
 name|void
 name|encode
 parameter_list|(
-name|IntBuffer
+name|long
+index|[]
 name|values
 parameter_list|,
-name|LongBuffer
+name|int
+name|valuesOffset
+parameter_list|,
+name|byte
+index|[]
 name|blocks
+parameter_list|,
+name|int
+name|blocksOffset
 parameter_list|,
 name|int
 name|iterations

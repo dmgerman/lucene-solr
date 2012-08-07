@@ -265,6 +265,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|decompressCore
+specifier|public
 specifier|static
 name|void
 name|decompressCore

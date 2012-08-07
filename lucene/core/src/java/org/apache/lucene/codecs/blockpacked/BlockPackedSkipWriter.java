@@ -67,15 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit do we need more frequent skips at level> 0?
-end_comment
-
-begin_comment
-comment|// 128*128 is immense?  may need to decouple
-end_comment
-
-begin_comment
-comment|// baseSkipInterval& theRestSkipInterval?
+comment|/** * Write skip lists with multiple levels, and support skip within block ints. * * Assume that docFreq = 28, skipInterval = blockSize = 12 * *  |       block#0       | |      block#1        | |vInts| *  d d d d d d d d d d d d d d d d d d d d d d d d d d d d (posting list) *                          ^                       ^       (level 0 skip point) * * Note that skipWriter will ignore first document in block#0, since  * it is useless as a skip point.  Also, we'll never skip into the vInts * block, only record skip data at the start its start point(if it exist). * * For each skip point, we will record:  * 1. lastDocID,  * 2. its related file points(position, payload),  * 3. related numbers or uptos(position, payload). * 4. start offset. * */
 end_comment
 
 begin_class
@@ -204,10 +196,10 @@ specifier|public
 name|BlockPackedSkipWriter
 parameter_list|(
 name|int
-name|skipInterval
+name|maxSkipLevels
 parameter_list|,
 name|int
-name|maxSkipLevels
+name|blockSize
 parameter_list|,
 name|int
 name|docCount
@@ -222,9 +214,13 @@ name|IndexOutput
 name|payOut
 parameter_list|)
 block|{
+comment|// nocommit figure out what skipMultiplier is best (4 is
+comment|// total guess):
 name|super
 argument_list|(
-name|skipInterval
+name|blockSize
+argument_list|,
+literal|8
 argument_list|,
 name|maxSkipLevels
 argument_list|,

@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Pass ForFactory to a PostingsWriter/ReaderBase, and get   * customized postings format plugged.  */
+comment|/**  * Encodes/decode postings in packed int blocks for faster  * decode.  */
 end_comment
 
 begin_class
@@ -220,12 +220,12 @@ specifier|final
 name|int
 name|maxTermBlockSize
 decl_stmt|;
-DECL|field|DEFAULT_BLOCK_SIZE
+DECL|field|BLOCK_SIZE
 specifier|public
 specifier|final
 specifier|static
 name|int
-name|DEFAULT_BLOCK_SIZE
+name|BLOCK_SIZE
 init|=
 literal|128
 decl_stmt|;
@@ -299,7 +299,7 @@ argument_list|()
 operator|+
 literal|"(blocksize="
 operator|+
-name|DEFAULT_BLOCK_SIZE
+name|BLOCK_SIZE
 operator|+
 literal|")"
 return|;
@@ -317,7 +317,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: implement a new PostingsWriterBase to improve skip-settings
 name|PostingsWriterBase
 name|postingsWriter
 init|=
@@ -325,8 +324,6 @@ operator|new
 name|BlockPackedPostingsWriter
 argument_list|(
 name|state
-argument_list|,
-literal|128
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -415,8 +412,6 @@ argument_list|,
 name|state
 operator|.
 name|segmentSuffix
-argument_list|,
-literal|128
 argument_list|)
 decl_stmt|;
 name|boolean
