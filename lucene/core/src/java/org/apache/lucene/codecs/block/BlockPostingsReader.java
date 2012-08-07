@@ -2027,6 +2027,13 @@ specifier|private
 name|int
 name|skipOffset
 decl_stmt|;
+comment|// docID for next skip point, we won't use skipper if
+comment|// target docID is not larger than this
+DECL|field|nextSkipDoc
+specifier|private
+name|int
+name|nextSkipDoc
+decl_stmt|;
 DECL|field|liveDocs
 specifier|private
 name|Bits
@@ -2298,6 +2305,13 @@ name|docUpto
 operator|=
 literal|0
 expr_stmt|;
+name|nextSkipDoc
+operator|=
+name|BLOCK_SIZE
+operator|-
+literal|1
+expr_stmt|;
+comment|// we won't skip if target is found in first block
 name|docBufferUpto
 operator|=
 name|BLOCK_SIZE
@@ -2699,7 +2713,25 @@ throws|throws
 name|IOException
 block|{
 comment|// nocommit make frq block load lazy/skippable
-comment|// nocommit use skipper!!!  it has next last doc id!!
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  FPR.advance target="
+operator|+
+name|target
+argument_list|)
+expr_stmt|;
+block|}
+comment|// current skip docID< docIDs generated from current buffer<= next skip docID
+comment|// we don't need to skip if target is buffered already
 if|if
 condition|(
 name|docFreq
@@ -2707,10 +2739,8 @@ operator|>
 name|BLOCK_SIZE
 operator|&&
 name|target
-operator|-
-name|accum
 operator|>
-name|BLOCK_SIZE
+name|nextSkipDoc
 condition|)
 block|{
 if|if
@@ -2899,6 +2929,13 @@ argument_list|)
 expr_stmt|;
 comment|// now point to the block we want to search
 block|}
+name|nextSkipDoc
+operator|=
+name|skipper
+operator|.
+name|getNextSkipDoc
+argument_list|()
+expr_stmt|;
 block|}
 comment|// Now scan... this is an inlined/pared down version
 comment|// of nextDoc():
@@ -3243,6 +3280,11 @@ specifier|private
 name|int
 name|skipOffset
 decl_stmt|;
+DECL|field|nextSkipDoc
+specifier|private
+name|int
+name|nextSkipDoc
+decl_stmt|;
 DECL|field|liveDocs
 specifier|private
 name|Bits
@@ -3520,6 +3562,12 @@ expr_stmt|;
 name|docUpto
 operator|=
 literal|0
+expr_stmt|;
+name|nextSkipDoc
+operator|=
+name|BLOCK_SIZE
+operator|-
+literal|1
 expr_stmt|;
 name|docBufferUpto
 operator|=
@@ -4142,10 +4190,6 @@ name|target
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit 2 is heuristic guess!!
-comment|// nocommit put cheating back!  does it help?
-comment|// nocommit use skipper!!!  it has next last doc id!!
-comment|//if (docFreq> BLOCK_SIZE&& target - (BLOCK_SIZE - docBufferUpto) - 2*BLOCK_SIZE> accum) {
 if|if
 condition|(
 name|docFreq
@@ -4153,10 +4197,8 @@ operator|>
 name|BLOCK_SIZE
 operator|&&
 name|target
-operator|-
-name|accum
 operator|>
-name|BLOCK_SIZE
+name|nextSkipDoc
 condition|)
 block|{
 if|if
@@ -4401,6 +4443,13 @@ name|getPosBufferUpto
 argument_list|()
 expr_stmt|;
 block|}
+name|nextSkipDoc
+operator|=
+name|skipper
+operator|.
+name|getNextSkipDoc
+argument_list|()
+expr_stmt|;
 block|}
 comment|// Now scan... this is an inlined/pared down version
 comment|// of nextDoc():
@@ -5160,6 +5209,11 @@ specifier|private
 name|int
 name|skipOffset
 decl_stmt|;
+DECL|field|nextSkipDoc
+specifier|private
+name|int
+name|nextSkipDoc
+decl_stmt|;
 DECL|field|liveDocs
 specifier|private
 name|Bits
@@ -5543,6 +5597,12 @@ expr_stmt|;
 name|docUpto
 operator|=
 literal|0
+expr_stmt|;
+name|nextSkipDoc
+operator|=
+name|BLOCK_SIZE
+operator|-
+literal|1
 expr_stmt|;
 name|docBufferUpto
 operator|=
@@ -6466,10 +6526,6 @@ name|target
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit 2 is heuristic guess!!
-comment|// nocommit put cheating back!  does it help?
-comment|// nocommit use skipper!!!  it has next last doc id!!
-comment|//if (docFreq> BLOCK_SIZE&& target - (BLOCK_SIZE - docBufferUpto) - 2*BLOCK_SIZE> accum) {
 if|if
 condition|(
 name|docFreq
@@ -6477,10 +6533,8 @@ operator|>
 name|BLOCK_SIZE
 operator|&&
 name|target
-operator|-
-name|accum
 operator|>
-name|BLOCK_SIZE
+name|nextSkipDoc
 condition|)
 block|{
 if|if
@@ -6757,6 +6811,13 @@ name|getPayloadByteUpto
 argument_list|()
 expr_stmt|;
 block|}
+name|nextSkipDoc
+operator|=
+name|skipper
+operator|.
+name|getNextSkipDoc
+argument_list|()
+expr_stmt|;
 block|}
 comment|// nocommit inline nextDoc here
 comment|// Now scan:

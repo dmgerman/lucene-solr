@@ -125,7 +125,7 @@ name|BlockPostingsFormat
 operator|.
 name|BLOCK_SIZE
 decl_stmt|;
-comment|/** Compress given int[] into Integer buffer, with For format    *    * @param data        uncompressed data    * @param intBuffer   integer buffer to hold compressed data    * @return the number of frame bits for current block     */
+comment|/** Compress given int[] into Integer buffer, with For format    *    * @param data        uncompressed data    * @param intBuffer   integer buffer to hold compressed data    * @return the header for the current block     */
 DECL|method|compress
 specifier|static
 name|int
@@ -206,7 +206,7 @@ return|return
 name|numBits
 return|;
 block|}
-comment|/**    * Save only one int when the whole block equals to 1    */
+comment|/**    * Save only one int when the whole block equals to a    * single value.    */
 DECL|method|compressDuplicateBlock
 specifier|static
 name|int

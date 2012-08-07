@@ -154,7 +154,7 @@ name|numSkipped
 decl_stmt|;
 comment|// number of docs skipped per level
 DECL|field|skipDoc
-specifier|private
+specifier|protected
 name|int
 index|[]
 name|skipDoc
