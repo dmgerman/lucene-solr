@@ -880,6 +880,7 @@ index|[
 name|BLOCK_SIZE
 index|]
 expr_stmt|;
+comment|// nocommit should we try skipping every 2/4 blocks...?
 name|skipWriter
 operator|=
 operator|new

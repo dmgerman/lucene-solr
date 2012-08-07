@@ -179,6 +179,14 @@ operator|++
 name|i
 control|)
 block|{
+assert|assert
+name|data
+index|[
+name|i
+index|]
+operator|>=
+literal|0
+assert|;
 name|encodeNormalValue
 argument_list|(
 name|intBuffer
@@ -243,7 +251,7 @@ index|[]
 name|data
 parameter_list|,
 name|int
-name|numBits
+name|header
 parameter_list|)
 block|{
 comment|// since this buffer is reused at upper level, rewind first
@@ -252,8 +260,22 @@ operator|.
 name|rewind
 argument_list|()
 expr_stmt|;
-comment|// nocommit assert header isn't "malformed", ie besides
-comment|// numBytes / bit-width there is nothing else!
+comment|// NOTE: header == numBits now, but we may change that
+specifier|final
+name|int
+name|numBits
+init|=
+name|header
+decl_stmt|;
+assert|assert
+name|numBits
+operator|>=
+literal|0
+operator|&&
+name|numBits
+operator|<
+literal|32
+assert|;
 name|decompressCore
 argument_list|(
 name|intBuffer
@@ -702,19 +724,7 @@ name|data
 argument_list|)
 expr_stmt|;
 break|break;
-case|case
-literal|32
-case|:
-name|PackedIntsDecompress
-operator|.
-name|decode32
-argument_list|(
-name|intBuffer
-argument_list|,
-name|data
-argument_list|)
-expr_stmt|;
-break|break;
+comment|// nocommit have default throw exc?  or add assert up above
 block|}
 block|}
 DECL|method|encodeNormalValue
@@ -885,7 +895,7 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Estimate best num of frame bits according to the largest value.    */
+comment|/**    * Returns number of bits necessary to represent max value.    */
 DECL|method|getNumBits
 specifier|static
 name|int
@@ -959,6 +969,11 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+assert|assert
+name|optBits
+operator|<
+literal|32
+assert|;
 return|return
 name|optBits
 return|;
