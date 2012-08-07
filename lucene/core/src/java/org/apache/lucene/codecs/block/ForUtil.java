@@ -279,29 +279,16 @@ argument_list|()
 expr_stmt|;
 comment|// nocommit assert header isn't "malformed", ie besides
 comment|// numBytes / bit-width there is nothing else!
-name|int
-name|numBits
-init|=
-operator|(
-operator|(
-name|header
-operator|>>
-literal|8
-operator|)
-operator|&
-name|MASK
-index|[
-literal|6
-index|]
-operator|)
-decl_stmt|;
 name|decompressCore
 argument_list|(
 name|intBuffer
 argument_list|,
 name|data
 argument_list|,
-name|numBits
+name|getNumBits
+argument_list|(
+name|header
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
