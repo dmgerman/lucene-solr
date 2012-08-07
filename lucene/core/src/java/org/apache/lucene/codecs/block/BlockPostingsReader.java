@@ -2934,6 +2934,11 @@ operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
+comment|// nocommit: in theory we should not hit this?  ie
+comment|// skipper should already have moved us to the block
+comment|// containing the doc?  yet assert false trips ... i
+comment|// think because if you advance w/o having done a
+comment|// nextDoc yet()... can we assert/remove this?
 if|if
 condition|(
 name|docBufferUpto
@@ -2941,8 +2946,6 @@ operator|==
 name|blockSize
 condition|)
 block|{
-comment|// nocommit hmm skip freq?  but: we don't ever
-comment|// scan over more than one block?
 name|refillDocs
 argument_list|()
 expr_stmt|;
@@ -4433,6 +4436,11 @@ operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
+comment|// nocommit: in theory we should not hit this?  ie
+comment|// skipper should already have moved us to the block
+comment|// containing the doc?  yet assert false trips ... i
+comment|// think because if you advance w/o having done a
+comment|// nextDoc yet()... can we assert/remove this?
 if|if
 condition|(
 name|docBufferUpto
