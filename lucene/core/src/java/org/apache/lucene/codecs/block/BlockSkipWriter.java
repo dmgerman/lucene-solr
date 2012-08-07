@@ -220,7 +220,7 @@ name|super
 argument_list|(
 name|blockSize
 argument_list|,
-literal|4
+literal|8
 argument_list|,
 name|maxSkipLevels
 argument_list|,
