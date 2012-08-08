@@ -791,7 +791,7 @@ DECL|method|writeBlock
 name|void
 name|writeBlock
 parameter_list|(
-name|long
+name|int
 index|[]
 name|data
 parameter_list|,
@@ -952,7 +952,7 @@ name|byte
 index|[]
 name|encoded
 parameter_list|,
-name|long
+name|int
 index|[]
 name|decoded
 parameter_list|)
@@ -1155,11 +1155,11 @@ parameter_list|(
 name|IndexInput
 name|docIn
 parameter_list|,
-name|long
+name|int
 index|[]
 name|docBuffer
 parameter_list|,
-name|long
+name|int
 index|[]
 name|freqBuffer
 parameter_list|,
@@ -1282,7 +1282,7 @@ name|boolean
 name|isAllEqual
 parameter_list|(
 specifier|final
-name|long
+name|int
 index|[]
 name|data
 parameter_list|)
@@ -1338,7 +1338,7 @@ name|int
 name|bitsRequired
 parameter_list|(
 specifier|final
-name|long
+name|int
 index|[]
 name|data
 parameter_list|)
