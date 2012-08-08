@@ -220,6 +220,8 @@ specifier|final
 name|int
 name|maxTermBlockSize
 decl_stmt|;
+comment|// nocommit is this right?:
+comment|// NOTE: must be factor of .... 32?
 DECL|field|BLOCK_SIZE
 specifier|public
 specifier|final
