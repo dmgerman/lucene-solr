@@ -2358,7 +2358,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("["+docFreq+"]"+" refillDoc");
 specifier|final
 name|int
 name|left
@@ -2572,7 +2571,6 @@ operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
-comment|//System.out.println("["+docFreq+"]"+" nextDoc");
 if|if
 condition|(
 name|docBufferUpto
@@ -2839,6 +2837,8 @@ name|skipTo
 argument_list|(
 name|target
 argument_list|)
+operator|+
+literal|1
 decl_stmt|;
 if|if
 condition|(
@@ -2888,11 +2888,7 @@ name|newDocUpto
 operator|%
 name|BLOCK_SIZE
 operator|==
-operator|(
-name|BLOCK_SIZE
-operator|-
-literal|1
-operator|)
+literal|0
 operator|:
 literal|"got "
 operator|+
@@ -2901,8 +2897,6 @@ assert|;
 name|docUpto
 operator|=
 name|newDocUpto
-operator|+
-literal|1
 expr_stmt|;
 comment|// Force to read next block
 name|docBufferUpto
@@ -2937,6 +2931,30 @@ name|getNextSkipDoc
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|docUpto
+operator|==
+name|docFreq
+condition|)
+block|{
+return|return
+name|doc
+operator|=
+name|NO_MORE_DOCS
+return|;
+block|}
+if|if
+condition|(
+name|docBufferUpto
+operator|==
+name|BLOCK_SIZE
+condition|)
+block|{
+name|refillDocs
+argument_list|()
+expr_stmt|;
+block|}
 comment|// Now scan... this is an inlined/pared down version
 comment|// of nextDoc():
 while|while
@@ -2965,35 +2983,6 @@ name|docBufferUpto
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|docUpto
-operator|==
-name|docFreq
-condition|)
-block|{
-return|return
-name|doc
-operator|=
-name|NO_MORE_DOCS
-return|;
-block|}
-comment|// nocommit: in theory we should not hit this?  ie
-comment|// skipper should already have moved us to the block
-comment|// containing the doc?  yet assert false trips ... i
-comment|// think because if you advance w/o having done a
-comment|// nextDoc yet()... can we assert/remove this?
-if|if
-condition|(
-name|docBufferUpto
-operator|==
-name|BLOCK_SIZE
-condition|)
-block|{
-name|refillDocs
-argument_list|()
-expr_stmt|;
-block|}
 name|accum
 operator|+=
 name|docDeltaBuffer
@@ -3016,6 +3005,19 @@ block|}
 name|docBufferUpto
 operator|++
 expr_stmt|;
+if|if
+condition|(
+name|docUpto
+operator|==
+name|docFreq
+condition|)
+block|{
+return|return
+name|doc
+operator|=
+name|NO_MORE_DOCS
+return|;
+block|}
 block|}
 if|if
 condition|(
@@ -3615,7 +3617,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("["+docFreq+"]"+" refillDoc");
 specifier|final
 name|int
 name|left
@@ -4023,7 +4024,6 @@ operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
-comment|//System.out.println("["+docFreq+"]"+" nextDoc");
 if|if
 condition|(
 name|docBufferUpto
@@ -4327,6 +4327,8 @@ name|skipTo
 argument_list|(
 name|target
 argument_list|)
+operator|+
+literal|1
 decl_stmt|;
 if|if
 condition|(
@@ -4390,11 +4392,7 @@ name|newDocUpto
 operator|%
 name|BLOCK_SIZE
 operator|==
-operator|(
-name|BLOCK_SIZE
-operator|-
-literal|1
-operator|)
+literal|0
 operator|:
 literal|"got "
 operator|+
@@ -4403,8 +4401,6 @@ assert|;
 name|docUpto
 operator|=
 name|newDocUpto
-operator|+
-literal|1
 expr_stmt|;
 comment|// Force to read next block
 name|docBufferUpto
@@ -4451,6 +4447,30 @@ name|getNextSkipDoc
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|docUpto
+operator|==
+name|docFreq
+condition|)
+block|{
+return|return
+name|doc
+operator|=
+name|NO_MORE_DOCS
+return|;
+block|}
+if|if
+condition|(
+name|docBufferUpto
+operator|==
+name|BLOCK_SIZE
+condition|)
+block|{
+name|refillDocs
+argument_list|()
+expr_stmt|;
+block|}
 comment|// Now scan... this is an inlined/pared down version
 comment|// of nextDoc():
 while|while
@@ -4492,24 +4512,6 @@ operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
-comment|// nocommit: in theory we should not hit this?  ie
-comment|// skipper should already have moved us to the block
-comment|// containing the doc?  yet assert false trips ... i
-comment|// think because if you advance w/o having done a
-comment|// nextDoc yet()... can we assert/remove this?
-if|if
-condition|(
-name|docBufferUpto
-operator|==
-name|BLOCK_SIZE
-condition|)
-block|{
-comment|// nocommit hmm skip freq?  but: we don't ever
-comment|// scan over more than one block?
-name|refillDocs
-argument_list|()
-expr_stmt|;
-block|}
 name|accum
 operator|+=
 name|docDeltaBuffer
@@ -4542,6 +4544,19 @@ name|target
 condition|)
 block|{
 break|break;
+block|}
+if|if
+condition|(
+name|docUpto
+operator|==
+name|docFreq
+condition|)
+block|{
+return|return
+name|doc
+operator|=
+name|NO_MORE_DOCS
+return|;
 block|}
 block|}
 if|if
@@ -5650,7 +5665,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("["+docFreq+"]"+" refillDoc");
 specifier|final
 name|int
 name|left
@@ -6351,7 +6365,6 @@ operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
-comment|//System.out.println("["+docFreq+"]"+" nextDoc");
 if|if
 condition|(
 name|docBufferUpto
@@ -6663,6 +6676,8 @@ name|skipTo
 argument_list|(
 name|target
 argument_list|)
+operator|+
+literal|1
 decl_stmt|;
 if|if
 condition|(
@@ -6737,11 +6752,7 @@ name|newDocUpto
 operator|%
 name|BLOCK_SIZE
 operator|==
-operator|(
-name|BLOCK_SIZE
-operator|-
-literal|1
-operator|)
+literal|0
 operator|:
 literal|"got "
 operator|+
@@ -6750,8 +6761,6 @@ assert|;
 name|docUpto
 operator|=
 name|newDocUpto
-operator|+
-literal|1
 expr_stmt|;
 comment|// Force to read next block
 name|docBufferUpto
@@ -6819,63 +6828,189 @@ name|getNextSkipDoc
 argument_list|()
 expr_stmt|;
 block|}
-comment|// nocommit inline nextDoc here
+if|if
+condition|(
+name|docUpto
+operator|==
+name|docFreq
+condition|)
+block|{
+return|return
+name|doc
+operator|=
+name|NO_MORE_DOCS
+return|;
+block|}
+if|if
+condition|(
+name|docBufferUpto
+operator|==
+name|BLOCK_SIZE
+condition|)
+block|{
+name|refillDocs
+argument_list|()
+expr_stmt|;
+block|}
 comment|// Now scan:
 while|while
 condition|(
-name|nextDoc
-argument_list|()
-operator|!=
-name|NO_MORE_DOCS
+literal|true
 condition|)
 block|{
 if|if
 condition|(
-name|doc
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  scan doc="
+operator|+
+name|accum
+operator|+
+literal|" docBufferUpto="
+operator|+
+name|docBufferUpto
+argument_list|)
+expr_stmt|;
+block|}
+name|accum
+operator|+=
+name|docDeltaBuffer
+index|[
+name|docBufferUpto
+index|]
+expr_stmt|;
+name|freq
+operator|=
+name|freqBuffer
+index|[
+name|docBufferUpto
+index|]
+expr_stmt|;
+name|posPendingCount
+operator|+=
+name|freq
+expr_stmt|;
+name|docBufferUpto
+operator|++
+expr_stmt|;
+name|docUpto
+operator|++
+expr_stmt|;
+if|if
+condition|(
+name|accum
 operator|>=
 name|target
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  advance return doc="
-operator|+
-name|doc
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|doc
-return|;
-block|}
+break|break;
 block|}
 if|if
 condition|(
-name|DEBUG
+name|docUpto
+operator|==
+name|docFreq
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  advance return doc=END"
-argument_list|)
-expr_stmt|;
-block|}
 return|return
+name|doc
+operator|=
 name|NO_MORE_DOCS
 return|;
+block|}
+block|}
+if|if
+condition|(
+name|liveDocs
+operator|==
+literal|null
+operator|||
+name|liveDocs
+operator|.
+name|get
+argument_list|(
+name|accum
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  return doc="
+operator|+
+name|accum
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|indexHasPayloads
+condition|)
+block|{
+name|payloadByteUpto
+operator|+=
+name|payloadLength
+expr_stmt|;
+name|payloadLength
+operator|=
+literal|0
+expr_stmt|;
+block|}
+name|position
+operator|=
+literal|0
+expr_stmt|;
+name|payloadLength
+operator|=
+literal|0
+expr_stmt|;
+name|lastStartOffset
+operator|=
+literal|0
+expr_stmt|;
+return|return
+name|doc
+operator|=
+name|accum
+return|;
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  now do nextDoc()"
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|nextDoc
+argument_list|()
+return|;
+block|}
 block|}
 comment|// nocommit in theory we could avoid loading frq block
 comment|// when not needed, ie, use skip data to load how far to
