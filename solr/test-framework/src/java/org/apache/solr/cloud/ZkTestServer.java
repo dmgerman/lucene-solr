@@ -1235,7 +1235,7 @@ name|port
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Send the 4letterword    * @param host the destination host    * @param port the destination port    * @param cmd the 4letterword    * @return    * @throws IOException    */
+comment|/**    * Send the 4letterword    * @param host the destination host    * @param port the destination port    * @param cmd the 4letterword    * @throws IOException    */
 DECL|method|send4LetterWord
 specifier|public
 specifier|static

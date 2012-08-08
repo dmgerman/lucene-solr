@@ -1630,7 +1630,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * @param numJettys    * @param checkCreatedVsState    *          if true, make sure the number created (numJettys) matches the    *          number in the cluster state - if you add more jetties this may not    *          be the case    * @return    * @throws Exception    */
+comment|/**    * @param numJettys    * @param checkCreatedVsState    *          if true, make sure the number created (numJettys) matches the    *          number in the cluster state - if you add more jetties this may not    *          be the case    * @throws Exception    */
 DECL|method|createJettys
 specifier|protected
 name|List
