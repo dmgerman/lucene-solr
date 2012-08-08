@@ -256,7 +256,11 @@ init|=
 operator|new
 name|int
 index|[
+operator|(
 name|iterations
+operator|-
+literal|1
+operator|)
 operator|*
 name|BLOCK_SIZE
 operator|+
@@ -459,7 +463,7 @@ name|copyOfRange
 argument_list|(
 name|values
 argument_list|,
-name|iterations
+name|i
 operator|*
 name|BLOCK_SIZE
 argument_list|,
@@ -584,12 +588,12 @@ name|copyOfRange
 argument_list|(
 name|values
 argument_list|,
-name|iterations
+name|i
 operator|*
 name|BLOCK_SIZE
 argument_list|,
 operator|(
-name|iterations
+name|i
 operator|+
 literal|1
 operator|)
