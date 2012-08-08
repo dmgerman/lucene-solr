@@ -259,7 +259,7 @@ specifier|public
 class|class
 name|ChaosMonkeyNothingIsSafeTest
 extends|extends
-name|FullSolrCloudTest
+name|AbstractFullDistribZkTestBase
 block|{
 DECL|field|log
 specifier|public

@@ -102,6 +102,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|cloud
+operator|.
+name|ZkTestServer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|cloud
@@ -231,11 +245,11 @@ import|;
 end_import
 
 begin_class
-DECL|class|AbstractDistributedZkTestCase
+DECL|class|AbstractDistribZkTestBase
 specifier|public
 specifier|abstract
 class|class
-name|AbstractDistributedZkTestCase
+name|AbstractDistribZkTestBase
 extends|extends
 name|BaseDistributedSearchTestCase
 block|{

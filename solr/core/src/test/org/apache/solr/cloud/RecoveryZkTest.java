@@ -130,16 +130,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -164,7 +154,7 @@ specifier|public
 class|class
 name|RecoveryZkTest
 extends|extends
-name|FullSolrCloudTest
+name|AbstractFullDistribZkTestBase
 block|{
 comment|//private static final String DISTRIB_UPDATE_CHAIN = "distrib-update-chain";
 DECL|field|log
