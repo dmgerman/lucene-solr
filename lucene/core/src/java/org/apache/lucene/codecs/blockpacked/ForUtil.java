@@ -824,9 +824,6 @@ name|out
 operator|.
 name|writeInt
 argument_list|(
-operator|(
-name|int
-operator|)
 name|data
 index|[
 literal|0

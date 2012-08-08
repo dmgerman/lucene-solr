@@ -935,6 +935,7 @@ index|[
 name|MIN_DATA_SIZE
 index|]
 expr_stmt|;
+comment|// nocommit should we try skipping every 2/4 blocks...?
 name|skipWriter
 operator|=
 operator|new
@@ -2055,9 +2056,6 @@ specifier|final
 name|int
 name|docDelta
 init|=
-operator|(
-name|int
-operator|)
 name|docDeltaBuffer
 index|[
 name|i
@@ -2067,9 +2065,6 @@ specifier|final
 name|int
 name|freq
 init|=
-operator|(
-name|int
-operator|)
 name|freqBuffer
 index|[
 name|i
@@ -2276,9 +2271,6 @@ specifier|final
 name|int
 name|posDelta
 init|=
-operator|(
-name|int
-operator|)
 name|posDeltaBuffer
 index|[
 name|i
@@ -2293,9 +2285,6 @@ specifier|final
 name|int
 name|payloadLength
 init|=
-operator|(
-name|int
-operator|)
 name|payloadLengthBuffer
 index|[
 name|i
@@ -2449,9 +2438,6 @@ name|posOut
 operator|.
 name|writeVInt
 argument_list|(
-operator|(
-name|int
-operator|)
 name|offsetStartDeltaBuffer
 index|[
 name|i
@@ -2462,9 +2448,6 @@ name|posOut
 operator|.
 name|writeVInt
 argument_list|(
-operator|(
-name|int
-operator|)
 name|offsetLengthBuffer
 index|[
 name|i
