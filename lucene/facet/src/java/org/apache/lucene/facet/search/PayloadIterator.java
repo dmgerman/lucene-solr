@@ -239,7 +239,9 @@ operator|.
 name|bytes
 argument_list|()
 argument_list|,
-literal|false
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_PAYLOADS
 argument_list|)
 expr_stmt|;
 block|}

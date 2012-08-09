@@ -707,7 +707,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"\"quick brown\""
+literal|"\"? quick brown\""
 argument_list|,
 name|qp
 operator|.
@@ -741,7 +741,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"\"quick brown fox\""
+literal|"\"? quick brown fox\""
 argument_list|,
 name|qp
 operator|.

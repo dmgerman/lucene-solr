@@ -463,7 +463,7 @@ operator|.
 name|bytes
 argument_list|()
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 argument_list|,
 name|docIds

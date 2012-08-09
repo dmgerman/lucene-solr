@@ -88,7 +88,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -124,7 +124,7 @@ parameter_list|(
 name|String
 name|collection
 parameter_list|,
-name|CloudState
+name|ClusterState
 name|state
 parameter_list|,
 name|Integer

@@ -936,8 +936,6 @@ name|BytesRef
 argument_list|(
 literal|"repeated"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1364,8 +1362,6 @@ name|BytesRef
 argument_list|(
 literal|"a"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1656,8 +1652,6 @@ name|BytesRef
 argument_list|(
 literal|"term1"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1710,8 +1704,6 @@ name|BytesRef
 argument_list|(
 literal|"term2"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1774,8 +1766,6 @@ name|BytesRef
 argument_list|(
 literal|"term3"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|assertTrue

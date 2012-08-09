@@ -570,7 +570,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|CloudState
+name|ClusterState
 import|;
 end_import
 
@@ -751,7 +751,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  */
+comment|/**  * This test simply does a bunch of basic things in solrcloud mode and asserts things  * work as expected.  */
 end_comment
 
 begin_class
@@ -762,7 +762,7 @@ specifier|public
 class|class
 name|BasicDistributedZkTest
 extends|extends
-name|AbstractDistributedZkTestCase
+name|AbstractDistribZkTestBase
 block|{
 DECL|field|DEFAULT_COLLECTION
 specifier|private
@@ -2459,7 +2459,7 @@ name|put
 argument_list|(
 literal|"explain"
 argument_list|,
-name|UNORDERED
+name|SKIPVAL
 argument_list|)
 expr_stmt|;
 name|handle
@@ -2912,7 +2912,7 @@ name|url
 argument_list|)
 decl_stmt|;
 comment|// poll for a second - it can take a moment before we are ready to serve
-name|waitForNon404
+name|waitForNon404or503
 argument_list|(
 name|collectionClient
 argument_list|)
@@ -3472,7 +3472,7 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|getCollectionStates
@@ -3689,15 +3689,15 @@ name|String
 name|collection
 parameter_list|)
 block|{
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|solrj
 operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|Map
@@ -3708,7 +3708,7 @@ name|Slice
 argument_list|>
 name|slices
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getCollectionStates
 argument_list|()
@@ -3822,7 +3822,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|cloudState
+name|clusterState
 operator|.
 name|liveNodesContain
 argument_list|(
@@ -3860,10 +3860,10 @@ name|collection
 argument_list|)
 throw|;
 block|}
-DECL|method|waitForNon404
+DECL|method|waitForNon404or503
 specifier|private
 name|void
-name|waitForNon404
+name|waitForNon404or503
 parameter_list|(
 name|HttpSolrServer
 name|collectionClient
@@ -3871,6 +3871,11 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+name|SolrException
+name|exp
+init|=
+literal|null
+decl_stmt|;
 name|long
 name|timeoutAt
 init|=
@@ -3916,25 +3921,34 @@ name|SolrException
 name|e
 parameter_list|)
 block|{
-comment|// How do I get the response code!?
 if|if
 condition|(
 operator|!
+operator|(
 name|e
 operator|.
-name|getMessage
+name|code
 argument_list|()
+operator|==
+literal|403
+operator|||
+name|e
 operator|.
-name|contains
-argument_list|(
-literal|"(404)"
-argument_list|)
+name|code
+argument_list|()
+operator|==
+literal|503
+operator|)
 condition|)
 block|{
 throw|throw
 name|e
 throw|;
 block|}
+name|exp
+operator|=
+name|e
+expr_stmt|;
 name|missing
 operator|=
 literal|true
@@ -3961,7 +3975,14 @@ argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Could not find the new collection - 404 : "
+literal|"Could not find the new collection - "
+operator|+
+name|exp
+operator|.
+name|code
+argument_list|()
+operator|+
+literal|" : "
 operator|+
 name|collectionClient
 operator|.
@@ -4020,20 +4041,20 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|updateCloudState
+name|updateClusterState
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|solrj
 operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|Map
@@ -4049,7 +4070,7 @@ argument_list|>
 argument_list|>
 name|collections
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getCollectionStates
 argument_list|()
@@ -4322,20 +4343,20 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|updateCloudState
+name|updateClusterState
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|CloudState
-name|cloudState
+name|ClusterState
+name|clusterState
 init|=
 name|solrj
 operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 decl_stmt|;
 name|Map
@@ -4351,7 +4372,7 @@ argument_list|>
 argument_list|>
 name|collections
 init|=
-name|cloudState
+name|clusterState
 operator|.
 name|getCollectionStates
 argument_list|()
@@ -5577,7 +5598,7 @@ argument_list|()
 decl_stmt|;
 name|zkStateReader
 operator|.
-name|updateCloudState
+name|updateClusterState
 argument_list|(
 literal|true
 argument_list|)
@@ -5592,7 +5613,7 @@ name|slices
 init|=
 name|zkStateReader
 operator|.
-name|getCloudState
+name|getClusterState
 argument_list|()
 operator|.
 name|getSlices

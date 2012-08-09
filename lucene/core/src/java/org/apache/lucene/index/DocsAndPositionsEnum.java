@@ -53,6 +53,26 @@ name|DocsAndPositionsEnum
 extends|extends
 name|DocsEnum
 block|{
+comment|/** Flag to pass to {@link TermsEnum#docsAndPositions(Bits,DocsAndPositionsEnum,int)}    *  if you require offsets in the returned enum. */
+DECL|field|FLAG_OFFSETS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FLAG_OFFSETS
+init|=
+literal|0x1
+decl_stmt|;
+comment|/** Flag to pass to  {@link TermsEnum#docsAndPositions(Bits,DocsAndPositionsEnum,int)}    *  if you require payloads in the returned enum. */
+DECL|field|FLAG_PAYLOADS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|FLAG_PAYLOADS
+init|=
+literal|0x2
+decl_stmt|;
 comment|/** Returns the next position.  You should only call this    *  up to {@link DocsEnum#freq()} times else    *  the behavior is not defined.  If positions were not    *  indexed this will return -1; this only happens if    *  offsets were indexed and you passed needsOffset=true    *  when pulling the enum.  */
 DECL|method|nextPosition
 specifier|public

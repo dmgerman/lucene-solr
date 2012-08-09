@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Factory for {@link CJKBigramFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_cjk" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.CJKWidthFilterFactory"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;filter class="solr.CJKBigramFilterFactory"   *       han="true" hiragana="true"   *       katakana="true" hangul="true" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**   * Factory for {@link CJKBigramFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_cjk" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.CJKWidthFilterFactory"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;filter class="solr.CJKBigramFilterFactory"   *       han="true" hiragana="true"   *       katakana="true" hangul="true" outputUnigrams="false" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
@@ -89,6 +89,10 @@ block|{
 DECL|field|flags
 name|int
 name|flags
+decl_stmt|;
+DECL|field|outputUnigrams
+name|boolean
+name|outputUnigrams
 decl_stmt|;
 annotation|@
 name|Override
@@ -185,6 +189,15 @@ operator|.
 name|HANGUL
 expr_stmt|;
 block|}
+name|outputUnigrams
+operator|=
+name|getBoolean
+argument_list|(
+literal|"outputUnigrams"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -204,6 +217,8 @@ argument_list|(
 name|input
 argument_list|,
 name|flags
+argument_list|,
+name|outputUnigrams
 argument_list|)
 return|;
 block|}

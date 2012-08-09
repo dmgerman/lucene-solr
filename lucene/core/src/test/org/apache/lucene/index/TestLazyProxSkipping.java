@@ -760,6 +760,14 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|testLazySkipping
 specifier|public
@@ -956,8 +964,6 @@ name|BytesRef
 argument_list|(
 literal|"b"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 for|for
@@ -1025,8 +1031,6 @@ name|BytesRef
 argument_list|(
 literal|"a"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 for|for

@@ -185,11 +185,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper class for tracking autoCommit state.  *   * Note: This is purely an implementation detail of autoCommit and will  * definitely change in the future, so the interface should not be relied-upon  *   * Note: all access must be synchronized.  */
+comment|/**  * Helper class for tracking autoCommit state.  *   * Note: This is purely an implementation detail of autoCommit and will  * definitely change in the future, so the interface should not be relied-upon  *   * Note: all access must be synchronized.  *   * Public for tests.  */
 end_comment
 
 begin_class
 DECL|class|CommitTracker
+specifier|public
 specifier|final
 class|class
 name|CommitTracker
@@ -952,7 +953,9 @@ operator|=
 name|docsUpperBound
 expr_stmt|;
 block|}
+comment|// only for testing - not thread safe
 DECL|method|setTimeUpperBound
+specifier|public
 name|void
 name|setTimeUpperBound
 parameter_list|(

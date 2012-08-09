@@ -1660,8 +1660,8 @@ parameter_list|,
 name|DocsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsFreqs
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -1926,7 +1926,7 @@ operator|.
 name|index
 index|]
 argument_list|,
-name|needsFreqs
+name|flags
 argument_list|)
 decl_stmt|;
 if|if
@@ -1973,13 +1973,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// One of our subs cannot provide freqs:
+comment|// One of our subs cannot provide a docsenum:
 assert|assert
-name|needsFreqs
+literal|false
 assert|;
-return|return
-literal|null
-return|;
 block|}
 block|}
 if|if
@@ -2020,8 +2017,8 @@ parameter_list|,
 name|DocsAndPositionsEnum
 name|reuse
 parameter_list|,
-name|boolean
-name|needsOffsets
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -2296,7 +2293,7 @@ operator|.
 name|index
 index|]
 argument_list|,
-name|needsOffsets
+name|flags
 argument_list|)
 decl_stmt|;
 if|if
@@ -2355,7 +2352,7 @@ name|b
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|!=
 literal|null

@@ -88,12 +88,6 @@ name|Scorer
 index|[]
 name|scorers
 decl_stmt|;
-DECL|field|coord
-specifier|private
-specifier|final
-name|float
-name|coord
-decl_stmt|;
 DECL|field|lastDoc
 specifier|private
 name|int
@@ -109,9 +103,6 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
-name|float
-name|coord
-parameter_list|,
 name|Collection
 argument_list|<
 name|Scorer
@@ -124,8 +115,6 @@ block|{
 name|this
 argument_list|(
 name|weight
-argument_list|,
-name|coord
 argument_list|,
 name|scorers
 operator|.
@@ -150,9 +139,6 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
-name|float
-name|coord
-parameter_list|,
 name|Scorer
 modifier|...
 name|scorers
@@ -170,12 +156,6 @@ operator|.
 name|scorers
 operator|=
 name|scorers
-expr_stmt|;
-name|this
-operator|.
-name|coord
-operator|=
-name|coord
 expr_stmt|;
 for|for
 control|(
@@ -629,8 +609,6 @@ expr_stmt|;
 block|}
 return|return
 name|sum
-operator|*
-name|coord
 return|;
 block|}
 annotation|@

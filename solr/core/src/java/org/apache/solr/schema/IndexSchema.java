@@ -2428,13 +2428,35 @@ name|multiValued
 argument_list|()
 condition|)
 block|{
+name|String
+name|msg
+init|=
+literal|"uniqueKey field ("
+operator|+
+name|uniqueKeyFieldName
+operator|+
+literal|") can not be configured to be multivalued"
+decl_stmt|;
 name|log
 operator|.
 name|error
 argument_list|(
-literal|"uniqueKey should not be multivalued"
+name|msg
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+name|msg
+argument_list|)
+throw|;
 block|}
 name|uniqueKeyFieldName
 operator|=

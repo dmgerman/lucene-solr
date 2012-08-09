@@ -191,6 +191,17 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
+comment|// protects pauseWriter and writerFree
+DECL|field|writerPauseLock
+specifier|private
+specifier|final
+name|Object
+name|writerPauseLock
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
 DECL|field|refCnt
 specifier|private
 name|int
@@ -279,6 +290,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+synchronized|synchronized
+init|(
+name|writerPauseLock
+init|)
+block|{
 if|if
 condition|(
 name|core
@@ -286,7 +302,8 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// core == null is a signal to just return the current writer, or null if none.
+comment|// core == null is a signal to just return the current writer, or null
+comment|// if none.
 if|if
 condition|(
 name|refCntWriter
@@ -309,6 +326,8 @@ condition|)
 block|{
 try|try
 block|{
+name|writerPauseLock
+operator|.
 name|wait
 argument_list|()
 expr_stmt|;
@@ -368,18 +387,14 @@ parameter_list|()
 block|{
 synchronized|synchronized
 init|(
-name|DefaultSolrCoreState
-operator|.
-name|this
+name|writerPauseLock
 init|)
 block|{
 name|writerFree
 operator|=
 literal|true
 expr_stmt|;
-name|DefaultSolrCoreState
-operator|.
-name|this
+name|writerPauseLock
 operator|.
 name|notifyAll
 argument_list|()
@@ -393,6 +408,8 @@ name|writerFree
 operator|=
 literal|false
 expr_stmt|;
+name|writerPauseLock
+operator|.
 name|notifyAll
 argument_list|()
 expr_stmt|;
@@ -405,6 +422,7 @@ return|return
 name|refCntWriter
 return|;
 block|}
+block|}
 annotation|@
 name|Override
 DECL|method|newIndexWriter
@@ -415,9 +433,17 @@ name|newIndexWriter
 parameter_list|(
 name|SolrCore
 name|core
+parameter_list|,
+name|boolean
+name|rollback
 parameter_list|)
 throws|throws
 name|IOException
+block|{
+synchronized|synchronized
+init|(
+name|writerPauseLock
+init|)
 block|{
 comment|// we need to wait for the Writer to fall out of use
 comment|// first lets stop it from being lent out
@@ -434,6 +460,8 @@ condition|)
 block|{
 try|try
 block|{
+name|writerPauseLock
+operator|.
 name|wait
 argument_list|()
 expr_stmt|;
@@ -506,9 +534,12 @@ name|pauseWriter
 operator|=
 literal|false
 expr_stmt|;
+name|writerPauseLock
+operator|.
 name|notifyAll
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@
@@ -688,6 +719,8 @@ expr_stmt|;
 name|newIndexWriter
 argument_list|(
 name|core
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -812,14 +845,14 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|cancelRecovery
-argument_list|()
-expr_stmt|;
 synchronized|synchronized
 init|(
 name|recoveryLock
 init|)
 block|{
+name|cancelRecovery
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 name|recoveryRunning

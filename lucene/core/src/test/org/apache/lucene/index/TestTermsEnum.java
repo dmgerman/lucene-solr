@@ -2328,7 +2328,7 @@ literal|null
 argument_list|,
 name|docsEnum
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -4882,7 +4882,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -4914,7 +4914,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -4946,7 +4946,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -5001,7 +5001,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -5033,7 +5033,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -5088,7 +5088,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc
@@ -5120,7 +5120,7 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 operator|.
 name|nextDoc

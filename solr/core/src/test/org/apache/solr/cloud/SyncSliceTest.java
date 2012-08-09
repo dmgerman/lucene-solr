@@ -298,7 +298,7 @@ specifier|public
 class|class
 name|SyncSliceTest
 extends|extends
-name|FullSolrCloudTest
+name|AbstractFullDistribZkTestBase
 block|{
 annotation|@
 name|BeforeClass
@@ -391,7 +391,7 @@ name|TEST_NIGHTLY
 condition|?
 literal|7
 else|:
-literal|3
+literal|4
 expr_stmt|;
 block|}
 annotation|@
@@ -428,7 +428,9 @@ name|SKIPVAL
 argument_list|)
 expr_stmt|;
 name|waitForThingsToLevelOut
-argument_list|()
+argument_list|(
+literal|15
+argument_list|)
 expr_stmt|;
 name|del
 argument_list|(
@@ -725,7 +727,9 @@ name|request
 argument_list|)
 expr_stmt|;
 name|waitForThingsToLevelOut
-argument_list|()
+argument_list|(
+literal|15
+argument_list|)
 expr_stmt|;
 name|checkShardConsistency
 argument_list|(
@@ -859,7 +863,7 @@ expr_stmt|;
 comment|// we are careful to make sure the downed node is no longer in the state,
 comment|// because on some systems (especially freebsd w/ blackhole enabled), trying
 comment|// to talk to a downed node causes grief
-name|waitToSeeDownInCloudState
+name|waitToSeeDownInClusterState
 argument_list|(
 name|leaderJetty
 argument_list|,
@@ -867,7 +871,9 @@ name|jetties
 argument_list|)
 expr_stmt|;
 name|waitForThingsToLevelOut
-argument_list|()
+argument_list|(
+literal|15
+argument_list|)
 expr_stmt|;
 name|checkShardConsistency
 argument_list|(
@@ -956,7 +962,9 @@ literal|2000
 argument_list|)
 expr_stmt|;
 name|waitForThingsToLevelOut
-argument_list|()
+argument_list|(
+literal|15
+argument_list|)
 expr_stmt|;
 name|waitForRecoveriesToFinish
 argument_list|(
@@ -972,13 +980,25 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|skipServers
+operator|.
+name|addAll
+argument_list|(
+name|getRandomOtherJetty
+argument_list|(
+name|leaderJetty
+argument_list|,
+literal|null
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// skip list should be
 comment|//System.out.println("leader:" + leaderJetty.url);
 comment|//System.out.println("skip list:" + skipServers);
-comment|// we are skipping the leader and one node
+comment|// we are skipping  one nodes
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|skipServers
 operator|.
@@ -1096,7 +1116,7 @@ argument_list|(
 name|leaderJetty
 argument_list|)
 expr_stmt|;
-name|waitToSeeDownInCloudState
+name|waitToSeeDownInClusterState
 argument_list|(
 name|leaderJetty
 argument_list|,
@@ -1115,14 +1135,9 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// TODO: for now, we just check consistency -
-comment|// there will be 305 or 5 docs depending on who
-comment|// becomes the leader - eventually we want that to
-comment|// always be the 305
-comment|//checkShardConsistency(true, true);
 name|checkShardConsistency
 argument_list|(
-literal|false
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -1263,10 +1278,10 @@ return|return
 name|skipServers
 return|;
 block|}
-DECL|method|waitToSeeDownInCloudState
+DECL|method|waitToSeeDownInClusterState
 specifier|private
 name|void
-name|waitToSeeDownInCloudState
+name|waitToSeeDownInClusterState
 parameter_list|(
 name|CloudJettyRunner
 name|leaderJetty
@@ -1328,118 +1343,6 @@ argument_list|,
 name|leaderJetty
 argument_list|)
 expr_stmt|;
-block|}
-DECL|method|waitForThingsToLevelOut
-specifier|private
-name|void
-name|waitForThingsToLevelOut
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|int
-name|cnt
-init|=
-literal|0
-decl_stmt|;
-name|boolean
-name|retry
-init|=
-literal|false
-decl_stmt|;
-do|do
-block|{
-name|waitForRecoveriesToFinish
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|commit
-argument_list|()
-expr_stmt|;
-name|updateMappingsFromZk
-argument_list|(
-name|jettys
-argument_list|,
-name|clients
-argument_list|)
-expr_stmt|;
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|theShards
-init|=
-name|shardToJetty
-operator|.
-name|keySet
-argument_list|()
-decl_stmt|;
-name|String
-name|failMessage
-init|=
-literal|null
-decl_stmt|;
-for|for
-control|(
-name|String
-name|shard
-range|:
-name|theShards
-control|)
-block|{
-name|failMessage
-operator|=
-name|checkShardConsistency
-argument_list|(
-name|shard
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|failMessage
-operator|!=
-literal|null
-condition|)
-block|{
-name|retry
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
-block|{
-name|retry
-operator|=
-literal|false
-expr_stmt|;
-block|}
-name|cnt
-operator|++
-expr_stmt|;
-if|if
-condition|(
-name|cnt
-operator|>
-literal|10
-condition|)
-break|break;
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|2000
-argument_list|)
-expr_stmt|;
-block|}
-do|while
-condition|(
-name|retry
-condition|)
-do|;
 block|}
 DECL|method|indexDoc
 specifier|protected

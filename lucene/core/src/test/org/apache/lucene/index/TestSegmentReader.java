@@ -891,7 +891,7 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -938,7 +938,7 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|,
-literal|false
+literal|0
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -978,8 +978,6 @@ name|BytesRef
 argument_list|(
 literal|"field"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 comment|// NOTE: prior rev of this test was failing to first

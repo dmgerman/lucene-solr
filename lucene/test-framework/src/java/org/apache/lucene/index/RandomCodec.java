@@ -146,6 +146,22 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|bloom
+operator|.
+name|TestBloomFilteredLucene40Postings
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|lucene40
 operator|.
 name|Lucene40Codec
@@ -731,6 +747,13 @@ name|minItemsPerBlock
 argument_list|,
 name|maxItemsPerBlock
 argument_list|)
+argument_list|,
+comment|//TODO as a PostingsFormat which wraps others, we should allow TestBloomFilteredLucene40Postings to be constructed
+comment|//with a choice of concrete PostingsFormats. Maybe useful to have a generic means of marking and dealing
+comment|//with such "wrapper" classes?
+operator|new
+name|TestBloomFilteredLucene40Postings
+argument_list|()
 argument_list|,
 operator|new
 name|MockSepPostingsFormat

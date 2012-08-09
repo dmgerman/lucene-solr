@@ -97,7 +97,7 @@ name|NamedListInitializedPlugin
 implements|,
 name|Closeable
 block|{
-comment|/**    * Indicates a Directory will no longer be used, and when it's ref count    * hits 0, it can be closed. On shutdown all directories will be closed    * with this has been called or not. This is simply to allow early cleanup.    *     * @param directory    * @throws IOException     */
+comment|/**    * Indicates a Directory will no longer be used, and when it's ref count    * hits 0, it can be closed. On shutdown all directories will be closed    * whether this has been called or not. This is simply to allow early cleanup.    *     * @param directory    * @throws IOException     */
 DECL|method|doneWithDirectory
 specifier|public
 specifier|abstract

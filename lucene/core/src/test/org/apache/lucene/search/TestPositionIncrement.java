@@ -713,8 +713,6 @@ name|BytesRef
 argument_list|(
 literal|"1"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|pos
@@ -761,8 +759,6 @@ name|BytesRef
 argument_list|(
 literal|"2"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|pos
@@ -1548,12 +1544,6 @@ name|StringReader
 argument_list|(
 literal|"a a b c d e a f g h i j a b k k"
 argument_list|)
-argument_list|,
-name|Field
-operator|.
-name|Store
-operator|.
-name|NO
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1602,8 +1592,6 @@ name|BytesRef
 argument_list|(
 literal|"a"
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|int
