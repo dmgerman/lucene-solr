@@ -183,6 +183,25 @@ name|availableServices
 argument_list|()
 return|;
 block|}
+comment|/**     * Reloads the hash function list from the given {@link ClassLoader}.    * Changes to the function list are visible after the method ends, all    * iterators ({@link #availableHashFunctionNames()},...) stay consistent.     *     *<p><b>NOTE:</b> Only new functions are added, existing ones are    * never removed or replaced.    *     *<p><em>This method is expensive and should only be called for discovery    * of new functions on the given classpath/classloader!</em>    */
+DECL|method|reloadHashFunctions
+specifier|public
+specifier|static
+name|void
+name|reloadHashFunctions
+parameter_list|(
+name|ClassLoader
+name|classloader
+parameter_list|)
+block|{
+name|loader
+operator|.
+name|reload
+argument_list|(
+name|classloader
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString

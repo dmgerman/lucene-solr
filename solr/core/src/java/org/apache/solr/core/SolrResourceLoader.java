@@ -242,6 +242,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|hash
+operator|.
+name|HashFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|analysis
 operator|.
 name|util
@@ -968,6 +984,16 @@ name|void
 name|reloadLuceneSPI
 parameter_list|()
 block|{
+comment|// Hash functions:
+name|HashFunction
+operator|.
+name|reloadHashFunctions
+argument_list|(
+name|this
+operator|.
+name|classLoader
+argument_list|)
+expr_stmt|;
 comment|// Codecs:
 name|PostingsFormat
 operator|.
