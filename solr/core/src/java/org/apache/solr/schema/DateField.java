@@ -1872,19 +1872,6 @@ name|maxInclusive
 argument_list|)
 return|;
 block|}
-DECL|method|storedToIndexed
-specifier|public
-name|String
-name|storedToIndexed
-parameter_list|(
-name|GeneralField
-name|f
-parameter_list|)
-block|{
-return|return
-literal|null
-return|;
-block|}
 block|}
 end_class
 

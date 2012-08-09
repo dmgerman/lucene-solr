@@ -606,7 +606,7 @@ if|if
 condition|(
 name|o
 operator|instanceof
-name|IndexableField
+name|StorableField
 condition|)
 block|{
 if|if
