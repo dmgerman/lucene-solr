@@ -68,7 +68,7 @@ name|blockpacked
 operator|.
 name|ForUtil
 operator|.
-name|MIN_DATA_SIZE
+name|MAX_DATA_SIZE
 import|;
 end_import
 
@@ -86,7 +86,7 @@ name|blockpacked
 operator|.
 name|ForUtil
 operator|.
-name|MIN_ENCODED_SIZE
+name|MAX_ENCODED_SIZE
 import|;
 end_import
 
@@ -674,7 +674,7 @@ operator|=
 operator|new
 name|int
 index|[
-name|MIN_DATA_SIZE
+name|MAX_DATA_SIZE
 index|]
 expr_stmt|;
 name|posOut
@@ -743,7 +743,7 @@ operator|=
 operator|new
 name|int
 index|[
-name|MIN_DATA_SIZE
+name|MAX_DATA_SIZE
 index|]
 expr_stmt|;
 block|}
@@ -773,7 +773,7 @@ operator|=
 operator|new
 name|int
 index|[
-name|MIN_DATA_SIZE
+name|MAX_DATA_SIZE
 index|]
 expr_stmt|;
 name|offsetLengthBuffer
@@ -781,7 +781,7 @@ operator|=
 operator|new
 name|int
 index|[
-name|MIN_DATA_SIZE
+name|MAX_DATA_SIZE
 index|]
 expr_stmt|;
 block|}
@@ -924,7 +924,7 @@ operator|=
 operator|new
 name|int
 index|[
-name|MIN_DATA_SIZE
+name|MAX_DATA_SIZE
 index|]
 expr_stmt|;
 name|freqBuffer
@@ -932,7 +932,7 @@ operator|=
 operator|new
 name|int
 index|[
-name|MIN_DATA_SIZE
+name|MAX_DATA_SIZE
 index|]
 expr_stmt|;
 comment|// nocommit should we try skipping every 2/4 blocks...?
@@ -966,7 +966,7 @@ operator|=
 operator|new
 name|byte
 index|[
-name|MIN_ENCODED_SIZE
+name|MAX_ENCODED_SIZE
 index|]
 expr_stmt|;
 block|}

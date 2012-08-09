@@ -50,7 +50,7 @@ name|blockpacked
 operator|.
 name|ForUtil
 operator|.
-name|MIN_DATA_SIZE
+name|MAX_DATA_SIZE
 import|;
 end_import
 
@@ -68,7 +68,7 @@ name|blockpacked
 operator|.
 name|ForUtil
 operator|.
-name|MIN_ENCODED_SIZE
+name|MAX_ENCODED_SIZE
 import|;
 end_import
 
@@ -266,7 +266,7 @@ name|BLOCK_SIZE
 operator|+
 name|ForUtil
 operator|.
-name|MIN_DATA_SIZE
+name|MAX_DATA_SIZE
 index|]
 decl_stmt|;
 for|for
@@ -475,7 +475,7 @@ argument_list|,
 operator|new
 name|byte
 index|[
-name|MIN_ENCODED_SIZE
+name|MAX_ENCODED_SIZE
 index|]
 argument_list|,
 name|out
@@ -562,7 +562,7 @@ init|=
 operator|new
 name|int
 index|[
-name|MIN_DATA_SIZE
+name|MAX_DATA_SIZE
 index|]
 decl_stmt|;
 name|forUtil
@@ -574,7 +574,7 @@ argument_list|,
 operator|new
 name|byte
 index|[
-name|MIN_ENCODED_SIZE
+name|MAX_ENCODED_SIZE
 index|]
 argument_list|,
 name|restored
