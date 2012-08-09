@@ -794,7 +794,9 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Recovery failed - I give up."
+literal|"Recovery failed - I give up. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 try|try
@@ -876,6 +878,10 @@ argument_list|(
 literal|"Attempting to replicate from "
 operator|+
 name|leaderUrl
+operator|+
+literal|". Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 comment|// if we are the leader, either we are trying to recover faster
@@ -1308,7 +1314,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Starting recovery process. recoveringAfterStartup="
+literal|"Starting recovery process.  Core:"
+operator|+
+name|coreName
+operator|+
+literal|" - recoveringAfterStartup="
 operator|+
 name|recoveringAfterStartup
 argument_list|)
@@ -1464,7 +1474,9 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"No UpdateLog found - cannot recover"
+literal|"No UpdateLog found - cannot recover. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 name|recoveryFailed
@@ -1496,13 +1508,17 @@ operator|.
 name|RecentUpdates
 name|recentUpdates
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|recentUpdates
+operator|=
 name|ulog
 operator|.
 name|getRecentUpdates
 argument_list|()
-decl_stmt|;
-try|try
-block|{
+expr_stmt|;
 name|recentVersions
 operator|=
 name|recentUpdates
@@ -1527,7 +1543,9 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Corrupt tlog - ignoring"
+literal|"Corrupt tlog - ignoring. Core:"
+operator|+
+name|coreName
 argument_list|,
 name|t
 argument_list|)
@@ -1546,11 +1564,19 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|recentUpdates
+operator|!=
+literal|null
+condition|)
+block|{
 name|recentUpdates
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|List
 argument_list|<
@@ -1699,7 +1725,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Looks like a previous replication recovery did not complete - skipping peer sync"
+literal|"Looks like a previous replication recovery did not complete - skipping peer sync. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 name|firstTime
@@ -1832,7 +1860,11 @@ literal|"Attempting to PeerSync from "
 operator|+
 name|leaderUrl
 operator|+
-literal|" recoveringAfterStartup="
+literal|" Core:"
+operator|+
+name|coreName
+operator|+
+literal|" - recoveringAfterStartup="
 operator|+
 name|recoveringAfterStartup
 argument_list|)
@@ -1912,7 +1944,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"PeerSync Recovery was successful - registering as Active"
+literal|"PeerSync Recovery was successful - registering as Active. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 comment|// System.out
@@ -1962,7 +1996,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"PeerSync Recovery was not successful - trying replication"
+literal|"PeerSync Recovery was not successful - trying replication. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 block|}
@@ -1971,14 +2007,18 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Starting Replication Recovery"
+literal|"Starting Replication Recovery. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Begin buffering updates"
+literal|"Begin buffering updates. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 name|ulog
@@ -2019,7 +2059,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Replication Recovery was successful - registering as Active"
+literal|"Replication Recovery was successful - registering as Active. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 comment|// if there are pending recovery requests, don't advert as active
@@ -2137,7 +2179,9 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Error while trying to recover."
+literal|"Error while trying to recover. Core:"
+operator|+
+name|coreName
 argument_list|,
 name|t
 argument_list|)
@@ -2158,7 +2202,9 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Recovery failed - trying again..."
+literal|"Recovery failed - trying again... Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 name|retries
@@ -2184,7 +2230,9 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Recovery failed - max retries exceeded."
+literal|"Recovery failed - max retries exceeded. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 name|recoveryFailed
@@ -2217,7 +2265,9 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|""
+literal|"Core:"
+operator|+
+name|coreName
 argument_list|,
 name|e
 argument_list|)
@@ -2294,7 +2344,9 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Recovery was interrupted"
+literal|"Recovery was interrupted. Core:"
+operator|+
+name|coreName
 argument_list|,
 name|e
 argument_list|)
@@ -2310,7 +2362,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Finished recovery process"
+literal|"Finished recovery process. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 block|}
@@ -2353,7 +2407,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"No replay needed"
+literal|"No replay needed. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 block|}
@@ -2363,7 +2419,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Replaying buffered documents"
+literal|"Replaying buffered documents. Core:"
+operator|+
+name|coreName
 argument_list|)
 expr_stmt|;
 comment|// wait for replay

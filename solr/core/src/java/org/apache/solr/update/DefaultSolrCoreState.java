@@ -845,14 +845,14 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|cancelRecovery
-argument_list|()
-expr_stmt|;
 synchronized|synchronized
 init|(
 name|recoveryLock
 init|)
 block|{
+name|cancelRecovery
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 name|recoveryRunning
