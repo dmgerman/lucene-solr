@@ -89,6 +89,7 @@ name|DEBUG
 decl_stmt|;
 DECL|field|blockSize
 specifier|private
+specifier|final
 name|int
 name|blockSize
 decl_stmt|;

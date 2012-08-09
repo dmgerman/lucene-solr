@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.blockpacked
+DECL|package|org.apache.lucene.codecs.block
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|blockpacked
+name|block
 package|;
 end_package
 
@@ -28,9 +28,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|blockpacked
+name|block
 operator|.
-name|BlockPackedPostingsFormat
+name|BlockPostingsFormat
 operator|.
 name|BLOCK_SIZE
 import|;
@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|blockpacked
+name|block
 operator|.
 name|ForUtil
 operator|.
@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|blockpacked
+name|block
 operator|.
 name|ForUtil
 operator|.
