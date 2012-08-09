@@ -220,6 +220,9 @@ specifier|final
 name|int
 name|maxTermBlockSize
 decl_stmt|;
+comment|// nocommit is this right?:
+comment|// NOTE: should be at least 64 because of PackedInts long-aligned encoding/decoding
+comment|// NOTE: must be factor of ... 64?
 DECL|field|BLOCK_SIZE
 specifier|public
 specifier|final
