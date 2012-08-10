@@ -333,7 +333,6 @@ name|BlockPostingsWriter
 extends|extends
 name|PostingsWriterBase
 block|{
-comment|// nocommit move these constants to the PF:
 DECL|field|maxSkipLevels
 specifier|static
 specifier|final
@@ -935,7 +934,7 @@ index|[
 name|MAX_DATA_SIZE
 index|]
 expr_stmt|;
-comment|// nocommit should we try skipping every 2/4 blocks...?
+comment|// TODO: should we try skipping every 2/4 blocks...?
 name|skipWriter
 operator|=
 operator|new
@@ -2234,7 +2233,7 @@ argument_list|(
 name|posBufferUpto
 argument_list|)
 expr_stmt|;
-comment|// nocommit should we send offsets/payloads to
+comment|// TODO: should we send offsets/payloads to
 comment|// .pay...?  seems wasteful (have to store extra
 comment|// vLong for low (< BLOCK_SIZE) DF terms = vast vast
 comment|// majority)

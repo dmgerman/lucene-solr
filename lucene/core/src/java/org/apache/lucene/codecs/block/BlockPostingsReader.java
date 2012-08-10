@@ -419,12 +419,6 @@ name|DEBUG
 init|=
 literal|false
 decl_stmt|;
-comment|// nocommit
-DECL|field|segment
-specifier|final
-name|String
-name|segment
-decl_stmt|;
 DECL|method|BlockPostingsReader
 specifier|public
 name|BlockPostingsReader
@@ -452,12 +446,6 @@ name|success
 init|=
 literal|false
 decl_stmt|;
-name|segment
-operator|=
-name|segmentInfo
-operator|.
-name|name
-expr_stmt|;
 name|IndexInput
 name|docIn
 init|=
@@ -2158,11 +2146,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"  FPR.reset: seg="
-operator|+
-name|segment
-operator|+
-literal|" termState="
+literal|"  FPR.reset: termState="
 operator|+
 name|termState
 argument_list|)
@@ -2628,7 +2612,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit make frq block load lazy/skippable
+comment|// TODO: make frq block load lazy/skippable
 if|if
 condition|(
 name|DEBUG
@@ -4071,7 +4055,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit make frq block load lazy/skippable
+comment|// TODO: make frq block load lazy/skippable
 if|if
 condition|(
 name|DEBUG
@@ -4522,7 +4506,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|// nocommit in theory we could avoid loading frq block
+comment|// TODO: in theory we could avoid loading frq block
 comment|// when not needed, ie, use skip data to load how far to
 comment|// seek the pos pointe ... instead of having to load frq
 comment|// blocks only to sum up how many positions to skip
@@ -6402,7 +6386,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit make frq block load lazy/skippable
+comment|// TODO: make frq block load lazy/skippable
 if|if
 condition|(
 name|DEBUG
@@ -6893,7 +6877,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|// nocommit in theory we could avoid loading frq block
+comment|// TODO: in theory we could avoid loading frq block
 comment|// when not needed, ie, use skip data to load how far to
 comment|// seek the pos pointe ... instead of having to load frq
 comment|// blocks only to sum up how many positions to skip
@@ -6967,24 +6951,6 @@ block|{
 name|payloadByteUpto
 operator|+=
 name|payloadLengthBuffer
-index|[
-name|posBufferUpto
-index|]
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|indexHasOffsets
-condition|)
-block|{
-name|lastStartOffset
-operator|+=
-name|offsetStartDeltaBuffer
-index|[
-name|posBufferUpto
-index|]
-operator|+
-name|offsetLengthBuffer
 index|[
 name|posBufferUpto
 index|]
@@ -7100,58 +7066,20 @@ condition|(
 name|indexHasOffsets
 condition|)
 block|{
-comment|// Must load offset blocks merely to sum
-comment|// up into lastStartOffset:
 name|forUtil
 operator|.
-name|readBlock
+name|skipBlock
 argument_list|(
 name|payIn
-argument_list|,
-name|encoded
-argument_list|,
-name|offsetStartDeltaBuffer
 argument_list|)
 expr_stmt|;
 name|forUtil
 operator|.
-name|readBlock
+name|skipBlock
 argument_list|(
 name|payIn
-argument_list|,
-name|encoded
-argument_list|,
-name|offsetLengthBuffer
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|BLOCK_SIZE
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|lastStartOffset
-operator|+=
-name|offsetStartDeltaBuffer
-index|[
-name|i
-index|]
-operator|+
-name|offsetLengthBuffer
-index|[
-name|i
-index|]
-expr_stmt|;
-block|}
 block|}
 name|toSkip
 operator|-=
@@ -7189,24 +7117,6 @@ name|posBufferUpto
 index|]
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|indexHasOffsets
-condition|)
-block|{
-name|lastStartOffset
-operator|+=
-name|offsetStartDeltaBuffer
-index|[
-name|posBufferUpto
-index|]
-operator|+
-name|offsetLengthBuffer
-index|[
-name|posBufferUpto
-index|]
-expr_stmt|;
-block|}
 name|posBufferUpto
 operator|++
 expr_stmt|;
@@ -7237,8 +7147,6 @@ name|payloadLength
 operator|=
 literal|0
 expr_stmt|;
-comment|// nocommit why carefully sum up lastStartOffset above
-comment|// only to set it to 0 now?
 name|lastStartOffset
 operator|=
 literal|0
