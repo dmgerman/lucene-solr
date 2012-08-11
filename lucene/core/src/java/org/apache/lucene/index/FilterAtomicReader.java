@@ -411,6 +411,21 @@ name|hasPositions
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|hasPayloads
+specifier|public
+name|boolean
+name|hasPayloads
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|hasPayloads
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** Base class for filtering {@link TermsEnum} implementations. */
 DECL|class|FilterFieldsEnum

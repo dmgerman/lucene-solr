@@ -494,8 +494,22 @@ name|upto
 index|]
 operator|!=
 literal|null
+operator|&&
+name|payload
+operator|!=
+literal|null
 condition|)
 block|{
+comment|// to not violate the D&P api, we must give the processor a private copy
+name|payload
+operator|=
+name|BytesRef
+operator|.
+name|deepCopyOf
+argument_list|(
+name|payload
+argument_list|)
+expr_stmt|;
 name|mergeState
 operator|.
 name|currentPayloadProcessor
@@ -508,6 +522,20 @@ argument_list|(
 name|payload
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|payload
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+comment|// don't let PayloadProcessors corrumpt the index
+return|return
+literal|null
+return|;
+block|}
 block|}
 return|return
 name|payload
@@ -521,6 +549,8 @@ name|boolean
 name|hasPayload
 parameter_list|()
 block|{
+comment|// TODO: note this is actually bogus if there is a payloadProcessor,
+comment|// because it might remove it: but lets just remove this method completely
 return|return
 name|current
 operator|.

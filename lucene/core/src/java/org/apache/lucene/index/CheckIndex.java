@@ -3825,11 +3825,47 @@ name|hasPayload
 argument_list|()
 condition|)
 block|{
+name|BytesRef
+name|payload
+init|=
 name|postings
 operator|.
 name|getPayload
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+if|if
+condition|(
+name|payload
+operator|.
+name|length
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"term "
+operator|+
+name|term
+operator|+
+literal|": doc "
+operator|+
+name|doc
+operator|+
+literal|": pos "
+operator|+
+name|pos
+operator|+
+literal|" payload length is out of bounds "
+operator|+
+name|payload
+operator|.
+name|length
+argument_list|)
+throw|;
+block|}
 block|}
 if|if
 condition|(
@@ -7317,6 +7353,24 @@ argument_list|)
 operator|>=
 literal|0
 decl_stmt|;
+specifier|final
+name|boolean
+name|postingsHasPayload
+init|=
+name|fieldInfo
+operator|.
+name|hasPayloads
+argument_list|()
+decl_stmt|;
+specifier|final
+name|boolean
+name|vectorsHasPayload
+init|=
+name|terms
+operator|.
+name|hasPayloads
+argument_list|()
+decl_stmt|;
 name|Terms
 name|postingsTerms
 init|=
@@ -7921,6 +7975,169 @@ operator|+
 name|postingsEndOffset
 argument_list|)
 throw|;
+block|}
+block|}
+name|BytesRef
+name|payload
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|postings
+operator|.
+name|hasPayload
+argument_list|()
+condition|)
+block|{
+assert|assert
+name|vectorsHasPayload
+assert|;
+name|payload
+operator|=
+name|postings
+operator|.
+name|getPayload
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|postingsHasPayload
+operator|&&
+name|vectorsHasPayload
+condition|)
+block|{
+assert|assert
+name|postingsPostings
+operator|!=
+literal|null
+assert|;
+if|if
+condition|(
+name|payload
+operator|==
+literal|null
+condition|)
+block|{
+comment|// we have payloads, but not at this position.
+comment|// postings has payloads too, it should not have one at this position
+if|if
+condition|(
+name|postingsPostings
+operator|.
+name|hasPayload
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"vector term="
+operator|+
+name|term
+operator|+
+literal|" field="
+operator|+
+name|field
+operator|+
+literal|" doc="
+operator|+
+name|j
+operator|+
+literal|" has no payload but postings does: "
+operator|+
+name|postingsPostings
+operator|.
+name|getPayload
+argument_list|()
+argument_list|)
+throw|;
+block|}
+block|}
+else|else
+block|{
+comment|// we have payloads, and one at this position
+comment|// postings should also have one at this position, with the same bytes.
+if|if
+condition|(
+operator|!
+name|postingsPostings
+operator|.
+name|hasPayload
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"vector term="
+operator|+
+name|term
+operator|+
+literal|" field="
+operator|+
+name|field
+operator|+
+literal|" doc="
+operator|+
+name|j
+operator|+
+literal|" has payload="
+operator|+
+name|payload
+operator|+
+literal|" but postings does not."
+argument_list|)
+throw|;
+block|}
+name|BytesRef
+name|postingsPayload
+init|=
+name|postingsPostings
+operator|.
+name|getPayload
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|payload
+operator|.
+name|equals
+argument_list|(
+name|postingsPayload
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"vector term="
+operator|+
+name|term
+operator|+
+literal|" field="
+operator|+
+name|field
+operator|+
+literal|" doc="
+operator|+
+name|j
+operator|+
+literal|" has payload="
+operator|+
+name|payload
+operator|+
+literal|" but differs from postings payload="
+operator|+
+name|postingsPayload
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 block|}
