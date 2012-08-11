@@ -3757,15 +3757,11 @@ operator|.
 name|nextPosition
 argument_list|()
 decl_stmt|;
-comment|// NOTE: pos=-1 is allowed because of ancient bug
-comment|// (LUCENE-1542) whereby IndexWriter could
-comment|// write pos=-1 when first token's posInc is 0
 if|if
 condition|(
 name|pos
 operator|<
-operator|-
-literal|1
+literal|0
 condition|)
 block|{
 throw|throw
@@ -4390,19 +4386,11 @@ operator|.
 name|nextPosition
 argument_list|()
 decl_stmt|;
-comment|// NOTE: pos=-1 is allowed because of ancient bug
-comment|// (LUCENE-1542) whereby IndexWriter could
-comment|// write pos=-1 when first token's posInc is 0
-comment|// (separately: analyzers should not give
-comment|// posInc=0 to first token); also, term
-comment|// vectors are allowed to return pos=-1 if
-comment|// they indexed offset but not positions:
 if|if
 condition|(
 name|pos
 operator|<
-operator|-
-literal|1
+literal|0
 condition|)
 block|{
 throw|throw
@@ -7764,15 +7752,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|pos
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|postingsPos
-operator|!=
-operator|-
-literal|1
+name|terms
+operator|.
+name|hasPositions
+argument_list|()
 operator|&&
 name|pos
 operator|!=
