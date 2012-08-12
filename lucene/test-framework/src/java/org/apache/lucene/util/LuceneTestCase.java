@@ -528,7 +528,7 @@ begin_comment
 comment|/**  * Base class for all Lucene unit tests, Junit3 or Junit4 variant.  *   *<h3>Class and instance setup.</h3>  *   *<p>  * The preferred way to specify class (suite-level) setup/cleanup is to use  * static methods annotated with {@link BeforeClass} and {@link AfterClass}. Any  * code in these methods is executed within the test framework's control and  * ensure proper setup has been made.<b>Try not to use static initializers  * (including complex final field initializers).</b> Static initializers are  * executed before any setup rules are fired and may cause you (or somebody   * else) headaches.  *   *<p>  * For instance-level setup, use {@link Before} and {@link After} annotated  * methods. If you override either {@link #setUp()} or {@link #tearDown()} in  * your subclass, make sure you call<code>super.setUp()</code> and  *<code>super.tearDown()</code>. This is detected and enforced.  *   *<h3>Specifying test cases</h3>  *   *<p>  * Any test method with a<code>testXXX</code> prefix is considered a test case.  * Any test method annotated with {@link Test} is considered a test case.  *   *<h3>Randomized execution and test facilities</h3>  *   *<p>  * {@link LuceneTestCase} uses {@link RandomizedRunner} to execute test cases.  * {@link RandomizedRunner} has built-in support for tests randomization  * including access to a repeatable {@link Random} instance. See  * {@link #random()} method. Any test using {@link Random} acquired from  * {@link #random()} should be fully reproducible (assuming no race conditions  * between threads etc.). The initial seed for a test case is reported in many  * ways:  *<ul>  *<li>as part of any exception thrown from its body (inserted as a dummy stack  *   trace entry),</li>  *<li>as part of the main thread executing the test case (if your test hangs,  *   just dump the stack trace of all threads and you'll see the seed),</li>  *<li>the master seed can also be accessed manually by getting the current  *   context ({@link RandomizedContext#current()}) and then calling  *   {@link RandomizedContext#getRunnerSeedAsString()}.</li>  *</ul>  *   *<p>There is a number of other facilities tests can use, like:  *<ul>  *<li>{@link #closeAfterTest(Closeable)} and {@link #closeAfterSuite(Closeable)} to  *   register resources to be closed after each scope (if close fails, the scope  *   will fail too).</li>  *</ul>   */
 end_comment
 
-begin_annotation
+begin_class
 annotation|@
 name|RunWith
 argument_list|(
@@ -536,9 +536,6 @@ name|RandomizedRunner
 operator|.
 name|class
 argument_list|)
-end_annotation
-
-begin_annotation
 annotation|@
 name|TestMethodProviders
 argument_list|(
@@ -552,9 +549,6 @@ operator|.
 name|class
 block|}
 argument_list|)
-end_annotation
-
-begin_annotation
 annotation|@
 name|Listeners
 argument_list|(
@@ -564,9 +558,6 @@ operator|.
 name|class
 block|}
 argument_list|)
-end_annotation
-
-begin_annotation
 annotation|@
 name|SeedDecorators
 argument_list|(
@@ -576,13 +567,7 @@ operator|.
 name|class
 block|}
 argument_list|)
-end_annotation
-
-begin_comment
 comment|// See LUCENE-3995 for rationale.
-end_comment
-
-begin_annotation
 annotation|@
 name|ThreadLeakScope
 argument_list|(
@@ -590,9 +575,6 @@ name|Scope
 operator|.
 name|SUITE
 argument_list|)
-end_annotation
-
-begin_annotation
 annotation|@
 name|ThreadLeakGroup
 argument_list|(
@@ -600,9 +582,6 @@ name|Group
 operator|.
 name|MAIN
 argument_list|)
-end_annotation
-
-begin_annotation
 annotation|@
 name|ThreadLeakAction
 argument_list|(
@@ -616,9 +595,6 @@ operator|.
 name|INTERRUPT
 block|}
 argument_list|)
-end_annotation
-
-begin_annotation
 annotation|@
 name|ThreadLeakLingering
 argument_list|(
@@ -626,13 +602,7 @@ name|linger
 operator|=
 literal|20000
 argument_list|)
-end_annotation
-
-begin_comment
 comment|// Wait long for leaked threads to complete before failure. zk needs this.
-end_comment
-
-begin_annotation
 annotation|@
 name|ThreadLeakZombies
 argument_list|(
@@ -640,30 +610,16 @@ name|Consequence
 operator|.
 name|IGNORE_REMAINING_TESTS
 argument_list|)
-end_annotation
-
-begin_annotation
 annotation|@
 name|TimeoutSuite
 argument_list|(
 name|millis
 operator|=
-literal|10
-operator|*
-operator|(
-comment|/* minutes */
-literal|1000
-operator|*
-literal|60
-expr|)
-end_annotation
-
-begin_comment
-unit|)
-comment|// max suite execution time.
-end_comment
-
-begin_class
+name|Integer
+operator|.
+name|MAX_VALUE
+argument_list|)
+comment|// NOT YET: until nightly tests etc are factored in.
 annotation|@
 name|ThreadLeakFilters
 argument_list|(
