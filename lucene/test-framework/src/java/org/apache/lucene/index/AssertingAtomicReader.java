@@ -1810,51 +1810,29 @@ literal|0
 operator|:
 literal|"getPayload() called before nextPosition()!"
 assert|;
-return|return
+name|BytesRef
+name|payload
+init|=
 name|super
 operator|.
 name|getPayload
 argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|hasPayload
-specifier|public
-name|boolean
-name|hasPayload
-parameter_list|()
-block|{
+decl_stmt|;
 assert|assert
-name|state
-operator|!=
-name|DocsEnumState
+name|payload
+operator|==
+literal|null
+operator|||
+name|payload
 operator|.
-name|START
-operator|:
-literal|"hasPayload() called before nextDoc()/advance()"
-assert|;
-assert|assert
-name|state
-operator|!=
-name|DocsEnumState
-operator|.
-name|FINISHED
-operator|:
-literal|"hasPayload() called after NO_MORE_DOCS"
-assert|;
-assert|assert
-name|positionCount
+name|length
 operator|>
 literal|0
 operator|:
-literal|"hasPayload() called before nextPosition()!"
+literal|"getPayload() returned payload with invalid length!"
 assert|;
 return|return
-name|super
-operator|.
-name|hasPayload
-argument_list|()
+name|payload
 return|;
 block|}
 block|}

@@ -3127,34 +3127,8 @@ name|BytesRef
 name|getPayload
 parameter_list|()
 block|{
-comment|// Some tests rely on only being able to retrieve the
-comment|// payload once
-try|try
-block|{
 return|return
 name|payload
-return|;
-block|}
-finally|finally
-block|{
-name|payload
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Override
-DECL|method|hasPayload
-specifier|public
-name|boolean
-name|hasPayload
-parameter_list|()
-block|{
-return|return
-name|payload
-operator|!=
-literal|null
 return|;
 block|}
 block|}

@@ -501,6 +501,7 @@ literal|null
 condition|)
 block|{
 comment|// to not violate the D&P api, we must give the processor a private copy
+comment|// TODO: reuse a BytesRef if there is a PPP
 name|payload
 operator|=
 name|BytesRef
@@ -539,23 +540,6 @@ block|}
 block|}
 return|return
 name|payload
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|hasPayload
-specifier|public
-name|boolean
-name|hasPayload
-parameter_list|()
-block|{
-comment|// TODO: note this is actually bogus if there is a payloadProcessor,
-comment|// because it might remove it: but lets just remove this method completely
-return|return
-name|current
-operator|.
-name|hasPayload
-argument_list|()
 return|;
 block|}
 block|}

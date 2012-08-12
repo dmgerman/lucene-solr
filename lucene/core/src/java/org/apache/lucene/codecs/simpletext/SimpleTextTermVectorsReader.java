@@ -2801,7 +2801,6 @@ name|BytesRef
 name|getPayload
 parameter_list|()
 block|{
-comment|// assert hasPayload(); // you should have called this
 return|return
 name|payloads
 operator|==
@@ -2815,29 +2814,6 @@ name|nextPos
 operator|-
 literal|1
 index|]
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|hasPayload
-specifier|public
-name|boolean
-name|hasPayload
-parameter_list|()
-block|{
-return|return
-name|payloads
-operator|!=
-literal|null
-operator|&&
-name|payloads
-index|[
-name|nextPos
-operator|-
-literal|1
-index|]
-operator|!=
-literal|null
 return|;
 block|}
 annotation|@

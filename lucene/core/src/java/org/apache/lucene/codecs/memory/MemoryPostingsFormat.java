@@ -2445,11 +2445,6 @@ specifier|private
 name|int
 name|payloadLength
 decl_stmt|;
-DECL|field|payloadRetrieved
-specifier|private
-name|boolean
-name|payloadRetrieved
-decl_stmt|;
 DECL|field|storeOffsets
 specifier|final
 name|boolean
@@ -2665,10 +2660,6 @@ expr_stmt|;
 name|posPending
 operator|=
 literal|0
-expr_stmt|;
-name|payloadRetrieved
-operator|=
-literal|false
 expr_stmt|;
 name|startOffset
 operator|=
@@ -3059,18 +3050,6 @@ name|length
 operator|=
 name|payloadLength
 expr_stmt|;
-comment|// Necessary, in case caller changed the
-comment|// payload.bytes from prior call:
-name|payload
-operator|.
-name|bytes
-operator|=
-name|buffer
-expr_stmt|;
-name|payloadRetrieved
-operator|=
-literal|false
-expr_stmt|;
 block|}
 comment|//System.out.println("      pos=" + pos + " payload=" + payload + " fp=" + in.getPosition());
 return|return
@@ -3111,31 +3090,16 @@ name|BytesRef
 name|getPayload
 parameter_list|()
 block|{
-name|payloadRetrieved
-operator|=
-literal|true
-expr_stmt|;
 return|return
-name|payload
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|hasPayload
-specifier|public
-name|boolean
-name|hasPayload
-parameter_list|()
-block|{
-return|return
-operator|!
-name|payloadRetrieved
-operator|&&
 name|payload
 operator|.
 name|length
 operator|>
 literal|0
+condition|?
+name|payload
+else|:
+literal|null
 return|;
 block|}
 annotation|@

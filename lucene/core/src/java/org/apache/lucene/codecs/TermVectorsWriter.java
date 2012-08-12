@@ -1209,15 +1209,8 @@ name|payload
 init|=
 name|docsAndPositionsEnum
 operator|.
-name|hasPayload
-argument_list|()
-condition|?
-name|docsAndPositionsEnum
-operator|.
 name|getPayload
 argument_list|()
-else|:
-literal|null
 decl_stmt|;
 if|if
 condition|(

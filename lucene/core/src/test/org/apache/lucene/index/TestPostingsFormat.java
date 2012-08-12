@@ -4662,29 +4662,19 @@ operator|==
 literal|0
 condition|)
 block|{
-name|assertFalse
+name|assertNull
 argument_list|(
 literal|"should not have payload"
 argument_list|,
 name|docsAndPositionsEnum
 operator|.
-name|hasPayload
+name|getPayload
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
-name|assertTrue
-argument_list|(
-literal|"should have payload but doesn't"
-argument_list|,
-name|docsAndPositionsEnum
-operator|.
-name|hasPayload
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|BytesRef
 name|payload
 init|=
@@ -4693,19 +4683,9 @@ operator|.
 name|getPayload
 argument_list|()
 decl_stmt|;
-name|assertFalse
-argument_list|(
-literal|"2nd call to hasPayload should be false"
-argument_list|,
-name|docsAndPositionsEnum
-operator|.
-name|hasPayload
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"payload should not be null"
+literal|"should have payload but doesn't"
 argument_list|,
 name|payload
 argument_list|)
@@ -4768,6 +4748,28 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+comment|// make a deep copy
+name|payload
+operator|=
+name|BytesRef
+operator|.
+name|deepCopyOf
+argument_list|(
+name|payload
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"2nd call to getPayload returns something different!"
+argument_list|,
+name|payload
+argument_list|,
+name|docsAndPositionsEnum
+operator|.
+name|getPayload
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 else|else
