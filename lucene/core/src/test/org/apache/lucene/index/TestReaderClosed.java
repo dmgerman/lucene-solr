@@ -410,6 +410,15 @@ comment|// expected
 block|}
 block|}
 comment|// LUCENE-3800
+annotation|@
+name|BadApple
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"LUCENE-4280"
+argument_list|)
 DECL|method|testReaderChaining
 specifier|public
 name|void
@@ -449,6 +458,7 @@ operator|)
 name|wrappedReader
 argument_list|)
 expr_stmt|;
+comment|// TODO: LUCENE-4280; this fails:
 name|IndexSearcher
 name|searcher
 init|=
@@ -457,6 +467,7 @@ argument_list|(
 name|wrappedReader
 argument_list|)
 decl_stmt|;
+comment|// but with this it works: IndexSearcher searcher = new IndexSearcher(wrappedReader);
 name|TermRangeQuery
 name|query
 init|=

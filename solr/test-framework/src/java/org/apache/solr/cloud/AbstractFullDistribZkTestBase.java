@@ -166,7 +166,39 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
+name|BadApple
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
 name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|AwaitsFix
 import|;
 end_import
 
@@ -535,12 +567,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * TODO: we should still test this works as a custom update chain as well as  * what we test now - the default update chain  *   */
+comment|/**  * TODO: we should still test this works as a custom update chain as well as  * what we test now - the default update chain  */
 end_comment
 
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|BadApple
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"thread leaks"
+argument_list|)
 DECL|class|AbstractFullDistribZkTestBase
 specifier|public
 specifier|abstract
