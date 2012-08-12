@@ -4567,7 +4567,7 @@ name|MultiFields
 operator|.
 name|getFields
 argument_list|(
-name|index1
+name|index2
 argument_list|)
 operator|.
 name|iterator
