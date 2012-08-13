@@ -730,7 +730,7 @@ operator|+
 literal|1
 return|;
 block|}
-comment|/**    * Skips all chars in the input until (but excluding) the given char    *     * @param c    * @return    * @throws IllegalArgumentException    * @throws IOException    */
+comment|/**    * Skips all chars in the input until (but excluding) the given char    *     * @param c    * @return counter    * @throws IllegalArgumentException    * @throws IOException    */
 DECL|method|skipUntil
 specifier|public
 name|long
