@@ -69,6 +69,24 @@ return|return
 literal|true
 return|;
 block|}
+comment|// J9 memory pool thread.
+if|if
+condition|(
+name|t
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"MemoryPoolMXBean notification dispatcher"
+argument_list|)
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
 return|return
 literal|false
 return|;
