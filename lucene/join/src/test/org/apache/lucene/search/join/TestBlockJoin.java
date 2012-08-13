@@ -1982,9 +1982,6 @@ name|leaves
 init|=
 name|reader
 operator|.
-name|getTopReaderContext
-argument_list|()
-operator|.
 name|leaves
 argument_list|()
 decl_stmt|;
@@ -7464,9 +7461,6 @@ operator|.
 name|getIndexReader
 argument_list|()
 operator|.
-name|getTopReaderContext
-argument_list|()
-operator|.
 name|leaves
 argument_list|()
 operator|.
@@ -7789,9 +7783,6 @@ argument_list|(
 name|s
 operator|.
 name|getIndexReader
-argument_list|()
-operator|.
-name|getTopReaderContext
 argument_list|()
 operator|.
 name|leaves
