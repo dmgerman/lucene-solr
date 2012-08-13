@@ -221,6 +221,8 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
+comment|//Class.forName is frowned upon in place of the ResourceLoader but in this case,
+comment|// the factory will use the other constructor so that the program is already loaded.
 try|try
 block|{
 name|Class
