@@ -62,6 +62,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|WeakHashMap
 import|;
 end_import
@@ -956,6 +966,25 @@ name|IndexReaderContext
 name|getTopReaderContext
 parameter_list|()
 function_decl|;
+comment|/**    * Returns the reader's leaves, or itself if this reader is Atomic.    */
+DECL|method|leaves
+specifier|public
+specifier|final
+name|List
+argument_list|<
+name|AtomicReaderContext
+argument_list|>
+name|leaves
+parameter_list|()
+block|{
+return|return
+name|getTopReaderContext
+argument_list|()
+operator|.
+name|leaves
+argument_list|()
+return|;
+block|}
 comment|/** Expert: Returns a key for this IndexReader, so FieldCache/CachingWrapperFilter can find    * it again.    * This key must not have equals()/hashCode() methods, so&quot;equals&quot; means&quot;identical&quot;. */
 DECL|method|getCoreCacheKey
 specifier|public
