@@ -780,13 +780,12 @@ argument_list|(
 name|delcmd
 argument_list|)
 expr_stmt|;
-block|}
 name|delcmd
 operator|.
-name|id
-operator|=
-literal|null
+name|clear
+argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
