@@ -810,7 +810,17 @@ name|int
 name|maxOverlap
 parameter_list|)
 block|{
+comment|// LUCENE-4300: in most cases of maxOverlap=1, BQ rewrites itself away,
+comment|// so coord() is not applied. But when BQ cannot optimize itself away
+comment|// for a single clause (minNrShouldMatch, prohibited clauses, etc), its
+comment|// important not to apply coord(1,1) for consistency, it might not be 1.0F
 return|return
+name|maxOverlap
+operator|==
+literal|1
+condition|?
+literal|1F
+else|:
 name|similarity
 operator|.
 name|coord

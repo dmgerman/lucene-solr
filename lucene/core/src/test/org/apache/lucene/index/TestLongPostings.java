@@ -1148,10 +1148,19 @@ argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
-operator|&&
+condition|)
+block|{
 name|postings
 operator|.
-name|hasPayload
+name|getPayload
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
 argument_list|()
 condition|)
 block|{
@@ -1160,6 +1169,8 @@ operator|.
 name|getPayload
 argument_list|()
 expr_stmt|;
+comment|// get it again
+block|}
 block|}
 block|}
 block|}
@@ -1392,10 +1403,19 @@ argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
-operator|&&
+condition|)
+block|{
 name|postings
 operator|.
-name|hasPayload
+name|getPayload
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
 argument_list|()
 condition|)
 block|{
@@ -1404,6 +1424,8 @@ operator|.
 name|getPayload
 argument_list|()
 expr_stmt|;
+comment|// get it again
+block|}
 block|}
 block|}
 block|}

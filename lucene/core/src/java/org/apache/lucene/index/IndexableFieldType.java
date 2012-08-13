@@ -84,6 +84,13 @@ name|boolean
 name|storeTermVectorPositions
 parameter_list|()
 function_decl|;
+comment|/** True if term vector payloads should be indexed */
+DECL|method|storeTermVectorPayloads
+specifier|public
+name|boolean
+name|storeTermVectorPayloads
+parameter_list|()
+function_decl|;
 comment|/** True if norms should not be indexed */
 DECL|method|omitNorms
 specifier|public

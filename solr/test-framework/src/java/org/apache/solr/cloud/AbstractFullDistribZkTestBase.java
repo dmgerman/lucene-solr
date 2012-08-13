@@ -166,7 +166,39 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
+name|BadApple
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
 name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|AwaitsFix
 import|;
 end_import
 
@@ -535,12 +567,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * TODO: we should still test this works as a custom update chain as well as  * what we test now - the default update chain  *   */
+comment|/**  * TODO: we should still test this works as a custom update chain as well as  * what we test now - the default update chain  */
 end_comment
 
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|BadApple
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"SOLR-3727 (leak threads)"
+argument_list|)
 DECL|class|AbstractFullDistribZkTestBase
 specifier|public
 specifier|abstract
@@ -4831,8 +4872,8 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|SolrServer
-name|lastClient
+name|CloudJettyRunner
+name|lastJetty
 init|=
 literal|null
 decl_stmt|;
@@ -5097,7 +5138,9 @@ name|lastNum
 operator|+
 literal|" from "
 operator|+
-name|lastClient
+name|lastJetty
+operator|.
+name|url
 operator|+
 literal|"lastClient"
 operator|+
@@ -5177,7 +5220,11 @@ expr_stmt|;
 name|SolrDocumentList
 name|lst1
 init|=
-name|lastClient
+name|lastJetty
+operator|.
+name|client
+operator|.
+name|solrClient
 operator|.
 name|query
 argument_list|(
@@ -5210,7 +5257,7 @@ name|lst1
 argument_list|,
 name|lst2
 argument_list|,
-name|lastClient
+name|lastJetty
 operator|.
 name|toString
 argument_list|()
@@ -5231,13 +5278,9 @@ name|lastNum
 operator|=
 name|num
 expr_stmt|;
-name|lastClient
+name|lastJetty
 operator|=
 name|cjetty
-operator|.
-name|client
-operator|.
-name|solrClient
 expr_stmt|;
 block|}
 block|}

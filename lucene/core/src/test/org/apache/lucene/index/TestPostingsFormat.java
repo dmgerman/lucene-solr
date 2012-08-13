@@ -82,6 +82,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -93,6 +103,16 @@ operator|.
 name|util
 operator|.
 name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|NoSuchElementException
 import|;
 end_import
 
@@ -4662,29 +4682,19 @@ operator|==
 literal|0
 condition|)
 block|{
-name|assertFalse
+name|assertNull
 argument_list|(
 literal|"should not have payload"
 argument_list|,
 name|docsAndPositionsEnum
 operator|.
-name|hasPayload
+name|getPayload
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
-name|assertTrue
-argument_list|(
-literal|"should have payload but doesn't"
-argument_list|,
-name|docsAndPositionsEnum
-operator|.
-name|hasPayload
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|BytesRef
 name|payload
 init|=
@@ -4693,19 +4703,9 @@ operator|.
 name|getPayload
 argument_list|()
 decl_stmt|;
-name|assertFalse
-argument_list|(
-literal|"2nd call to hasPayload should be false"
-argument_list|,
-name|docsAndPositionsEnum
-operator|.
-name|hasPayload
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"payload should not be null"
+literal|"should have payload but doesn't"
 argument_list|,
 name|payload
 argument_list|)
@@ -4768,6 +4768,28 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+comment|// make a deep copy
+name|payload
+operator|=
+name|BytesRef
+operator|.
+name|deepCopyOf
+argument_list|(
+name|payload
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"2nd call to getPayload returns something different!"
+argument_list|,
+name|payload
+argument_list|,
+name|docsAndPositionsEnum
+operator|.
+name|getPayload
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 else|else
@@ -5567,6 +5589,96 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|method|testFields
+specifier|private
+name|void
+name|testFields
+parameter_list|(
+name|Fields
+name|fields
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+name|Iterator
+argument_list|<
+name|String
+argument_list|>
+name|iterator
+init|=
+name|fields
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|String
+name|field
+init|=
+name|iterator
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|iterator
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Fields.iterator() allows for removal"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|expected
+parameter_list|)
+block|{
+comment|// expected;
+block|}
+block|}
+name|assertFalse
+argument_list|(
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|iterator
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Fields.iterator() doesn't throw NoSuchElementException when past the end"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchElementException
+name|expected
+parameter_list|)
+block|{
+comment|// expected
+block|}
+block|}
 DECL|method|test
 specifier|public
 name|void
@@ -5612,6 +5724,11 @@ argument_list|,
 name|indexPayloads
 argument_list|)
 decl_stmt|;
+name|testFields
+argument_list|(
+name|fieldsProducer
+argument_list|)
+expr_stmt|;
 comment|//testTerms(fieldsProducer, EnumSet.noneOf(Option.class), IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);
 comment|//testTerms(fieldsProducer, EnumSet.of(Option.LIVE_DOCS), IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);
 comment|//testTerms(fieldsProducer, EnumSet.of(Option.TERM_STATE, Option.LIVE_DOCS, Option.PARTIAL_DOC_CONSUME, Option.PARTIAL_POS_CONSUME), IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);

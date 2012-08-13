@@ -302,6 +302,15 @@ name|class
 argument_list|)
 expr_stmt|;
 specifier|final
+name|boolean
+name|hasOffsets
+init|=
+name|vector
+operator|.
+name|hasOffsets
+argument_list|()
+decl_stmt|;
+specifier|final
 name|TermsEnum
 name|termsEnum
 init|=
@@ -351,11 +360,6 @@ operator|!=
 literal|null
 assert|;
 comment|// presumably checked by TokenSources.hasPositions earlier
-name|boolean
-name|hasOffsets
-init|=
-literal|true
-decl_stmt|;
 name|dpEnum
 operator|.
 name|nextDoc
@@ -393,15 +397,6 @@ operator|.
 name|nextPosition
 argument_list|()
 decl_stmt|;
-name|hasOffsets
-operator|&=
-name|dpEnum
-operator|.
-name|startOffset
-argument_list|()
-operator|>=
-literal|0
-expr_stmt|;
 name|Token
 name|token
 decl_stmt|;

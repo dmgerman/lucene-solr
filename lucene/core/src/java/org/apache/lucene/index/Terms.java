@@ -254,6 +254,30 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns true if documents in this field store offsets. */
+DECL|method|hasOffsets
+specifier|public
+specifier|abstract
+name|boolean
+name|hasOffsets
+parameter_list|()
+function_decl|;
+comment|/** Returns true if documents in this field store positions. */
+DECL|method|hasPositions
+specifier|public
+specifier|abstract
+name|boolean
+name|hasPositions
+parameter_list|()
+function_decl|;
+comment|/** Returns true if documents in this field store payloads. */
+DECL|method|hasPayloads
+specifier|public
+specifier|abstract
+name|boolean
+name|hasPayloads
+parameter_list|()
+function_decl|;
 DECL|field|EMPTY_ARRAY
 specifier|public
 specifier|final

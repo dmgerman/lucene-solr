@@ -4570,7 +4570,7 @@ name|a
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns the aliases found for a field.      * Returns null if there are no aliases for the field      * @param field      * @return      */
+comment|/**      * Returns the aliases found for a field.      * Returns null if there are no aliases for the field      * @param field      * @return Alias      */
 DECL|method|getAlias
 specifier|public
 name|Alias
