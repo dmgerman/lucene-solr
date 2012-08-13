@@ -580,7 +580,7 @@ name|AwaitsFix
 argument_list|(
 name|bugUrl
 operator|=
-literal|"thread leaks"
+literal|"SOLR-3727 (leak threads)"
 argument_list|)
 DECL|class|AbstractFullDistribZkTestBase
 specifier|public
