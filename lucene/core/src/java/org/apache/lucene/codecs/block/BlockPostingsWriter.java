@@ -982,7 +982,7 @@ name|state
 argument_list|,
 name|PackedInts
 operator|.
-name|DEFAULT
+name|COMPACT
 argument_list|)
 expr_stmt|;
 block|}
