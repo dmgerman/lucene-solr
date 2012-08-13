@@ -42,7 +42,39 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentHashMap
 import|;
 end_import
 
@@ -84,6 +116,8 @@ name|Thread
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|// for test debug
+comment|//static Map<SolrZooKeeper,Exception> clients = new ConcurrentHashMap<SolrZooKeeper,Exception>();
 DECL|method|SolrZooKeeper
 specifier|public
 name|SolrZooKeeper
@@ -109,6 +143,7 @@ argument_list|,
 name|watcher
 argument_list|)
 expr_stmt|;
+comment|//clients.put(this, new RuntimeException());
 block|}
 DECL|method|getConnection
 specifier|public
@@ -229,6 +264,7 @@ parameter_list|()
 throws|throws
 name|InterruptedException
 block|{
+comment|//clients.remove(this);
 for|for
 control|(
 name|Thread
@@ -249,6 +285,14 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|//  public static void assertCloses() {
+comment|//    if (clients.size()> 0) {
+comment|//      Iterator<Exception> stacktraces = clients.values().iterator();
+comment|//      Exception cause = null;
+comment|//      cause = stacktraces.next();
+comment|//      throw new RuntimeException("Found a bad one!", cause);
+comment|//    }
+comment|//  }
 block|}
 end_class
 
