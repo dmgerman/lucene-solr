@@ -615,11 +615,12 @@ name|TimeoutSuite
 argument_list|(
 name|millis
 operator|=
-name|Integer
+literal|2
+operator|*
+name|TimeUnits
 operator|.
-name|MAX_VALUE
+name|HOUR
 argument_list|)
-comment|// NOT YET: until nightly tests etc are factored in.
 annotation|@
 name|ThreadLeakFilters
 argument_list|(
