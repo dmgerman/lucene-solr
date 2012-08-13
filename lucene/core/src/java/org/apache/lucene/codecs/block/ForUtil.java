@@ -215,7 +215,7 @@ decl_stmt|;
 static|static
 block|{
 name|int
-name|minDataSize
+name|maxDataSize
 init|=
 literal|0
 decl_stmt|;
@@ -301,13 +301,13 @@ name|valueCount
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|minDataSize
+name|maxDataSize
 operator|=
 name|Math
 operator|.
 name|max
 argument_list|(
-name|minDataSize
+name|maxDataSize
 argument_list|,
 name|iterations
 operator|*
@@ -321,7 +321,7 @@ block|}
 block|}
 name|MAX_DATA_SIZE
 operator|=
-name|minDataSize
+name|maxDataSize
 expr_stmt|;
 block|}
 comment|/**    * Compute the number of iterations required to decode<code>BLOCK_SIZE</code>    * values with the provided {@link Decoder}.    */
