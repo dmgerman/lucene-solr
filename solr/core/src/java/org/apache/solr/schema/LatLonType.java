@@ -94,6 +94,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|StorableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queries
 operator|.
 name|function
@@ -460,7 +474,7 @@ annotation|@
 name|Override
 DECL|method|createFields
 specifier|public
-name|IndexableField
+name|StorableField
 index|[]
 name|createFields
 parameter_list|(
@@ -483,12 +497,12 @@ name|toString
 argument_list|()
 decl_stmt|;
 comment|//we could have tileDiff + 3 fields (two for the lat/lon, one for storage)
-name|IndexableField
+name|StorableField
 index|[]
 name|f
 init|=
 operator|new
-name|IndexableField
+name|StorableField
 index|[
 operator|(
 name|field
@@ -1699,7 +1713,7 @@ parameter_list|,
 name|String
 name|name
 parameter_list|,
-name|GeneralField
+name|StorableField
 name|f
 parameter_list|)
 throws|throws
@@ -1758,7 +1772,7 @@ annotation|@
 name|Override
 DECL|method|createField
 specifier|public
-name|IndexableField
+name|StorableField
 name|createField
 parameter_list|(
 name|SchemaField

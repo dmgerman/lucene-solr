@@ -231,7 +231,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Stores the normalization value computed in  * {@link Similarity#computeNorm(FieldInvertState, Norm)} per field.  * Normalization values must be consistent within a single field, different  * value types are not permitted within a single field. All values set must be  * fixed size values ie. all values passed to {@link Norm#setBytes(BytesRef)}  * must have the same length per field.  *   * @lucene.experimental  * @lucene.internal  */
+comment|/**  * Stores the normalization value with {@link StorableField} computed in  * {@link Similarity#computeNorm(FieldInvertState, Norm)} per field.  * Normalization values must be consistent within a single field, different  * value types are not permitted within a single field. All values set must be  * fixed size values ie. all values passed to {@link Norm#setBytes(BytesRef)}  * must have the same length per field.  *   * @lucene.experimental  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -251,10 +251,10 @@ specifier|private
 name|BytesRef
 name|spare
 decl_stmt|;
-comment|/**    * Returns the {@link IndexableField} representation for this norm    */
+comment|/**    * Returns the {@link StorableField} representation for this norm    */
 DECL|method|field
 specifier|public
-name|StoredField
+name|StorableField
 name|field
 parameter_list|()
 block|{

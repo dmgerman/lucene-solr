@@ -26,6 +26,7 @@ specifier|public
 interface|interface
 name|IndexDocument
 block|{
+comment|/** Obtains all indexable fields in document */
 DECL|method|indexableFields
 specifier|public
 name|Iterable
@@ -37,6 +38,7 @@ argument_list|>
 name|indexableFields
 parameter_list|()
 function_decl|;
+comment|/** Obtains all storable fields in document */
 DECL|method|storableFields
 specifier|public
 name|Iterable

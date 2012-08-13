@@ -112,9 +112,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|StoredDocument
+name|IndexReader
 import|;
 end_import
 
@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|StoredDocument
 import|;
 end_import
 

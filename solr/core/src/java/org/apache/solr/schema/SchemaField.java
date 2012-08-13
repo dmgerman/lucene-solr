@@ -52,6 +52,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|StorableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|SortField
@@ -518,7 +532,7 @@ return|;
 block|}
 DECL|method|createField
 specifier|public
-name|IndexableField
+name|StorableField
 name|createField
 parameter_list|(
 name|Object
@@ -543,7 +557,7 @@ return|;
 block|}
 DECL|method|createFields
 specifier|public
-name|IndexableField
+name|StorableField
 index|[]
 name|createFields
 parameter_list|(
@@ -644,7 +658,7 @@ parameter_list|,
 name|String
 name|name
 parameter_list|,
-name|IndexableField
+name|StorableField
 name|val
 parameter_list|)
 throws|throws

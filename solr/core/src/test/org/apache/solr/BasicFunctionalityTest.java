@@ -144,20 +144,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|StoredDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|IndexWriter
@@ -189,6 +175,34 @@ operator|.
 name|index
 operator|.
 name|LogMergePolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StorableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StoredDocument
 import|;
 end_import
 
@@ -2170,7 +2184,7 @@ name|SchemaField
 name|f
 decl_stmt|;
 comment|// Solr field type
-name|IndexableField
+name|StorableField
 name|luf
 decl_stmt|;
 comment|// Lucene field
