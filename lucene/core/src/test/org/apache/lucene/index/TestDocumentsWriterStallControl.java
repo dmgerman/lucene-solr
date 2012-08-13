@@ -112,32 +112,11 @@ name|ThreadInterruptedException
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeaks
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests for {@link DocumentsWriterStallControl}  */
 end_comment
 
 begin_class
-annotation|@
-name|ThreadLeaks
-argument_list|(
-name|failTestIfLeaking
-operator|=
-literal|true
-argument_list|)
 DECL|class|TestDocumentsWriterStallControl
 specifier|public
 class|class

@@ -388,6 +388,8 @@ name|ClusterState
 operator|.
 name|load
 argument_list|(
+literal|null
+argument_list|,
 name|bytes
 argument_list|,
 name|liveNodes
@@ -497,6 +499,8 @@ name|ClusterState
 operator|.
 name|load
 argument_list|(
+literal|null
+argument_list|,
 operator|new
 name|byte
 index|[
@@ -542,6 +546,8 @@ name|ClusterState
 operator|.
 name|load
 argument_list|(
+literal|null
+argument_list|,
 operator|(
 name|byte
 index|[]

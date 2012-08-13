@@ -3891,7 +3891,7 @@ name|createField
 argument_list|(
 name|readableValue
 argument_list|,
-literal|0.0f
+literal|1.0f
 argument_list|)
 decl_stmt|;
 name|nl

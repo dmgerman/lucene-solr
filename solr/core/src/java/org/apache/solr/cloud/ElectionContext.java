@@ -926,8 +926,26 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|//          System.out.println("I may be the new Leader:" + leaderPath
-comment|//              + " - I need to try and sync");
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"I may be the new leader - try and sync"
+argument_list|)
+expr_stmt|;
+comment|// we are going to attempt to be the leader
+comment|// first cancel any current recovery
+name|core
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getSolrCoreState
+argument_list|()
+operator|.
+name|cancelRecovery
+argument_list|()
+expr_stmt|;
 name|boolean
 name|success
 init|=
@@ -961,8 +979,21 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"I am the new leader: "
+operator|+
+name|ZkCoreNodeProps
+operator|.
+name|getCoreUrl
+argument_list|(
+name|leaderProps
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// If I am going to be the leader I have to be active
-comment|// System.out.println("I am leader go active");
 name|core
 operator|.
 name|getUpdateHandler

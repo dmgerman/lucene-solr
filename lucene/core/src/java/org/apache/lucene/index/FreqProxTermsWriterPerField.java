@@ -927,7 +927,7 @@ literal|1
 expr_stmt|;
 name|postings
 operator|.
-name|docFreqs
+name|termFreqs
 index|[
 name|termID
 index|]
@@ -1028,7 +1028,7 @@ name|hasFreq
 operator|||
 name|postings
 operator|.
-name|docFreqs
+name|termFreqs
 index|[
 name|termID
 index|]
@@ -1044,7 +1044,7 @@ block|{
 assert|assert
 name|postings
 operator|.
-name|docFreqs
+name|termFreqs
 operator|==
 literal|null
 assert|;
@@ -1180,7 +1180,7 @@ literal|1
 operator|==
 name|postings
 operator|.
-name|docFreqs
+name|termFreqs
 index|[
 name|termID
 index|]
@@ -1227,7 +1227,7 @@ literal|0
 argument_list|,
 name|postings
 operator|.
-name|docFreqs
+name|termFreqs
 index|[
 name|termID
 index|]
@@ -1236,7 +1236,7 @@ expr_stmt|;
 block|}
 name|postings
 operator|.
-name|docFreqs
+name|termFreqs
 index|[
 name|termID
 index|]
@@ -1360,7 +1360,7 @@ argument_list|,
 operator|++
 name|postings
 operator|.
-name|docFreqs
+name|termFreqs
 index|[
 name|termID
 index|]
@@ -1464,7 +1464,7 @@ condition|(
 name|writeFreqs
 condition|)
 block|{
-name|docFreqs
+name|termFreqs
 operator|=
 operator|new
 name|int
@@ -1526,9 +1526,9 @@ assert|;
 block|}
 comment|//System.out.println("PA init freqs=" + writeFreqs + " pos=" + writeProx + " offs=" + writeOffsets);
 block|}
-DECL|field|docFreqs
+DECL|field|termFreqs
 name|int
-name|docFreqs
+name|termFreqs
 index|[]
 decl_stmt|;
 comment|// # times this term occurs in the current doc
@@ -1572,7 +1572,7 @@ name|FreqProxPostingsArray
 argument_list|(
 name|size
 argument_list|,
-name|docFreqs
+name|termFreqs
 operator|!=
 literal|null
 argument_list|,
@@ -1721,7 +1721,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|docFreqs
+name|termFreqs
 operator|!=
 literal|null
 condition|)
@@ -1729,7 +1729,7 @@ block|{
 assert|assert
 name|to
 operator|.
-name|docFreqs
+name|termFreqs
 operator|!=
 literal|null
 assert|;
@@ -1737,13 +1737,13 @@ name|System
 operator|.
 name|arraycopy
 argument_list|(
-name|docFreqs
+name|termFreqs
 argument_list|,
 literal|0
 argument_list|,
 name|to
 operator|.
-name|docFreqs
+name|termFreqs
 argument_list|,
 literal|0
 argument_list|,
@@ -1802,7 +1802,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|docFreqs
+name|termFreqs
 operator|!=
 literal|null
 condition|)
@@ -2279,7 +2279,7 @@ comment|// Now termStates has numToMerge FieldMergeStates
 comment|// which all share the same term.  Now we must
 comment|// interleave the docID streams.
 name|int
-name|numDocs
+name|docFreq
 init|=
 literal|0
 decl_stmt|;
@@ -2301,7 +2301,7 @@ block|{
 comment|//System.out.println("  cycle");
 specifier|final
 name|int
-name|termDocFreq
+name|termFreq
 decl_stmt|;
 if|if
 condition|(
@@ -2339,11 +2339,11 @@ condition|(
 name|readTermFreq
 condition|)
 block|{
-name|termDocFreq
+name|termFreq
 operator|=
 name|postings
 operator|.
-name|docFreqs
+name|termFreqs
 index|[
 name|termID
 index|]
@@ -2351,7 +2351,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|termDocFreq
+name|termFreq
 operator|=
 operator|-
 literal|1
@@ -2395,7 +2395,7 @@ name|docID
 operator|+=
 name|code
 expr_stmt|;
-name|termDocFreq
+name|termFreq
 operator|=
 operator|-
 literal|1
@@ -2420,14 +2420,14 @@ operator|!=
 literal|0
 condition|)
 block|{
-name|termDocFreq
+name|termFreq
 operator|=
 literal|1
 expr_stmt|;
 block|}
 else|else
 block|{
-name|termDocFreq
+name|termFreq
 operator|=
 name|freq
 operator|.
@@ -2447,7 +2447,7 @@ name|termID
 index|]
 assert|;
 block|}
-name|numDocs
+name|docFreq
 operator|++
 expr_stmt|;
 assert|assert
@@ -2499,7 +2499,7 @@ name|docID
 argument_list|,
 name|writeTermFreq
 condition|?
-name|termDocFreq
+name|termFreq
 else|:
 operator|-
 literal|1
@@ -2579,7 +2579,7 @@ block|}
 block|}
 name|totTF
 operator|+=
-name|termDocFreq
+name|termFreq
 expr_stmt|;
 comment|// Carefully copy over the prox + payload info,
 comment|// changing the format to match Lucene's segment
@@ -2611,7 +2611,7 @@ literal|0
 init|;
 name|j
 operator|<
-name|termDocFreq
+name|termFreq
 condition|;
 name|j
 operator|++
@@ -2873,7 +2873,7 @@ argument_list|,
 operator|new
 name|TermStats
 argument_list|(
-name|numDocs
+name|docFreq
 argument_list|,
 name|writeTermFreq
 condition|?
@@ -2890,7 +2890,7 @@ name|totTF
 expr_stmt|;
 name|sumDocFreq
 operator|+=
-name|numDocs
+name|docFreq
 expr_stmt|;
 block|}
 name|termsConsumer

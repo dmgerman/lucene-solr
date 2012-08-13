@@ -6811,52 +6811,6 @@ argument_list|(
 name|dir
 argument_list|)
 expr_stmt|;
-specifier|final
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|dsFilesCopied
-init|=
-operator|new
-name|HashSet
-argument_list|<
-name|String
-argument_list|>
-argument_list|()
-decl_stmt|;
-specifier|final
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|dsNames
-init|=
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|()
-decl_stmt|;
-specifier|final
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|copiedFiles
-init|=
-operator|new
-name|HashSet
-argument_list|<
-name|String
-argument_list|>
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|SegmentInfoPerCommit
@@ -6983,13 +6937,7 @@ name|info
 argument_list|,
 name|newSegName
 argument_list|,
-name|dsNames
-argument_list|,
-name|dsFilesCopied
-argument_list|,
 name|context
-argument_list|,
-name|copiedFiles
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -7450,7 +7398,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Copies the segment files as-is into the IndexWriter's directory. */
-comment|// TODO: this can be substantially simplified now that 3.x support/shared docstores is removed!
 DECL|method|copySegmentAsIs
 specifier|private
 name|SegmentInfoPerCommit
@@ -7462,91 +7409,12 @@ parameter_list|,
 name|String
 name|segName
 parameter_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|dsNames
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|dsFilesCopied
-parameter_list|,
 name|IOContext
 name|context
-parameter_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|copiedFiles
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Determine if the doc store of this segment needs to be copied. It's
-comment|// only relevant for segments that share doc store with others,
-comment|// because the DS might have been copied already, in which case we
-comment|// just want to update the DS name of this SegmentInfo.
-specifier|final
-name|String
-name|dsName
-init|=
-name|info
-operator|.
-name|info
-operator|.
-name|name
-decl_stmt|;
-assert|assert
-name|dsName
-operator|!=
-literal|null
-assert|;
-specifier|final
-name|String
-name|newDsName
-decl_stmt|;
-if|if
-condition|(
-name|dsNames
-operator|.
-name|containsKey
-argument_list|(
-name|dsName
-argument_list|)
-condition|)
-block|{
-name|newDsName
-operator|=
-name|dsNames
-operator|.
-name|get
-argument_list|(
-name|dsName
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|dsNames
-operator|.
-name|put
-argument_list|(
-name|dsName
-argument_list|,
-name|segName
-argument_list|)
-expr_stmt|;
-name|newDsName
-operator|=
-name|segName
-expr_stmt|;
-block|}
 comment|// note: we don't really need this fis (its copied), but we load it up
 comment|// so we don't pass a null value to the si writer
 name|FieldInfos
@@ -7616,7 +7484,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//System.out.println("copy seg=" + info.info.name + " version=" + info.info.getVersion());
-comment|// Same SI as before but we change directory, name and docStoreSegment:
+comment|// Same SI as before but we change directory and name
 name|SegmentInfo
 name|newInfo
 init|=
@@ -7740,9 +7608,7 @@ argument_list|(
 name|segFiles
 argument_list|)
 expr_stmt|;
-comment|// We must rewrite the SI file because it references
-comment|// segment name (its own name, if its 3.x, and doc
-comment|// store segment name):
+comment|// We must rewrite the SI file because it references segment name in its list of files, etc
 name|TrackingDirectoryWrapper
 name|trackingDir
 init|=
@@ -7752,8 +7618,6 @@ argument_list|(
 name|directory
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|newInfo
 operator|.
 name|getCodec
@@ -7776,16 +7640,6 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|uoe
-parameter_list|)
-block|{
-comment|// OK: 3x codec cannot write a new SI file;
-comment|// SegmentInfos will write this on commit
-block|}
 specifier|final
 name|Collection
 argument_list|<
@@ -7853,28 +7707,6 @@ literal|"\" already exists; siFiles="
 operator|+
 name|siFiles
 assert|;
-assert|assert
-operator|!
-name|copiedFiles
-operator|.
-name|contains
-argument_list|(
-name|file
-argument_list|)
-operator|:
-literal|"file \""
-operator|+
-name|file
-operator|+
-literal|"\" is being copied more than once"
-assert|;
-name|copiedFiles
-operator|.
-name|add
-argument_list|(
-name|file
-argument_list|)
-expr_stmt|;
 name|info
 operator|.
 name|info

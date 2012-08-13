@@ -104,7 +104,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpSolrServer
+name|ConcurrentUpdateSolrServer
 import|;
 end_import
 
@@ -122,7 +122,7 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|ConcurrentUpdateSolrServer
+name|HttpSolrServer
 import|;
 end_import
 
@@ -314,18 +314,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|zookeeper
-operator|.
-name|KeeperException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -344,7 +332,7 @@ specifier|public
 class|class
 name|FullSolrCloudDistribCmdsTest
 extends|extends
-name|FullSolrCloudTest
+name|AbstractFullDistribZkTestBase
 block|{
 annotation|@
 name|BeforeClass

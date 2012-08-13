@@ -7214,14 +7214,16 @@ name|random
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// Make sure the result of applying the pattern to a string with extended
-comment|// unicode characters is a valid utf16 string. See LUCENE-4078 for discussion.
-if|if
-condition|(
-name|UnicodeUtil
-operator|.
-name|validUTF16String
-argument_list|(
+name|String
+name|replacement
+init|=
+literal|null
+decl_stmt|;
+comment|// ignore bugs in Sun's regex impl
+try|try
+block|{
+name|replacement
+operator|=
 name|p
 operator|.
 name|matcher
@@ -7233,6 +7235,53 @@ name|replaceAll
 argument_list|(
 literal|"_"
 argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|StringIndexOutOfBoundsException
+name|jdkBug
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"WARNING: your jdk is buggy!"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Pattern.compile(\""
+operator|+
+name|p
+operator|.
+name|pattern
+argument_list|()
+operator|+
+literal|"\").matcher(\"AB\\uD840\\uDC00C\").replaceAll(\"_\"); should not throw IndexOutOfBounds!"
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Make sure the result of applying the pattern to a string with extended
+comment|// unicode characters is a valid utf16 string. See LUCENE-4078 for discussion.
+if|if
+condition|(
+name|replacement
+operator|!=
+literal|null
+operator|&&
+name|UnicodeUtil
+operator|.
+name|validUTF16String
+argument_list|(
+name|replacement
 argument_list|)
 condition|)
 block|{

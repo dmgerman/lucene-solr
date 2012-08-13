@@ -519,6 +519,18 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+comment|// shutdown executor: in case of wrap-wrap-wrapping
+name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|tearDown
 specifier|public

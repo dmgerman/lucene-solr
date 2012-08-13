@@ -945,6 +945,11 @@ name|ReaderPayloadProcessor
 index|[]
 name|readerPayloadProcessor
 decl_stmt|;
+DECL|field|currentReaderPayloadProcessor
+specifier|public
+name|ReaderPayloadProcessor
+name|currentReaderPayloadProcessor
+decl_stmt|;
 DECL|field|currentPayloadProcessor
 specifier|public
 name|PayloadProcessor

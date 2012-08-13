@@ -2424,7 +2424,7 @@ argument_list|,
 operator|new
 name|DefaultSolrThreadFactory
 argument_list|(
-literal|"facetExectutor"
+literal|"facetExecutor"
 argument_list|)
 argument_list|)
 decl_stmt|;

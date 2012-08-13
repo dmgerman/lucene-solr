@@ -327,6 +327,23 @@ return|return
 name|nodeProps
 return|;
 block|}
+DECL|method|isLeader
+specifier|public
+name|boolean
+name|isLeader
+parameter_list|()
+block|{
+return|return
+name|nodeProps
+operator|.
+name|containsKey
+argument_list|(
+name|ZkStateReader
+operator|.
+name|LEADER_PROP
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

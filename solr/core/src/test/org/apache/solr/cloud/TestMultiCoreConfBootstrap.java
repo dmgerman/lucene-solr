@@ -626,6 +626,11 @@ literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|zkclient
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

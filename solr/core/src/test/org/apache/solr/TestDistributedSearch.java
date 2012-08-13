@@ -2351,15 +2351,17 @@ literal|"isShard is only acceptable"
 argument_list|)
 expr_stmt|;
 comment|// test debugging
+comment|// handle.put("explain", UNORDERED);
 name|handle
 operator|.
 name|put
 argument_list|(
 literal|"explain"
 argument_list|,
-name|UNORDERED
+name|SKIPVAL
 argument_list|)
 expr_stmt|;
+comment|// internal docids differ, idf differs w/o global idf
 name|handle
 operator|.
 name|put

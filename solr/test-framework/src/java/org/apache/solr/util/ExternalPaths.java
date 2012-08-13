@@ -37,7 +37,7 @@ class|class
 name|ExternalPaths
 block|{
 DECL|field|SOURCE_HOME
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
