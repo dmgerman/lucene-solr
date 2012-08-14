@@ -1074,6 +1074,15 @@ name|cnt
 operator|++
 expr_stmt|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"start zk server on port:"
+operator|+
+name|port
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|SuppressWarnings

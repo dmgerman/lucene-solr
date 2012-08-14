@@ -3228,6 +3228,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|updaterThread
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -3239,6 +3244,11 @@ block|{
 name|ccThread
 operator|.
 name|close
+argument_list|()
+expr_stmt|;
+name|ccThread
+operator|.
+name|interrupt
 argument_list|()
 expr_stmt|;
 block|}

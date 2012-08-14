@@ -283,7 +283,7 @@ specifier|final
 name|int
 name|BASE_RUN_LENGTH
 init|=
-literal|180000
+literal|45000
 decl_stmt|;
 annotation|@
 name|BeforeClass
@@ -375,11 +375,11 @@ argument_list|()
 expr_stmt|;
 name|sliceCount
 operator|=
-literal|2
+literal|3
 expr_stmt|;
 name|shardCount
 operator|=
-literal|6
+literal|12
 expr_stmt|;
 block|}
 annotation|@
@@ -530,6 +530,7 @@ name|start
 argument_list|()
 expr_stmt|;
 block|}
+comment|// TODO: only do this randomly - if we don't do it, compare against control below
 name|FullThrottleStopableIndexingThread
 name|ftIndexThread
 init|=
@@ -636,20 +637,12 @@ expr_stmt|;
 comment|// wait until there are no recoveries...
 name|waitForThingsToLevelOut
 argument_list|(
-name|Math
+name|Integer
 operator|.
-name|round
-argument_list|(
-operator|(
-name|runLength
-operator|/
-literal|1000.0f
-operator|/
-literal|5.0f
-operator|)
-argument_list|)
+name|MAX_VALUE
 argument_list|)
 expr_stmt|;
+comment|//Math.round((runLength / 1000.0f / 3.0f)));
 comment|// make sure we again have leaders for each shard
 for|for
 control|(
@@ -707,6 +700,8 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
+comment|// we dont't current check vs control because the full throttle thread can
+comment|// have request fails
 name|checkShardConsistency
 argument_list|(
 literal|false

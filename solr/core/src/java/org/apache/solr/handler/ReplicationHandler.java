@@ -1961,7 +1961,7 @@ name|SolrParams
 name|solrParams
 parameter_list|,
 name|boolean
-name|force
+name|forceReplication
 parameter_list|)
 block|{
 name|String
@@ -2044,7 +2044,7 @@ name|fetchLatestIndex
 argument_list|(
 name|core
 argument_list|,
-name|force
+name|forceReplication
 argument_list|)
 return|;
 block|}
