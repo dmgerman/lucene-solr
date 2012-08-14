@@ -790,12 +790,6 @@ specifier|final
 name|LiveIndexWriterConfig
 name|config
 decl_stmt|;
-comment|// The PayloadProcessorProvider to use when segments are merged
-DECL|field|payloadProcessorProvider
-specifier|private
-name|PayloadProcessorProvider
-name|payloadProcessorProvider
-decl_stmt|;
 DECL|method|getReader
 name|DirectoryReader
 name|getReader
@@ -7129,8 +7123,6 @@ name|CheckAbort
 operator|.
 name|NONE
 argument_list|,
-name|payloadProcessorProvider
-argument_list|,
 name|globalFieldNumberMap
 argument_list|,
 name|context
@@ -11829,8 +11821,6 @@ argument_list|()
 argument_list|,
 name|checkAbort
 argument_list|,
-name|payloadProcessorProvider
-argument_list|,
 name|globalFieldNumberMap
 argument_list|,
 name|context
@@ -14089,38 +14079,6 @@ operator|.
 name|deletePendingFiles
 argument_list|()
 expr_stmt|;
-block|}
-comment|/**    * Sets the {@link PayloadProcessorProvider} to use when merging payloads.    * Note that the given<code>pcp</code> will be invoked for every segment that    * is merged, not only external ones that are given through    * {@link #addIndexes}. If you want only the payloads of the external segments    * to be processed, you can return<code>null</code> whenever a    * {@link PayloadProcessorProvider.ReaderPayloadProcessor} is requested for the {@link Directory} of the    * {@link IndexWriter}.    *<p>    * The default is<code>null</code> which means payloads are processed    * normally (copied) during segment merges. You can also unset it by passing    *<code>null</code>.    *<p>    *<b>NOTE:</b> the set {@link PayloadProcessorProvider} will be in effect    * immediately, potentially for already running merges too. If you want to be    * sure it is used for further operations only, such as {@link #addIndexes} or    * {@link #forceMerge}, you can call {@link #waitForMerges()} before.    */
-DECL|method|setPayloadProcessorProvider
-specifier|public
-name|void
-name|setPayloadProcessorProvider
-parameter_list|(
-name|PayloadProcessorProvider
-name|pcp
-parameter_list|)
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|payloadProcessorProvider
-operator|=
-name|pcp
-expr_stmt|;
-block|}
-comment|/**    * Returns the {@link PayloadProcessorProvider} that is used during segment    * merges to process payloads.    */
-DECL|method|getPayloadProcessorProvider
-specifier|public
-name|PayloadProcessorProvider
-name|getPayloadProcessorProvider
-parameter_list|()
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-return|return
-name|payloadProcessorProvider
-return|;
 block|}
 comment|/**    * NOTE: this method creates a compound file for all files returned by    * info.files(). While, generally, this may include separate norms and    * deletion files, this SegmentInfo must not reference such files when this    * method is called, because they are not allowed within a compound file.    */
 DECL|method|createCompoundFile
