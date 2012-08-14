@@ -5293,7 +5293,7 @@ name|random
 argument_list|,
 name|r
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -5462,7 +5462,7 @@ name|random
 argument_list|,
 name|r
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 argument_list|,
 name|ex

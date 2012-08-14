@@ -2166,7 +2166,7 @@ name|ctx
 init|=
 name|previousReader
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 decl_stmt|;
 name|Scorer

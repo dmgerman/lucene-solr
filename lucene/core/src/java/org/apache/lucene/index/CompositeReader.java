@@ -231,11 +231,11 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Override
-DECL|method|getTopReaderContext
+DECL|method|getContext
 specifier|public
 specifier|final
 name|CompositeReaderContext
-name|getTopReaderContext
+name|getContext
 parameter_list|()
 block|{
 name|ensureOpen
