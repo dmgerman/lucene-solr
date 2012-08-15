@@ -958,7 +958,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Expert: Returns the root {@link IndexReaderContext} for this    * {@link IndexReader}'s sub-reader tree.     *<p>    * Iff this reader is composed of sub    * readers, i.e. this reader being a composite reader, this method returns a    * {@link CompositeReaderContext} holding the reader's direct children as well as a    * view of the reader tree's atomic leaf contexts. All sub-    * {@link IndexReaderContext} instances referenced from this readers top-level    * context are private to this reader and are not shared with another context    * tree. For example, IndexSearcher uses this API to drive searching by one    * atomic leaf reader at a time. If this reader is not composed of child    * readers, this method returns an {@link AtomicReaderContext}.    *<p>    * Note: Any of the sub-{@link CompositeReaderContext} instances reference from this    * top-level context holds a<code>null</code> {@link CompositeReaderContext#leaves()}    * reference. Only the top-level context maintains the convenience leaf-view    * for performance reasons.    *     * @lucene.experimental    */
+comment|/**    * Expert: Returns the root {@link IndexReaderContext} for this    * {@link IndexReader}'s sub-reader tree.     *<p>    * Iff this reader is composed of sub    * readers, i.e. this reader being a composite reader, this method returns a    * {@link CompositeReaderContext} holding the reader's direct children as well as a    * view of the reader tree's atomic leaf contexts. All sub-    * {@link IndexReaderContext} instances referenced from this readers top-level    * context are private to this reader and are not shared with another context    * tree. For example, IndexSearcher uses this API to drive searching by one    * atomic leaf reader at a time. If this reader is not composed of child    * readers, this method returns an {@link AtomicReaderContext}.    *<p>    * Note: Any of the sub-{@link CompositeReaderContext} instances referenced    * from this top-level context do not support {@link CompositeReaderContext#leaves()}.    * Only the top-level context maintains the convenience leaf-view    * for performance reasons.    */
 DECL|method|getContext
 specifier|public
 specifier|abstract
@@ -966,7 +966,7 @@ name|IndexReaderContext
 name|getContext
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the reader's leaves, or itself if this reader is Atomic.    */
+comment|/**    * Returns the reader's leaves, or itself if this reader is atomic.    * This is a convenience method calling {@code this.getContext().leaves()}.    * @see IndexReaderContext#leaves()    */
 DECL|method|leaves
 specifier|public
 specifier|final

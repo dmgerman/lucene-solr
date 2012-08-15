@@ -216,7 +216,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** Expert: returns the sequential sub readers that this    *  reader is logically composed of. This method may not    *  return {@code null}.    *      *<p>In contrast to previous Lucene versions this method is no    *  longer public, code that wants to get all {@link AtomicReader}s    *  this composite is composed of should use {@link IndexReader#leaves()}.    *      *  @lucene.internal    */
+comment|/** Expert: returns the sequential sub readers that this    *  reader is logically composed of. This method may not    *  return {@code null}.    *      *<p><b>NOTE:</b> In contrast to previous Lucene versions this method    *  is no longer public, code that wants to get all {@link AtomicReader}s    *  this composite is composed of should use {@link IndexReader#leaves()}.    * @see IndexReader#leaves()    */
 DECL|method|getSequentialSubReaders
 specifier|protected
 specifier|abstract
