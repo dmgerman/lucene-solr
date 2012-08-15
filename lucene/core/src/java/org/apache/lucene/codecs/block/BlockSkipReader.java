@@ -78,15 +78,7 @@ name|BlockSkipReader
 extends|extends
 name|MultiLevelSkipListReader
 block|{
-DECL|field|DEBUG
-specifier|private
-name|boolean
-name|DEBUG
-init|=
-name|BlockPostingsReader
-operator|.
-name|DEBUG
-decl_stmt|;
+comment|// private boolean DEBUG = BlockPostingsReader.DEBUG;
 DECL|field|blockSize
 specifier|private
 specifier|final
@@ -517,23 +509,9 @@ argument_list|(
 name|level
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"seekChild level="
-operator|+
-name|level
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("seekChild level=" + level);
+comment|// }
 name|docPointer
 index|[
 name|level
@@ -634,34 +612,10 @@ index|[
 name|level
 index|]
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"setLastSkipData level="
-operator|+
-name|level
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  lastDocPointer="
-operator|+
-name|lastDocPointer
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("setLastSkipData level=" + level);
+comment|//   System.out.println("  lastDocPointer=" + lastDocPointer);
+comment|// }
 if|if
 condition|(
 name|posPointer
@@ -683,27 +637,9 @@ index|[
 name|level
 index|]
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  lastPosPointer="
-operator|+
-name|lastPosPointer
-operator|+
-literal|" lastPosBUfferUpto="
-operator|+
-name|lastPosBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  lastPosPointer=" + lastPosPointer + " lastPosBUfferUpto=" + lastPosBufferUpto);
+comment|// }
 if|if
 condition|(
 name|payPointer
@@ -767,23 +703,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"readSkipData level="
-operator|+
-name|level
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("readSkipData level=" + level);
+comment|// }
 name|int
 name|delta
 init|=
@@ -792,23 +714,9 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  delta="
-operator|+
-name|delta
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  delta=" + delta);
+comment|// }
 name|docPointer
 index|[
 name|level
@@ -819,26 +727,9 @@ operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  docFP="
-operator|+
-name|docPointer
-index|[
-name|level
-index|]
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  docFP=" + docPointer[level]);
+comment|// }
 if|if
 condition|(
 name|posPointer
@@ -856,26 +747,9 @@ operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  posFP="
-operator|+
-name|posPointer
-index|[
-name|level
-index|]
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  posFP=" + posPointer[level]);
+comment|// }
 name|posBufferUpto
 index|[
 name|level
@@ -886,26 +760,9 @@ operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  posBufferUpto="
-operator|+
-name|posBufferUpto
-index|[
-name|level
-index|]
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  posBufferUpto=" + posBufferUpto[level]);
+comment|// }
 if|if
 condition|(
 name|payloadByteUpto

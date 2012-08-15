@@ -78,15 +78,7 @@ name|BlockSkipWriter
 extends|extends
 name|MultiLevelSkipListWriter
 block|{
-DECL|field|DEBUG
-specifier|private
-name|boolean
-name|DEBUG
-init|=
-name|BlockPostingsReader
-operator|.
-name|DEBUG
-decl_stmt|;
+comment|// private boolean DEBUG = BlockPostingsReader.DEBUG;
 DECL|field|lastSkipDoc
 specifier|private
 name|int
@@ -552,35 +544,9 @@ index|[
 name|level
 index|]
 decl_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"writeSkipData level="
-operator|+
-name|level
-operator|+
-literal|" lastDoc="
-operator|+
-name|curDoc
-operator|+
-literal|" delta="
-operator|+
-name|delta
-operator|+
-literal|" curDocPointer="
-operator|+
-name|curDocPointer
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("writeSkipData level=" + level + " lastDoc=" + curDoc + " delta=" + delta + " curDocPointer=" + curDocPointer);
+comment|// }
 name|skipBuffer
 operator|.
 name|writeVInt
@@ -624,27 +590,9 @@ condition|(
 name|fieldHasPositions
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  curPosPointer="
-operator|+
-name|curPosPointer
-operator|+
-literal|" curPosBufferUpto="
-operator|+
-name|curPosBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  curPosPointer=" + curPosPointer + " curPosBufferUpto=" + curPosBufferUpto);
+comment|// }
 name|skipBuffer
 operator|.
 name|writeVInt

@@ -411,14 +411,7 @@ specifier|final
 name|ForUtil
 name|forUtil
 decl_stmt|;
-DECL|field|DEBUG
-specifier|public
-specifier|static
-name|boolean
-name|DEBUG
-init|=
-literal|false
-decl_stmt|;
+comment|// public static boolean DEBUG = false;
 DECL|method|BlockPostingsReader
 specifier|public
 name|BlockPostingsReader
@@ -2135,23 +2128,9 @@ name|liveDocs
 operator|=
 name|liveDocs
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  FPR.reset: termState="
-operator|+
-name|termState
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  FPR.reset: termState=" + termState);
+comment|// }
 name|docFreq
 operator|=
 name|termState
@@ -2279,26 +2258,9 @@ operator|>=
 name|BLOCK_SIZE
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    fill doc block from fp="
-operator|+
-name|docIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    fill doc block from fp=" + docIn.getFilePointer());
+comment|// }
 name|forUtil
 operator|.
 name|readBlock
@@ -2315,26 +2277,9 @@ condition|(
 name|indexHasFreq
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    fill freq block from fp="
-operator|+
-name|docIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    fill freq block from fp=" + docIn.getFilePointer());
+comment|// }
 name|forUtil
 operator|.
 name|readBlock
@@ -2351,26 +2296,9 @@ block|}
 else|else
 block|{
 comment|// Read vInts:
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    fill last vInt block from fp="
-operator|+
-name|docIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    fill last vInt block from fp=" + docIn.getFilePointer());
+comment|// }
 name|readVIntBlock
 argument_list|(
 name|docIn
@@ -2400,51 +2328,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"\nFPR.nextDoc"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("\nFPR.nextDoc");
+comment|// }
 while|while
 condition|(
 literal|true
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  docUpto="
-operator|+
-name|docUpto
-operator|+
-literal|" (of df="
-operator|+
-name|docFreq
-operator|+
-literal|") docBufferUpto="
-operator|+
-name|docBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  docUpto=" + docUpto + " (of df=" + docFreq + ") docBufferUpto=" + docBufferUpto);
+comment|// }
 if|if
 condition|(
 name|docUpto
@@ -2452,21 +2346,9 @@ operator|==
 name|docFreq
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  return doc=END"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  return doc=END");
+comment|// }
 return|return
 name|doc
 operator|=
@@ -2484,34 +2366,9 @@ name|refillDocs
 argument_list|()
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    accum="
-operator|+
-name|accum
-operator|+
-literal|" docDeltaBuffer["
-operator|+
-name|docBufferUpto
-operator|+
-literal|"]="
-operator|+
-name|docDeltaBuffer
-index|[
-name|docBufferUpto
-index|]
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    accum=" + accum + " docDeltaBuffer[" + docBufferUpto + "]=" + docDeltaBuffer[docBufferUpto]);
+comment|// }
 name|accum
 operator|+=
 name|docDeltaBuffer
@@ -2550,50 +2407,16 @@ expr_stmt|;
 name|docBufferUpto
 operator|++
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  return doc="
-operator|+
-name|doc
-operator|+
-literal|" freq="
-operator|+
-name|freq
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  return doc=" + doc + " freq=" + freq);
+comment|// }
 return|return
 name|doc
 return|;
 block|}
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  doc="
-operator|+
-name|accum
-operator|+
-literal|" is deleted; try next doc"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  doc=" + accum + " is deleted; try next doc");
+comment|// }
 name|docBufferUpto
 operator|++
 expr_stmt|;
@@ -2613,23 +2436,9 @@ throws|throws
 name|IOException
 block|{
 comment|// TODO: make frq block load lazy/skippable
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  FPR.advance target="
-operator|+
-name|target
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  FPR.advance target=" + target);
+comment|// }
 comment|// current skip docID< docIDs generated from current buffer<= next skip docID
 comment|// we don't need to skip if target is buffered already
 if|if
@@ -2643,21 +2452,9 @@ operator|>
 name|nextSkipDoc
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"load skipper"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("load skipper");
+comment|// }
 if|if
 condition|(
 name|skipper
@@ -2750,41 +2547,9 @@ name|docUpto
 condition|)
 block|{
 comment|// Skipper moved
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"skipper moved to docUpto="
-operator|+
-name|newDocUpto
-operator|+
-literal|" vs current="
-operator|+
-name|docUpto
-operator|+
-literal|"; docID="
-operator|+
-name|skipper
-operator|.
-name|getDoc
-argument_list|()
-operator|+
-literal|" fp="
-operator|+
-name|skipper
-operator|.
-name|getDocPointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("skipper moved to docUpto=" + newDocUpto + " vs current=" + docUpto + "; docID=" + skipper.getDoc() + " fp=" + skipper.getDocPointer());
+comment|// }
 assert|assert
 name|newDocUpto
 operator|%
@@ -2864,27 +2629,9 @@ condition|(
 literal|true
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  scan doc="
-operator|+
-name|accum
-operator|+
-literal|" docBufferUpto="
-operator|+
-name|docBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  scan doc=" + accum + " docBufferUpto=" + docBufferUpto);
+comment|// }
 name|accum
 operator|+=
 name|docDeltaBuffer
@@ -2935,23 +2682,9 @@ name|accum
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  return doc="
-operator|+
-name|accum
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  return doc=" + accum);
+comment|// }
 name|freq
 operator|=
 name|freqBuffer
@@ -2970,21 +2703,9 @@ return|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  now do nextDoc()"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  now do nextDoc()");
+comment|// }
 name|docBufferUpto
 operator|++
 expr_stmt|;
@@ -3331,23 +3052,9 @@ name|liveDocs
 operator|=
 name|liveDocs
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  FPR.reset: termState="
-operator|+
-name|termState
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  FPR.reset: termState=" + termState);
+comment|// }
 name|docFreq
 operator|=
 name|termState
@@ -3519,26 +3226,9 @@ operator|>=
 name|BLOCK_SIZE
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    fill doc block from fp="
-operator|+
-name|docIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    fill doc block from fp=" + docIn.getFilePointer());
+comment|// }
 name|forUtil
 operator|.
 name|readBlock
@@ -3550,26 +3240,9 @@ argument_list|,
 name|docDeltaBuffer
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    fill freq block from fp="
-operator|+
-name|docIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    fill freq block from fp=" + docIn.getFilePointer());
+comment|// }
 name|forUtil
 operator|.
 name|readBlock
@@ -3585,26 +3258,9 @@ block|}
 else|else
 block|{
 comment|// Read vInts:
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    fill last vInt doc block from fp="
-operator|+
-name|docIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    fill last vInt doc block from fp=" + docIn.getFilePointer());
+comment|// }
 name|readVIntBlock
 argument_list|(
 name|docIn
@@ -3632,21 +3288,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      refillPositions"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("      refillPositions");
+comment|// }
 if|if
 condition|(
 name|posIn
@@ -3657,34 +3301,9 @@ operator|==
 name|lastPosBlockFP
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        vInt pos block @ fp="
-operator|+
-name|posIn
-operator|.
-name|getFilePointer
-argument_list|()
-operator|+
-literal|" hasPayloads="
-operator|+
-name|indexHasPayloads
-operator|+
-literal|" hasOffsets="
-operator|+
-name|indexHasOffsets
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        vInt pos block @ fp=" + posIn.getFilePointer() + " hasPayloads=" + indexHasPayloads + " hasOffsets=" + indexHasOffsets);
+comment|// }
 specifier|final
 name|int
 name|count
@@ -3806,26 +3425,9 @@ block|}
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        bulk pos block @ fp="
-operator|+
-name|posIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        bulk pos block @ fp=" + posIn.getFilePointer());
+comment|// }
 name|forUtil
 operator|.
 name|readBlock
@@ -3849,51 +3451,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  FPR.nextDoc"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  FPR.nextDoc");
+comment|// }
 while|while
 condition|(
 literal|true
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    docUpto="
-operator|+
-name|docUpto
-operator|+
-literal|" (of df="
-operator|+
-name|docFreq
-operator|+
-literal|") docBufferUpto="
-operator|+
-name|docBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    docUpto=" + docUpto + " (of df=" + docFreq + ") docBufferUpto=" + docBufferUpto);
+comment|// }
 if|if
 condition|(
 name|docUpto
@@ -3918,34 +3486,9 @@ name|refillDocs
 argument_list|()
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    accum="
-operator|+
-name|accum
-operator|+
-literal|" docDeltaBuffer["
-operator|+
-name|docBufferUpto
-operator|+
-literal|"]="
-operator|+
-name|docDeltaBuffer
-index|[
-name|docBufferUpto
-index|]
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    accum=" + accum + " docDeltaBuffer[" + docBufferUpto + "]=" + docDeltaBuffer[docBufferUpto]);
+comment|// }
 name|accum
 operator|+=
 name|docDeltaBuffer
@@ -3992,54 +3535,16 @@ name|position
 operator|=
 literal|0
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    return doc="
-operator|+
-name|doc
-operator|+
-literal|" freq="
-operator|+
-name|freq
-operator|+
-literal|" posPendingCount="
-operator|+
-name|posPendingCount
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    return doc=" + doc + " freq=" + freq + " posPendingCount=" + posPendingCount);
+comment|// }
 return|return
 name|doc
 return|;
 block|}
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    doc="
-operator|+
-name|accum
-operator|+
-literal|" is deleted; try next doc"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    doc=" + accum + " is deleted; try next doc");
+comment|// }
 block|}
 block|}
 annotation|@
@@ -4056,23 +3561,9 @@ throws|throws
 name|IOException
 block|{
 comment|// TODO: make frq block load lazy/skippable
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  FPR.advance target="
-operator|+
-name|target
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  FPR.advance target=" + target);
+comment|// }
 if|if
 condition|(
 name|docFreq
@@ -4084,21 +3575,9 @@ operator|>
 name|nextSkipDoc
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    try skipper"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    try skipper");
+comment|// }
 if|if
 condition|(
 name|skipper
@@ -4107,21 +3586,9 @@ literal|null
 condition|)
 block|{
 comment|// Lazy init: first time this enum has ever been used for skipping
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    create skipper"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    create skipper");
+comment|// }
 name|skipper
 operator|=
 operator|new
@@ -4163,21 +3630,9 @@ literal|1
 assert|;
 comment|// This is the first time this enum has skipped
 comment|// since reset() was called; load the skip data:
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    init skipper"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    init skipper");
+comment|// }
 name|skipper
 operator|.
 name|init
@@ -4221,55 +3676,9 @@ name|docUpto
 condition|)
 block|{
 comment|// Skipper moved
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    skipper moved to docUpto="
-operator|+
-name|newDocUpto
-operator|+
-literal|" vs current="
-operator|+
-name|docUpto
-operator|+
-literal|"; docID="
-operator|+
-name|skipper
-operator|.
-name|getDoc
-argument_list|()
-operator|+
-literal|" fp="
-operator|+
-name|skipper
-operator|.
-name|getDocPointer
-argument_list|()
-operator|+
-literal|" pos.fp="
-operator|+
-name|skipper
-operator|.
-name|getPosPointer
-argument_list|()
-operator|+
-literal|" pos.bufferUpto="
-operator|+
-name|skipper
-operator|.
-name|getPosBufferUpto
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    skipper moved to docUpto=" + newDocUpto + " vs current=" + docUpto + "; docID=" + skipper.getDoc() + " fp=" + skipper.getDocPointer() + " pos.fp=" + skipper.getPosPointer() + " pos.bufferUpto=" + skipper.getPosBufferUpto());
+comment|// }
 assert|assert
 name|newDocUpto
 operator|%
@@ -4361,27 +3770,9 @@ condition|(
 literal|true
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  scan doc="
-operator|+
-name|accum
-operator|+
-literal|" docBufferUpto="
-operator|+
-name|docBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  scan doc=" + accum + " docBufferUpto=" + docBufferUpto);
+comment|// }
 if|if
 condition|(
 name|docUpto
@@ -4456,23 +3847,9 @@ name|accum
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  return doc="
-operator|+
-name|accum
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  return doc=" + accum);
+comment|// }
 name|position
 operator|=
 literal|0
@@ -4485,21 +3862,9 @@ return|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  now do nextDoc()"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  now do nextDoc()");
+comment|// }
 return|return
 name|nextDoc
 argument_list|()
@@ -4526,23 +3891,9 @@ name|posPendingCount
 operator|-
 name|freq
 decl_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      FPR.skipPositions: toSkip="
-operator|+
-name|toSkip
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("      FPR.skipPositions: toSkip=" + toSkip);
+comment|// }
 specifier|final
 name|int
 name|leftInBlock
@@ -4562,23 +3913,9 @@ name|posBufferUpto
 operator|+=
 name|toSkip
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        skip w/in block to posBufferUpto="
-operator|+
-name|posBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        skip w/in block to posBufferUpto=" + posBufferUpto);
+comment|// }
 block|}
 else|else
 block|{
@@ -4593,26 +3930,9 @@ operator|>=
 name|BLOCK_SIZE
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        skip whole block @ fp="
-operator|+
-name|posIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        skip whole block @ fp=" + posIn.getFilePointer());
+comment|// }
 assert|assert
 name|posIn
 operator|.
@@ -4640,23 +3960,9 @@ name|posBufferUpto
 operator|=
 name|toSkip
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        skip w/in block to posBufferUpto="
-operator|+
-name|posBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        skip w/in block to posBufferUpto=" + posBufferUpto);
+comment|// }
 block|}
 name|position
 operator|=
@@ -4673,27 +3979,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    FPR.nextPosition posPendingCount="
-operator|+
-name|posPendingCount
-operator|+
-literal|" posBufferUpto="
-operator|+
-name|posBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    FPR.nextPosition posPendingCount=" + posPendingCount + " posBufferUpto=" + posBufferUpto);
+comment|// }
 if|if
 condition|(
 name|posPendingFP
@@ -4702,23 +3990,9 @@ operator|-
 literal|1
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      seek to pendingFP="
-operator|+
-name|posPendingFP
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("      seek to pendingFP=" + posPendingFP);
+comment|// }
 name|posIn
 operator|.
 name|seek
@@ -4778,23 +4052,9 @@ expr_stmt|;
 name|posPendingCount
 operator|--
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      return pos="
-operator|+
-name|position
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("      return pos=" + position);
+comment|// }
 return|return
 name|position
 return|;
@@ -5346,23 +4606,9 @@ name|liveDocs
 operator|=
 name|liveDocs
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  FPR.reset: termState="
-operator|+
-name|termState
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  FPR.reset: termState=" + termState);
+comment|// }
 name|docFreq
 operator|=
 name|termState
@@ -5538,26 +4784,9 @@ operator|>=
 name|BLOCK_SIZE
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    fill doc block from fp="
-operator|+
-name|docIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    fill doc block from fp=" + docIn.getFilePointer());
+comment|// }
 name|forUtil
 operator|.
 name|readBlock
@@ -5569,26 +4798,9 @@ argument_list|,
 name|docDeltaBuffer
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    fill freq block from fp="
-operator|+
-name|docIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    fill freq block from fp=" + docIn.getFilePointer());
+comment|// }
 name|forUtil
 operator|.
 name|readBlock
@@ -5603,26 +4815,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    fill last vInt doc block from fp="
-operator|+
-name|docIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    fill last vInt doc block from fp=" + docIn.getFilePointer());
+comment|// }
 name|readVIntBlock
 argument_list|(
 name|docIn
@@ -5650,21 +4845,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      refillPositions"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("      refillPositions");
+comment|// }
 if|if
 condition|(
 name|posIn
@@ -5675,34 +4858,9 @@ operator|==
 name|lastPosBlockFP
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        vInt pos block @ fp="
-operator|+
-name|posIn
-operator|.
-name|getFilePointer
-argument_list|()
-operator|+
-literal|" hasPayloads="
-operator|+
-name|indexHasPayloads
-operator|+
-literal|" hasOffsets="
-operator|+
-name|indexHasOffsets
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        vInt pos block @ fp=" + posIn.getFilePointer() + " hasPayloads=" + indexHasPayloads + " hasOffsets=" + indexHasOffsets);
+comment|// }
 specifier|final
 name|int
 name|count
@@ -5768,27 +4926,9 @@ name|readVInt
 argument_list|()
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        i="
-operator|+
-name|i
-operator|+
-literal|" payloadLen="
-operator|+
-name|payloadLength
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        i=" + i + " payloadLen=" + payloadLength);
+comment|// }
 name|payloadLengthBuffer
 index|[
 name|i
@@ -5870,30 +5010,9 @@ condition|(
 name|indexHasOffsets
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        i="
-operator|+
-name|i
-operator|+
-literal|" read offsets from posIn.fp="
-operator|+
-name|posIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        i=" + i + " read offsets from posIn.fp=" + posIn.getFilePointer());
+comment|// }
 name|offsetStartDeltaBuffer
 index|[
 name|i
@@ -5914,33 +5033,9 @@ operator|.
 name|readVInt
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"          startOffDelta="
-operator|+
-name|offsetStartDeltaBuffer
-index|[
-name|i
-index|]
-operator|+
-literal|" offsetLen="
-operator|+
-name|offsetLengthBuffer
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("          startOffDelta=" + offsetStartDeltaBuffer[i] + " offsetLen=" + offsetLengthBuffer[i]);
+comment|// }
 block|}
 block|}
 name|payloadByteUpto
@@ -5950,26 +5045,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        bulk pos block @ fp="
-operator|+
-name|posIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        bulk pos block @ fp=" + posIn.getFilePointer());
+comment|// }
 name|forUtil
 operator|.
 name|readBlock
@@ -5986,26 +5064,9 @@ condition|(
 name|indexHasPayloads
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        bulk payload block @ pay.fp="
-operator|+
-name|payIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        bulk payload block @ pay.fp=" + payIn.getFilePointer());
+comment|// }
 name|forUtil
 operator|.
 name|readBlock
@@ -6025,30 +5086,9 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        "
-operator|+
-name|numBytes
-operator|+
-literal|" payload bytes @ pay.fp="
-operator|+
-name|payIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        " + numBytes + " payload bytes @ pay.fp=" + payIn.getFilePointer());
+comment|// }
 if|if
 condition|(
 name|numBytes
@@ -6091,26 +5131,9 @@ condition|(
 name|indexHasOffsets
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        bulk offset block @ pay.fp="
-operator|+
-name|payIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        bulk offset block @ pay.fp=" + payIn.getFilePointer());
+comment|// }
 name|forUtil
 operator|.
 name|readBlock
@@ -6146,51 +5169,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  FPR.nextDoc"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  FPR.nextDoc");
+comment|// }
 while|while
 condition|(
 literal|true
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    docUpto="
-operator|+
-name|docUpto
-operator|+
-literal|" (of df="
-operator|+
-name|docFreq
-operator|+
-literal|") docBufferUpto="
-operator|+
-name|docBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    docUpto=" + docUpto + " (of df=" + docFreq + ") docBufferUpto=" + docBufferUpto);
+comment|// }
 if|if
 condition|(
 name|docUpto
@@ -6215,34 +5204,9 @@ name|refillDocs
 argument_list|()
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    accum="
-operator|+
-name|accum
-operator|+
-literal|" docDeltaBuffer["
-operator|+
-name|docBufferUpto
-operator|+
-literal|"]="
-operator|+
-name|docDeltaBuffer
-index|[
-name|docBufferUpto
-index|]
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    accum=" + accum + " docDeltaBuffer[" + docBufferUpto + "]=" + docDeltaBuffer[docBufferUpto]);
+comment|// }
 name|accum
 operator|+=
 name|docDeltaBuffer
@@ -6285,31 +5249,9 @@ name|doc
 operator|=
 name|accum
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    return doc="
-operator|+
-name|doc
-operator|+
-literal|" freq="
-operator|+
-name|freq
-operator|+
-literal|" posPendingCount="
-operator|+
-name|posPendingCount
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    return doc=" + doc + " freq=" + freq + " posPendingCount=" + posPendingCount);
+comment|// }
 name|position
 operator|=
 literal|0
@@ -6322,25 +5264,9 @@ return|return
 name|doc
 return|;
 block|}
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    doc="
-operator|+
-name|accum
-operator|+
-literal|" is deleted; try next doc"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    doc=" + accum + " is deleted; try next doc");
+comment|// }
 block|}
 block|}
 annotation|@
@@ -6357,23 +5283,9 @@ throws|throws
 name|IOException
 block|{
 comment|// TODO: make frq block load lazy/skippable
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  FPR.advance target="
-operator|+
-name|target
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  FPR.advance target=" + target);
+comment|// }
 if|if
 condition|(
 name|docFreq
@@ -6385,21 +5297,9 @@ operator|>
 name|nextSkipDoc
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    try skipper"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    try skipper");
+comment|// }
 if|if
 condition|(
 name|skipper
@@ -6408,21 +5308,9 @@ literal|null
 condition|)
 block|{
 comment|// Lazy init: first time this enum has ever been used for skipping
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    create skipper"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    create skipper");
+comment|// }
 name|skipper
 operator|=
 operator|new
@@ -6464,21 +5352,9 @@ literal|1
 assert|;
 comment|// This is the first time this enum has skipped
 comment|// since reset() was called; load the skip data:
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    init skipper"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    init skipper");
+comment|// }
 name|skipper
 operator|.
 name|init
@@ -6522,66 +5398,9 @@ name|docUpto
 condition|)
 block|{
 comment|// Skipper moved
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    skipper moved to docUpto="
-operator|+
-name|newDocUpto
-operator|+
-literal|" vs current="
-operator|+
-name|docUpto
-operator|+
-literal|"; docID="
-operator|+
-name|skipper
-operator|.
-name|getDoc
-argument_list|()
-operator|+
-literal|" fp="
-operator|+
-name|skipper
-operator|.
-name|getDocPointer
-argument_list|()
-operator|+
-literal|" pos.fp="
-operator|+
-name|skipper
-operator|.
-name|getPosPointer
-argument_list|()
-operator|+
-literal|" pos.bufferUpto="
-operator|+
-name|skipper
-operator|.
-name|getPosBufferUpto
-argument_list|()
-operator|+
-literal|" pay.fp="
-operator|+
-name|skipper
-operator|.
-name|getPayPointer
-argument_list|()
-operator|+
-literal|" lastStartOffset="
-operator|+
-name|lastStartOffset
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    skipper moved to docUpto=" + newDocUpto + " vs current=" + docUpto + "; docID=" + skipper.getDoc() + " fp=" + skipper.getDocPointer() + " pos.fp=" + skipper.getPosPointer() + " pos.bufferUpto=" + skipper.getPosBufferUpto() + " pay.fp=" + skipper.getPayPointer() + " lastStartOffset=" + lastStartOffset);
+comment|// }
 assert|assert
 name|newDocUpto
 operator|%
@@ -6693,27 +5512,9 @@ condition|(
 literal|true
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  scan doc="
-operator|+
-name|accum
-operator|+
-literal|" docBufferUpto="
-operator|+
-name|docBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  scan doc=" + accum + " docBufferUpto=" + docBufferUpto);
+comment|// }
 name|accum
 operator|+=
 name|docDeltaBuffer
@@ -6775,23 +5576,9 @@ name|accum
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  return doc="
-operator|+
-name|accum
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  return doc=" + accum);
+comment|// }
 name|position
 operator|=
 literal|0
@@ -6808,21 +5595,9 @@ return|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  now do nextDoc()"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("  now do nextDoc()");
+comment|// }
 return|return
 name|nextDoc
 argument_list|()
@@ -6849,23 +5624,9 @@ name|posPendingCount
 operator|-
 name|freq
 decl_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      FPR.skipPositions: toSkip="
-operator|+
-name|toSkip
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("      FPR.skipPositions: toSkip=" + toSkip);
+comment|// }
 specifier|final
 name|int
 name|leftInBlock
@@ -6912,23 +5673,9 @@ name|posBufferUpto
 operator|++
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        skip w/in block to posBufferUpto="
-operator|+
-name|posBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        skip w/in block to posBufferUpto=" + posBufferUpto);
+comment|// }
 block|}
 else|else
 block|{
@@ -6943,26 +5690,9 @@ operator|>=
 name|BLOCK_SIZE
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        skip whole block @ fp="
-operator|+
-name|posIn
-operator|.
-name|getFilePointer
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        skip whole block @ fp=" + posIn.getFilePointer());
+comment|// }
 assert|assert
 name|posIn
 operator|.
@@ -7073,23 +5803,9 @@ name|posBufferUpto
 operator|++
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"        skip w/in block to posBufferUpto="
-operator|+
-name|posBufferUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("        skip w/in block to posBufferUpto=" + posBufferUpto);
+comment|// }
 block|}
 name|position
 operator|=
@@ -7110,31 +5826,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    FPR.nextPosition posPendingCount="
-operator|+
-name|posPendingCount
-operator|+
-literal|" posBufferUpto="
-operator|+
-name|posBufferUpto
-operator|+
-literal|" payloadByteUpto="
-operator|+
-name|payloadByteUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    FPR.nextPosition posPendingCount=" + posPendingCount + " posBufferUpto=" + posBufferUpto + " payloadByteUpto=" + payloadByteUpto)// ;
+comment|// }
 if|if
 condition|(
 name|posPendingFP
@@ -7143,23 +5837,9 @@ operator|-
 literal|1
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      seek pos to pendingFP="
-operator|+
-name|posPendingFP
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("      seek pos to pendingFP=" + posPendingFP);
+comment|// }
 name|posIn
 operator|.
 name|seek
@@ -7180,23 +5860,9 @@ operator|-
 literal|1
 condition|)
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      seek pay to pendingFP="
-operator|+
-name|payPendingFP
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("      seek pay to pendingFP=" + payPendingFP);
+comment|// }
 name|payIn
 operator|.
 name|seek
@@ -7322,23 +5988,9 @@ expr_stmt|;
 name|posPendingCount
 operator|--
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"      return pos="
-operator|+
-name|position
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("      return pos=" + position);
+comment|// }
 return|return
 name|position
 return|;
@@ -7375,27 +6027,9 @@ name|BytesRef
 name|getPayload
 parameter_list|()
 block|{
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    FPR.getPayload payloadLength="
-operator|+
-name|payloadLength
-operator|+
-literal|" payloadByteUpto="
-operator|+
-name|payloadByteUpto
-argument_list|)
-expr_stmt|;
-block|}
+comment|// if (DEBUG) {
+comment|//   System.out.println("    FPR.getPayload payloadLength=" + payloadLength + " payloadByteUpto=" + payloadByteUpto);
+comment|// }
 if|if
 condition|(
 name|payloadLength
