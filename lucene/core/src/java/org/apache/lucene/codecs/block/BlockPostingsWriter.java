@@ -1213,6 +1213,66 @@ name|docID
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Have collected a block of docs, and get a new doc.
+comment|// Should write skip data as well as postings list for
+comment|// current block.
+if|if
+condition|(
+name|lastBlockDocID
+operator|!=
+operator|-
+literal|1
+operator|&&
+name|docBufferUpto
+operator|==
+literal|0
+condition|)
+block|{
+if|if
+condition|(
+name|DEBUG
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  bufferSkip at writeBlock: lastDocID="
+operator|+
+name|lastBlockDocID
+operator|+
+literal|" docCount="
+operator|+
+operator|(
+name|docCount
+operator|-
+literal|1
+operator|)
+argument_list|)
+expr_stmt|;
+block|}
+name|skipWriter
+operator|.
+name|bufferSkip
+argument_list|(
+name|lastBlockDocID
+argument_list|,
+name|docCount
+argument_list|,
+name|lastBlockPosFP
+argument_list|,
+name|lastBlockPayFP
+argument_list|,
+name|lastBlockPosBufferUpto
+argument_list|,
+name|lastBlockStartOffset
+argument_list|,
+name|lastBlockPayloadByteUpto
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|int
 name|docDelta
@@ -1676,70 +1736,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// Have collected a block of docs, and get a new doc.
-comment|// Should write skip data as well as postings list for
-comment|// current block
-if|if
-condition|(
-name|lastBlockDocID
-operator|!=
-operator|-
-literal|1
-operator|&&
-name|docBufferUpto
-operator|==
-literal|1
-condition|)
-block|{
-comment|// nocomit move to startDoc?  ie we can write skip
-comment|// data as soon as the next doc starts...
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  bufferSkip at writeBlock: lastDocID="
-operator|+
-name|lastBlockDocID
-operator|+
-literal|" docCount="
-operator|+
-operator|(
-name|docCount
-operator|-
-literal|1
-operator|)
-argument_list|)
-expr_stmt|;
-block|}
-name|skipWriter
-operator|.
-name|bufferSkip
-argument_list|(
-name|lastBlockDocID
-argument_list|,
-name|docCount
-operator|-
-literal|1
-argument_list|,
-name|lastBlockPosFP
-argument_list|,
-name|lastBlockPayFP
-argument_list|,
-name|lastBlockPosBufferUpto
-argument_list|,
-name|lastBlockStartOffset
-argument_list|,
-name|lastBlockPayloadByteUpto
-argument_list|)
-expr_stmt|;
-block|}
 comment|// Since we don't know df for current term, we had to buffer
 comment|// those skip data for each block, and when a new doc comes,
 comment|// write them to skip file.
