@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A struct like class that represents a hierarchical relationship between  * {@link IndexReader} instances.   */
+comment|/**  * A struct like class that represents a hierarchical relationship between  * {@link IndexReader} instances.   * @lucene.experimental  */
 end_comment
 
 begin_class

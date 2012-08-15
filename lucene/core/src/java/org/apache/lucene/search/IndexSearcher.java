@@ -529,14 +529,14 @@ name|this
 argument_list|(
 name|r
 operator|.
-name|getContext
+name|getTopReaderContext
 argument_list|()
 argument_list|,
 name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a searcher searching the provided top-level {@link IndexReaderContext}.    *<p>    * Given a non-<code>null</code> {@link ExecutorService} this method runs    * searches for each segment separately, using the provided ExecutorService.    * IndexSearcher will not shutdown/awaitTermination this ExecutorService on    * close; you must do so, eventually, on your own. NOTE: if you are using    * {@link NIOFSDirectory}, do not use the shutdownNow method of    * ExecutorService as this uses Thread.interrupt under-the-hood which can    * silently close file descriptors (see<a    * href="https://issues.apache.org/jira/browse/LUCENE-2239">LUCENE-2239</a>).    *     * @see IndexReaderContext    * @see IndexReader#getContext()    * @lucene.experimental    */
+comment|/**    * Creates a searcher searching the provided top-level {@link IndexReaderContext}.    *<p>    * Given a non-<code>null</code> {@link ExecutorService} this method runs    * searches for each segment separately, using the provided ExecutorService.    * IndexSearcher will not shutdown/awaitTermination this ExecutorService on    * close; you must do so, eventually, on your own. NOTE: if you are using    * {@link NIOFSDirectory}, do not use the shutdownNow method of    * ExecutorService as this uses Thread.interrupt under-the-hood which can    * silently close file descriptors (see<a    * href="https://issues.apache.org/jira/browse/LUCENE-2239">LUCENE-2239</a>).    *     * @see IndexReaderContext    * @see IndexReader#getTopReaderContext()    * @lucene.experimental    */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher
@@ -602,7 +602,7 @@ name|leafContexts
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a searcher searching the provided top-level {@link IndexReaderContext}.    *    * @see IndexReaderContext    * @see IndexReader#getContext()    * @lucene.experimental    */
+comment|/**    * Creates a searcher searching the provided top-level {@link IndexReaderContext}.    *    * @see IndexReaderContext    * @see IndexReader#getTopReaderContext()    * @lucene.experimental    */
 DECL|method|IndexSearcher
 specifier|public
 name|IndexSearcher
@@ -2432,7 +2432,7 @@ return|return
 name|weight
 return|;
 block|}
-comment|/**    * Returns this searchers the top-level {@link IndexReaderContext}.    * @see IndexReader#getContext()    */
+comment|/**    * Returns this searchers the top-level {@link IndexReaderContext}.    * @see IndexReader#getTopReaderContext()    */
 comment|/* sugar for #getReader().getTopReaderContext() */
 DECL|method|getTopReaderContext
 specifier|public

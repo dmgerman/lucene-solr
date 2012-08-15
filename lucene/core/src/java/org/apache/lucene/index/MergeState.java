@@ -34,6 +34,38 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|PayloadProcessorProvider
+operator|.
+name|PayloadProcessor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|PayloadProcessorProvider
+operator|.
+name|ReaderPayloadProcessor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -898,6 +930,31 @@ DECL|field|fieldInfo
 specifier|public
 name|FieldInfo
 name|fieldInfo
+decl_stmt|;
+comment|// Used to process payloads
+comment|// TODO: this is a FactoryFactory here basically
+comment|// and we could make a codec(wrapper) to do all of this privately so IW is uninvolved
+DECL|field|payloadProcessorProvider
+specifier|public
+name|PayloadProcessorProvider
+name|payloadProcessorProvider
+decl_stmt|;
+DECL|field|readerPayloadProcessor
+specifier|public
+name|ReaderPayloadProcessor
+index|[]
+name|readerPayloadProcessor
+decl_stmt|;
+DECL|field|currentReaderPayloadProcessor
+specifier|public
+name|ReaderPayloadProcessor
+name|currentReaderPayloadProcessor
+decl_stmt|;
+DECL|field|currentPayloadProcessor
+specifier|public
+name|PayloadProcessor
+index|[]
+name|currentPayloadProcessor
 decl_stmt|;
 comment|// TODO: get rid of this? it tells you which segments are 'aligned' (e.g. for bulk merging)
 comment|// but is this really so expensive to compute again in different components, versus once in SM?

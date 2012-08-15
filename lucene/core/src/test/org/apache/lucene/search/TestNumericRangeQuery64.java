@@ -1455,7 +1455,7 @@ name|getIndexReader
 argument_list|()
 argument_list|)
 operator|.
-name|getContext
+name|getTopReaderContext
 argument_list|()
 decl_stmt|;
 name|NumericRangeFilter

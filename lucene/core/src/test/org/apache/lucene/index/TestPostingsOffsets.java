@@ -2261,12 +2261,12 @@ block|}
 decl_stmt|;
 for|for
 control|(
-name|AtomicReaderContext
-name|ctx
+name|IndexReader
+name|reader
 range|:
 name|r
 operator|.
-name|leaves
+name|getSequentialSubReaders
 argument_list|()
 control|)
 block|{
@@ -2274,10 +2274,10 @@ comment|// TODO: improve this
 name|AtomicReader
 name|sub
 init|=
-name|ctx
-operator|.
+operator|(
+name|AtomicReader
+operator|)
 name|reader
-argument_list|()
 decl_stmt|;
 comment|//System.out.println("\nsub=" + sub);
 specifier|final

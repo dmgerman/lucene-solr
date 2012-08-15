@@ -452,7 +452,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|MockDirectoryWrapper
+name|Directory
 name|dir
 init|=
 operator|new
@@ -476,14 +476,6 @@ name|getNoLockFactory
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|dir
-operator|.
-name|setWrapLockFactory
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// we are gonna explicitly test we get this back
 name|assertTrue
 argument_list|(
 literal|"RAMDirectory.setLockFactory did not take"

@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link IndexReaderContext} for {@link AtomicReader} instances.  */
+comment|/**  * {@link IndexReaderContext} for {@link AtomicReader} instances  * @lucene.experimental  */
 end_comment
 
 begin_class

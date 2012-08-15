@@ -1691,7 +1691,7 @@ operator|==
 literal|1
 condition|)
 block|{
-comment|// TODO: can we move this to startDoc?  ie we can write skip
+comment|// nocomit move to startDoc?  ie we can write skip
 comment|// data as soon as the next doc starts...
 if|if
 condition|(
