@@ -3927,14 +3927,11 @@ decl_stmt|;
 name|AtomicReader
 name|sr
 init|=
-name|reader
+name|SlowCompositeReaderWrapper
 operator|.
-name|getSequentialSubReaders
-argument_list|()
-operator|.
-name|get
+name|wrap
 argument_list|(
-literal|0
+name|reader
 argument_list|)
 decl_stmt|;
 name|DocsAndPositionsEnum

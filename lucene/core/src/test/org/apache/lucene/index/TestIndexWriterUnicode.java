@@ -2254,9 +2254,6 @@ name|ctx
 range|:
 name|r
 operator|.
-name|getTopReaderContext
-argument_list|()
-operator|.
 name|leaves
 argument_list|()
 control|)

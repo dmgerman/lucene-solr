@@ -375,7 +375,7 @@ specifier|private
 name|IndexReaderContext
 name|context
 decl_stmt|;
-comment|/**    * @param context    *          that contains doc with payloads to extract    *              * @see IndexReader#getTopReaderContext()    */
+comment|/**    * @param context    *          that contains doc with payloads to extract    *              * @see IndexReader#getContext()    */
 DECL|method|PayloadSpanUtil
 specifier|public
 name|PayloadSpanUtil
