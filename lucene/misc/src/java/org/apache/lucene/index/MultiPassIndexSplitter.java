@@ -1045,9 +1045,6 @@ name|leaves
 init|=
 name|reader
 operator|.
-name|getTopReaderContext
-argument_list|()
-operator|.
 name|leaves
 argument_list|()
 decl_stmt|;

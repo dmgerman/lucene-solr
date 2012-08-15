@@ -370,7 +370,7 @@ literal|3
 argument_list|,
 name|iwReader
 operator|.
-name|getSequentialSubReaders
+name|leaves
 argument_list|()
 operator|.
 name|size
@@ -595,7 +595,7 @@ literal|2
 argument_list|,
 name|r
 operator|.
-name|getSequentialSubReaders
+name|leaves
 argument_list|()
 operator|.
 name|size

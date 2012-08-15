@@ -19,15 +19,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_interface
-DECL|interface|SafeStopThread
+DECL|interface|ClosableThread
 specifier|public
 interface|interface
-name|SafeStopThread
+name|ClosableThread
 block|{
-DECL|method|stop
+DECL|method|close
 specifier|public
 name|void
-name|stop
+name|close
 parameter_list|()
 function_decl|;
 DECL|method|isClosed

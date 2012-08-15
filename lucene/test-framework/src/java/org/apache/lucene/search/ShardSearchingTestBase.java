@@ -986,7 +986,7 @@ operator|.
 name|getIndexReader
 argument_list|()
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 argument_list|,
 name|term

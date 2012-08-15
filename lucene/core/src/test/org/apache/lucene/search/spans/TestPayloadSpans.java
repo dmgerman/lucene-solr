@@ -547,7 +547,7 @@ name|wrap
 argument_list|(
 name|indexReader
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 argument_list|,
 name|stq
@@ -599,7 +599,7 @@ name|wrap
 argument_list|(
 name|indexReader
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 argument_list|,
 name|stq
@@ -677,7 +677,7 @@ name|wrap
 argument_list|(
 name|indexReader
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 argument_list|,
 name|sfq
@@ -775,7 +775,7 @@ name|wrap
 argument_list|(
 name|indexReader
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 argument_list|,
 name|sfq
@@ -820,7 +820,7 @@ name|wrap
 argument_list|(
 name|indexReader
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 argument_list|,
 name|sfq
@@ -1015,7 +1015,7 @@ name|wrap
 argument_list|(
 name|reader
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 argument_list|,
 name|snq

@@ -301,6 +301,12 @@ name|trackDiskUsage
 init|=
 literal|false
 decl_stmt|;
+DECL|field|wrapLockFactory
+name|boolean
+name|wrapLockFactory
+init|=
+literal|true
+decl_stmt|;
 DECL|field|unSyncedFiles
 specifier|private
 name|Set
@@ -566,10 +572,10 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|// force wrapping of lockfactory
-try|try
-block|{
-name|setLockFactory
-argument_list|(
+name|this
+operator|.
+name|lockFactory
+operator|=
 operator|new
 name|MockLockFactoryWrapper
 argument_list|(
@@ -580,23 +586,7 @@ operator|.
 name|getLockFactory
 argument_list|()
 argument_list|)
-argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
 comment|// 2% of the time use rate limiter
 if|if
 condition|(
@@ -2727,6 +2717,23 @@ operator|=
 name|v
 expr_stmt|;
 block|}
+comment|/**    * Set to false if you want to return the pure lockfactory    * and not wrap it with MockLockFactoryWrapper.    *<p>    * Be careful if you turn this off: MockDirectoryWrapper might    * no longer be able to detect if you forget to close an IndexWriter,    * and spit out horribly scary confusing exceptions instead of    * simply telling you that.    */
+DECL|method|setWrapLockFactory
+specifier|public
+name|void
+name|setWrapLockFactory
+parameter_list|(
+name|boolean
+name|v
+parameter_list|)
+block|{
+name|this
+operator|.
+name|wrapLockFactory
+operator|=
+name|v
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|close
@@ -3469,7 +3476,8 @@ name|maybeYield
 argument_list|()
 expr_stmt|;
 return|return
-name|delegate
+name|getLockFactory
+argument_list|()
 operator|.
 name|makeLock
 argument_list|(
@@ -3494,7 +3502,8 @@ block|{
 name|maybeYield
 argument_list|()
 expr_stmt|;
-name|delegate
+name|getLockFactory
+argument_list|()
 operator|.
 name|clearLock
 argument_list|(
@@ -3519,10 +3528,25 @@ block|{
 name|maybeYield
 argument_list|()
 expr_stmt|;
+comment|// sneaky: we must pass the original this way to the dir, because
+comment|// some impls (e.g. FSDir) do instanceof here.
 name|delegate
 operator|.
 name|setLockFactory
 argument_list|(
+name|lockFactory
+argument_list|)
+expr_stmt|;
+comment|// now set our wrapped factory here
+name|this
+operator|.
+name|lockFactory
+operator|=
+operator|new
+name|MockLockFactoryWrapper
+argument_list|(
+name|this
+argument_list|,
 name|lockFactory
 argument_list|)
 expr_stmt|;
@@ -3539,12 +3563,24 @@ block|{
 name|maybeYield
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|wrapLockFactory
+condition|)
+block|{
+return|return
+name|lockFactory
+return|;
+block|}
+else|else
+block|{
 return|return
 name|delegate
 operator|.
 name|getLockFactory
 argument_list|()
 return|;
+block|}
 block|}
 annotation|@
 name|Override

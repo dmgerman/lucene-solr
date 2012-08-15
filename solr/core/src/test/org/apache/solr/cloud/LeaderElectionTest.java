@@ -728,6 +728,32 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"setup failed"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|this
+operator|.
+name|zkClient
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|zkClient
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 return|return;
 block|}
 catch|catch
@@ -736,7 +762,33 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
-comment|// e.printStackTrace();
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"setup failed"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|this
+operator|.
+name|zkClient
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|zkClient
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+return|return;
 block|}
 while|while
 condition|(
@@ -1260,6 +1312,8 @@ name|thread
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 for|for
 control|(
 name|Thread
@@ -1279,7 +1333,7 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|//wait for election to complete
+comment|// wait for election to complete
 name|int
 name|doneCount
 init|=
@@ -1561,6 +1615,9 @@ operator|.
 name|seq
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 comment|// cleanup any threads still running
 for|for
 control|(
@@ -1594,6 +1651,7 @@ operator|.
 name|join
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|waitForLeader

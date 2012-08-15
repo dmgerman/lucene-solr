@@ -790,12 +790,6 @@ specifier|final
 name|LiveIndexWriterConfig
 name|config
 decl_stmt|;
-comment|// The PayloadProcessorProvider to use when segments are merged
-DECL|field|payloadProcessorProvider
-specifier|private
-name|PayloadProcessorProvider
-name|payloadProcessorProvider
-decl_stmt|;
 DECL|method|getReader
 name|DirectoryReader
 name|getReader
@@ -2521,7 +2515,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Commits all changes to an index and closes all    * associated files.  Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit()} for    * caveats about write caching done by some IO devices.    *    *<p> If an Exception is hit during close, eg due to disk    * full or some other reason, then both the on-disk index    * and the internal state of the IndexWriter instance will    * be consistent.  However, the close will not be complete    * even though part of it (flushing buffered documents)    * may have succeeded, so the write lock will still be    * held.</p>    *    *<p> If you can correct the underlying cause (eg free up    * some disk space) then you can call close() again.    * Failing that, if you want to force the write lock to be    * released (dangerous, because you may then lose buffered    * docs in the IndexWriter instance) then you can do    * something like this:</p>    *    *<pre>    * try {    *   writer.close();    * } finally {    *   if (IndexWriter.isLocked(directory)) {    *     IndexWriter.unlock(directory);    *   }    * }    *</pre>    *    * after which, you must be certain not to use the writer    * instance anymore.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer, again.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Commits all changes to an index, waits for pending merges    * to complete, and closes all associated files.      *<p>    * This is a "slow graceful shutdown" which may take a long time    * especially if a big merge is pending: If you only want to close    * resources use {@link #rollback()}. If you only want to commit    * pending changes and close resources see {@link #close(boolean)}.    *<p>    * Note that this may be a costly    * operation, so, try to re-use a single writer instead of    * closing and opening a new one.  See {@link #commit()} for    * caveats about write caching done by some IO devices.    *    *<p> If an Exception is hit during close, eg due to disk    * full or some other reason, then both the on-disk index    * and the internal state of the IndexWriter instance will    * be consistent.  However, the close will not be complete    * even though part of it (flushing buffered documents)    * may have succeeded, so the write lock will still be    * held.</p>    *    *<p> If you can correct the underlying cause (eg free up    * some disk space) then you can call close() again.    * Failing that, if you want to force the write lock to be    * released (dangerous, because you may then lose buffered    * docs in the IndexWriter instance) then you can do    * something like this:</p>    *    *<pre>    * try {    *   writer.close();    * } finally {    *   if (IndexWriter.isLocked(directory)) {    *     IndexWriter.unlock(directory);    *   }    * }    *</pre>    *    * after which, you must be certain not to use the writer    * instance anymore.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer, again.  See<a    * href="#OOME">above</a> for details.</p>    *    * @throws IOException if there is a low-level IO error    */
 DECL|method|close
 specifier|public
 name|void
@@ -3584,9 +3578,6 @@ argument_list|>
 name|leaves
 init|=
 name|readerIn
-operator|.
-name|getTopReaderContext
-argument_list|()
 operator|.
 name|leaves
 argument_list|()
@@ -7091,8 +7082,6 @@ operator|.
 name|CheckAbort
 operator|.
 name|NONE
-argument_list|,
-name|payloadProcessorProvider
 argument_list|,
 name|globalFieldNumberMap
 argument_list|,
@@ -11792,8 +11781,6 @@ argument_list|()
 argument_list|,
 name|checkAbort
 argument_list|,
-name|payloadProcessorProvider
-argument_list|,
 name|globalFieldNumberMap
 argument_list|,
 name|context
@@ -14052,38 +14039,6 @@ operator|.
 name|deletePendingFiles
 argument_list|()
 expr_stmt|;
-block|}
-comment|/**    * Sets the {@link PayloadProcessorProvider} to use when merging payloads.    * Note that the given<code>pcp</code> will be invoked for every segment that    * is merged, not only external ones that are given through    * {@link #addIndexes}. If you want only the payloads of the external segments    * to be processed, you can return<code>null</code> whenever a    * {@link PayloadProcessorProvider.ReaderPayloadProcessor} is requested for the {@link Directory} of the    * {@link IndexWriter}.    *<p>    * The default is<code>null</code> which means payloads are processed    * normally (copied) during segment merges. You can also unset it by passing    *<code>null</code>.    *<p>    *<b>NOTE:</b> the set {@link PayloadProcessorProvider} will be in effect    * immediately, potentially for already running merges too. If you want to be    * sure it is used for further operations only, such as {@link #addIndexes} or    * {@link #forceMerge}, you can call {@link #waitForMerges()} before.    */
-DECL|method|setPayloadProcessorProvider
-specifier|public
-name|void
-name|setPayloadProcessorProvider
-parameter_list|(
-name|PayloadProcessorProvider
-name|pcp
-parameter_list|)
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|payloadProcessorProvider
-operator|=
-name|pcp
-expr_stmt|;
-block|}
-comment|/**    * Returns the {@link PayloadProcessorProvider} that is used during segment    * merges to process payloads.    */
-DECL|method|getPayloadProcessorProvider
-specifier|public
-name|PayloadProcessorProvider
-name|getPayloadProcessorProvider
-parameter_list|()
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-return|return
-name|payloadProcessorProvider
-return|;
 block|}
 comment|/**    * NOTE: this method creates a compound file for all files returned by    * info.files(). While, generally, this may include separate norms and    * deletion files, this SegmentInfo must not reference such files when this    * method is called, because they are not allowed within a compound file.    */
 DECL|method|createCompoundFile
