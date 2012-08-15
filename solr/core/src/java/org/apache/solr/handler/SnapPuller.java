@@ -2402,7 +2402,9 @@ argument_list|)
 expr_stmt|;
 block|}
 name|doCommit
-argument_list|()
+argument_list|(
+name|isFullCopyNeeded
+argument_list|)
 expr_stmt|;
 block|}
 name|replicationStartTime
@@ -3382,7 +3384,10 @@ DECL|method|doCommit
 specifier|private
 name|void
 name|doCommit
-parameter_list|()
+parameter_list|(
+name|boolean
+name|isFullCopyNeeded
+parameter_list|)
 throws|throws
 name|IOException
 block|{
@@ -3407,7 +3412,7 @@ argument_list|()
 operator|.
 name|newIndexWriter
 argument_list|(
-literal|true
+name|isFullCopyNeeded
 argument_list|)
 expr_stmt|;
 try|try

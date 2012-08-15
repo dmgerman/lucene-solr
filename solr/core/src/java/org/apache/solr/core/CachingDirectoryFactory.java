@@ -648,6 +648,17 @@ operator|.
 name|doneWithDir
 condition|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Closing directory:"
+operator|+
+name|cacheValue
+operator|.
+name|path
+argument_list|)
+expr_stmt|;
 name|directory
 operator|.
 name|close
@@ -948,6 +959,19 @@ argument_list|(
 name|fullPath
 argument_list|,
 name|newCacheValue
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"return new directory for "
+operator|+
+name|fullPath
+operator|+
+literal|" forceNew:"
+operator|+
+name|forceNew
 argument_list|)
 expr_stmt|;
 block|}

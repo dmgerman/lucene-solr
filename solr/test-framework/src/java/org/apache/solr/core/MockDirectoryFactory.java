@@ -111,10 +111,12 @@ operator|.
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// Somehow removing unref'd files in Solr tests causes
-comment|// problems... there's some interaction w/
-comment|// CachingDirectoryFactory.  Once we track down where Solr
-comment|// isn't closing an IW, we can re-enable this:
+comment|// we can't currently do this check because of how
+comment|// Solr has to reboot a new Directory sometimes when replicating
+comment|// or rolling back - the old directory is closed and the following
+comment|// test assumes it can open an IndexWriter when that happens - we
+comment|// have a new Directory for the same dir and still an open IW at
+comment|// this point
 if|if
 condition|(
 name|dir
