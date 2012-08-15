@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for CompositeIndexReader providing access to per segment  * {@link DocValues}  *   *<p><b>NOTE</b>: for multi readers, you'll get better  * performance by gathering the sub readers using  * {@link IndexReader#getTopReaderContext()} to get the  * atomic leaves and then operate per-AtomicReader,  * instead of using this class.  *  * @lucene.experimental  * @lucene.internal  */
+comment|/**  * A wrapper for CompositeIndexReader providing access to per segment  * {@link DocValues}  *   *<p><b>NOTE</b>: for multi readers, you'll get better  * performance by gathering the sub readers using  * {@link IndexReader#getContext()} to get the  * atomic leaves and then operate per-AtomicReader,  * instead of using this class.  *  * @lucene.experimental  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -567,9 +567,6 @@ argument_list|>
 name|leaves
 init|=
 name|reader
-operator|.
-name|getTopReaderContext
-argument_list|()
 operator|.
 name|leaves
 argument_list|()

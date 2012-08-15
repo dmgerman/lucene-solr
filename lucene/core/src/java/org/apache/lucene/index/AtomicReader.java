@@ -108,11 +108,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getTopReaderContext
+DECL|method|getContext
 specifier|public
 specifier|final
 name|AtomicReaderContext
-name|getTopReaderContext
+name|getContext
 parameter_list|()
 block|{
 name|ensureOpen

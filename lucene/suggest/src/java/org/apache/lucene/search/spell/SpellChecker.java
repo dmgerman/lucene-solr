@@ -1898,9 +1898,6 @@ name|ctx
 range|:
 name|reader
 operator|.
-name|getTopReaderContext
-argument_list|()
-operator|.
 name|leaves
 argument_list|()
 control|)

@@ -216,9 +216,9 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** Expert: returns the sequential sub readers that this    *  reader is logically composed of. It contrast to previous    *  Lucene versions may not return null.    *  If this method returns an empty array, that means this    *  reader is a null reader (for example a MultiReader    *  that has no sub readers).    */
+comment|/** Expert: returns the sequential sub readers that this    *  reader is logically composed of. This method may not    *  return {@code null}.    *      *<p><b>NOTE:</b> In contrast to previous Lucene versions this method    *  is no longer public, code that wants to get all {@link AtomicReader}s    *  this composite is composed of should use {@link IndexReader#leaves()}.    * @see IndexReader#leaves()    */
 DECL|method|getSequentialSubReaders
-specifier|public
+specifier|protected
 specifier|abstract
 name|List
 argument_list|<
@@ -231,11 +231,11 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Override
-DECL|method|getTopReaderContext
+DECL|method|getContext
 specifier|public
 specifier|final
 name|CompositeReaderContext
-name|getTopReaderContext
+name|getContext
 parameter_list|()
 block|{
 name|ensureOpen

@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link IndexReaderContext} for {@link CompositeReader} instance.  * @lucene.experimental  */
+comment|/**  * {@link IndexReaderContext} for {@link CompositeReader} instance.  */
 end_comment
 
 begin_class

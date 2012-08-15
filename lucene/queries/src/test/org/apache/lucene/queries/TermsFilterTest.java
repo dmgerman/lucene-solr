@@ -465,7 +465,7 @@ name|assertTrue
 argument_list|(
 name|reader
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 operator|instanceof
 name|AtomicReaderContext
@@ -479,7 +479,7 @@ name|AtomicReaderContext
 operator|)
 name|reader
 operator|.
-name|getTopReaderContext
+name|getContext
 argument_list|()
 decl_stmt|;
 name|w
@@ -865,9 +865,6 @@ name|AtomicReaderContext
 name|context
 range|:
 name|multi
-operator|.
-name|getTopReaderContext
-argument_list|()
 operator|.
 name|leaves
 argument_list|()

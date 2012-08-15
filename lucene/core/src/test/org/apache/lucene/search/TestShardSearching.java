@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|CompositeReader
+name|IndexReader
 import|;
 end_import
 
@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|IndexReaderContext
 import|;
 end_import
 
@@ -1760,23 +1760,16 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|?
-extends|extends
-name|IndexReader
+name|IndexReaderContext
 argument_list|>
 name|subs
 init|=
-operator|(
-operator|(
-name|CompositeReader
-operator|)
 name|mockSearcher
 operator|.
-name|getIndexReader
+name|getTopReaderContext
 argument_list|()
-operator|)
 operator|.
-name|getSequentialSubReaders
+name|children
 argument_list|()
 decl_stmt|;
 name|assertEquals
@@ -1789,11 +1782,6 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|int
-name|docCount
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -1814,10 +1802,6 @@ index|[
 name|nodeID
 index|]
 operator|=
-name|docCount
-expr_stmt|;
-name|docCount
-operator|+=
 name|subs
 operator|.
 name|get
@@ -1825,8 +1809,7 @@ argument_list|(
 name|nodeID
 argument_list|)
 operator|.
-name|maxDoc
-argument_list|()
+name|docBaseInParent
 expr_stmt|;
 block|}
 if|if

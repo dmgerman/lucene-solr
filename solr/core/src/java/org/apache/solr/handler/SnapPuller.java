@@ -1659,12 +1659,7 @@ name|successfulInstall
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * This command downloads all the necessary files from master to install a index commit point. Only changed files are    * downloaded. It also downloads the conf files (if they are modified).    *    * @param core the SolrCore    * @param force force a replication in all cases     * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
+comment|/**    * This command downloads all the necessary files from master to install a index commit point. Only changed files are    * downloaded. It also downloads the conf files (if they are modified).    *    * @param core the SolrCore    * @param forceReplication force a replication in all cases     * @return true on success, false if slave is already in sync    * @throws IOException if an exception occurs    */
 DECL|method|fetchLatestIndex
 name|boolean
 name|fetchLatestIndex
@@ -1673,7 +1668,7 @@ name|SolrCore
 name|core
 parameter_list|,
 name|boolean
-name|force
+name|forceReplication
 parameter_list|)
 throws|throws
 name|IOException
@@ -1838,7 +1833,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|force
+name|forceReplication
 operator|&&
 name|commit
 operator|.
@@ -1930,7 +1925,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|force
+name|forceReplication
 operator|&&
 name|IndexDeletionPolicyWrapper
 operator|.
@@ -2063,7 +2058,7 @@ argument_list|)
 operator|>=
 name|latestVersion
 operator|||
-name|force
+name|forceReplication
 decl_stmt|;
 name|File
 name|tmpIndexDir
@@ -2078,10 +2073,12 @@ condition|(
 name|isIndexStale
 argument_list|()
 condition|)
+block|{
 name|isFullCopyNeeded
 operator|=
 literal|true
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|info
