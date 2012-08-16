@@ -287,6 +287,7 @@ name|type
 argument_list|)
 return|;
 block|}
+comment|/**    * Encapsulates contextual information about the merge.     * This class holds document id to ordinal mappings, offsets for    * variable length values and the comparator to sort the merged    * bytes.    *     * @lucene.internal    */
 DECL|class|MergeContext
 specifier|public
 specifier|static
@@ -1147,6 +1148,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * {@link RecordMerger} merges a list of {@link SortedSourceSlice} lazily by    * consuming the sorted source records one by one and de-duplicates records    * that are shared across slices. The algorithm is based on a lazy priority queue    * that prevents reading merge sources into heap memory.     *     * @lucene.internal    */
 DECL|class|RecordMerger
 specifier|private
 specifier|static
@@ -1383,6 +1385,7 @@ literal|0
 expr_stmt|;
 block|}
 block|}
+comment|/**    * {@link SortedSourceSlice} represents a single {@link SortedSource} merge candidate.    * It encapsulates ordinal and pre-calculated target doc id to ordinal mappings.    * This class also holds state private to the merge process.    * @lucene.internal    */
 DECL|class|SortedSourceSlice
 specifier|public
 specifier|static
