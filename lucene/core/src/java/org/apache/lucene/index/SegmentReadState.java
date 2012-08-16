@@ -78,11 +78,7 @@ specifier|final
 name|IOContext
 name|context
 decl_stmt|;
-comment|// NOTE: if this is< 0, that means "defer terms index
-comment|// load until needed".  But if the codec must load the
-comment|// terms index on init (preflex is the only once currently
-comment|// that must do so), then it should negate this value to
-comment|// get the app's terms divisor:
+comment|/** NOTE: if this is&lt; 0, that means "defer terms index    *  load until needed".  But if the codec must load the    *  terms index on init (preflex is the only once currently    *  that must do so), then it should negate this value to    *  get the app's terms divisor */
 DECL|field|termsIndexDivisor
 specifier|public
 name|int

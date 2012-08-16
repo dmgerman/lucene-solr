@@ -79,7 +79,7 @@ specifier|abstract
 class|class
 name|MultiLevelSkipListWriter
 block|{
-comment|// number of levels in this skip list
+comment|/** number of levels in this skip list */
 DECL|field|numberOfSkipLevels
 specifier|protected
 name|int
@@ -184,13 +184,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** creates new buffers or empties the existing ones */
 DECL|method|resetSkip
 specifier|protected
 name|void
 name|resetSkip
 parameter_list|()
 block|{
-comment|// creates new buffers or empties the existing ones
 if|if
 condition|(
 name|skipBuffer

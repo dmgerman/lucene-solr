@@ -48,8 +48,7 @@ parameter_list|>
 extends|extends
 name|Collector
 block|{
-comment|// This is used in case topDocs() is called with illegal parameters, or there
-comment|// simply aren't (enough) results.
+comment|/** This is used in case topDocs() is called with illegal parameters, or there    *  simply aren't (enough) results. */
 DECL|field|EMPTY_TOPDOCS
 specifier|protected
 specifier|static

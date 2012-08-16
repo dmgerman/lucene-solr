@@ -89,7 +89,7 @@ specifier|abstract
 class|class
 name|MultiLevelSkipListReader
 block|{
-comment|// the maximum number of skip levels possible for this index
+comment|/** the maximum number of skip levels possible for this index */
 DECL|field|maxNumberOfSkipLevels
 specifier|protected
 name|int

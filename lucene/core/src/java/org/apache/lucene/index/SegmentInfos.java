@@ -397,6 +397,7 @@ decl_stmt|;
 comment|// generation of the "segments_N" file we last successfully read
 comment|// or wrote; this is normally the same as generation except if
 comment|// there was an IOException that had interrupted a commit
+comment|/** Opaque Map&lt;String, String&gt; that user can specify during IndexWriter.commit */
 DECL|field|userData
 specifier|public
 name|Map
@@ -417,7 +418,6 @@ decl|>
 name|emptyMap
 argument_list|()
 decl_stmt|;
-comment|// Opaque Map<String, String> that user can specify during IndexWriter.commit
 DECL|field|segments
 specifier|private
 name|List

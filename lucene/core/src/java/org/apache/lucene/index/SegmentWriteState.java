@@ -111,11 +111,7 @@ specifier|public
 name|int
 name|delCountOnFlush
 decl_stmt|;
-comment|// Deletes to apply while we are flushing the segment.  A
-comment|// Term is enrolled in here if it was deleted at one
-comment|// point, and it's mapped to the docIDUpto, meaning any
-comment|// docID< docIDUpto containing this term should be
-comment|// deleted.
+comment|/** Deletes to apply while we are flushing the segment.  A    *  Term is enrolled in here if it was deleted at one    *  point, and it's mapped to the docIDUpto, meaning any    *  docID&lt; docIDUpto containing this term should be    *  deleted. */
 DECL|field|segDeletes
 specifier|public
 specifier|final
