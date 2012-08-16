@@ -128,20 +128,6 @@ name|Locale
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IOUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * Three concrete implementations for ContentStream - one for File/URL/String  *   *  * @since solr 1.2  */
 end_comment
@@ -467,13 +453,26 @@ parameter_list|)
 block|{         }
 finally|finally
 block|{
-name|IOUtils
-operator|.
-name|closeWhileHandlingException
-argument_list|(
+if|if
+condition|(
 name|stream
-argument_list|)
+operator|!=
+literal|null
+condition|)
+try|try
+block|{
+name|stream
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{}
 block|}
 block|}
 return|return
