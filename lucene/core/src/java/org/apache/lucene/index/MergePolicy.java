@@ -879,6 +879,7 @@ name|dir
 return|;
 block|}
 block|}
+comment|/** Thrown when a merge was explicity aborted because    *  {@link IndexWriter#close(boolean)} was called with    *<code>false</code>.  Normally this exception is    *  privately caught and suppresed by {@link IndexWriter}.  */
 DECL|class|MergeAbortedException
 specifier|public
 specifier|static
