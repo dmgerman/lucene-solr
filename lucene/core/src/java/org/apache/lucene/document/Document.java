@@ -200,7 +200,7 @@ specifier|public
 name|Document
 parameter_list|()
 block|{}
-comment|/**   * Creates a Document from StoredDocument so it that can be used e.g. for another   * round of indexing.   *   * @return a new instance of Document representation of this StoredDocument   */
+comment|/**   * Creates a Document from StoredDocument so it that can be used e.g. for another   * round of indexing.   *   */
 DECL|method|Document
 specifier|public
 name|Document

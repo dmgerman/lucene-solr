@@ -200,7 +200,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Merges in the stored fields from the readers in     *<code>mergeState</code>. The default implementation skips    *  over deleted documents, and uses {@link #startDocument(int)},    *  {@link #writeField(FieldInfo, StorableField)}, and {@link #finish(int)},    *  returning the number of documents that were written.    *  Implementations can override this method for more sophisticated    *  merging (bulk-byte copying, etc). */
+comment|/** Merges in the stored fields from the readers in     *<code>mergeState</code>. The default implementation skips    *  over deleted documents, and uses {@link #startDocument(int)},    *  {@link #writeField(FieldInfo, StorableField)}, and {@link #finish(FieldInfos, int)},    *  returning the number of documents that were written.    *  Implementations can override this method for more sophisticated    *  merging (bulk-byte copying, etc). */
 DECL|method|merge
 specifier|public
 name|int
