@@ -86,6 +86,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Records a single skip-point in the IndexOutput. */
 DECL|class|Index
 specifier|public
 specifier|abstract
