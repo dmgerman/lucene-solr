@@ -8282,7 +8282,7 @@ block|}
 block|}
 comment|// Docs + freqs:
 DECL|class|HighFreqDocsEnum
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 class|class
@@ -8803,7 +8803,7 @@ block|}
 block|}
 comment|// TODO: specialize offsets and not
 DECL|class|HighFreqDocsAndPositionsEnum
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 class|class

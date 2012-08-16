@@ -447,6 +447,7 @@ name|blockSize
 argument_list|)
 return|;
 block|}
+comment|/**    * Encodes blocks as vInts of a fixed block size.    */
 DECL|class|MockIntFactory
 specifier|public
 specifier|static

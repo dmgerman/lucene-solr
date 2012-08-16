@@ -94,6 +94,7 @@ specifier|public
 class|class
 name|MergeState
 block|{
+comment|/**    * Remaps docids around deletes during merge    */
 DECL|class|DocMap
 specifier|public
 specifier|static
@@ -912,6 +913,7 @@ specifier|public
 name|int
 name|matchedCount
 decl_stmt|;
+comment|/**    * Class for recording units of work when merging segments.    */
 DECL|class|CheckAbort
 specifier|public
 specifier|static
