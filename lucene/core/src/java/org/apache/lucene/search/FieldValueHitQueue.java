@@ -63,6 +63,7 @@ argument_list|<
 name|T
 argument_list|>
 block|{
+comment|/**    * Extension of ScoreDoc to also store the     * {@link FieldComparator} slot.    */
 DECL|class|Entry
 specifier|public
 specifier|static
