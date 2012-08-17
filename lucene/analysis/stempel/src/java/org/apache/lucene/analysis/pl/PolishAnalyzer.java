@@ -339,6 +339,20 @@ operator|.
 name|DEFAULT_STOP_SET
 return|;
 block|}
+comment|/**    * Returns an unmodifiable instance of the default stemmer table.    */
+DECL|method|getDefaultTable
+specifier|public
+specifier|static
+name|Trie
+name|getDefaultTable
+parameter_list|()
+block|{
+return|return
+name|DefaultsHolder
+operator|.
+name|DEFAULT_TABLE
+return|;
+block|}
 comment|/**    * Atomically loads the DEFAULT_STOP_SET in a lazy fashion once the outer class     * accesses the static final set the first time.;    */
 DECL|class|DefaultsHolder
 specifier|private
