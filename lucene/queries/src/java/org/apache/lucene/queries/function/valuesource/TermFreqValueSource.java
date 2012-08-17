@@ -116,6 +116,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * Function that returns {@link DocsEnum#freq()} for the  * supplied term in every document.  *<p>  * If the term does not exist in the document, returns 0.  * If frequencies are omitted, returns 1.  */
+end_comment
+
 begin_class
 DECL|class|TermFreqValueSource
 specifier|public
