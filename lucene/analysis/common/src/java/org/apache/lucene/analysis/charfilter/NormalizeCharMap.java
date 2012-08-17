@@ -583,7 +583,7 @@ name|add
 argument_list|(
 name|Util
 operator|.
-name|toUTF16
+name|toUTF32
 argument_list|(
 name|ent
 operator|.
