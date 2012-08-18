@@ -2525,6 +2525,8 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|// always plus one to fix the result, since skip position in BlockSkipReader
+comment|// is a little different from MultiLevelSkipListReader
 specifier|final
 name|int
 name|newDocUpto
@@ -2589,6 +2591,8 @@ argument_list|)
 expr_stmt|;
 comment|// now point to the block we want to search
 block|}
+comment|// next time we call advance, this is used to
+comment|// foresee whether skipper is necessary.
 name|nextSkipDoc
 operator|=
 name|skipper

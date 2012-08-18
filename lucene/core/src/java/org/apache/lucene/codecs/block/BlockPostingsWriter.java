@@ -314,6 +314,7 @@ name|BlockPostingsWriter
 extends|extends
 name|PostingsWriterBase
 block|{
+comment|/**     * Expert: The maximum number of skip levels. Smaller values result in     * slightly smaller indexes, but slower skipping in big posting lists.    */
 DECL|field|maxSkipLevels
 specifier|static
 specifier|final
