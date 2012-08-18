@@ -273,8 +273,7 @@ argument_list|)
 expr_stmt|;
 comment|// we need to check for emptyness, so we can return
 comment|// null:
-if|if
-condition|(
+return|return
 name|f
 operator|.
 name|iterator
@@ -282,18 +281,11 @@ argument_list|()
 operator|.
 name|hasNext
 argument_list|()
-condition|)
-block|{
-return|return
+condition|?
 name|f
-return|;
-block|}
-else|else
-block|{
-return|return
+else|:
 literal|null
 return|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -720,12 +712,15 @@ while|while
 condition|(
 name|it
 operator|.
-name|next
+name|hasNext
 argument_list|()
-operator|!=
-literal|null
 condition|)
 block|{
+name|it
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
 name|c
 operator|++
 expr_stmt|;
@@ -765,6 +760,7 @@ name|String
 argument_list|>
 argument_list|()
 block|{
+specifier|private
 name|String
 name|cached
 init|=
