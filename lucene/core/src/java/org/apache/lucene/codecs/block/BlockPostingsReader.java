@@ -380,7 +380,6 @@ end_comment
 
 begin_class
 DECL|class|BlockPostingsReader
-specifier|public
 specifier|final
 class|class
 name|BlockPostingsReader
