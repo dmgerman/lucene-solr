@@ -474,6 +474,7 @@ operator|+
 literal|")"
 return|;
 block|}
+comment|/**    * If the first value is<= 3, writes baseBlockSize vInts at once,    * otherwise writes 2*baseBlockSize vInts.    */
 DECL|class|MockIntFactory
 specifier|public
 specifier|static

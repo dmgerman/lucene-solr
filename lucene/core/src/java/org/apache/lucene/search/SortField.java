@@ -86,6 +86,7 @@ specifier|public
 class|class
 name|SortField
 block|{
+comment|/**    * Specifies the type of the terms to be sorted, or special types such as CUSTOM    */
 DECL|enum|Type
 specifier|public
 specifier|static

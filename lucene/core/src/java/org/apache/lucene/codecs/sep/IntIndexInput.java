@@ -106,7 +106,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|// TODO: -- can we simplify this?
+comment|/** Records a single skip-point in the {@link IntIndexInput.Reader}. */
 DECL|class|Index
 specifier|public
 specifier|abstract
@@ -164,6 +164,7 @@ name|clone
 parameter_list|()
 function_decl|;
 block|}
+comment|/** Reads int values. */
 DECL|class|Reader
 specifier|public
 specifier|abstract

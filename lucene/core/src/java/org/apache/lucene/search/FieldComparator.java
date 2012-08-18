@@ -455,6 +455,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Base FieldComparator class for numeric types    */
 DECL|class|NumericComparator
 specifier|public
 specifier|static

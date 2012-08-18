@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * @lucene.internal  */
+comment|/**  * Converts numbers to english strings for testing.  * @lucene.internal  */
 end_comment
 
 begin_class

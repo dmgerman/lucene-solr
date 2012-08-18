@@ -264,6 +264,10 @@ begin_comment
 comment|//   - controlled consistency (NRTMgr)
 end_comment
 
+begin_comment
+comment|/**  * Base test class for simulating distributed search across multiple shards.  */
+end_comment
+
 begin_class
 DECL|class|ShardSearchingTestBase
 specifier|public
@@ -274,6 +278,7 @@ extends|extends
 name|LuceneTestCase
 block|{
 comment|// TODO: maybe SLM should throw this instead of returning null...
+comment|/**    * Thrown when the lease for a searcher has expired.    */
 DECL|class|SearcherExpiredException
 specifier|public
 specifier|static
@@ -3415,6 +3420,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**    * An IndexSearcher and associated version (lease)    */
 DECL|class|SearcherAndVersion
 specifier|protected
 specifier|static

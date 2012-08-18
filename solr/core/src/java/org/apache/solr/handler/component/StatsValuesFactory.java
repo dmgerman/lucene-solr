@@ -1009,6 +1009,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|res
 operator|.
 name|add
@@ -1018,7 +1019,6 @@ argument_list|,
 name|nl
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|res
 return|;

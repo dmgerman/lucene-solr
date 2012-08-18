@@ -18,8 +18,26 @@ name|grouping
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|FieldComparator
+import|;
+end_import
+
 begin_comment
-comment|/** @lucene.internal */
+comment|// javadocs
+end_comment
+
+begin_comment
+comment|/**   * Expert: representation of a group in {@link AbstractFirstPassGroupingCollector},  * tracking the top doc and {@link FieldComparator} slot.  * @lucene.internal */
 end_comment
 
 begin_class

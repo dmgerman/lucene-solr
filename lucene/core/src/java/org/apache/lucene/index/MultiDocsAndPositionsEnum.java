@@ -593,6 +593,7 @@ argument_list|()
 return|;
 block|}
 comment|// TODO: implement bulk read more efficiently than super
+comment|/** Holds a {@link DocsAndPositionsEnum} along with the    *  corresponding {@link ReaderSlice}. */
 DECL|class|EnumWithSlice
 specifier|public
 specifier|final

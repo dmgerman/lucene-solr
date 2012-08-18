@@ -148,6 +148,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**   * Function that returns {@link TFIDFSimilarity#decodeNormValue(byte)}  * for every document.  *<p>  * Note that the configured Similarity for the field must be  * a subclass of {@link TFIDFSimilarity}  * @lucene.internal */
+end_comment
+
 begin_class
 DECL|class|NormValueSource
 specifier|public

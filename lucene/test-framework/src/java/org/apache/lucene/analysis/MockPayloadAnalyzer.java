@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  * Wraps a whitespace tokenizer with a filter that sets  * the first token, and odd tokens to posinc=1, and all others  * to 0, encoding the position as pos: XXX in the payload.  **/
 end_comment
 
 begin_class

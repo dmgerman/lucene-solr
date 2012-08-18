@@ -74,30 +74,30 @@ name|BlockTermState
 extends|extends
 name|OrdTermState
 block|{
+comment|/** how many docs have this term */
 DECL|field|docFreq
 specifier|public
 name|int
 name|docFreq
 decl_stmt|;
-comment|// how many docs have this term
+comment|/** total number of occurrences of this term */
 DECL|field|totalTermFreq
 specifier|public
 name|long
 name|totalTermFreq
 decl_stmt|;
-comment|// total number of occurrences of this term
+comment|/** the term's ord in the current block */
 DECL|field|termBlockOrd
 specifier|public
 name|int
 name|termBlockOrd
 decl_stmt|;
-comment|// the term's ord in the current block
+comment|/** fp into the terms dict primary file (_X.tim) that holds this term */
 DECL|field|blockFilePointer
 specifier|public
 name|long
 name|blockFilePointer
 decl_stmt|;
-comment|// fp into the terms dict primary file (_X.tim) that holds this term
 annotation|@
 name|Override
 DECL|method|copyFrom

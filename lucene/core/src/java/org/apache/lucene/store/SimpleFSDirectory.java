@@ -331,6 +331,7 @@ block|}
 block|}
 return|;
 block|}
+comment|/**    * Reads bytes with {@link RandomAccessFile#seek(long)} followed by    * {@link RandomAccessFile#read(byte[], int, int)}.      */
 DECL|class|SimpleFSIndexInput
 specifier|protected
 specifier|static
@@ -339,6 +340,7 @@ name|SimpleFSIndexInput
 extends|extends
 name|BufferedIndexInput
 block|{
+comment|/**      * Extension of RandomAccessFile that tracks if the file is       * open.      */
 DECL|class|Descriptor
 specifier|protected
 specifier|static

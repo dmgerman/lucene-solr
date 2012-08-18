@@ -66,6 +66,10 @@ name|Set
 import|;
 end_import
 
+begin_comment
+comment|/**  * A {@link FilterAtomicReader} that exposes only a subset  * of fields from the underlying wrapped reader.  */
+end_comment
+
 begin_class
 DECL|class|FieldFilterAtomicReader
 specifier|public

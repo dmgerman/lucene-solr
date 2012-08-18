@@ -449,7 +449,7 @@ name|AtomicReaderContext
 argument_list|>
 name|leafContexts
 decl_stmt|;
-comment|// used with executor - each slice holds a set of leafs executed within one thread
+comment|/** used with executor - each slice holds a set of leafs executed within one thread */
 DECL|field|leafSlices
 specifier|protected
 specifier|final

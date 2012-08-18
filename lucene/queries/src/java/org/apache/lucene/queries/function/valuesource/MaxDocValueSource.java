@@ -42,6 +42,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queries
 operator|.
 name|function
@@ -99,6 +117,10 @@ operator|.
 name|Map
 import|;
 end_import
+
+begin_comment
+comment|/**  * Returns the value of {@link IndexReader#maxDoc()}  * for every document. This is the number of documents  * including deletions.  */
+end_comment
 
 begin_class
 DECL|class|MaxDocValueSource

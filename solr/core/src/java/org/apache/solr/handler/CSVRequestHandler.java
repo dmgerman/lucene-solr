@@ -69,23 +69,7 @@ argument_list|(
 literal|"application/csv"
 argument_list|)
 expr_stmt|;
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"Using deprecated class: "
-operator|+
-name|this
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getSimpleName
-argument_list|()
-operator|+
-literal|" -- replace with UpdateRequestHandler"
-argument_list|)
-expr_stmt|;
+comment|// log.warn("Using deprecated class: "+this.getClass().getSimpleName()+" -- replace with UpdateRequestHandler");
 block|}
 comment|//////////////////////// SolrInfoMBeans methods //////////////////////
 annotation|@

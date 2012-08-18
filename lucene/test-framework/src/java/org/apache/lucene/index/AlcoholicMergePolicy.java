@@ -249,7 +249,7 @@ argument_list|()
 return|;
 block|}
 DECL|enum|Drink
-specifier|public
+specifier|private
 specifier|static
 enum|enum
 name|Drink
@@ -301,16 +301,6 @@ name|drunkFactor
 operator|=
 name|drunkFactor
 expr_stmt|;
-block|}
-DECL|method|drunk
-specifier|public
-name|long
-name|drunk
-parameter_list|()
-block|{
-return|return
-name|drunkFactor
-return|;
 block|}
 block|}
 block|}

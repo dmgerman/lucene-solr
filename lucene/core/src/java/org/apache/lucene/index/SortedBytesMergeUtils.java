@@ -187,7 +187,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.internal  */
+comment|/**  * Utility class for merging SortedBytes DocValues  * instances.  *    * @lucene.internal  */
 end_comment
 
 begin_class
@@ -287,6 +287,7 @@ name|type
 argument_list|)
 return|;
 block|}
+comment|/**    * Encapsulates contextual information about the merge.     * This class holds document id to ordinal mappings, offsets for    * variable length values and the comparator to sort the merged    * bytes.    *     * @lucene.internal    */
 DECL|class|MergeContext
 specifier|public
 specifier|static
@@ -1055,12 +1056,14 @@ operator|.
 name|currentOrd
 return|;
 block|}
+comment|/**    * Implementation of this interface consume the merged bytes with their    * corresponding ordinal and byte offset. The offset is the byte offset in    * target sorted source where the currently merged {@link BytesRef} instance    * should be stored at.    */
 DECL|interface|BytesRefConsumer
 specifier|public
 specifier|static
 interface|interface
 name|BytesRefConsumer
 block|{
+comment|/**      * Consumes a single {@link BytesRef}. The provided {@link BytesRef}      * instances are strictly increasing with respect to the used      * {@link Comparator} used for merging      *       * @param ref      *          the {@link BytesRef} to consume      * @param ord      *          the ordinal of the given {@link BytesRef} in the merge target      * @param offset      *          the byte offset of the given {@link BytesRef} in the merge      *          target      * @throws IOException      *           if an {@link IOException} occurs      */
 DECL|method|consume
 specifier|public
 name|void
@@ -1079,6 +1082,7 @@ throws|throws
 name|IOException
 function_decl|;
 block|}
+comment|/**    * A simple {@link BytesRefConsumer} that writes the merged {@link BytesRef}    * instances sequentially to an {@link IndexOutput}.    */
 DECL|class|IndexOutputBytesRefConsumer
 specifier|public
 specifier|static
@@ -1147,6 +1151,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * {@link RecordMerger} merges a list of {@link SortedSourceSlice} lazily by    * consuming the sorted source records one by one and de-duplicates records    * that are shared across slices. The algorithm is based on a lazy priority queue    * that prevents reading merge sources into heap memory.     *     * @lucene.internal    */
 DECL|class|RecordMerger
 specifier|private
 specifier|static
@@ -1383,6 +1388,7 @@ literal|0
 expr_stmt|;
 block|}
 block|}
+comment|/**    * {@link SortedSourceSlice} represents a single {@link SortedSource} merge candidate.    * It encapsulates ordinal and pre-calculated target doc id to ordinal mappings.    * This class also holds state private to the merge process.    * @lucene.internal    */
 DECL|class|SortedSourceSlice
 specifier|public
 specifier|static
