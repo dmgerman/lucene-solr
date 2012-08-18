@@ -973,7 +973,7 @@ literal|"text/plain"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * See {@link #usage()} for valid command line usage    * @param args the params on the command line    */
+comment|/**    * See usage() for valid command line usage    * @param args the params on the command line    */
 DECL|method|main
 specifier|public
 specifier|static
@@ -1485,7 +1485,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * Constructor which takes in all mandatory input for the tool to work.    * Also see {@link #usage()} for further explanation of the params.    * @param mode whether to post files, web pages, params or stdin    * @param url the Solr base Url to post to, should end with /update    * @param auto if true, we'll guess type and add resourcename/url    * @param type content-type of the data you are posting    * @param recursive number of levels for file/web mode, or 0 if one file only    * @param delay if recursive then delay will be the wait time between posts    * @param fileTypes a comma separated list of file-name endings to accept for file/web    * @param out an OutputStream to write output to, e.g. stdout to print to console    * @param commit if true, will commit at end of posting    * @param optimize if true, will optimize at end of posting    * @param args a String[] of arguments, varies between modes    */
+comment|/**    * Constructor which takes in all mandatory input for the tool to work.    * Also see usage() for further explanation of the params.    * @param mode whether to post files, web pages, params or stdin    * @param url the Solr base Url to post to, should end with /update    * @param auto if true, we'll guess type and add resourcename/url    * @param type content-type of the data you are posting    * @param recursive number of levels for file/web mode, or 0 if one file only    * @param delay if recursive then delay will be the wait time between posts    * @param fileTypes a comma separated list of file-name endings to accept for file/web    * @param out an OutputStream to write output to, e.g. stdout to print to console    * @param commit if true, will commit at end of posting    * @param optimize if true, will optimize at end of posting    * @param args a String[] of arguments, varies between modes    */
 DECL|method|SimplePostTool
 specifier|public
 name|SimplePostTool
