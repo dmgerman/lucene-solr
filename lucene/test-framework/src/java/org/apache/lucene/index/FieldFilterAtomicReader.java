@@ -271,24 +271,29 @@ argument_list|(
 name|f
 argument_list|)
 expr_stmt|;
-comment|// we need to check for emptyness, so we can return null:
-return|return
-operator|(
+comment|// we need to check for emptyness, so we can return
+comment|// null:
+if|if
+condition|(
 name|f
 operator|.
 name|iterator
 argument_list|()
 operator|.
-name|next
+name|hasNext
 argument_list|()
-operator|==
-literal|null
-operator|)
-condition|?
-literal|null
-else|:
+condition|)
+block|{
+return|return
 name|f
 return|;
+block|}
+else|else
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 annotation|@
 name|Override
