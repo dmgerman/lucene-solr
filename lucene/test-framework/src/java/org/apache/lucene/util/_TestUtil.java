@@ -884,6 +884,10 @@ operator|new
 name|CloseableFile
 argument_list|(
 name|f
+argument_list|,
+name|LuceneTestCase
+operator|.
+name|suiteFailureMarker
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1076,6 +1080,10 @@ operator|new
 name|CloseableFile
 argument_list|(
 name|destDir
+argument_list|,
+name|LuceneTestCase
+operator|.
+name|suiteFailureMarker
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -176,7 +176,6 @@ end_comment
 
 begin_class
 DECL|class|MultiDocValues
-specifier|public
 class|class
 name|MultiDocValues
 extends|extends

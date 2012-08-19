@@ -1199,7 +1199,6 @@ expr_stmt|;
 block|}
 comment|/**    * Add the given key associated with the given patch command. If either    * parameter is null this method will return without executing.    *     * @param key the key    * @param cmd the patch command    */
 DECL|method|add
-specifier|public
 name|void
 name|add
 parameter_list|(

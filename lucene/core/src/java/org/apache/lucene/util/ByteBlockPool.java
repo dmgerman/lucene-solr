@@ -441,6 +441,7 @@ operator|-
 literal|1
 decl_stmt|;
 comment|// Which buffer we are upto
+comment|/** Where we are in head buffer */
 DECL|field|byteUpto
 specifier|public
 name|int
@@ -448,14 +449,14 @@ name|byteUpto
 init|=
 name|BYTE_BLOCK_SIZE
 decl_stmt|;
-comment|// Where we are in head buffer
+comment|/** Current head buffer */
 DECL|field|buffer
 specifier|public
 name|byte
 index|[]
 name|buffer
 decl_stmt|;
-comment|// Current head buffer
+comment|/** Current head offset */
 DECL|field|byteOffset
 specifier|public
 name|int
@@ -464,7 +465,6 @@ init|=
 operator|-
 name|BYTE_BLOCK_SIZE
 decl_stmt|;
-comment|// Current head offset
 DECL|field|allocator
 specifier|private
 specifier|final

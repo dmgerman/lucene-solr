@@ -1361,6 +1361,7 @@ return|return
 name|chunkSize
 return|;
 block|}
+comment|/**    * Writes output with {@link RandomAccessFile#write(byte[], int, int)}    */
 DECL|class|FSIndexOutput
 specifier|protected
 specifier|static

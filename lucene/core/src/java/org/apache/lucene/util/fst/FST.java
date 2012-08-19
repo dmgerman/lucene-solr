@@ -666,7 +666,7 @@ operator|.
 name|Reader
 name|nodeRefToAddress
 decl_stmt|;
-comment|// If arc has this label then that arc is final/accepted
+comment|/** If arc has this label then that arc is final/accepted */
 DECL|field|END_LABEL
 specifier|public
 specifier|static
@@ -720,7 +720,7 @@ DECL|field|node
 name|int
 name|node
 decl_stmt|;
-comment|// To node (ord or address):
+comment|/** To node (ord or address) */
 DECL|field|target
 specifier|public
 name|int
@@ -2616,8 +2616,7 @@ return|return
 name|v
 return|;
 block|}
-comment|// returns true if the node at this address has any
-comment|// outgoing arcs
+comment|/** returns true if the node at this address has any    *  outgoing arcs */
 DECL|method|targetHasArcs
 specifier|public
 specifier|static

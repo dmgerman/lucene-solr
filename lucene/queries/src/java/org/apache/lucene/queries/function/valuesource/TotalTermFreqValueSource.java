@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<code>TotalTermFreqValueSource</code> returns the total term freq (sum of term freqs across all docuyments).  * @lucene.internal  */
+comment|/**  *<code>TotalTermFreqValueSource</code> returns the total term freq   * (sum of term freqs across all documents).  * Returns -1 if frequencies were omitted for the field, or if   * the codec doesn't support this statistic.  * @lucene.internal  */
 end_comment
 
 begin_class

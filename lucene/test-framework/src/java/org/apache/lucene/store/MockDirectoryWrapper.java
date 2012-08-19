@@ -700,6 +700,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * Enum for controlling hard disk throttling.    * Set via {@link MockDirectoryWrapper #setThrottling(Throttling)}    *<p>    * WARNING: can make tests very slow.    */
 DECL|enum|Throttling
 specifier|public
 specifier|static

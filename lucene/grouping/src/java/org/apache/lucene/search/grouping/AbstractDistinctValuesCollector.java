@@ -121,6 +121,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{   }
+comment|/**    * Returned by {@link AbstractDistinctValuesCollector#getGroups()},    * representing the value and set of distinct values for the group.    */
 DECL|class|GroupCount
 specifier|public
 specifier|abstract

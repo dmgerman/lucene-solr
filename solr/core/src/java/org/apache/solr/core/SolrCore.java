@@ -7272,6 +7272,8 @@ argument_list|(
 name|log
 argument_list|,
 literal|"Error closing searcher:"
+operator|+
+name|this
 argument_list|,
 name|e
 argument_list|)

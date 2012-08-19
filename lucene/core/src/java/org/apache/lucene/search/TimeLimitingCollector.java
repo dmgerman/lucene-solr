@@ -570,7 +570,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @lucene.experimental    */
+comment|/**    * Thread used to timeout search requests.    * Can be stopped completely with {@link TimerThread#stopTimer()}    * @lucene.experimental    */
 DECL|class|TimerThread
 specifier|public
 specifier|static

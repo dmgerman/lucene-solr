@@ -72,22 +72,6 @@ name|WhitespaceTokenizer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|ClasspathResourceLoader
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests for {@link StempelPolishStemFilterFactory}  */
 end_comment
@@ -124,18 +108,6 @@ operator|new
 name|StempelPolishStemFilterFactory
 argument_list|()
 decl_stmt|;
-name|factory
-operator|.
-name|inform
-argument_list|(
-operator|new
-name|ClasspathResourceLoader
-argument_list|(
-name|getClass
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|TokenStream
 name|ts
 init|=

@@ -152,6 +152,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * Depending on the boolean value of the<code>ifSource</code> function,  * returns the value of the<code>trueSource</code> or<code>falseSource</code> function.  */
+end_comment
+
 begin_class
 DECL|class|IfFunction
 specifier|public

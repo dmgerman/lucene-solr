@@ -204,29 +204,29 @@ specifier|protected
 name|int
 name|numTermsInField
 decl_stmt|;
+comment|/** total number of references to term numbers */
 DECL|field|termInstances
 specifier|protected
 name|long
 name|termInstances
 decl_stmt|;
-comment|// total number of references to term numbers
 DECL|field|memsz
 specifier|private
 name|long
 name|memsz
 decl_stmt|;
+comment|/** total time to uninvert the field */
 DECL|field|total_time
 specifier|protected
 name|int
 name|total_time
 decl_stmt|;
-comment|// total time to uninvert the field
+comment|/** time for phase1 of the uninvert process */
 DECL|field|phase1_time
 specifier|protected
 name|int
 name|phase1_time
 decl_stmt|;
-comment|// time for phase1 of the uninvert process
 DECL|field|index
 specifier|protected
 name|int
@@ -680,7 +680,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{   }
-comment|// Call this only once (if you subclass!)
+comment|/** Call this only once (if you subclass!) */
 DECL|method|uninvert
 specifier|protected
 name|void

@@ -260,6 +260,7 @@ specifier|public
 interface|interface
 name|FieldCache
 block|{
+comment|/**    * Placeholder indicating creation of this cache is currently in-progress.    */
 DECL|class|CreationPlaceholder
 specifier|public
 specifier|static
