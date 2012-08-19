@@ -78,7 +78,7 @@ name|nextIsSet
 init|=
 literal|false
 decl_stmt|;
-comment|/** returns true, if this element should be returned by {@link next()}. */
+comment|/** returns true, if this element should be returned by {@link #next()}. */
 DECL|method|predicateFunction
 specifier|protected
 specifier|abstract
