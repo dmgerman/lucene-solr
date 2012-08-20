@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * @lucene.internal  */
+comment|/**  * Elementary interface used for indexing an document.  * @lucene.internal  */
 end_comment
 
 begin_interface

@@ -176,11 +176,29 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|ScoreDoc
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
 import|;
 end_import
+
+begin_comment
+comment|/**  * StoredDocument is retrieved from IndexReader containing only stored fields from indexed {@link IndexDocument}. */
+end_comment
 
 begin_class
 DECL|class|StoredDocument
