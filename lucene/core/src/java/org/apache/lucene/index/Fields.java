@@ -76,7 +76,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns the number of terms for all fields, or -1 if this     *  measure isn't stored by the codec. Note that, just like     *  other term measures, this measure does not take deleted     *  documents into account. */
+comment|/** Returns the number of fields or -1 if the number of    * distinct field names is unknown. If&gt;= 0,    * {@link #iterator} will return as many field names. */
 DECL|method|size
 specifier|public
 specifier|abstract

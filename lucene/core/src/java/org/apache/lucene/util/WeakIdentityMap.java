@@ -440,6 +440,8 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+comment|// IMPORTANT: Don't use oal.util.FilterIterator here:
+comment|// We need *strong* reference to current key after setNext()!!!
 return|return
 operator|new
 name|Iterator

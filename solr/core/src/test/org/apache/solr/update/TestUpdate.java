@@ -424,11 +424,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assertU
+argument_list|(
 name|commit
 argument_list|(
 literal|"softCommit"
 argument_list|,
 literal|"false"
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -474,6 +477,10 @@ argument_list|,
 literal|"val_i"
 argument_list|,
 literal|5
+argument_list|,
+literal|"copyfield_source"
+argument_list|,
+literal|"a"
 argument_list|)
 argument_list|,
 literal|null
@@ -501,6 +508,15 @@ argument_list|(
 literal|"add"
 argument_list|,
 literal|10
+argument_list|)
+argument_list|,
+literal|"copyfield_source"
+argument_list|,
+name|map
+argument_list|(
+literal|"add"
+argument_list|,
+literal|"b"
 argument_list|)
 argument_list|)
 argument_list|,
@@ -554,10 +570,11 @@ literal|"1"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"id,*_i,*_is"
+literal|"id,*_i,*_is,copyfield_*"
 argument_list|)
 argument_list|,
-literal|"=={'doc':{'id':'1', 'val_i':5, 'val_is':[10,5]}}"
+literal|"=={'doc':{'id':'1', 'val_i':5, 'val_is':[10,5], 'copyfield_source':['a','b']}}"
+comment|// real-time get should not return stored copyfield targets
 argument_list|)
 expr_stmt|;
 name|version
@@ -616,6 +633,34 @@ literal|"id,*_i,*_is"
 argument_list|)
 argument_list|,
 literal|"=={'doc':{'id':'1', 'val_i':100, 'val_is':[10,5,-1]}}"
+argument_list|)
+expr_stmt|;
+comment|// Do a search to get all stored fields back and make sure that the stored copyfield target only
+comment|// has one copy of the source.  This may not be supported forever!
+name|assertU
+argument_list|(
+name|commit
+argument_list|(
+literal|"softCommit"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,*_i,*_is,copyfield_*"
+argument_list|)
+argument_list|,
+literal|"/response/docs/[0]=={'id':'1', 'val_i':100, 'val_is':[10,5,-1], 'copyfield_source':['a','b'], 'copyfield_dest_ss':['a','b']}"
 argument_list|)
 expr_stmt|;
 name|long
