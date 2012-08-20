@@ -673,7 +673,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Make sure we are talking to the matching past writer
+comment|// Make sure we are talking to the matching postings writer
 name|CodecUtil
 operator|.
 name|checkHeader
@@ -3876,7 +3876,7 @@ block|}
 block|}
 comment|// TODO: in theory we could avoid loading frq block
 comment|// when not needed, ie, use skip data to load how far to
-comment|// seek the pos pointe ... instead of having to load frq
+comment|// seek the pos pointer ... instead of having to load frq
 comment|// blocks only to sum up how many positions to skip
 DECL|method|skipPositions
 specifier|private
@@ -5609,7 +5609,7 @@ block|}
 block|}
 comment|// TODO: in theory we could avoid loading frq block
 comment|// when not needed, ie, use skip data to load how far to
-comment|// seek the pos pointe ... instead of having to load frq
+comment|// seek the pos pointer ... instead of having to load frq
 comment|// blocks only to sum up how many positions to skip
 DECL|method|skipPositions
 specifier|private
