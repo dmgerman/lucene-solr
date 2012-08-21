@@ -201,23 +201,6 @@ name|size
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getUniqueTermCount
-specifier|public
-name|long
-name|getUniqueTermCount
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-name|in
-operator|.
-name|getUniqueTermCount
-argument_list|()
-return|;
-block|}
 block|}
 comment|/** Base class for filtering {@link Terms}    *  implementations. */
 DECL|class|FilterTerms

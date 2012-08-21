@@ -5654,61 +5654,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// for most implementations, this is boring (just the sum across all fields)
-comment|// but codecs that don't work per-field like preflex actually implement this,
-comment|// but don't implement it on Terms, so the check isn't redundant.
-name|long
-name|uniqueTermCountAllFields
-init|=
-name|fields
-operator|.
-name|getUniqueTermCount
-argument_list|()
-decl_stmt|;
-comment|// this means something is seriously screwed, e.g. we are somehow getting enclosed in PFCW!!!!!!
-if|if
-condition|(
-name|uniqueTermCountAllFields
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"invalid termCount: -1"
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-name|status
-operator|.
-name|termCount
-operator|!=
-name|uniqueTermCountAllFields
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"termCount mismatch "
-operator|+
-name|uniqueTermCountAllFields
-operator|+
-literal|" vs "
-operator|+
-operator|(
-name|status
-operator|.
-name|termCount
-operator|)
-argument_list|)
-throw|;
-block|}
 if|if
 condition|(
 name|doPrint
