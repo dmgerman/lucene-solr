@@ -5756,6 +5756,7 @@ operator|.
 name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
 argument_list|)
 expr_stmt|;
+comment|//testTerms(fieldsProducer, EnumSet.complementOf(EnumSet.of(Option.THREADS)), IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
 name|fieldsProducer
 operator|.
 name|close

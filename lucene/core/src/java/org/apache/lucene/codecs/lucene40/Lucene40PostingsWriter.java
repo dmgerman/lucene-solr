@@ -784,7 +784,6 @@ DECL|field|df
 name|int
 name|df
 decl_stmt|;
-comment|/** Adds a new doc in this term.  If this returns null    *  then we just skip consuming positions/payloads. */
 annotation|@
 name|Override
 DECL|method|startDoc

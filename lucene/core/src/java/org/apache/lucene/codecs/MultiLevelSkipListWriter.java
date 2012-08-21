@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This abstract class writes skip lists with multiple levels.  *   * Example for skipInterval = 3:  *                                                     c            (skip level 2)  *                 c                 c                 c            (skip level 1)   *     x     x     x     x     x     x     x     x     x     x      (skip level 0)  * d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d  (posting list)  *     3     6     9     12    15    18    21    24    27    30     (df)  *   * d - document  * x - skip data  * c - skip data with child pointer  *   * Skip level i contains every skipInterval-th entry from skip level i-1.  * Therefore the number of entries on level i is: floor(df / ((skipInterval ^ (i + 1))).  *   * Each skip entry on a level i>0 contains a pointer to the corresponding skip entry in list i-1.  * This guarantees a logarithmic amount of skips to find the target document.  *   * While this class takes care of writing the different skip levels,  * subclasses must define the actual format of the skip data.  * @lucene.experimental  */
+comment|/**  * This abstract class writes skip lists with multiple levels.  *   *<pre>  *  * Example for skipInterval = 3:  *                                                     c            (skip level 2)  *                 c                 c                 c            (skip level 1)   *     x     x     x     x     x     x     x     x     x     x      (skip level 0)  * d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d d  (posting list)  *     3     6     9     12    15    18    21    24    27    30     (df)  *   * d - document  * x - skip data  * c - skip data with child pointer  *   * Skip level i contains every skipInterval-th entry from skip level i-1.  * Therefore the number of entries on level i is: floor(df / ((skipInterval ^ (i + 1))).  *   * Each skip entry on a level i>0 contains a pointer to the corresponding skip entry in list i-1.  * This guarantees a logarithmic amount of skips to find the target document.  *   * While this class takes care of writing the different skip levels,  * subclasses must define the actual format of the skip data.  *</pre>  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -91,6 +91,12 @@ specifier|private
 name|int
 name|skipInterval
 decl_stmt|;
+comment|// skipInterval used for level> 0
+DECL|field|skipMultiplier
+specifier|private
+name|int
+name|skipMultiplier
+decl_stmt|;
 comment|// for every skip level a different buffer is used
 DECL|field|skipBuffer
 specifier|private
@@ -106,6 +112,9 @@ name|int
 name|skipInterval
 parameter_list|,
 name|int
+name|skipMultiplier
+parameter_list|,
+name|int
 name|maxSkipLevels
 parameter_list|,
 name|int
@@ -118,18 +127,43 @@ name|skipInterval
 operator|=
 name|skipInterval
 expr_stmt|;
+name|this
+operator|.
+name|skipMultiplier
+operator|=
+name|skipMultiplier
+expr_stmt|;
 comment|// calculate the maximum number of skip levels for this document frequency
+if|if
+condition|(
+name|df
+operator|<=
+name|skipInterval
+condition|)
+block|{
 name|numberOfSkipLevels
 operator|=
+literal|1
+expr_stmt|;
+block|}
+else|else
+block|{
+name|numberOfSkipLevels
+operator|=
+literal|1
+operator|+
 name|MathUtil
 operator|.
 name|log
 argument_list|(
 name|df
-argument_list|,
+operator|/
 name|skipInterval
+argument_list|,
+name|skipMultiplier
 argument_list|)
 expr_stmt|;
+block|}
 comment|// make sure it does not exceed maxSkipLevels
 if|if
 condition|(
@@ -143,6 +177,33 @@ operator|=
 name|maxSkipLevels
 expr_stmt|;
 block|}
+block|}
+comment|// skipMultiplier and skipInterval are the same:
+DECL|method|MultiLevelSkipListWriter
+specifier|protected
+name|MultiLevelSkipListWriter
+parameter_list|(
+name|int
+name|skipInterval
+parameter_list|,
+name|int
+name|maxSkipLevels
+parameter_list|,
+name|int
+name|df
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|skipInterval
+argument_list|,
+name|skipInterval
+argument_list|,
+name|maxSkipLevels
+argument_list|,
+name|df
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|init
 specifier|protected
@@ -260,20 +321,29 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|int
-name|numLevels
-decl_stmt|;
-comment|// determine max level
-for|for
-control|(
-name|numLevels
-operator|=
-literal|0
-init|;
-operator|(
+assert|assert
 name|df
 operator|%
 name|skipInterval
+operator|==
+literal|0
+assert|;
+name|int
+name|numLevels
+init|=
+literal|1
+decl_stmt|;
+name|df
+operator|/=
+name|skipInterval
+expr_stmt|;
+comment|// determine max level
+while|while
+condition|(
+operator|(
+name|df
+operator|%
+name|skipMultiplier
 operator|)
 operator|==
 literal|0
@@ -281,14 +351,14 @@ operator|&&
 name|numLevels
 operator|<
 name|numberOfSkipLevels
-condition|;
-name|df
-operator|/=
-name|skipInterval
-control|)
+condition|)
 block|{
 name|numLevels
 operator|++
+expr_stmt|;
+name|df
+operator|/=
+name|skipMultiplier
 expr_stmt|;
 block|}
 name|long

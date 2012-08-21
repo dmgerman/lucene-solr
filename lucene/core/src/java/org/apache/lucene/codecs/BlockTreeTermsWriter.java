@@ -3378,6 +3378,20 @@ operator|.
 name|stats
 operator|.
 name|docFreq
+operator|:
+name|term
+operator|.
+name|stats
+operator|.
+name|totalTermFreq
+operator|+
+literal|" vs "
+operator|+
+name|term
+operator|.
+name|stats
+operator|.
+name|docFreq
 assert|;
 name|bytesWriter2
 operator|.
