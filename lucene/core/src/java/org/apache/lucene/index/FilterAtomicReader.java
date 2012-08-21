@@ -193,8 +193,6 @@ specifier|public
 name|int
 name|size
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|in

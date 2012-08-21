@@ -48,6 +48,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -719,7 +729,7 @@ return|return
 name|docCount
 return|;
 block|}
-comment|/** Safe (but, slowish) default method to write every    *  vector field in the document.  This default    *  implementation requires that the vectors implement    *  both Fields.size and    *  Terms.size. */
+comment|/** Safe (but, slowish) default method to write every    *  vector field in the document. */
 DECL|method|addAllDocVectors
 specifier|protected
 specifier|final
@@ -749,7 +759,6 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-specifier|final
 name|int
 name|numFields
 init|=
@@ -766,13 +775,41 @@ operator|-
 literal|1
 condition|)
 block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"vectors.size() must be implemented (it returned -1)"
-argument_list|)
-throw|;
+comment|// count manually! TODO: Maybe enforce that Fields.size() returns something valid?
+name|numFields
+operator|=
+literal|0
+expr_stmt|;
+for|for
+control|(
+specifier|final
+name|Iterator
+argument_list|<
+name|String
+argument_list|>
+name|it
+init|=
+name|vectors
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|it
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|it
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|numFields
+operator|++
+expr_stmt|;
+block|}
 block|}
 name|startDocument
 argument_list|(
@@ -794,6 +831,11 @@ name|docsAndPositionsEnum
 init|=
 literal|null
 decl_stmt|;
+name|int
+name|fieldCount
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|String
@@ -802,6 +844,9 @@ range|:
 name|vectors
 control|)
 block|{
+name|fieldCount
+operator|++
+expr_stmt|;
 specifier|final
 name|FieldInfo
 name|fieldInfo
@@ -895,7 +940,6 @@ name|hasPayloads
 operator|||
 name|hasPositions
 assert|;
-specifier|final
 name|int
 name|numTerms
 init|=
@@ -915,13 +959,34 @@ operator|-
 literal|1
 condition|)
 block|{
-throw|throw
-operator|new
-name|IllegalStateException
+comment|// count manually. It is stupid, but needed, as Terms.size() is not a mandatory statistics function
+name|numTerms
+operator|=
+literal|0
+expr_stmt|;
+name|termsEnum
+operator|=
+name|terms
+operator|.
+name|iterator
 argument_list|(
-literal|"terms.size() must be implemented (it returned -1)"
+name|termsEnum
 argument_list|)
-throw|;
+expr_stmt|;
+while|while
+condition|(
+name|termsEnum
+operator|.
+name|next
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|numTerms
+operator|++
+expr_stmt|;
+block|}
 block|}
 name|startField
 argument_list|(
@@ -1111,6 +1176,11 @@ operator|==
 name|numTerms
 assert|;
 block|}
+assert|assert
+name|fieldCount
+operator|==
+name|numFields
+assert|;
 block|}
 comment|/** Return the BytesRef Comparator used to sort terms    *  before feeding to this API. */
 DECL|method|getComparator
