@@ -1946,9 +1946,6 @@ name|tvf
 expr_stmt|;
 name|tvf
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|origTVF
 operator|.
 name|clone
@@ -3577,9 +3574,6 @@ condition|)
 block|{
 name|cloneTvx
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|tvx
 operator|.
 name|clone
@@ -3587,9 +3581,6 @@ argument_list|()
 expr_stmt|;
 name|cloneTvd
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|tvd
 operator|.
 name|clone
@@ -3597,9 +3588,6 @@ argument_list|()
 expr_stmt|;
 name|cloneTvf
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|tvf
 operator|.
 name|clone

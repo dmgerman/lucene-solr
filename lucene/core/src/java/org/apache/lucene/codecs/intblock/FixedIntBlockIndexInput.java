@@ -165,9 +165,6 @@ specifier|final
 name|IndexInput
 name|clone
 init|=
-operator|(
-name|IndexInput
-operator|)
 name|in
 operator|.
 name|clone

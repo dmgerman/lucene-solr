@@ -2358,9 +2358,6 @@ specifier|final
 name|IndexInput
 name|clone
 init|=
-operator|(
-name|IndexInput
-operator|)
 name|indexIn
 operator|.
 name|clone
@@ -3779,9 +3776,6 @@ name|compiled
 expr_stmt|;
 name|in
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|BlockTreeTermsReader
 operator|.
 name|this
@@ -6152,9 +6146,6 @@ name|this
 operator|.
 name|in
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|BlockTreeTermsReader
 operator|.
 name|this

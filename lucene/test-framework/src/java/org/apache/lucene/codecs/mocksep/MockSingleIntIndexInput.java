@@ -193,9 +193,6 @@ return|return
 operator|new
 name|Reader
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|in
 operator|.
 name|clone

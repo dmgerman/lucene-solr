@@ -1705,9 +1705,6 @@ operator|!=
 literal|null
 assert|;
 return|return
-operator|(
-name|IndexInput
-operator|)
 name|datIn
 operator|.
 name|clone
@@ -1728,9 +1725,6 @@ operator|!=
 literal|null
 assert|;
 return|return
-operator|(
-name|IndexInput
-operator|)
 name|idxIn
 operator|.
 name|clone

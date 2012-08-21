@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for performing read operations of Lucene's low-level  * data types.  */
+comment|/**  * Abstract base class for performing read operations of Lucene's low-level  * data types.  *  *<p>{@code DataInput} may only be used from one thread, because it is not  * thread safe (it keeps internal state like file position). To allow  * multithreaded use, every {@code DataInput} instance must be cloned before  * used in another thread. Subclasses must therefore implement {@link #clone()},  * returning a new {@code DataInput} which operates on the same underlying  * resource, but positioned independently.  */
 end_comment
 
 begin_class
@@ -704,15 +704,9 @@ name|DataInput
 name|clone
 parameter_list|()
 block|{
-name|DataInput
-name|clone
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
-name|clone
-operator|=
+return|return
 operator|(
 name|DataInput
 operator|)
@@ -720,17 +714,22 @@ name|super
 operator|.
 name|clone
 argument_list|()
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
 name|CloneNotSupportedException
 name|e
 parameter_list|)
-block|{}
-return|return
-name|clone
-return|;
+block|{
+throw|throw
+operator|new
+name|Error
+argument_list|(
+literal|"This cannot happen: Failing to clone DataInput"
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/** Reads a Map&lt;String,String&gt; previously written    *  with {@link DataOutput#writeStringStringMap(Map)}. */
 DECL|method|readStringStringMap

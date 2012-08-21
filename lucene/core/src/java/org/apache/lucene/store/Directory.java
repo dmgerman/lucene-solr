@@ -546,9 +546,6 @@ name|openFullSlice
 parameter_list|()
 block|{
 return|return
-operator|(
-name|IndexInput
-operator|)
 name|base
 operator|.
 name|clone
@@ -732,9 +729,6 @@ name|this
 operator|.
 name|base
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|base
 operator|.
 name|clone
@@ -776,9 +770,6 @@ name|clone
 operator|.
 name|base
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|base
 operator|.
 name|clone

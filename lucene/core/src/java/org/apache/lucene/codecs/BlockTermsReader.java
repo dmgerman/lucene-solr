@@ -1375,9 +1375,6 @@ name|IOException
 block|{
 name|in
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|BlockTermsReader
 operator|.
 name|this

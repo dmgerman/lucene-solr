@@ -1149,9 +1149,6 @@ try|try
 block|{
 name|input
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|datIn
 operator|.
 name|clone
@@ -1272,9 +1269,6 @@ name|FixedStraightBytesImpl
 operator|.
 name|DirectFixedStraightSource
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|datIn
 operator|.
 name|clone
@@ -1290,9 +1284,6 @@ else|:
 operator|new
 name|PackedIntsSource
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|datIn
 operator|.
 name|clone

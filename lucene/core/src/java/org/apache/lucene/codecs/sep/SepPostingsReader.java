@@ -2069,9 +2069,6 @@ operator|=
 operator|new
 name|SepSkipListReader
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|skipIn
 operator|.
 name|clone
@@ -2423,9 +2420,6 @@ argument_list|()
 expr_stmt|;
 name|payloadIn
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|SepPostingsReader
 operator|.
 name|this
@@ -2722,9 +2716,6 @@ operator|=
 operator|new
 name|SepSkipListReader
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|skipIn
 operator|.
 name|clone

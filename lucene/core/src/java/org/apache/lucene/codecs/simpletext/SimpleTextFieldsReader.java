@@ -620,9 +620,6 @@ name|fields
 operator|=
 name|readFields
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|in
 operator|.
 name|clone
@@ -1631,9 +1628,6 @@ name|this
 operator|.
 name|in
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|this
 operator|.
 name|inStart
@@ -2257,9 +2251,6 @@ name|this
 operator|.
 name|in
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|inStart
 operator|.
 name|clone
@@ -3441,9 +3432,6 @@ expr_stmt|;
 name|IndexInput
 name|in
 init|=
-operator|(
-name|IndexInput
-operator|)
 name|SimpleTextFieldsReader
 operator|.
 name|this

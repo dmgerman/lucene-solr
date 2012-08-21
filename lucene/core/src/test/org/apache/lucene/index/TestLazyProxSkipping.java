@@ -1268,9 +1268,6 @@ return|return
 operator|new
 name|SeeksCountingStream
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|this
 operator|.
 name|input

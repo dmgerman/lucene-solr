@@ -270,9 +270,6 @@ decl_stmt|;
 name|IndexInput
 name|two
 init|=
-operator|(
-name|IndexInput
-operator|)
 name|one
 operator|.
 name|clone
@@ -281,9 +278,6 @@ decl_stmt|;
 name|IndexInput
 name|three
 init|=
-operator|(
-name|IndexInput
-operator|)
 name|two
 operator|.
 name|clone

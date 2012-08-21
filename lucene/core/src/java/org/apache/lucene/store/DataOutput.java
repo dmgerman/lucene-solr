@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for performing write operations of Lucene's low-level  * data types.  */
+comment|/**  * Abstract base class for performing write operations of Lucene's low-level  * data types.    *<p>{@code DataOutput} may only be used from one thread, because it is not  * thread safe (it keeps internal state like file position).  */
 end_comment
 
 begin_class
