@@ -76,20 +76,6 @@ name|IndexInput
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IntsRef
-import|;
-end_import
-
 begin_comment
 comment|/** Abstract base class that reads fixed-size blocks of ints  *  from an IndexInput.  While this is a simple approach, a  *  more performant approach would directly create an impl  *  of IntIndexInput inside Directory.  Wrapping a generic  *  IndexInput will likely cost performance.  *  * @lucene.experimental  */
 end_comment

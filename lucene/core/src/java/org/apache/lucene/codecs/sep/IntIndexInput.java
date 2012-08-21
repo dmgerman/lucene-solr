@@ -52,20 +52,6 @@ name|DataInput
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IntsRef
-import|;
-end_import
-
 begin_comment
 comment|/** Defines basic API for writing ints to an IndexOutput.  *  IntBlockCodec interacts with this API. @see  *  IntBlockReader  *  * @lucene.experimental */
 end_comment

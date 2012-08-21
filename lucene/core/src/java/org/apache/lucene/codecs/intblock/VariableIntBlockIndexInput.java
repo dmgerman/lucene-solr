@@ -76,20 +76,6 @@ name|IndexInput
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IntsRef
-import|;
-end_import
-
 begin_comment
 comment|// TODO: much of this can be shared code w/ the fixed case
 end_comment
