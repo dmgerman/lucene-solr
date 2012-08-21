@@ -1974,9 +1974,6 @@ name|this
 operator|.
 name|docIn
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|startDocIn
 operator|.
 name|clone
@@ -2467,9 +2464,6 @@ operator|=
 operator|new
 name|BlockSkipReader
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|docIn
 operator|.
 name|clone
@@ -2936,9 +2930,6 @@ name|this
 operator|.
 name|docIn
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|startDocIn
 operator|.
 name|clone
@@ -2948,9 +2939,6 @@ name|this
 operator|.
 name|posIn
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|BlockPostingsReader
 operator|.
 name|this
@@ -3597,9 +3585,6 @@ operator|=
 operator|new
 name|BlockSkipReader
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|docIn
 operator|.
 name|clone
@@ -4388,9 +4373,6 @@ name|this
 operator|.
 name|docIn
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|startDocIn
 operator|.
 name|clone
@@ -4400,9 +4382,6 @@ name|this
 operator|.
 name|posIn
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|BlockPostingsReader
 operator|.
 name|this
@@ -4416,9 +4395,6 @@ name|this
 operator|.
 name|payIn
 operator|=
-operator|(
-name|IndexInput
-operator|)
 name|BlockPostingsReader
 operator|.
 name|this
@@ -5319,9 +5295,6 @@ operator|=
 operator|new
 name|BlockSkipReader
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|docIn
 operator|.
 name|clone
