@@ -317,7 +317,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|super
+name|input
 operator|.
 name|reset
 argument_list|()
@@ -326,7 +326,7 @@ name|buffer
 operator|.
 name|reset
 argument_list|(
-name|in
+name|input
 argument_list|)
 expr_stmt|;
 name|replacement
