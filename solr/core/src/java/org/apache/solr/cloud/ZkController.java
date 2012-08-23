@@ -460,22 +460,6 @@ name|handler
 operator|.
 name|component
 operator|.
-name|HttpShardHandlerFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|handler
-operator|.
-name|component
-operator|.
 name|ShardHandler
 import|;
 end_import
@@ -821,8 +805,6 @@ specifier|private
 name|LeaderElector
 name|overseerElector
 decl_stmt|;
-comment|// for now, this can be null in tests, in which case recovery will be inactive, and other features
-comment|// may accept defaults or use mocks rather than pulling things from a CoreContainer
 DECL|field|cc
 specifier|private
 name|CoreContainer
@@ -834,7 +816,7 @@ specifier|volatile
 name|Overseer
 name|overseer
 decl_stmt|;
-comment|/**    * @param cc if null, recovery will not be enabled    * @param zkServerAddress    * @param zkClientTimeout    * @param zkClientConnectTimeout    * @param localHost    * @param locaHostPort    * @param localHostContext    * @param registerOnReconnect    * @throws InterruptedException    * @throws TimeoutException    * @throws IOException    */
+comment|/**    * @param cc    * @param zkServerAddress    * @param zkClientTimeout    * @param zkClientConnectTimeout    * @param localHost    * @param locaHostPort    * @param localHostContext    * @param registerOnReconnect    * @throws InterruptedException    * @throws TimeoutException    * @throws IOException    */
 DECL|method|ZkController
 specifier|public
 name|ZkController
@@ -872,6 +854,19 @@ name|TimeoutException
 throws|,
 name|IOException
 block|{
+if|if
+condition|(
+name|cc
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"CoreContainer cannot be null."
+argument_list|)
+throw|;
 name|this
 operator|.
 name|cc
@@ -1010,29 +1005,6 @@ decl_stmt|;
 name|String
 name|adminPath
 decl_stmt|;
-if|if
-condition|(
-name|cc
-operator|==
-literal|null
-condition|)
-block|{
-name|shardHandler
-operator|=
-operator|new
-name|HttpShardHandlerFactory
-argument_list|()
-operator|.
-name|getShardHandler
-argument_list|()
-expr_stmt|;
-name|adminPath
-operator|=
-literal|"/admin/cores"
-expr_stmt|;
-block|}
-else|else
-block|{
 name|shardHandler
 operator|=
 name|cc
@@ -1050,7 +1022,6 @@ operator|.
 name|getAdminPath
 argument_list|()
 expr_stmt|;
-block|}
 name|ZkController
 operator|.
 name|this
@@ -1775,29 +1746,6 @@ decl_stmt|;
 name|String
 name|adminPath
 decl_stmt|;
-if|if
-condition|(
-name|cc
-operator|==
-literal|null
-condition|)
-block|{
-name|shardHandler
-operator|=
-operator|new
-name|HttpShardHandlerFactory
-argument_list|()
-operator|.
-name|getShardHandler
-argument_list|()
-expr_stmt|;
-name|adminPath
-operator|=
-literal|"/admin/cores"
-expr_stmt|;
-block|}
-else|else
-block|{
 name|shardHandler
 operator|=
 name|cc
@@ -1815,7 +1763,6 @@ operator|.
 name|getAdminPath
 argument_list|()
 expr_stmt|;
-block|}
 name|overseerElector
 operator|=
 operator|new
@@ -2722,14 +2669,6 @@ name|core
 init|=
 literal|null
 decl_stmt|;
-if|if
-condition|(
-name|cc
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// CoreContainer only null in tests
 try|try
 block|{
 name|core
@@ -2892,19 +2831,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-block|}
-else|else
-block|{
-name|publish
-argument_list|(
-name|desc
-argument_list|,
-name|ZkStateReader
-operator|.
-name|ACTIVE
-argument_list|)
-expr_stmt|;
 block|}
 comment|// make sure we have an update cluster state right away
 name|zkStateReader
