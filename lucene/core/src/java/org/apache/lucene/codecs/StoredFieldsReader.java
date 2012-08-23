@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Codec API for reading stored fields:  *   * You need to implement {@link #visitDocument(int, StoredFieldVisitor)} to  * read the stored fields for a document, implement {@link #clone()} (creating  * clones of any IndexInputs used, etc), and {@link #close()}  * @lucene.experimental  */
+comment|/**  * Codec API for reading stored fields.  *<p>  * You need to implement {@link #visitDocument(int, StoredFieldVisitor)} to  * read the stored fields for a document, implement {@link #clone()} (creating  * clones of any IndexInputs used, etc), and {@link #close()}  * @lucene.experimental  */
 end_comment
 
 begin_class
