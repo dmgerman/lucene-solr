@@ -595,6 +595,7 @@ operator|==
 literal|0
 return|;
 block|}
+comment|/**    * Single term with its position/offsets in the document and IDF weight    */
 DECL|class|TermInfo
 specifier|public
 specifier|static

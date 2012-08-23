@@ -34,6 +34,10 @@ begin_comment
 comment|/* subclass to be usable from within Query.rewrite() */
 end_comment
 
+begin_comment
+comment|/**  * Exception thrown when {@link BasicQueryFactory} would exceed the limit  * of query clauses.  */
+end_comment
+
 begin_class
 DECL|class|TooManyBasicQueries
 specifier|public

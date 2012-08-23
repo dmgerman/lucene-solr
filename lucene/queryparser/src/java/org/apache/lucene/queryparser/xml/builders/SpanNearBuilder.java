@@ -129,7 +129,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  *  */
+comment|/**  * Builder for {@link SpanNearQuery}  */
 end_comment
 
 begin_class

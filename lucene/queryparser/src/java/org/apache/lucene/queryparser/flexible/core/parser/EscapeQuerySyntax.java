@@ -42,6 +42,7 @@ specifier|public
 interface|interface
 name|EscapeQuerySyntax
 block|{
+comment|/**    * Type of escaping: String for escaping syntax,    * NORMAL for escaping reserved words (like AND) in terms    */
 DECL|enum|Type
 specifier|public
 enum|enum

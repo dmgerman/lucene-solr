@@ -1781,6 +1781,7 @@ name|termOrPhraseNumber
 operator|++
 return|;
 block|}
+comment|/**    * Internal structure of a query for highlighting: represents    * a nested query structure    */
 DECL|class|QueryPhraseMap
 specifier|public
 specifier|static

@@ -58,6 +58,10 @@ name|BooleanClause
 import|;
 end_import
 
+begin_comment
+comment|/**  * Factory for conjunctions  */
+end_comment
+
 begin_class
 DECL|class|AndQuery
 specifier|public

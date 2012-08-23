@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  *  */
+comment|/**  * Finds fragment boundaries: pluggable into {@link BaseFragmentsBuilder}  */
 end_comment
 
 begin_interface

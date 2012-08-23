@@ -256,6 +256,7 @@ name|StandardQueryConfigHandler
 extends|extends
 name|QueryConfigHandler
 block|{
+comment|/**    * Class holding keys for StandardQueryNodeProcessorPipeline options.    */
 DECL|class|ConfigurationKeys
 specifier|final
 specifier|public
@@ -557,6 +558,7 @@ name|newInstance
 argument_list|()
 decl_stmt|;
 block|}
+comment|/**    * Boolean Operator: AND or OR    */
 DECL|enum|Operator
 specifier|public
 specifier|static
