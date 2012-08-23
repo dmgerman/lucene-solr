@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link MultiTermQuery}<li> {@link BooleanQuery}<li> {@link WildcardQuery}<li> {@link PhraseQuery}<li> {@link PrefixQuery}<li> {@link MultiPhraseQuery}<li> {@link FuzzyQuery}<li> {@link TermRangeQuery}<li> {@link NumericRangeQuery}<li> {@link org.apache.lucene.search.spans.SpanQuery}</ul> */
+comment|/** The abstract base class for queries.<p>Instantiable subclasses are:<ul><li> {@link TermQuery}<li> {@link BooleanQuery}<li> {@link WildcardQuery}<li> {@link PhraseQuery}<li> {@link PrefixQuery}<li> {@link MultiPhraseQuery}<li> {@link FuzzyQuery}<li> {@link RegexpQuery}<li> {@link TermRangeQuery}<li> {@link NumericRangeQuery}<li> {@link ConstantScoreQuery}<li> {@link DisjunctionMaxQuery}<li> {@link MatchAllDocsQuery}</ul><p>See also the family of {@link org.apache.lucene.search.spans Span Queries}        and additional queries available in the<a href="{@docRoot}/../queries/overview-summary.html">Queries module</a> */
 end_comment
 
 begin_class
