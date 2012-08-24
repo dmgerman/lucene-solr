@@ -249,10 +249,8 @@ name|boolean
 name|scoresDocsOutOfOrder
 parameter_list|()
 block|{
-comment|// TODO: Support out-of-order scoring!
-comment|// For now we return false here, as we always get the scorer in order
 return|return
-literal|false
+literal|true
 return|;
 block|}
 annotation|@
@@ -586,8 +584,6 @@ name|useRandomAccess
 condition|)
 block|{
 comment|// if we are using random access, we return the inner scorer, just with other acceptDocs
-comment|// TODO, replace this by when BooleanWeight is fixed to be consistent with its scorer implementations:
-comment|// return weight.scorer(context, scoreDocsInOrder, topScorer, filterAcceptDocs);
 return|return
 name|weight
 operator|.
@@ -595,7 +591,7 @@ name|scorer
 argument_list|(
 name|context
 argument_list|,
-literal|true
+name|scoreDocsInOrder
 argument_list|,
 name|topScorer
 argument_list|,

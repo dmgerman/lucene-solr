@@ -175,6 +175,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// TODO: sum into a double and cast to float if we ever send required clauses to BS1
 name|int
 name|curDoc
 init|=
