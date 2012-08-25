@@ -850,7 +850,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// very strange: java.lang.Number itsself is not Comparable, but all subclasses used here are
+comment|// very strange: java.lang.Number itself is not Comparable, but all subclasses used here are
 if|if
 condition|(
 name|min

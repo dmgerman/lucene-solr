@@ -2954,7 +2954,7 @@ name|emptyList
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// a 0-length range should reproduce the range itsself
+comment|// a 0-length range should reproduce the range itself
 name|assertLongRangeSplit
 argument_list|(
 literal|9500L
@@ -3571,7 +3571,7 @@ name|emptyList
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// a 0-length range should reproduce the range itsself
+comment|// a 0-length range should reproduce the range itself
 name|assertIntRangeSplit
 argument_list|(
 literal|9500
