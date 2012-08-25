@@ -272,6 +272,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * Base FragmentsBuilder implementation that supports colored pre/post  * tags and multivalued fields.  *<p>  * Uses {@link BoundaryScanner} to determine fragments.  */
+end_comment
+
 begin_class
 DECL|class|BaseFragmentsBuilder
 specifier|public

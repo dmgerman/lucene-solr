@@ -130,6 +130,7 @@ name|ModifierQueryNode
 extends|extends
 name|QueryNodeImpl
 block|{
+comment|/**    * Modifier type: such as required (REQ), prohibited (NOT)    */
 DECL|enum|Modifier
 specifier|public
 enum|enum

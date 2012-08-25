@@ -40,6 +40,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|TermRangeQuery
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queryparser
 operator|.
 name|flexible
@@ -149,6 +167,10 @@ operator|.
 name|TermRangeQueryNode
 import|;
 end_import
+
+begin_comment
+comment|/**  * Processes {@link TermRangeQuery}s with open ranges.  */
+end_comment
 
 begin_class
 DECL|class|OpenRangeQueryNodeProcessor

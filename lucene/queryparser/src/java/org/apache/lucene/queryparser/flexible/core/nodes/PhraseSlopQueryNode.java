@@ -30,6 +30,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|PhraseQuery
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queryparser
 operator|.
 name|flexible
@@ -97,6 +115,10 @@ operator|.
 name|EscapeQuerySyntax
 import|;
 end_import
+
+begin_comment
+comment|/**  * Query node for {@link PhraseQuery}'s slop factor.  */
+end_comment
 
 begin_class
 DECL|class|PhraseSlopQueryNode

@@ -313,7 +313,7 @@ comment|/*   TODO:        - Currently there is a one-to-one mapping of indexed  
 end_comment
 
 begin_comment
-comment|/**  * block-based terms index and dictionary writer.  *<p>  * Writes terms dict and index, block-encoding (column  * stride) each term's metadata for each set of terms  * between two index terms.  *  * @see BlockTreeTermsReader  * @lucene.experimental  */
+comment|/**  * Block-based terms index and dictionary writer.  *<p>  * Writes terms dict and index, block-encoding (column  * stride) each term's metadata for each set of terms  * between two index terms.  *  * @see BlockTreeTermsReader  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -3373,6 +3373,20 @@ name|stats
 operator|.
 name|totalTermFreq
 operator|>=
+name|term
+operator|.
+name|stats
+operator|.
+name|docFreq
+operator|:
+name|term
+operator|.
+name|stats
+operator|.
+name|totalTermFreq
+operator|+
+literal|" vs "
+operator|+
 name|term
 operator|.
 name|stats

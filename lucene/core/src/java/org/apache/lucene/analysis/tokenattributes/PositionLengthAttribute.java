@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** The positionLength determines how many positions this  *  token spans.  Very few analyzer components actually  *  produce this attribute, and indexing ignores it, but  *  it's useful to express the graph structure naturally  *  produced by decompounding, word splitting/joining,  *  synonym filtering, etc.  *  *<p>The default value is one. */
+comment|/** Determines how many positions this  *  token spans.  Very few analyzer components actually  *  produce this attribute, and indexing ignores it, but  *  it's useful to express the graph structure naturally  *  produced by decompounding, word splitting/joining,  *  synonym filtering, etc.  *  *<p>The default value is one. */
 end_comment
 
 begin_interface

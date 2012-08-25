@@ -453,7 +453,7 @@ name|numRead
 operator|++
 expr_stmt|;
 return|return
-name|in
+name|input
 operator|.
 name|read
 argument_list|()
@@ -529,7 +529,7 @@ expr_stmt|;
 name|int
 name|ch
 init|=
-name|in
+name|input
 operator|.
 name|read
 argument_list|()
@@ -766,7 +766,7 @@ name|lastMark
 operator|=
 name|numRead
 expr_stmt|;
-name|in
+name|input
 operator|.
 name|mark
 argument_list|(
@@ -782,7 +782,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|in
+name|input
 operator|.
 name|reset
 argument_list|()

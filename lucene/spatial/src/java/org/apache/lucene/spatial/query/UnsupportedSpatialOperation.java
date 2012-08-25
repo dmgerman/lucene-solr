@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Exception thrown when the strategy cannot implement the requested operation.  * @lucene.experimental  */
 end_comment
 
 begin_class

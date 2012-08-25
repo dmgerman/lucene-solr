@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Abstract base class for output to a file in a Directory.  A random-access  * output stream.  Used for all Lucene index output operations.  * @see Directory  * @see IndexInput  */
+comment|/** Abstract base class for output to a file in a Directory.  A random-access  * output stream.  Used for all Lucene index output operations.    *<p>{@code IndexOutput} may only be used from one thread, because it is not  * thread safe (it keeps internal state like file position).    * @see Directory  * @see IndexInput  */
 end_comment
 
 begin_class

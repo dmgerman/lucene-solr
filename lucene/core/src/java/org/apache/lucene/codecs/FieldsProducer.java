@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Abstract API that produces terms, doc, freq, prox and  *  payloads postings.    *  * @lucene.experimental  */
+comment|/** Abstract API that produces terms, doc, freq, prox, offset and  *  payloads postings.    *  * @lucene.experimental  */
 end_comment
 
 begin_class

@@ -106,6 +106,7 @@ name|PathQueryNode
 extends|extends
 name|QueryNodeImpl
 block|{
+comment|/**    * Term text with a beginning and end position    */
 DECL|class|QueryText
 specifier|public
 specifier|static

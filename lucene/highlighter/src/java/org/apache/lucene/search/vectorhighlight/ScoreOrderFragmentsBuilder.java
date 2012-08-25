@@ -183,6 +183,7 @@ return|return
 name|src
 return|;
 block|}
+comment|/**    * Comparator for {@link WeightedFragInfo} by boost, breaking ties    * by offset.    */
 DECL|class|ScoreComparator
 specifier|public
 specifier|static

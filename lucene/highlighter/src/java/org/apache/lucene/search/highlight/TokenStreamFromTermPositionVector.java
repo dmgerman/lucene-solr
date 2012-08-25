@@ -214,6 +214,10 @@ name|CollectionUtil
 import|;
 end_import
 
+begin_comment
+comment|/**  * TokenStream created from a term vector field.  */
+end_comment
+
 begin_class
 DECL|class|TokenStreamFromTermPositionVector
 specifier|public

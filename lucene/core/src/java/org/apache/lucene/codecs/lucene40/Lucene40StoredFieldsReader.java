@@ -310,17 +310,11 @@ name|numTotalDocs
 argument_list|,
 name|size
 argument_list|,
-operator|(
-name|IndexInput
-operator|)
 name|fieldsStream
 operator|.
 name|clone
 argument_list|()
 argument_list|,
-operator|(
-name|IndexInput
-operator|)
 name|indexStream
 operator|.
 name|clone

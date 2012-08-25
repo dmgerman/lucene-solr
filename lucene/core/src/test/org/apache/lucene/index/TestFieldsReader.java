@@ -1268,9 +1268,6 @@ return|return
 operator|new
 name|FaultyIndexInput
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|delegate
 operator|.
 name|clone

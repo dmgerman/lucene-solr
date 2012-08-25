@@ -80,6 +80,10 @@ name|Element
 import|;
 end_import
 
+begin_comment
+comment|/**  * Interface for retrieving a {@link SpanQuery}.  */
+end_comment
+
 begin_interface
 DECL|interface|SpanQueryBuilder
 specifier|public

@@ -145,6 +145,7 @@ return|return
 name|fragInfos
 return|;
 block|}
+comment|/**    * List of term offsets + weight for a frag info    */
 DECL|class|WeightedFragInfo
 specifier|public
 specifier|static
@@ -345,6 +346,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**      * Represents the list of term offsets for some text      */
 DECL|class|SubInfo
 specifier|public
 specifier|static

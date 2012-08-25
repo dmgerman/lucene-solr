@@ -193,9 +193,6 @@ return|return
 operator|new
 name|Reader
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|in
 operator|.
 name|clone
@@ -327,10 +324,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|set
+DECL|method|copyFrom
 specifier|public
 name|void
-name|set
+name|copyFrom
 parameter_list|(
 name|IntIndexInput
 operator|.

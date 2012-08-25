@@ -168,6 +168,10 @@ name|SpanTermQuery
 import|;
 end_import
 
+begin_comment
+comment|/**  * Factory for {@link SpanOrQuery}  */
+end_comment
+
 begin_class
 DECL|class|SpanNearClauseFactory
 specifier|public

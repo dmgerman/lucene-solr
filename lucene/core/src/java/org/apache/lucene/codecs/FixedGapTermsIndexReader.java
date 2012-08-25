@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * TermsIndexReader for simple every-nth terms indexes.  *  * @see FixedGapTermsIndexWriter  * @lucene.experimental   */
+comment|/**   * TermsIndexReader for simple every Nth terms indexes.  *  * @see FixedGapTermsIndexWriter  * @lucene.experimental   */
 end_comment
 
 begin_class
@@ -1445,9 +1445,6 @@ expr_stmt|;
 name|IndexInput
 name|clone
 init|=
-operator|(
-name|IndexInput
-operator|)
 name|in
 operator|.
 name|clone
@@ -1579,9 +1576,6 @@ specifier|final
 name|IndexInput
 name|clone1
 init|=
-operator|(
-name|IndexInput
-operator|)
 name|in
 operator|.
 name|clone
@@ -1591,9 +1585,6 @@ specifier|final
 name|IndexInput
 name|clone2
 init|=
-operator|(
-name|IndexInput
-operator|)
 name|in
 operator|.
 name|clone

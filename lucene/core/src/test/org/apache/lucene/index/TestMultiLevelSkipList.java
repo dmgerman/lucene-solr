@@ -1094,9 +1094,6 @@ return|return
 operator|new
 name|CountingStream
 argument_list|(
-operator|(
-name|IndexInput
-operator|)
 name|this
 operator|.
 name|input

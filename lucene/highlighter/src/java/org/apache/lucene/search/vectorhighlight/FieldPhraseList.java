@@ -479,6 +479,7 @@ name|wpi
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Represents the list of term offsets and boost for some text    */
 DECL|class|WeightedPhraseInfo
 specifier|public
 specifier|static
@@ -1045,6 +1046,7 @@ return|return
 name|seqnum
 return|;
 block|}
+comment|/**      * Term offsets (start + end)      */
 DECL|class|Toffs
 specifier|public
 specifier|static

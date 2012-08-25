@@ -1275,6 +1275,8 @@ literal|2
 condition|)
 break|break;
 block|}
+try|try
+block|{
 name|versionInfo
 operator|=
 operator|new
@@ -1285,6 +1287,34 @@ argument_list|,
 literal|256
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SolrException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Unable to use updateLog: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 comment|// TODO: these startingVersions assume that we successfully recover from all non-complete tlogs.
 name|UpdateLog
 operator|.

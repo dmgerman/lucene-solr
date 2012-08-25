@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  */
+comment|/**  * Implementation of {@link EscapeQuerySyntax} for the standard lucene  * syntax.  */
 end_comment
 
 begin_class

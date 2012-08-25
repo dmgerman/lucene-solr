@@ -209,9 +209,6 @@ expr_stmt|;
 name|IndexInput
 name|iiclone
 init|=
-operator|(
-name|IndexInput
-operator|)
 name|delegate
 operator|.
 name|clone

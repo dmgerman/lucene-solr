@@ -38,6 +38,26 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|spans
+operator|.
+name|SpanQuery
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queryparser
 operator|.
 name|xml
@@ -63,7 +83,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  *  */
+comment|/**  * Base class for building {@link SpanQuery}s  */
 end_comment
 
 begin_class
