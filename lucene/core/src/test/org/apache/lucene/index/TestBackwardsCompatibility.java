@@ -3557,6 +3557,15 @@ argument_list|(
 literal|1.0
 argument_list|)
 expr_stmt|;
+name|mp
+operator|.
+name|setMaxCFSSegmentSizeMB
+argument_list|(
+name|Double
+operator|.
+name|POSITIVE_INFINITY
+argument_list|)
+expr_stmt|;
 comment|// TODO: remove randomness
 name|IndexWriterConfig
 name|conf
