@@ -2183,6 +2183,7 @@ argument_list|,
 name|iwc
 argument_list|)
 decl_stmt|;
+comment|// Change to true:
 name|LogMergePolicy
 name|lmp
 init|=
@@ -2213,6 +2214,13 @@ argument_list|(
 name|Double
 operator|.
 name|POSITIVE_INFINITY
+argument_list|)
+expr_stmt|;
+name|lmp
+operator|.
+name|setUseCompoundFile
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|Document
