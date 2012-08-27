@@ -730,6 +730,20 @@ name|solr
 operator|.
 name|update
 operator|.
+name|VersionInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|update
+operator|.
 name|processor
 operator|.
 name|DistributedUpdateProcessorFactory
@@ -3615,6 +3629,69 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+literal|null
+operator|!=
+name|cd
+operator|&&
+literal|null
+operator|!=
+name|cd
+operator|.
+name|getCloudDescriptor
+argument_list|()
+condition|)
+block|{
+comment|// we are evidently running in cloud mode.
+comment|//
+comment|// In cloud mode, version field is required for correct consistency
+comment|// ideally this check would be more fine grained, and individual features
+comment|// would assert it when they initialize, but DistribuedUpdateProcessor
+comment|// is currently a big ball of wax that does more then just distributing
+comment|// updates (ie: partial document updates), so it needs to work in no cloud
+comment|// mode as well, and can't assert version field support on init.
+try|try
+block|{
+name|Object
+name|ignored
+init|=
+name|VersionInfo
+operator|.
+name|getAndCheckVersionField
+argument_list|(
+name|schema
+argument_list|)
+decl_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SolrException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Schema will not work with SolrCloud mode: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 comment|//Initialize JMX
 if|if
