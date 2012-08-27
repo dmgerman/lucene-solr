@@ -246,16 +246,13 @@ specifier|final
 name|String
 name|name
 decl_stmt|;
-comment|// Field's value:
+comment|/** Field's value */
 DECL|field|fieldsData
 specifier|protected
 name|Object
 name|fieldsData
 decl_stmt|;
-comment|// Pre-analyzed tokenStream for indexed fields; this is
-comment|// separate from fieldsData because you are allowed to
-comment|// have both; eg maybe field has a String value but you
-comment|// customize how it's tokenized:
+comment|/** Pre-analyzed tokenStream for indexed fields; this is    * separate from fieldsData because you are allowed to    * have both; eg maybe field has a String value but you    * customize how it's tokenized */
 DECL|field|tokenStream
 specifier|protected
 name|TokenStream
