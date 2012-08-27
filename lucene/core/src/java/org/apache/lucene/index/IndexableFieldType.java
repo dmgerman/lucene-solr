@@ -24,6 +24,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|Analyzer
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|FieldInfo
@@ -56,42 +74,42 @@ name|boolean
 name|stored
 parameter_list|()
 function_decl|;
-comment|/** True if this field's value should be analyzed */
+comment|/**     * True if this field's value should be analyzed by the    * {@link Analyzer}.    *<p>    * This has no effect if {@link #indexed()} returns false.    */
 DECL|method|tokenized
 specifier|public
 name|boolean
 name|tokenized
 parameter_list|()
 function_decl|;
-comment|/** True if term vectors should be indexed */
+comment|/**     * True if this field's indexed form should be also stored     * into term vectors.    *<p>    * This builds a miniature inverted-index for this field which    * can be accessed in a document-oriented way from     * {@link IndexReader#getTermVector(int,String)}.    *<p>    * This option is illegal if {@link #indexed()} returns false.    */
 DECL|method|storeTermVectors
 specifier|public
 name|boolean
 name|storeTermVectors
 parameter_list|()
 function_decl|;
-comment|/** True if term vector offsets should be indexed */
+comment|/**     * True if this field's token character offsets should also    * be stored into term vectors.    *<p>    * This option is illegal if term vectors are not enabled for the field    * ({@link #storeTermVectors()} is false)    */
 DECL|method|storeTermVectorOffsets
 specifier|public
 name|boolean
 name|storeTermVectorOffsets
 parameter_list|()
 function_decl|;
-comment|/** True if term vector positions should be indexed */
+comment|/**     * True if this field's token positions should also be stored    * into the term vectors.    *<p>    * This option is illegal if term vectors are not enabled for the field    * ({@link #storeTermVectors()} is false).     */
 DECL|method|storeTermVectorPositions
 specifier|public
 name|boolean
 name|storeTermVectorPositions
 parameter_list|()
 function_decl|;
-comment|/** True if term vector payloads should be indexed */
+comment|/**     * True if this field's token payloads should also be stored    * into the term vectors.    *<p>    * This option is illegal if term vector positions are not enabled     * for the field ({@link #storeTermVectors()} is false).    */
 DECL|method|storeTermVectorPayloads
 specifier|public
 name|boolean
 name|storeTermVectorPayloads
 parameter_list|()
 function_decl|;
-comment|/** True if norms should not be indexed */
+comment|/**    * True if normalization values should be omitted for the field.    *<p>    * This saves memory, but at the expense of scoring quality (length normalization    * will be disabled), and if you omit norms, you cannot use index-time boosts.     */
 DECL|method|omitNorms
 specifier|public
 name|boolean
@@ -105,7 +123,7 @@ name|IndexOptions
 name|indexOptions
 parameter_list|()
 function_decl|;
-comment|/** DocValues type; if non-null then the field's value    *  will be indexed into docValues */
+comment|/**     * DocValues {@link DocValues.Type}: if non-null then the field's value    * will be indexed into docValues.    */
 DECL|method|docValueType
 specifier|public
 name|DocValues

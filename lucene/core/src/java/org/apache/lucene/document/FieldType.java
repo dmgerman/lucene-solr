@@ -24,6 +24,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|Analyzer
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|DocValues
@@ -200,6 +218,7 @@ name|NumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT
 decl_stmt|;
+comment|/**    * Create a new mutable FieldType with all of the properties from<code>ref</code>    */
 DECL|method|FieldType
 specifier|public
 name|FieldType
@@ -309,6 +328,7 @@ argument_list|()
 expr_stmt|;
 comment|// Do not copy frozen!
 block|}
+comment|/**    * Create a new FieldType with default properties.    */
 DECL|method|FieldType
 specifier|public
 name|FieldType
@@ -348,6 +368,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setIndexed(boolean)    */
 DECL|method|indexed
 specifier|public
 name|boolean
@@ -360,6 +381,7 @@ operator|.
 name|indexed
 return|;
 block|}
+comment|/**    * Set to<code>true</code> to index (invert) this field.    * @see #indexed()    */
 DECL|method|setIndexed
 specifier|public
 name|void
@@ -379,6 +401,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setStored(boolean)    */
 DECL|method|stored
 specifier|public
 name|boolean
@@ -391,6 +414,7 @@ operator|.
 name|stored
 return|;
 block|}
+comment|/**    * Set to<code>true</code> to store this field.    * @see #stored()    */
 DECL|method|setStored
 specifier|public
 name|void
@@ -410,6 +434,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>true</code>.    * @see #setTokenized(boolean)    */
 DECL|method|tokenized
 specifier|public
 name|boolean
@@ -422,6 +447,7 @@ operator|.
 name|tokenized
 return|;
 block|}
+comment|/**    * Set to<code>true</code> to tokenize this field's contents via the     * configured {@link Analyzer}.    * @see #tokenized()    */
 DECL|method|setTokenized
 specifier|public
 name|void
@@ -441,6 +467,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.     * @see #setStoreTermVectors(boolean)    */
 DECL|method|storeTermVectors
 specifier|public
 name|boolean
@@ -453,6 +480,7 @@ operator|.
 name|storeTermVectors
 return|;
 block|}
+comment|/**    * Set to<code>true</code> if this field's indexed form should be also stored     * into term vectors.    * @see #storeTermVectors()    */
 DECL|method|setStoreTermVectors
 specifier|public
 name|void
@@ -472,6 +500,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setStoreTermVectorOffsets(boolean)    */
 DECL|method|storeTermVectorOffsets
 specifier|public
 name|boolean
@@ -484,6 +513,7 @@ operator|.
 name|storeTermVectorOffsets
 return|;
 block|}
+comment|/**    * Set to<code>true</code> to also store token character offsets into the term    * vector for this field.    * @see #storeTermVectorOffsets()    */
 DECL|method|setStoreTermVectorOffsets
 specifier|public
 name|void
@@ -503,6 +533,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setStoreTermVectorPositions(boolean)    */
 DECL|method|storeTermVectorPositions
 specifier|public
 name|boolean
@@ -515,6 +546,7 @@ operator|.
 name|storeTermVectorPositions
 return|;
 block|}
+comment|/**    * Set to<code>true</code> to also store token positions into the term    * vector for this field.    * @see #storeTermVectorPositions()    */
 DECL|method|setStoreTermVectorPositions
 specifier|public
 name|void
@@ -534,6 +566,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setStoreTermVectorPayloads(boolean)     */
 DECL|method|storeTermVectorPayloads
 specifier|public
 name|boolean
@@ -546,6 +579,7 @@ operator|.
 name|storeTermVectorPayloads
 return|;
 block|}
+comment|/**    * Set to<code>true</code> to also store token payloads into the term    * vector for this field.    * @see #storeTermVectorPayloads()    */
 DECL|method|setStoreTermVectorPayloads
 specifier|public
 name|void
@@ -565,6 +599,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>false</code>.    * @see #setOmitNorms(boolean)    */
 DECL|method|omitNorms
 specifier|public
 name|boolean
@@ -577,6 +612,7 @@ operator|.
 name|omitNorms
 return|;
 block|}
+comment|/**    * Set to<code>true</code> to omit normalization values for the field.    * @see #omitNorms()    */
 DECL|method|setOmitNorms
 specifier|public
 name|void
@@ -596,6 +632,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * The default is {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS}.    * @see #setIndexOptions(FieldInfo.IndexOptions)    */
 DECL|method|indexOptions
 specifier|public
 name|IndexOptions
@@ -608,6 +645,7 @@ operator|.
 name|indexOptions
 return|;
 block|}
+comment|/**    * Sets the indexing options for the field:    * @see #indexOptions()    */
 DECL|method|setIndexOptions
 specifier|public
 name|void
@@ -627,6 +665,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * Set's the field's DocValues.Type    * @see #docValueType()    */
 DECL|method|setDocValueType
 specifier|public
 name|void
@@ -646,6 +685,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    *<p>    * The default is<code>null</code> (no docValues)     * @see #setDocValueType(DocValues.Type)    */
 annotation|@
 name|Override
 DECL|method|docValueType
@@ -660,6 +700,7 @@ return|return
 name|docValueType
 return|;
 block|}
+comment|/**    * Specifies the field's numeric type.    * @see #numericType()    */
 DECL|method|setNumericType
 specifier|public
 name|void
@@ -677,7 +718,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/** NumericDataType; if    *  non-null then the field's value will be indexed    *  numerically so that {@link NumericRangeQuery} can be    *  used at search time. */
+comment|/**     * NumericType: if non-null then the field's value will be indexed    * numerically so that {@link NumericRangeQuery} can be used at     * search time.     *<p>    * The default is<code>null</code> (no numeric type)     * @see #setNumericType(NumericType)    */
 DECL|method|numericType
 specifier|public
 name|NumericType
@@ -688,6 +729,7 @@ return|return
 name|numericType
 return|;
 block|}
+comment|/**    * Sets the numeric precision step for the field.    * @see #numericPrecisionStep()    */
 DECL|method|setNumericPrecisionStep
 specifier|public
 name|void
@@ -726,7 +768,7 @@ operator|=
 name|precisionStep
 expr_stmt|;
 block|}
-comment|/** Precision step for numeric field. */
+comment|/**     * Precision step for numeric field.     *<p>    * This has no effect if {@link #numericType()} returns null.    *<p>    * The default is {@link NumericUtils#PRECISION_STEP_DEFAULT}    * @see #setNumericPrecisionStep(int)    */
 DECL|method|numericPrecisionStep
 specifier|public
 name|int

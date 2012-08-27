@@ -137,20 +137,20 @@ block|{
 comment|// NOTE: order is important here; FieldInfo uses this
 comment|// order to merge two conflicting IndexOptions (always
 comment|// "downgrades" by picking the lowest).
-comment|/** only documents are indexed: term frequencies and positions are omitted */
+comment|/**       * Only documents are indexed: term frequencies and positions are omitted.      * Phrase and other positional queries on the field will throw an exception, and scoring      * will behave as if any term in the document appears only once.      */
 comment|// TODO: maybe rename to just DOCS?
 DECL|enum constant|DOCS_ONLY
 name|DOCS_ONLY
 block|,
-comment|/** only documents and term frequencies are indexed: positions are omitted */
+comment|/**       * Only documents and term frequencies are indexed: positions are omitted.       * This enables normal scoring, except Phrase and other positional queries      * will throw an exception.      */
 DECL|enum constant|DOCS_AND_FREQS
 name|DOCS_AND_FREQS
 block|,
-comment|/** documents, frequencies and positions */
+comment|/**       * Indexes documents, frequencies and positions.      * This is a typical default for full-text search: full scoring is enabled      * and positional queries are supported.      */
 DECL|enum constant|DOCS_AND_FREQS_AND_POSITIONS
 name|DOCS_AND_FREQS_AND_POSITIONS
 block|,
-comment|/** documents, frequencies, positions and offsets */
+comment|/**       * Indexes documents, frequencies, positions and offsets.      * Character offsets are encoded alongside the positions.       */
 DECL|enum constant|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
 name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
 block|,   }
