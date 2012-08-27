@@ -101,6 +101,7 @@ specifier|final
 name|ReuseStrategy
 name|reuseStrategy
 decl_stmt|;
+comment|/**    * Create a new Analyzer, reusing the same set of components per-thread    * across calls to {@link #tokenStream(String, Reader)}.     */
 DECL|method|Analyzer
 specifier|public
 name|Analyzer
@@ -114,6 +115,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Expert: create a new Analyzer with a custom {@link ReuseStrategy}.    *<p>    * NOTE: if you just want to reuse on a per-field basis, its easier to    * use a subclass of {@link AnalyzerWrapper} such as     *<a href="{@docRoot}/../analyzers-common/org/apache/lucene/analysis/miscellaneous/PerFieldAnalyzerWrapper.html">    * PerFieldAnalyerWrapper</a> instead.    */
 DECL|method|Analyzer
 specifier|public
 name|Analyzer
@@ -290,12 +292,14 @@ specifier|static
 class|class
 name|TokenStreamComponents
 block|{
+comment|/**      * Original source of the tokens.      */
 DECL|field|source
 specifier|protected
 specifier|final
 name|Tokenizer
 name|source
 decl_stmt|;
+comment|/**      * Sink tokenstream, such as the outer tokenfilter decorating      * the chain. This can be the source if there are no filters.      */
 DECL|field|sink
 specifier|protected
 specifier|final
