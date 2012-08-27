@@ -67,7 +67,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  *  */
+comment|/**  * Assembles a QueryBuilder which uses Query objects from  * Lucene's<code>sandbox</code> and<code>queries</code>  * modules in addition to core queries.  */
 end_comment
 
 begin_class

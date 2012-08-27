@@ -64,6 +64,10 @@ name|Query
 import|;
 end_import
 
+begin_comment
+comment|/**  * Forms an OR query of the provided query across multiple fields.  */
+end_comment
+
 begin_class
 DECL|class|FieldsQuery
 specifier|public
