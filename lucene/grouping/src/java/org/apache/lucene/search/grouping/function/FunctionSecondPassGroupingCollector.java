@@ -298,7 +298,8 @@ operator|=
 name|vsContext
 expr_stmt|;
 block|}
-comment|/**    * {@inheritDoc}    */
+annotation|@
+name|Override
 DECL|method|retrieveGroup
 specifier|protected
 name|SearchGroupDocs
@@ -329,7 +330,8 @@ name|mval
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    */
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void

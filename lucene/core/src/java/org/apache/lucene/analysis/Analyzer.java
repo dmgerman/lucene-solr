@@ -574,7 +574,8 @@ name|GlobalReuseStrategy
 extends|extends
 name|ReuseStrategy
 block|{
-comment|/**      * {@inheritDoc}      */
+annotation|@
+name|Override
 DECL|method|getReusableComponents
 specifier|public
 name|TokenStreamComponents
@@ -592,7 +593,8 @@ name|getStoredValue
 argument_list|()
 return|;
 block|}
-comment|/**      * {@inheritDoc}      */
+annotation|@
+name|Override
 DECL|method|setReusableComponents
 specifier|public
 name|void
@@ -621,12 +623,13 @@ name|PerFieldReuseStrategy
 extends|extends
 name|ReuseStrategy
 block|{
-comment|/**      * {@inheritDoc}      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|Override
 DECL|method|getReusableComponents
 specifier|public
 name|TokenStreamComponents
@@ -670,12 +673,13 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**      * {@inheritDoc}      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|Override
 DECL|method|setReusableComponents
 specifier|public
 name|void

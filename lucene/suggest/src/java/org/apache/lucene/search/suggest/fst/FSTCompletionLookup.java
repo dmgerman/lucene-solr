@@ -421,7 +421,6 @@ name|exactMatchFirst
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|build
