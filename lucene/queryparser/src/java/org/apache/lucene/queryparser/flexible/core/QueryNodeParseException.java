@@ -292,7 +292,7 @@ operator|=
 name|message
 expr_stmt|;
 block|}
-comment|/**    * For EndOfLine and EndOfFile ("<EOF>") parsing problems the last char in the    * string is returned For the case where the parser is not able to figure out    * the line and column number -1 will be returned    *     * @return line where the problem was found    */
+comment|/**    * For EndOfLine and EndOfFile ("&lt;EOF&gt;") parsing problems the last char in the    * string is returned For the case where the parser is not able to figure out    * the line and column number -1 will be returned    *     * @return line where the problem was found    */
 DECL|method|getBeginLine
 specifier|public
 name|int
@@ -305,7 +305,7 @@ operator|.
 name|beginLine
 return|;
 block|}
-comment|/**    * For EndOfLine and EndOfFile ("<EOF>") parsing problems the last char in the    * string is returned For the case where the parser is not able to figure out    * the line and column number -1 will be returned    *     * @return column of the first char where the problem was found    */
+comment|/**    * For EndOfLine and EndOfFile ("&lt;EOF&gt;") parsing problems the last char in the    * string is returned For the case where the parser is not able to figure out    * the line and column number -1 will be returned    *     * @return column of the first char where the problem was found    */
 DECL|method|getBeginColumn
 specifier|public
 name|int
