@@ -63,12 +63,14 @@ specifier|final
 class|class
 name|FieldInfo
 block|{
+comment|/** Field's name */
 DECL|field|name
 specifier|public
 specifier|final
 name|String
 name|name
 decl_stmt|;
+comment|/** Internal field number */
 DECL|field|number
 specifier|public
 specifier|final
@@ -586,7 +588,7 @@ name|checkConsistency
 argument_list|()
 assert|;
 block|}
-comment|/** @return IndexOptions for the field, or null if the field is not indexed */
+comment|/** Returns IndexOptions for the field, or null if the field is not indexed */
 DECL|method|getIndexOptions
 specifier|public
 name|IndexOptions
@@ -597,7 +599,7 @@ return|return
 name|indexOptions
 return|;
 block|}
-comment|/**    * @return true if this field has any docValues.    */
+comment|/**    * Returns true if this field has any docValues.    */
 DECL|method|hasDocValues
 specifier|public
 name|boolean
@@ -610,7 +612,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/**    * @return {@link DocValues.Type} of the docValues. this may be null if the field has no docvalues.    */
+comment|/**    * Returns {@link DocValues.Type} of the docValues. this may be null if the field has no docvalues.    */
 DECL|method|getDocValuesType
 specifier|public
 name|DocValues
@@ -623,7 +625,7 @@ return|return
 name|docValueType
 return|;
 block|}
-comment|/**    * @return {@link DocValues.Type} of the norm. this may be null if the field has no norms.    */
+comment|/**    * Returns {@link DocValues.Type} of the norm. this may be null if the field has no norms.    */
 DECL|method|getNormType
 specifier|public
 name|DocValues
@@ -698,7 +700,7 @@ name|checkConsistency
 argument_list|()
 assert|;
 block|}
-comment|/**    * @return true if norms are explicitly omitted for this field    */
+comment|/**    * Returns true if norms are explicitly omitted for this field    */
 DECL|method|omitsNorms
 specifier|public
 name|boolean
@@ -709,7 +711,7 @@ return|return
 name|omitNorms
 return|;
 block|}
-comment|/**    * @return true if this field actually has any norms.    */
+comment|/**    * Returns true if this field actually has any norms.    */
 DECL|method|hasNorms
 specifier|public
 name|boolean
@@ -722,7 +724,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/**    * @return true if this field is indexed.    */
+comment|/**    * Returns true if this field is indexed.    */
 DECL|method|isIndexed
 specifier|public
 name|boolean
@@ -733,7 +735,7 @@ return|return
 name|indexed
 return|;
 block|}
-comment|/**    * @return true if any payloads exist for this field.    */
+comment|/**    * Returns true if any payloads exist for this field.    */
 DECL|method|hasPayloads
 specifier|public
 name|boolean
@@ -744,7 +746,7 @@ return|return
 name|storePayloads
 return|;
 block|}
-comment|/**    * @return true if any term vectors exist for this field.    */
+comment|/**    * Returns true if any term vectors exist for this field.    */
 DECL|method|hasVectors
 specifier|public
 name|boolean
@@ -831,7 +833,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * @return internal codec attributes map. May be null if no mappings exist.    */
+comment|/**    * Returns internal codec attributes map. May be null if no mappings exist.    */
 DECL|method|attributes
 specifier|public
 name|Map

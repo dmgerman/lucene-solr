@@ -559,6 +559,7 @@ return|return
 name|filename
 return|;
 block|}
+comment|/**    * Removes the extension (anything after the first '.'),    * otherwise returns the original filename.    */
 DECL|method|stripExtension
 specifier|public
 specifier|static

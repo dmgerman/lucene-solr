@@ -135,20 +135,23 @@ return|return
 name|atts
 return|;
 block|}
-comment|/** Represents returned result from {@link #seekCeil}.    *  If status is FOUND, then the precise term was found.    *  If status is NOT_FOUND, then a different term was    *  found.  If the status is END, the end of the iteration    *  was hit. */
+comment|/** Represents returned result from {@link #seekCeil}. */
 DECL|enum|SeekStatus
-DECL|enum constant|END
-DECL|enum constant|FOUND
-DECL|enum constant|NOT_FOUND
 specifier|public
 specifier|static
 enum|enum
 name|SeekStatus
 block|{
+comment|/** The term was not found, and the end of iteration was hit. */
+DECL|enum constant|END
 name|END
 block|,
+comment|/** The precise term was found. */
+DECL|enum constant|FOUND
 name|FOUND
 block|,
+comment|/** A different term was found after the requested term */
+DECL|enum constant|NOT_FOUND
 name|NOT_FOUND
 block|}
 empty_stmt|;

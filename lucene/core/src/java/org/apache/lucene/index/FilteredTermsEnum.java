@@ -118,24 +118,29 @@ name|tenum
 decl_stmt|;
 comment|/** Return value, if term should be accepted or the iteration should    * {@code END}. The {@code *_SEEK} values denote, that after handling the current term    * the enum should call {@link #nextSeekTerm} and step forward.    * @see #accept(BytesRef)    */
 DECL|enum|AcceptStatus
-DECL|enum constant|YES
-DECL|enum constant|YES_AND_SEEK
-DECL|enum constant|NO
-DECL|enum constant|NO_AND_SEEK
-DECL|enum constant|END
 specifier|protected
 specifier|static
 enum|enum
 name|AcceptStatus
 block|{
+comment|/** Accept the term and position the enum at the next term. */
+DECL|enum constant|YES
 name|YES
 block|,
+comment|/** Accept the term and advance ({@link FilteredTermsEnum#nextSeekTerm(BytesRef)})      * to the next term. */
+DECL|enum constant|YES_AND_SEEK
 name|YES_AND_SEEK
 block|,
+comment|/** Reject the term and position the enum at the next term. */
+DECL|enum constant|NO
 name|NO
 block|,
+comment|/** Reject the term and advance ({@link FilteredTermsEnum#nextSeekTerm(BytesRef)})      * to the next term. */
+DECL|enum constant|NO_AND_SEEK
 name|NO_AND_SEEK
 block|,
+comment|/** Reject the term and stop enumerating. */
+DECL|enum constant|END
 name|END
 block|}
 empty_stmt|;

@@ -125,12 +125,14 @@ name|FilterFields
 extends|extends
 name|Fields
 block|{
+comment|/** The underlying Fields instance. */
 DECL|field|in
 specifier|protected
 specifier|final
 name|Fields
 name|in
 decl_stmt|;
+comment|/**      * Creates a new FilterFields.      * @param in the underlying Fields instance.      */
 DECL|method|FilterFields
 specifier|public
 name|FilterFields
@@ -211,12 +213,14 @@ name|FilterTerms
 extends|extends
 name|Terms
 block|{
+comment|/** The underlying Terms instance. */
 DECL|field|in
 specifier|protected
 specifier|final
 name|Terms
 name|in
 decl_stmt|;
+comment|/**      * Creates a new FilterTerms      * @param in the underlying Terms instance.      */
 DECL|method|FilterTerms
 specifier|public
 name|FilterTerms
@@ -428,12 +432,14 @@ name|FilterTermsEnum
 extends|extends
 name|TermsEnum
 block|{
+comment|/** The underlying TermsEnum instance. */
 DECL|field|in
 specifier|protected
 specifier|final
 name|TermsEnum
 name|in
 decl_stmt|;
+comment|/**      * Creates a new FilterTermsEnum      * @param in the underlying TermsEnum instance.      */
 DECL|method|FilterTermsEnum
 specifier|public
 name|FilterTermsEnum
@@ -759,12 +765,14 @@ name|FilterDocsEnum
 extends|extends
 name|DocsEnum
 block|{
+comment|/** The underlying DocsEnum instance. */
 DECL|field|in
 specifier|protected
 specifier|final
 name|DocsEnum
 name|in
 decl_stmt|;
+comment|/**      * Create a new FilterDocsEnum      * @param in the underlying DocsEnum instance.      */
 DECL|method|FilterDocsEnum
 specifier|public
 name|FilterDocsEnum
@@ -876,12 +884,14 @@ name|FilterDocsAndPositionsEnum
 extends|extends
 name|DocsAndPositionsEnum
 block|{
+comment|/** The underlying DocsAndPositionsEnum instance. */
 DECL|field|in
 specifier|protected
 specifier|final
 name|DocsAndPositionsEnum
 name|in
 decl_stmt|;
+comment|/**      * Create a new FilterDocsAndPositionsEnum      * @param in the underlying DocsAndPositionsEnum instance.      */
 DECL|method|FilterDocsAndPositionsEnum
 specifier|public
 name|FilterDocsAndPositionsEnum
@@ -1052,6 +1062,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/** The underlying AtomicReader. */
 DECL|field|in
 specifier|protected
 specifier|final
