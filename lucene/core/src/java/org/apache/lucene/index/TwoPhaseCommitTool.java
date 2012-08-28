@@ -47,6 +47,12 @@ specifier|final
 class|class
 name|TwoPhaseCommitTool
 block|{
+comment|/** No instance */
+DECL|method|TwoPhaseCommitTool
+specifier|private
+name|TwoPhaseCommitTool
+parameter_list|()
+block|{}
 comment|/**    * A wrapper of a {@link TwoPhaseCommit}, which delegates all calls to the    * wrapped object, passing the specified commitData. This object is useful for    * use with {@link TwoPhaseCommitTool#execute(TwoPhaseCommit...)} if one would    * like to store commitData as part of the commit.    */
 DECL|class|TwoPhaseCommitWrapper
 specifier|public

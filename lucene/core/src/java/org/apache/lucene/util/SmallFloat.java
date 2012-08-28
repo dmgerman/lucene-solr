@@ -26,6 +26,12 @@ specifier|public
 class|class
 name|SmallFloat
 block|{
+comment|/** No instance */
+DECL|method|SmallFloat
+specifier|private
+name|SmallFloat
+parameter_list|()
+block|{}
 comment|/** Converts a 32 bit float to an 8 bit float.    *<br>Values less than zero are all mapped to zero.    *<br>Values are truncated (rounded down) to the nearest 8 bit value.    *<br>Values between zero and the smallest representable value    *  are rounded up.    *    * @param f the 32 bit float to be converted to an 8 bit float (byte)    * @param numMantissaBits the number of mantissa bits to use in the byte, with the remainder to be used in the exponent    * @param zeroExp the zero-point in the range of exponent values    * @return the 8 bit float representation    */
 DECL|method|floatToByte
 specifier|public

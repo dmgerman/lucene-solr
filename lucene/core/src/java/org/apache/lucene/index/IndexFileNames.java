@@ -57,6 +57,12 @@ specifier|final
 class|class
 name|IndexFileNames
 block|{
+comment|/** No instance */
+DECL|method|IndexFileNames
+specifier|private
+name|IndexFileNames
+parameter_list|()
+block|{}
 comment|/** Name of the index segment file */
 DECL|field|SEGMENTS
 specifier|public
