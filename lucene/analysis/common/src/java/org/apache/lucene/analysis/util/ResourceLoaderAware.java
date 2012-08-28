@@ -38,6 +38,7 @@ specifier|public
 interface|interface
 name|ResourceLoaderAware
 block|{
+comment|/**    * Initializes this component with the provided ResourceLoader    * (used for loading classes, files, etc).    */
 DECL|method|inform
 name|void
 name|inform

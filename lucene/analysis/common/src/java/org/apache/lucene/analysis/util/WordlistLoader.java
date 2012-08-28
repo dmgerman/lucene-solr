@@ -128,15 +128,21 @@ specifier|public
 class|class
 name|WordlistLoader
 block|{
-DECL|field|INITITAL_CAPACITY
+DECL|field|INITIAL_CAPACITY
 specifier|private
 specifier|static
 specifier|final
 name|int
-name|INITITAL_CAPACITY
+name|INITIAL_CAPACITY
 init|=
 literal|16
 decl_stmt|;
+comment|/** no instance */
+DECL|method|WordlistLoader
+specifier|private
+name|WordlistLoader
+parameter_list|()
+block|{}
 comment|/**    * Reads lines from a Reader and adds every line as an entry to a CharArraySet (omitting    * leading and trailing whitespace). Every line of the Reader should contain only    * one word. The words need to be in lowercase if you make use of an    * Analyzer which uses LowerCaseFilter (like StandardAnalyzer).    *    * @param reader Reader containing the wordlist    * @param result the {@link CharArraySet} to fill with the readers words    * @return the given {@link CharArraySet} with the reader's words    */
 DECL|method|getWordSet
 specifier|public
@@ -238,7 +244,7 @@ name|CharArraySet
 argument_list|(
 name|matchVersion
 argument_list|,
-name|INITITAL_CAPACITY
+name|INITIAL_CAPACITY
 argument_list|,
 literal|false
 argument_list|)
@@ -276,7 +282,7 @@ name|CharArraySet
 argument_list|(
 name|matchVersion
 argument_list|,
-name|INITITAL_CAPACITY
+name|INITIAL_CAPACITY
 argument_list|,
 literal|false
 argument_list|)
@@ -541,7 +547,7 @@ name|CharArraySet
 argument_list|(
 name|matchVersion
 argument_list|,
-name|INITITAL_CAPACITY
+name|INITIAL_CAPACITY
 argument_list|,
 literal|false
 argument_list|)
