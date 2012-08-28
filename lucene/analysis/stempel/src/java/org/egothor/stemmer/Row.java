@@ -643,7 +643,7 @@ operator|.
 name|cnt
 return|;
 block|}
-comment|/**    * Return the reference to the next Row in the Cell associated with the given    * Character.    *     * @param way the Character associated with the desired Cell    * @return the reference, or -1 if the Cell is<tt>null,/tt>    */
+comment|/**    * Return the reference to the next Row in the Cell associated with the given    * Character.    *     * @param way the Character associated with the desired Cell    * @return the reference, or -1 if the Cell is<tt>null</tt>    */
 DECL|method|getRef
 specifier|public
 name|int

@@ -125,7 +125,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true if there is a value set with the given key, otherwise false.    *     * @param<T> @param<T> the value's type    * @param key the key, cannot be<code>null</code>    * @return true if there is a value set with the given key, otherwise false    */
+comment|/**    * Returns true if there is a value set with the given key, otherwise false.    *     * @param<T> the value's type    * @param key the key, cannot be<code>null</code>    * @return true if there is a value set with the given key, otherwise false    */
 DECL|method|has
 specifier|public
 parameter_list|<
