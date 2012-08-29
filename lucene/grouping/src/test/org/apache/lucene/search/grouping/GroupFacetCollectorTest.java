@@ -1886,6 +1886,14 @@ name|useDv
 init|=
 literal|false
 decl_stmt|;
+comment|// Cannot assert this since we use NoMergePolicy:
+name|w
+operator|.
+name|setDoRandomForceMergeAssert
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 comment|// 0
 name|Document
 name|doc
