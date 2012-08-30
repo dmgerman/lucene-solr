@@ -3738,6 +3738,35 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|split
+specifier|public
+name|void
+name|split
+parameter_list|(
+name|SplitIndexCommand
+name|cmd
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// TODO: do a commit first?
+name|SolrIndexSplitter
+name|splitter
+init|=
+operator|new
+name|SolrIndexSplitter
+argument_list|(
+name|cmd
+argument_list|)
+decl_stmt|;
+name|splitter
+operator|.
+name|split
+argument_list|()
+expr_stmt|;
+block|}
 comment|/////////////////////////////////////////////////////////////////////
 comment|// SolrInfoMBean stuff: Statistics and Module Info
 comment|/////////////////////////////////////////////////////////////////////

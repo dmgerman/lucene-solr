@@ -257,6 +257,9 @@ block|,
 DECL|enum constant|MERGEINDEXES
 name|MERGEINDEXES
 block|,
+DECL|enum constant|SPLIT
+name|SPLIT
+block|,
 DECL|enum constant|PREPRECOVERY
 name|PREPRECOVERY
 block|,
