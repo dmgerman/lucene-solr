@@ -38,6 +38,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|util
+operator|.
+name|AbstractSolrTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|util
@@ -198,26 +212,6 @@ name|java
 operator|.
 name|net
 operator|.
-name|InetSocketAddress
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|Socket
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
 name|ServerSocket
 import|;
 end_import
@@ -253,16 +247,6 @@ operator|.
 name|server
 operator|.
 name|RMIServerSocketFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
 import|;
 end_import
 
@@ -380,8 +364,8 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-comment|// this stupid sysprop thing is needed, because remote stubs use the
-comment|// hostname to connect, which does not work with server bound to 127.0.0.1
+comment|// this stupid sysprop thing is needed, because remote stubs use an
+comment|// arbitrary local ip to connect
 comment|// See: http://weblogs.java.net/blog/emcmanus/archive/2006/12/multihomed_comp.html
 name|System
 operator|.
@@ -412,27 +396,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+return|return
 name|socket
 operator|=
 operator|new
 name|ServerSocket
-argument_list|()
-expr_stmt|;
-name|socket
-operator|.
-name|bind
 argument_list|(
-operator|new
-name|InetSocketAddress
-argument_list|(
-literal|"127.0.0.1"
-argument_list|,
 name|port
 argument_list|)
-argument_list|)
-expr_stmt|;
-return|return
-name|socket
 return|;
 block|}
 block|}
@@ -464,15 +435,21 @@ operator|.
 name|getLocalPort
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("Using port: " + port);
+name|AbstractSolrTestCase
+operator|.
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Using port: "
+operator|+
+name|port
+argument_list|)
+expr_stmt|;
 name|String
 name|url
 init|=
-literal|"service:jmx:rmi://127.0.0.1:"
-operator|+
-name|port
-operator|+
-literal|"/jndi/rmi://127.0.0.1:"
+literal|"service:jmx:rmi:///jndi/rmi://127.0.0.1:"
 operator|+
 name|port
 operator|+
@@ -508,17 +485,6 @@ argument_list|,
 literal|""
 argument_list|,
 name|config
-argument_list|,
-name|Collections
-operator|.
-name|singletonMap
-argument_list|(
-name|RMIConnectorServer
-operator|.
-name|RMI_SERVER_SOCKET_FACTORY_ATTRIBUTE
-argument_list|,
-name|factory
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|JMXServiceURL
