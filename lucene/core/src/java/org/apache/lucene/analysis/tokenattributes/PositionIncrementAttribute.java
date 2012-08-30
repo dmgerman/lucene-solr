@@ -44,7 +44,7 @@ name|PositionIncrementAttribute
 extends|extends
 name|Attribute
 block|{
-comment|/** Set the position increment. The default value is one.    *    * @param positionIncrement the distance from the prior term    */
+comment|/** Set the position increment. The default value is one.    *    * @param positionIncrement the distance from the prior term    * @throws IllegalArgumentException if<code>positionIncrement</code>     *         is negative.    * @see #getPositionIncrement()    */
 DECL|method|setPositionIncrement
 specifier|public
 name|void
@@ -54,7 +54,7 @@ name|int
 name|positionIncrement
 parameter_list|)
 function_decl|;
-comment|/** Returns the position increment of this Token.    * @see #setPositionIncrement    */
+comment|/** Returns the position increment of this Token.    * @see #setPositionIncrement(int)    */
 DECL|method|getPositionIncrement
 specifier|public
 name|int

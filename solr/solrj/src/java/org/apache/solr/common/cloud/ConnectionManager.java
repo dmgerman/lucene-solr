@@ -178,6 +178,15 @@ specifier|final
 name|ZkClientConnectionStrategy
 name|connectionStrategy
 decl_stmt|;
+DECL|field|connectionUpdateLock
+specifier|private
+name|Object
+name|connectionUpdateLock
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
 DECL|field|zkServerAddress
 specifier|private
 name|String
@@ -350,6 +359,13 @@ condition|(
 name|isClosed
 condition|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Client->ZooKeeper status change trigger but we are already closed"
+argument_list|)
+expr_stmt|;
 return|return;
 block|}
 name|state
@@ -377,6 +393,11 @@ operator|.
 name|countDown
 argument_list|()
 expr_stmt|;
+name|connectionStrategy
+operator|.
+name|connected
+argument_list|()
+expr_stmt|;
 block|}
 elseif|else
 if|if
@@ -396,7 +417,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Attempting to reconnect to recover relationship with ZooKeeper..."
+literal|"Our previous ZooKeeper session was expired. Attempting to reconnect to recover relationship with ZooKeeper..."
 argument_list|)
 expr_stmt|;
 try|try
@@ -430,7 +451,7 @@ block|{
 comment|// if keeper does not replace oldKeeper we must be sure to close it
 synchronized|synchronized
 init|(
-name|connectionStrategy
+name|connectionUpdateLock
 init|)
 block|{
 try|try
@@ -442,35 +463,6 @@ operator|.
 name|DEFAULT_CLIENT_CONNECT_TIMEOUT
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e1
-parameter_list|)
-block|{
-name|closeKeeper
-argument_list|(
-name|keeper
-argument_list|)
-expr_stmt|;
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Giving up on connecting - we were interrupted"
-argument_list|,
-name|e1
-argument_list|)
-throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -491,6 +483,13 @@ name|e1
 argument_list|)
 throw|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Connection with ZooKeeper reestablished."
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|client
@@ -621,9 +620,21 @@ operator|.
 name|Disconnected
 condition|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"zkClient has disconnected"
+argument_list|)
+expr_stmt|;
 name|connected
 operator|=
 literal|false
+expr_stmt|;
+name|connectionStrategy
+operator|.
+name|disconnected
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -687,10 +698,15 @@ name|long
 name|waitForConnection
 parameter_list|)
 throws|throws
-name|InterruptedException
-throws|,
 name|TimeoutException
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Waiting for client to connect to ZooKeeper"
+argument_list|)
+expr_stmt|;
 name|long
 name|expire
 init|=
@@ -723,11 +739,36 @@ condition|)
 block|{
 break|break;
 block|}
+try|try
+block|{
 name|wait
 argument_list|(
 literal|500
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
 name|left
 operator|=
 name|expire
@@ -760,6 +801,13 @@ literal|" ms"
 argument_list|)
 throw|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Client is connected to ZooKeeper"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|waitForDisconnected
 specifier|public

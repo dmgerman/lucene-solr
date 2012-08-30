@@ -8916,14 +8916,23 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
+comment|// This test expects all of its segments to be in CFS
 name|mergePolicy
 operator|.
 name|setNoCFSRatio
 argument_list|(
-literal|1
+literal|1.0
 argument_list|)
 expr_stmt|;
-comment|// This test expects all of its segments to be in CFS
+name|mergePolicy
+operator|.
+name|setMaxCFSSegmentSizeMB
+argument_list|(
+name|Double
+operator|.
+name|POSITIVE_INFINITY
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|w
 init|=
@@ -10463,14 +10472,11 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|setReader
+DECL|method|reset
 specifier|public
 name|void
-name|setReader
-parameter_list|(
-name|Reader
-name|input
-parameter_list|)
+name|reset
+parameter_list|()
 throws|throws
 name|IOException
 block|{

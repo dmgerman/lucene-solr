@@ -1218,6 +1218,13 @@ argument_list|)
 expr_stmt|;
 name|prepCmd
 operator|.
+name|setOnlyIfLeader
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|prepCmd
+operator|.
 name|setPauseFor
 argument_list|(
 literal|6000
@@ -1497,6 +1504,11 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+name|boolean
+name|firstTime
+init|=
+literal|true
+decl_stmt|;
 name|List
 argument_list|<
 name|Long
@@ -1686,11 +1698,6 @@ name|startingVersions
 argument_list|)
 expr_stmt|;
 block|}
-name|boolean
-name|firstTime
-init|=
-literal|true
-decl_stmt|;
 if|if
 condition|(
 name|recoveringAfterStartup
@@ -1843,6 +1850,30 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|isLeader
+operator|&&
+operator|!
+name|cloudDesc
+operator|.
+name|isLeader
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Cloud state still says we are leader."
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|cloudDesc
+operator|.
 name|isLeader
 condition|)
 block|{
@@ -2010,9 +2041,6 @@ operator|+
 name|coreName
 argument_list|)
 expr_stmt|;
-comment|// System.out
-comment|// .println("Sync Recovery was successful - registering as Active "
-comment|// + zkController.getNodeName());
 comment|// solrcloud_debug
 comment|// try {
 comment|// RefCounted<SolrIndexSearcher> searchHolder =

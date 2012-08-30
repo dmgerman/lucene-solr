@@ -123,6 +123,7 @@ name|DEFAULT_TERMS_INDEX_DIVISOR
 init|=
 literal|1
 decl_stmt|;
+comment|/** The index directory. */
 DECL|field|directory
 specifier|protected
 specifier|final

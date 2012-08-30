@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.internal  */
+comment|/**  * Caches the doubleVal of another value source in a HashMap  * so that it is computed only once.  * @lucene.internal  */
 end_comment
 
 begin_class

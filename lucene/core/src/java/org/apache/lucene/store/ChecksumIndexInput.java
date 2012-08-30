@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Writes bytes through to a primary IndexOutput, computing  *  checksum as it goes. Note that you cannot use seek().  *  * @lucene.internal  */
+comment|/** Reads bytes through to a primary IndexInput, computing  *  checksum as it goes. Note that you cannot use seek().  *  * @lucene.internal  */
 end_comment
 
 begin_class

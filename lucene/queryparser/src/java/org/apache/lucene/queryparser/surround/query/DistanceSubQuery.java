@@ -30,6 +30,10 @@ name|IOException
 import|;
 end_import
 
+begin_comment
+comment|/**  * Interface for queries that can be nested as subqueries  * into a span near.  */
+end_comment
+
 begin_interface
 DECL|interface|DistanceSubQuery
 specifier|public

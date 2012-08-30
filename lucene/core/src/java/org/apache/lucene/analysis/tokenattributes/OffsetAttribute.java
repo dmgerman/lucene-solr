@@ -44,14 +44,14 @@ name|OffsetAttribute
 extends|extends
 name|Attribute
 block|{
-comment|/** Returns this Token's starting offset, the position of the first character   corresponding to this token in the source text.    Note that the difference between endOffset() and startOffset() may not be   equal to termText.length(), as the term text may have been altered by a   stemmer or some other filter. */
+comment|/**     * Returns this Token's starting offset, the position of the first character    * corresponding to this token in the source text.    *<p>    * Note that the difference between {@link #endOffset()} and<code>startOffset()</code>     * may not be equal to termText.length(), as the term text may have been altered by a    * stemmer or some other filter.    * @see #setOffset(int, int)     */
 DECL|method|startOffset
 specifier|public
 name|int
 name|startOffset
 parameter_list|()
 function_decl|;
-comment|/** Set the starting and ending offset.     @see #startOffset() and #endOffset()*/
+comment|/**     * Set the starting and ending offset.    * @throws IllegalArgumentException If<code>startOffset</code> or<code>endOffset</code>    *         are negative, or if<code>startOffset</code> is greater than     *<code>endOffset</code>    * @see #startOffset()    * @see #endOffset()    */
 DECL|method|setOffset
 specifier|public
 name|void
@@ -64,7 +64,7 @@ name|int
 name|endOffset
 parameter_list|)
 function_decl|;
-comment|/** Returns this Token's ending offset, one greater than the position of the   last character corresponding to this token in the source text. The length   of the token in the source text is (endOffset - startOffset). */
+comment|/**     * Returns this Token's ending offset, one greater than the position of the    * last character corresponding to this token in the source text. The length    * of the token in the source text is (<code>endOffset()</code> - {@link #startOffset()}).     * @see #setOffset(int, int)    */
 DECL|method|endOffset
 specifier|public
 name|int

@@ -228,25 +228,28 @@ name|emptyList
 argument_list|()
 return|;
 block|}
-comment|/** a child Scorer and its relationship to its parent.    * the meaning of the relationship depends upon the parent query.     * @lucene.experimental */
+comment|/** A child Scorer and its relationship to its parent.    * the meaning of the relationship depends upon the parent query.     * @lucene.experimental */
 DECL|class|ChildScorer
 specifier|public
 specifier|static
 class|class
 name|ChildScorer
 block|{
+comment|/**      * Child Scorer. (note this is typically a direct child, and may      * itself also have children).      */
 DECL|field|child
 specifier|public
 specifier|final
 name|Scorer
 name|child
 decl_stmt|;
+comment|/**      * An arbitrary string relating this scorer to the parent.      */
 DECL|field|relationship
 specifier|public
 specifier|final
 name|String
 name|relationship
 decl_stmt|;
+comment|/**      * Creates a new ChildScorer node with the specified relationship.      *<p>      * The relationship can be any be any string that makes sense to       * the parent Scorer.       */
 DECL|method|ChildScorer
 specifier|public
 name|ChildScorer

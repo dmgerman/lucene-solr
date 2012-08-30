@@ -42,6 +42,7 @@ name|ByteDocValuesField
 extends|extends
 name|StoredField
 block|{
+comment|/**    * Type for 8-bit byte DocValues.    */
 DECL|field|TYPE
 specifier|public
 specifier|static
@@ -72,6 +73,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**     * Creates a new DocValues field with the specified 8-bit byte value     * @param name field name    * @param value 8-bit byte value    * @throws IllegalArgumentException if the field name is null.    */
 DECL|method|ByteDocValuesField
 specifier|public
 name|ByteDocValuesField

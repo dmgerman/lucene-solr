@@ -209,6 +209,7 @@ argument_list|>
 name|values
 decl_stmt|;
 comment|// for an unmodifiable iterator
+comment|/**    * Constructs a new FieldInfos from an array of FieldInfo objects    */
 DECL|method|FieldInfos
 specifier|public
 name|FieldInfos
@@ -493,7 +494,7 @@ return|return
 name|hasOffsets
 return|;
 block|}
-comment|/**    * @return true if at least one field has any vectors    */
+comment|/** Returns true if any fields have vectors */
 DECL|method|hasVectors
 specifier|public
 name|boolean
@@ -504,7 +505,7 @@ return|return
 name|hasVectors
 return|;
 block|}
-comment|/**    * @return true if at least one field has any norms    */
+comment|/** Returns true if any fields have norms */
 DECL|method|hasNorms
 specifier|public
 name|boolean
@@ -515,7 +516,7 @@ return|return
 name|hasNorms
 return|;
 block|}
-comment|/**    * @return true if at least one field has doc values    */
+comment|/** Returns true if any fields have DocValues */
 DECL|method|hasDocValues
 specifier|public
 name|boolean
@@ -526,7 +527,7 @@ return|return
 name|hasDocValues
 return|;
 block|}
-comment|/**    * @return number of fields    */
+comment|/** Returns the number of fields */
 DECL|method|size
 specifier|public
 name|int

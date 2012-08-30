@@ -644,7 +644,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * @throws AlreadyClosedException if this IndexReader is closed    */
+comment|/**    * Throws AlreadyClosedException if this IndexReader or any    * of its child readers is closed, otherwise returns.    */
 DECL|method|ensureOpen
 specifier|protected
 specifier|final

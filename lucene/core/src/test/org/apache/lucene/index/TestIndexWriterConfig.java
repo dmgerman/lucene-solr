@@ -2151,7 +2151,9 @@ operator|.
 name|setMergePolicy
 argument_list|(
 name|newLogMergePolicy
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Start false:
@@ -2182,6 +2184,9 @@ name|iwc
 argument_list|)
 decl_stmt|;
 comment|// Change to true:
+name|LogMergePolicy
+name|lmp
+init|=
 operator|(
 operator|(
 name|LogMergePolicy
@@ -2194,24 +2199,24 @@ operator|.
 name|getMergePolicy
 argument_list|()
 operator|)
+decl_stmt|;
+name|lmp
 operator|.
 name|setNoCFSRatio
 argument_list|(
 literal|1.0
 argument_list|)
 expr_stmt|;
-operator|(
-operator|(
-name|LogMergePolicy
-operator|)
-name|w
+name|lmp
 operator|.
-name|getConfig
-argument_list|()
+name|setMaxCFSSegmentSizeMB
+argument_list|(
+name|Double
 operator|.
-name|getMergePolicy
-argument_list|()
-operator|)
+name|POSITIVE_INFINITY
+argument_list|)
+expr_stmt|;
+name|lmp
 operator|.
 name|setUseCompoundFile
 argument_list|(

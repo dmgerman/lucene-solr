@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The payload of a Token.  */
+comment|/** Default implementation of {@link PayloadAttribute}. */
 end_comment
 
 begin_class
@@ -89,7 +89,6 @@ operator|=
 name|payload
 expr_stmt|;
 block|}
-comment|/**    * Returns this Token's payload.    */
 DECL|method|getPayload
 specifier|public
 name|BytesRef
@@ -102,7 +101,6 @@ operator|.
 name|payload
 return|;
 block|}
-comment|/**     * Sets this Token's payload.    */
 DECL|method|setPayload
 specifier|public
 name|void

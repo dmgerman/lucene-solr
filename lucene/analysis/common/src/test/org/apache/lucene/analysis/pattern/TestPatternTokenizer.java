@@ -688,6 +688,11 @@ argument_list|(
 literal|"bogusTerm"
 argument_list|)
 expr_stmt|;
+name|in
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 name|in

@@ -215,14 +215,6 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-comment|// we expect this time of exception as shards go up and down...
-comment|//ignoreException(".*");
-comment|// sometimes we cannot get the same port
-name|ignoreException
-argument_list|(
-literal|"java\\.net\\.BindException: Address already in use"
-argument_list|)
-expr_stmt|;
 name|System
 operator|.
 name|setProperty

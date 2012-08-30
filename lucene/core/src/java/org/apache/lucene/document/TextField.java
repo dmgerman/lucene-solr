@@ -53,7 +53,7 @@ name|TextField
 extends|extends
 name|Field
 block|{
-comment|/* Indexed, tokenized, not stored. */
+comment|/** Indexed, tokenized, not stored. */
 DECL|field|TYPE_NOT_STORED
 specifier|public
 specifier|static
@@ -65,7 +65,7 @@ operator|new
 name|FieldType
 argument_list|()
 decl_stmt|;
-comment|/* Indexed, tokenized, stored. */
+comment|/** Indexed, tokenized, stored. */
 DECL|field|TYPE_STORED
 specifier|public
 specifier|static
@@ -126,7 +126,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// TODO: add sugar for term vectors...?
-comment|/** Creates a new un-stored TextField with Reader value. */
+comment|/** Creates a new un-stored TextField with Reader value.     * @param name field name    * @param reader reader value    * @throws IllegalArgumentException if the field name is null    * @throws NullPointerException if the reader is null    */
 DECL|method|TextField
 specifier|public
 name|TextField
@@ -148,7 +148,7 @@ name|TYPE_NOT_STORED
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates a new TextField with String value. */
+comment|/** Creates a new TextField with String value.     * @param name field name    * @param value string value    * @param store Store.YES if the content should also be stored    * @throws IllegalArgumentException if the field name or value is null.    */
 DECL|method|TextField
 specifier|public
 name|TextField
@@ -181,7 +181,7 @@ name|TYPE_NOT_STORED
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates a new un-stored TextField with TokenStream value. */
+comment|/** Creates a new un-stored TextField with TokenStream value.     * @param name field name    * @param stream TokenStream value    * @throws IllegalArgumentException if the field name is null.    * @throws NullPointerException if the tokenStream is null    */
 DECL|method|TextField
 specifier|public
 name|TextField

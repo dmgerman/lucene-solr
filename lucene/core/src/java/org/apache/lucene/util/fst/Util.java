@@ -424,7 +424,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** Reverse lookup (lookup by output instead of by input),    *  in the special case when your FSTs outputs are    *  strictly ascending.  This locates the input/output    *  pair where the output is equal to the target, and will    *  return null if that output does not exist.    *    *<p>NOTE: this only works with FST<Long>, only    *  works when the outputs are ascending in order with    *  the inputs and only works when you shared    *  the outputs (pass doShare=true to {@link    *  PositiveIntOutputs#getSingleton}).    *  For example, simple ordinals (0, 1,    *  2, ...), or file offets (when appending to a file)    *  fit this. */
+comment|/** Reverse lookup (lookup by output instead of by input),    *  in the special case when your FSTs outputs are    *  strictly ascending.  This locates the input/output    *  pair where the output is equal to the target, and will    *  return null if that output does not exist.    *    *<p>NOTE: this only works with {@code FST<Long>}, only    *  works when the outputs are ascending in order with    *  the inputs and only works when you shared    *  the outputs (pass doShare=true to {@link    *  PositiveIntOutputs#getSingleton}).    *  For example, simple ordinals (0, 1,    *  2, ...), or file offets (when appending to a file)    *  fit this. */
 DECL|method|getByOutput
 specifier|public
 specifier|static

@@ -6789,7 +6789,9 @@ operator|.
 name|setMergePolicy
 argument_list|(
 name|newLogMergePolicy
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|LogMergePolicy
@@ -6803,13 +6805,7 @@ operator|.
 name|getMergePolicy
 argument_list|()
 decl_stmt|;
-name|lmp
-operator|.
-name|setUseCompoundFile
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
+comment|// Force creation of CFS:
 name|lmp
 operator|.
 name|setNoCFSRatio
@@ -6817,7 +6813,15 @@ argument_list|(
 literal|1.0
 argument_list|)
 expr_stmt|;
-comment|// Force creation of CFS
+name|lmp
+operator|.
+name|setMaxCFSSegmentSizeMB
+argument_list|(
+name|Double
+operator|.
+name|POSITIVE_INFINITY
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|w3
 init|=

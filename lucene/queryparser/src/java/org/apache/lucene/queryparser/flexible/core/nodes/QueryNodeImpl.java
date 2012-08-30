@@ -852,7 +852,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Every implementation of this class should return pseudo xml like this:    *     * For FieldQueryNode:<field start='1' end='2' field='subject' text='foo'/>    *     * @see org.apache.lucene.queryparser.flexible.core.nodes.QueryNode#toString()    */
+comment|/**    * Every implementation of this class should return pseudo xml like this:    *     * For FieldQueryNode:&lt;field start='1' end='2' field='subject' text='foo'/&gt;    *     * @see org.apache.lucene.queryparser.flexible.core.nodes.QueryNode#toString()    */
 annotation|@
 name|Override
 DECL|method|toString

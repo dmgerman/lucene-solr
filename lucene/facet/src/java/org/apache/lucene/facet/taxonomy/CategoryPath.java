@@ -2149,7 +2149,7 @@ index|]
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Construct a new CategoryPath object, copying the path given in an    * existing CategoryPath object.    *<P>    * This copy-constructor is handy when you need to save a reference to a    * CategoryPath (e.g., when it serves as a key to a hash-table), but cannot    * save a reference to the original object because its contents can be    * changed later by the user. Copying the contents into a new object is a    * solution.    *<P>    * This constructor</I>does not</I> copy the capacity (spare buffer size)    * of the existing CategoryPath. Rather, the new object occupies exactly the    * space it needs, without any spare. This is the expected behavior in the    * typical use case outlined in the previous paragraph.    */
+comment|/**    * Construct a new CategoryPath object, copying the path given in an    * existing CategoryPath object.    *<P>    * This copy-constructor is handy when you need to save a reference to a    * CategoryPath (e.g., when it serves as a key to a hash-table), but cannot    * save a reference to the original object because its contents can be    * changed later by the user. Copying the contents into a new object is a    * solution.    *<P>    * This constructor<I>does not</I> copy the capacity (spare buffer size)    * of the existing CategoryPath. Rather, the new object occupies exactly the    * space it needs, without any spare. This is the expected behavior in the    * typical use case outlined in the previous paragraph.    */
 DECL|method|CategoryPath
 specifier|public
 name|CategoryPath

@@ -373,7 +373,8 @@ literal|1
 expr_stmt|;
 block|}
 block|}
-comment|/**    * {@inheritDoc}    */
+annotation|@
+name|Override
 DECL|method|retrieveGroupHeadAndAddIfNotExist
 specifier|protected
 name|void
@@ -463,7 +464,8 @@ operator|=
 name|groupHead
 expr_stmt|;
 block|}
-comment|/**    * {@inheritDoc}    */
+annotation|@
+name|Override
 DECL|method|getCollectedGroupHeads
 specifier|protected
 name|Collection
@@ -480,6 +482,8 @@ name|values
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setScorer
 specifier|public
 name|void
@@ -531,6 +535,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|setNextReader
 specifier|public
 name|void

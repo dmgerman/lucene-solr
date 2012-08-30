@@ -50,6 +50,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -94,6 +104,8 @@ specifier|public
 specifier|abstract
 class|class
 name|Analyzer
+implements|implements
+name|Closeable
 block|{
 DECL|field|reuseStrategy
 specifier|private
@@ -101,6 +113,7 @@ specifier|final
 name|ReuseStrategy
 name|reuseStrategy
 decl_stmt|;
+comment|/**    * Create a new Analyzer, reusing the same set of components per-thread    * across calls to {@link #tokenStream(String, Reader)}.     */
 DECL|method|Analyzer
 specifier|public
 name|Analyzer
@@ -114,6 +127,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Expert: create a new Analyzer with a custom {@link ReuseStrategy}.    *<p>    * NOTE: if you just want to reuse on a per-field basis, its easier to    * use a subclass of {@link AnalyzerWrapper} such as     *<a href="{@docRoot}/../analyzers-common/org/apache/lucene/analysis/miscellaneous/PerFieldAnalyzerWrapper.html">    * PerFieldAnalyerWrapper</a> instead.    */
 DECL|method|Analyzer
 specifier|public
 name|Analyzer
@@ -143,7 +157,7 @@ name|Reader
 name|reader
 parameter_list|)
 function_decl|;
-comment|/**    * Creates a TokenStream that is allowed to be re-use from the previous time    * that the same thread called this method.  Callers that do not need to use    * more than one TokenStream at the same time from this analyzer should use    * this method for better performance.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *</p>    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    */
+comment|/**    * Returns a TokenStream suitable for<code>fieldName</code>, tokenizing    * the contents of<code>reader</code>.    *<p>    * This method uses {@link #createComponents(String, Reader)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *<p>    *<b>NOTE:</b> After calling this method, the consumer must follow the     * workflow described in {@link TokenStream} to properly consume its contents.    * See the {@link org.apache.lucene.analysis Analysis package documentation} for    * some examples demonstrating this.    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    * @return TokenStream for iterating the analyzed content of<code>reader</code>    * @throws AlreadyClosedException if the Analyzer is closed.    * @throws IOException if an i/o error occurs.    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -225,7 +239,7 @@ name|getTokenStream
 argument_list|()
 return|;
 block|}
-comment|/**    * Override this if you want to add a CharFilter chain.    */
+comment|/**    * Override this if you want to add a CharFilter chain.    *<p>    * The default implementation returns<code>reader</code>    * unchanged.    *     * @param fieldName IndexableField name being indexed    * @param reader original Reader    * @return reader, optionally decorated with CharFilter(s)    */
 DECL|method|initReader
 specifier|protected
 name|Reader
@@ -242,7 +256,7 @@ return|return
 name|reader
 return|;
 block|}
-comment|/**    * Invoked before indexing a IndexableField instance if    * terms have already been added to that field.  This allows custom    * analyzers to place an automatic position increment gap between    * IndexbleField instances using the same field name.  The default value    * position increment gap is 0.  With a 0 position increment gap and    * the typical default token position increment of 1, all terms in a field,    * including across IndexableField instances, are in successive positions, allowing    * exact PhraseQuery matches, for instance, across IndexableField instance boundaries.    *    * @param fieldName IndexableField name being indexed.    * @return position increment gap, added to the next token emitted from {@link #tokenStream(String,Reader)}    */
+comment|/**    * Invoked before indexing a IndexableField instance if    * terms have already been added to that field.  This allows custom    * analyzers to place an automatic position increment gap between    * IndexbleField instances using the same field name.  The default value    * position increment gap is 0.  With a 0 position increment gap and    * the typical default token position increment of 1, all terms in a field,    * including across IndexableField instances, are in successive positions, allowing    * exact PhraseQuery matches, for instance, across IndexableField instance boundaries.    *    * @param fieldName IndexableField name being indexed.    * @return position increment gap, added to the next token emitted from {@link #tokenStream(String,Reader)}.    *         This value must be {@code>= 0}.    */
 DECL|method|getPositionIncrementGap
 specifier|public
 name|int
@@ -256,7 +270,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**    * Just like {@link #getPositionIncrementGap}, except for    * Token offsets instead.  By default this returns 1.    * This method is only called if the field    * produced at least one token for indexing.    *    * @param fieldName the field just indexed    * @return offset gap, added to the next token emitted from {@link #tokenStream(String,Reader)}    */
+comment|/**    * Just like {@link #getPositionIncrementGap}, except for    * Token offsets instead.  By default this returns 1.    * This method is only called if the field    * produced at least one token for indexing.    *    * @param fieldName the field just indexed    * @return offset gap, added to the next token emitted from {@link #tokenStream(String,Reader)}.    *         This value must be {@code>= 0}.    */
 DECL|method|getOffsetGap
 specifier|public
 name|int
@@ -290,12 +304,14 @@ specifier|static
 class|class
 name|TokenStreamComponents
 block|{
+comment|/**      * Original source of the tokens.      */
 DECL|field|source
 specifier|protected
 specifier|final
 name|Tokenizer
 name|source
 decl_stmt|;
+comment|/**      * Sink tokenstream, such as the outer tokenfilter decorating      * the chain. This can be the source if there are no filters.      */
 DECL|field|sink
 specifier|protected
 specifier|final
@@ -403,6 +419,8 @@ specifier|static
 specifier|abstract
 class|class
 name|ReuseStrategy
+implements|implements
+name|Closeable
 block|{
 DECL|field|storedValue
 specifier|private
@@ -419,6 +437,12 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/** Sole constructor. (For invocation by subclass constructors, typically implicit.) */
+DECL|method|ReuseStrategy
+specifier|public
+name|ReuseStrategy
+parameter_list|()
+block|{}
 comment|/**      * Gets the reusable TokenStreamComponents for the field with the given name      *      * @param fieldName Name of the field whose reusable TokenStreamComponents      *        are to be retrieved      * @return Reusable TokenStreamComponents for the field, or {@code null}      *         if there was no previous components for the field      */
 DECL|method|getReusableComponents
 specifier|public
@@ -444,7 +468,7 @@ name|TokenStreamComponents
 name|components
 parameter_list|)
 function_decl|;
-comment|/**      * Returns the currently stored value      *      * @return Currently stored value or {@code null} if no value is stored      */
+comment|/**      * Returns the currently stored value      *      * @return Currently stored value or {@code null} if no value is stored      * @throws AlreadyClosedException if the ReuseStrategy is closed.      */
 DECL|method|getStoredValue
 specifier|protected
 specifier|final
@@ -490,7 +514,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * Sets the stored value      *      * @param storedValue Value to store      */
+comment|/**      * Sets the stored value      *      * @param storedValue Value to store      * @throws AlreadyClosedException if the ReuseStrategy is closed.      */
 DECL|method|setStoredValue
 specifier|protected
 specifier|final
@@ -549,6 +573,13 @@ name|void
 name|close
 parameter_list|()
 block|{
+if|if
+condition|(
+name|storedValue
+operator|!=
+literal|null
+condition|)
+block|{
 name|storedValue
 operator|.
 name|close
@@ -558,6 +589,7 @@ name|storedValue
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * Implementation of {@link ReuseStrategy} that reuses the same components for    * every field.    */
@@ -570,7 +602,14 @@ name|GlobalReuseStrategy
 extends|extends
 name|ReuseStrategy
 block|{
-comment|/**      * {@inheritDoc}      */
+comment|/** Creates a new instance, with empty per-thread values */
+DECL|method|GlobalReuseStrategy
+specifier|public
+name|GlobalReuseStrategy
+parameter_list|()
+block|{}
+annotation|@
+name|Override
 DECL|method|getReusableComponents
 specifier|public
 name|TokenStreamComponents
@@ -588,7 +627,8 @@ name|getStoredValue
 argument_list|()
 return|;
 block|}
-comment|/**      * {@inheritDoc}      */
+annotation|@
+name|Override
 DECL|method|setReusableComponents
 specifier|public
 name|void
@@ -617,12 +657,19 @@ name|PerFieldReuseStrategy
 extends|extends
 name|ReuseStrategy
 block|{
-comment|/**      * {@inheritDoc}      */
+comment|/** Creates a new instance, with empty per-thread-per-field values */
+DECL|method|PerFieldReuseStrategy
+specifier|public
+name|PerFieldReuseStrategy
+parameter_list|()
+block|{}
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|Override
 DECL|method|getReusableComponents
 specifier|public
 name|TokenStreamComponents
@@ -666,12 +713,13 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**      * {@inheritDoc}      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|Override
 DECL|method|setReusableComponents
 specifier|public
 name|void

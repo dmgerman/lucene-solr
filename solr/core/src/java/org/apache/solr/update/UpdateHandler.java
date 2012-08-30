@@ -792,6 +792,18 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|split
+specifier|public
+specifier|abstract
+name|void
+name|split
+parameter_list|(
+name|SplitIndexCommand
+name|cmd
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_class
 

@@ -131,6 +131,7 @@ name|DoubleField
 extends|extends
 name|Field
 block|{
+comment|/**     * Type for a DoubleField that is not stored:    * normalization factors, frequencies, and positions are omitted.    */
 DECL|field|TYPE_NOT_STORED
 specifier|public
 specifier|static
@@ -191,6 +192,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**     * Type for a stored DoubleField:    * normalization factors, frequencies, and positions are omitted.    */
 DECL|field|TYPE_STORED
 specifier|public
 specifier|static
@@ -258,7 +260,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Creates a stored or un-stored DoubleField with the provided value    *  and default<code>precisionStep</code> {@link    *  NumericUtils#PRECISION_STEP_DEFAULT} (4). */
+comment|/** Creates a stored or un-stored DoubleField with the provided value    *  and default<code>precisionStep</code> {@link    *  NumericUtils#PRECISION_STEP_DEFAULT} (4).     *  @param name field name    *  @param value 64-bit double value    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name is null.     */
 DECL|method|DoubleField
 specifier|public
 name|DoubleField
@@ -298,7 +300,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Expert: allows you to customize the {@link    *  FieldType}. */
+comment|/** Expert: allows you to customize the {@link    *  FieldType}.     *  @param name field name    *  @param value 64-bit double value    *  @param type customized field type: must have {@link FieldType#numericType()}    *         of {@link FieldType.NumericType#DOUBLE}.    *  @throws IllegalArgumentException if the field name or type is null, or    *          if the field type does not have a DOUBLE numericType()    */
 DECL|method|DoubleField
 specifier|public
 name|DoubleField

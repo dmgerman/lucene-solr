@@ -6924,7 +6924,9 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-operator|(
+name|LogMergePolicy
+name|lmp
+init|=
 operator|(
 name|LogMergePolicy
 operator|)
@@ -6935,11 +6937,22 @@ argument_list|()
 operator|.
 name|getMergePolicy
 argument_list|()
-operator|)
+decl_stmt|;
+comment|// Force creation of CFS:
+name|lmp
 operator|.
 name|setNoCFSRatio
 argument_list|(
 literal|1.0
+argument_list|)
+expr_stmt|;
+name|lmp
+operator|.
+name|setMaxCFSSegmentSizeMB
+argument_list|(
+name|Double
+operator|.
+name|POSITIVE_INFINITY
 argument_list|)
 expr_stmt|;
 comment|// add 100 documents

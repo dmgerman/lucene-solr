@@ -1005,6 +1005,15 @@ argument_list|,
 name|cmd
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Distrib commit to:"
+operator|+
+name|nodes
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Node
@@ -1917,10 +1926,20 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
-argument_list|()
+argument_list|(
+literal|"Update thread interrupted"
+argument_list|)
 throw|;
 block|}
 name|pending

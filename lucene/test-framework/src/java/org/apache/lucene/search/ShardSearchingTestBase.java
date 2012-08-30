@@ -2610,29 +2610,38 @@ name|ShardIndexSearcher
 name|acquire
 parameter_list|()
 block|{
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 specifier|final
 name|ShardIndexSearcher
 name|s
 init|=
 name|currentShardSearcher
 decl_stmt|;
-comment|// TODO: this isn't thread safe.... in theory the
-comment|// reader could get decRef'd to 0 before we have a
-comment|// chance to incRef, ie if a reopen happens right
-comment|// after the above line, this thread gets stalled, and
-comment|// the old IR is closed.  But because we use SLM in
-comment|// this test, this will be exceptionally rare:
+comment|// In theory the reader could get decRef'd to 0
+comment|// before we have a chance to incRef, ie if a reopen
+comment|// happens right after the above line, this thread
+comment|// gets stalled, and the old IR is closed.  So we
+comment|// must try/retry until incRef succeeds:
+if|if
+condition|(
 name|s
 operator|.
 name|getIndexReader
 argument_list|()
 operator|.
-name|incRef
+name|tryIncRef
 argument_list|()
-expr_stmt|;
+condition|)
+block|{
 return|return
 name|s
 return|;
+block|}
+block|}
 block|}
 DECL|method|release
 specifier|public

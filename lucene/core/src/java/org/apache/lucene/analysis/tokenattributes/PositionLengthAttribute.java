@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Determines how many positions this  *  token spans.  Very few analyzer components actually  *  produce this attribute, and indexing ignores it, but  *  it's useful to express the graph structure naturally  *  produced by decompounding, word splitting/joining,  *  synonym filtering, etc.  *  *<p>The default value is one. */
+comment|/** Determines how many positions this  *  token spans.  Very few analyzer components actually  *  produce this attribute, and indexing ignores it, but  *  it's useful to express the graph structure naturally  *  produced by decompounding, word splitting/joining,  *  synonym filtering, etc.  *  *<p>NOTE: this is optional, and most analyzers  *  don't change the default value (1). */
 end_comment
 
 begin_interface
@@ -44,7 +44,7 @@ name|PositionLengthAttribute
 extends|extends
 name|Attribute
 block|{
-comment|/** @param positionLength how many positions this token    *  spans. */
+comment|/**    * Set the position length of this Token.    *<p>    * The default value is one.     * @param positionLength how many positions this token    *  spans.     * @throws IllegalArgumentException if<code>positionLength</code>     *         is zero or negative.    * @see #getPositionLength()    */
 DECL|method|setPositionLength
 specifier|public
 name|void

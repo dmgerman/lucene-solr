@@ -42,6 +42,7 @@ name|FloatDocValuesField
 extends|extends
 name|StoredField
 block|{
+comment|/**    * Type for 32-bit float DocValues.    */
 DECL|field|TYPE
 specifier|public
 specifier|static
@@ -72,6 +73,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**     * Creates a new DocValues field with the specified 32-bit float value     * @param name field name    * @param value 32-bit float value    * @throws IllegalArgumentException if the field name is null    */
 DECL|method|FloatDocValuesField
 specifier|public
 name|FloatDocValuesField

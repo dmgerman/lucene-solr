@@ -179,7 +179,7 @@ operator|=
 name|tieBreakerMultiplier
 expr_stmt|;
 block|}
-comment|/**    * Creates a new DisjunctionMaxQuery    * @param disjuncts a Collection<Query> of all the disjuncts to add    * @param tieBreakerMultiplier   the weight to give to each matching non-maximum disjunct    */
+comment|/**    * Creates a new DisjunctionMaxQuery    * @param disjuncts a {@code Collection<Query>} of all the disjuncts to add    * @param tieBreakerMultiplier   the weight to give to each matching non-maximum disjunct    */
 DECL|method|DisjunctionMaxQuery
 specifier|public
 name|DisjunctionMaxQuery
@@ -224,7 +224,7 @@ name|query
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Add a collection of disjuncts to this disjunction    * via Iterable<Query>    * @param disjuncts a collection of queries to add as disjuncts.    */
+comment|/** Add a collection of disjuncts to this disjunction    * via {@code Iterable<Query>}    * @param disjuncts a collection of queries to add as disjuncts.    */
 DECL|method|add
 specifier|public
 name|void
@@ -247,7 +247,7 @@ name|disjuncts
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** @return An Iterator<Query> over the disjuncts */
+comment|/** @return An {@code Iterator<Query>} over the disjuncts */
 DECL|method|iterator
 specifier|public
 name|Iterator

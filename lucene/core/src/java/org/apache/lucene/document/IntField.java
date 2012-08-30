@@ -131,6 +131,7 @@ name|IntField
 extends|extends
 name|Field
 block|{
+comment|/**     * Type for an IntField that is not stored:    * normalization factors, frequencies, and positions are omitted.    */
 DECL|field|TYPE_NOT_STORED
 specifier|public
 specifier|static
@@ -191,6 +192,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**     * Type for a stored IntField:    * normalization factors, frequencies, and positions are omitted.    */
 DECL|field|TYPE_STORED
 specifier|public
 specifier|static
@@ -258,7 +260,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Creates a stored or un-stored IntField with the provided value    *  and default<code>precisionStep</code> {@link    *  NumericUtils#PRECISION_STEP_DEFAULT} (4). */
+comment|/** Creates a stored or un-stored IntField with the provided value    *  and default<code>precisionStep</code> {@link    *  NumericUtils#PRECISION_STEP_DEFAULT} (4).     *  @param name field name    *  @param value 32-bit integer value    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name is null.    */
 DECL|method|IntField
 specifier|public
 name|IntField
@@ -298,7 +300,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Expert: allows you to customize the {@link    *  FieldType}. */
+comment|/** Expert: allows you to customize the {@link    *  FieldType}.     *  @param name field name    *  @param value 32-bit integer value    *  @param type customized field type: must have {@link FieldType#numericType()}    *         of {@link FieldType.NumericType#INT}.    *  @throws IllegalArgumentException if the field name or type is null, or    *          if the field type does not have a INT numericType()    */
 DECL|method|IntField
 specifier|public
 name|IntField

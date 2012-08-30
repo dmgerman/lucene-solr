@@ -57,6 +57,12 @@ specifier|final
 class|class
 name|IndexFileNames
 block|{
+comment|/** No instance */
+DECL|method|IndexFileNames
+specifier|private
+name|IndexFileNames
+parameter_list|()
+block|{}
 comment|/** Name of the index segment file */
 DECL|field|SEGMENTS
 specifier|public
@@ -553,6 +559,7 @@ return|return
 name|filename
 return|;
 block|}
+comment|/**    * Removes the extension (anything after the first '.'),    * otherwise returns the original filename.    */
 DECL|method|stripExtension
 specifier|public
 specifier|static

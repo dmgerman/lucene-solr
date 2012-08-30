@@ -92,6 +92,7 @@ name|StoredField
 extends|extends
 name|Field
 block|{
+comment|/**    * Type for a stored-only field.    */
 DECL|field|TYPE
 specifier|public
 specifier|final
@@ -120,6 +121,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Create a stored-only field with the given binary value.    *<p>NOTE: the provided byte[] is not copied so be sure    * not to change it until you're done with this field.    * @param name field name    * @param value byte array pointing to binary content (not copied)    * @throws IllegalArgumentException if the field name is null.    */
 DECL|method|StoredField
 specifier|protected
 name|StoredField
@@ -139,6 +141,7 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Expert: allows you to customize the {@link    * FieldType}.    *<p>NOTE: the provided byte[] is not copied so be sure    * not to change it until you're done with this field.    * @param name field name    * @param value byte array pointing to binary content (not copied)    * @param type custom {@link FieldType} for this field    * @throws IllegalArgumentException if the field name is null.    */
 DECL|method|StoredField
 specifier|public
 name|StoredField
@@ -185,6 +188,7 @@ name|TYPE
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Create a stored-only field with the given binary value.    *<p>NOTE: the provided byte[] is not copied so be sure    * not to change it until you're done with this field.    * @param name field name    * @param value byte array pointing to binary content (not copied)    * @param offset starting position of the byte array    * @param length valid length of the byte array    * @throws IllegalArgumentException if the field name is null.    */
 DECL|method|StoredField
 specifier|public
 name|StoredField
@@ -217,6 +221,7 @@ name|TYPE
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Create a stored-only field with the given binary value.    *<p>NOTE: the provided BytesRef is not copied so be sure    * not to change it until you're done with this field.    * @param name field name    * @param value BytesRef pointing to binary content (not copied)    * @throws IllegalArgumentException if the field name is null.    */
 DECL|method|StoredField
 specifier|public
 name|StoredField
@@ -238,6 +243,7 @@ name|TYPE
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Create a stored-only field with the given string value.    * @param name field name    * @param value string value    * @throws IllegalArgumentException if the field name or value is null.    */
 DECL|method|StoredField
 specifier|public
 name|StoredField
@@ -284,6 +290,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: not great but maybe not a big problem?
+comment|/**    * Create a stored-only field with the given integer value.    * @param name field name    * @param value integer value    * @throws IllegalArgumentException if the field name is null.    */
 DECL|method|StoredField
 specifier|public
 name|StoredField
@@ -307,6 +314,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * Create a stored-only field with the given float value.    * @param name field name    * @param value float value    * @throws IllegalArgumentException if the field name is null.    */
 DECL|method|StoredField
 specifier|public
 name|StoredField
@@ -330,6 +338,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * Create a stored-only field with the given long value.    * @param name field name    * @param value long value    * @throws IllegalArgumentException if the field name is null.    */
 DECL|method|StoredField
 specifier|public
 name|StoredField
@@ -353,6 +362,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+comment|/**    * Create a stored-only field with the given double value.    * @param name field name    * @param value double value    * @throws IllegalArgumentException if the field name is null.    */
 DECL|method|StoredField
 specifier|public
 name|StoredField

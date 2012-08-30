@@ -193,7 +193,16 @@ name|mergePolicy
 operator|.
 name|setNoCFSRatio
 argument_list|(
-literal|1
+literal|1.0
+argument_list|)
+expr_stmt|;
+name|mergePolicy
+operator|.
+name|setMaxCFSSegmentSizeMB
+argument_list|(
+name|Double
+operator|.
+name|POSITIVE_INFINITY
 argument_list|)
 expr_stmt|;
 name|IndexWriter

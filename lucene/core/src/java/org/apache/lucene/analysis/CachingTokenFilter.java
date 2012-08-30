@@ -114,6 +114,7 @@ operator|.
 name|State
 name|finalState
 decl_stmt|;
+comment|/**    * Create a new CachingTokenFilter around<code>input</code>,    * caching its token attributes, which can be replayed again    * after a call to {@link #reset()}.    */
 DECL|method|CachingTokenFilter
 specifier|public
 name|CachingTokenFilter
@@ -219,6 +220,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Rewinds the iterator to the beginning of the cached list.    *<p>    * Note that this does not call reset() on the wrapped tokenstream ever, even    * the first time. You should reset() the inner tokenstream before wrapping    * it with CachingTokenFilter.    */
 annotation|@
 name|Override
 DECL|method|reset

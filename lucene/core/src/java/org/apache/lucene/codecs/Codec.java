@@ -114,6 +114,7 @@ specifier|final
 name|String
 name|name
 decl_stmt|;
+comment|/**    * Creates a new codec.    *<p>    * The provided name will be written into the index segment: in order to    * for the segment to be read this class should be registered with Java's    * SPI mechanism (registered in META-INF/ of your jar file, etc).    * @param name must be all ascii alphanumeric, and less than 128 characters in length.    */
 DECL|method|Codec
 specifier|public
 name|Codec
@@ -313,6 +314,7 @@ operator|=
 name|codec
 expr_stmt|;
 block|}
+comment|/**    * returns the codec's name. Subclasses can override to provide    * more detail (such as parameters).    */
 annotation|@
 name|Override
 DECL|method|toString

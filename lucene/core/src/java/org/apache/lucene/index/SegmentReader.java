@@ -167,7 +167,8 @@ specifier|final
 name|SegmentCoreReaders
 name|core
 decl_stmt|;
-comment|/**    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Constructs a new SegmentReader with a new core.    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|// TODO: why is this public?
 DECL|method|SegmentReader
 specifier|public
 name|SegmentReader
@@ -312,9 +313,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// Create new SegmentReader sharing core from a previous
-comment|// SegmentReader and loading new live docs from a new
-comment|// deletes file.  Used by openIfChanged.
+comment|/** Create new SegmentReader sharing core from a previous    *  SegmentReader and loading new live docs from a new    *  deletes file.  Used by openIfChanged. */
 DECL|method|SegmentReader
 name|SegmentReader
 parameter_list|(
@@ -373,10 +372,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Create new SegmentReader sharing core from a previous
-comment|// SegmentReader and using the provided in-memory
-comment|// liveDocs.  Used by IndexWriter to provide a new NRT
-comment|// reader:
+comment|/** Create new SegmentReader sharing core from a previous    *  SegmentReader and using the provided in-memory    *  liveDocs.  Used by IndexWriter to provide a new NRT    *  reader */
 DECL|method|SegmentReader
 name|SegmentReader
 parameter_list|(

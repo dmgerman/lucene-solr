@@ -72,6 +72,10 @@ name|Query
 import|;
 end_import
 
+begin_comment
+comment|/**  * Base class for queries that expand to sets of simple terms.  */
+end_comment
+
 begin_class
 DECL|class|SimpleTerm
 specifier|public
@@ -268,6 +272,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Callback to visit each matching term during "rewrite"    * in {@link #visitMatchingTerm(Term)}    */
 DECL|interface|MatchingTermVisitor
 specifier|public
 interface|interface

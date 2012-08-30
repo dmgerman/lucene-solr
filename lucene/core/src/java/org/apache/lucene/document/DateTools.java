@@ -591,43 +591,50 @@ specifier|static
 enum|enum
 name|Resolution
 block|{
+comment|/** Limit a date's resolution to year granularity. */
 DECL|enum constant|YEAR
-DECL|enum constant|MONTH
-DECL|enum constant|DAY
-DECL|enum constant|HOUR
-DECL|enum constant|MINUTE
-DECL|enum constant|SECOND
-DECL|enum constant|MILLISECOND
 name|YEAR
 argument_list|(
 literal|4
 argument_list|)
 block|,
+comment|/** Limit a date's resolution to month granularity. */
+DECL|enum constant|MONTH
 name|MONTH
 argument_list|(
 literal|6
 argument_list|)
 block|,
+comment|/** Limit a date's resolution to day granularity. */
+DECL|enum constant|DAY
 name|DAY
 argument_list|(
 literal|8
 argument_list|)
 block|,
+comment|/** Limit a date's resolution to hour granularity. */
+DECL|enum constant|HOUR
 name|HOUR
 argument_list|(
 literal|10
 argument_list|)
 block|,
+comment|/** Limit a date's resolution to minute granularity. */
+DECL|enum constant|MINUTE
 name|MINUTE
 argument_list|(
 literal|12
 argument_list|)
 block|,
+comment|/** Limit a date's resolution to second granularity. */
+DECL|enum constant|SECOND
 name|SECOND
 argument_list|(
 literal|14
 argument_list|)
 block|,
+comment|/** Limit a date's resolution to millisecond granularity. */
+DECL|enum constant|MILLISECOND
 name|MILLISECOND
 argument_list|(
 literal|17

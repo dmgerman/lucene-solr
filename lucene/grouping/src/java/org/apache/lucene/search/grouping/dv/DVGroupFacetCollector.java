@@ -1400,7 +1400,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**          * {@inheritDoc}          */
+annotation|@
+name|Override
 DECL|method|nextTerm
 specifier|protected
 name|void

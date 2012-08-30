@@ -245,6 +245,7 @@ operator|=
 name|backingStore
 expr_stmt|;
 block|}
+comment|/** Removes all of the mappings from this map. */
 DECL|method|clear
 specifier|public
 name|void
@@ -260,6 +261,7 @@ name|reap
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Returns {@code true} if this map contains a mapping for the specified key. */
 DECL|method|containsKey
 specifier|public
 name|boolean
@@ -287,6 +289,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/** Returns the value to which the specified key is mapped. */
 DECL|method|get
 specifier|public
 name|V
@@ -314,6 +317,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/** Associates the specified value with the specified key in this map.    * If the map previously contained a mapping for this key, the old value    * is replaced. */
 DECL|method|put
 specifier|public
 name|V
@@ -346,6 +350,7 @@ name|value
 argument_list|)
 return|;
 block|}
+comment|/** Returns {@code true} if this map contains no key-value mappings. */
 DECL|method|isEmpty
 specifier|public
 name|boolean
@@ -359,6 +364,7 @@ operator|==
 literal|0
 return|;
 block|}
+comment|/** Removes the mapping for a key from this weak hash map if it is present.    * Returns the value to which this map previously associated the key,    * or {@code null} if the map contained no mapping for the key.    * A return value of {@code null} does not necessarily indicate that    * the map contained.*/
 DECL|method|remove
 specifier|public
 name|V
@@ -386,6 +392,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/** Returns the number of key-value mappings in this map. This result is a snapshot,    * and may not reflect unprocessed entries that will be removed before next    * attempted access because they are no longer referenced.    */
 DECL|method|size
 specifier|public
 name|int

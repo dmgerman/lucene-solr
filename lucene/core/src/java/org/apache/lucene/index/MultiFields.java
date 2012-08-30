@@ -388,6 +388,7 @@ return|;
 block|}
 block|}
 block|}
+comment|/** Returns a single {@link Bits} instance for this    *  reader, merging live Documents on the    *  fly.  This method will return null if the reader     *  has no deletions.    *    *<p><b>NOTE</b>: this is a very slow way to access live docs.    *  For example, each Bits access will require a binary search.    *  It's better to get the sub-readers and iterate through them    *  yourself. */
 DECL|method|getLiveDocs
 specifier|public
 specifier|static
@@ -877,6 +878,8 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**    * Expert: construct a new MultiFields instance directly.    * @lucene.internal    */
+comment|// TODO: why is this public?
 DECL|method|MultiFields
 specifier|public
 name|MultiFields
@@ -1170,6 +1173,7 @@ operator|-
 literal|1
 return|;
 block|}
+comment|/** Returns the total number of occurrences of this term    *  across all documents (the sum of the freq() for each    *  doc that has this term).  This will be -1 if the    *  codec doesn't support this measure.  Note that, like    *  other term measures, this measure does not take    *  deleted documents into account.    * @see TermsEnum#totalTermFreq()    */
 DECL|method|totalTermFreq
 specifier|public
 specifier|static
@@ -1297,6 +1301,7 @@ name|finish
 argument_list|()
 return|;
 block|}
+comment|/** Call this to get the (merged) FieldInfos representing the    *  set of indexed fields<b>only</b> for a composite reader.     *<p>    *  NOTE: the returned field numbers will likely not    *  correspond to the actual field numbers in the underlying    *  readers, and codec metadata ({@link FieldInfo#getAttribute(String)}    *  will be unavailable.    */
 DECL|method|getIndexedFields
 specifier|public
 specifier|static

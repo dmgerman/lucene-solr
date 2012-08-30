@@ -431,6 +431,32 @@ literal|0
 argument_list|)
 condition|)
 block|{
+comment|// first we delete the node advertising the old leader in case the ephem is still there
+try|try
+block|{
+name|zkClient
+operator|.
+name|delete
+argument_list|(
+name|context
+operator|.
+name|leaderPath
+argument_list|,
+operator|-
+literal|1
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// fine
+block|}
 name|runIamLeaderProcess
 argument_list|(
 name|context
@@ -652,6 +678,17 @@ name|KeeperException
 name|e
 parameter_list|)
 block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+literal|"Failed setting watch"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 comment|// we couldn't set our watch - the node before us may already be down?
 comment|// we need to check if we are the leader again
 name|checkIfIamLeader

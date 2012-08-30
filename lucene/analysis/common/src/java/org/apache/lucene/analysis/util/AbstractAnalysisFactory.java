@@ -191,7 +191,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract parent class for analysis factories {@link TokenizerFactory},  * {@link TokenFilterFactory} and {@link CharFilterFactory}.  */
+comment|/**  * Abstract parent class for analysis factories {@link TokenizerFactory},  * {@link TokenFilterFactory} and {@link CharFilterFactory}.  *<p>  * The typical lifecycle for a factory consumer is:  *<ol>  *<li>Create factory via its a no-arg constructor  *<li>Set version emulation by calling {@link #setLuceneMatchVersion(Version)}  *<li>Calls {@link #init(Map)} passing arguments as key-value mappings.  *<li>(Optional) If the factory uses resources such as files, {@link ResourceLoaderAware#inform(ResourceLoader)} is called to initialize those resources.  *<li>Consumer calls create() to obtain instances.  *</ol>  */
 end_comment
 
 begin_class
@@ -220,6 +220,7 @@ name|luceneMatchVersion
 init|=
 literal|null
 decl_stmt|;
+comment|/**    * Initialize this factory via a set of key-value pairs.    */
 DECL|method|init
 specifier|public
 name|void
@@ -507,6 +508,7 @@ name|s
 argument_list|)
 return|;
 block|}
+comment|/**    * Compiles a pattern for the value of the specified argument key<code>name</code>     */
 DECL|method|getPattern
 specifier|protected
 name|Pattern
@@ -590,6 +592,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * Returns as {@link CharArraySet} from wordFiles, which    * can be a comma-separated list of filenames    */
 DECL|method|getWordSet
 specifier|protected
 name|CharArraySet
@@ -701,6 +704,7 @@ return|return
 name|words
 return|;
 block|}
+comment|/**    * Returns the resource's lines (with content treated as UTF-8)    */
 DECL|method|getLines
 specifier|protected
 name|List

@@ -42,6 +42,7 @@ name|ShortDocValuesField
 extends|extends
 name|StoredField
 block|{
+comment|/**    * Type for 16-bit short DocValues.    */
 DECL|field|TYPE
 specifier|public
 specifier|static
@@ -72,6 +73,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**     * Creates a new DocValues field with the specified 16-bit short value     * @param name field name    * @param value 16-bit short value    * @throws IllegalArgumentException if the field name is null    */
 DECL|method|ShortDocValuesField
 specifier|public
 name|ShortDocValuesField
