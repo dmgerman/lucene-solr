@@ -1904,6 +1904,11 @@ condition|)
 empty_stmt|;
 block|}
 comment|// make sure all cores have been assigned a id in cloudstate
+name|int
+name|cloudStateSliceCount
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1919,6 +1924,10 @@ name|i
 operator|++
 control|)
 block|{
+name|cloudStateSliceCount
+operator|=
+literal|0
+expr_stmt|;
 name|reader
 operator|.
 name|updateClusterState
@@ -1949,11 +1958,6 @@ argument_list|(
 literal|"collection1"
 argument_list|)
 decl_stmt|;
-name|int
-name|count
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|String
@@ -1965,7 +1969,7 @@ name|keySet
 argument_list|()
 control|)
 block|{
-name|count
+name|cloudStateSliceCount
 operator|+=
 name|slices
 operator|.
@@ -1985,7 +1989,7 @@ if|if
 condition|(
 name|coreCount
 operator|==
-name|count
+name|cloudStateSliceCount
 condition|)
 break|break;
 name|Thread
@@ -1996,7 +2000,21 @@ literal|200
 argument_list|)
 expr_stmt|;
 block|}
-comment|// make sure all cores have been returned a id
+name|assertEquals
+argument_list|(
+literal|"Unable to verify all cores have been assigned an id in cloudstate"
+argument_list|,
+name|coreCount
+argument_list|,
+name|cloudStateSliceCount
+argument_list|)
+expr_stmt|;
+comment|// make sure all cores have been returned an id
+name|int
+name|assignedCount
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -2012,11 +2030,10 @@ name|i
 operator|++
 control|)
 block|{
-name|int
 name|assignedCount
-init|=
+operator|=
 literal|0
-decl_stmt|;
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -2064,6 +2081,15 @@ literal|500
 argument_list|)
 expr_stmt|;
 block|}
+name|assertEquals
+argument_list|(
+literal|"Unable to verify all cores have been returned an id"
+argument_list|,
+name|coreCount
+argument_list|,
+name|assignedCount
+argument_list|)
+expr_stmt|;
 specifier|final
 name|HashMap
 argument_list|<
