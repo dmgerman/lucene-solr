@@ -725,7 +725,21 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Sync was not a success but no on else i active! I am the leader"
+literal|"Sync was not a success but no one else is active! I am the leader"
+argument_list|)
+expr_stmt|;
+name|zkController
+operator|.
+name|publish
+argument_list|(
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+argument_list|,
+name|ZkStateReader
+operator|.
+name|ACTIVE
 argument_list|)
 expr_stmt|;
 name|success
@@ -1399,8 +1413,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
-name|e
+name|Throwable
+name|t
 parameter_list|)
 block|{
 name|SolrException
@@ -1418,7 +1432,7 @@ argument_list|)
 operator|+
 literal|": Could not tell a replica to recover"
 argument_list|,
-name|e
+name|t
 argument_list|)
 expr_stmt|;
 block|}

@@ -283,7 +283,7 @@ specifier|final
 name|int
 name|BASE_RUN_LENGTH
 init|=
-literal|45000
+literal|20000
 decl_stmt|;
 annotation|@
 name|BeforeClass
@@ -320,8 +320,8 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-comment|// TODO use @Noisy annotation as we expect lots of exceptions
-comment|//ignoreException(".*");
+comment|// can help to hide this when testing and looking at logs
+comment|//ignoreException("shard update error");
 name|System
 operator|.
 name|setProperty
@@ -375,11 +375,11 @@ argument_list|()
 expr_stmt|;
 name|sliceCount
 operator|=
-literal|3
+literal|1
 expr_stmt|;
 name|shardCount
 operator|=
-literal|12
+literal|7
 expr_stmt|;
 block|}
 annotation|@
@@ -422,9 +422,49 @@ argument_list|,
 name|SKIPVAL
 argument_list|)
 expr_stmt|;
+comment|// make sure we have leaders for each shard
+for|for
+control|(
+name|int
+name|j
+init|=
+literal|1
+init|;
+name|j
+operator|<
+name|sliceCount
+condition|;
+name|j
+operator|++
+control|)
+block|{
+name|zkStateReader
+operator|.
+name|getLeaderProps
+argument_list|(
+name|DEFAULT_COLLECTION
+argument_list|,
+literal|"shard"
+operator|+
+name|j
+argument_list|,
+literal|10000
+argument_list|)
+expr_stmt|;
+block|}
+comment|// make sure we again have leaders for each shard
+name|waitForRecoveriesToFinish
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 comment|// we cannot do delete by query
 comment|// as it's not supported for recovery
-comment|// del("*:*");
+name|del
+argument_list|(
+literal|"*:*"
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|StopableThread

@@ -3862,6 +3862,21 @@ name|props
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// solrcloud_debug
+comment|//         try {
+comment|//         RefCounted<SolrIndexSearcher> searchHolder =
+comment|//         core.getNewestSearcher(false);
+comment|//         SolrIndexSearcher searcher = searchHolder.get();
+comment|//         try {
+comment|//         System.out.println(core.getCoreDescriptor().getCoreContainer().getZkController().getNodeName()
+comment|//         + " synched "
+comment|//         + searcher.search(new MatchAllDocsQuery(), 1).totalHits);
+comment|//         } finally {
+comment|//         searchHolder.decref();
+comment|//         }
+comment|//         } catch (Exception e) {
+comment|//
+comment|//         }
 if|if
 condition|(
 operator|!
@@ -4003,6 +4018,16 @@ argument_list|(
 literal|"checkLive"
 argument_list|)
 decl_stmt|;
+name|Boolean
+name|onlyIfLeader
+init|=
+name|params
+operator|.
+name|getBool
+argument_list|(
+literal|"onlyIfLeader"
+argument_list|)
+decl_stmt|;
 name|int
 name|pauseFor
 init|=
@@ -4083,6 +4108,43 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|onlyIfLeader
+operator|!=
+literal|null
+operator|&&
+name|onlyIfLeader
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|isLeader
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"We are not the leader"
+argument_list|)
+throw|;
+block|}
+block|}
 comment|// wait until we are sure the recovering node is ready
 comment|// to accept updates
 name|CloudDescriptor
