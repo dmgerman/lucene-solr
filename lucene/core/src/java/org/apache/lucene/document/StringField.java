@@ -149,7 +149,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Creates a new StringField. */
+comment|/** Creates a new StringField.     *  @param name field name    *  @param value String value    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name or value is null.    */
 DECL|method|StringField
 specifier|public
 name|StringField

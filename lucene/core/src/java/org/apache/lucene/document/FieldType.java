@@ -124,21 +124,25 @@ name|IndexableFieldType
 block|{
 comment|/** Data type of the numeric value    * @since 3.2    */
 DECL|enum|NumericType
-DECL|enum constant|INT
-DECL|enum constant|LONG
-DECL|enum constant|FLOAT
-DECL|enum constant|DOUBLE
 specifier|public
 specifier|static
 enum|enum
 name|NumericType
 block|{
+comment|/** 32-bit integer numeric type */
+DECL|enum constant|INT
 name|INT
 block|,
+comment|/** 64-bit long numeric type */
+DECL|enum constant|LONG
 name|LONG
 block|,
+comment|/** 32-bit float numeric type */
+DECL|enum constant|FLOAT
 name|FLOAT
 block|,
+comment|/** 64-bit double numeric type */
+DECL|enum constant|DOUBLE
 name|DOUBLE
 block|}
 DECL|field|indexed
@@ -381,7 +385,7 @@ operator|.
 name|indexed
 return|;
 block|}
-comment|/**    * Set to<code>true</code> to index (invert) this field.    * @see #indexed()    */
+comment|/**    * Set to<code>true</code> to index (invert) this field.    * @param value true if this field should be indexed.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #indexed()    */
 DECL|method|setIndexed
 specifier|public
 name|void
@@ -414,7 +418,7 @@ operator|.
 name|stored
 return|;
 block|}
-comment|/**    * Set to<code>true</code> to store this field.    * @see #stored()    */
+comment|/**    * Set to<code>true</code> to store this field.    * @param value true if this field should be stored.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #stored()    */
 DECL|method|setStored
 specifier|public
 name|void
@@ -447,7 +451,7 @@ operator|.
 name|tokenized
 return|;
 block|}
-comment|/**    * Set to<code>true</code> to tokenize this field's contents via the     * configured {@link Analyzer}.    * @see #tokenized()    */
+comment|/**    * Set to<code>true</code> to tokenize this field's contents via the     * configured {@link Analyzer}.    * @param value true if this field should be tokenized.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #tokenized()    */
 DECL|method|setTokenized
 specifier|public
 name|void
@@ -480,7 +484,7 @@ operator|.
 name|storeTermVectors
 return|;
 block|}
-comment|/**    * Set to<code>true</code> if this field's indexed form should be also stored     * into term vectors.    * @see #storeTermVectors()    */
+comment|/**    * Set to<code>true</code> if this field's indexed form should be also stored     * into term vectors.    * @param value true if this field should store term vectors.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #storeTermVectors()    */
 DECL|method|setStoreTermVectors
 specifier|public
 name|void
@@ -513,7 +517,7 @@ operator|.
 name|storeTermVectorOffsets
 return|;
 block|}
-comment|/**    * Set to<code>true</code> to also store token character offsets into the term    * vector for this field.    * @see #storeTermVectorOffsets()    */
+comment|/**    * Set to<code>true</code> to also store token character offsets into the term    * vector for this field.    * @param value true if this field should store term vector offsets.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #storeTermVectorOffsets()    */
 DECL|method|setStoreTermVectorOffsets
 specifier|public
 name|void
@@ -546,7 +550,7 @@ operator|.
 name|storeTermVectorPositions
 return|;
 block|}
-comment|/**    * Set to<code>true</code> to also store token positions into the term    * vector for this field.    * @see #storeTermVectorPositions()    */
+comment|/**    * Set to<code>true</code> to also store token positions into the term    * vector for this field.    * @param value true if this field should store term vector positions.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #storeTermVectorPositions()    */
 DECL|method|setStoreTermVectorPositions
 specifier|public
 name|void
@@ -579,7 +583,7 @@ operator|.
 name|storeTermVectorPayloads
 return|;
 block|}
-comment|/**    * Set to<code>true</code> to also store token payloads into the term    * vector for this field.    * @see #storeTermVectorPayloads()    */
+comment|/**    * Set to<code>true</code> to also store token payloads into the term    * vector for this field.    * @param value true if this field should store term vector payloads.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #storeTermVectorPayloads()    */
 DECL|method|setStoreTermVectorPayloads
 specifier|public
 name|void
@@ -612,7 +616,7 @@ operator|.
 name|omitNorms
 return|;
 block|}
-comment|/**    * Set to<code>true</code> to omit normalization values for the field.    * @see #omitNorms()    */
+comment|/**    * Set to<code>true</code> to omit normalization values for the field.    * @param value true if this field should omit norms.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #omitNorms()    */
 DECL|method|setOmitNorms
 specifier|public
 name|void
@@ -645,7 +649,7 @@ operator|.
 name|indexOptions
 return|;
 block|}
-comment|/**    * Sets the indexing options for the field:    * @see #indexOptions()    */
+comment|/**    * Sets the indexing options for the field:    * @param value indexing options    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #indexOptions()    */
 DECL|method|setIndexOptions
 specifier|public
 name|void
@@ -665,7 +669,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Set's the field's DocValues.Type    * @see #docValueType()    */
+comment|/**    * Set's the field's DocValues.Type    * @param type DocValues type, or null if no DocValues should be stored.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #docValueType()    */
 DECL|method|setDocValueType
 specifier|public
 name|void
@@ -700,7 +704,7 @@ return|return
 name|docValueType
 return|;
 block|}
-comment|/**    * Specifies the field's numeric type.    * @see #numericType()    */
+comment|/**    * Specifies the field's numeric type.    * @param type numeric type, or null if the field has no numeric type.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #numericType()    */
 DECL|method|setNumericType
 specifier|public
 name|void
@@ -729,7 +733,7 @@ return|return
 name|numericType
 return|;
 block|}
-comment|/**    * Sets the numeric precision step for the field.    * @see #numericPrecisionStep()    */
+comment|/**    * Sets the numeric precision step for the field.    * @param precisionStep numeric precision step for the field    * @throws IllegalArgumentException if precisionStep is less than 1.     * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #numericPrecisionStep()    */
 DECL|method|setNumericPrecisionStep
 specifier|public
 name|void

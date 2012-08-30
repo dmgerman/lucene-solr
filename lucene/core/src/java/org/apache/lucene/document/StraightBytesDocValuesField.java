@@ -57,6 +57,7 @@ extends|extends
 name|Field
 block|{
 comment|// TODO: ideally indexer figures out var vs fixed on its own!?
+comment|/**    * Type for direct bytes DocValues: all with the same length    */
 DECL|field|TYPE_FIXED_LEN
 specifier|public
 specifier|static
@@ -87,6 +88,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Type for direct bytes DocValues: can have variable lengths    */
 DECL|field|TYPE_VAR_LEN
 specifier|public
 specifier|static
@@ -117,6 +119,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * Create a new variable-length direct DocValues field.    *<p>    * This calls     * {@link StraightBytesDocValuesField#StraightBytesDocValuesField(String, BytesRef, boolean)    *  StraightBytesDocValuesField(name, bytes, false}, meaning by default    * it allows for values of different lengths. If your values are all     * the same length, use that constructor instead.    * @param name field name    * @param bytes binary content    * @throws IllegalArgumentException if the field name is null    */
 DECL|method|StraightBytesDocValuesField
 specifier|public
 name|StraightBytesDocValuesField
@@ -140,6 +143,7 @@ operator|=
 name|bytes
 expr_stmt|;
 block|}
+comment|/**    * Create a new fixed or variable length direct DocValues field.    *<p>    * @param name field name    * @param bytes binary content    * @param isFixedLength true if all values have the same length.    * @throws IllegalArgumentException if the field name is null    */
 DECL|method|StraightBytesDocValuesField
 specifier|public
 name|StraightBytesDocValuesField

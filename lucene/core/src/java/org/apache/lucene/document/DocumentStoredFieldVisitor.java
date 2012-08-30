@@ -472,6 +472,7 @@ operator|.
 name|NO
 return|;
 block|}
+comment|/**    * Retrieve the visited document.    * @return Document populated with stored fields. Note that only    *         the stored information in the field instances is valid,    *         data such as boosts, indexing options, term vector options,    *         etc is not set.    */
 DECL|method|getDocument
 specifier|public
 name|Document
