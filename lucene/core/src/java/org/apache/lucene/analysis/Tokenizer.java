@@ -225,9 +225,10 @@ else|:
 name|currentOff
 return|;
 block|}
-comment|/** Expert: Reset the tokenizer to a new reader.  Typically, an    *  analyzer (in its tokenStream method) will use    *  this to re-use a previously created tokenizer. */
+comment|/** Expert: Set a new reader on the Tokenizer.  Typically, an    *  analyzer (in its tokenStream method) will use    *  this to re-use a previously created tokenizer. */
 DECL|method|setReader
 specifier|public
+specifier|final
 name|void
 name|setReader
 parameter_list|(
@@ -250,6 +251,20 @@ name|input
 operator|=
 name|input
 expr_stmt|;
+assert|assert
+name|setReaderTestPoint
+argument_list|()
+assert|;
+block|}
+comment|// only used by assert, for testing
+DECL|method|setReaderTestPoint
+name|boolean
+name|setReaderTestPoint
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
 block|}
 block|}
 end_class

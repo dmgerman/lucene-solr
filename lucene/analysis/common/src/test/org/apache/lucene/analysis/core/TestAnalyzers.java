@@ -526,6 +526,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|ts
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|byte

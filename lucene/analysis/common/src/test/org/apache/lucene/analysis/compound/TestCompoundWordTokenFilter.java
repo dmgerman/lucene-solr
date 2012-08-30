@@ -1756,6 +1756,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|tf
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|assertTrue
 argument_list|(
 name|tf
@@ -1909,6 +1914,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|stream
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 while|while
 condition|(
 name|stream

@@ -10472,14 +10472,11 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|setReader
+DECL|method|reset
 specifier|public
 name|void
-name|setReader
-parameter_list|(
-name|Reader
-name|input
-parameter_list|)
+name|reset
+parameter_list|()
 throws|throws
 name|IOException
 block|{

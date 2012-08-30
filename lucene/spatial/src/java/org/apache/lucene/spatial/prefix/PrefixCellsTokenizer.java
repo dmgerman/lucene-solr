@@ -300,36 +300,6 @@ literal|0
 return|;
 comment|// should only happen at the end
 block|}
-annotation|@
-name|Override
-DECL|method|end
-specifier|public
-specifier|final
-name|void
-name|end
-parameter_list|()
-block|{    }
-annotation|@
-name|Override
-DECL|method|setReader
-specifier|public
-name|void
-name|setReader
-parameter_list|(
-name|Reader
-name|input
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|super
-operator|.
-name|setReader
-argument_list|(
-name|input
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 
