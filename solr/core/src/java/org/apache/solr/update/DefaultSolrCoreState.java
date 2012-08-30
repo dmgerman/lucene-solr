@@ -1043,6 +1043,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 try|try
 block|{
 name|recoveryStrat
@@ -1056,7 +1061,12 @@ parameter_list|(
 name|InterruptedException
 name|e
 parameter_list|)
-block|{                    }
+block|{
+comment|// not interruptible - keep waiting
+continue|continue;
+block|}
+break|break;
+block|}
 name|recoveryRunning
 operator|=
 literal|false
