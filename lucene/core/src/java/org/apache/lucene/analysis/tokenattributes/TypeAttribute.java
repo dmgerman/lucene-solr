@@ -54,14 +54,14 @@ name|DEFAULT_TYPE
 init|=
 literal|"word"
 decl_stmt|;
-comment|/** Returns this Token's lexical type.  Defaults to "word". */
+comment|/**     * Returns this Token's lexical type.  Defaults to "word".     * @see #setType(String)    */
 DECL|method|type
 specifier|public
 name|String
 name|type
 parameter_list|()
 function_decl|;
-comment|/** Set the lexical type.       @see #type() */
+comment|/**     * Set the lexical type.    * @see #type()     */
 DECL|method|setType
 specifier|public
 name|void

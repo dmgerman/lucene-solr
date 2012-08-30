@@ -58,14 +58,14 @@ name|KeywordAttribute
 extends|extends
 name|Attribute
 block|{
-comment|/**    * Returns<code>true</code> iff the current token is a keyword, otherwise    *<code>false</code>/    *     * @return<code>true</code> iff the current token is a keyword, otherwise    *<code>false</code>/    */
+comment|/**    * Returns<code>true</code> if the current token is a keyword, otherwise    *<code>false</code>    *     * @return<code>true</code> if the current token is a keyword, otherwise    *<code>false</code>    * @see #setKeyword(boolean)    */
 DECL|method|isKeyword
 specifier|public
 name|boolean
 name|isKeyword
 parameter_list|()
 function_decl|;
-comment|/**    * Marks the current token as keyword iff set to<code>true</code>.    *     * @param isKeyword    *<code>true</code> iff the current token is a keyword, otherwise    *<code>false</code>.    */
+comment|/**    * Marks the current token as keyword if set to<code>true</code>.    *     * @param isKeyword    *<code>true</code> if the current token is a keyword, otherwise    *<code>false</code>.    * @see #isKeyword()    */
 DECL|method|setKeyword
 specifier|public
 name|void

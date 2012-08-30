@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This attribute can be used to pass different flags down the tokenizer chain,  * eg from one TokenFilter to another one.   * @lucene.experimental While we think this is here to stay, we may want to change it to be a long.  */
+comment|/** Default implementation of {@link FlagsAttribute}. */
 end_comment
 
 begin_class
@@ -55,7 +55,12 @@ name|flags
 init|=
 literal|0
 decl_stmt|;
-comment|/**    *<p/>    *    * Get the bitset for any bits that have been set.  This is completely distinct from {@link TypeAttribute#type()}, although they do share similar purposes.    * The flags can be used to encode information about the token for use by other {@link org.apache.lucene.analysis.TokenFilter}s.    *    *    * @return The bits    */
+comment|/** Initialize this attribute with no bits set */
+DECL|method|FlagsAttributeImpl
+specifier|public
+name|FlagsAttributeImpl
+parameter_list|()
+block|{}
 DECL|method|getFlags
 specifier|public
 name|int
@@ -66,7 +71,6 @@ return|return
 name|flags
 return|;
 block|}
-comment|/**    * @see #getFlags()    */
 DECL|method|setFlags
 specifier|public
 name|void

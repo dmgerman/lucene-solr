@@ -67,7 +67,7 @@ operator|=
 name|input
 expr_stmt|;
 block|}
-comment|/** Performs end-of-stream operations, if any, and calls then<code>end()</code> on the    * input TokenStream.<p/>     *<b>NOTE:</b> Be sure to call<code>super.end()</code> first when overriding this method.*/
+comment|/**     * {@inheritDoc}    *<p>     *<b>NOTE:</b>     * The default implementation chains the call to the input TokenStream, so    * be sure to call<code>super.end()</code> first when overriding this method.    */
 annotation|@
 name|Override
 DECL|method|end
@@ -84,7 +84,7 @@ name|end
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Close the input TokenStream. */
+comment|/**    * {@inheritDoc}    *<p>    *<b>NOTE:</b>     * The default implementation chains the call to the input TokenStream, so    * be sure to call<code>super.close()</code> when overriding this method.    */
 annotation|@
 name|Override
 DECL|method|close
@@ -101,7 +101,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Reset the filter as well as the input TokenStream. */
+comment|/**    * {@inheritDoc}    *<p>    *<b>NOTE:</b>     * The default implementation chains the call to the input TokenStream, so    * be sure to call<code>super.reset()</code> when overriding this method.    */
 annotation|@
 name|Override
 DECL|method|reset

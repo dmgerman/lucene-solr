@@ -26,20 +26,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|TokenStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|AttributeImpl
@@ -47,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *This attribute can be used to mark a token as a keyword. Keyword aware  * {@link TokenStream}s can decide to modify a token based on the return value  * of {@link #isKeyword()} if the token is modified. Stemming filters for  * instance can use this attribute to conditionally skip a term if  * {@link #isKeyword()} returns<code>true</code>.  */
+comment|/** Default implementation of {@link KeywordAttribute}. */
 end_comment
 
 begin_class
@@ -66,6 +52,12 @@ specifier|private
 name|boolean
 name|keyword
 decl_stmt|;
+comment|/** Initialize this attribute with the keyword value as false. */
+DECL|method|KeywordAttributeImpl
+specifier|public
+name|KeywordAttributeImpl
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|clear
@@ -172,7 +164,6 @@ operator|.
 name|keyword
 return|;
 block|}
-comment|/**    * Returns<code>true</code> iff the current token is a keyword, otherwise    *<code>false</code>/    *     * @return<code>true</code> iff the current token is a keyword, otherwise    *<code>false</code>/    */
 DECL|method|isKeyword
 specifier|public
 name|boolean
@@ -183,7 +174,6 @@ return|return
 name|keyword
 return|;
 block|}
-comment|/**    * Marks the current token as keyword iff set to<code>true</code>.    *     * @param isKeyword    *<code>true</code> iff the current token is a keyword, otherwise    *<code>false</code>.    */
 DECL|method|setKeyword
 specifier|public
 name|void

@@ -154,7 +154,7 @@ operator|=
 name|input
 expr_stmt|;
 block|}
-comment|/** By default, closes the input Reader. */
+comment|/**    * {@inheritDoc}    *<p>    *<b>NOTE:</b>     * The default implementation closes the input Reader, so    * be sure to call<code>super.close()</code> when overriding this method.    */
 annotation|@
 name|Override
 DECL|method|close

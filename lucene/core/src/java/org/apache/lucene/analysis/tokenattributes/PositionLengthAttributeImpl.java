@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** See {@link PositionLengthAttribute}. */
+comment|/** Default implementation of {@link PositionLengthAttribute}. */
 end_comment
 
 begin_class
@@ -55,7 +55,12 @@ name|positionLength
 init|=
 literal|1
 decl_stmt|;
-comment|/** @param positionLength how many positions this token    *  spans.  NOTE: this is optional, and most analyzers    *  don't change the default value (1). */
+comment|/** Initializes this attribute with position length of 1. */
+DECL|method|PositionLengthAttributeImpl
+specifier|public
+name|PositionLengthAttributeImpl
+parameter_list|()
+block|{}
 DECL|method|setPositionLength
 specifier|public
 name|void
@@ -89,7 +94,6 @@ operator|=
 name|positionLength
 expr_stmt|;
 block|}
-comment|/** Returns the position length of this Token.    * @see #setPositionLength        */
 DECL|method|getPositionLength
 specifier|public
 name|int

@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The start and end character offset of a Token.   */
+comment|/** Default implementation of {@link OffsetAttribute}. */
 end_comment
 
 begin_class
@@ -58,7 +58,12 @@ specifier|private
 name|int
 name|endOffset
 decl_stmt|;
-comment|/** Returns this Token's starting offset, the position of the first character   corresponding to this token in the source text.    Note that the difference between endOffset() and startOffset() may not be   equal to termText.length(), as the term text may have been altered by a   stemmer or some other filter. */
+comment|/** Initialize this attribute with startOffset and endOffset of 0. */
+DECL|method|OffsetAttributeImpl
+specifier|public
+name|OffsetAttributeImpl
+parameter_list|()
+block|{}
 DECL|method|startOffset
 specifier|public
 name|int
@@ -69,7 +74,6 @@ return|return
 name|startOffset
 return|;
 block|}
-comment|/** Set the starting and ending offset.     @see #startOffset() and #endOffset()*/
 DECL|method|setOffset
 specifier|public
 name|void
@@ -127,7 +131,6 @@ operator|=
 name|endOffset
 expr_stmt|;
 block|}
-comment|/** Returns this Token's ending offset, one greater than the position of the   last character corresponding to this token in the source text. The length   of the token in the source text is (endOffset - startOffset). */
 DECL|method|endOffset
 specifier|public
 name|int

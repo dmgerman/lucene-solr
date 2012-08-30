@@ -65,7 +65,7 @@ name|int
 name|length
 parameter_list|)
 function_decl|;
-comment|/** Returns the internal termBuffer character array which    *  you can then directly alter.  If the array is too    *  small for your token, use {@link    *  #resizeBuffer(int)} to increase it.  After    *  altering the buffer be sure to call {@link    *  #setLength} to record the number of valid    *  characters that were placed into the termBuffer. */
+comment|/** Returns the internal termBuffer character array which    *  you can then directly alter.  If the array is too    *  small for your token, use {@link    *  #resizeBuffer(int)} to increase it.  After    *  altering the buffer be sure to call {@link    *  #setLength} to record the number of valid    *  characters that were placed into the termBuffer.     *<p>    *<b>NOTE</b>: The returned buffer may be larger than    *  the valid {@link #length()}.    */
 DECL|method|buffer
 specifier|public
 name|char

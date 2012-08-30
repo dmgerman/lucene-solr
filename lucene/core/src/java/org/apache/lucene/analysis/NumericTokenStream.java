@@ -468,6 +468,12 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+comment|/**       * Creates, but does not yet initialize this attribute instance      * @see #init(long, int, int, int)      */
+DECL|method|NumericTermAttributeImpl
+specifier|public
+name|NumericTermAttributeImpl
+parameter_list|()
+block|{}
 DECL|method|getBytesRef
 specifier|public
 name|BytesRef

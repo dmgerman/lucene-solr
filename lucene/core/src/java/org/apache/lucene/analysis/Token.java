@@ -385,7 +385,7 @@ operator|=
 name|flags
 expr_stmt|;
 block|}
-comment|/** Constructs a Token with the given term text, and start    *& end offsets.  The type defaults to "word."    *<b>NOTE:</b> for better indexing speed you should    *  instead use the char[] termBuffer methods to set the    *  term text.    *  @param text term text    *  @param start start offset    *  @param end end offset    */
+comment|/** Constructs a Token with the given term text, and start    *& end offsets.  The type defaults to "word."    *<b>NOTE:</b> for better indexing speed you should    *  instead use the char[] termBuffer methods to set the    *  term text.    *  @param text term text    *  @param start start offset in the source text    *  @param end end offset in the source text    */
 DECL|method|Token
 specifier|public
 name|Token
@@ -421,7 +421,7 @@ operator|=
 name|end
 expr_stmt|;
 block|}
-comment|/** Constructs a Token with the given text, start and end    *  offsets,& type.<b>NOTE:</b> for better indexing    *  speed you should instead use the char[] termBuffer    *  methods to set the term text.    *  @param text term text    *  @param start start offset    *  @param end end offset    *  @param typ token type    */
+comment|/** Constructs a Token with the given text, start and end    *  offsets,& type.<b>NOTE:</b> for better indexing    *  speed you should instead use the char[] termBuffer    *  methods to set the term text.    *  @param text term text    *  @param start start offset in the source text    *  @param end end offset in the source text    *  @param typ token type    */
 DECL|method|Token
 specifier|public
 name|Token
@@ -464,7 +464,7 @@ operator|=
 name|typ
 expr_stmt|;
 block|}
-comment|/**    *  Constructs a Token with the given text, start and end    *  offsets,& type.<b>NOTE:</b> for better indexing    *  speed you should instead use the char[] termBuffer    *  methods to set the term text.    * @param text    * @param start    * @param end    * @param flags token type bits    */
+comment|/**    *  Constructs a Token with the given text, start and end    *  offsets,& type.<b>NOTE:</b> for better indexing    *  speed you should instead use the char[] termBuffer    *  methods to set the term text.    * @param text term text    * @param start start offset in the source text    * @param end end offset in the source text    * @param flags token type bits    */
 DECL|method|Token
 specifier|public
 name|Token
@@ -509,7 +509,7 @@ operator|=
 name|flags
 expr_stmt|;
 block|}
-comment|/**    *  Constructs a Token with the given term buffer (offset    *& length), start and end    *  offsets    * @param startTermBuffer    * @param termBufferOffset    * @param termBufferLength    * @param start    * @param end    */
+comment|/**    *  Constructs a Token with the given term buffer (offset    *& length), start and end    *  offsets    * @param startTermBuffer buffer containing term text    * @param termBufferOffset the index in the buffer of the first character    * @param termBufferLength number of valid characters in the buffer    * @param start start offset in the source text    * @param end end offset in the source text    */
 DECL|method|Token
 specifier|public
 name|Token
@@ -556,7 +556,7 @@ operator|=
 name|end
 expr_stmt|;
 block|}
-comment|/** Set the position increment.  This determines the position of this token    * relative to the previous Token in a {@link TokenStream}, used in phrase    * searching.    *    *<p>The default value is one.    *    *<p>Some common uses for this are:<ul>    *    *<li>Set it to zero to put multiple terms in the same position.  This is    * useful if, e.g., a word has multiple stems.  Searches for phrases    * including either stem will match.  In this case, all but the first stem's    * increment should be set to zero: the increment of the first instance    * should be one.  Repeating a token with an increment of zero can also be    * used to boost the scores of matches on that token.    *    *<li>Set it to values greater than one to inhibit exact phrase matches.    * If, for example, one does not want phrases to match across removed stop    * words, then one could build a stop word filter that removes stop words and    * also sets the increment to the number of stop words removed before each    * non-stop word.  Then exact phrase queries will only match when the terms    * occur with no intervening stop words.    *    *</ul>    * @param positionIncrement the distance from the prior term    * @see org.apache.lucene.index.DocsAndPositionsEnum    */
+comment|/**    * {@inheritDoc}    * @see PositionIncrementAttribute    */
 DECL|method|setPositionIncrement
 specifier|public
 name|void
@@ -588,7 +588,7 @@ operator|=
 name|positionIncrement
 expr_stmt|;
 block|}
-comment|/** Returns the position increment of this Token.    * @see #setPositionIncrement    */
+comment|/**    * {@inheritDoc}    * @see PositionIncrementAttribute    */
 DECL|method|getPositionIncrement
 specifier|public
 name|int
@@ -599,7 +599,7 @@ return|return
 name|positionIncrement
 return|;
 block|}
-comment|/** Set the position length.    * @see PositionLengthAttribute */
+comment|/**    * {@inheritDoc}    * @see PositionLengthAttribute    */
 annotation|@
 name|Override
 DECL|method|setPositionLength
@@ -618,7 +618,7 @@ operator|=
 name|positionLength
 expr_stmt|;
 block|}
-comment|/** Get the position length.    * @see PositionLengthAttribute */
+comment|/**    * {@inheritDoc}    * @see PositionLengthAttribute    */
 annotation|@
 name|Override
 DECL|method|getPositionLength
@@ -631,7 +631,7 @@ return|return
 name|positionLength
 return|;
 block|}
-comment|/** Returns this Token's starting offset, the position of the first character     corresponding to this token in the source text.      Note that the difference between endOffset() and startOffset() may not be     equal to {@link #length}, as the term text may have been altered by a     stemmer or some other filter. */
+comment|/**    * {@inheritDoc}    * @see OffsetAttribute    */
 DECL|method|startOffset
 specifier|public
 specifier|final
@@ -643,7 +643,7 @@ return|return
 name|startOffset
 return|;
 block|}
-comment|/** Returns this Token's ending offset, one greater than the position of the     last character corresponding to this token in the source text. The length     of the token in the source text is (endOffset - startOffset). */
+comment|/**    * {@inheritDoc}    * @see OffsetAttribute    */
 DECL|method|endOffset
 specifier|public
 specifier|final
@@ -655,7 +655,7 @@ return|return
 name|endOffset
 return|;
 block|}
-comment|/** Set the starting and ending offset.   @see #startOffset() and #endOffset()*/
+comment|/**    * {@inheritDoc}    * @see OffsetAttribute    */
 DECL|method|setOffset
 specifier|public
 name|void
@@ -688,7 +688,7 @@ operator|=
 name|endOffset
 expr_stmt|;
 block|}
-comment|/** Returns this Token's lexical type.  Defaults to "word". */
+comment|/**    * {@inheritDoc}    * @see TypeAttribute    */
 DECL|method|type
 specifier|public
 specifier|final
@@ -700,7 +700,7 @@ return|return
 name|type
 return|;
 block|}
-comment|/** Set the lexical type.       @see #type() */
+comment|/**    * {@inheritDoc}    * @see TypeAttribute    */
 DECL|method|setType
 specifier|public
 specifier|final
@@ -718,7 +718,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**    *<p/>    *    * Get the bitset for any bits that have been set.  This is completely distinct from {@link #type()}, although they do share similar purposes.    * The flags can be used to encode information about the token for use by other {@link org.apache.lucene.analysis.TokenFilter}s.    *    *     * @return The bits    * @lucene.experimental While we think this is here to stay, we may want to change it to be a long.    */
+comment|/**    * {@inheritDoc}    * @see FlagsAttribute    */
 DECL|method|getFlags
 specifier|public
 name|int
@@ -729,7 +729,7 @@ return|return
 name|flags
 return|;
 block|}
-comment|/**    * @see #getFlags()    */
+comment|/**    * {@inheritDoc}    * @see FlagsAttribute    */
 DECL|method|setFlags
 specifier|public
 name|void
@@ -746,7 +746,7 @@ operator|=
 name|flags
 expr_stmt|;
 block|}
-comment|/**    * Returns this Token's payload.    */
+comment|/**    * {@inheritDoc}    * @see PayloadAttribute    */
 DECL|method|getPayload
 specifier|public
 name|BytesRef
@@ -759,7 +759,7 @@ operator|.
 name|payload
 return|;
 block|}
-comment|/**     * Sets this Token's payload.    */
+comment|/**    * {@inheritDoc}    * @see PayloadAttribute    */
 DECL|method|setPayload
 specifier|public
 name|void
@@ -1573,7 +1573,7 @@ operator|.
 name|payload
 expr_stmt|;
 block|}
-comment|/**    * Copy the prototype token's fields into this one, with a different term. Note: Payloads are shared.    * @param prototype    * @param newTerm    */
+comment|/**    * Copy the prototype token's fields into this one, with a different term. Note: Payloads are shared.    * @param prototype existing Token    * @param newTerm new term text    */
 DECL|method|reinit
 specifier|public
 name|void
@@ -1631,7 +1631,7 @@ operator|.
 name|payload
 expr_stmt|;
 block|}
-comment|/**    * Copy the prototype token's fields into this one, with a different term. Note: Payloads are shared.    * @param prototype    * @param newTermBuffer    * @param offset    * @param length    */
+comment|/**    * Copy the prototype token's fields into this one, with a different term. Note: Payloads are shared.    * @param prototype existing Token    * @param newTermBuffer buffer containing new term text    * @param offset the index in the buffer of the first character    * @param length number of valid characters in the buffer    */
 DECL|method|reinit
 specifier|public
 name|void
