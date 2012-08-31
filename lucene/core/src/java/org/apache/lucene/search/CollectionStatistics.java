@@ -130,10 +130,15 @@ assert|;
 comment|// #docs with field must be<= #docs
 assert|assert
 name|sumDocFreq
-operator|>=
+operator|==
 operator|-
 literal|1
+operator|||
+name|sumDocFreq
+operator|>=
+name|docCount
 assert|;
+comment|// #postings must be>= #docs with field
 assert|assert
 name|sumTotalTermFreq
 operator|==

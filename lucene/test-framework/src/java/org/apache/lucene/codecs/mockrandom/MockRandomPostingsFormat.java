@@ -2196,8 +2196,6 @@ argument_list|,
 name|state
 operator|.
 name|segmentInfo
-operator|.
-name|name
 argument_list|,
 name|postingsReader
 argument_list|,
@@ -2524,8 +2522,6 @@ argument_list|,
 name|state
 operator|.
 name|segmentInfo
-operator|.
-name|name
 argument_list|,
 name|postingsReader
 argument_list|,

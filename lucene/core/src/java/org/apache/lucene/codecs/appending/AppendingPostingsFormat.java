@@ -338,8 +338,6 @@ argument_list|,
 name|state
 operator|.
 name|segmentInfo
-operator|.
-name|name
 argument_list|,
 name|postings
 argument_list|,
