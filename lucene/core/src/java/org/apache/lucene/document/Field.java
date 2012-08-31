@@ -1734,11 +1734,13 @@ argument_list|)
 expr_stmt|;
 break|break;
 default|default:
-assert|assert
-literal|false
-operator|:
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
 literal|"Should never get here"
-assert|;
+argument_list|)
+throw|;
 block|}
 return|return
 name|internalTokenStream

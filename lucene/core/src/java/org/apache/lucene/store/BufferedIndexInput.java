@@ -1866,18 +1866,17 @@ return|return
 name|MERGE_BUFFER_SIZE
 return|;
 default|default:
-assert|assert
-literal|false
-operator|:
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
 literal|"unknown IOContext "
 operator|+
 name|context
 operator|.
 name|context
-assert|;
-return|return
-name|BUFFER_SIZE
-return|;
+argument_list|)
+throw|;
 block|}
 block|}
 block|}

@@ -945,11 +945,13 @@ name|int
 name|docIDUpto
 parameter_list|)
 block|{
-assert|assert
-literal|false
-operator|:
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
 literal|"sentinel item must never be applied"
-assert|;
+argument_list|)
+throw|;
 block|}
 DECL|method|casNext
 name|boolean

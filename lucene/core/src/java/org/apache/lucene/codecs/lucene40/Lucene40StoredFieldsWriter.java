@@ -1071,9 +1071,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
-assert|assert
-literal|false
-assert|;
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"Cannot get here"
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
