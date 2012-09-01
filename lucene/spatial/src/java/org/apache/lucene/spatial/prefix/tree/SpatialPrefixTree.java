@@ -375,7 +375,7 @@ name|precision
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the level of the largest grid in which its longest side is less    * than or equal to the provided distance (in degrees). Consequently {@link    * dist} acts as an error epsilon declaring the amount of detail needed in the    * grid, such that you can get a grid with just the right amount of    * precision.    *    * @param dist>= 0    * @return level [1 to maxLevels]    */
+comment|/**    * Returns the level of the largest grid in which its longest side is less    * than or equal to the provided distance (in degrees). Consequently {@code    * dist} acts as an error epsilon declaring the amount of detail needed in the    * grid, such that you can get a grid with just the right amount of    * precision.    *    * @param dist>= 0    * @return level [1 to maxLevels]    */
 DECL|method|getLevelForDistance
 specifier|public
 specifier|abstract
