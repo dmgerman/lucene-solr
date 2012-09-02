@@ -244,11 +244,50 @@ name|SolrDispatchFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ThreadLeakAction
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ThreadLeakAction
+operator|.
+name|Action
+import|;
+end_import
+
 begin_comment
 comment|/**  * This test simply does a bunch of basic things in solrcloud mode and asserts things  * work as expected.  */
 end_comment
 
 begin_class
+annotation|@
+name|ThreadLeakAction
+argument_list|(
+block|{
+name|Action
+operator|.
+name|WARN
+block|}
+argument_list|)
 DECL|class|BasicDistributedZk2Test
 specifier|public
 class|class
@@ -256,15 +295,6 @@ name|BasicDistributedZk2Test
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
-DECL|method|BasicDistributedZk2Test
-specifier|public
-name|BasicDistributedZk2Test
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
 comment|/*    * (non-Javadoc)    *     * @see org.apache.solr.BaseDistributedSearchTestCase#doTest()    *     * Create 3 shards, each with one replica    */
 annotation|@
 name|Override

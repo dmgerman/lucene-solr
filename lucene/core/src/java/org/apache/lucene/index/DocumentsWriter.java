@@ -1397,11 +1397,13 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-assert|assert
-literal|false
-operator|:
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
 literal|"perThread is not active but we are still open"
-assert|;
+argument_list|)
+throw|;
 block|}
 specifier|final
 name|DocumentsWriterPerThread

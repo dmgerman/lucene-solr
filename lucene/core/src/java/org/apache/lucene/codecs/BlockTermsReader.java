@@ -76,6 +76,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|CorruptIndexException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|DocsAndPositionsEnum
 import|;
 end_import
@@ -149,6 +163,20 @@ operator|.
 name|index
 operator|.
 name|IndexFileNames
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SegmentInfo
 import|;
 end_import
 
@@ -519,8 +547,8 @@ parameter_list|,
 name|FieldInfos
 name|fieldInfos
 parameter_list|,
-name|String
-name|segment
+name|SegmentInfo
+name|info
 parameter_list|,
 name|PostingsReaderBase
 name|postingsReader
@@ -567,7 +595,9 @@ name|IndexFileNames
 operator|.
 name|segmentFileName
 argument_list|(
-name|segment
+name|info
+operator|.
+name|name
 argument_list|,
 name|segmentSuffix
 argument_list|,
@@ -616,6 +646,29 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|numFields
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid number of fields: "
+operator|+
+name|numFields
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 name|int
@@ -713,17 +766,108 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
-assert|assert
-operator|!
-name|fields
+if|if
+condition|(
+name|docCount
+argument_list|<
+literal|0
+operator|||
+name|docCount
+argument_list|>
+name|info
 operator|.
-name|containsKey
+name|getDocCount
+argument_list|()
+condition|)
+block|{
+comment|// #docs with field must be<= #docs
+throw|throw
+operator|new
+name|CorruptIndexException
 argument_list|(
-name|fieldInfo
+literal|"invalid docCount: "
+operator|+
+name|docCount
+operator|+
+literal|" maxDoc: "
+operator|+
+name|info
 operator|.
-name|name
+name|getDocCount
+argument_list|()
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
 argument_list|)
-assert|;
+throw|;
+block|}
+if|if
+condition|(
+name|sumDocFreq
+operator|<
+name|docCount
+condition|)
+block|{
+comment|// #postings must be>= #docs with field
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid sumDocFreq: "
+operator|+
+name|sumDocFreq
+operator|+
+literal|" docCount: "
+operator|+
+name|docCount
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|sumTotalTermFreq
+operator|!=
+operator|-
+literal|1
+operator|&&
+name|sumTotalTermFreq
+operator|<
+name|sumDocFreq
+condition|)
+block|{
+comment|// #positions must be>= #postings
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid sumTotalTermFreq: "
+operator|+
+name|sumTotalTermFreq
+operator|+
+literal|" sumDocFreq: "
+operator|+
+name|sumDocFreq
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
+name|FieldReader
+name|previous
+init|=
 name|fields
 operator|.
 name|put
@@ -748,7 +892,32 @@ argument_list|,
 name|docCount
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+if|if
+condition|(
+name|previous
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"duplicate fields: "
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 block|}
 name|success
 operator|=

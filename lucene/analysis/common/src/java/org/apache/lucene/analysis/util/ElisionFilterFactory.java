@@ -71,6 +71,8 @@ extends|extends
 name|TokenFilterFactory
 implements|implements
 name|ResourceLoaderAware
+implements|,
+name|MultiTermAwareComponent
 block|{
 DECL|field|articles
 specifier|private
@@ -159,6 +161,18 @@ name|input
 argument_list|,
 name|articles
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getMultiTermComponent
+specifier|public
+name|AbstractAnalysisFactory
+name|getMultiTermComponent
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 block|}

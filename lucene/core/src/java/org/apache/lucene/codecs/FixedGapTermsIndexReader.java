@@ -68,6 +68,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|CorruptIndexException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|FieldInfos
 import|;
 end_import
@@ -386,6 +400,29 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|indexInterval
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid indexInterval: "
+operator|+
+name|indexInterval
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|indexDivisor
@@ -436,6 +473,29 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|numFields
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid numFields: "
+operator|+
+name|numFields
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 comment|//System.out.println("FGR: init seg=" + segment + " div=" + indexDivisor + " nF=" + numFields);
 for|for
 control|(
@@ -470,6 +530,29 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|numIndexTerms
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid numIndexTerms: "
+operator|+
+name|numIndexTerms
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|long
 name|termsStart
@@ -506,27 +589,37 @@ operator|.
 name|readVLong
 argument_list|()
 decl_stmt|;
-assert|assert
+if|if
+condition|(
 name|packedIndexStart
-operator|>=
+operator|<
 name|indexStart
-operator|:
-literal|"packedStart="
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"invalid packedIndexStart: "
 operator|+
 name|packedIndexStart
 operator|+
-literal|" indexStart="
+literal|" indexStart: "
 operator|+
 name|indexStart
 operator|+
-literal|" numIndexTerms="
+literal|"numIndexTerms: "
 operator|+
 name|numIndexTerms
 operator|+
-literal|" seg="
+literal|" (resource="
 operator|+
-name|segment
-assert|;
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|FieldInfo
 name|fieldInfo
@@ -538,6 +631,9 @@ argument_list|(
 name|field
 argument_list|)
 decl_stmt|;
+name|FieldIndexData
+name|previous
+init|=
 name|fields
 operator|.
 name|put
@@ -560,7 +656,32 @@ argument_list|,
 name|packedOffsetsStart
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+if|if
+condition|(
+name|previous
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"duplicate field: "
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|" (resource="
+operator|+
+name|in
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 block|}
 name|success
 operator|=

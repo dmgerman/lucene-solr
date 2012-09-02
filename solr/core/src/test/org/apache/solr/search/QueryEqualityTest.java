@@ -1361,6 +1361,38 @@ literal|"div(field(foo_i), sub(4,bar_i))"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testFuncMod
+specifier|public
+name|void
+name|testFuncMod
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertFuncEquals
+argument_list|(
+literal|"mod(5,4)"
+argument_list|,
+literal|"mod(5, 4)"
+argument_list|)
+expr_stmt|;
+name|assertFuncEquals
+argument_list|(
+literal|"mod(foo_i,4)"
+argument_list|,
+literal|"mod(foo_i, 4)"
+argument_list|,
+literal|"mod(field('foo_i'), 4)"
+argument_list|)
+expr_stmt|;
+name|assertFuncEquals
+argument_list|(
+literal|"mod(foo_i,sub(4,field('bar_i')))"
+argument_list|,
+literal|"mod(field(foo_i), sub(4,bar_i))"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testFuncMap
 specifier|public
 name|void
