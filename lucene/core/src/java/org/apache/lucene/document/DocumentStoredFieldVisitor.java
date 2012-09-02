@@ -486,7 +486,7 @@ operator|.
 name|NO
 return|;
 block|}
-comment|/**    * Retrieve the visited document.    * @return StoredDocument populated with stored fields.    */
+comment|/**    * Retrieve the visited document.    * @return {@link StoredDocument} populated with stored fields. Note that only    *         the stored information in the field instances is valid,    *         data such as indexing options, term vector options,    *         etc is not set.    */
 DECL|method|getDocument
 specifier|public
 name|StoredDocument
