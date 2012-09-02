@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|ByteDocValuesField
 extends|extends
-name|Field
+name|StoredField
 block|{
 comment|/**    * Type for 8-bit byte DocValues.    */
 DECL|field|TYPE

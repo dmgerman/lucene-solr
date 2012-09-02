@@ -118,6 +118,20 @@ name|IndexReader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StoredDocument
+import|;
+end_import
+
 begin_comment
 comment|/**  * Search and Traverse and Retrieve docs task using a  * FieldVisitor loading only the requested fields.  *  *<p>Note: This task reuses the reader if it is already open.  * Otherwise a reader is opened at start and closed at the end.  *  *<p>Takes optional param: comma separated list of Fields to load.</p>  *   *<p>Other side effects: counts additional 1 (record) for each traversed hit,   * and 1 more for each retrieved (non null) document.</p>  */
 end_comment
@@ -168,7 +182,7 @@ annotation|@
 name|Override
 DECL|method|retrieveDoc
 specifier|protected
-name|Document
+name|StoredDocument
 name|retrieveDoc
 parameter_list|(
 name|IndexReader

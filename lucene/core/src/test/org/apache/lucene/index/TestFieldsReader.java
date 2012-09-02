@@ -446,6 +446,9 @@ name|IndexableField
 name|field
 range|:
 name|testDoc
+operator|.
+name|getFields
+argument_list|()
 control|)
 block|{
 name|fieldInfos
@@ -596,7 +599,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|reader
@@ -825,7 +828,7 @@ expr_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|IndexableField
+name|StorableField
 argument_list|>
 name|fields
 init|=
@@ -1848,7 +1851,7 @@ name|FieldType
 argument_list|(
 name|IntField
 operator|.
-name|TYPE_NOT_STORED
+name|TYPE_STORED
 argument_list|)
 decl_stmt|;
 name|ft
@@ -1964,7 +1967,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|sub

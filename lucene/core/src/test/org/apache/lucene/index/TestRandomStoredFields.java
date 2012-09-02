@@ -863,7 +863,7 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|r

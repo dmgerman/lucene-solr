@@ -1815,7 +1815,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|doc2
 init|=
 name|ir

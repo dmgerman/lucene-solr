@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexableField
+name|StorableField
 import|;
 end_import
 
@@ -50,7 +50,7 @@ specifier|public
 name|String
 name|toObject
 parameter_list|(
-name|IndexableField
+name|StorableField
 name|f
 parameter_list|)
 block|{

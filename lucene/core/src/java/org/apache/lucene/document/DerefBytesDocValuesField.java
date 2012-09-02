@@ -54,7 +54,7 @@ specifier|public
 class|class
 name|DerefBytesDocValuesField
 extends|extends
-name|Field
+name|StoredField
 block|{
 comment|// TODO: ideally indexer figures out var vs fixed on its own!?
 comment|/**    * Type for indirect bytes DocValues: all with the same length    */

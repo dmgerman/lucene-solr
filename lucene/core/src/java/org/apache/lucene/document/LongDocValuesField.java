@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|LongDocValuesField
 extends|extends
-name|Field
+name|StoredField
 block|{
 comment|/**    * Type for 64-bit long DocValues.    */
 DECL|field|TYPE

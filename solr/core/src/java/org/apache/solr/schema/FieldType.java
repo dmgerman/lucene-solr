@@ -116,7 +116,35 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|GeneralField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StorableField
 import|;
 end_import
 
@@ -1099,7 +1127,7 @@ block|}
 comment|/**    * Used for adding a document when a field needs to be created from a    * type and a string.    *    *<p>    * By default, the indexed value is the same as the stored value    * (taken from toInternal()).   Having a different representation for    * external, internal, and indexed would present quite a few problems    * given the current Lucene architecture.  An analyzer for adding docs    * would need to translate internal->indexed while an analyzer for    * querying would need to translate external-&gt;indexed.    *</p>    *<p>    * The only other alternative to having internal==indexed would be to have    * internal==external.   In this case, toInternal should convert to    * the indexed representation, toExternal() should do nothing, and    * createField() should *not* call toInternal, but use the external    * value and set tokenized=true to get Lucene to convert to the    * internal(indexed) form.    *</p>    *    * :TODO: clean up and clarify this explanation.    *    * @see #toInternal    *    *    */
 DECL|method|createField
 specifier|public
-name|IndexableField
+name|StorableField
 name|createField
 parameter_list|(
 name|SchemaField
@@ -1326,7 +1354,7 @@ block|}
 comment|/**    * Create the field from native Lucene parts.  Mostly intended for use by FieldTypes outputing multiple    * Fields per SchemaField    * @param name The name of the field    * @param val The _internal_ value to index    * @param type {@link org.apache.lucene.document.FieldType}    * @param boost The boost value    * @return the {@link org.apache.lucene.index.IndexableField}.    */
 DECL|method|createField
 specifier|protected
-name|IndexableField
+name|StorableField
 name|createField
 parameter_list|(
 name|String
@@ -1377,7 +1405,7 @@ block|}
 comment|/**    * Given a {@link org.apache.solr.schema.SchemaField}, create one or more {@link org.apache.lucene.index.IndexableField} instances    * @param field the {@link org.apache.solr.schema.SchemaField}    * @param value The value to add to the field    * @param boost The boost to apply    * @return An array of {@link org.apache.lucene.index.IndexableField}    *    * @see #createField(SchemaField, Object, float)    * @see #isPolyField()    */
 DECL|method|createFields
 specifier|public
-name|IndexableField
+name|StorableField
 index|[]
 name|createFields
 parameter_list|(
@@ -1391,7 +1419,7 @@ name|float
 name|boost
 parameter_list|)
 block|{
-name|IndexableField
+name|StorableField
 name|f
 init|=
 name|createField
@@ -1409,12 +1437,12 @@ operator|==
 literal|null
 condition|?
 operator|new
-name|IndexableField
+name|StorableField
 index|[]
 block|{}
 else|:
 operator|new
-name|IndexableField
+name|StorableField
 index|[]
 block|{
 name|f
@@ -1497,7 +1525,7 @@ specifier|public
 name|String
 name|toExternal
 parameter_list|(
-name|IndexableField
+name|StorableField
 name|f
 parameter_list|)
 block|{
@@ -1517,7 +1545,7 @@ specifier|public
 name|Object
 name|toObject
 parameter_list|(
-name|IndexableField
+name|StorableField
 name|f
 parameter_list|)
 block|{
@@ -1561,7 +1589,7 @@ name|ref
 argument_list|)
 expr_stmt|;
 specifier|final
-name|IndexableField
+name|StorableField
 name|f
 init|=
 name|createField
@@ -1629,7 +1657,7 @@ specifier|public
 name|String
 name|storedToReadable
 parameter_list|(
-name|IndexableField
+name|StorableField
 name|f
 parameter_list|)
 block|{
@@ -1646,7 +1674,7 @@ specifier|public
 name|String
 name|storedToIndexed
 parameter_list|(
-name|IndexableField
+name|StorableField
 name|f
 parameter_list|)
 block|{
@@ -2071,7 +2099,7 @@ parameter_list|,
 name|String
 name|name
 parameter_list|,
-name|IndexableField
+name|StorableField
 name|f
 parameter_list|)
 throws|throws

@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|DoubleDocValuesField
 extends|extends
-name|Field
+name|StoredField
 block|{
 comment|/**    * Type for 64-bit double DocValues.    */
 DECL|field|TYPE

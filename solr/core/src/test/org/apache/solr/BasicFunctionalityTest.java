@@ -186,6 +186,34 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|StorableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StoredDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|English
@@ -2156,7 +2184,7 @@ name|SchemaField
 name|f
 decl_stmt|;
 comment|// Solr field type
-name|IndexableField
+name|StorableField
 name|luf
 decl_stmt|;
 comment|// Lucene field
@@ -3490,7 +3518,7 @@ operator|)
 operator|.
 name|docs
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|d
 init|=
 name|req
@@ -3711,7 +3739,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|d
 init|=
 name|req

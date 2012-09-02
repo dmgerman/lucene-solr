@@ -135,56 +135,9 @@ DECL|interface|IndexableField
 specifier|public
 interface|interface
 name|IndexableField
+extends|extends
+name|GeneralField
 block|{
-comment|/** Field name */
-DECL|method|name
-specifier|public
-name|String
-name|name
-parameter_list|()
-function_decl|;
-comment|/** {@link IndexableFieldType} describing the properties    * of this field. */
-DECL|method|fieldType
-specifier|public
-name|IndexableFieldType
-name|fieldType
-parameter_list|()
-function_decl|;
-comment|/**     * Returns the field's index-time boost.    *<p>    * Only fields can have an index-time boost, if you want to simulate    * a "document boost", then you must pre-multiply it across all the    * relevant fields yourself.     *<p>The boost is used to compute the norm factor for the field.  By    * default, in the {@link Similarity#computeNorm(FieldInvertState, Norm)} method,     * the boost value is multiplied by the length normalization factor and then    * rounded by {@link DefaultSimilarity#encodeNormValue(float)} before it is stored in the    * index.  One should attempt to ensure that this product does not overflow    * the range of that encoding.    *<p>    * It is illegal to return a boost other than 1.0f for a field that is not    * indexed ({@link IndexableFieldType#indexed()} is false) or omits normalization values    * ({@link IndexableFieldType#omitNorms()} returns true).    *    * @see Similarity#computeNorm(FieldInvertState, Norm)    * @see DefaultSimilarity#encodeNormValue(float)    */
-DECL|method|boost
-specifier|public
-name|float
-name|boost
-parameter_list|()
-function_decl|;
-comment|/** Non-null if this field has a binary value */
-DECL|method|binaryValue
-specifier|public
-name|BytesRef
-name|binaryValue
-parameter_list|()
-function_decl|;
-comment|/** Non-null if this field has a string value */
-DECL|method|stringValue
-specifier|public
-name|String
-name|stringValue
-parameter_list|()
-function_decl|;
-comment|/** Non-null if this field has a Reader value */
-DECL|method|readerValue
-specifier|public
-name|Reader
-name|readerValue
-parameter_list|()
-function_decl|;
-comment|/** Non-null if this field has a numeric value */
-DECL|method|numericValue
-specifier|public
-name|Number
-name|numericValue
-parameter_list|()
-function_decl|;
 comment|/**    * Creates the TokenStream used for indexing this field.  If appropriate,    * implementations should use the given Analyzer to create the TokenStreams.    *    * @param analyzer Analyzer that should be used to create the TokenStreams from    * @return TokenStream value for indexing the document.  Should always return    *         a non-null value if the field is to be indexed    * @throws IOException Can be thrown while creating the TokenStream    */
 DECL|method|tokenStream
 specifier|public
@@ -196,6 +149,13 @@ name|analyzer
 parameter_list|)
 throws|throws
 name|IOException
+function_decl|;
+comment|/**     * Returns the field's index-time boost.    *<p>    * Only fields can have an index-time boost, if you want to simulate    * a "document boost", then you must pre-multiply it across all the    * relevant fields yourself.     *<p>The boost is used to compute the norm factor for the field.  By    * default, in the {@link Similarity#computeNorm(FieldInvertState, Norm)} method,     * the boost value is multiplied by the length normalization factor and then    * rounded by {@link DefaultSimilarity#encodeNormValue(float)} before it is stored in the    * index.  One should attempt to ensure that this product does not overflow    * the range of that encoding.    *<p>    * It is illegal to return a boost other than 1.0f for a field that is not    * indexed ({@link IndexableFieldType#indexed()} is false) or omits normalization values    * ({@link IndexableFieldType#omitNorms()} returns true).    *    * @see Similarity#computeNorm(FieldInvertState, Norm)    * @see DefaultSimilarity#encodeNormValue(float)    */
+DECL|method|boost
+specifier|public
+name|float
+name|boost
+parameter_list|()
 function_decl|;
 block|}
 end_interface

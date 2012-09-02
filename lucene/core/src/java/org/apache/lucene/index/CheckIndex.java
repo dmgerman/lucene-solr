@@ -6016,7 +6016,7 @@ control|)
 block|{
 comment|// Intentionally pull even deleted documents to
 comment|// make sure they too are not corrupt:
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|reader

@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|IntDocValuesField
 extends|extends
-name|Field
+name|StoredField
 block|{
 comment|/**    * Type for 32-bit integer DocValues.    */
 DECL|field|TYPE

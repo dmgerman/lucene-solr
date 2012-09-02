@@ -767,7 +767,7 @@ name|k
 operator|*
 name|M
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|prevItereationDoc
 init|=
 name|reader

@@ -173,7 +173,7 @@ name|numStoredFields
 decl_stmt|;
 DECL|field|storedFields
 specifier|private
-name|IndexableField
+name|StorableField
 index|[]
 name|storedFields
 decl_stmt|;
@@ -196,7 +196,7 @@ expr_stmt|;
 name|storedFields
 operator|=
 operator|new
-name|IndexableField
+name|StorableField
 index|[
 literal|1
 index|]
@@ -518,7 +518,7 @@ specifier|public
 name|void
 name|addField
 parameter_list|(
-name|IndexableField
+name|StorableField
 name|field
 parameter_list|,
 name|FieldInfo
@@ -550,12 +550,12 @@ operator|.
 name|NUM_BYTES_OBJECT_REF
 argument_list|)
 decl_stmt|;
-name|IndexableField
+name|StorableField
 index|[]
 name|newArray
 init|=
 operator|new
-name|IndexableField
+name|StorableField
 index|[
 name|newSize
 index|]

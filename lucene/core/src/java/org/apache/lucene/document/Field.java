@@ -198,6 +198,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|StorableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -233,6 +247,8 @@ class|class
 name|Field
 implements|implements
 name|IndexableField
+implements|,
+name|StorableField
 block|{
 comment|/**    * Field's type    */
 DECL|field|type

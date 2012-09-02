@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.benchmark.byTask.tasks
+DECL|package|org.apache.lucene.index
 package|package
 name|org
 operator|.
@@ -8,11 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|benchmark
-operator|.
-name|byTask
-operator|.
-name|tasks
+name|index
 package|;
 end_package
 
@@ -22,15 +18,11 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|Analyzer
+name|Reader
 import|;
 end_import
 
@@ -42,80 +34,54 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|util
 operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|StoredDocument
+name|BytesRef
 import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract class for benchmarking highlighting performance  */
+comment|/** Represents a single stored field in lucene document. These fields  * are contained in document retrieved from IndexReader.  *  *  @lucene.experimental */
 end_comment
 
-begin_class
-DECL|class|BenchmarkHighlighter
+begin_interface
+DECL|interface|StorableField
 specifier|public
-specifier|abstract
-class|class
-name|BenchmarkHighlighter
+interface|interface
+name|StorableField
+extends|extends
+name|GeneralField
 block|{
-DECL|method|doHighlight
+comment|/** Non-null if this field has a binary value */
+DECL|method|binaryValue
 specifier|public
-specifier|abstract
-name|int
-name|doHighlight
-parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|int
-name|doc
-parameter_list|,
+name|BytesRef
+name|binaryValue
+parameter_list|()
+function_decl|;
+comment|/** Non-null if this field has a string value */
+DECL|method|stringValue
+specifier|public
 name|String
-name|field
-parameter_list|,
-name|StoredDocument
-name|document
-parameter_list|,
-name|Analyzer
-name|analyzer
-parameter_list|,
-name|String
-name|text
-parameter_list|)
-throws|throws
-name|Exception
+name|stringValue
+parameter_list|()
+function_decl|;
+comment|/** Non-null if this field has a Reader value */
+DECL|method|readerValue
+specifier|public
+name|Reader
+name|readerValue
+parameter_list|()
+function_decl|;
+comment|/** Non-null if this field has a numeric value */
+DECL|method|numericValue
+specifier|public
+name|Number
+name|numericValue
+parameter_list|()
 function_decl|;
 block|}
-end_class
+end_interface
 
 end_unit
 

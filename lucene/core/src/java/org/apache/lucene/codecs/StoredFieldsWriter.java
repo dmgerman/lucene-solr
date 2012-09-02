@@ -44,34 +44,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|FieldInfo
@@ -102,7 +74,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexableField
+name|MergeState
 import|;
 end_import
 
@@ -116,7 +88,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MergeState
+name|StorableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StoredDocument
 import|;
 end_import
 
@@ -134,8 +120,22 @@ name|Bits
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|AtomicReader
+import|;
+end_import
+
 begin_comment
-comment|/**  * Codec API for writing stored fields:  *<p>  *<ol>  *<li>For every document, {@link #startDocument(int)} is called,  *       informing the Codec how many fields will be written.  *<li>{@link #writeField(FieldInfo, IndexableField)} is called for   *       each field in the document.  *<li>After all documents have been written, {@link #finish(FieldInfos, int)}   *       is called for verification/sanity-checks.  *<li>Finally the writer is closed ({@link #close()})  *</ol>  *   * @lucene.experimental  */
+comment|/**  * Codec API for writing stored fields:  *<p>  *<ol>  *<li>For every document, {@link #startDocument(int)} is called,  *       informing the Codec how many fields will be written.  *<li>{@link #writeField(FieldInfo, StorableField)} is called for   *       each field in the document.  *<li>After all documents have been written, {@link #finish(FieldInfos, int)}   *       is called for verification/sanity-checks.  *<li>Finally the writer is closed ({@link #close()})  *</ol>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -147,7 +147,7 @@ name|StoredFieldsWriter
 implements|implements
 name|Closeable
 block|{
-comment|/** Called before writing the stored fields of the document.    *  {@link #writeField(FieldInfo, IndexableField)} will be called    *<code>numStoredFields</code> times. Note that this is    *  called even if the document has no stored fields, in    *  this case<code>numStoredFields</code> will be zero. */
+comment|/** Called before writing the stored fields of the document.    *  {@link #writeField(FieldInfo, StorableField)} will be called    *<code>numStoredFields</code> times. Note that this is    *  called even if the document has no stored fields, in    *  this case<code>numStoredFields</code> will be zero. */
 DECL|method|startDocument
 specifier|public
 specifier|abstract
@@ -170,7 +170,7 @@ parameter_list|(
 name|FieldInfo
 name|info
 parameter_list|,
-name|IndexableField
+name|StorableField
 name|field
 parameter_list|)
 throws|throws
@@ -200,7 +200,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Merges in the stored fields from the readers in     *<code>mergeState</code>. The default implementation skips    *  over deleted documents, and uses {@link #startDocument(int)},    *  {@link #writeField(FieldInfo, IndexableField)}, and {@link #finish(FieldInfos, int)},    *  returning the number of documents that were written.    *  Implementations can override this method for more sophisticated    *  merging (bulk-byte copying, etc). */
+comment|/** Merges in the stored fields from the readers in     *<code>mergeState</code>. The default implementation skips    *  over deleted documents, and uses {@link #startDocument(int)},    *  {@link #writeField(FieldInfo, StorableField)}, and {@link #finish(FieldInfos, int)},    *  returning the number of documents that were written.    *  Implementations can override this method for more sophisticated    *  merging (bulk-byte copying, etc). */
 DECL|method|merge
 specifier|public
 name|int
@@ -284,7 +284,7 @@ comment|// doc; ie we just have to renumber the field number
 comment|// on the fly?
 comment|// NOTE: it's very important to first assign to doc then pass it to
 comment|// fieldsWriter.addDocument; see LUCENE-1282
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|reader
@@ -341,7 +341,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|IndexableField
+name|StorableField
 argument_list|>
 name|doc
 parameter_list|,
@@ -358,27 +358,15 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|IndexableField
+name|StorableField
 name|field
 range|:
 name|doc
 control|)
 block|{
-if|if
-condition|(
-name|field
-operator|.
-name|fieldType
-argument_list|()
-operator|.
-name|stored
-argument_list|()
-condition|)
-block|{
 name|storedCount
 operator|++
 expr_stmt|;
-block|}
 block|}
 name|startDocument
 argument_list|(
@@ -387,22 +375,11 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|IndexableField
+name|StorableField
 name|field
 range|:
 name|doc
 control|)
-block|{
-if|if
-condition|(
-name|field
-operator|.
-name|fieldType
-argument_list|()
-operator|.
-name|stored
-argument_list|()
-condition|)
 block|{
 name|writeField
 argument_list|(
@@ -419,7 +396,6 @@ argument_list|,
 name|field
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

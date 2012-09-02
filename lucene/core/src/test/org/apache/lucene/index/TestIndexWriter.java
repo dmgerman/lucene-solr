@@ -6421,7 +6421,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|doc2
 init|=
 name|ir
@@ -6431,7 +6431,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|IndexableField
+name|StorableField
 name|f2
 init|=
 name|doc2
@@ -7916,7 +7916,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|doc2
 init|=
 name|ir
@@ -7926,7 +7926,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|IndexableField
+name|StorableField
 name|f3
 init|=
 name|doc2
@@ -8414,7 +8414,7 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|doc2
 init|=
 name|r
@@ -8426,7 +8426,7 @@ argument_list|)
 decl_stmt|;
 name|Iterator
 argument_list|<
-name|IndexableField
+name|StorableField
 argument_list|>
 name|it
 init|=

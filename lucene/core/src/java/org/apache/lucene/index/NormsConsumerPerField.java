@@ -254,7 +254,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|IndexableField
+name|StorableField
 name|field
 init|=
 name|norm

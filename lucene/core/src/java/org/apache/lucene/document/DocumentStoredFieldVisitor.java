@@ -84,6 +84,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|StoredDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|StoredFieldVisitor
 import|;
 end_import
@@ -103,11 +117,11 @@ block|{
 DECL|field|doc
 specifier|private
 specifier|final
-name|Document
+name|StoredDocument
 name|doc
 init|=
 operator|new
-name|Document
+name|StoredDocument
 argument_list|()
 decl_stmt|;
 DECL|field|fieldsToAdd
@@ -303,7 +317,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Field
+name|StoredField
 argument_list|(
 name|fieldInfo
 operator|.
@@ -472,10 +486,10 @@ operator|.
 name|NO
 return|;
 block|}
-comment|/**    * Retrieve the visited document.    * @return Document populated with stored fields. Note that only    *         the stored information in the field instances is valid,    *         data such as boosts, indexing options, term vector options,    *         etc is not set.    */
+comment|/**    * Retrieve the visited document.    * @return {@link StoredDocument} populated with stored fields. Note that only    *         the stored information in the field instances is valid,    *         data such as indexing options, term vector options,    *         etc is not set.    */
 DECL|method|getDocument
 specifier|public
-name|Document
+name|StoredDocument
 name|getDocument
 parameter_list|()
 block|{

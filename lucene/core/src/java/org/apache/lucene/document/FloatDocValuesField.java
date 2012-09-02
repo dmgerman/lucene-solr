@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|FloatDocValuesField
 extends|extends
-name|Field
+name|StoredField
 block|{
 comment|/**    * Type for 32-bit float DocValues.    */
 DECL|field|TYPE

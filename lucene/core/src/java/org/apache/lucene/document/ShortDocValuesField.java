@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|ShortDocValuesField
 extends|extends
-name|Field
+name|StoredField
 block|{
 comment|/**    * Type for 16-bit short DocValues.    */
 DECL|field|TYPE

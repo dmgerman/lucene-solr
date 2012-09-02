@@ -261,6 +261,9 @@ name|IndexableField
 name|field
 range|:
 name|testDoc
+operator|.
+name|getFields
+argument_list|()
 control|)
 block|{
 name|builder

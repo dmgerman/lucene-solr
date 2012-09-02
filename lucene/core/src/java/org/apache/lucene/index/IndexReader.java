@@ -840,7 +840,7 @@ comment|// IndexableField
 DECL|method|document
 specifier|public
 specifier|final
-name|Document
+name|StoredDocument
 name|document
 parameter_list|(
 name|int
@@ -875,7 +875,7 @@ comment|/**    * Like {@link #document(int)} but only loads the specified    * f
 DECL|method|document
 specifier|public
 specifier|final
-name|Document
+name|StoredDocument
 name|document
 parameter_list|(
 name|int

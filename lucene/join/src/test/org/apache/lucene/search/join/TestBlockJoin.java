@@ -858,7 +858,7 @@ name|score
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Document
+name|StoredDocument
 name|childDoc
 init|=
 name|s
@@ -895,7 +895,7 @@ operator|.
 name|groupValue
 argument_list|)
 expr_stmt|;
-name|Document
+name|StoredDocument
 name|parentDoc
 init|=
 name|s
@@ -1958,7 +1958,7 @@ block|}
 block|}
 DECL|method|getParentDoc
 specifier|private
-name|Document
+name|StoredDocument
 name|getParentDoc
 parameter_list|(
 name|IndexReader
@@ -4422,7 +4422,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|s
@@ -4842,7 +4842,7 @@ name|groupValue
 argument_list|)
 expr_stmt|;
 specifier|final
-name|Document
+name|StoredDocument
 name|parentDoc
 init|=
 name|joinS
@@ -4898,7 +4898,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|joinS
@@ -5022,7 +5022,7 @@ operator|.
 name|doc
 argument_list|)
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|document
 init|=
 name|joinS
@@ -5943,7 +5943,7 @@ name|scoreDocs
 control|)
 block|{
 specifier|final
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|s
@@ -6064,7 +6064,7 @@ name|scoreDocs
 control|)
 block|{
 specifier|final
-name|Document
+name|StoredDocument
 name|doc
 init|=
 name|joinS
@@ -6077,7 +6077,7 @@ name|doc
 argument_list|)
 decl_stmt|;
 specifier|final
-name|Document
+name|StoredDocument
 name|parentDoc
 init|=
 name|getParentDoc
@@ -6242,7 +6242,7 @@ index|[
 name|hitCount
 index|]
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|doc1
 init|=
 name|r
@@ -6254,7 +6254,7 @@ operator|.
 name|doc
 argument_list|)
 decl_stmt|;
-name|Document
+name|StoredDocument
 name|doc2
 init|=
 name|joinR
@@ -6427,7 +6427,7 @@ name|groupValue
 argument_list|)
 expr_stmt|;
 specifier|final
-name|Document
+name|StoredDocument
 name|parentDoc
 init|=
 name|joinR
@@ -6483,7 +6483,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|Document
+name|StoredDocument
 name|nonJoinHit
 init|=
 name|r
@@ -6500,7 +6500,7 @@ name|doc
 argument_list|)
 decl_stmt|;
 specifier|final
-name|Document
+name|StoredDocument
 name|joinHit
 init|=
 name|joinR
@@ -7075,7 +7075,7 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-name|Document
+name|StoredDocument
 name|childJobDoc
 init|=
 name|s
@@ -7112,7 +7112,7 @@ operator|.
 name|groupValue
 argument_list|)
 expr_stmt|;
-name|Document
+name|StoredDocument
 name|parentDoc
 init|=
 name|s
@@ -7204,7 +7204,7 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-name|Document
+name|StoredDocument
 name|childQualificationDoc
 init|=
 name|s
@@ -7240,7 +7240,7 @@ operator|.
 name|groupValue
 argument_list|)
 expr_stmt|;
-name|Document
+name|StoredDocument
 name|parentDoc
 init|=
 name|s
