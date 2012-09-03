@@ -787,15 +787,6 @@ end_comment
 begin_class
 annotation|@
 name|Slow
-annotation|@
-name|ThreadLeakAction
-argument_list|(
-block|{
-name|Action
-operator|.
-name|WARN
-block|}
-argument_list|)
 DECL|class|BasicDistributedZkTest
 specifier|public
 class|class

@@ -279,15 +279,6 @@ comment|/**  * This test simply does a bunch of basic things in solrcloud mode a
 end_comment
 
 begin_class
-annotation|@
-name|ThreadLeakAction
-argument_list|(
-block|{
-name|Action
-operator|.
-name|WARN
-block|}
-argument_list|)
 DECL|class|BasicDistributedZk2Test
 specifier|public
 class|class

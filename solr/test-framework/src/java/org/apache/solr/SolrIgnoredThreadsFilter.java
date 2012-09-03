@@ -118,6 +118,22 @@ return|return
 literal|true
 return|;
 block|}
+comment|// This is a bug in ZooKeeper where they call System.exit(11) when
+comment|// this thread receives an interrupt signal.
+if|if
+condition|(
+name|threadName
+operator|.
+name|startsWith
+argument_list|(
+literal|"SyncThread"
+argument_list|)
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|// THESE ARE LIKELY BUGS - these threads should be closed!
 if|if
 condition|(
