@@ -535,15 +535,14 @@ name|InterruptedException
 throws|,
 name|IOException
 block|{
-comment|// this pause is important (and seems to work also at 100ms to 1 second in
-comment|// many cases),
+comment|// this pause is important
 comment|// but I don't know why yet :*( - it must come before this publish call
 comment|// and can happen at the start of leader election process even
 name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|500
+literal|100
 argument_list|)
 expr_stmt|;
 name|zkClient
