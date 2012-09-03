@@ -749,6 +749,26 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|long
+name|ctrlDocs
+init|=
+name|controlClient
+operator|.
+name|query
+argument_list|(
+operator|new
+name|SolrQuery
+argument_list|(
+literal|"*:*"
+argument_list|)
+argument_list|)
+operator|.
+name|getResults
+argument_list|()
+operator|.
+name|getNumFound
+argument_list|()
+decl_stmt|;
 comment|// ensure we have added more than 0 docs
 name|long
 name|cloudClientDocs
@@ -772,6 +792,12 @@ argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
+literal|"Found "
+operator|+
+name|ctrlDocs
+operator|+
+literal|" control docs"
+argument_list|,
 name|cloudClientDocs
 operator|>
 literal|0

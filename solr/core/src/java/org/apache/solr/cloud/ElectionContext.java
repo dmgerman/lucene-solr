@@ -348,6 +348,12 @@ operator|=
 name|zkClient
 expr_stmt|;
 block|}
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+block|{}
 DECL|method|cancelElection
 specifier|public
 name|void
@@ -535,16 +541,6 @@ name|InterruptedException
 throws|,
 name|IOException
 block|{
-comment|// this pause is important
-comment|// but I don't know why yet :*( - it must come before this publish call
-comment|// and can happen at the start of leader election process even
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|100
-argument_list|)
-expr_stmt|;
 name|zkClient
 operator|.
 name|makePath
@@ -702,6 +698,14 @@ specifier|private
 name|boolean
 name|afterExpiration
 decl_stmt|;
+DECL|field|isClosed
+specifier|private
+specifier|volatile
+name|boolean
+name|isClosed
+init|=
+literal|false
+decl_stmt|;
 DECL|method|ShardLeaderElectionContext
 specifier|public
 name|ShardLeaderElectionContext
@@ -773,6 +777,21 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+block|{
+name|this
+operator|.
+name|isClosed
+operator|=
+literal|true
+expr_stmt|;
+block|}
+annotation|@
+name|Override
 DECL|method|runLeaderProcess
 name|void
 name|runLeaderProcess
@@ -787,6 +806,15 @@ name|InterruptedException
 throws|,
 name|IOException
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Running the leader process. afterExpiration="
+operator|+
+name|afterExpiration
+argument_list|)
+expr_stmt|;
 name|String
 name|coreName
 init|=
@@ -842,24 +870,32 @@ name|m
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|String
+name|leaderVoteWait
+init|=
+name|cc
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getLeaderVoteWait
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|leaderVoteWait
+operator|!=
+literal|null
+condition|)
+block|{
 name|waitForReplicasToComeUp
 argument_list|(
 name|weAreReplacement
+argument_list|,
+name|leaderVoteWait
 argument_list|)
 expr_stmt|;
-comment|// wait for local leader state to clear...
-comment|// int tries = 0;
-comment|// while (zkController.getClusterState().getLeader(collection, shardId) !=
-comment|// null) {
-comment|// System.out.println("leader still shown " + tries + " " +
-comment|// zkController.getClusterState().getLeader(collection, shardId));
-comment|// Thread.sleep(1000);
-comment|// tries++;
-comment|// if (tries == 30) {
-comment|// break;
-comment|// }
-comment|// }
-comment|// Thread.sleep(1000);
+block|}
 name|SolrCore
 name|core
 init|=
@@ -1164,16 +1200,33 @@ name|waitForReplicasToComeUp
 parameter_list|(
 name|boolean
 name|weAreReplacement
+parameter_list|,
+name|String
+name|leaderVoteWait
 parameter_list|)
 throws|throws
 name|InterruptedException
 block|{
 name|int
-name|retries
+name|timeout
 init|=
-literal|300
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|leaderVoteWait
+argument_list|)
 decl_stmt|;
-comment|// ~ 5 min
+name|long
+name|timeoutAt
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|+
+name|timeout
+decl_stmt|;
 name|boolean
 name|tryAgain
 init|=
@@ -1194,22 +1247,12 @@ argument_list|,
 name|shardId
 argument_list|)
 decl_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Running the leader process. afterExperiation="
-operator|+
-name|afterExpiration
-argument_list|)
-expr_stmt|;
 while|while
 condition|(
-name|tryAgain
-operator|||
-name|slices
-operator|==
-literal|null
+literal|true
+operator|&&
+operator|!
+name|isClosed
 condition|)
 block|{
 comment|// wait for everyone to be up
@@ -1344,10 +1387,7 @@ argument_list|(
 literal|"Enough replicas found to continue."
 argument_list|)
 expr_stmt|;
-name|tryAgain
-operator|=
-literal|false
-expr_stmt|;
+break|break;
 block|}
 elseif|else
 if|if
@@ -1377,10 +1417,7 @@ argument_list|(
 literal|"Enough replicas found to continue."
 argument_list|)
 expr_stmt|;
-name|tryAgain
-operator|=
-literal|false
-expr_stmt|;
+break|break;
 block|}
 else|else
 block|{
@@ -1388,18 +1425,41 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Waiting until we see more replicas up"
+literal|"Waiting until we see more replicas up: total="
+operator|+
+name|slices
+operator|.
+name|getShards
+argument_list|()
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" found="
+operator|+
+name|found
+operator|+
+literal|" timeoutin="
+operator|+
+operator|(
+name|timeoutAt
+operator|-
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|)
 argument_list|)
 expr_stmt|;
 block|}
-name|retries
-operator|--
-expr_stmt|;
 if|if
 condition|(
-name|retries
-operator|==
-literal|0
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|>
+name|timeoutAt
 condition|)
 block|{
 name|log
@@ -1421,7 +1481,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|1000
+literal|500
 argument_list|)
 expr_stmt|;
 name|slices
@@ -1531,6 +1591,22 @@ argument_list|(
 literal|"Checking if I should try and be the leader."
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isClosed
+condition|)
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Bailing on leader process because we have been closed"
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
 name|ClusterState
 name|clusterState
 init|=
