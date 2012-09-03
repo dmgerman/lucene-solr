@@ -371,9 +371,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|// the given core may or may not be null - if you need access to the current core, you must pass
-comment|// the core container and core name to your context impl - then use this core ref if it is not null
-comment|// else access it from the core container
 DECL|method|runLeaderProcess
 specifier|abstract
 name|void
