@@ -3254,6 +3254,8 @@ range|:
 name|arr
 control|)
 block|{
+try|try
+block|{
 name|infoRegistry
 operator|.
 name|put
@@ -3266,6 +3268,30 @@ argument_list|,
 name|bean
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"could not register MBean '"
+operator|+
+name|bean
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'."
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**    * Determines the solrhome from the environment.    * Tries JNDI (java:comp/env/solr/home) then system property (solr.solr.home);    * if both fail, defaults to solr/    * @return the instance directory name    */
