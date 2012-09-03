@@ -49,6 +49,8 @@ class|class
 name|HashPartitioner
 block|{
 comment|// Hash ranges can't currently "wrap" - i.e. max must be greater or equal to min.
+comment|// TODO: ranges may not be all contiguous in the future (either that or we will
+comment|// need an extra class to model a collection of ranges)
 DECL|class|Range
 specifier|public
 specifier|static
@@ -149,6 +151,36 @@ literal|null
 return|;
 comment|// TODO
 block|}
+block|}
+DECL|method|partitionRange
+specifier|public
+name|List
+argument_list|<
+name|Range
+argument_list|>
+name|partitionRange
+parameter_list|(
+name|int
+name|partitions
+parameter_list|,
+name|Range
+name|range
+parameter_list|)
+block|{
+return|return
+name|partitionRange
+argument_list|(
+name|partitions
+argument_list|,
+name|range
+operator|.
+name|min
+argument_list|,
+name|range
+operator|.
+name|max
+argument_list|)
+return|;
 block|}
 comment|/**    *    * @param partitions    * @return Range for each partition    */
 DECL|method|partitionRange

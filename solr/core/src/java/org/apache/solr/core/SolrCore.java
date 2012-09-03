@@ -4594,8 +4594,9 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+comment|/** expert: increments the core reference count */
 DECL|method|open
-specifier|final
+specifier|public
 name|void
 name|open
 parameter_list|()
