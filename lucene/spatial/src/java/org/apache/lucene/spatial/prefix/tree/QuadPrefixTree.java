@@ -215,10 +215,7 @@ name|getLevelForDistance
 argument_list|(
 name|degrees
 argument_list|)
-operator|+
-literal|1
 return|;
-comment|//returns 1 greater
 block|}
 annotation|@
 name|Override
