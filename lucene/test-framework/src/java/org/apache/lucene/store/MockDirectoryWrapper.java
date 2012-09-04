@@ -2233,6 +2233,8 @@ operator|.
 name|newIOContext
 argument_list|(
 name|randomState
+argument_list|,
+name|context
 argument_list|)
 argument_list|)
 argument_list|,
@@ -2561,6 +2563,8 @@ operator|.
 name|newIOContext
 argument_list|(
 name|randomState
+argument_list|,
+name|context
 argument_list|)
 argument_list|)
 argument_list|)
