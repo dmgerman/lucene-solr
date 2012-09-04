@@ -1172,6 +1172,15 @@ name|type
 operator|.
 name|stored
 argument_list|()
+operator|||
+name|field
+operator|.
+name|type
+operator|.
+name|docValueType
+argument_list|()
+operator|!=
+literal|null
 return|;
 block|}
 block|}
