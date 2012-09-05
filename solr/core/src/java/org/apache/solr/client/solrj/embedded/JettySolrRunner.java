@@ -1277,7 +1277,7 @@ operator|)
 operator|.
 name|setMaxStopTimeMs
 argument_list|(
-literal|15000
+literal|30000
 argument_list|)
 expr_stmt|;
 operator|(
@@ -1297,17 +1297,7 @@ operator|)
 name|threadPool
 operator|)
 operator|.
-name|stop
-argument_list|()
-expr_stmt|;
-operator|(
-operator|(
-name|QueuedThreadPool
-operator|)
-name|threadPool
-operator|)
-operator|.
-name|stop
+name|join
 argument_list|()
 expr_stmt|;
 block|}

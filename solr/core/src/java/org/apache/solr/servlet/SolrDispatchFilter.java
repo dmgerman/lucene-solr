@@ -969,7 +969,7 @@ operator|)
 operator|.
 name|sendError
 argument_list|(
-literal|403
+literal|503
 argument_list|,
 literal|"Server is shutting down"
 argument_list|)

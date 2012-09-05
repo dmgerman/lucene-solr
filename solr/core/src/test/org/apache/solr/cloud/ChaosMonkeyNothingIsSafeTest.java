@@ -662,10 +662,46 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
-comment|// fails will happen...
-comment|// for (StopableIndexingThread indexThread : threads) {
-comment|// assertEquals(0, indexThread.getFails());
-comment|// }
+comment|// we expect full throttle fails, but not cloud client...
+for|for
+control|(
+name|StopableThread
+name|indexThread
+range|:
+name|threads
+control|)
+block|{
+if|if
+condition|(
+name|indexThread
+operator|instanceof
+name|StopableIndexingThread
+operator|&&
+operator|!
+operator|(
+name|indexThread
+operator|instanceof
+name|FullThrottleStopableIndexingThread
+operator|)
+condition|)
+block|{
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+operator|(
+operator|(
+name|StopableIndexingThread
+operator|)
+name|indexThread
+operator|)
+operator|.
+name|getFails
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// try and wait for any replications and what not to finish...
 name|Thread
 operator|.

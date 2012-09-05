@@ -113,31 +113,15 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 comment|// Disable new tasks from being submitted
-try|try
-block|{
-comment|// Wait a while for existing tasks to terminate
-if|if
-condition|(
-operator|!
-name|pool
-operator|.
-name|awaitTermination
-argument_list|(
-literal|60
-argument_list|,
-name|TimeUnit
-operator|.
-name|SECONDS
-argument_list|)
-condition|)
-block|{
 name|pool
 operator|.
 name|shutdownNow
 argument_list|()
 expr_stmt|;
 comment|// Cancel currently executing tasks
-comment|// Wait a while for tasks to respond to being cancelled
+try|try
+block|{
+comment|// Wait a while for existing tasks to terminate
 if|if
 condition|(
 operator|!
@@ -162,7 +146,6 @@ literal|"Executor still has running tasks."
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
@@ -175,6 +158,38 @@ operator|.
 name|shutdownNow
 argument_list|()
 expr_stmt|;
+try|try
+block|{
+if|if
+condition|(
+operator|!
+name|pool
+operator|.
+name|awaitTermination
+argument_list|(
+literal|60
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
+argument_list|)
+condition|)
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+literal|"Executor still has running tasks."
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{            }
 comment|// Preserve interrupt status
 name|Thread
 operator|.
