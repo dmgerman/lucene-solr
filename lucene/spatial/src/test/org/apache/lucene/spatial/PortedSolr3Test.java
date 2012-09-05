@@ -66,11 +66,23 @@ name|spatial4j
 operator|.
 name|core
 operator|.
-name|context
+name|distance
 operator|.
-name|simple
+name|DistanceUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|com
 operator|.
-name|SimpleSpatialContext
+name|spatial4j
+operator|.
+name|core
+operator|.
+name|io
+operator|.
+name|ShapeReadWriter
 import|;
 end_import
 
@@ -155,20 +167,6 @@ operator|.
 name|document
 operator|.
 name|StringField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexableField
 import|;
 end_import
 
@@ -435,9 +433,9 @@ decl_stmt|;
 name|SpatialContext
 name|ctx
 init|=
-name|SimpleSpatialContext
+name|SpatialContext
 operator|.
-name|GEO_KM
+name|GEO
 decl_stmt|;
 name|SpatialPrefixTree
 name|grid
@@ -772,6 +770,7 @@ name|setupDocs
 argument_list|()
 expr_stmt|;
 comment|//Try some edge cases
+comment|//NOTE: 2nd arg is distance in kilometers
 name|checkHitsCircle
 argument_list|(
 literal|"1,1"
@@ -1035,10 +1034,28 @@ expr_stmt|;
 name|commit
 argument_list|()
 expr_stmt|;
+name|double
+name|km1000inDeg
+init|=
+name|DistanceUtils
+operator|.
+name|dist2Degrees
+argument_list|(
+literal|1000
+argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
+argument_list|)
+decl_stmt|;
 comment|//query closer to #100
 name|checkHitsOrdered
 argument_list|(
-literal|"Intersects(Circle(3,4 d=1000))"
+literal|"Intersects(Circle(3,4 d="
+operator|+
+name|km1000inDeg
+operator|+
+literal|"))"
 argument_list|,
 literal|"101"
 argument_list|,
@@ -1048,7 +1065,11 @@ expr_stmt|;
 comment|//query closer to #101
 name|checkHitsOrdered
 argument_list|(
-literal|"Intersects(Circle(4,0 d=1000))"
+literal|"Intersects(Circle(4,0 d="
+operator|+
+name|km1000inDeg
+operator|+
+literal|"))"
 argument_list|,
 literal|"100"
 argument_list|,
@@ -1174,7 +1195,11 @@ block|{
 name|Shape
 name|shape
 init|=
+operator|new
+name|ShapeReadWriter
+argument_list|(
 name|ctx
+argument_list|)
 operator|.
 name|readShape
 argument_list|(
@@ -1294,7 +1319,7 @@ name|String
 name|ptStr
 parameter_list|,
 name|double
-name|dist
+name|distKM
 parameter_list|,
 name|int
 name|assertNumFound
@@ -1312,7 +1337,7 @@ name|Intersects
 argument_list|,
 name|ptStr
 argument_list|,
-name|dist
+name|distKM
 argument_list|,
 name|assertNumFound
 argument_list|,
@@ -1329,7 +1354,7 @@ name|String
 name|ptStr
 parameter_list|,
 name|double
-name|dist
+name|distKM
 parameter_list|,
 name|int
 name|assertNumFound
@@ -1347,7 +1372,7 @@ name|BBoxIntersects
 argument_list|,
 name|ptStr
 argument_list|,
-name|dist
+name|distKM
 argument_list|,
 name|assertNumFound
 argument_list|,
@@ -1372,7 +1397,7 @@ name|String
 name|ptStr
 parameter_list|,
 name|double
-name|dist
+name|distKM
 parameter_list|,
 name|int
 name|assertNumFound
@@ -1388,11 +1413,29 @@ init|=
 operator|(
 name|Point
 operator|)
+operator|new
+name|ShapeReadWriter
+argument_list|(
 name|ctx
+argument_list|)
 operator|.
 name|readShape
 argument_list|(
 name|ptStr
+argument_list|)
+decl_stmt|;
+name|double
+name|distDEG
+init|=
+name|DistanceUtils
+operator|.
+name|dist2Degrees
+argument_list|(
+name|distKM
+argument_list|,
+name|DistanceUtils
+operator|.
+name|EARTH_MEAN_RADIUS_KM
 argument_list|)
 decl_stmt|;
 name|Shape
@@ -1404,7 +1447,7 @@ name|makeCircle
 argument_list|(
 name|pt
 argument_list|,
-name|dist
+name|distDEG
 argument_list|)
 decl_stmt|;
 name|SpatialArgs

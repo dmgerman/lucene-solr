@@ -54,9 +54,9 @@ name|spatial4j
 operator|.
 name|core
 operator|.
-name|exception
+name|io
 operator|.
-name|InvalidSpatialArgument
+name|ShapeReadWriter
 import|;
 end_import
 
@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parses a string that usually looks like "OPERATION(SHAPE)" into a {@link SpatialArgs}  * object. The set of operations supported are defined in {@link SpatialOperation}, such  * as "Intersects" being a common one. The shape portion is defined by {@link  * SpatialContext#readShape(String)}. There are some optional name-value pair parameters  * that follow the closing parenthesis.  Example:  *<pre>  *   Intersects(-10,20,-8,22) distPec=0.025  *</pre>  *<p/>  * In the future it would be good to support something at least semi-standardized like a  * variant of<a href="http://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate">  *   [E]CQL</a>.  *  * @lucene.experimental  */
+comment|/**  * Parses a string that usually looks like "OPERATION(SHAPE)" into a {@link SpatialArgs}  * object. The set of operations supported are defined in {@link SpatialOperation}, such  * as "Intersects" being a common one. The shape portion is defined by {@link  * ShapeReadWriter#readShape(String)}. There are some optional name-value pair parameters  * that follow the closing parenthesis.  Example:  *<pre>  *   Intersects(-10,20,-8,22) distPec=0.025  *</pre>  *<p/>  * In the future it would be good to support something at least semi-standardized like a  * variant of<a href="http://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate">  *   [E]CQL</a>.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -114,7 +114,7 @@ specifier|public
 class|class
 name|SpatialArgsParser
 block|{
-comment|/**    * Parses a string such as "Intersects(-10,20,-8,22) distPec=0.025".    *    * @param v   The string to parse. Mandatory.    * @param ctx The spatial context. Mandatory.    * @return Not null.    * @throws InvalidSpatialArgument If there is a problem parsing the string.    * @throws InvalidShapeException  Thrown from {@link SpatialContext#readShape(String)}    */
+comment|/**    * Parses a string such as "Intersects(-10,20,-8,22) distPec=0.025".    *    * @param v   The string to parse. Mandatory.    * @param ctx The spatial context. Mandatory.    * @return Not null.    * @throws IllegalArgumentException If there is a problem parsing the string.    * @throws InvalidShapeException  Thrown from {@link ShapeReadWriter#readShape(String)}    */
 DECL|method|parse
 specifier|public
 name|SpatialArgs
@@ -127,7 +127,7 @@ name|SpatialContext
 name|ctx
 parameter_list|)
 throws|throws
-name|InvalidSpatialArgument
+name|IllegalArgumentException
 throws|,
 name|InvalidShapeException
 block|{
@@ -164,7 +164,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InvalidSpatialArgument
+name|IllegalArgumentException
 argument_list|(
 literal|"missing parens: "
 operator|+
@@ -223,7 +223,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InvalidSpatialArgument
+name|IllegalArgumentException
 argument_list|(
 literal|"missing body : "
 operator|+
@@ -236,7 +236,11 @@ block|}
 name|Shape
 name|shape
 init|=
+operator|new
+name|ShapeReadWriter
+argument_list|(
 name|ctx
+argument_list|)
 operator|.
 name|readShape
 argument_list|(
@@ -331,7 +335,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|InvalidSpatialArgument
+name|IllegalArgumentException
 argument_list|(
 literal|"unused parameters: "
 operator|+

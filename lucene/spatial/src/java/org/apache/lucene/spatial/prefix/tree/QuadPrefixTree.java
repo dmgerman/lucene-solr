@@ -92,22 +92,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
-name|shape
-operator|.
-name|simple
-operator|.
-name|PointImpl
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -814,8 +798,9 @@ operator|new
 name|StringBuilder
 argument_list|()
 argument_list|,
-operator|new
-name|PointImpl
+name|ctx
+operator|.
+name|makePoint
 argument_list|(
 name|p
 operator|.
@@ -1177,7 +1162,7 @@ name|rectangle
 init|=
 name|ctx
 operator|.
-name|makeRect
+name|makeRectangle
 argument_list|(
 name|cx
 operator|-
@@ -1204,8 +1189,6 @@ operator|.
 name|relate
 argument_list|(
 name|rectangle
-argument_list|,
-name|ctx
 argument_list|)
 decl_stmt|;
 if|if
@@ -1803,7 +1786,7 @@ block|}
 return|return
 name|ctx
 operator|.
-name|makeRect
+name|makeRectangle
 argument_list|(
 name|xmin
 argument_list|,

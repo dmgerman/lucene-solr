@@ -385,7 +385,7 @@ index|[
 literal|0
 index|]
 operator|*
-name|HaversineConstFunction
+name|DistanceUtils
 operator|.
 name|DEGREES_TO_RADIANS
 expr_stmt|;
@@ -396,7 +396,7 @@ index|[
 literal|1
 index|]
 operator|*
-name|HaversineConstFunction
+name|DistanceUtils
 operator|.
 name|DEGREES_TO_RADIANS
 expr_stmt|;
@@ -407,7 +407,7 @@ index|[
 literal|0
 index|]
 operator|*
-name|HaversineConstFunction
+name|DistanceUtils
 operator|.
 name|DEGREES_TO_RADIANS
 expr_stmt|;
@@ -418,7 +418,7 @@ index|[
 literal|1
 index|]
 operator|*
-name|HaversineConstFunction
+name|DistanceUtils
 operator|.
 name|DEGREES_TO_RADIANS
 expr_stmt|;

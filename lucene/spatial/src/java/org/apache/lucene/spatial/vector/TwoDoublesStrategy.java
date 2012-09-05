@@ -775,7 +775,7 @@ literal|0
 argument_list|,
 name|circle
 operator|.
-name|getDistance
+name|getRadius
 argument_list|()
 argument_list|)
 return|;
@@ -985,7 +985,7 @@ literal|0
 argument_list|,
 name|circle
 operator|.
-name|getDistance
+name|getRadius
 argument_list|()
 argument_list|)
 decl_stmt|;

@@ -30,9 +30,7 @@ name|core
 operator|.
 name|context
 operator|.
-name|simple
-operator|.
-name|SimpleSpatialContext
+name|SpatialContext
 import|;
 end_import
 
@@ -109,7 +107,7 @@ block|{
 comment|//TODO plug in others and test them
 DECL|field|ctx
 specifier|private
-name|SimpleSpatialContext
+name|SpatialContext
 name|ctx
 decl_stmt|;
 DECL|field|trie
@@ -134,9 +132,9 @@ argument_list|()
 expr_stmt|;
 name|ctx
 operator|=
-name|SimpleSpatialContext
+name|SpatialContext
 operator|.
-name|GEO_KM
+name|GEO
 expr_stmt|;
 name|trie
 operator|=

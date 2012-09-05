@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|spatial4j
+operator|.
+name|core
+operator|.
+name|distance
+operator|.
+name|DistanceUtils
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -2379,7 +2393,7 @@ argument_list|(
 name|doc
 argument_list|)
 operator|*
-name|HaversineConstFunction
+name|DistanceUtils
 operator|.
 name|DEGREES_TO_RADIANS
 return|;
@@ -2416,7 +2430,7 @@ argument_list|(
 name|doc
 argument_list|)
 operator|*
-name|HaversineConstFunction
+name|DistanceUtils
 operator|.
 name|RADIANS_TO_DEGREES
 return|;

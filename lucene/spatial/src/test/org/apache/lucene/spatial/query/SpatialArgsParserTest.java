@@ -40,22 +40,6 @@ name|spatial4j
 operator|.
 name|core
 operator|.
-name|context
-operator|.
-name|simple
-operator|.
-name|SimpleSpatialContext
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
 name|shape
 operator|.
 name|Rectangle
@@ -99,9 +83,9 @@ specifier|private
 name|SpatialContext
 name|ctx
 init|=
-name|SimpleSpatialContext
+name|SpatialContext
 operator|.
-name|GEO_KM
+name|GEO
 decl_stmt|;
 comment|//The args parser is only dependent on the ctx for IO so I don't care to test
 comment|// with other implementations.

@@ -646,10 +646,6 @@ operator|.
 name|relate
 argument_list|(
 name|shapeFilter
-argument_list|,
-name|spatialPrefixTree
-operator|.
-name|ctx
 argument_list|)
 decl_stmt|;
 if|if

@@ -351,19 +351,6 @@ name|getMaxY
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//convert to degrees    //TODO not needed in Spatial4j 0.3
-name|diagonalDist
-operator|=
-name|ctx
-operator|.
-name|getDistCalc
-argument_list|()
-operator|.
-name|distanceToDegrees
-argument_list|(
-name|diagonalDist
-argument_list|)
-expr_stmt|;
 return|return
 name|getLevelForDistance
 argument_list|(

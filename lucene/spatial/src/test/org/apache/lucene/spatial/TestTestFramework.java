@@ -40,9 +40,7 @@ name|core
 operator|.
 name|context
 operator|.
-name|simple
-operator|.
-name|SimpleSpatialContext
+name|SpatialContext
 import|;
 end_import
 
@@ -222,9 +220,9 @@ decl_stmt|;
 name|SpatialContext
 name|ctx
 init|=
-name|SimpleSpatialContext
+name|SpatialContext
 operator|.
-name|GEO_KM
+name|GEO
 decl_stmt|;
 name|Iterator
 argument_list|<

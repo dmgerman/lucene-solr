@@ -42,9 +42,7 @@ name|core
 operator|.
 name|context
 operator|.
-name|simple
-operator|.
-name|SimpleSpatialContext
+name|SpatialContext
 import|;
 end_import
 
@@ -59,22 +57,6 @@ operator|.
 name|shape
 operator|.
 name|Shape
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
-name|shape
-operator|.
-name|simple
-operator|.
-name|PointImpl
 import|;
 end_import
 
@@ -131,20 +113,6 @@ operator|.
 name|document
 operator|.
 name|StringField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexableField
 import|;
 end_import
 
@@ -247,9 +215,9 @@ block|{
 name|SpatialContext
 name|ctx
 init|=
-name|SimpleSpatialContext
+name|SpatialContext
 operator|.
-name|GEO_KM
+name|GEO
 decl_stmt|;
 name|TermQueryPrefixTreeStrategy
 name|prefixGridStrategy
@@ -269,8 +237,9 @@ decl_stmt|;
 name|Shape
 name|point
 init|=
-operator|new
-name|PointImpl
+name|ctx
+operator|.
+name|makePoint
 argument_list|(
 operator|-
 literal|118.243680

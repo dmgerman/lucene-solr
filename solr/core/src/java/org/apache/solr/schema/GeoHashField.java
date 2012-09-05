@@ -60,34 +60,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|GeneralField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexableField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|StorableField
 import|;
 end_import
@@ -128,7 +100,7 @@ name|spatial4j
 operator|.
 name|core
 operator|.
-name|context
+name|io
 operator|.
 name|ParseUtils
 import|;
@@ -156,22 +128,6 @@ name|spatial4j
 operator|.
 name|core
 operator|.
-name|context
-operator|.
-name|simple
-operator|.
-name|SimpleSpatialContext
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
 name|exception
 operator|.
 name|InvalidShapeException
@@ -186,7 +142,7 @@ name|spatial4j
 operator|.
 name|core
 operator|.
-name|util
+name|io
 operator|.
 name|GeohashUtils
 import|;
@@ -321,7 +277,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is a class that represents a<a  * href="http://en.wikipedia.org/wiki/Geohash">Geohash</a> field. The field is  * provided as a lat/lon pair and is internally represented as a string.  *  * @see com.spatial4j.core.context.ParseUtils#parseLatitudeLongitude(double[], String)   */
+comment|/**  * This is a class that represents a<a  * href="http://en.wikipedia.org/wiki/Geohash">Geohash</a> field. The field is  * provided as a lat/lon pair and is internally represented as a string.  *  * @see com.spatial4j.core.io.ParseUtils#parseLatitudeLongitude(double[], String)  */
 end_comment
 
 begin_class
@@ -340,9 +296,9 @@ specifier|final
 name|SpatialContext
 name|ctx
 init|=
-name|SimpleSpatialContext
+name|SpatialContext
 operator|.
-name|GEO_KM
+name|GEO
 decl_stmt|;
 annotation|@
 name|Override

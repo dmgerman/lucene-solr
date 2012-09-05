@@ -28,9 +28,7 @@ name|core
 operator|.
 name|context
 operator|.
-name|simple
-operator|.
-name|SimpleSpatialContext
+name|SpatialContext
 import|;
 end_import
 
@@ -121,9 +119,9 @@ name|this
 operator|.
 name|ctx
 operator|=
-name|SimpleSpatialContext
+name|SpatialContext
 operator|.
-name|GEO_KM
+name|GEO
 expr_stmt|;
 name|this
 operator|.
