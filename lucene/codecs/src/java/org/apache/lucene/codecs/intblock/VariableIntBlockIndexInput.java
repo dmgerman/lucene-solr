@@ -134,6 +134,8 @@ annotation|@
 name|Override
 DECL|method|reader
 specifier|public
+name|IntIndexInput
+operator|.
 name|Reader
 name|reader
 parameter_list|()
@@ -200,6 +202,8 @@ annotation|@
 name|Override
 DECL|method|index
 specifier|public
+name|IntIndexInput
+operator|.
 name|Index
 name|index
 parameter_list|()
