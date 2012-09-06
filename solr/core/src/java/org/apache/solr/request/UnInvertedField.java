@@ -651,7 +651,18 @@ name|fieldName
 operator|=
 name|field
 expr_stmt|;
-comment|// deState.termsEnum = te.tenum;
+name|deState
+operator|.
+name|liveDocs
+operator|=
+name|searcher
+operator|.
+name|getAtomicReader
+argument_list|()
+operator|.
+name|getLiveDocs
+argument_list|()
+expr_stmt|;
 name|deState
 operator|.
 name|termsEnum
