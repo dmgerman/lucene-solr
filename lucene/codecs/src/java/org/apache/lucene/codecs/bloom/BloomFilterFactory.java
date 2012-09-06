@@ -46,20 +46,6 @@ name|SegmentWriteState
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|FuzzySet
-import|;
-end_import
-
 begin_comment
 comment|/**  * Class used to create index-time {@link FuzzySet} appropriately configured for  * each field. Also called to right-size bitsets for serialization.  * @lucene.experimental  */
 end_comment
