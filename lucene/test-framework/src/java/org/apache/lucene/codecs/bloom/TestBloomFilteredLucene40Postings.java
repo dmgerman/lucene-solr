@@ -174,10 +174,6 @@ operator|.
 name|createSetBasedOnMaxMemory
 argument_list|(
 literal|1024
-argument_list|,
-operator|new
-name|MurmurHash2
-argument_list|()
 argument_list|)
 return|;
 block|}

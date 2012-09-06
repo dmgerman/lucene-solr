@@ -427,9 +427,6 @@ name|createSetBasedOnMaxMemory
 parameter_list|(
 name|int
 name|maxNumBytes
-parameter_list|,
-name|HashFunction
-name|hashFunction
 parameter_list|)
 block|{
 name|int
@@ -454,7 +451,10 @@ argument_list|)
 argument_list|,
 name|setSize
 argument_list|,
-name|hashFunction
+name|hashFunctionForVersion
+argument_list|(
+name|VERSION_CURRENT
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -469,9 +469,6 @@ name|maxNumUniqueValues
 parameter_list|,
 name|float
 name|desiredMaxSaturation
-parameter_list|,
-name|HashFunction
-name|hashFunction
 parameter_list|)
 block|{
 name|int
@@ -498,7 +495,10 @@ argument_list|)
 argument_list|,
 name|setSize
 argument_list|,
-name|hashFunction
+name|hashFunctionForVersion
+argument_list|(
+name|VERSION_CURRENT
+argument_list|)
 argument_list|)
 return|;
 block|}

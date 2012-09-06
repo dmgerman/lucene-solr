@@ -86,10 +86,6 @@ name|getDocCount
 argument_list|()
 argument_list|,
 literal|0.10f
-argument_list|,
-operator|new
-name|MurmurHash2
-argument_list|()
 argument_list|)
 return|;
 block|}
