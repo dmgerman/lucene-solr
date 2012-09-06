@@ -2432,8 +2432,6 @@ parameter_list|)
 throws|throws
 name|SolrException
 block|{
-try|try
-block|{
 name|SolrParams
 name|params
 init|=
@@ -2454,6 +2452,36 @@ operator|.
 name|NAME
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+literal|null
+operator|==
+name|name
+operator|||
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|name
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Core name is mandatory to CREATE a SolrCore"
+argument_list|)
+throw|;
+block|}
+try|try
+block|{
 comment|//for now, do not allow creating new core with same name when in cloud mode
 comment|//XXX perhaps it should just be unregistered from cloud before readding it?,
 comment|//XXX perhaps we should also check that cores are of same type before adding new core to collection?
@@ -2888,7 +2916,16 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Error executing default implementation of CREATE"
+literal|"Error CREATEing SolrCore '"
+operator|+
+name|name
+operator|+
+literal|"': "
+operator|+
+name|ex
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|ex
 argument_list|)
