@@ -738,8 +738,9 @@ argument_list|)
 decl_stmt|;
 name|iw
 operator|=
-operator|new
 name|SolrIndexWriter
+operator|.
+name|create
 argument_list|(
 literal|"SplittingIndexWriter"
 operator|+

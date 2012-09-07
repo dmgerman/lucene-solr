@@ -841,8 +841,9 @@ throws|throws
 name|IOException
 block|{
 return|return
-operator|new
 name|SolrIndexWriter
+operator|.
+name|create
 argument_list|(
 name|name
 argument_list|,
