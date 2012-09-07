@@ -5916,6 +5916,19 @@ name|shardDoc
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Add hits for distributed requests
+comment|// https://issues.apache.org/jira/browse/SOLR-3518
+name|rb
+operator|.
+name|rsp
+operator|.
+name|addToLog
+argument_list|(
+literal|"hits"
+argument_list|,
+name|numFound
+argument_list|)
+expr_stmt|;
 name|SolrDocumentList
 name|responseDocs
 init|=
