@@ -40,6 +40,24 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|LockFactory
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|MMapDirectory
 import|;
 end_import
@@ -117,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Directly provide MMapDirectory instead of relying on {@link org.apache.lucene.store.FSDirectory#open}  *  * Can set the following parameters:  *<ul>  *<li>unmap -- See {@link org.apache.lucene.store.MMapDirectory#setUseUnmap(boolean)}</li>  *<li>maxChunkSize -- The Max chunk size.  See {@link org.apache.lucene.store.MMapDirectory#setMaxChunkSize(int)}</li>  *</ul>  *  **/
+comment|/**  *  Directly provide MMapDirectory instead of relying on {@link org.apache.lucene.store.FSDirectory#open}  *  * Can set the following parameters:  *<ul>  *<li>unmap -- See {@link MMapDirectory#setUseUnmap(boolean)}</li>  *<li>maxChunkSize -- The Max chunk size.  See {@link MMapDirectory#MMapDirectory(File, LockFactory, int)}</li>  *</ul>  *  **/
 end_comment
 
 begin_class
@@ -238,6 +256,10 @@ name|File
 argument_list|(
 name|path
 argument_list|)
+argument_list|,
+literal|null
+argument_list|,
+name|maxChunk
 argument_list|)
 decl_stmt|;
 try|try
@@ -266,13 +288,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|mapDirectory
-operator|.
-name|setMaxChunkSize
-argument_list|(
-name|maxChunk
-argument_list|)
-expr_stmt|;
 return|return
 name|mapDirectory
 return|;

@@ -538,20 +538,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|IndexInput
-name|openFullSlice
-parameter_list|()
-block|{
-return|return
-name|base
-operator|.
-name|clone
-argument_list|()
-return|;
-block|}
 block|}
 return|;
 block|}
@@ -603,16 +589,6 @@ parameter_list|,
 name|long
 name|length
 parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**      * Returns an {@link IndexInput} slice starting at offset<i>0</i> with a      * length equal to the length of the underlying file      */
-DECL|method|openFullSlice
-specifier|public
-specifier|abstract
-name|IndexInput
-name|openFullSlice
-parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
