@@ -54,6 +54,20 @@ name|spatial4j
 operator|.
 name|core
 operator|.
+name|io
+operator|.
+name|GeohashUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|spatial4j
+operator|.
+name|core
+operator|.
 name|shape
 operator|.
 name|Point
@@ -85,20 +99,6 @@ operator|.
 name|shape
 operator|.
 name|Shape
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
-name|io
-operator|.
-name|GeohashUtils
 import|;
 end_import
 
@@ -610,11 +610,11 @@ argument_list|,
 literal|0.001
 argument_list|)
 expr_stmt|;
-comment|//distPrec will affect the query shape precision. The indexed precision
+comment|//distErrPct will affect the query shape precision. The indexed precision
 comment|// was set to nearly zilch via init(GeohashPrefixTree.getMaxLevelsPossible());
 specifier|final
 name|double
-name|distPrec
+name|distErrPct
 init|=
 literal|0.025
 decl_stmt|;
@@ -625,7 +625,7 @@ name|distMult
 init|=
 literal|1
 operator|+
-name|distPrec
+name|distErrPct
 decl_stmt|;
 name|assertTrue
 argument_list|(
@@ -646,7 +646,7 @@ literal|35.74
 operator|*
 name|KM2DEG
 argument_list|,
-name|distPrec
+name|distErrPct
 argument_list|)
 argument_list|,
 literal|1
@@ -673,7 +673,7 @@ literal|30
 operator|*
 name|KM2DEG
 argument_list|,
-name|distPrec
+name|distErrPct
 argument_list|)
 argument_list|,
 literal|0
@@ -700,7 +700,7 @@ literal|33
 operator|*
 name|KM2DEG
 argument_list|,
-name|distPrec
+name|distErrPct
 argument_list|)
 argument_list|,
 literal|0
@@ -727,7 +727,7 @@ literal|34
 operator|*
 name|KM2DEG
 argument_list|,
-name|distPrec
+name|distErrPct
 argument_list|)
 argument_list|,
 literal|0
@@ -1249,7 +1249,7 @@ name|double
 name|distDEG
 parameter_list|,
 name|double
-name|distPrec
+name|distErrPct
 parameter_list|)
 block|{
 name|Shape
@@ -1279,9 +1279,9 @@ argument_list|)
 decl_stmt|;
 name|args
 operator|.
-name|setDistPrecision
+name|setDistErrPct
 argument_list|(
-name|distPrec
+name|distErrPct
 argument_list|)
 expr_stmt|;
 return|return

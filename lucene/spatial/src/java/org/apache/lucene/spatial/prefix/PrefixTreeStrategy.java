@@ -325,8 +325,9 @@ name|distErrPct
 init|=
 name|SpatialArgs
 operator|.
-name|DEFAULT_DIST_PRECISION
+name|DEFAULT_DISTERRPCT
 decl_stmt|;
+comment|// [ 0 TO 0.5 ]
 DECL|method|PrefixTreeStrategy
 specifier|public
 name|PrefixTreeStrategy
@@ -372,7 +373,17 @@ operator|=
 name|defaultFieldValuesArrayLen
 expr_stmt|;
 block|}
-comment|/** See {@link SpatialPrefixTree#getMaxLevelForPrecision(com.spatial4j.core.shape.Shape, double)}. */
+DECL|method|getDistErrPct
+specifier|public
+name|double
+name|getDistErrPct
+parameter_list|()
+block|{
+return|return
+name|distErrPct
+return|;
+block|}
+comment|/**    * The default measure of shape precision affecting indexed and query shapes.    * Specific shapes at index and query time can use something different.    * @see org.apache.lucene.spatial.query.SpatialArgs#getDistErrPct()    */
 DECL|method|setDistErrPct
 specifier|public
 name|void
@@ -401,16 +412,50 @@ name|Shape
 name|shape
 parameter_list|)
 block|{
+name|double
+name|distErr
+init|=
+name|SpatialArgs
+operator|.
+name|calcDistanceFromErrPct
+argument_list|(
+name|shape
+argument_list|,
+name|distErrPct
+argument_list|,
+name|ctx
+argument_list|)
+decl_stmt|;
+return|return
+name|createIndexableFields
+argument_list|(
+name|shape
+argument_list|,
+name|distErr
+argument_list|)
+return|;
+block|}
+DECL|method|createIndexableFields
+specifier|public
+name|Field
+index|[]
+name|createIndexableFields
+parameter_list|(
+name|Shape
+name|shape
+parameter_list|,
+name|double
+name|distErr
+parameter_list|)
+block|{
 name|int
 name|detailLevel
 init|=
 name|grid
 operator|.
-name|getMaxLevelForPrecision
+name|getLevelForDistance
 argument_list|(
-name|shape
-argument_list|,
-name|distErrPct
+name|distErr
 argument_list|)
 decl_stmt|;
 name|List
@@ -432,7 +477,7 @@ argument_list|)
 decl_stmt|;
 comment|//true=intermediates cells
 comment|//If shape isn't a point, add a full-resolution center-point so that
-comment|// PrefixFieldCacheProvider has the center-points.
+comment|// PointPrefixTreeFieldCacheProvider has the center-points.
 comment|// TODO index each center of a multi-point? Yes/no?
 if|if
 condition|(
@@ -452,7 +497,7 @@ operator|.
 name|getCenter
 argument_list|()
 decl_stmt|;
-comment|//TODO should be smarter; don't index 2 tokens for this in CellTokenizer. Harmless though.
+comment|//TODO should be smarter; don't index 2 tokens for this in CellTokenStream. Harmless though.
 name|cells
 operator|.
 name|add
