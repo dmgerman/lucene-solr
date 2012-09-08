@@ -1076,8 +1076,10 @@ argument_list|,
 name|radiusDeg
 operator|*
 literal|3
-operator|*
-literal|1.01
+operator|+
+name|smallRadius
+operator|/
+literal|2
 argument_list|)
 argument_list|,
 name|points
