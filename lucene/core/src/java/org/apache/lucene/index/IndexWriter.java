@@ -6366,7 +6366,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Atomically adds the segment private delete packet and publishes the flushed    * segments SegmentInfo to the index writer. NOTE: use    * {@link #prepareFlushedSegment(FlushedSegment)} to obtain the    * {@link SegmentInfo} for the flushed segment.    *     * @see #prepareFlushedSegment(FlushedSegment)    */
+comment|/**    * Atomically adds the segment private delete packet and publishes the flushed    * segments SegmentInfo to the index writer. NOTE: use    * {@link #prepareFlushedSegment(FlushedSegment)} to obtain the    * {@link SegmentInfo} for the flushed segment.    *     * @see #prepareFlushedSegment(DocumentsWriterPerThread.FlushedSegment)    */
 DECL|method|publishFlushedSegment
 specifier|synchronized
 name|void

@@ -261,7 +261,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**    * Subclasses can override this to provide caching by e.g. hash of the string.    * @param name    * @return    */
+comment|/**    * Subclasses can override this to provide caching by e.g. hash of the string.    */
 DECL|method|key
 name|Object
 name|key
