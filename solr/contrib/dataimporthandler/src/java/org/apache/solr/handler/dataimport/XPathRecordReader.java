@@ -299,7 +299,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A wrapper around<code>addField0</code> to create a series of      * Nodes based on the supplied Xpath and a given fieldName. The created      * nodes are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    */
+comment|/**    * A wrapper around<code>addField0</code> to create a series of      * Nodes based on the supplied Xpath and a given fieldName. The created      * nodes are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List&lt;String&gt;    */
 DECL|method|addField
 specifier|public
 specifier|synchronized
@@ -333,7 +333,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * A wrapper around<code>addField0</code> to create a series of      * Nodes based on the supplied Xpath and a given fieldName. The created      * nodes are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    * @param flags FLATTEN: Recursivly combine text from all child XML elements    */
+comment|/**    * A wrapper around<code>addField0</code> to create a series of      * Nodes based on the supplied Xpath and a given fieldName. The created      * nodes are inserted into a Node tree.    *    * @param name The name for this field in the emitted record    * @param xpath The xpath expression for this field    * @param multiValued If 'true' then the emitted record will have values in     *                    a List&lt;String&gt;    * @param flags FLATTEN: Recursively combine text from all child XML elements    */
 DECL|method|addField
 specifier|public
 specifier|synchronized
@@ -370,7 +370,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Splits the XPATH into a List of xpath segments and calls build() to    * construct a tree of Nodes representing xpath segments. The resulting    * tree structure ends up describing all the Xpaths we are interested in.    *    * @param xpath The xpath expression for this field    * @param name The name for this field in the emitted record    * @param multiValued If 'true' then the emitted record will have values in     *                    a List<String>    * @param isRecord Flags that this XPATH is from a forEach statement    * @param flags The only supported flag is 'FLATTEN'    */
+comment|/**    * Splits the XPATH into a List of xpath segments and calls build() to    * construct a tree of Nodes representing xpath segments. The resulting    * tree structure ends up describing all the Xpaths we are interested in.    *    * @param xpath The xpath expression for this field    * @param name The name for this field in the emitted record    * @param multiValued If 'true' then the emitted record will have values in     *                    a List&lt;String&gt;    * @param isRecord Flags that this XPATH is from a forEach statement    * @param flags The only supported flag is 'FLATTEN'    */
 DECL|method|addField0
 specifier|private
 name|void

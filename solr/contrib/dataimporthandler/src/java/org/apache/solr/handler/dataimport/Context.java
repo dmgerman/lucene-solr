@@ -212,7 +212,7 @@ name|String
 name|scope
 parameter_list|)
 function_decl|;
-comment|/**    * get a value by name in the given scope (entity, document,global)    *    * @param name  the key    * @param scope the scope from which the value is to be retreived    * @return the object stored in the given scope with the given key    */
+comment|/**    * get a value by name in the given scope (entity, document,global)    *    * @param name  the key    * @param scope the scope from which the value is to be retrieved    * @return the object stored in the given scope with the given key    */
 DECL|method|getSessionAttribute
 specifier|public
 specifier|abstract
@@ -234,7 +234,7 @@ name|Context
 name|getParentContext
 parameter_list|()
 function_decl|;
-comment|/**    * The request parameters passed over HTTP for this command the values in the    * map are either String(for single valued parameters) or List<String> (for    * multi-valued parameters)    *    * @return the request parameters passed in the URL to initiate this process    */
+comment|/**    * The request parameters passed over HTTP for this command the values in the    * map are either String(for single valued parameters) or List&lt;String&gt; (for    * multi-valued parameters)    *    * @return the request parameters passed in the URL to initiate this process    */
 DECL|method|getRequestParameters
 specifier|public
 specifier|abstract
@@ -322,7 +322,7 @@ name|String
 name|query
 parameter_list|)
 function_decl|;
-comment|/**Use this directly to  resolve variable    * @param var the variable neme     * @return the resolved value    */
+comment|/**Use this directly to  resolve variable    * @param var the variable name     * @return the resolved value    */
 DECL|method|resolve
 specifier|public
 specifier|abstract

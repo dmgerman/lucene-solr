@@ -297,7 +297,7 @@ index|[]
 block|{}
 return|;
 block|}
-comment|/**    * Create a plugin from an XML configuration.  Plugins are defined using:    *<plugin name="name1" class="solr.ClassName">    *      ...    *</plugin>    *     * @param name - The registered name.  In the above example: "name1"    * @param className - class name for requested plugin.  In the above example: "solr.ClassName"    * @param node - the XML node defining this plugin    */
+comment|/**    * Create a plugin from an XML configuration.  Plugins are defined using:    *<pre class="prettyprint">    * {@code    *<plugin name="name1" class="solr.ClassName">    *      ...    *</plugin>}    *</pre>    *     * @param name - The registered name.  In the above example: "name1"    * @param className - class name for requested plugin.  In the above example: "solr.ClassName"    * @param node - the XML node defining this plugin    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -369,7 +369,7 @@ parameter_list|)
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Given a NodeList from XML in the form:    *     *<plugins>    *<plugin name="name1" class="solr.ClassName">    *      ...    *</plugin>    *<plugin name="name2" class="solr.ClassName">    *      ...    *</plugin>    *</plugins>    *     * This will initialize and register each plugin from the list.  A class will     * be generated for each class name and registered to the given name.    *     * If 'preRegister' is true, each plugin will be registered *before* it is initialized    * This may be useful for implementations that need to inspect other registered     * plugins at startup.    *     * One (and only one) plugin may declare itself to be the 'default' plugin using:    *<plugin name="name2" class="solr.ClassName" default="true">    * If a default element is defined, it will be returned from this function.    *     */
+comment|/**    * Initializes and registers each plugin in the list.    * Given a NodeList from XML in the form:    *<pre class="prettyprint">    * {@code    *<plugins>    *<plugin name="name1" class="solr.ClassName">    *      ...    *</plugin>    *<plugin name="name2" class="solr.ClassName">    *      ...    *</plugin>    *</plugins>}    *</pre>    *     * This will initialize and register each plugin from the list.  A class will     * be generated for each class name and registered to the given name.    *     * If 'preRegister' is true, each plugin will be registered *before* it is initialized    * This may be useful for implementations that need to inspect other registered     * plugins at startup.    *     * One (and only one) plugin may declare itself to be the 'default' plugin using:    *<pre class="prettyprint">    * {@code    *<plugin name="name2" class="solr.ClassName" default="true">}    *</pre>    * If a default element is defined, it will be returned from this function.    *     */
 DECL|method|load
 specifier|public
 name|T
@@ -765,7 +765,7 @@ return|return
 name|defaultPlugin
 return|;
 block|}
-comment|/**    * Given a NodeList from XML in the form:    *     *<plugin name="name1" class="solr.ClassName"> ...</plugin>    *     * This will initialize and register a single plugin. A class will be    * generated for the plugin and registered to the given name.    *     * If 'preRegister' is true, the plugin will be registered *before* it is    * initialized This may be useful for implementations that need to inspect    * other registered plugins at startup.    *     * The created class for the plugin will be returned from this function.    *     */
+comment|/**    * Initializes and registers a single plugin.    *     * Given a NodeList from XML in the form:    *<pre class="prettyprint">    * {@code    *<plugin name="name1" class="solr.ClassName"> ...</plugin>}    *</pre>    *     * This will initialize and register a single plugin. A class will be    * generated for the plugin and registered to the given name.    *     * If 'preRegister' is true, the plugin will be registered *before* it is    * initialized This may be useful for implementations that need to inspect    * other registered plugins at startup.    *     * The created class for the plugin will be returned from this function.    *     */
 DECL|method|loadSingle
 specifier|public
 name|T
