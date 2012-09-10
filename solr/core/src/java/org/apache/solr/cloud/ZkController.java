@@ -3091,7 +3091,7 @@ return|return
 name|leaderUrl
 return|;
 block|}
-comment|/**    * Get leader props directly from zk nodes.    *     * @param collection    * @param slice    * @return    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Get leader props directly from zk nodes.    */
 DECL|method|getLeaderProps
 specifier|private
 name|ZkCoreNodeProps

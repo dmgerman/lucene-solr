@@ -1117,7 +1117,6 @@ name|directory
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param dir    * @param lockPath    * @param rawLockType    * @return    * @throws IOException    */
 DECL|method|injectLockFactory
 specifier|private
 specifier|static

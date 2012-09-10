@@ -731,7 +731,7 @@ name|weAreReplacement
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns int given String of form n_0000000001 or n_0000000003, etc.    *     * @param nStringSequence    * @return    */
+comment|/**    * Returns int given String of form n_0000000001 or n_0000000003, etc.    */
 DECL|method|getSeq
 specifier|private
 name|int
@@ -851,7 +851,7 @@ return|return
 name|id
 return|;
 block|}
-comment|/**    * Returns int list given list of form n_0000000001, n_0000000003, etc.    *     * @param seqs    * @return    */
+comment|/**    * Returns int list given list of form n_0000000001, n_0000000003, etc.    */
 DECL|method|getSeqs
 specifier|private
 name|List

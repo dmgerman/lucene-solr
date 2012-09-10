@@ -849,7 +849,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    *<p>    * This method is converting the independent LinkHashMaps containing various    * (silo'ed) suggestions for each mis-spelled word into individual    * "holistic query corrections", aka. "Spell Check Possibility"    *</p>    *<p>    * Rank here is the sum of each selected term's position in its respective    * LinkedHashMap.    *</p>    *     * @return    */
+comment|/**    *<p>    * This method is converting the independent LinkHashMaps containing various    * (silo'ed) suggestions for each mis-spelled word into individual    * "holistic query corrections", aka. "Spell Check Possibility"    *</p>    *<p>    * Rank here is the sum of each selected term's position in its respective    * LinkedHashMap.    *</p>    */
 DECL|method|internalNext
 specifier|private
 name|RankedSpellPossibility
