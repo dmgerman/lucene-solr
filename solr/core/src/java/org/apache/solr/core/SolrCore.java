@@ -4608,7 +4608,7 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Close all resources allocated by the core if it is no longer in use...    *<ul>    *<li>searcher</li>    *<li>updateHandler</li>    *<li>all CloseHooks will be notified</li>    *<li>All MBeans will be unregistered from MBeanServer if JMX was enabled    *</li>    *</ul>    *<p>       *<p>    * The behavior of this method is determined by the result of decrementing    * the core's reference count (A core is created with a refrence count of 1)...    *</p>    *<ul>    *<li>If reference count is> 0, the usage count is decreased by 1 and no    *       resources are released.    *</li>    *<li>If reference count is == 0, the resources are released.    *<li>If reference count is&lt; 0, and error is logged and no further action    *       is taken.    *</li>    *</ul>    * @see #isClosed()     */
+comment|/**    * Close all resources allocated by the core if it is no longer in use...    *<ul>    *<li>searcher</li>    *<li>updateHandler</li>    *<li>all CloseHooks will be notified</li>    *<li>All MBeans will be unregistered from MBeanServer if JMX was enabled    *</li>    *</ul>    *<p>       *<p>    * The behavior of this method is determined by the result of decrementing    * the core's reference count (A core is created with a reference count of 1)...    *</p>    *<ul>    *<li>If reference count is> 0, the usage count is decreased by 1 and no    *       resources are released.    *</li>    *<li>If reference count is == 0, the resources are released.    *<li>If reference count is&lt; 0, and error is logged and no further action    *       is taken.    *</li>    *</ul>    * @see #isClosed()     */
 DECL|method|close
 specifier|public
 name|void
@@ -5196,7 +5196,7 @@ name|handlerName
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an unmodifieable Map containing the registered handlers of the specified type.    */
+comment|/**    * Returns an unmodifiable Map containing the registered handlers of the specified type.    */
 DECL|method|getRequestHandlers
 specifier|public
 name|Map
@@ -5220,7 +5220,7 @@ name|clazz
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an unmodifieable Map containing the registered handlers    */
+comment|/**    * Returns an unmodifiable Map containing the registered handlers    */
 DECL|method|getRequestHandlers
 specifier|public
 name|Map
@@ -5239,7 +5239,7 @@ name|getRequestHandlers
 argument_list|()
 return|;
 block|}
-comment|/**    * Registers a handler at the specified location.  If one exists there, it will be replaced.    * To remove a handler, register<code>null</code> at its path    *     * Once registered the handler can be accessed through:    *<pre>    *   http://${host}:${port}/${context}/${handlerName}    * or:      *   http://${host}:${port}/${context}/select?qt=${handlerName}    *</pre>      *     * Handlers<em>must</em> be initalized before getting registered.  Registered    * handlers can immediatly accept requests.    *     * This call is thread safe.    *      * @return the previous<code>SolrRequestHandler</code> registered to this name<code>null</code> if none.    */
+comment|/**    * Registers a handler at the specified location.  If one exists there, it will be replaced.    * To remove a handler, register<code>null</code> at its path    *     * Once registered the handler can be accessed through:    *<pre>    *   http://${host}:${port}/${context}/${handlerName}    * or:      *   http://${host}:${port}/${context}/select?qt=${handlerName}    *</pre>      *     * Handlers<em>must</em> be initialized before getting registered.  Registered    * handlers can immediately accept requests.    *     * This call is thread safe.    *      * @return the previous<code>SolrRequestHandler</code> registered to this name<code>null</code> if none.    */
 DECL|method|registerRequestHandler
 specifier|public
 name|SolrRequestHandler
@@ -6015,7 +6015,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** Opens a new searcher and returns a RefCounted<SolrIndexSearcher> with it's reference incremented.    *    * "realtime" means that we need to open quickly for a realtime view of the index, hence don't do any    * autowarming and add to the _realtimeSearchers queue rather than the _searchers queue (so it won't    * be used for autowarming by a future normal searcher).  A "realtime" searcher will currently never    * become "registered" (since it currently lacks caching).    *    * realtimeSearcher is updated to the latest opened searcher, regardless of the value of "realtime".    *    * This method aquires openSearcherLock - do not call with searckLock held!    */
+comment|/** Opens a new searcher and returns a RefCounted&lt;SolrIndexSearcher&gt; with it's reference incremented.    *    * "realtime" means that we need to open quickly for a realtime view of the index, hence don't do any    * autowarming and add to the _realtimeSearchers queue rather than the _searchers queue (so it won't    * be used for autowarming by a future normal searcher).  A "realtime" searcher will currently never    * become "registered" (since it currently lacks caching).    *    * realtimeSearcher is updated to the latest opened searcher, regardless of the value of "realtime".    *    * This method acquires openSearcherLock - do not call with searckLock held!    */
 DECL|method|openNewSearcher
 specifier|public
 name|RefCounted
@@ -9662,7 +9662,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    *    * @param registry The map to which the instance should be added to. The key is the name attribute    * @param type The type of the Plugin. These should be standard ones registerd by type.getName() in SolrConfig    * @return     The default if any    */
+comment|/**    *    * @param registry The map to which the instance should be added to. The key is the name attribute    * @param type The type of the Plugin. These should be standard ones registered by type.getName() in SolrConfig    * @return     The default if any    */
 DECL|method|initPlugins
 specifier|public
 parameter_list|<

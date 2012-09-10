@@ -43,7 +43,7 @@ argument_list|>
 block|{
 comment|// already declared in superclass, redeclaring prevents javadoc inheritance
 comment|//public boolean hasNext();
-comment|/**    * Returns the next document id if hasNext()==true    *    *<code>    * This method is equivalent to<code>next()</code>, but avoids the creation    * of an Integer Object.    * @see #next()    */
+comment|/**    * Returns the next document id if<code>hasNext()==true</code>    *    * This method is equivalent to<code>next()</code>, but avoids the creation    * of an Integer Object.    * @see #next()    */
 DECL|method|nextDoc
 specifier|public
 name|int

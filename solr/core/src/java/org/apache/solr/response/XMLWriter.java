@@ -239,7 +239,7 @@ operator|.
 name|toCharArray
 argument_list|()
 decl_stmt|;
-comment|/***   private static final char[] XML_START2_SCHEMA=(   "<response xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"   +" xsi:noNamespaceSchemaLocation=\"http://pi.cnet.com/cnet-search/response.xsd\">\n"           ).toCharArray();   ***/
+comment|/*   private static final char[] XML_START2_SCHEMA=(   "<response xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"   +" xsi:noNamespaceSchemaLocation=\"http://pi.cnet.com/cnet-search/response.xsd\">\n"           ).toCharArray();   ***/
 DECL|field|XML_START2_NOSCHEMA
 specifier|private
 specifier|static
@@ -471,7 +471,7 @@ name|XML_STYLESHEET_END
 argument_list|)
 expr_stmt|;
 block|}
-comment|/***     String noSchema = req.getParams().get("noSchema");     // todo - change when schema becomes available?     if (false&& noSchema == null)       writer.write(XML_START2_SCHEMA);     else       writer.write(XML_START2_NOSCHEMA);      ***/
+comment|/*     String noSchema = req.getParams().get("noSchema");     // todo - change when schema becomes available?     if (false&& noSchema == null)       writer.write(XML_START2_SCHEMA);     else       writer.write(XML_START2_NOSCHEMA);      ***/
 name|writer
 operator|.
 name|write
@@ -882,7 +882,7 @@ name|incLevel
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * The SolrDocument should already have multivalued fields implemented as    * Collections -- this will not rewrite to<arr>    */
+comment|/**    * The SolrDocument should already have multivalued fields implemented as    * Collections -- this will not rewrite to&lt;arr&gt;    */
 annotation|@
 name|Override
 DECL|method|writeSolrDocument

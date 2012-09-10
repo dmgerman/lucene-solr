@@ -893,7 +893,7 @@ return|return
 name|val
 return|;
 block|}
-comment|/**    * Parse a list of ValueSource.  Must be the final set of arguments    * to a ValueSource.    *     * @return List<ValueSource>    * @throws ParseException    */
+comment|/**    * Parse a list of ValueSource.  Must be the final set of arguments    * to a ValueSource.    *     * @return List&lt;ValueSource&gt;    * @throws ParseException    */
 DECL|method|parseValueSourceList
 specifier|public
 name|List

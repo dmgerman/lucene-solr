@@ -1337,7 +1337,7 @@ name|localParams
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns null if the sortSpec is the standard sort desc.    *<p/>    *<p>    * The form of the sort specification string currently parsed is:    *</p>    *<pre>>    * SortSpec ::= SingleSort [, SingleSort]*    * SingleSort ::=<fieldname> SortDirection    * SortDirection ::= top | desc | bottom | asc    *</pre>    * Examples:    *<pre>    *   score desc               #normal sort by score (will return null)    *   weight bottom            #sort by weight ascending    *   weight desc              #sort by weight descending    *   height desc,weight desc  #sort by height descending, and use weight descending to break any ties    *   height desc,weight asc   #sort by height descending, using weight ascending as a tiebreaker    *</pre>    */
+comment|/**    * Returns null if the sortSpec is the standard sort desc.    *<p/>    *<p>    * The form of the sort specification string currently parsed is:    *</p>    *<pre>    * SortSpec ::= SingleSort [, SingleSort]*    * SingleSort ::=&lt;fieldname&gt; SortDirection    * SortDirection ::= top | desc | bottom | asc    *</pre>    * Examples:    *<pre>    *   score desc               #normal sort by score (will return null)    *   weight bottom            #sort by weight ascending    *   weight desc              #sort by weight descending    *   height desc,weight desc  #sort by height descending, and use weight descending to break any ties    *   height desc,weight asc   #sort by height descending, using weight ascending as a tiebreaker    *</pre>    */
 DECL|method|parseSort
 specifier|public
 specifier|static
