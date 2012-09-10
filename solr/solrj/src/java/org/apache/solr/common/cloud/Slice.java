@@ -575,7 +575,7 @@ return|return
 name|leader
 return|;
 block|}
-comment|/***   // returns a copy of this slice containing the new replica   public Slice addReplica(Replica replica) {     Map<String, Object> newProps = new LinkedHashMap<String,Object>(props);     Map<String, Replica> replicas = getReplicasMap();     Map<String, Replica> newReplicas = replicas == null ? new HashMap<String, Replica>(1) : new LinkedHashMap<String, Replica>(replicas); //    newReplicas.put(replica.getName(), replica);     newProps.put(REPLICAS, replicas);     return new Slice(name, newProps); // TODO: new constructor that takes replicas as-is w/o rebuilding   }    public static Slice newSlice(String name) {     Map<String, Object> props = new HashMap<String,Object>(1);     props.put("replicas", new HashMap<String,Object>(1));     return new Slice(name, props);   }    ***/
+comment|/*   // returns a copy of this slice containing the new replica   public Slice addReplica(Replica replica) {     Map<String, Object> newProps = new LinkedHashMap<String,Object>(props);     Map<String, Replica> replicas = getReplicasMap();     Map<String, Replica> newReplicas = replicas == null ? new HashMap<String, Replica>(1) : new LinkedHashMap<String, Replica>(replicas); //    newReplicas.put(replica.getName(), replica);     newProps.put(REPLICAS, replicas);     return new Slice(name, newProps); // TODO: new constructor that takes replicas as-is w/o rebuilding   }    public static Slice newSlice(String name) {     Map<String, Object> props = new HashMap<String,Object>(1);     props.put("replicas", new HashMap<String,Object>(1));     return new Slice(name, props);   }    ***/
 annotation|@
 name|Override
 DECL|method|toString
