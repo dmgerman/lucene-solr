@@ -301,7 +301,7 @@ operator|>>>
 literal|1
 return|;
 block|}
-comment|/**     * Given a field name and an IndexReader, get a random hash seed.      * Using dynamic fields, you can force the random order to change     */
+comment|/**     * Given a field name and an IndexReader, get a random hash seed.    * Using dynamic fields, you can force the random order to change     */
 DECL|method|getSeed
 specifier|private
 specifier|static

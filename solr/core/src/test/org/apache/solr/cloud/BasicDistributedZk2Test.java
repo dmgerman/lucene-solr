@@ -244,36 +244,6 @@ name|SolrDispatchFilter
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakAction
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakAction
-operator|.
-name|Action
-import|;
-end_import
-
 begin_comment
 comment|/**  * This test simply does a bunch of basic things in solrcloud mode and asserts things  * work as expected.  */
 end_comment
@@ -476,7 +446,7 @@ name|nodeName
 init|=
 name|leaderProps
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.

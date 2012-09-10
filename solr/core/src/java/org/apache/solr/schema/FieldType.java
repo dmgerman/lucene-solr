@@ -2119,7 +2119,7 @@ name|boolean
 name|top
 parameter_list|)
 function_decl|;
-comment|/**    * Utility usable by subclasses when they want to get basic String sorting     * using common checks.    * @see SchemaField#checkSortability    */
+comment|/**    * Utility usable by subclasses when they want to get basic String sorting    * using common checks.    * @see SchemaField#checkSortability    */
 DECL|method|getStringSort
 specifier|protected
 name|SortField

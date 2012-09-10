@@ -252,7 +252,7 @@ argument_list|(
 name|shardId
 argument_list|)
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size

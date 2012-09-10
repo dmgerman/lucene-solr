@@ -1455,7 +1455,7 @@ name|leader
 init|=
 name|props
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.

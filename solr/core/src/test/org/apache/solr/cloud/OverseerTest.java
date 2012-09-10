@@ -1054,7 +1054,7 @@ if|if
 condition|(
 name|slice
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|containsKey
@@ -1319,7 +1319,7 @@ argument_list|,
 literal|"shard1"
 argument_list|)
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size
@@ -1342,7 +1342,7 @@ argument_list|,
 literal|"shard2"
 argument_list|)
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size
@@ -1365,7 +1365,7 @@ argument_list|,
 literal|"shard3"
 argument_list|)
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size
@@ -1978,7 +1978,7 @@ argument_list|(
 name|name
 argument_list|)
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size
@@ -2768,7 +2768,7 @@ argument_list|,
 literal|"shard1"
 argument_list|)
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|get
@@ -2776,7 +2776,7 @@ argument_list|(
 literal|"node1_core1"
 argument_list|)
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -2939,7 +2939,7 @@ name|coreState
 operator|=
 name|slice
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|get
@@ -2947,7 +2947,7 @@ argument_list|(
 literal|"node1_core1"
 argument_list|)
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -3067,7 +3067,7 @@ name|equals
 argument_list|(
 name|props
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -3127,7 +3127,7 @@ argument_list|,
 name|shard
 argument_list|)
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -3461,7 +3461,7 @@ argument_list|,
 literal|"shard1"
 argument_list|)
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size
@@ -4355,7 +4355,7 @@ if|if
 condition|(
 name|slice
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|get
@@ -5032,7 +5032,7 @@ literal|null
 operator|&&
 name|s
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size
@@ -5080,7 +5080,7 @@ argument_list|,
 literal|"s1"
 argument_list|)
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size

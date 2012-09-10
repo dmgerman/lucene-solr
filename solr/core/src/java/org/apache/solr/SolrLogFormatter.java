@@ -54,7 +54,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|ZkNodeProps
+name|Replica
 import|;
 end_import
 
@@ -462,7 +462,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 name|coreProps
 decl_stmt|;
@@ -911,7 +911,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 name|coreProps
 init|=
@@ -1221,7 +1221,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 name|getCoreProps
 parameter_list|(
@@ -1247,7 +1247,7 @@ operator|.
 name|getCollectionName
 argument_list|()
 decl_stmt|;
-name|ZkNodeProps
+name|Replica
 name|props
 init|=
 name|zkController

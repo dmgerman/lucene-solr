@@ -755,7 +755,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**     * Sanity checks that the properties of this field type are plausible     * for a field that may be used to get a FieldCacheSource, throwing     * an appropriate exception (including the field name) if it is not.      * FieldType subclasses can choose to call this method in their     * getValueSource implementation     * @see FieldType#getValueSource    */
+comment|/**     * Sanity checks that the properties of this field type are plausible     * for a field that may be used to get a FieldCacheSource, throwing    * an appropriate exception (including the field name) if it is not.      * FieldType subclasses can choose to call this method in their     * getValueSource implementation     * @see FieldType#getValueSource    */
 DECL|method|checkFieldCacheSource
 specifier|public
 name|void

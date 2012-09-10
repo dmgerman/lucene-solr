@@ -1115,7 +1115,7 @@ name|nodeProps
 range|:
 name|slice
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|values

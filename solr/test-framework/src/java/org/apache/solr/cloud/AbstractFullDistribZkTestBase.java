@@ -392,6 +392,22 @@ name|common
 operator|.
 name|cloud
 operator|.
+name|Replica
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
 name|Slice
 import|;
 end_import
@@ -2067,7 +2083,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size
@@ -2269,7 +2285,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 name|theShards
 init|=
@@ -2278,7 +2294,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 decl_stmt|;
 for|for
@@ -2289,7 +2305,7 @@ name|Entry
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 name|shard
 range|:
@@ -2364,7 +2380,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -2450,7 +2466,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 name|theShards
 init|=
@@ -2459,7 +2475,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 decl_stmt|;
 for|for
@@ -2470,7 +2486,7 @@ name|Entry
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 name|shard
 range|:
@@ -2588,7 +2604,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -2613,7 +2629,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -2627,7 +2643,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -2748,7 +2764,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size
@@ -4805,7 +4821,7 @@ argument_list|,
 name|shard
 argument_list|)
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|size
@@ -4974,7 +4990,7 @@ name|nodeName
 init|=
 name|props
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -5036,7 +5052,7 @@ name|active
 init|=
 name|props
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -5686,7 +5702,7 @@ name|active
 init|=
 name|props
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -5777,7 +5793,7 @@ literal|"shard:"
 operator|+
 name|props
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -6091,7 +6107,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 name|theShards
 init|=
@@ -6100,7 +6116,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 decl_stmt|;
 for|for
@@ -6111,7 +6127,7 @@ name|Entry
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 name|shard
 range|:
@@ -6201,7 +6217,7 @@ name|cjetty
 operator|.
 name|info
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -6234,7 +6250,7 @@ name|cjetty
 operator|.
 name|info
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -7472,7 +7488,7 @@ name|cjetty
 operator|.
 name|info
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.

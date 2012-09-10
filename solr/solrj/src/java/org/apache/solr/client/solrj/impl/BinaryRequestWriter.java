@@ -446,7 +446,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*    * A hack to get access to the protected internal buffer and avoid an additional copy     */
+comment|/*    * A hack to get access to the protected internal buffer and avoid an additional copy    */
 DECL|class|BAOS
 class|class
 name|BAOS

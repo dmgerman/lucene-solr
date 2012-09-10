@@ -55,7 +55,7 @@ name|getCoreUrl
 argument_list|(
 name|nodeProps
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -64,7 +64,7 @@ argument_list|)
 argument_list|,
 name|nodeProps
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -82,7 +82,7 @@ block|{
 return|return
 name|nodeProps
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -99,7 +99,7 @@ block|{
 return|return
 name|nodeProps
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -116,7 +116,7 @@ block|{
 return|return
 name|nodeProps
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -133,7 +133,7 @@ block|{
 return|return
 name|nodeProps
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -156,7 +156,7 @@ name|getCoreUrl
 argument_list|(
 name|nodeProps
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -165,7 +165,7 @@ argument_list|)
 argument_list|,
 name|nodeProps
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.

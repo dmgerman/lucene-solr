@@ -885,7 +885,7 @@ name|leaderBaseUrl
 init|=
 name|leaderprops
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -1893,7 +1893,7 @@ name|leaderBaseUrl
 init|=
 name|leaderprops
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.
@@ -1905,7 +1905,7 @@ name|leaderCoreName
 init|=
 name|leaderprops
 operator|.
-name|get
+name|getStr
 argument_list|(
 name|ZkStateReader
 operator|.

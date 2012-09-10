@@ -567,13 +567,13 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 name|shards
 init|=
 name|slice
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 decl_stmt|;
 name|Set
@@ -582,7 +582,7 @@ name|Entry
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 argument_list|>
 name|shardsEntries
@@ -598,7 +598,7 @@ name|Entry
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 name|shardEntry
 range|:
@@ -742,7 +742,7 @@ block|}
 comment|/**    * Get shard properties or null if shard is not found.    */
 DECL|method|getShardProps
 specifier|public
-name|ZkNodeProps
+name|Replica
 name|getShardProps
 parameter_list|(
 specifier|final
@@ -782,7 +782,7 @@ if|if
 condition|(
 name|slice
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|get
@@ -796,7 +796,7 @@ block|{
 return|return
 name|slice
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|get
@@ -1053,7 +1053,7 @@ name|Entry
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 name|shards
 range|:
@@ -1062,7 +1062,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|getShards
+name|getReplicasMap
 argument_list|()
 operator|.
 name|entrySet
@@ -1638,7 +1638,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 argument_list|>
 name|sliceMap
@@ -1652,7 +1652,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 argument_list|>
 operator|)
@@ -1667,7 +1667,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 name|shards
 init|=
@@ -1676,7 +1676,7 @@ name|LinkedHashMap
 argument_list|<
 name|String
 argument_list|,
-name|ZkNodeProps
+name|Replica
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1698,8 +1698,10 @@ argument_list|(
 name|shardName
 argument_list|,
 operator|new
-name|ZkNodeProps
+name|Replica
 argument_list|(
+name|shardName
+argument_list|,
 name|sliceMap
 operator|.
 name|get

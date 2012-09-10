@@ -2775,7 +2775,7 @@ return|return
 name|_facetPivot
 return|;
 block|}
-comment|/** get     *     * @param name the name of the    * @return the FacetField by name or null if it does not exist    */
+comment|/** get    *     * @param name the name of the    * @return the FacetField by name or null if it does not exist    */
 DECL|method|getFacetField
 specifier|public
 name|FacetField
