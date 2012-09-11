@@ -106,7 +106,7 @@ expr_stmt|;
 block|}
 comment|//---------------------------------------------------------------
 comment|//---------------------------------------------------------------
-comment|/**    * Set the value for a field.  Arrays will be converted to a collection.    */
+comment|/**    * Set the value for a field.  Arrays will be converted to a collection. If    * a collection is given, then that collection will be used as the backing    * collection for the values.    */
 DECL|method|setValue
 specifier|public
 name|void
@@ -187,7 +187,7 @@ name|v
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Add values to a field.  if the added value is a collection, each value    * will be added individually    */
+comment|/**    * Add values to a field.  If the added value is a collection, each value    * will be added individually.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -212,6 +212,60 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|v
+operator|instanceof
+name|Collection
+condition|)
+block|{
+name|Collection
+argument_list|<
+name|Object
+argument_list|>
+name|c
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
+argument_list|(
+literal|3
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|Object
+name|o
+range|:
+operator|(
+name|Collection
+argument_list|<
+name|Object
+argument_list|>
+operator|)
+name|v
+control|)
+block|{
+name|c
+operator|.
+name|add
+argument_list|(
+name|o
+argument_list|)
+expr_stmt|;
+block|}
+name|setValue
+argument_list|(
+name|c
+argument_list|,
+name|b
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|setValue
 argument_list|(
 name|v
@@ -219,6 +273,7 @@ argument_list|,
 name|b
 argument_list|)
 expr_stmt|;
+block|}
 return|return;
 block|}
 comment|// The lucene API and solr XML field specification make it possible to set boosts

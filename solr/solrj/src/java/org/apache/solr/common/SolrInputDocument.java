@@ -362,7 +362,7 @@ name|boost
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a field with the given name, value and boost.  If a field with the name already exists, then it is updated to    * the new value and boost.    *    * @param name Name of the field to add    * @param value Value of the field    * @param boost Boost value for the field    */
+comment|/**    * Adds a field with the given name, value and boost.  If a field with the    * name already exists, then the given value is appended to the value of that    * field, with the new boost. If the value is a collection, then each of its    * values will be added to the field.    *    * @param name Name of the field to add    * @param value Value of the field    * @param boost Boost value for the field    */
 DECL|method|addField
 specifier|public
 name|void
