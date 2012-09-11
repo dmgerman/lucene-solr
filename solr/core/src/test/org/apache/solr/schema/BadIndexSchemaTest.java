@@ -230,6 +230,36 @@ literal|"can not be configured to be multivalued"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testMultivaluedCurrency
+specifier|public
+name|void
+name|testMultivaluedCurrency
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-currency-ft-multivalued.xml"
+argument_list|,
+literal|"types can not be multiValued: currency"
+argument_list|)
+expr_stmt|;
+name|doTest
+argument_list|(
+literal|"bad-schema-currency-multivalued.xml"
+argument_list|,
+literal|"Fields can not be multiValued: money"
+argument_list|)
+expr_stmt|;
+name|doTest
+argument_list|(
+literal|"bad-schema-currency-dynamic-multivalued.xml"
+argument_list|,
+literal|"Fields can not be multiValued: *_c"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testPerFieldtypeSimButNoSchemaSimFactory
 specifier|public
 name|void

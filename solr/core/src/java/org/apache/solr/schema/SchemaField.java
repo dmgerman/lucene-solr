@@ -269,6 +269,13 @@ operator|)
 operator|!=
 literal|0
 expr_stmt|;
+name|type
+operator|.
+name|checkSchemaField
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|getName
 specifier|public
