@@ -101,11 +101,32 @@ block|{
 assert|assert
 literal|false
 assert|;
+name|String
+name|msg
+init|=
+literal|"Test class requires enabled assertions, enable globally (-ea)"
+operator|+
+literal|" or for Solr/Lucene subpackages only: "
+operator|+
+name|description
+operator|.
+name|getClassName
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|Exception
 argument_list|(
-literal|"Test class requires assertions, enable assertions globally (-ea) or for Solr/Lucene subpackages only."
+name|msg
 argument_list|)
 throw|;
 block|}
