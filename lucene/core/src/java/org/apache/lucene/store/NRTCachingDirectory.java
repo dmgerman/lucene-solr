@@ -1230,11 +1230,11 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
-name|in
+name|out
 operator|.
 name|copyBytes
 argument_list|(
-name|out
+name|in
 argument_list|,
 name|in
 operator|.

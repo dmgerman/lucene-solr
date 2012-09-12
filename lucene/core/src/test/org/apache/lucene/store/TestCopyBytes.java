@@ -709,11 +709,11 @@ name|DEFAULT
 argument_list|)
 decl_stmt|;
 comment|// copy our 100-byte header
-name|input
+name|outputHeader
 operator|.
 name|copyBytes
 argument_list|(
-name|outputHeader
+name|input
 argument_list|,
 literal|100
 argument_list|)
@@ -977,11 +977,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|src
+name|dst
 operator|.
 name|copyBytes
 argument_list|(
-name|dst
+name|src
 argument_list|,
 name|src
 operator|.
