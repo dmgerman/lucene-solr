@@ -1555,6 +1555,7 @@ argument_list|,
 literal|"//doc[3]/str[@name='id'][.='52']"
 argument_list|)
 expr_stmt|;
+comment|// non-trivial bqs
 name|assertQ
 argument_list|(
 name|req
@@ -1573,7 +1574,50 @@ literal|"edismax"
 argument_list|,
 literal|"bq"
 argument_list|,
-literal|"id:54^-100"
+literal|"(text_sw:blasdfadsf id:54)^100"
+argument_list|,
+literal|"bq"
+argument_list|,
+literal|"id:[53 TO 53]^10"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"id:[52 TO 54]"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,score"
+argument_list|)
+argument_list|,
+literal|"//doc[1]/str[@name='id'][.='54']"
+argument_list|,
+literal|"//doc[2]/str[@name='id'][.='53']"
+argument_list|,
+literal|"//doc[3]/str[@name='id'][.='52']"
+argument_list|)
+expr_stmt|;
+comment|// genuine negative boosts are not legal
+comment|// see SOLR-3823, SOLR-3278, LUCENE-4378 and
+comment|// https://wiki.apache.org/solr/SolrRelevancyFAQ#How_do_I_give_a_negative_.28or_very_low.29_boost_to_documents_that_match_a_query.3F
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"tekna"
+argument_list|,
+literal|"qf"
+argument_list|,
+literal|"text_sw"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"bq"
+argument_list|,
+literal|"(*:* -id:54)^100"
 argument_list|,
 literal|"bq"
 argument_list|,
