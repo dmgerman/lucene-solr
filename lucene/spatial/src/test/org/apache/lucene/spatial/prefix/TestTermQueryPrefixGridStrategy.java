@@ -40,20 +40,6 @@ name|spatial4j
 operator|.
 name|core
 operator|.
-name|context
-operator|.
-name|SpatialContext
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
 name|shape
 operator|.
 name|Shape
@@ -335,7 +321,7 @@ argument_list|()
 decl_stmt|;
 comment|// TODO... use a non polygon query
 comment|//    SpatialArgs spatialArgs = spatialArgsParser.parse(
-comment|//        "IsWithin(POLYGON((-127.00390625 39.8125,-112.765625 39.98828125,-111.53515625 31.375,-125.94921875 30.14453125,-127.00390625 39.8125)))",
+comment|//        "Intersects(POLYGON((-127.00390625 39.8125,-112.765625 39.98828125,-111.53515625 31.375,-125.94921875 30.14453125,-127.00390625 39.8125)))",
 comment|//        new SimpleSpatialContext());
 comment|//    Query query = prefixGridStrategy.makeQuery(spatialArgs, fieldInfo);
 comment|//    SearchResults searchResults = executeQuery(query, 1);

@@ -338,10 +338,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testCitiesWithinBBox
+DECL|method|testCitiesIntersectsBBox
 specifier|public
 name|void
-name|testCitiesWithinBBox
+name|testCitiesIntersectsBBox
 parameter_list|()
 throws|throws
 name|IOException
@@ -357,7 +357,7 @@ name|SpatialMatchConcern
 operator|.
 name|FILTER
 argument_list|,
-name|QTEST_Cities_IsWithin_BBox
+name|QTEST_Cities_Intersects_BBox
 argument_list|)
 expr_stmt|;
 block|}
