@@ -2301,7 +2301,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Check's {@link org.apache.solr.schema.SchemaField} instances constructed     * using this field type to ensure that they are valid.    *    *<p>    * This method is called by the<code>SchemaField</code> constructor to     * check that it's initialization does not violate any fundemental     * requirements of the<code>FieldType</code>.  The default implementation     * does nothing, but subclasses may chose to throw a {@link SolrException}      * if invariants are violated by the<code>SchemaField.    *</p>    */
+comment|/**    * Check's {@link org.apache.solr.schema.SchemaField} instances constructed     * using this field type to ensure that they are valid.    *    *<p>    * This method is called by the<code>SchemaField</code> constructor to     * check that it's initialization does not violate any fundemental     * requirements of the<code>FieldType</code>.  The default implementation     * does nothing, but subclasses may chose to throw a {@link SolrException}      * if invariants are violated by the<code>SchemaField.</code>    *</p>    */
 DECL|method|checkSchemaField
 specifier|public
 name|void
