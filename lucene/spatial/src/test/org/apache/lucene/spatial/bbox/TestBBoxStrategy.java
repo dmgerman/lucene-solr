@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|spatial4j
+operator|.
+name|core
+operator|.
+name|shape
+operator|.
+name|Shape
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -135,6 +149,25 @@ argument_list|,
 literal|"bbox"
 argument_list|)
 expr_stmt|;
+block|}
+comment|/* Convert DATA_WORLD_CITIES_POINTS to bbox */
+annotation|@
+name|Override
+DECL|method|convertShapeFromGetDocuments
+specifier|protected
+name|Shape
+name|convertShapeFromGetDocuments
+parameter_list|(
+name|Shape
+name|shape
+parameter_list|)
+block|{
+return|return
+name|shape
+operator|.
+name|getBoundingBox
+argument_list|()
+return|;
 block|}
 annotation|@
 name|Test
