@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This class provides a {@link Field} that enables storing  * of a per-document short value for scoring, sorting or value retrieval. Here's an  * example usage:  *   *<pre>  *   document.add(new ShortDocValuesField(name, (short) 22));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * @see DocValues for further information  * */
+comment|/**  *<p>  * This class provides a {@link Field} that enables storing  * of a per-document short value for scoring, sorting or value retrieval. Here's an  * example usage:  *   *<pre class="prettyprint">  *   document.add(new ShortDocValuesField(name, (short) 22));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * @see DocValues for further information  * */
 end_comment
 
 begin_class

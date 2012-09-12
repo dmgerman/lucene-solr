@@ -1010,7 +1010,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Adds a new {@link BytesRef} with a pre-calculated hash code.    *     * @param bytes    *          the bytes to hash    * @param code    *          the bytes hash code    *     *<p>    *          Hashcode is defined as:    *     *<pre>    * int hash = 0;    * for (int i = offset; i&lt; offset + length; i++) {    *   hash = 31 * hash + bytes[i];    * }    *</pre>    *     * @return the ord the given bytes are hashed if there was no mapping for the    *         given bytes, otherwise<code>(-(ord)-1)</code>. This guarantees    *         that the return value will always be&gt;= 0 if the given bytes    *         haven't been hashed before.    *     * @throws MaxBytesLengthExceededException    *           if the given bytes are>    *           {@link ByteBlockPool#BYTE_BLOCK_SIZE} - 2    */
+comment|/**    * Adds a new {@link BytesRef} with a pre-calculated hash code.    *     * @param bytes    *          the bytes to hash    * @param code    *          the bytes hash code    *     *<p>    *          Hashcode is defined as:    *     *<pre class="prettyprint">    * int hash = 0;    * for (int i = offset; i&lt; offset + length; i++) {    *   hash = 31 * hash + bytes[i];    * }    *</pre>    *     * @return the ord the given bytes are hashed if there was no mapping for the    *         given bytes, otherwise<code>(-(ord)-1)</code>. This guarantees    *         that the return value will always be&gt;= 0 if the given bytes    *         haven't been hashed before.    *     * @throws MaxBytesLengthExceededException    *           if the given bytes are>    *           {@link ByteBlockPool#BYTE_BLOCK_SIZE} - 2    */
 DECL|method|add
 specifier|public
 name|int

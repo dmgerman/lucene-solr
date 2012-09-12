@@ -39,7 +39,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * An abstract implementation of {@link IntEncoder} which is served as a filter  * on the values to encode. An encoder filter wraps another {@link IntEncoder}  * which does the actual encoding. This allows for chaining filters and  * encoders, such as:<code><pre>  * new UniqueValuesIntEncoder(new DGapIntEncoder(new VInt8IntEnoder()));  * {@link UniqueValuesIntEncoder} followed by {@link DGapIntEncoder}</pre></code>  *<p>  * The default implementation implements {@link #close()} by closing the wrapped  * encoder and {@link #reInit(OutputStream)} by re-initializing the wrapped  * encoder.  *   * @lucene.experimental  */
+comment|/**  * An abstract implementation of {@link IntEncoder} which is served as a filter  * on the values to encode. An encoder filter wraps another {@link IntEncoder}  * which does the actual encoding. This allows for chaining filters and  * encoders, such as:<code><pre class="prettyprint">  * new UniqueValuesIntEncoder(new DGapIntEncoder(new VInt8IntEnoder()));  * {@link UniqueValuesIntEncoder} followed by {@link DGapIntEncoder}</pre></code>  *<p>  * The default implementation implements {@link #close()} by closing the wrapped  * encoder and {@link #reInit(OutputStream)} by re-initializing the wrapped  * encoder.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

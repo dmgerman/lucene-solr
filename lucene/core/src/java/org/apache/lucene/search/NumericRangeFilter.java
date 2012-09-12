@@ -125,7 +125,7 @@ comment|// for javadocs
 end_comment
 
 begin_comment
-comment|/**  * A {@link Filter} that only accepts numeric values within  * a specified range. To use this, you must first index the  * numeric values using {@link IntField}, {@link  * FloatField}, {@link LongField} or {@link DoubleField} (expert: {@link  * NumericTokenStream}).  *  *<p>You create a new NumericRangeFilter with the static  * factory methods, eg:  *  *<pre>  * Filter f = NumericRangeFilter.newFloatRange("weight", 0.03f, 0.10f, true, true);  *</pre>  *  * accepts all documents whose float valued "weight" field  * ranges from 0.03 to 0.10, inclusive.  * See {@link NumericRangeQuery} for details on how Lucene  * indexes and searches numeric valued fields.  *  * @since 2.9  **/
+comment|/**  * A {@link Filter} that only accepts numeric values within  * a specified range. To use this, you must first index the  * numeric values using {@link IntField}, {@link  * FloatField}, {@link LongField} or {@link DoubleField} (expert: {@link  * NumericTokenStream}).  *  *<p>You create a new NumericRangeFilter with the static  * factory methods, eg:  *  *<pre class="prettyprint">  * Filter f = NumericRangeFilter.newFloatRange("weight", 0.03f, 0.10f, true, true);  *</pre>  *  * accepts all documents whose float valued "weight" field  * ranges from 0.03 to 0.10, inclusive.  * See {@link NumericRangeQuery} for details on how Lucene  * indexes and searches numeric valued fields.  *  * @since 2.9  **/
 end_comment
 
 begin_class

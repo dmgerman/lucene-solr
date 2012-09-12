@@ -357,7 +357,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/** Calculates the hash code as required by TermsHash during indexing.    *<p>It is defined as:    *<pre>    *  int hash = 0;    *  for (int i = offset; i&lt; offset + length; i++) {    *    hash = 31*hash + bytes[i];    *  }    *</pre>    */
+comment|/** Calculates the hash code as required by TermsHash during indexing.    *<p>It is defined as:    *<pre class="prettyprint">    *  int hash = 0;    *  for (int i = offset; i&lt; offset + length; i++) {    *    hash = 31*hash + bytes[i];    *  }    *</pre>    */
 annotation|@
 name|Override
 DECL|method|hashCode

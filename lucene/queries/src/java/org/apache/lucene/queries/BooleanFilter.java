@@ -641,7 +641,7 @@ return|return
 name|clauses
 return|;
 block|}
-comment|/** Returns an iterator on the clauses in this query. It implements the {@link Iterable} interface to    * make it possible to do:    *<pre>for (FilterClause clause : booleanFilter) {}</pre>    */
+comment|/** Returns an iterator on the clauses in this query. It implements the {@link Iterable} interface to    * make it possible to do:    *<pre class="prettyprint">for (FilterClause clause : booleanFilter) {}</pre>    */
 DECL|method|iterator
 specifier|public
 specifier|final

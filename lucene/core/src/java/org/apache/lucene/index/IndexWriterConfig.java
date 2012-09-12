@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Holds all the configuration that is used to create an {@link IndexWriter}.  * Once {@link IndexWriter} has been created with this object, changes to this  * object will not affect the {@link IndexWriter} instance. For that, use  * {@link LiveIndexWriterConfig} that is returned from {@link IndexWriter#getConfig()}.  *   *<p>  * All setter methods return {@link IndexWriterConfig} to allow chaining  * settings conveniently, for example:  *   *<pre>  * IndexWriterConfig conf = new IndexWriterConfig(analyzer);  * conf.setter1().setter2();  *</pre>  *   * @see IndexWriter#getConfig()  *   * @since 3.1  */
+comment|/**  * Holds all the configuration that is used to create an {@link IndexWriter}.  * Once {@link IndexWriter} has been created with this object, changes to this  * object will not affect the {@link IndexWriter} instance. For that, use  * {@link LiveIndexWriterConfig} that is returned from {@link IndexWriter#getConfig()}.  *   *<p>  * All setter methods return {@link IndexWriterConfig} to allow chaining  * settings conveniently, for example:  *   *<pre class="prettyprint">  * IndexWriterConfig conf = new IndexWriterConfig(analyzer);  * conf.setter1().setter2();  *</pre>  *   * @see IndexWriter#getConfig()  *   * @since 3.1  */
 end_comment
 
 begin_class

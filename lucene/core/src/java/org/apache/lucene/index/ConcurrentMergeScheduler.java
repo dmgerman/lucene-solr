@@ -762,7 +762,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Returns true if verbosing is enabled. This method is usually used in    * conjunction with {@link #message(String)}, like that:    *     *<pre>    * if (verbose()) {    *   message(&quot;your message&quot;);    * }    *</pre>    */
+comment|/**    * Returns true if verbosing is enabled. This method is usually used in    * conjunction with {@link #message(String)}, like that:    *     *<pre class="prettyprint">    * if (verbose()) {    *   message(&quot;your message&quot;);    * }    *</pre>    */
 DECL|method|verbose
 specifier|protected
 name|boolean
