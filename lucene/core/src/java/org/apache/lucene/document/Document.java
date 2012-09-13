@@ -444,7 +444,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**   * Returns an array of byte arrays for of the fields that have the name specified   * as the method parameter.  This method returns an empty   * array when there are no matching fields.  It never   * returns null.   *   * @param name the name of the field   * @return a<code>byte[][]</code> of binary field values   */
+comment|/**   * Returns an array of byte arrays for of the fields that have the name specified   * as the method parameter.  This method returns an empty   * array when there are no matching fields.  It never   * returns null.   *   * @param name the name of the field   * @return a<code>BytesRef[]</code> of binary field values   */
 DECL|method|getBinaryValues
 specifier|public
 specifier|final
@@ -550,7 +550,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/**   * Returns an array of bytes for the first (or only) field that has the name   * specified as the method parameter. This method will return<code>null</code>   * if no binary fields with the specified name are available.   * There may be non-binary fields with the same name.   *   * @param name the name of the field.   * @return a<code>byte[]</code> containing the binary field value or<code>null</code>   */
+comment|/**   * Returns an array of bytes for the first (or only) field that has the name   * specified as the method parameter. This method will return<code>null</code>   * if no binary fields with the specified name are available.   * There may be non-binary fields with the same name.   *   * @param name the name of the field.   * @return a<code>BytesRef</code> containing the binary field value or<code>null</code>   */
 DECL|method|getBinaryValue
 specifier|public
 specifier|final
@@ -666,7 +666,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Returns an array of {@link IndexableField}s with the given name.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    *    * @param name the name of the field    * @return a<code>Fieldable[]</code> array    */
+comment|/**    * Returns an array of {@link IndexableField}s with the given name.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    *    * @param name the name of the field    * @return a<code>Field[]</code> array    */
 DECL|method|getFields
 specifier|public
 name|Field
@@ -736,7 +736,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/** Returns a List of all the fields in a document.    *<p>Note that fields which are<i>not</i> stored are    *<i>not</i> available in documents retrieved from the    * index, e.g. {@link IndexSearcher#doc(int)} or {@link    * IndexReader#document(int)}.    *     * @return an immutable<code>List[Field]</code>     */
+comment|/** Returns a List of all the fields in a document.    *<p>Note that fields which are<i>not</i> stored are    *<i>not</i> available in documents retrieved from the    * index, e.g. {@link IndexSearcher#doc(int)} or {@link    * IndexReader#document(int)}.    *     * @return an immutable<code>List&lt;Field&gt;</code>     */
 DECL|method|getFields
 specifier|public
 specifier|final

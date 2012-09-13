@@ -32,16 +32,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -66,49 +56,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|DoubleField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FieldType
 import|;
 end_import
 
@@ -176,20 +124,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|ScoreDoc
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -198,6 +132,10 @@ end_import
 
 begin_comment
 comment|/**  * StoredDocument is retrieved from IndexReader containing only stored fields from indexed {@link IndexDocument}. */
+end_comment
+
+begin_comment
+comment|// TODO: shouldn't this really be in the .document package?
 end_comment
 
 begin_class
@@ -227,6 +165,7 @@ name|StorableField
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/**    * Adds a field to a document.    *<p> This method supports construction of a StoredDocument from a     * {@link StoredFieldVisitor}. This method cannot    * be used to change the content of an existing index! In order to achieve this,    * a document has to be deleted from an index and a new changed version of that    * document has to be added.</p>    */
 DECL|method|add
 specifier|public
 specifier|final
@@ -245,6 +184,7 @@ name|field
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Returns an array of {@link StorableField}s with the given name.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    *    * @param name the name of the field    * @return a<code>StorableField[]</code> array    */
 DECL|method|getFields
 specifier|public
 name|StorableField
@@ -355,7 +295,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Returns a List of all the fields in a document.    *<p>Note that fields which are<i>not</i> stored are    *<i>not</i> available in documents retrieved from the    * index, e.g. {@link IndexSearcher#doc(int)} or {@link    * IndexReader#document(int)}.    *     * @return an immutable<code>List[StorableField]</code>     */
+comment|/** Returns a List of all the fields in a document.    *<p>Note that fields which are<i>not</i> stored are    *<i>not</i> available in documents retrieved from the    * index, e.g. {@link IndexSearcher#doc(int)} or {@link    * IndexReader#document(int)}.    *     * @return an immutable<code>List&lt;StorableField&gt;</code>     */
 DECL|method|getFields
 specifier|public
 specifier|final
@@ -390,7 +330,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an array of byte arrays for of the fields that have the name specified    * as the method parameter.  This method returns an empty    * array when there are no matching fields.  It never    * returns null.    *    * @param name the name of the field    * @return a<code>byte[][]</code> of binary field values    */
+comment|/**    * Returns an array of byte arrays for of the fields that have the name specified    * as the method parameter.  This method returns an empty    * array when there are no matching fields.  It never    * returns null.    *    * @param name the name of the field    * @return a<code>BytesRef[]</code> of binary field values    */
 DECL|method|getBinaryValues
 specifier|public
 specifier|final
@@ -479,7 +419,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an array of bytes for the first (or only) field that has the name    * specified as the method parameter. This method will return<code>null</code>    * if no binary fields with the specified name are available.    * There may be non-binary fields with the same name.    *    * @param name the name of the field.    * @return a<code>byte[]</code> containing the binary field value or<code>null</code>    */
+comment|/**    * Returns an array of bytes for the first (or only) field that has the name    * specified as the method parameter. This method will return<code>null</code>    * if no binary fields with the specified name are available.    * There may be non-binary fields with the same name.    *    * @param name the name of the field.    * @return a<code>BytesRef</code> containing the binary field value or<code>null</code>    */
 DECL|method|getBinaryValue
 specifier|public
 specifier|final
