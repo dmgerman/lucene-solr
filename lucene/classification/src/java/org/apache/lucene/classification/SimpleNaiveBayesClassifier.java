@@ -282,6 +282,12 @@ specifier|private
 name|IndexSearcher
 name|indexSearcher
 decl_stmt|;
+comment|/**     * Creates a new NaiveBayes classifier.    * Note that you must call {@link #train(AtomicReader, String, String, Analyzer) train()} before you can    * classify any documents.    */
+DECL|method|SimpleNaiveBayesClassifier
+specifier|public
+name|SimpleNaiveBayesClassifier
+parameter_list|()
+block|{}
 DECL|method|train
 specifier|public
 name|void
