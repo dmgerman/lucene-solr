@@ -5451,6 +5451,11 @@ argument_list|,
 literal|"/response/numFound==3"
 argument_list|)
 expr_stmt|;
+comment|// This messes up some other tests (on windows) if we don't remove the bad log.
+comment|// This *should* hopefully just be because the tests are too fragile and not because of real bugs - but it should be investigated further.
+name|deleteLogs
+argument_list|()
+expr_stmt|;
 block|}
 finally|finally
 block|{
