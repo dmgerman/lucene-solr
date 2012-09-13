@@ -1723,7 +1723,7 @@ specifier|final
 name|String
 name|field
 decl_stmt|;
-comment|// which Fieldable
+comment|// which Field
 DECL|field|custom
 specifier|final
 name|Object

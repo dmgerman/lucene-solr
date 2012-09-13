@@ -785,7 +785,7 @@ name|fieldsToLoad
 argument_list|)
 return|;
 block|}
-comment|/** Expert: Set the Similarity implementation used by this Searcher.    *    */
+comment|/** Expert: Set the Similarity implementation used by this IndexSearcher.    *    */
 DECL|method|setSimilarity
 specifier|public
 name|void
