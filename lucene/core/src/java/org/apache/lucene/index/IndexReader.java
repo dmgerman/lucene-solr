@@ -174,20 +174,6 @@ name|Bits
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
 begin_comment
 comment|/** IndexReader is an abstract class, providing an interface for accessing an  index.  Search of an index is done entirely through this abstract interface,  so that any subclass which implements it is searchable.<p>There are two different types of IndexReaders:<ul><li>{@link AtomicReader}: These indexes do not consist of several sub-readers,   they are atomic. They support retrieval of stored fields, doc values, terms,   and postings.<li>{@link CompositeReader}: Instances (like {@link DirectoryReader})   of this reader can only   be used to get stored fields from the underlying AtomicReaders,   but it is not possible to directly retrieve postings. To do that, get   the sub-readers via {@link CompositeReader#getSequentialSubReaders}.   Alternatively, you can mimic an {@link AtomicReader} (with a serious slowdown),   by wrapping composite readers with {@link SlowCompositeReaderWrapper}.</ul><p>IndexReader instances for indexes on disk are usually constructed  with a call to one of the static<code>DirectoryReader.open()</code> methods,  e.g. {@link DirectoryReader#open(org.apache.lucene.store.Directory)}. {@link DirectoryReader} implements  the {@link CompositeReader} interface, it is not possible to directly get postings.<p> For efficiency, in this API documents are often referred to via<i>document numbers</i>, non-negative integers which each name a unique  document in the index.  These document numbers are ephemeral -- they may change  as documents are added to and deleted from an index.  Clients should thus not  rely on a given document having the same number between sessions.<p><a name="thread-safety"></a><p><b>NOTE</b>: {@link  IndexReader} instances are completely thread  safe, meaning multiple threads can call any of its methods,  concurrently.  If your application requires external  synchronization, you should<b>not</b> synchronize on the<code>IndexReader</code> instance; use your own  (non-Lucene) objects instead. */
 end_comment
@@ -1011,10 +997,10 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Returns the number of documents containing the     *<code>term</code>.  This method returns 0 if the term or    * field does not exists.  This method does not take into    * account deleted documents that have not yet been merged    * away. */
+comment|/** Returns the number of documents containing the     *<code>term</code>.  This method returns 0 if the term or    * field does not exists.  This method does not take into    * account deleted documents that have not yet been merged    * away.     * @see TermsEnum#docFreq()    */
 DECL|method|docFreq
 specifier|public
-specifier|final
+specifier|abstract
 name|int
 name|docFreq
 parameter_list|(
@@ -1023,33 +1009,15 @@ name|term
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-return|return
-name|docFreq
-argument_list|(
-name|term
-operator|.
-name|field
-argument_list|()
-argument_list|,
-name|term
-operator|.
-name|bytes
-argument_list|()
-argument_list|)
-return|;
-block|}
-comment|/** Returns the number of documents containing the    *<code>term</code>.  This method returns 0 if the term or    * field does not exists.  This method does not take into    * account deleted documents that have not yet been merged    * away. */
-DECL|method|docFreq
+function_decl|;
+comment|/** Returns the number of documents containing the term    *<code>term</code>.  This method returns 0 if the term or    * field does not exists, or -1 if the Codec does not support    * the measure.  This method does not take into account deleted     * documents that have not yet been merged away.    * @see TermsEnum#totalTermFreq()     */
+DECL|method|totalTermFreq
 specifier|public
 specifier|abstract
-name|int
-name|docFreq
+name|long
+name|totalTermFreq
 parameter_list|(
-name|String
-name|field
-parameter_list|,
-name|BytesRef
+name|Term
 name|term
 parameter_list|)
 throws|throws

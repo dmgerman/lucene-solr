@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
+name|TermsEnum
 import|;
 end_import
 
@@ -137,7 +137,7 @@ return|return
 name|term
 return|;
 block|}
-comment|/** returns the number of documents this term occurs in     * @see AtomicReader#docFreq(String, BytesRef) */
+comment|/** returns the number of documents this term occurs in     * @see TermsEnum#docFreq() */
 DECL|method|docFreq
 specifier|public
 specifier|final
@@ -149,7 +149,7 @@ return|return
 name|docFreq
 return|;
 block|}
-comment|/** returns the total number of occurrences of this term    * @see AtomicReader#totalTermFreq(String, BytesRef) */
+comment|/** returns the total number of occurrences of this term    * @see TermsEnum#totalTermFreq() */
 DECL|method|totalTermFreq
 specifier|public
 specifier|final

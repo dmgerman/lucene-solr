@@ -720,11 +720,11 @@ name|atomicReader
 operator|.
 name|docFreq
 argument_list|(
+operator|new
+name|Term
+argument_list|(
 name|classFieldName
 argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
 name|c
 argument_list|)
 argument_list|)

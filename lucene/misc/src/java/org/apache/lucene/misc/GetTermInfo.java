@@ -96,6 +96,20 @@ name|IndexReader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utility to get document frequency and total number of occurrences (sum of the tf for each doc)  of a term.   */
 end_comment
@@ -191,11 +205,11 @@ name|getTermInfo
 argument_list|(
 name|dir
 argument_list|,
+operator|new
+name|Term
+argument_list|(
 name|field
 argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
 name|inputStr
 argument_list|)
 argument_list|)
@@ -210,11 +224,8 @@ parameter_list|(
 name|Directory
 name|dir
 parameter_list|,
-name|String
-name|field
-parameter_list|,
-name|BytesRef
-name|termtext
+name|Term
+name|term
 parameter_list|)
 throws|throws
 name|Exception
@@ -238,9 +249,7 @@ name|getTotalTermFreq
 argument_list|(
 name|reader
 argument_list|,
-name|field
-argument_list|,
-name|termtext
+name|term
 argument_list|)
 decl_stmt|;
 name|System
@@ -251,11 +260,14 @@ name|printf
 argument_list|(
 literal|"%s:%s \t totalTF = %,d \t doc freq = %,d \n"
 argument_list|,
-name|field
-argument_list|,
-name|termtext
+name|term
 operator|.
-name|utf8ToString
+name|field
+argument_list|()
+argument_list|,
+name|term
+operator|.
+name|text
 argument_list|()
 argument_list|,
 name|totalTF
@@ -264,9 +276,7 @@ name|reader
 operator|.
 name|docFreq
 argument_list|(
-name|field
-argument_list|,
-name|termtext
+name|term
 argument_list|)
 argument_list|)
 expr_stmt|;

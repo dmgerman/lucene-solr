@@ -1627,13 +1627,11 @@ name|reader
 operator|.
 name|termPositionsEnum
 argument_list|(
-literal|null
-argument_list|,
+operator|new
+name|Term
+argument_list|(
 literal|"foo"
 argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
 literal|"bar"
 argument_list|)
 argument_list|)

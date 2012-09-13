@@ -6154,17 +6154,7 @@ name|reader
 operator|.
 name|termDocsEnum
 argument_list|(
-literal|null
-argument_list|,
 name|term
-operator|.
-name|field
-argument_list|,
-name|term
-operator|.
-name|bytes
-argument_list|,
-literal|0
 argument_list|)
 decl_stmt|;
 name|int

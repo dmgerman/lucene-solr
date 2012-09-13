@@ -679,9 +679,13 @@ name|r
 operator|.
 name|docFreq
 argument_list|(
+operator|new
+name|Term
+argument_list|(
 literal|"docid"
 argument_list|,
 name|id
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
