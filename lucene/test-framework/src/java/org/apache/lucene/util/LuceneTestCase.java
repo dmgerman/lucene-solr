@@ -1458,6 +1458,13 @@ argument_list|(
 literal|"org.slf4j.Logger"
 argument_list|,
 literal|"org.apache.solr.SolrLogFormatter"
+argument_list|,
+name|EnumSet
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1521,6 +1528,7 @@ name|Field
 name|field
 parameter_list|)
 block|{
+comment|// Don't count known classes that consume memory once.
 if|if
 condition|(
 name|STATIC_LEAK_IGNORED_TYPES
@@ -1535,6 +1543,23 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+comment|// Don't count references from ourselves, we're top-level.
+if|if
+condition|(
+name|field
+operator|.
+name|getDeclaringClass
+argument_list|()
+operator|==
+name|LuceneTestCase
+operator|.
+name|class
 condition|)
 block|{
 return|return
