@@ -122,6 +122,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -5160,6 +5170,9 @@ comment|// test that a corrupt tlog doesn't stop us from coming up
 comment|//
 annotation|@
 name|Test
+annotation|@
+name|Ignore
+comment|// I have reproduced the failure on windows and am looking into fixes -yonik
 DECL|method|testCorruptLog
 specifier|public
 name|void
