@@ -5170,9 +5170,6 @@ comment|// test that a corrupt tlog doesn't stop us from coming up
 comment|//
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-comment|// I have reproduced the failure on windows and am looking into fixes -yonik
 DECL|method|testCorruptLog
 specifier|public
 name|void
@@ -6181,6 +6178,8 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 name|String
 index|[]
 name|files
@@ -6226,9 +6225,28 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// make sure we create the core again, even if the assert fails so it won't mess
+comment|// up the next test.
 name|createCore
 argument_list|()
 expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|)
+argument_list|,
+literal|"/response/numFound=="
+argument_list|)
+expr_stmt|;
+comment|// ensure it works
+block|}
 block|}
 DECL|method|getVer
 specifier|private
