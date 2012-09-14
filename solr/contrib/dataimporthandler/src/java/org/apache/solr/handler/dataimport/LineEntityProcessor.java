@@ -282,16 +282,21 @@ name|exp
 argument_list|)
 throw|;
 block|}
+comment|// end of input
 if|if
 condition|(
 name|line
 operator|==
 literal|null
 condition|)
+block|{
+name|closeResources
+argument_list|()
+expr_stmt|;
 return|return
 literal|null
 return|;
-comment|// end of input
+block|}
 comment|// First scan whole line to see if we want it
 if|if
 condition|(
@@ -360,12 +365,10 @@ name|row
 return|;
 block|}
 block|}
-annotation|@
-name|Override
-DECL|method|destroy
+DECL|method|closeResources
 specifier|public
 name|void
-name|destroy
+name|closeResources
 parameter_list|()
 block|{
 if|if
@@ -386,6 +389,18 @@ block|}
 name|reader
 operator|=
 literal|null
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|destroy
+specifier|public
+name|void
+name|destroy
+parameter_list|()
+block|{
+name|closeResources
+argument_list|()
 expr_stmt|;
 name|super
 operator|.

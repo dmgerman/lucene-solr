@@ -102,7 +102,7 @@ argument_list|>
 name|nextModifiedParentRowKey
 parameter_list|()
 function_decl|;
-comment|/**    * Invoked for each parent-row after the last row for this entity is processed. If this is the root-most    * entity, it will be called only once in the import, at the very end.    *     */
+comment|/**    * Invoked for each entity at the very end of the import to do any needed cleanup tasks.    *     */
 DECL|method|destroy
 specifier|public
 specifier|abstract
