@@ -81,6 +81,19 @@ name|Query
 name|query
 parameter_list|)
 block|{
+if|if
+condition|(
+name|query
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"Query may not be null"
+argument_list|)
+throw|;
 name|this
 operator|.
 name|query
