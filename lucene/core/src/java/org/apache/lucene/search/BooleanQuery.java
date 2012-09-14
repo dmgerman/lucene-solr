@@ -1559,6 +1559,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// NOTE: we could also use BooleanScorer, if we knew
+comment|// this BooleanQuery was embedded in another
+comment|// BooleanQuery that was also using BooleanScorer (ie,
+comment|// BooleanScorer can nest).  But this is hard to
+comment|// detect and we never do so today... (ie, we only
+comment|// return BooleanScorer for topScorer):
 comment|// Check if we can return a BooleanScorer
 if|if
 condition|(

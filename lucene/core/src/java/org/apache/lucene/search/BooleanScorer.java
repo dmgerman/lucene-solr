@@ -999,7 +999,12 @@ block|{
 comment|// TODO: re-enable this if BQ ever sends us required
 comment|// clauses
 comment|//&& (current.bits& requiredMask) == requiredMask) {
-comment|// TODO: can we remove this?
+comment|// NOTE: Lucene always passes max =
+comment|// Integer.MAX_VALUE today, because we never embed
+comment|// a BooleanScorer inside another (even though
+comment|// that should work)... but in theory an outside
+comment|// app could pass a different max so we must check
+comment|// it:
 if|if
 condition|(
 name|current
@@ -1275,11 +1280,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-return|return
-name|current
-operator|.
-name|coord
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
 annotation|@
 name|Override
