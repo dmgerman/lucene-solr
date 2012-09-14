@@ -3428,19 +3428,9 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Could not create Overseer node: "
-operator|+
+literal|"Could not create Overseer node"
+argument_list|,
 name|e
-operator|.
-name|getClass
-argument_list|()
-operator|+
-literal|":"
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|Thread
@@ -3469,19 +3459,9 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Could not create Overseer node: "
-operator|+
+literal|"Could not create Overseer node"
+argument_list|,
 name|e
-operator|.
-name|getClass
-argument_list|()
-operator|+
-literal|":"
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw

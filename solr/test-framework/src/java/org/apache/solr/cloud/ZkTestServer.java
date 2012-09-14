@@ -289,7 +289,7 @@ specifier|final
 name|int
 name|TICK_TIME
 init|=
-literal|3000
+literal|1000
 decl_stmt|;
 DECL|field|log
 specifier|private

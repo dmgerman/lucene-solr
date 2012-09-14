@@ -408,22 +408,6 @@ name|update
 operator|.
 name|processor
 operator|.
-name|DistributedUpdateProcessor
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|update
-operator|.
-name|processor
-operator|.
 name|DistributedUpdateProcessorFactory
 import|;
 end_import
@@ -643,6 +627,11 @@ name|long
 name|ourHighThreshold
 decl_stmt|;
 comment|// 80th percentile
+DECL|field|cantReachIsSuccess
+specifier|private
+name|boolean
+name|cantReachIsSuccess
+decl_stmt|;
 DECL|field|client
 specifier|private
 specifier|static
@@ -958,6 +947,35 @@ name|Exception
 name|updateException
 decl_stmt|;
 block|}
+DECL|method|PeerSync
+specifier|public
+name|PeerSync
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|replicas
+parameter_list|,
+name|int
+name|nUpdates
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|core
+argument_list|,
+name|replicas
+argument_list|,
+name|nUpdates
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    *    * @param core    * @param replicas    * @param nUpdates    */
 DECL|method|PeerSync
 specifier|public
@@ -974,6 +992,9 @@ name|replicas
 parameter_list|,
 name|int
 name|nUpdates
+parameter_list|,
+name|boolean
+name|cantReachIsSuccess
 parameter_list|)
 block|{
 name|this
@@ -993,6 +1014,12 @@ operator|.
 name|maxUpdates
 operator|=
 name|nUpdates
+expr_stmt|;
+name|this
+operator|.
+name|cantReachIsSuccess
+operator|=
+name|cantReachIsSuccess
 expr_stmt|;
 name|uhandler
 operator|=
@@ -1331,6 +1358,13 @@ literal|0
 condition|)
 block|{
 comment|// no frame of reference to tell of we've missed updates
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"no frame of reference to tell of we've missed updates"
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;
@@ -1757,6 +1791,8 @@ comment|// shouldn't be treated as success since we counted on getting those upd
 comment|// redundantly asking other replicas for them).
 if|if
 condition|(
+name|cantReachIsSuccess
+operator|&&
 name|sreq
 operator|.
 name|purpose
@@ -1800,7 +1836,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 name|msg
 argument_list|()
@@ -1820,6 +1856,60 @@ literal|true
 return|;
 block|}
 block|}
+if|if
+condition|(
+name|cantReachIsSuccess
+operator|&&
+name|sreq
+operator|.
+name|purpose
+operator|==
+literal|1
+operator|&&
+name|srsp
+operator|.
+name|getException
+argument_list|()
+operator|instanceof
+name|SolrException
+operator|&&
+operator|(
+operator|(
+name|SolrException
+operator|)
+name|srsp
+operator|.
+name|getException
+argument_list|()
+operator|)
+operator|.
+name|code
+argument_list|()
+operator|==
+literal|503
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+name|msg
+argument_list|()
+operator|+
+literal|" got a 503 from "
+operator|+
+name|srsp
+operator|.
+name|getShardAddress
+argument_list|()
+operator|+
+literal|", counting as success"
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 comment|// TODO: at least log???
 comment|// srsp.getException().printStackTrace(System.out);
 name|log
@@ -1836,7 +1926,12 @@ operator|.
 name|getShardAddress
 argument_list|()
 operator|+
-literal|", counting as success"
+literal|", failed"
+argument_list|,
+name|srsp
+operator|.
+name|getException
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

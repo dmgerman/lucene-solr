@@ -261,7 +261,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Leader Election process. This class contains the logic by which a  * leader is chosen. First call * {@link #setup(ElectionContext)} to ensure  * the election process is init'd. Next call  * {@link #joinElection(ElectionContext)} to start the leader election.  *   * The implementation follows the classic ZooKeeper recipe of creating an  * ephemeral, sequential node for each candidate and then looking at the set  * of such nodes - if the created node is the lowest sequential node, the  * candidate that created the node is the leader. If not, the candidate puts  * a watch on the next lowest node it finds, and if that node goes down,   * starts the whole process over by checking if it's the lowest sequential node, etc.  *   * TODO: now we could just reuse the lock package code for leader election  */
+comment|/**  * Leader Election process. This class contains the logic by which a  * leader is chosen. First call * {@link #setup(ElectionContext)} to ensure  * the election process is init'd. Next call  * {@link #joinElection(ElectionContext)} to start the leader election.  *   * The implementation follows the classic ZooKeeper recipe of creating an  * ephemeral, sequential node for each candidate and then looking at the set  * of such nodes - if the created node is the lowest sequential node, the  * candidate that created the node is the leader. If not, the candidate puts  * a watch on the next lowest node it finds, and if that node goes down,   * starts the whole process over by checking if it's the lowest sequential node, etc.  *   */
 end_comment
 
 begin_class
@@ -286,7 +286,6 @@ name|class
 argument_list|)
 decl_stmt|;
 DECL|field|ELECTION_NODE
-specifier|private
 specifier|static
 specifier|final
 name|String
@@ -731,7 +730,7 @@ name|weAreReplacement
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns int given String of form n_0000000001 or n_0000000003, etc.    */
+comment|/**    * Returns int given String of form n_0000000001 or n_0000000003, etc.    *     * @param nStringSequence    * @return sequence number    */
 DECL|method|getSeq
 specifier|private
 name|int
@@ -851,7 +850,7 @@ return|return
 name|id
 return|;
 block|}
-comment|/**    * Returns int list given list of form n_0000000001, n_0000000003, etc.    */
+comment|/**    * Returns int list given list of form n_0000000001, n_0000000003, etc.    *     * @param seqs    * @return    */
 DECL|method|getSeqs
 specifier|private
 name|List
@@ -1083,9 +1082,59 @@ operator|!
 name|foundId
 condition|)
 block|{
+name|cont
+operator|=
+literal|true
+expr_stmt|;
+if|if
+condition|(
+name|tries
+operator|++
+operator|>
+literal|20
+condition|)
+block|{
 throw|throw
+operator|new
+name|ZooKeeperException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|""
+argument_list|,
 name|e
+argument_list|)
 throw|;
+block|}
+try|try
+block|{
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|50
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e2
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -1103,7 +1152,7 @@ condition|(
 name|tries
 operator|++
 operator|>
-literal|9
+literal|20
 condition|)
 block|{
 throw|throw
@@ -1126,6 +1175,8 @@ name|cont
 operator|=
 literal|true
 expr_stmt|;
+try|try
+block|{
 name|Thread
 operator|.
 name|sleep
@@ -1133,6 +1184,22 @@ argument_list|(
 literal|50
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e2
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 name|int

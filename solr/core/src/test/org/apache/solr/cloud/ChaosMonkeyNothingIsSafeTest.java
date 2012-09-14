@@ -283,7 +283,7 @@ specifier|final
 name|int
 name|BASE_RUN_LENGTH
 init|=
-literal|20000
+literal|60000
 decl_stmt|;
 annotation|@
 name|BeforeClass
@@ -570,7 +570,21 @@ name|start
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO: only do this randomly - if we don't do it, compare against control below
+comment|// TODO: only do this sometimes so that we can sometimes compare against control
+name|boolean
+name|runFullThrottle
+init|=
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|runFullThrottle
+condition|)
+block|{
 name|FullThrottleStopableIndexingThread
 name|ftIndexThread
 init|=
@@ -598,22 +612,21 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+block|}
 name|chaosMonkey
 operator|.
 name|startTheMonkey
 argument_list|(
 literal|true
 argument_list|,
-literal|1500
+literal|10000
 argument_list|)
 expr_stmt|;
+comment|//int runLength = atLeast(BASE_RUN_LENGTH);
 name|int
 name|runLength
 init|=
-name|atLeast
-argument_list|(
 name|BASE_RUN_LENGTH
-argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -685,21 +698,7 @@ name|FullThrottleStopableIndexingThread
 operator|)
 condition|)
 block|{
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-operator|(
-operator|(
-name|StopableIndexingThread
-operator|)
-name|indexThread
-operator|)
-operator|.
-name|getFails
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//assertEquals(0, ((StopableIndexingThread) indexThread).getFails());
 block|}
 block|}
 comment|// try and wait for any replications and what not to finish...
@@ -776,11 +775,12 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
-comment|// we dont't current check vs control because the full throttle thread can
+comment|// full throttle thread can
 comment|// have request fails
 name|checkShardConsistency
 argument_list|(
-literal|false
+operator|!
+name|runFullThrottle
 argument_list|,
 literal|true
 argument_list|)

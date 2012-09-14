@@ -1247,7 +1247,18 @@ name|setProperty
 argument_list|(
 literal|"zkClientTimeout"
 argument_list|,
-literal|"500"
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|ZkTestServer
+operator|.
+name|TICK_TIME
+operator|*
+literal|2
+operator|+
+literal|100
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// timeout the leader
@@ -1265,6 +1276,9 @@ argument_list|(
 name|leader
 argument_list|)
 decl_stmt|;
+name|ZkController
+name|zkController
+init|=
 name|containerMap
 operator|.
 name|get
@@ -1274,6 +1288,8 @@ argument_list|)
 operator|.
 name|getZkController
 argument_list|()
+decl_stmt|;
+name|zkController
 operator|.
 name|getZkClient
 argument_list|()
@@ -1283,7 +1299,12 @@ argument_list|()
 operator|.
 name|pauseCnxn
 argument_list|(
-literal|2000
+name|zkController
+operator|.
+name|getClientTimeout
+argument_list|()
+operator|+
+literal|100
 argument_list|)
 expr_stmt|;
 for|for
@@ -1323,6 +1344,20 @@ literal|100
 argument_list|)
 expr_stmt|;
 block|}
+comment|// make sure we have waited long enough for the first leader to have come back
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+name|ZkTestServer
+operator|.
+name|TICK_TIME
+operator|*
+literal|2
+operator|+
+literal|100
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|VERBOSE
@@ -1384,13 +1419,15 @@ literal|0
 init|;
 name|i
 operator|<
-literal|60
+literal|320
 condition|;
 name|i
 operator|++
 control|)
 block|{
 comment|// wait till leader is changed
+try|try
+block|{
 if|if
 condition|(
 name|leaderPort
@@ -1411,6 +1448,15 @@ argument_list|(
 literal|100
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+continue|continue;
+block|}
 block|}
 comment|// the original leader should be leader again now - everyone else is down
 comment|// TODO: I saw this fail once...expected:<7000> but was:<7004>

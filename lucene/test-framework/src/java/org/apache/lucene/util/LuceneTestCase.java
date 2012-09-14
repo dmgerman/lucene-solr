@@ -1197,6 +1197,8 @@ name|IGNORED_INVARIANT_PROPERTIES
 init|=
 block|{
 literal|"user.timezone"
+block|,
+literal|"java.rmi.server.randomIDs"
 block|}
 decl_stmt|;
 comment|/** Filesystem-based {@link Directory} implementations. */

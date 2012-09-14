@@ -2222,8 +2222,12 @@ expr_stmt|;
 block|}
 throw|throw
 operator|new
-name|RuntimeException
+name|SolrException
 argument_list|(
+name|ErrorCode
+operator|.
+name|SERVICE_UNAVAILABLE
+argument_list|,
 literal|"No registered leader was found, collection:"
 operator|+
 name|collection

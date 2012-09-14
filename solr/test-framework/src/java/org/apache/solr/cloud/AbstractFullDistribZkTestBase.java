@@ -1479,7 +1479,7 @@ name|CoreConnectionPNames
 operator|.
 name|SO_TIMEOUT
 argument_list|,
-literal|40000
+literal|20000
 argument_list|)
 expr_stmt|;
 name|cloudClient
@@ -5810,7 +5810,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|SolrServerException
+name|Exception
 name|e
 parameter_list|)
 block|{

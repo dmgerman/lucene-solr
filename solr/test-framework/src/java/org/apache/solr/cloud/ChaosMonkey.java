@@ -220,6 +220,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|core
+operator|.
+name|SolrCore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|servlet
 operator|.
 name|SolrDispatchFilter
@@ -273,7 +287,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The monkey can stop random or specific jetties used with SolrCloud.  *   * It can also run in a background thread and start and stop jetties  * randomly.  *  */
+comment|/**  * The monkey can stop random or specific jetties used with SolrCloud.  *   * It can also run in a background thread and start and stop jetties  * randomly.  * TODO: expire multiple sessions / connectionloss at once  * TODO: kill multiple jetties at once  * TODO: ? add random headhunter mode that always kills the leader  * TODO: chaosmonkey should be able to do cluster stop/start tests  */
 end_comment
 
 begin_class
@@ -304,9 +318,9 @@ specifier|final
 name|int
 name|CONLOSS_PERCENT
 init|=
-literal|3
+literal|10
 decl_stmt|;
-comment|//30%
+comment|// 0 - 10 = 0 - 100%
 DECL|field|EXPIRE_PERCENT
 specifier|private
 specifier|static
@@ -314,9 +328,9 @@ specifier|final
 name|int
 name|EXPIRE_PERCENT
 init|=
-literal|4
+literal|10
 decl_stmt|;
-comment|//40%
+comment|// 0 - 10 = 0 - 100%
 DECL|field|shardToJetty
 specifier|private
 name|Map
@@ -510,18 +524,14 @@ argument_list|()
 decl_stmt|;
 name|expireSessions
 operator|=
-name|random
-operator|.
-name|nextBoolean
-argument_list|()
+literal|true
 expr_stmt|;
+comment|//= random.nextBoolean();
 name|causeConnectionLoss
 operator|=
-name|random
-operator|.
-name|nextBoolean
-argument_list|()
+literal|true
 expr_stmt|;
+comment|//= random.nextBoolean();
 name|monkeyLog
 argument_list|(
 literal|"init - expire sessions:"
@@ -534,11 +544,13 @@ name|causeConnectionLoss
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: expire all clients at once?
 DECL|method|expireSession
 specifier|public
 name|void
 name|expireSession
 parameter_list|(
+specifier|final
 name|JettySolrRunner
 name|jetty
 parameter_list|)
@@ -591,32 +603,45 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|long
-name|sessionId
-init|=
+name|causeConnectionLoss
+argument_list|(
+name|jetty
+argument_list|,
 name|cores
 operator|.
 name|getZkController
 argument_list|()
 operator|.
-name|getZkClient
+name|getClientTimeout
 argument_list|()
-operator|.
-name|getSolrZooKeeper
-argument_list|()
-operator|.
-name|getSessionId
-argument_list|()
-decl_stmt|;
-name|zkServer
-operator|.
-name|expire
-argument_list|(
-name|sessionId
+operator|+
+literal|200
 argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//    Thread thread = new Thread() {
+comment|//      {
+comment|//        setDaemon(true);
+comment|//      }
+comment|//      public void run() {
+comment|//        SolrDispatchFilter solrDispatchFilter = (SolrDispatchFilter) jetty.getDispatchFilter().getFilter();
+comment|//        if (solrDispatchFilter != null) {
+comment|//          CoreContainer cores = solrDispatchFilter.getCores();
+comment|//          if (cores != null) {
+comment|//            try {
+comment|//              Thread.sleep(ZkTestServer.TICK_TIME * 2 + 800);
+comment|//            } catch (InterruptedException e) {
+comment|//              // we act as only connection loss
+comment|//              return;
+comment|//            }
+comment|//            long sessionId = cores.getZkController().getZkClient().getSolrZooKeeper().getSessionId();
+comment|//            zkServer.expire(sessionId);
+comment|//          }
+comment|//        }
+comment|//      }
+comment|//    };
+comment|//    thread.start();
 block|}
 DECL|method|expireRandomSession
 specifier|public
@@ -726,6 +751,32 @@ name|JettySolrRunner
 name|jetty
 parameter_list|)
 block|{
+name|causeConnectionLoss
+argument_list|(
+name|jetty
+argument_list|,
+name|ZkTestServer
+operator|.
+name|TICK_TIME
+operator|*
+literal|2
+operator|+
+literal|200
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|causeConnectionLoss
+specifier|private
+name|void
+name|causeConnectionLoss
+parameter_list|(
+name|JettySolrRunner
+name|jetty
+parameter_list|,
+name|int
+name|pauseTime
+parameter_list|)
+block|{
 name|SolrDispatchFilter
 name|solrDispatchFilter
 init|=
@@ -781,13 +832,7 @@ argument_list|()
 operator|.
 name|pauseCnxn
 argument_list|(
-name|ZkTestServer
-operator|.
-name|TICK_TIME
-operator|*
-literal|2
-operator|+
-literal|200
+name|pauseTime
 argument_list|)
 expr_stmt|;
 block|}
@@ -1624,6 +1669,7 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+comment|// TODO: stale state makes this a tough call
 if|if
 condition|(
 name|numActive
@@ -1723,6 +1769,12 @@ expr_stmt|;
 name|ZkNodeProps
 name|leader
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|leader
+operator|=
 name|zkStateReader
 operator|.
 name|getLeaderProps
@@ -1731,7 +1783,167 @@ name|collection
 argument_list|,
 name|slice
 argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Could not get leader"
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+name|FilterHolder
+name|fh
+init|=
+name|cjetty
+operator|.
+name|jetty
+operator|.
+name|getDispatchFilter
+argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|fh
+operator|==
+literal|null
+condition|)
+block|{
+name|monkeyLog
+argument_list|(
+literal|"selected jetty not running correctly - skip"
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+name|SolrDispatchFilter
+name|df
+init|=
+operator|(
+operator|(
+name|SolrDispatchFilter
+operator|)
+name|fh
+operator|.
+name|getFilter
+argument_list|()
+operator|)
+decl_stmt|;
+if|if
+condition|(
+name|df
+operator|==
+literal|null
+condition|)
+block|{
+name|monkeyLog
+argument_list|(
+literal|"selected jetty not running correctly - skip"
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+name|CoreContainer
+name|cores
+init|=
+name|df
+operator|.
+name|getCores
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|cores
+operator|==
+literal|null
+condition|)
+block|{
+name|monkeyLog
+argument_list|(
+literal|"selected jetty not running correctly - skip"
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+name|SolrCore
+name|core
+init|=
+name|cores
+operator|.
+name|getCore
+argument_list|(
+name|leader
+operator|.
+name|getStr
+argument_list|(
+name|ZkStateReader
+operator|.
+name|CORE_NAME_PROP
+argument_list|)
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|core
+operator|==
+literal|null
+condition|)
+block|{
+name|monkeyLog
+argument_list|(
+literal|"selected jetty not running correctly - skip"
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+comment|// cluster state can be stale - also go by our 'near real-time' is leader prop
+name|boolean
+name|rtIsLeader
+decl_stmt|;
+try|try
+block|{
+name|rtIsLeader
+operator|=
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|isLeader
+argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 name|boolean
 name|isLeader
 init|=
@@ -1755,6 +1967,8 @@ argument_list|)
 operator|.
 name|nodeName
 argument_list|)
+operator|||
+name|rtIsLeader
 decl_stmt|;
 if|if
 condition|(
@@ -1894,7 +2108,7 @@ name|killLeaders
 parameter_list|,
 specifier|final
 name|int
-name|roundPause
+name|roundPauseUpperLimit
 parameter_list|)
 block|{
 name|monkeyLog
@@ -1955,13 +2169,6 @@ condition|)
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-name|roundPause
-argument_list|)
-expr_stmt|;
 name|Random
 name|random
 init|=
@@ -1970,6 +2177,18 @@ operator|.
 name|random
 argument_list|()
 decl_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+name|random
+operator|.
+name|nextInt
+argument_list|(
+name|roundPauseUpperLimit
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|random

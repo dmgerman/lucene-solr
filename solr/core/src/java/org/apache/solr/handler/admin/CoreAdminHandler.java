@@ -4723,18 +4723,6 @@ argument_list|(
 literal|"onlyIfLeader"
 argument_list|)
 decl_stmt|;
-name|int
-name|pauseFor
-init|=
-name|params
-operator|.
-name|getInt
-argument_list|(
-literal|"pauseFor"
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
 name|String
 name|state
 init|=
@@ -5042,18 +5030,6 @@ literal|1000
 argument_list|)
 expr_stmt|;
 block|}
-comment|// small safety net for any updates that started with state that
-comment|// kept it from sending the update to be buffered -
-comment|// pause for a while to let any outstanding updates finish
-comment|// System.out.println("I saw state:" + state + " sleep for " + pauseFor +
-comment|// " live:" + live);
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-name|pauseFor
-argument_list|)
-expr_stmt|;
 comment|// solrcloud_debug
 comment|// try {;
 comment|// LocalSolrQueryRequest r = new LocalSolrQueryRequest(core, new

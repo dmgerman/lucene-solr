@@ -1261,13 +1261,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|prepCmd
-operator|.
-name|setPauseFor
-argument_list|(
-literal|6000
-argument_list|)
-expr_stmt|;
 name|server
 operator|.
 name|request
@@ -2024,13 +2017,6 @@ operator|.
 name|RECOVERING
 argument_list|)
 expr_stmt|;
-name|sendPrepRecoveryCmd
-argument_list|(
-name|leaderBaseUrl
-argument_list|,
-name|leaderCoreName
-argument_list|)
-expr_stmt|;
 comment|// first thing we just try to sync
 if|if
 condition|(
@@ -2114,6 +2100,7 @@ name|ModifiableSolrParams
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// force open a new searcher
 name|core
 operator|.
 name|getUpdateHandler
@@ -2189,7 +2176,6 @@ name|coreName
 argument_list|)
 expr_stmt|;
 block|}
-comment|//System.out.println("Sync Recovery was not successful - trying replication");
 name|log
 operator|.
 name|info
@@ -2199,6 +2185,41 @@ operator|+
 name|coreName
 argument_list|)
 expr_stmt|;
+name|sendPrepRecoveryCmd
+argument_list|(
+name|leaderBaseUrl
+argument_list|,
+name|leaderCoreName
+argument_list|)
+expr_stmt|;
+comment|// we wait a bit so that any updates on the leader
+comment|// that started before they saw recovering state
+comment|// are sure to have finished
+try|try
+block|{
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|2000
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
 name|log
 operator|.
 name|info
@@ -2217,18 +2238,6 @@ name|replayed
 operator|=
 literal|false
 expr_stmt|;
-comment|//        // open a new IndexWriter - we don't want any background merges ongoing
-comment|//        // also ensures something like NRTCachingDirectory is flushed
-comment|//        boolean forceNewIndexDir = false;
-comment|//        try {
-comment|//          core.getUpdateHandler().newIndexWriter(false);
-comment|//        } catch (Throwable t) {
-comment|//          SolrException.log(log, "Could not read the current index - replicating to a new directory", t);
-comment|//          // something is wrong with the index
-comment|//          // we need to force using a new index directory
-comment|//          forceNewIndexDir = true;
-comment|//        }
-comment|//
 try|try
 block|{
 name|replicate
@@ -2718,11 +2727,42 @@ name|coreName
 argument_list|)
 expr_stmt|;
 comment|// wait for replay
+name|RecoveryInfo
+name|report
+init|=
 name|future
 operator|.
 name|get
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|report
+operator|.
+name|failed
+condition|)
+block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+literal|"Replay failed"
+argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Replay failed"
+argument_list|)
+throw|;
+block|}
 block|}
 comment|// solrcloud_debug
 comment|//    try {

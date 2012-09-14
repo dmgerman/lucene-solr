@@ -870,6 +870,15 @@ name|COMMIT_END_POINT
 init|=
 literal|"commit_end_point"
 decl_stmt|;
+DECL|field|LOG_REPLAY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|LOG_REPLAY
+init|=
+literal|"log_replay"
+decl_stmt|;
 DECL|field|req
 specifier|private
 specifier|final
@@ -963,7 +972,6 @@ name|idField
 decl_stmt|;
 DECL|field|cmdDistrib
 specifier|private
-specifier|final
 name|SolrCmdDistributor
 name|cmdDistrib
 decl_stmt|;
@@ -1210,6 +1218,25 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
+name|cmdDistrib
+operator|=
+operator|new
+name|SolrCmdDistributor
+argument_list|(
+name|numNodes
+argument_list|,
+name|coreDesc
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getCmdDistribExecutor
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|//this.rsp = reqInfo != null ? reqInfo.getRsp() : null;
 name|cloudDesc
@@ -1234,22 +1261,6 @@ name|getCollectionName
 argument_list|()
 expr_stmt|;
 block|}
-name|cmdDistrib
-operator|=
-operator|new
-name|SolrCmdDistributor
-argument_list|(
-name|numNodes
-argument_list|,
-name|coreDesc
-operator|.
-name|getCoreContainer
-argument_list|()
-operator|.
-name|getCmdDistribExecutor
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|setupRequest
 specifier|private
@@ -1688,6 +1699,21 @@ literal|"distrib.from"
 argument_list|)
 decl_stmt|;
 name|boolean
+name|logReplay
+init|=
+name|req
+operator|.
+name|getParams
+argument_list|()
+operator|.
+name|getBool
+argument_list|(
+name|LOG_REPLAY
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+name|boolean
 name|localIsLeader
 init|=
 name|req
@@ -1706,6 +1732,9 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
+name|logReplay
+operator|&&
 name|DistribPhase
 operator|.
 name|FROMLEADER
@@ -1744,27 +1773,33 @@ literal|"Request says it is coming from leader, but we are the leader"
 argument_list|)
 throw|;
 block|}
-comment|// this is too restrictive - cluster state can be stale - can cause shard inconsistency
-comment|//    if (DistribPhase.FROMLEADER == phase&& from != null) { // from will be null on log replay
-comment|//
-comment|//      ZkCoreNodeProps clusterStateLeader = new ZkCoreNodeProps(zkController
-comment|//          .getClusterState().getLeader(collection, shardId));
-comment|//
-comment|//      if (clusterStateLeader.getNodeProps() == null
-comment|//          || !clusterStateLeader.getCoreUrl().equals(from)) {
-comment|//        String coreUrl = null;
-comment|//        if (clusterStateLeader.getNodeProps() != null) {
-comment|//          coreUrl = clusterStateLeader.getCoreUrl();
-comment|//        }
-comment|//        log.error("We got a request from the leader, but it's not who our cluster state says is the leader :"
-comment|//            + req.getParamString()
-comment|//            + " : "
-comment|//            + coreUrl);
-comment|//
-comment|//        new SolrException(ErrorCode.SERVICE_UNAVAILABLE, "We got a request from the leader, but it's not who our cluster state says is the leader.");
-comment|//      }
-comment|//
-comment|//    }
+if|if
+condition|(
+name|isLeader
+operator|&&
+operator|!
+name|localIsLeader
+condition|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"ClusterState says we are the leader, but locally we don't think so"
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVICE_UNAVAILABLE
+argument_list|,
+literal|"ClusterState says we are the leader, but locally we don't think so"
+argument_list|)
+throw|;
+block|}
 block|}
 DECL|method|getShard
 specifier|private
@@ -2098,45 +2133,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-name|isLeader
-operator|&&
-operator|!
-name|req
-operator|.
-name|getCore
-argument_list|()
-operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
-name|getCloudDescriptor
-argument_list|()
-operator|.
-name|isLeader
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"Abort sending request to replicas, we are no longer leader"
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVICE_UNAVAILABLE
-argument_list|,
-literal|"Abort sending request to replicas, we are no longer leader"
-argument_list|)
-throw|;
-block|}
 name|params
 operator|=
 operator|new
@@ -3804,45 +3800,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-name|isLeader
-operator|&&
-operator|!
-name|req
-operator|.
-name|getCore
-argument_list|()
-operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
-name|getCloudDescriptor
-argument_list|()
-operator|.
-name|isLeader
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"Abort sending request to replicas, we are no longer leader"
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVICE_UNAVAILABLE
-argument_list|,
-literal|"Abort sending request to replicas, we are no longer leader"
-argument_list|)
-throw|;
-block|}
 name|params
 operator|=
 operator|new
@@ -4250,7 +4207,7 @@ name|SolrException
 argument_list|(
 name|ErrorCode
 operator|.
-name|SERVER_ERROR
+name|SERVICE_UNAVAILABLE
 argument_list|,
 literal|"Exception finding leader for shard "
 operator|+
@@ -4667,43 +4624,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-operator|!
-name|req
-operator|.
-name|getCore
-argument_list|()
-operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
-name|getCloudDescriptor
-argument_list|()
-operator|.
-name|isLeader
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"Abort sending request to replicas, we are no longer leader"
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVICE_UNAVAILABLE
-argument_list|,
-literal|"Abort sending request to replicas, we are no longer leader"
-argument_list|)
-throw|;
-block|}
 name|ModifiableSolrParams
 name|params
 init|=
@@ -4847,39 +4767,48 @@ name|void
 name|zkCheck
 parameter_list|()
 block|{
-name|int
-name|retries
-init|=
-literal|10
-decl_stmt|;
-while|while
+if|if
 condition|(
-operator|!
 name|zkController
 operator|.
 name|isConnected
 argument_list|()
 condition|)
 block|{
-if|if
+return|return;
+block|}
+name|long
+name|timeoutAt
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|+
+name|zkController
+operator|.
+name|getClientTimeout
+argument_list|()
+decl_stmt|;
+while|while
 condition|(
-name|retries
-operator|--
-operator|==
-literal|0
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|<
+name|timeoutAt
 condition|)
 block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
+if|if
+condition|(
+name|zkController
 operator|.
-name|SERVICE_UNAVAILABLE
-argument_list|,
-literal|"Cannot talk to ZooKeeper - Updates are disabled."
-argument_list|)
-throw|;
+name|isConnected
+argument_list|()
+condition|)
+block|{
+return|return;
 block|}
 try|try
 block|{
@@ -4908,6 +4837,17 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVICE_UNAVAILABLE
+argument_list|,
+literal|"Cannot talk to ZooKeeper - Updates are disabled."
+argument_list|)
+throw|;
 block|}
 DECL|method|versionDelete
 specifier|private
@@ -5640,6 +5580,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|zkEnabled
+condition|)
 name|doFinish
 argument_list|()
 expr_stmt|;
