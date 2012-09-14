@@ -170,6 +170,20 @@ name|solr
 operator|.
 name|core
 operator|.
+name|CoreContainer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
 name|SolrConfig
 import|;
 end_import
@@ -409,7 +423,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A junit4 Solr test harness that extends LuceneTestCaseJ4.  * Unlike {@link AbstractSolrTestCase}, a new core is not created for each test method.  */
+comment|/**  * A junit4 Solr test harness that extends LuceneTestCaseJ4. To change which core is used when loading the schema and solrconfig.xml, simply  * invoke the {@link #initCore(String, String, String, String)} method.  *   * Unlike {@link AbstractSolrTestCase}, a new core is not created for each test method.  */
 end_comment
 
 begin_class
@@ -440,6 +454,16 @@ name|SolrTestCaseJ4
 extends|extends
 name|LuceneTestCase
 block|{
+DECL|field|coreName
+specifier|private
+specifier|static
+name|String
+name|coreName
+init|=
+name|CoreContainer
+operator|.
+name|DEFAULT_DEFAULT_CORE_NAME
+decl_stmt|;
 DECL|field|DEFAULT_CONNECTION_TIMEOUT
 specifier|public
 specifier|static
@@ -979,6 +1003,42 @@ expr_stmt|;
 block|}
 name|initCore
 argument_list|()
+expr_stmt|;
+block|}
+comment|/** Call initCore in @BeforeClass to instantiate a solr core in your test class.    * deleteCore will be called for you via SolrTestCaseJ4 @AfterClass */
+DECL|method|initCore
+specifier|public
+specifier|static
+name|void
+name|initCore
+parameter_list|(
+name|String
+name|config
+parameter_list|,
+name|String
+name|schema
+parameter_list|,
+name|String
+name|solrHome
+parameter_list|,
+name|String
+name|pCoreName
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+name|coreName
+operator|=
+name|pCoreName
+expr_stmt|;
+name|initCore
+argument_list|(
+name|config
+argument_list|,
+name|schema
+argument_list|,
+name|solrHome
+argument_list|)
 expr_stmt|;
 block|}
 DECL|field|numOpens
@@ -1708,6 +1768,8 @@ operator|.
 name|createConfig
 argument_list|(
 name|testSolrHome
+argument_list|,
+name|coreName
 argument_list|,
 name|getSolrConfigFile
 argument_list|()

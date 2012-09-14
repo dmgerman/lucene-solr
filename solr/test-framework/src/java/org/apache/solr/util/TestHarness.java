@@ -558,6 +558,7 @@ specifier|public
 name|UpdateRequestHandler
 name|updater
 decl_stmt|;
+comment|/**    * Creates a SolrConfig object for the specified coreName assuming it     * follows the basic conventions of being a relative path in the solrHome     * dir. (ie:<code>${solrHome}/${coreName}/conf/${confFile}</code>    */
 DECL|method|createConfig
 specifier|public
 specifier|static
@@ -566,6 +567,9 @@ name|createConfig
 parameter_list|(
 name|String
 name|solrHome
+parameter_list|,
+name|String
+name|coreName
 parameter_list|,
 name|String
 name|confFile
@@ -602,7 +606,7 @@ name|File
 operator|.
 name|separator
 operator|+
-literal|"collection1"
+name|coreName
 argument_list|,
 name|confFile
 argument_list|,
@@ -624,6 +628,33 @@ name|xany
 argument_list|)
 throw|;
 block|}
+block|}
+comment|/**    * Creates a SolrConfig object for the     * {@link CoreContainer#DEFAULT_DEFAULT_CORE_NAME} core using {@link #createConfig(String,String,String)}    */
+DECL|method|createConfig
+specifier|public
+specifier|static
+name|SolrConfig
+name|createConfig
+parameter_list|(
+name|String
+name|solrHome
+parameter_list|,
+name|String
+name|confFile
+parameter_list|)
+block|{
+return|return
+name|createConfig
+argument_list|(
+name|solrHome
+argument_list|,
+name|CoreContainer
+operator|.
+name|DEFAULT_DEFAULT_CORE_NAME
+argument_list|,
+name|confFile
+argument_list|)
+return|;
 block|}
 comment|/**     * @param dataDirectory path for index data, will not be cleaned up     * @param solrConfig solronfig instance     * @param schemaFile schema filename     */
 DECL|method|TestHarness
@@ -1010,7 +1041,9 @@ literal|"solr"
 expr_stmt|;
 name|defaultCoreName
 operator|=
-literal|"collection1"
+name|CoreContainer
+operator|.
+name|DEFAULT_DEFAULT_CORE_NAME
 expr_stmt|;
 name|initZooKeeper
 argument_list|(
