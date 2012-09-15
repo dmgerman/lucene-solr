@@ -2568,7 +2568,10 @@ decl_stmt|;
 DECL|method|initIndex
 name|void
 name|initIndex
-parameter_list|()
+parameter_list|(
+name|boolean
+name|reload
+parameter_list|)
 block|{
 try|try
 block|{
@@ -2631,6 +2634,9 @@ condition|(
 name|indexExists
 operator|&&
 name|firstTime
+operator|&&
+operator|!
+name|reload
 condition|)
 block|{
 comment|// to remove locks, the directory must already exist... so we create it
@@ -3852,7 +3858,11 @@ literal|true
 expr_stmt|;
 block|}
 name|initIndex
-argument_list|()
+argument_list|(
+name|prev
+operator|!=
+literal|null
+argument_list|)
 expr_stmt|;
 name|initWriters
 argument_list|()
