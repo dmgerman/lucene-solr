@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Collector} implementation that collects the top-scoring hits,  * returning them as a {@link TopDocs}. This is used by {@link IndexSearcher} to  * implement {@link TopDocs}-based search. Hits are sorted by score descending  * and then (when the scores are tied) docID ascending. When you create an  * instance of this collector you should know in advance whether documents are  * going to be collected in doc Id order or not.  *  *<p><b>NOTE</b>: The values {@link Float#NaN} and  * {Float#NEGATIVE_INFINITY} are not valid scores.  This  * collector will not properly collect hits with such  * scores.  */
+comment|/**  * A {@link Collector} implementation that collects the top-scoring hits,  * returning them as a {@link TopDocs}. This is used by {@link IndexSearcher} to  * implement {@link TopDocs}-based search. Hits are sorted by score descending  * and then (when the scores are tied) docID ascending. When you create an  * instance of this collector you should know in advance whether documents are  * going to be collected in doc Id order or not.  *  *<p><b>NOTE</b>: The values {@link Float#NaN} and  * {@link Float#NEGATIVE_INFINITY} are not valid scores.  This  * collector will not properly collect hits with such  * scores.  */
 end_comment
 
 begin_class
