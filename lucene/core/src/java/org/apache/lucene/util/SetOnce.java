@@ -52,7 +52,7 @@ specifier|final
 class|class
 name|AlreadySetException
 extends|extends
-name|RuntimeException
+name|IllegalStateException
 block|{
 DECL|method|AlreadySetException
 specifier|public
