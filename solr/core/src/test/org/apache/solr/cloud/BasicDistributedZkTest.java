@@ -3137,7 +3137,9 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"numReplicas"
+name|OverseerCollectionProcessor
+operator|.
+name|REPLICATION_FACTOR
 argument_list|,
 name|numReplicas
 argument_list|)
