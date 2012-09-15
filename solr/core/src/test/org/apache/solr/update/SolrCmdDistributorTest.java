@@ -1530,9 +1530,9 @@ name|ThreadPoolExecutor
 argument_list|(
 literal|0
 argument_list|,
-literal|5
-operator|*
-literal|16
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|,
 literal|5
 argument_list|,
