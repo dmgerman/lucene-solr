@@ -1651,6 +1651,15 @@ name|params
 operator|=
 name|params
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Collection Admin sending CoreAdmin cmd to "
+operator|+
+name|replica
+argument_list|)
+expr_stmt|;
 name|shardHandler
 operator|.
 name|submit

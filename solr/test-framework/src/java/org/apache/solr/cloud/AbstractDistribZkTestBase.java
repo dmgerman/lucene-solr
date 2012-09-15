@@ -877,6 +877,15 @@ argument_list|(
 name|collection
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"Could not find collection:"
+operator|+
+name|collection
+argument_list|,
+name|slices
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Map
