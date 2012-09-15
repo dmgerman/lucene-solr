@@ -562,7 +562,11 @@ argument_list|(
 name|level
 operator|.
 name|toUpperCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 argument_list|)
 return|;
 block|}
