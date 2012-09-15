@@ -206,7 +206,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -235,7 +245,7 @@ name|Directory
 name|directory
 decl_stmt|;
 DECL|field|indexSearcher
-specifier|private
+specifier|protected
 name|IndexSearcher
 name|indexSearcher
 decl_stmt|;
