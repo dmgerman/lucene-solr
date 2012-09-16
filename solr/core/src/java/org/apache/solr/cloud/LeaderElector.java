@@ -850,7 +850,7 @@ return|return
 name|id
 return|;
 block|}
-comment|/**    * Returns int list given list of form n_0000000001, n_0000000003, etc.    *     * @param seqs    * @return    */
+comment|/**    * Returns int list given list of form n_0000000001, n_0000000003, etc.    *     * @param string seqs    * @return int seqs    */
 DECL|method|getSeqs
 specifier|private
 name|List
