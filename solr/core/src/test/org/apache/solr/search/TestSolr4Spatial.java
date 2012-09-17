@@ -233,6 +233,12 @@ expr_stmt|;
 name|clearIndex
 argument_list|()
 expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|setupDocs
 specifier|private
