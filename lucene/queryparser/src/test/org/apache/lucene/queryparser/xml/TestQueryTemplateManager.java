@@ -474,7 +474,7 @@ name|queryForm
 argument_list|)
 decl_stmt|;
 comment|//Get the required query XSL template for this test
-comment|//			Templates template=getTemplate(queryFormProperties.getProperty("template"));
+comment|//      Templates template=getTemplate(queryFormProperties.getProperty("template"));
 comment|//Transform the queryFormProperties into a Lucene XML query
 name|Document
 name|doc

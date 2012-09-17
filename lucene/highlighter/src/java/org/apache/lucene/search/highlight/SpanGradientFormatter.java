@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Formats text with different color intensity depending on the score of the  * term using the span tag.  GradientFormatter uses a bgcolor argument to the font tag which  * doesn't work in Mozilla, thus this class.  *  * @see GradientFormatter  *  */
+comment|/**  * Formats text with different color intensity depending on the score of the  * term using the span tag.  GradientFormatter uses a bgcolor argument to the font tag which  * doesn't work in Mozilla, thus this class.  *  * @see GradientFormatter  */
 end_comment
 
 begin_class

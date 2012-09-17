@@ -40,7 +40,7 @@ DECL|field|loKid
 name|TernaryTreeNode
 name|loKid
 decl_stmt|;
-comment|/**  	 *  a reference object to the node containing character next to this node's character as  	 *  occurring in the inserted token. 	 */
+comment|/**     *  a reference object to the node containing character next to this node's character as     *  occurring in the inserted token.    */
 DECL|field|eqKid
 name|TernaryTreeNode
 name|eqKid
@@ -50,7 +50,7 @@ DECL|field|hiKid
 name|TernaryTreeNode
 name|hiKid
 decl_stmt|;
-comment|/**  	 * used by leaf nodes to store the complete tokens to be added to suggest list while  	 * auto-completing the prefix. 	 */
+comment|/**     * used by leaf nodes to store the complete tokens to be added to suggest list while     * auto-completing the prefix.    */
 DECL|field|token
 name|String
 name|token

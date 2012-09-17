@@ -1423,27 +1423,27 @@ comment|//   {
 comment|//     if (mods == ModifierQueryNode.Modifier.MOD_NONE) firstQuery=q;
 comment|//
 comment|//     // do not create modifier nodes with MOD_NONE
-comment|//    	if (mods != ModifierQueryNode.Modifier.MOD_NONE) {
-comment|//    		q = new ModifierQueryNode(q, mods);
-comment|//    	}
-comment|//    	clauses.add(q);
+comment|//      if (mods != ModifierQueryNode.Modifier.MOD_NONE) {
+comment|//          q = new ModifierQueryNode(q, mods);
+comment|//         }
+comment|//      clauses.add(q);
 comment|//   }
 comment|//   (
 comment|//     conj=Conjunction() mods=Modifiers() q=Clause(field)
 comment|//     {
-comment|// 	    // do not create modifier nodes with MOD_NONE
-comment|// 	   	if (mods != ModifierQueryNode.Modifier.MOD_NONE) {
-comment|// 	   		q = new ModifierQueryNode(q, mods);
-comment|// 	   	}
-comment|// 	   	clauses.add(q);
-comment|// 	   	//TODO: figure out what to do with AND and ORs
+comment|//       // do not create modifier nodes with MOD_NONE
+comment|//         if (mods != ModifierQueryNode.Modifier.MOD_NONE) {
+comment|//          q = new ModifierQueryNode(q, mods);
+comment|//         }
+comment|//          clauses.add(q);
+comment|//        //TODO: figure out what to do with AND and ORs
 comment|//   }
 comment|//   )*
 comment|//     {
 comment|//      if (clauses.size() == 1&& firstQuery != null)
 comment|//         return firstQuery;
 comment|//       else {
-comment|//   		return new BooleanQueryNode(clauses);
+comment|//       return new BooleanQueryNode(clauses);
 comment|//       }
 comment|//     }
 comment|// }
@@ -3634,7 +3634,7 @@ name|Exception
 name|ignored
 parameter_list|)
 block|{
-comment|/* Should this be handled somehow? (defaults to "no PhraseSlop", if 	         * slop number is invalid) 	         */
+comment|/* Should this be handled somehow? (defaults to "no PhraseSlop", if            * slop number is invalid)            */
 block|}
 block|}
 break|break;
@@ -3715,7 +3715,7 @@ name|Exception
 name|ignored
 parameter_list|)
 block|{
-comment|/* Should this be handled somehow? (defaults to "no boost", if 	         * boost number is invalid) 	         */
+comment|/* Should this be handled somehow? (defaults to "no boost", if            * boost number is invalid)            */
 block|}
 block|}
 block|{
@@ -3897,26 +3897,6 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|jj_3R_10
-specifier|private
-name|boolean
-name|jj_3R_10
-parameter_list|()
-block|{
-if|if
-condition|(
-name|jj_scan_token
-argument_list|(
-name|TERM
-argument_list|)
-condition|)
-return|return
-literal|true
-return|;
-return|return
-literal|false
-return|;
-block|}
 DECL|method|jj_3R_11
 specifier|private
 name|boolean
@@ -4021,6 +4001,26 @@ return|return
 literal|true
 return|;
 block|}
+return|return
+literal|false
+return|;
+block|}
+DECL|method|jj_3R_10
+specifier|private
+name|boolean
+name|jj_3R_10
+parameter_list|()
+block|{
+if|if
+condition|(
+name|jj_scan_token
+argument_list|(
+name|TERM
+argument_list|)
+condition|)
+return|return
+literal|true
+return|;
 return|return
 literal|false
 return|;

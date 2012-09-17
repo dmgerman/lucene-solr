@@ -2536,7 +2536,7 @@ name|SolrWriter
 name|writer
 parameter_list|)
 block|{
-comment|//  	File persistFile = propWriter.getPersistFile();
+comment|//    File persistFile = propWriter.getPersistFile();
 comment|//    boolean isWritable = persistFile.exists() ? persistFile.canWrite() : persistFile.getParentFile().canWrite();
 if|if
 condition|(

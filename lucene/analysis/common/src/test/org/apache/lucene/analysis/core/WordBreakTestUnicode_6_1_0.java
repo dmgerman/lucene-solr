@@ -81,7 +81,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-comment|// Ã· 0001 Ã· 0001 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0001 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -94,7 +94,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -107,7 +107,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 000D Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0001 Ã· 000D Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -120,7 +120,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -133,7 +133,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 000A Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0001 Ã· 000A Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -146,7 +146,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -159,7 +159,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 000B Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0001 Ã· 000B Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -172,7 +172,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -185,7 +185,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 3031 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0001 Ã· 3031 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -200,7 +200,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -215,7 +215,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0041 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0041 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -230,7 +230,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -245,7 +245,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 003A Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0001 Ã· 003A Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -258,7 +258,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -271,7 +271,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 002C Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0001 Ã· 002C Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -284,7 +284,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -297,7 +297,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0027 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0027 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -310,7 +310,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -323,7 +323,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0030 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0030 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -338,7 +338,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -353,7 +353,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 005F Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0001 Ã· 005F Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -366,7 +366,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 005F Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 005F Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -379,7 +379,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 00AD Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0001 Ã 00AD Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -392,7 +392,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -405,7 +405,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0300 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0001 Ã 0300 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -418,7 +418,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -431,7 +431,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -446,7 +446,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -461,7 +461,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -476,7 +476,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -491,7 +491,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -506,7 +506,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -521,7 +521,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -536,7 +536,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -551,7 +551,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -566,7 +566,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -581,7 +581,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -596,7 +596,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -611,7 +611,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -626,7 +626,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -641,7 +641,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -656,7 +656,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -671,7 +671,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0001 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -686,7 +686,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0001 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0001 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2]<START OF HEADING> (Other) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -701,7 +701,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0001 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 000D Ã· 0001 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -714,7 +714,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0001 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0001 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -727,7 +727,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 000D Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 000D Ã· 000D Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -740,7 +740,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 000D Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 000D Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -753,7 +753,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã 000A Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã [3.0]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 000D Ã 000A Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã [3.0]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -766,7 +766,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 000A Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 000A Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -779,7 +779,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 000B Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 000D Ã· 000B Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -792,7 +792,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 000B Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 000B Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -805,7 +805,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 3031 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 000D Ã· 3031 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -820,7 +820,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 3031 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 3031 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -835,7 +835,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0041 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 000D Ã· 0041 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -850,7 +850,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0041 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0041 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -865,7 +865,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 003A Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000D Ã· 003A Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -878,7 +878,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 003A Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 003A Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -891,7 +891,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 002C Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000D Ã· 002C Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -904,7 +904,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 002C Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 002C Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -917,7 +917,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0027 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000D Ã· 0027 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -930,7 +930,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0027 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0027 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -943,7 +943,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0030 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 000D Ã· 0030 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -958,7 +958,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0030 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0030 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -973,7 +973,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 005F Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 000D Ã· 005F Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -986,7 +986,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 005F Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 005F Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -999,7 +999,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 00AD Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 000D Ã· 00AD Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1012,7 +1012,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã 00AD Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã 00AD Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1025,7 +1025,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0300 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 000D Ã· 0300 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1038,7 +1038,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã 0300 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã 0300 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1051,7 +1051,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000D Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1066,7 +1066,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1081,7 +1081,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000D Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1096,7 +1096,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1111,7 +1111,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000D Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1126,7 +1126,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1141,7 +1141,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000D Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1156,7 +1156,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1171,7 +1171,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000D Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1186,7 +1186,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1201,7 +1201,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000D Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1216,7 +1216,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1231,7 +1231,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000D Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1246,7 +1246,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1261,7 +1261,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000D Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1276,7 +1276,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1291,7 +1291,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000D Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1306,7 +1306,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000D Ã· 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000D Ã· 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2]<CARRIAGE RETURN (CR)> (CR) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1321,7 +1321,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0001 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 000A Ã· 0001 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1334,7 +1334,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0001 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0001 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1347,7 +1347,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 000D Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 000A Ã· 000D Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1360,7 +1360,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 000D Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 000D Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1373,7 +1373,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 000A Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 000A Ã· 000A Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1386,7 +1386,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 000A Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 000A Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1399,7 +1399,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 000B Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 000A Ã· 000B Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1412,7 +1412,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 000B Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 000B Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1425,7 +1425,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 3031 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 000A Ã· 3031 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1440,7 +1440,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 3031 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 3031 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1455,7 +1455,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0041 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 000A Ã· 0041 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1470,7 +1470,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0041 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0041 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1485,7 +1485,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 003A Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000A Ã· 003A Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1498,7 +1498,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 003A Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 003A Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1511,7 +1511,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 002C Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000A Ã· 002C Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1524,7 +1524,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 002C Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 002C Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1537,7 +1537,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0027 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000A Ã· 0027 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1550,7 +1550,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0027 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0027 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1563,7 +1563,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0030 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 000A Ã· 0030 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1578,7 +1578,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0030 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0030 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1593,7 +1593,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 005F Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 000A Ã· 005F Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1606,7 +1606,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 005F Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 005F Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1619,7 +1619,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 00AD Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 000A Ã· 00AD Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1632,7 +1632,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã 00AD Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã 00AD Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1645,7 +1645,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0300 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 000A Ã· 0300 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1658,7 +1658,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã 0300 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã 0300 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1671,7 +1671,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000A Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1686,7 +1686,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1701,7 +1701,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000A Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1716,7 +1716,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1731,7 +1731,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000A Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1746,7 +1746,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1761,7 +1761,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000A Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1776,7 +1776,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1791,7 +1791,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000A Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1806,7 +1806,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1821,7 +1821,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000A Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1836,7 +1836,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1851,7 +1851,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000A Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1866,7 +1866,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1881,7 +1881,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000A Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1896,7 +1896,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1911,7 +1911,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000A Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1926,7 +1926,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000A Ã· 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000A Ã· 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2]<LINE FEED (LF)> (LF) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1941,7 +1941,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0001 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 000B Ã· 0001 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1954,7 +1954,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0001 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0001 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1967,7 +1967,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 000D Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 000B Ã· 000D Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1980,7 +1980,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 000D Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 000D Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -1993,7 +1993,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 000A Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 000B Ã· 000A Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2006,7 +2006,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 000A Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 000A Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2019,7 +2019,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 000B Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 000B Ã· 000B Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2032,7 +2032,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 000B Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 000B Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2045,7 +2045,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 3031 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 000B Ã· 3031 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2060,7 +2060,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 3031 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 3031 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2075,7 +2075,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0041 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 000B Ã· 0041 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2090,7 +2090,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0041 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0041 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2105,7 +2105,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 003A Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000B Ã· 003A Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2118,7 +2118,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 003A Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 003A Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2131,7 +2131,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 002C Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000B Ã· 002C Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2144,7 +2144,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 002C Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 002C Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2157,7 +2157,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0027 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000B Ã· 0027 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2170,7 +2170,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0027 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0027 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2183,7 +2183,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0030 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 000B Ã· 0030 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2198,7 +2198,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0030 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0030 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2213,7 +2213,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 005F Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 000B Ã· 005F Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2226,7 +2226,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 005F Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 005F Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2239,7 +2239,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 00AD Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 000B Ã· 00AD Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2252,7 +2252,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã 00AD Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã 00AD Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2265,7 +2265,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0300 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 000B Ã· 0300 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2278,7 +2278,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã 0300 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã 0300 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2291,7 +2291,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000B Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2306,7 +2306,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2321,7 +2321,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000B Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2336,7 +2336,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2351,7 +2351,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000B Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2366,7 +2366,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2381,7 +2381,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000B Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2396,7 +2396,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2411,7 +2411,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000B Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2426,7 +2426,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2441,7 +2441,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000B Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2456,7 +2456,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2471,7 +2471,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000B Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2486,7 +2486,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2501,7 +2501,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000B Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2516,7 +2516,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2531,7 +2531,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000B Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2546,7 +2546,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 000B Ã· 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 000B Ã· 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2]<LINE TABULATION> (Newline) Ã· [3.1] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2561,7 +2561,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0001 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0001 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2576,7 +2576,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2591,7 +2591,7 @@ literal|"\u3031\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 000D Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 3031 Ã· 000D Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2606,7 +2606,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2621,7 +2621,7 @@ literal|"\u3031\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 000A Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 3031 Ã· 000A Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2636,7 +2636,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2651,7 +2651,7 @@ literal|"\u3031\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 000B Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 3031 Ã· 000B Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2666,7 +2666,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2681,7 +2681,7 @@ literal|"\u3031\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 3031 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [13.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 3031 Ã 3031 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [13.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2696,7 +2696,7 @@ literal|"\u3031\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã 3031 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã 3031 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2711,7 +2711,7 @@ literal|"\u3031\u0308\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0041 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0041 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2728,7 +2728,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2745,7 +2745,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 003A Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 3031 Ã· 003A Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2760,7 +2760,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2775,7 +2775,7 @@ literal|"\u3031\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 002C Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 3031 Ã· 002C Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2790,7 +2790,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2805,7 +2805,7 @@ literal|"\u3031\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0027 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0027 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2820,7 +2820,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2835,7 +2835,7 @@ literal|"\u3031\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0030 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0030 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2852,7 +2852,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2869,7 +2869,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 005F Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 3031 Ã 005F Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2884,7 +2884,7 @@ literal|"\u3031\u005F"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã 005F Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã 005F Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2899,7 +2899,7 @@ literal|"\u3031\u0308\u005F"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 00AD Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 3031 Ã 00AD Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2914,7 +2914,7 @@ literal|"\u3031\u00AD"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2929,7 +2929,7 @@ literal|"\u3031\u0308\u00AD"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0300 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 3031 Ã 0300 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2944,7 +2944,7 @@ literal|"\u3031\u0300"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2959,7 +2959,7 @@ literal|"\u3031\u0308\u0300"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2976,7 +2976,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -2993,7 +2993,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3010,7 +3010,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3027,7 +3027,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3044,7 +3044,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3061,7 +3061,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3078,7 +3078,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3095,7 +3095,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3112,7 +3112,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3129,7 +3129,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3146,7 +3146,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3163,7 +3163,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3180,7 +3180,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3197,7 +3197,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3214,7 +3214,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3231,7 +3231,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 3031 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3248,7 +3248,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 3031 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 3031 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] VERTICAL KANA REPEAT MARK (Katakana) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3265,7 +3265,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã· 0001 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0041 Ã· 0001 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3280,7 +3280,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3295,7 +3295,7 @@ literal|"\u0041\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã· 000D Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0041 Ã· 000D Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3310,7 +3310,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3325,7 +3325,7 @@ literal|"\u0041\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã· 000A Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0041 Ã· 000A Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3340,7 +3340,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3355,7 +3355,7 @@ literal|"\u0041\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã· 000B Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0041 Ã· 000B Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3370,7 +3370,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3385,7 +3385,7 @@ literal|"\u0041\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã· 3031 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0041 Ã· 3031 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3402,7 +3402,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3419,7 +3419,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0041 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0041 Ã 0041 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3434,7 +3434,7 @@ literal|"\u0041\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0041 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0041 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3449,7 +3449,7 @@ literal|"\u0041\u0308\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã· 003A Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0041 Ã· 003A Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3464,7 +3464,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3479,7 +3479,7 @@ literal|"\u0041\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã· 002C Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0041 Ã· 002C Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3494,7 +3494,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3509,7 +3509,7 @@ literal|"\u0041\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã· 0027 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0041 Ã· 0027 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3524,7 +3524,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3539,7 +3539,7 @@ literal|"\u0041\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0030 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [9.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0041 Ã 0030 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [9.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3554,7 +3554,7 @@ literal|"\u0041\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0030 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0030 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3569,7 +3569,7 @@ literal|"\u0041\u0308\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 005F Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0041 Ã 005F Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3584,7 +3584,7 @@ literal|"\u0041\u005F"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 005F Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 005F Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3599,7 +3599,7 @@ literal|"\u0041\u0308\u005F"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 00AD Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0041 Ã 00AD Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3614,7 +3614,7 @@ literal|"\u0041\u00AD"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3629,7 +3629,7 @@ literal|"\u0041\u0308\u00AD"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0300 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0041 Ã 0300 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3644,7 +3644,7 @@ literal|"\u0041\u0300"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3659,7 +3659,7 @@ literal|"\u0041\u0308\u0300"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0041 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3674,7 +3674,7 @@ literal|"\u0041\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3689,7 +3689,7 @@ literal|"\u0041\u0308\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0041 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3704,7 +3704,7 @@ literal|"\u0041\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3719,7 +3719,7 @@ literal|"\u0041\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0041 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3734,7 +3734,7 @@ literal|"\u0041\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3749,7 +3749,7 @@ literal|"\u0041\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0041 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3764,7 +3764,7 @@ literal|"\u0041\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3779,7 +3779,7 @@ literal|"\u0041\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0041 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3794,7 +3794,7 @@ literal|"\u0041\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3809,7 +3809,7 @@ literal|"\u0041\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0041 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3824,7 +3824,7 @@ literal|"\u0041\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3839,7 +3839,7 @@ literal|"\u0041\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0041 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3854,7 +3854,7 @@ literal|"\u0041\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3869,7 +3869,7 @@ literal|"\u0041\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0041 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3884,7 +3884,7 @@ literal|"\u0041\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3899,7 +3899,7 @@ literal|"\u0041\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0041 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3914,7 +3914,7 @@ literal|"\u0041\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0041 Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0041 Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN CAPITAL LETTER A (ALetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3929,7 +3929,7 @@ literal|"\u0041\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0001 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 003A Ã· 0001 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3942,7 +3942,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3955,7 +3955,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 000D Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 003A Ã· 000D Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3968,7 +3968,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3981,7 +3981,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 000A Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 003A Ã· 000A Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -3994,7 +3994,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4007,7 +4007,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 000B Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 003A Ã· 000B Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4020,7 +4020,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4033,7 +4033,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 3031 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 003A Ã· 3031 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4048,7 +4048,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4063,7 +4063,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0041 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 003A Ã· 0041 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4078,7 +4078,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4093,7 +4093,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 003A Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 003A Ã· 003A Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4106,7 +4106,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4119,7 +4119,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 002C Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 003A Ã· 002C Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4132,7 +4132,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4145,7 +4145,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0027 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 003A Ã· 0027 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4158,7 +4158,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4171,7 +4171,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0030 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 003A Ã· 0030 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4186,7 +4186,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4201,7 +4201,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 005F Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 003A Ã· 005F Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4214,7 +4214,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4227,7 +4227,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 00AD Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 003A Ã 00AD Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4240,7 +4240,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4253,7 +4253,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0300 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 003A Ã 0300 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4266,7 +4266,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4279,7 +4279,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 003A Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4294,7 +4294,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4309,7 +4309,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 003A Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4324,7 +4324,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4339,7 +4339,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 003A Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4354,7 +4354,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4369,7 +4369,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 003A Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4384,7 +4384,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4399,7 +4399,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 003A Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4414,7 +4414,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4429,7 +4429,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 003A Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4444,7 +4444,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4459,7 +4459,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 003A Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4474,7 +4474,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4489,7 +4489,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 003A Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4504,7 +4504,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4519,7 +4519,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 003A Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4534,7 +4534,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 003A Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 003A Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4549,7 +4549,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0001 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 002C Ã· 0001 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4562,7 +4562,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4575,7 +4575,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 000D Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 002C Ã· 000D Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4588,7 +4588,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4601,7 +4601,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 000A Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 002C Ã· 000A Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4614,7 +4614,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4627,7 +4627,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 000B Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 002C Ã· 000B Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4640,7 +4640,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4653,7 +4653,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 3031 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 002C Ã· 3031 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4668,7 +4668,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4683,7 +4683,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0041 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 002C Ã· 0041 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4698,7 +4698,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4713,7 +4713,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 003A Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 002C Ã· 003A Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4726,7 +4726,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4739,7 +4739,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 002C Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 002C Ã· 002C Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4752,7 +4752,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4765,7 +4765,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0027 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 002C Ã· 0027 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4778,7 +4778,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4791,7 +4791,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0030 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 002C Ã· 0030 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4806,7 +4806,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4821,7 +4821,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 005F Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 002C Ã· 005F Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4834,7 +4834,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4847,7 +4847,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 00AD Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 002C Ã 00AD Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4860,7 +4860,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4873,7 +4873,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0300 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 002C Ã 0300 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4886,7 +4886,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4899,7 +4899,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 002C Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4914,7 +4914,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4929,7 +4929,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 002C Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4944,7 +4944,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4959,7 +4959,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 002C Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4974,7 +4974,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -4989,7 +4989,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 002C Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5004,7 +5004,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5019,7 +5019,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 002C Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5034,7 +5034,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5049,7 +5049,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 002C Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5064,7 +5064,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5079,7 +5079,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 002C Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5094,7 +5094,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5109,7 +5109,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 002C Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5124,7 +5124,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5139,7 +5139,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 002C Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5154,7 +5154,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 002C Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 002C Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5169,7 +5169,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0001 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0001 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5182,7 +5182,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5195,7 +5195,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 000D Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0027 Ã· 000D Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5208,7 +5208,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5221,7 +5221,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 000A Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0027 Ã· 000A Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5234,7 +5234,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5247,7 +5247,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 000B Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0027 Ã· 000B Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5260,7 +5260,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5273,7 +5273,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 3031 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0027 Ã· 3031 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5288,7 +5288,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5303,7 +5303,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0041 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0041 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5318,7 +5318,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5333,7 +5333,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 003A Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0027 Ã· 003A Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5346,7 +5346,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5359,7 +5359,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 002C Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0027 Ã· 002C Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5372,7 +5372,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5385,7 +5385,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0027 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0027 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5398,7 +5398,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5411,7 +5411,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0030 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0030 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5426,7 +5426,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5441,7 +5441,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 005F Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0027 Ã· 005F Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5454,7 +5454,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5467,7 +5467,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 00AD Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0027 Ã 00AD Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5480,7 +5480,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5493,7 +5493,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0300 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0027 Ã 0300 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5506,7 +5506,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5519,7 +5519,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5534,7 +5534,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5549,7 +5549,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5564,7 +5564,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5579,7 +5579,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5594,7 +5594,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5609,7 +5609,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5624,7 +5624,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5639,7 +5639,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5654,7 +5654,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5669,7 +5669,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5684,7 +5684,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5699,7 +5699,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5714,7 +5714,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5729,7 +5729,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5744,7 +5744,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5759,7 +5759,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0027 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5774,7 +5774,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0027 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0027 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5789,7 +5789,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã· 0001 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0030 Ã· 0001 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5804,7 +5804,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5819,7 +5819,7 @@ literal|"\u0030\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã· 000D Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0030 Ã· 000D Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5834,7 +5834,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5849,7 +5849,7 @@ literal|"\u0030\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã· 000A Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0030 Ã· 000A Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5864,7 +5864,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5879,7 +5879,7 @@ literal|"\u0030\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã· 000B Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0030 Ã· 000B Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5894,7 +5894,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5909,7 +5909,7 @@ literal|"\u0030\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã· 3031 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0030 Ã· 3031 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5926,7 +5926,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5943,7 +5943,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0041 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0030 Ã 0041 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5958,7 +5958,7 @@ literal|"\u0030\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0041 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0041 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5973,7 +5973,7 @@ literal|"\u0030\u0308\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0030 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -5988,7 +5988,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6003,7 +6003,7 @@ literal|"\u0030\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0030 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6018,7 +6018,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6033,7 +6033,7 @@ literal|"\u0030\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0030 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6048,7 +6048,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6063,7 +6063,7 @@ literal|"\u0030\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0030 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [8.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0030 Ã 0030 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [8.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6078,7 +6078,7 @@ literal|"\u0030\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0030 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [8.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0030 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [8.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6093,7 +6093,7 @@ literal|"\u0030\u0308\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 005F Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0030 Ã 005F Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6108,7 +6108,7 @@ literal|"\u0030\u005F"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 005F Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 005F Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6123,7 +6123,7 @@ literal|"\u0030\u0308\u005F"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 00AD Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0030 Ã 00AD Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6138,7 +6138,7 @@ literal|"\u0030\u00AD"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6153,7 +6153,7 @@ literal|"\u0030\u0308\u00AD"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0300 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0030 Ã 0300 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6168,7 +6168,7 @@ literal|"\u0030\u0300"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6183,7 +6183,7 @@ literal|"\u0030\u0308\u0300"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0030 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6198,7 +6198,7 @@ literal|"\u0030\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6213,7 +6213,7 @@ literal|"\u0030\u0308\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0030 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6228,7 +6228,7 @@ literal|"\u0030\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6243,7 +6243,7 @@ literal|"\u0030\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0030 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6258,7 +6258,7 @@ literal|"\u0030\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6273,7 +6273,7 @@ literal|"\u0030\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0030 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6288,7 +6288,7 @@ literal|"\u0030\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6303,7 +6303,7 @@ literal|"\u0030\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0030 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6318,7 +6318,7 @@ literal|"\u0030\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6333,7 +6333,7 @@ literal|"\u0030\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0030 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6348,7 +6348,7 @@ literal|"\u0030\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6363,7 +6363,7 @@ literal|"\u0030\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0030 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6378,7 +6378,7 @@ literal|"\u0030\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6393,7 +6393,7 @@ literal|"\u0030\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0030 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6408,7 +6408,7 @@ literal|"\u0030\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6423,7 +6423,7 @@ literal|"\u0030\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0030 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6438,7 +6438,7 @@ literal|"\u0030\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0030 Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0030 Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] DIGIT ZERO (Numeric) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [8.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6453,7 +6453,7 @@ literal|"\u0030\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã· 0001 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 005F Ã· 0001 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6466,7 +6466,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6479,7 +6479,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã· 000D Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 005F Ã· 000D Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6492,7 +6492,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6505,7 +6505,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã· 000A Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 005F Ã· 000A Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6518,7 +6518,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6531,7 +6531,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã· 000B Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 005F Ã· 000B Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6544,7 +6544,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6557,7 +6557,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 3031 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 005F Ã 3031 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6572,7 +6572,7 @@ literal|"\u005F\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 3031 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 3031 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6587,7 +6587,7 @@ literal|"\u005F\u0308\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0041 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 005F Ã 0041 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6602,7 +6602,7 @@ literal|"\u005F\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0041 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0041 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6617,7 +6617,7 @@ literal|"\u005F\u0308\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã· 003A Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 005F Ã· 003A Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6630,7 +6630,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6643,7 +6643,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã· 002C Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 005F Ã· 002C Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6656,7 +6656,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6669,7 +6669,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã· 0027 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 005F Ã· 0027 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6682,7 +6682,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6695,7 +6695,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0030 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 005F Ã 0030 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6710,7 +6710,7 @@ literal|"\u005F\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0030 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0030 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6725,7 +6725,7 @@ literal|"\u005F\u0308\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 005F Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 005F Ã 005F Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6738,7 +6738,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 005F Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 005F Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6751,7 +6751,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 00AD Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 005F Ã 00AD Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6764,7 +6764,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6777,7 +6777,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0300 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 005F Ã 0300 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6790,7 +6790,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6803,7 +6803,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 005F Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6818,7 +6818,7 @@ literal|"\u005F\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6833,7 +6833,7 @@ literal|"\u005F\u0308\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 005F Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6848,7 +6848,7 @@ literal|"\u005F\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6863,7 +6863,7 @@ literal|"\u005F\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 005F Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6878,7 +6878,7 @@ literal|"\u005F\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6893,7 +6893,7 @@ literal|"\u005F\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 005F Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6908,7 +6908,7 @@ literal|"\u005F\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6923,7 +6923,7 @@ literal|"\u005F\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 005F Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6938,7 +6938,7 @@ literal|"\u005F\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6953,7 +6953,7 @@ literal|"\u005F\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 005F Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6968,7 +6968,7 @@ literal|"\u005F\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6983,7 +6983,7 @@ literal|"\u005F\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 005F Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -6998,7 +6998,7 @@ literal|"\u005F\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7013,7 +7013,7 @@ literal|"\u005F\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 005F Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7028,7 +7028,7 @@ literal|"\u005F\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7043,7 +7043,7 @@ literal|"\u005F\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 005F Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7058,7 +7058,7 @@ literal|"\u005F\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 005F Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 005F Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LOW LINE (ExtendNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7073,7 +7073,7 @@ literal|"\u005F\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0001 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0001 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7086,7 +7086,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7099,7 +7099,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 000D Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 00AD Ã· 000D Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7112,7 +7112,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7125,7 +7125,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 000A Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 00AD Ã· 000A Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7138,7 +7138,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7151,7 +7151,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 000B Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 00AD Ã· 000B Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7164,7 +7164,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7177,7 +7177,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 3031 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 00AD Ã· 3031 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7192,7 +7192,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7207,7 +7207,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0041 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0041 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7222,7 +7222,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7237,7 +7237,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 003A Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 00AD Ã· 003A Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7250,7 +7250,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7263,7 +7263,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 002C Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 00AD Ã· 002C Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7276,7 +7276,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7289,7 +7289,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0027 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0027 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7302,7 +7302,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7315,7 +7315,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0030 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0030 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7330,7 +7330,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7345,7 +7345,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 005F Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 00AD Ã· 005F Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7358,7 +7358,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7371,7 +7371,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 00AD Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 00AD Ã 00AD Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7384,7 +7384,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7397,7 +7397,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0300 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 00AD Ã 0300 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7410,7 +7410,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7423,7 +7423,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7438,7 +7438,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7453,7 +7453,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7468,7 +7468,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7483,7 +7483,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7498,7 +7498,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7513,7 +7513,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7528,7 +7528,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7543,7 +7543,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7558,7 +7558,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7573,7 +7573,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7588,7 +7588,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7603,7 +7603,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7618,7 +7618,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7633,7 +7633,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7648,7 +7648,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7663,7 +7663,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 00AD Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7678,7 +7678,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 00AD Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 00AD Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] SOFT HYPHEN (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7693,7 +7693,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0001 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0001 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7706,7 +7706,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7719,7 +7719,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 000D Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0300 Ã· 000D Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7732,7 +7732,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7745,7 +7745,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 000A Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0300 Ã· 000A Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7758,7 +7758,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7771,7 +7771,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 000B Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0300 Ã· 000B Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7784,7 +7784,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7797,7 +7797,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 3031 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0300 Ã· 3031 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7812,7 +7812,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7827,7 +7827,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0041 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0041 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7842,7 +7842,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7857,7 +7857,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 003A Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0300 Ã· 003A Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7870,7 +7870,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7883,7 +7883,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 002C Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0300 Ã· 002C Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7896,7 +7896,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7909,7 +7909,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0027 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0027 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7922,7 +7922,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7935,7 +7935,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0030 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0030 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7950,7 +7950,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7965,7 +7965,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 005F Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0300 Ã· 005F Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7978,7 +7978,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -7991,7 +7991,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 00AD Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0300 Ã 00AD Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8004,7 +8004,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8017,7 +8017,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0300 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0300 Ã 0300 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8030,7 +8030,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8043,7 +8043,7 @@ index|[]
 block|{  }
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8058,7 +8058,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8073,7 +8073,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8088,7 +8088,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8103,7 +8103,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8118,7 +8118,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8133,7 +8133,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8148,7 +8148,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8163,7 +8163,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8178,7 +8178,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8193,7 +8193,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8208,7 +8208,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8223,7 +8223,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8238,7 +8238,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8253,7 +8253,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8268,7 +8268,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8283,7 +8283,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0300 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8298,7 +8298,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0300 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0300 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] COMBINING GRAVE ACCENT (Extend_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8313,7 +8313,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã· 0001 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã· 0001 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8328,7 +8328,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8343,7 +8343,7 @@ literal|"\u0061\u2060\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã· 000D Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã· 000D Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8358,7 +8358,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8373,7 +8373,7 @@ literal|"\u0061\u2060\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã· 000A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã· 000A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8388,7 +8388,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8403,7 +8403,7 @@ literal|"\u0061\u2060\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã· 000B Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã· 000B Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8418,7 +8418,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8433,7 +8433,7 @@ literal|"\u0061\u2060\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã· 3031 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã· 3031 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8450,7 +8450,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8467,7 +8467,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0041 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0041 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8482,7 +8482,7 @@ literal|"\u0061\u2060\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0041 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0041 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8497,7 +8497,7 @@ literal|"\u0061\u2060\u0308\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8512,7 +8512,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8527,7 +8527,7 @@ literal|"\u0061\u2060\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8542,7 +8542,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8557,7 +8557,7 @@ literal|"\u0061\u2060\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8572,7 +8572,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8587,7 +8587,7 @@ literal|"\u0061\u2060\u0308"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0030 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [9.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0030 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [9.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8602,7 +8602,7 @@ literal|"\u0061\u2060\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0030 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0030 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8617,7 +8617,7 @@ literal|"\u0061\u2060\u0308\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 005F Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 005F Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8632,7 +8632,7 @@ literal|"\u0061\u2060\u005F"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 005F Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 005F Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [13.1] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8647,7 +8647,7 @@ literal|"\u0061\u2060\u0308\u005F"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 00AD Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 00AD Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8662,7 +8662,7 @@ literal|"\u0061\u2060\u00AD"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8677,7 +8677,7 @@ literal|"\u0061\u2060\u0308\u00AD"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0300 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0300 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8692,7 +8692,7 @@ literal|"\u0061\u2060\u0300"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8707,7 +8707,7 @@ literal|"\u0061\u2060\u0308\u0300"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8722,7 +8722,7 @@ literal|"\u0061\u2060\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8737,7 +8737,7 @@ literal|"\u0061\u2060\u0308\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8752,7 +8752,7 @@ literal|"\u0061\u2060\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8767,7 +8767,7 @@ literal|"\u0061\u2060\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8782,7 +8782,7 @@ literal|"\u0061\u2060\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8797,7 +8797,7 @@ literal|"\u0061\u2060\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8812,7 +8812,7 @@ literal|"\u0061\u2060\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8827,7 +8827,7 @@ literal|"\u0061\u2060\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8842,7 +8842,7 @@ literal|"\u0061\u2060\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8857,7 +8857,7 @@ literal|"\u0061\u2060\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8872,7 +8872,7 @@ literal|"\u0061\u2060\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8887,7 +8887,7 @@ literal|"\u0061\u2060\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8902,7 +8902,7 @@ literal|"\u0061\u2060\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8917,7 +8917,7 @@ literal|"\u0061\u2060\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8932,7 +8932,7 @@ literal|"\u0061\u2060\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8947,7 +8947,7 @@ literal|"\u0061\u2060\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8962,7 +8962,7 @@ literal|"\u0061\u2060\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 2060 Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [9.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8977,7 +8977,7 @@ literal|"\u0061\u2060\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 0001 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 0001 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -8992,7 +8992,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9007,7 +9007,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 000D Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 000D Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9022,7 +9022,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9037,7 +9037,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 000A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 000A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9052,7 +9052,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9067,7 +9067,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 000B Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 000B Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9082,7 +9082,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9097,7 +9097,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 3031 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 3031 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9114,7 +9114,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9131,7 +9131,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0041 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0041 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9146,7 +9146,7 @@ literal|"\u0061\u003A\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0041 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0041 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9161,7 +9161,7 @@ literal|"\u0061\u003A\u0308\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9176,7 +9176,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9191,7 +9191,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9206,7 +9206,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9221,7 +9221,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9236,7 +9236,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9251,7 +9251,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 0030 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 0030 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9268,7 +9268,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9285,7 +9285,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 005F Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 005F Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9300,7 +9300,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9315,7 +9315,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 00AD Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 00AD Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9330,7 +9330,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9345,7 +9345,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0300 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0300 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9360,7 +9360,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9375,7 +9375,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9390,7 +9390,7 @@ literal|"\u0061\u003A\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9405,7 +9405,7 @@ literal|"\u0061\u003A\u0308\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9420,7 +9420,7 @@ literal|"\u0061\u003A\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9435,7 +9435,7 @@ literal|"\u0061\u003A\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9450,7 +9450,7 @@ literal|"\u0061\u003A\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9465,7 +9465,7 @@ literal|"\u0061\u003A\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9480,7 +9480,7 @@ literal|"\u0061\u003A\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9495,7 +9495,7 @@ literal|"\u0061\u003A\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9510,7 +9510,7 @@ literal|"\u0061\u003A\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 003A Ã 0308 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9525,7 +9525,7 @@ literal|"\u0061\u003A\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9542,7 +9542,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9559,7 +9559,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9576,7 +9576,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9593,7 +9593,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9610,7 +9610,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9627,7 +9627,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9644,7 +9644,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 003A Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9661,7 +9661,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 0001 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 0001 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9676,7 +9676,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9691,7 +9691,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 000D Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 000D Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9706,7 +9706,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9721,7 +9721,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 000A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 000A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9736,7 +9736,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9751,7 +9751,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 000B Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 000B Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9766,7 +9766,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9781,7 +9781,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 3031 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 3031 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9798,7 +9798,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9815,7 +9815,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0041 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0041 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9830,7 +9830,7 @@ literal|"\u0061\u0027\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0041 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0041 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9845,7 +9845,7 @@ literal|"\u0061\u0027\u0308\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9860,7 +9860,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9875,7 +9875,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9890,7 +9890,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9905,7 +9905,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9920,7 +9920,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9935,7 +9935,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 0030 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 0030 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9952,7 +9952,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9969,7 +9969,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 005F Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 005F Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9984,7 +9984,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -9999,7 +9999,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 00AD Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 00AD Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10014,7 +10014,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10029,7 +10029,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0300 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0300 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10044,7 +10044,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10059,7 +10059,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10074,7 +10074,7 @@ literal|"\u0061\u0027\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10089,7 +10089,7 @@ literal|"\u0061\u0027\u0308\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10104,7 +10104,7 @@ literal|"\u0061\u0027\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10119,7 +10119,7 @@ literal|"\u0061\u0027\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10134,7 +10134,7 @@ literal|"\u0061\u0027\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10149,7 +10149,7 @@ literal|"\u0061\u0027\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10164,7 +10164,7 @@ literal|"\u0061\u0027\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10179,7 +10179,7 @@ literal|"\u0061\u0027\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10194,7 +10194,7 @@ literal|"\u0061\u0027\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 0308 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10209,7 +10209,7 @@ literal|"\u0061\u0027\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10226,7 +10226,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10243,7 +10243,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10260,7 +10260,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10277,7 +10277,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10294,7 +10294,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10311,7 +10311,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10328,7 +10328,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10345,7 +10345,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0001 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0001 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10360,7 +10360,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10375,7 +10375,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 000D Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 000D Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10390,7 +10390,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10405,7 +10405,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 000A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 000A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10420,7 +10420,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10435,7 +10435,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 000B Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 000B Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10450,7 +10450,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10465,7 +10465,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 3031 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 3031 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10482,7 +10482,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10499,7 +10499,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0041 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0041 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10514,7 +10514,7 @@ literal|"\u0061\u0027\u2060\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0041 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0041 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10529,7 +10529,7 @@ literal|"\u0061\u0027\u2060\u0308\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10544,7 +10544,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10559,7 +10559,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10574,7 +10574,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10589,7 +10589,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10604,7 +10604,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10619,7 +10619,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0030 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0030 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10636,7 +10636,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10653,7 +10653,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 005F Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 005F Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10668,7 +10668,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10683,7 +10683,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 00AD Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 00AD Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10698,7 +10698,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10713,7 +10713,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0300 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0300 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10728,7 +10728,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10743,7 +10743,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10758,7 +10758,7 @@ literal|"\u0061\u0027\u2060\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10773,7 +10773,7 @@ literal|"\u0061\u0027\u2060\u0308\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10788,7 +10788,7 @@ literal|"\u0061\u0027\u2060\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10803,7 +10803,7 @@ literal|"\u0061\u0027\u2060\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10818,7 +10818,7 @@ literal|"\u0061\u0027\u2060\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10833,7 +10833,7 @@ literal|"\u0061\u0027\u2060\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10848,7 +10848,7 @@ literal|"\u0061\u0027\u2060\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10863,7 +10863,7 @@ literal|"\u0061\u0027\u2060\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10878,7 +10878,7 @@ literal|"\u0061\u0027\u2060\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã 0027 Ã 2060 Ã 0308 Ã 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [7.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10893,7 +10893,7 @@ literal|"\u0061\u0027\u2060\u0308\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10910,7 +10910,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10927,7 +10927,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10944,7 +10944,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10961,7 +10961,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10978,7 +10978,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -10995,7 +10995,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11012,7 +11012,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0027 Ã 2060 Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11029,7 +11029,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0001 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0001 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11044,7 +11044,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11059,7 +11059,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 000D Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 000D Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11074,7 +11074,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11089,7 +11089,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 000A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 000A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11104,7 +11104,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11119,7 +11119,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 000B Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 000B Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11134,7 +11134,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11149,7 +11149,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 3031 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 3031 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11166,7 +11166,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11183,7 +11183,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0041 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0041 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11200,7 +11200,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11217,7 +11217,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11232,7 +11232,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11247,7 +11247,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11262,7 +11262,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11277,7 +11277,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11292,7 +11292,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11307,7 +11307,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0030 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0030 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11324,7 +11324,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11341,7 +11341,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 005F Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 005F Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11356,7 +11356,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11371,7 +11371,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 00AD Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 00AD Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11386,7 +11386,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11401,7 +11401,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0300 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0300 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11416,7 +11416,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11431,7 +11431,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11448,7 +11448,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11465,7 +11465,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11482,7 +11482,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11499,7 +11499,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11516,7 +11516,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11533,7 +11533,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11550,7 +11550,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11567,7 +11567,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11584,7 +11584,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11601,7 +11601,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11618,7 +11618,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11635,7 +11635,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11652,7 +11652,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11669,7 +11669,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11686,7 +11686,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11703,7 +11703,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11720,7 +11720,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0061 Ã· 002C Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11737,7 +11737,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0001 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0001 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11752,7 +11752,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11767,7 +11767,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 000D Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 000D Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11782,7 +11782,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11797,7 +11797,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 000A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 000A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11812,7 +11812,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11827,7 +11827,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 000B Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 000B Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11842,7 +11842,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11857,7 +11857,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 3031 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 3031 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11874,7 +11874,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11891,7 +11891,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0041 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0041 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11908,7 +11908,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11925,7 +11925,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11940,7 +11940,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11955,7 +11955,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11970,7 +11970,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -11985,7 +11985,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12000,7 +12000,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12015,7 +12015,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0030 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0030 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12032,7 +12032,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0030 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0030 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12049,7 +12049,7 @@ literal|"\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 005F Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 005F Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12064,7 +12064,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12079,7 +12079,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 00AD Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 00AD Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12094,7 +12094,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12109,7 +12109,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0300 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0300 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12124,7 +12124,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12139,7 +12139,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12156,7 +12156,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12173,7 +12173,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12190,7 +12190,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12207,7 +12207,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12224,7 +12224,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12241,7 +12241,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12258,7 +12258,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12275,7 +12275,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12292,7 +12292,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12309,7 +12309,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12326,7 +12326,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0031 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0031 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12343,7 +12343,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12360,7 +12360,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0031 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0031 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12377,7 +12377,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12394,7 +12394,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0031 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0031 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12411,7 +12411,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12428,7 +12428,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 003A Ã 0308 Ã· 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12445,7 +12445,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 0001 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 0001 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12460,7 +12460,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12475,7 +12475,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 000D Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 000D Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12490,7 +12490,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12505,7 +12505,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 000A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 000A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12520,7 +12520,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12535,7 +12535,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 000B Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 000B Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12550,7 +12550,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12565,7 +12565,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 3031 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 3031 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12582,7 +12582,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12599,7 +12599,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 0041 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 0041 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12616,7 +12616,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12633,7 +12633,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12648,7 +12648,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12663,7 +12663,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12678,7 +12678,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12693,7 +12693,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12708,7 +12708,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12723,7 +12723,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 0027 Ã 0030 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0031 Ã 0027 Ã 0030 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12738,7 +12738,7 @@ literal|"\u0031\u0027\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 0027 Ã 0308 Ã 0030 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0031 Ã 0027 Ã 0308 Ã 0030 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12753,7 +12753,7 @@ literal|"\u0031\u0027\u0308\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 005F Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 005F Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12768,7 +12768,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12783,7 +12783,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 00AD Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 00AD Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12798,7 +12798,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12813,7 +12813,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0300 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0300 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12828,7 +12828,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12843,7 +12843,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12860,7 +12860,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12877,7 +12877,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12894,7 +12894,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12911,7 +12911,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12928,7 +12928,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12945,7 +12945,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12962,7 +12962,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12979,7 +12979,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -12996,7 +12996,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 0027 Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13013,7 +13013,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 0027 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã 0027 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13028,7 +13028,7 @@ literal|"\u0031\u0027\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 0027 Ã 0308 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã 0027 Ã 0308 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13043,7 +13043,7 @@ literal|"\u0031\u0027\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 0027 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã 0027 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13058,7 +13058,7 @@ literal|"\u0031\u0027\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 0027 Ã 0308 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã 0027 Ã 0308 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13073,7 +13073,7 @@ literal|"\u0031\u0027\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 0027 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã 0027 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13088,7 +13088,7 @@ literal|"\u0031\u0027\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 0027 Ã 0308 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã 0027 Ã 0308 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13103,7 +13103,7 @@ literal|"\u0031\u0027\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 0027 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã 0027 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13118,7 +13118,7 @@ literal|"\u0031\u0027\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 0027 Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã 0027 Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] APOSTROPHE (MidNumLet) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13133,7 +13133,7 @@ literal|"\u0031\u0027\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 0001 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 0001 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13148,7 +13148,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13163,7 +13163,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 000D Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 000D Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13178,7 +13178,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13193,7 +13193,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 000A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 000A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13208,7 +13208,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13223,7 +13223,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 000B Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 000B Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13238,7 +13238,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13253,7 +13253,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 3031 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 3031 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13270,7 +13270,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13287,7 +13287,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 0041 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 0041 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13304,7 +13304,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13321,7 +13321,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13336,7 +13336,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13351,7 +13351,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13366,7 +13366,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13381,7 +13381,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13396,7 +13396,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13411,7 +13411,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002C Ã 0030 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0031 Ã 002C Ã 0030 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13426,7 +13426,7 @@ literal|"\u0031\u002C\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002C Ã 0308 Ã 0030 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0031 Ã 002C Ã 0308 Ã 0030 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13441,7 +13441,7 @@ literal|"\u0031\u002C\u0308\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 005F Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 005F Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13456,7 +13456,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13471,7 +13471,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 00AD Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 00AD Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13486,7 +13486,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13501,7 +13501,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0300 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0300 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13516,7 +13516,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13531,7 +13531,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13548,7 +13548,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13565,7 +13565,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13582,7 +13582,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13599,7 +13599,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13616,7 +13616,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13633,7 +13633,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13650,7 +13650,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13667,7 +13667,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13684,7 +13684,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002C Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13701,7 +13701,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002C Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã 002C Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13716,7 +13716,7 @@ literal|"\u0031\u002C\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002C Ã 0308 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã 002C Ã 0308 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13731,7 +13731,7 @@ literal|"\u0031\u002C\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002C Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã 002C Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13746,7 +13746,7 @@ literal|"\u0031\u002C\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002C Ã 0308 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã 002C Ã 0308 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13761,7 +13761,7 @@ literal|"\u0031\u002C\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002C Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã 002C Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13776,7 +13776,7 @@ literal|"\u0031\u002C\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002C Ã 0308 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã 002C Ã 0308 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13791,7 +13791,7 @@ literal|"\u0031\u002C\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002C Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã 002C Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13806,7 +13806,7 @@ literal|"\u0031\u002C\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002C Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã 002C Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] COMMA (MidNum) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13821,7 +13821,7 @@ literal|"\u0031\u002C\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0001 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0001 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13836,7 +13836,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0001 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0001 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0]<START OF HEADING> (Other) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13851,7 +13851,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 000D Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 000D Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13866,7 +13866,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 000D Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 000D Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<CARRIAGE RETURN (CR)> (CR) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13881,7 +13881,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 000A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 000A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13896,7 +13896,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 000A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 000A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE FEED (LF)> (LF) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13911,7 +13911,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 000B Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 000B Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13926,7 +13926,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 000B Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 000B Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [3.2]<LINE TABULATION> (Newline) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13941,7 +13941,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 3031 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 3031 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13958,7 +13958,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 3031 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 3031 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] VERTICAL KANA REPEAT MARK (Katakana) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13975,7 +13975,7 @@ literal|"\u3031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0041 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0041 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -13992,7 +13992,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0041 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0041 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN CAPITAL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14009,7 +14009,7 @@ literal|"\u0041"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14024,7 +14024,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14039,7 +14039,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14054,7 +14054,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14069,7 +14069,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14084,7 +14084,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14099,7 +14099,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0030 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0030 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14114,7 +14114,7 @@ literal|"\u0031\u002E\u2060\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0308 Ã 0030 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
+comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0308 Ã 0030 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ZERO (Numeric) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14129,7 +14129,7 @@ literal|"\u0031\u002E\u2060\u0308\u0030"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 005F Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 005F Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14144,7 +14144,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 005F Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 005F Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LOW LINE (ExtendNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14159,7 +14159,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 00AD Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 00AD Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14174,7 +14174,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã 00AD Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã 00AD Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14189,7 +14189,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0300 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0300 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14204,7 +14204,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã 0300 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã 0300 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [4.0] COMBINING GRAVE ACCENT (Extend_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14219,7 +14219,7 @@ literal|"\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14236,7 +14236,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0061 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0061 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14253,7 +14253,7 @@ literal|"\u0061\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14270,7 +14270,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0061 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0061 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14287,7 +14287,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14304,7 +14304,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0061 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0061 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14321,7 +14321,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14338,7 +14338,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0061 Ã· 0027 Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14355,7 +14355,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14372,7 +14372,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0061 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã· 002E Ã 2060 Ã 0308 Ã· 0061 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14389,7 +14389,7 @@ literal|"\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14404,7 +14404,7 @@ literal|"\u0031\u002E\u2060\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0308 Ã 0031 Ã· 003A Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
+comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0308 Ã 0031 Ã· 003A Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COLON (MidLetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14419,7 +14419,7 @@ literal|"\u0031\u002E\u2060\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14434,7 +14434,7 @@ literal|"\u0031\u002E\u2060\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0308 Ã 0031 Ã· 0027 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
+comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0308 Ã 0031 Ã· 0027 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] APOSTROPHE (MidNumLet) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14449,7 +14449,7 @@ literal|"\u0031\u002E\u2060\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14464,7 +14464,7 @@ literal|"\u0031\u002E\u2060\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0308 Ã 0031 Ã· 002C Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
+comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0308 Ã 0031 Ã· 002C Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] COMMA (MidNum) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14479,7 +14479,7 @@ literal|"\u0031\u002E\u2060\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14494,7 +14494,7 @@ literal|"\u0031\u002E\u2060\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·	#  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 0031 Ã 002E Ã 2060 Ã 0308 Ã 0031 Ã· 002E Ã 2060 Ã·  #  Ã· [0.2] DIGIT ONE (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] COMBINING DIAERESIS (Extend_FE) Ã [11.0] DIGIT ONE (Numeric) Ã· [999.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14509,7 +14509,7 @@ literal|"\u0031\u002E\u2060\u0308\u0031"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0063 Ã 0061 Ã 006E Ã 0027 Ã 0074 Ã·	#  Ã· [0.2] LATIN SMALL LETTER C (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER N (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER T (ALetter) Ã· [0.3]
+comment|// Ã· 0063 Ã 0061 Ã 006E Ã 0027 Ã 0074 Ã·  #  Ã· [0.2] LATIN SMALL LETTER C (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER N (ALetter) Ã [6.0] APOSTROPHE (MidNumLet) Ã [7.0] LATIN SMALL LETTER T (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14524,7 +14524,7 @@ literal|"\u0063\u0061\u006E\u0027\u0074"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0063 Ã 0061 Ã 006E Ã 2019 Ã 0074 Ã·	#  Ã· [0.2] LATIN SMALL LETTER C (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER N (ALetter) Ã [6.0] RIGHT SINGLE QUOTATION MARK (MidNumLet) Ã [7.0] LATIN SMALL LETTER T (ALetter) Ã· [0.3]
+comment|// Ã· 0063 Ã 0061 Ã 006E Ã 2019 Ã 0074 Ã·  #  Ã· [0.2] LATIN SMALL LETTER C (ALetter) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER N (ALetter) Ã [6.0] RIGHT SINGLE QUOTATION MARK (MidNumLet) Ã [7.0] LATIN SMALL LETTER T (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14539,7 +14539,7 @@ literal|"\u0063\u0061\u006E\u2019\u0074"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã 0062 Ã 00AD Ã 0062 Ã 0079 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER B (ALetter) Ã [4.0] SOFT HYPHEN (Format_FE) Ã [5.0] LATIN SMALL LETTER B (ALetter) Ã [5.0] LATIN SMALL LETTER Y (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã 0062 Ã 00AD Ã 0062 Ã 0079 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã [5.0] LATIN SMALL LETTER B (ALetter) Ã [4.0] SOFT HYPHEN (Format_FE) Ã [5.0] LATIN SMALL LETTER B (ALetter) Ã [5.0] LATIN SMALL LETTER Y (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14554,7 +14554,7 @@ literal|"\u0061\u0062\u00AD\u0062\u0079"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0061 Ã· 0024 Ã· 002D Ã· 0033 Ã 0034 Ã 002C Ã 0035 Ã 0036 Ã 0037 Ã 002E Ã 0031 Ã 0034 Ã· 0025 Ã· 0062 Ã·	#  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] DOLLAR SIGN (Other) Ã· [999.0] HYPHEN-MINUS (Other) Ã· [999.0] DIGIT THREE (Numeric) Ã [8.0] DIGIT FOUR (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT FIVE (Numeric) Ã [8.0] DIGIT SIX (Numeric) Ã [8.0] DIGIT SEVEN (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [11.0] DIGIT ONE (Numeric) Ã [8.0] DIGIT FOUR (Numeric) Ã· [999.0] PERCENT SIGN (Other) Ã· [999.0] LATIN SMALL LETTER B (ALetter) Ã· [0.3]
+comment|// Ã· 0061 Ã· 0024 Ã· 002D Ã· 0033 Ã 0034 Ã 002C Ã 0035 Ã 0036 Ã 0037 Ã 002E Ã 0031 Ã 0034 Ã· 0025 Ã· 0062 Ã·  #  Ã· [0.2] LATIN SMALL LETTER A (ALetter) Ã· [999.0] DOLLAR SIGN (Other) Ã· [999.0] HYPHEN-MINUS (Other) Ã· [999.0] DIGIT THREE (Numeric) Ã [8.0] DIGIT FOUR (Numeric) Ã [12.0] COMMA (MidNum) Ã [11.0] DIGIT FIVE (Numeric) Ã [8.0] DIGIT SIX (Numeric) Ã [8.0] DIGIT SEVEN (Numeric) Ã [12.0] FULL STOP (MidNumLet) Ã [11.0] DIGIT ONE (Numeric) Ã [8.0] DIGIT FOUR (Numeric) Ã· [999.0] PERCENT SIGN (Other) Ã· [999.0] LATIN SMALL LETTER B (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14573,7 +14573,7 @@ literal|"\u0062"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 0033 Ã 0061 Ã·	#  Ã· [0.2] DIGIT THREE (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [0.3]
+comment|// Ã· 0033 Ã 0061 Ã·  #  Ã· [0.2] DIGIT THREE (Numeric) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14588,7 +14588,7 @@ literal|"\u0033\u0061"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 2060 Ã· 0063 Ã 2060 Ã 0061 Ã 2060 Ã 006E Ã 2060 Ã 0027 Ã 2060 Ã 0074 Ã 2060 Ã 2060 Ã·	#  Ã· [0.2] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER C (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER N (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER T (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 2060 Ã· 0063 Ã 2060 Ã 0061 Ã 2060 Ã 006E Ã 2060 Ã 0027 Ã 2060 Ã 0074 Ã 2060 Ã 2060 Ã·  #  Ã· [0.2] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER C (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER N (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [6.0] APOSTROPHE (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER T (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14603,7 +14603,7 @@ literal|"\u0063\u2060\u0061\u2060\u006E\u2060\u0027\u2060\u0074\u2060\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 2060 Ã· 0063 Ã 2060 Ã 0061 Ã 2060 Ã 006E Ã 2060 Ã 2019 Ã 2060 Ã 0074 Ã 2060 Ã 2060 Ã·	#  Ã· [0.2] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER C (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER N (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [6.0] RIGHT SINGLE QUOTATION MARK (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER T (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 2060 Ã· 0063 Ã 2060 Ã 0061 Ã 2060 Ã 006E Ã 2060 Ã 2019 Ã 2060 Ã 0074 Ã 2060 Ã 2060 Ã·  #  Ã· [0.2] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER C (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER N (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [6.0] RIGHT SINGLE QUOTATION MARK (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [7.0] LATIN SMALL LETTER T (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14618,7 +14618,7 @@ literal|"\u0063\u2060\u0061\u2060\u006E\u2060\u2019\u2060\u0074\u2060\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 2060 Ã· 0061 Ã 2060 Ã 0062 Ã 2060 Ã 00AD Ã 2060 Ã 0062 Ã 2060 Ã 0079 Ã 2060 Ã 2060 Ã·	#  Ã· [0.2] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER B (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER B (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER Y (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 2060 Ã· 0061 Ã 2060 Ã 0062 Ã 2060 Ã 00AD Ã 2060 Ã 0062 Ã 2060 Ã 0079 Ã 2060 Ã 2060 Ã·  #  Ã· [0.2] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER B (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] SOFT HYPHEN (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER B (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [5.0] LATIN SMALL LETTER Y (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14633,7 +14633,7 @@ literal|"\u0061\u2060\u0062\u2060\u00AD\u2060\u0062\u2060\u0079\u2060\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 2060 Ã· 0061 Ã 2060 Ã· 0024 Ã 2060 Ã· 002D Ã 2060 Ã· 0033 Ã 2060 Ã 0034 Ã 2060 Ã 002C Ã 2060 Ã 0035 Ã 2060 Ã 0036 Ã 2060 Ã 0037 Ã 2060 Ã 002E Ã 2060 Ã 0031 Ã 2060 Ã 0034 Ã 2060 Ã· 0025 Ã 2060 Ã· 0062 Ã 2060 Ã 2060 Ã·	#  Ã· [0.2] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DOLLAR SIGN (Other) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] HYPHEN-MINUS (Other) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT THREE (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [8.0] DIGIT FOUR (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [12.0] COMMA (MidNum) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT FIVE (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [8.0] DIGIT SIX (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [8.0] DIGIT SEVEN (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ONE (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [8.0] DIGIT FOUR (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] PERCENT SIGN (Other) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER B (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 2060 Ã· 0061 Ã 2060 Ã· 0024 Ã 2060 Ã· 002D Ã 2060 Ã· 0033 Ã 2060 Ã 0034 Ã 2060 Ã 002C Ã 2060 Ã 0035 Ã 2060 Ã 0036 Ã 2060 Ã 0037 Ã 2060 Ã 002E Ã 2060 Ã 0031 Ã 2060 Ã 0034 Ã 2060 Ã· 0025 Ã 2060 Ã· 0062 Ã 2060 Ã 2060 Ã·  #  Ã· [0.2] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DOLLAR SIGN (Other) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] HYPHEN-MINUS (Other) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] DIGIT THREE (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [8.0] DIGIT FOUR (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [12.0] COMMA (MidNum) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT FIVE (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [8.0] DIGIT SIX (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [8.0] DIGIT SEVEN (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [12.0] FULL STOP (MidNumLet) Ã [4.0] WORD JOINER (Format_FE) Ã [11.0] DIGIT ONE (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [8.0] DIGIT FOUR (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] PERCENT SIGN (Other) Ã [4.0] WORD JOINER (Format_FE) Ã· [999.0] LATIN SMALL LETTER B (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer
@@ -14652,7 +14652,7 @@ literal|"\u0062\u2060\u2060"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Ã· 2060 Ã· 0033 Ã 2060 Ã 0061 Ã 2060 Ã 2060 Ã·	#  Ã· [0.2] WORD JOINER (Format_FE) Ã· [999.0] DIGIT THREE (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
+comment|// Ã· 2060 Ã· 0033 Ã 2060 Ã 0061 Ã 2060 Ã 2060 Ã·  #  Ã· [0.2] WORD JOINER (Format_FE) Ã· [999.0] DIGIT THREE (Numeric) Ã [4.0] WORD JOINER (Format_FE) Ã [10.0] LATIN SMALL LETTER A (ALetter) Ã [4.0] WORD JOINER (Format_FE) Ã [4.0] WORD JOINER (Format_FE) Ã· [0.3]
 name|assertAnalyzesTo
 argument_list|(
 name|analyzer

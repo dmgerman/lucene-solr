@@ -276,7 +276,7 @@ operator|=
 name|fragmentScorer
 expr_stmt|;
 block|}
-comment|/** 	 * Highlights chosen terms in a text, extracting the most relevant section. 	 * This is a convenience method that calls 	 * {@link #getBestFragment(TokenStream, String)} 	 * 	 * @param analyzer   the analyzer that will be used to split<code>text</code> 	 * into chunks 	 * @param text text to highlight terms in 	 * @param fieldName Name of field used to influence analyzer's tokenization policy 	 * 	 * @return highlighted text fragment or null if no terms found 	 * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length 	 */
+comment|/**    * Highlights chosen terms in a text, extracting the most relevant section.    * This is a convenience method that calls    * {@link #getBestFragment(TokenStream, String)}    *    * @param analyzer   the analyzer that will be used to split<code>text</code>    * into chunks    * @param text text to highlight terms in    * @param fieldName Name of field used to influence analyzer's tokenization policy    *    * @return highlighted text fragment or null if no terms found    * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length    */
 DECL|method|getBestFragment
 specifier|public
 specifier|final
@@ -322,7 +322,7 @@ name|text
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Highlights chosen terms in a text, extracting the most relevant section. 	 * The document text is analysed in chunks to record hit statistics 	 * across the document. After accumulating stats, the fragment with the highest score 	 * is returned 	 * 	 * @param tokenStream   a stream of tokens identified in the text parameter, including offset information. 	 * This is typically produced by an analyzer re-parsing a document's 	 * text. Some work may be done on retrieving TokenStreams more efficiently 	 * by adding support for storing original text position data in the Lucene 	 * index but this support is not currently available (as of Lucene 1.4 rc2). 	 * @param text text to highlight terms in 	 * 	 * @return highlighted text fragment or null if no terms found 	 * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length 	 */
+comment|/**    * Highlights chosen terms in a text, extracting the most relevant section.    * The document text is analysed in chunks to record hit statistics    * across the document. After accumulating stats, the fragment with the highest score    * is returned    *    * @param tokenStream   a stream of tokens identified in the text parameter, including offset information.    * This is typically produced by an analyzer re-parsing a document's    * text. Some work may be done on retrieving TokenStreams more efficiently    * by adding support for storing original text position data in the Lucene    * index but this support is not currently available (as of Lucene 1.4 rc2).    * @param text text to highlight terms in    *    * @return highlighted text fragment or null if no terms found    * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length    */
 DECL|method|getBestFragment
 specifier|public
 specifier|final
@@ -373,7 +373,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Highlights chosen terms in a text, extracting the most relevant sections. 	 * This is a convenience method that calls 	 * {@link #getBestFragments(TokenStream, String, int)} 	 * 	 * @param analyzer   the analyzer that will be used to split<code>text</code> 	 * into chunks 	 * @param fieldName     the name of the field being highlighted (used by analyzer) 	 * @param text        	text to highlight terms in 	 * @param maxNumFragments  the maximum number of fragments. 	 * 	 * @return highlighted text fragments (between 0 and maxNumFragments number of fragments) 	 * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length 	 */
+comment|/**    * Highlights chosen terms in a text, extracting the most relevant sections.    * This is a convenience method that calls    * {@link #getBestFragments(TokenStream, String, int)}    *    * @param analyzer   the analyzer that will be used to split<code>text</code>    * into chunks    * @param fieldName     the name of the field being highlighted (used by analyzer)    * @param text          text to highlight terms in    * @param maxNumFragments  the maximum number of fragments.    *    * @return highlighted text fragments (between 0 and maxNumFragments number of fragments)    * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length    */
 DECL|method|getBestFragments
 specifier|public
 specifier|final
@@ -425,7 +425,7 @@ name|maxNumFragments
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Highlights chosen terms in a text, extracting the most relevant sections. 	 * The document text is analysed in chunks to record hit statistics 	 * across the document. After accumulating stats, the fragments with the highest scores 	 * are returned as an array of strings in order of score (contiguous fragments are merged into 	 * one in their original order to improve readability) 	 * 	 * @param text        	text to highlight terms in 	 * @param maxNumFragments  the maximum number of fragments. 	 * 	 * @return highlighted text fragments (between 0 and maxNumFragments number of fragments) 	 * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length 	 */
+comment|/**    * Highlights chosen terms in a text, extracting the most relevant sections.    * The document text is analysed in chunks to record hit statistics    * across the document. After accumulating stats, the fragments with the highest scores    * are returned as an array of strings in order of score (contiguous fragments are merged into    * one in their original order to improve readability)    *    * @param text          text to highlight terms in    * @param maxNumFragments  the maximum number of fragments.    *    * @return highlighted text fragments (between 0 and maxNumFragments number of fragments)    * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length    */
 DECL|method|getBestFragments
 specifier|public
 specifier|final
@@ -557,7 +557,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Low level api to get the most relevant (formatted) sections of the document. 	 * This method has been made public to allow visibility of score information held in TextFragment objects. 	 * Thanks to Jason Calabrese for help in redefining the interface. 	 * @param tokenStream 	 * @param text 	 * @param maxNumFragments 	 * @param mergeContiguousFragments 	 * @throws IOException 	 * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length 	 */
+comment|/**    * Low level api to get the most relevant (formatted) sections of the document.    * This method has been made public to allow visibility of score information held in TextFragment objects.    * Thanks to Jason Calabrese for help in redefining the interface.    * @param tokenStream    * @param text    * @param maxNumFragments    * @param mergeContiguousFragments    * @throws IOException    * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length    */
 DECL|method|getBestTextFragments
 specifier|public
 specifier|final
@@ -1016,10 +1016,10 @@ name|getTokenScore
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//				if(lastEndOffset>maxDocBytesToAnalyze)
-comment|//				{
-comment|//					break;
-comment|//				}
+comment|//        if(lastEndOffset>maxDocBytesToAnalyze)
+comment|//        {
+comment|//          break;
+comment|//        }
 block|}
 name|currentFrag
 operator|.
@@ -1129,7 +1129,7 @@ block|}
 comment|//Test what remains of the original text beyond the point where we stopped analyzing
 if|if
 condition|(
-comment|//					if there is text beyond the last token considered..
+comment|//          if there is text beyond the last token considered..
 operator|(
 name|lastEndOffset
 operator|<
@@ -1139,7 +1139,7 @@ name|length
 argument_list|()
 operator|)
 operator|&&
-comment|//					and that text is not too large...
+comment|//          and that text is not too large...
 operator|(
 name|text
 operator|.
@@ -1208,7 +1208,7 @@ argument_list|()
 expr_stmt|;
 comment|//If you are running with a version of Lucene before 11th Sept 03
 comment|// you do not have PriorityQueue.insert() - so uncomment the code below
-comment|/* 									if (currentFrag.getScore()>= minScore) 									{ 										fragQueue.put(currentFrag); 										if (fragQueue.size()> maxNumFragments) 										{ // if hit queue overfull 											fragQueue.pop(); // remove lowest in hit queue 											minScore = ((TextFragment) fragQueue.top()).getScore(); // reset minScore 										}   									} 				*/
+comment|/*                   if (currentFrag.getScore()>= minScore)                   {                     fragQueue.put(currentFrag);                     if (fragQueue.size()> maxNumFragments)                     { // if hit queue overfull                       fragQueue.pop(); // remove lowest in hit queue                       minScore = ((TextFragment) fragQueue.top()).getScore(); // reset minScore                     }                     }         */
 comment|//The above code caused a problem as a result of Christoph Goller's 11th Sept 03
 comment|//fix to PriorityQueue. The correct method to use here is the new "insert" method
 comment|// USE ABOVE CODE IF THIS DOES NOT COMPILE!
@@ -1386,11 +1386,11 @@ parameter_list|(
 name|Exception
 name|e
 parameter_list|)
-block|{ 				}
+block|{         }
 block|}
 block|}
 block|}
-comment|/** Improves readability of a score-sorted list of TextFragments by merging any fragments 	 * that were contiguous in the original text into one larger fragment with the correct order. 	 * This will leave a "null" in the array entry for the lesser scored fragment.  	 *  	 * @param frag An array of document fragments in descending score 	 */
+comment|/** Improves readability of a score-sorted list of TextFragments by merging any fragments    * that were contiguous in the original text into one larger fragment with the correct order.    * This will leave a "null" in the array entry for the lesser scored fragment.    *    * @param frag An array of document fragments in descending score    */
 DECL|method|mergeContiguousFragments
 specifier|private
 name|void
@@ -1673,7 +1673,7 @@ name|mergingStillBeingDone
 condition|)
 do|;
 block|}
-comment|/** 	 * Highlights terms in the  text , extracting the most relevant sections 	 * and concatenating the chosen fragments with a separator (typically "..."). 	 * The document text is analysed in chunks to record hit statistics 	 * across the document. After accumulating stats, the fragments with the highest scores 	 * are returned in order as "separator" delimited strings. 	 * 	 * @param text        text to highlight terms in 	 * @param maxNumFragments  the maximum number of fragments. 	 * @param separator  the separator used to intersperse the document fragments (typically "...") 	 * 	 * @return highlighted text 	 * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length 	 */
+comment|/**    * Highlights terms in the  text , extracting the most relevant sections    * and concatenating the chosen fragments with a separator (typically "...").    * The document text is analysed in chunks to record hit statistics    * across the document. After accumulating stats, the fragments with the highest scores    * are returned in order as "separator" delimited strings.    *    * @param text        text to highlight terms in    * @param maxNumFragments  the maximum number of fragments.    * @param separator  the separator used to intersperse the document fragments (typically "...")    *    * @return highlighted text    * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length    */
 DECL|method|getBestFragments
 specifier|public
 specifier|final
@@ -1803,7 +1803,7 @@ return|return
 name|textFragmenter
 return|;
 block|}
-comment|/** 	 * @param fragmenter 	 */
+comment|/**    * @param fragmenter    */
 DECL|method|setTextFragmenter
 specifier|public
 name|void
@@ -1818,7 +1818,7 @@ operator|=
 name|fragmenter
 expr_stmt|;
 block|}
-comment|/** 	 * @return Object used to score each text fragment  	 */
+comment|/**    * @return Object used to score each text fragment    */
 DECL|method|getFragmentScorer
 specifier|public
 name|Scorer
@@ -1829,7 +1829,7 @@ return|return
 name|fragmentScorer
 return|;
 block|}
-comment|/** 	 * @param scorer 	 */
+comment|/**    * @param scorer    */
 DECL|method|setFragmentScorer
 specifier|public
 name|void

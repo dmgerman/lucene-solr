@@ -39,7 +39,7 @@ name|INTERNAL_SEPARATOR
 init|=
 literal|"\u0000"
 decl_stmt|;
-comment|/**    * Get left id of specified word    * @param wordId    * @return	left id    */
+comment|/**    * Get left id of specified word    * @param wordId    * @return left id    */
 DECL|method|getLeftId
 specifier|public
 name|int
@@ -49,7 +49,7 @@ name|int
 name|wordId
 parameter_list|)
 function_decl|;
-comment|/**    * Get right id of specified word    * @param wordId    * @return	left id    */
+comment|/**    * Get right id of specified word    * @param wordId    * @return left id    */
 DECL|method|getRightId
 specifier|public
 name|int
@@ -59,7 +59,7 @@ name|int
 name|wordId
 parameter_list|)
 function_decl|;
-comment|/**    * Get word cost of specified word    * @param wordId    * @return	left id    */
+comment|/**    * Get word cost of specified word    * @param wordId    * @return left id    */
 DECL|method|getWordCost
 specifier|public
 name|int

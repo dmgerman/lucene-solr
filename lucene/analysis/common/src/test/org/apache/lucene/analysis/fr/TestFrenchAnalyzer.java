@@ -124,7 +124,7 @@ argument_list|,
 operator|new
 name|String
 index|[]
-block|{ 		}
+block|{     }
 argument_list|)
 expr_stmt|;
 name|assertAnalyzesTo
@@ -212,7 +212,7 @@ block|}
 argument_list|)
 expr_stmt|;
 comment|// let's do some french specific tests now
-comment|/* 1. couldn't resist 		 I would expect this to stay one term as in French the minus  		sign is often used for composing words */
+comment|/* 1. couldn't resist       I would expect this to stay one term as in French the minus      sign is often used for composing words */
 name|assertAnalyzesTo
 argument_list|(
 name|fa

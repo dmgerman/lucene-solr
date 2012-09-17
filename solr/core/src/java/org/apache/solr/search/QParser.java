@@ -995,7 +995,7 @@ block|{
 return|return
 literal|null
 return|;
-comment|/*** This is not ready for prime-time... see SOLR-1726      String pageScoreS = null;     String pageDocS = null;  	  pageScoreS = params.get(CommonParams.PAGESCORE); 	  pageDocS = params.get(CommonParams.PAGEDOC); 		   	  if (pageScoreS == null || pageDocS == null) 		  return null; 	   	  int pageDoc = pageDocS != null ? Integer.parseInt(pageDocS) : -1; 	  float pageScore = pageScoreS != null ? new Float(pageScoreS) : -1; 	  if(pageDoc != -1&& pageScore != -1){       return new ScoreDoc(pageDoc, pageScore);     } 	  else {       return null;     }      ***/
+comment|/*** This is not ready for prime-time... see SOLR-1726      String pageScoreS = null;     String pageDocS = null;      pageScoreS = params.get(CommonParams.PAGESCORE);     pageDocS = params.get(CommonParams.PAGEDOC);      if (pageScoreS == null || pageDocS == null)       return null;      int pageDoc = pageDocS != null ? Integer.parseInt(pageDocS) : -1;     float pageScore = pageScoreS != null ? new Float(pageScoreS) : -1;     if(pageDoc != -1&& pageScore != -1){       return new ScoreDoc(pageDoc, pageScore);     }     else {       return null;     }      ***/
 block|}
 comment|/**    * @param useGlobalParams look up sort, start, rows in global params if not in local params    * @return the sort specification    */
 DECL|method|getSort

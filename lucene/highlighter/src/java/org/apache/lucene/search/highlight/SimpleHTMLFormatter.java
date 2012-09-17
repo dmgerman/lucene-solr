@@ -96,7 +96,7 @@ name|DEFAULT_POST_TAG
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.apache.lucene.search.highlight.Formatter#highlightTerm(java.lang.String, org.apache.lucene.search.highlight.TokenGroup) 	 */
+comment|/* (non-Javadoc)    * @see org.apache.lucene.search.highlight.Formatter#highlightTerm(java.lang.String, org.apache.lucene.search.highlight.TokenGroup)    */
 DECL|method|highlightTerm
 specifier|public
 name|String

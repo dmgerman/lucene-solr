@@ -1199,8 +1199,8 @@ index|[
 name|j
 index|]
 decl_stmt|;
-comment|//				System.out.println("Doc: " + doc.toString());
-comment|//				System.out.println("Explain: " + searcher.explain(query, doc.doc));
+comment|//        System.out.println("Doc: " + doc.toString());
+comment|//        System.out.println("Explain: " + searcher.explain(query, doc.doc));
 name|assertTrue
 argument_list|(
 name|doc
@@ -2071,8 +2071,8 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|//		System.out.println("Doc: " + doc.toString());
-comment|//		System.out.println("Explain: " + searcher.explain(query, doc.doc));
+comment|//    System.out.println("Doc: " + doc.toString());
+comment|//    System.out.println("Explain: " + searcher.explain(query, doc.doc));
 name|assertTrue
 argument_list|(
 literal|"there should only be one hit"
@@ -2284,8 +2284,8 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|//		System.out.println("Doc: " + doc.toString());
-comment|//		System.out.println("Explain: " + searcher.explain(query, doc.doc));
+comment|//    System.out.println("Doc: " + doc.toString());
+comment|//    System.out.println("Explain: " + searcher.explain(query, doc.doc));
 name|assertTrue
 argument_list|(
 name|doc

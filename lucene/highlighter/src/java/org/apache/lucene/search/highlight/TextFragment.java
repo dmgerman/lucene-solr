@@ -106,7 +106,7 @@ return|return
 name|score
 return|;
 block|}
-comment|/** 	 * @param frag2 Fragment to be merged into this one 	 */
+comment|/**    * @param frag2 Fragment to be merged into this one    */
 DECL|method|merge
 specifier|public
 name|void
@@ -136,7 +136,7 @@ name|score
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param fragment  	 * @return true if this fragment follows the one passed 	 */
+comment|/**    * @param fragment    * @return true if this fragment follows the one passed    */
 DECL|method|follows
 specifier|public
 name|boolean
@@ -154,7 +154,7 @@ operator|.
 name|textEndPos
 return|;
 block|}
-comment|/** 	 * @return the fragment sequence number 	 */
+comment|/**    * @return the fragment sequence number    */
 DECL|method|getFragNum
 specifier|public
 name|int
@@ -165,7 +165,7 @@ return|return
 name|fragNum
 return|;
 block|}
-comment|/* Returns the marked-up text for this text fragment  	 */
+comment|/* Returns the marked-up text for this text fragment    */
 annotation|@
 name|Override
 DECL|method|toString

@@ -229,7 +229,7 @@ name|DBBI_AVAILABLE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*  	 * testcase for offsets 	 */
+comment|/*     * testcase for offsets    */
 DECL|method|testOffsets
 specifier|public
 name|void
@@ -451,7 +451,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 	 * Test that position increments are adjusted correctly for stopwords. 	 */
+comment|/*    * Test that position increments are adjusted correctly for stopwords.    */
 comment|// note this test uses stopfilter's stopset
 DECL|method|testPositionIncrements
 specifier|public

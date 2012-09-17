@@ -62,7 +62,7 @@ operator|=
 name|term
 expr_stmt|;
 block|}
-comment|/** 	 * @return the term value (stemmed) 	 */
+comment|/**    * @return the term value (stemmed)    */
 DECL|method|getTerm
 specifier|public
 name|String
@@ -73,7 +73,7 @@ return|return
 name|term
 return|;
 block|}
-comment|/** 	 * @return the weight associated with this term 	 */
+comment|/**    * @return the weight associated with this term    */
 DECL|method|getWeight
 specifier|public
 name|float
@@ -84,7 +84,7 @@ return|return
 name|weight
 return|;
 block|}
-comment|/** 	 * @param term the term value (stemmed) 	 */
+comment|/**    * @param term the term value (stemmed)    */
 DECL|method|setTerm
 specifier|public
 name|void
@@ -101,7 +101,7 @@ operator|=
 name|term
 expr_stmt|;
 block|}
-comment|/** 	 * @param weight the weight associated with this term 	 */
+comment|/**    * @param weight the weight associated with this term    */
 DECL|method|setWeight
 specifier|public
 name|void

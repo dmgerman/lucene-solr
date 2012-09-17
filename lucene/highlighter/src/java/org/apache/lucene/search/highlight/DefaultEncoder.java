@@ -34,7 +34,7 @@ DECL|method|DefaultEncoder
 specifier|public
 name|DefaultEncoder
 parameter_list|()
-block|{ 	}
+block|{   }
 DECL|method|encodeText
 specifier|public
 name|String

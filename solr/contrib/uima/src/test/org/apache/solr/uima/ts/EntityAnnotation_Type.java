@@ -503,7 +503,7 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** initialize variables to correspond with Cas Type and Features 	* @generated */
+comment|/** initialize variables to correspond with Cas Type and Features   * @generated */
 DECL|method|EntityAnnotation_Type
 specifier|public
 name|EntityAnnotation_Type

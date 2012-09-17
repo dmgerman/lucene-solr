@@ -53,7 +53,7 @@ argument_list|,
 literal|"BR"
 argument_list|)
 decl_stmt|;
-comment|/** 	 * Changed term 	 */
+comment|/**    * Changed term    */
 DECL|field|TERM
 specifier|private
 name|String
@@ -83,8 +83,8 @@ DECL|method|BrazilianStemmer
 specifier|public
 name|BrazilianStemmer
 parameter_list|()
-block|{ 	}
-comment|/** 	 * Stems the given term to an unique<tt>discriminator</tt>. 	 * 	 * @param term  The term that should be stemmed. 	 * @return      Discriminator for<tt>term</tt> 	 */
+block|{   }
+comment|/**    * Stems the given term to an unique<tt>discriminator</tt>.    *    * @param term  The term that should be stemmed.    * @return      Discriminator for<tt>term</tt>    */
 DECL|method|stem
 specifier|protected
 name|String
@@ -200,7 +200,7 @@ return|return
 name|CT
 return|;
 block|}
-comment|/** 	 * Checks a term if it can be processed correctly. 	 * 	 * @return  true if, and only if, the given term consists in letters. 	 */
+comment|/**    * Checks a term if it can be processed correctly.    *    * @return  true if, and only if, the given term consists in letters.    */
 DECL|method|isStemmable
 specifier|private
 name|boolean
@@ -254,7 +254,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * Checks a term if it can be processed indexed. 	 * 	 * @return  true if it can be indexed 	 */
+comment|/**    * Checks a term if it can be processed indexed.    *    * @return  true if it can be indexed    */
 DECL|method|isIndexable
 specifier|private
 name|boolean
@@ -284,7 +284,7 @@ literal|2
 operator|)
 return|;
 block|}
-comment|/** 	 * See if string is 'a','e','i','o','u'    *    * @return true if is vowel 	 */
+comment|/**    * See if string is 'a','e','i','o','u'    *    * @return true if is vowel    */
 DECL|method|isVowel
 specifier|private
 name|boolean
@@ -326,7 +326,7 @@ literal|'u'
 operator|)
 return|;
 block|}
-comment|/** 	 * Gets R1    *    * R1 - is the region after the first non-vowel following a vowel,    *      or is the null region at the end of the word if there is    *      no such non-vowel.    *    * @return null or a string representing R1 	 */
+comment|/**    * Gets R1    *    * R1 - is the region after the first non-vowel following a vowel,    *      or is the null region at the end of the word if there is    *      no such non-vowel.    *    * @return null or a string representing R1    */
 DECL|method|getR1
 specifier|private
 name|String
@@ -464,7 +464,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Gets RV    *    * RV - IF the second letter is a consonant, RV is the region after    *      the next following vowel,    *    *      OR if the first two letters are vowels, RV is the region    *      after the next consonant,    *    *      AND otherwise (consonant-vowel case) RV is the region after    *      the third letter.    *    *      BUT RV is the end of the word if this positions cannot be    *      found.    *    * @return null or a string representing RV 	 */
+comment|/**    * Gets RV    *    * RV - IF the second letter is a consonant, RV is the region after    *      the next following vowel,    *    *      OR if the first two letters are vowels, RV is the region    *      after the next consonant,    *    *      AND otherwise (consonant-vowel case) RV is the region after    *      the third letter.    *    *      BUT RV is the end of the word if this positions cannot be    *      found.    *    * @return null or a string representing RV    */
 DECL|method|getRV
 specifier|private
 name|String
@@ -677,7 +677,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * 1) Turn to lowercase    * 2) Remove accents    * 3) Ã£ -> a ; Ãµ -> o    * 4) Ã§ -> c    *    * @return null or a string transformed 	 */
+comment|/**    * 1) Turn to lowercase    * 2) Remove accents    * 3) Ã£ -> a ; Ãµ -> o    * 4) Ã§ -> c    *    * @return null or a string transformed    */
 DECL|method|changeTerm
 specifier|private
 name|String
@@ -963,7 +963,7 @@ return|return
 name|r
 return|;
 block|}
-comment|/**    * Check if a string ends with a suffix    *    * @return true if the string ends with the specified suffix 	 */
+comment|/**    * Check if a string ends with a suffix    *    * @return true if the string ends with the specified suffix    */
 DECL|method|suffix
 specifier|private
 name|boolean
@@ -1035,7 +1035,7 @@ name|suffix
 argument_list|)
 return|;
 block|}
-comment|/**    * Replace a string suffix by another    *    * @return the replaced String 	 */
+comment|/**    * Replace a string suffix by another    *    * @return the replaced String    */
 DECL|method|replaceSuffix
 specifier|private
 name|String
@@ -1112,7 +1112,7 @@ name|changeTo
 return|;
 block|}
 block|}
-comment|/**    * Remove a string suffix    *    * @return the String without the suffix 	 */
+comment|/**    * Remove a string suffix    *    * @return the String without the suffix    */
 DECL|method|removeSuffix
 specifier|private
 name|String
@@ -1172,7 +1172,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * See if a suffix is preceded by a String    *    * @return true if the suffix is preceded 	 */
+comment|/**    * See if a suffix is preceded by a String    *    * @return true if the suffix is preceded    */
 DECL|method|suffixPreceded
 specifier|private
 name|boolean
@@ -1236,7 +1236,7 @@ name|preceded
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Creates CT (changed term) , substituting * 'Ã£' and 'Ãµ' for 'a~' and 'o~'. 	 */
+comment|/**    * Creates CT (changed term) , substituting * 'Ã£' and 'Ãµ' for 'a~' and 'o~'.    */
 DECL|method|createCT
 specifier|private
 name|void
@@ -1525,7 +1525,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Standard suffix removal.    * Search for the longest among the following suffixes, and perform    * the following actions:    *    * @return false if no ending was removed 	 */
+comment|/**    * Standard suffix removal.    * Search for the longest among the following suffixes, and perform    * the following actions:    *    * @return false if no ending was removed    */
 DECL|method|step1
 specifier|private
 name|boolean
@@ -2887,7 +2887,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * Verb suffixes.    *    * Search for the longest among the following suffixes in RV,    * and if found, delete.    *    * @return false if no ending was removed 	*/
+comment|/**    * Verb suffixes.    *    * Search for the longest among the following suffixes in RV,    * and if found, delete.    *    * @return false if no ending was removed   */
 DECL|method|step2
 specifier|private
 name|boolean
@@ -5602,7 +5602,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * Delete suffix 'i' if in RV and preceded by 'c'    * 	*/
+comment|/**    * Delete suffix 'i' if in RV and preceded by 'c'    *   */
 DECL|method|step3
 specifier|private
 name|void
@@ -5646,7 +5646,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Residual suffix    *    * If the word ends with one of the suffixes (os a i o Ã¡ Ã­ Ã³)    * in RV, delete it    * 	*/
+comment|/**    * Residual suffix    *    * If the word ends with one of the suffixes (os a i o Ã¡ Ã­ Ã³)    * in RV, delete it    *   */
 DECL|method|step4
 specifier|private
 name|void
@@ -5745,7 +5745,7 @@ expr_stmt|;
 return|return ;
 block|}
 block|}
-comment|/** 	 * If the word ends with one of ( e Ã© Ãª) in RV,delete it,    * and if preceded by 'gu' (or 'ci') with the 'u' (or 'i') in RV,    * delete the 'u' (or 'i')    *    * Or if the word ends Ã§ remove the cedilha    * 	*/
+comment|/**    * If the word ends with one of ( e Ã© Ãª) in RV,delete it,    * and if preceded by 'gu' (or 'ci') with the 'u' (or 'i') in RV,    * delete the 'u' (or 'i')    *    * Or if the word ends Ã§ remove the cedilha    *   */
 DECL|method|step5
 specifier|private
 name|void
@@ -5845,7 +5845,7 @@ expr_stmt|;
 return|return ;
 block|}
 block|}
-comment|/** 	 * For log and debug purpose 	 * 	 * @return  TERM, CT, RV, R1 and R2 	 */
+comment|/**    * For log and debug purpose    *    * @return  TERM, CT, RV, R1 and R2    */
 DECL|method|log
 specifier|public
 name|String

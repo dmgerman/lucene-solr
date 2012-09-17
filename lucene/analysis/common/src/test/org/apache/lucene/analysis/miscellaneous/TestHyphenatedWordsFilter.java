@@ -208,7 +208,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Test that HyphenatedWordsFilter behaves correctly with a final hyphen 	 */
+comment|/**    * Test that HyphenatedWordsFilter behaves correctly with a final hyphen    */
 DECL|method|testHyphenAtEnd
 specifier|public
 name|void

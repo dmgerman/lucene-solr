@@ -411,7 +411,7 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** initialize variables to correspond with Cas Type and Features 	* @generated */
+comment|/** initialize variables to correspond with Cas Type and Features   * @generated */
 DECL|method|SentimentAnnotation_Type
 specifier|public
 name|SentimentAnnotation_Type

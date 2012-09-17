@@ -1982,7 +1982,7 @@ name|limit
 argument_list|)
 throw|;
 comment|// FIXME: report error somehow.
-comment|/* 	    fprintf(stderr, "faulty slice operation:\n"); 	    debug(z, -1, 0); 	    exit(1); 	    */
+comment|/*       fprintf(stderr, "faulty slice operation:\n");       debug(z, -1, 0);       exit(1);       */
 block|}
 block|}
 DECL|method|slice_from

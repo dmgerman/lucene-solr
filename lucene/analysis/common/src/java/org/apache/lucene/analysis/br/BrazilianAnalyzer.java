@@ -352,7 +352,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/** 	 * Contains words that should be indexed but not stemmed. 	 */
+comment|/**    * Contains words that should be indexed but not stemmed.    */
 DECL|field|excltable
 specifier|private
 name|CharArraySet
@@ -362,7 +362,7 @@ name|CharArraySet
 operator|.
 name|EMPTY_SET
 decl_stmt|;
-comment|/** 	 * Builds an analyzer with the default stop words ({@link #getDefaultStopSet()}). 	 */
+comment|/**    * Builds an analyzer with the default stop words ({@link #getDefaultStopSet()}).    */
 DECL|method|BrazilianAnalyzer
 specifier|public
 name|BrazilianAnalyzer

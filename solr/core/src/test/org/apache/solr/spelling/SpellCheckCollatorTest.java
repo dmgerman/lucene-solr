@@ -2995,7 +2995,7 @@ literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='flew']/ar
 argument_list|,
 literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='form']/arr[@name='suggestion']/lst/str[@name='word']='from'"
 argument_list|,
-comment|/* DirectSolrSpellChecker won't suggest if the edit distance> 2, so we can't test for this one... 				"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='heathrow']/arr[@name='suggestion']/lst/str[@name='word']='hearth'", */
+comment|/* DirectSolrSpellChecker won't suggest if the edit distance> 2, so we can't test for this one...         "//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='heathrow']/arr[@name='suggestion']/lst/str[@name='word']='hearth'", */
 literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/bool[@name='correctlySpelled']='false'"
 argument_list|,
 literal|"//lst[@name='spellcheck']/lst[@name='suggestions']/lst[@name='collation']/str[@name='collationQuery']='teststop:(flew AND from AND heathrow)'"
