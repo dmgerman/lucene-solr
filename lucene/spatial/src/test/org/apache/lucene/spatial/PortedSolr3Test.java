@@ -435,8 +435,6 @@ operator|new
 name|Param
 argument_list|(
 name|strategy
-argument_list|,
-literal|"recursive_geohash"
 argument_list|)
 block|}
 argument_list|)
@@ -473,8 +471,6 @@ operator|new
 name|Param
 argument_list|(
 name|strategy
-argument_list|,
-literal|"recursive_quad"
 argument_list|)
 block|}
 argument_list|)
@@ -511,8 +507,6 @@ operator|new
 name|Param
 argument_list|(
 name|strategy
-argument_list|,
-literal|"termquery_geohash"
 argument_list|)
 block|}
 argument_list|)
@@ -539,8 +533,6 @@ operator|new
 name|Param
 argument_list|(
 name|strategy
-argument_list|,
-literal|"twodoubles"
 argument_list|)
 block|}
 argument_list|)
@@ -549,7 +541,7 @@ return|return
 name|ctorArgs
 return|;
 block|}
-comment|// this is a hack for clover!
+comment|// this is a hack for clover! (otherwise strategy.toString() used as file name)
 DECL|class|Param
 specifier|static
 class|class
@@ -559,18 +551,11 @@ DECL|field|strategy
 name|SpatialStrategy
 name|strategy
 decl_stmt|;
-DECL|field|description
-name|String
-name|description
-decl_stmt|;
 DECL|method|Param
 name|Param
 parameter_list|(
 name|SpatialStrategy
 name|strategy
-parameter_list|,
-name|String
-name|description
 parameter_list|)
 block|{
 name|this
@@ -578,12 +563,6 @@ operator|.
 name|strategy
 operator|=
 name|strategy
-expr_stmt|;
-name|this
-operator|.
-name|description
-operator|=
-name|description
 expr_stmt|;
 block|}
 annotation|@
@@ -595,7 +574,10 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|description
+name|strategy
+operator|.
+name|getFieldName
+argument_list|()
 return|;
 block|}
 block|}
