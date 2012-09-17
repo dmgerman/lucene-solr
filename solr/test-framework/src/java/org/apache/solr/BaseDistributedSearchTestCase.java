@@ -1160,7 +1160,7 @@ expr_stmt|;
 name|String
 name|shardStr
 init|=
-literal|"localhost:"
+literal|"127.0.0.1:"
 operator|+
 name|j
 operator|.

@@ -465,7 +465,7 @@ name|TIMEOUT
 argument_list|,
 literal|10000
 argument_list|,
-literal|"localhost"
+literal|"127.0.0.1"
 argument_list|,
 literal|"8983"
 argument_list|,
@@ -630,7 +630,7 @@ name|TIMEOUT
 argument_list|,
 literal|10000
 argument_list|,
-literal|"localhost"
+literal|"127.0.0.1"
 argument_list|,
 literal|"8983"
 argument_list|,

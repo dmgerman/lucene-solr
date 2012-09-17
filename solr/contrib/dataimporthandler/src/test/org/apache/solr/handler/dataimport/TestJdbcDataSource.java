@@ -774,7 +774,7 @@ name|put
 argument_list|(
 literal|"url"
 argument_list|,
-literal|"jdbc:mysql://localhost/autos"
+literal|"jdbc:mysql://127.0.0.1/autos"
 argument_list|)
 expr_stmt|;
 name|p

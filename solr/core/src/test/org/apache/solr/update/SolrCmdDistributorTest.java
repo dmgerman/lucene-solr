@@ -562,7 +562,7 @@ expr_stmt|;
 name|String
 name|shardStr
 init|=
-literal|"localhost:"
+literal|"127.0.0.1:"
 operator|+
 name|j
 operator|.
@@ -1302,6 +1302,17 @@ operator|.
 name|CORE_NAME_PROP
 argument_list|,
 literal|""
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"node props:"
+operator|+
+name|nodeProps
 argument_list|)
 expr_stmt|;
 name|nodes
