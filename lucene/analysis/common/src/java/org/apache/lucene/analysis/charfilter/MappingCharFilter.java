@@ -74,9 +74,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
 name|util
 operator|.
-name|CharsRef
+name|RollingCharBuffer
 import|;
 end_import
 
@@ -90,7 +92,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|RollingCharBuffer
+name|CharsRef
 import|;
 end_import
 

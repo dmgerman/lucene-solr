@@ -40,6 +40,8 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
 name|util
 operator|.
 name|RollingCharBuffer
