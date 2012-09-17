@@ -846,7 +846,7 @@ specifier|public
 annotation_defn|@interface
 name|Slow
 block|{}
-comment|/**    * Annotation for tests that fail frequently. You can disable them    * if you want to run a long build and not stop on something that    * is a known problem.    *<pre>    * -Dtests.badapples=false    *</pre>    */
+comment|/**    * Annotation for tests that fail frequently and should    * be moved to a<a href="https://builds.apache.org/job/Lucene-BadApples-trunk-java7/">"vault" plan in Jenkins</a>.    *    * Tests annotated with this will be turned off by default. If you want to enable    * them, set:    *<pre>    * -Dtests.badapples=true    *</pre>    */
 annotation|@
 name|Documented
 annotation|@
@@ -863,7 +863,7 @@ name|TestGroup
 argument_list|(
 name|enabled
 operator|=
-literal|true
+literal|false
 argument_list|,
 name|sysProperty
 operator|=
