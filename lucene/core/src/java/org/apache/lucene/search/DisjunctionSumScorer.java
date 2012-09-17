@@ -199,6 +199,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|doc
+operator|!=
+name|NO_MORE_DOCS
+assert|;
 while|while
 condition|(
 literal|true
@@ -297,6 +302,23 @@ operator|.
 name|docID
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|doc
+operator|==
+name|NO_MORE_DOCS
+condition|)
+block|{
+name|nrMatchers
+operator|=
+name|Integer
+operator|.
+name|MAX_VALUE
+expr_stmt|;
+comment|// stop looping
+block|}
+else|else
+block|{
 name|score
 operator|=
 name|sub
@@ -318,6 +340,7 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// TODO: this currently scores, but so did the previous impl
 comment|// TODO: remove recursion.

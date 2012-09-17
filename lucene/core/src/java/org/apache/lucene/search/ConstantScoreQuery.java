@@ -865,6 +865,14 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|docIdSetIterator
+operator|.
+name|docID
+argument_list|()
+operator|!=
+name|NO_MORE_DOCS
+assert|;
 return|return
 name|theScore
 return|;
