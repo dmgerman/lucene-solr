@@ -1672,7 +1672,7 @@ name|getUrl
 parameter_list|()
 block|{
 return|return
-literal|"http://localhost:"
+literal|"http://127.0.0.1:"
 operator|+
 name|port
 operator|+

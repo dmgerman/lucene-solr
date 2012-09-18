@@ -549,7 +549,7 @@ index|[]
 name|shardsArr
 decl_stmt|;
 comment|// Some ISPs redirect to their own web site for domains that don't exist, causing this to fail
-comment|// protected String[] deadServers = {"does_not_exist_54321.com:33331/solr","localhost:33332/solr"};
+comment|// protected String[] deadServers = {"does_not_exist_54321.com:33331/solr","127.0.0.1:33332/solr"};
 DECL|field|deadServers
 specifier|protected
 name|String
@@ -557,7 +557,11 @@ index|[]
 name|deadServers
 init|=
 block|{
-literal|"[::1]:33332/solr"
+literal|"[ff01::114]:33332/solr"
+block|,
+literal|"[ff01::083]:33332/solr"
+block|,
+literal|"[ff01::213]:33332/solr"
 block|}
 decl_stmt|;
 DECL|field|testDir
@@ -1591,7 +1595,7 @@ comment|// setup the server...
 name|String
 name|url
 init|=
-literal|"http://localhost:"
+literal|"http://127.0.0.1:"
 operator|+
 name|port
 operator|+

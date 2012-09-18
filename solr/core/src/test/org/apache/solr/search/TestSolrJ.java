@@ -218,7 +218,7 @@ comment|// String addr = "http://odin.local:8983/solr";
 name|String
 name|addr
 init|=
-literal|"http://localhost:8983/solr"
+literal|"http://127.0.0.1:8983/solr"
 decl_stmt|;
 name|int
 name|i
@@ -949,7 +949,7 @@ init|=
 operator|new
 name|HttpSolrServer
 argument_list|(
-literal|"http://localhost:8983/solr"
+literal|"http://127.0.0.1:8983/solr"
 argument_list|)
 decl_stmt|;
 name|long

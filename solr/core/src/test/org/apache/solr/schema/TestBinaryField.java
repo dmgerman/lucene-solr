@@ -531,7 +531,7 @@ expr_stmt|;
 name|String
 name|url
 init|=
-literal|"http://localhost:"
+literal|"http://127.0.0.1:"
 operator|+
 name|jetty
 operator|.

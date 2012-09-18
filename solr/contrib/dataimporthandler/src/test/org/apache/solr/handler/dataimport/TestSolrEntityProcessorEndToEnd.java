@@ -299,7 +299,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|//rivate static final String SOLR_SOURCE_URL = "http://localhost:8983/solr";
+comment|//rivate static final String SOLR_SOURCE_URL = "http://127.0.0.1:8983/solr";
 DECL|field|SOLR_CONFIG
 specifier|private
 specifier|static
@@ -608,7 +608,7 @@ name|port
 parameter_list|)
 block|{
 return|return
-literal|"http://localhost:"
+literal|"http://127.0.0.1:"
 operator|+
 name|port
 operator|+
