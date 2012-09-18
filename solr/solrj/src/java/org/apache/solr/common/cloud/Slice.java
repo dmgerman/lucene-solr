@@ -182,6 +182,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * @param name  The name of the slice    * @param replicas The replicas of the slice.  This is used directly and a copy is not made.  If null, replicas will be constructed from props.    * @param props  The properties of the slice - a shallow copy will always be made.    */
 DECL|method|Slice
 specifier|public
 name|Slice
