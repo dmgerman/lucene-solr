@@ -251,6 +251,7 @@ end_comment
 begin_class
 DECL|class|NestedPulsingPostingsFormat
 specifier|public
+specifier|final
 class|class
 name|NestedPulsingPostingsFormat
 extends|extends

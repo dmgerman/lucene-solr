@@ -275,6 +275,7 @@ end_comment
 begin_class
 DECL|class|MockSepPostingsFormat
 specifier|public
+specifier|final
 class|class
 name|MockSepPostingsFormat
 extends|extends

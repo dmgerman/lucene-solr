@@ -651,6 +651,7 @@ end_comment
 begin_class
 DECL|class|MockRandomPostingsFormat
 specifier|public
+specifier|final
 class|class
 name|MockRandomPostingsFormat
 extends|extends

@@ -425,6 +425,7 @@ end_comment
 begin_class
 DECL|class|MockVariableIntBlockPostingsFormat
 specifier|public
+specifier|final
 class|class
 name|MockVariableIntBlockPostingsFormat
 extends|extends

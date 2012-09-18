@@ -383,6 +383,7 @@ end_comment
 begin_class
 DECL|class|MockFixedIntBlockPostingsFormat
 specifier|public
+specifier|final
 class|class
 name|MockFixedIntBlockPostingsFormat
 extends|extends

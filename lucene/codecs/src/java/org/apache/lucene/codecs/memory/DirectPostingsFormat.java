@@ -433,6 +433,7 @@ end_comment
 begin_class
 DECL|class|DirectPostingsFormat
 specifier|public
+specifier|final
 class|class
 name|DirectPostingsFormat
 extends|extends

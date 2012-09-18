@@ -565,6 +565,7 @@ end_comment
 begin_class
 DECL|class|MemoryPostingsFormat
 specifier|public
+specifier|final
 class|class
 name|MemoryPostingsFormat
 extends|extends

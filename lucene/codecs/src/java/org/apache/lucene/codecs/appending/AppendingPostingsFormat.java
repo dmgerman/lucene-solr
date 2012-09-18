@@ -178,6 +178,7 @@ end_comment
 
 begin_class
 DECL|class|AppendingPostingsFormat
+specifier|final
 class|class
 name|AppendingPostingsFormat
 extends|extends

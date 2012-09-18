@@ -135,6 +135,7 @@ end_comment
 begin_class
 DECL|class|TestBloomFilteredLucene40Postings
 specifier|public
+specifier|final
 class|class
 name|TestBloomFilteredLucene40Postings
 extends|extends

@@ -435,6 +435,7 @@ end_comment
 begin_class
 DECL|class|RAMOnlyPostingsFormat
 specifier|public
+specifier|final
 class|class
 name|RAMOnlyPostingsFormat
 extends|extends

@@ -297,6 +297,7 @@ annotation|@
 name|Override
 DECL|method|fieldsConsumer
 specifier|public
+specifier|final
 name|FieldsConsumer
 name|fieldsConsumer
 parameter_list|(
@@ -1083,6 +1084,7 @@ annotation|@
 name|Override
 DECL|method|fieldsProducer
 specifier|public
+specifier|final
 name|FieldsProducer
 name|fieldsProducer
 parameter_list|(

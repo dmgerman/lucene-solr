@@ -303,6 +303,7 @@ end_comment
 begin_class
 DECL|class|Lucene40WithOrds
 specifier|public
+specifier|final
 class|class
 name|Lucene40WithOrds
 extends|extends

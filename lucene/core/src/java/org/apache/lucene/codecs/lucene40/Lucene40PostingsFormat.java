@@ -281,6 +281,7 @@ end_comment
 begin_class
 DECL|class|Lucene40PostingsFormat
 specifier|public
+specifier|final
 class|class
 name|Lucene40PostingsFormat
 extends|extends
