@@ -203,7 +203,7 @@ return|return
 name|destination
 return|;
 block|}
-comment|/**    * @return tha maximum number of chars in source field to copy to destination field.    */
+comment|/**    * @return the maximum number of chars in source field to copy to destination field.    */
 DECL|method|getMaxChars
 specifier|public
 name|int
