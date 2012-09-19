@@ -1157,7 +1157,7 @@ name|numCategories
 init|=
 name|atLeast
 argument_list|(
-literal|5000
+literal|10000
 argument_list|)
 decl_stmt|;
 comment|// build an input taxonomy index

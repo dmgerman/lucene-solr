@@ -3192,32 +3192,15 @@ operator|.
 name|DEFAULT_DELIMITER
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|ordinal
 init|=
-name|findCategory
-argument_list|(
-name|cp
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|ordinal
-operator|<
-literal|0
-condition|)
-block|{
-comment|// NOTE: call addCategory so that it works well in a multi-threaded
-comment|// environment, in case e.g. a thread just added the category, after
-comment|// the findCategory() call above failed to find it.
-name|ordinal
-operator|=
 name|addCategory
 argument_list|(
 name|cp
 argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 name|docs
 operator|=
 name|te
