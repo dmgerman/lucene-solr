@@ -34,6 +34,7 @@ argument_list|>
 implements|,
 name|Cloneable
 block|{
+comment|/** An empty long array for convenience */
 DECL|field|EMPTY_LONGS
 specifier|public
 specifier|static
@@ -48,22 +49,26 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/** The contents of the LongsRef. Should never be {@code null}. */
 DECL|field|longs
 specifier|public
 name|long
 index|[]
 name|longs
 decl_stmt|;
+comment|/** Offset of first valid long. */
 DECL|field|offset
 specifier|public
 name|int
 name|offset
 decl_stmt|;
+comment|/** Length of used longs. */
 DECL|field|length
 specifier|public
 name|int
 name|length
 decl_stmt|;
+comment|/** Create a LongsRef with {@link #EMPTY_LONGS} */
 DECL|method|LongsRef
 specifier|public
 name|LongsRef
@@ -74,6 +79,7 @@ operator|=
 name|EMPTY_LONGS
 expr_stmt|;
 block|}
+comment|/**     * Create a LongsRef pointing to a new array of size<code>capacity</code>.    * Offset and length will both be zero.    */
 DECL|method|LongsRef
 specifier|public
 name|LongsRef
@@ -91,6 +97,7 @@ name|capacity
 index|]
 expr_stmt|;
 block|}
+comment|/** This instance will directly reference longs w/o making a copy.    * longs should not be null */
 DECL|method|LongsRef
 specifier|public
 name|LongsRef

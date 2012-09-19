@@ -28,13 +28,14 @@ name|MutableBits
 extends|extends
 name|Bits
 block|{
+comment|/**     * Sets the bit specified by<code>index</code> to false.     * @param index index, should be non-negative and&lt; {@link #length()}.    *        The result of passing negative or out of bounds values is undefined    *        by this interface,<b>just don't do it!</b>    */
 DECL|method|clear
 specifier|public
 name|void
 name|clear
 parameter_list|(
 name|int
-name|bit
+name|index
 parameter_list|)
 function_decl|;
 block|}

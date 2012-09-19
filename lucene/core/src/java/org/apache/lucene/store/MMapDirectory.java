@@ -173,6 +173,7 @@ name|useUnmapHack
 init|=
 name|UNMAP_SUPPORTED
 decl_stmt|;
+comment|/**     * Default max chunk size.    * @see #MMapDirectory(File, LockFactory, int)    */
 DECL|field|DEFAULT_MAX_BUFF
 specifier|public
 specifier|static

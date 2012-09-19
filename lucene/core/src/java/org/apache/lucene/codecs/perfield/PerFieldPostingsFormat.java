@@ -1102,9 +1102,7 @@ name|state
 argument_list|)
 return|;
 block|}
-comment|// NOTE: only called during writing; for reading we read
-comment|// all we need from the index (ie we save the field ->
-comment|// format mapping)
+comment|/**     * Returns the postings format that should be used for writing     * new segments of<code>field</code>.    *<p>    * The field to format mapping is written to the index, so    * this method is only invoked when writing, not when reading. */
 DECL|method|getPostingsFormatForField
 specifier|public
 specifier|abstract

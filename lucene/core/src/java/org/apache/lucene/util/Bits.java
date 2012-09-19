@@ -26,6 +26,7 @@ specifier|public
 interface|interface
 name|Bits
 block|{
+comment|/**     * Returns the value of the bit with the specified<code>index</code>.    * @param index index, should be non-negative and&lt; {@link #length()}.    *        The result of passing negative or out of bounds values is undefined    *        by this interface,<b>just don't do it!</b>    * @return<code>true</code> if the bit is set,<code>false</code> otherwise.    */
 DECL|method|get
 specifier|public
 name|boolean
@@ -35,6 +36,7 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
+comment|/** Returns the number of bits in this set */
 DECL|method|length
 specifier|public
 name|int

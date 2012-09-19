@@ -59,6 +59,8 @@ name|Scorer
 extends|extends
 name|DocIdSetIterator
 block|{
+comment|/** the Scorer's parent Weight. in some cases this may be null */
+comment|// TODO can we clean this up?
 DECL|field|weight
 specifier|protected
 specifier|final

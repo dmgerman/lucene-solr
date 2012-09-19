@@ -1073,6 +1073,7 @@ name|this
 return|;
 block|}
 block|}
+comment|/** Returns this FilteredQuery's (unfiltered) Query */
 DECL|method|getQuery
 specifier|public
 specifier|final
@@ -1084,6 +1085,7 @@ return|return
 name|query
 return|;
 block|}
+comment|/** Returns this FilteredQuery's filter */
 DECL|method|getFilter
 specifier|public
 specifier|final
