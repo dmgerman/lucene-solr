@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This class provides a {@link Field} that enables storing  * of a per-document float value for scoring, sorting or value retrieval. Here's an  * example usage:  *   *<pre class="prettyprint">  *   document.add(new FloatDocValuesField(name, 22f));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  * @see DocValues for further information  * */
+comment|/**  *<p>  * This class provides a {@link Field} that enables storing  * of a per-document float value for scoring, sorting or value retrieval. Here's an  * example usage:  *   *<pre class="prettyprint">  *   document.add(new FloatDocValuesField(name, 22f));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  * @see DocValues  * */
 end_comment
 
 begin_class
