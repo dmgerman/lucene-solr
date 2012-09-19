@@ -312,6 +312,8 @@ argument_list|(
 literal|"shard1"
 argument_list|,
 name|sliceToProps
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|slices
@@ -332,6 +334,8 @@ argument_list|(
 literal|"shard2"
 argument_list|,
 name|sliceToProps
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|slices
