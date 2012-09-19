@@ -24,9 +24,27 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|update
 operator|.
-name|SolrRequestHandler
+name|processor
+operator|.
+name|UpdateRequestProcessorChain
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|update
+operator|.
+name|processor
+operator|.
+name|RegexReplaceProcessorFactory
 import|;
 end_import
 
@@ -56,9 +74,15 @@ name|DocumentBuilderFactory
 import|;
 end_import
 
-begin_comment
-comment|/**  *  *  **/
-end_comment
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Assume
+import|;
+end_import
 
 begin_class
 DECL|class|TestXIncludeConfig
@@ -68,11 +92,6 @@ name|TestXIncludeConfig
 extends|extends
 name|AbstractSolrTestCase
 block|{
-DECL|field|supports
-specifier|protected
-name|boolean
-name|supports
-decl_stmt|;
 annotation|@
 name|Override
 DECL|method|getSchemaFile
@@ -82,7 +101,7 @@ name|getSchemaFile
 parameter_list|()
 block|{
 return|return
-literal|"schema.xml"
+literal|"schema-xinclude.xml"
 return|;
 block|}
 comment|//public String getSolrConfigFile() { return "solrconfig.xml"; }
@@ -108,10 +127,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|supports
-operator|=
-literal|true
-expr_stmt|;
 name|javax
 operator|.
 name|xml
@@ -150,9 +165,12 @@ name|UnsupportedOperationException
 name|e
 parameter_list|)
 block|{
-name|supports
-operator|=
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
 literal|false
+argument_list|)
 expr_stmt|;
 block|}
 name|super
@@ -169,15 +187,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|//Figure out whether this JVM supports XInclude anyway, if it doesn't then don't run this test????
-comment|// TODO: figure out a better way to handle this.
-if|if
-condition|(
-name|supports
-operator|==
-literal|true
-condition|)
-block|{
 name|SolrCore
 name|core
 init|=
@@ -186,34 +195,99 @@ operator|.
 name|getCore
 argument_list|()
 decl_stmt|;
-name|SolrRequestHandler
-name|solrRequestHandler
-init|=
+name|assertNotNull
+argument_list|(
+literal|"includedHandler is null"
+argument_list|,
 name|core
 operator|.
 name|getRequestHandler
 argument_list|(
 literal|"includedHandler"
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|UpdateRequestProcessorChain
+name|chain
+init|=
+name|core
+operator|.
+name|getUpdateProcessingChain
+argument_list|(
+literal|"special-include"
+argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Solr Req Handler is null"
+literal|"chain is missing included processor"
 argument_list|,
-name|solrRequestHandler
+name|chain
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|log
-operator|.
-name|info
+name|assertEquals
 argument_list|(
-literal|"Didn't run testXInclude, because this XML DocumentBuilderFactory doesn't support it"
+literal|"chain with inclued processor is wrong size"
+argument_list|,
+literal|1
+argument_list|,
+name|chain
+operator|.
+name|getFactories
+argument_list|()
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
-block|}
+name|assertEquals
+argument_list|(
+literal|"chain has wrong included processor"
+argument_list|,
+name|RegexReplaceProcessorFactory
+operator|.
+name|class
+argument_list|,
+name|chain
+operator|.
+name|getFactories
+argument_list|()
+index|[
+literal|0
+index|]
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"ft-included is null"
+argument_list|,
+name|core
+operator|.
+name|getSchema
+argument_list|()
+operator|.
+name|getFieldTypeByName
+argument_list|(
+literal|"ft-included"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"field-included is null"
+argument_list|,
+name|core
+operator|.
+name|getSchema
+argument_list|()
+operator|.
+name|getFieldOrNull
+argument_list|(
+literal|"field-included"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
