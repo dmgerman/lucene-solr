@@ -1192,7 +1192,7 @@ specifier|final
 name|String
 name|CACHE_PRIMARY_KEY
 init|=
-literal|"cachePk"
+literal|"cacheKey"
 decl_stmt|;
 comment|/**    *<p>    * If true, a pre-existing cache is re-opened for read-only access.    *</p>    */
 DECL|field|CACHE_READ_ONLY
