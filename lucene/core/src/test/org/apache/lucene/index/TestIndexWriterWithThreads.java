@@ -2734,15 +2734,8 @@ specifier|final
 name|BaseDirectoryWrapper
 name|d
 init|=
-name|newFSDirectory
-argument_list|(
-name|_TestUtil
-operator|.
-name|getTempDir
-argument_list|(
-literal|"RollbackAndCommitWithThreads"
-argument_list|)
-argument_list|)
+name|newDirectory
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -2845,7 +2838,7 @@ name|iters
 init|=
 name|atLeast
 argument_list|(
-literal|1000
+literal|100
 argument_list|)
 decl_stmt|;
 specifier|final
