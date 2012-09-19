@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * This class provides a {@link Field} that enables storing  * of a per-document {@link BytesRef} value.  The values are  * stored indirectly, such that many documents sharing the  * same value all point to a single copy of the value, which  * is a good fit when the fields share values.  If values  * are (mostly) unique it's better to use {@link  * StraightBytesDocValuesField}.  Here's an example usage:   *   *<pre class="prettyprint">  *   document.add(new DerefBytesDocValuesField(name, new BytesRef("hello")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * @see DocValues  * */
+comment|/**  *<p>  * Field that stores  * a per-document {@link BytesRef} value.  The values are  * stored indirectly, such that many documents sharing the  * same value all point to a single copy of the value, which  * is a good fit when the fields share values.  If values  * are (mostly) unique it's better to use {@link  * StraightBytesDocValuesField}.  Here's an example usage:   *   *<pre class="prettyprint">  *   document.add(new DerefBytesDocValuesField(name, new BytesRef("hello")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * @see DocValues  * */
 end_comment
 
 begin_class
