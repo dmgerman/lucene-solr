@@ -36,6 +36,7 @@ specifier|final
 name|float
 name|c
 decl_stmt|;
+comment|/**    * Creates NormalizationH1 with the supplied parameter<code>c</code>.    * @param c hyper-parameter that controls the term frequency     * normalization with respect to the document length.    */
 DECL|method|NormalizationH1
 specifier|public
 name|NormalizationH1
@@ -51,6 +52,7 @@ operator|=
 name|c
 expr_stmt|;
 block|}
+comment|/**    * Calls {@link #NormalizationH1(float) NormalizationH1(1)}    */
 DECL|method|NormalizationH1
 specifier|public
 name|NormalizationH1
@@ -103,6 +105,7 @@ return|return
 literal|"1"
 return|;
 block|}
+comment|/**    * Returns the<code>c</code> parameter.    * @see #NormalizationH1(float)    */
 DECL|method|getC
 specifier|public
 name|float

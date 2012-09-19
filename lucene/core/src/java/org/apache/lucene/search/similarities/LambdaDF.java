@@ -44,6 +44,12 @@ name|LambdaDF
 extends|extends
 name|Lambda
 block|{
+comment|/** Sole constructor: parameter-free */
+DECL|method|LambdaDF
+specifier|public
+name|LambdaDF
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|lambda

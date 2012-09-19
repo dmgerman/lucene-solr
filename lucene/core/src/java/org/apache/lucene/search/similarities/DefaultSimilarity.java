@@ -72,6 +72,12 @@ name|DefaultSimilarity
 extends|extends
 name|TFIDFSimilarity
 block|{
+comment|/** Sole constructor: parameter-free */
+DECL|method|DefaultSimilarity
+specifier|public
+name|DefaultSimilarity
+parameter_list|()
+block|{}
 comment|/** Implemented as<code>overlap / maxOverlap</code>. */
 DECL|method|coord
 specifier|public
@@ -304,7 +310,7 @@ literal|1.0
 argument_list|)
 return|;
 block|}
-comment|// Default true
+comment|/**     * True if overlap tokens (tokens with a position of increment of zero) are    * discounted from the document's length.    */
 DECL|field|discountOverlaps
 specifier|protected
 name|boolean
@@ -327,7 +333,7 @@ operator|=
 name|v
 expr_stmt|;
 block|}
-comment|/** @see #setDiscountOverlaps */
+comment|/**    * Returns true if overlap tokens are discounted from the document's length.     * @see #setDiscountOverlaps     */
 DECL|method|getDiscountOverlaps
 specifier|public
 name|boolean

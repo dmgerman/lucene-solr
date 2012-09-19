@@ -167,6 +167,12 @@ name|TFIDFSimilarity
 extends|extends
 name|Similarity
 block|{
+comment|/**    * Sole constructor. (For invocation by subclass     * constructors, typically implicit.)    */
+DECL|method|TFIDFSimilarity
+specifier|public
+name|TFIDFSimilarity
+parameter_list|()
+block|{}
 comment|/** Computes a score factor based on the fraction of all query terms that a    * document contains.  This value is multiplied into scores.    *    *<p>The presence of a large portion of the query terms indicates a better    * match with the query, so implementations of this method usually return    * larger values when the ratio between these parameters is large and smaller    * values when the ratio between them is small.    *    * @param overlap the number of query terms matched in the document    * @param maxOverlap the total number of terms in the query    * @return a score factor based on term overlap with the query    */
 annotation|@
 name|Override

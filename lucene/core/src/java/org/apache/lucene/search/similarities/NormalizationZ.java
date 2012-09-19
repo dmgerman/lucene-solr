@@ -35,6 +35,7 @@ specifier|final
 name|float
 name|z
 decl_stmt|;
+comment|/**    * Calls {@link #NormalizationZ(float) NormalizationZ(0.3)}    */
 DECL|method|NormalizationZ
 specifier|public
 name|NormalizationZ
@@ -46,6 +47,7 @@ literal|0.30F
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Creates NormalizationZ with the supplied parameter<code>z</code>.    * @param z represents<code>A/(A+1)</code> where<code>A</code>     *          measures the specificity of the language.    */
 DECL|method|NormalizationZ
 specifier|public
 name|NormalizationZ
@@ -116,6 +118,7 @@ operator|+
 literal|")"
 return|;
 block|}
+comment|/**    * Returns the parameter<code>z</code>    * @see #NormalizationZ(float)    */
 DECL|method|getZ
 specifier|public
 name|float

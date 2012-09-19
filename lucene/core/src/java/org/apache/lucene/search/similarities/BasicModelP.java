@@ -62,6 +62,12 @@ operator|.
 name|E
 argument_list|)
 decl_stmt|;
+comment|/** Sole constructor: parameter-free */
+DECL|method|BasicModelP
+specifier|public
+name|BasicModelP
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|score

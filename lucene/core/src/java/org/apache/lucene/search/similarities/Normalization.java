@@ -43,6 +43,12 @@ specifier|abstract
 class|class
 name|Normalization
 block|{
+comment|/**    * Sole constructor. (For invocation by subclass     * constructors, typically implicit.)    */
+DECL|method|Normalization
+specifier|public
+name|Normalization
+parameter_list|()
+block|{}
 comment|/** Returns the normalized term frequency.    * @param len the field length. */
 DECL|method|tfn
 specifier|public
@@ -166,6 +172,12 @@ name|NoNormalization
 extends|extends
 name|Normalization
 block|{
+comment|/** Sole constructor: parameter-free */
+DECL|method|NoNormalization
+specifier|public
+name|NoNormalization
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|tfn

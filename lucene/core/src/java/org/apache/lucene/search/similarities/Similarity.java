@@ -285,6 +285,12 @@ specifier|abstract
 class|class
 name|Similarity
 block|{
+comment|/**    * Sole constructor. (For invocation by subclass     * constructors, typically implicit.)    */
+DECL|method|Similarity
+specifier|public
+name|Similarity
+parameter_list|()
+block|{}
 comment|/** Hook to integrate coordinate-level matching.    *<p>    * By default this is disabled (returns<code>1</code>), as with    * most modern models this will only skew performance, but some    * implementations such as {@link TFIDFSimilarity} override this.    *    * @param overlap the number of query terms matched in the document    * @param maxOverlap the total number of terms in the query    * @return a score factor based on term overlap with the query    */
 DECL|method|coord
 specifier|public
@@ -388,6 +394,12 @@ specifier|abstract
 class|class
 name|ExactSimScorer
 block|{
+comment|/**      * Sole constructor. (For invocation by subclass       * constructors, typically implicit.)      */
+DECL|method|ExactSimScorer
+specifier|public
+name|ExactSimScorer
+parameter_list|()
+block|{}
 comment|/**      * Score a single document      * @param doc document id      * @param freq term frequency      * @return document's score      */
 DECL|method|score
 specifier|public
@@ -468,6 +480,12 @@ specifier|abstract
 class|class
 name|SloppySimScorer
 block|{
+comment|/**      * Sole constructor. (For invocation by subclass       * constructors, typically implicit.)      */
+DECL|method|SloppySimScorer
+specifier|public
+name|SloppySimScorer
+parameter_list|()
+block|{}
 comment|/**      * Score a single document      * @param doc document id within the inverted index segment      * @param freq sloppy term frequency      * @return document's score      */
 DECL|method|score
 specifier|public
@@ -576,6 +594,12 @@ specifier|abstract
 class|class
 name|SimWeight
 block|{
+comment|/**      * Sole constructor. (For invocation by subclass       * constructors, typically implicit.)      */
+DECL|method|SimWeight
+specifier|public
+name|SimWeight
+parameter_list|()
+block|{}
 comment|/** The value for normalization of contained query clauses (e.g. sum of squared weights).      *<p>      * NOTE: a Similarity implementation might not use any query normalization at all,      * its not required. However, if it wants to participate in query normalization,      * it can return a value here.      */
 DECL|method|getValueForNormalization
 specifier|public

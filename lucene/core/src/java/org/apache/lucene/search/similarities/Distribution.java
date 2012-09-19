@@ -43,6 +43,12 @@ specifier|abstract
 class|class
 name|Distribution
 block|{
+comment|/**    * Sole constructor. (For invocation by subclass     * constructors, typically implicit.)    */
+DECL|method|Distribution
+specifier|public
+name|Distribution
+parameter_list|()
+block|{}
 comment|/** Computes the score. */
 DECL|method|score
 specifier|public

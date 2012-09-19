@@ -43,6 +43,12 @@ specifier|abstract
 class|class
 name|BasicModel
 block|{
+comment|/**    * Sole constructor. (For invocation by subclass     * constructors, typically implicit.)    */
+DECL|method|BasicModel
+specifier|public
+name|BasicModel
+parameter_list|()
+block|{}
 comment|/** Returns the informative content score. */
 DECL|method|score
 specifier|public

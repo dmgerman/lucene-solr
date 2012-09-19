@@ -667,7 +667,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|getDocValuesType
-specifier|public
+specifier|private
+specifier|static
 name|DocValues
 operator|.
 name|Type

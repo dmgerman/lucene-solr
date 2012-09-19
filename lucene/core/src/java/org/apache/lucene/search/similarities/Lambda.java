@@ -43,6 +43,12 @@ specifier|abstract
 class|class
 name|Lambda
 block|{
+comment|/**    * Sole constructor. (For invocation by subclass     * constructors, typically implicit.)    */
+DECL|method|Lambda
+specifier|public
+name|Lambda
+parameter_list|()
+block|{}
 comment|/** Computes the lambda parameter. */
 DECL|method|lambda
 specifier|public

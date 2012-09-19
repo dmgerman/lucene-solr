@@ -179,6 +179,7 @@ name|float
 name|b
 decl_stmt|;
 comment|// TODO: should we add a delta like sifaka.cs.uiuc.edu/~ylv2/pub/sigir11-bm25l.pdf ?
+comment|/**    * BM25 with the supplied parameter values.    * @param k1 Controls non-linear term frequency normalization (saturation).    * @param b Controls to what degree document length normalizes tf values.    */
 DECL|method|BM25Similarity
 specifier|public
 name|BM25Similarity
@@ -406,7 +407,7 @@ literal|0xFF
 index|]
 return|;
 block|}
-comment|// Default true
+comment|/**     * True if overlap tokens (tokens with a position of increment of zero) are    * discounted from the document's length.    */
 DECL|field|discountOverlaps
 specifier|protected
 name|boolean
@@ -414,7 +415,7 @@ name|discountOverlaps
 init|=
 literal|true
 decl_stmt|;
-comment|/** Determines whether overlap tokens (Tokens with 0 position increment) are     *  ignored when computing norm.  By default this is true, meaning overlap    *  tokens do not count when computing norms. */
+comment|/** Sets whether overlap tokens (Tokens with 0 position increment) are     *  ignored when computing norm.  By default this is true, meaning overlap    *  tokens do not count when computing norms. */
 DECL|method|setDiscountOverlaps
 specifier|public
 name|void
@@ -429,7 +430,7 @@ operator|=
 name|v
 expr_stmt|;
 block|}
-comment|/** @see #setDiscountOverlaps */
+comment|/**    * Returns true if overlap tokens are discounted from the document's length.     * @see #setDiscountOverlaps     */
 DECL|method|getDiscountOverlaps
 specifier|public
 name|boolean
@@ -552,6 +553,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Computes a score factor for a simple term and returns an explanation    * for that score factor.    *     *<p>    * The default implementation uses:    *     *<pre class="prettyprint">    * idf(docFreq, searcher.maxDoc());    *</pre>    *     * Note that {@link CollectionStatistics#maxDoc()} is used instead of    * {@link org.apache.lucene.index.IndexReader#numDocs() IndexReader#numDocs()} because also     * {@link TermStatistics#docFreq()} is used, and when the latter     * is inaccurate, so is {@link CollectionStatistics#maxDoc()}, and in the same direction.    * In addition, {@link CollectionStatistics#maxDoc()} is more efficient to compute    *       * @param collectionStats collection-level statistics    * @param termStats term-level statistics for the term    * @return an Explain object that includes both an idf score factor               and an explanation for the term.    */
 DECL|method|idfExplain
 specifier|public
 name|Explanation
@@ -611,6 +613,7 @@ literal|")"
 argument_list|)
 return|;
 block|}
+comment|/**    * Computes a score factor for a phrase.    *     *<p>    * The default implementation sums the idf factor for    * each term in the phrase.    *     * @param collectionStats collection-level statistics    * @param termStats term-level statistics for the terms in the phrase    * @return an Explain object that includes both an idf     *         score factor for the phrase and an explanation     *         for each term.    */
 DECL|method|idfExplain
 specifier|public
 name|Explanation
@@ -1983,6 +1986,7 @@ operator|+
 literal|")"
 return|;
 block|}
+comment|/**     * Returns the<code>k1</code> parameter    * @see #BM25Similarity(float, float)     */
 DECL|method|getK1
 specifier|public
 name|float
@@ -1993,6 +1997,7 @@ return|return
 name|k1
 return|;
 block|}
+comment|/**    * Returns the<code>b</code> parameter     * @see #BM25Similarity(float, float)     */
 DECL|method|getB
 specifier|public
 name|float

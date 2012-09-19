@@ -111,6 +111,12 @@ name|PerFieldSimilarityWrapper
 extends|extends
 name|Similarity
 block|{
+comment|/**    * Sole constructor. (For invocation by subclass     * constructors, typically implicit.)    */
+DECL|method|PerFieldSimilarityWrapper
+specifier|public
+name|PerFieldSimilarityWrapper
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|computeNorm

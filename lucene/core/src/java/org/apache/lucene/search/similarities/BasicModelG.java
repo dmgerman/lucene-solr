@@ -48,6 +48,12 @@ name|BasicModelG
 extends|extends
 name|BasicModel
 block|{
+comment|/** Sole constructor: parameter-free */
+DECL|method|BasicModelG
+specifier|public
+name|BasicModelG
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|score

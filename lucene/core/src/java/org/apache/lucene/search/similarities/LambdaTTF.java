@@ -44,6 +44,12 @@ name|LambdaTTF
 extends|extends
 name|Lambda
 block|{
+comment|/** Sole constructor: parameter-free */
+DECL|method|LambdaTTF
+specifier|public
+name|LambdaTTF
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|lambda

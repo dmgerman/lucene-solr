@@ -30,6 +30,12 @@ name|DistributionSPL
 extends|extends
 name|Distribution
 block|{
+comment|/** Sole constructor: parameter-free */
+DECL|method|DistributionSPL
+specifier|public
+name|DistributionSPL
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|score
