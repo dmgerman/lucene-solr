@@ -1,12 +1,16 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.zookeeper
+DECL|package|org.apache.solr.common.cloud
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|zookeeper
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
 package|;
 end_package
 
@@ -87,6 +91,42 @@ operator|.
 name|concurrent
 operator|.
 name|CopyOnWriteArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|ClientCnxn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|Watcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|ZooKeeper
 import|;
 end_import
 
@@ -187,6 +227,8 @@ init|)
 block|{
 try|try
 block|{
+comment|// nocommit: reflect me, move me somewehre else as static method,
+comment|// something. i am only used by tests! the rest of this file is clean.
 operator|(
 operator|(
 name|SocketChannel
