@@ -636,7 +636,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * {@inheritDoc}    *<p>    * The default is {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS}.    * @see #setIndexOptions(FieldInfo.IndexOptions)    */
+comment|/**    * {@inheritDoc}    *<p>    * The default is {@link IndexOptions#DOCS_AND_FREQS_AND_POSITIONS}.    * @see #setIndexOptions(org.apache.lucene.index.FieldInfo.IndexOptions)    */
 DECL|method|indexOptions
 specifier|public
 name|IndexOptions

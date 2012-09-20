@@ -54,6 +54,24 @@ name|AttributeSource
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_comment
 comment|/** Iterates through the documents and term freqs.  *  NOTE: you must first call {@link #nextDoc} before using  *  any of the per-doc methods. */
 end_comment

@@ -2154,7 +2154,7 @@ name|value
 init|=
 literal|null
 decl_stmt|;
-comment|/** Creates a new TokenStream that returns a String as single token.      *<p>Warning: Does not initialize the value, you must call      * {@link #setValue()} afterwards!      */
+comment|/** Creates a new TokenStream that returns a String as single token.      *<p>Warning: Does not initialize the value, you must call      * {@link #setValue(String)} afterwards!      */
 DECL|method|StringTokenStream
 name|StringTokenStream
 parameter_list|()
