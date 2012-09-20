@@ -90,7 +90,6 @@ name|String
 name|logField
 decl_stmt|;
 DECL|method|SolrUIMAConfiguration
-specifier|public
 name|SolrUIMAConfiguration
 parameter_list|(
 name|String
@@ -196,7 +195,6 @@ name|fieldsMerging
 return|;
 block|}
 DECL|method|getTypesFeaturesFieldsMapping
-specifier|public
 name|Map
 argument_list|<
 name|String
