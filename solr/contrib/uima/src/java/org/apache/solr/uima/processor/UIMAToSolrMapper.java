@@ -231,7 +231,6 @@ expr_stmt|;
 block|}
 comment|/**    * map features of a certain UIMA type to corresponding Solr fields based on the mapping    *    * @param typeName             name of UIMA type to map    * @param featureFieldsmapping    */
 DECL|method|map
-specifier|public
 name|void
 name|map
 parameter_list|(
