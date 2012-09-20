@@ -993,7 +993,6 @@ return|;
 block|}
 block|}
 DECL|method|setDoc
-specifier|public
 name|void
 name|setDoc
 parameter_list|(
