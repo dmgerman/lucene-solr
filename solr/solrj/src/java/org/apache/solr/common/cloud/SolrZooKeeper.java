@@ -135,6 +135,7 @@ extends|extends
 name|ZooKeeper
 block|{
 DECL|field|spawnedThreads
+specifier|final
 name|Set
 argument_list|<
 name|Thread
