@@ -115,6 +115,7 @@ name|PhoneticFilter
 extends|extends
 name|TokenFilter
 block|{
+comment|/** true if encoded tokens should be added as synonyms */
 DECL|field|inject
 specifier|protected
 name|boolean
@@ -122,6 +123,7 @@ name|inject
 init|=
 literal|true
 decl_stmt|;
+comment|/** phonetic encoder */
 DECL|field|encoder
 specifier|protected
 name|Encoder
@@ -129,6 +131,7 @@ name|encoder
 init|=
 literal|null
 decl_stmt|;
+comment|/** captured state, non-null when<code>inject=true</code> and a token is buffered */
 DECL|field|save
 specifier|protected
 name|State
@@ -162,6 +165,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/** Creates a PhoneticFilter with the specified encoder, and either    *  adding encoded forms as synonyms (<code>inject=true</code>) or    *  replacing them.    */
 DECL|method|PhoneticFilter
 specifier|public
 name|PhoneticFilter

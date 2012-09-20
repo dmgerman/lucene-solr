@@ -164,6 +164,26 @@ name|analysis
 operator|.
 name|util
 operator|.
+name|AbstractAnalysisFactory
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
 name|TokenFilterFactory
 import|;
 end_import
@@ -190,6 +210,12 @@ specifier|private
 name|LanguageSet
 name|languageSet
 decl_stmt|;
+comment|/** Sole constructor. See {@link AbstractAnalysisFactory} for initialization lifecycle. */
+DECL|method|BeiderMorseFilterFactory
+specifier|public
+name|BeiderMorseFilterFactory
+parameter_list|()
+block|{}
 DECL|method|init
 specifier|public
 name|void

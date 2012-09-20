@@ -149,6 +149,12 @@ specifier|static
 name|Trie
 name|trie
 decl_stmt|;
+comment|/** no instantiation */
+DECL|method|Compile
+specifier|private
+name|Compile
+parameter_list|()
+block|{}
 comment|/**    * Entry point to the Compile application.    *<p>    * This program takes any number of arguments: the first is the name of the    * desired stemming algorithm to use (a list is available in the package    * description) , all of the rest should be the path or paths to a file or    * files containing a stemmer table to compile.    *     * @param args the command line arguments    */
 DECL|method|main
 specifier|public

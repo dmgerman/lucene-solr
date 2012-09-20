@@ -92,6 +92,26 @@ name|analysis
 operator|.
 name|util
 operator|.
+name|AbstractAnalysisFactory
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
 name|TokenFilterFactory
 import|;
 end_import
@@ -108,6 +128,12 @@ name|StempelPolishStemFilterFactory
 extends|extends
 name|TokenFilterFactory
 block|{
+comment|/** Sole constructor. See {@link AbstractAnalysisFactory} for initialization lifecycle. */
+DECL|method|StempelPolishStemFilterFactory
+specifier|public
+name|StempelPolishStemFilterFactory
+parameter_list|()
+block|{}
 DECL|method|create
 specifier|public
 name|TokenStream

@@ -45,6 +45,12 @@ specifier|abstract
 class|class
 name|ICUTokenizerConfig
 block|{
+comment|/**    * Sole constructor. (For invocation by subclass     * constructors, typically implicit.)    */
+DECL|method|ICUTokenizerConfig
+specifier|public
+name|ICUTokenizerConfig
+parameter_list|()
+block|{}
 comment|/** Return a breakiterator capable of processing a given script. */
 DECL|method|getBreakIterator
 specifier|public

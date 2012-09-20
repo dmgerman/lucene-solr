@@ -70,6 +70,26 @@ name|analysis
 operator|.
 name|util
 operator|.
+name|AbstractAnalysisFactory
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
 name|TokenFilterFactory
 import|;
 end_import
@@ -86,6 +106,7 @@ name|DoubleMetaphoneFilterFactory
 extends|extends
 name|TokenFilterFactory
 block|{
+comment|/** parameter name: true if encoded tokens should be added as synonyms */
 DECL|field|INJECT
 specifier|public
 specifier|static
@@ -95,6 +116,7 @@ name|INJECT
 init|=
 literal|"inject"
 decl_stmt|;
+comment|/** parameter name: restricts the length of the phonetic code */
 DECL|field|MAX_CODE_LENGTH
 specifier|public
 specifier|static
@@ -104,6 +126,7 @@ name|MAX_CODE_LENGTH
 init|=
 literal|"maxCodeLength"
 decl_stmt|;
+comment|/** default maxCodeLength if not specified */
 DECL|field|DEFAULT_MAX_CODE_LENGTH
 specifier|public
 specifier|static
@@ -127,6 +150,12 @@ name|maxCodeLength
 init|=
 name|DEFAULT_MAX_CODE_LENGTH
 decl_stmt|;
+comment|/** Sole constructor. See {@link AbstractAnalysisFactory} for initialization lifecycle. */
+DECL|method|DoubleMetaphoneFilterFactory
+specifier|public
+name|DoubleMetaphoneFilterFactory
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|init

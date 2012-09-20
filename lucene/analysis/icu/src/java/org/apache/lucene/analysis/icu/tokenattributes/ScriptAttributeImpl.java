@@ -87,6 +87,12 @@ name|UScript
 operator|.
 name|COMMON
 decl_stmt|;
+comment|/** Initializes this attribute with<code>UScript.COMMON</code> */
+DECL|method|ScriptAttributeImpl
+specifier|public
+name|ScriptAttributeImpl
+parameter_list|()
+block|{}
 DECL|method|getCode
 specifier|public
 name|int

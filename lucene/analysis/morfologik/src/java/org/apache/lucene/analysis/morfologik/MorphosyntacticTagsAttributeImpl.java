@@ -62,6 +62,12 @@ name|MorphosyntacticTagsAttribute
 implements|,
 name|Cloneable
 block|{
+comment|/** Initializes this attribute with no tags */
+DECL|method|MorphosyntacticTagsAttributeImpl
+specifier|public
+name|MorphosyntacticTagsAttributeImpl
+parameter_list|()
+block|{}
 comment|/**    * A list of potential tag variants for the current token.    */
 DECL|field|tags
 specifier|private

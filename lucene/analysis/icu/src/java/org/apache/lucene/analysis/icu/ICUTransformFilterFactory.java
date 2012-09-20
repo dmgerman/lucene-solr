@@ -74,6 +74,10 @@ name|AbstractAnalysisFactory
 import|;
 end_import
 
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_import
 import|import
 name|org
@@ -139,6 +143,12 @@ specifier|private
 name|Transliterator
 name|transliterator
 decl_stmt|;
+comment|/** Sole constructor. See {@link AbstractAnalysisFactory} for initialization lifecycle. */
+DECL|method|ICUTransformFilterFactory
+specifier|public
+name|ICUTransformFilterFactory
+parameter_list|()
+block|{}
 comment|// TODO: add support for custom rules
 annotation|@
 name|Override

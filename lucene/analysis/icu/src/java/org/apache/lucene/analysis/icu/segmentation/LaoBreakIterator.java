@@ -160,6 +160,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**     * Creates a new iterator, performing the backtracking verification    * across the provided<code>rules</code>.    */
 DECL|method|LaoBreakIterator
 specifier|public
 name|LaoBreakIterator

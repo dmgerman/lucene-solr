@@ -102,6 +102,26 @@ name|analysis
 operator|.
 name|util
 operator|.
+name|AbstractAnalysisFactory
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
 name|TokenFilterFactory
 import|;
 end_import
@@ -138,6 +158,12 @@ name|DICTIONARY_SCHEMA_ATTRIBUTE
 init|=
 literal|"dictionary"
 decl_stmt|;
+comment|/** Sole constructor. See {@link AbstractAnalysisFactory} for initialization lifecycle. */
+DECL|method|MorfologikFilterFactory
+specifier|public
+name|MorfologikFilterFactory
+parameter_list|()
+block|{}
 comment|/**    * {@inheritDoc}    */
 annotation|@
 name|Override

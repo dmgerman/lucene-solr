@@ -84,6 +84,12 @@ specifier|public
 class|class
 name|DiffIt
 block|{
+comment|/** no instantiation */
+DECL|method|DiffIt
+specifier|private
+name|DiffIt
+parameter_list|()
+block|{}
 DECL|method|get
 specifier|static
 name|int

@@ -309,6 +309,12 @@ argument_list|(
 literal|"Myanmar.brk"
 argument_list|)
 decl_stmt|;
+comment|/**     * Creates a new config. This object is lightweight, but the first    * time the class is referenced, breakiterators will be initialized.    */
+DECL|method|DefaultICUTokenizerConfig
+specifier|public
+name|DefaultICUTokenizerConfig
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|getBreakIterator

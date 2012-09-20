@@ -488,6 +488,12 @@ operator|.
 name|LUCENE_CURRENT
 argument_list|)
 decl_stmt|;
+comment|/** for instantiation by the servlet container */
+DECL|method|FormBasedXmlQueryDemo
+specifier|public
+name|FormBasedXmlQueryDemo
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|init

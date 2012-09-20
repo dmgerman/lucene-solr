@@ -194,6 +194,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/** Creates a DoubleMetaphoneFilter with the specified maximum code length,     *  and either adding encoded forms as synonyms (<code>inject=true</code>) or    *  replacing them.    */
 DECL|method|DoubleMetaphoneFilter
 specifier|public
 name|DoubleMetaphoneFilter

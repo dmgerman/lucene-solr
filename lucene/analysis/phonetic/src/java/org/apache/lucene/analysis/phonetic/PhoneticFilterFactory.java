@@ -138,6 +138,26 @@ name|analysis
 operator|.
 name|util
 operator|.
+name|AbstractAnalysisFactory
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
 name|ResourceLoader
 import|;
 end_import
@@ -188,6 +208,7 @@ name|TokenFilterFactory
 implements|implements
 name|ResourceLoaderAware
 block|{
+comment|/** parameter name: either a short name or a full class name */
 DECL|field|ENCODER
 specifier|public
 specifier|static
@@ -197,6 +218,7 @@ name|ENCODER
 init|=
 literal|"encoder"
 decl_stmt|;
+comment|/** parameter name: true if encoded tokens should be added as synonyms */
 DECL|field|INJECT
 specifier|public
 specifier|static
@@ -207,6 +229,7 @@ init|=
 literal|"inject"
 decl_stmt|;
 comment|// boolean
+comment|/** parameter name: restricts the length of the phonetic code */
 DECL|field|MAX_CODE_LENGTH
 specifier|public
 specifier|static
@@ -410,6 +433,12 @@ name|maxCodeLength
 init|=
 literal|null
 decl_stmt|;
+comment|/** Sole constructor. See {@link AbstractAnalysisFactory} for initialization lifecycle. */
+DECL|method|PhoneticFilterFactory
+specifier|public
+name|PhoneticFilterFactory
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|inform
