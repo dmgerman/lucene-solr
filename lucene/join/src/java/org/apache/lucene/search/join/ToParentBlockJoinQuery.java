@@ -353,7 +353,7 @@ specifier|final
 name|ScoreMode
 name|scoreMode
 decl_stmt|;
-comment|/** Create a ToParentBlockJoinQuery.    *     * @param childQuery Query matching child documents.    * @param parentsFilter Filter (must produce FixedBitSet    * per-seegment) identifying the parent documents.    * @param scoreMode How to aggregate multiple child scores    * into a single parent score.    **/
+comment|/** Create a ToParentBlockJoinQuery.    *     * @param childQuery Query matching child documents.    * @param parentsFilter Filter (must produce FixedBitSet    * per-segment) identifying the parent documents.    * @param scoreMode How to aggregate multiple child scores    * into a single parent score.    **/
 DECL|method|ToParentBlockJoinQuery
 specifier|public
 name|ToParentBlockJoinQuery

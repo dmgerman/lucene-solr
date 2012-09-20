@@ -288,7 +288,7 @@ name|Float
 operator|.
 name|NaN
 decl_stmt|;
-comment|/*  Creates a ToParentBlockJoinCollector.  The provided sort must    *  not be null.  If you pass true trackScores, all    *  ToParentBlockQuery instances must not use    *  ScoreMode.None. */
+comment|/**  Creates a ToParentBlockJoinCollector.  The provided sort must    *  not be null.  If you pass true trackScores, all    *  ToParentBlockQuery instances must not use    *  ScoreMode.None. */
 DECL|method|ToParentBlockJoinCollector
 specifier|public
 name|ToParentBlockJoinCollector
