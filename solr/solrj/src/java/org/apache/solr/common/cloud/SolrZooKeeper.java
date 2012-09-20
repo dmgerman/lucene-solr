@@ -70,7 +70,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|Set
 import|;
 end_import
 
@@ -82,7 +82,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|CopyOnWriteArrayList
+name|CopyOnWriteArraySet
 import|;
 end_import
 
@@ -135,14 +135,14 @@ extends|extends
 name|ZooKeeper
 block|{
 DECL|field|spawnedThreads
-name|List
+name|Set
 argument_list|<
 name|Thread
 argument_list|>
 name|spawnedThreads
 init|=
 operator|new
-name|CopyOnWriteArrayList
+name|CopyOnWriteArraySet
 argument_list|<
 name|Thread
 argument_list|>
@@ -278,6 +278,7 @@ name|long
 name|ms
 parameter_list|)
 block|{
+specifier|final
 name|Thread
 name|t
 init|=
@@ -336,21 +337,33 @@ parameter_list|(
 name|InterruptedException
 name|e
 parameter_list|)
-block|{}
+block|{
+comment|// ignore
+block|}
+finally|finally
+block|{
+name|spawnedThreads
+operator|.
+name|remove
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 decl_stmt|;
-name|t
-operator|.
-name|start
-argument_list|()
-expr_stmt|;
 name|spawnedThreads
 operator|.
 name|add
 argument_list|(
 name|t
 argument_list|)
+expr_stmt|;
+name|t
+operator|.
+name|start
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
