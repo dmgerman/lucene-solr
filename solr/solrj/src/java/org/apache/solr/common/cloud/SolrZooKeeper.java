@@ -316,7 +316,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Closing zookeper send channel failed."
+literal|"Closing Zookeeper send channel failed."
 argument_list|,
 name|e
 argument_list|)
