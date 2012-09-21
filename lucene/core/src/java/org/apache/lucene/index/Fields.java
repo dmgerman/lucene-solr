@@ -52,6 +52,12 @@ argument_list|<
 name|String
 argument_list|>
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|Fields
+specifier|protected
+name|Fields
+parameter_list|()
+block|{   }
 comment|/** Returns an iterator that will step through all fields    *  names.  This will not return null.  */
 DECL|method|iterator
 specifier|public
@@ -84,6 +90,7 @@ name|int
 name|size
 parameter_list|()
 function_decl|;
+comment|/** Zero-length {@code Fields} array. */
 DECL|field|EMPTY_ARRAY
 specifier|public
 specifier|final

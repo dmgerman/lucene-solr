@@ -224,90 +224,105 @@ name|termIndexInterval
 decl_stmt|;
 comment|// TODO: this should be private to the codec, not settable here
 comment|// modified by IndexWriterConfig
+comment|/** {@link IndexDeletionPolicy} controlling when commit    *  points are deleted. */
 DECL|field|delPolicy
 specifier|protected
 specifier|volatile
 name|IndexDeletionPolicy
 name|delPolicy
 decl_stmt|;
+comment|/** {@link IndexCommit} that {@link IndexWriter} is    *  opened on. */
 DECL|field|commit
 specifier|protected
 specifier|volatile
 name|IndexCommit
 name|commit
 decl_stmt|;
+comment|/** {@link OpenMode} that {@link IndexWriter} is opened    *  with. */
 DECL|field|openMode
 specifier|protected
 specifier|volatile
 name|OpenMode
 name|openMode
 decl_stmt|;
+comment|/** {@link Similarity} to use when encoding norms. */
 DECL|field|similarity
 specifier|protected
 specifier|volatile
 name|Similarity
 name|similarity
 decl_stmt|;
+comment|/** {@link MergeScheduler} to use for running merges. */
 DECL|field|mergeScheduler
 specifier|protected
 specifier|volatile
 name|MergeScheduler
 name|mergeScheduler
 decl_stmt|;
+comment|/** Timeout when trying to obtain the write lock on init. */
 DECL|field|writeLockTimeout
 specifier|protected
 specifier|volatile
 name|long
 name|writeLockTimeout
 decl_stmt|;
+comment|/** {@link IndexingChain} that determines how documents are    *  indexed. */
 DECL|field|indexingChain
 specifier|protected
 specifier|volatile
 name|IndexingChain
 name|indexingChain
 decl_stmt|;
+comment|/** {@link Codec} used to write new segments. */
 DECL|field|codec
 specifier|protected
 specifier|volatile
 name|Codec
 name|codec
 decl_stmt|;
+comment|/** {@link InfoStream} for debugging messages. */
 DECL|field|infoStream
 specifier|protected
 specifier|volatile
 name|InfoStream
 name|infoStream
 decl_stmt|;
+comment|/** {@link MergePolicy} for selecting merges. */
 DECL|field|mergePolicy
 specifier|protected
 specifier|volatile
 name|MergePolicy
 name|mergePolicy
 decl_stmt|;
+comment|/** {@code DocumentsWriterPerThreadPool} to control how    *  threads are allocated to {@code DocumentsWriterPerThread}. */
 DECL|field|indexerThreadPool
 specifier|protected
 specifier|volatile
 name|DocumentsWriterPerThreadPool
 name|indexerThreadPool
 decl_stmt|;
+comment|/** True if readers should be pooled. */
 DECL|field|readerPooling
 specifier|protected
 specifier|volatile
 name|boolean
 name|readerPooling
 decl_stmt|;
+comment|/** {@link FlushPolicy} to control when segments are    *  flushed. */
 DECL|field|flushPolicy
 specifier|protected
 specifier|volatile
 name|FlushPolicy
 name|flushPolicy
 decl_stmt|;
+comment|/** Sets the hard upper bound on RAM usage for a single    *  segment, after which the segment is forced to flush. */
 DECL|field|perThreadHardLimitMB
 specifier|protected
 specifier|volatile
 name|int
 name|perThreadHardLimitMB
 decl_stmt|;
+comment|/** {@link Version} that {@link IndexWriter} should emulate. */
 DECL|field|matchVersion
 specifier|protected
 specifier|final
@@ -943,7 +958,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** @see #setReaderTermsIndexDivisor(int) */
+comment|/** Returns the {@code termInfosIndexDivisor}.    *     * @see #setReaderTermsIndexDivisor(int) */
 DECL|method|getReaderTermsIndexDivisor
 specifier|public
 name|int
@@ -1130,7 +1145,7 @@ return|return
 name|flushPolicy
 return|;
 block|}
-comment|/**    * @see IndexWriterConfig#setInfoStream(InfoStream)    */
+comment|/** Returns {@link InfoStream} used for debugging.    *    * @see IndexWriterConfig#setInfoStream(InfoStream)    */
 DECL|method|getInfoStream
 specifier|public
 name|InfoStream

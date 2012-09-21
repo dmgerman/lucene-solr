@@ -24,6 +24,44 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|PostingsFormat
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|perfield
+operator|.
+name|PerFieldPostingsFormat
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -82,30 +120,35 @@ specifier|public
 class|class
 name|SegmentWriteState
 block|{
+comment|/** {@link InfoStream} used for debugging messages. */
 DECL|field|infoStream
 specifier|public
 specifier|final
 name|InfoStream
 name|infoStream
 decl_stmt|;
+comment|/** {@link Directory} where this segment will be written    *  to. */
 DECL|field|directory
 specifier|public
 specifier|final
 name|Directory
 name|directory
 decl_stmt|;
+comment|/** {@link SegmentInfo} describing this segment. */
 DECL|field|segmentInfo
 specifier|public
 specifier|final
 name|SegmentInfo
 name|segmentInfo
 decl_stmt|;
+comment|/** {@link FieldInfos} describing all fields in this    *  segment. */
 DECL|field|fieldInfos
 specifier|public
 specifier|final
 name|FieldInfos
 name|fieldInfos
 decl_stmt|;
+comment|/** Number of deleted documents set while flushing the    *  segment. */
 DECL|field|delCountOnFlush
 specifier|public
 name|int
@@ -118,12 +161,13 @@ specifier|final
 name|BufferedDeletes
 name|segDeletes
 decl_stmt|;
-comment|// Lazily created:
+comment|/** {@link MutableBits} recording live documents; this is    *  only set if there is one or more deleted documents. */
 DECL|field|liveDocs
 specifier|public
 name|MutableBits
 name|liveDocs
 decl_stmt|;
+comment|/** Unique suffix for any postings files written for this    *  segment.  {@link PerFieldPostingsFormat} sets this for    *  each of the postings formats it wraps.  If you create    *  a new {@link PostingsFormat} then any files you    *  write/read must be derived using this suffix (use    *  {@link IndexFileNames#segmentFileName(String,String,String)}). */
 DECL|field|segmentSuffix
 specifier|public
 specifier|final
@@ -137,12 +181,14 @@ name|int
 name|termIndexInterval
 decl_stmt|;
 comment|// TODO: this should be private to the codec, not settable here or in IWC
+comment|/** {@link IOContext} for all writes; you should pass this    *  to {@link Directory#createOutput(String,IOContext)}. */
 DECL|field|context
 specifier|public
 specifier|final
 name|IOContext
 name|context
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|SegmentWriteState
 specifier|public
 name|SegmentWriteState

@@ -488,7 +488,7 @@ operator|.
 name|fieldInfos
 return|;
 block|}
-comment|/** @lucene.internal */
+comment|/** Expert: retrieve thread-private {@link    *  StoredFieldsReader}    *  @lucene.internal */
 DECL|method|getFieldsReader
 specifier|public
 name|StoredFieldsReader
@@ -611,7 +611,7 @@ name|getDocCount
 argument_list|()
 return|;
 block|}
-comment|/** @lucene.internal */
+comment|/** Expert: retrieve thread-private {@link    *  TermVectorsReader}    *  @lucene.internal */
 DECL|method|getTermVectorsReader
 specifier|public
 name|TermVectorsReader
@@ -777,6 +777,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/** Returns term infos index divisor originally passed to    *  {@link #SegmentReader(SegmentInfoPerCommit, int, IOContext)}. */
 DECL|method|getTermInfosIndexDivisor
 specifier|public
 name|int
@@ -884,6 +885,7 @@ specifier|static
 interface|interface
 name|CoreClosedListener
 block|{
+comment|/** Invoked when the shared core of the provided {@link      *  SegmentReader} has closed. */
 DECL|method|onClose
 specifier|public
 name|void

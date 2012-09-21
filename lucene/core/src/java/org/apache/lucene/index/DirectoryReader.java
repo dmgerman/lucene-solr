@@ -114,6 +114,7 @@ argument_list|<
 name|AtomicReader
 argument_list|>
 block|{
+comment|/** Default termInfosIndexDivisor. */
 DECL|field|DEFAULT_TERMS_INDEX_DIVISOR
 specifier|public
 specifier|static

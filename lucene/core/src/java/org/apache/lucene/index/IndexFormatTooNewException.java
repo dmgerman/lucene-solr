@@ -42,7 +42,7 @@ name|IndexFormatTooNewException
 extends|extends
 name|CorruptIndexException
 block|{
-comment|/** @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooNewException}    *    *  @param resourceDesc describes the file that was too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maxium version accepted    *    * @lucene.internal */
 DECL|method|IndexFormatTooNewException
 specifier|public
 name|IndexFormatTooNewException
@@ -87,7 +87,7 @@ operator|!=
 literal|null
 assert|;
 block|}
-comment|/** @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooNewException}    *    *  @param in the open file that's too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maxium version accepted    *    * @lucene.internal */
 DECL|method|IndexFormatTooNewException
 specifier|public
 name|IndexFormatTooNewException

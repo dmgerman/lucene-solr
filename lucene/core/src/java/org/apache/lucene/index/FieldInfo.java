@@ -157,7 +157,7 @@ DECL|enum constant|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
 name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
 block|,   }
 empty_stmt|;
-comment|/**    * @lucene.experimental    */
+comment|/**    * Sole Constructor.    *    * @lucene.experimental    */
 DECL|method|FieldInfo
 specifier|public
 name|FieldInfo

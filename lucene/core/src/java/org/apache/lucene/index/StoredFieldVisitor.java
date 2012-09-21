@@ -65,6 +65,12 @@ specifier|abstract
 class|class
 name|StoredFieldVisitor
 block|{
+comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
+DECL|method|StoredFieldVisitor
+specifier|protected
+name|StoredFieldVisitor
+parameter_list|()
+block|{   }
 comment|/** Process a binary field. */
 DECL|method|binaryField
 specifier|public

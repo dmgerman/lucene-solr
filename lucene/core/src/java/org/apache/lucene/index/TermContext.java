@@ -61,13 +61,13 @@ specifier|final
 class|class
 name|TermContext
 block|{
+comment|/** Holds the {@link IndexReaderContext} of the top-level    *  {@link IndexReader}, used internally only for    *  asserting.    *    *  @lucene.internal */
 DECL|field|topReaderContext
 specifier|public
 specifier|final
 name|IndexReaderContext
 name|topReaderContext
 decl_stmt|;
-comment|// for asserting!
 DECL|field|states
 specifier|private
 specifier|final

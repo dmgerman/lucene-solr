@@ -13026,7 +13026,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/** @lucene.internal */
+comment|/** Returns a string description of all segments, for    *  debugging.    *    * @lucene.internal */
 DECL|method|segString
 specifier|public
 specifier|synchronized
@@ -13041,7 +13041,7 @@ name|segmentInfos
 argument_list|)
 return|;
 block|}
-comment|/** @lucene.internal */
+comment|/** Returns a string description of the specified    *  segments, for debugging.    *    * @lucene.internal */
 DECL|method|segString
 specifier|public
 specifier|synchronized
@@ -13108,7 +13108,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** @lucene.internal */
+comment|/** Returns a string description of the specified    *  segment, for debugging.    *    * @lucene.internal */
 DECL|method|segString
 specifier|public
 specifier|synchronized
@@ -13834,6 +13834,13 @@ specifier|abstract
 class|class
 name|IndexReaderWarmer
 block|{
+comment|/** Sole constructor. (For invocation by subclass       *  constructors, typically implicit.) */
+DECL|method|IndexReaderWarmer
+specifier|protected
+name|IndexReaderWarmer
+parameter_list|()
+block|{     }
+comment|/** Invoked on the {@link AtomicReader} for the newly      *  merged segment, before that segment is made visible      *  to near-real-time readers. */
 DECL|method|warm
 specifier|public
 specifier|abstract

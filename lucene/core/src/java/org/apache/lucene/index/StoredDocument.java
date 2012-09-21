@@ -165,6 +165,12 @@ name|StorableField
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|StoredDocument
+specifier|public
+name|StoredDocument
+parameter_list|()
+block|{   }
 comment|/**    * Adds a field to a document.    *<p> This method supports construction of a StoredDocument from a     * {@link StoredFieldVisitor}. This method cannot    * be used to change the content of an existing index! In order to achieve this,    * a document has to be deleted from an index and a new changed version of that    * document has to be added.</p>    */
 DECL|method|add
 specifier|public

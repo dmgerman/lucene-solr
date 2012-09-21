@@ -204,6 +204,7 @@ parameter_list|()
 block|{
 comment|// no instance
 block|}
+comment|/** Creates the {@link MergeContext} necessary for merging    *  the ordinals. */
 DECL|method|init
 specifier|public
 specifier|static
@@ -314,6 +315,7 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+comment|/** How many bytes each value occupies, or -1 if it      *  varies. */
 DECL|field|sizePerValues
 specifier|public
 specifier|final
@@ -326,6 +328,7 @@ specifier|final
 name|Type
 name|type
 decl_stmt|;
+comment|/** Maps each document to the ordinal for its value. */
 DECL|field|docToEntry
 specifier|public
 specifier|final
@@ -333,6 +336,7 @@ name|int
 index|[]
 name|docToEntry
 decl_stmt|;
+comment|/** File-offset for each document; will be null if it's      *  not needed (eg fixed-size values). */
 DECL|field|offsets
 specifier|public
 name|long
@@ -340,6 +344,7 @@ index|[]
 name|offsets
 decl_stmt|;
 comment|// if non-null #mergeRecords collects byte offsets here
+comment|/** Sole constructor. */
 DECL|method|MergeContext
 specifier|public
 name|MergeContext
@@ -421,6 +426,7 @@ name|mergeDocCount
 index|]
 expr_stmt|;
 block|}
+comment|/** Returns number of documents merged. */
 DECL|method|getMergeDocCount
 specifier|public
 name|int
@@ -434,6 +440,7 @@ name|length
 return|;
 block|}
 block|}
+comment|/** Creates the {@link SortedSourceSlice}s for    *  merging. */
 DECL|method|buildSlices
 specifier|public
 specifier|static
@@ -828,6 +835,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Does the "real work" of merging the slices and    *  computing the ord mapping. */
 DECL|method|mergeRecords
 specifier|public
 specifier|static
@@ -1098,6 +1106,7 @@ specifier|final
 name|IndexOutput
 name|datOut
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|IndexOutputBytesRefConsumer
 specifier|public
 name|IndexOutputBytesRefConsumer
@@ -1637,6 +1646,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/** Fills in the absolute ords for this slice.       *       * @return the provided {@code docToOrd} */
 DECL|method|toAbsolutOrds
 specifier|public
 name|int
@@ -1706,6 +1716,7 @@ return|return
 name|docToOrd
 return|;
 block|}
+comment|/** Writes ords for this slice. */
 DECL|method|writeOrds
 specifier|public
 name|void

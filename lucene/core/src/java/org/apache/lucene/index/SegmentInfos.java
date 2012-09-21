@@ -371,13 +371,13 @@ init|=
 operator|-
 literal|2
 decl_stmt|;
+comment|/** Used to name new segments. */
 DECL|field|counter
 specifier|public
 name|int
 name|counter
 decl_stmt|;
-comment|// used to name new segments
-comment|/**    * counts how often the index has been changed    */
+comment|/** Counts how often the index has been changed.  */
 DECL|field|version
 specifier|public
 name|long
@@ -442,6 +442,13 @@ name|infoStream
 init|=
 literal|null
 decl_stmt|;
+comment|/** Sole constructor. Typically you call this and then    *  use {@link #read(Directory) or    *  #read(Directory,String)} to populate each {@link    *  SegmentInfoPerCommit}.  Alternatively, you can add/remove your    *  own {@link SegmentInfoPerCommit}s. */
+DECL|method|SegmentInfos
+specifier|public
+name|SegmentInfos
+parameter_list|()
+block|{   }
+comment|/** Returns {@link SegmentInfoPerCommit} at the provided    *  index. */
 DECL|method|info
 specifier|public
 name|SegmentInfoPerCommit
@@ -1155,6 +1162,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Find the latest commit ({@code segments_N file}) and    *  load all {@link SegmentInfoPerCommit}s. */
 DECL|method|read
 specifier|public
 specifier|final
@@ -1564,6 +1572,7 @@ return|return
 name|version
 return|;
 block|}
+comment|/** Returns current generation. */
 DECL|method|getGeneration
 specifier|public
 name|long
@@ -1574,6 +1583,7 @@ return|return
 name|generation
 return|;
 block|}
+comment|/** Returns last succesfully read or written generation. */
 DECL|method|getLastGeneration
 specifier|public
 name|long
@@ -1627,7 +1637,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/**    * @see #setDefaultGenLookaheadCount    *    * @lucene.experimental    */
+comment|/**    * Returns the {@code defaultGenLookaheadCount}.    *    * @see #setDefaultGenLookaheadCount    *    * @lucene.experimental    */
 DECL|method|getDefaultGenLookahedCount
 specifier|public
 specifier|static
@@ -1639,7 +1649,7 @@ return|return
 name|defaultGenLookaheadCount
 return|;
 block|}
-comment|/**    * @see #setInfoStream    */
+comment|/**    * Returns {@code infoStream}.    *    * @see #setInfoStream    */
 DECL|method|getInfoStream
 specifier|public
 specifier|static
@@ -1695,6 +1705,7 @@ specifier|final
 name|Directory
 name|directory
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|FindSegmentsFile
 specifier|public
 name|FindSegmentsFile
@@ -1710,6 +1721,7 @@ operator|=
 name|directory
 expr_stmt|;
 block|}
+comment|/** Locate the most recent {@code segments} file and      *  run {@link #doBody} on it. */
 DECL|method|run
 specifier|public
 name|Object
@@ -1725,6 +1737,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/** Run {@link #doBody} on the provided commit. */
 DECL|method|run
 specifier|public
 name|Object
@@ -3018,6 +3031,7 @@ name|dir
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Returns readable description of this segment. */
 DECL|method|toString
 specifier|public
 name|String
@@ -3115,6 +3129,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/** Return {@code userData} saved with this commit.    *     * @see IndexWriter#commit(Map)    */
 DECL|method|getUserData
 specifier|public
 name|Map
@@ -3539,6 +3554,7 @@ name|segments
 argument_list|)
 return|;
 block|}
+comment|/** Returns number of {@link SegmentInfoPerCommit}s. */
 DECL|method|size
 specifier|public
 name|int
@@ -3552,6 +3568,7 @@ name|size
 argument_list|()
 return|;
 block|}
+comment|/** Appends the provided {@link SegmentInfoPerCommit}. */
 DECL|method|add
 specifier|public
 name|void
@@ -3569,6 +3586,7 @@ name|si
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Appends the provided {@link SegmentInfoPerCommit}s. */
 DECL|method|addAll
 specifier|public
 name|void
@@ -3599,6 +3617,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Clear all {@link SegmentInfoPerCommit}s. */
 DECL|method|clear
 specifier|public
 name|void
@@ -3611,7 +3630,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** WARNING: O(N) cost */
+comment|/** Remove the provided {@link SegmentInfoPerCommit}.    *    *<p><b>WARNING</b>: O(N) cost */
 DECL|method|remove
 specifier|public
 name|void
@@ -3629,7 +3648,7 @@ name|si
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** WARNING: O(N) cost */
+comment|/** Remove the {@link SegmentInfoPerCommit} at the    * provided index.    *    *<p><b>WARNING</b>: O(N) cost */
 DECL|method|remove
 name|void
 name|remove
@@ -3646,7 +3665,7 @@ name|index
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** WARNING: O(N) cost */
+comment|/** Return true if the provided {@link    *  SegmentInfoPerCommit} is contained.    *    *<p><b>WARNING</b>: O(N) cost */
 DECL|method|contains
 name|boolean
 name|contains
@@ -3664,7 +3683,7 @@ name|si
 argument_list|)
 return|;
 block|}
-comment|/** WARNING: O(N) cost */
+comment|/** Returns index of the provided {@link    *  SegmentInfoPerCommit}.    *    *<p><b>WARNING</b>: O(N) cost */
 DECL|method|indexOf
 name|int
 name|indexOf

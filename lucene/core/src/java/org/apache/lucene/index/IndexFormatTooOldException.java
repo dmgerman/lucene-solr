@@ -42,7 +42,7 @@ name|IndexFormatTooOldException
 extends|extends
 name|CorruptIndexException
 block|{
-comment|/** @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param resourceDesc describes the file that was too old    *  @param version the version of the file that was too old    *     * @lucene.internal */
 DECL|method|IndexFormatTooOldException
 specifier|public
 name|IndexFormatTooOldException
@@ -73,7 +73,7 @@ operator|!=
 literal|null
 assert|;
 block|}
-comment|/** @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param in the open file that's too old    *  @param version the version of the file that was too old    *     * @lucene.internal */
 DECL|method|IndexFormatTooOldException
 specifier|public
 name|IndexFormatTooOldException
@@ -96,7 +96,7 @@ name|version
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param resourceDesc describes the file that was too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maxium version accepted    *     * @lucene.internal */
 DECL|method|IndexFormatTooOldException
 specifier|public
 name|IndexFormatTooOldException
@@ -141,7 +141,7 @@ operator|!=
 literal|null
 assert|;
 block|}
-comment|/** @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param in the open file that's too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maxium version accepted    *    * @lucene.internal */
 DECL|method|IndexFormatTooOldException
 specifier|public
 name|IndexFormatTooOldException

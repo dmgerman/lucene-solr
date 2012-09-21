@@ -28,11 +28,18 @@ name|OrdTermState
 extends|extends
 name|TermState
 block|{
+comment|/** Term ordinal, i.e. it's position in the full list of    *  sorted terms. */
 DECL|field|ord
 specifier|public
 name|long
 name|ord
 decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|OrdTermState
+specifier|public
+name|OrdTermState
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|copyFrom

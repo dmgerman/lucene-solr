@@ -49,6 +49,12 @@ name|MergeScheduler
 implements|implements
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|MergeScheduler
+specifier|protected
+name|MergeScheduler
+parameter_list|()
+block|{   }
 comment|/** Run the merges provided by {@link IndexWriter#getNextMerge()}. */
 DECL|method|merge
 specifier|public

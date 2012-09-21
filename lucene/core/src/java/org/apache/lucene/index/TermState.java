@@ -29,6 +29,12 @@ name|TermState
 implements|implements
 name|Cloneable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|TermState
+specifier|protected
+name|TermState
+parameter_list|()
+block|{   }
 comment|/**    * Copies the content of the given {@link TermState} to this instance    *     * @param other    *          the TermState to copy    */
 DECL|method|copyFrom
 specifier|public

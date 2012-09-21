@@ -193,6 +193,7 @@ name|reader
 return|;
 block|}
 block|}
+comment|/** Sole constructor, wrapping the provided {@link    *  CompositeReader}. */
 DECL|method|SlowCompositeReaderWrapper
 specifier|public
 name|SlowCompositeReaderWrapper

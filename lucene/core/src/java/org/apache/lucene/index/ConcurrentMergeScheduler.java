@@ -118,6 +118,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|/** List of currently active {@link MergeThread}s. */
 DECL|field|mergeThreads
 specifier|protected
 name|List
@@ -181,21 +182,30 @@ name|maxThreadCount
 operator|+
 literal|2
 decl_stmt|;
+comment|/** {@link Directory} that holds the index. */
 DECL|field|dir
 specifier|protected
 name|Directory
 name|dir
 decl_stmt|;
+comment|/** {@link IndexWriter} that owns this instance. */
 DECL|field|writer
 specifier|protected
 name|IndexWriter
 name|writer
 decl_stmt|;
+comment|/** How many {@link MergeThread}s have kicked off (this is use    *  to name them). */
 DECL|field|mergeThreadCount
 specifier|protected
 name|int
 name|mergeThreadCount
 decl_stmt|;
+comment|/** Sole constructor, with all settings set to default    *  values. */
+DECL|method|ConcurrentMergeScheduler
+specifier|public
+name|ConcurrentMergeScheduler
+parameter_list|()
+block|{   }
 comment|/** Sets the max # simultaneous merge threads that should    *  be running at once.  This must be<= {@link    *  #setMaxMergeCount}. */
 DECL|method|setMaxThreadCount
 specifier|public
@@ -245,7 +255,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/** @see #setMaxThreadCount(int) */
+comment|/** Returns {@code maxThreadCount}.    *    * @see #setMaxThreadCount(int) */
 DECL|method|getMaxThreadCount
 specifier|public
 name|int
@@ -383,7 +393,7 @@ name|updateMergeThreads
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Larger merges come first
+comment|/** Sorts {@link MergeThread}s; larger merges come first. */
 DECL|field|compareByMergeDocCount
 specifier|protected
 specifier|static
@@ -1408,6 +1418,7 @@ return|return
 name|thread
 return|;
 block|}
+comment|/** Runs a merge thread, which may run one or more merges    *  in sequence. */
 DECL|class|MergeThread
 specifier|protected
 class|class
@@ -1437,6 +1448,7 @@ specifier|volatile
 name|boolean
 name|done
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|MergeThread
 specifier|public
 name|MergeThread
@@ -1463,6 +1475,7 @@ operator|=
 name|startMerge
 expr_stmt|;
 block|}
+comment|/** Record the currently running merge. */
 DECL|method|setRunningMerge
 specifier|public
 specifier|synchronized
@@ -1480,6 +1493,7 @@ operator|=
 name|merge
 expr_stmt|;
 block|}
+comment|/** Return the currently running merge. */
 DECL|method|getRunningMerge
 specifier|public
 specifier|synchronized
@@ -1493,6 +1507,7 @@ return|return
 name|runningMerge
 return|;
 block|}
+comment|/** Return the current merge, or null if this {@code      *  MergeThread} is done. */
 DECL|method|getCurrentMerge
 specifier|public
 specifier|synchronized
@@ -1530,6 +1545,7 @@ name|startMerge
 return|;
 block|}
 block|}
+comment|/** Set the priority of this thread. */
 DECL|method|setThreadPriority
 specifier|public
 name|void

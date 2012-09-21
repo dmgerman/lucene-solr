@@ -80,6 +80,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|// lazy init
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|CompositeReader
 specifier|protected
 name|CompositeReader

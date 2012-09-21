@@ -142,6 +142,7 @@ class|class
 name|SegmentInfo
 block|{
 comment|// TODO: remove these from this class, for now this is the representation
+comment|/** Used by some member fields to mean not present (e.g.,    *  norms, deletions). */
 DECL|field|NO
 specifier|public
 specifier|static
@@ -153,6 +154,7 @@ operator|-
 literal|1
 decl_stmt|;
 comment|// e.g. no norms; no deletes;
+comment|/** Used by some member fields to mean present (e.g.,    *  norms, deletions). */
 DECL|field|YES
 specifier|public
 specifier|static
@@ -163,26 +165,26 @@ init|=
 literal|1
 decl_stmt|;
 comment|// e.g. have norms; have deletes;
+comment|/** Unique segment name in the directory. */
 DECL|field|name
 specifier|public
 specifier|final
 name|String
 name|name
 decl_stmt|;
-comment|// unique name in dir
 DECL|field|docCount
 specifier|private
 name|int
 name|docCount
 decl_stmt|;
 comment|// number of docs in seg
+comment|/** Where this segment resides. */
 DECL|field|dir
 specifier|public
 specifier|final
 name|Directory
 name|dir
 decl_stmt|;
-comment|// where segment resides
 DECL|field|isCompoundFile
 specifier|private
 name|boolean
@@ -253,6 +255,7 @@ operator|=
 name|diagnostics
 expr_stmt|;
 block|}
+comment|/** Returns diagnostics saved into the segment when it was    *  written. */
 DECL|method|getDiagnostics
 specifier|public
 name|Map
@@ -482,6 +485,7 @@ operator|=
 name|codec
 expr_stmt|;
 block|}
+comment|/** Return {@link Codec} that wrote this segment. */
 DECL|method|getCodec
 specifier|public
 name|Codec
@@ -492,6 +496,7 @@ return|return
 name|codec
 return|;
 block|}
+comment|/** Returns number of documents in this segment (deletions    *  are not taken into account). */
 DECL|method|getDocCount
 specifier|public
 name|int
@@ -554,7 +559,7 @@ operator|=
 name|docCount
 expr_stmt|;
 block|}
-comment|/*    * Return all files referenced by this SegmentInfo.  The    * returns List is a locally cached List so you should not    * modify it.    */
+comment|/** Return all files referenced by this SegmentInfo. */
 DECL|method|files
 specifier|public
 name|Set
@@ -844,6 +849,7 @@ name|String
 argument_list|>
 name|setFiles
 decl_stmt|;
+comment|/** Sets the files written for this segment. */
 DECL|method|setFiles
 specifier|public
 name|void
@@ -871,6 +877,7 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
+comment|/** Add these files to the set of files written for this    *  segment. */
 DECL|method|addFiles
 specifier|public
 name|void
@@ -901,6 +908,7 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
+comment|/** Add this file to the set of files written for this    *  segment. */
 DECL|method|addFile
 specifier|public
 name|void
@@ -1078,7 +1086,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * @return internal codec attributes map. May be null if no mappings exist.    */
+comment|/**    * Returns the internal codec attributes map.    *    * @return internal codec attributes map. May be null if no mappings exist.    */
 DECL|method|attributes
 specifier|public
 name|Map

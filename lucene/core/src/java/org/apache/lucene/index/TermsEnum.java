@@ -112,6 +112,12 @@ name|atts
 init|=
 literal|null
 decl_stmt|;
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|TermsEnum
+specifier|protected
+name|TermsEnum
+parameter_list|()
+block|{   }
 comment|/** Returns the related attributes. */
 DECL|method|attributes
 specifier|public

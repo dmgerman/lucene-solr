@@ -77,6 +77,12 @@ specifier|abstract
 class|class
 name|Terms
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|Terms
+specifier|protected
+name|Terms
+parameter_list|()
+block|{   }
 comment|/** Returns an iterator that will step through all    *  terms. This method will not return null.  If you have    *  a previous TermsEnum, for example from a different    *  field, you can pass it for possible reuse if the    *  implementation can do so. */
 DECL|method|iterator
 specifier|public
@@ -278,6 +284,7 @@ name|boolean
 name|hasPayloads
 parameter_list|()
 function_decl|;
+comment|/** Zero-length array of {@link Terms}. */
 DECL|field|EMPTY_ARRAY
 specifier|public
 specifier|final

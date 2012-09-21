@@ -18,76 +18,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DocIdSetIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|PagedBytes
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|StringHelper
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -122,7 +52,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|Comparator
 import|;
 end_import
 
@@ -132,7 +62,95 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|PostingsFormat
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|PagedBytes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|StringHelper
 import|;
 end_import
 
@@ -161,7 +179,7 @@ name|TNUM_OFFSET
 init|=
 literal|2
 decl_stmt|;
-comment|// Default: every 128th term is indexed
+comment|/** Every 128th term is indexed, by default. */
 DECL|field|DEFAULT_INDEX_INTERVAL_BITS
 specifier|public
 specifier|final
@@ -187,24 +205,27 @@ specifier|private
 name|int
 name|indexInterval
 decl_stmt|;
+comment|/** Don't uninvert terms that exceed this count. */
 DECL|field|maxTermDocFreq
 specifier|protected
 specifier|final
 name|int
 name|maxTermDocFreq
 decl_stmt|;
+comment|/** Field we are uninverting. */
 DECL|field|field
 specifier|protected
 specifier|final
 name|String
 name|field
 decl_stmt|;
+comment|/** Number of terms in the field. */
 DECL|field|numTermsInField
 specifier|protected
 name|int
 name|numTermsInField
 decl_stmt|;
-comment|/** total number of references to term numbers */
+comment|/** Total number of references to term numbers. */
 DECL|field|termInstances
 specifier|protected
 name|long
@@ -215,24 +236,26 @@ specifier|private
 name|long
 name|memsz
 decl_stmt|;
-comment|/** total time to uninvert the field */
+comment|/** Total time to uninvert the field. */
 DECL|field|total_time
 specifier|protected
 name|int
 name|total_time
 decl_stmt|;
-comment|/** time for phase1 of the uninvert process */
+comment|/** Time for phase1 of the uninvert process. */
 DECL|field|phase1_time
 specifier|protected
 name|int
 name|phase1_time
 decl_stmt|;
+comment|/** Holds the per-document ords or a pointer to the ords. */
 DECL|field|index
 specifier|protected
 name|int
 index|[]
 name|index
 decl_stmt|;
+comment|/** Holds term ords for documents. */
 DECL|field|tnums
 specifier|protected
 name|byte
@@ -247,33 +270,38 @@ literal|256
 index|]
 index|[]
 decl_stmt|;
+comment|/** Total bytes (sum of term lengths) for all indexed terms.*/
 DECL|field|sizeOfIndexedStrings
 specifier|protected
 name|long
 name|sizeOfIndexedStrings
 decl_stmt|;
+comment|/** Holds the indexed (by default every 128th) terms. */
 DECL|field|indexedTermsArray
 specifier|protected
 name|BytesRef
 index|[]
 name|indexedTermsArray
 decl_stmt|;
+comment|/** If non-null, only terms matching this prefix were    *  indexed. */
 DECL|field|prefix
 specifier|protected
 name|BytesRef
 name|prefix
 decl_stmt|;
+comment|/** Ordinal of the first term in the field, or 0 if the    *  {@link PostingsFormat} does not implement {@link    *  TermsEnum#ord}. */
 DECL|field|ordBase
 specifier|protected
 name|int
 name|ordBase
 decl_stmt|;
+comment|/** Used while uninverting. */
 DECL|field|docsEnum
 specifier|protected
 name|DocsEnum
 name|docsEnum
 decl_stmt|;
-comment|//used while uninverting
+comment|/** Returns total bytes used. */
 DECL|method|ramUsedInBytes
 specifier|public
 name|long
@@ -627,7 +655,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * @return The number of terms in this field    */
+comment|/**    * Returns the number of terms in this field    */
 DECL|method|numTerms
 specifier|public
 name|int
@@ -638,7 +666,7 @@ return|return
 name|numTermsInField
 return|;
 block|}
-comment|/**    * @return Whether this<code>DocTermOrds</code> instance is empty.    */
+comment|/**    * Returns {@code true} if no terms were indexed.    */
 DECL|method|isEmpty
 specifier|public
 name|boolean
@@ -666,6 +694,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{   }
+comment|/** Invoked during {@link #uninvert(AtomicReader,BytesRef)}    *  to record the document frequency for each uninverted    *  term. */
 DECL|method|setActualDocFreq
 specifier|protected
 name|void
@@ -2253,6 +2282,7 @@ return|return
 name|pos
 return|;
 block|}
+comment|/** Iterates over the ords for a single document. */
 DECL|class|TermOrdsIterator
 specifier|public
 class|class
@@ -2274,6 +2304,10 @@ name|byte
 index|[]
 name|arr
 decl_stmt|;
+DECL|method|TermOrdsIterator
+name|TermOrdsIterator
+parameter_list|()
+block|{     }
 comment|/** Buffer must be at least 5 ints long.  Returns number      *  of term ords placed into buffer; if this count is      *  less than buffer.length then that is the end. */
 DECL|method|read
 specifier|public
@@ -2473,6 +2507,7 @@ return|return
 name|bufferUpto
 return|;
 block|}
+comment|/** Reset the iterator on a new document. */
 DECL|method|reset
 specifier|public
 name|TermOrdsIterator
@@ -3321,6 +3356,7 @@ name|term
 return|;
 block|}
 block|}
+comment|/** Returns the term ({@link BytesRef}) corresponding to    *  the provided ordinal. */
 DECL|method|lookupTerm
 specifier|public
 name|BytesRef

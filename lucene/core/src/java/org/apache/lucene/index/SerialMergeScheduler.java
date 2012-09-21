@@ -38,6 +38,12 @@ name|SerialMergeScheduler
 extends|extends
 name|MergeScheduler
 block|{
+comment|/** Sole constructor. */
+DECL|method|SerialMergeScheduler
+specifier|public
+name|SerialMergeScheduler
+parameter_list|()
+block|{   }
 comment|/** Just do the merges in sequence. We do this    * "synchronized" so that even if the application is using    * multiple threads, only one merge may run at a time. */
 annotation|@
 name|Override

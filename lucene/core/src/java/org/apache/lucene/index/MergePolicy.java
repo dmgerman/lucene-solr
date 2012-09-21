@@ -168,6 +168,7 @@ operator|-
 literal|1
 decl_stmt|;
 comment|// used by IndexWriter
+comment|/** Estimated size in bytes of the merged segment. */
 DECL|field|estimatedMergeBytes
 specifier|public
 name|long
@@ -182,6 +183,7 @@ argument_list|>
 name|readers
 decl_stmt|;
 comment|// used by IndexWriter
+comment|/** Segments to be merged. */
 DECL|field|segments
 specifier|public
 specifier|final
@@ -191,6 +193,7 @@ name|SegmentInfoPerCommit
 argument_list|>
 name|segments
 decl_stmt|;
+comment|/** Number of documents in the merged segment. */
 DECL|field|totalDocCount
 specifier|public
 specifier|final
@@ -209,6 +212,7 @@ DECL|field|paused
 name|boolean
 name|paused
 decl_stmt|;
+comment|/** Sole constructor.      * @param segments List of {@link SegmentInfoPerCommit}s      *        to be merged. */
 DECL|method|OneMerge
 specifier|public
 name|OneMerge
@@ -332,6 +336,7 @@ return|return
 name|aborted
 return|;
 block|}
+comment|/** Called periodically by {@link IndexWriter} while      *  merging to see if the merge is aborted. */
 DECL|method|checkAborted
 specifier|public
 specifier|synchronized
@@ -411,6 +416,7 @@ throw|;
 block|}
 block|}
 block|}
+comment|/** Set or clear whether this merge is paused paused (for example      *  {@link ConcurrentMergeScheduler} will pause merges      *  if too many are running). */
 DECL|method|setPause
 specifier|synchronized
 specifier|public
@@ -439,6 +445,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** Returns true if this merge is paused.      *      *  @see #setPause(boolean) */
 DECL|method|getPause
 specifier|synchronized
 specifier|public
@@ -450,6 +457,7 @@ return|return
 name|paused
 return|;
 block|}
+comment|/** Returns a readable description of the current merge      *  state. */
 DECL|method|segString
 specifier|public
 name|String
@@ -657,6 +665,7 @@ return|return
 name|total
 return|;
 block|}
+comment|/** Return {@link MergeInfo} describing this merge. */
 DECL|method|getMergeInfo
 specifier|public
 name|MergeInfo
@@ -702,6 +711,13 @@ name|OneMerge
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/** Sole constructor.  Use {@link      *  #add(MergePolicy.OneMerge)} to add merges. */
+DECL|method|MergeSpecification
+specifier|public
+name|MergeSpecification
+parameter_list|()
+block|{     }
+comment|/** Adds the provided {@link OneMerge} to this      *  specification. */
 DECL|method|add
 specifier|public
 name|void
@@ -719,6 +735,7 @@ name|merge
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Returns a description of the merges in this     *  specification. */
 DECL|method|segString
 specifier|public
 name|String
@@ -821,6 +838,7 @@ specifier|private
 name|Directory
 name|dir
 decl_stmt|;
+comment|/** Create a {@code MergeException}. */
 DECL|method|MergeException
 specifier|public
 name|MergeException
@@ -844,6 +862,7 @@ operator|=
 name|dir
 expr_stmt|;
 block|}
+comment|/** Create a {@code MergeException}. */
 DECL|method|MergeException
 specifier|public
 name|MergeException
@@ -888,6 +907,7 @@ name|MergeAbortedException
 extends|extends
 name|IOException
 block|{
+comment|/** Create a {@link MergeAbortedException}. */
 DECL|method|MergeAbortedException
 specifier|public
 name|MergeAbortedException
@@ -899,6 +919,7 @@ literal|"merge is aborted"
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Create a {@link MergeAbortedException} with a      *  specified message. */
 DECL|method|MergeAbortedException
 specifier|public
 name|MergeAbortedException
@@ -914,6 +935,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** {@link IndexWriter} that contains this instance. */
 DECL|field|writer
 specifier|protected
 name|SetOnce

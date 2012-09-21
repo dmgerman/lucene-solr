@@ -251,6 +251,12 @@ specifier|private
 name|BytesRef
 name|spare
 decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|Norm
+specifier|public
+name|Norm
+parameter_list|()
+block|{   }
 comment|/**    * Returns the {@link StorableField} representation for this norm    */
 DECL|method|field
 specifier|public

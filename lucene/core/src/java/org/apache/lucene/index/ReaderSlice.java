@@ -27,6 +27,7 @@ specifier|final
 class|class
 name|ReaderSlice
 block|{
+comment|/** Zero-length {@code ReaderSlice} array. */
 DECL|field|EMPTY_ARRAY
 specifier|public
 specifier|static
@@ -41,24 +42,28 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/** Document ID this slice starts from. */
 DECL|field|start
 specifier|public
 specifier|final
 name|int
 name|start
 decl_stmt|;
+comment|/** Number of documents in this slice. */
 DECL|field|length
 specifier|public
 specifier|final
 name|int
 name|length
 decl_stmt|;
+comment|/** Sub-reader index for this slice. */
 DECL|field|readerIndex
 specifier|public
 specifier|final
 name|int
 name|readerIndex
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|ReaderSlice
 specifier|public
 name|ReaderSlice

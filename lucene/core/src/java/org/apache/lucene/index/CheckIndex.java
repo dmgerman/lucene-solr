@@ -152,6 +152,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|PostingsFormat
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|Document
@@ -391,6 +409,10 @@ specifier|static
 class|class
 name|Status
 block|{
+DECL|method|Status
+name|Status
+parameter_list|()
+block|{     }
 comment|/** True if no problems were found with the index. */
 DECL|field|clean
 specifier|public
@@ -524,6 +546,10 @@ specifier|static
 class|class
 name|SegmentInfoStatus
 block|{
+DECL|method|SegmentInfoStatus
+name|SegmentInfoStatus
+parameter_list|()
+block|{       }
 comment|/** Name of the segment. */
 DECL|field|name
 specifier|public
@@ -660,6 +686,11 @@ specifier|final
 class|class
 name|FieldNormStatus
 block|{
+DECL|method|FieldNormStatus
+specifier|private
+name|FieldNormStatus
+parameter_list|()
+block|{       }
 comment|/** Number of fields successfully tested */
 DECL|field|totFields
 specifier|public
@@ -685,6 +716,10 @@ specifier|final
 class|class
 name|TermIndexStatus
 block|{
+DECL|method|TermIndexStatus
+name|TermIndexStatus
+parameter_list|()
+block|{       }
 comment|/** Total term count */
 DECL|field|termCount
 specifier|public
@@ -717,6 +752,7 @@ name|error
 init|=
 literal|null
 decl_stmt|;
+comment|/** Holds details of block allocations in the block        *  tree terms dictionary (this is only set if the        *  {@link PostingsFormat} for this segment uses block        *  tree. */
 DECL|field|blockTreeStats
 specifier|public
 name|Map
@@ -740,6 +776,10 @@ specifier|final
 class|class
 name|StoredFieldStatus
 block|{
+DECL|method|StoredFieldStatus
+name|StoredFieldStatus
+parameter_list|()
+block|{       }
 comment|/** Number of documents tested. */
 DECL|field|docCount
 specifier|public
@@ -773,6 +813,10 @@ specifier|final
 class|class
 name|TermVectorStatus
 block|{
+DECL|method|TermVectorStatus
+name|TermVectorStatus
+parameter_list|()
+block|{       }
 comment|/** Number of documents tested. */
 DECL|field|docCount
 specifier|public
@@ -806,6 +850,10 @@ specifier|final
 class|class
 name|DocValuesStatus
 block|{
+DECL|method|DocValuesStatus
+name|DocValuesStatus
+parameter_list|()
+block|{       }
 comment|/** Number of documents tested. */
 DECL|field|docCount
 specifier|public

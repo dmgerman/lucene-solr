@@ -203,6 +203,7 @@ name|segmentsFileName
 return|;
 block|}
 block|}
+comment|/** Wraps a provided {@link IndexCommit} and prevents it    *  from being deleted. */
 DECL|class|SnapshotCommitPoint
 specifier|protected
 class|class
@@ -210,11 +211,13 @@ name|SnapshotCommitPoint
 extends|extends
 name|IndexCommit
 block|{
+comment|/** The {@link IndexCommit} we are preventing from deletion. */
 DECL|field|cp
 specifier|protected
 name|IndexCommit
 name|cp
 decl_stmt|;
+comment|/** Creates a {@code SnapshotCommitPoint} wrapping the provided      *  {@link IndexCommit}. */
 DECL|method|SnapshotCommitPoint
 specifier|protected
 name|SnapshotCommitPoint
@@ -469,11 +472,13 @@ specifier|private
 name|IndexDeletionPolicy
 name|primary
 decl_stmt|;
+comment|/** Most recently committed {@link IndexCommit}. */
 DECL|field|lastCommit
 specifier|protected
 name|IndexCommit
 name|lastCommit
 decl_stmt|;
+comment|/** Sole constructor, taking the incoming {@link    *  IndexDeletionPolicy} to wrap. */
 DECL|method|SnapshotDeletionPolicy
 specifier|public
 name|SnapshotDeletionPolicy
@@ -665,6 +670,7 @@ name|id
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Wraps each {@link IndexCommit} as a {@link    *  SnapshotCommitPoint}. */
 DECL|method|wrapCommits
 specifier|protected
 name|List

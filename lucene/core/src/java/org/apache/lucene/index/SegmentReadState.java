@@ -24,6 +24,44 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|PostingsFormat
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|perfield
+operator|.
+name|PerFieldPostingsFormat
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -54,42 +92,48 @@ specifier|public
 class|class
 name|SegmentReadState
 block|{
+comment|/** {@link Directory} where this segment is read from. */
 DECL|field|dir
 specifier|public
 specifier|final
 name|Directory
 name|dir
 decl_stmt|;
+comment|/** {@link SegmentInfo} describing this segment. */
 DECL|field|segmentInfo
 specifier|public
 specifier|final
 name|SegmentInfo
 name|segmentInfo
 decl_stmt|;
+comment|/** {@link FieldInfos} describing all fields in this    *  segment. */
 DECL|field|fieldInfos
 specifier|public
 specifier|final
 name|FieldInfos
 name|fieldInfos
 decl_stmt|;
+comment|/** {@link IOContext} to pass to {@link    *  Directory#openInput(String,IOContext)}. */
 DECL|field|context
 specifier|public
 specifier|final
 name|IOContext
 name|context
 decl_stmt|;
-comment|/** NOTE: if this is&lt; 0, that means "defer terms index    *  load until needed".  But if the codec must load the    *  terms index on init (preflex is the only once currently    *  that must do so), then it should negate this value to    *  get the app's terms divisor */
+comment|/** The {@code termInfosIndexDivisor} to use, if    *  appropriate (not all {@link PostingsFormat}s support    *  it; in particular the current default does not).    *    *<p>  NOTE: if this is&lt; 0, that means "defer terms index    *  load until needed".  But if the codec must load the    *  terms index on init (preflex is the only once currently    *  that must do so), then it should negate this value to    *  get the app's terms divisor */
 DECL|field|termsIndexDivisor
 specifier|public
 name|int
 name|termsIndexDivisor
 decl_stmt|;
+comment|/** Unique suffix for any postings files read for this    *  segment.  {@link PerFieldPostingsFormat} sets this for    *  each of the postings formats it wraps.  If you create    *  a new {@link PostingsFormat} then any files you    *  write/read must be derived using this suffix (use    *  {@link IndexFileNames#segmentFileName(String,String,String)}). */
 DECL|field|segmentSuffix
 specifier|public
 specifier|final
 name|String
 name|segmentSuffix
 decl_stmt|;
+comment|/** Create a {@code SegmentReadState}. */
 DECL|method|SegmentReadState
 specifier|public
 name|SegmentReadState
@@ -126,6 +170,7 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Create a {@code SegmentReadState}. */
 DECL|method|SegmentReadState
 specifier|public
 name|SegmentReadState
@@ -186,6 +231,7 @@ operator|=
 name|segmentSuffix
 expr_stmt|;
 block|}
+comment|/** Create a {@code SegmentReadState}. */
 DECL|method|SegmentReadState
 specifier|public
 name|SegmentReadState

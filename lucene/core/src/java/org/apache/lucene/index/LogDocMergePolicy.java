@@ -48,6 +48,7 @@ name|DEFAULT_MIN_MERGE_DOCS
 init|=
 literal|1000
 decl_stmt|;
+comment|/** Sole constructor, setting all settings to their    *  defaults. */
 DECL|method|LogDocMergePolicy
 specifier|public
 name|LogDocMergePolicy

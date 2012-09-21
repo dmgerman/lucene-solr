@@ -70,6 +70,7 @@ name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
+comment|/** Sole constructor, setting all settings to their    *  defaults. */
 DECL|method|LogByteSizeMergePolicy
 specifier|public
 name|LogByteSizeMergePolicy

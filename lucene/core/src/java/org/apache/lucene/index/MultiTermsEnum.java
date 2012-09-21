@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exposes flex API, merged from flex API of sub-segments.  * This does a merge sort, by term text, of the sub-readers.  *  * @lucene.experimental  */
+comment|/**  * Exposes {@link TermsEnum} API, merged from {@link TermsEnum} API of sub-segments.  * This does a merge sort, by term text, of the sub-readers.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -245,6 +245,7 @@ name|subIndex
 expr_stmt|;
 block|}
 block|}
+comment|/** Returns how many sub-reader slices contain the current    *  term.  @see #getMatchArray */
 DECL|method|getMatchCount
 specifier|public
 name|int
@@ -255,6 +256,7 @@ return|return
 name|numTop
 return|;
 block|}
+comment|/** Returns sub-reader slices positioned to the current term. */
 DECL|method|getMatchArray
 specifier|public
 name|TermsEnumWithSlice
@@ -266,6 +268,7 @@ return|return
 name|top
 return|;
 block|}
+comment|/** Sole constructor.    *  @param slices Which sub-reader slices we should    *  merge. */
 DECL|method|MultiTermsEnum
 specifier|public
 name|MultiTermsEnum

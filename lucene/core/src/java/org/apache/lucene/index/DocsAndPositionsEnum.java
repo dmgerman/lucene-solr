@@ -91,6 +91,12 @@ name|FLAG_PAYLOADS
 init|=
 literal|0x2
 decl_stmt|;
+comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
+DECL|method|DocsAndPositionsEnum
+specifier|protected
+name|DocsAndPositionsEnum
+parameter_list|()
+block|{   }
 comment|/** Returns the next position.  You should only call this    *  up to {@link DocsEnum#freq()} times else    *  the behavior is not defined.  If positions were not    *  indexed this will return -1; this only happens if    *  offsets were indexed and you passed needsOffset=true    *  when pulling the enum.  */
 DECL|method|nextPosition
 specifier|public

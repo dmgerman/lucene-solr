@@ -140,6 +140,7 @@ specifier|final
 name|boolean
 name|hasPayloads
 decl_stmt|;
+comment|/** Sole constructor.    *    * @param subs The {@link Terms} instances of all sub-readers.     * @param subSlices A parallel array (matching {@code    *        subs}) describing the sub-reader slices.    */
 DECL|method|MultiTerms
 specifier|public
 name|MultiTerms

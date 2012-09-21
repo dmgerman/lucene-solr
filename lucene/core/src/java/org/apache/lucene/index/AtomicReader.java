@@ -83,6 +83,7 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|AtomicReader
 specifier|protected
 name|AtomicReader

@@ -102,6 +102,12 @@ name|atts
 init|=
 literal|null
 decl_stmt|;
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|DocsEnum
+specifier|protected
+name|DocsEnum
+parameter_list|()
+block|{   }
 comment|/** Returns term frequency in the current document.  Do    *  not call this before {@link #nextDoc} is first called,    *  nor after {@link #nextDoc} returns NO_MORE_DOCS.     **/
 DECL|method|freq
 specifier|public

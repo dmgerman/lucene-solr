@@ -96,42 +96,49 @@ specifier|public
 class|class
 name|PerDocWriteState
 block|{
+comment|/** InfoStream used for debugging. */
 DECL|field|infoStream
 specifier|public
 specifier|final
 name|InfoStream
 name|infoStream
 decl_stmt|;
+comment|/** {@link Directory} to write all files to. */
 DECL|field|directory
 specifier|public
 specifier|final
 name|Directory
 name|directory
 decl_stmt|;
+comment|/** {@link SegmentInfo} describing this segment. */
 DECL|field|segmentInfo
 specifier|public
 specifier|final
 name|SegmentInfo
 name|segmentInfo
 decl_stmt|;
+comment|/** Number of bytes allocated in RAM to hold this state. */
 DECL|field|bytesUsed
 specifier|public
 specifier|final
 name|Counter
 name|bytesUsed
 decl_stmt|;
+comment|/** Segment suffix to pass to {@link    * IndexFileNames#segmentFileName(String,String,String)}. */
 DECL|field|segmentSuffix
 specifier|public
 specifier|final
 name|String
 name|segmentSuffix
 decl_stmt|;
+comment|/** {@link IOContext} to use for all file writing. */
 DECL|field|context
 specifier|public
 specifier|final
 name|IOContext
 name|context
 decl_stmt|;
+comment|/** Creates a {@code PerDocWriteState}. */
 DECL|method|PerDocWriteState
 specifier|public
 name|PerDocWriteState
@@ -192,6 +199,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
+comment|/** Creates a {@code PerDocWriteState}, copying fields    *  from another and allocating a new {@link #bytesUsed}. */
 DECL|method|PerDocWriteState
 specifier|public
 name|PerDocWriteState
@@ -238,6 +246,7 @@ operator|.
 name|context
 expr_stmt|;
 block|}
+comment|/** Creates a {@code PerDocWriteState}, copying fields    *  from another (copy constructor) but setting a new    *  {@link #segmentSuffix}. */
 DECL|method|PerDocWriteState
 specifier|public
 name|PerDocWriteState

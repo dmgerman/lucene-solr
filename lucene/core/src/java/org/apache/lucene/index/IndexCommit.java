@@ -113,6 +113,7 @@ name|void
 name|delete
 parameter_list|()
 function_decl|;
+comment|/** Returns true if this commit should be deleted; this is    *  only used by {@link IndexWriter} after invoking the    *  {@link IndexDeletionPolicy}. */
 DECL|method|isDeleted
 specifier|public
 specifier|abstract
@@ -128,6 +129,12 @@ name|int
 name|getSegmentCount
 parameter_list|()
 function_decl|;
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|IndexCommit
+specifier|protected
+name|IndexCommit
+parameter_list|()
+block|{   }
 comment|/** Two IndexCommits are equal if both their Directory and versions are equal. */
 annotation|@
 name|Override
