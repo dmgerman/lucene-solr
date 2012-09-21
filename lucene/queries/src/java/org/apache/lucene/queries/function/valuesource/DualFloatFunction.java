@@ -118,6 +118,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract {@link ValueSource} implementation which wraps two ValueSources  * and applies an extendible float function to their values.  **/
+end_comment
+
 begin_class
 DECL|class|DualFloatFunction
 specifier|public

@@ -84,6 +84,10 @@ name|MutableValueBool
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract {@link FunctionValues} implementation which supports retrieving boolean values.  * Implementations can control how the boolean values are loaded through {@link #boolVal(int)}}  */
+end_comment
+
 begin_class
 DECL|class|BoolDocValues
 specifier|public

@@ -84,6 +84,10 @@ name|IOException
 import|;
 end_import
 
+begin_comment
+comment|/**  * {@link Scorer} which returns the result of {@link FunctionValues#floatVal(int)} as  * the score for a document.  */
+end_comment
+
 begin_class
 DECL|class|ValueSourceScorer
 specifier|public

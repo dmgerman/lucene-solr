@@ -129,11 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *  **/
-end_comment
-
-begin_comment
-comment|// a simple function of multiple sources
+comment|/**  * Abstract {@link ValueSource} implementation which wraps multiple ValueSources  * and applies an extendible float function to their values.  **/
 end_comment
 
 begin_class

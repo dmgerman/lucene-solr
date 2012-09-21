@@ -371,7 +371,7 @@ name|int
 name|doc
 parameter_list|)
 function_decl|;
-comment|/** @lucene.experimental  */
+comment|/**    * Abstraction of the logic required to fill the value of a specified doc into    * a reusable {@link MutableValue}.  Implementations of {@link FunctionValues}    * are encouraged to define their own implementations of ValueFiller if their    * value is not a float.    *    * @lucene.experimental    */
 DECL|class|ValueFiller
 specifier|public
 specifier|static

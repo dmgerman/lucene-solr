@@ -118,6 +118,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * {@link BoolFunction} implementation which applies an extendible boolean  * function to the values of a single wrapped {@link ValueSource}.  *  * Functions this can be used for include whether a field has a value or not,  * or inverting the boolean value of the wrapped ValueSource.  */
+end_comment
+
 begin_class
 DECL|class|SimpleBoolFunction
 specifier|public

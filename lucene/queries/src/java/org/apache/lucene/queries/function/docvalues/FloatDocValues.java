@@ -84,6 +84,10 @@ name|MutableValueFloat
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract {@link FunctionValues} implementation which supports retrieving float values.  * Implementations can control how the float values are loaded through {@link #floatVal(int)}}  */
+end_comment
+
 begin_class
 DECL|class|FloatDocValues
 specifier|public

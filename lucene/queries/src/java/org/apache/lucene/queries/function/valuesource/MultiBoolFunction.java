@@ -128,6 +128,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract {@link ValueSource} implementation which wraps multiple ValueSources  * and applies an extendible boolean function to their values.  **/
+end_comment
+
 begin_class
 DECL|class|MultiBoolFunction
 specifier|public

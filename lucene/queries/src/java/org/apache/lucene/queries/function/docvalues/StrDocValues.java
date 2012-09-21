@@ -84,6 +84,10 @@ name|MutableValueStr
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract {@link FunctionValues} implementation which supports retrieving String values.  * Implementations can control how the String values are loaded through {@link #strVal(int)}}  */
+end_comment
+
 begin_class
 DECL|class|StrDocValues
 specifier|public

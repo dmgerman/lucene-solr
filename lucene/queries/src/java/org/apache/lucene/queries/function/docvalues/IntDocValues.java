@@ -84,6 +84,10 @@ name|MutableValueInt
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract {@link FunctionValues} implementation which supports retrieving int values.  * Implementations can control how the int values are loaded through {@link #intVal(int)}  */
+end_comment
+
 begin_class
 DECL|class|IntDocValues
 specifier|public
