@@ -292,6 +292,7 @@ name|ROOT
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Constructs an empty Ternary Search Trie,    * specifying the Locale used for lowercasing.    */
 DECL|method|JaspellTernarySearchTrie
 specifier|public
 name|JaspellTernarySearchTrie

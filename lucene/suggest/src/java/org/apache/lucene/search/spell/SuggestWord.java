@@ -29,6 +29,12 @@ specifier|final
 class|class
 name|SuggestWord
 block|{
+comment|/**    * Creates a new empty suggestion with null text.    */
+DECL|method|SuggestWord
+specifier|public
+name|SuggestWord
+parameter_list|()
+block|{}
 comment|/**    * the score of the word    */
 DECL|field|score
 specifier|public

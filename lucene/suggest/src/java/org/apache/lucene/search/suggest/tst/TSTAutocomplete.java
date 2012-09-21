@@ -40,6 +40,10 @@ specifier|public
 class|class
 name|TSTAutocomplete
 block|{
+DECL|method|TSTAutocomplete
+name|TSTAutocomplete
+parameter_list|()
+block|{}
 comment|/**    * Inserting keys in TST in the order middle,small,big (lexicographic measure)    * recursively creates a balanced tree which reduces insertion and search    * times significantly.    *     * @param tokens    *          Sorted list of keys to be inserted in TST.    * @param lo    *          stores the lower index of current list.    * @param hi    *          stores the higher index of current list.    * @param root    *          a reference object to root of TST.    */
 DECL|method|balancedTree
 specifier|public

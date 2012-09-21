@@ -248,6 +248,12 @@ name|editDistance
 init|=
 literal|2
 decl_stmt|;
+comment|/**     * Creates a new empty trie     * @see #build(TermFreqIterator)    * */
+DECL|method|JaspellLookup
+specifier|public
+name|JaspellLookup
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|build
@@ -387,6 +393,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**     * Adds a new node if<code>key</code> already exists,    * otherwise replaces its value.    *<p>    * This method always returns false.    */
 DECL|method|add
 specifier|public
 name|boolean
@@ -413,6 +420,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**    * Returns the value for the specified key, or null    * if the key does not exist.    */
 DECL|method|get
 specifier|public
 name|Object

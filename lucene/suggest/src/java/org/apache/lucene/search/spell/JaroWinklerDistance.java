@@ -47,6 +47,12 @@ name|threshold
 init|=
 literal|0.7f
 decl_stmt|;
+comment|/**    * Creates a new distance metric with the default threshold    * for the Jaro Winkler bonus (0.7)    * @see #setThreshold(float)    */
+DECL|method|JaroWinklerDistance
+specifier|public
+name|JaroWinklerDistance
+parameter_list|()
+block|{}
 DECL|method|matches
 specifier|private
 name|int

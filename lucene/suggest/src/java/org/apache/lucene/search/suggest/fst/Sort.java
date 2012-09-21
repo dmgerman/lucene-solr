@@ -408,41 +408,49 @@ specifier|public
 class|class
 name|SortInfo
 block|{
+comment|/** number of temporary files created when merging partitions */
 DECL|field|tempMergeFiles
 specifier|public
 name|int
 name|tempMergeFiles
 decl_stmt|;
+comment|/** number of partition merges */
 DECL|field|mergeRounds
 specifier|public
 name|int
 name|mergeRounds
 decl_stmt|;
+comment|/** number of lines of data read */
 DECL|field|lines
 specifier|public
 name|int
 name|lines
 decl_stmt|;
+comment|/** time spent merging sorted partitions (in milliseconds) */
 DECL|field|mergeTime
 specifier|public
 name|long
 name|mergeTime
 decl_stmt|;
+comment|/** time spent sorting data (in milliseconds) */
 DECL|field|sortTime
 specifier|public
 name|long
 name|sortTime
 decl_stmt|;
+comment|/** total time spent (in milliseconds) */
 DECL|field|totalTime
 specifier|public
 name|long
 name|totalTime
 decl_stmt|;
+comment|/** time spent in i/o read (in milliseconds) */
 DECL|field|readTime
 specifier|public
 name|long
 name|readTime
 decl_stmt|;
+comment|/** read buffer size (in bytes) */
 DECL|field|bufferSize
 specifier|public
 specifier|final
@@ -453,6 +461,12 @@ name|ramBufferSize
 operator|.
 name|bytes
 decl_stmt|;
+comment|/** create a new SortInfo (with empty statistics) for debugging */
+DECL|method|SortInfo
+specifier|public
+name|SortInfo
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|toString

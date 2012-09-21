@@ -29,7 +29,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  *  Frequency first, then score.  Must have   *  **/
+comment|/**  *  Frequency first, then score.  *  **/
 end_comment
 
 begin_class
@@ -43,6 +43,12 @@ argument_list|<
 name|SuggestWord
 argument_list|>
 block|{
+comment|/**    * Creates a new comparator that will compare by {@link SuggestWord#freq},    * then by {@link SuggestWord#score}, then by {@link SuggestWord#string}.    */
+DECL|method|SuggestWordFrequencyComparator
+specifier|public
+name|SuggestWordFrequencyComparator
+parameter_list|()
+block|{}
 DECL|method|compare
 specifier|public
 name|int

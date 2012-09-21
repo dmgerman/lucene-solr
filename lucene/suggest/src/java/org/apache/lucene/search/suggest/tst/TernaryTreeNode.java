@@ -30,6 +30,12 @@ specifier|public
 class|class
 name|TernaryTreeNode
 block|{
+comment|/** Creates a new empty node */
+DECL|method|TernaryTreeNode
+specifier|public
+name|TernaryTreeNode
+parameter_list|()
+block|{}
 comment|/** the character stored by a node. */
 DECL|field|splitchar
 name|char

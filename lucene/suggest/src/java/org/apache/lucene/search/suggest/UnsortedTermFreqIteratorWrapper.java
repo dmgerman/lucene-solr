@@ -106,6 +106,7 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+comment|/**     * Creates a new iterator, wrapping the specified iterator and    * returning elements in a random order.    */
 DECL|method|UnsortedTermFreqIteratorWrapper
 specifier|public
 name|UnsortedTermFreqIteratorWrapper

@@ -43,6 +43,12 @@ argument_list|<
 name|SuggestWord
 argument_list|>
 block|{
+comment|/**    * Creates a new comparator that will compare by {@link SuggestWord#score},    * then by {@link SuggestWord#freq}, then by {@link SuggestWord#string}.    */
+DECL|method|SuggestWordScoreComparator
+specifier|public
+name|SuggestWordScoreComparator
+parameter_list|()
+block|{}
 DECL|method|compare
 specifier|public
 name|int

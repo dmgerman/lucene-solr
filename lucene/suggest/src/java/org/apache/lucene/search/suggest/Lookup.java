@@ -152,18 +152,21 @@ argument_list|<
 name|LookupResult
 argument_list|>
 block|{
+comment|/** the key's text */
 DECL|field|key
 specifier|public
 specifier|final
 name|CharSequence
 name|key
 decl_stmt|;
+comment|/** the key's weight */
 DECL|field|value
 specifier|public
 specifier|final
 name|long
 name|value
 decl_stmt|;
+comment|/**      * Create a new result from a key+weight pair.      */
 DECL|method|LookupResult
 specifier|public
 name|LookupResult
@@ -365,6 +368,7 @@ name|LookupResult
 argument_list|>
 block|{
 comment|// TODO: should we move this out of the interface into a utility class?
+comment|/**      * Creates a new priority queue of the specified size.      */
 DECL|method|LookupPriorityQueue
 specifier|public
 name|LookupPriorityQueue

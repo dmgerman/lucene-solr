@@ -95,6 +95,7 @@ implements|implements
 name|TermFreqIterator
 block|{
 comment|// TODO keep this for now
+comment|/** buffered term entries */
 DECL|field|entries
 specifier|protected
 name|BytesRefList
@@ -104,6 +105,7 @@ operator|new
 name|BytesRefList
 argument_list|()
 decl_stmt|;
+comment|/** current buffer position */
 DECL|field|curPos
 specifier|protected
 name|int
@@ -112,6 +114,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|/** buffered weights, parallel with {@link #entries} */
 DECL|field|freqs
 specifier|protected
 name|long
@@ -143,6 +146,7 @@ name|BytesRef
 argument_list|>
 name|comp
 decl_stmt|;
+comment|/** Creates a new iterator, buffering entries from the specified iterator */
 DECL|method|BufferingTermFreqIteratorWrapper
 specifier|public
 name|BufferingTermFreqIteratorWrapper

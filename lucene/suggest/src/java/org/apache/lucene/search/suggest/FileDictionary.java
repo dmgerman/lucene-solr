@@ -127,6 +127,7 @@ name|done
 init|=
 literal|false
 decl_stmt|;
+comment|/**    * Creates a dictionary based on an inputstream.    *<p>    * NOTE: content is treated as UTF-8    */
 DECL|method|FileDictionary
 specifier|public
 name|FileDictionary

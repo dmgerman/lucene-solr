@@ -99,6 +99,7 @@ specifier|private
 name|BytesRefIterator
 name|wrapped
 decl_stmt|;
+comment|/**       * Creates a new wrapper, wrapping the specified iterator and       * specifying a weight value of<code>1</code> for all terms.      */
 DECL|method|TermFreqIteratorWrapper
 specifier|public
 name|TermFreqIteratorWrapper

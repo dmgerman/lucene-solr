@@ -149,6 +149,7 @@ specifier|private
 name|float
 name|thresh
 decl_stmt|;
+comment|/**    * Creates a new Dictionary, pulling source terms from    * the specified<code>field</code> in the provided<code>reader</code>.    *<p>    * Terms appearing in less than<code>thres</code> percentage of documents    * will be excluded.    */
 DECL|method|HighFrequencyDictionary
 specifier|public
 name|HighFrequencyDictionary

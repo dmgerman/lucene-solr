@@ -97,6 +97,7 @@ specifier|private
 name|BufferedReader
 name|in
 decl_stmt|;
+comment|/**    * Creates a dictionary based on a File.    *<p>    * NOTE: content is treated as UTF-8    */
 DECL|method|PlainTextDictionary
 specifier|public
 name|PlainTextDictionary
@@ -125,6 +126,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Creates a dictionary based on an inputstream.    *<p>    * NOTE: content is treated as UTF-8    */
 DECL|method|PlainTextDictionary
 specifier|public
 name|PlainTextDictionary

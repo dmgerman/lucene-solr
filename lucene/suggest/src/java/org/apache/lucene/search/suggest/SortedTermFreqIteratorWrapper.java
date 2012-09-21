@@ -257,6 +257,7 @@ name|BytesRef
 argument_list|>
 name|comparator
 decl_stmt|;
+comment|/**     * Calls {@link #SortedTermFreqIteratorWrapper(TermFreqIterator, Comparator, boolean)     * SortedTermFreqIteratorWrapper(source, comparator, false)}    */
 DECL|method|SortedTermFreqIteratorWrapper
 specifier|public
 name|SortedTermFreqIteratorWrapper
@@ -283,6 +284,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Creates a new sorted wrapper. if<code>compareRawBytes</code> is true, then    * only the bytes (not the weight) will be used for comparison.    */
 DECL|method|SortedTermFreqIteratorWrapper
 specifier|public
 name|SortedTermFreqIteratorWrapper
@@ -837,6 +839,7 @@ literal|8
 expr_stmt|;
 block|}
 block|}
+comment|/** encodes an entry (bytes+weight) to the provided writer */
 DECL|method|encode
 specifier|protected
 name|void
@@ -936,6 +939,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** decodes the weight at the current position */
 DECL|method|decode
 specifier|protected
 name|long

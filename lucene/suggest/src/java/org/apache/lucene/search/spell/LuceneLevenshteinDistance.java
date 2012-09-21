@@ -45,6 +45,12 @@ name|LuceneLevenshteinDistance
 implements|implements
 name|StringDistance
 block|{
+comment|/**    * Creates a new comparator, mimicing the behavior of Lucene's internal    * edit distance.    */
+DECL|method|LuceneLevenshteinDistance
+specifier|public
+name|LuceneLevenshteinDistance
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|getDistance
