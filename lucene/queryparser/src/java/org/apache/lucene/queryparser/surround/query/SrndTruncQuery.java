@@ -152,6 +152,10 @@ name|Matcher
 import|;
 end_import
 
+begin_comment
+comment|/**  * Query that matches wildcards  */
+end_comment
+
 begin_class
 DECL|class|SrndTruncQuery
 specifier|public
