@@ -1753,7 +1753,7 @@ name|FilterStrategy
 name|LEAP_FROG_FILTER_FIRST_STRATEGY
 init|=
 operator|new
-name|LeapFrogFilterStragey
+name|LeapFrogFilterStrategy
 argument_list|(
 literal|false
 argument_list|)
@@ -1767,7 +1767,7 @@ name|FilterStrategy
 name|LEAP_FROG_QUERY_FIRST_STRATEGY
 init|=
 operator|new
-name|LeapFrogFilterStragey
+name|LeapFrogFilterStrategy
 argument_list|(
 literal|true
 argument_list|)
@@ -2017,12 +2017,12 @@ literal|100
 return|;
 block|}
 block|}
-DECL|class|LeapFrogFilterStragey
+DECL|class|LeapFrogFilterStrategy
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|LeapFrogFilterStragey
+name|LeapFrogFilterStrategy
 extends|extends
 name|FilterStrategy
 block|{
@@ -2032,9 +2032,9 @@ specifier|final
 name|boolean
 name|scorerFirst
 decl_stmt|;
-DECL|method|LeapFrogFilterStragey
+DECL|method|LeapFrogFilterStrategy
 specifier|private
-name|LeapFrogFilterStragey
+name|LeapFrogFilterStrategy
 parameter_list|(
 name|boolean
 name|scorerFirst
