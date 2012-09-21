@@ -458,6 +458,12 @@ name|res
 return|;
 block|}
 block|}
+comment|/**    * Sole constructor. (For invocation by subclass     * constructors, typically implicit.)    */
+DECL|method|Lookup
+specifier|public
+name|Lookup
+parameter_list|()
+block|{}
 comment|/** Build lookup from a dictionary. Some implementations may require sorted    * or unsorted keys from the dictionary's iterator - use    * {@link SortedTermFreqIteratorWrapper} or    * {@link UnsortedTermFreqIteratorWrapper} in such case.    */
 DECL|method|build
 specifier|public

@@ -725,6 +725,7 @@ operator|=
 name|comparator
 expr_stmt|;
 block|}
+comment|/**    * Gets the comparator in use for ranking suggestions.    * @see #setComparator(Comparator)    */
 DECL|method|getComparator
 specifier|public
 name|Comparator

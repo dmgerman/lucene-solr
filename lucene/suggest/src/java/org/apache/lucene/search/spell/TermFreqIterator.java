@@ -78,6 +78,7 @@ name|TermFreqIterator
 extends|extends
 name|BytesRefIterator
 block|{
+comment|/** A term's weight, higher numbers mean better suggestions. */
 DECL|method|weight
 specifier|public
 name|long

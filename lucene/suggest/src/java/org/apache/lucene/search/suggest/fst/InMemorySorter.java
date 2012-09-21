@@ -113,6 +113,7 @@ name|BytesRef
 argument_list|>
 name|comparator
 decl_stmt|;
+comment|/**    * Creates an InMemorySorter, sorting entries by the    * provided comparator.    */
 DECL|method|InMemorySorter
 specifier|public
 name|InMemorySorter

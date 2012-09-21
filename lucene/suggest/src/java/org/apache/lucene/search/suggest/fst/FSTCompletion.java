@@ -127,12 +127,14 @@ argument_list|<
 name|Completion
 argument_list|>
 block|{
+comment|/** UTF-8 bytes of the suggestion */
 DECL|field|utf8
 specifier|public
 specifier|final
 name|BytesRef
 name|utf8
 decl_stmt|;
+comment|/** source bucket (weight) of the suggestion */
 DECL|field|bucket
 specifier|public
 specifier|final
@@ -271,7 +273,7 @@ specifier|private
 name|boolean
 name|higherWeightsFirst
 decl_stmt|;
-comment|/**    * @param automaton    *          Automaton with completions. See {@link FSTCompletionBuilder}.    * @param higherWeightsFirst    *          Return most popular suggestions first. This is the default    *          behavior for this implementation. Setting it to<code>false</code>    *          has no effect (use constant term weights to sort alphabetically    *          only).    * @param exactFirst    *          Find and push an exact match to the first position of the result    *          list if found.    */
+comment|/**    * Constructs an FSTCompletion, specifying higherWeightsFirst and exactFirst.    * @param automaton    *          Automaton with completions. See {@link FSTCompletionBuilder}.    * @param higherWeightsFirst    *          Return most popular suggestions first. This is the default    *          behavior for this implementation. Setting it to<code>false</code>    *          has no effect (use constant term weights to sort alphabetically    *          only).    * @param exactFirst    *          Find and push an exact match to the first position of the result    *          list if found.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

@@ -99,6 +99,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Comparator used to determine the sort order of entries.    */
 DECL|method|getComparator
 name|Comparator
 argument_list|<

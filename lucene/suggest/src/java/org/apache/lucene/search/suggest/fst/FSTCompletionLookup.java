@@ -1097,6 +1097,7 @@ return|return
 name|results
 return|;
 block|}
+comment|/**    * Returns the bucket (weight) as a Long for the provided key if it exists,    * otherwise null if it does not.    */
 DECL|method|get
 specifier|public
 name|Object

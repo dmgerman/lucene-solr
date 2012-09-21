@@ -383,6 +383,12 @@ name|distance
 init|=
 name|INTERNAL_LEVENSHTEIN
 decl_stmt|;
+comment|/** Creates a DirectSpellChecker with default configuration values */
+DECL|method|DirectSpellChecker
+specifier|public
+name|DirectSpellChecker
+parameter_list|()
+block|{}
 comment|/** Get the maximum number of Levenshtein edit-distances to draw    *  candidate terms from. */
 DECL|method|getMaxEdits
 specifier|public
