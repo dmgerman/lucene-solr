@@ -44,18 +44,21 @@ specifier|public
 class|class
 name|TermStats
 block|{
+comment|/** How many documents have at least one occurrence of    *  this term. */
 DECL|field|docFreq
 specifier|public
 specifier|final
 name|int
 name|docFreq
 decl_stmt|;
+comment|/** Total number of times this term occurs across all    *  documents in the field. */
 DECL|field|totalTermFreq
 specifier|public
 specifier|final
 name|long
 name|totalTermFreq
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|TermStats
 specifier|public
 name|TermStats

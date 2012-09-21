@@ -83,6 +83,12 @@ specifier|abstract
 class|class
 name|DocValuesFormat
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|DocValuesFormat
+specifier|protected
+name|DocValuesFormat
+parameter_list|()
+block|{   }
 comment|/** Consumes (writes) doc values during indexing. */
 DECL|method|docsConsumer
 specifier|public

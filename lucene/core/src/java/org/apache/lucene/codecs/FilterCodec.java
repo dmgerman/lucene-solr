@@ -29,6 +29,7 @@ name|FilterCodec
 extends|extends
 name|Codec
 block|{
+comment|/** Sole constructor. */
 DECL|method|FilterCodec
 specifier|public
 name|FilterCodec

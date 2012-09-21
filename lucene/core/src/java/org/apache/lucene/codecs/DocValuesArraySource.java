@@ -266,6 +266,7 @@ name|templates
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Returns the {@link DocValuesArraySource} for the given    *  {@link Type}. */
 DECL|method|forType
 specifier|public
 specifier|static
@@ -285,6 +286,7 @@ name|type
 argument_list|)
 return|;
 block|}
+comment|/** Number of bytes to encode each doc value. */
 DECL|field|bytesPerValue
 specifier|protected
 specifier|final
@@ -328,6 +330,7 @@ name|BytesRef
 name|ref
 parameter_list|)
 function_decl|;
+comment|/** Creates a {@link DocValuesArraySource} by loading a    *  previously saved one from an {@link IndexInput}. */
 DECL|method|newFromInput
 specifier|public
 specifier|abstract
@@ -343,6 +346,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Creates {@link DocValuesArraySource} from a native    *  array. */
 DECL|method|newFromArray
 specifier|public
 specifier|abstract
@@ -366,6 +370,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/** Encode a long value into the provided {@link    *  BytesRef}. */
 DECL|method|toBytes
 specifier|public
 name|void
@@ -386,6 +391,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Encode a double value into the provided {@link    *  BytesRef}. */
 DECL|method|toBytes
 specifier|public
 name|void

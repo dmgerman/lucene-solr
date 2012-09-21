@@ -93,6 +93,12 @@ specifier|abstract
 class|class
 name|SegmentInfoWriter
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|SegmentInfoWriter
+specifier|protected
+name|SegmentInfoWriter
+parameter_list|()
+block|{   }
 comment|/**    * Write {@link SegmentInfo} data.     * @throws IOException    */
 DECL|method|write
 specifier|public

@@ -24,6 +24,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -337,6 +347,8 @@ class|class
 name|Lucene40TermVectorsReader
 extends|extends
 name|TermVectorsReader
+implements|implements
+name|Closeable
 block|{
 DECL|field|STORE_POSITIONS_WITH_TERMVECTOR
 specifier|static
@@ -514,7 +526,7 @@ specifier|private
 name|int
 name|numTotalDocs
 decl_stmt|;
-comment|// used by clone
+comment|/** Used by clone. */
 DECL|method|Lucene40TermVectorsReader
 name|Lucene40TermVectorsReader
 parameter_list|(
@@ -574,6 +586,7 @@ operator|=
 name|numTotalDocs
 expr_stmt|;
 block|}
+comment|/** Sole constructor. */
 DECL|method|Lucene40TermVectorsReader
 specifier|public
 name|Lucene40TermVectorsReader
@@ -1090,6 +1103,8 @@ name|tvfPosition
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void

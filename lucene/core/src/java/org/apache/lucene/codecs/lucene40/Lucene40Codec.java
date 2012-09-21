@@ -301,6 +301,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|Lucene40Codec
 specifier|public
 name|Lucene40Codec

@@ -396,6 +396,7 @@ name|tvf
 init|=
 literal|null
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|Lucene40TermVectorsWriter
 specifier|public
 name|Lucene40TermVectorsWriter

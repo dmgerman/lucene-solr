@@ -562,12 +562,13 @@ name|FieldReader
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// keeps the dirStart offset
+comment|/** File offset where the directory starts in the terms file. */
 DECL|field|dirOffset
 specifier|protected
 name|long
 name|dirOffset
 decl_stmt|;
+comment|/** File offset where the directory starts in the index file. */
 DECL|field|indexDirOffset
 specifier|protected
 name|long
@@ -578,6 +579,7 @@ specifier|private
 name|String
 name|segment
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|BlockTreeTermsReader
 specifier|public
 name|BlockTreeTermsReader
@@ -1111,6 +1113,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Reads terms file header. */
 DECL|method|readHeader
 specifier|protected
 name|void
@@ -1149,6 +1152,7 @@ name|readLong
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Reads index file header. */
 DECL|method|readIndexHeader
 specifier|protected
 name|void
@@ -1187,6 +1191,7 @@ name|readLong
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Seek {@code input} to the directory offset. */
 DECL|method|seekDir
 specifier|protected
 name|void
@@ -1374,66 +1379,79 @@ specifier|static
 class|class
 name|Stats
 block|{
+comment|/** How many nodes in the index FST. */
 DECL|field|indexNodeCount
 specifier|public
 name|int
 name|indexNodeCount
 decl_stmt|;
+comment|/** How many arcs in the index FST. */
 DECL|field|indexArcCount
 specifier|public
 name|int
 name|indexArcCount
 decl_stmt|;
+comment|/** Byte size of the index. */
 DECL|field|indexNumBytes
 specifier|public
 name|int
 name|indexNumBytes
 decl_stmt|;
+comment|/** Total number of terms in the field. */
 DECL|field|totalTermCount
 specifier|public
 name|long
 name|totalTermCount
 decl_stmt|;
+comment|/** Total number of bytes (sum of term lengths) across all terms in the field. */
 DECL|field|totalTermBytes
 specifier|public
 name|long
 name|totalTermBytes
 decl_stmt|;
+comment|/** The number of normal (non-floor) blocks in the terms file. */
 DECL|field|nonFloorBlockCount
 specifier|public
 name|int
 name|nonFloorBlockCount
 decl_stmt|;
+comment|/** The number of floor blocks (meta-blocks larger than the      *  allowed {@code maxItemsPerBlock}) in the terms file. */
 DECL|field|floorBlockCount
 specifier|public
 name|int
 name|floorBlockCount
 decl_stmt|;
+comment|/** The number of sub-blocks within the floor blocks. */
 DECL|field|floorSubBlockCount
 specifier|public
 name|int
 name|floorSubBlockCount
 decl_stmt|;
+comment|/** The number of "internal" blocks (that have both      *  terms and sub-blocks). */
 DECL|field|mixedBlockCount
 specifier|public
 name|int
 name|mixedBlockCount
 decl_stmt|;
+comment|/** The number of "leaf" blocks (blocks that have only      *  terms). */
 DECL|field|termsOnlyBlockCount
 specifier|public
 name|int
 name|termsOnlyBlockCount
 decl_stmt|;
+comment|/** The number of "internal" blocks that do not contain      *  terms (have only sub-blocks). */
 DECL|field|subBlocksOnlyBlockCount
 specifier|public
 name|int
 name|subBlocksOnlyBlockCount
 decl_stmt|;
+comment|/** Total number of blocks. */
 DECL|field|totalBlockCount
 specifier|public
 name|int
 name|totalBlockCount
 decl_stmt|;
+comment|/** Number of blocks at each prefix depth. */
 DECL|field|blockCountByPrefixLen
 specifier|public
 name|int
@@ -1456,29 +1474,32 @@ specifier|private
 name|int
 name|endBlockCount
 decl_stmt|;
+comment|/** Total number of bytes used to store term suffixes. */
 DECL|field|totalBlockSuffixBytes
 specifier|public
 name|long
 name|totalBlockSuffixBytes
 decl_stmt|;
+comment|/** Total number of bytes used to store term stats (not      *  including what the {@link PostingsBaseFormat}      *  stores. */
 DECL|field|totalBlockStatsBytes
 specifier|public
 name|long
 name|totalBlockStatsBytes
 decl_stmt|;
-comment|// Postings impl plus the other few vInts stored in
-comment|// the frame:
+comment|/** Total bytes stored by the {@link PostingsBaseFormat},      *  plus the other few vInts stored in the frame. */
 DECL|field|totalBlockOtherBytes
 specifier|public
 name|long
 name|totalBlockOtherBytes
 decl_stmt|;
+comment|/** Segment name. */
 DECL|field|segment
 specifier|public
 specifier|final
 name|String
 name|segment
 decl_stmt|;
+comment|/** Field name. */
 DECL|field|field
 specifier|public
 specifier|final
@@ -1486,7 +1507,6 @@ name|String
 name|field
 decl_stmt|;
 DECL|method|Stats
-specifier|public
 name|Stats
 parameter_list|(
 name|String
@@ -2344,6 +2364,7 @@ operator|.
 name|getNoOutput
 argument_list|()
 decl_stmt|;
+comment|/** BlockTree's implementation of {@link Terms}. */
 DECL|class|FieldReader
 specifier|public
 specifier|final

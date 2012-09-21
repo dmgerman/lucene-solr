@@ -137,6 +137,12 @@ specifier|abstract
 class|class
 name|PostingsConsumer
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|PostingsConsumer
+specifier|protected
+name|PostingsConsumer
+parameter_list|()
+block|{   }
 comment|/** Adds a new doc in this term.     *<code>freq</code> will be -1 when term frequencies are omitted    * for the field. */
 DECL|method|startDoc
 specifier|public

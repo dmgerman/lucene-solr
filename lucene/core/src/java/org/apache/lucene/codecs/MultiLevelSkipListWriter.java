@@ -85,25 +85,26 @@ specifier|protected
 name|int
 name|numberOfSkipLevels
 decl_stmt|;
-comment|// the skip interval in the list with level = 0
+comment|/** the skip interval in the list with level = 0 */
 DECL|field|skipInterval
 specifier|private
 name|int
 name|skipInterval
 decl_stmt|;
-comment|// skipInterval used for level> 0
+comment|/** skipInterval used for level&gt; 0 */
 DECL|field|skipMultiplier
 specifier|private
 name|int
 name|skipMultiplier
 decl_stmt|;
-comment|// for every skip level a different buffer is used
+comment|/** for every skip level a different buffer is used  */
 DECL|field|skipBuffer
 specifier|private
 name|RAMOutputStream
 index|[]
 name|skipBuffer
 decl_stmt|;
+comment|/** Creates a {@code MultiLevelSkipListWriter}. */
 DECL|method|MultiLevelSkipListWriter
 specifier|protected
 name|MultiLevelSkipListWriter
@@ -178,7 +179,7 @@ name|maxSkipLevels
 expr_stmt|;
 block|}
 block|}
-comment|// skipMultiplier and skipInterval are the same:
+comment|/** Creates a {@code MultiLevelSkipListWriter}, where    *  {@code skipInterval} and {@code skipMultiplier} are    *  the same. */
 DECL|method|MultiLevelSkipListWriter
 specifier|protected
 name|MultiLevelSkipListWriter
@@ -205,6 +206,7 @@ name|df
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Allocates internal skip buffers. */
 DECL|method|init
 specifier|protected
 name|void
@@ -245,7 +247,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** creates new buffers or empties the existing ones */
+comment|/** Creates new buffers or empties the existing ones */
 DECL|method|resetSkip
 specifier|protected
 name|void

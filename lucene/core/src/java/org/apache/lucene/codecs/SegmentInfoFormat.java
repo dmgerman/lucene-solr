@@ -41,6 +41,13 @@ specifier|abstract
 class|class
 name|SegmentInfoFormat
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|SegmentInfoFormat
+specifier|protected
+name|SegmentInfoFormat
+parameter_list|()
+block|{   }
+comment|/** Returns the {@link SegmentInfoReader} for reading    *  {@link SegmentInfo} instances. */
 DECL|method|getSegmentInfoReader
 specifier|public
 specifier|abstract
@@ -48,6 +55,7 @@ name|SegmentInfoReader
 name|getSegmentInfoReader
 parameter_list|()
 function_decl|;
+comment|/** Returns the {@link SegmentInfoWriter} for writing    *  {@link SegmentInfo} instances. */
 DECL|method|getSegmentInfoWriter
 specifier|public
 specifier|abstract

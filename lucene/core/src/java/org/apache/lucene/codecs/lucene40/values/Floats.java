@@ -226,6 +226,7 @@ specifier|public
 class|class
 name|Floats
 block|{
+comment|/** Codec name, written in the header. */
 DECL|field|CODEC_NAME
 specifier|protected
 specifier|static
@@ -235,6 +236,7 @@ name|CODEC_NAME
 init|=
 literal|"Floats"
 decl_stmt|;
+comment|/** Initial version. */
 DECL|field|VERSION_START
 specifier|protected
 specifier|static
@@ -244,6 +246,7 @@ name|VERSION_START
 init|=
 literal|0
 decl_stmt|;
+comment|/** Current version. */
 DECL|field|VERSION_CURRENT
 specifier|protected
 specifier|static
@@ -253,6 +256,13 @@ name|VERSION_CURRENT
 init|=
 name|VERSION_START
 decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|Floats
+specifier|private
+name|Floats
+parameter_list|()
+block|{   }
+comment|/** Creates and returns a {@link DocValuesConsumer} to    *  write float values. */
 DECL|method|getWriter
 specifier|public
 specifier|static
@@ -291,6 +301,7 @@ name|type
 argument_list|)
 return|;
 block|}
+comment|/** Creates and returns a {@link DocValues} to    *  read previously written float values. */
 DECL|method|getValues
 specifier|public
 specifier|static

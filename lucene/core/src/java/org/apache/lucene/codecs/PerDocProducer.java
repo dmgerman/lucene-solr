@@ -63,6 +63,12 @@ name|PerDocProducer
 implements|implements
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|PerDocProducer
+specifier|protected
+name|PerDocProducer
+parameter_list|()
+block|{   }
 comment|/**    * Returns {@link DocValues} for the current field.    *     * @param field    *          the field name    * @return the {@link DocValues} for this field or<code>null</code> if not    *         applicable.    * @throws IOException    */
 DECL|method|docValues
 specifier|public
@@ -73,6 +79,17 @@ parameter_list|(
 name|String
 name|field
 parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+annotation|@
+name|Override
+DECL|method|close
+specifier|public
+specifier|abstract
+name|void
+name|close
+parameter_list|()
 throws|throws
 name|IOException
 function_decl|;

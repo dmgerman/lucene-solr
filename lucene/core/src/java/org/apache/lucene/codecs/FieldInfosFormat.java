@@ -55,6 +55,12 @@ specifier|abstract
 class|class
 name|FieldInfosFormat
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|FieldInfosFormat
+specifier|protected
+name|FieldInfosFormat
+parameter_list|()
+block|{   }
 comment|/** Returns a {@link FieldInfosReader} to read field infos    *  from the index */
 DECL|method|getFieldInfosReader
 specifier|public

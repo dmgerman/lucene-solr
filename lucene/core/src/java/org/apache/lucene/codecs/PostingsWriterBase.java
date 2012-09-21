@@ -91,6 +91,13 @@ name|PostingsConsumer
 implements|implements
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|PostingsWriterBase
+specifier|protected
+name|PostingsWriterBase
+parameter_list|()
+block|{   }
+comment|/** Called once after startup, before any terms have been    *  added.  Implementations typically write a header to    *  the provided {@code termsOut}. */
 DECL|method|start
 specifier|public
 specifier|abstract
@@ -103,6 +110,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Start a new term.  Note that a matching call to {@link    *  #finishTerm(TermStats)} is done, only if the term has at least one    *  document. */
 DECL|method|startTerm
 specifier|public
 specifier|abstract
@@ -128,7 +136,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Finishes the current term */
+comment|/** Finishes the current term.  The provided {@link    *  TermStats} contains the term's summary statistics. */
 DECL|method|finishTerm
 specifier|public
 specifier|abstract
@@ -141,6 +149,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Called when the writing switches to another field. */
 DECL|method|setField
 specifier|public
 specifier|abstract
@@ -151,6 +160,8 @@ name|FieldInfo
 name|fieldInfo
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 specifier|abstract

@@ -79,6 +79,13 @@ specifier|abstract
 class|class
 name|FieldInfosWriter
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|FieldInfosWriter
+specifier|protected
+name|FieldInfosWriter
+parameter_list|()
+block|{   }
+comment|/** Writes the provided {@link FieldInfos} to the    *  directory. */
 DECL|method|write
 specifier|public
 specifier|abstract

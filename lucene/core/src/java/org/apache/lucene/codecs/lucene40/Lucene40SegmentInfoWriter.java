@@ -166,6 +166,12 @@ name|Lucene40SegmentInfoWriter
 extends|extends
 name|SegmentInfoWriter
 block|{
+comment|/** Sole constructor. */
+DECL|method|Lucene40SegmentInfoWriter
+specifier|public
+name|Lucene40SegmentInfoWriter
+parameter_list|()
+block|{   }
 comment|/** Save a single segment's info. */
 annotation|@
 name|Override

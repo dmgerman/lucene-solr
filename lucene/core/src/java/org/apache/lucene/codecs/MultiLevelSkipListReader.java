@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -88,6 +98,8 @@ specifier|public
 specifier|abstract
 class|class
 name|MultiLevelSkipListReader
+implements|implements
+name|Closeable
 block|{
 comment|/** the maximum number of skip levels possible for this index */
 DECL|field|maxNumberOfSkipLevels
@@ -125,60 +137,60 @@ specifier|private
 name|boolean
 name|haveSkipped
 decl_stmt|;
+comment|/** skipStream for each level. */
 DECL|field|skipStream
 specifier|private
 name|IndexInput
 index|[]
 name|skipStream
 decl_stmt|;
-comment|// skipStream for each level
+comment|/** The start pointer of each skip level. */
 DECL|field|skipPointer
 specifier|private
 name|long
 name|skipPointer
 index|[]
 decl_stmt|;
-comment|// the start pointer of each skip level
+comment|/**  skipInterval of each level. */
 DECL|field|skipInterval
 specifier|private
 name|int
 name|skipInterval
 index|[]
 decl_stmt|;
-comment|// skipInterval of each level
+comment|/** Number of docs skipped per level. */
 DECL|field|numSkipped
 specifier|private
 name|int
 index|[]
 name|numSkipped
 decl_stmt|;
-comment|// number of docs skipped per level
+comment|/** Doc id of current skip entry per level. */
 DECL|field|skipDoc
 specifier|protected
 name|int
 index|[]
 name|skipDoc
 decl_stmt|;
-comment|// doc id of current skip entry per level
+comment|/** Doc id of last read skip entry with docId&lt;= target. */
 DECL|field|lastDoc
 specifier|private
 name|int
 name|lastDoc
 decl_stmt|;
-comment|// doc id of last read skip entry with docId<= target
+comment|/** Child pointer of current skip entry per level. */
 DECL|field|childPointer
 specifier|private
 name|long
 index|[]
 name|childPointer
 decl_stmt|;
-comment|// child pointer of current skip entry per level
+comment|/** childPointer of last read skip entry with docId&lt;=    *  target. */
 DECL|field|lastChildPointer
 specifier|private
 name|long
 name|lastChildPointer
 decl_stmt|;
-comment|// childPointer of last read skip entry with docId<= target
 DECL|field|inputIsBuffered
 specifier|private
 name|boolean
@@ -190,6 +202,7 @@ specifier|final
 name|int
 name|skipMultiplier
 decl_stmt|;
+comment|/** Creates a {@code MultiLevelSkipListReader}. */
 DECL|method|MultiLevelSkipListReader
 specifier|protected
 name|MultiLevelSkipListReader
@@ -341,7 +354,7 @@ name|maxSkipLevels
 index|]
 expr_stmt|;
 block|}
-comment|// skipMultiplier and skipInterval are the same:
+comment|/** Creates a {@code MultiLevelSkipListReader}, where    *  {@code skipInterval} and {@code skipMultiplier} are    *  the same. */
 DECL|method|MultiLevelSkipListReader
 specifier|protected
 name|MultiLevelSkipListReader
@@ -701,6 +714,8 @@ index|]
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|close
 specifier|public
 name|void
@@ -747,7 +762,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** initializes the reader */
+comment|/** Initializes the reader, for reuse on a new term. */
 DECL|method|init
 specifier|public
 name|void

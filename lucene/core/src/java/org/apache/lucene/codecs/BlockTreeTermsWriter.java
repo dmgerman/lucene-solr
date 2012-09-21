@@ -324,6 +324,7 @@ name|BlockTreeTermsWriter
 extends|extends
 name|FieldsConsumer
 block|{
+comment|/** Suggested default value for the {@code    *  minItemsInBlock} parameter to {@link    *  #BlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
 DECL|field|DEFAULT_MIN_BLOCK_SIZE
 specifier|public
 specifier|final
@@ -333,6 +334,7 @@ name|DEFAULT_MIN_BLOCK_SIZE
 init|=
 literal|25
 decl_stmt|;
+comment|/** Suggested default value for the {@code    *  maxItemsInBlock} parameter to {@link    *  #BlockTreeTermsWriter(SegmentWriteState,PostingsWriterBase,int,int)}. */
 DECL|field|DEFAULT_MAX_BLOCK_SIZE
 specifier|public
 specifier|final
@@ -344,7 +346,7 @@ literal|48
 decl_stmt|;
 comment|//public final static boolean DEBUG = false;
 DECL|field|SAVE_DOT_FILES
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|boolean
@@ -401,7 +403,7 @@ name|TERMS_CODEC_NAME
 init|=
 literal|"BLOCK_TREE_TERMS_DICT"
 decl_stmt|;
-comment|// Initial format
+comment|/** Initial terms format. */
 DECL|field|TERMS_VERSION_START
 specifier|public
 specifier|static
@@ -411,6 +413,7 @@ name|TERMS_VERSION_START
 init|=
 literal|0
 decl_stmt|;
+comment|/** Current terms format. */
 DECL|field|TERMS_VERSION_CURRENT
 specifier|public
 specifier|static
@@ -437,7 +440,7 @@ name|TERMS_INDEX_CODEC_NAME
 init|=
 literal|"BLOCK_TREE_TERMS_INDEX"
 decl_stmt|;
-comment|// Initial format
+comment|/** Initial index format. */
 DECL|field|TERMS_INDEX_VERSION_START
 specifier|public
 specifier|static
@@ -447,6 +450,7 @@ name|TERMS_INDEX_VERSION_START
 init|=
 literal|0
 decl_stmt|;
+comment|/** Current index format. */
 DECL|field|TERMS_INDEX_VERSION_CURRENT
 specifier|public
 specifier|static
@@ -775,6 +779,7 @@ operator|=
 name|indexOut
 expr_stmt|;
 block|}
+comment|/** Writes the terms file header. */
 DECL|method|writeHeader
 specifier|protected
 name|void
@@ -806,6 +811,7 @@ argument_list|)
 expr_stmt|;
 comment|// leave space for end index pointer
 block|}
+comment|/** Writes the index file header. */
 DECL|method|writeIndexHeader
 specifier|protected
 name|void
@@ -837,6 +843,7 @@ argument_list|)
 expr_stmt|;
 comment|// leave space for end index pointer
 block|}
+comment|/** Writes the terms file trailer. */
 DECL|method|writeTrailer
 specifier|protected
 name|void
@@ -871,6 +878,7 @@ name|dirStart
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Writes the index file trailer. */
 DECL|method|writeIndexTrailer
 specifier|protected
 name|void

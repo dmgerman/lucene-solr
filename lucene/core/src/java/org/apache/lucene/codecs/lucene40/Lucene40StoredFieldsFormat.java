@@ -170,6 +170,12 @@ name|Lucene40StoredFieldsFormat
 extends|extends
 name|StoredFieldsFormat
 block|{
+comment|/** Sole constructor. */
+DECL|method|Lucene40StoredFieldsFormat
+specifier|public
+name|Lucene40StoredFieldsFormat
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|fieldsReader

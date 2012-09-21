@@ -144,6 +144,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/** Zero-length {@code PostingsFormat} array. */
 DECL|field|EMPTY
 specifier|public
 specifier|static

@@ -189,6 +189,12 @@ name|DELETES_EXTENSION
 init|=
 literal|"del"
 decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|Lucene40LiveDocsFormat
+specifier|public
+name|Lucene40LiveDocsFormat
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|newLiveDocs

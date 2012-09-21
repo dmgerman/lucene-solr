@@ -65,6 +65,12 @@ name|Cloneable
 implements|,
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|StoredFieldsReader
+specifier|protected
+name|StoredFieldsReader
+parameter_list|()
+block|{   }
 comment|/** Visit the stored fields for document<code>n</code> */
 DECL|method|visitDocument
 specifier|public

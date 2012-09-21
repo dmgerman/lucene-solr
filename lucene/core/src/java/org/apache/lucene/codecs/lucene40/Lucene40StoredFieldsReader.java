@@ -322,7 +322,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|// Used only by clone
+comment|/** Used only by clone. */
 DECL|method|Lucene40StoredFieldsReader
 specifier|private
 name|Lucene40StoredFieldsReader
@@ -374,6 +374,7 @@ operator|=
 name|indexStream
 expr_stmt|;
 block|}
+comment|/** Sole constructor. */
 DECL|method|Lucene40StoredFieldsReader
 specifier|public
 name|Lucene40StoredFieldsReader
@@ -649,6 +650,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
+comment|/** Returns number of documents. */
 DECL|method|size
 specifier|public
 specifier|final
@@ -683,6 +685,8 @@ literal|8L
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|visitDocument
 specifier|public
 specifier|final

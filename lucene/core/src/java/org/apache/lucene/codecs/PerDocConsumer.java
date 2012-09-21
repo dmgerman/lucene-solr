@@ -121,6 +121,12 @@ name|PerDocConsumer
 implements|implements
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|PerDocConsumer
+specifier|protected
+name|PerDocConsumer
+parameter_list|()
+block|{   }
 comment|/** Adds a new DocValuesField */
 DECL|method|addValuesField
 specifier|public
@@ -337,6 +343,17 @@ specifier|abstract
 name|void
 name|abort
 parameter_list|()
+function_decl|;
+annotation|@
+name|Override
+DECL|method|close
+specifier|public
+specifier|abstract
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_class

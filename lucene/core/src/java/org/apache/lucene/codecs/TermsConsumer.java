@@ -179,6 +179,12 @@ specifier|abstract
 class|class
 name|TermsConsumer
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|TermsConsumer
+specifier|protected
+name|TermsConsumer
+parameter_list|()
+block|{   }
 comment|/** Starts a new term in this field; this may be called    *  with no corresponding call to finish if the term had    *  no docs. */
 DECL|method|startTerm
 specifier|public

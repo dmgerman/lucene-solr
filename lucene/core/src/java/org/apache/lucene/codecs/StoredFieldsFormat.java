@@ -93,6 +93,12 @@ specifier|abstract
 class|class
 name|StoredFieldsFormat
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|StoredFieldsFormat
+specifier|protected
+name|StoredFieldsFormat
+parameter_list|()
+block|{   }
 comment|/** Returns a {@link StoredFieldsReader} to load stored    *  fields. */
 DECL|method|fieldsReader
 specifier|public

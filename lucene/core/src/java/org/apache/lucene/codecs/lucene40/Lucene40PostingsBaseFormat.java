@@ -115,6 +115,7 @@ name|Lucene40PostingsBaseFormat
 extends|extends
 name|PostingsBaseFormat
 block|{
+comment|/** Sole constructor. */
 DECL|method|Lucene40PostingsBaseFormat
 specifier|public
 name|Lucene40PostingsBaseFormat

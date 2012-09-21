@@ -241,6 +241,7 @@ name|PerFieldPostingsFormat
 extends|extends
 name|PostingsFormat
 block|{
+comment|/** Name of this {@link PostingsFormat}. */
 DECL|field|PER_FIELD_NAME
 specifier|public
 specifier|static
@@ -250,6 +251,7 @@ name|PER_FIELD_NAME
 init|=
 literal|"PerField40"
 decl_stmt|;
+comment|/** {@link FieldInfo} attribute name used to store the    *  format name for each field. */
 DECL|field|PER_FIELD_FORMAT_KEY
 specifier|public
 specifier|static
@@ -266,6 +268,7 @@ argument_list|()
 operator|+
 literal|".format"
 decl_stmt|;
+comment|/** {@link FieldInfo} attribute name used to store the    *  segment suffix name for each field. */
 DECL|field|PER_FIELD_SUFFIX_KEY
 specifier|public
 specifier|static
@@ -282,6 +285,7 @@ argument_list|()
 operator|+
 literal|".suffix"
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|PerFieldPostingsFormat
 specifier|public
 name|PerFieldPostingsFormat

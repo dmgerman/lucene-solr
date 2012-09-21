@@ -83,6 +83,22 @@ operator|.
 name|index
 operator|.
 name|FieldInfo
+operator|.
+name|IndexOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|FieldInfo
 import|;
 end_import
 
@@ -111,22 +127,6 @@ operator|.
 name|index
 operator|.
 name|IndexFileNames
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInfo
-operator|.
-name|IndexOptions
 import|;
 end_import
 
@@ -274,6 +274,12 @@ init|=
 operator|-
 literal|128
 decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|Lucene40FieldInfosWriter
+specifier|public
+name|Lucene40FieldInfosWriter
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|write
@@ -596,6 +602,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** Returns the byte used to encode the {@link    *  Type} for each field. */
 DECL|method|docValuesByte
 specifier|public
 name|byte

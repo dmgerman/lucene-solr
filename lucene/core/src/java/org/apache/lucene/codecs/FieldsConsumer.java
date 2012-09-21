@@ -123,6 +123,12 @@ name|FieldsConsumer
 implements|implements
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|FieldsConsumer
+specifier|protected
+name|FieldsConsumer
+parameter_list|()
+block|{   }
 comment|/** Add a new field */
 DECL|method|addField
 specifier|public
@@ -146,6 +152,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Called during merging to merge all {@link Fields} from    *  sub-readers.  This must recurse to merge all postings    *  (terms, docs, positions, etc.).  A {@link    *  PostingsFormat} can override this default    *  implementation to do its own merging. */
 DECL|method|merge
 specifier|public
 name|void

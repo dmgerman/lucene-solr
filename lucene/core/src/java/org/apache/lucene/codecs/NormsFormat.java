@@ -65,6 +65,12 @@ specifier|abstract
 class|class
 name|NormsFormat
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|NormsFormat
+specifier|protected
+name|NormsFormat
+parameter_list|()
+block|{   }
 comment|/** Returns a {@link PerDocConsumer} to write norms to the    *  index. */
 DECL|method|docsConsumer
 specifier|public

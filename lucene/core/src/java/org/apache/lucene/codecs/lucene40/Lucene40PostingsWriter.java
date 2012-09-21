@@ -385,6 +385,7 @@ name|int
 name|lastOffset
 decl_stmt|;
 comment|// private String segment;
+comment|/** Creates a {@link Lucene40PostingsWriter}, with the    *  {@link #DEFAULT_SKIP_INTERVAL}. */
 DECL|method|Lucene40PostingsWriter
 specifier|public
 name|Lucene40PostingsWriter
@@ -403,6 +404,7 @@ name|DEFAULT_SKIP_INTERVAL
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Creates a {@link Lucene40PostingsWriter}, with the    *  specified {@code skipInterval}. */
 DECL|method|Lucene40PostingsWriter
 specifier|public
 name|Lucene40PostingsWriter

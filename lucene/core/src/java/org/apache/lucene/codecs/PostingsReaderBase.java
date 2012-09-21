@@ -131,6 +131,13 @@ name|PostingsReaderBase
 implements|implements
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|PostingsReaderBase
+specifier|protected
+name|PostingsReaderBase
+parameter_list|()
+block|{   }
+comment|/** Performs any initialization, such as reading and    *  verifying the header from the provided terms    *  dictionary {@link IndexInput}. */
 DECL|method|init
 specifier|public
 specifier|abstract

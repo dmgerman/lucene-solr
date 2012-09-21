@@ -98,6 +98,12 @@ specifier|public
 name|long
 name|blockFilePointer
 decl_stmt|;
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|BlockTermState
+specifier|protected
+name|BlockTermState
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|copyFrom

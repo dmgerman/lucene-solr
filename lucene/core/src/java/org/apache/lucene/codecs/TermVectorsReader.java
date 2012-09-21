@@ -103,6 +103,12 @@ name|Cloneable
 implements|,
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|TermVectorsReader
+specifier|protected
+name|TermVectorsReader
+parameter_list|()
+block|{   }
 comment|/** Returns term vectors for this document, or null if    *  term vectors were not indexed. If offsets are    *  available they are in an {@link OffsetAttribute}    *  available from the {@link DocsAndPositionsEnum}. */
 DECL|method|get
 specifier|public

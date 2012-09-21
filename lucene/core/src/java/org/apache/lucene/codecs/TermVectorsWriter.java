@@ -237,6 +237,12 @@ name|TermVectorsWriter
 implements|implements
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|TermVectorsWriter
+specifier|protected
+name|TermVectorsWriter
+parameter_list|()
+block|{   }
 comment|/** Called before writing the term vectors of the document.    *  {@link #startField(FieldInfo, int, boolean, boolean, boolean)} will     *  be called<code>numVectorFields</code> times. Note that if term     *  vectors are enabled, this is called even if the document     *  has no vector fields, in this case<code>numVectorFields</code>     *  will be zero. */
 DECL|method|startDocument
 specifier|public
@@ -1191,6 +1197,15 @@ argument_list|<
 name|BytesRef
 argument_list|>
 name|getComparator
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+DECL|method|close
+specifier|public
+specifier|abstract
+name|void
+name|close
 parameter_list|()
 throws|throws
 name|IOException

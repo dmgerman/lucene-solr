@@ -79,6 +79,13 @@ specifier|abstract
 class|class
 name|FieldInfosReader
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|FieldInfosReader
+specifier|protected
+name|FieldInfosReader
+parameter_list|()
+block|{   }
+comment|/** Read the {@link FieldInfos} previously written with {@link    *  FieldInfosWriter}. */
 DECL|method|read
 specifier|public
 specifier|abstract

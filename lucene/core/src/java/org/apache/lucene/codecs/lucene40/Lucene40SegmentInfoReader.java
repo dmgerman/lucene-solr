@@ -196,6 +196,12 @@ name|Lucene40SegmentInfoReader
 extends|extends
 name|SegmentInfoReader
 block|{
+comment|/** Sole constructor. */
+DECL|method|Lucene40SegmentInfoReader
+specifier|public
+name|Lucene40SegmentInfoReader
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|read

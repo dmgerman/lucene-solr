@@ -218,6 +218,12 @@ name|Lucene40DocValuesFormat
 extends|extends
 name|DocValuesFormat
 block|{
+comment|/** Sole constructor. */
+DECL|method|Lucene40DocValuesFormat
+specifier|public
+name|Lucene40DocValuesFormat
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|docsConsumer

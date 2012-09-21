@@ -93,6 +93,12 @@ specifier|abstract
 class|class
 name|TermVectorsFormat
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|TermVectorsFormat
+specifier|protected
+name|TermVectorsFormat
+parameter_list|()
+block|{   }
 comment|/** Returns a {@link TermVectorsReader} to read term    *  vectors. */
 DECL|method|vectorsReader
 specifier|public

@@ -79,6 +79,12 @@ specifier|abstract
 class|class
 name|SegmentInfoReader
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|SegmentInfoReader
+specifier|protected
+name|SegmentInfoReader
+parameter_list|()
+block|{   }
 comment|/**    * Read {@link SegmentInfo} data from a directory.    * @param directory directory to read from    * @param segmentName name of the segment to read    * @return infos instance to be populated with data    * @throws IOException    */
 DECL|method|read
 specifier|public

@@ -92,6 +92,7 @@ specifier|final
 name|String
 name|name
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|PostingsBaseFormat
 specifier|protected
 name|PostingsBaseFormat
@@ -107,6 +108,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
+comment|/** Creates the {@link PostingsReaderBase} for this    *  format. */
 DECL|method|postingsReaderBase
 specifier|public
 specifier|abstract
@@ -119,6 +121,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Creates the {@link PostingsWriterBase} for this    *  format. */
 DECL|method|postingsWriterBase
 specifier|public
 specifier|abstract

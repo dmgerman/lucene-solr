@@ -344,6 +344,7 @@ name|int
 name|skipMinimum
 decl_stmt|;
 comment|// private String segment;
+comment|/** Sole constructor. */
 DECL|method|Lucene40PostingsReader
 specifier|public
 name|Lucene40PostingsReader

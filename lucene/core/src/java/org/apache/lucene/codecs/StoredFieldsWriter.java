@@ -147,6 +147,12 @@ name|StoredFieldsWriter
 implements|implements
 name|Closeable
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|StoredFieldsWriter
+specifier|protected
+name|StoredFieldsWriter
+parameter_list|()
+block|{   }
 comment|/** Called before writing the stored fields of the document.    *  {@link #writeField(FieldInfo, StorableField)} will be called    *<code>numStoredFields</code> times. Note that this is    *  called even if the document has no stored fields, in    *  this case<code>numStoredFields</code> will be zero. */
 DECL|method|startDocument
 specifier|public
@@ -398,6 +404,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|close
+specifier|public
+specifier|abstract
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_class
 

@@ -172,6 +172,12 @@ operator|new
 name|Lucene40FieldInfosWriter
 argument_list|()
 decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|Lucene40FieldInfosFormat
+specifier|public
+name|Lucene40FieldInfosFormat
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|getFieldInfosReader

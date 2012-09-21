@@ -117,6 +117,12 @@ specifier|abstract
 class|class
 name|LiveDocsFormat
 block|{
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|LiveDocsFormat
+specifier|protected
+name|LiveDocsFormat
+parameter_list|()
+block|{   }
 comment|/** Creates a new MutableBits, with all bits set, for the specified size. */
 DECL|method|newLiveDocs
 specifier|public
