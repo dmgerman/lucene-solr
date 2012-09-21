@@ -7440,7 +7440,10 @@ name|firstFilterDoc
 parameter_list|)
 block|{
 return|return
+name|LuceneTestCase
+operator|.
 name|random
+argument_list|()
 operator|.
 name|nextBoolean
 argument_list|()
