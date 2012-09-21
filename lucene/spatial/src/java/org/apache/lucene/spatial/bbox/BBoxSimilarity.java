@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Abstraction of the calculation used to determine how similar two Bounding Boxes are.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface

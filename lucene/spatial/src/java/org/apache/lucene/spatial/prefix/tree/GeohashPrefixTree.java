@@ -132,6 +132,7 @@ name|GeohashPrefixTree
 extends|extends
 name|SpatialPrefixTree
 block|{
+comment|/**    * Factory for creating {@link GeohashPrefixTree} instances with useful defaults    */
 DECL|class|Factory
 specifier|public
 specifier|static

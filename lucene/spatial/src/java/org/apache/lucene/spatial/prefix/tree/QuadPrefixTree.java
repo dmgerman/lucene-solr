@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Implementation of {@link SpatialPrefixTree} which uses a quad tree  * (http://en.wikipedia.org/wiki/Quadtree)  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -162,6 +162,7 @@ name|QuadPrefixTree
 extends|extends
 name|SpatialPrefixTree
 block|{
+comment|/**    * Factory for creating {@link QuadPrefixTree} instances with useful defaults    */
 DECL|class|Factory
 specifier|public
 specifier|static

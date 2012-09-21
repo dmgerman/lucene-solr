@@ -397,7 +397,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @lucene.experimental  */
+comment|/**  * Simple {@link SpatialStrategy} which represents Points in two numeric {@link DoubleField}s.  *  * Note, currently only Points can be indexed by this Strategy.  At query time, the bounding  * box of the given Shape is used to create {@link NumericRangeQuery}s to efficiently  * find Points within the Shape.  *  * Due to the simple use of numeric fields, this Strategy provides support for sorting by  * distance through {@link DistanceValueSource}  *  * @lucene.experimental  */
 end_comment
 
 begin_class
