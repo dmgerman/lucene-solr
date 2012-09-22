@@ -266,7 +266,7 @@ return|return
 name|fieldName
 return|;
 block|}
-comment|/**    * Returns the IndexableField(s) from the<code>shape</code> that are to be    * added to the {@link org.apache.lucene.document.Document}.  These fields    * are expected to be marked as indexed and not stored.    *<p/>    * Note: If you want to<i>store</i> the shape as a string for retrieval in    * search results, you could add it like this:    *<pre>document.add(new StoredField(fieldName,ctx.toString(shape)));</pre>    * The particular string representation used doesn't matter to the Strategy    * since it doesn't use it.    *    * @return Not null nor will it have null elements.    */
+comment|/**    * Returns the IndexableField(s) from the<code>shape</code> that are to be    * added to the {@link org.apache.lucene.document.Document}.  These fields    * are expected to be marked as indexed and not stored.    *<p/>    * Note: If you want to<i>store</i> the shape as a string for retrieval in    * search results, you could add it like this:    *<pre>document.add(new StoredField(fieldName,ctx.toString(shape)));</pre>    * The particular string representation used doesn't matter to the Strategy    * since it doesn't use it.    *    * @return Not null nor will it have null elements.    * @throws UnsupportedOperationException if given a shape incompatible with the strategy    */
 DECL|method|createIndexableFields
 specifier|public
 specifier|abstract
@@ -289,7 +289,7 @@ name|Point
 name|queryPoint
 parameter_list|)
 function_decl|;
-comment|/**    * Make a (ConstantScore) Query based principally on {@link org.apache.lucene.spatial.query.SpatialOperation}    * and {@link Shape} from the supplied {@code args}.    * The default implementation is    *<pre>return new ConstantScoreQuery(makeFilter(args));</pre>    */
+comment|/**    * Make a (ConstantScore) Query based principally on {@link org.apache.lucene.spatial.query.SpatialOperation}    * and {@link Shape} from the supplied {@code args}.    * The default implementation is    *<pre>return new ConstantScoreQuery(makeFilter(args));</pre>    *    * @throws UnsupportedOperationException If the strategy does not support the shape in {@code args}    * @throws org.apache.lucene.spatial.query.UnsupportedSpatialOperation If the strategy does not support the {@link    * org.apache.lucene.spatial.query.SpatialOperation} in {@code args}.    */
 DECL|method|makeQuery
 specifier|public
 name|ConstantScoreQuery
@@ -310,7 +310,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Make a Filter based principally on {@link org.apache.lucene.spatial.query.SpatialOperation}    * and {@link Shape} from the supplied {@code args}.    *<p />    * If a subclasses implements    * {@link #makeQuery(org.apache.lucene.spatial.query.SpatialArgs)}    * then this method could be simply:    *<pre>return new QueryWrapperFilter(makeQuery(args).getQuery());</pre>    */
+comment|/**    * Make a Filter based principally on {@link org.apache.lucene.spatial.query.SpatialOperation}    * and {@link Shape} from the supplied {@code args}.    *<p />    * If a subclasses implements    * {@link #makeQuery(org.apache.lucene.spatial.query.SpatialArgs)}    * then this method could be simply:    *<pre>return new QueryWrapperFilter(makeQuery(args).getQuery());</pre>    *    * @throws UnsupportedOperationException If the strategy does not support the shape in {@code args}    * @throws org.apache.lucene.spatial.query.UnsupportedSpatialOperation If the strategy does not support the {@link    * org.apache.lucene.spatial.query.SpatialOperation} in {@code args}.    */
 DECL|method|makeFilter
 specifier|public
 specifier|abstract
