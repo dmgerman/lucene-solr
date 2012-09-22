@@ -28,7 +28,7 @@ name|spatial
 operator|.
 name|vector
 operator|.
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 import|;
 end_import
 
@@ -63,14 +63,14 @@ import|;
 end_import
 
 begin_class
-DECL|class|SpatialTwoDoublesFieldType
+DECL|class|SpatialPointVectorFieldType
 specifier|public
 class|class
-name|SpatialTwoDoublesFieldType
+name|SpatialPointVectorFieldType
 extends|extends
 name|AbstractSpatialFieldType
 argument_list|<
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 argument_list|>
 implements|implements
 name|SchemaAware
@@ -279,7 +279,7 @@ name|SchemaField
 argument_list|(
 name|name
 operator|+
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 operator|.
 name|SUFFIX_X
 argument_list|,
@@ -300,7 +300,7 @@ name|SchemaField
 argument_list|(
 name|name
 operator|+
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 operator|.
 name|SUFFIX_Y
 argument_list|,
@@ -343,18 +343,18 @@ annotation|@
 name|Override
 DECL|method|newSpatialStrategy
 specifier|protected
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 name|newSpatialStrategy
 parameter_list|(
 name|String
 name|fieldName
 parameter_list|)
 block|{
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 name|strategy
 init|=
 operator|new
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 argument_list|(
 name|ctx
 argument_list|,

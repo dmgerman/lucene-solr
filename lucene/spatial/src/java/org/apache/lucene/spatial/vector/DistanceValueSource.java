@@ -168,7 +168,7 @@ name|ValueSource
 block|{
 DECL|field|strategy
 specifier|private
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 name|strategy
 decl_stmt|;
 DECL|field|from
@@ -182,7 +182,7 @@ DECL|method|DistanceValueSource
 specifier|public
 name|DistanceValueSource
 parameter_list|(
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 name|strategy
 parameter_list|,
 name|Point

@@ -387,10 +387,10 @@ comment|/**  * Simple {@link SpatialStrategy} which represents Points in two num
 end_comment
 
 begin_class
-DECL|class|TwoDoublesStrategy
+DECL|class|PointVectorStrategy
 specifier|public
 class|class
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 extends|extends
 name|SpatialStrategy
 block|{
@@ -432,9 +432,9 @@ init|=
 literal|8
 decl_stmt|;
 comment|// same as solr default
-DECL|method|TwoDoublesStrategy
+DECL|method|PointVectorStrategy
 specifier|public
-name|TwoDoublesStrategy
+name|PointVectorStrategy
 parameter_list|(
 name|SpatialContext
 name|ctx
