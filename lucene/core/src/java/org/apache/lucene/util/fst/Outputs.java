@@ -116,6 +116,7 @@ name|T
 name|output
 parameter_list|)
 function_decl|;
+comment|/** Encode an output value into a {@link DataOutput}. */
 DECL|method|write
 specifier|public
 specifier|abstract
@@ -131,6 +132,30 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Encode an final node output value into a {@link    *  DataOutput}.  By default this just calls {@link #write(Object,    *  DataOutput)}. */
+DECL|method|writeFinalOutput
+specifier|public
+name|void
+name|writeFinalOutput
+parameter_list|(
+name|T
+name|output
+parameter_list|,
+name|DataOutput
+name|out
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|write
+argument_list|(
+name|output
+argument_list|,
+name|out
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Decode an output value previously written with {@link    *  #write(Object, DataOutput)}. */
 DECL|method|read
 specifier|public
 specifier|abstract
@@ -143,6 +168,25 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Decode an output value previously written with {@link    *  #writeFinalOutput(Object, DataOutput)}.  By default this    *  just calls {@link #read(DataInput)}. */
+DECL|method|readFinalOutput
+specifier|public
+name|T
+name|readFinalOutput
+parameter_list|(
+name|DataInput
+name|in
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|read
+argument_list|(
+name|in
+argument_list|)
+return|;
+block|}
 comment|/** NOTE: this output is compared with == so you must    *  ensure that all methods return the single object if    *  it's really no output */
 DECL|method|getNoOutput
 specifier|public
