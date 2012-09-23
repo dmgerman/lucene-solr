@@ -462,7 +462,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Load coredict.mem internally from the jar file.    *     * @throws ClassNotFoundException    * @throws IOException    */
+comment|/**    * Load coredict.mem internally from the jar file.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|load
 specifier|public
 name|void
@@ -675,7 +675,7 @@ block|{
 comment|// log.warn(e.getMessage());
 block|}
 block|}
-comment|/**    * Load the datafile into this WordDictionary    *     * @param dctFilePath path to word dictionary (coredict.dct)    * @return number of words read    * @throws FileNotFoundException    * @throws IOException    * @throws UnsupportedEncodingException    */
+comment|/**    * Load the datafile into this WordDictionary    *     * @param dctFilePath path to word dictionary (coredict.dct)    * @return number of words read    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|loadMainDataFromFile
 specifier|private
 name|int

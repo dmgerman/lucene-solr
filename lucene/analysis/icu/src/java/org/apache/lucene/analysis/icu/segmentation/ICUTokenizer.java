@@ -493,7 +493,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Refill the buffer, accumulating the offset and setting usableLength to the    * last unambiguous break position    *     * @throws IOException    */
+comment|/**    * Refill the buffer, accumulating the offset and setting usableLength to the    * last unambiguous break position    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|refill
 specifier|private
 name|void

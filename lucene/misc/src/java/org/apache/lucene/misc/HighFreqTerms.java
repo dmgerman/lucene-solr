@@ -639,7 +639,7 @@ literal|"java org.apache.lucene.misc.HighFreqTerms<index dir> [-t] [number_terms
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *     * @param reader    * @param numTerms    * @param field    * @return TermStats[] ordered by terms with highest docFreq first.    * @throws Exception    */
+comment|/**    * Returns TermStats[] ordered by terms with highest docFreq first.    */
 DECL|method|getHighFreqTerms
 specifier|public
 specifier|static
@@ -876,7 +876,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Takes array of TermStats. For each term looks up the tf for each doc    * containing the term and stores the total in the output array of TermStats.    * Output array is sorted by highest total tf.    *     * @param reader    * @param terms    *          TermStats[]    * @return TermStats[]    * @throws Exception    */
+comment|/**    * Takes array of TermStats. For each term looks up the tf for each doc    * containing the term and stores the total in the output array of TermStats.    * Output array is sorted by highest total tf.    *     * @param terms    *          TermStats[]    * @return TermStats[]    */
 DECL|method|sortByTotalTermFreq
 specifier|public
 specifier|static

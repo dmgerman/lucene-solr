@@ -333,7 +333,7 @@ literal|"&lt;"
 block|}
 decl_stmt|;
 comment|/*****************************************    #Simple python script used to generate the escape table above.  -YCS    #    #use individual char arrays or one big char array for better efficiency    # or byte array?    #other={'&':'amp', '<':'lt', '>':'gt', "'":'apos', '"':'quot'}    #    other={'&':'amp', '<':'lt'}     maxi=ord(max(other.keys()))+1    table=[None] * maxi    #NOTE: invalid XML chars are "escaped" as #nn; *not*&#nn; because    #a real XML escape would cause many strict XML parsers to choke.    for i in range(0x20): table[i]='#%d;' % i    for i in '\n\r\t ': table[ord(i)]=None    for k,v in other.items():     table[ord(k)]='&%s;' % v     result=""    for i in range(maxi):      val=table[i]      if not val: val='null'      else: val='"%s"' % val      result += val + ','     print result    ****************************************/
-comment|/*********  *  * @param str  * @param out  * @throws IOException  */
+comment|/*********  *  * @throws IOException If there is a low-level I/O error.  */
 DECL|method|escapeCharData
 specifier|public
 specifier|static

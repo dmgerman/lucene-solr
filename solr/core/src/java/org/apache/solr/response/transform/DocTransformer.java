@@ -85,7 +85,7 @@ name|TransformContext
 name|context
 parameter_list|)
 block|{}
-comment|/**    * This is where implementations do the actual work    *    *    * @param doc The document to alter    * @param docid The Lucene internal doc id    * @throws IOException    */
+comment|/**    * This is where implementations do the actual work    *    *    * @param doc The document to alter    * @param docid The Lucene internal doc id    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|transform
 specifier|public
 specifier|abstract

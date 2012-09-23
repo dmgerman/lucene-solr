@@ -2453,7 +2453,6 @@ return|return
 name|query
 return|;
 block|}
-comment|/**    *    * @exception org.apache.lucene.queryparser.classic.ParseException    */
 DECL|method|getRangeQuery
 specifier|protected
 name|Query

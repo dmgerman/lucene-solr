@@ -378,7 +378,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Test the boolean returned by TR.refresh    * @throws Exception    */
+comment|/**    * Test the boolean returned by TR.refresh    */
 annotation|@
 name|Test
 DECL|method|testReaderRefreshResult

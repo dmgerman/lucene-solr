@@ -557,7 +557,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/**    * Low level api to get the most relevant (formatted) sections of the document.    * This method has been made public to allow visibility of score information held in TextFragment objects.    * Thanks to Jason Calabrese for help in redefining the interface.    * @param tokenStream    * @param text    * @param maxNumFragments    * @param mergeContiguousFragments    * @throws IOException    * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length    */
+comment|/**    * Low level api to get the most relevant (formatted) sections of the document.    * This method has been made public to allow visibility of score information held in TextFragment objects.    * Thanks to Jason Calabrese for help in redefining the interface.    * @throws IOException If there is a low-level I/O error    * @throws InvalidTokenOffsetsException thrown if any token's endOffset exceeds the provided text's length    */
 DECL|method|getBestTextFragments
 specifier|public
 specifier|final
@@ -1803,7 +1803,6 @@ return|return
 name|textFragmenter
 return|;
 block|}
-comment|/**    * @param fragmenter    */
 DECL|method|setTextFragmenter
 specifier|public
 name|void
@@ -1829,7 +1828,6 @@ return|return
 name|fragmentScorer
 return|;
 block|}
-comment|/**    * @param scorer    */
 DECL|method|setFragmentScorer
 specifier|public
 name|void

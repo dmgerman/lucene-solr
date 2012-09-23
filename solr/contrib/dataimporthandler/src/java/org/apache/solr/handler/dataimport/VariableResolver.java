@@ -40,7 +40,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/**    * Given a String with place holders, replace them with the value tokens.    *    * @param template    * @return the string with the placeholders replaced with their values    */
+comment|/**    * Given a String with place holders, replace them with the value tokens.    *    * @return the string with the placeholders replaced with their values    */
 DECL|method|replaceTokens
 specifier|public
 specifier|abstract

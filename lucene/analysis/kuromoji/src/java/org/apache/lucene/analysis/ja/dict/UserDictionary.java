@@ -1067,7 +1067,7 @@ literal|0
 index|]
 index|[]
 decl_stmt|;
-comment|/**    * Convert Map of index and wordIdAndLength to array of {wordId, index, length}    * @param input    * @return array of {wordId, index, length}    */
+comment|/**    * Convert Map of index and wordIdAndLength to array of {wordId, index, length}    * @return array of {wordId, index, length}    */
 DECL|method|toIndexArray
 specifier|private
 name|int

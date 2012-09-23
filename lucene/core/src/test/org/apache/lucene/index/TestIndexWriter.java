@@ -4601,7 +4601,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Test that no NullPointerException will be raised,    * when adding one document with a single, empty field    * and term vectors enabled.    * @throws IOException    *    */
+comment|/**    * Test that no NullPointerException will be raised,    * when adding one document with a single, empty field    * and term vectors enabled.    */
 DECL|method|testBadSegment
 specifier|public
 name|void

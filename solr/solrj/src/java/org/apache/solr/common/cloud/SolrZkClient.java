@@ -465,7 +465,6 @@ specifier|private
 name|ZkClientConnectionStrategy
 name|zkClientConnectionStrategy
 decl_stmt|;
-comment|/**    * @param zkServerAddress    * @param zkClientTimeout    */
 DECL|method|SolrZkClient
 specifier|public
 name|SolrZkClient
@@ -524,7 +523,6 @@ name|zkClientConnectTimeout
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param zkServerAddress    * @param zkClientTimeout    * @param strat    * @param onReconnect    */
 DECL|method|SolrZkClient
 specifier|public
 name|SolrZkClient
@@ -557,7 +555,6 @@ name|DEFAULT_CLIENT_CONNECT_TIMEOUT
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param zkServerAddress    * @param zkClientTimeout    * @param strat    * @param onReconnect    * @param clientConnectTimeout    */
 DECL|method|SolrZkClient
 specifier|public
 name|SolrZkClient
@@ -732,7 +729,7 @@ return|return
 name|zkClientConnectionStrategy
 return|;
 block|}
-comment|/**    * @return true if client is connected    */
+comment|/**    * Returns true if client is connected    */
 DECL|method|isConnected
 specifier|public
 name|boolean
@@ -756,7 +753,6 @@ operator|.
 name|CONNECTED
 return|;
 block|}
-comment|/**    * @param path    * @param version    * @param retryOnConnLoss     * @throws InterruptedException    * @throws KeeperException    */
 DECL|method|delete
 specifier|public
 name|void
@@ -832,7 +828,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Return the stat of the node of the given path. Return null if no such a    * node exists.    *<p>    * If the watch is non-null and the call is successful (no exception is thrown),    * a watch will be left on the node with the given path. The watch will be    * triggered by a successful operation that creates/delete the node or sets    * the data on the node.    *    * @param path the node path    * @param watcher explicit watcher    * @param retryOnConnLoss     * @return the stat of the node of the given path; return null if no such a    *         node exists.    * @throws KeeperException If the server signals an error    * @throws InterruptedException If the server transaction is interrupted.    * @throws IllegalArgumentException if an invalid path is specified    */
+comment|/**    * Return the stat of the node of the given path. Return null if no such a    * node exists.    *<p>    * If the watch is non-null and the call is successful (no exception is thrown),    * a watch will be left on the node with the given path. The watch will be    * triggered by a successful operation that creates/delete the node or sets    * the data on the node.    *    * @param path the node path    * @param watcher explicit watcher    * @return the stat of the node of the given path; return null if no such a    *         node exists.    * @throws KeeperException If the server signals an error    * @throws InterruptedException If the server transaction is interrupted.    * @throws IllegalArgumentException if an invalid path is specified    */
 DECL|method|exists
 specifier|public
 name|Stat
@@ -908,7 +904,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * @param path    * @return true if path exists    * @param retryOnConnLoss      * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns true if path exists    */
 DECL|method|exists
 specifier|public
 name|Boolean
@@ -984,7 +980,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * @param path    * @param data    * @param acl    * @param createMode    * @param retryOnConnLoss     * @return path of created node    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns path of created node    */
 DECL|method|create
 specifier|public
 name|String
@@ -1080,7 +1076,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * @param path    * @param watcher    * @param retryOnConnLoss     * @return children of the node at the path    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns children of the node at the path    */
 DECL|method|getChildren
 specifier|public
 name|List
@@ -1162,7 +1158,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * @param path    * @param watcher    * @param stat    * @param retryOnConnLoss     * @return node's data    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns node's data    */
 DECL|method|getData
 specifier|public
 name|byte
@@ -1248,7 +1244,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * @param path    * @param data    * @param version    * @param retryOnConnLoss     * @return node's state    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns node's state    */
 DECL|method|setData
 specifier|public
 name|Stat
@@ -1333,7 +1329,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    *     * @param path    * @param data    * @param createMode    * @return path of created node    * @param retryOnConnLoss    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns path of created node    */
 DECL|method|create
 specifier|public
 name|String
@@ -1430,7 +1426,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *     * @param path    * @param retryOnConnLoss    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -1622,7 +1618,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * @param path    * @param data to set on the last zkNode    * @param retryOnConnLoss    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * @param data to set on the last zkNode    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -1657,7 +1653,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *     * @param path    * @param data to set on the last zkNode    * @param createMode    * @param retryOnConnLoss    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *     * @param data to set on the last zkNode    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -1695,7 +1691,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *     * @param path    * @param data to set on the last zkNode    * @param createMode    * @param watcher    * @param retryOnConnLoss    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *     * @param data to set on the last zkNode    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -1738,7 +1734,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *     * Note: retryOnConnLoss is only respected for the final node - nodes    * before that are always retried on connection loss.    *     * @param path    * @param data    * @param createMode    * @param watcher    * @param failOnExists    * @param retryOnConnLoss    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *     * Note: retryOnConnLoss is only respected for the final node - nodes    * before that are always retried on connection loss.    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -2152,7 +2148,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * @param zkPath    * @param createMode    * @param watcher    * @param retryOnConnLoss    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -2189,7 +2184,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Write data to ZooKeeper.    *     * @param path    * @param data    * @param retryOnConnLoss    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Write data to ZooKeeper.    */
 DECL|method|setData
 specifier|public
 name|void
@@ -2223,7 +2218,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Write file to ZooKeeper - default system encoding used.    *     * @param path path to upload file to e.g. /solr/conf/solrconfig.xml    * @param file path to file to be uploaded    * @param retryOnConnLoss    * @throws IOException    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Write file to ZooKeeper - default system encoding used.    *     * @param path path to upload file to e.g. /solr/conf/solrconfig.xml    * @param file path to file to be uploaded    */
 DECL|method|setData
 specifier|public
 name|void
@@ -2295,7 +2290,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Fills string with printout of current ZooKeeper layout.    *     * @param path    * @param indent    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Fills string with printout of current ZooKeeper layout.    */
 DECL|method|printLayout
 specifier|public
 name|void
@@ -2583,7 +2578,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Prints current ZooKeeper layout to stdout.    *     * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Prints current ZooKeeper layout to stdout.    */
 DECL|method|printLayoutToStdOut
 specifier|public
 name|void
@@ -2806,7 +2801,7 @@ return|return
 name|isClosed
 return|;
 block|}
-comment|/**    * Allows package private classes to update volatile ZooKeeper.    *     * @param keeper    * @throws InterruptedException     */
+comment|/**    * Allows package private classes to update volatile ZooKeeper.    */
 DECL|method|updateKeeper
 name|void
 name|updateKeeper

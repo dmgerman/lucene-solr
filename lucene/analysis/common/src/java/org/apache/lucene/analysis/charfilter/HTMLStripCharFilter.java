@@ -63558,7 +63558,7 @@ argument_list|(
 literal|2
 argument_list|)
 decl_stmt|;
-comment|/**    * @param source    */
+comment|/**    * Creates a new HTMLStripCharFilter over the provided Reader.    * @param source Reader to strip html tags from.    */
 DECL|method|HTMLStripCharFilter
 specifier|public
 name|HTMLStripCharFilter
@@ -63579,7 +63579,7 @@ operator|=
 name|source
 expr_stmt|;
 block|}
-comment|/**    * @param source    * @param escapedTags Tags in this set (both start and end tags)    *  will not be filtered out.    */
+comment|/**    * Creates a new HTMLStripCharFilter over the provided Reader    * with the specified start and end tags.    * @param source Reader to strip html tags from.    * @param escapedTags Tags in this set (both start and end tags)    *  will not be filtered out.    */
 DECL|method|HTMLStripCharFilter
 specifier|public
 name|HTMLStripCharFilter

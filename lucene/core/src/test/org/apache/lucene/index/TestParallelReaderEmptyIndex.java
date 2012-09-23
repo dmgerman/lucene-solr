@@ -152,7 +152,7 @@ name|TestParallelReaderEmptyIndex
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/**    * Creates two empty indexes and wraps a ParallelReader around. Adding this    * reader to a new index should not throw any exception.    *     * @throws IOException    */
+comment|/**    * Creates two empty indexes and wraps a ParallelReader around. Adding this    * reader to a new index should not throw any exception.    */
 DECL|method|testEmptyIndex
 specifier|public
 name|void

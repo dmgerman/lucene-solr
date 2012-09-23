@@ -3311,7 +3311,7 @@ name|getRequestHandler
 argument_list|()
 return|;
 block|}
-comment|/**    * @see ModifiableSolrParams#set(String,String[])    * @param name    * @param values    *      * @return this    */
+comment|/**    * @return this    * @see ModifiableSolrParams#set(String,String[])    */
 DECL|method|setParam
 specifier|public
 name|SolrQuery
@@ -3338,7 +3338,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * @see org.apache.solr.common.params.ModifiableSolrParams#set(String, boolean)    * @param name    * @param value    * @return this    */
+comment|/**    * @return this    * @see org.apache.solr.common.params.ModifiableSolrParams#set(String, boolean)    */
 DECL|method|setParam
 specifier|public
 name|SolrQuery

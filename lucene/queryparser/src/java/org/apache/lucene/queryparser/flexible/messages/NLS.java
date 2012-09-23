@@ -505,7 +505,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * @param clazz    */
 DECL|method|load
 specifier|private
 specifier|static
@@ -624,7 +623,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @param field    * @param isFieldAccessible    */
 DECL|method|loadfieldValue
 specifier|private
 specifier|static

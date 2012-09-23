@@ -495,7 +495,7 @@ operator|++
 name|size
 expr_stmt|;
 block|}
-comment|/**    * Calculating the baseHash index using the internal<code>hashFactor</code>    * .    *     * @param key    */
+comment|/**    * Calculating the baseHash index using the internal<code>hashFactor</code>    * .    */
 DECL|method|calcBaseHashIndex
 specifier|protected
 name|int
@@ -598,7 +598,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/**    * Find the actual index of a given key.    *     * @param key    * @return index of the key. zero if the key wasn't found.    */
+comment|/**    * Find the actual index of a given key.    *     * @return index of the key. zero if the key wasn't found.    */
 DECL|method|find
 specifier|protected
 name|int
@@ -664,7 +664,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**    * Find the actual index of a given key with it's baseHashIndex.<br>    * Some methods use the baseHashIndex. If those call {@link #find} there's    * no need to re-calculate that hash.    *     * @param key    * @param baseHashIndex    * @return the index of the given key, or 0 as 'Ground' if the key wasn't    *         found.    */
+comment|/**    * Find the actual index of a given key with it's baseHashIndex.<br>    * Some methods use the baseHashIndex. If those call {@link #find} there's    * no need to re-calculate that hash.    *     * @return the index of the given key, or 0 as 'Ground' if the key wasn't    *         found.    */
 DECL|method|findForRemove
 specifier|private
 name|int

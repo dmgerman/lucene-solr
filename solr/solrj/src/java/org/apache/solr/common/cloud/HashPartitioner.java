@@ -404,7 +404,7 @@ name|max
 argument_list|)
 return|;
 block|}
-comment|/**    *    * @param partitions    * @return Range for each partition    */
+comment|/**    * Returns the range for each partition    */
 DECL|method|partitionRange
 specifier|public
 name|List

@@ -115,7 +115,7 @@ name|SolrInfoMBean
 implements|,
 name|NamedListInitializedPlugin
 block|{
-comment|/**    * Prepare the response.  Guaranteed to be called before any SearchComponent {@link #process(org.apache.solr.handler.component.ResponseBuilder)} method.    * Called for every incoming request.    *    * The place to do initialization that is request dependent.    * @param rb The {@link org.apache.solr.handler.component.ResponseBuilder}    * @throws IOException    */
+comment|/**    * Prepare the response.  Guaranteed to be called before any SearchComponent {@link #process(org.apache.solr.handler.component.ResponseBuilder)} method.    * Called for every incoming request.    *    * The place to do initialization that is request dependent.    * @param rb The {@link org.apache.solr.handler.component.ResponseBuilder}    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|prepare
 specifier|public
 specifier|abstract
@@ -128,7 +128,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Process the request for this component     * @param rb The {@link ResponseBuilder}    * @throws IOException    */
+comment|/**    * Process the request for this component     * @param rb The {@link ResponseBuilder}    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|process
 specifier|public
 specifier|abstract

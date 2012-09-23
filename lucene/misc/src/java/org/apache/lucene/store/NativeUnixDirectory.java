@@ -234,7 +234,7 @@ specifier|final
 name|Directory
 name|delegate
 decl_stmt|;
-comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param mergeBufferSize Size of buffer to use for    *    merging.  See {@link #DEFAULT_MERGE_BUFFER_SIZE}.    * @param minBytesDirect Merges, or files to be opened for    *   reading, smaller than this will    *   not use direct IO.  See {@link    *   #DEFAULT_MIN_BYTES_DIRECT}    * @param delegate fallback Directory for non-merges    * @throws IOException    */
+comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param mergeBufferSize Size of buffer to use for    *    merging.  See {@link #DEFAULT_MERGE_BUFFER_SIZE}.    * @param minBytesDirect Merges, or files to be opened for    *   reading, smaller than this will    *   not use direct IO.  See {@link    *   #DEFAULT_MIN_BYTES_DIRECT}    * @param delegate fallback Directory for non-merges    * @throws IOException If there is a low-level I/O error    */
 DECL|method|NativeUnixDirectory
 specifier|public
 name|NativeUnixDirectory
@@ -310,7 +310,7 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param delegate fallback Directory for non-merges    * @throws IOException    */
+comment|/** Create a new NIOFSDirectory for the named location.    *     * @param path the path of the directory    * @param delegate fallback Directory for non-merges    * @throws IOException If there is a low-level I/O error    */
 DECL|method|NativeUnixDirectory
 specifier|public
 name|NativeUnixDirectory

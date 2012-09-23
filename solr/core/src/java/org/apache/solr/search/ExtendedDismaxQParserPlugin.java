@@ -2322,7 +2322,7 @@ return|return
 name|topQuery
 return|;
 block|}
-comment|/**    * Extracts all the alised fields from the requests and adds them to up    * @param up    * @param tiebreaker    */
+comment|/**    * Extracts all the aliased fields from the requests and adds them to up    */
 DECL|method|addAliasesFromRequest
 specifier|private
 name|void
@@ -4517,7 +4517,7 @@ name|a
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns the aliases found for a field.      * Returns null if there are no aliases for the field      * @param field      * @return Alias      */
+comment|/**      * Returns the aliases found for a field.      * Returns null if there are no aliases for the field      * @return Alias      */
 DECL|method|getAlias
 specifier|public
 name|Alias

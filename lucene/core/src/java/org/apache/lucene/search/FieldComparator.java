@@ -323,7 +323,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Set a new {@link AtomicReaderContext}. All subsequent docIDs are relative to    * the current reader (you must add docBase if you need to    * map it to a top-level docID).    *     * @param context current reader context    * @return the comparator to use for this segment; most    *   comparators can just return "this" to reuse the same    *   comparator across segments    * @throws IOException    */
+comment|/**    * Set a new {@link AtomicReaderContext}. All subsequent docIDs are relative to    * the current reader (you must add docBase if you need to    * map it to a top-level docID).    *     * @param context current reader context    * @return the comparator to use for this segment; most    *   comparators can just return "this" to reuse the same    *   comparator across segments    * @throws IOException if there is a low-level IO error    */
 DECL|method|setNextReader
 specifier|public
 specifier|abstract

@@ -3765,7 +3765,7 @@ return|return
 name|list
 return|;
 block|}
-comment|/**    * Used for showing statistics and progress information.    *    * @param showSlaveDetails    */
+comment|/**    * Used for showing statistics and progress information.    */
 DECL|method|getReplicationDetails
 specifier|private
 name|NamedList

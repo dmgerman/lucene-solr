@@ -885,7 +885,7 @@ name|binaryParser
 argument_list|)
 return|;
 block|}
-comment|/**    * Tries to query a live server from the list provided in Req. Servers in the dead pool are skipped.    * If a request fails due to an IOException, the server is moved to the dead pool for a certain period of    * time, or until a test request on that server succeeds.    *    * Servers are queried in the exact order given (except servers currently in the dead pool are skipped).    * If no live servers from the provided list remain to be tried, a number of previously skipped dead servers will be tried.    * Req.getNumDeadServersToTry() controls how many dead servers will be tried.    *    * If no live servers are found a SolrServerException is thrown.    *    * @param req contains both the request as well as the list of servers to query    *    * @return the result of the request    *    * @throws SolrServerException    * @throws IOException    */
+comment|/**    * Tries to query a live server from the list provided in Req. Servers in the dead pool are skipped.    * If a request fails due to an IOException, the server is moved to the dead pool for a certain period of    * time, or until a test request on that server succeeds.    *    * Servers are queried in the exact order given (except servers currently in the dead pool are skipped).    * If no live servers from the provided list remain to be tried, a number of previously skipped dead servers will be tried.    * Req.getNumDeadServersToTry() controls how many dead servers will be tried.    *    * If no live servers are found a SolrServerException is thrown.    *    * @param req contains both the request as well as the list of servers to query    *    * @return the result of the request    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|request
 specifier|public
 name|Rsp
@@ -1723,7 +1723,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Tries to query a live server. A SolrServerException is thrown if all servers are dead.    * If the request failed due to IOException then the live server is moved to dead pool and the request is    * retried on another live server.  After live servers are exhausted, any servers previously marked as dead    * will be tried before failing the request.    *    * @param request the SolrRequest.    *    * @return response    *    * @throws SolrServerException    * @throws IOException    */
+comment|/**    * Tries to query a live server. A SolrServerException is thrown if all servers are dead.    * If the request failed due to IOException then the live server is moved to dead pool and the request is    * retried on another live server.  After live servers are exhausted, any servers previously marked as dead    * will be tried before failing the request.    *    * @param request the SolrRequest.    *    * @return response    *    * @throws IOException If there is a low-level I/O error.    */
 annotation|@
 name|Override
 DECL|method|request

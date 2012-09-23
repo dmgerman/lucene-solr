@@ -560,7 +560,7 @@ name|boostFactor
 init|=
 literal|1
 decl_stmt|;
-comment|/**    * Returns the boost factor used when boosting terms    *    * @return the boost factor used when boosting terms    */
+comment|/**    * Returns the boost factor used when boosting terms    *    * @return the boost factor used when boosting terms    * @see #setBoostFactor(float)    */
 DECL|method|getBoostFactor
 specifier|public
 name|float
@@ -571,7 +571,7 @@ return|return
 name|boostFactor
 return|;
 block|}
-comment|/**    * Sets the boost factor to use when boosting terms    *    * @param boostFactor    */
+comment|/**    * Sets the boost factor to use when boosting terms    *    * @see #getBoostFactor()    */
 DECL|method|setBoostFactor
 specifier|public
 name|void

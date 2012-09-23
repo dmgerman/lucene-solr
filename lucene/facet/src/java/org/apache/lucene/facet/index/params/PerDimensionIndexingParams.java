@@ -237,7 +237,7 @@ name|category
 argument_list|)
 return|;
 block|}
-comment|/**    * Add a CategoryListParams for a given CategoryPath's dimension or    * "zero-th" category.    *     * @param category    * @param clParams    */
+comment|/**    * Add a CategoryListParams for a given CategoryPath's dimension or    * "zero-th" category.    */
 DECL|method|addCategoryListParams
 specifier|public
 name|void

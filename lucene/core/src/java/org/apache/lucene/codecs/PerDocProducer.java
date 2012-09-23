@@ -69,7 +69,7 @@ specifier|protected
 name|PerDocProducer
 parameter_list|()
 block|{   }
-comment|/**    * Returns {@link DocValues} for the current field.    *     * @param field    *          the field name    * @return the {@link DocValues} for this field or<code>null</code> if not    *         applicable.    * @throws IOException    */
+comment|/**    * Returns {@link DocValues} for the current field.    *     * @param field    *          the field name    * @return the {@link DocValues} for this field or<code>null</code> if not    *         applicable.    * @throws IOException If an I/O error occurs    */
 DECL|method|docValues
 specifier|public
 specifier|abstract

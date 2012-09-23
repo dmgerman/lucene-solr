@@ -138,7 +138,7 @@ operator|=
 name|nameValuePairs
 expr_stmt|;
 block|}
-comment|/**    * Method to serialize Map.Entry&lt;String, ?&gt; to a List in which the even    * indexed elements (0,2,4. ..etc) are Strings and odd elements (1,3,5,) are of    * the type "T".    *    * @param nameValuePairs    * @return Modified List as per the above description    * @deprecated This a temporary placeholder method until the guts of the class    * are actually replaced by List&lt;String, ?&gt;.    * @see<a href="https://issues.apache.org/jira/browse/SOLR-912">SOLR-912</a>    */
+comment|/**    * Method to serialize Map.Entry&lt;String, ?&gt; to a List in which the even    * indexed elements (0,2,4. ..etc) are Strings and odd elements (1,3,5,) are of    * the type "T".    *    * @return Modified List as per the above description    * @deprecated This a temporary placeholder method until the guts of the class    * are actually replaced by List&lt;String, ?&gt;.    * @see<a href="https://issues.apache.org/jira/browse/SOLR-912">SOLR-912</a>    */
 annotation|@
 name|Deprecated
 DECL|method|nameValueMapToList
@@ -820,7 +820,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    *    * Helper class implementing Map.Entry&lt;String, T&gt; to store the key-value    * relationship in NamedList (the keys of which are String-s)     *     * @param<T>    */
+comment|/**    *    * Helper class implementing Map.Entry&lt;String, T&gt; to store the key-value    * relationship in NamedList (the keys of which are String-s)     */
 DECL|class|NamedListEntry
 specifier|public
 specifier|static

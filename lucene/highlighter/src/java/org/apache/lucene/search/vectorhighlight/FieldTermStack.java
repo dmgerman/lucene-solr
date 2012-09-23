@@ -234,7 +234,7 @@ comment|//  IndexReader reader = IndexReader.open(dir1);
 comment|//  new FieldTermStack( reader, 0, "f", fieldQuery );
 comment|//  reader.close();
 comment|//}
-comment|/**    * a constructor.    *     * @param reader IndexReader of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fieldQuery FieldQuery object    * @throws IOException    */
+comment|/**    * a constructor.    *     * @param reader IndexReader of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fieldQuery FieldQuery object    * @throws IOException If there is a low-level I/O error    */
 DECL|method|FieldTermStack
 specifier|public
 name|FieldTermStack

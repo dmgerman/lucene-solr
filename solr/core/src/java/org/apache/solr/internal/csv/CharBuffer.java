@@ -541,7 +541,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/**      * Copies the data into a new array of at least<code>capacity</code> size.      * @param capacity      */
+comment|/**      * Copies the data into a new array of at least<code>capacity</code> size.      */
 DECL|method|provideCapacity
 specifier|public
 name|void

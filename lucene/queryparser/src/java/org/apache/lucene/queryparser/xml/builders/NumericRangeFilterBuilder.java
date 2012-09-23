@@ -204,7 +204,7 @@ name|strictMode
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Specifies how this {@link NumericRangeFilterBuilder} will handle errors.    *<p/>    * If this is set to true, {@link #getFilter(Element)} will throw a    * {@link ParserException} if it is unable to parse the lowerTerm or upperTerm    * into the appropriate numeric type. If this is set to false, then this    * exception will be silently ignored and the resulting filter will not match    * any documents.    *<p/>    * Defaults to false.    *    * @param strictMode    */
+comment|/**    * Specifies how this {@link NumericRangeFilterBuilder} will handle errors.    *<p/>    * If this is set to true, {@link #getFilter(Element)} will throw a    * {@link ParserException} if it is unable to parse the lowerTerm or upperTerm    * into the appropriate numeric type. If this is set to false, then this    * exception will be silently ignored and the resulting filter will not match    * any documents.    *<p/>    * Defaults to false.    */
 DECL|method|setStrictMode
 specifier|public
 name|void

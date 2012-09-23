@@ -46,7 +46,7 @@ specifier|public
 interface|interface
 name|BytesRefIterator
 block|{
-comment|/**    * Increments the iteration to the next {@link BytesRef} in the iterator.    * Returns the resulting {@link BytesRef} or<code>null</code> if the end of    * the iterator is reached. The returned BytesRef may be re-used across calls    * to next. After this method returns null, do not call it again: the results    * are undefined.    *     * @return the next {@link BytesRef} in the iterator or<code>null</code> if    *         the end of the iterator is reached.    * @throws IOException    */
+comment|/**    * Increments the iteration to the next {@link BytesRef} in the iterator.    * Returns the resulting {@link BytesRef} or<code>null</code> if the end of    * the iterator is reached. The returned BytesRef may be re-used across calls    * to next. After this method returns null, do not call it again: the results    * are undefined.    *     * @return the next {@link BytesRef} in the iterator or<code>null</code> if    *         the end of the iterator is reached.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|next
 specifier|public
 name|BytesRef

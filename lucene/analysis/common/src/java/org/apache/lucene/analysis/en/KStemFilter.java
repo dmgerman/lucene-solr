@@ -151,7 +151,7 @@ name|in
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns the next, stemmed, input Token.    *  @return The stemed form of a token.    *  @throws IOException    */
+comment|/** Returns the next, stemmed, input Token.    *  @return The stemmed form of a token.    *  @throws IOException If there is a low-level I/O error.    */
 annotation|@
 name|Override
 DECL|method|incrementToken

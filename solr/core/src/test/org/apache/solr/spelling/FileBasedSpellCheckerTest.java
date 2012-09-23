@@ -1117,7 +1117,7 @@ name|decref
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * No indexDir location set    * @throws Exception    */
+comment|/**    * No indexDir location set    */
 annotation|@
 name|Test
 DECL|method|testRAMDirectory

@@ -229,7 +229,7 @@ operator|=
 name|cas
 expr_stmt|;
 block|}
-comment|/**    * map features of a certain UIMA type to corresponding Solr fields based on the mapping    *    * @param typeName             name of UIMA type to map    * @param featureFieldsmapping    */
+comment|/**    * map features of a certain UIMA type to corresponding Solr fields based on the mapping    *    * @param typeName             name of UIMA type to map    */
 DECL|method|map
 name|void
 name|map

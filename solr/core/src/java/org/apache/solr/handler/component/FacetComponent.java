@@ -412,7 +412,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Actually run the query    * @param rb    */
+comment|/**    * Actually run the query    */
 annotation|@
 name|Override
 DECL|method|process

@@ -1195,7 +1195,7 @@ name|boundaryScanner
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Return a phrase {@link org.apache.lucene.search.highlight.Highlighter} appropriate for this field.    * @param query The current Query    * @param fieldName The name of the field    * @param request The current SolrQueryRequest    * @param tokenStream document text CachingTokenStream    * @throws IOException     */
+comment|/**    * Return a phrase {@link org.apache.lucene.search.highlight.Highlighter} appropriate for this field.    * @param query The current Query    * @param fieldName The name of the field    * @param request The current SolrQueryRequest    * @param tokenStream document text CachingTokenStream    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|getPhraseHighlighter
 specifier|protected
 name|Highlighter

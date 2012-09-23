@@ -939,7 +939,7 @@ return|return
 name|c
 return|;
 block|}
-comment|/**    * Normalizes the iteration mark character c    *    * @param c iteration mark character to normalize    * @return normalized iteration mark    * @throws IOException    */
+comment|/**    * Normalizes the iteration mark character c    *    * @param c iteration mark character to normalize    * @return normalized iteration mark    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|normalizeIterationMark
 specifier|private
 name|char
@@ -1016,7 +1016,7 @@ name|c
 argument_list|)
 return|;
 block|}
-comment|/**    * Finds the number of subsequent next iteration marks    *    * @return number of iteration marks starting at the current buffer position    * @throws IOException    */
+comment|/**    * Finds the number of subsequent next iteration marks    *    * @return number of iteration marks starting at the current buffer position    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|nextIterationMarkSpanSize
 specifier|private
 name|int
@@ -1091,7 +1091,7 @@ return|return
 name|spanSize
 return|;
 block|}
-comment|/**    * Returns the source character for a given position and iteration mark span size    *    * @param position buffer position (should not exceed bufferPosition)    * @param spanSize iteration mark span size    * @return source character    * @throws IOException    */
+comment|/**    * Returns the source character for a given position and iteration mark span size    *    * @param position buffer position (should not exceed bufferPosition)    * @param spanSize iteration mark span size    * @return source character    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|sourceCharacter
 specifier|private
 name|char

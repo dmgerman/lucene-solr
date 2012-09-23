@@ -256,7 +256,7 @@ name|CategoryTokenizerTest
 extends|extends
 name|CategoryContainerTestBase
 block|{
-comment|/**    * Verifies that a {@link CategoryTokenizer} adds the correct    * {@link CharTermAttribute}s to a {@link CategoryAttributesStream}.    *     * @throws IOException    */
+comment|/**    * Verifies that a {@link CategoryTokenizer} adds the correct    * {@link CharTermAttribute}s to a {@link CategoryAttributesStream}.    */
 annotation|@
 name|Test
 DECL|method|testTokensDefaultParams
@@ -433,7 +433,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Verifies that {@link CategoryTokenizer} elongates the buffer in    * {@link CharTermAttribute} for long categories.    *     * @throws IOException    */
+comment|/**    * Verifies that {@link CategoryTokenizer} elongates the buffer in    * {@link CharTermAttribute} for long categories.    */
 annotation|@
 name|Test
 DECL|method|testLongCategoryPath

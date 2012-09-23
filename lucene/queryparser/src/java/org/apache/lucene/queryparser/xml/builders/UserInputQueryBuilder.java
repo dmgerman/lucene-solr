@@ -349,7 +349,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Method to create a QueryParser - designed to be overridden    *    * @param fieldName    * @param analyzer    * @return QueryParser    */
+comment|/**    * Method to create a QueryParser - designed to be overridden    *    * @return QueryParser    */
 DECL|method|createQueryParser
 specifier|protected
 name|QueryParser

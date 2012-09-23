@@ -300,7 +300,7 @@ name|String
 name|getScriptLanguage
 parameter_list|()
 function_decl|;
-comment|/**delete a document by id    * @param id    */
+comment|/**delete a document by id    */
 DECL|method|deleteDoc
 specifier|public
 specifier|abstract
@@ -311,7 +311,7 @@ name|String
 name|id
 parameter_list|)
 function_decl|;
-comment|/**delete documents by query    * @param query    */
+comment|/**delete documents by query    */
 DECL|method|deleteDocByQuery
 specifier|public
 specifier|abstract
@@ -333,7 +333,7 @@ name|String
 name|var
 parameter_list|)
 function_decl|;
-comment|/** Resolve variables in a template    * @param template    *    * @return The string w/ variables resolved    */
+comment|/** Resolve variables in a template    *    * @return The string w/ variables resolved    */
 DECL|method|replaceTokens
 specifier|public
 specifier|abstract

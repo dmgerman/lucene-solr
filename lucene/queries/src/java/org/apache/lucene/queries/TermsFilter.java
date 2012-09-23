@@ -172,7 +172,7 @@ name|Term
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Adds a term to the list of acceptable terms    *    * @param term    */
+comment|/**    * Adds a term to the list of acceptable terms    */
 DECL|method|addTerm
 specifier|public
 name|void

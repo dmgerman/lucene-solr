@@ -445,7 +445,7 @@ name|etagCache
 return|;
 block|}
 block|}
-comment|/**    * Calculates a tag for the ETag header.    *    * @param solrReq    * @return a tag    */
+comment|/**    * Calculates a tag for the ETag header.    *    * @return a tag    */
 DECL|method|calcEtag
 specifier|public
 specifier|static
@@ -621,7 +621,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Calculate the appropriate last-modified time for Solr relative the current request.    *     * @param solrReq    * @return the timestamp to use as a last modified time.    */
+comment|/**    * Calculate the appropriate last-modified time for Solr relative the current request.    *     * @return the timestamp to use as a last modified time.    */
 DECL|method|calcLastModified
 specifier|public
 specifier|static

@@ -371,7 +371,7 @@ name|collator
 argument_list|)
 return|;
 block|}
-comment|/** @deprecated */
+comment|/** @deprecated Use {@link #getField()} instead. */
 annotation|@
 name|Deprecated
 DECL|method|field

@@ -381,7 +381,7 @@ operator|-
 name|off
 return|;
 block|}
-comment|/**   * Reads all characters up to (but not including) the given character.   *    * @param c the character to read up to   * @return the string up to the character<code>c</code>   * @throws IOException   */
+comment|/**   * Reads all characters up to (but not including) the given character.   *    * @param c the character to read up to   * @return the string up to the character<code>c</code>   * @throws IOException If there is a low-level I/O error.   */
 DECL|method|readUntil
 specifier|public
 name|String
@@ -730,7 +730,7 @@ operator|+
 literal|1
 return|;
 block|}
-comment|/**    * Skips all chars in the input until (but excluding) the given char    *     * @param c    * @return counter    * @throws IllegalArgumentException    * @throws IOException    */
+comment|/**    * Skips all chars in the input until (but excluding) the given char    *     * @return counter    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|skipUntil
 specifier|public
 name|long

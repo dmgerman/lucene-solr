@@ -735,7 +735,7 @@ name|nProperties
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test addition of {@link CategoryAttribute} object without properties to a    * {@link CategoryContainer}.    *     * @throws FacetException    */
+comment|/**    * Test addition of {@link CategoryAttribute} object without properties to a    * {@link CategoryContainer}.    */
 annotation|@
 name|Test
 DECL|method|testAddCategoryAttributeWithoutProperties
@@ -769,7 +769,7 @@ name|newCA
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test addition of {@link CategoryAttribute} object with property to a    * {@link CategoryContainer}.    *     * @throws FacetException    */
+comment|/**    * Test addition of {@link CategoryAttribute} object with property to a    * {@link CategoryContainer}.    */
 annotation|@
 name|Test
 DECL|method|testAddCategoryAttributeWithProperty
@@ -892,7 +892,7 @@ name|nProperties
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Verifies that a {@link CategoryAttributesStream} can be constructed from    * {@link CategoryContainer} and produce the correct number of tokens.    *     * @throws IOException    */
+comment|/**    * Verifies that a {@link CategoryAttributesStream} can be constructed from    * {@link CategoryContainer} and produce the correct number of tokens.    */
 annotation|@
 name|Test
 DECL|method|testCategoryAttributesStream
@@ -941,7 +941,7 @@ name|nTokens
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test that {@link CategoryContainer} merges properties.    *     * @throws FacetException    */
+comment|/**    * Test that {@link CategoryContainer} merges properties.    */
 annotation|@
 name|Test
 DECL|method|testCategoryAttributeMerge

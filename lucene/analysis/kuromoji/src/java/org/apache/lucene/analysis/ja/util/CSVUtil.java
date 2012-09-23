@@ -112,7 +112,7 @@ name|CSVUtil
 parameter_list|()
 block|{}
 comment|// no instance!!!
-comment|/**    * Parse CSV line    * @param line    * @return Array of values    */
+comment|/**    * Parse CSV line    * @param line line containing csv-encoded data    * @return Array of values    */
 DECL|method|parse
 specifier|public
 specifier|static
@@ -377,7 +377,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Quote and escape input value for CSV    * @param original    */
+comment|/**    * Quote and escape input value for CSV    */
 DECL|method|quoteEscape
 specifier|public
 specifier|static

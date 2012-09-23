@@ -568,7 +568,7 @@ return|return
 name|htmlParser
 return|;
 block|}
-comment|/**    * Read until a line starting with the specified<code>lineStart</code>.    * @param buf buffer for collecting the data if so specified/     * @param lineStart line start to look for, must not be null.    * @param collectMatchLine whether to collect the matching line into<code>buffer</code>.    * @param collectAll whether to collect all lines into<code>buffer</code>.    * @throws IOException    * @throws NoMoreDataException    */
+comment|/**    * Read until a line starting with the specified<code>lineStart</code>.    * @param buf buffer for collecting the data if so specified/     * @param lineStart line start to look for, must not be null.    * @param collectMatchLine whether to collect the matching line into<code>buffer</code>.    * @param collectAll whether to collect all lines into<code>buffer</code>.    * @throws IOException If there is a low-level I/O error.    * @throws NoMoreDataException If the source is exhausted.    */
 DECL|method|read
 specifier|private
 name|void

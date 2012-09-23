@@ -89,7 +89,7 @@ name|void
 name|destroy
 parameter_list|()
 function_decl|;
-comment|/**    *<p>    * Adds a document. If a document already exists with the same key, both    * documents will exist in the cache, as the cache allows duplicate keys. To    * update a key's documents, first call delete(Object key).    *</p>    *     * @param rec    */
+comment|/**    *<p>    * Adds a document. If a document already exists with the same key, both    * documents will exist in the cache, as the cache allows duplicate keys. To    * update a key's documents, first call delete(Object key).    *</p>    */
 DECL|method|add
 specifier|public
 name|void
@@ -137,7 +137,7 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    *<p>    * Delete all documents associated with the given key    *</p>    *     * @param key    */
+comment|/**    *<p>    * Delete all documents associated with the given key    *</p>    */
 DECL|method|delete
 specifier|public
 name|void

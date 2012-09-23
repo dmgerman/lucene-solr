@@ -42,7 +42,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-comment|/**    * Initializes the DataSource with the<code>Context</code> and    * initialization properties.    *<p/>    * This is invoked by the<code>DataImporter</code> after creating an    * instance of this class.    *    * @param context    * @param initProps    */
+comment|/**    * Initializes the DataSource with the<code>Context</code> and    * initialization properties.    *<p/>    * This is invoked by the<code>DataImporter</code> after creating an    * instance of this class.    */
 DECL|method|init
 specifier|public
 specifier|abstract

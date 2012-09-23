@@ -555,7 +555,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      *       * @param maxNumTerms The total number of terms clauses that will appear once rewritten as a BooleanQuery      * @param analyzer      */
+comment|/**      *       * @param maxNumTerms The total number of terms clauses that will appear once rewritten as a BooleanQuery      */
 DECL|method|FuzzyLikeThisQuery
 specifier|public
 name|FuzzyLikeThisQuery
@@ -887,7 +887,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**      * Adds user input for "fuzzification"       * @param queryString The string which will be parsed by the analyzer and for which fuzzy variants will be parsed      * @param fieldName      * @param minSimilarity The minimum similarity of the term variants (see FuzzyTermsEnum)      * @param prefixLength Length of required common prefix on variant terms (see FuzzyTermsEnum)      */
+comment|/**      * Adds user input for "fuzzification"       * @param queryString The string which will be parsed by the analyzer and for which fuzzy variants will be parsed      * @param minSimilarity The minimum similarity of the term variants (see FuzzyTermsEnum)      * @param prefixLength Length of required common prefix on variant terms (see FuzzyTermsEnum)      */
 DECL|method|addTerms
 specifier|public
 name|void

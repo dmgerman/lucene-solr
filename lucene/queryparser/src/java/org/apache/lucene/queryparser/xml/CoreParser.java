@@ -179,7 +179,7 @@ name|maxNumCachedFilters
 init|=
 literal|20
 decl_stmt|;
-comment|/**    * Construct an XML parser that uses a single instance QueryParser for handling    * UserQuery tags - all parse operations are synchronised on this parser    *    * @param analyzer    * @param parser A QueryParser which will be synchronized on during parse calls.    */
+comment|/**    * Construct an XML parser that uses a single instance QueryParser for handling    * UserQuery tags - all parse operations are synchronised on this parser    *    * @param parser A QueryParser which will be synchronized on during parse calls.    */
 DECL|method|CoreParser
 specifier|public
 name|CoreParser
@@ -201,7 +201,7 @@ name|parser
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an XML parser that creates a QueryParser for each UserQuery request.    *    * @param defaultField The default field name used by QueryParsers constructed for UserQuery tags    * @param analyzer    */
+comment|/**    * Constructs an XML parser that creates a QueryParser for each UserQuery request.    *    * @param defaultField The default field name used by QueryParsers constructed for UserQuery tags    */
 DECL|method|CoreParser
 specifier|public
 name|CoreParser

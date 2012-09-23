@@ -1433,7 +1433,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * TODO -- there may be a way to do this without marshal at all...    *    * @param req    * @param rsp    *    * @return a response object equivalent to what you get from the XML/JSON/javabin parser. Documents become    *         SolrDocuments, DocList becomes SolrDocumentList etc.    *    * @since solr 1.4    */
+comment|/**    * TODO -- there may be a way to do this without marshal at all...    *    * @return a response object equivalent to what you get from the XML/JSON/javabin parser. Documents become    *         SolrDocuments, DocList becomes SolrDocumentList etc.    *    * @since solr 1.4    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

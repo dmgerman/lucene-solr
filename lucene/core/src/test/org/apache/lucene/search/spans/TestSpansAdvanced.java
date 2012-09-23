@@ -426,7 +426,7 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Adds the document to the index.    *     * @param writer the Lucene index writer    * @param id the unique id of the document    * @param text the text of the document    * @throws IOException    */
+comment|/**    * Adds the document to the index.    *     * @param writer the Lucene index writer    * @param id the unique id of the document    * @param text the text of the document    */
 DECL|method|addDocument
 specifier|protected
 name|void
@@ -499,7 +499,7 @@ name|document
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests two span queries.    *     * @throws IOException    */
+comment|/**    * Tests two span queries.    */
 DECL|method|testBooleanQueryWithSpanQueries
 specifier|public
 name|void
@@ -516,7 +516,7 @@ literal|0.3884282f
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Tests two span queries.    *     * @throws IOException    */
+comment|/**    * Tests two span queries.    */
 DECL|method|doTestBooleanQueryWithSpanQueries
 specifier|protected
 name|void
@@ -632,7 +632,7 @@ name|expectedScores
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Checks to see if the hits are what we expected.    *     * @param query the query to execute    * @param description the description of the search    * @param expectedIds the expected document ids of the hits    * @param expectedScores the expected scores of the hits    *     * @throws IOException    */
+comment|/**    * Checks to see if the hits are what we expected.    *     * @param query the query to execute    * @param description the description of the search    * @param expectedIds the expected document ids of the hits    * @param expectedScores the expected scores of the hits    */
 DECL|method|assertHits
 specifier|protected
 specifier|static

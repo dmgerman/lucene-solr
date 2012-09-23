@@ -634,7 +634,9 @@ name|fieldName
 argument_list|)
 return|;
 block|}
-comment|/**    * Return the fieldinfo object referenced by the fieldNumber.    * @param fieldNumber    * @return the FieldInfo object or null when the given fieldNumber    * doesn't exist.    */
+comment|/**    * Return the fieldinfo object referenced by the fieldNumber.    * @param fieldNumber field's number. if this is negative, this method    *        always returns null.    * @return the FieldInfo object or null when the given fieldNumber    * doesn't exist.    */
+comment|// TODO: fix this negative behavior, this was something related to Lucene3x?
+comment|// if the field name is empty, i think it writes the fieldNumber as -1
 DECL|method|fieldInfo
 specifier|public
 name|FieldInfo

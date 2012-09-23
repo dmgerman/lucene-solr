@@ -101,7 +101,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Constructs a Term with the given field and empty text.    * This serves two purposes: 1) reuse of a Term with the same field.    * 2) pattern for a query.    *     * @param fld    */
+comment|/** Constructs a Term with the given field and empty text.    * This serves two purposes: 1) reuse of a Term with the same field.    * 2) pattern for a query.    *     * @param fld field's name    */
 DECL|method|Term
 specifier|public
 name|Term

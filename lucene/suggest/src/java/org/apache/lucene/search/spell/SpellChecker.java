@@ -1688,7 +1688,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/**    * Removes all terms from the spell check index.    * @throws IOException    * @throws AlreadyClosedException if the Spellchecker is already closed    */
+comment|/**    * Removes all terms from the spell check index.    * @throws IOException If there is a low-level I/O error.    * @throws AlreadyClosedException if the Spellchecker is already closed    */
 DECL|method|clearIndex
 specifier|public
 name|void
@@ -1752,7 +1752,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Check whether the word exists in the index.    * @param word    * @throws IOException    * @throws AlreadyClosedException if the Spellchecker is already closed    * @return true if the word exists in the index    */
+comment|/**    * Check whether the word exists in the index.    * @param word word to check    * @throws IOException If there is a low-level I/O error.    * @throws AlreadyClosedException if the Spellchecker is already closed    * @return true if the word exists in the index    */
 DECL|method|exist
 specifier|public
 name|boolean
@@ -1805,7 +1805,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Indexes the data from the given {@link Dictionary}.    * @param dict Dictionary to index    * @param config {@link IndexWriterConfig} to use    * @param fullMerge whether or not the spellcheck index should be fully merged    * @throws AlreadyClosedException if the Spellchecker is already closed    * @throws IOException    */
+comment|/**    * Indexes the data from the given {@link Dictionary}.    * @param dict Dictionary to index    * @param config {@link IndexWriterConfig} to use    * @param fullMerge whether or not the spellcheck index should be fully merged    * @throws AlreadyClosedException if the Spellchecker is already closed    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|indexDictionary
 specifier|public
 specifier|final

@@ -733,7 +733,7 @@ name|DocList
 name|mainResult
 decl_stmt|;
 comment|// output if one of the grouping commands should be used as the main result.
-comment|/**    * @param searcher    * @param qr    * @param cmd    * @param cacheSecondPassSearch    Whether to cache the documents and scores from the first pass search for the second    *                                 pass search.    * @param maxDocsPercentageToCache The maximum number of documents in a percentage relative from maxdoc    *                                 that is allowed in the cache. When this threshold is met,    *                                 the cache is not used in the second pass search.    */
+comment|/**    * @param cacheSecondPassSearch    Whether to cache the documents and scores from the first pass search for the second    *                                 pass search.    * @param maxDocsPercentageToCache The maximum number of documents in a percentage relative from maxdoc    *                                 that is allowed in the cache. When this threshold is met,    *                                 the cache is not used in the second pass search.    */
 DECL|method|Grouping
 specifier|public
 name|Grouping

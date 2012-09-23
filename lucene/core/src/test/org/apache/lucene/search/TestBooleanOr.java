@@ -376,7 +376,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<code>T:files T:deleting C:production C:optimize</code>    * it works.    *    * @throws IOException    */
+comment|/**    *<code>T:files T:deleting C:production C:optimize</code>    * it works.    */
 DECL|method|testFlat
 specifier|public
 name|void
@@ -471,7 +471,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<code>(T:files T:deleting) (+C:production +C:optimize)</code>    * it works.    *    * @throws IOException    */
+comment|/**    *<code>(T:files T:deleting) (+C:production +C:optimize)</code>    * it works.    */
 DECL|method|testParenthesisMust
 specifier|public
 name|void
@@ -606,7 +606,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<code>(T:files T:deleting) +(C:production C:optimize)</code>    * not working. results NO HIT.    *    * @throws IOException    */
+comment|/**    *<code>(T:files T:deleting) +(C:production C:optimize)</code>    * not working. results NO HIT.    */
 DECL|method|testParenthesisMust2
 specifier|public
 name|void
@@ -741,7 +741,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    *<code>(T:files T:deleting) (C:production C:optimize)</code>    * not working. results NO HIT.    *    * @throws IOException    */
+comment|/**    *<code>(T:files T:deleting) (C:production C:optimize)</code>    * not working. results NO HIT.    */
 DECL|method|testParenthesisShould
 specifier|public
 name|void

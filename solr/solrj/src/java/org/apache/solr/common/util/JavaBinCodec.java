@@ -3488,7 +3488,7 @@ return|return
 name|sz
 return|;
 block|}
-comment|/**    * Special method for variable length int (copied from lucene). Usually used for writing the length of a    * collection/array/map In most of the cases the length can be represented in one byte (length< 127) so it saves 3    * bytes/object    *    * @param i    * @param out    *    * @throws IOException    */
+comment|/**    * Special method for variable length int (copied from lucene). Usually used for writing the length of a    * collection/array/map In most of the cases the length can be represented in one byte (length< 127) so it saves 3    * bytes/object    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|writeVInt
 specifier|public
 specifier|static
@@ -3550,7 +3550,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * The counterpart for the above    *    * @param in    *    * @return the int value    *    * @throws IOException    */
+comment|/**    * The counterpart for {@link #writeVInt(int, FastOutputStream)}    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|readVInt
 specifier|public
 specifier|static

@@ -294,7 +294,6 @@ specifier|static
 name|NumberFormat
 name|nf
 decl_stmt|;
-comment|/**    * @param args    * @throws IOException    */
 DECL|method|main
 specifier|public
 specifier|static

@@ -4416,7 +4416,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Does the schema have the specified field defined explicitly, i.e.    * not as a result of a copyField declaration with a wildcard?  We    * consider it explicitly defined if it matches a field or dynamicField    * declaration.    * @param fieldName    * @return true if explicitly declared in the schema.    */
+comment|/**    * Does the schema have the specified field defined explicitly, i.e.    * not as a result of a copyField declaration with a wildcard?  We    * consider it explicitly defined if it matches a field or dynamicField    * declaration.    * @return true if explicitly declared in the schema.    */
 DECL|method|hasExplicitField
 specifier|public
 name|boolean
@@ -4465,7 +4465,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Is the specified field dynamic or not.    * @param fieldName    * @return true if the specified field is dynamic    */
+comment|/**    * Is the specified field dynamic or not.    * @return true if the specified field is dynamic    */
 DECL|method|isDynamicField
 specifier|public
 name|boolean
@@ -4810,7 +4810,7 @@ literal|null
 return|;
 block|}
 empty_stmt|;
-comment|/**    * Get all copy fields, both the static and the dynamic ones.    * @param destField    * @return Array of fields copied into this field    */
+comment|/**    * Get all copy fields, both the static and the dynamic ones.    * @return Array of fields copied into this field    */
 DECL|method|getCopySources
 specifier|public
 name|SchemaField
@@ -4936,7 +4936,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/**    * Get all copy fields for a specified source field, both static    * and dynamic ones.    * @param sourceField    * @return List of CopyFields to copy to.    * @since solr 1.4    */
+comment|/**    * Get all copy fields for a specified source field, both static    * and dynamic ones.    * @return List of CopyFields to copy to.    * @since solr 1.4    */
 comment|// This is useful when we need the maxSize param of each CopyField
 DECL|method|getCopyFieldsList
 specifier|public
@@ -5061,7 +5061,7 @@ name|f
 argument_list|)
 return|;
 block|}
-comment|/**    * Is the given field name a wildcard?  I.e. does it begin or end with *?    * @param name    * @return true/false    */
+comment|/**    * Is the given field name a wildcard?  I.e. does it begin or end with *?    * @return true/false    */
 DECL|method|isWildCard
 specifier|private
 specifier|static

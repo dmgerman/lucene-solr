@@ -133,7 +133,7 @@ name|QRelJudgement
 argument_list|>
 name|judgements
 decl_stmt|;
-comment|/**    * Constructor from a reader.    *<p>    * Expected input format:    *<pre>    *     qnum  0   doc-name     is-relevant    *</pre>     * Two sample lines:    *<pre>     *     19    0   doc303       1    *     19    0   doc7295      0    *</pre>     * @param reader where judgments are read from.    * @throws IOException     */
+comment|/**    * Constructor from a reader.    *<p>    * Expected input format:    *<pre>    *     qnum  0   doc-name     is-relevant    *</pre>     * Two sample lines:    *<pre>     *     19    0   doc303       1    *     19    0   doc7295      0    *</pre>     * @param reader where judgments are read from.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|TrecJudge
 specifier|public
 name|TrecJudge

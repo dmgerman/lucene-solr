@@ -416,7 +416,7 @@ specifier|final
 name|SolrRequestParsers
 name|_parser
 decl_stmt|;
-comment|/**    * Use the other constructor using a CoreContainer and a name.    * @param core    * @deprecated    */
+comment|/**    * Use the other constructor using a CoreContainer and a name.    * @deprecated use {@link #EmbeddedSolrServer(CoreContainer, String)} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|EmbeddedSolrServer
@@ -1279,7 +1279,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @param req    * @param rsp    * @return a response object equivalent to what you get from the XML/JSON/javabin parser. Documents    * become SolrDocuments, DocList becomes SolrDocumentList etc.    *     * @deprecated use {@link BinaryResponseWriter#getParsedResponse(SolrQueryRequest, SolrQueryResponse)}    */
+comment|/**    * Returns a response object equivalent to what you get from the XML/JSON/javabin parser. Documents    * become SolrDocuments, DocList becomes SolrDocumentList etc.    *     * @deprecated use {@link BinaryResponseWriter#getParsedResponse(SolrQueryRequest, SolrQueryResponse)}    */
 annotation|@
 name|Deprecated
 DECL|method|getParsedResponse

@@ -146,7 +146,7 @@ name|int
 index|[]
 name|enhancementStart
 decl_stmt|;
-comment|/**    * Constructor.    *     * @param enhancementsList    *            A list of the {@link CategoryEnhancement}s from the indexing    *            params.    * @param indexReader    *            A reader of the index.    * @param term    *            The category term to iterate.    * @throws IOException    */
+comment|/**    * Constructor.    *     * @param enhancementsList    *            A list of the {@link CategoryEnhancement}s from the indexing    *            params.    * @param indexReader    *            A reader of the index.    * @param term    *            The category term to iterate.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|EnhancementsPayloadIterator
 specifier|public
 name|EnhancementsPayloadIterator

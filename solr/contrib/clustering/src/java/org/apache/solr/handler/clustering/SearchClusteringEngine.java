@@ -188,7 +188,7 @@ name|SolrQueryRequest
 name|sreq
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the set of field names to load.    * Concrete classes can override this method if needed.    * Default implementation returns null, that is, all stored fields are loaded.    * @param sreq    * @return set of field names to load    */
+comment|/**    * Returns the set of field names to load.    * Concrete classes can override this method if needed.    * Default implementation returns null, that is, all stored fields are loaded.    * @return set of field names to load    */
 DECL|method|getFieldsToLoad
 specifier|protected
 name|Set

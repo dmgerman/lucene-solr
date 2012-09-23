@@ -434,7 +434,7 @@ name|position
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Adds a term to the end of the query phrase.    * The relative position of the term within the phrase is specified explicitly.    * This allows e.g. phrases with more than one term at the same position    * or phrases with gaps (e.g. in connection with stopwords).    *     * @param term    * @param position    */
+comment|/**    * Adds a term to the end of the query phrase.    * The relative position of the term within the phrase is specified explicitly.    * This allows e.g. phrases with more than one term at the same position    * or phrases with gaps (e.g. in connection with stopwords).    *     */
 DECL|method|add
 specifier|public
 name|void

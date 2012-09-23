@@ -164,7 +164,7 @@ name|CategoryAttributesStreamTest
 extends|extends
 name|CategoryContainerTestBase
 block|{
-comment|/**    * Verifies that a {@link CategoryAttributesStream} accepts    * {@link CategoryAttribute} and passes them on as tokens.    *     * @throws IOException    */
+comment|/**    * Verifies that a {@link CategoryAttributesStream} accepts    * {@link CategoryAttribute} and passes them on as tokens.    */
 annotation|@
 name|Test
 DECL|method|testStream

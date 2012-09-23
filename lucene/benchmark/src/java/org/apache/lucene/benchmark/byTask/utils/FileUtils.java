@@ -50,7 +50,7 @@ specifier|public
 class|class
 name|FileUtils
 block|{
-comment|/**    * Delete files and directories, even if non-empty.    *    * @param dir file or directory    * @return true on success, false if no or part of files have been deleted    * @throws java.io.IOException    */
+comment|/**    * Delete files and directories, even if non-empty.    *    * @param dir file or directory    * @return true on success, false if no or part of files have been deleted    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|fullyDelete
 specifier|public
 specifier|static

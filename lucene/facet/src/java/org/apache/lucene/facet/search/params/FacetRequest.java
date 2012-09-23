@@ -810,7 +810,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Create an aggregator for this facet request. Aggregator action depends on    * request definition. For a count request, it will usually increment the    * count for that facet.    *     * @param useComplements    *          whether the complements optimization is being used for current    *          computation.    * @param arrays    *          provider for facet arrays in use for current computation.    * @param indexReader    *          index reader in effect.    * @param taxonomy    *          reader of taxonomy in effect.    * @throws IOException    */
+comment|/**    * Create an aggregator for this facet request. Aggregator action depends on    * request definition. For a count request, it will usually increment the    * count for that facet.    *     * @param useComplements    *          whether the complements optimization is being used for current    *          computation.    * @param arrays    *          provider for facet arrays in use for current computation.    * @param indexReader    *          index reader in effect.    * @param taxonomy    *          reader of taxonomy in effect.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|createAggregator
 specifier|public
 specifier|abstract

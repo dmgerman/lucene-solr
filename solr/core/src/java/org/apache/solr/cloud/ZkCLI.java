@@ -437,7 +437,7 @@ name|CMD
 init|=
 literal|"cmd"
 decl_stmt|;
-comment|/**    * Allows you to perform a variety of zookeeper related tasks, such as:    *     * Bootstrap the current configs for all collections in solr.xml.    *     * Upload a named config set from a given directory.    *     * Link a named config set explicity to a collection.    *     * Clear ZooKeeper info.    *     * If you also pass a solrPort, it will be used to start an embedded zk useful    * for single machine, multi node tests.    *     * @param args    * @throws IOException    * @throws TimeoutException    * @throws InterruptedException    * @throws SAXException    * @throws ParserConfigurationException    * @throws KeeperException    */
+comment|/**    * Allows you to perform a variety of zookeeper related tasks, such as:    *     * Bootstrap the current configs for all collections in solr.xml.    *     * Upload a named config set from a given directory.    *     * Link a named config set explicity to a collection.    *     * Clear ZooKeeper info.    *     * If you also pass a solrPort, it will be used to start an embedded zk useful    * for single machine, multi node tests.    */
 DECL|method|main
 specifier|public
 specifier|static

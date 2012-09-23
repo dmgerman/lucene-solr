@@ -218,7 +218,6 @@ specifier|final
 name|Analyzer
 name|analyzer
 decl_stmt|;
-comment|/**    * @param analyzer    */
 DECL|method|TermsFilterBuilder
 specifier|public
 name|TermsFilterBuilder

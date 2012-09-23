@@ -114,7 +114,6 @@ specifier|final
 name|SpanQueryBuilder
 name|factory
 decl_stmt|;
-comment|/**    * @param factory    */
 DECL|method|SpanNotBuilder
 specifier|public
 name|SpanNotBuilder

@@ -263,7 +263,7 @@ operator|*
 name|distErrPct
 return|;
 block|}
-comment|/**    * Gets the error distance that specifies how precise the query shape is. This    * looks at {@link #getDistErr()}, {@link #getDistErrPct()}, and {@code    * defaultDistErrPct}.    * @param ctx    * @param defaultDistErrPct 0 to 0.5    * @return>= 0    */
+comment|/**    * Gets the error distance that specifies how precise the query shape is. This    * looks at {@link #getDistErr()}, {@link #getDistErrPct()}, and {@code    * defaultDistErrPct}.    * @param defaultDistErrPct 0 to 0.5    * @return>= 0    */
 DECL|method|resolveDistErr
 specifier|public
 name|double

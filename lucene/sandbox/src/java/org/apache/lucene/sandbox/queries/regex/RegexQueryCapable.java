@@ -30,6 +30,7 @@ specifier|public
 interface|interface
 name|RegexQueryCapable
 block|{
+comment|/**    * Defines which {@link RegexCapabilities} implementation is used by this instance.    * @see #getRegexImplementation()    */
 DECL|method|setRegexImplementation
 name|void
 name|setRegexImplementation
@@ -38,6 +39,7 @@ name|RegexCapabilities
 name|impl
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the implementation used by this instance.    * @see #setRegexImplementation(RegexCapabilities)    */
 DECL|method|getRegexImplementation
 name|RegexCapabilities
 name|getRegexImplementation

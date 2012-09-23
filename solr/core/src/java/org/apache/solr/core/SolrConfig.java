@@ -2301,7 +2301,7 @@ name|boolean
 name|openSearcher
 decl_stmt|;
 comment|// is opening a new searcher part of hard autocommit?
-comment|/**      * @param className      * @param autoCommmitMaxDocs set -1 as default      * @param autoCommmitMaxTime set -1 as default      * @param commitIntervalLowerBound set -1 as default      */
+comment|/**      * @param autoCommmitMaxDocs set -1 as default      * @param autoCommmitMaxTime set -1 as default      * @param commitIntervalLowerBound set -1 as default      */
 DECL|method|UpdateHandlerInfo
 specifier|public
 name|UpdateHandlerInfo

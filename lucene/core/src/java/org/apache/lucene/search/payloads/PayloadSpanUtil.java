@@ -391,7 +391,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-comment|/**    * Query should be rewritten for wild/fuzzy support.    *     * @param query    * @return payloads Collection    * @throws IOException    */
+comment|/**    * Query should be rewritten for wild/fuzzy support.    *     * @param query rewritten query    * @return payloads Collection    * @throws IOException if there is a low-level I/O error    */
 DECL|method|getPayloadsForQuery
 specifier|public
 name|Collection

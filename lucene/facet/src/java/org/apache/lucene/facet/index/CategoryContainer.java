@@ -644,7 +644,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Serialize each of the {@link CategoryAttribute}s to the given    * {@link ObjectOutputStream}.<br>    * NOTE: {@link CategoryProperty}s are {@link Serializable}, but do not    * assume that Lucene's {@link Attribute}s are as well    * @throws IOException     */
+comment|/**    * Serialize each of the {@link CategoryAttribute}s to the given    * {@link ObjectOutputStream}.<br>    * NOTE: {@link CategoryProperty}s are {@link Serializable}, but do not    * assume that Lucene's {@link Attribute}s are as well    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|serializeCategoryAttribute
 specifier|protected
 name|void

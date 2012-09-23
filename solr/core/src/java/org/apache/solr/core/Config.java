@@ -404,7 +404,7 @@ specifier|final
 name|SolrResourceLoader
 name|loader
 decl_stmt|;
-comment|/**    * Builds a config from a resource name with no xpath prefix.    * @param loader    * @param name    * @throws javax.xml.parsers.ParserConfigurationException    * @throws java.io.IOException    * @throws org.xml.sax.SAXException    */
+comment|/**    * Builds a config from a resource name with no xpath prefix.    */
 DECL|method|Config
 specifier|public
 name|Config
@@ -471,7 +471,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Builds a config:    *<p>    * Note that the 'name' parameter is used to obtain a valid input stream if no valid one is provided through 'is'.    * If no valid stream is provided, a valid SolrResourceLoader instance should be provided through 'loader' so    * the resource can be opened (@see SolrResourceLoader#openResource); if no SolrResourceLoader instance is provided, a default one    * will be created.    *</p>    *<p>    * Consider passing a non-null 'name' parameter in all use-cases since it is used for logging& exception reporting.    *</p>    * @param loader the resource loader used to obtain an input stream if 'is' is null    * @param name the resource name used if the input stream 'is' is null    * @param is the resource as a SAX InputSource    * @param prefix an optional prefix that will be preprended to all non-absolute xpath expressions    * @throws javax.xml.parsers.ParserConfigurationException    * @throws java.io.IOException    * @throws org.xml.sax.SAXException    */
+comment|/**    * Builds a config:    *<p>    * Note that the 'name' parameter is used to obtain a valid input stream if no valid one is provided through 'is'.    * If no valid stream is provided, a valid SolrResourceLoader instance should be provided through 'loader' so    * the resource can be opened (@see SolrResourceLoader#openResource); if no SolrResourceLoader instance is provided, a default one    * will be created.    *</p>    *<p>    * Consider passing a non-null 'name' parameter in all use-cases since it is used for logging& exception reporting.    *</p>    * @param loader the resource loader used to obtain an input stream if 'is' is null    * @param name the resource name used if the input stream 'is' is null    * @param is the resource as a SAX InputSource    * @param prefix an optional prefix that will be preprended to all non-absolute xpath expressions    */
 DECL|method|Config
 specifier|public
 name|Config

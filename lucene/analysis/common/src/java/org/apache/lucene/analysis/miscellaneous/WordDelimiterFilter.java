@@ -1147,7 +1147,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**    * Flushes the given WordDelimiterConcatenation by either writing its concat and then clearing, or just clearing.    *    * @param concatenation WordDelimiterConcatenation that will be flushed    * @return {@code true} if the concatenation was written before it was cleared, {@code} false otherwise    */
+comment|/**    * Flushes the given WordDelimiterConcatenation by either writing its concat and then clearing, or just clearing.    *    * @param concatenation WordDelimiterConcatenation that will be flushed    * @return {@code true} if the concatenation was written before it was cleared, {@code false} otherwise    */
 DECL|method|flushConcatenation
 specifier|private
 name|boolean
@@ -1602,7 +1602,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/**    * Determines whether the given flag is set    *    * @param flag Flag to see if set    * @return {@code} true if flag is set    */
+comment|/**    * Determines whether the given flag is set    *    * @param flag Flag to see if set    * @return {@code true} if flag is set    */
 DECL|method|has
 specifier|private
 name|boolean

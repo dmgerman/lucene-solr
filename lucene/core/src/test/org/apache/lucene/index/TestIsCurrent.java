@@ -207,7 +207,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Failing testcase showing the trouble    *     * @throws IOException    */
+comment|/**    * Failing testcase showing the trouble    */
 annotation|@
 name|Test
 DECL|method|testDeleteByTermIsCurrent
@@ -303,7 +303,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Testcase for example to show that writer.deleteAll() is working as expected    *     * @throws IOException    */
+comment|/**    * Testcase for example to show that writer.deleteAll() is working as expected    */
 annotation|@
 name|Test
 DECL|method|testDeleteAllIsCurrent

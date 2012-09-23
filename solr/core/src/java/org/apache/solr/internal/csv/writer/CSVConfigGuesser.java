@@ -349,7 +349,7 @@ name|lines
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Guess if this file is fixedwidth.      * Just basing the fact on all lines being of the same length      * @param lines      */
+comment|/**      * Guess if this file is fixedwidth.      * Just basing the fact on all lines being of the same length      */
 DECL|method|guessFixedWidth
 specifier|protected
 name|void

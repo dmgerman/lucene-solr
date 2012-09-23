@@ -194,7 +194,7 @@ return|return
 name|data
 return|;
 block|}
-comment|/**    * @param bytes    * @see #decodeFloat(byte[], int)    * @see #encodeFloat(float)    * @return the decoded float    */
+comment|/**    * @see #decodeFloat(byte[], int)    * @see #encodeFloat(float)    * @return the decoded float    */
 DECL|method|decodeFloat
 specifier|public
 specifier|static

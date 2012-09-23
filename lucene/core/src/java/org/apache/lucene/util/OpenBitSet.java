@@ -88,7 +88,7 @@ specifier|private
 name|long
 name|numBits
 decl_stmt|;
-comment|/** Constructs an OpenBitSet large enough to hold numBits.    *    * @param numBits    */
+comment|/** Constructs an OpenBitSet large enough to hold<code>numBits</code>.    */
 DECL|method|OpenBitSet
 specifier|public
 name|OpenBitSet

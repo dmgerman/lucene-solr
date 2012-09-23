@@ -1059,7 +1059,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This method intended for use with<tt>testHighlightingWithDefaultField()</tt>  * @throws InvalidTokenOffsetsException     */
+comment|/**    * This method intended for use with<tt>testHighlightingWithDefaultField()</tt>    */
 DECL|method|highlightField
 specifier|private
 name|String
@@ -8702,7 +8702,7 @@ name|start
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Demonstrates creation of an XHTML compliant doc using new encoding facilities.    *     * @throws Exception    */
+comment|/**    * Demonstrates creation of an XHTML compliant doc using new encoding facilities.    */
 DECL|method|testEncoding
 specifier|public
 name|void

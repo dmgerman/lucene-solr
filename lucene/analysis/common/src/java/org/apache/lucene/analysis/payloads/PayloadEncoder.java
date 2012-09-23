@@ -51,7 +51,7 @@ index|[]
 name|buffer
 parameter_list|)
 function_decl|;
-comment|/**    * Convert a char array to a {@link BytesRef}    * @param buffer    * @param offset    * @param length    * @return encoded {@link BytesRef}    */
+comment|/**    * Convert a char array to a {@link BytesRef}    * @return encoded {@link BytesRef}    */
 DECL|method|encode
 name|BytesRef
 name|encode

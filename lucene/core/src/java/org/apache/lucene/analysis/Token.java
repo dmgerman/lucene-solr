@@ -1511,7 +1511,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Copy the prototype token's fields into this one. Note: Payloads are shared.    * @param prototype    */
+comment|/**    * Copy the prototype token's fields into this one. Note: Payloads are shared.    * @param prototype source Token to copy fields from    */
 DECL|method|reinit
 specifier|public
 name|void

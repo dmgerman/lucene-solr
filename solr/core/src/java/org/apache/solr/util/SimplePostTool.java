@@ -3348,7 +3348,7 @@ return|return
 name|numPages
 return|;
 block|}
-comment|/**    * Reads an input stream into a byte array    * @param is the input stream    * @return the byte array    * @throws IOException    */
+comment|/**    * Reads an input stream into a byte array    * @param is the input stream    * @return the byte array    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|inputStreamToByteArray
 specifier|protected
 name|byte
@@ -4279,7 +4279,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Appends to the path of the URL    * @param url the URL    * @param append the path to append    * @return the final URL version     * @throws MalformedURLException    */
+comment|/**    * Appends to the path of the URL    * @param url the URL    * @param append the path to append    * @return the final URL version     */
 DECL|method|appendUrlPath
 specifier|protected
 specifier|static

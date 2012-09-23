@@ -2574,7 +2574,7 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param cmd    * @return whether or not to drop this cmd    * @throws IOException    */
+comment|/**    * @return whether or not to drop this cmd    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|versionAdd
 specifier|private
 name|boolean

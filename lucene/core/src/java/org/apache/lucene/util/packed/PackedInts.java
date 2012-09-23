@@ -2192,7 +2192,7 @@ name|bitsPerValue
 argument_list|)
 return|;
 block|}
-comment|/**    * Expert: Restore a {@link Reader} from a stream without reading metadata at    * the beginning of the stream. This method is useful to restore data from    * streams which have been created using    * {@link PackedInts#getWriterNoHeader(DataOutput, Format, int, int, int)}.    *    * @param in           the stream to read data from, positioned at the beginning of the packed values    * @param format       the format used to serialize    * @param version      the version used to serialize the data    * @param valueCount   how many values the stream holds    * @param bitsPerValue the number of bits per value    * @return             a Reader    * @throws IOException    * @see PackedInts#getWriterNoHeader(DataOutput, Format, int, int, int)    * @lucene.internal    */
+comment|/**    * Expert: Restore a {@link Reader} from a stream without reading metadata at    * the beginning of the stream. This method is useful to restore data from    * streams which have been created using    * {@link PackedInts#getWriterNoHeader(DataOutput, Format, int, int, int)}.    *    * @param in           the stream to read data from, positioned at the beginning of the packed values    * @param format       the format used to serialize    * @param version      the version used to serialize the data    * @param valueCount   how many values the stream holds    * @param bitsPerValue the number of bits per value    * @return             a Reader    * @throws IOException If there is a low-level I/O error    * @see PackedInts#getWriterNoHeader(DataOutput, Format, int, int, int)    * @lucene.internal    */
 DECL|method|getReaderNoHeader
 specifier|public
 specifier|static
@@ -2368,7 +2368,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Restore a {@link Reader} from a stream.    *    * @param in           the stream to read data from    * @return             a Reader    * @throws IOException    * @lucene.internal    */
+comment|/**    * Restore a {@link Reader} from a stream.    *    * @param in           the stream to read data from    * @return             a Reader    * @throws IOException If there is a low-level I/O error    * @lucene.internal    */
 DECL|method|getReader
 specifier|public
 specifier|static
@@ -2673,7 +2673,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Construct a direct {@link Reader} from an {@link IndexInput}. This method    * is useful to restore data from streams which have been created using    * {@link PackedInts#getWriter(DataOutput, int, int, float)}.    *</p><p>    * The returned reader will have very little memory overhead, but every call    * to {@link Reader#get(int)} is likely to perform a disk seek.    *    * @param in           the stream to read data from    * @return a direct Reader    * @throws IOException    * @lucene.internal    */
+comment|/**    * Construct a direct {@link Reader} from an {@link IndexInput}. This method    * is useful to restore data from streams which have been created using    * {@link PackedInts#getWriter(DataOutput, int, int, float)}.    *</p><p>    * The returned reader will have very little memory overhead, but every call    * to {@link Reader#get(int)} is likely to perform a disk seek.    *    * @param in           the stream to read data from    * @return a direct Reader    * @throws IOException If there is a low-level I/O error    * @lucene.internal    */
 DECL|method|getDirectReader
 specifier|public
 specifier|static
@@ -2971,7 +2971,7 @@ name|mem
 argument_list|)
 return|;
 block|}
-comment|/**    * Create a packed integer array writer for the given output, format, value    * count, and number of bits per value.    *</p><p>    * The resulting stream will be long-aligned. This means that depending on    * the format which is used under the hoods, up to 63 bits will be wasted.    * An easy way to make sure that no space is lost is to always use a    *<code>valueCount</code> that is a multiple of 64.    *</p><p>    * This method writes metadata to the stream, so that the resulting stream is    * sufficient to restore a {@link Reader} from it. You don't need to track    *<code>valueCount</code> or<code>bitsPerValue</code> by yourself. In case    * this is a problem, you should probably look at    * {@link #getWriterNoHeader(DataOutput, Format, int, int, int)}.    *</p><p>    * The<code>acceptableOverheadRatio</code> parameter controls how    * readers that will be restored from this stream trade space    * for speed by selecting a faster but potentially less memory-efficient    * implementation. An<code>acceptableOverheadRatio</code> of    * {@link PackedInts#COMPACT} will make sure that the most memory-efficient    * implementation is selected whereas {@link PackedInts#FASTEST} will make sure    * that the fastest implementation is selected. In case you are only interested    * in reading this stream sequentially later on, you should probably use    * {@link PackedInts#COMPACT}.    *    * @param out          the data output    * @param valueCount   the number of values    * @param bitsPerValue the number of bits per value    * @param acceptableOverheadRatio an acceptable overhead ratio per value    * @return             a Writer    * @throws IOException    * @lucene.internal    */
+comment|/**    * Create a packed integer array writer for the given output, format, value    * count, and number of bits per value.    *</p><p>    * The resulting stream will be long-aligned. This means that depending on    * the format which is used under the hoods, up to 63 bits will be wasted.    * An easy way to make sure that no space is lost is to always use a    *<code>valueCount</code> that is a multiple of 64.    *</p><p>    * This method writes metadata to the stream, so that the resulting stream is    * sufficient to restore a {@link Reader} from it. You don't need to track    *<code>valueCount</code> or<code>bitsPerValue</code> by yourself. In case    * this is a problem, you should probably look at    * {@link #getWriterNoHeader(DataOutput, Format, int, int, int)}.    *</p><p>    * The<code>acceptableOverheadRatio</code> parameter controls how    * readers that will be restored from this stream trade space    * for speed by selecting a faster but potentially less memory-efficient    * implementation. An<code>acceptableOverheadRatio</code> of    * {@link PackedInts#COMPACT} will make sure that the most memory-efficient    * implementation is selected whereas {@link PackedInts#FASTEST} will make sure    * that the fastest implementation is selected. In case you are only interested    * in reading this stream sequentially later on, you should probably use    * {@link PackedInts#COMPACT}.    *    * @param out          the data output    * @param valueCount   the number of values    * @param bitsPerValue the number of bits per value    * @param acceptableOverheadRatio an acceptable overhead ratio per value    * @return             a Writer    * @throws IOException If there is a low-level I/O error    * @lucene.internal    */
 DECL|method|getWriter
 specifier|public
 specifier|static

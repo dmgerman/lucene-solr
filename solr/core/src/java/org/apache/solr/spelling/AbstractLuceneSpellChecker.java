@@ -1499,7 +1499,7 @@ name|index
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initialize the {@link #index} variable based on the {@link #indexDir}.  Does not actually create the spelling index.    *    * @throws IOException    */
+comment|/**    * Initialize the {@link #index} variable based on the {@link #indexDir}.  Does not actually create the spelling index.    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|initIndex
 specifier|protected
 name|void

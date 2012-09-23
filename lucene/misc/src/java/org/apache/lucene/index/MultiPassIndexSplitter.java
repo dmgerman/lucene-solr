@@ -152,7 +152,7 @@ specifier|public
 class|class
 name|MultiPassIndexSplitter
 block|{
-comment|/**    * Split source index into multiple parts.    * @param in source index, can have deletions, can have    * multiple segments (or multiple readers).    * @param outputs list of directories where the output parts will be stored.    * @param seq if true, then the source index will be split into equal    * increasing ranges of document id-s. If false, source document id-s will be    * assigned in a deterministic round-robin fashion to one of the output splits.    * @throws IOException    */
+comment|/**    * Split source index into multiple parts.    * @param in source index, can have deletions, can have    * multiple segments (or multiple readers).    * @param outputs list of directories where the output parts will be stored.    * @param seq if true, then the source index will be split into equal    * increasing ranges of document id-s. If false, source document id-s will be    * assigned in a deterministic round-robin fashion to one of the output splits.    * @throws IOException If there is a low-level I/O error    */
 DECL|method|split
 specifier|public
 name|void

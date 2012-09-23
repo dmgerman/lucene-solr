@@ -295,7 +295,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * This method is called by the consumer after the last token has been    * consumed, after {@link #incrementToken()} returned<code>false</code>    * (using the new<code>TokenStream</code> API). Streams implementing the old API    * should upgrade to use this feature.    *<p/>    * This method can be used to perform any end-of-stream operations, such as    * setting the final offset of a stream. The final offset of a stream might    * differ from the offset of the last token eg in case one or more whitespaces    * followed after the last token, but a WhitespaceTokenizer was used.    *     * @throws IOException    */
+comment|/**    * This method is called by the consumer after the last token has been    * consumed, after {@link #incrementToken()} returned<code>false</code>    * (using the new<code>TokenStream</code> API). Streams implementing the old API    * should upgrade to use this feature.    *<p/>    * This method can be used to perform any end-of-stream operations, such as    * setting the final offset of a stream. The final offset of a stream might    * differ from the offset of the last token eg in case one or more whitespaces    * followed after the last token, but a WhitespaceTokenizer was used.    *     * @throws IOException If an I/O error occurs    */
 DECL|method|end
 specifier|public
 name|void

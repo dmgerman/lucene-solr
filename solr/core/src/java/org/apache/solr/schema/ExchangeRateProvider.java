@@ -76,7 +76,7 @@ specifier|public
 interface|interface
 name|ExchangeRateProvider
 block|{
-comment|/**    * Get the exchange rate betwen the two given currencies    * @param sourceCurrencyCode    * @param targetCurrencyCode    * @return the exhange rate as a double    * @throws SolrException if the rate is not defined in the provider    */
+comment|/**    * Get the exchange rate betwen the two given currencies    * @return the exchange rate as a double    * @throws SolrException if the rate is not defined in the provider    */
 DECL|method|getExchangeRate
 specifier|public
 name|double

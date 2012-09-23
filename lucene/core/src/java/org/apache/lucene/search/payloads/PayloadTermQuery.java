@@ -767,7 +767,7 @@ block|{
 comment|// zero out the payload?
 block|}
 block|}
-comment|/**        *         * @return {@link #getSpanScore()} * {@link #getPayloadScore()}        * @throws IOException        */
+comment|/**        *         * @return {@link #getSpanScore()} * {@link #getPayloadScore()}        * @throws IOException if there is a low-level I/O error        */
 annotation|@
 name|Override
 DECL|method|score
@@ -791,7 +791,7 @@ name|getPayloadScore
 argument_list|()
 return|;
 block|}
-comment|/**        * Returns the SpanScorer score only.        *<p/>        * Should not be overridden without good cause!        *         * @return the score for just the Span part w/o the payload        * @throws IOException        *         * @see #score()        */
+comment|/**        * Returns the SpanScorer score only.        *<p/>        * Should not be overridden without good cause!        *         * @return the score for just the Span part w/o the payload        * @throws IOException if there is a low-level I/O error        *         * @see #score()        */
 DECL|method|getSpanScore
 specifier|protected
 name|float

@@ -696,7 +696,7 @@ return|return
 name|endTrimmed
 return|;
 block|}
-comment|/**      * Specify if the end of the line needs to be trimmed. Defaults to false.      * @param endTrimmed      */
+comment|/**      * Specify if the end of the line needs to be trimmed. Defaults to false.      */
 DECL|method|setEndTrimmed
 specifier|public
 name|void

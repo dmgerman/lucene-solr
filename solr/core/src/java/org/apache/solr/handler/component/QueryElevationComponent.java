@@ -2164,7 +2164,7 @@ return|return
 name|map
 return|;
 block|}
-comment|/**    * Helpful for testing without loading config.xml    *    * @throws IOException    */
+comment|/**    * Helpful for testing without loading config.xml    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|setTopQueryResults
 name|void
 name|setTopQueryResults

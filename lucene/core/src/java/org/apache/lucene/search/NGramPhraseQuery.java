@@ -72,7 +72,7 @@ specifier|final
 name|int
 name|n
 decl_stmt|;
-comment|/**    * Constructor that takes gram size.    * @param n    */
+comment|/**    * Constructor that takes gram size.    * @param n n-gram size    */
 DECL|method|NGramPhraseQuery
 specifier|public
 name|NGramPhraseQuery

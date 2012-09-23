@@ -362,7 +362,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param query to use for highlighting    * @param reader {@link IndexReader} to use for quasi tf/idf scoring    * @param field to highlight - pass null to ignore fields    * @param defaultField    */
+comment|/**    * @param query to use for highlighting    * @param reader {@link IndexReader} to use for quasi tf/idf scoring    * @param field to highlight - pass null to ignore fields    */
 DECL|method|QueryScorer
 specifier|public
 name|QueryScorer
@@ -988,7 +988,7 @@ operator|=
 name|expandMultiTermQuery
 expr_stmt|;
 block|}
-comment|/**    * By default, {@link TokenStream}s that are not of the type    * {@link CachingTokenFilter} are wrapped in a {@link CachingTokenFilter} to    * ensure an efficient reset - if you are already using a different caching    * {@link TokenStream} impl and you don't want it to be wrapped, set this to    * false.    *     * @param wrap    */
+comment|/**    * By default, {@link TokenStream}s that are not of the type    * {@link CachingTokenFilter} are wrapped in a {@link CachingTokenFilter} to    * ensure an efficient reset - if you are already using a different caching    * {@link TokenStream} impl and you don't want it to be wrapped, set this to    * false.    */
 DECL|method|setWrapIfNotCachingTokenFilter
 specifier|public
 name|void

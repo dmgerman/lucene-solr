@@ -1730,7 +1730,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Writes the document to the directory using a segment    * named "test"; returns the SegmentInfo describing the new    * segment     * @param dir    * @param doc    * @throws IOException    */
+comment|/**    * Writes the document to the directory using a segment    * named "test"; returns the SegmentInfo describing the new    * segment     */
 DECL|method|writeDoc
 specifier|public
 specifier|static
@@ -1774,7 +1774,7 @@ name|doc
 argument_list|)
 return|;
 block|}
-comment|/**    * Writes the document to the directory using the analyzer    * and the similarity score; returns the SegmentInfo    * describing the new segment    * @param dir    * @param analyzer    * @param similarity    * @param doc    * @throws IOException    */
+comment|/**    * Writes the document to the directory using the analyzer    * and the similarity score; returns the SegmentInfo    * describing the new segment    */
 DECL|method|writeDoc
 specifier|public
 specifier|static

@@ -494,7 +494,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Set the categories of the document builder from an {@link Iterable} of    * {@link CategoryPath} objects.    *     * @param categoryPaths    *            An iterable of CategoryPath objects which holds the categories    *            (facets) which will be added to the document at    *            {@link #build(Document)}    * @return This CategoryDocumentBuilder, to enable this one line call:    *         {@code new} {@link #CategoryDocumentBuilder(TaxonomyWriter)}.    *         {@link #setCategoryPaths(Iterable)}.{@link #build(Document)}.    * @throws IOException    */
+comment|/**    * Set the categories of the document builder from an {@link Iterable} of    * {@link CategoryPath} objects.    *     * @param categoryPaths    *            An iterable of CategoryPath objects which holds the categories    *            (facets) which will be added to the document at    *            {@link #build(Document)}    * @return This CategoryDocumentBuilder, to enable this one line call:    *         {@code new} {@link #CategoryDocumentBuilder(TaxonomyWriter)}.    *         {@link #setCategoryPaths(Iterable)}.{@link #build(Document)}.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|setCategoryPaths
 specifier|public
 name|CategoryDocumentBuilder
@@ -536,7 +536,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Set the categories of the document builder from an {@link Iterable} of    * {@link CategoryAttribute} objects.    *     * @param categories    *            An iterable of {@link CategoryAttribute} objects which holds    *            the categories (facets) which will be added to the document at    *            {@link #build(Document)}    * @return This CategoryDocumentBuilder, to enable this one line call:    *         {@code new} {@link #CategoryDocumentBuilder(TaxonomyWriter)}.    *         {@link #setCategories(Iterable)}.{@link #build(Document)}.    * @throws IOException    */
+comment|/**    * Set the categories of the document builder from an {@link Iterable} of    * {@link CategoryAttribute} objects.    *     * @param categories    *            An iterable of {@link CategoryAttribute} objects which holds    *            the categories (facets) which will be added to the document at    *            {@link #build(Document)}    * @return This CategoryDocumentBuilder, to enable this one line call:    *         {@code new} {@link #CategoryDocumentBuilder(TaxonomyWriter)}.    *         {@link #setCategories(Iterable)}.{@link #build(Document)}.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|setCategories
 specifier|public
 name|CategoryDocumentBuilder
@@ -845,7 +845,7 @@ name|indexingParams
 argument_list|)
 return|;
 block|}
-comment|/**    * Get a {@link CategoryTokenizer} to create the<b>category tokens</b>.    * This method can be overridden for adding more attributes to the category    * tokens.    *     * @param categoryStream    *            A stream containing {@link CategoryAttribute} with the    *            relevant data.    * @return The {@link CategoryTokenizer} to be used in creating category    *         tokens.    * @throws IOException    */
+comment|/**    * Get a {@link CategoryTokenizer} to create the<b>category tokens</b>.    * This method can be overridden for adding more attributes to the category    * tokens.    *     * @param categoryStream    *            A stream containing {@link CategoryAttribute} with the    *            relevant data.    * @return The {@link CategoryTokenizer} to be used in creating category    *         tokens.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|getCategoryTokenizer
 specifier|protected
 name|CategoryTokenizer

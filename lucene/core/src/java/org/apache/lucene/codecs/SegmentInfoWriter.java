@@ -99,7 +99,7 @@ specifier|protected
 name|SegmentInfoWriter
 parameter_list|()
 block|{   }
-comment|/**    * Write {@link SegmentInfo} data.     * @throws IOException    */
+comment|/**    * Write {@link SegmentInfo} data.     * @throws IOException If an I/O error occurs    */
 DECL|method|write
 specifier|public
 specifier|abstract

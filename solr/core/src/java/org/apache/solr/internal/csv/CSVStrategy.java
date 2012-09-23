@@ -309,7 +309,7 @@ name|ignoreEmptyLines
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** @deprecated */
+comment|/** @deprecated Use {@link #CSVStrategy(char, char, char, char, boolean, boolean, boolean, boolean)} */
 DECL|method|CSVStrategy
 specifier|public
 name|CSVStrategy

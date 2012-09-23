@@ -62,7 +62,7 @@ return|return
 literal|"solrconfig-termindex.xml"
 return|;
 block|}
-comment|/**    * Simple test to ensure that alternate IndexReaderFactory is being used.    *    * @throws Exception    */
+comment|/**    * Simple test to ensure that alternate IndexReaderFactory is being used.    */
 DECL|method|testAltReaderUsed
 specifier|public
 name|void

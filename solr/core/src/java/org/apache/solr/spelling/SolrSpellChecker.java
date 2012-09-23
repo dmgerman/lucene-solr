@@ -510,7 +510,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**    * Integrate spelling suggestions from the various shards in a distributed environment.    *     * @param mergeData    * @param numSug    * @param count    * @param extendedResults    */
+comment|/**    * Integrate spelling suggestions from the various shards in a distributed environment.    */
 DECL|method|mergeSuggestions
 specifier|public
 name|SpellingResult
@@ -985,7 +985,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**    * Reloads the index.  Useful if an external process is responsible for building the spell checker.    *    * @throws java.io.IOException    */
+comment|/**    * Reloads the index.  Useful if an external process is responsible for building the spell checker.    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|reload
 specifier|public
 specifier|abstract

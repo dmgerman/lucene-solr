@@ -345,7 +345,7 @@ name|origDocIds
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Fix result node count, and, recursively, fix all its children    *     * @param facetResNode    *          result node to be fixed    * @param docIds    *          docids in effect    * @throws IOException    */
+comment|/**    * Fix result node count, and, recursively, fix all its children    *     * @param facetResNode    *          result node to be fixed    * @param docIds    *          docids in effect    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|fixResultNode
 specifier|private
 name|void
@@ -387,7 +387,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Internal utility: recount for a facet result node    *     * @param fresNode    *          result node to be recounted    * @param docIds    *          full set of matching documents.    * @throws IOException    */
+comment|/**    * Internal utility: recount for a facet result node    *     * @param fresNode    *          result node to be recounted    * @param docIds    *          full set of matching documents.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|recount
 specifier|private
 name|void

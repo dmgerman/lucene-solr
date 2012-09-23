@@ -240,7 +240,7 @@ DECL|field|path
 name|File
 name|path
 decl_stmt|;
-comment|/**    * LUCENE-3627: This test fails.    *     * @throws Exception    */
+comment|/**    * LUCENE-3627: This test fails.    */
 DECL|method|testCrashCorruptsIndexing
 specifier|public
 name|void
@@ -275,7 +275,7 @@ literal|3
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * index 1 document and commit.    * prepare for crashing.    * index 1 more document, and upon commit, creation of segments_2 will crash.    *     * @throws IOException    */
+comment|/**    * index 1 document and commit.    * prepare for crashing.    * index 1 more document, and upon commit, creation of segments_2 will crash.    */
 DECL|method|indexAndCrashOnCreateOutputSegments2
 specifier|private
 name|void
@@ -399,7 +399,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Attempts to index another 1 document.    *     * @throws IOException    */
+comment|/**    * Attempts to index another 1 document.    */
 DECL|method|indexAfterRestart
 specifier|private
 name|void
@@ -471,7 +471,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Run an example search.    *     * @throws IOException    */
+comment|/**    * Run an example search.    */
 DECL|method|searchForFleas
 specifier|private
 name|void

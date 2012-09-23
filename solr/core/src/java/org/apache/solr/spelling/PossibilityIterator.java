@@ -263,7 +263,7 @@ literal|"You shan't go here."
 argument_list|)
 throw|;
 block|}
-comment|/**    *<p>    * We assume here that the passed-in inner LinkedHashMaps are already sorted    * in order of "Best Possible Correction".    *</p>    *     * @param suggestions    */
+comment|/**    *<p>    * We assume here that the passed-in inner LinkedHashMaps are already sorted    * in order of "Best Possible Correction".    *</p>    */
 DECL|method|PossibilityIterator
 specifier|public
 name|PossibilityIterator

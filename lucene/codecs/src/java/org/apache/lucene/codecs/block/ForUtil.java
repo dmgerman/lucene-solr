@@ -838,7 +838,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Write a block of data (<code>For</code> format).    *    * @param data     the data to write    * @param encoded  a buffer to use to encode data    * @param out      the destination output    * @throws IOException    */
+comment|/**    * Write a block of data (<code>For</code> format).    *    * @param data     the data to write    * @param encoded  a buffer to use to encode data    * @param out      the destination output    * @throws IOException If there is a low-level I/O error    */
 DECL|method|writeBlock
 name|void
 name|writeBlock
@@ -989,7 +989,7 @@ name|encodedSize
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Read the next block of data (<code>For</code> format).    *    * @param in        the input to use to read data    * @param encoded   a buffer that can be used to store encoded data    * @param decoded   where to write decoded data    * @throws IOException    */
+comment|/**    * Read the next block of data (<code>For</code> format).    *    * @param in        the input to use to read data    * @param encoded   a buffer that can be used to store encoded data    * @param decoded   where to write decoded data    * @throws IOException If there is a low-level I/O error    */
 DECL|method|readBlock
 name|void
 name|readBlock
@@ -1121,7 +1121,7 @@ name|iters
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Skip the next block of data.    *    * @param in      the input where to read data    * @throws IOException    */
+comment|/**    * Skip the next block of data.    *    * @param in      the input where to read data    * @throws IOException If there is a low-level I/O error    */
 DECL|method|skipBlock
 name|void
 name|skipBlock

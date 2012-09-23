@@ -119,7 +119,6 @@ specifier|private
 name|boolean
 name|disableCoord
 decl_stmt|;
-comment|/**    * @param clauses    */
 DECL|method|StandardBooleanQueryNode
 specifier|public
 name|StandardBooleanQueryNode

@@ -216,7 +216,7 @@ name|TestFileSwitchDirectory
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/**    * Test if writing doc stores to disk and everything else to ram works.    * @throws IOException    */
+comment|/**    * Test if writing doc stores to disk and everything else to ram works.    */
 DECL|method|testBasic
 specifier|public
 name|void

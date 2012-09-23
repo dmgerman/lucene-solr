@@ -242,7 +242,6 @@ specifier|final
 name|Analyzer
 name|analyzer
 decl_stmt|;
-comment|/**    * @param analyzer    */
 DECL|method|SpanOrTermsBuilder
 specifier|public
 name|SpanOrTermsBuilder

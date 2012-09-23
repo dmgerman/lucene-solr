@@ -338,7 +338,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Use this method to choose a set size where accuracy (low content saturation) is more important    * than deciding how much memory to throw at the problem.    * @param maxNumberOfValuesExpected    * @param desiredSaturation A number between 0 and 1 expressing the % of bits set once all values have been recorded    * @return The size of the set nearest to the required size    */
+comment|/**    * Use this method to choose a set size where accuracy (low content saturation) is more important    * than deciding how much memory to throw at the problem.    * @param desiredSaturation A number between 0 and 1 expressing the % of bits set once all values have been recorded    * @return The size of the set nearest to the required size    */
 DECL|method|getNearestSetSize
 specifier|public
 specifier|static
@@ -538,7 +538,7 @@ operator|=
 name|hashFunction
 expr_stmt|;
 block|}
-comment|/**    * The main method required for a Bloom filter which, given a value determines set membership.    * Unlike a conventional set, the fuzzy set returns NO or MAYBE rather than true or false.    * @param value    * @return NO or MAYBE    */
+comment|/**    * The main method required for a Bloom filter which, given a value determines set membership.    * Unlike a conventional set, the fuzzy set returns NO or MAYBE rather than true or false.    * @return NO or MAYBE    */
 DECL|method|contains
 specifier|public
 name|ContainsResult
@@ -580,7 +580,7 @@ name|hash
 argument_list|)
 return|;
 block|}
-comment|/**    * Serializes the data set to file using the following format:    *<ul>    *<li>FuzzySet --&gt;FuzzySetVersion,HashFunctionName,BloomSize,    * NumBitSetWords,BitSetWord<sup>NumBitSetWords</sup></li>     *<li>HashFunctionName --&gt; {@link DataOutput#writeString(String) String} The    * name of a ServiceProvider registered {@link HashFunction}</li>    *<li>FuzzySetVersion --&gt; {@link DataOutput#writeInt Uint32} The version number of the {@link FuzzySet} class</li>    *<li>BloomSize --&gt; {@link DataOutput#writeInt Uint32} The modulo value used    * to project hashes into the field's Bitset</li>    *<li>NumBitSetWords --&gt; {@link DataOutput#writeInt Uint32} The number of    * longs (as returned from {@link FixedBitSet#getBits})</li>    *<li>BitSetWord --&gt; {@link DataOutput#writeLong Long} A long from the array    * returned by {@link FixedBitSet#getBits}</li>    *</ul>    * @param out Data output stream    * @throws IOException    */
+comment|/**    * Serializes the data set to file using the following format:    *<ul>    *<li>FuzzySet --&gt;FuzzySetVersion,HashFunctionName,BloomSize,    * NumBitSetWords,BitSetWord<sup>NumBitSetWords</sup></li>     *<li>HashFunctionName --&gt; {@link DataOutput#writeString(String) String} The    * name of a ServiceProvider registered {@link HashFunction}</li>    *<li>FuzzySetVersion --&gt; {@link DataOutput#writeInt Uint32} The version number of the {@link FuzzySet} class</li>    *<li>BloomSize --&gt; {@link DataOutput#writeInt Uint32} The modulo value used    * to project hashes into the field's Bitset</li>    *<li>NumBitSetWords --&gt; {@link DataOutput#writeInt Uint32} The number of    * longs (as returned from {@link FixedBitSet#getBits})</li>    *<li>BitSetWord --&gt; {@link DataOutput#writeLong Long} A long from the array    * returned by {@link FixedBitSet#getBits}</li>    *</ul>    * @param out Data output stream    * @throws IOException If there is a low-level I/O error    */
 DECL|method|serialize
 specifier|public
 name|void
@@ -820,7 +820,7 @@ operator|.
 name|NO
 return|;
 block|}
-comment|/**    * Records a value in the set. The referenced bytes are hashed and then modulo n'd where n is the    * chosen size of the internal bitset.    * @param value the key value to be hashed    * @throws IOException    */
+comment|/**    * Records a value in the set. The referenced bytes are hashed and then modulo n'd where n is the    * chosen size of the internal bitset.    * @param value the key value to be hashed    * @throws IOException If there is a low-level I/O error    */
 DECL|method|addValue
 specifier|public
 name|void

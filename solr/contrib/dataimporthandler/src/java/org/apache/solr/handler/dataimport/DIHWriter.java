@@ -62,7 +62,7 @@ specifier|public
 interface|interface
 name|DIHWriter
 block|{
-comment|/**    *<p>    *  If this writer supports transactions or commit points, then commit any changes,    *  optionally optimizing the data for read/write performance    *</p>    * @param optimize    */
+comment|/**    *<p>    *  If this writer supports transactions or commit points, then commit any changes,    *  optionally optimizing the data for read/write performance    *</p>    */
 DECL|method|commit
 specifier|public
 name|void
@@ -86,7 +86,7 @@ name|void
 name|rollback
 parameter_list|()
 function_decl|;
-comment|/**    *<p>    *  Delete from the writer's underlying data store based the passed-in writer-specific query. (Optional Operation)    *</p>    * @param q    */
+comment|/**    *<p>    *  Delete from the writer's underlying data store based the passed-in writer-specific query. (Optional Operation)    *</p>    */
 DECL|method|deleteByQuery
 specifier|public
 name|void
@@ -103,7 +103,7 @@ name|void
 name|doDeleteAll
 parameter_list|()
 function_decl|;
-comment|/**    *<p>    *  Delete from the writer's underlying data store based on the passed-in Primary Key    *</p>    * @param key    */
+comment|/**    *<p>    *  Delete from the writer's underlying data store based on the passed-in Primary Key    *</p>    */
 DECL|method|deleteDoc
 specifier|public
 name|void
@@ -113,7 +113,7 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    *<p>    *  Add a document to this writer's underlying data store.    *</p>    * @param doc    * @return true on success, false on failure    */
+comment|/**    *<p>    *  Add a document to this writer's underlying data store.    *</p>    * @return true on success, false on failure    */
 DECL|method|upload
 specifier|public
 name|boolean
@@ -123,7 +123,7 @@ name|SolrInputDocument
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**    *<p>    *  Provide context information for this writer.  init() should be called before using the writer.    *</p>    * @param context    */
+comment|/**    *<p>    *  Provide context information for this writer.  init() should be called before using the writer.    *</p>    */
 DECL|method|init
 specifier|public
 name|void
@@ -133,7 +133,7 @@ name|Context
 name|context
 parameter_list|)
 function_decl|;
-comment|/**    *<p>    *  Specify the keys to be modified by a delta update (required by writers that can store duplicate keys)    *</p>    * @param deltaKeys    */
+comment|/**    *<p>    *  Specify the keys to be modified by a delta update (required by writers that can store duplicate keys)    *</p>    */
 DECL|method|setDeltaKeys
 specifier|public
 name|void

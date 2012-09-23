@@ -979,7 +979,7 @@ argument_list|()
 operator|)
 return|;
 block|}
-comment|/**    * Iterate over the documents for this partition and fill the facet arrays with the correct    * count/complement count/value.    * @param docids    * @param facetArrays    * @param partition    * @throws IOException    */
+comment|/**    * Iterate over the documents for this partition and fill the facet arrays with the correct    * count/complement count/value.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|fillArraysForPartition
 specifier|private
 specifier|final

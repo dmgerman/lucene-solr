@@ -646,7 +646,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance of the {@link org.apache.lucene.analysis.wikipedia.WikipediaTokenizer}.  Attaches the    *<code>input</code> to a the newly created JFlex scanner.    *    * @param input The input    * @param tokenOutput One of {@link #TOKENS_ONLY}, {@link #UNTOKENIZED_ONLY}, {@link #BOTH}    * @param untokenizedTypes    */
+comment|/**    * Creates a new instance of the {@link org.apache.lucene.analysis.wikipedia.WikipediaTokenizer}.  Attaches the    *<code>input</code> to a the newly created JFlex scanner.    *    * @param input The input    * @param tokenOutput One of {@link #TOKENS_ONLY}, {@link #UNTOKENIZED_ONLY}, {@link #BOTH}    */
 DECL|method|WikipediaTokenizer
 specifier|public
 name|WikipediaTokenizer
@@ -687,7 +687,7 @@ name|untokenizedTypes
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance of the {@link org.apache.lucene.analysis.wikipedia.WikipediaTokenizer}.  Attaches the    *<code>input</code> to a the newly created JFlex scanner. Uses the given {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *    * @param input The input    * @param tokenOutput One of {@link #TOKENS_ONLY}, {@link #UNTOKENIZED_ONLY}, {@link #BOTH}    * @param untokenizedTypes    */
+comment|/**    * Creates a new instance of the {@link org.apache.lucene.analysis.wikipedia.WikipediaTokenizer}.  Attaches the    *<code>input</code> to a the newly created JFlex scanner. Uses the given {@link org.apache.lucene.util.AttributeSource.AttributeFactory}.    *    * @param input The input    * @param tokenOutput One of {@link #TOKENS_ONLY}, {@link #UNTOKENIZED_ONLY}, {@link #BOTH}    */
 DECL|method|WikipediaTokenizer
 specifier|public
 name|WikipediaTokenizer
@@ -733,7 +733,7 @@ name|untokenizedTypes
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance of the {@link org.apache.lucene.analysis.wikipedia.WikipediaTokenizer}.  Attaches the    *<code>input</code> to a the newly created JFlex scanner. Uses the given {@link AttributeSource}.    *    * @param input The input    * @param tokenOutput One of {@link #TOKENS_ONLY}, {@link #UNTOKENIZED_ONLY}, {@link #BOTH}    * @param untokenizedTypes    */
+comment|/**    * Creates a new instance of the {@link org.apache.lucene.analysis.wikipedia.WikipediaTokenizer}.  Attaches the    *<code>input</code> to a the newly created JFlex scanner. Uses the given {@link AttributeSource}.    *    * @param input The input    * @param tokenOutput One of {@link #TOKENS_ONLY}, {@link #UNTOKENIZED_ONLY}, {@link #BOTH}    */
 DECL|method|WikipediaTokenizer
 specifier|public
 name|WikipediaTokenizer

@@ -165,7 +165,7 @@ operator|=
 name|args
 expr_stmt|;
 block|}
-comment|/**    * @param original    * @return The Collection of {@link org.apache.lucene.analysis.Token}s for    *         the query. Offsets on the Token should correspond to the correct    *         offset in the origQuery    */
+comment|/**    * Returns the Collection of {@link org.apache.lucene.analysis.Token}s for    *         the query. Offsets on the Token should correspond to the correct    *         offset in the origQuery    */
 DECL|method|convert
 specifier|public
 specifier|abstract
@@ -179,7 +179,7 @@ name|String
 name|original
 parameter_list|)
 function_decl|;
-comment|/**    * Set the analyzer to use. Must be set before any calls to convert.    *     * @param analyzer    */
+comment|/**    * Set the analyzer to use. Must be set before any calls to convert.    */
 DECL|method|setAnalyzer
 specifier|public
 name|void

@@ -70,7 +70,7 @@ specifier|public
 interface|interface
 name|QueryBuilder
 block|{
-comment|/**    * Builds some kind of object from a query tree.    *     * @param queryNode    *          the query tree root node    *     * @return some object generated from the query tree    *     * @throws QueryNodeException    */
+comment|/**    * Builds some kind of object from a query tree.    *     * @param queryNode    *          the query tree root node    *     * @return some object generated from the query tree    */
 DECL|method|build
 name|Object
 name|build

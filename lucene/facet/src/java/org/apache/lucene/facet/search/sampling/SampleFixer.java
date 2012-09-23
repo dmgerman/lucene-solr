@@ -74,7 +74,7 @@ specifier|public
 interface|interface
 name|SampleFixer
 block|{
-comment|/**    * Alter the input result, fixing it to account for the sampling. This    * implementation can compute accurate or estimated counts for the sampled facets.     * For example, a faster correction could just multiply by a compensating factor.    *     * @param origDocIds    *          full set of matching documents.    * @param fres    *          sample result to be fixed.    * @throws IOException    */
+comment|/**    * Alter the input result, fixing it to account for the sampling. This    * implementation can compute accurate or estimated counts for the sampled facets.     * For example, a faster correction could just multiply by a compensating factor.    *     * @param origDocIds    *          full set of matching documents.    * @param fres    *          sample result to be fixed.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|fixResult
 specifier|public
 name|void

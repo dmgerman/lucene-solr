@@ -78,7 +78,7 @@ name|CorePlusExtensionsParser
 extends|extends
 name|CoreParser
 block|{
-comment|/**    * Construct an XML parser that uses a single instance QueryParser for handling    * UserQuery tags - all parse operations are synchronized on this parser    *    * @param analyzer    * @param parser A QueryParser which will be synchronized on during parse calls.    */
+comment|/**    * Construct an XML parser that uses a single instance QueryParser for handling    * UserQuery tags - all parse operations are synchronized on this parser    *    * @param parser A QueryParser which will be synchronized on during parse calls.    */
 DECL|method|CorePlusExtensionsParser
 specifier|public
 name|CorePlusExtensionsParser
@@ -100,7 +100,7 @@ name|parser
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an XML parser that creates a QueryParser for each UserQuery request.    *    * @param defaultField The default field name used by QueryParsers constructed for UserQuery tags    * @param analyzer    */
+comment|/**    * Constructs an XML parser that creates a QueryParser for each UserQuery request.    *    * @param defaultField The default field name used by QueryParsers constructed for UserQuery tags    */
 DECL|method|CorePlusExtensionsParser
 specifier|public
 name|CorePlusExtensionsParser

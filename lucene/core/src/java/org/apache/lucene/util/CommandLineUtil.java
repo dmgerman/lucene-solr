@@ -233,7 +233,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Loads a specific Directory implementation     * @param clazzName The name of the Directory class to load    * @return The Directory class loaded    * @throws ClassNotFoundException    */
+comment|/**    * Loads a specific Directory implementation     * @param clazzName The name of the Directory class to load    * @return The Directory class loaded    * @throws ClassNotFoundException If the specified class cannot be found.    */
 DECL|method|loadDirectoryClass
 specifier|public
 specifier|static
@@ -270,7 +270,7 @@ name|class
 argument_list|)
 return|;
 block|}
-comment|/**    * Loads a specific FSDirectory implementation    * @param clazzName The name of the FSDirectory class to load    * @return The FSDirectory class loaded    * @throws ClassNotFoundException    */
+comment|/**    * Loads a specific FSDirectory implementation    * @param clazzName The name of the FSDirectory class to load    * @return The FSDirectory class loaded    * @throws ClassNotFoundException If the specified class cannot be found.    */
 DECL|method|loadFSDirectoryClass
 specifier|public
 specifier|static
@@ -386,7 +386,7 @@ return|return
 name|clazzName
 return|;
 block|}
-comment|/**    * Creates a new specific FSDirectory instance    * @param clazz The class of the object to be created    * @param file The file to be used as parameter constructor    * @return The new FSDirectory instance    * @throws NoSuchMethodException    * @throws InstantiationException    * @throws IllegalAccessException    * @throws InvocationTargetException    */
+comment|/**    * Creates a new specific FSDirectory instance    * @param clazz The class of the object to be created    * @param file The file to be used as parameter constructor    * @return The new FSDirectory instance    * @throws NoSuchMethodException If the Directory does not have a constructor that takes<code>File</code>.    * @throws InstantiationException If the class is abstract or an interface.    * @throws IllegalAccessException If the constructor does not have public visibility.    * @throws InvocationTargetException If the constructor throws an exception    */
 DECL|method|newFSDirectory
 specifier|public
 specifier|static

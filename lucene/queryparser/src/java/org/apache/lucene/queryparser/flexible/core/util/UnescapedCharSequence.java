@@ -57,7 +57,7 @@ name|boolean
 index|[]
 name|wasEscaped
 decl_stmt|;
-comment|/**    * Create a escaped CharSequence    *     * @param chars    * @param wasEscaped    * @param offset    * @param length    */
+comment|/**    * Create a escaped CharSequence    */
 DECL|method|UnescapedCharSequence
 specifier|public
 name|UnescapedCharSequence
@@ -132,7 +132,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a non-escaped CharSequence    *     * @param text    */
+comment|/**    * Create a non-escaped CharSequence    */
 DECL|method|UnescapedCharSequence
 specifier|public
 name|UnescapedCharSequence
@@ -210,7 +210,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Create a copy of an existent UnescapedCharSequence    *     * @param text    */
+comment|/**    * Create a copy of an existent UnescapedCharSequence    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

@@ -285,7 +285,7 @@ literal|" and xsltCacheLifetimeSeconds is set to a sufficiently high value."
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Return a new Transformer, possibly created from our cached Templates object      * @throws IOException     */
+comment|/** Return a new Transformer, possibly created from our cached Templates object      * @throws IOException If there is a low-level I/O error.    */
 DECL|method|getTransformer
 specifier|public
 specifier|synchronized

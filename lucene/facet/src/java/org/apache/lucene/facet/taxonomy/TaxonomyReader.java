@@ -205,7 +205,7 @@ name|void
 name|incRef
 parameter_list|()
 function_decl|;
-comment|/**    * Expert: decreases the refCount of this TaxonomyReader instance.     * If the refCount drops to 0, then pending changes (if any) can be      * committed to the taxonomy index and this reader can be closed.     * @throws IOException     */
+comment|/**    * Expert: decreases the refCount of this TaxonomyReader instance.     * If the refCount drops to 0, then pending changes (if any) can be      * committed to the taxonomy index and this reader can be closed.     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|decRef
 specifier|public
 name|void

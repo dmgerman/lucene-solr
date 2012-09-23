@@ -189,7 +189,7 @@ operator|=
 name|retryDelay
 expr_stmt|;
 block|}
-comment|/**    * Perform the given operation, retrying if the connection fails    *     * @param operation    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Perform the given operation, retrying if the connection fails    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -424,7 +424,7 @@ block|{
 comment|// its okay if another beats us creating the node
 block|}
 block|}
-comment|/**    * Performs a retry delay if this is not the first attempt    *     * @param attemptCount    *          the number of the attempts performed so far    * @throws InterruptedException     */
+comment|/**    * Performs a retry delay if this is not the first attempt    *     * @param attemptCount    *          the number of the attempts performed so far    */
 DECL|method|retryDelay
 specifier|protected
 name|void

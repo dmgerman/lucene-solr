@@ -451,7 +451,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Returns an attribute value from this node, or first parent node with this attribute defined    *    * @param element    * @param attributeName    * @return A non-zero-length value if defined, otherwise null    */
+comment|/**    * Returns an attribute value from this node, or first parent node with this attribute defined    *    * @return A non-zero-length value if defined, otherwise null    */
 DECL|method|getAttributeWithInheritance
 specifier|public
 specifier|static

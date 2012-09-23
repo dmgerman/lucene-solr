@@ -993,7 +993,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Not implemented    * @throws UnsupportedOperationException */
+comment|/** Not implemented    * @throws UnsupportedOperationException always: not supported by CFS */
 annotation|@
 name|Override
 DECL|method|deleteFile
@@ -1011,7 +1011,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Not implemented    * @throws UnsupportedOperationException */
+comment|/** Not implemented    * @throws UnsupportedOperationException always: not supported by CFS */
 DECL|method|renameFile
 specifier|public
 name|void
@@ -1149,7 +1149,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Not implemented    * @throws UnsupportedOperationException */
+comment|/** Not implemented    * @throws UnsupportedOperationException always: not supported by CFS */
 annotation|@
 name|Override
 DECL|method|makeLock

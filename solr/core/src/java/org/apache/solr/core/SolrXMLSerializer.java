@@ -218,7 +218,7 @@ name|INDENT
 init|=
 literal|"  "
 decl_stmt|;
-comment|/**    * @param w    *          Writer to use    * @throws IOException    */
+comment|/**    * @param w    *          Writer to use    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|persist
 name|void
 name|persist

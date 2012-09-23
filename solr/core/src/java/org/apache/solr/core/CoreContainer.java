@@ -1258,7 +1258,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initalize CoreContainer directly from the constructor    *    * @param dir    * @param configFile    * @throws ParserConfigurationException    * @throws IOException    * @throws SAXException    */
+comment|/**    * Initalize CoreContainer directly from the constructor    */
 DECL|method|CoreContainer
 specifier|public
 name|CoreContainer
@@ -2211,7 +2211,7 @@ block|}
 comment|//-------------------------------------------------------------------
 comment|// Initialization / Cleanup
 comment|//-------------------------------------------------------------------
-comment|/**    * Load a config file listing the available solr cores.    * @param dir the home directory of all resources.    * @param configFile the configuration file    * @throws javax.xml.parsers.ParserConfigurationException    * @throws java.io.IOException    * @throws org.xml.sax.SAXException    */
+comment|/**    * Load a config file listing the available solr cores.    * @param dir the home directory of all resources.    * @param configFile the configuration file    */
 DECL|method|load
 specifier|public
 name|void
@@ -2256,7 +2256,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Load a config file listing the available solr cores.    *     * @param dir the home directory of all resources.    * @param cfgis the configuration file InputStream    * @throws ParserConfigurationException    * @throws IOException    * @throws SAXException    */
+comment|/**    * Load a config file listing the available solr cores.    *     * @param dir the home directory of all resources.    * @param cfgis the configuration file InputStream    */
 DECL|method|load
 specifier|public
 name|void
@@ -4323,7 +4323,7 @@ name|returnPrev
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new core based on a descriptor but does not register it.    *    * @param dcore a core descriptor    * @return the newly created core    * @throws javax.xml.parsers.ParserConfigurationException    * @throws java.io.IOException    * @throws org.xml.sax.SAXException    */
+comment|/**    * Creates a new core based on a descriptor but does not register it.    *    * @param dcore a core descriptor    * @return the newly created core    */
 DECL|method|create
 specifier|public
 name|SolrCore
@@ -5330,7 +5330,7 @@ return|;
 block|}
 block|}
 comment|// ---------------- Core name related methods ---------------
-comment|/**    * Recreates a SolrCore.    * While the new core is loading, requests will continue to be dispatched to    * and processed by the old core    *     * @param name the name of the SolrCore to reload    * @throws ParserConfigurationException    * @throws IOException    * @throws SAXException    */
+comment|/**    * Recreates a SolrCore.    * While the new core is loading, requests will continue to be dispatched to    * and processed by the old core    *     * @param name the name of the SolrCore to reload    */
 DECL|method|reload
 specifier|public
 name|void
@@ -5866,7 +5866,7 @@ else|:
 name|name
 return|;
 block|}
-comment|/**    * Swaps two SolrCore descriptors.    * @param n0    * @param n1    */
+comment|/**    * Swaps two SolrCore descriptors.    */
 DECL|method|swap
 specifier|public
 name|void
@@ -6354,7 +6354,7 @@ return|return
 name|managementPath
 return|;
 block|}
-comment|/**    * Sets the alternate path for multicore handling:    * This is used in case there is a registered unnamed core (aka name is "") to    * declare an alternate way of accessing named cores.    * This can also be used in a pseudo single-core environment so admins can prepare    * a new version before swapping.    * @param path    */
+comment|/**    * Sets the alternate path for multicore handling:    * This is used in case there is a registered unnamed core (aka name is "") to    * declare an alternate way of accessing named cores.    * This can also be used in a pseudo single-core environment so admins can prepare    * a new version before swapping.    */
 DECL|method|setManagementPath
 specifier|public
 name|void

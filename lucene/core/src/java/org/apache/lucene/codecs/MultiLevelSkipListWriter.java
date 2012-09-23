@@ -311,7 +311,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Writes the current skip data to the buffers. The current document frequency determines    * the max level is skip data is to be written to.     *     * @param df the current document frequency     * @throws IOException    */
+comment|/**    * Writes the current skip data to the buffers. The current document frequency determines    * the max level is skip data is to be written to.     *     * @param df the current document frequency     * @throws IOException If an I/O error occurs    */
 DECL|method|bufferSkip
 specifier|public
 name|void

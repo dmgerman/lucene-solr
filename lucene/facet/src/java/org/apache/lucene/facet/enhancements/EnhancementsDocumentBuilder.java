@@ -204,7 +204,7 @@ name|EnhancementsDocumentBuilder
 extends|extends
 name|CategoryDocumentBuilder
 block|{
-comment|/**    * @param taxonomyWriter    * @param params    *            Indexing params which include {@link CategoryEnhancement}s.    */
+comment|/**    * @param params    *            Indexing params which include {@link CategoryEnhancement}s.    */
 DECL|method|EnhancementsDocumentBuilder
 specifier|public
 name|EnhancementsDocumentBuilder

@@ -942,7 +942,6 @@ specifier|private
 name|int
 name|clientTimeout
 decl_stmt|;
-comment|/**    * @param cc    * @param zkServerAddress    * @param zkClientTimeout    * @param zkClientConnectTimeout    * @param localHost    * @param locaHostPort    * @param localHostContext    * @param registerOnReconnect    * @throws InterruptedException    * @throws TimeoutException    * @throws IOException    */
 DECL|method|ZkController
 specifier|public
 name|ZkController
@@ -1002,7 +1001,6 @@ name|registerOnReconnect
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param cc    * @param zkServerAddress    * @param zkClientTimeout    * @param zkClientConnectTimeout    * @param localHost    * @param locaHostPort    * @param localHostContext    * @param leaderVoteWait    * @param registerOnReconnect    * @throws InterruptedException    * @throws TimeoutException    * @throws IOException    */
 DECL|method|ZkController
 specifier|public
 name|ZkController
@@ -1820,7 +1818,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @param collection    * @param fileName    * @return true if config file exists    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns true if config file exists    */
 DECL|method|configFileExists
 specifier|public
 name|boolean
@@ -1879,7 +1877,7 @@ name|getClusterState
 argument_list|()
 return|;
 block|}
-comment|/**    * @param zkConfigName    * @param fileName    * @return config file data (in bytes)    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns config file data (in bytes)    */
 DECL|method|getConfigFileData
 specifier|public
 name|byte
@@ -2538,7 +2536,7 @@ return|return
 name|nodeName
 return|;
 block|}
-comment|/**    * @param path    * @return true if the path exists    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns true if the path exists    */
 DECL|method|pathExists
 specifier|public
 name|boolean
@@ -2563,7 +2561,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * @param collection    * @return config value    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns config value    */
 DECL|method|readConfigName
 specifier|public
 name|String
@@ -2705,7 +2703,7 @@ return|return
 name|configName
 return|;
 block|}
-comment|/**    * Register shard with ZooKeeper.    *     * @param coreName    * @param desc    * @return the shardId for the SolrCore    * @throws Exception    */
+comment|/**    * Register shard with ZooKeeper.    *     * @return the shardId for the SolrCore    */
 DECL|method|register
 specifier|public
 name|String
@@ -2734,7 +2732,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Register shard with ZooKeeper.    *     * @param coreName    * @param desc    * @param recoverReloadedCores    * @param afterExpiration    * @return the shardId for the SolrCore    * @throws Exception    */
+comment|/**    * Register shard with ZooKeeper.    *     * @return the shardId for the SolrCore    */
 DECL|method|register
 specifier|public
 name|String
@@ -3410,7 +3408,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Get leader props directly from zk nodes.    *     * @param collection    * @param slice    * @return leader props    * @throws InterruptedException    */
+comment|/**    * Get leader props directly from zk nodes.    *     * @return leader props    */
 DECL|method|getLeaderProps
 specifier|public
 name|ZkCoreNodeProps
@@ -3752,7 +3750,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param coreName    * @param desc    * @param recoverReloadedCores    * @param isLeader    * @param cloudDesc    * @param collection    * @param shardZkNodeName    * @param shardId    * @param leaderProps    * @param core    * @param cc    * @return whether or not a recovery was started    */
+comment|/**    * Returns whether or not a recovery was started    */
 DECL|method|checkRecovery
 specifier|private
 name|boolean
@@ -3929,7 +3927,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Publish core state to overseer.    * @param cd    * @param state    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Publish core state to overseer.    */
 DECL|method|publish
 specifier|public
 name|void
@@ -4164,7 +4162,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * @param coreName    * @param cloudDesc    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|unregister
 specifier|public
 name|void
@@ -4315,7 +4312,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param dir    * @param zkPath    * @throws IOException    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|uploadToZK
 specifier|public
 name|void
@@ -4344,7 +4340,6 @@ name|zkPath
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param dir    * @param configName    * @throws IOException    * @throws KeeperException    * @throws InterruptedException    */
 DECL|method|uploadConfigDir
 specifier|public
 name|void
@@ -6304,7 +6299,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * If in SolrCloud mode, upload config sets for each SolrCore in solr.xml.    *     * @throws IOException    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * If in SolrCloud mode, upload config sets for each SolrCore in solr.xml.    */
 DECL|method|bootstrapConf
 specifier|public
 specifier|static

@@ -291,7 +291,7 @@ name|fieldMatch
 argument_list|)
 return|;
 block|}
-comment|/**    * return the best fragment.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @return the best fragment (snippet) string    * @throws IOException    */
+comment|/**    * return the best fragment.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @return the best fragment (snippet) string    * @throws IOException If there is a low-level I/O error    */
 DECL|method|getBestFragment
 specifier|public
 specifier|final
@@ -350,7 +350,7 @@ name|fieldFragList
 argument_list|)
 return|;
 block|}
-comment|/**    * return the best fragments.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @param maxNumFragments maximum number of fragments    * @return created fragments or null when no fragments created.    *         size of the array can be less than maxNumFragments    * @throws IOException    */
+comment|/**    * return the best fragments.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @param maxNumFragments maximum number of fragments    * @return created fragments or null when no fragments created.    *         size of the array can be less than maxNumFragments    * @throws IOException If there is a low-level I/O error    */
 DECL|method|getBestFragments
 specifier|public
 specifier|final
@@ -415,7 +415,7 @@ name|maxNumFragments
 argument_list|)
 return|;
 block|}
-comment|/**    * return the best fragment.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @param fragListBuilder {@link FragListBuilder} object    * @param fragmentsBuilder {@link FragmentsBuilder} object    * @param preTags pre-tags to be used to highlight terms    * @param postTags post-tags to be used to highlight terms    * @param encoder an encoder that generates encoded text    * @return the best fragment (snippet) string    * @throws IOException    */
+comment|/**    * return the best fragment.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @param fragListBuilder {@link FragListBuilder} object    * @param fragmentsBuilder {@link FragmentsBuilder} object    * @param preTags pre-tags to be used to highlight terms    * @param postTags post-tags to be used to highlight terms    * @param encoder an encoder that generates encoded text    * @return the best fragment (snippet) string    * @throws IOException If there is a low-level I/O error    */
 DECL|method|getBestFragment
 specifier|public
 specifier|final
@@ -497,7 +497,7 @@ name|encoder
 argument_list|)
 return|;
 block|}
-comment|/**    * return the best fragments.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @param maxNumFragments maximum number of fragments    * @param fragListBuilder {@link FragListBuilder} object    * @param fragmentsBuilder {@link FragmentsBuilder} object    * @param preTags pre-tags to be used to highlight terms    * @param postTags post-tags to be used to highlight terms    * @param encoder an encoder that generates encoded text    * @return created fragments or null when no fragments created.    *         size of the array can be less than maxNumFragments    * @throws IOException    */
+comment|/**    * return the best fragments.    *     * @param fieldQuery {@link FieldQuery} object    * @param reader {@link IndexReader} of the index    * @param docId document id to be highlighted    * @param fieldName field of the document to be highlighted    * @param fragCharSize the length (number of chars) of a fragment    * @param maxNumFragments maximum number of fragments    * @param fragListBuilder {@link FragListBuilder} object    * @param fragmentsBuilder {@link FragmentsBuilder} object    * @param preTags pre-tags to be used to highlight terms    * @param postTags post-tags to be used to highlight terms    * @param encoder an encoder that generates encoded text    * @return created fragments or null when no fragments created.    *         size of the array can be less than maxNumFragments    * @throws IOException If there is a low-level I/O error    */
 DECL|method|getBestFragments
 specifier|public
 specifier|final

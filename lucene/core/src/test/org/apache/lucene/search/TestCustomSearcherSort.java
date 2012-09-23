@@ -836,7 +836,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Check the hits for duplicates.    *     * @param hits    */
+comment|/**    * Check the hits for duplicates.    */
 DECL|method|checkHits
 specifier|private
 name|void
@@ -1046,7 +1046,6 @@ specifier|private
 name|int
 name|switcher
 decl_stmt|;
-comment|/**      * @param r      */
 DECL|method|CustomSearcher
 specifier|public
 name|CustomSearcher

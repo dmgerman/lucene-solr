@@ -557,7 +557,7 @@ name|numComparators
 index|]
 expr_stmt|;
 block|}
-comment|/**    * Creates a hit queue sorted by the given list of fields.    *     *<p><b>NOTE</b>: The instances returned by this method    * pre-allocate a full array of length<code>numHits</code>.    *     * @param fields    *          SortField array we are sorting by in priority order (highest    *          priority first); cannot be<code>null</code> or empty    * @param size    *          The number of hits to retain. Must be greater than zero.    * @throws IOException    */
+comment|/**    * Creates a hit queue sorted by the given list of fields.    *     *<p><b>NOTE</b>: The instances returned by this method    * pre-allocate a full array of length<code>numHits</code>.    *     * @param fields    *          SortField array we are sorting by in priority order (highest    *          priority first); cannot be<code>null</code> or empty    * @param size    *          The number of hits to retain. Must be greater than zero.    * @throws IOException if there is a low-level IO error    */
 DECL|method|create
 specifier|public
 specifier|static

@@ -435,7 +435,7 @@ name|position
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Allows to specify the relative position of terms within the phrase.    *     * @see PhraseQuery#add(Term, int)    * @param terms    * @param position    */
+comment|/**    * Allows to specify the relative position of terms within the phrase.    *     * @see PhraseQuery#add(Term, int)    */
 DECL|method|add
 specifier|public
 name|void

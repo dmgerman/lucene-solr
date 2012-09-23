@@ -1332,7 +1332,7 @@ name|lowerCaseTokens
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Not an explicit test, just useful to print out some info on performance    *    * @throws Exception    */
+comment|/**    * Not an explicit test, just useful to print out some info on performance    */
 DECL|method|performance
 specifier|public
 name|void

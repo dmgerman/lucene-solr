@@ -350,7 +350,7 @@ operator|=
 name|zkClient
 expr_stmt|;
 block|}
-comment|/**    * Check if the candidate with the given n_* sequence number is the leader.    * If it is, set the leaderId on the leader zk node. If it is not, start    * watching the candidate that is in line before this one - if it goes down, check    * if this candidate is the leader again.    *    * @param seq    * @param context     * @param replacement has someone else been the leader already?    * @throws KeeperException    * @throws InterruptedException    * @throws IOException     * @throws UnsupportedEncodingException    */
+comment|/**    * Check if the candidate with the given n_* sequence number is the leader.    * If it is, set the leaderId on the leader zk node. If it is not, start    * watching the candidate that is in line before this one - if it goes down, check    * if this candidate is the leader again.    *    * @param replacement has someone else been the leader already?    */
 DECL|method|checkIfIamLeader
 specifier|private
 name|void
@@ -730,7 +730,7 @@ name|weAreReplacement
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns int given String of form n_0000000001 or n_0000000003, etc.    *     * @param nStringSequence    * @return sequence number    */
+comment|/**    * Returns int given String of form n_0000000001 or n_0000000003, etc.    *     * @return sequence number    */
 DECL|method|getSeq
 specifier|private
 name|int
@@ -907,7 +907,7 @@ return|return
 name|intSeqs
 return|;
 block|}
-comment|/**    * Begin participating in the election process. Gets a new sequential number    * and begins watching the node with the sequence number before it, unless it    * is the lowest number, in which case, initiates the leader process. If the    * node that is watched goes down, check if we are the new lowest node, else    * watch the next lowest numbered node.    *     * @param context    * @return sequential node number    * @throws KeeperException    * @throws InterruptedException    * @throws IOException     * @throws UnsupportedEncodingException    */
+comment|/**    * Begin participating in the election process. Gets a new sequential number    * and begins watching the node with the sequence number before it, unless it    * is the lowest number, in which case, initiates the leader process. If the    * node that is watched goes down, check if we are the new lowest node, else    * watch the next lowest numbered node.    *     * @return sequential node number    */
 DECL|method|joinElection
 specifier|public
 name|int
@@ -1223,7 +1223,7 @@ return|return
 name|seq
 return|;
 block|}
-comment|/**    * Set up any ZooKeeper nodes needed for leader election.    *     * @param context    * @throws InterruptedException    * @throws KeeperException    */
+comment|/**    * Set up any ZooKeeper nodes needed for leader election.    */
 DECL|method|setup
 specifier|public
 name|void
@@ -1259,7 +1259,7 @@ name|zkClient
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sort n string sequence list.    *     * @param seqs    */
+comment|/**    * Sort n string sequence list.    */
 DECL|method|sortSeqs
 specifier|private
 name|void

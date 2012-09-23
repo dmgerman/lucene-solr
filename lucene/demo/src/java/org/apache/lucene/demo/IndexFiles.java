@@ -686,7 +686,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Indexes the given file using the given writer, or if a directory is given,    * recurses over files and directories found under the given directory.    *     * NOTE: This method indexes one document per input file.  This is slow.  For good    * throughput, put multiple documents into your input file(s).  An example of this is    * in the benchmark module, which can create "line doc" files, one document per line,    * using the    *<a href="../../../../../contrib-benchmark/org/apache/lucene/benchmark/byTask/tasks/WriteLineDocTask.html"    *>WriteLineDocTask</a>.    *      * @param writer Writer to the index where the given file/dir info will be stored    * @param file The file to index, or the directory to recurse into to find files to index    * @throws IOException    */
+comment|/**    * Indexes the given file using the given writer, or if a directory is given,    * recurses over files and directories found under the given directory.    *     * NOTE: This method indexes one document per input file.  This is slow.  For good    * throughput, put multiple documents into your input file(s).  An example of this is    * in the benchmark module, which can create "line doc" files, one document per line,    * using the    *<a href="../../../../../contrib-benchmark/org/apache/lucene/benchmark/byTask/tasks/WriteLineDocTask.html"    *>WriteLineDocTask</a>.    *      * @param writer Writer to the index where the given file/dir info will be stored    * @param file The file to index, or the directory to recurse into to find files to index    * @throws IOException If there is a low-level I/O error    */
 DECL|method|indexDocs
 specifier|static
 name|void

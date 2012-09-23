@@ -60,7 +60,7 @@ specifier|public
 interface|interface
 name|HTMLParser
 block|{
-comment|/**    * Parse the input Reader and return DocData.     * The provided name,title,date are used for the result, unless when they're null,     * in which case an attempt is made to set them from the parsed data.    * @param docData result reused    * @param name name of the result doc data.    * @param date date of the result doc data. If null, attempt to set by parsed data.    * @param reader reader of html text to parse.    * @param trecSrc the {@link TrecContentSource} used to parse dates.       * @return Parsed doc data.    * @throws IOException    */
+comment|/**    * Parse the input Reader and return DocData.     * The provided name,title,date are used for the result, unless when they're null,     * in which case an attempt is made to set them from the parsed data.    * @param docData result reused    * @param name name of the result doc data.    * @param date date of the result doc data. If null, attempt to set by parsed data.    * @param reader reader of html text to parse.    * @param trecSrc the {@link TrecContentSource} used to parse dates.       * @return Parsed doc data.    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|parse
 specifier|public
 name|DocData

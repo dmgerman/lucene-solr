@@ -375,7 +375,7 @@ block|,
 literal|"&apos;"
 block|}
 decl_stmt|;
-comment|/**    * Override if you wish to change what is extracted    *     * @param sgmFile    */
+comment|/**    * Override if you wish to change what is extracted    */
 DECL|method|extractFile
 specifier|protected
 name|void

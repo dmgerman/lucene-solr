@@ -68,7 +68,7 @@ name|SimpleFSDirectory
 extends|extends
 name|FSDirectory
 block|{
-comment|/** Create a new SimpleFSDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @throws IOException    */
+comment|/** Create a new SimpleFSDirectory for the named location.    *    * @param path the path of the directory    * @param lockFactory the lock factory to use, or null for the default    * ({@link NativeFSLockFactory});    * @throws IOException if there is a low-level I/O error    */
 DECL|method|SimpleFSDirectory
 specifier|public
 name|SimpleFSDirectory
@@ -90,7 +90,7 @@ name|lockFactory
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Create a new SimpleFSDirectory for the named location and {@link NativeFSLockFactory}.    *    * @param path the path of the directory    * @throws IOException    */
+comment|/** Create a new SimpleFSDirectory for the named location and {@link NativeFSLockFactory}.    *    * @param path the path of the directory    * @throws IOException if there is a low-level I/O error    */
 DECL|method|SimpleFSDirectory
 specifier|public
 name|SimpleFSDirectory

@@ -85,7 +85,7 @@ specifier|protected
 name|SegmentInfoReader
 parameter_list|()
 block|{   }
-comment|/**    * Read {@link SegmentInfo} data from a directory.    * @param directory directory to read from    * @param segmentName name of the segment to read    * @return infos instance to be populated with data    * @throws IOException    */
+comment|/**    * Read {@link SegmentInfo} data from a directory.    * @param directory directory to read from    * @param segmentName name of the segment to read    * @return infos instance to be populated with data    * @throws IOException If an I/O error occurs    */
 DECL|method|read
 specifier|public
 specifier|abstract

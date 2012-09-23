@@ -354,7 +354,7 @@ modifier|...
 name|termStats
 parameter_list|)
 function_decl|;
-comment|/**    * Creates a new {@link Similarity.ExactSimScorer} to score matching documents from a segment of the inverted index.    * @param weight collection information from {@link #computeWeight(float, CollectionStatistics, TermStatistics...)}    * @param context segment of the inverted index to be scored.    * @return ExactSimScorer for scoring documents across<code>context</code>    * @throws IOException    */
+comment|/**    * Creates a new {@link Similarity.ExactSimScorer} to score matching documents from a segment of the inverted index.    * @param weight collection information from {@link #computeWeight(float, CollectionStatistics, TermStatistics...)}    * @param context segment of the inverted index to be scored.    * @return ExactSimScorer for scoring documents across<code>context</code>    * @throws IOException if there is a low-level I/O error    */
 DECL|method|exactSimScorer
 specifier|public
 specifier|abstract
@@ -370,7 +370,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Creates a new {@link Similarity.SloppySimScorer} to score matching documents from a segment of the inverted index.    * @param weight collection information from {@link #computeWeight(float, CollectionStatistics, TermStatistics...)}    * @param context segment of the inverted index to be scored.    * @return SloppySimScorer for scoring documents across<code>context</code>    * @throws IOException    */
+comment|/**    * Creates a new {@link Similarity.SloppySimScorer} to score matching documents from a segment of the inverted index.    * @param weight collection information from {@link #computeWeight(float, CollectionStatistics, TermStatistics...)}    * @param context segment of the inverted index to be scored.    * @return SloppySimScorer for scoring documents across<code>context</code>    * @throws IOException if there is a low-level I/O error    */
 DECL|method|sloppySimScorer
 specifier|public
 specifier|abstract

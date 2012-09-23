@@ -517,7 +517,7 @@ comment|// alert?
 block|}
 block|}
 block|}
-comment|/**    * Fills a<code>Map</code> with<@link WeightedSpanTerm>s using the terms from the supplied<code>Query</code>.    *     * @param query    *          Query to extract Terms from    * @param terms    *          Map to place created WeightedSpanTerms in    * @throws IOException    */
+comment|/**    * Fills a<code>Map</code> with<@link WeightedSpanTerm>s using the terms from the supplied<code>Query</code>.    *     * @param query    *          Query to extract Terms from    * @param terms    *          Map to place created WeightedSpanTerms in    * @throws IOException If there is a low-level I/O error    */
 DECL|method|extract
 specifier|protected
 name|void
@@ -1433,7 +1433,7 @@ name|IOException
 block|{
 comment|// for sub-classing to extract custom queries
 block|}
-comment|/**    * Fills a<code>Map</code> with<@link WeightedSpanTerm>s using the terms from the supplied<code>SpanQuery</code>.    *     * @param terms    *          Map to place created WeightedSpanTerms in    * @param spanQuery    *          SpanQuery to extract Terms from    * @throws IOException    */
+comment|/**    * Fills a<code>Map</code> with<@link WeightedSpanTerm>s using the terms from the supplied<code>SpanQuery</code>.    *     * @param terms    *          Map to place created WeightedSpanTerms in    * @param spanQuery    *          SpanQuery to extract Terms from    * @throws IOException If there is a low-level I/O error    */
 DECL|method|extractWeightedSpanTerms
 specifier|protected
 name|void
@@ -1918,7 +1918,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Fills a<code>Map</code> with<@link WeightedSpanTerm>s using the terms from the supplied<code>Query</code>.    *     * @param terms    *          Map to place created WeightedSpanTerms in    * @param query    *          Query to extract Terms from    * @throws IOException    */
+comment|/**    * Fills a<code>Map</code> with<@link WeightedSpanTerm>s using the terms from the supplied<code>Query</code>.    *     * @param terms    *          Map to place created WeightedSpanTerms in    * @param query    *          Query to extract Terms from    * @throws IOException If there is a low-level I/O error    */
 DECL|method|extractWeightedTerms
 specifier|protected
 name|void
@@ -2173,7 +2173,7 @@ return|return
 name|context
 return|;
 block|}
-comment|/**    * Creates a Map of<code>WeightedSpanTerms</code> from the given<code>Query</code> and<code>TokenStream</code>.    *     *<p>    *     * @param query    *          that caused hit    * @param tokenStream    *          of text to be highlighted    * @return Map containing WeightedSpanTerms    * @throws IOException    */
+comment|/**    * Creates a Map of<code>WeightedSpanTerms</code> from the given<code>Query</code> and<code>TokenStream</code>.    *     *<p>    *     * @param query    *          that caused hit    * @param tokenStream    *          of text to be highlighted    * @return Map containing WeightedSpanTerms    * @throws IOException If there is a low-level I/O error    */
 DECL|method|getWeightedSpanTerms
 specifier|public
 name|Map
@@ -2204,7 +2204,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a Map of<code>WeightedSpanTerms</code> from the given<code>Query</code> and<code>TokenStream</code>.    *     *<p>    *     * @param query    *          that caused hit    * @param tokenStream    *          of text to be highlighted    * @param fieldName    *          restricts Term's used based on field name    * @return Map containing WeightedSpanTerms    * @throws IOException    */
+comment|/**    * Creates a Map of<code>WeightedSpanTerms</code> from the given<code>Query</code> and<code>TokenStream</code>.    *     *<p>    *     * @param query    *          that caused hit    * @param tokenStream    *          of text to be highlighted    * @param fieldName    *          restricts Term's used based on field name    * @return Map containing WeightedSpanTerms    * @throws IOException If there is a low-level I/O error    */
 DECL|method|getWeightedSpanTerms
 specifier|public
 name|Map
@@ -2291,7 +2291,7 @@ return|return
 name|terms
 return|;
 block|}
-comment|/**    * Creates a Map of<code>WeightedSpanTerms</code> from the given<code>Query</code> and<code>TokenStream</code>. Uses a supplied    *<code>IndexReader</code> to properly weight terms (for gradient highlighting).    *     *<p>    *     * @param query    *          that caused hit    * @param tokenStream    *          of text to be highlighted    * @param fieldName    *          restricts Term's used based on field name    * @param reader    *          to use for scoring    * @return Map of WeightedSpanTerms with quasi tf/idf scores    * @throws IOException    */
+comment|/**    * Creates a Map of<code>WeightedSpanTerms</code> from the given<code>Query</code> and<code>TokenStream</code>. Uses a supplied    *<code>IndexReader</code> to properly weight terms (for gradient highlighting).    *     *<p>    *     * @param query    *          that caused hit    * @param tokenStream    *          of text to be highlighted    * @param fieldName    *          restricts Term's used based on field name    * @param reader    *          to use for scoring    * @return Map of WeightedSpanTerms with quasi tf/idf scores    * @throws IOException If there is a low-level I/O error    */
 DECL|method|getWeightedSpanTermsWithScores
 specifier|public
 name|Map
@@ -3045,7 +3045,7 @@ return|return
 name|tokenStream
 return|;
 block|}
-comment|/**    * By default, {@link TokenStream}s that are not of the type    * {@link CachingTokenFilter} are wrapped in a {@link CachingTokenFilter} to    * ensure an efficient reset - if you are already using a different caching    * {@link TokenStream} impl and you don't want it to be wrapped, set this to    * false.    *     * @param wrap    */
+comment|/**    * By default, {@link TokenStream}s that are not of the type    * {@link CachingTokenFilter} are wrapped in a {@link CachingTokenFilter} to    * ensure an efficient reset - if you are already using a different caching    * {@link TokenStream} impl and you don't want it to be wrapped, set this to    * false.    */
 DECL|method|setWrapIfNotCachingTokenFilter
 specifier|public
 name|void

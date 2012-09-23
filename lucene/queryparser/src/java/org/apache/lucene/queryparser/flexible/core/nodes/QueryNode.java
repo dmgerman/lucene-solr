@@ -117,7 +117,7 @@ name|String
 name|tagName
 parameter_list|)
 function_decl|;
-comment|/**    * @param tagName    * @return of stored on under that tag name    */
+comment|/**    * Returns object stored under that tag name    */
 DECL|method|getTag
 specifier|public
 name|Object
@@ -133,7 +133,7 @@ name|QueryNode
 name|getParent
 parameter_list|()
 function_decl|;
-comment|/**    * Recursive clone the QueryNode tree The tags are not copied to the new tree    * when you call the cloneTree() method    *     * @return the cloned tree    * @throws CloneNotSupportedException    */
+comment|/**    * Recursive clone the QueryNode tree The tags are not copied to the new tree    * when you call the cloneTree() method    *     * @return the cloned tree    */
 DECL|method|cloneTree
 specifier|public
 name|QueryNode
@@ -179,7 +179,7 @@ argument_list|>
 name|children
 parameter_list|)
 function_decl|;
-comment|/**    * Associate the specified value with the specified tagName. If the tagName    * already exists, the old value is replaced. The tagName and value cannot be    * null. tagName will be converted to lowercase.    *     * @param tagName    * @param value    */
+comment|/**    * Associate the specified value with the specified tagName. If the tagName    * already exists, the old value is replaced. The tagName and value cannot be    * null. tagName will be converted to lowercase.    */
 DECL|method|setTag
 specifier|public
 name|void
@@ -192,7 +192,7 @@ name|Object
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Unset a tag. tagName will be converted to lowercase.    *     * @param tagName    */
+comment|/**    * Unset a tag. tagName will be converted to lowercase.    */
 DECL|method|unsetTag
 specifier|public
 name|void

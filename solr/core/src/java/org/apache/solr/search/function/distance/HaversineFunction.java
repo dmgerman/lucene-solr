@@ -307,7 +307,7 @@ return|return
 literal|"hsin"
 return|;
 block|}
-comment|/**    * @param doc  The doc to score    * @param p1DV    * @param p2DV    * @return The haversine distance formula    */
+comment|/**    * @param doc  The doc to score    * @return The haversine distance formula    */
 DECL|method|distance
 specifier|protected
 name|double

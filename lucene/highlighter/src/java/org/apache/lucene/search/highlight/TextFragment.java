@@ -136,7 +136,7 @@ name|score
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @param fragment    * @return true if this fragment follows the one passed    */
+comment|/**    * @return true if this fragment follows the one passed    */
 DECL|method|follows
 specifier|public
 name|boolean

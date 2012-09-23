@@ -64,7 +64,7 @@ specifier|public
 interface|interface
 name|Classifier
 block|{
-comment|/**    * Assign a class to the given text String    * @param text a String containing text to be classified    * @return a String representing a class    * @throws IOException    */
+comment|/**    * Assign a class to the given text String    * @param text a String containing text to be classified    * @return a String representing a class    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|assignClass
 specifier|public
 name|String
@@ -76,7 +76,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Train the classifier using the underlying Lucene index    * @param atomicReader the reader to use to access the Lucene index    * @param textFieldName the name of the field used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer the analyzer used to tokenize / filter the unseen text    * @throws IOException    */
+comment|/**    * Train the classifier using the underlying Lucene index    * @param atomicReader the reader to use to access the Lucene index    * @param textFieldName the name of the field used to compare documents    * @param classFieldName the name of the field containing the class assigned to documents    * @param analyzer the analyzer used to tokenize / filter the unseen text    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|train
 specifier|public
 name|void

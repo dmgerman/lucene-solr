@@ -376,7 +376,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Called when the consumer of this API is done adding values.    *     * @param docCount    *          the total number of documents in this {@link DocValuesConsumer}.    *          Must be greater than or equal the last given docID to    *          {@link #add(int, StorableField)}.    * @throws IOException    */
+comment|/**    * Called when the consumer of this API is done adding values.    *     * @param docCount    *          the total number of documents in this {@link DocValuesConsumer}.    *          Must be greater than or equal the last given docID to    *          {@link #add(int, StorableField)}.    * @throws IOException If an I/O error occurs    */
 DECL|method|finish
 specifier|public
 specifier|abstract

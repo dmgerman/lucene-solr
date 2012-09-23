@@ -554,7 +554,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads a stem dictionary. Each line contains:    *<pre>word<b>\t</b>stem</pre>    * (i.e. two tab separated words)    *    * @return stem dictionary that overrules the stemming algorithm    * @throws IOException     */
+comment|/**    * Reads a stem dictionary. Each line contains:    *<pre>word<b>\t</b>stem</pre>    * (i.e. two tab separated words)    *    * @return stem dictionary that overrules the stemming algorithm    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|getStemDict
 specifier|public
 specifier|static
@@ -651,7 +651,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Accesses a resource by name and returns the (non comment) lines containing    * data using the given character encoding.    *    *<p>    * A comment line is any line that starts with the character "#"    *</p>    *    * @return a list of non-blank non-comment lines with whitespace trimmed    * @throws IOException    */
+comment|/**    * Accesses a resource by name and returns the (non comment) lines containing    * data using the given character encoding.    *    *<p>    * A comment line is any line that starts with the character "#"    *</p>    *    * @return a list of non-blank non-comment lines with whitespace trimmed    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|getLines
 specifier|public
 specifier|static

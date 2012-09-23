@@ -673,7 +673,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Utility method to convert a field to a string that is parse-able by this    * class.    * @param f field to convert    * @return string that is compatible with the serialization format    * @throws IOException    */
+comment|/** Utility method to convert a field to a string that is parse-able by this    * class.    * @param f field to convert    * @return string that is compatible with the serialization format    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|toFormattedString
 specifier|public
 name|String
@@ -750,7 +750,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Format a field so that the resulting String is valid for parsing with {@link #parse(Reader, AttributeSource)}.      * @param f field instance      * @return formatted string      * @throws IOException      */
+comment|/**      * Format a field so that the resulting String is valid for parsing with {@link #parse(Reader, AttributeSource)}.      * @param f field instance      * @return formatted string      * @throws IOException If there is a low-level I/O error.      */
 DECL|method|toFormattedString
 specifier|public
 name|String

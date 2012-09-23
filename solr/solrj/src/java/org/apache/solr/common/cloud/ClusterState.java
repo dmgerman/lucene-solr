@@ -336,7 +336,7 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * Use this constr when ClusterState is meant for publication.    *     * hashCode and equals will only depend on liveNodes and not clusterStateVersion.    *     * @param liveNodes    * @param collectionStates    */
+comment|/**    * Use this constr when ClusterState is meant for publication.    *     * hashCode and equals will only depend on liveNodes and not clusterStateVersion.    */
 DECL|method|ClusterState
 specifier|public
 name|ClusterState
@@ -371,7 +371,7 @@ name|collectionStates
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Use this constr when ClusterState is meant for consumption.    *     * @param zkClusterStateVersion    * @param liveNodes    * @param collectionStates    */
+comment|/**    * Use this constr when ClusterState is meant for consumption.    */
 DECL|method|ClusterState
 specifier|public
 name|ClusterState

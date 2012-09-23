@@ -245,7 +245,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * analyzes the tokenizer input using the given analysis engine    *<p/>    * {@link #cas} will be filled with  extracted metadata (UIMA annotations, feature structures)    *    * @throws AnalysisEngineProcessException    * @throws IOException    */
+comment|/**    * analyzes the tokenizer input using the given analysis engine    *<p/>    * {@link #cas} will be filled with  extracted metadata (UIMA annotations, feature structures)    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|analyzeInput
 specifier|protected
 name|void
@@ -279,7 +279,7 @@ name|cas
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * initialize the FSIterator which is used to build tokens at each incrementToken() method call    *    * @throws IOException    */
+comment|/**    * initialize the FSIterator which is used to build tokens at each incrementToken() method call    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|initializeIterator
 specifier|protected
 specifier|abstract

@@ -173,7 +173,6 @@ DECL|field|dir
 name|File
 name|dir
 decl_stmt|;
-comment|/**    * @param args    */
 DECL|method|main
 specifier|public
 specifier|static

@@ -444,7 +444,7 @@ return|return
 name|orderedChildren
 return|;
 block|}
-comment|/**    * Return the head of the queue without modifying the queue.    *     * @return the data at the head of the queue.    * @throws NoSuchElementException    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Return the head of the queue without modifying the queue.    *     * @return the data at the head of the queue.    */
 DECL|method|element
 specifier|public
 name|byte
@@ -569,7 +569,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Attempts to remove the head of the queue and return it.    *     * @return The former head of the queue    * @throws NoSuchElementException    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Attempts to remove the head of the queue and return it.    *     * @return The former head of the queue    */
 DECL|method|remove
 specifier|public
 name|byte
@@ -784,7 +784,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Removes the head of the queue and returns it, blocks until it succeeds.    *     * @return The former head of the queue    * @throws NoSuchElementException    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Removes the head of the queue and returns it, blocks until it succeeds.    *     * @return The former head of the queue    */
 DECL|method|take
 specifier|public
 name|byte
@@ -943,7 +943,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Inserts data into queue.    *     * @param data    * @return true if data was successfully added    */
+comment|/**    * Inserts data into queue.    *     * @return true if data was successfully added    */
 DECL|method|offer
 specifier|public
 name|boolean
@@ -1036,7 +1036,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Returns the data at the first element of the queue, or null if the queue is    * empty.    *     * @return data at the first element of the queue, or null.    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns the data at the first element of the queue, or null if the queue is    * empty.    *     * @return data at the first element of the queue, or null.    */
 DECL|method|peek
 specifier|public
 name|byte
@@ -1066,7 +1066,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * Returns the data at the first element of the queue, or null if the queue is    * empty.    *     * @return data at the first element of the queue, or null.    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Returns the data at the first element of the queue, or null if the queue is    * empty.    *     * @return data at the first element of the queue, or null.    */
 DECL|method|peek
 specifier|public
 name|byte
@@ -1226,7 +1226,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Attempts to remove the head of the queue and return it. Returns null if the    * queue is empty.    *     * @return Head of the queue or null.    * @throws KeeperException    * @throws InterruptedException    */
+comment|/**    * Attempts to remove the head of the queue and return it. Returns null if the    * queue is empty.    *     * @return Head of the queue or null.    */
 DECL|method|poll
 specifier|public
 name|byte

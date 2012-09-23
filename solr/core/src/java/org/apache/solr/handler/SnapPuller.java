@@ -2573,7 +2573,7 @@ specifier|volatile
 name|Exception
 name|fsyncException
 decl_stmt|;
-comment|/**    * terminate the fsync service and wait for all the tasks to complete. If it is already terminated    *    * @throws Exception    */
+comment|/**    * terminate the fsync service and wait for all the tasks to complete. If it is already terminated    */
 DECL|method|terminateAndWaitFsyncService
 specifier|private
 name|void

@@ -123,7 +123,7 @@ literal|"schema.xml"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Simple test to ensure that alternate IndexReaderFactory is being used.    *     * @throws Exception    */
+comment|/**    * Simple test to ensure that alternate IndexReaderFactory is being used.    */
 annotation|@
 name|Test
 DECL|method|testAltDirectoryUsed

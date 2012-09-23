@@ -79,7 +79,6 @@ name|PositionSpan
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**    * @param weight    * @param term    */
 DECL|method|WeightedSpanTerm
 specifier|public
 name|WeightedSpanTerm
@@ -110,7 +109,6 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * @param weight    * @param term    * @param positionSensitive    */
 DECL|method|WeightedSpanTerm
 specifier|public
 name|WeightedSpanTerm

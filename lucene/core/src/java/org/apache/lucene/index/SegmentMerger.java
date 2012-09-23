@@ -369,7 +369,7 @@ name|fieldNumbers
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Add an IndexReader to the collection of readers that are to be merged    * @param reader    */
+comment|/**    * Add an IndexReader to the collection of readers that are to be merged    */
 DECL|method|add
 specifier|final
 name|void
@@ -1289,7 +1289,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Merge the TermVectors from each of the segments into the new one.    * @throws IOException    */
+comment|/**    * Merge the TermVectors from each of the segments into the new one.    * @throws IOException if there is a low-level IO error    */
 DECL|method|mergeVectors
 specifier|private
 specifier|final

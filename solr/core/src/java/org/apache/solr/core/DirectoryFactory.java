@@ -97,7 +97,7 @@ name|NamedListInitializedPlugin
 implements|,
 name|Closeable
 block|{
-comment|/**    * Indicates a Directory will no longer be used, and when it's ref count    * hits 0, it can be closed. On shutdown all directories will be closed    * whether this has been called or not. This is simply to allow early cleanup.    *     * @param directory    * @throws IOException     */
+comment|/**    * Indicates a Directory will no longer be used, and when it's ref count    * hits 0, it can be closed. On shutdown all directories will be closed    * whether this has been called or not. This is simply to allow early cleanup.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|doneWithDirectory
 specifier|public
 specifier|abstract
@@ -110,7 +110,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Adds a close listener for a Directory.    *     * @param dir    * @param closeListener    */
+comment|/**    * Adds a close listener for a Directory.    */
 DECL|method|addCloseListener
 specifier|public
 specifier|abstract
@@ -124,7 +124,7 @@ name|CloseListener
 name|closeListener
 parameter_list|)
 function_decl|;
-comment|/**    * Close the this and all of the Directories it contains.    *     * @throws IOException    */
+comment|/**    * Close the this and all of the Directories it contains.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|close
 specifier|public
 specifier|abstract
@@ -134,7 +134,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Creates a new Directory for a given path.    *     * @throws IOException    */
+comment|/**    * Creates a new Directory for a given path.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|create
 specifier|protected
 specifier|abstract
@@ -158,7 +158,7 @@ name|String
 name|path
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path.    *     * @throws IOException    */
+comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|get
 specifier|public
 specifier|abstract
@@ -174,7 +174,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path unless forceNew,    * in which case a new Directory is returned. There is no need to call    * {@link #doneWithDirectory(Directory)} in this case - the old Directory    * will be closed when it's ref count hits 0.    *     * @throws IOException    */
+comment|/**    * Returns the Directory for a given path, using the specified rawLockType.    * Will return the same Directory instance for the same path unless forceNew,    * in which case a new Directory is returned. There is no need to call    * {@link #doneWithDirectory(Directory)} in this case - the old Directory    * will be closed when it's ref count hits 0.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|get
 specifier|public
 specifier|abstract
@@ -204,7 +204,7 @@ name|Directory
 name|directory
 parameter_list|)
 function_decl|;
-comment|/**    * Releases the Directory so that it may be closed when it is no longer    * referenced.    *     * @throws IOException    */
+comment|/**    * Releases the Directory so that it may be closed when it is no longer    * referenced.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|release
 specifier|public
 specifier|abstract

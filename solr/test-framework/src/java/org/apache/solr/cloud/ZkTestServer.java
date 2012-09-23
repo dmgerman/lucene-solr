@@ -425,7 +425,7 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Run from a ServerConfig.      * @param config ServerConfig to use.      * @throws IOException      */
+comment|/**      * Run from a ServerConfig.      * @param config ServerConfig to use.      * @throws IOException If there is a low-level I/O error.      */
 DECL|method|runFromConfig
 specifier|public
 name|void
@@ -543,7 +543,7 @@ name|e
 parameter_list|)
 block|{       }
 block|}
-comment|/**      * Shutdown the serving instance      * @throws IOException       */
+comment|/**      * Shutdown the serving instance      * @throws IOException If there is a low-level I/O error.      */
 DECL|method|shutdown
 specifier|protected
 name|void
@@ -1244,7 +1244,7 @@ name|port
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Send the 4letterword    * @param host the destination host    * @param port the destination port    * @param cmd the 4letterword    * @throws IOException    */
+comment|/**    * Send the 4letterword    * @param host the destination host    * @param port the destination port    * @param cmd the 4letterword    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|send4LetterWord
 specifier|public
 specifier|static

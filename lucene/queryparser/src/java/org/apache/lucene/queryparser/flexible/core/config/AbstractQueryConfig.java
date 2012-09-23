@@ -167,7 +167,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * Sets a key and its value.    *     * @param<T> the value's type    * @param key the key, cannot be<code>null</code>    * @param value    */
+comment|/**    * Sets a key and its value.    *     * @param<T> the value's type    * @param key the key, cannot be<code>null</code>    * @param value value to set    */
 DECL|method|set
 specifier|public
 parameter_list|<
