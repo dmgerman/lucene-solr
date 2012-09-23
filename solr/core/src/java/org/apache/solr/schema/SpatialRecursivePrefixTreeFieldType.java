@@ -42,6 +42,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * @see RecursivePrefixTreeStrategy  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|SpatialRecursivePrefixTreeFieldType
 specifier|public

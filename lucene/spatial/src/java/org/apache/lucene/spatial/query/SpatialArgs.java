@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Principally holds the query {@link Shape} and the {@link SpatialOperation}.  *  * @lucene.experimental  */
+comment|/**  * Principally holds the query {@link Shape} and the {@link SpatialOperation}.  * It's used as an argument to some methods on {@link org.apache.lucene.spatial.SpatialStrategy}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

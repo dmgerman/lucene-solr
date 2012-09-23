@@ -402,6 +402,10 @@ name|ConcurrentHashMap
 import|;
 end_import
 
+begin_comment
+comment|/**  * Abstract base class for Solr FieldTypes based on a Lucene 4 {@link SpatialStrategy}.  *  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|AbstractSpatialFieldType
 specifier|public

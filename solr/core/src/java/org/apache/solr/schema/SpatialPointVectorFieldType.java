@@ -62,6 +62,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * @see PointVectorStrategy  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|SpatialPointVectorFieldType
 specifier|public

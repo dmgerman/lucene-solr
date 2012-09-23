@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Filter that matches all documents where a valuesource is  * in between a range of<code>min</code> and<code>max</code> inclusive.  * @lucene.internal  */
+comment|/**  * Filter that matches all documents where a ValueSource is  * in between a range of<code>min</code> and<code>max</code> inclusive.  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -142,6 +142,7 @@ name|ValueSourceFilter
 extends|extends
 name|Filter
 block|{
+comment|//TODO see https://issues.apache.org/jira/browse/LUCENE-4251  (move out of spatial& improve)
 DECL|field|startingFilter
 specifier|final
 name|Filter

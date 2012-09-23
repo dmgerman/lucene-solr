@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parses a string that usually looks like "OPERATION(SHAPE)" into a {@link SpatialArgs}  * object. The set of operations supported are defined in {@link SpatialOperation}, such  * as "Intersects" being a common one. The shape portion is defined by {@link  * ShapeReadWriter#readShape(String)}. There are some optional name-value pair parameters  * that follow the closing parenthesis.  Example:  *<pre>  *   Intersects(-10,20,-8,22) distPec=0.025  *</pre>  *<p/>  * In the future it would be good to support something at least semi-standardized like a  * variant of<a href="http://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate">  *   [E]CQL</a>.  *  * @lucene.experimental  */
+comment|/**  * Parses a string that usually looks like "OPERATION(SHAPE)" into a {@link SpatialArgs}  * object. The set of operations supported are defined in {@link SpatialOperation}, such  * as "Intersects" being a common one. The shape portion is defined by {@link  * ShapeReadWriter#readShape(String)}. There are some optional name-value pair parameters  * that follow the closing parenthesis.  Example:  *<pre>  *   Intersects(-10,20,-8,22) distErrPct=0.025  *</pre>  *<p/>  * In the future it would be good to support something at least semi-standardized like a  * variant of<a href="http://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate">  *   [E]CQL</a>.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

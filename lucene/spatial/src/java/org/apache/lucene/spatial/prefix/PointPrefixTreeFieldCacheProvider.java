@@ -147,7 +147,6 @@ operator|=
 name|grid
 expr_stmt|;
 block|}
-comment|//A kluge that this is a field
 DECL|field|scanCell
 specifier|private
 name|Node
@@ -155,6 +154,7 @@ name|scanCell
 init|=
 literal|null
 decl_stmt|;
+comment|//re-used in readShape to save GC
 annotation|@
 name|Override
 DECL|method|readShape

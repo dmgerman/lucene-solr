@@ -108,6 +108,10 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**  * @see PrefixTreeStrategy  * @lucene.experimental  */
+end_comment
+
 begin_class
 DECL|class|AbstractSpatialPrefixTreeFieldType
 specifier|public

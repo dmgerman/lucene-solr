@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link SpatialPrefixTree} which uses a quad tree  * (http://en.wikipedia.org/wiki/Quadtree)  *  * @lucene.experimental  */
+comment|/**  * A {@link SpatialPrefixTree} which uses a  *<a href="http://en.wikipedia.org/wiki/Quadtree">quad tree</a> in which an  * indexed term will be generated for each node, 'A', 'B', 'C', 'D'.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
