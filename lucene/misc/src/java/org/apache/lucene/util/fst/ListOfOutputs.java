@@ -76,6 +76,24 @@ name|DataOutput
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IntsRef
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_comment
 comment|/**  * Wraps another Outputs implementation and encodes one or  * more of its output values.  You can use this when a single  * input may need to map to more than one output,  * maintaining order: pass the same input with a different  * output by calling {@link Builder#add(IntsRef,Object)} multiple  * times.  The builder will then combine the outputs using  * the {@link Outputs#merge(Object,Object)} method.  *  *<p>The resulting FST may not be minimal when an input has  * more than one output, as this requires pushing all  * multi-output values to a final state.  *  *<p>NOTE: this cannot wrap itself (ie you cannot make an  * FST with List&lt;List&lt;Object&gt;&gt; outputs using this).  *  * @lucene.experimental  */
 end_comment
