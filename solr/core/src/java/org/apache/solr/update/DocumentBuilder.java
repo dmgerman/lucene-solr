@@ -1253,6 +1253,14 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|// Lucene no longer has a native docBoost, so we have to multiply
+comment|// it ourselves (do this after the applyBoost error check so we don't
+comment|// give an error on fields that don't support boost just because of a
+comment|// docBoost)
+name|boost
+operator|*=
+name|docBoost
+expr_stmt|;
 comment|// load each field value
 name|boolean
 name|hasField
@@ -1303,8 +1311,6 @@ name|v
 argument_list|,
 name|applyBoost
 condition|?
-name|docBoost
-operator|*
 name|boost
 else|:
 literal|1f
@@ -1452,21 +1458,19 @@ operator|.
 name|omitNorms
 argument_list|()
 condition|?
-name|docBoost
-operator|*
 name|boost
 else|:
 literal|1F
 argument_list|)
 expr_stmt|;
 block|}
-comment|// In lucene, the boost for a given field is the product of the
-comment|// document boost and *all* boosts on values of that field.
+comment|// The boost for a given field is the product of the
+comment|// *all* boosts on values of that field.
 comment|// For multi-valued fields, we only want to set the boost on the
 comment|// first field.
 name|boost
 operator|=
-name|docBoost
+literal|1.0f
 expr_stmt|;
 block|}
 block|}
