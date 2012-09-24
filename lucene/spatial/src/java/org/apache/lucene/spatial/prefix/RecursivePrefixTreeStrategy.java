@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Based on {@link RecursivePrefixTreeFilter}.  *  * @lucene.experimental  */
+comment|/**  * A {@link PrefixTreeStrategy} which uses {@link RecursivePrefixTreeFilter}.  * This strategy has support for searching non-point shapes (note: not tested).  * Even a query shape with distErrPct=0 (fully precise to the grid) should have  * good performance for typical data, unless there is a lot of indexed data  * coincident with the shape's edge.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -158,6 +158,7 @@ literal|4
 expr_stmt|;
 comment|//TODO this default constant is dependent on the prefix grid size
 block|}
+comment|/**    * Sets the grid level [1-maxLevels] at which indexed terms are scanned brute-force    * instead of by grid decomposition.  By default this is maxLevels - 4.  The    * final level, maxLevels, is always scanned.    *    * @param prefixGridScanLevel 1 to maxLevels    */
 DECL|method|setPrefixGridScanLevel
 specifier|public
 name|void
