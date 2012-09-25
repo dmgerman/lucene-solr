@@ -134,6 +134,24 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|Field
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|FloatDocValuesField
 import|;
 end_import
