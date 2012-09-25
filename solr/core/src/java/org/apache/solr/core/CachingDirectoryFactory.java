@@ -220,14 +220,17 @@ extends|extends
 name|DirectoryFactory
 block|{
 DECL|class|CacheValue
+specifier|protected
 class|class
 name|CacheValue
 block|{
 DECL|field|directory
+specifier|public
 name|Directory
 name|directory
 decl_stmt|;
 DECL|field|refCnt
+specifier|public
 name|int
 name|refCnt
 init|=
