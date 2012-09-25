@@ -26,20 +26,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexableField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|StorableField
 import|;
 end_import
@@ -771,6 +757,91 @@ literal|"amount:[24.99,EUR TO 25.01,EUR]"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
+argument_list|)
+expr_stmt|;
+comment|// Open ended ranges without currency
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"amount:[* TO *]"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|)
+expr_stmt|;
+comment|// Open ended ranges with currency
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"amount:[*,EUR TO *,EUR]"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='10']"
+argument_list|)
+expr_stmt|;
+comment|// Open ended start range without currency
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"amount:[* TO 5,USD]"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='5']"
+argument_list|)
+expr_stmt|;
+comment|// Open ended start range with currency (currency for the * won't matter)
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"amount:[*,USD TO 5,USD]"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='5']"
+argument_list|)
+expr_stmt|;
+comment|// Open ended end range
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"*,score"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"amount:[3 TO *]"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='8']"
 argument_list|)
 expr_stmt|;
 block|}
