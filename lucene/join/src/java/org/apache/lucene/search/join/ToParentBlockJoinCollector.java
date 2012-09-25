@@ -2107,7 +2107,7 @@ name|totalHitCount
 argument_list|)
 return|;
 block|}
-comment|/** Returns the highest score across all collected parent    *  hits, as long as<code>trackMaxScores=true</code> was passed {@link    *  #ToParentBlockJoinCollector on construction}.  Else,    *  this returns<code>Float.NaN</code> */
+comment|/**    * Returns the highest score across all collected parent hits, as long as    *<code>trackMaxScores=true</code> was passed    * {@link #ToParentBlockJoinCollector(Sort, int, boolean, boolean) on    * construction}. Else, this returns<code>Float.NaN</code>    */
 DECL|method|getMaxScore
 specifier|public
 name|float
