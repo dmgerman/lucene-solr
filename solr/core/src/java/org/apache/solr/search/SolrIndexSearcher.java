@@ -2524,6 +2524,10 @@ operator|.
 name|name
 argument_list|,
 name|value
+argument_list|,
+name|offset
+argument_list|,
+name|length
 argument_list|)
 argument_list|)
 expr_stmt|;
