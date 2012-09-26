@@ -887,7 +887,6 @@ operator|==
 name|TYPE_BINARY
 condition|)
 block|{
-comment|// TODO: who owns the bytes?
 name|byte
 index|[]
 name|copy
@@ -936,12 +935,6 @@ argument_list|(
 name|fieldInfo
 argument_list|,
 name|copy
-argument_list|,
-literal|0
-argument_list|,
-name|copy
-operator|.
-name|length
 argument_list|)
 expr_stmt|;
 block|}
