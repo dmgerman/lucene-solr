@@ -266,7 +266,7 @@ block|{
 comment|// ignore
 block|}
 block|}
-comment|/** Configures the given {@link SAXParserFactory} to do secure XML processing of untrusted sources.    * It is required to also set {@link #SAX_INSTANCE} on the created {@link XMLReader}.    * @see #SAX_INSTANCE    */
+comment|/** Configures the given {@link SAXParserFactory} to do secure XML processing of untrusted sources.    * It is required to also set {@link #SAX_INSTANCE} on the created {@link org.xml.sax.XMLReader}.    * @see #SAX_INSTANCE    */
 DECL|method|configureSAXParserFactory
 specifier|public
 specifier|static
