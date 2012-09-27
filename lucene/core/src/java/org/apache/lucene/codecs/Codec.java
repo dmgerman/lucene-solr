@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Encodes/decodes an inverted index segment.  *<p>  * Note, when extending this class, the name ({@link #getName}) is   * written into the index. In order for the segment to be read, the  * name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} to resolve codec names.  *<p>  * @see ServiceLoader  */
+comment|/**  * Encodes/decodes an inverted index segment.  *<p>  * Note, when extending this class, the name ({@link #getName}) is   * written into the index. In order for the segment to be read, the  * name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} (SPI) to resolve codec names.  *<p>  * If you implement your own codec, make sure that it has a no-arg constructor  * so SPI can load it.  * @see ServiceLoader  */
 end_comment
 
 begin_class
@@ -116,7 +116,7 @@ name|name
 decl_stmt|;
 comment|/**    * Creates a new codec.    *<p>    * The provided name will be written into the index segment: in order to    * for the segment to be read this class should be registered with Java's    * SPI mechanism (registered in META-INF/ of your jar file, etc).    * @param name must be all ascii alphanumeric, and less than 128 characters in length.    */
 DECL|method|Codec
-specifier|public
+specifier|protected
 name|Codec
 parameter_list|(
 name|String
@@ -226,6 +226,23 @@ name|String
 name|name
 parameter_list|)
 block|{
+if|if
+condition|(
+name|loader
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"You called Codec.forName() before all Codecs could be initialized. "
+operator|+
+literal|"This likely happens if you call it from a Codec's ctor."
+argument_list|)
+throw|;
+block|}
 return|return
 name|loader
 operator|.
@@ -246,6 +263,23 @@ argument_list|>
 name|availableCodecs
 parameter_list|()
 block|{
+if|if
+condition|(
+name|loader
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"You called Codec.availableCodecs() before all Codecs could be initialized. "
+operator|+
+literal|"This likely happens if you call it from a Codec's ctor."
+argument_list|)
+throw|;
+block|}
 return|return
 name|loader
 operator|.

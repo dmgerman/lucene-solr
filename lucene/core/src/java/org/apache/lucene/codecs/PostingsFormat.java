@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Encodes/decodes terms, postings, and proximity data.  *<p>  * Note, when extending this class, the name ({@link #getName}) may  * written into the index in certain configurations. In order for the segment   * to be read, the name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} to resolve codec names.  *<p>  * @see ServiceLoader  * @lucene.experimental */
+comment|/**   * Encodes/decodes terms, postings, and proximity data.  *<p>  * Note, when extending this class, the name ({@link #getName}) may  * written into the index in certain configurations. In order for the segment   * to be read, the name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} (SPI) to resolve format names.  *<p>  * If you implement your own format, make sure that it has a no-arg constructor  * so SPI can load it.  * @see ServiceLoader  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -256,6 +256,23 @@ name|String
 name|name
 parameter_list|)
 block|{
+if|if
+condition|(
+name|loader
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"You called PostingsFormat.forName() before all formats could be initialized. "
+operator|+
+literal|"This likely happens if you call it from a PostingsFormat's ctor."
+argument_list|)
+throw|;
+block|}
 return|return
 name|loader
 operator|.
@@ -276,6 +293,23 @@ argument_list|>
 name|availablePostingsFormats
 parameter_list|()
 block|{
+if|if
+condition|(
+name|loader
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"You called PostingsFormat.availablePostingsFormats() before all formats could be initialized. "
+operator|+
+literal|"This likely happens if you call it from a PostingsFormat's ctor."
+argument_list|)
+throw|;
+block|}
 return|return
 name|loader
 operator|.
