@@ -36,6 +36,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|EmptyEntityResolver
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -2772,30 +2786,11 @@ argument_list|()
 decl_stmt|;
 static|static
 block|{
-name|factory
+name|EmptyEntityResolver
 operator|.
-name|setProperty
+name|configureXMLInputFactory
 argument_list|(
-name|XMLInputFactory
-operator|.
-name|IS_VALIDATING
-argument_list|,
-name|Boolean
-operator|.
-name|FALSE
-argument_list|)
-expr_stmt|;
 name|factory
-operator|.
-name|setProperty
-argument_list|(
-name|XMLInputFactory
-operator|.
-name|SUPPORT_DTD
-argument_list|,
-name|Boolean
-operator|.
-name|FALSE
 argument_list|)
 expr_stmt|;
 name|factory
@@ -2805,6 +2800,44 @@ argument_list|(
 name|XMLLOG
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+comment|// The java 1.6 bundled stax parser (sjsxp) does not currently have a thread-safe
+comment|// XMLInputFactory, as that implementation tries to cache and reuse the
+comment|// XMLStreamReader.  Setting the parser-specific "reuse-instance" property to false
+comment|// prevents this.
+comment|// All other known open-source stax parsers (and the bea ref impl)
+comment|// have thread-safe factories.
+name|factory
+operator|.
+name|setProperty
+argument_list|(
+literal|"reuse-instance"
+argument_list|,
+name|Boolean
+operator|.
+name|FALSE
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|ex
+parameter_list|)
+block|{
+comment|// Other implementations will likely throw this exception since "reuse-instance"
+comment|// isimplementation specific.
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Unable to set the 'reuse-instance' property for the input chain: "
+operator|+
+name|factory
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**Implement this interface to stream records as and when one is found.    *    */
 DECL|interface|Handler
