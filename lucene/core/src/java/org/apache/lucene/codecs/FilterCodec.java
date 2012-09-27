@@ -29,13 +29,14 @@ name|FilterCodec
 extends|extends
 name|Codec
 block|{
+comment|/** The codec to filter. */
 DECL|field|delegate
 specifier|protected
 specifier|final
 name|Codec
 name|delegate
 decl_stmt|;
-comment|/** Sole constructor. */
+comment|/** Sole constructor. When subclassing this codec,    * create a no-arg ctor and pass the delegate codec    * and a unique name to this ctor.    */
 DECL|method|FilterCodec
 specifier|protected
 name|FilterCodec
