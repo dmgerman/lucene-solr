@@ -364,13 +364,22 @@ name|VERSION_START
 init|=
 literal|0
 decl_stmt|;
+DECL|field|VERSION_NO_OFFSETS_IN_SKIPDATA
+specifier|final
+specifier|static
+name|int
+name|VERSION_NO_OFFSETS_IN_SKIPDATA
+init|=
+literal|1
+decl_stmt|;
+comment|// LUCENE-4443
 DECL|field|VERSION_CURRENT
 specifier|final
 specifier|static
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_START
+name|VERSION_NO_OFFSETS_IN_SKIPDATA
 decl_stmt|;
 DECL|field|docOut
 specifier|final
@@ -505,11 +514,6 @@ DECL|field|lastBlockPosBufferUpto
 specifier|private
 name|int
 name|lastBlockPosBufferUpto
-decl_stmt|;
-DECL|field|lastBlockStartOffset
-specifier|private
-name|int
-name|lastBlockStartOffset
 decl_stmt|;
 DECL|field|lastBlockPayloadByteUpto
 specifier|private
@@ -1196,8 +1200,6 @@ name|lastBlockPayFP
 argument_list|,
 name|lastBlockPosBufferUpto
 argument_list|,
-name|lastBlockStartOffset
-argument_list|,
 name|lastBlockPayloadByteUpto
 argument_list|)
 expr_stmt|;
@@ -1660,10 +1662,6 @@ expr_stmt|;
 name|lastBlockPosBufferUpto
 operator|=
 name|posBufferUpto
-expr_stmt|;
-name|lastBlockStartOffset
-operator|=
-name|lastStartOffset
 expr_stmt|;
 name|lastBlockPayloadByteUpto
 operator|=
