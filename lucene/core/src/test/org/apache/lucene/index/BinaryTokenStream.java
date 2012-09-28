@@ -74,8 +74,26 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|CannedBinaryTokenStream
+import|;
+end_import
+
 begin_comment
-comment|/**  * a binary tokenstream that lets you index a BytesRef  */
+comment|// javadocs
+end_comment
+
+begin_comment
+comment|/**  * A binary tokenstream that lets you index a single  * binary token (BytesRef value).  *  * @see CannedBinaryTokenStream  */
 end_comment
 
 begin_class

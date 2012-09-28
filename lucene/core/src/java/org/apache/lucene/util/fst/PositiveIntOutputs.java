@@ -471,6 +471,10 @@ operator|||
 name|o
 operator|>
 literal|0
+operator|:
+literal|"o="
+operator|+
+name|o
 assert|;
 return|return
 literal|true

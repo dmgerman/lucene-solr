@@ -417,7 +417,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Suggester based on a weighted FST: it first traverses the prefix,   * then walks the<i>n</i> shortest paths to retrieve top-ranked  * suggestions.  *<p>  *<b>NOTE</b>:  * Input weights must be between 0 and {@link Integer#MAX_VALUE}, any  * other values will be rejected.  *   * @see Util#shortestPaths(FST, FST.Arc, Comparator, int)  * @lucene.experimental  */
+comment|/**  * Suggester based on a weighted FST: it first traverses the prefix,   * then walks the<i>n</i> shortest paths to retrieve top-ranked  * suggestions.  *<p>  *<b>NOTE</b>:  * Input weights must be between 0 and {@link Integer#MAX_VALUE}, any  * other values will be rejected.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -956,9 +956,14 @@ name|fst
 argument_list|,
 name|arc
 argument_list|,
+name|prefixOutput
+argument_list|,
 name|weightComparator
 argument_list|,
 name|num
+argument_list|,
+operator|!
+name|exactFirst
 argument_list|)
 expr_stmt|;
 block|}
@@ -1053,8 +1058,6 @@ argument_list|()
 argument_list|,
 name|decodeWeight
 argument_list|(
-name|prefixOutput
-operator|+
 name|completion
 operator|.
 name|output

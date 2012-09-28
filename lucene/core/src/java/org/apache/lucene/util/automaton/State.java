@@ -136,6 +136,7 @@ expr_stmt|;
 block|}
 comment|/**    * Resets transition set.    */
 DECL|method|resetTransitions
+specifier|public
 specifier|final
 name|void
 name|resetTransitions
@@ -500,7 +501,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** Virtually adds an epsilon transition to the target    *  {@code to} state.  This is implemented by copying all    *  transitions from {@code to} to this state, and if {@code    *  to} is an accept state then set accept for this state. */
 DECL|method|addEpsilon
+specifier|public
 name|void
 name|addEpsilon
 parameter_list|(

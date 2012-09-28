@@ -440,6 +440,19 @@ name|index
 index|]
 return|;
 block|}
+comment|/** Returns the maximum position looked up, or -1 if no   *  position has been looked up sinc reset/init.  */
+DECL|method|getMaxPos
+specifier|public
+name|int
+name|getMaxPos
+parameter_list|()
+block|{
+return|return
+name|nextPos
+operator|-
+literal|1
+return|;
+block|}
 DECL|method|freeBefore
 specifier|public
 name|void
