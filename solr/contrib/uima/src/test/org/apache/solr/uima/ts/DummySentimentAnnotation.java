@@ -83,10 +83,10 @@ comment|/**   * Updated by JCasGen Fri Mar 04 13:08:40 CET 2011  * XML source: /
 end_comment
 
 begin_class
-DECL|class|SentimentAnnotation
+DECL|class|DummySentimentAnnotation
 specifier|public
 class|class
-name|SentimentAnnotation
+name|DummySentimentAnnotation
 extends|extends
 name|Annotation
 block|{
@@ -102,7 +102,7 @@ name|JCasRegistry
 operator|.
 name|register
 argument_list|(
-name|SentimentAnnotation
+name|DummySentimentAnnotation
 operator|.
 name|class
 argument_list|)
@@ -129,15 +129,15 @@ name|typeIndexID
 return|;
 block|}
 comment|/** Never called.  Disable default constructor    * @generated */
-DECL|method|SentimentAnnotation
+DECL|method|DummySentimentAnnotation
 specifier|protected
-name|SentimentAnnotation
+name|DummySentimentAnnotation
 parameter_list|()
 block|{}
 comment|/** Internal - constructor used by generator     * @generated */
-DECL|method|SentimentAnnotation
+DECL|method|DummySentimentAnnotation
 specifier|public
-name|SentimentAnnotation
+name|DummySentimentAnnotation
 parameter_list|(
 name|int
 name|addr
@@ -158,9 +158,9 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/** @generated */
-DECL|method|SentimentAnnotation
+DECL|method|DummySentimentAnnotation
 specifier|public
-name|SentimentAnnotation
+name|DummySentimentAnnotation
 parameter_list|(
 name|JCas
 name|jcas
@@ -176,9 +176,9 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/** @generated */
-DECL|method|SentimentAnnotation
+DECL|method|DummySentimentAnnotation
 specifier|public
-name|SentimentAnnotation
+name|DummySentimentAnnotation
 parameter_list|(
 name|JCas
 name|jcas
@@ -227,13 +227,13 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|SentimentAnnotation_Type
+name|DummySentimentAnnotation_Type
 operator|.
 name|featOkTst
 operator|&&
 operator|(
 operator|(
-name|SentimentAnnotation_Type
+name|DummySentimentAnnotation_Type
 operator|)
 name|jcasType
 operator|)
@@ -264,7 +264,7 @@ name|addr
 argument_list|,
 operator|(
 operator|(
-name|SentimentAnnotation_Type
+name|DummySentimentAnnotation_Type
 operator|)
 name|jcasType
 operator|)
@@ -285,13 +285,13 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|SentimentAnnotation_Type
+name|DummySentimentAnnotation_Type
 operator|.
 name|featOkTst
 operator|&&
 operator|(
 operator|(
-name|SentimentAnnotation_Type
+name|DummySentimentAnnotation_Type
 operator|)
 name|jcasType
 operator|)
@@ -321,7 +321,7 @@ name|addr
 argument_list|,
 operator|(
 operator|(
-name|SentimentAnnotation_Type
+name|DummySentimentAnnotation_Type
 operator|)
 name|jcasType
 operator|)
