@@ -318,6 +318,11 @@ operator|new
 name|Automaton
 argument_list|()
 decl_stmt|;
+name|boolean
+name|deterministic
+init|=
+literal|true
+decl_stmt|;
 specifier|final
 name|TermToBytesRefAttribute
 name|termBytesAtt
@@ -561,6 +566,16 @@ name|pos
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+comment|// note: this isn't necessarily true. its just that we aren't surely det.
+comment|// we could optimize this further (e.g. buffer and sort synonyms at a position)
+comment|// but thats probably overkill. this is cheap and dirty
+name|deterministic
+operator|=
+literal|false
+expr_stmt|;
+block|}
 specifier|final
 name|int
 name|endPos
@@ -735,6 +750,13 @@ operator|++
 expr_stmt|;
 block|}
 comment|//toDot(a);
+name|a
+operator|.
+name|setDeterministic
+argument_list|(
+name|deterministic
+argument_list|)
+expr_stmt|;
 return|return
 name|a
 return|;
