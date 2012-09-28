@@ -389,11 +389,7 @@ block|}
 name|Shape
 name|shape
 init|=
-operator|new
-name|ShapeReadWriter
-argument_list|(
 name|ctx
-argument_list|)
 operator|.
 name|readShape
 argument_list|(

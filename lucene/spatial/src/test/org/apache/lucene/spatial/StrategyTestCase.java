@@ -40,20 +40,6 @@ name|core
 operator|.
 name|io
 operator|.
-name|ShapeReadWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|spatial4j
-operator|.
-name|core
-operator|.
-name|io
-operator|.
 name|sample
 operator|.
 name|SampleData
@@ -676,11 +662,7 @@ expr_stmt|;
 name|Shape
 name|shape
 init|=
-operator|new
-name|ShapeReadWriter
-argument_list|(
 name|ctx
-argument_list|)
 operator|.
 name|readShape
 argument_list|(
@@ -925,11 +907,7 @@ block|{
 comment|//check stored value is there& parses
 name|assertNotNull
 argument_list|(
-operator|new
-name|ShapeReadWriter
-argument_list|(
 name|ctx
-argument_list|)
 operator|.
 name|readShape
 argument_list|(
@@ -1256,11 +1234,7 @@ literal|null
 condition|?
 literal|null
 else|:
-operator|new
-name|ShapeReadWriter
-argument_list|(
 name|ctx
-argument_list|)
 operator|.
 name|readShape
 argument_list|(
