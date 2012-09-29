@@ -1177,12 +1177,14 @@ block|{
 comment|// 10% of the time create big payloads:
 name|payloadSize
 operator|=
+literal|1
+operator|+
 name|random
 argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-literal|50
+literal|3
 argument_list|)
 expr_stmt|;
 block|}
@@ -1190,12 +1192,14 @@ else|else
 block|{
 name|payloadSize
 operator|=
+literal|1
+operator|+
 name|random
 argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-literal|10
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
