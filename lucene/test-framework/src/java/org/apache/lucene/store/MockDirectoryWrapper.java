@@ -2275,6 +2275,10 @@ name|Throttling
 operator|.
 name|SOMETIMES
 operator|&&
+name|rateLimiter
+operator|==
+literal|null
+operator|&&
 name|randomState
 operator|.
 name|nextInt
