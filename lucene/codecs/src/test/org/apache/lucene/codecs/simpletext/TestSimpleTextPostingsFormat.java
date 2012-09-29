@@ -46,11 +46,30 @@ name|BasePostingsFormatTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Nightly
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests SimpleText's postings  */
 end_comment
 
 begin_class
+annotation|@
+name|Nightly
+comment|// please figure out why I am so horrendously slow!
 DECL|class|TestSimpleTextPostingsFormat
 specifier|public
 class|class
