@@ -914,6 +914,60 @@ name|sizeInBytes
 argument_list|()
 return|;
 block|}
+DECL|method|copyDestTransitions
+specifier|private
+name|void
+name|copyDestTransitions
+parameter_list|(
+name|State
+name|from
+parameter_list|,
+name|State
+name|to
+parameter_list|,
+name|List
+argument_list|<
+name|Transition
+argument_list|>
+name|transitions
+parameter_list|)
+block|{
+if|if
+condition|(
+name|to
+operator|.
+name|isAccept
+argument_list|()
+condition|)
+block|{
+name|from
+operator|.
+name|setAccept
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+for|for
+control|(
+name|Transition
+name|t
+range|:
+name|to
+operator|.
+name|getTransitions
+argument_list|()
+control|)
+block|{
+name|transitions
+operator|.
+name|add
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// Replaces SEP with epsilon or remaps them if
 comment|// we were asked to preserve them:
 DECL|method|replaceSep
@@ -1017,8 +1071,10 @@ name|preserveSep
 condition|)
 block|{
 comment|// Remap to SEP_LABEL:
-name|t
-operator|=
+name|newTransitions
+operator|.
+name|add
+argument_list|(
 operator|new
 name|Transition
 argument_list|(
@@ -1029,22 +1085,21 @@ operator|.
 name|getDest
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
-comment|// NOTE: sort of weird because this will grow
-comment|// the transition array we are iterating over,
-comment|// but because we are going in reverse topo sort
-comment|// it will not add any SEP/HOLE transitions:
-name|state
-operator|.
-name|addEpsilon
+name|copyDestTransitions
 argument_list|(
+name|state
+argument_list|,
 name|t
 operator|.
 name|getDest
 argument_list|()
+argument_list|,
+name|newTransitions
 argument_list|)
 expr_stmt|;
 name|a
@@ -1053,10 +1108,6 @@ name|setDeterministic
 argument_list|(
 literal|false
 argument_list|)
-expr_stmt|;
-name|t
-operator|=
-literal|null
 expr_stmt|;
 block|}
 block|}
@@ -1080,18 +1131,16 @@ comment|// it will also match an empty-string token ... if
 comment|// that's somehow a problem we can always map HOLE
 comment|// to a dedicated byte (and escape it in the
 comment|// input).
-comment|// NOTE: sort of weird because this will grow
-comment|// the transition array we are iterating over,
-comment|// but because we are going in reverse topo sort
-comment|// it will not add any SEP/HOLE transitions:
-name|state
-operator|.
-name|addEpsilon
+name|copyDestTransitions
 argument_list|(
+name|state
+argument_list|,
 name|t
 operator|.
 name|getDest
 argument_list|()
+argument_list|,
+name|newTransitions
 argument_list|)
 expr_stmt|;
 name|a
@@ -1101,17 +1150,8 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|t
-operator|=
-literal|null
-expr_stmt|;
 block|}
-if|if
-condition|(
-name|t
-operator|!=
-literal|null
-condition|)
+else|else
 block|{
 name|newTransitions
 operator|.
@@ -1122,11 +1162,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|state
-operator|.
-name|resetTransitions
-argument_list|()
-expr_stmt|;
 name|state
 operator|.
 name|setTransitions
