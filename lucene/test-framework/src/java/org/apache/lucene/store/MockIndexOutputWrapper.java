@@ -296,7 +296,7 @@ literal|null
 operator|&&
 name|len
 operator|>=
-literal|10
+literal|1000
 condition|)
 block|{
 name|dir
