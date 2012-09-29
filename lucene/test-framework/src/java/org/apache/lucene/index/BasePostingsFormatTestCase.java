@@ -893,14 +893,13 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|// TODO:
+comment|//final int numTerms = atLeast(10);
 specifier|final
 name|int
 name|numTerms
 init|=
-name|atLeast
-argument_list|(
-literal|10
-argument_list|)
+literal|4
 decl_stmt|;
 for|for
 control|(
