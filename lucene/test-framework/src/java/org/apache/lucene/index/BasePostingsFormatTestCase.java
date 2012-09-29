@@ -986,10 +986,10 @@ condition|)
 block|{
 comment|// Make at least 1 big term, then maybe (~10%
 comment|// chance) make another:
+comment|// TODO: put multplier back, if we can fix OOMEs:
+comment|//numDocs = RANDOM_MULTIPLIER * _TestUtil.nextInt(random(), 50000, 70000);
 name|numDocs
 operator|=
-name|RANDOM_MULTIPLIER
-operator|*
 name|_TestUtil
 operator|.
 name|nextInt
@@ -1038,10 +1038,10 @@ condition|)
 block|{
 comment|// Make at least 1 medium term, then maybe (~10%
 comment|// chance) make up to 4 more:
+comment|// TODO: put multplier back, if we can fix OOMEs:
+comment|//numDocs = RANDOM_MULTIPLIER * _TestUtil.nextInt(random(), 3000, 6000);
 name|numDocs
 operator|=
-name|RANDOM_MULTIPLIER
-operator|*
 name|_TestUtil
 operator|.
 name|nextInt
