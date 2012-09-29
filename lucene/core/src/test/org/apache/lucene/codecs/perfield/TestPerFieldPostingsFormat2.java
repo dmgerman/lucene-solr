@@ -431,10 +431,10 @@ comment|// for now we do termqueries.
 end_comment
 
 begin_class
-DECL|class|TestPerFieldPostingsFormat
+DECL|class|TestPerFieldPostingsFormat2
 specifier|public
 class|class
-name|TestPerFieldPostingsFormat
+name|TestPerFieldPostingsFormat2
 extends|extends
 name|LuceneTestCase
 block|{
