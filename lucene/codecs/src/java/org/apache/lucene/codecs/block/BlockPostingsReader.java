@@ -3761,19 +3761,6 @@ block|{
 comment|// if (DEBUG) {
 comment|//   System.out.println("  scan doc=" + accum + " docBufferUpto=" + docBufferUpto);
 comment|// }
-if|if
-condition|(
-name|docUpto
-operator|==
-name|docFreq
-condition|)
-block|{
-return|return
-name|doc
-operator|=
-name|NO_MORE_DOCS
-return|;
-block|}
 name|accum
 operator|+=
 name|docDeltaBuffer
