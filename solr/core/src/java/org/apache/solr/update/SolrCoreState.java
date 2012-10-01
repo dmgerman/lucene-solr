@@ -159,27 +159,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Decrement the number of references to this state. When then number of    * references hits 0, the state will close.  If an optional closer is    * passed, that will be used to close the writer.    *     * @throws IOException If there is a low-level I/O error.    */
-DECL|method|decref
-specifier|public
-specifier|abstract
-name|void
-name|decref
-parameter_list|(
-name|IndexWriterCloser
-name|closer
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Increment the number of references to this state.    */
-DECL|method|incref
-specifier|public
-specifier|abstract
-name|void
-name|incref
-parameter_list|()
-function_decl|;
 comment|/**    * Rollback the current IndexWriter. When creating the new IndexWriter use the    * settings from the given {@link SolrCore}.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|rollbackIndexWriter
 specifier|public
@@ -237,6 +216,16 @@ specifier|abstract
 name|void
 name|cancelRecovery
 parameter_list|()
+function_decl|;
+DECL|method|close
+specifier|public
+specifier|abstract
+name|void
+name|close
+parameter_list|(
+name|IndexWriterCloser
+name|closer
+parameter_list|)
 function_decl|;
 block|}
 end_class

@@ -365,8 +365,6 @@ argument_list|,
 name|delPolicy
 argument_list|,
 name|codec
-argument_list|,
-name|forceNewDirectory
 argument_list|)
 expr_stmt|;
 name|w
@@ -437,9 +435,6 @@ name|delPolicy
 parameter_list|,
 name|Codec
 name|codec
-parameter_list|,
-name|boolean
-name|forceNewDirectory
 parameter_list|)
 throws|throws
 name|IOException

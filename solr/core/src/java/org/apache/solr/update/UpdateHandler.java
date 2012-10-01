@@ -32,16 +32,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Vector
 import|;
 end_import
@@ -141,20 +131,6 @@ operator|.
 name|schema
 operator|.
 name|SchemaField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|SolrIndexSearcher
 import|;
 end_import
 
@@ -297,22 +273,6 @@ specifier|protected
 name|UpdateLog
 name|ulog
 decl_stmt|;
-comment|/**    * Called when a SolrCore using this UpdateHandler is closed.    */
-DECL|method|decref
-specifier|public
-specifier|abstract
-name|void
-name|decref
-parameter_list|()
-function_decl|;
-comment|/**    * Called when this UpdateHandler is shared with another SolrCore.    */
-DECL|method|incref
-specifier|public
-specifier|abstract
-name|void
-name|incref
-parameter_list|()
-function_decl|;
 DECL|method|parseEventListeners
 specifier|private
 name|void
