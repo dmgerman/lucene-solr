@@ -136,6 +136,17 @@ name|HIGHLIGHT
 operator|+
 literal|".fragmenter"
 decl_stmt|;
+DECL|field|PRESERVE_MULTI
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PRESERVE_MULTI
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".preserveMulti"
+decl_stmt|;
 DECL|field|FRAG_LIST_BUILDER
 specifier|public
 specifier|static
