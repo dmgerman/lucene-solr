@@ -76,26 +76,11 @@ name|BasePostingsFormatTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests DirectPostingsFormat  */
 end_comment
 
 begin_class
-annotation|@
-name|Ignore
-argument_list|(
-literal|"Put this test back once we fix OOMEs"
-argument_list|)
 DECL|class|TestDirectPostingsFormat
 specifier|public
 class|class

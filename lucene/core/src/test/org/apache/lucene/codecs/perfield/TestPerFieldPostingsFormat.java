@@ -112,8 +112,6 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-comment|// TODO: re-enable once we fix OOMEs in DirectPF
-comment|//codec = new RandomCodec(new Random(random().nextLong()), Collections.EMPTY_SET);
 name|codec
 operator|=
 operator|new
@@ -131,10 +129,7 @@ argument_list|)
 argument_list|,
 name|Collections
 operator|.
-name|singleton
-argument_list|(
-literal|"Direct"
-argument_list|)
+name|EMPTY_SET
 argument_list|)
 expr_stmt|;
 block|}
