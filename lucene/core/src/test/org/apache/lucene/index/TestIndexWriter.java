@@ -7191,13 +7191,6 @@ name|w
 operator|=
 literal|null
 expr_stmt|;
-name|_TestUtil
-operator|.
-name|checkIndex
-argument_list|(
-name|dir
-argument_list|)
-expr_stmt|;
 name|DirectoryReader
 operator|.
 name|open
