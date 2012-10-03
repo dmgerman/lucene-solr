@@ -1100,12 +1100,11 @@ operator|!
 name|success
 condition|)
 block|{
+comment|// this.close() will close in:
 name|IOUtils
 operator|.
 name|closeWhileHandlingException
 argument_list|(
-name|in
-argument_list|,
 name|indexIn
 argument_list|,
 name|this
