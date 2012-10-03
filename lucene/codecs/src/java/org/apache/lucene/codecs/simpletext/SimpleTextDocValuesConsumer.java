@@ -1227,6 +1227,13 @@ argument_list|(
 name|output
 argument_list|)
 expr_stmt|;
+name|dir
+operator|.
+name|deleteFile
+argument_list|(
+name|fileName
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}

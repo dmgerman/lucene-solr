@@ -6601,6 +6601,23 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// should remove the corrumpted segments_N
+operator|new
+name|IndexWriter
+argument_list|(
+name|dir
+argument_list|,
+name|newIndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+literal|null
+argument_list|)
+argument_list|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|dir
 operator|.
 name|close

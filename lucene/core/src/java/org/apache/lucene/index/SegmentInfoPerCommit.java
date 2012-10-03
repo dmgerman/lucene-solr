@@ -228,6 +228,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// Start from the wrapped info's files:
 name|Collection
 argument_list|<
 name|String

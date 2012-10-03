@@ -204,14 +204,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-name|dir
-operator|.
-name|setCheckIndexOnClose
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// we use a custom codec provider
 specifier|final
 name|LineFileDocs
 name|docs
@@ -757,17 +749,19 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|TestIndexWriter
+operator|.
+name|assertNoUnreferencedFiles
+argument_list|(
+name|dir
+argument_list|,
+literal|"leftover files after rolling updates"
+argument_list|)
+expr_stmt|;
 name|docs
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|_TestUtil
-operator|.
-name|checkIndex
-argument_list|(
-name|dir
-argument_list|)
 expr_stmt|;
 comment|// LUCENE-4455:
 name|SegmentInfos

@@ -20,6 +20,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collection
@@ -48,11 +58,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|MockAnalyzer
 import|;
 end_import
 
@@ -134,9 +148,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|store
 operator|.
-name|MockAnalyzer
+name|MockDirectoryWrapper
 import|;
 end_import
 

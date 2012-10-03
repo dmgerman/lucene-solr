@@ -129,7 +129,11 @@ argument_list|)
 argument_list|,
 name|Collections
 operator|.
-name|EMPTY_SET
+expr|<
+name|String
+operator|>
+name|emptySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

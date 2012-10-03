@@ -2032,6 +2032,23 @@ literal|0
 condition|)
 block|{
 comment|// full forceMerge
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"RIW: doRandomForceMerge(1)"
+argument_list|)
+expr_stmt|;
+block|}
 name|w
 operator|.
 name|forceMerge
@@ -2058,6 +2075,27 @@ argument_list|,
 name|segCount
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"RIW: doRandomForceMerge("
+operator|+
+name|limit
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+block|}
 name|w
 operator|.
 name|forceMerge

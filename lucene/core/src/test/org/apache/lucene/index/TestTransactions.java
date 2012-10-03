@@ -1197,6 +1197,22 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+comment|// We throw exceptions in deleteFile, which creates
+comment|// leftover files:
+name|dir1
+operator|.
+name|setAssertNoUnrefencedFilesOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|dir2
+operator|.
+name|setAssertNoUnrefencedFilesOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|initIndex
 argument_list|(
 name|dir1

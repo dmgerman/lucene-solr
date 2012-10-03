@@ -44,6 +44,34 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|MockAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|Field
@@ -58,9 +86,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|store
 operator|.
-name|LuceneTestCase
+name|Directory
 import|;
 end_import
 
@@ -100,23 +128,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
+name|util
 operator|.
-name|MockAnalyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Document
+name|LuceneTestCase
 import|;
 end_import
 
@@ -402,6 +416,15 @@ operator|.
 name|getDirectory
 argument_list|()
 decl_stmt|;
+comment|// We create leftover files because merging could be
+comment|// running when we crash:
+name|dir
+operator|.
+name|setAssertNoUnrefencedFilesOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|crash
 argument_list|(
 name|writer
@@ -432,7 +455,35 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// Make a new dir, copying from the crashed dir, and
+comment|// open IW on it, to confirm IW "recovers" after a
+comment|// crash:
+name|Directory
+name|dir2
+init|=
+name|newDirectory
+argument_list|(
 name|dir
+argument_list|)
+decl_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+operator|new
+name|RandomIndexWriter
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+name|dir2
+argument_list|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir2
 operator|.
 name|close
 argument_list|()
@@ -449,6 +500,15 @@ block|{
 comment|// This test relies on being able to open a reader before any commit
 comment|// happened, so we must create an initial commit just to allow that, but
 comment|// before any documents were added.
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: initIndex"
+argument_list|)
+expr_stmt|;
 name|IndexWriter
 name|writer
 init|=
@@ -460,6 +520,15 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: done initIndex"
+argument_list|)
+expr_stmt|;
 name|MockDirectoryWrapper
 name|dir
 init|=
@@ -471,11 +540,29 @@ operator|.
 name|getDirectory
 argument_list|()
 decl_stmt|;
+comment|// We create leftover files because merging could be
+comment|// running / store files could be open when we crash:
+name|dir
+operator|.
+name|setAssertNoUnrefencedFilesOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|dir
 operator|.
 name|setPreventDoubleWrite
 argument_list|(
 literal|false
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: now crash"
 argument_list|)
 expr_stmt|;
 name|crash
@@ -525,7 +612,35 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// Make a new dir, copying from the crashed dir, and
+comment|// open IW on it, to confirm IW "recovers" after a
+comment|// crash:
+name|Directory
+name|dir2
+init|=
+name|newDirectory
+argument_list|(
 name|dir
+argument_list|)
+decl_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+operator|new
+name|RandomIndexWriter
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+name|dir2
+argument_list|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir2
 operator|.
 name|close
 argument_list|()
@@ -561,6 +676,15 @@ operator|.
 name|getDirectory
 argument_list|()
 decl_stmt|;
+comment|// We create leftover files because merging could be
+comment|// running when we crash:
+name|dir
+operator|.
+name|setAssertNoUnrefencedFilesOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|close
@@ -619,7 +743,35 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// Make a new dir, copying from the crashed dir, and
+comment|// open IW on it, to confirm IW "recovers" after a
+comment|// crash:
+name|Directory
+name|dir2
+init|=
+name|newDirectory
+argument_list|(
 name|dir
+argument_list|)
+decl_stmt|;
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+operator|new
+name|RandomIndexWriter
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+name|dir2
+argument_list|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|dir2
 operator|.
 name|close
 argument_list|()

@@ -1614,6 +1614,23 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: success="
+operator|+
+name|success
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|success
 condition|)
 block|{
@@ -1943,6 +1960,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// Since we throw exc during abort, eg when IW is
+comment|// attempting to delete files, we will leave
+comment|// leftovers:
+name|dir
+operator|.
+name|setAssertNoUnrefencedFilesOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|doFail
@@ -2265,6 +2292,8 @@ name|doFail
 operator|=
 literal|false
 expr_stmt|;
+comment|//System.out.println(Thread.currentThread().getName() + ": NOW FAIL: onlyOnce=" + onlyOnce);
+comment|//new Throwable().printStackTrace(System.out);
 throw|throw
 operator|new
 name|IOException
