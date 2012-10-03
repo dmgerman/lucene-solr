@@ -5489,11 +5489,11 @@ operator|.
 name|refresh
 argument_list|()
 expr_stmt|;
-block|}
 name|lastCommitChangeCount
 operator|=
 name|changeCount
 expr_stmt|;
+block|}
 name|success
 operator|=
 literal|true
