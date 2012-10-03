@@ -3171,8 +3171,6 @@ literal|" that we could not delete."
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
 name|SegmentInfos
 name|sis
 init|=
@@ -3180,6 +3178,8 @@ operator|new
 name|SegmentInfos
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 name|sis
 operator|.
 name|read
@@ -3189,6 +3189,17 @@ argument_list|,
 name|file
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+comment|// OK: likely some of the .si files were deleted
+block|}
+try|try
+block|{
 name|Set
 argument_list|<
 name|String
@@ -3285,9 +3296,28 @@ block|}
 catch|catch
 parameter_list|(
 name|Throwable
-name|ignore
+name|t
 parameter_list|)
-block|{}
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"ERROR processing leftover segments file "
+operator|+
+name|file
+operator|+
+literal|":"
+argument_list|)
+expr_stmt|;
+name|t
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 name|startFiles
