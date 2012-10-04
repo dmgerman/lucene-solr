@@ -372,7 +372,6 @@ name|BaseDistributedSearchTestCase
 block|{
 DECL|field|executor
 specifier|private
-specifier|static
 name|ThreadPoolExecutor
 name|executor
 decl_stmt|;
@@ -1582,6 +1581,10 @@ name|shutdownNowAndAwaitTermination
 argument_list|(
 name|executor
 argument_list|)
+expr_stmt|;
+name|executor
+operator|=
+literal|null
 expr_stmt|;
 name|super
 operator|.
