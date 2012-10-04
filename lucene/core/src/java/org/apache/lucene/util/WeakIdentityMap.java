@@ -480,9 +480,7 @@ parameter_list|()
 block|{
 return|return
 name|nextIsSet
-condition|?
-literal|true
-else|:
+operator|||
 name|setNext
 argument_list|()
 return|;
@@ -501,17 +499,22 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|nextIsSet
-operator|||
-name|setNext
+operator|!
+name|hasNext
 argument_list|()
 condition|)
 block|{
-try|try
-block|{
+throw|throw
+operator|new
+name|NoSuchElementException
+argument_list|()
+throw|;
+block|}
 assert|assert
 name|nextIsSet
 assert|;
+try|try
+block|{
 return|return
 operator|(
 name|K
@@ -531,12 +534,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-block|}
-throw|throw
-operator|new
-name|NoSuchElementException
-argument_list|()
-throw|;
 block|}
 annotation|@
 name|Override
@@ -585,10 +582,16 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// already garbage collected!
-continue|continue;
+comment|// the key was already GCed, we can remove it from backing map:
+name|iterator
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
 block|}
-comment|// unfold "null" special value
+else|else
+block|{
+comment|// unfold "null" special value:
 if|if
 condition|(
 name|next
@@ -606,6 +609,7 @@ name|nextIsSet
 operator|=
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
