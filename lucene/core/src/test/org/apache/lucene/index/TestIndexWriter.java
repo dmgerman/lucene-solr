@@ -7224,6 +7224,8 @@ parameter_list|)
 block|{
 if|if
 condition|(
+literal|true
+operator|||
 name|VERBOSE
 condition|)
 block|{

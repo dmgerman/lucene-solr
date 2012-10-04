@@ -10139,6 +10139,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Must note the change to segmentInfos so any commits
+comment|// in-flight don't lose it (IFD will incRef/protect the
+comment|// new files we created):
+name|checkpoint
+argument_list|()
+expr_stmt|;
 comment|// Must close before checkpoint, otherwise IFD won't be
 comment|// able to delete the held-open files from the merge
 comment|// readers:
@@ -10149,9 +10155,9 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// Must note the change to segmentInfos so any commits
-comment|// in-flight don't lose it:
-name|checkpoint
+name|deleter
+operator|.
+name|deletePendingFiles
 argument_list|()
 expr_stmt|;
 if|if
@@ -10404,6 +10410,9 @@ argument_list|(
 name|merge
 argument_list|)
 expr_stmt|;
+comment|//if (merge.info != null) {
+comment|//System.out.println("MERGE: " + merge.info.info.name);
+comment|//}
 if|if
 condition|(
 name|infoStream
@@ -12488,12 +12497,55 @@ expr_stmt|;
 comment|// This is where all the work happens:
 name|MergeState
 name|mergeState
+decl_stmt|;
+name|boolean
+name|success3
 init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+name|mergeState
+operator|=
 name|merger
 operator|.
 name|merge
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+name|success3
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+operator|!
+name|success3
+condition|)
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+name|deleter
+operator|.
+name|refresh
+argument_list|(
+name|merge
+operator|.
+name|info
+operator|.
+name|info
+operator|.
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 assert|assert
 name|mergeState
 operator|.

@@ -1894,6 +1894,7 @@ name|segmentInfo
 operator|!=
 literal|null
 assert|;
+comment|//System.out.println("FLUSH: " + newSegment.segmentInfo.info.name);
 specifier|final
 name|SegmentInfoPerCommit
 name|segInfo
