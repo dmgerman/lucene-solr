@@ -218,7 +218,6 @@ block|{
 comment|// protected static final CoreContainer cores = new CoreContainer();
 DECL|field|cores
 specifier|protected
-specifier|static
 name|CoreContainer
 name|cores
 decl_stmt|;
@@ -459,6 +458,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|cores
+operator|=
+literal|null
+expr_stmt|;
 block|}
 annotation|@
 name|Override
