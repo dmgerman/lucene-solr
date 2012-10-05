@@ -1190,9 +1190,12 @@ else|else
 block|{
 if|if
 condition|(
+name|Character
+operator|.
+name|isWhitespace
+argument_list|(
 name|ch
-operator|==
-literal|' '
+argument_list|)
 operator|||
 name|ch
 operator|==
@@ -1260,9 +1263,12 @@ operator|!=
 literal|null
 operator|&&
 operator|(
+name|Character
+operator|.
+name|isWhitespace
+argument_list|(
 name|ch
-operator|==
-literal|' '
+argument_list|)
 operator|||
 name|ch
 operator|==
@@ -1340,9 +1346,12 @@ operator|!=
 literal|null
 operator|&&
 operator|(
+name|Character
+operator|.
+name|isWhitespace
+argument_list|(
 name|ch
-operator|==
-literal|' '
+argument_list|)
 operator|||
 name|ch
 operator|==
