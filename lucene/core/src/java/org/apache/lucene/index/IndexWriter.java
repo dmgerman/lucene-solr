@@ -10139,12 +10139,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Must note the change to segmentInfos so any commits
-comment|// in-flight don't lose it (IFD will incRef/protect the
-comment|// new files we created):
-name|checkpoint
-argument_list|()
-expr_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 comment|// Must close before checkpoint, otherwise IFD won't be
 comment|// able to delete the held-open files from the merge
 comment|// readers:
@@ -10155,6 +10156,43 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// Must note the change to segmentInfos so any commits
+comment|// in-flight don't lose it (IFD will incRef/protect the
+comment|// new files we created):
+if|if
+condition|(
+name|success
+condition|)
+block|{
+name|checkpoint
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+try|try
+block|{
+name|checkpoint
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// Ignore so we keep throwing original exception.
+block|}
+block|}
+block|}
 name|deleter
 operator|.
 name|deletePendingFiles
