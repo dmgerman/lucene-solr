@@ -443,7 +443,7 @@ condition|)
 block|{
 try|try
 block|{
-comment|/*            * if we bock on publish -> lock IW -> lock BufferedDeletes we don't block            * concurrent segment flushes just because they want to append to the queue.            * the downside is that we need to force a purge on fullFlush since ther could            * be a ticket still in the queue.             */
+comment|/*            * if we block on publish -> lock IW -> lock BufferedDeletes we don't block            * concurrent segment flushes just because they want to append to the queue.            * the downside is that we need to force a purge on fullFlush since ther could            * be a ticket still in the queue.             */
 name|head
 operator|.
 name|publish
@@ -459,7 +459,7 @@ init|(
 name|this
 init|)
 block|{
-comment|// finally remove the publised ticket from the queue
+comment|// finally remove the published ticket from the queue
 specifier|final
 name|FlushTicket
 name|poll
@@ -573,6 +573,19 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+DECL|method|getTicketCount
+specifier|public
+name|int
+name|getTicketCount
+parameter_list|()
+block|{
+return|return
+name|ticketCount
+operator|.
+name|get
+argument_list|()
+return|;
 block|}
 DECL|method|clear
 specifier|synchronized

@@ -1618,6 +1618,38 @@ expr_stmt|;
 block|}
 block|}
 comment|/*          * Now we are done and try to flush the ticket queue if the head of the          * queue has already finished the flush.          */
+if|if
+condition|(
+name|ticketQueue
+operator|.
+name|getTicketCount
+argument_list|()
+operator|>=
+name|perThreadPool
+operator|.
+name|getActiveThreadState
+argument_list|()
+condition|)
+block|{
+comment|// This means there is a backlog: the one
+comment|// thread in innerPurge can't keep up with all
+comment|// other threads flushing segments.  In this case
+comment|// we forcefully stall the producers.  But really
+comment|// this means we have a concurrency issue
+comment|// (TestBagOfPostings can provoke this):
+comment|// publishing a flush segment is too heavy today
+comment|// (it builds CFS, writes .si, etc.) ... we need
+comment|// to make those ops concurrent too:
+name|ticketQueue
+operator|.
+name|forcePurge
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|ticketQueue
 operator|.
 name|tryPurge
@@ -1625,6 +1657,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -1930,15 +1963,7 @@ name|message
 argument_list|(
 literal|"DW"
 argument_list|,
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": publishFlushedSegment seg-private deletes="
+literal|"publishFlushedSegment seg-private deletes="
 operator|+
 name|deletes
 argument_list|)
