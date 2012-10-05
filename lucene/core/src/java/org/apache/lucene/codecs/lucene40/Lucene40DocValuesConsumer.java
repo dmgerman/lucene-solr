@@ -274,10 +274,18 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
-name|ignored
+name|Throwable
+name|t
 parameter_list|)
-block|{     }
+block|{
+comment|// ignore
+block|}
+finally|finally
+block|{
+comment|// TODO: why the inconsistency here? we do this, but not SimpleText (which says IFD
+comment|// will do it).
+comment|// TODO: check that IFD really does this always, even if codec abort() throws a
+comment|// RuntimeException (e.g. ThreadInterruptedException)
 name|IOUtils
 operator|.
 name|deleteFilesIgnoringExceptions
@@ -311,6 +319,7 @@ name|COMPOUND_FILE_ENTRIES_EXTENSION
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

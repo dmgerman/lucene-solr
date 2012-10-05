@@ -172,6 +172,20 @@ name|IndexOutput
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IOUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * Lucene 4.0 FieldInfos writer.  *   * @see Lucene40FieldInfosFormat  * @lucene.experimental  */
 end_comment
@@ -328,6 +342,11 @@ name|fileName
 argument_list|,
 name|context
 argument_list|)
+decl_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
 decl_stmt|;
 try|try
 block|{
@@ -592,14 +611,34 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|success
+operator|=
+literal|true
+expr_stmt|;
 block|}
 finally|finally
+block|{
+if|if
+condition|(
+name|success
+condition|)
 block|{
 name|output
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+else|else
+block|{
+name|IOUtils
+operator|.
+name|closeWhileHandlingException
+argument_list|(
+name|output
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/** Returns the byte used to encode the {@link    *  Type} for each field. */

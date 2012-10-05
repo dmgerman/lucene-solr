@@ -399,9 +399,19 @@ operator|!
 name|success
 condition|)
 block|{
+try|try
+block|{
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{}
+comment|// ensure we throw our original exception
 block|}
 block|}
 name|readIndex

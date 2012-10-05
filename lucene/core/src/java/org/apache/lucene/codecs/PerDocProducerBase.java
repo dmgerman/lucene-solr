@@ -421,6 +421,8 @@ name|success
 condition|)
 block|{
 comment|// if we fail we must close all opened resources if there are any
+try|try
+block|{
 name|closeInternal
 argument_list|(
 name|values
@@ -429,6 +431,14 @@ name|values
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{}
+comment|// keep our original exception
 block|}
 block|}
 return|return
