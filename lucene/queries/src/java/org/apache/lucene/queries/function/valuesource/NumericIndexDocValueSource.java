@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: obtains numeric field values from a {@link FunctionValues} field.  * This {@link ValueSource} is compatible with all numerical  * {@link FunctionValues}  *   * @lucene.experimental  *   */
+comment|/**  * Expert: obtains numeric field values from a {@link FunctionValues} field.  * This {@link ValueSource} is compatible with all numerical  * {@link FunctionValues}  *   * @deprecated Use {@link NumericDocValuesFieldSource} instead.  */
 end_comment
 
 begin_class
@@ -254,6 +254,18 @@ return|;
 block|}
 block|}
 return|;
+case|case
+name|FIXED_INTS_8
+case|:
+case|case
+name|FIXED_INTS_16
+case|:
+case|case
+name|FIXED_INTS_32
+case|:
+case|case
+name|FIXED_INTS_64
+case|:
 case|case
 name|VAR_INTS
 case|:
