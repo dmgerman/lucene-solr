@@ -720,7 +720,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|Throwable
 name|ignored
 parameter_list|)
 block|{}
