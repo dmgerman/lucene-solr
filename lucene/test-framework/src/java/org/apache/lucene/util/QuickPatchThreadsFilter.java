@@ -29,7 +29,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Last minute patches.  * TODO: remove when integrated in system filters in rr.  */
+comment|/**  * Last minute patches.  */
 end_comment
 
 begin_class
@@ -51,60 +51,6 @@ name|Thread
 name|t
 parameter_list|)
 block|{
-comment|// MacOS system thread.
-if|if
-condition|(
-name|t
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"AWT-AppKit"
-argument_list|)
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-comment|// J9 memory pool thread.
-if|if
-condition|(
-name|t
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"MemoryPoolMXBean notification dispatcher"
-argument_list|)
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-comment|// forked process reaper on Unixish systems
-if|if
-condition|(
-name|t
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"process reaper"
-argument_list|)
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
 return|return
 literal|false
 return|;
