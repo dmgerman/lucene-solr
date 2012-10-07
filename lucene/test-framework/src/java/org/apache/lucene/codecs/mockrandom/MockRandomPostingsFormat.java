@@ -1088,6 +1088,34 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|int
+name|minSkipInterval
+decl_stmt|;
+if|if
+condition|(
+name|state
+operator|.
+name|segmentInfo
+operator|.
+name|getDocCount
+argument_list|()
+operator|>
+literal|1000000
+condition|)
+block|{
+comment|// Test2BPostings can OOME otherwise:
+name|minSkipInterval
+operator|=
+literal|3
+expr_stmt|;
+block|}
+else|else
+block|{
+name|minSkipInterval
+operator|=
+literal|2
+expr_stmt|;
+block|}
 comment|// we pull this before the seed intentionally: because its not consumed at runtime
 comment|// (the skipInterval is written into postings header)
 name|int
@@ -1099,7 +1127,7 @@ name|nextInt
 argument_list|(
 name|seedRandom
 argument_list|,
-literal|2
+name|minSkipInterval
 argument_list|,
 literal|10
 argument_list|)
