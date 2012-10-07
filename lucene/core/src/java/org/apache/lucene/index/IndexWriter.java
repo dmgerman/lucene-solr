@@ -13987,7 +13987,7 @@ name|toSync
 expr_stmt|;
 block|}
 comment|// This call can take a long time -- 10s of seconds
-comment|// or more.  We do it without sync:
+comment|// or more.  We do it without syncing on this:
 name|boolean
 name|success
 init|=
@@ -13999,7 +13999,11 @@ argument_list|<
 name|String
 argument_list|>
 name|filesToSync
-init|=
+decl_stmt|;
+try|try
+block|{
+name|filesToSync
+operator|=
 name|toSync
 operator|.
 name|files
@@ -14008,9 +14012,7 @@ name|directory
 argument_list|,
 literal|false
 argument_list|)
-decl_stmt|;
-try|try
-block|{
+expr_stmt|;
 name|directory
 operator|.
 name|sync
