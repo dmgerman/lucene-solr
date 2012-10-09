@@ -340,6 +340,15 @@ name|VERSION_START
 init|=
 literal|0
 decl_stmt|;
+DECL|field|VERSION_APPEND_ONLY
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_APPEND_ONLY
+init|=
+literal|1
+decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|public
 specifier|static
@@ -347,7 +356,7 @@ specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_START
+name|VERSION_APPEND_ONLY
 decl_stmt|;
 comment|/** Extension of terms file */
 DECL|field|TERMS_EXTENSION
@@ -521,7 +530,7 @@ block|}
 block|}
 block|}
 DECL|method|writeHeader
-specifier|protected
+specifier|private
 name|void
 name|writeHeader
 parameter_list|(
@@ -542,14 +551,6 @@ argument_list|,
 name|VERSION_CURRENT
 argument_list|)
 expr_stmt|;
-name|out
-operator|.
-name|writeLong
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-comment|// leave space for end index pointer
 block|}
 annotation|@
 name|Override
@@ -796,7 +797,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|writeTrailer
-specifier|protected
+specifier|private
 name|void
 name|writeTrailer
 parameter_list|(
@@ -806,18 +807,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|out
-operator|.
-name|seek
-argument_list|(
-name|CodecUtil
-operator|.
-name|headerLength
-argument_list|(
-name|CODEC_NAME
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|out
 operator|.
 name|writeLong

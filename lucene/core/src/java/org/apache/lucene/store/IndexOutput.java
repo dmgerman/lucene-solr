@@ -71,26 +71,13 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns the current position in this file, where the next write will    * occur.    * @see #seek(long)    */
+comment|/** Returns the current position in this file, where the next write will    * occur.    */
 DECL|method|getFilePointer
 specifier|public
 specifier|abstract
 name|long
 name|getFilePointer
 parameter_list|()
-function_decl|;
-comment|/** Sets current position in this file, where the next write will occur.    * @see #getFilePointer()    */
-DECL|method|seek
-specifier|public
-specifier|abstract
-name|void
-name|seek
-parameter_list|(
-name|long
-name|pos
-parameter_list|)
-throws|throws
-name|IOException
 function_decl|;
 comment|/** The number of bytes in the file. */
 DECL|method|length

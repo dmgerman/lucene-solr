@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Writes bytes through to a primary IndexOutput, computing  *  checksum.  Note that you cannot use seek().  *  * @lucene.internal  */
+comment|/** Writes bytes through to a primary IndexOutput, computing  *  checksum.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -221,23 +221,6 @@ operator|.
 name|getFilePointer
 argument_list|()
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|seek
-specifier|public
-name|void
-name|seek
-parameter_list|(
-name|long
-name|pos
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
 block|}
 comment|/** writes the checksum */
 DECL|method|finishCommit

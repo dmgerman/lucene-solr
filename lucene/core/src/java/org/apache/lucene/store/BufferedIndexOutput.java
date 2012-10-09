@@ -76,7 +76,6 @@ init|=
 literal|0
 decl_stmt|;
 comment|// position in buffer
-comment|/** Writes a single byte.    * @see IndexInput#readByte()    */
 annotation|@
 name|Override
 DECL|method|writeByte
@@ -108,7 +107,6 @@ operator|=
 name|b
 expr_stmt|;
 block|}
-comment|/** Writes an array of bytes.    * @param b the bytes to write    * @param length the number of bytes to write    * @see IndexInput#readBytes(byte[],int,int)    */
 annotation|@
 name|Override
 DECL|method|writeBytes
@@ -298,7 +296,6 @@ block|}
 block|}
 block|}
 block|}
-comment|/** Forces any buffered output to be written. */
 annotation|@
 name|Override
 DECL|method|flush
@@ -371,7 +368,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Closes this stream to further operations. */
 annotation|@
 name|Override
 DECL|method|close
@@ -386,7 +382,6 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Returns the current position in this file, where the next write will    * occur.    * @see #seek(long)    */
 annotation|@
 name|Override
 DECL|method|getFilePointer
@@ -401,29 +396,6 @@ operator|+
 name|bufferPosition
 return|;
 block|}
-comment|/** Sets current position in this file, where the next write will occur.    * @see #getFilePointer()    */
-annotation|@
-name|Override
-DECL|method|seek
-specifier|public
-name|void
-name|seek
-parameter_list|(
-name|long
-name|pos
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|flush
-argument_list|()
-expr_stmt|;
-name|bufferStart
-operator|=
-name|pos
-expr_stmt|;
-block|}
-comment|/** The number of bytes in the file. */
 annotation|@
 name|Override
 DECL|method|length
