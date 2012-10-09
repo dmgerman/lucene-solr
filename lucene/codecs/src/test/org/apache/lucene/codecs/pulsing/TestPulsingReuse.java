@@ -587,14 +587,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-name|dir
-operator|.
-name|setCheckIndexOnClose
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// will do this ourselves, custom codec
 name|RandomIndexWriter
 name|iw
 init|=
@@ -830,22 +822,6 @@ name|ir
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|CheckIndex
-name|ci
-init|=
-operator|new
-name|CheckIndex
-argument_list|(
-name|dir
-argument_list|)
-decl_stmt|;
-name|ci
-operator|.
-name|checkIndex
-argument_list|(
-literal|null
-argument_list|)
 expr_stmt|;
 name|dir
 operator|.
