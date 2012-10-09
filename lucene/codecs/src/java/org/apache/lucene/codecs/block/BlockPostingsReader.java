@@ -878,11 +878,11 @@ name|long
 name|payStartFP
 decl_stmt|;
 DECL|field|skipOffset
-name|int
+name|long
 name|skipOffset
 decl_stmt|;
 DECL|field|lastPosBlockOffset
-name|int
+name|long
 name|lastPosBlockOffset
 decl_stmt|;
 comment|// Only used by the "primary" TermState -- clones don't
@@ -1315,7 +1315,7 @@ name|lastPosBlockOffset
 operator|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
@@ -1406,7 +1406,7 @@ name|lastPosBlockOffset
 operator|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
@@ -1487,7 +1487,7 @@ name|skipOffset
 operator|=
 name|in
 operator|.
-name|readVInt
+name|readVLong
 argument_list|()
 expr_stmt|;
 block|}
@@ -1935,7 +1935,7 @@ comment|// docTermStartFP) in the .doc file (or -1 if there is
 comment|// no skip data for this term):
 DECL|field|skipOffset
 specifier|private
-name|int
+name|long
 name|skipOffset
 decl_stmt|;
 comment|// docID for next skip point, we won't use skipper if
@@ -2893,7 +2893,7 @@ comment|// docTermStartFP) in the .doc file (or -1 if there is
 comment|// no skip data for this term):
 DECL|field|skipOffset
 specifier|private
-name|int
+name|long
 name|skipOffset
 decl_stmt|;
 DECL|field|nextSkipDoc
@@ -4323,7 +4323,7 @@ comment|// docTermStartFP) in the .doc file (or -1 if there is
 comment|// no skip data for this term):
 DECL|field|skipOffset
 specifier|private
-name|int
+name|long
 name|skipOffset
 decl_stmt|;
 DECL|field|nextSkipDoc

@@ -283,13 +283,21 @@ name|VERSION_START
 init|=
 literal|0
 decl_stmt|;
+DECL|field|VERSION_LONG_SKIP
+specifier|final
+specifier|static
+name|int
+name|VERSION_LONG_SKIP
+init|=
+literal|1
+decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|final
 specifier|static
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_START
+name|VERSION_LONG_SKIP
 decl_stmt|;
 DECL|field|freqOut
 specifier|final
@@ -1257,7 +1265,7 @@ decl_stmt|;
 DECL|field|skipOffset
 specifier|public
 specifier|final
-name|int
+name|long
 name|skipOffset
 decl_stmt|;
 DECL|method|PendingTerm
@@ -1270,7 +1278,7 @@ parameter_list|,
 name|long
 name|proxStart
 parameter_list|,
-name|int
+name|long
 name|skipOffset
 parameter_list|)
 block|{
@@ -1342,7 +1350,7 @@ operator|==
 name|df
 assert|;
 specifier|final
-name|int
+name|long
 name|skipOffset
 decl_stmt|;
 if|if
@@ -1354,10 +1362,6 @@ condition|)
 block|{
 name|skipOffset
 operator|=
-call|(
-name|int
-call|)
-argument_list|(
 name|skipListWriter
 operator|.
 name|writeSkip
@@ -1366,7 +1370,6 @@ name|freqOut
 argument_list|)
 operator|-
 name|freqStart
-argument_list|)
 expr_stmt|;
 block|}
 else|else
@@ -1515,7 +1518,7 @@ literal|0
 assert|;
 name|bytesWriter
 operator|.
-name|writeVInt
+name|writeVLong
 argument_list|(
 name|firstTerm
 operator|.
@@ -1629,7 +1632,7 @@ literal|0
 assert|;
 name|bytesWriter
 operator|.
-name|writeVInt
+name|writeVLong
 argument_list|(
 name|term
 operator|.
