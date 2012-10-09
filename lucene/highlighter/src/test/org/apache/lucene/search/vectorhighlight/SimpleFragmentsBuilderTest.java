@@ -899,9 +899,10 @@ operator|new
 name|SimpleFragmentsBuilder
 argument_list|()
 decl_stmt|;
+comment|// Should we probably be trimming?
 name|assertEquals
 argument_list|(
-literal|"a b c<b>d</b> e"
+literal|"  a b c<b>d</b> e"
 argument_list|,
 name|sfb
 operator|.
@@ -1001,7 +1002,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"The most<b>search engines</b> use only one of these methods. Even the<b>search engines</b> that says they can use the"
+literal|"customization: The most<b>search engines</b> use only one of these methods. Even the<b>search engines</b> that says they can"
 argument_list|,
 name|sfb
 operator|.
@@ -1106,7 +1107,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"processing<b>speed</b>, the"
+literal|"additional hardware. \nWhen you talk about processing<b>speed</b>, the"
 argument_list|,
 name|sfb
 operator|.
@@ -1756,7 +1757,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"other<b>text</b>"
+literal|"highlight other<b>text</b>"
 argument_list|,
 name|result
 index|[

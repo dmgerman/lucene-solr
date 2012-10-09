@@ -115,7 +115,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"subInfos=(theboth((195,203)))/0.86791086(189,289)"
+literal|"subInfos=(theboth((195,203)))/0.86791086(149,249)"
 argument_list|,
 name|ffl
 operator|.
