@@ -234,9 +234,51 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|FlushInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|IOContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|InfoStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|MutableBits
 import|;
 end_import
 
@@ -1634,12 +1676,7 @@ block|{
 comment|// This means there is a backlog: the one
 comment|// thread in innerPurge can't keep up with all
 comment|// other threads flushing segments.  In this case
-comment|// we forcefully stall the producers.  But really
-comment|// this means we have a concurrency issue
-comment|// (TestBagOfPostings can provoke this):
-comment|// publishing a flush segment is too heavy today
-comment|// (it builds CFS, writes .si, etc.) ... we need
-comment|// to make those ops concurrent too:
+comment|// we forcefully stall the producers.
 name|ticketQueue
 operator|.
 name|forcePurge
@@ -1927,26 +1964,15 @@ name|segmentInfo
 operator|!=
 literal|null
 assert|;
-comment|//System.out.println("FLUSH: " + newSegment.segmentInfo.info.name);
 specifier|final
-name|SegmentInfoPerCommit
-name|segInfo
-init|=
-name|indexWriter
-operator|.
-name|prepareFlushedSegment
-argument_list|(
-name|newSegment
-argument_list|)
-decl_stmt|;
-specifier|final
-name|BufferedDeletes
-name|deletes
+name|FrozenBufferedDeletes
+name|segmentDeletes
 init|=
 name|newSegment
 operator|.
 name|segmentDeletes
 decl_stmt|;
+comment|//System.out.println("FLUSH: " + newSegment.segmentInfo.info.name);
 if|if
 condition|(
 name|infoStream
@@ -1965,40 +1991,16 @@ literal|"DW"
 argument_list|,
 literal|"publishFlushedSegment seg-private deletes="
 operator|+
-name|deletes
+name|segmentDeletes
 argument_list|)
 expr_stmt|;
 block|}
-name|FrozenBufferedDeletes
-name|packet
-init|=
-literal|null
-decl_stmt|;
 if|if
 condition|(
-name|deletes
+name|segmentDeletes
 operator|!=
 literal|null
 operator|&&
-name|deletes
-operator|.
-name|any
-argument_list|()
-condition|)
-block|{
-comment|// Segment private delete
-name|packet
-operator|=
-operator|new
-name|FrozenBufferedDeletes
-argument_list|(
-name|deletes
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
 name|infoStream
 operator|.
 name|isEnabled
@@ -2015,19 +2017,20 @@ literal|"DW"
 argument_list|,
 literal|"flush: push buffered seg private deletes: "
 operator|+
-name|packet
+name|segmentDeletes
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|// now publish!
 name|indexWriter
 operator|.
 name|publishFlushedSegment
 argument_list|(
-name|segInfo
+name|newSegment
+operator|.
+name|segmentInfo
 argument_list|,
-name|packet
+name|segmentDeletes
 argument_list|,
 name|globalPacket
 argument_list|)
