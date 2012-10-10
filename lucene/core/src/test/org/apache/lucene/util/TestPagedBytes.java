@@ -139,11 +139,15 @@ specifier|final
 name|int
 name|numBytes
 init|=
-name|random
-argument_list|()
+name|_TestUtil
 operator|.
 name|nextInt
 argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|2
+argument_list|,
 literal|10000000
 argument_list|)
 decl_stmt|;
