@@ -260,6 +260,25 @@ return|return
 name|storedFieldsFormat
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|getName
+argument_list|()
+operator|+
+literal|"(storedFieldsFormat="
+operator|+
+name|storedFieldsFormat
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 

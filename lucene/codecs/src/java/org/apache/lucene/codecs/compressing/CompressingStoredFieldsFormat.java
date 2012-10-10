@@ -168,11 +168,11 @@ name|CompressingStoredFieldsFormat
 extends|extends
 name|StoredFieldsFormat
 block|{
-DECL|field|storedFieldsIndexFormat
+DECL|field|storedFieldsIndex
 specifier|private
 specifier|final
 name|CompressingStoredFieldsIndex
-name|storedFieldsIndexFormat
+name|storedFieldsIndex
 decl_stmt|;
 DECL|field|compressionMode
 specifier|private
@@ -186,7 +186,7 @@ specifier|final
 name|int
 name|chunkSize
 decl_stmt|;
-comment|/**    * Create a new {@link CompressingStoredFieldsFormat}.    *<p>    * The<code>compressionMode</code> parameter allows you to choose between    * compression algorithms that have various compression and uncompression    * speeds so that you can pick the one that best fits your indexing and    * searching throughput.    *<p>    *<code>chunkSize</code> is the minimum byte size of a chunk of documents.    * A value of<code>1</code> can make sense if there is redundancy across    * fields. In that case, both performance and compression ratio should be    * better than with {@link Lucene40StoredFieldsFormat} with compressed    * fields.    *<p>    * Higher values of<code>chunkSize</code> should improve the compression    * atio but will require more memory at indexing time and might make document    * loading a little slower (depending on the size of your OS cache compared    * to the size of your index).    *<p>    * The<code>storedFieldsIndexFormat</code> parameter allows you to choose    * bettwen several fields index formats that offer various trade-offs between    * memory usage and speed.    *    * @param compressionMode the {@link CompressionMode} to use    * @param chunkSize the minimum number of bytes of a single chunk of stored documents    * @param storedFieldsIndexFormat the format to use to load the fields index    * @see CompressionMode    * @see CompressingStoredFieldsIndex    */
+comment|/**    * Create a new {@link CompressingStoredFieldsFormat}.    *<p>    * The<code>compressionMode</code> parameter allows you to choose between    * compression algorithms that have various compression and uncompression    * speeds so that you can pick the one that best fits your indexing and    * searching throughput.    *<p>    *<code>chunkSize</code> is the minimum byte size of a chunk of documents.    * A value of<code>1</code> can make sense if there is redundancy across    * fields. In that case, both performance and compression ratio should be    * better than with {@link Lucene40StoredFieldsFormat} with compressed    * fields.    *<p>    * Higher values of<code>chunkSize</code> should improve the compression    * atio but will require more memory at indexing time and might make document    * loading a little slower (depending on the size of your OS cache compared    * to the size of your index).    *<p>    * The<code>storedFieldsIndex</code> parameter allows you to choose between    * several fields index implementations that offer various trade-offs between    * memory usage and speed.    *    * @param compressionMode the {@link CompressionMode} to use    * @param chunkSize the minimum number of bytes of a single chunk of stored documents    * @param storedFieldsIndex the fields index impl to use    * @see CompressionMode    * @see CompressingStoredFieldsIndex    */
 DECL|method|CompressingStoredFieldsFormat
 specifier|public
 name|CompressingStoredFieldsFormat
@@ -198,7 +198,7 @@ name|int
 name|chunkSize
 parameter_list|,
 name|CompressingStoredFieldsIndex
-name|storedFieldsIndexFormat
+name|storedFieldsIndex
 parameter_list|)
 block|{
 name|this
@@ -230,9 +230,9 @@ name|chunkSize
 expr_stmt|;
 name|this
 operator|.
-name|storedFieldsIndexFormat
+name|storedFieldsIndex
 operator|=
-name|storedFieldsIndexFormat
+name|storedFieldsIndex
 expr_stmt|;
 block|}
 comment|/**    * Create a new {@link CompressingStoredFieldsFormat} with an in-memory    * {@link CompressingStoredFieldsIndex}.    *    * @see CompressingStoredFieldsFormat#CompressingStoredFieldsFormat(CompressionMode, int, CompressingStoredFieldsIndex)    */
@@ -354,8 +354,38 @@ name|compressionMode
 argument_list|,
 name|chunkSize
 argument_list|,
-name|storedFieldsIndexFormat
+name|storedFieldsIndex
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|"(compressionMode="
+operator|+
+name|compressionMode
+operator|+
+literal|", chunkSize="
+operator|+
+name|chunkSize
+operator|+
+literal|", storedFieldsIndex="
+operator|+
+name|storedFieldsIndex
+operator|+
+literal|")"
 return|;
 block|}
 block|}
