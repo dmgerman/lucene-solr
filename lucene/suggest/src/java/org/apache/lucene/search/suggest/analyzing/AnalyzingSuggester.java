@@ -1183,7 +1183,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Just escapes the bytes we steal (0xff, 0x0). */
+comment|/** Just escapes the 0xff byte (which we still for SEP). */
 DECL|class|EscapingTokenStreamToAutomaton
 specifier|private
 specifier|static
@@ -1356,6 +1356,34 @@ name|spare
 return|;
 block|}
 block|}
+DECL|method|getTokenStreamToAutomaton
+specifier|private
+name|TokenStreamToAutomaton
+name|getTokenStreamToAutomaton
+parameter_list|()
+block|{
+if|if
+condition|(
+name|preserveSep
+condition|)
+block|{
+return|return
+operator|new
+name|EscapingTokenStreamToAutomaton
+argument_list|()
+return|;
+block|}
+else|else
+block|{
+comment|// When we're not preserving sep, we don't steal 0xff
+comment|// byte, so we don't need to do any escaping:
+return|return
+operator|new
+name|TokenStreamToAutomaton
+argument_list|()
+return|;
+block|}
+block|}
 annotation|@
 name|Override
 DECL|method|build
@@ -1444,8 +1472,7 @@ decl_stmt|;
 name|TokenStreamToAutomaton
 name|ts2a
 init|=
-operator|new
-name|EscapingTokenStreamToAutomaton
+name|getTokenStreamToAutomaton
 argument_list|()
 decl_stmt|;
 comment|// analyzed sequence + 0(byte) + weight(int) + surface + analyzedLength(short)
@@ -2341,11 +2368,8 @@ decl_stmt|;
 name|Automaton
 name|automaton
 init|=
-operator|(
-operator|new
-name|EscapingTokenStreamToAutomaton
+name|getTokenStreamToAutomaton
 argument_list|()
-operator|)
 operator|.
 name|toAutomaton
 argument_list|(
