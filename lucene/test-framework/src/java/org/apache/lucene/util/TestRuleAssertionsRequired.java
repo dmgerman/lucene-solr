@@ -122,13 +122,8 @@ argument_list|(
 name|msg
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|Exception
-argument_list|(
-name|msg
-argument_list|)
-throw|;
+comment|// nocommit put back:
+comment|//throw new Exception(msg);
 block|}
 catch|catch
 parameter_list|(
