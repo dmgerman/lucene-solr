@@ -72,9 +72,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40ords
+name|lucene41ords
 operator|.
-name|Lucene40WithOrds
+name|Lucene41WithOrds
 import|;
 end_import
 
@@ -119,7 +119,7 @@ name|PostingsFormat
 name|postings
 init|=
 operator|new
-name|Lucene40WithOrds
+name|Lucene41WithOrds
 argument_list|()
 decl_stmt|;
 DECL|field|codec

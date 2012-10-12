@@ -95,7 +95,7 @@ name|PostingsFormat
 name|postings
 init|=
 operator|new
-name|TestBloomFilteredLucene40Postings
+name|TestBloomFilteredLucene41Postings
 argument_list|()
 decl_stmt|;
 DECL|field|codec

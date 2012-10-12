@@ -308,7 +308,7 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|Pulsing40PostingsFormat
+name|Pulsing41PostingsFormat
 argument_list|(
 literal|1
 argument_list|)
