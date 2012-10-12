@@ -1270,16 +1270,6 @@ name|T
 argument_list|>
 name|comparator
 decl_stmt|;
-comment|// Set once the queue has filled:
-DECL|field|bottom
-name|FSTPath
-argument_list|<
-name|T
-argument_list|>
-name|bottom
-init|=
-literal|null
-decl_stmt|;
 DECL|field|queue
 name|TreeSet
 argument_list|<
@@ -1392,14 +1382,28 @@ operator|.
 name|output
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("  addIfCompetitive bottom=" + bottom + " queue.size()=" + queue.size());
+comment|//System.out.println("  addIfCompetitive queue.size()=" + queue.size() + " path=" + path + " + label=" + path.arc.label);
 if|if
 condition|(
-name|bottom
-operator|!=
-literal|null
+name|queue
+operator|.
+name|size
+argument_list|()
+operator|==
+name|topN
 condition|)
 block|{
+name|FSTPath
+argument_list|<
+name|T
+argument_list|>
+name|bottom
+init|=
+name|queue
+operator|.
+name|last
+argument_list|()
+decl_stmt|;
 name|int
 name|comp
 init|=
@@ -1607,12 +1611,6 @@ argument_list|,
 name|newInput
 argument_list|)
 decl_stmt|;
-comment|// this is pointless right?  we do it above already:
-comment|//newPath.input.grow(path.input.length+1);
-comment|//System.arraycopy(path.input.ints, 0, newPath.input.ints, 0, path.input.length);
-comment|//newPath.input.ints[path.input.length] = path.arc.label;
-comment|//newPath.input.length = path.input.length+1;
-comment|//System.out.println("    add path=" + newPath);
 name|queue
 operator|.
 name|add
@@ -1622,57 +1620,21 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|bottom
-operator|!=
-literal|null
-condition|)
-block|{
-specifier|final
-name|FSTPath
-argument_list|<
-name|T
-argument_list|>
-name|removed
-init|=
-name|queue
-operator|.
-name|pollLast
-argument_list|()
-decl_stmt|;
-assert|assert
-name|removed
-operator|==
-name|bottom
-assert|;
-name|bottom
-operator|=
-name|queue
-operator|.
-name|last
-argument_list|()
-expr_stmt|;
-comment|//System.out.println("    now re-set bottom: " + bottom + " queue=" + queue);
-block|}
-elseif|else
-if|if
-condition|(
 name|queue
 operator|.
 name|size
 argument_list|()
 operator|==
 name|topN
+operator|+
+literal|1
 condition|)
 block|{
-comment|// Queue just filled up:
-name|bottom
-operator|=
 name|queue
 operator|.
-name|last
+name|pollLast
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("    now set bottom: " + bottom);
 block|}
 block|}
 comment|/** Adds all leaving arcs, including 'finished' arc, if      *  the node is final, from this node into the queue.  */
@@ -1887,7 +1849,7 @@ operator|<
 name|topN
 condition|)
 block|{
-comment|//System.out.println("\nfind next path");
+comment|//System.out.println("\nfind next path: queue.size=" + queue.size());
 name|FSTPath
 argument_list|<
 name|T
