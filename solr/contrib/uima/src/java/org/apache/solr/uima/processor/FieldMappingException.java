@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Exception thrown when an error happening while mapping UIMA CAS model to Solt fields  */
+comment|/**  * Exception thrown when an error happening while mapping UIMA CAS model to Solr fields  */
 end_comment
 
 begin_class
@@ -37,7 +37,13 @@ parameter_list|(
 name|Exception
 name|e
 parameter_list|)
-block|{   }
+block|{
+name|super
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

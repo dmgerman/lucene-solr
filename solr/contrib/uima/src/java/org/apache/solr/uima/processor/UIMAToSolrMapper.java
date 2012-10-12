@@ -179,11 +179,13 @@ argument_list|)
 decl_stmt|;
 DECL|field|document
 specifier|private
+specifier|final
 name|SolrInputDocument
 name|document
 decl_stmt|;
 DECL|field|cas
 specifier|private
+specifier|final
 name|JCas
 name|cas
 decl_stmt|;
@@ -343,7 +345,7 @@ operator|.
 name|info
 argument_list|(
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|"mapping "
 argument_list|)
@@ -379,8 +381,6 @@ argument_list|)
 expr_stmt|;
 name|String
 name|featureValue
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -431,7 +431,7 @@ operator|.
 name|info
 argument_list|(
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|"writing "
 argument_list|)
