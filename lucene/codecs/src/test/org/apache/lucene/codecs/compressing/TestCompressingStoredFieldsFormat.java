@@ -82,9 +82,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40Codec
+name|Lucene41Codec
 import|;
 end_import
 
@@ -810,7 +810,7 @@ operator|.
 name|getCodec
 argument_list|()
 operator|instanceof
-name|Lucene40Codec
+name|Lucene41Codec
 condition|)
 block|{
 name|iwConf
@@ -834,7 +834,7 @@ operator|.
 name|setCodec
 argument_list|(
 operator|new
-name|Lucene40Codec
+name|Lucene41Codec
 argument_list|()
 argument_list|)
 expr_stmt|;

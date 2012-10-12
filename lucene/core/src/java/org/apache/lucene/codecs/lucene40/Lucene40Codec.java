@@ -190,9 +190,14 @@ begin_comment
 comment|// (it writes a minor version, etc).
 end_comment
 
+begin_comment
+comment|// nocommit: make readonly and add impersonator
+end_comment
+
 begin_class
 DECL|class|Lucene40Codec
 specifier|public
+specifier|final
 class|class
 name|Lucene40Codec
 extends|extends

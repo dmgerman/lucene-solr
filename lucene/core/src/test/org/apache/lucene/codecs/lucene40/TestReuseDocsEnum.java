@@ -298,6 +298,10 @@ name|_TestUtil
 import|;
 end_import
 
+begin_comment
+comment|// nocommit: really this should be in BaseTestPF or somewhere else? useful test!
+end_comment
+
 begin_class
 DECL|class|TestReuseDocsEnum
 specifier|public
