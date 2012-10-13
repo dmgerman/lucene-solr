@@ -356,7 +356,7 @@ name|PAY_CODEC
 init|=
 literal|"Lucene41PostingsWriterPay"
 decl_stmt|;
-comment|// Increment version to change it: nocommit: we can start at 0
+comment|// Increment version to change it
 DECL|field|VERSION_START
 specifier|final
 specifier|static
@@ -365,22 +365,13 @@ name|VERSION_START
 init|=
 literal|0
 decl_stmt|;
-DECL|field|VERSION_NO_OFFSETS_IN_SKIPDATA
-specifier|final
-specifier|static
-name|int
-name|VERSION_NO_OFFSETS_IN_SKIPDATA
-init|=
-literal|1
-decl_stmt|;
-comment|// LUCENE-4443
 DECL|field|VERSION_CURRENT
 specifier|final
 specifier|static
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_NO_OFFSETS_IN_SKIPDATA
+name|VERSION_START
 decl_stmt|;
 DECL|field|docOut
 specifier|final

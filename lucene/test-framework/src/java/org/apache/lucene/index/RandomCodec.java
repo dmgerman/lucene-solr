@@ -750,7 +750,7 @@ argument_list|,
 name|maxItemsPerBlock
 argument_list|)
 argument_list|,
-comment|//TODO as a PostingsFormat which wraps others, we should allow TestBloomFilteredLucene40Postings to be constructed
+comment|//TODO as a PostingsFormat which wraps others, we should allow TestBloomFilteredLucene41Postings to be constructed
 comment|//with a choice of concrete PostingsFormats. Maybe useful to have a generic means of marking and dealing
 comment|//with such "wrapper" classes?
 operator|new

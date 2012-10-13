@@ -80,7 +80,7 @@ name|Pulsing41PostingsFormat
 extends|extends
 name|PulsingPostingsFormat
 block|{
-comment|/** Inlines docFreq=1 terms, otherwise uses the normal "Lucene40" format. */
+comment|/** Inlines docFreq=1 terms, otherwise uses the normal "Lucene41" format. */
 DECL|method|Pulsing41PostingsFormat
 specifier|public
 name|Pulsing41PostingsFormat
@@ -92,7 +92,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Inlines docFreq=<code>freqCutoff</code> terms, otherwise uses the normal "Lucene40" format. */
+comment|/** Inlines docFreq=<code>freqCutoff</code> terms, otherwise uses the normal "Lucene41" format. */
 DECL|method|Pulsing41PostingsFormat
 specifier|public
 name|Pulsing41PostingsFormat
@@ -115,7 +115,7 @@ name|DEFAULT_MAX_BLOCK_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Inlines docFreq=<code>freqCutoff</code> terms, otherwise uses the normal "Lucene40" format. */
+comment|/** Inlines docFreq=<code>freqCutoff</code> terms, otherwise uses the normal "Lucene41" format. */
 DECL|method|Pulsing41PostingsFormat
 specifier|public
 name|Pulsing41PostingsFormat

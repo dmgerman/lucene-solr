@@ -175,7 +175,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the Lucene 4.0 index format, with configurable per-field postings formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene40 package documentation for file format details.  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 4.0 index format, with configurable per-field postings formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene40 package documentation for file format details.  * @deprecated Only for reading old 4.0 segments  */
 end_comment
 
 begin_comment
@@ -190,11 +190,9 @@ begin_comment
 comment|// (it writes a minor version, etc).
 end_comment
 
-begin_comment
-comment|// nocommit: make readonly and add impersonator
-end_comment
-
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40Codec
 specifier|public
 specifier|final

@@ -299,7 +299,7 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit: really this should be in BaseTestPF or somewhere else? useful test!
+comment|// TODO: really this should be in BaseTestPF or somewhere else? useful test!
 end_comment
 
 begin_class
@@ -332,7 +332,7 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|Lucene40PostingsFormat
+name|Lucene40RWPostingsFormat
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -580,7 +580,7 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|Lucene40PostingsFormat
+name|Lucene40RWPostingsFormat
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -965,7 +965,7 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|Lucene40PostingsFormat
+name|Lucene40RWPostingsFormat
 argument_list|()
 argument_list|)
 decl_stmt|;
