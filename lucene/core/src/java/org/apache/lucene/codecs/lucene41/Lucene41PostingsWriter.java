@@ -550,6 +550,8 @@ specifier|final
 name|Lucene41SkipWriter
 name|skipWriter
 decl_stmt|;
+comment|/** Creates a postings writer with the specified PackedInts overhead ratio */
+comment|// TODO: does this ctor even make sense?
 DECL|method|Lucene41PostingsWriter
 specifier|public
 name|Lucene41PostingsWriter
@@ -945,6 +947,7 @@ name|MAX_ENCODED_SIZE
 index|]
 expr_stmt|;
 block|}
+comment|/** Creates a postings writer with<code>PackedInts.COMPACT</code> */
 DECL|method|Lucene41PostingsWriter
 specifier|public
 name|Lucene41PostingsWriter

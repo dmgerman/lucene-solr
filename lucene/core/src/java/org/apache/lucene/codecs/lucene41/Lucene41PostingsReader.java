@@ -412,6 +412,7 @@ name|ForUtil
 name|forUtil
 decl_stmt|;
 comment|// public static boolean DEBUG = false;
+comment|/** Sole constructor. */
 DECL|method|Lucene41PostingsReader
 specifier|public
 name|Lucene41PostingsReader
