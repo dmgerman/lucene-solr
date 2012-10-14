@@ -142,9 +142,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40PostingsFormat
+name|Lucene41PostingsFormat
 import|;
 end_import
 
@@ -263,7 +263,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Just like {@link Lucene40PostingsFormat} but with additional asserts.  */
+comment|/**  * Just like {@link Lucene41PostingsFormat} but with additional asserts.  */
 end_comment
 
 begin_class
@@ -282,7 +282,7 @@ name|PostingsFormat
 name|in
 init|=
 operator|new
-name|Lucene40PostingsFormat
+name|Lucene41PostingsFormat
 argument_list|()
 decl_stmt|;
 DECL|method|AssertingPostingsFormat

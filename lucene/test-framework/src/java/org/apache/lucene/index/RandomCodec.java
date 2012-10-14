@@ -146,9 +146,41 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|block
+name|lucene41
 operator|.
-name|BlockPostingsFormat
+name|Lucene41Codec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene41
+operator|.
+name|Lucene41PostingsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene41ords
+operator|.
+name|Lucene41WithOrds
 import|;
 end_import
 
@@ -164,55 +196,7 @@ name|codecs
 operator|.
 name|bloom
 operator|.
-name|TestBloomFilteredLucene40Postings
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|Lucene40Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|Lucene40PostingsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene40ords
-operator|.
-name|Lucene40WithOrds
+name|TestBloomFilteredLucene41Postings
 import|;
 end_import
 
@@ -340,7 +324,7 @@ name|codecs
 operator|.
 name|pulsing
 operator|.
-name|Pulsing40PostingsFormat
+name|Pulsing41PostingsFormat
 import|;
 end_import
 
@@ -398,7 +382,7 @@ specifier|public
 class|class
 name|RandomCodec
 extends|extends
-name|Lucene40Codec
+name|Lucene41Codec
 block|{
 comment|/** Shuffled list of postings formats to use for new mappings */
 DECL|field|formats
@@ -672,15 +656,7 @@ argument_list|(
 name|avoidCodecs
 argument_list|,
 operator|new
-name|Lucene40PostingsFormat
-argument_list|(
-name|minItemsPerBlock
-argument_list|,
-name|maxItemsPerBlock
-argument_list|)
-argument_list|,
-operator|new
-name|BlockPostingsFormat
+name|Lucene41PostingsFormat
 argument_list|(
 name|minItemsPerBlock
 argument_list|,
@@ -740,7 +716,7 @@ operator|)
 argument_list|)
 argument_list|,
 operator|new
-name|Pulsing40PostingsFormat
+name|Pulsing41PostingsFormat
 argument_list|(
 literal|1
 operator|+
@@ -758,7 +734,7 @@ argument_list|)
 argument_list|,
 comment|// add pulsing again with (usually) different parameters
 operator|new
-name|Pulsing40PostingsFormat
+name|Pulsing41PostingsFormat
 argument_list|(
 literal|1
 operator|+
@@ -774,11 +750,11 @@ argument_list|,
 name|maxItemsPerBlock
 argument_list|)
 argument_list|,
-comment|//TODO as a PostingsFormat which wraps others, we should allow TestBloomFilteredLucene40Postings to be constructed
+comment|//TODO as a PostingsFormat which wraps others, we should allow TestBloomFilteredLucene41Postings to be constructed
 comment|//with a choice of concrete PostingsFormats. Maybe useful to have a generic means of marking and dealing
 comment|//with such "wrapper" classes?
 operator|new
-name|TestBloomFilteredLucene40Postings
+name|TestBloomFilteredLucene41Postings
 argument_list|()
 argument_list|,
 operator|new
@@ -826,7 +802,7 @@ name|NestedPulsingPostingsFormat
 argument_list|()
 argument_list|,
 operator|new
-name|Lucene40WithOrds
+name|Lucene41WithOrds
 argument_list|()
 argument_list|,
 operator|new

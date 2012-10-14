@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.block
+DECL|package|org.apache.lucene.codecs.lucene41
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|block
+name|lucene41
 package|;
 end_package
 
@@ -43,22 +43,6 @@ operator|.
 name|codecs
 operator|.
 name|PostingsFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene40
-operator|.
-name|Lucene40Codec
 import|;
 end_import
 
@@ -318,7 +302,7 @@ operator|.
 name|setCodec
 argument_list|(
 operator|new
-name|Lucene40Codec
+name|Lucene41Codec
 argument_list|()
 block|{
 annotation|@
@@ -336,7 +320,7 @@ name|PostingsFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Block"
+literal|"Lucene41"
 argument_list|)
 return|;
 block|}
@@ -559,7 +543,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|BlockPostingsFormat
+name|Lucene41PostingsFormat
 operator|.
 name|BLOCK_SIZE
 condition|;
@@ -631,7 +615,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|BlockPostingsFormat
+name|Lucene41PostingsFormat
 operator|.
 name|BLOCK_SIZE
 operator|*
@@ -705,7 +689,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|BlockPostingsFormat
+name|Lucene41PostingsFormat
 operator|.
 name|BLOCK_SIZE
 operator|/
@@ -793,7 +777,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|BlockPostingsFormat
+name|Lucene41PostingsFormat
 operator|.
 name|BLOCK_SIZE
 operator|/

@@ -771,7 +771,7 @@ name|PostingsFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene40WithOrds"
+literal|"Lucene41WithOrds"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1438,7 +1438,7 @@ name|PostingsFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene40WithOrds"
+literal|"Lucene41WithOrds"
 argument_list|)
 argument_list|)
 decl_stmt|;

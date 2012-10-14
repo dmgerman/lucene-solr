@@ -66,9 +66,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40Codec
+name|Lucene41Codec
 import|;
 end_import
 
@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A codec that uses {@link CompressingStoredFieldsFormat} for its stored  * fields and delegates to {@link Lucene40Codec} for everything else.  */
+comment|/**  * A codec that uses {@link CompressingStoredFieldsFormat} for its stored  * fields and delegates to {@link Lucene41Codec} for everything else.  */
 end_comment
 
 begin_class
@@ -208,7 +208,7 @@ argument_list|(
 literal|"Compressing"
 argument_list|,
 operator|new
-name|Lucene40Codec
+name|Lucene41Codec
 argument_list|()
 argument_list|)
 expr_stmt|;

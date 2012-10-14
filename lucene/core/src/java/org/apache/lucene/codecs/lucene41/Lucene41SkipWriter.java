@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.block
+DECL|package|org.apache.lucene.codecs.lucene41
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|block
+name|lucene41
 package|;
 end_package
 
@@ -71,14 +71,14 @@ comment|/**  * Write skip lists with multiple levels, and support skip within bl
 end_comment
 
 begin_class
-DECL|class|BlockSkipWriter
+DECL|class|Lucene41SkipWriter
 specifier|final
 class|class
-name|BlockSkipWriter
+name|Lucene41SkipWriter
 extends|extends
 name|MultiLevelSkipListWriter
 block|{
-comment|// private boolean DEBUG = BlockPostingsReader.DEBUG;
+comment|// private boolean DEBUG = Lucene41PostingsReader.DEBUG;
 DECL|field|lastSkipDoc
 specifier|private
 name|int
@@ -172,9 +172,9 @@ specifier|private
 name|boolean
 name|fieldHasPayloads
 decl_stmt|;
-DECL|method|BlockSkipWriter
+DECL|method|Lucene41SkipWriter
 specifier|public
-name|BlockSkipWriter
+name|Lucene41SkipWriter
 parameter_list|(
 name|int
 name|maxSkipLevels

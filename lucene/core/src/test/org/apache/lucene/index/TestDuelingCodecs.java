@@ -387,7 +387,7 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-comment|// for now its SimpleText vs Lucene40(random postings format)
+comment|// for now its SimpleText vs Lucene41(random postings format)
 comment|// as this gives the best overall coverage. when we have more
 comment|// codecs we should probably pick 2 from Codec.availableCodecs()
 comment|// TODO: it would also be nice to support preflex, but it doesn't

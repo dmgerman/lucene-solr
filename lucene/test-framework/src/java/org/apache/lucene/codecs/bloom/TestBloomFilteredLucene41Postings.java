@@ -80,9 +80,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40PostingsFormat
+name|Lucene41PostingsFormat
 import|;
 end_import
 
@@ -129,15 +129,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class used for testing {@link BloomFilteringPostingsFormat} with a concrete  * delegate (Lucene40). Creates a Bloom filter on ALL fields and with tiny  * amounts of memory reserved for the filter. DO NOT USE IN A PRODUCTION  * APPLICATION This is not a realistic application of Bloom Filters as they  * ordinarily are larger and operate on only primary key type fields.  */
+comment|/**  * A class used for testing {@link BloomFilteringPostingsFormat} with a concrete  * delegate (Lucene41). Creates a Bloom filter on ALL fields and with tiny  * amounts of memory reserved for the filter. DO NOT USE IN A PRODUCTION  * APPLICATION This is not a realistic application of Bloom Filters as they  * ordinarily are larger and operate on only primary key type fields.  */
 end_comment
 
 begin_class
-DECL|class|TestBloomFilteredLucene40Postings
+DECL|class|TestBloomFilteredLucene41Postings
 specifier|public
 specifier|final
 class|class
-name|TestBloomFilteredLucene40Postings
+name|TestBloomFilteredLucene41Postings
 extends|extends
 name|PostingsFormat
 block|{
@@ -199,14 +199,14 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|TestBloomFilteredLucene40Postings
+DECL|method|TestBloomFilteredLucene41Postings
 specifier|public
-name|TestBloomFilteredLucene40Postings
+name|TestBloomFilteredLucene41Postings
 parameter_list|()
 block|{
 name|super
 argument_list|(
-literal|"TestBloomFilteredLucene40Postings"
+literal|"TestBloomFilteredLucene41Postings"
 argument_list|)
 expr_stmt|;
 name|delegate
@@ -215,7 +215,7 @@ operator|new
 name|BloomFilteringPostingsFormat
 argument_list|(
 operator|new
-name|Lucene40PostingsFormat
+name|Lucene41PostingsFormat
 argument_list|()
 argument_list|,
 operator|new
