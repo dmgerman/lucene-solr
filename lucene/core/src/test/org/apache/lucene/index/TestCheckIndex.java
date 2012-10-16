@@ -530,7 +530,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|19
+literal|18
 argument_list|,
 name|seg
 operator|.
@@ -541,7 +541,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|19
+literal|18
 argument_list|,
 name|seg
 operator|.

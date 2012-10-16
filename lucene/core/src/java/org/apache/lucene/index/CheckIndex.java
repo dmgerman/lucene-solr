@@ -720,11 +720,19 @@ DECL|method|TermIndexStatus
 name|TermIndexStatus
 parameter_list|()
 block|{       }
-comment|/** Total term count */
+comment|/** Number of terms with at least one live doc. */
 DECL|field|termCount
 specifier|public
 name|long
 name|termCount
+init|=
+literal|0L
+decl_stmt|;
+comment|/** Number of terms with zero live docs docs. */
+DECL|field|delTermCount
+specifier|public
+name|long
+name|delTermCount
 init|=
 literal|0L
 decl_stmt|;
@@ -3308,6 +3316,10 @@ name|termCountStart
 init|=
 name|status
 operator|.
+name|delTermCount
+operator|+
+name|status
+operator|.
 name|termCount
 decl_stmt|;
 name|BytesRef
@@ -3453,12 +3465,6 @@ literal|" is out of bounds"
 argument_list|)
 throw|;
 block|}
-name|status
-operator|.
-name|totFreq
-operator|+=
-name|docFreq
-expr_stmt|;
 name|sumDocFreq
 operator|+=
 name|docFreq
@@ -3528,6 +3534,10 @@ name|ordExpected
 init|=
 name|status
 operator|.
+name|delTermCount
+operator|+
+name|status
+operator|.
 name|termCount
 operator|-
 name|termCountStart
@@ -3555,11 +3565,6 @@ throw|;
 block|}
 block|}
 block|}
-name|status
-operator|.
-name|termCount
-operator|++
-expr_stmt|;
 specifier|final
 name|DocsEnum
 name|docs2
@@ -3624,6 +3629,11 @@ condition|)
 block|{
 break|break;
 block|}
+name|status
+operator|.
+name|totFreq
+operator|++
+expr_stmt|;
 name|visitedDocs
 operator|.
 name|set
@@ -4054,6 +4064,27 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+if|if
+condition|(
+name|docCount
+operator|!=
+literal|0
+condition|)
+block|{
+name|status
+operator|.
+name|termCount
+operator|++
+expr_stmt|;
+block|}
+else|else
+block|{
+name|status
+operator|.
+name|delTermCount
+operator|++
+expr_stmt|;
 block|}
 specifier|final
 name|long
@@ -5226,9 +5257,15 @@ literal|1
 decl_stmt|;
 if|if
 condition|(
+operator|(
+name|status
+operator|.
+name|delTermCount
+operator|+
 name|status
 operator|.
 name|termCount
+operator|)
 operator|-
 name|termCountStart
 operator|>
@@ -5258,6 +5295,10 @@ name|termCount
 operator|!=
 name|status
 operator|.
+name|delTermCount
+operator|+
+name|status
+operator|.
 name|termCount
 operator|-
 name|termCountStart
@@ -5269,7 +5310,13 @@ name|RuntimeException
 argument_list|(
 literal|"termCount mismatch "
 operator|+
+operator|(
+name|status
+operator|.
+name|delTermCount
+operator|+
 name|termCount
+operator|)
 operator|+
 literal|" vs "
 operator|+
