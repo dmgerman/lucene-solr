@@ -106,6 +106,22 @@ name|ArrayList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|MergePolicy
+operator|.
+name|MergeTrigger
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Merges segments of approximately equal size, subject to  *  an allowed number of segments per tier.  This is similar  *  to {@link LogByteSizeMergePolicy}, except this merge  *  policy is able to merge non-adjacent segment, and  *  separates how many segments are merged at once ({@link  *  #setMaxMergeAtOnce}) from how many segments are allowed  *  per tier ({@link #setSegmentsPerTier}).  This merge  *  policy also does not over-merge (i.e. cascade merges).   *  *<p>For normal merging, this policy first computes a  *  "budget" of how many segments are allowed to be in the  *  index.  If the index is over-budget, then the policy  *  sorts segments by decreasing size (pro-rating by percent  *  deletes), and then finds the least-cost merge.  Merge  *  cost is measured by a combination of the "skew" of the  *  merge (size of largest segment divided by smallest segment),  *  total merge size and percent deletes reclaimed,  *  so that merges with lower skew, smaller size  *  and those reclaiming more deletes, are  *  favored.  *  *<p>If a merge will produce a segment that's larger than  *  {@link #setMaxMergedSegmentMB}, then the policy will  *  merge fewer segments (down to 1 at once, if that one has  *  deletions) to keep the segment size under budget.  *        *<p><b>NOTE</b>: this policy freely merges non-adjacent  *  segments; if this is a problem, use {@link  *  LogMergePolicy}.  *  *<p><b>NOTE</b>: This policy always merges by byte size  *  of the segments, always pro-rates by percent deletes,  *  and does not apply any maximum segment size during  *  forceMerge (unlike {@link LogByteSizeMergePolicy}).  *  *  @lucene.experimental  */
 end_comment
@@ -839,6 +855,9 @@ specifier|public
 name|MergeSpecification
 name|findMerges
 parameter_list|(
+name|MergeTrigger
+name|mergeTrigger
+parameter_list|,
 name|SegmentInfos
 name|infos
 parameter_list|)
