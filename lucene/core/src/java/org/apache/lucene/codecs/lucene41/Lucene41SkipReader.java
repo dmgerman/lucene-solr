@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.block
+DECL|package|org.apache.lucene.codecs.lucene41
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|block
+name|lucene41
 package|;
 end_package
 
@@ -67,18 +67,18 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the skip list reader for block postings format  * that stores positions and payloads.  *   * Although this skipper uses MultiLevelSkipListReader as an interface,   * its definition of skip position will be a little different.   *  * For example, when skipInterval = blockSize = 3, df = 2*skipInterval = 6,   *   * 0 1 2 3 4 5  * d d d d d d    (posting list)  *     ^     ^    (skip point in MultiLeveSkipWriter)  *       ^        (skip point in BlockSkipWriter)  *  * In this case, MultiLevelSkipListReader will use the last document as a skip point,   * while BlockSkipReader should assume no skip point will comes.   *  * If we use the interface directly in BlockSkipReader, it may silly try to read   * another skip data after the only skip point is loaded.   *  * To illustrate this, we can call skipTo(d[5]), since skip point d[3] has smaller docId,  * and numSkipped+blockSize== df, the MultiLevelSkipListReader will assume the skip list  * isn't exhausted yet, and try to load a non-existed skip point  *  * Therefore, we'll trim df before passing it to the interface. see trim(int)  *  */
+comment|/**  * Implements the skip list reader for block postings format  * that stores positions and payloads.  *   * Although this skipper uses MultiLevelSkipListReader as an interface,   * its definition of skip position will be a little different.   *  * For example, when skipInterval = blockSize = 3, df = 2*skipInterval = 6,   *   * 0 1 2 3 4 5  * d d d d d d    (posting list)  *     ^     ^    (skip point in MultiLeveSkipWriter)  *       ^        (skip point in Lucene41SkipWriter)  *  * In this case, MultiLevelSkipListReader will use the last document as a skip point,   * while Lucene41SkipReader should assume no skip point will comes.   *  * If we use the interface directly in Lucene41SkipReader, it may silly try to read   * another skip data after the only skip point is loaded.   *  * To illustrate this, we can call skipTo(d[5]), since skip point d[3] has smaller docId,  * and numSkipped+blockSize== df, the MultiLevelSkipListReader will assume the skip list  * isn't exhausted yet, and try to load a non-existed skip point  *  * Therefore, we'll trim df before passing it to the interface. see trim(int)  *  */
 end_comment
 
 begin_class
-DECL|class|BlockSkipReader
+DECL|class|Lucene41SkipReader
 specifier|final
 class|class
-name|BlockSkipReader
+name|Lucene41SkipReader
 extends|extends
 name|MultiLevelSkipListReader
 block|{
-comment|// private boolean DEBUG = BlockPostingsReader.DEBUG;
+comment|// private boolean DEBUG = Lucene41PostingsReader.DEBUG;
 DECL|field|blockSize
 specifier|private
 specifier|final
@@ -140,9 +140,9 @@ specifier|private
 name|int
 name|lastPosBufferUpto
 decl_stmt|;
-DECL|method|BlockSkipReader
+DECL|method|Lucene41SkipReader
 specifier|public
-name|BlockSkipReader
+name|Lucene41SkipReader
 parameter_list|(
 name|IndexInput
 name|skipStream
@@ -262,7 +262,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Trim original docFreq to tell skipReader read proper number of skip points.    *    * Since our definition in BlockSkip* is a little different from MultiLevelSkip*    * This trimmed docFreq will prevent skipReader from:    * 1. silly reading a non-existed skip point after the last block boundary    * 2. moving into the vInt block    *    */
+comment|/**    * Trim original docFreq to tell skipReader read proper number of skip points.    *    * Since our definition in Lucene41Skip* is a little different from MultiLevelSkip*    * This trimmed docFreq will prevent skipReader from:    * 1. silly reading a non-existed skip point after the last block boundary    * 2. moving into the vInt block    *    */
 DECL|method|trim
 specifier|protected
 name|int

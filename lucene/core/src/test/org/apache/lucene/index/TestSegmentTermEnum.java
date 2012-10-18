@@ -106,9 +106,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40PostingsFormat
+name|Lucene41PostingsFormat
 import|;
 end_import
 
@@ -365,7 +365,7 @@ operator|.
 name|alwaysPostingsFormat
 argument_list|(
 operator|new
-name|Lucene40PostingsFormat
+name|Lucene41PostingsFormat
 argument_list|()
 argument_list|)
 argument_list|)

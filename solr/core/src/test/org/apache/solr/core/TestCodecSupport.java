@@ -178,7 +178,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Pulsing40"
+literal|"Pulsing41"
 argument_list|,
 name|format
 operator|.
@@ -232,7 +232,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene40"
+literal|"Lucene41"
 argument_list|,
 name|format
 operator|.
@@ -259,7 +259,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene40"
+literal|"Lucene41"
 argument_list|,
 name|format
 operator|.
@@ -336,7 +336,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Pulsing40"
+literal|"Pulsing41"
 argument_list|,
 name|format
 operator|.
@@ -351,7 +351,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Pulsing40"
+literal|"Pulsing41"
 argument_list|,
 name|format
 operator|.
@@ -366,7 +366,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene40"
+literal|"Lucene41"
 argument_list|,
 name|format
 operator|.
@@ -381,7 +381,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Lucene40"
+literal|"Lucene41"
 argument_list|,
 name|format
 operator|.

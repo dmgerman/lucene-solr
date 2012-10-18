@@ -308,9 +308,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40PostingsReader
+name|Lucene41PostingsReader
 import|;
 end_import
 
@@ -324,9 +324,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40PostingsWriter
+name|Lucene41PostingsWriter
 import|;
 end_import
 
@@ -1312,10 +1312,11 @@ literal|"MockRandomCodec: writing Standard postings"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: randomize variables like acceptibleOverHead?!
 name|postingsWriter
 operator|=
 operator|new
-name|Lucene40PostingsWriter
+name|Lucene41PostingsWriter
 argument_list|(
 name|state
 argument_list|,
@@ -2113,7 +2114,7 @@ block|}
 name|postingsReader
 operator|=
 operator|new
-name|Lucene40PostingsReader
+name|Lucene41PostingsReader
 argument_list|(
 name|state
 operator|.

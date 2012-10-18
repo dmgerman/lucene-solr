@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Provides a {@link PostingsReaderBase} and {@link  * PostingsWriterBase}.  *  * @lucene.experimental */
+comment|/**   * Provides a {@link PostingsReaderBase} and {@link  * PostingsWriterBase}.  *  * @deprecated Only for reading old 4.0 segments */
 end_comment
 
 begin_comment
@@ -107,6 +107,8 @@ comment|// TODO: should these also be named / looked up via SPI?
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene40PostingsBaseFormat
 specifier|public
 specifier|final
@@ -179,13 +181,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
+throw|throw
 operator|new
-name|Lucene40PostingsWriter
+name|UnsupportedOperationException
 argument_list|(
-name|state
+literal|"this codec can only be used for reading"
 argument_list|)
-return|;
+throw|;
 block|}
 block|}
 end_class

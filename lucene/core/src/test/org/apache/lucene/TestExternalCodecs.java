@@ -52,9 +52,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40Codec
+name|Lucene41Codec
 import|;
 end_import
 
@@ -147,7 +147,7 @@ specifier|final
 class|class
 name|CustomPerFieldCodec
 extends|extends
-name|Lucene40Codec
+name|Lucene41Codec
 block|{
 DECL|field|ramFormat
 specifier|private
@@ -172,7 +172,7 @@ name|PostingsFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene40"
+literal|"Lucene41"
 argument_list|)
 decl_stmt|;
 DECL|field|pulsingFormat
@@ -185,7 +185,7 @@ name|PostingsFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Pulsing40"
+literal|"Pulsing41"
 argument_list|)
 decl_stmt|;
 annotation|@

@@ -136,9 +136,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40PostingsReader
+name|Lucene41PostingsReader
 import|;
 end_import
 
@@ -152,9 +152,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene40
+name|lucene41
 operator|.
-name|Lucene40PostingsWriter
+name|Lucene41PostingsWriter
 import|;
 end_import
 
@@ -233,7 +233,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Pulsing(1, Pulsing(2, Lucene40))  * @lucene.experimental  */
+comment|/**  * Pulsing(1, Pulsing(2, Lucene41))  * @lucene.experimental  */
 end_comment
 
 begin_comment
@@ -307,7 +307,7 @@ block|{
 name|docsWriter
 operator|=
 operator|new
-name|Lucene40PostingsWriter
+name|Lucene41PostingsWriter
 argument_list|(
 name|state
 argument_list|)
@@ -419,7 +419,7 @@ block|{
 name|docsReader
 operator|=
 operator|new
-name|Lucene40PostingsReader
+name|Lucene41PostingsReader
 argument_list|(
 name|state
 operator|.

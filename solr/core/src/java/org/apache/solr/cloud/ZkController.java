@@ -1277,6 +1277,8 @@ operator|.
 name|joinElection
 argument_list|(
 name|context
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|zkStateReader
@@ -2266,6 +2268,8 @@ operator|.
 name|joinElection
 argument_list|(
 name|context
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|zkStateReader
@@ -3747,6 +3751,8 @@ operator|.
 name|joinElection
 argument_list|(
 name|context
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
