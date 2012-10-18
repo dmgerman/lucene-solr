@@ -496,6 +496,10 @@ literal|1024
 argument_list|)
 decl_stmt|;
 comment|// take peakDelta into account - worst case is that all flushing, pending and blocked DWPT had maxMem and the last doc had the peakDelta
+comment|// 2 * ramBufferBytes -> before we stall we need to cross the 2xRAM Buffer border this is still a valid limit
+comment|// (numPending + numFlushingDWPT() + numBlockedFlushes()) * peakDelta) -> those are the total number of DWPT that are not active but not yet fully fluhsed
+comment|// all of them could theoretically be taken out of the loop once they crossed the RAM buffer and the last document was the peak delta
+comment|// (perThreadPool.getActiveThreadState() * peakDelta) -> at any given time there could be n threads in flight that crossed the stall control before we reached the limit and each of them could hold a peak document
 specifier|final
 name|long
 name|expected
@@ -521,7 +525,17 @@ operator|)
 operator|*
 name|peakDelta
 operator|)
+operator|+
+operator|(
+name|perThreadPool
+operator|.
+name|getActiveThreadState
+argument_list|()
+operator|*
+name|peakDelta
+operator|)
 decl_stmt|;
+comment|// the expected ram consumption is an upper bound at this point and not really the expected consumption
 if|if
 condition|(
 name|peakDelta
@@ -539,39 +553,41 @@ name|ram
 operator|<=
 name|expected
 operator|:
-literal|"ram was "
+literal|"actual mem: "
 operator|+
 name|ram
 operator|+
-literal|" expected: "
+literal|" byte, expected mem: "
 operator|+
 name|expected
 operator|+
-literal|" flush mem: "
+literal|" byte, flush mem: "
 operator|+
 name|flushBytes
 operator|+
-literal|" activeMem: "
+literal|", active mem: "
 operator|+
 name|activeBytes
 operator|+
-literal|" pendingMem: "
+literal|", pending DWPT: "
 operator|+
 name|numPending
 operator|+
-literal|" flushingMem: "
+literal|", flushing DWPT: "
 operator|+
 name|numFlushingDWPT
 argument_list|()
 operator|+
-literal|" blockedMem: "
+literal|", blocked DWPT: "
 operator|+
 name|numBlockedFlushes
 argument_list|()
 operator|+
-literal|" peakDeltaMem: "
+literal|", peakDelta mem: "
 operator|+
 name|peakDelta
+operator|+
+literal|" byte"
 assert|;
 block|}
 block|}
