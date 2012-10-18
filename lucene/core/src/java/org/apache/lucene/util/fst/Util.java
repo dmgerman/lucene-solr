@@ -1932,7 +1932,6 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
-comment|// nocommit this isn't safe?  last path could be rejected?
 if|if
 condition|(
 name|results
