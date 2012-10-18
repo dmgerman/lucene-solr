@@ -258,6 +258,16 @@ name|Reader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_class
 annotation|@
 name|Slow
@@ -2864,6 +2874,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*     Check if the structures properly handle the case where     index * bitsPerValue> Integer.MAX_VALUE          NOTE: this test allocates 256 MB    */
+annotation|@
+name|Ignore
+argument_list|(
+literal|"See LUCENE-4488"
+argument_list|)
 DECL|method|testIntOverflow
 specifier|public
 name|void
