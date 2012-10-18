@@ -16,6 +16,10 @@ name|analyzing
 package|;
 end_package
 
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_import
 import|import
 name|java
@@ -67,26 +71,6 @@ operator|.
 name|analysis
 operator|.
 name|Analyzer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|suggest
-operator|.
-name|analyzing
-operator|.
-name|AnalyzingSuggester
-operator|.
-name|PathIntersector
 import|;
 end_import
 
@@ -253,12 +237,13 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/**  * Implements a fuzzy {@link AnalyzingSuggester}. The similarity measurement is  * based on the Damerau-Levenshtein (optimal string alignment) algorithm, though  * you can explicitly choose classic Levenshtein by passing<code>false</code>  * to the<code>transpositions</code> parameter.  *<p>  * At most, this query will match terms up to  * {@value org.apache.lucene.util.automaton.LevenshteinAutomata#MAXIMUM_SUPPORTED_DISTANCE}  * edits. Higher distances (especially with transpositions enabled), are not  * supported.  *<p>  * Note: complex query analyzers can have a significant impact on the lookup  * performance. It's recommended to not use analyzers that drop or inject terms  * like synonyms to keep the complexity of the prefix intersection low for good  * lookup performance. At index time, complex analyzers can safely be used.  *</p>  */
 end_comment
 
 begin_class
 DECL|class|FuzzySuggester
 specifier|public
+specifier|final
 class|class
 name|FuzzySuggester
 extends|extends
@@ -282,6 +267,27 @@ specifier|final
 name|int
 name|minPrefix
 decl_stmt|;
+comment|/**    * The default minimum shared (non-fuzzy) prefix. Set to<tt>2</tt>    */
+DECL|field|DEFAULT_MIN_PREFIX
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MIN_PREFIX
+init|=
+literal|2
+decl_stmt|;
+comment|/**    * The default maximum number of edits for fuzzy suggestions. Set to<tt>1</tt>    */
+DECL|field|DEFAULT_MAX_EDITS
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_MAX_EDITS
+init|=
+literal|1
+decl_stmt|;
+comment|/**    * Creates a {@link FuzzySuggester} instance initialized with default values.    * Calls    * {@link FuzzySuggester#FuzzySuggester(Analyzer, Analyzer, int, int, int, int, boolean, int)}    * FuzzySuggester(analyzer, analyzer, EXACT_FIRST | PRESERVE_SEP, 256, -1,    * DEFAULT_MAX_EDITS, true, DEFAULT_MIN_PREFIX)    *     * @param analyzer    *          the analyzer used for this suggester    */
 DECL|method|FuzzySuggester
 specifier|public
 name|FuzzySuggester
@@ -298,6 +304,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Creates a {@link FuzzySuggester} instance with an index& a query analyzer initialized with default values.    * Calls    * {@link FuzzySuggester#FuzzySuggester(Analyzer, Analyzer, int, int, int, int, boolean, int)}    * FuzzySuggester(indexAnalyzer, queryAnalyzer, EXACT_FIRST | PRESERVE_SEP, 256, -1,    * DEFAULT_MAX_EDITS, true, DEFAULT_MIN_PREFIX)    *     * @param indexAnalyzer    *           Analyzer that will be used for analyzing suggestions while building the index.    * @param queryAnalyzer    *           Analyzer that will be used for analyzing query text during lookup    */
 DECL|method|FuzzySuggester
 specifier|public
 name|FuzzySuggester
@@ -324,15 +331,15 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-literal|1
+name|DEFAULT_MAX_EDITS
 argument_list|,
 literal|true
 argument_list|,
-literal|1
+name|DEFAULT_MIN_PREFIX
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit: probably want an option to like, require the first character or something :)
+comment|/**    * Creates a {@link FuzzySuggester} instance.    *     * @param indexAnalyzer Analyzer that will be used for    *        analyzing suggestions while building the index.    * @param queryAnalyzer Analyzer that will be used for    *        analyzing query text during lookup    * @param options see {@link #EXACT_FIRST}, {@link #PRESERVE_SEP}    * @param maxSurfaceFormsPerAnalyzedForm Maximum number of    *        surface forms to keep for a single analyzed form.    *        When there are too many surface forms we discard the    *        lowest weighted ones.    * @param maxGraphExpansions Maximum number of graph paths    *        to expand from the analyzed form.  Set this to -1 for    *        no limit.    *       * @param maxEdits must be>= 0 and<= {@link LevenshteinAutomata#MAXIMUM_SUPPORTED_DISTANCE}.    * @param transpositions<code>true</code> if transpositions should be treated as a primitive     *        edit operation. If this is false, comparisons will implement the classic    *        Levenshtein algorithm.    * @param minPrefix length of common (non-fuzzy) prefix    *              */
 DECL|method|FuzzySuggester
 specifier|public
 name|FuzzySuggester
@@ -375,6 +382,46 @@ argument_list|,
 name|maxGraphExpansions
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|maxEdits
+argument_list|<
+literal|0
+operator|||
+name|maxEdits
+argument_list|>
+name|LevenshteinAutomata
+operator|.
+name|MAXIMUM_SUPPORTED_DISTANCE
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxEdits must be between 0 and "
+operator|+
+name|LevenshteinAutomata
+operator|.
+name|MAXIMUM_SUPPORTED_DISTANCE
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|minPrefix
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"minPrefix must not be< 0"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|maxEdits
@@ -435,7 +482,7 @@ name|Automaton
 name|automaton
 parameter_list|)
 block|{
-comment|// nocommit: how slow can this be :)
+specifier|final
 name|Set
 argument_list|<
 name|IntsRef
@@ -681,7 +728,7 @@ name|subs
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// nocommit: we could call toLevenshteinAutomata() before det?
+comment|// TODO: we could call toLevenshteinAutomata() before det?
 comment|// this only happens if you have multiple paths anyway (e.g. synonyms)
 name|BasicOperations
 operator|.
