@@ -1383,139 +1383,8 @@ name|output
 argument_list|)
 decl_stmt|;
 comment|//System.out.println("  addIfCompetitive queue.size()=" + queue.size() + " path=" + path + " + label=" + path.arc.label);
-if|if
-condition|(
-name|queue
-operator|.
-name|size
-argument_list|()
-operator|==
-name|topN
-condition|)
-block|{
-name|FSTPath
-argument_list|<
-name|T
-argument_list|>
-name|bottom
-init|=
-name|queue
-operator|.
-name|last
-argument_list|()
-decl_stmt|;
-name|int
-name|comp
-init|=
-name|comparator
-operator|.
-name|compare
-argument_list|(
-name|cost
-argument_list|,
-name|bottom
-operator|.
-name|cost
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|comp
-operator|>
-literal|0
-condition|)
-block|{
-comment|// Doesn't compete
-return|return;
-block|}
-elseif|else
-if|if
-condition|(
-name|comp
-operator|==
-literal|0
-condition|)
-block|{
-comment|// Tie break by alpha sort on the input:
-name|path
-operator|.
-name|input
-operator|.
-name|grow
-argument_list|(
-name|path
-operator|.
-name|input
-operator|.
-name|length
-operator|+
-literal|1
-argument_list|)
-expr_stmt|;
-name|path
-operator|.
-name|input
-operator|.
-name|ints
-index|[
-name|path
-operator|.
-name|input
-operator|.
-name|length
-operator|++
-index|]
-operator|=
-name|path
-operator|.
-name|arc
-operator|.
-name|label
-expr_stmt|;
-specifier|final
-name|int
-name|cmp
-init|=
-name|bottom
-operator|.
-name|input
-operator|.
-name|compareTo
-argument_list|(
-name|path
-operator|.
-name|input
-argument_list|)
-decl_stmt|;
-name|path
-operator|.
-name|input
-operator|.
-name|length
-operator|--
-expr_stmt|;
-assert|assert
-name|cmp
-operator|!=
-literal|0
-assert|;
-if|if
-condition|(
-name|cmp
-operator|<
-literal|0
-condition|)
-block|{
-comment|// Doesn't compete
-return|return;
-block|}
-block|}
-comment|// Competes
-block|}
-else|else
-block|{
-comment|// Queue isn't full yet, so any path we hit competes:
-block|}
+comment|// LUCENE-4481: TODO: re-enable this pruning if we can make this admissible:
+comment|/*       if (queue.size() == topN) {         FSTPath<T> bottom = queue.last();         int comp = comparator.compare(cost, bottom.cost);         if (comp> 0) {           // Doesn't compete           return;         } else if (comp == 0) {           // Tie break by alpha sort on the input:           path.input.grow(path.input.length+1);           path.input.ints[path.input.length++] = path.arc.label;           final int cmp = bottom.input.compareTo(path.input);           path.input.length--;           assert cmp != 0;           if (cmp< 0) {             // Doesn't compete             return;           }         }         // Competes       } else {         // Queue isn't full yet, so any path we hit competes:       }       */
 comment|// copy over the current input to the new input
 comment|// and add the arc.label to the end
 name|IntsRef
@@ -1618,24 +1487,8 @@ argument_list|(
 name|newPath
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|queue
-operator|.
-name|size
-argument_list|()
-operator|==
-name|topN
-operator|+
-literal|1
-condition|)
-block|{
-name|queue
-operator|.
-name|pollLast
-argument_list|()
-expr_stmt|;
-block|}
+comment|// LUCENE-4481: TODO: re-enable this pruning if we can make this admissible:
+comment|/*       if (queue.size() == topN+1) {         queue.pollLast();       }       */
 block|}
 comment|/** Adds all leaving arcs, including 'finished' arc, if      *  the node is final, from this node into the queue.  */
 DECL|method|addStartPaths
@@ -1885,7 +1738,6 @@ block|{
 comment|// There were less than topN paths available:
 break|break;
 block|}
-comment|//System.out.println("  remove init path=" + path);
 if|if
 condition|(
 name|path
@@ -1932,24 +1784,8 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
-if|if
-condition|(
-name|results
-operator|.
-name|size
-argument_list|()
-operator|==
-name|topN
-operator|-
-literal|1
-condition|)
-block|{
-comment|// Last path -- don't bother w/ queue anymore:
-name|queue
-operator|=
-literal|null
-expr_stmt|;
-block|}
+comment|// LUCENE-4481: TODO: re-enable this pruning if we can make this admissible:
+comment|/*         if (results.size() == topN-1) {           // Last path -- don't bother w/ queue anymore:           queue = null;         }         */
 comment|//System.out.println("  path: " + path);
 comment|// We take path and find its "0 output completion",
 comment|// ie, just keep traversing the first arc with

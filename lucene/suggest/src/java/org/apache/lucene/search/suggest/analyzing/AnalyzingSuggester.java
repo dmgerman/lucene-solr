@@ -2822,11 +2822,6 @@ argument_list|(
 name|fst
 argument_list|,
 name|num
-operator|-
-name|results
-operator|.
-name|size
-argument_list|()
 argument_list|,
 name|weightComparator
 argument_list|)
@@ -2864,6 +2859,7 @@ argument_list|>
 name|output
 parameter_list|)
 block|{
+comment|//System.out.println("ACCEPT? path=" + input);
 comment|// Dedup: when the input analyzes to a graph we
 comment|// can get duplicate surface forms:
 if|if
@@ -2878,6 +2874,7 @@ name|output2
 argument_list|)
 condition|)
 block|{
+comment|//System.out.println("SKIP: dup");
 return|return
 literal|false
 return|;
@@ -3070,6 +3067,20 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|results
+operator|.
+name|size
+argument_list|()
+operator|==
+name|num
+condition|)
+block|{
+comment|// In the exactFirst=true case the search may
+comment|// produce one extra path
+break|break;
+block|}
 block|}
 return|return
 name|results
