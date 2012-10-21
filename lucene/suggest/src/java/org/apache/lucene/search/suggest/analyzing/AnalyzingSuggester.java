@@ -631,7 +631,7 @@ specifier|final
 name|boolean
 name|exactFirst
 decl_stmt|;
-comment|/**     * True if separator between tokens should be preservered.    */
+comment|/**     * True if separator between tokens should be preserved.    */
 DECL|field|preserveSep
 specifier|private
 specifier|final
