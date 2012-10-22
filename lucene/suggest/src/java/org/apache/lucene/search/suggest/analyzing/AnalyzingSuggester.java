@@ -2413,6 +2413,19 @@ name|num
 operator|>
 literal|0
 assert|;
+if|if
+condition|(
+name|onlyMorePopular
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"this suggester only works with onlyMorePopular=false"
+argument_list|)
+throw|;
+block|}
 comment|//System.out.println("lookup key=" + key + " num=" + num);
 try|try
 block|{
