@@ -1974,13 +1974,6 @@ operator|>
 literal|0
 condition|)
 block|{
-name|posOut
-operator|.
-name|writeVInt
-argument_list|(
-name|posBufferUpto
-argument_list|)
-expr_stmt|;
 comment|// TODO: should we send offsets/payloads to
 comment|// .pay...?  seems wasteful (have to store extra
 comment|// vLong for low (< BLOCK_SIZE) DF terms = vast vast

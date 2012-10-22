@@ -2863,6 +2863,12 @@ name|int
 name|docFreq
 decl_stmt|;
 comment|// number of docs in this posting list
+DECL|field|totalTermFreq
+specifier|private
+name|long
+name|totalTermFreq
+decl_stmt|;
+comment|// number of positions in this posting list
 DECL|field|docUpto
 specifier|private
 name|int
@@ -3129,6 +3135,12 @@ name|termState
 operator|.
 name|skipOffset
 expr_stmt|;
+name|totalTermFreq
+operator|=
+name|termState
+operator|.
+name|totalTermFreq
+expr_stmt|;
 name|posPendingFP
 operator|=
 name|posTermStartFP
@@ -3345,10 +3357,14 @@ specifier|final
 name|int
 name|count
 init|=
-name|posIn
-operator|.
-name|readVInt
-argument_list|()
+call|(
+name|int
+call|)
+argument_list|(
+name|totalTermFreq
+operator|%
+name|BLOCK_SIZE
+argument_list|)
 decl_stmt|;
 name|int
 name|payloadLength
@@ -4297,6 +4313,12 @@ name|int
 name|docFreq
 decl_stmt|;
 comment|// number of docs in this posting list
+DECL|field|totalTermFreq
+specifier|private
+name|long
+name|totalTermFreq
+decl_stmt|;
+comment|// number of positions in this posting list
 DECL|field|docUpto
 specifier|private
 name|int
@@ -4684,6 +4706,12 @@ name|termState
 operator|.
 name|skipOffset
 expr_stmt|;
+name|totalTermFreq
+operator|=
+name|termState
+operator|.
+name|totalTermFreq
+expr_stmt|;
 name|posPendingFP
 operator|=
 name|posTermStartFP
@@ -4931,10 +4959,14 @@ specifier|final
 name|int
 name|count
 init|=
-name|posIn
-operator|.
-name|readVInt
-argument_list|()
+call|(
+name|int
+call|)
+argument_list|(
+name|totalTermFreq
+operator|%
+name|BLOCK_SIZE
+argument_list|)
 decl_stmt|;
 name|int
 name|payloadLength
