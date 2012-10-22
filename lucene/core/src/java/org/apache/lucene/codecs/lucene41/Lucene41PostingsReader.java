@@ -1591,10 +1591,12 @@ operator|(
 name|IntBlockTermState
 operator|)
 name|termState
+argument_list|,
+name|flags
 argument_list|)
 return|;
 block|}
-comment|// TODO: specialize to liveDocs vs not, and freqs vs not
+comment|// TODO: specialize to liveDocs vs not
 annotation|@
 name|Override
 DECL|method|docsAndPositions
@@ -1807,6 +1809,8 @@ operator|(
 name|IntBlockTermState
 operator|)
 name|termState
+argument_list|,
+name|flags
 argument_list|)
 return|;
 block|}
@@ -1952,6 +1956,12 @@ specifier|private
 name|Bits
 name|liveDocs
 decl_stmt|;
+DECL|field|needsFreq
+specifier|private
+name|boolean
+name|needsFreq
+decl_stmt|;
+comment|// true if the caller actually needs frequencies
 DECL|method|BlockDocsEnum
 specifier|public
 name|BlockDocsEnum
@@ -2116,6 +2126,9 @@ name|liveDocs
 parameter_list|,
 name|IntBlockTermState
 name|termState
+parameter_list|,
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -2158,6 +2171,20 @@ name|doc
 operator|=
 operator|-
 literal|1
+expr_stmt|;
+name|this
+operator|.
+name|needsFreq
+operator|=
+operator|(
+name|flags
+operator|&
+name|DocsEnum
+operator|.
+name|FLAG_FREQS
+operator|)
+operator|!=
+literal|0
 expr_stmt|;
 if|if
 condition|(
@@ -2278,6 +2305,11 @@ block|{
 comment|// if (DEBUG) {
 comment|//   System.out.println("    fill freq block from fp=" + docIn.getFilePointer());
 comment|// }
+if|if
+condition|(
+name|needsFreq
+condition|)
+block|{
 name|forUtil
 operator|.
 name|readBlock
@@ -2289,6 +2321,18 @@ argument_list|,
 name|freqBuffer
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|forUtil
+operator|.
+name|skipBlock
+argument_list|(
+name|docIn
+argument_list|)
+expr_stmt|;
+comment|// skip over freqs
+block|}
 block|}
 block|}
 else|else
@@ -4349,6 +4393,18 @@ specifier|private
 name|Bits
 name|liveDocs
 decl_stmt|;
+DECL|field|needsOffsets
+specifier|private
+name|boolean
+name|needsOffsets
+decl_stmt|;
+comment|// true if we actually need offsets
+DECL|field|needsPayloads
+specifier|private
+name|boolean
+name|needsPayloads
+decl_stmt|;
+comment|// true if we actually need payloads
 DECL|method|EverythingEnum
 specifier|public
 name|EverythingEnum
@@ -4575,6 +4631,9 @@ name|liveDocs
 parameter_list|,
 name|IntBlockTermState
 name|termState
+parameter_list|,
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -4678,6 +4737,34 @@ operator|.
 name|lastPosBlockOffset
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|needsOffsets
+operator|=
+operator|(
+name|flags
+operator|&
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_OFFSETS
+operator|)
+operator|!=
+literal|0
+expr_stmt|;
+name|this
+operator|.
+name|needsPayloads
+operator|=
+operator|(
+name|flags
+operator|&
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_PAYLOADS
+operator|)
+operator|!=
+literal|0
+expr_stmt|;
 name|doc
 operator|=
 operator|-
@@ -5074,6 +5161,11 @@ block|{
 comment|// if (DEBUG) {
 comment|//   System.out.println("        bulk payload block @ pay.fp=" + payIn.getFilePointer());
 comment|// }
+if|if
+condition|(
+name|needsPayloads
+condition|)
+block|{
 name|forUtil
 operator|.
 name|readBlock
@@ -5128,6 +5220,41 @@ argument_list|,
 name|numBytes
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// this works, because when writing a vint block we always force the first length to be written
+name|forUtil
+operator|.
+name|skipBlock
+argument_list|(
+name|payIn
+argument_list|)
+expr_stmt|;
+comment|// skip over lengths
+name|int
+name|numBytes
+init|=
+name|payIn
+operator|.
+name|readVInt
+argument_list|()
+decl_stmt|;
+comment|// read length of payloadBytes
+name|payIn
+operator|.
+name|seek
+argument_list|(
+name|payIn
+operator|.
+name|getFilePointer
+argument_list|()
+operator|+
+name|numBytes
+argument_list|)
+expr_stmt|;
+comment|// skip over payloadBytes
+block|}
 name|payloadByteUpto
 operator|=
 literal|0
@@ -5141,6 +5268,11 @@ block|{
 comment|// if (DEBUG) {
 comment|//   System.out.println("        bulk offset block @ pay.fp=" + payIn.getFilePointer());
 comment|// }
+if|if
+condition|(
+name|needsOffsets
+condition|)
+block|{
 name|forUtil
 operator|.
 name|readBlock
@@ -5163,6 +5295,27 @@ argument_list|,
 name|offsetLengthBuffer
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// this works, because when writing a vint block we always force the first length to be written
+name|forUtil
+operator|.
+name|skipBlock
+argument_list|(
+name|payIn
+argument_list|)
+expr_stmt|;
+comment|// skip over starts
+name|forUtil
+operator|.
+name|skipBlock
+argument_list|(
+name|payIn
+argument_list|)
+expr_stmt|;
+comment|// skip over lengths
+block|}
 block|}
 block|}
 block|}
