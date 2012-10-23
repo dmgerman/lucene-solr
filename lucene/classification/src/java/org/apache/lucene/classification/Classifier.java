@@ -64,10 +64,10 @@ specifier|public
 interface|interface
 name|Classifier
 block|{
-comment|/**    * Assign a class to the given text String    * @param text a String containing text to be classified    * @return a String representing a class    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Assign a class (with score) to the given text String    * @param text a String containing text to be classified    * @return a {@link ClassificationResult} holding assigned class and score    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|assignClass
 specifier|public
-name|String
+name|ClassificationResult
 name|assignClass
 parameter_list|(
 name|String

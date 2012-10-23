@@ -887,6 +887,12 @@ DECL|field|lastPosBlockOffset
 name|long
 name|lastPosBlockOffset
 decl_stmt|;
+comment|// docid when there is a single pulsed posting, otherwise -1
+comment|// freq is always implicitly totalTermFreq in this case.
+DECL|field|singletonDocID
+name|int
+name|singletonDocID
+decl_stmt|;
 comment|// Only used by the "primary" TermState -- clones don't
 comment|// copy this (basically they are "transient"):
 DECL|field|bytesReader
@@ -981,6 +987,12 @@ name|other
 operator|.
 name|skipOffset
 expr_stmt|;
+name|singletonDocID
+operator|=
+name|other
+operator|.
+name|singletonDocID
+expr_stmt|;
 comment|// Do not copy bytes, bytesReader (else TermState is
 comment|// very heavy, ie drags around the entire block's
 comment|// byte[]).  On seek back, if next() is in fact used
@@ -1015,6 +1027,10 @@ operator|+
 literal|" lastPosBlockOffset="
 operator|+
 name|lastPosBlockOffset
+operator|+
+literal|" singletonDocID="
+operator|+
+name|singletonDocID
 return|;
 block|}
 block|}
@@ -1279,6 +1295,40 @@ condition|(
 name|isFirstTerm
 condition|)
 block|{
+if|if
+condition|(
+name|termState
+operator|.
+name|docFreq
+operator|==
+literal|1
+condition|)
+block|{
+name|termState
+operator|.
+name|singletonDocID
+operator|=
+name|in
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
+name|termState
+operator|.
+name|docStartFP
+operator|=
+literal|0
+expr_stmt|;
+block|}
+else|else
+block|{
+name|termState
+operator|.
+name|singletonDocID
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 name|termState
 operator|.
 name|docStartFP
@@ -1288,6 +1338,7 @@ operator|.
 name|readVLong
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|fieldHasPositions
@@ -1370,6 +1421,34 @@ block|}
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|termState
+operator|.
+name|docFreq
+operator|==
+literal|1
+condition|)
+block|{
+name|termState
+operator|.
+name|singletonDocID
+operator|=
+name|in
+operator|.
+name|readVInt
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|termState
+operator|.
+name|singletonDocID
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 name|termState
 operator|.
 name|docStartFP
@@ -1379,6 +1458,7 @@ operator|.
 name|readVLong
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|fieldHasPositions
@@ -1591,10 +1671,12 @@ operator|(
 name|IntBlockTermState
 operator|)
 name|termState
+argument_list|,
+name|flags
 argument_list|)
 return|;
 block|}
-comment|// TODO: specialize to liveDocs vs not, and freqs vs not
+comment|// TODO: specialize to liveDocs vs not
 annotation|@
 name|Override
 DECL|method|docsAndPositions
@@ -1807,6 +1889,8 @@ operator|(
 name|IntBlockTermState
 operator|)
 name|termState
+argument_list|,
+name|flags
 argument_list|)
 return|;
 block|}
@@ -1872,7 +1956,6 @@ name|IndexInput
 name|startDocIn
 decl_stmt|;
 DECL|field|docIn
-specifier|final
 name|IndexInput
 name|docIn
 decl_stmt|;
@@ -1902,6 +1985,12 @@ name|int
 name|docFreq
 decl_stmt|;
 comment|// number of docs in this posting list
+DECL|field|totalTermFreq
+specifier|private
+name|long
+name|totalTermFreq
+decl_stmt|;
+comment|// sum of freqs in this posting list (or docFreq when omitted)
 DECL|field|docUpto
 specifier|private
 name|int
@@ -1952,6 +2041,18 @@ specifier|private
 name|Bits
 name|liveDocs
 decl_stmt|;
+DECL|field|needsFreq
+specifier|private
+name|boolean
+name|needsFreq
+decl_stmt|;
+comment|// true if the caller actually needs frequencies
+DECL|field|singletonDocID
+specifier|private
+name|int
+name|singletonDocID
+decl_stmt|;
+comment|// docid when there is a single pulsed posting, otherwise -1
 DECL|method|BlockDocsEnum
 specifier|public
 name|BlockDocsEnum
@@ -1976,10 +2077,7 @@ name|this
 operator|.
 name|docIn
 operator|=
-name|startDocIn
-operator|.
-name|clone
-argument_list|()
+literal|null
 expr_stmt|;
 name|indexHasFreq
 operator|=
@@ -2116,6 +2214,9 @@ name|liveDocs
 parameter_list|,
 name|IntBlockTermState
 name|termState
+parameter_list|,
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -2135,12 +2236,57 @@ name|termState
 operator|.
 name|docFreq
 expr_stmt|;
+name|totalTermFreq
+operator|=
+name|indexHasFreq
+condition|?
+name|termState
+operator|.
+name|totalTermFreq
+else|:
+name|docFreq
+expr_stmt|;
 name|docTermStartFP
 operator|=
 name|termState
 operator|.
 name|docStartFP
 expr_stmt|;
+name|skipOffset
+operator|=
+name|termState
+operator|.
+name|skipOffset
+expr_stmt|;
+name|singletonDocID
+operator|=
+name|termState
+operator|.
+name|singletonDocID
+expr_stmt|;
+if|if
+condition|(
+name|docFreq
+operator|>
+literal|1
+condition|)
+block|{
+if|if
+condition|(
+name|docIn
+operator|==
+literal|null
+condition|)
+block|{
+comment|// lazy init
+name|docIn
+operator|=
+name|startDocIn
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+block|}
 name|docIn
 operator|.
 name|seek
@@ -2148,16 +2294,25 @@ argument_list|(
 name|docTermStartFP
 argument_list|)
 expr_stmt|;
-name|skipOffset
-operator|=
-name|termState
-operator|.
-name|skipOffset
-expr_stmt|;
+block|}
 name|doc
 operator|=
 operator|-
 literal|1
+expr_stmt|;
+name|this
+operator|.
+name|needsFreq
+operator|=
+operator|(
+name|flags
+operator|&
+name|DocsEnum
+operator|.
+name|FLAG_FREQS
+operator|)
+operator|!=
+literal|0
 expr_stmt|;
 if|if
 condition|(
@@ -2278,6 +2433,11 @@ block|{
 comment|// if (DEBUG) {
 comment|//   System.out.println("    fill freq block from fp=" + docIn.getFilePointer());
 comment|// }
+if|if
+condition|(
+name|needsFreq
+condition|)
+block|{
 name|forUtil
 operator|.
 name|readBlock
@@ -2290,6 +2450,44 @@ name|freqBuffer
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|forUtil
+operator|.
+name|skipBlock
+argument_list|(
+name|docIn
+argument_list|)
+expr_stmt|;
+comment|// skip over freqs
+block|}
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|docFreq
+operator|==
+literal|1
+condition|)
+block|{
+name|docDeltaBuffer
+index|[
+literal|0
+index|]
+operator|=
+name|singletonDocID
+expr_stmt|;
+name|freqBuffer
+index|[
+literal|0
+index|]
+operator|=
+operator|(
+name|int
+operator|)
+name|totalTermFreq
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -2794,7 +2992,6 @@ name|IndexInput
 name|startDocIn
 decl_stmt|;
 DECL|field|docIn
-specifier|final
 name|IndexInput
 name|docIn
 decl_stmt|;
@@ -2819,6 +3016,12 @@ name|int
 name|docFreq
 decl_stmt|;
 comment|// number of docs in this posting list
+DECL|field|totalTermFreq
+specifier|private
+name|long
+name|totalTermFreq
+decl_stmt|;
+comment|// number of positions in this posting list
 DECL|field|docUpto
 specifier|private
 name|int
@@ -2908,6 +3111,12 @@ specifier|private
 name|Bits
 name|liveDocs
 decl_stmt|;
+DECL|field|singletonDocID
+specifier|private
+name|int
+name|singletonDocID
+decl_stmt|;
+comment|// docid when there is a single pulsed posting, otherwise -1
 DECL|method|BlockDocsAndPositionsEnum
 specifier|public
 name|BlockDocsAndPositionsEnum
@@ -2932,10 +3141,7 @@ name|this
 operator|.
 name|docIn
 operator|=
-name|startDocIn
-operator|.
-name|clone
-argument_list|()
+literal|null
 expr_stmt|;
 name|this
 operator|.
@@ -3072,6 +3278,47 @@ name|termState
 operator|.
 name|payStartFP
 expr_stmt|;
+name|skipOffset
+operator|=
+name|termState
+operator|.
+name|skipOffset
+expr_stmt|;
+name|totalTermFreq
+operator|=
+name|termState
+operator|.
+name|totalTermFreq
+expr_stmt|;
+name|singletonDocID
+operator|=
+name|termState
+operator|.
+name|singletonDocID
+expr_stmt|;
+if|if
+condition|(
+name|docFreq
+operator|>
+literal|1
+condition|)
+block|{
+if|if
+condition|(
+name|docIn
+operator|==
+literal|null
+condition|)
+block|{
+comment|// lazy init
+name|docIn
+operator|=
+name|startDocIn
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+block|}
 name|docIn
 operator|.
 name|seek
@@ -3079,12 +3326,7 @@ argument_list|(
 name|docTermStartFP
 argument_list|)
 expr_stmt|;
-name|skipOffset
-operator|=
-name|termState
-operator|.
-name|skipOffset
-expr_stmt|;
+block|}
 name|posPendingFP
 operator|=
 name|posTermStartFP
@@ -3248,6 +3490,32 @@ name|freqBuffer
 argument_list|)
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|docFreq
+operator|==
+literal|1
+condition|)
+block|{
+name|docDeltaBuffer
+index|[
+literal|0
+index|]
+operator|=
+name|singletonDocID
+expr_stmt|;
+name|freqBuffer
+index|[
+literal|0
+index|]
+operator|=
+operator|(
+name|int
+operator|)
+name|totalTermFreq
+expr_stmt|;
+block|}
 else|else
 block|{
 comment|// Read vInts:
@@ -3301,10 +3569,14 @@ specifier|final
 name|int
 name|count
 init|=
-name|posIn
-operator|.
-name|readVInt
-argument_list|()
+call|(
+name|int
+call|)
+argument_list|(
+name|totalTermFreq
+operator|%
+name|BLOCK_SIZE
+argument_list|)
 decl_stmt|;
 name|int
 name|payloadLength
@@ -4218,7 +4490,6 @@ name|IndexInput
 name|startDocIn
 decl_stmt|;
 DECL|field|docIn
-specifier|final
 name|IndexInput
 name|docIn
 decl_stmt|;
@@ -4253,6 +4524,12 @@ name|int
 name|docFreq
 decl_stmt|;
 comment|// number of docs in this posting list
+DECL|field|totalTermFreq
+specifier|private
+name|long
+name|totalTermFreq
+decl_stmt|;
+comment|// number of positions in this posting list
 DECL|field|docUpto
 specifier|private
 name|int
@@ -4349,6 +4626,24 @@ specifier|private
 name|Bits
 name|liveDocs
 decl_stmt|;
+DECL|field|needsOffsets
+specifier|private
+name|boolean
+name|needsOffsets
+decl_stmt|;
+comment|// true if we actually need offsets
+DECL|field|needsPayloads
+specifier|private
+name|boolean
+name|needsPayloads
+decl_stmt|;
+comment|// true if we actually need payloads
+DECL|field|singletonDocID
+specifier|private
+name|int
+name|singletonDocID
+decl_stmt|;
+comment|// docid when there is a single pulsed posting, otherwise -1
 DECL|method|EverythingEnum
 specifier|public
 name|EverythingEnum
@@ -4373,10 +4668,7 @@ name|this
 operator|.
 name|docIn
 operator|=
-name|startDocIn
-operator|.
-name|clone
-argument_list|()
+literal|null
 expr_stmt|;
 name|this
 operator|.
@@ -4575,6 +4867,9 @@ name|liveDocs
 parameter_list|,
 name|IntBlockTermState
 name|termState
+parameter_list|,
+name|int
+name|flags
 parameter_list|)
 throws|throws
 name|IOException
@@ -4612,6 +4907,47 @@ name|termState
 operator|.
 name|payStartFP
 expr_stmt|;
+name|skipOffset
+operator|=
+name|termState
+operator|.
+name|skipOffset
+expr_stmt|;
+name|totalTermFreq
+operator|=
+name|termState
+operator|.
+name|totalTermFreq
+expr_stmt|;
+name|singletonDocID
+operator|=
+name|termState
+operator|.
+name|singletonDocID
+expr_stmt|;
+if|if
+condition|(
+name|docFreq
+operator|>
+literal|1
+condition|)
+block|{
+if|if
+condition|(
+name|docIn
+operator|==
+literal|null
+condition|)
+block|{
+comment|// lazy init
+name|docIn
+operator|=
+name|startDocIn
+operator|.
+name|clone
+argument_list|()
+expr_stmt|;
+block|}
 name|docIn
 operator|.
 name|seek
@@ -4619,12 +4955,7 @@ argument_list|(
 name|docTermStartFP
 argument_list|)
 expr_stmt|;
-name|skipOffset
-operator|=
-name|termState
-operator|.
-name|skipOffset
-expr_stmt|;
+block|}
 name|posPendingFP
 operator|=
 name|posTermStartFP
@@ -4678,6 +5009,34 @@ operator|.
 name|lastPosBlockOffset
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|needsOffsets
+operator|=
+operator|(
+name|flags
+operator|&
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_OFFSETS
+operator|)
+operator|!=
+literal|0
+expr_stmt|;
+name|this
+operator|.
+name|needsPayloads
+operator|=
+operator|(
+name|flags
+operator|&
+name|DocsAndPositionsEnum
+operator|.
+name|FLAG_PAYLOADS
+operator|)
+operator|!=
+literal|0
+expr_stmt|;
 name|doc
 operator|=
 operator|-
@@ -4792,6 +5151,32 @@ name|freqBuffer
 argument_list|)
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|docFreq
+operator|==
+literal|1
+condition|)
+block|{
+name|docDeltaBuffer
+index|[
+literal|0
+index|]
+operator|=
+name|singletonDocID
+expr_stmt|;
+name|freqBuffer
+index|[
+literal|0
+index|]
+operator|=
+operator|(
+name|int
+operator|)
+name|totalTermFreq
+expr_stmt|;
+block|}
 else|else
 block|{
 comment|// if (DEBUG) {
@@ -4844,10 +5229,14 @@ specifier|final
 name|int
 name|count
 init|=
-name|posIn
-operator|.
-name|readVInt
-argument_list|()
+call|(
+name|int
+call|)
+argument_list|(
+name|totalTermFreq
+operator|%
+name|BLOCK_SIZE
+argument_list|)
 decl_stmt|;
 name|int
 name|payloadLength
@@ -5074,6 +5463,11 @@ block|{
 comment|// if (DEBUG) {
 comment|//   System.out.println("        bulk payload block @ pay.fp=" + payIn.getFilePointer());
 comment|// }
+if|if
+condition|(
+name|needsPayloads
+condition|)
+block|{
 name|forUtil
 operator|.
 name|readBlock
@@ -5128,6 +5522,41 @@ argument_list|,
 name|numBytes
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// this works, because when writing a vint block we always force the first length to be written
+name|forUtil
+operator|.
+name|skipBlock
+argument_list|(
+name|payIn
+argument_list|)
+expr_stmt|;
+comment|// skip over lengths
+name|int
+name|numBytes
+init|=
+name|payIn
+operator|.
+name|readVInt
+argument_list|()
+decl_stmt|;
+comment|// read length of payloadBytes
+name|payIn
+operator|.
+name|seek
+argument_list|(
+name|payIn
+operator|.
+name|getFilePointer
+argument_list|()
+operator|+
+name|numBytes
+argument_list|)
+expr_stmt|;
+comment|// skip over payloadBytes
+block|}
 name|payloadByteUpto
 operator|=
 literal|0
@@ -5141,6 +5570,11 @@ block|{
 comment|// if (DEBUG) {
 comment|//   System.out.println("        bulk offset block @ pay.fp=" + payIn.getFilePointer());
 comment|// }
+if|if
+condition|(
+name|needsOffsets
+condition|)
+block|{
 name|forUtil
 operator|.
 name|readBlock
@@ -5163,6 +5597,27 @@ argument_list|,
 name|offsetLengthBuffer
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// this works, because when writing a vint block we always force the first length to be written
+name|forUtil
+operator|.
+name|skipBlock
+argument_list|(
+name|payIn
+argument_list|)
+expr_stmt|;
+comment|// skip over starts
+name|forUtil
+operator|.
+name|skipBlock
+argument_list|(
+name|payIn
+argument_list|)
+expr_stmt|;
+comment|// skip over lengths
+block|}
 block|}
 block|}
 block|}

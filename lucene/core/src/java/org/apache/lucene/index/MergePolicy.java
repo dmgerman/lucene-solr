@@ -42,6 +42,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -1034,13 +1044,16 @@ name|writer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Determine what set of merge operations are now necessary on the index.    * {@link IndexWriter} calls this whenever there is a change to the segments.    * This call is always synchronized on the {@link IndexWriter} instance so    * only one thread at a time will call this method.    *     * @param segmentInfos    *          the total set of segments in the index    */
+comment|/**    * Determine what set of merge operations are now necessary on the index.    * {@link IndexWriter} calls this whenever there is a change to the segments.    * This call is always synchronized on the {@link IndexWriter} instance so    * only one thread at a time will call this method.    * @param mergeTrigger the event that triggered the merge    * @param segmentInfos    *          the total set of segments in the index    */
 DECL|method|findMerges
 specifier|public
 specifier|abstract
 name|MergeSpecification
 name|findMerges
 parameter_list|(
+name|MergeTrigger
+name|mergeTrigger
+parameter_list|,
 name|SegmentInfos
 name|segmentInfos
 parameter_list|)
@@ -1108,6 +1121,29 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * MergeTrigger is passed to    * {@link MergePolicy#findMerges(MergeTrigger, SegmentInfos)} to indicate the    * event that triggered the merge.    */
+DECL|enum|MergeTrigger
+specifier|public
+specifier|static
+enum|enum
+name|MergeTrigger
+block|{
+comment|/**      * Merge was triggered by a segment flush.      */
+DECL|enum constant|SEGMENT_FLUSH
+name|SEGMENT_FLUSH
+block|,
+comment|/**      * Merge was triggered by a full flush. Full flushes      * can be caused by a commit, NRT reader reopen or a close call on the index writer.      */
+DECL|enum constant|FULL_FLUSH
+name|FULL_FLUSH
+block|,
+comment|/**      * Merge has been triggered explicitly by the user.      */
+DECL|enum constant|EXPLICIT
+name|EXPLICIT
+block|,
+comment|/**      * Merge was triggered by a successfully finished merge.      */
+DECL|enum constant|MERGE_FINISHED
+name|MERGE_FINISHED
+block|,   }
 block|}
 end_class
 

@@ -1708,6 +1708,12 @@ specifier|final
 name|long
 name|lastPosBlockOffset
 decl_stmt|;
+DECL|field|singletonDocID
+specifier|public
+specifier|final
+name|int
+name|singletonDocID
+decl_stmt|;
 DECL|method|PendingTerm
 specifier|public
 name|PendingTerm
@@ -1726,6 +1732,9 @@ name|skipOffset
 parameter_list|,
 name|long
 name|lastPosBlockOffset
+parameter_list|,
+name|int
+name|singletonDocID
 parameter_list|)
 block|{
 name|this
@@ -1757,6 +1766,12 @@ operator|.
 name|lastPosBlockOffset
 operator|=
 name|lastPosBlockOffset
+expr_stmt|;
+name|this
+operator|.
+name|singletonDocID
+operator|=
+name|singletonDocID
 expr_stmt|;
 block|}
 block|}
@@ -1822,6 +1837,36 @@ comment|//   if (docBufferUpto> 0) {
 comment|//     System.out.println("  write doc/freq vInt block (count=" + docBufferUpto + ") at fp=" + docOut.getFilePointer() + " docTermStartFP=" + docTermStartFP);
 comment|//   }
 comment|// }
+comment|// docFreq == 1, don't write the single docid/freq to a separate file along with a pointer to it.
+specifier|final
+name|int
+name|singletonDocID
+decl_stmt|;
+if|if
+condition|(
+name|stats
+operator|.
+name|docFreq
+operator|==
+literal|1
+condition|)
+block|{
+comment|// pulse the singleton docid into the term dictionary, freq is implicitly totalTermFreq
+name|singletonDocID
+operator|=
+name|docDeltaBuffer
+index|[
+literal|0
+index|]
+expr_stmt|;
+block|}
+else|else
+block|{
+name|singletonDocID
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 comment|// vInt encode the remaining doc deltas and freqs:
 for|for
 control|(
@@ -1915,6 +1960,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 specifier|final
 name|long
 name|lastPosBlockOffset
@@ -1974,13 +2020,6 @@ operator|>
 literal|0
 condition|)
 block|{
-name|posOut
-operator|.
-name|writeVInt
-argument_list|(
-name|posBufferUpto
-argument_list|)
-expr_stmt|;
 comment|// TODO: should we send offsets/payloads to
 comment|// .pay...?  seems wasteful (have to store extra
 comment|// vLong for low (< BLOCK_SIZE) DF terms = vast vast
@@ -2303,6 +2342,8 @@ argument_list|,
 name|skipOffset
 argument_list|,
 name|lastPosBlockOffset
+argument_list|,
+name|singletonDocID
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2436,6 +2477,16 @@ argument_list|(
 name|idx
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|term
+operator|.
+name|singletonDocID
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
 name|bytesWriter
 operator|.
 name|writeVLong
@@ -2453,6 +2504,19 @@ name|term
 operator|.
 name|docStartFP
 expr_stmt|;
+block|}
+else|else
+block|{
+name|bytesWriter
+operator|.
+name|writeVInt
+argument_list|(
+name|term
+operator|.
+name|singletonDocID
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|fieldHasPositions
