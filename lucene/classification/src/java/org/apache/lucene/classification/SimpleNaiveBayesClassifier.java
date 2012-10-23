@@ -484,7 +484,7 @@ return|;
 block|}
 DECL|method|assignClass
 specifier|public
-name|String
+name|ClassificationResult
 name|assignClass
 parameter_list|(
 name|String
@@ -594,7 +594,13 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|new
+name|ClassificationResult
+argument_list|(
 name|foundClass
+argument_list|,
+name|max
+argument_list|)
 return|;
 block|}
 DECL|method|calculateLikelihood
