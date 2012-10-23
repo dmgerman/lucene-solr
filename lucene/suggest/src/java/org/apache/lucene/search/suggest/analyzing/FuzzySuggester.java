@@ -26,7 +26,37 @@ name|java
 operator|.
 name|io
 operator|.
+name|FileOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStreamWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Writer
 import|;
 end_import
 
@@ -301,7 +331,10 @@ specifier|final
 name|int
 name|minPrefix
 decl_stmt|;
+comment|// nocommit separate param for "min length before we
+comment|// enable fuzzy"?  eg type "nusglasses" into google...
 comment|/**    * The default minimum shared (non-fuzzy) prefix. Set to<tt>2</tt>    */
+comment|// nocommit should we do 1...?
 DECL|field|DEFAULT_MIN_PREFIX
 specifier|public
 specifier|static
@@ -650,6 +683,13 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+comment|// nocommit i think we should pass 254 max?  ie
+comment|// exclude 0xff ... this way we can't 'edit away'
+comment|// the sep?  or ... maybe we want to allow that to
+comment|// be edited away?
+comment|// nocommit also the 0 byte ... we use that as
+comment|// trailer ... we probably shouldn't allow that byte
+comment|// to be edited (we could add alphaMin?)
 name|LevenshteinAutomata
 name|lev
 init|=
@@ -658,7 +698,7 @@ name|LevenshteinAutomata
 argument_list|(
 name|ints
 argument_list|,
-literal|256
+literal|255
 argument_list|,
 name|transpositions
 argument_list|)
@@ -710,6 +750,9 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+comment|// nocommit maybe we should reduce the LevN?  the added
+comment|// arcs add cost during intersect (extra FST arc
+comment|// lookups...).  could be net win...
 if|if
 condition|(
 name|subs
@@ -831,15 +874,27 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// nocommit we don't "penalize" for edits
+comment|// ... shouldn't we?  ie, ed=0 completions should have
+comment|// higher rank than ed=1, at the same "weight"?  maybe
+comment|// we can punt on this for starters ... or maybe we
+comment|// can re-run each prefix path through lev0, lev1,
+comment|// lev2 to figure out the number of edits?
+name|Automaton
+name|levA
+init|=
+name|toLevenshteinAutomata
+argument_list|(
+name|automaton
+argument_list|)
+decl_stmt|;
+comment|/*       Writer w = new OutputStreamWriter(new FileOutputStream("out.dot"), "UTF-8");       w.write(levA.toDot());       w.close();       System.out.println("Wrote LevA to out.dot");       */
 return|return
 name|FSTUtil
 operator|.
 name|intersectPrefixPaths
 argument_list|(
-name|toLevenshteinAutomata
-argument_list|(
-name|automaton
-argument_list|)
+name|levA
 argument_list|,
 name|fst
 argument_list|)
