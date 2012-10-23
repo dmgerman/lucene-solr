@@ -363,6 +363,16 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|ts_1
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts_1
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|TokenStream
 name|ts_2
 init|=
@@ -412,6 +422,16 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|ts_2
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts_2
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** Test stemming of mixed-case tokens. */
@@ -719,6 +739,11 @@ literal|"liÅcie"
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|ts
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|assertPOSToken
 argument_list|(
 name|ts
@@ -766,6 +791,16 @@ literal|"subst:sg:dat:f"
 argument_list|,
 literal|"subst:sg:loc:f"
 argument_list|)
+expr_stmt|;
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** blast some random strings through the analyzer */
