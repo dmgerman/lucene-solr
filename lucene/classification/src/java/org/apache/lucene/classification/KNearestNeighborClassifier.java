@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A k-Nearest Neighbor classifier (see<code>http://en.wikipedia.org/wiki/K-nearest_neighbors</code>) based  * on {@link MoreLikeThis}  */
+comment|/**  * A k-Nearest Neighbor classifier (see<code>http://en.wikipedia.org/wiki/K-nearest_neighbors</code>) based  * on {@link MoreLikeThis}  * @lucene.experimental  */
 end_comment
 
 begin_class
