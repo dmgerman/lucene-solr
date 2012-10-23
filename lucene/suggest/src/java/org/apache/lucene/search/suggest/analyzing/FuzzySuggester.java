@@ -82,6 +82,40 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|TokenStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|TermToBytesRefAttribute
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|suggest
@@ -237,7 +271,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements a fuzzy {@link AnalyzingSuggester}. The similarity measurement is  * based on the Damerau-Levenshtein (optimal string alignment) algorithm, though  * you can explicitly choose classic Levenshtein by passing<code>false</code>  * to the<code>transpositions</code> parameter.  *<p>  * At most, this query will match terms up to  * {@value org.apache.lucene.util.automaton.LevenshteinAutomata#MAXIMUM_SUPPORTED_DISTANCE}  * edits. Higher distances (especially with transpositions enabled), are not  * supported.  *<p>  * Note: complex query analyzers can have a significant impact on the lookup  * performance. It's recommended to not use analyzers that drop or inject terms  * like synonyms to keep the complexity of the prefix intersection low for good  * lookup performance. At index time, complex analyzers can safely be used.  *</p>  */
+comment|/**  * Implements a fuzzy {@link AnalyzingSuggester}. The similarity measurement is  * based on the Damerau-Levenshtein (optimal string alignment) algorithm, though  * you can explicitly choose classic Levenshtein by passing<code>false</code>  * to the<code>transpositions</code> parameter.  *<p>  * At most, this query will match terms up to  * {@value org.apache.lucene.util.automaton.LevenshteinAutomata#MAXIMUM_SUPPORTED_DISTANCE}  * edits. Higher distances (especially with transpositions enabled), are not  * supported.  Note that the fuzzy distance is byte-by-byte  * as returned by the {@link TokenStream}'s {@link  * TermToBytesRefAttribute}, usually UTF8.  By default  * the first 2 (@link #DEFAULT_MIN_PREFIX) bytes must match,  * and by default we allow up to 1 (@link  * #DEFAULT_MAX_EDITS} edit.  *<p>  * Note: complex query analyzers can have a significant impact on the lookup  * performance. It's recommended to not use analyzers that drop or inject terms  * like synonyms to keep the complexity of the prefix intersection low for good  * lookup performance. At index time, complex analyzers can safely be used.  *</p>  */
 end_comment
 
 begin_class
@@ -474,7 +508,6 @@ argument_list|)
 return|;
 block|}
 DECL|method|toLevenshteinAutomata
-specifier|final
 name|Automaton
 name|toLevenshteinAutomata
 parameter_list|(

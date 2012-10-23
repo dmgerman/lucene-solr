@@ -170,6 +170,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|TermToBytesRefAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|spell
@@ -3304,7 +3320,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Returns a new {@link PathIntersector}      */
+comment|/**    * Returns a new {@link PathIntersector}.    *    *<p>NOTE: The labels on the transitions incoming    * automaton are bytes returned by the {@link    * TokenStream}'s {@link TermToBytesRefAttribute}, which    * are typically UTF8 encoded.    */
 DECL|method|getPathIntersector
 specifier|protected
 name|PathIntersector

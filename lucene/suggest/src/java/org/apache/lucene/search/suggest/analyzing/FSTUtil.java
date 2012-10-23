@@ -74,20 +74,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|UnicodeUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|automaton
 operator|.
 name|Automaton
@@ -641,11 +627,13 @@ block|}
 block|}
 else|else
 block|{
-comment|// TODO:
-comment|// if we accept the entire range possible in the FST (ie. 0 to 256)
+comment|// TODO: if this transition's TO state is accepting, and
+comment|// it accepts the entire range possible in the FST (ie. 0 to 255),
 comment|// we can simply use the prefix as the accepted state instead of
-comment|// looking up all the
-comment|// ranges and terminate early here?
+comment|// looking up all the ranges and terminate early
+comment|// here.  This just shifts the work from one queue
+comment|// (this one) to another (the completion search
+comment|// done in AnalyzingSuggester).
 name|FST
 operator|.
 name|Arc

@@ -144,22 +144,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|CannedBinaryTokenStream
-operator|.
-name|BinaryToken
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|CannedTokenStream
 import|;
 end_import
@@ -427,54 +411,6 @@ operator|.
 name|automaton
 operator|.
 name|Automaton
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|BasicAutomata
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|BasicOperations
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|LevenshteinAutomata
 import|;
 end_import
 
@@ -2685,24 +2621,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|t
-return|;
-block|}
-DECL|method|token
-specifier|private
-specifier|static
-name|BinaryToken
-name|token
-parameter_list|(
-name|BytesRef
-name|term
-parameter_list|)
-block|{
-return|return
-operator|new
-name|BinaryToken
-argument_list|(
-name|term
-argument_list|)
 return|;
 block|}
 comment|/*   private void printTokens(final Analyzer analyzer, String input) throws IOException {     System.out.println("Tokens for " + input);     TokenStream ts = analyzer.tokenStream("", new StringReader(input));     ts.reset();     final TermToBytesRefAttribute termBytesAtt = ts.addAttribute(TermToBytesRefAttribute.class);     final PositionIncrementAttribute posIncAtt = ts.addAttribute(PositionIncrementAttribute.class);     final PositionLengthAttribute posLengthAtt = ts.addAttribute(PositionLengthAttribute.class);          while(ts.incrementToken()) {       termBytesAtt.fillBytesRef();       System.out.println(String.format("%s,%s,%s", termBytesAtt.getBytesRef().utf8ToString(), posIncAtt.getPositionIncrement(), posLengthAtt.getPositionLength()));           }     ts.end();     ts.close();   }    */
@@ -5430,12 +5348,12 @@ name|String
 name|string
 parameter_list|,
 name|int
-name|prefixLenght
+name|prefixLength
 parameter_list|)
 block|{
 name|char
 index|[]
-name|charArray
+name|input
 init|=
 name|string
 operator|.
@@ -5458,7 +5376,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|charArray
+name|input
 operator|.
 name|length
 condition|;
@@ -5470,7 +5388,7 @@ if|if
 condition|(
 name|i
 operator|>=
-name|prefixLenght
+name|prefixLength
 operator|&&
 name|random
 argument_list|()
@@ -5480,7 +5398,7 @@ argument_list|()
 operator|&&
 name|i
 operator|<
-name|charArray
+name|input
 operator|.
 name|length
 operator|-
@@ -5501,6 +5419,7 @@ block|{
 case|case
 literal|2
 case|:
+comment|// Delete input[i]
 for|for
 control|(
 name|int
@@ -5512,7 +5431,7 @@ literal|1
 init|;
 name|j
 operator|<
-name|charArray
+name|input
 operator|.
 name|length
 condition|;
@@ -5524,7 +5443,7 @@ name|builder
 operator|.
 name|append
 argument_list|(
-name|charArray
+name|input
 index|[
 name|j
 index|]
@@ -5540,13 +5459,14 @@ return|;
 case|case
 literal|1
 case|:
+comment|// Insert input[i+1] twice
 if|if
 condition|(
 name|i
 operator|+
 literal|1
 operator|<
-name|charArray
+name|input
 operator|.
 name|length
 condition|)
@@ -5555,7 +5475,7 @@ name|builder
 operator|.
 name|append
 argument_list|(
-name|charArray
+name|input
 index|[
 name|i
 operator|+
@@ -5567,7 +5487,7 @@ name|builder
 operator|.
 name|append
 argument_list|(
-name|charArray
+name|input
 index|[
 name|i
 operator|++
@@ -5587,7 +5507,7 @@ name|i
 init|;
 name|j
 operator|<
-name|charArray
+name|input
 operator|.
 name|length
 condition|;
@@ -5599,7 +5519,7 @@ name|builder
 operator|.
 name|append
 argument_list|(
-name|charArray
+name|input
 index|[
 name|j
 index|]
@@ -5615,6 +5535,10 @@ return|;
 case|case
 literal|0
 case|:
+comment|// Insert random byte.
+comment|// NOTE: can only use ascii here so that, in
+comment|// UTF8 byte space it's still a single
+comment|// insertion:
 name|int
 name|x
 init|=
@@ -5645,7 +5569,7 @@ name|i
 init|;
 name|j
 operator|<
-name|charArray
+name|input
 operator|.
 name|length
 condition|;
@@ -5657,7 +5581,7 @@ name|builder
 operator|.
 name|append
 argument_list|(
-name|charArray
+name|input
 index|[
 name|j
 index|]
@@ -5670,13 +5594,14 @@ operator|.
 name|toString
 argument_list|()
 return|;
+comment|// nocommit need transposition too?
 block|}
 block|}
 name|builder
 operator|.
 name|append
 argument_list|(
-name|charArray
+name|input
 index|[
 name|i
 index|]
