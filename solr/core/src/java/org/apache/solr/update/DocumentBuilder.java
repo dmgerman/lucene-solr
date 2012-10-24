@@ -1125,32 +1125,6 @@ name|used
 init|=
 literal|false
 decl_stmt|;
-name|float
-name|boost
-init|=
-name|field
-operator|.
-name|getBoost
-argument_list|()
-decl_stmt|;
-name|boolean
-name|applyBoost
-init|=
-name|sfield
-operator|!=
-literal|null
-operator|&&
-name|sfield
-operator|.
-name|indexed
-argument_list|()
-operator|&&
-operator|!
-name|sfield
-operator|.
-name|omitNorms
-argument_list|()
-decl_stmt|;
 comment|// Make sure it has the correct number
 if|if
 condition|(
@@ -1207,13 +1181,39 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+name|float
+name|fieldBoost
+init|=
+name|field
+operator|.
+name|getBoost
+argument_list|()
+decl_stmt|;
+name|boolean
+name|applyBoost
+init|=
+name|sfield
+operator|!=
+literal|null
+operator|&&
+name|sfield
+operator|.
+name|indexed
+argument_list|()
+operator|&&
+operator|!
+name|sfield
+operator|.
+name|omitNorms
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|applyBoost
 operator|==
 literal|false
 operator|&&
-name|boost
+name|fieldBoost
 operator|!=
 literal|1.0F
 condition|)
@@ -1254,13 +1254,14 @@ argument_list|)
 throw|;
 block|}
 comment|// Lucene no longer has a native docBoost, so we have to multiply
-comment|// it ourselves (do this after the applyBoost error check so we don't
-comment|// give an error on fields that don't support boost just because of a
-comment|// docBoost)
-name|boost
-operator|*=
+comment|// it ourselves
+name|float
+name|compoundBoost
+init|=
+name|fieldBoost
+operator|*
 name|docBoost
-expr_stmt|;
+decl_stmt|;
 comment|// load each field value
 name|boolean
 name|hasField
@@ -1311,13 +1312,13 @@ name|v
 argument_list|,
 name|applyBoost
 condition|?
-name|boost
+name|compoundBoost
 else|:
 literal|1f
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Check if we should copy this field to any other fields.
+comment|// Check if we should copy this field value to any other fields.
 comment|// This could happen whether it is explicit or not.
 name|List
 argument_list|<
@@ -1348,15 +1349,13 @@ operator|.
 name|getDestination
 argument_list|()
 decl_stmt|;
-comment|// check if the copy field is a multivalued or not
-if|if
-condition|(
-operator|!
-name|destinationField
-operator|.
-name|multiValued
-argument_list|()
-operator|&&
+specifier|final
+name|boolean
+name|destHasValues
+init|=
+operator|(
+literal|null
+operator|!=
 name|out
 operator|.
 name|getField
@@ -1366,8 +1365,18 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
-operator|!=
-literal|null
+operator|)
+decl_stmt|;
+comment|// check if the copy field is a multivalued or not
+if|if
+condition|(
+operator|!
+name|destinationField
+operator|.
+name|multiValued
+argument_list|()
+operator|&&
+name|destHasValues
 condition|)
 block|{
 throw|throw
@@ -1439,14 +1448,15 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
-name|addField
-argument_list|(
-name|out
-argument_list|,
-name|destinationField
-argument_list|,
-name|val
-argument_list|,
+comment|// we can't copy any boost unless the dest field is
+comment|// indexed& !omitNorms, but which boost we copy depends
+comment|// on wether the dest field already contains values (we
+comment|// don't want to apply the compounded docBoost more then once)
+specifier|final
+name|float
+name|destBoost
+init|=
+operator|(
 name|destinationField
 operator|.
 name|indexed
@@ -1457,18 +1467,37 @@ name|destinationField
 operator|.
 name|omitNorms
 argument_list|()
+operator|)
 condition|?
-name|boost
+operator|(
+name|destHasValues
+condition|?
+name|fieldBoost
 else|:
-literal|1F
+name|compoundBoost
+operator|)
+else|:
+literal|1.0F
+decl_stmt|;
+name|addField
+argument_list|(
+name|out
+argument_list|,
+name|destinationField
+argument_list|,
+name|val
+argument_list|,
+name|destBoost
 argument_list|)
 expr_stmt|;
 block|}
-comment|// The boost for a given field is the product of the
+comment|// The final boost for a given field named is the product of the
 comment|// *all* boosts on values of that field.
 comment|// For multi-valued fields, we only want to set the boost on the
 comment|// first field.
-name|boost
+name|fieldBoost
+operator|=
+name|compoundBoost
 operator|=
 literal|1.0f
 expr_stmt|;
