@@ -328,14 +328,14 @@ argument_list|,
 literal|1.414d
 argument_list|)
 expr_stmt|;
+name|commit
+argument_list|()
+expr_stmt|;
 comment|// make sure we are in a steady state...
 name|waitForRecoveriesToFinish
 argument_list|(
 literal|false
 argument_list|)
-expr_stmt|;
-name|commit
-argument_list|()
 expr_stmt|;
 name|assertDocCounts
 argument_list|(
@@ -980,6 +980,9 @@ block|{
 comment|// expected..
 block|}
 name|commit
+argument_list|()
+expr_stmt|;
+name|printLayout
 argument_list|()
 expr_stmt|;
 name|query

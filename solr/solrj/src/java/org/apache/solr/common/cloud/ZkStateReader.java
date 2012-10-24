@@ -1105,7 +1105,19 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"A cluster state change has occurred - updating..."
+literal|"A cluster state change has occurred - updating... ({})"
+argument_list|,
+name|ZkStateReader
+operator|.
+name|this
+operator|.
+name|clusterState
+operator|.
+name|getLiveNodes
+argument_list|()
+operator|.
+name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 try|try
@@ -1341,13 +1353,6 @@ condition|)
 block|{
 return|return;
 block|}
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Updating live nodes"
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 comment|// delayed approach
@@ -1379,6 +1384,18 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Updating live nodes... ({})"
+argument_list|,
+name|liveNodes
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Set
 argument_list|<
 name|String
@@ -1675,7 +1692,12 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Updating live nodes from ZooKeeper... "
+literal|"Updating live nodes from ZooKeeper... ({})"
+argument_list|,
+name|liveNodesSet
+operator|.
+name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|clusterState

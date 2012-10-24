@@ -1016,6 +1016,8 @@ operator|.
 name|numRecordsToKeep
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 return|return

@@ -3975,6 +3975,13 @@ literal|null
 condition|)
 block|{
 comment|//XXX sys prop hack
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"numShards not found on descriptor - reading it from system property"
+argument_list|)
+expr_stmt|;
 name|numShards
 operator|=
 name|Integer
