@@ -17,7 +17,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * The result of a call to {@link Classifier#assignClass(String)} holding an assigned class and a score.  */
+comment|/**  * The result of a call to {@link Classifier#assignClass(String)} holding an assigned class and a score.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -36,6 +36,7 @@ specifier|private
 name|double
 name|score
 decl_stmt|;
+comment|/**    * Constructor    * @param assignedClass the class<code>String</code> assigned by a {@link Classifier}    * @param score the score for the assignedClass as a<code>double</code>    */
 DECL|method|ClassificationResult
 specifier|public
 name|ClassificationResult
@@ -60,6 +61,7 @@ operator|=
 name|score
 expr_stmt|;
 block|}
+comment|/**    * retrieve the result class    * @return a<code>String</code> representing an assigned class    */
 DECL|method|getAssignedClass
 specifier|public
 name|String
@@ -70,6 +72,7 @@ return|return
 name|assignedClass
 return|;
 block|}
+comment|/**    * retrieve the result score    * @return a<code>double</code> representing a result score    */
 DECL|method|getScore
 specifier|public
 name|double

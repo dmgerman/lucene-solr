@@ -193,6 +193,7 @@ specifier|private
 name|int
 name|k
 decl_stmt|;
+comment|/**    * Create a {@link Classifier} using kNN algorithm    * @param k the number of neighbors to analyze as an<code>int</code>    */
 DECL|method|KNearestNeighborClassifier
 specifier|public
 name|KNearestNeighborClassifier
