@@ -63,7 +63,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * An attribute stream built from an {@link Iterable} of  * {@link CategoryAttribute}. This stream should then be passed through several  * filters (see {@link CategoryParentsStream}, {@link CategoryListTokenizer} and  * {@link CategoryTokenizer}) until a token stream is produced that can be  * indexed by Lucene.  *<P>  * A CategoryAttributesStream object can be reused for producing more than one  * stream. To do that, the user should cause the underlying  * Iterable<CategoryAttribute> object to return a new set of categories, and  * then call {@link #reset()} to allow this stream to be used again.  *   * @lucene.experimental  */
+comment|/**  * An attribute stream built from an {@link Iterable} of  * {@link CategoryAttribute}. This stream should then be passed through several  * filters (see {@link CategoryParentsStream}, {@link CategoryListTokenizer} and  * {@link CategoryTokenizer}) until a token stream is produced that can be  * indexed by Lucene.  *<P>  * A CategoryAttributesStream object can be reused for producing more than one  * stream. To do that, the user should cause the underlying  * Iterable&lt;CategoryAttribute&gt; object to return a new set of categories, and  * then call {@link #reset()} to allow this stream to be used again.  *   * @lucene.experimental  */
 end_comment
 
 begin_class

@@ -127,7 +127,7 @@ comment|// TODO: we need to break out separate StoredField...
 end_comment
 
 begin_comment
-comment|/** Represents a single field for indexing.  IndexWriter  *  consumes Iterable<IndexableField> as a document.  *  *  @lucene.experimental */
+comment|/** Represents a single field for indexing.  IndexWriter  *  consumes Iterable&lt;IndexableField&gt; as a document.  *  *  @lucene.experimental */
 end_comment
 
 begin_interface

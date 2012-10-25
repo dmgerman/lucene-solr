@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * A streaming xpath parser which uses StAX for XML parsing. It supports only  * a subset of xpath syntax.  *</p><pre>  * /a/b/subject[@qualifier='fullTitle']  * /a/b/subject[@qualifier=]/subtag  * /a/b/subject/@qualifier  * //a  * //a/b...  * /a//b  * /a//b...  * /a/b/c  *</pre>  * A record is a Map&lt;String,Object&gt; . The key is the provided name  * and the value is a String or a List<String>  *  * This class is thread-safe for parsing xml. But adding fields is not  * thread-safe. The recommended usage is to addField() in one thread and   * then share the instance across threads.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *<p>  *  * @since solr 1.3  */
+comment|/**  *<p>  * A streaming xpath parser which uses StAX for XML parsing. It supports only  * a subset of xpath syntax.  *</p><pre>  * /a/b/subject[@qualifier='fullTitle']  * /a/b/subject[@qualifier=]/subtag  * /a/b/subject/@qualifier  * //a  * //a/b...  * /a//b  * /a//b...  * /a/b/c  *</pre>  * A record is a Map&lt;String,Object&gt; . The key is the provided name  * and the value is a String or a List&lt;String&gt;  *  * This class is thread-safe for parsing xml. But adding fields is not  * thread-safe. The recommended usage is to addField() in one thread and   * then share the instance across threads.  *</p>  *<p/>  *<b>This API is experimental and may change in the future.</b>  *<p>  *  * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -2846,7 +2846,7 @@ specifier|static
 interface|interface
 name|Handler
 block|{
-comment|/**      * @param record The record map. The key is the field name as provided in       * the addField() methods. The value can be a single String (for single       * valued fields) or a List<String> (for multiValued).      * @param xpath The forEach XPATH for which this record is being emitted      * If there is any change all parsing will be aborted and the Exception      * is propogated up      */
+comment|/**      * @param record The record map. The key is the field name as provided in       * the addField() methods. The value can be a single String (for single       * valued fields) or a List&lt;String&gt; (for multiValued).      * @param xpath The forEach XPATH for which this record is being emitted      * If there is any change all parsing will be aborted and the Exception      * is propagated up      */
 DECL|method|handle
 specifier|public
 name|void
