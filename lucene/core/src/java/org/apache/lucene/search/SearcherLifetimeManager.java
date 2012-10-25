@@ -783,7 +783,7 @@ name|recordTimeSec
 expr_stmt|;
 block|}
 block|}
-comment|/** Close this to future searching; any searches still in    *  process in other threads won't be affected, and they    *  should still call {@link #release} after they are    *  done.    *    *<p><b>NOTE: you must ensure no other threads are    *  calling {@link #record} while you call close();    *  otherwise it's possible not all searcher references    *  will be freed. */
+comment|/** Close this to future searching; any searches still in    *  process in other threads won't be affected, and they    *  should still call {@link #release} after they are    *  done.    *    *<p><b>NOTE</b>: you must ensure no other threads are    *  calling {@link #record} while you call close();    *  otherwise it's possible not all searcher references    *  will be freed. */
 annotation|@
 name|Override
 DECL|method|close
