@@ -367,7 +367,7 @@ operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|getInstanceDir
+name|getRawInstanceDir
 argument_list|()
 argument_list|)
 decl_stmt|;
