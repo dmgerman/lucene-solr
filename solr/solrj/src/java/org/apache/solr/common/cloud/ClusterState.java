@@ -767,6 +767,15 @@ argument_list|(
 name|collection
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|slices
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
 for|for
 control|(
 name|Slice

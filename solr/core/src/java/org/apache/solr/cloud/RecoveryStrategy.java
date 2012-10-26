@@ -1877,6 +1877,10 @@ operator|&&
 operator|!
 name|isInterrupted
 argument_list|()
+operator|&&
+operator|!
+name|isClosed
+argument_list|()
 condition|)
 block|{
 comment|// don't use interruption or it will close channels though
