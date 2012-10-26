@@ -1286,7 +1286,6 @@ operator|.
 name|createClusterStateWatchersAndUpdate
 argument_list|()
 expr_stmt|;
-comment|//  cc.newCmdDistribExecutor();
 comment|// we have to register as live first to pick up docs in the buffer
 name|createEphemeralLiveNode
 argument_list|()
@@ -1784,11 +1783,30 @@ name|values
 argument_list|()
 control|)
 block|{
+try|try
+block|{
 name|context
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Error closing overseer"
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 try|try
 block|{

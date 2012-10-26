@@ -74,7 +74,7 @@ specifier|public
 class|class
 name|SimpleFSDirectoryFactory
 extends|extends
-name|CachingDirectoryFactory
+name|StandardDirectoryFactory
 block|{
 annotation|@
 name|Override

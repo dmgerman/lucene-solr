@@ -282,11 +282,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|useFactory
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
+comment|// Only For Manual Testing: this will force an fs based dir factory
+comment|//useFactory(null);
 block|}
 annotation|@
 name|Before

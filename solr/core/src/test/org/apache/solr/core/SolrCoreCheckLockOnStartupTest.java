@@ -368,6 +368,17 @@ argument_list|()
 operator|.
 name|getCause
 argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|t
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getCause
+argument_list|()
 operator|instanceof
 name|LockObtainFailedException
 argument_list|)

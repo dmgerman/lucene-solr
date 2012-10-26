@@ -1258,6 +1258,37 @@ argument_list|(
 name|coreName
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|core
+operator|==
+literal|null
+condition|)
+block|{
+name|cancelElection
+argument_list|()
+expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Fatal Error, SolrCore not found:"
+operator|+
+name|coreName
+operator|+
+literal|" in "
+operator|+
+name|cc
+operator|.
+name|getCoreNames
+argument_list|()
+argument_list|)
+throw|;
+block|}
 name|core
 operator|.
 name|getCoreDescriptor
@@ -1844,7 +1875,27 @@ return|return
 literal|true
 return|;
 block|}
-comment|//    TODO: and if no is a good candidate?
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"My last published State was "
+operator|+
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|getLastPublished
+argument_list|()
+operator|+
+literal|", I won't be the leader."
+argument_list|)
+expr_stmt|;
+comment|// TODO: and if no one is a good candidate?
 return|return
 literal|false
 return|;

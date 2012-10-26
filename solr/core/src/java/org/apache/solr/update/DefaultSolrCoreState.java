@@ -523,6 +523,9 @@ name|core
 parameter_list|,
 name|boolean
 name|rollback
+parameter_list|,
+name|boolean
+name|forceNewDir
 parameter_list|)
 throws|throws
 name|IOException
@@ -686,7 +689,7 @@ name|core
 argument_list|,
 literal|"DirectUpdateHandler2"
 argument_list|,
-literal|true
+name|forceNewDir
 argument_list|)
 expr_stmt|;
 name|log
@@ -733,6 +736,8 @@ block|{
 name|newIndexWriter
 argument_list|(
 name|core
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)

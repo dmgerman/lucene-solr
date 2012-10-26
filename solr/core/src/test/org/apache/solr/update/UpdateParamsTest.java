@@ -68,7 +68,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|*
+name|SolrCore
 import|;
 end_import
 
@@ -128,6 +128,16 @@ name|AbstractSolrTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
 begin_class
 DECL|class|UpdateParamsTest
 specifier|public
@@ -137,28 +147,23 @@ extends|extends
 name|AbstractSolrTestCase
 block|{
 annotation|@
-name|Override
-DECL|method|getSchemaFile
+name|BeforeClass
+DECL|method|beforeClass
 specifier|public
-name|String
-name|getSchemaFile
+specifier|static
+name|void
+name|beforeClass
 parameter_list|()
+throws|throws
+name|Exception
 block|{
-return|return
-literal|"schema.xml"
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getSolrConfigFile
-specifier|public
-name|String
-name|getSolrConfigFile
-parameter_list|()
-block|{
-return|return
+name|initCore
+argument_list|(
 literal|"solrconfig.xml"
-return|;
+argument_list|,
+literal|"schema.xml"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Tests that only update.chain and not update.processor works (SOLR-2105)    */
 DECL|method|testUpdateProcessorParamDeprecationRemoved

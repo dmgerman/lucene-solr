@@ -1032,6 +1032,11 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+name|assertNotNull
+argument_list|(
+name|solrHome
+argument_list|)
+expr_stmt|;
 name|configString
 operator|=
 name|config
@@ -1863,6 +1868,11 @@ name|void
 name|createCore
 parameter_list|()
 block|{
+name|assertNotNull
+argument_list|(
+name|testSolrHome
+argument_list|)
+expr_stmt|;
 name|solrConfig
 operator|=
 name|TestHarness

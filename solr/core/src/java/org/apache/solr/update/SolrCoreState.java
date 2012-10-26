@@ -139,6 +139,9 @@ name|core
 parameter_list|,
 name|boolean
 name|rollback
+parameter_list|,
+name|boolean
+name|forceNewDir
 parameter_list|)
 throws|throws
 name|IOException

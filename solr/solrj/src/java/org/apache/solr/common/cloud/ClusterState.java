@@ -401,6 +401,12 @@ parameter_list|)
 block|{
 name|this
 operator|.
+name|zkClusterStateVersion
+operator|=
+name|zkClusterStateVersion
+expr_stmt|;
+name|this
+operator|.
 name|liveNodes
 operator|=
 operator|new

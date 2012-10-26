@@ -302,10 +302,7 @@ operator|.
 name|getLocalPort
 argument_list|()
 expr_stmt|;
-name|h
-operator|.
-name|getCoreContainer
-argument_list|()
+name|cores
 operator|.
 name|setPersistent
 argument_list|(

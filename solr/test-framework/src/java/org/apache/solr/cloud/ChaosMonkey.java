@@ -956,6 +956,13 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+assert|assert
+operator|(
+name|jetty
+operator|!=
+literal|null
+operator|)
+assert|;
 name|monkeyLog
 argument_list|(
 literal|"stop shard! "
