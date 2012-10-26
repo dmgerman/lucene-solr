@@ -3102,7 +3102,7 @@ expr_stmt|;
 comment|// NOTE: this could potentially block for
 comment|// minutes or more!
 comment|// TODO: public as recovering in the mean time?
-comment|// TODO: in the future we could do peerync in parallel with recoverFromLog
+comment|// TODO: in the future we could do peersync in parallel with recoverFromLog
 block|}
 else|else
 block|{
