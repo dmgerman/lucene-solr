@@ -1108,17 +1108,6 @@ init|(
 name|cachLock
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"work with collection:"
-operator|+
-name|collection
-argument_list|)
-expr_stmt|;
 name|List
 argument_list|<
 name|String
