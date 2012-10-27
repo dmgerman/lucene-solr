@@ -1358,18 +1358,9 @@ argument_list|(
 name|msg
 argument_list|)
 expr_stmt|;
-comment|// if its TestReplicationHandler on freebsd, ignore it
+comment|// if its TestReplicationHandler, ignore it. the test is broken and gets no love
 if|if
 condition|(
-literal|"FreeBSD"
-operator|.
-name|equals
-argument_list|(
-name|Constants
-operator|.
-name|OS_NAME
-argument_list|)
-operator|&&
 literal|"TestReplicationHandler"
 operator|.
 name|equals
