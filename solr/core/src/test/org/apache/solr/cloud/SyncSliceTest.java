@@ -883,7 +883,7 @@ argument_list|)
 expr_stmt|;
 name|waitForThingsToLevelOut
 argument_list|(
-literal|15
+literal|30
 argument_list|)
 expr_stmt|;
 name|checkShardConsistency
