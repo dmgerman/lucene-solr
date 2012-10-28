@@ -22,21 +22,17 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|solr
 operator|.
-name|util
+name|client
 operator|.
-name|Collection
+name|solrj
+operator|.
+name|SolrRequest
 import|;
 end_import
 
@@ -69,22 +65,6 @@ operator|.
 name|solrj
 operator|.
 name|SolrServerException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|SolrRequest
 import|;
 end_import
 
@@ -138,8 +118,28 @@ name|ContentStream
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
 begin_comment
-comment|/**  *   *  * @since solr 1.3  */
+comment|/**  * Verify that there is a working Solr core at the URL of a {@link SolrServer}.  * To use this class, the solrconfig.xml for the relevant core must include the  * request handler for<code>/admin/ping</code>.  *  * @since solr 1.3  */
 end_comment
 
 begin_class
