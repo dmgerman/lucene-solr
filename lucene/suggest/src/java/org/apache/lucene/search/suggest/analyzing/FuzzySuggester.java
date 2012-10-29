@@ -281,7 +281,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements a fuzzy {@link AnalyzingSuggester}. The similarity measurement is  * based on the Damerau-Levenshtein (optimal string alignment) algorithm, though  * you can explicitly choose classic Levenshtein by passing<code>false</code>  * to the<code>transpositions</code> parameter.  *<p>  * At most, this query will match terms up to  * {@value org.apache.lucene.util.automaton.LevenshteinAutomata#MAXIMUM_SUPPORTED_DISTANCE}  * edits. Higher distances (especially with transpositions enabled), are not  * supported.  Note that the fuzzy distance is byte-by-byte  * as returned by the {@link TokenStream}'s {@link  * TermToBytesRefAttribute}, usually UTF8.  By default  * the first 2 (@link #DEFAULT_MIN_PREFIX) bytes must match,  * and by default we allow up to 1 (@link  * #DEFAULT_MAX_EDITS} edit.  *<p>  * Note: complex query analyzers can have a significant impact on the lookup  * performance. It's recommended to not use analyzers that drop or inject terms  * like synonyms to keep the complexity of the prefix intersection low for good  * lookup performance. At index time, complex analyzers can safely be used.  *</p>  */
+comment|/**  * Implements a fuzzy {@link AnalyzingSuggester}. The similarity measurement is  * based on the Damerau-Levenshtein (optimal string alignment) algorithm, though  * you can explicitly choose classic Levenshtein by passing<code>false</code>  * for the<code>transpositions</code> parameter.  *<p>  * At most, this query will match terms up to  * {@value org.apache.lucene.util.automaton.LevenshteinAutomata#MAXIMUM_SUPPORTED_DISTANCE}  * edits. Higher distances are not supported.  Note that the  * fuzzy distance is measured in "byte space" on the bytes  * returned by the {@link TokenStream}'s {@link  * TermToBytesRefAttribute}, usually UTF8.  By default  * the analyzed bytes must be at least 3 {@link  * #DEFAULT_MIN_FUZZY_LENGTH} bytes before any edits are  * considered.  Furthermore, the first 1 {@link  * #DEFAULT_NON_FUZZY_PREFIX} byte is not allowed to be  * edited.  We allow up to 1 (@link  * #DEFAULT_MAX_EDITS} edit.  *  *<p>  * NOTE: This suggester does not boost suggestions that  * required no edits over suggestions that did require  * edits.  This is a known limitation.  *  *<p>  * Note: complex query analyzers can have a significant impact on the lookup  * performance. It's recommended to not use analyzers that drop or inject terms  * like synonyms to keep the complexity of the prefix intersection low for good  * lookup performance. At index time, complex analyzers can safely be used.  *</p>  */
 end_comment
 
 begin_class
@@ -305,26 +305,45 @@ specifier|final
 name|boolean
 name|transpositions
 decl_stmt|;
-DECL|field|minPrefix
+DECL|field|nonFuzzyPrefix
 specifier|private
 specifier|final
 name|int
-name|minPrefix
+name|nonFuzzyPrefix
 decl_stmt|;
-comment|// nocommit separate param for "min length before we
-comment|// enable fuzzy"?  eg type "nusglasses" into google...
-comment|/**    * The default minimum shared (non-fuzzy) prefix. Set to<tt>2</tt>    */
-comment|// nocommit should we do 1...?
-DECL|field|DEFAULT_MIN_PREFIX
+DECL|field|minFuzzyLength
+specifier|private
+specifier|final
+name|int
+name|minFuzzyLength
+decl_stmt|;
+DECL|field|allowSepEdit
+specifier|private
+specifier|final
+name|boolean
+name|allowSepEdit
+decl_stmt|;
+comment|/**    * The default minimum length of the key passed to {@link    * #lookup} before any edits are allowed.    */
+DECL|field|DEFAULT_MIN_FUZZY_LENGTH
 specifier|public
 specifier|static
 specifier|final
 name|int
-name|DEFAULT_MIN_PREFIX
+name|DEFAULT_MIN_FUZZY_LENGTH
 init|=
-literal|2
+literal|3
 decl_stmt|;
-comment|/**    * The default maximum number of edits for fuzzy suggestions. Set to<tt>1</tt>    */
+comment|/**    * The default prefix length where edits are not allowed.    */
+DECL|field|DEFAULT_NON_FUZZY_PREFIX
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_NON_FUZZY_PREFIX
+init|=
+literal|1
+decl_stmt|;
+comment|/**    * The default maximum number of edits for fuzzy    * suggestions.    */
 DECL|field|DEFAULT_MAX_EDITS
 specifier|public
 specifier|static
@@ -334,7 +353,17 @@ name|DEFAULT_MAX_EDITS
 init|=
 literal|1
 decl_stmt|;
-comment|/**    * Creates a {@link FuzzySuggester} instance initialized with default values.    * Calls    * {@link FuzzySuggester#FuzzySuggester(Analyzer, Analyzer, int, int, int, int, boolean, int)}    * FuzzySuggester(analyzer, analyzer, EXACT_FIRST | PRESERVE_SEP, 256, -1,    * DEFAULT_MAX_EDITS, true, DEFAULT_MIN_PREFIX)    *     * @param analyzer    *          the analyzer used for this suggester    */
+comment|/**    * We allow token separator to be deleted/inserted, by default.    */
+DECL|field|DEFAULT_ALLOW_SEP_EDIT
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|DEFAULT_ALLOW_SEP_EDIT
+init|=
+literal|true
+decl_stmt|;
+comment|/**    * Creates a {@link FuzzySuggester} instance initialized with default values.    *     * @param analyzer the analyzer used for this suggester    */
 DECL|method|FuzzySuggester
 specifier|public
 name|FuzzySuggester
@@ -351,7 +380,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a {@link FuzzySuggester} instance with an index& a query analyzer initialized with default values.    * Calls    * {@link FuzzySuggester#FuzzySuggester(Analyzer, Analyzer, int, int, int, int, boolean, int)}    * FuzzySuggester(indexAnalyzer, queryAnalyzer, EXACT_FIRST | PRESERVE_SEP, 256, -1,    * DEFAULT_MAX_EDITS, true, DEFAULT_MIN_PREFIX)    *     * @param indexAnalyzer    *           Analyzer that will be used for analyzing suggestions while building the index.    * @param queryAnalyzer    *           Analyzer that will be used for analyzing query text during lookup    */
+comment|/**    * Creates a {@link FuzzySuggester} instance with an index& a query analyzer initialized with default values.    *     * @param indexAnalyzer    *           Analyzer that will be used for analyzing suggestions while building the index.    * @param queryAnalyzer    *           Analyzer that will be used for analyzing query text during lookup    */
 DECL|method|FuzzySuggester
 specifier|public
 name|FuzzySuggester
@@ -382,11 +411,15 @@ name|DEFAULT_MAX_EDITS
 argument_list|,
 literal|true
 argument_list|,
-name|DEFAULT_MIN_PREFIX
+name|DEFAULT_NON_FUZZY_PREFIX
+argument_list|,
+name|DEFAULT_MIN_FUZZY_LENGTH
+argument_list|,
+name|DEFAULT_ALLOW_SEP_EDIT
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a {@link FuzzySuggester} instance.    *     * @param indexAnalyzer Analyzer that will be used for    *        analyzing suggestions while building the index.    * @param queryAnalyzer Analyzer that will be used for    *        analyzing query text during lookup    * @param options see {@link #EXACT_FIRST}, {@link #PRESERVE_SEP}    * @param maxSurfaceFormsPerAnalyzedForm Maximum number of    *        surface forms to keep for a single analyzed form.    *        When there are too many surface forms we discard the    *        lowest weighted ones.    * @param maxGraphExpansions Maximum number of graph paths    *        to expand from the analyzed form.  Set this to -1 for    *        no limit.    *       * @param maxEdits must be>= 0 and<= {@link LevenshteinAutomata#MAXIMUM_SUPPORTED_DISTANCE}.    * @param transpositions<code>true</code> if transpositions should be treated as a primitive     *        edit operation. If this is false, comparisons will implement the classic    *        Levenshtein algorithm.    * @param minPrefix length of common (non-fuzzy) prefix    *              */
+comment|/**    * Creates a {@link FuzzySuggester} instance.    *     * @param indexAnalyzer Analyzer that will be used for    *        analyzing suggestions while building the index.    * @param queryAnalyzer Analyzer that will be used for    *        analyzing query text during lookup    * @param options see {@link #EXACT_FIRST}, {@link #PRESERVE_SEP}    * @param maxSurfaceFormsPerAnalyzedForm Maximum number of    *        surface forms to keep for a single analyzed form.    *        When there are too many surface forms we discard the    *        lowest weighted ones.    * @param maxGraphExpansions Maximum number of graph paths    *        to expand from the analyzed form.  Set this to -1 for    *        no limit.    * @param maxEdits must be>= 0 and<= {@link LevenshteinAutomata#MAXIMUM_SUPPORTED_DISTANCE} .    * @param transpositions<code>true</code> if transpositions should be treated as a primitive     *        edit operation. If this is false, comparisons will implement the classic    *        Levenshtein algorithm.    * @param nonFuzzyPrefix length of common (non-fuzzy) prefix (see default {@link #DEFAULT_NON_FUZZY_PREFIX}    * @param minFuzzyLength minimum length of lookup key before any edits are allowed (see default {@link #DEFAULT_MIN_FUZZY_LENGTH})    * @param allowSepEdit if true, the token separater is allowed to be an edit (so words may be split/joined) (see default {@link #DEFAULT_ALLOW_SEP_EDIT})    */
 DECL|method|FuzzySuggester
 specifier|public
 name|FuzzySuggester
@@ -413,7 +446,13 @@ name|boolean
 name|transpositions
 parameter_list|,
 name|int
-name|minPrefix
+name|nonFuzzyPrefix
+parameter_list|,
+name|int
+name|minFuzzyLength
+parameter_list|,
+name|boolean
+name|allowSepEdit
 parameter_list|)
 block|{
 name|super
@@ -456,7 +495,7 @@ throw|;
 block|}
 if|if
 condition|(
-name|minPrefix
+name|nonFuzzyPrefix
 operator|<
 literal|0
 condition|)
@@ -465,7 +504,30 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"minPrefix must not be< 0"
+literal|"nonFuzzyPrefix must not be>= 0 (got "
+operator|+
+name|nonFuzzyPrefix
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|minFuzzyLength
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"minFuzzyLength must not be>= 0 (got "
+operator|+
+name|minFuzzyLength
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
@@ -483,9 +545,21 @@ name|transpositions
 expr_stmt|;
 name|this
 operator|.
-name|minPrefix
+name|nonFuzzyPrefix
 operator|=
-name|minPrefix
+name|nonFuzzyPrefix
+expr_stmt|;
+name|this
+operator|.
+name|minFuzzyLength
+operator|=
+name|minFuzzyLength
+expr_stmt|;
+name|this
+operator|.
+name|allowSepEdit
+operator|=
+name|allowSepEdit
 expr_stmt|;
 block|}
 annotation|@
@@ -541,12 +615,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit we don't "penalize" for edits
-comment|// ... shouldn't we?  ie, ed=0 completions should have
-comment|// higher rank than ed=1, at the same "weight"?  maybe
-comment|// we can punt on this for starters ... or maybe we
-comment|// can re-run each prefix path through lev0, lev1,
-comment|// lev2 to figure out the number of edits?
+comment|// TODO: right now there's no penalty for fuzzy/edits,
+comment|// ie a completion whose prefix matched exactly what the
+comment|// user typed gets no boost over completions that
+comment|// required an edit, which get no boost over completions
+comment|// requiring two edits.  I suspect a multiplicative
+comment|// factor is appropriate (eg, say a fuzzy match must be at
+comment|// least 2X better weight than the non-fuzzy match to
+comment|// "compete") ... in which case I think the wFST needs
+comment|// to be log weights or something ...
 name|Automaton
 name|levA
 init|=
@@ -624,7 +701,13 @@ name|path
 operator|.
 name|length
 operator|<=
-name|minPrefix
+name|nonFuzzyPrefix
+operator|||
+name|path
+operator|.
+name|length
+operator|<
+name|minFuzzyLength
 condition|)
 block|{
 name|subs
@@ -670,7 +753,7 @@ name|path
 operator|.
 name|offset
 argument_list|,
-name|minPrefix
+name|nonFuzzyPrefix
 argument_list|)
 decl_stmt|;
 name|int
@@ -684,7 +767,7 @@ name|path
 operator|.
 name|length
 operator|-
-name|minPrefix
+name|nonFuzzyPrefix
 index|]
 decl_stmt|;
 name|System
@@ -699,7 +782,7 @@ name|path
 operator|.
 name|offset
 operator|+
-name|minPrefix
+name|nonFuzzyPrefix
 argument_list|,
 name|ints
 argument_list|,
@@ -710,13 +793,11 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-comment|// nocommit i think we should pass 254 max?  ie
-comment|// exclude 0xff ... this way we can't 'edit away'
-comment|// the sep?  or ... maybe we want to allow that to
-comment|// be edited away?
-comment|// nocommit also the 0 byte ... we use that as
-comment|// trailer ... we probably shouldn't allow that byte
-comment|// to be edited (we could add alphaMin?)
+comment|// TODO: maybe add alphaMin to LevenshteinAutomata,
+comment|// and pass 1 instead of 0?  We probably don't want
+comment|// to allow the trailing dedup bytes to be
+comment|// edited... but then 0 byte is "in general" allowed
+comment|// on input (but not in UTF8).
 name|LevenshteinAutomata
 name|lev
 init|=
@@ -725,7 +806,11 @@ name|LevenshteinAutomata
 argument_list|(
 name|ints
 argument_list|,
+name|allowSepEdit
+condition|?
 literal|255
+else|:
+literal|254
 argument_list|,
 name|transpositions
 argument_list|)
@@ -777,9 +862,6 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-comment|// nocommit maybe we should reduce the LevN?  the added
-comment|// arcs add cost during intersect (extra FST arc
-comment|// lookups...).  could be net win...
 if|if
 condition|(
 name|subs
@@ -840,6 +922,9 @@ argument_list|(
 name|a
 argument_list|)
 expr_stmt|;
+comment|// Does not seem to help (and hurt maybe a bit: 6-9
+comment|// prefix went from 19 to 18 kQPS):
+comment|// a.reduce();
 return|return
 name|a
 return|;

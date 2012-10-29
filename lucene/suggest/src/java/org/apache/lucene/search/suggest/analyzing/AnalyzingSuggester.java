@@ -3071,8 +3071,8 @@ name|output1
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// nocommit for fuzzy case would be nice to return
-comment|// how many edits were required...:
+comment|// TODO: for fuzzy case would be nice to return
+comment|// how many edits were required
 comment|//System.out.println("    result=" + result);
 name|results
 operator|.

@@ -602,7 +602,9 @@ name|addRandomEdit
 argument_list|(
 literal|"foo bar boo"
 argument_list|,
-literal|2
+name|FuzzySuggester
+operator|.
+name|DEFAULT_NON_FUZZY_PREFIX
 argument_list|)
 decl_stmt|;
 name|List
@@ -1846,6 +1848,10 @@ argument_list|,
 literal|true
 argument_list|,
 literal|1
+argument_list|,
+literal|3
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|suggester
@@ -2838,6 +2844,10 @@ argument_list|,
 literal|true
 argument_list|,
 literal|1
+argument_list|,
+literal|3
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|suggester
@@ -3113,6 +3123,10 @@ argument_list|,
 literal|true
 argument_list|,
 literal|1
+argument_list|,
+literal|3
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|suggester
@@ -4373,6 +4387,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|1
+argument_list|,
+literal|3
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|suggester
@@ -4685,8 +4703,10 @@ operator|.
 name|getTokenStreamToAutomaton
 argument_list|()
 decl_stmt|;
-comment|// nocommit this is putting fox in charge of hen
-comment|// house!  ie maybe we have a bug in suggester.toLevA ...
+comment|// NOTE: not great that we ask the suggester to give
+comment|// us the "answer key" (ie maybe we have a bug in
+comment|// suggester.toLevA ...) ... but testRandom2() fixes
+comment|// this:
 name|Automaton
 name|automaton
 init|=
@@ -5226,6 +5246,10 @@ argument_list|,
 literal|true
 argument_list|,
 literal|1
+argument_list|,
+literal|3
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|List
@@ -5447,10 +5471,85 @@ argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-literal|3
+literal|4
 argument_list|)
 condition|)
 block|{
+case|case
+literal|3
+case|:
+if|if
+condition|(
+name|i
+operator|<
+name|input
+operator|.
+name|length
+operator|-
+literal|1
+condition|)
+block|{
+comment|// Transpose input[i] and input[1+i]:
+name|builder
+operator|.
+name|append
+argument_list|(
+name|input
+index|[
+name|i
+operator|+
+literal|1
+index|]
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+name|input
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|int
+name|j
+init|=
+name|i
+operator|+
+literal|2
+init|;
+name|j
+operator|<
+name|input
+operator|.
+name|length
+condition|;
+name|j
+operator|++
+control|)
+block|{
+name|builder
+operator|.
+name|append
+argument_list|(
+name|input
+index|[
+name|j
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|builder
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+comment|// NOTE: fall through to delete:
 case|case
 literal|2
 case|:
@@ -5629,7 +5728,6 @@ operator|.
 name|toString
 argument_list|()
 return|;
-comment|// nocommit need transposition too?
 block|}
 block|}
 name|builder
@@ -5790,7 +5888,6 @@ name|i
 operator|++
 control|)
 block|{
-comment|// nocommit mixin some unicode here?
 specifier|final
 name|String
 name|s
@@ -6000,6 +6097,10 @@ argument_list|,
 name|transpositions
 argument_list|,
 name|prefixLen
+argument_list|,
+literal|3
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -6232,7 +6333,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// nocommit must fix lookup to tie break properly!!:
 name|Collections
 operator|.
 name|sort
@@ -6567,6 +6667,7 @@ name|maxEdits
 operator|+
 literal|1
 expr_stmt|;
+comment|//for(int ed=-maxEdits;ed<=maxEdits;ed++) {
 for|for
 control|(
 name|int
