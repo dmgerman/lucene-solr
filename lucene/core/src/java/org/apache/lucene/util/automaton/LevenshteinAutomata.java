@@ -82,7 +82,7 @@ name|int
 name|alphabet
 index|[]
 decl_stmt|;
-comment|/* the maximum symbol in the alphabet (e.g. 256 for UTF-8 or 10FFFF for UTF-32) */
+comment|/* the maximum symbol in the alphabet (e.g. 255 for UTF-8 or 10FFFF for UTF-32) */
 DECL|field|alphaMax
 specifier|final
 name|int
@@ -139,7 +139,7 @@ name|withTranspositions
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: Don't use this!    */
+comment|/**    * Expert: specify a custom maximum possible symbol    * (alphaMax); default is Character.MAX_CODE_POINT.    */
 DECL|method|LevenshteinAutomata
 specifier|public
 name|LevenshteinAutomata
@@ -197,16 +197,42 @@ condition|;
 name|i
 operator|++
 control|)
-name|set
-operator|.
-name|add
-argument_list|(
+block|{
+name|int
+name|v
+init|=
 name|word
 index|[
 name|i
 index|]
+decl_stmt|;
+if|if
+condition|(
+name|v
+operator|>
+name|alphaMax
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"alphaMax exceeded by symbol "
+operator|+
+name|v
+operator|+
+literal|" in word"
+argument_list|)
+throw|;
+block|}
+name|set
+operator|.
+name|add
+argument_list|(
+name|v
 argument_list|)
 expr_stmt|;
+block|}
 name|alphabet
 operator|=
 operator|new

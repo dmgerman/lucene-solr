@@ -317,12 +317,6 @@ specifier|final
 name|int
 name|minFuzzyLength
 decl_stmt|;
-DECL|field|allowSepEdit
-specifier|private
-specifier|final
-name|boolean
-name|allowSepEdit
-decl_stmt|;
 comment|/**    * The default minimum length of the key passed to {@link    * #lookup} before any edits are allowed.    */
 DECL|field|DEFAULT_MIN_FUZZY_LENGTH
 specifier|public
@@ -352,16 +346,6 @@ name|int
 name|DEFAULT_MAX_EDITS
 init|=
 literal|1
-decl_stmt|;
-comment|/**    * We allow token separator to be deleted/inserted, by default.    */
-DECL|field|DEFAULT_ALLOW_SEP_EDIT
-specifier|public
-specifier|static
-specifier|final
-name|boolean
-name|DEFAULT_ALLOW_SEP_EDIT
-init|=
-literal|true
 decl_stmt|;
 comment|/**    * Creates a {@link FuzzySuggester} instance initialized with default values.    *     * @param analyzer the analyzer used for this suggester    */
 DECL|method|FuzzySuggester
@@ -414,12 +398,10 @@ argument_list|,
 name|DEFAULT_NON_FUZZY_PREFIX
 argument_list|,
 name|DEFAULT_MIN_FUZZY_LENGTH
-argument_list|,
-name|DEFAULT_ALLOW_SEP_EDIT
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a {@link FuzzySuggester} instance.    *     * @param indexAnalyzer Analyzer that will be used for    *        analyzing suggestions while building the index.    * @param queryAnalyzer Analyzer that will be used for    *        analyzing query text during lookup    * @param options see {@link #EXACT_FIRST}, {@link #PRESERVE_SEP}    * @param maxSurfaceFormsPerAnalyzedForm Maximum number of    *        surface forms to keep for a single analyzed form.    *        When there are too many surface forms we discard the    *        lowest weighted ones.    * @param maxGraphExpansions Maximum number of graph paths    *        to expand from the analyzed form.  Set this to -1 for    *        no limit.    * @param maxEdits must be>= 0 and<= {@link LevenshteinAutomata#MAXIMUM_SUPPORTED_DISTANCE} .    * @param transpositions<code>true</code> if transpositions should be treated as a primitive     *        edit operation. If this is false, comparisons will implement the classic    *        Levenshtein algorithm.    * @param nonFuzzyPrefix length of common (non-fuzzy) prefix (see default {@link #DEFAULT_NON_FUZZY_PREFIX}    * @param minFuzzyLength minimum length of lookup key before any edits are allowed (see default {@link #DEFAULT_MIN_FUZZY_LENGTH})    * @param allowSepEdit if true, the token separater is allowed to be an edit (so words may be split/joined) (see default {@link #DEFAULT_ALLOW_SEP_EDIT})    */
+comment|/**    * Creates a {@link FuzzySuggester} instance.    *     * @param indexAnalyzer Analyzer that will be used for    *        analyzing suggestions while building the index.    * @param queryAnalyzer Analyzer that will be used for    *        analyzing query text during lookup    * @param options see {@link #EXACT_FIRST}, {@link #PRESERVE_SEP}    * @param maxSurfaceFormsPerAnalyzedForm Maximum number of    *        surface forms to keep for a single analyzed form.    *        When there are too many surface forms we discard the    *        lowest weighted ones.    * @param maxGraphExpansions Maximum number of graph paths    *        to expand from the analyzed form.  Set this to -1 for    *        no limit.    * @param maxEdits must be>= 0 and<= {@link LevenshteinAutomata#MAXIMUM_SUPPORTED_DISTANCE} .    * @param transpositions<code>true</code> if transpositions should be treated as a primitive     *        edit operation. If this is false, comparisons will implement the classic    *        Levenshtein algorithm.    * @param nonFuzzyPrefix length of common (non-fuzzy) prefix (see default {@link #DEFAULT_NON_FUZZY_PREFIX}    * @param minFuzzyLength minimum length of lookup key before any edits are allowed (see default {@link #DEFAULT_MIN_FUZZY_LENGTH})    */
 DECL|method|FuzzySuggester
 specifier|public
 name|FuzzySuggester
@@ -450,9 +432,6 @@ name|nonFuzzyPrefix
 parameter_list|,
 name|int
 name|minFuzzyLength
-parameter_list|,
-name|boolean
-name|allowSepEdit
 parameter_list|)
 block|{
 name|super
@@ -554,12 +533,6 @@ operator|.
 name|minFuzzyLength
 operator|=
 name|minFuzzyLength
-expr_stmt|;
-name|this
-operator|.
-name|allowSepEdit
-operator|=
-name|allowSepEdit
 expr_stmt|;
 block|}
 annotation|@
@@ -806,11 +779,7 @@ name|LevenshteinAutomata
 argument_list|(
 name|ints
 argument_list|,
-name|allowSepEdit
-condition|?
 literal|255
-else|:
-literal|254
 argument_list|,
 name|transpositions
 argument_list|)
