@@ -3969,7 +3969,7 @@ argument_list|)
 expr_stmt|;
 name|tries
 operator|=
-literal|20
+literal|50
 expr_stmt|;
 while|while
 condition|(
