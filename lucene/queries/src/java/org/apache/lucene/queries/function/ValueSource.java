@@ -714,7 +714,6 @@ name|value
 condition|)
 block|{
 return|return
-operator|-
 literal|1
 return|;
 block|}

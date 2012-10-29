@@ -208,6 +208,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|solr
+operator|.
+name|update
+operator|.
+name|UpdateLog
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|zookeeper
 operator|.
 name|CreateMode
@@ -223,6 +237,20 @@ operator|.
 name|zookeeper
 operator|.
 name|KeeperException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|KeeperException
+operator|.
+name|NoNodeException
 import|;
 end_import
 
@@ -257,6 +285,21 @@ specifier|abstract
 class|class
 name|ElectionContext
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|ElectionContext
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 DECL|field|electionPath
 specifier|final
 name|String
@@ -358,6 +401,8 @@ name|InterruptedException
 throws|,
 name|KeeperException
 block|{
+try|try
+block|{
 name|zkClient
 operator|.
 name|delete
@@ -370,6 +415,22 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NoNodeException
+name|e
+parameter_list|)
+block|{
+comment|// fine
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"cancelElection did not find election node to remove"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|runLeaderProcess
 specifier|abstract
@@ -960,6 +1021,17 @@ argument_list|(
 literal|"I may be the new leader - try and sync"
 argument_list|)
 expr_stmt|;
+name|UpdateLog
+name|ulog
+init|=
+name|core
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getUpdateLog
+argument_list|()
+decl_stmt|;
 comment|// we are going to attempt to be the leader
 comment|// first cancel any current recovery
 name|core
@@ -1014,6 +1086,40 @@ expr_stmt|;
 name|success
 operator|=
 literal|false
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|success
+operator|&&
+name|ulog
+operator|.
+name|getRecentUpdates
+argument_list|()
+operator|.
+name|getVersions
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+comment|// we failed sync, but we have no versions - we can't sync in that case
+comment|// - we were active
+comment|// before, so become leader anyway
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"We failed sync, but we have no versions - we can't sync in that case - we were active before, so become leader anyway"
+argument_list|)
+expr_stmt|;
+name|success
+operator|=
+literal|true
 expr_stmt|;
 block|}
 comment|// if !success but no one else is in active mode,
@@ -1152,6 +1258,37 @@ argument_list|(
 name|coreName
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|core
+operator|==
+literal|null
+condition|)
+block|{
+name|cancelElection
+argument_list|()
+expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Fatal Error, SolrCore not found:"
+operator|+
+name|coreName
+operator|+
+literal|" in "
+operator|+
+name|cc
+operator|.
+name|getCoreNames
+argument_list|()
+argument_list|)
+throw|;
+block|}
 name|core
 operator|.
 name|getCoreDescriptor
@@ -1616,44 +1753,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"There is a better leader candidate than us - going back into recovery"
+literal|"There may be a better leader candidate than us - going back into recovery"
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|zkController
-operator|.
-name|publish
-argument_list|(
-name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
-argument_list|,
-name|ZkStateReader
-operator|.
-name|DOWN
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-name|SolrException
-operator|.
-name|log
-argument_list|(
-name|log
-argument_list|,
-literal|"Error trying to publish down state"
-argument_list|,
-name|t
-argument_list|)
-expr_stmt|;
-block|}
 name|cancelElection
 argument_list|()
 expr_stmt|;
@@ -1773,7 +1875,27 @@ return|return
 literal|true
 return|;
 block|}
-comment|//    TODO: and if no is a good candidate?
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"My last published State was "
+operator|+
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|getLastPublished
+argument_list|()
+operator|+
+literal|", I won't be the leader."
+argument_list|)
+expr_stmt|;
+comment|// TODO: and if no one is a good candidate?
 return|return
 literal|false
 return|;

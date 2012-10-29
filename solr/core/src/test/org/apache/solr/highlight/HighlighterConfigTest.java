@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -62,11 +72,11 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|junit
 operator|.
-name|HashMap
+name|BeforeClass
 import|;
 end_import
 
@@ -78,30 +88,24 @@ name|HighlighterConfigTest
 extends|extends
 name|AbstractSolrTestCase
 block|{
-DECL|method|getSchemaFile
 annotation|@
-name|Override
+name|BeforeClass
+DECL|method|beforeClass
 specifier|public
-name|String
-name|getSchemaFile
+specifier|static
+name|void
+name|beforeClass
 parameter_list|()
+throws|throws
+name|Exception
 block|{
-return|return
-literal|"schema.xml"
-return|;
-block|}
-comment|// the default case (i.e.<highlight> without a class attribute) is tested every time sorlconfig.xml is used
-DECL|method|getSolrConfigFile
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getSolrConfigFile
-parameter_list|()
-block|{
-return|return
+name|initCore
+argument_list|(
 literal|"solrconfig-highlight.xml"
-return|;
+argument_list|,
+literal|"schema.xml"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override

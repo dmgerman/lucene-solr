@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Parser for trec doc content, invoked on doc text excluding<DOC> and<DOCNO>  * which are handled in TrecContentSource. Required to be stateless and hence thread safe.   */
+comment|/**   * Parser for trec doc content, invoked on doc text excluding&lt;DOC&gt; and&lt;DOCNO&gt;  * which are handled in TrecContentSource. Required to be stateless and hence thread safe.   */
 end_comment
 
 begin_class

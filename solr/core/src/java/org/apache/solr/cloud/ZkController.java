@@ -1286,7 +1286,6 @@ operator|.
 name|createClusterStateWatchersAndUpdate
 argument_list|()
 expr_stmt|;
-comment|//  cc.newCmdDistribExecutor();
 comment|// we have to register as live first to pick up docs in the buffer
 name|createEphemeralLiveNode
 argument_list|()
@@ -1784,11 +1783,30 @@ name|values
 argument_list|()
 control|)
 block|{
+try|try
+block|{
 name|context
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Error closing overseer"
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 try|try
 block|{
@@ -3102,7 +3120,7 @@ expr_stmt|;
 comment|// NOTE: this could potentially block for
 comment|// minutes or more!
 comment|// TODO: public as recovering in the mean time?
-comment|// TODO: in the future we could do peerync in parallel with recoverFromLog
+comment|// TODO: in the future we could do peersync in parallel with recoverFromLog
 block|}
 else|else
 block|{
@@ -3975,6 +3993,13 @@ literal|null
 condition|)
 block|{
 comment|//XXX sys prop hack
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"numShards not found on descriptor - reading it from system property"
+argument_list|)
+expr_stmt|;
 name|numShards
 operator|=
 name|Integer

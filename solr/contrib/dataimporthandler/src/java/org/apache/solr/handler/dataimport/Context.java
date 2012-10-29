@@ -160,7 +160,7 @@ argument_list|>
 name|getAllEntityFields
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the VariableResolver used in this entity which can be used to    * resolve the tokens in ${<namespce.name>}    *    * @return a VariableResolver instance    * @see org.apache.solr.handler.dataimport.VariableResolver    */
+comment|/**    * Returns the VariableResolver used in this entity which can be used to    * resolve the tokens in ${&lt;namespce.name&gt;}    *    * @return a VariableResolver instance    * @see org.apache.solr.handler.dataimport.VariableResolver    */
 DECL|method|getVariableResolver
 specifier|public
 specifier|abstract

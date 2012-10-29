@@ -169,7 +169,7 @@ specifier|public
 class|class
 name|TestFSDirectoryFactory
 extends|extends
-name|CachingDirectoryFactory
+name|StandardDirectoryFactory
 block|{
 DECL|field|openCalled
 specifier|public

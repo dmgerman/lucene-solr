@@ -212,7 +212,6 @@ name|DirectUpdateHandlerTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
-comment|// TODO: fix this test to not require FSDirectory
 DECL|field|savedFactory
 specifier|static
 name|String

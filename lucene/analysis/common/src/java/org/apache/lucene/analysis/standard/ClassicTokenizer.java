@@ -408,9 +408,10 @@ operator|=
 operator|new
 name|ClassicTokenizerImpl
 argument_list|(
-name|input
+literal|null
 argument_list|)
 expr_stmt|;
+comment|// best effort NPE if you dont call reset
 block|}
 comment|// this tokenizer generates three attributes:
 comment|// term offset, positionIncrement and type

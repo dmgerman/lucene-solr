@@ -188,7 +188,7 @@ name|DEFAULT_FIELD
 init|=
 literal|"defaultField"
 decl_stmt|;
-comment|/**    * Optional. If specified, loads the file as a source for password lookups for Tika encrypted documents.    *<p>    * File format is Java properties format with one key=value per line.    * The key is evaluated as a regex against the file name, and the value is the password    * The rules are evaluated top-bottom, i.e. the first match will be used    * If you want a fallback password to be always used, supply a .*=<defaultmypassword> at the end      */
+comment|/**    * Optional. If specified, loads the file as a source for password lookups for Tika encrypted documents.    *<p>    * File format is Java properties format with one key=value per line.    * The key is evaluated as a regex against the file name, and the value is the password    * The rules are evaluated top-bottom, i.e. the first match will be used    * If you want a fallback password to be always used, supply a .*=&lt;defaultmypassword&gt; at the end      */
 DECL|field|PASSWORD_MAP_FILE
 specifier|public
 specifier|static

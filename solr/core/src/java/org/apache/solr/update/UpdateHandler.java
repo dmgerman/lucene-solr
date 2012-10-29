@@ -590,7 +590,7 @@ name|initLog
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Called when the Writer should be opened again - eg when replication replaces    * all of the index files.    *     * @param rollback IndexWriter if true else close    *     * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Called when the Writer should be opened again - eg when replication replaces    * all of the index files.    *     * @param rollback IndexWriter if true else close    * @param forceNewDir Force a new Directory instance    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|newIndexWriter
 specifier|public
 specifier|abstract
@@ -599,6 +599,9 @@ name|newIndexWriter
 parameter_list|(
 name|boolean
 name|rollback
+parameter_list|,
+name|boolean
+name|forceNewDir
 parameter_list|)
 throws|throws
 name|IOException

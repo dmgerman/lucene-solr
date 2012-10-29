@@ -308,7 +308,18 @@ specifier|static
 name|void
 name|beforeSuperClass
 parameter_list|()
-block|{        }
+throws|throws
+name|Exception
+block|{
+comment|// TODO: we use an fs based dir because something
+comment|// like a ram dir will not recovery correctly right now
+comment|// due to tran log persisting across restarts
+name|useFactory
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|AfterClass
 DECL|method|afterSuperClass
@@ -872,7 +883,7 @@ argument_list|)
 expr_stmt|;
 name|waitForThingsToLevelOut
 argument_list|(
-literal|15
+literal|45
 argument_list|)
 expr_stmt|;
 name|checkShardConsistency

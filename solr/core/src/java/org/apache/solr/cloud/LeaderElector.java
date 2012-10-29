@@ -410,6 +410,25 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|intSeqs
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Our node is no longer in line to be leader"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+if|if
+condition|(
 name|seq
 operator|<=
 name|intSeqs

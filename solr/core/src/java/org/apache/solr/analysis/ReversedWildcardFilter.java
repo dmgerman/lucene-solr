@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class produces a special form of reversed tokens, suitable for  * better handling of leading wildcards. Tokens from the input TokenStream  * are reversed and prepended with a special "reversed" marker character.  * If<code>withOriginal<code> argument is<code>true</code> then first the  * original token is returned, and then the reversed token (with  *<code>positionIncrement == 0</code>) is returned. Otherwise only reversed  * tokens are returned.  *<p>Note: this filter doubles the number of tokens in the input stream when  *<code>withOriginal == true</code>, which proportionally increases the size  * of postings and term dictionary in the index.  */
+comment|/**  * This class produces a special form of reversed tokens, suitable for  * better handling of leading wildcards. Tokens from the input TokenStream  * are reversed and prepended with a special "reversed" marker character.  * If<code>withOriginal</code> argument is<code>true</code> then first the  * original token is returned, and then the reversed token (with  *<code>positionIncrement == 0</code>) is returned. Otherwise only reversed  * tokens are returned.  *<p>Note: this filter doubles the number of tokens in the input stream when  *<code>withOriginal == true</code>, which proportionally increases the size  * of postings and term dictionary in the index.  */
 end_comment
 
 begin_class

@@ -88,7 +88,7 @@ specifier|public
 class|class
 name|MockFSDirectoryFactory
 extends|extends
-name|CachingDirectoryFactory
+name|StandardDirectoryFactory
 block|{
 annotation|@
 name|Override
