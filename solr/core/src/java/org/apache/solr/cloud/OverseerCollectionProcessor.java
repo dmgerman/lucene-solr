@@ -487,7 +487,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Process current queue of collection creations"
+literal|"Process current queue of collection messages"
 argument_list|)
 expr_stmt|;
 while|while
@@ -535,6 +535,8 @@ argument_list|(
 name|QUEUE_OPERATION
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|boolean
 name|success
 init|=
@@ -559,7 +561,11 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Collection creation of "
+literal|"Collection "
+operator|+
+name|operation
+operator|+
+literal|" of "
 operator|+
 name|message
 operator|.
@@ -569,6 +575,38 @@ literal|"name"
 argument_list|)
 operator|+
 literal|" failed"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+literal|"Collection "
+operator|+
+name|operation
+operator|+
+literal|" of "
+operator|+
+name|message
+operator|.
+name|getStr
+argument_list|(
+literal|"name"
+argument_list|)
+operator|+
+literal|" failed"
+argument_list|,
+name|t
 argument_list|)
 expr_stmt|;
 block|}
