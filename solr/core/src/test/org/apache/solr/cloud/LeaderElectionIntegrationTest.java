@@ -478,7 +478,14 @@ name|File
 operator|.
 name|separator
 operator|+
-literal|"zookeeper/server1/data"
+literal|"zookeeper"
+operator|+
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|+
+literal|"/server1/data"
 expr_stmt|;
 name|zkServer
 operator|=
