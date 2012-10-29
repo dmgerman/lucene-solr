@@ -6280,7 +6280,7 @@ name|transpositions
 argument_list|,
 name|prefixLen
 argument_list|,
-literal|3
+name|prefixLen
 argument_list|)
 decl_stmt|;
 if|if
