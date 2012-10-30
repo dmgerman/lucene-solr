@@ -580,13 +580,13 @@ name|oneXml
 argument_list|,
 literal|"/solr[@persistent='true']"
 argument_list|,
-literal|"/solr/cores[@defaultCoreName='collection1']"
+literal|"/solr/cores[@defaultCoreName='collection1' and not(@swappableCacheSize)]"
 argument_list|,
 literal|"/solr/cores/core[@name='collection1' and @instanceDir='"
 operator|+
 name|instDir
 operator|+
-literal|"']"
+literal|"' and @swappable='false' and @loadOnStartup='true' ]"
 argument_list|,
 literal|"1=count(/solr/cores/core)"
 argument_list|)
@@ -770,6 +770,12 @@ argument_list|)
 decl_stmt|;
 name|cores
 operator|.
+name|swappableCacheSize
+operator|=
+literal|32
+expr_stmt|;
+name|cores
+operator|.
 name|persistFile
 argument_list|(
 name|twoXml
@@ -781,7 +787,7 @@ name|twoXml
 argument_list|,
 literal|"/solr[@persistent='true']"
 argument_list|,
-literal|"/solr/cores[@defaultCoreName='collection1']"
+literal|"/solr/cores[@defaultCoreName='collection1' and @swappableCacheSize='32']"
 argument_list|,
 literal|"/solr/cores/core[@name='collection1' and @instanceDir='"
 operator|+
