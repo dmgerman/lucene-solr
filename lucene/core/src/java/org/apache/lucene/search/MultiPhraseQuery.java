@@ -1461,7 +1461,8 @@ operator|)
 name|scorer
 operator|)
 operator|.
-name|freq
+name|sloppyFreq
+argument_list|()
 decl_stmt|;
 name|SloppySimScorer
 name|docScorer

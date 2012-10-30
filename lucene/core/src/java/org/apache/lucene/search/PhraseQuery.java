@@ -1817,12 +1817,13 @@ argument_list|()
 else|:
 operator|(
 operator|(
-name|PhraseScorer
+name|SloppyPhraseScorer
 operator|)
 name|scorer
 operator|)
 operator|.
-name|freq
+name|sloppyFreq
+argument_list|()
 decl_stmt|;
 name|SloppySimScorer
 name|docScorer
