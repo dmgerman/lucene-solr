@@ -170,6 +170,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|TermToBytesRefAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|spell
@@ -1391,7 +1407,6 @@ return|;
 block|}
 block|}
 DECL|method|getTokenStreamToAutomaton
-specifier|private
 name|TokenStreamToAutomaton
 name|getTokenStreamToAutomaton
 parameter_list|()
@@ -1553,81 +1568,17 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// Analyze surface form:
-name|TokenStream
-name|ts
-init|=
-name|indexAnalyzer
-operator|.
-name|tokenStream
-argument_list|(
-literal|""
-argument_list|,
-operator|new
-name|StringReader
-argument_list|(
-name|surfaceForm
-operator|.
-name|utf8ToString
-argument_list|()
-argument_list|)
-argument_list|)
-decl_stmt|;
-comment|// Create corresponding automaton: labels are bytes
-comment|// from each analyzed token, with byte 0 used as
-comment|// separator between tokens:
-name|Automaton
-name|automaton
-init|=
-name|ts2a
-operator|.
-name|toAutomaton
-argument_list|(
-name|ts
-argument_list|)
-decl_stmt|;
-name|ts
-operator|.
-name|end
-argument_list|()
-expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|replaceSep
-argument_list|(
-name|automaton
-argument_list|)
-expr_stmt|;
-assert|assert
-name|SpecialOperations
-operator|.
-name|isFinite
-argument_list|(
-name|automaton
-argument_list|)
-assert|;
-comment|// Get all paths from the automaton (there can be
-comment|// more than one path, eg if the analyzer created a
-comment|// graph using SynFilter or WDF):
-comment|// TODO: we could walk& add simultaneously, so we
-comment|// don't have to alloc [possibly biggish]
-comment|// intermediate HashSet in RAM:
 name|Set
 argument_list|<
 name|IntsRef
 argument_list|>
 name|paths
 init|=
-name|SpecialOperations
-operator|.
-name|getFiniteStrings
+name|toFiniteStrings
 argument_list|(
-name|automaton
+name|surfaceForm
 argument_list|,
-name|maxGraphExpansions
+name|ts2a
 argument_list|)
 decl_stmt|;
 name|maxAnalyzedPathsForOneInput
@@ -2427,69 +2378,26 @@ argument_list|)
 throw|;
 block|}
 comment|//System.out.println("lookup key=" + key + " num=" + num);
-try|try
-block|{
-comment|// TODO: is there a Reader from a CharSequence?
-comment|// Turn tokenstream into automaton:
-name|TokenStream
-name|ts
+specifier|final
+name|BytesRef
+name|utf8Key
 init|=
-name|queryAnalyzer
-operator|.
-name|tokenStream
-argument_list|(
-literal|""
-argument_list|,
 operator|new
-name|StringReader
+name|BytesRef
 argument_list|(
 name|key
-operator|.
-name|toString
-argument_list|()
-argument_list|)
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|Automaton
-name|automaton
+name|lookupAutomaton
 init|=
-name|getTokenStreamToAutomaton
-argument_list|()
-operator|.
-name|toAutomaton
+name|toLookupAutomaton
 argument_list|(
-name|ts
+name|key
 argument_list|)
 decl_stmt|;
-name|ts
-operator|.
-name|end
-argument_list|()
-expr_stmt|;
-name|ts
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-comment|// TODO: we could use the end offset to "guess"
-comment|// whether the final token was a partial token; this
-comment|// would only be a heuristic ... but maybe an OK one.
-comment|// This way we could eg differentiate "net" from "net ",
-comment|// which we can't today...
-name|replaceSep
-argument_list|(
-name|automaton
-argument_list|)
-expr_stmt|;
-comment|// TODO: we can optimize this somewhat by determinizing
-comment|// while we convert
-name|BasicOperations
-operator|.
-name|determinize
-argument_list|(
-name|automaton
-argument_list|)
-expr_stmt|;
 specifier|final
 name|CharsRef
 name|spare
@@ -2501,34 +2409,7 @@ decl_stmt|;
 comment|//System.out.println("  now intersect exactFirst=" + exactFirst);
 comment|// Intersect automaton w/ suggest wFST and get all
 comment|// prefix starting nodes& their outputs:
-specifier|final
-name|List
-argument_list|<
-name|FSTUtil
-operator|.
-name|Path
-argument_list|<
-name|Pair
-argument_list|<
-name|Long
-argument_list|,
-name|BytesRef
-argument_list|>
-argument_list|>
-argument_list|>
-name|prefixPaths
-decl_stmt|;
-name|prefixPaths
-operator|=
-name|FSTUtil
-operator|.
-name|intersectPrefixPaths
-argument_list|(
-name|automaton
-argument_list|,
-name|fst
-argument_list|)
-expr_stmt|;
+comment|//final PathIntersector intersector = getPathIntersector(lookupAutomaton, fst);
 comment|//System.out.println("  prefixPaths: " + prefixPaths.size());
 name|BytesReader
 name|bytesReader
@@ -2580,6 +2461,31 @@ argument_list|<
 name|LookupResult
 argument_list|>
 argument_list|()
+decl_stmt|;
+name|List
+argument_list|<
+name|FSTUtil
+operator|.
+name|Path
+argument_list|<
+name|Pair
+argument_list|<
+name|Long
+argument_list|,
+name|BytesRef
+argument_list|>
+argument_list|>
+argument_list|>
+name|prefixPaths
+init|=
+name|FSTUtil
+operator|.
+name|intersectPrefixPaths
+argument_list|(
+name|lookupAutomaton
+argument_list|,
+name|fst
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -2799,6 +2705,20 @@ range|:
 name|completions
 control|)
 block|{
+if|if
+condition|(
+name|utf8Key
+operator|.
+name|bytesEquals
+argument_list|(
+name|completion
+operator|.
+name|output
+operator|.
+name|output2
+argument_list|)
+condition|)
+block|{
 name|spare
 operator|.
 name|grow
@@ -2825,20 +2745,6 @@ argument_list|,
 name|spare
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|CHARSEQUENCE_COMPARATOR
-operator|.
-name|compare
-argument_list|(
-name|spare
-argument_list|,
-name|key
-argument_list|)
-operator|==
-literal|0
-condition|)
-block|{
 name|results
 operator|.
 name|add
@@ -3000,40 +2906,16 @@ block|{
 comment|// In exactFirst mode, don't accept any paths
 comment|// matching the surface form since that will
 comment|// create duplicate results:
-name|spare
-operator|.
-name|grow
-argument_list|(
-name|output
-operator|.
-name|output2
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-name|UnicodeUtil
-operator|.
-name|UTF8toUTF16
-argument_list|(
-name|output
-operator|.
-name|output2
-argument_list|,
-name|spare
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
-name|CHARSEQUENCE_COMPARATOR
+name|utf8Key
 operator|.
-name|compare
+name|bytesEquals
 argument_list|(
-name|spare
-argument_list|,
-name|key
+name|output
+operator|.
+name|output2
 argument_list|)
-operator|==
-literal|0
 condition|)
 block|{
 comment|// We found exact match, which means we should
@@ -3059,6 +2941,17 @@ block|}
 block|}
 block|}
 block|}
+expr_stmt|;
+name|prefixPaths
+operator|=
+name|getFullPrefixPaths
+argument_list|(
+name|prefixPaths
+argument_list|,
+name|lookupAutomaton
+argument_list|,
+name|fst
+argument_list|)
 expr_stmt|;
 for|for
 control|(
@@ -3178,6 +3071,8 @@ name|output1
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// TODO: for fuzzy case would be nice to return
+comment|// how many edits were required
 comment|//System.out.println("    result=" + result);
 name|results
 operator|.
@@ -3219,6 +3114,233 @@ name|bogus
 argument_list|)
 throw|;
 block|}
+block|}
+comment|/** Returns all prefix paths to initialize the search. */
+DECL|method|getFullPrefixPaths
+specifier|protected
+name|List
+argument_list|<
+name|FSTUtil
+operator|.
+name|Path
+argument_list|<
+name|Pair
+argument_list|<
+name|Long
+argument_list|,
+name|BytesRef
+argument_list|>
+argument_list|>
+argument_list|>
+name|getFullPrefixPaths
+parameter_list|(
+name|List
+argument_list|<
+name|FSTUtil
+operator|.
+name|Path
+argument_list|<
+name|Pair
+argument_list|<
+name|Long
+argument_list|,
+name|BytesRef
+argument_list|>
+argument_list|>
+argument_list|>
+name|prefixPaths
+parameter_list|,
+name|Automaton
+name|lookupAutomaton
+parameter_list|,
+name|FST
+argument_list|<
+name|Pair
+argument_list|<
+name|Long
+argument_list|,
+name|BytesRef
+argument_list|>
+argument_list|>
+name|fst
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|prefixPaths
+return|;
+block|}
+DECL|method|toFiniteStrings
+specifier|final
+name|Set
+argument_list|<
+name|IntsRef
+argument_list|>
+name|toFiniteStrings
+parameter_list|(
+specifier|final
+name|BytesRef
+name|surfaceForm
+parameter_list|,
+specifier|final
+name|TokenStreamToAutomaton
+name|ts2a
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// Analyze surface form:
+name|TokenStream
+name|ts
+init|=
+name|indexAnalyzer
+operator|.
+name|tokenStream
+argument_list|(
+literal|""
+argument_list|,
+operator|new
+name|StringReader
+argument_list|(
+name|surfaceForm
+operator|.
+name|utf8ToString
+argument_list|()
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|// Create corresponding automaton: labels are bytes
+comment|// from each analyzed token, with byte 0 used as
+comment|// separator between tokens:
+name|Automaton
+name|automaton
+init|=
+name|ts2a
+operator|.
+name|toAutomaton
+argument_list|(
+name|ts
+argument_list|)
+decl_stmt|;
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|replaceSep
+argument_list|(
+name|automaton
+argument_list|)
+expr_stmt|;
+assert|assert
+name|SpecialOperations
+operator|.
+name|isFinite
+argument_list|(
+name|automaton
+argument_list|)
+assert|;
+comment|// Get all paths from the automaton (there can be
+comment|// more than one path, eg if the analyzer created a
+comment|// graph using SynFilter or WDF):
+comment|// TODO: we could walk& add simultaneously, so we
+comment|// don't have to alloc [possibly biggish]
+comment|// intermediate HashSet in RAM:
+return|return
+name|SpecialOperations
+operator|.
+name|getFiniteStrings
+argument_list|(
+name|automaton
+argument_list|,
+name|maxGraphExpansions
+argument_list|)
+return|;
+block|}
+DECL|method|toLookupAutomaton
+specifier|final
+name|Automaton
+name|toLookupAutomaton
+parameter_list|(
+specifier|final
+name|CharSequence
+name|key
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// TODO: is there a Reader from a CharSequence?
+comment|// Turn tokenstream into automaton:
+name|TokenStream
+name|ts
+init|=
+name|queryAnalyzer
+operator|.
+name|tokenStream
+argument_list|(
+literal|""
+argument_list|,
+operator|new
+name|StringReader
+argument_list|(
+name|key
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|Automaton
+name|automaton
+init|=
+operator|(
+name|getTokenStreamToAutomaton
+argument_list|()
+operator|)
+operator|.
+name|toAutomaton
+argument_list|(
+name|ts
+argument_list|)
+decl_stmt|;
+name|ts
+operator|.
+name|end
+argument_list|()
+expr_stmt|;
+name|ts
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+comment|// TODO: we could use the end offset to "guess"
+comment|// whether the final token was a partial token; this
+comment|// would only be a heuristic ... but maybe an OK one.
+comment|// This way we could eg differentiate "net" from "net ",
+comment|// which we can't today...
+name|replaceSep
+argument_list|(
+name|automaton
+argument_list|)
+expr_stmt|;
+comment|// TODO: we can optimize this somewhat by determinizing
+comment|// while we convert
+name|BasicOperations
+operator|.
+name|determinize
+argument_list|(
+name|automaton
+argument_list|)
+expr_stmt|;
+return|return
+name|automaton
+return|;
 block|}
 comment|/**    * Returns the weight associated with an input string,    * or null if it does not exist.    */
 DECL|method|get
