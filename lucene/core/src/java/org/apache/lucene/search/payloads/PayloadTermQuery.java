@@ -568,6 +568,10 @@ name|freq
 operator|=
 literal|0.0f
 expr_stmt|;
+name|numMatches
+operator|=
+literal|0
+expr_stmt|;
 name|payloadScore
 operator|=
 literal|0
@@ -609,6 +613,9 @@ name|computeSlopFactor
 argument_list|(
 name|matchLength
 argument_list|)
+expr_stmt|;
+name|numMatches
+operator|++
 expr_stmt|;
 name|processPayload
 argument_list|(
@@ -901,7 +908,7 @@ name|freq
 init|=
 name|scorer
 operator|.
-name|freq
+name|sloppyFreq
 argument_list|()
 decl_stmt|;
 name|SloppySimScorer

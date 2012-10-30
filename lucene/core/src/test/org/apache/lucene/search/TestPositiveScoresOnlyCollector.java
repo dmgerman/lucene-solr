@@ -154,7 +154,7 @@ DECL|method|freq
 annotation|@
 name|Override
 specifier|public
-name|float
+name|int
 name|freq
 parameter_list|()
 block|{

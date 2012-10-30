@@ -826,7 +826,7 @@ annotation|@
 name|Override
 DECL|method|freq
 specifier|public
-name|float
+name|int
 name|freq
 parameter_list|()
 throws|throws
@@ -1237,7 +1237,7 @@ name|Override
 DECL|method|freq
 specifier|public
 specifier|final
-name|float
+name|int
 name|freq
 parameter_list|()
 throws|throws
