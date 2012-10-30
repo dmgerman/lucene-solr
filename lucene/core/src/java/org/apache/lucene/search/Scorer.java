@@ -46,6 +46,20 @@ name|Collections
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocsEnum
+import|;
+end_import
+
 begin_comment
 comment|/**  * Expert: Common scoring functionality for different types of queries.  *  *<p>  * A<code>Scorer</code> iterates over documents matching a  * query in increasing order of doc Id.  *</p>  *<p>  * Document scores are computed using a given<code>Similarity</code>  * implementation.  *</p>  *  *<p><b>NOTE</b>: The values Float.Nan,  * Float.NEGATIVE_INFINITY and Float.POSITIVE_INFINITY are  * not valid scores.  Certain collectors (eg {@link  * TopScoreDocCollector}) will not properly collect hits  * with these scores.  */
 end_comment
@@ -57,7 +71,7 @@ specifier|abstract
 class|class
 name|Scorer
 extends|extends
-name|DocIdSetIterator
+name|DocsEnum
 block|{
 comment|/** the Scorer's parent Weight. in some cases this may be null */
 comment|// TODO can we clean this up?
@@ -188,16 +202,6 @@ specifier|public
 specifier|abstract
 name|float
 name|score
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Returns number of matches for the current document.    *  This returns a float (not int) because    *  SloppyPhraseScorer discounts its freq according to how    *  "sloppy" the match was.    *    * @lucene.experimental */
-DECL|method|freq
-specifier|public
-specifier|abstract
-name|float
-name|freq
 parameter_list|()
 throws|throws
 name|IOException

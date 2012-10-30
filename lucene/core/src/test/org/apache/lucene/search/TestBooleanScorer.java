@@ -560,7 +560,7 @@ return|return
 literal|0
 return|;
 block|}
-function|@Override public float freq
+function|@Override public int freq
 parameter_list|()
 block|{
 return|return

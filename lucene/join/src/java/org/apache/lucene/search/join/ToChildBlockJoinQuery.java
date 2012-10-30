@@ -771,7 +771,7 @@ name|parentScore
 decl_stmt|;
 DECL|field|parentFreq
 specifier|private
-name|float
+name|int
 name|parentFreq
 init|=
 literal|1
@@ -1088,7 +1088,7 @@ annotation|@
 name|Override
 DECL|method|freq
 specifier|public
-name|float
+name|int
 name|freq
 parameter_list|()
 throws|throws

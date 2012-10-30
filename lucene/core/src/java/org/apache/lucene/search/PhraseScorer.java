@@ -62,7 +62,7 @@ decl_stmt|,
 name|max
 decl_stmt|;
 DECL|field|freq
-specifier|private
+specifier|protected
 name|float
 name|freq
 decl_stmt|;
@@ -430,20 +430,6 @@ return|return
 name|max
 operator|.
 name|doc
-return|;
-block|}
-comment|/**    * phrase frequency in current doc as computed by phraseFreq().    */
-annotation|@
-name|Override
-DECL|method|freq
-specifier|public
-specifier|final
-name|float
-name|freq
-parameter_list|()
-block|{
-return|return
-name|freq
 return|;
 block|}
 comment|/**    * For a document containing all the phrase query terms, compute the    * frequency of the phrase in that document.     * A non zero frequency means a match.    *<br>Note, that containing all phrase terms does not guarantee a match - they have to be found in matching locations.      * @return frequency of the phrase in current doc, 0 if not found.     */

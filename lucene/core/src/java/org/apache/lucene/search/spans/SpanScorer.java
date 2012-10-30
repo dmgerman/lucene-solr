@@ -106,6 +106,11 @@ specifier|protected
 name|float
 name|freq
 decl_stmt|;
+DECL|field|numMatches
+specifier|protected
+name|int
+name|numMatches
+decl_stmt|;
 DECL|field|docScorer
 specifier|protected
 specifier|final
@@ -294,6 +299,10 @@ name|freq
 operator|=
 literal|0.0f
 expr_stmt|;
+name|numMatches
+operator|=
+literal|0
+expr_stmt|;
 do|do
 block|{
 name|int
@@ -317,6 +326,9 @@ name|computeSlopFactor
 argument_list|(
 name|matchLength
 argument_list|)
+expr_stmt|;
+name|numMatches
+operator|++
 expr_stmt|;
 name|more
 operator|=
@@ -381,8 +393,22 @@ annotation|@
 name|Override
 DECL|method|freq
 specifier|public
-name|float
+name|int
 name|freq
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|numMatches
+return|;
+block|}
+comment|/** Returns the intermediate "sloppy freq" adjusted for edit distance     *  @lucene.internal */
+comment|// only public so .payloads can see it.
+DECL|method|sloppyFreq
+specifier|public
+name|float
+name|sloppyFreq
 parameter_list|()
 throws|throws
 name|IOException

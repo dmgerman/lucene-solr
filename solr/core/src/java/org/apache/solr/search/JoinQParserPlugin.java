@@ -3092,7 +3092,7 @@ annotation|@
 name|Override
 DECL|method|freq
 specifier|public
-name|float
+name|int
 name|freq
 parameter_list|()
 throws|throws
