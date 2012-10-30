@@ -391,12 +391,7 @@ block|}
 name|double
 name|score
 init|=
-name|classCounts
-operator|.
-name|get
-argument_list|(
-name|assignedClass
-argument_list|)
+name|max
 operator|/
 name|k
 decl_stmt|;
