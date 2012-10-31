@@ -19,10 +19,10 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_class
-DECL|class|TestFastUncompressionMode
+DECL|class|TestFastDecompressionMode
 specifier|public
 class|class
-name|TestFastUncompressionMode
+name|TestFastDecompressionMode
 extends|extends
 name|AbstractTestCompressionMode
 block|{
@@ -43,7 +43,7 @@ name|mode
 operator|=
 name|CompressionMode
 operator|.
-name|FAST_UNCOMPRESSION
+name|FAST_DECOMPRESSION
 expr_stmt|;
 block|}
 block|}

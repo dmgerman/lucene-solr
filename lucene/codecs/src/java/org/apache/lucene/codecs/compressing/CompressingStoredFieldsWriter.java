@@ -2194,7 +2194,7 @@ name|it
 operator|.
 name|docBase
 assert|;
-comment|// no need to uncompress, just copy data
+comment|// no need to decompress, just copy data
 name|endWithPreviousDocument
 argument_list|()
 expr_stmt|;
@@ -2294,10 +2294,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// uncompress
+comment|// decompress
 name|it
 operator|.
-name|uncompress
+name|decompress
 argument_list|()
 expr_stmt|;
 if|if

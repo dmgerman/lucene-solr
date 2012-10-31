@@ -71,23 +71,23 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An uncompressor.  */
+comment|/**  * An decompressor.  */
 end_comment
 
 begin_class
-DECL|class|Uncompressor
+DECL|class|Decompressor
 specifier|abstract
 class|class
-name|Uncompressor
+name|Decompressor
 implements|implements
 name|Cloneable
 block|{
-comment|/**    * Uncompress bytes. This method is free to resize<code>bytes</code> in case    * it is too small to hold all the uncompressed data.    */
-DECL|method|uncompress
+comment|/**    * Decompress bytes. This method is free to resize<code>bytes</code> in case    * it is too small to hold all the decompressed data.    */
+DECL|method|decompress
 specifier|public
 specifier|abstract
 name|void
-name|uncompress
+name|decompress
 parameter_list|(
 name|DataInput
 name|in
@@ -98,11 +98,11 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Method to use if you are only interested into<code>length</code>    * uncompressed bytes starting at offset<code>offset</code>. Some compression    * codecs might have optimizations for this special case.    */
-DECL|method|uncompress
+comment|/**    * Method to use if you are only interested into<code>length</code>    * decompressed bytes starting at offset<code>offset</code>. Some compression    * codecs might have optimizations for this special case.    */
+DECL|method|decompress
 specifier|public
 name|void
-name|uncompress
+name|decompress
 parameter_list|(
 name|DataInput
 name|in
@@ -119,7 +119,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|uncompress
+name|decompress
 argument_list|(
 name|in
 argument_list|,
@@ -188,7 +188,7 @@ name|Override
 DECL|method|clone
 specifier|public
 specifier|abstract
-name|Uncompressor
+name|Decompressor
 name|clone
 parameter_list|()
 function_decl|;

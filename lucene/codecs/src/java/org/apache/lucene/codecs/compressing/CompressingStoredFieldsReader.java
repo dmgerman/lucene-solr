@@ -592,11 +592,11 @@ specifier|final
 name|CompressionMode
 name|compressionMode
 decl_stmt|;
-DECL|field|uncompressor
+DECL|field|decompressor
 specifier|private
 specifier|final
-name|Uncompressor
-name|uncompressor
+name|Decompressor
+name|decompressor
 decl_stmt|;
 DECL|field|bytes
 specifier|private
@@ -672,11 +672,11 @@ name|compressionMode
 expr_stmt|;
 name|this
 operator|.
-name|uncompressor
+name|decompressor
 operator|=
 name|reader
 operator|.
-name|uncompressor
+name|decompressor
 operator|.
 name|clone
 argument_list|()
@@ -910,11 +910,11 @@ argument_list|(
 name|compressionModeId
 argument_list|)
 expr_stmt|;
-name|uncompressor
+name|decompressor
 operator|=
 name|compressionMode
 operator|.
-name|newUncompressor
+name|newDecompressor
 argument_list|()
 expr_stmt|;
 name|this
@@ -1503,9 +1503,9 @@ literal|3
 operator|)
 argument_list|)
 expr_stmt|;
-name|uncompressor
+name|decompressor
 operator|.
-name|uncompress
+name|decompress
 argument_list|(
 name|fieldsStream
 argument_list|,
@@ -1874,7 +1874,7 @@ return|return
 name|bitsPerValue
 return|;
 block|}
-comment|/**      * Return the uncompressed size of the chunk      */
+comment|/**      * Return the decompressed size of the chunk      */
 DECL|method|chunkSize
 name|int
 name|chunkSize
@@ -2089,18 +2089,18 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Uncompress the chunk.      */
-DECL|method|uncompress
+comment|/**      * Decompress the chunk.      */
+DECL|method|decompress
 name|void
-name|uncompress
+name|decompress
 parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// uncompress data
-name|uncompressor
+comment|// decompress data
+name|decompressor
 operator|.
-name|uncompress
+name|decompress
 argument_list|(
 name|fieldsStream
 argument_list|,
@@ -2146,7 +2146,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|uncompressor
+name|decompressor
 operator|.
 name|copyCompressedData
 argument_list|(
