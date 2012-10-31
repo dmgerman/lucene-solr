@@ -3785,6 +3785,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// Must bump changeCount so if no other changes
+comment|// happened, we still commit this change:
+name|changeCount
+operator|++
+expr_stmt|;
 block|}
 comment|//System.out.println("  yes " + info.info.name + " " + docID);
 return|return
