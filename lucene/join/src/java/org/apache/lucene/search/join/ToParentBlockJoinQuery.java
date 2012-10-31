@@ -642,7 +642,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Pass scoreDocsInOrder true, topScorer false to our sub:
+comment|// Pass scoreDocsInOrder true, topScorer false to our sub and the live docs:
 specifier|final
 name|Scorer
 name|childScorer
@@ -657,7 +657,13 @@ literal|true
 argument_list|,
 literal|false
 argument_list|,
-literal|null
+name|readerContext
+operator|.
+name|reader
+argument_list|()
+operator|.
+name|getLiveDocs
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
