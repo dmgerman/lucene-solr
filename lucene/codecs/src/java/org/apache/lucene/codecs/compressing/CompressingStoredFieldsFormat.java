@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link StoredFieldsFormat} that is very similar to  * {@link Lucene40StoredFieldsFormat} but compresses documents in chunks in  * order to improve compression ratio.  *<p>  * For optimal performance, you should use a {@link MergePolicy} that returns  * segments that have the biggest byte size first.  * @lucene.experimental  */
+comment|/**  * A {@link StoredFieldsFormat} that is very similar to  * {@link Lucene40StoredFieldsFormat} but compresses documents in chunks in  * order to improve the compression ratio.  *<p>  * For a chunk size of<tt>chunkSize</tt> bytes, this {@link StoredFieldsFormat}  * does not support documents larger than (<tt>2<sup>31</sup> - chunkSize</tt>)  * bytes. In case this is a problem, you should use another format, such as  * {@link Lucene40StoredFieldsFormat}.  *<p>  * For optimal performance, you should use a {@link MergePolicy} that returns  * segments that have the biggest byte size first.  * @lucene.experimental  */
 end_comment
 
 begin_class
