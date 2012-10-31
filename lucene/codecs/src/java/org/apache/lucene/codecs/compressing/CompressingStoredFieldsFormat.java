@@ -253,14 +253,6 @@ name|compressionMode
 argument_list|,
 name|chunkSize
 argument_list|,
-name|chunkSize
-operator|==
-literal|1
-condition|?
-name|CompressingStoredFieldsIndex
-operator|.
-name|MEMORY_DOC
-else|:
 name|CompressingStoredFieldsIndex
 operator|.
 name|MEMORY_CHUNK
