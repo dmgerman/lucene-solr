@@ -639,16 +639,9 @@ name|String
 name|text
 parameter_list|)
 block|{
-name|TermsFilter
-name|tf
-init|=
+return|return
 operator|new
 name|TermsFilter
-argument_list|()
-decl_stmt|;
-name|tf
-operator|.
-name|addTerm
 argument_list|(
 operator|new
 name|Term
@@ -658,9 +651,6 @@ argument_list|,
 name|text
 argument_list|)
 argument_list|)
-expr_stmt|;
-return|return
-name|tf
 return|;
 block|}
 DECL|method|getWrappedTermQuery
