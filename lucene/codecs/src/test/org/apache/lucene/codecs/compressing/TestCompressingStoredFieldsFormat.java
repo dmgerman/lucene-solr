@@ -2480,8 +2480,15 @@ specifier|final
 name|int
 name|numFields
 init|=
-name|atLeast
+name|RandomInts
+operator|.
+name|randomIntBetween
 argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|500000
+argument_list|,
 literal|1000000
 argument_list|)
 decl_stmt|;
