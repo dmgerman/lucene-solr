@@ -154,22 +154,6 @@ argument_list|,
 literal|500
 argument_list|)
 decl_stmt|;
-specifier|final
-name|CompressingStoredFieldsIndex
-name|index
-init|=
-name|RandomPicks
-operator|.
-name|randomFrom
-argument_list|(
-name|random
-argument_list|,
-name|CompressingStoredFieldsIndex
-operator|.
-name|values
-argument_list|()
-argument_list|)
-decl_stmt|;
 return|return
 operator|new
 name|CompressingCodec
@@ -177,8 +161,6 @@ argument_list|(
 name|mode
 argument_list|,
 name|chunkSize
-argument_list|,
-name|index
 argument_list|)
 return|;
 block|}
@@ -188,7 +170,7 @@ specifier|final
 name|CompressingStoredFieldsFormat
 name|storedFieldsFormat
 decl_stmt|;
-comment|/**    * @see CompressingStoredFieldsFormat#CompressingStoredFieldsFormat(CompressionMode, int, CompressingStoredFieldsIndex)    */
+comment|/**    * @see CompressingStoredFieldsFormat#CompressingStoredFieldsFormat(CompressionMode, int)    */
 DECL|method|CompressingCodec
 specifier|public
 name|CompressingCodec
@@ -198,9 +180,6 @@ name|compressionMode
 parameter_list|,
 name|int
 name|chunkSize
-parameter_list|,
-name|CompressingStoredFieldsIndex
-name|storedFieldsIndexFormat
 parameter_list|)
 block|{
 name|super
@@ -222,8 +201,6 @@ argument_list|(
 name|compressionMode
 argument_list|,
 name|chunkSize
-argument_list|,
-name|storedFieldsIndexFormat
 argument_list|)
 expr_stmt|;
 block|}
@@ -241,10 +218,6 @@ argument_list|,
 literal|1
 operator|<<
 literal|14
-argument_list|,
-name|CompressingStoredFieldsIndex
-operator|.
-name|MEMORY_CHUNK
 argument_list|)
 expr_stmt|;
 block|}
