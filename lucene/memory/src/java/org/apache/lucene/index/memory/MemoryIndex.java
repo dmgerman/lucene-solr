@@ -1506,6 +1506,10 @@ expr_stmt|;
 block|}
 end_function
 
+begin_comment
+comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via     * {@link #keywordTokenStream(Collection)}, the Lucene<code>KeywordTokenizer</code> or similar utilities.    *     * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    * @param boost    *            the boost factor for hits for this field    * @param positionIncrementGap    *            the position increment gap if fields with the same name are added more than once    *    * @see org.apache.lucene.document.Field#setBoost(float)    */
+end_comment
+
 begin_function
 DECL|method|addField
 specifier|public
