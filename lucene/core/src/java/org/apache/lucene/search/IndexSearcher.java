@@ -1813,7 +1813,9 @@ condition|)
 throw|throw
 operator|new
 name|NullPointerException
-argument_list|()
+argument_list|(
+literal|"Sort must not be null"
+argument_list|)
 throw|;
 if|if
 condition|(
@@ -2897,7 +2899,9 @@ block|{
 throw|throw
 operator|new
 name|UnsupportedOperationException
-argument_list|()
+argument_list|(
+literal|"FakeScorer doesn't support advance(int)"
+argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2923,7 +2927,9 @@ block|{
 throw|throw
 operator|new
 name|UnsupportedOperationException
-argument_list|()
+argument_list|(
+literal|"FakeScorer doesn't support freq()"
+argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2937,7 +2943,9 @@ block|{
 throw|throw
 operator|new
 name|UnsupportedOperationException
-argument_list|()
+argument_list|(
+literal|"FakeScorer doesn't support nextDoc()"
+argument_list|)
 throw|;
 block|}
 annotation|@
@@ -3242,7 +3250,9 @@ condition|)
 throw|throw
 operator|new
 name|NoSuchElementException
-argument_list|()
+argument_list|(
+literal|"next() is called but hasNext() returned false"
+argument_list|)
 throw|;
 try|try
 block|{
