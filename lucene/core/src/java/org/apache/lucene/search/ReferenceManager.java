@@ -172,7 +172,7 @@ name|oldReference
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Decrement reference counting on the given reference. */
+comment|/**    * Decrement reference counting on the given reference.     * @throws IOException if reference decrement on the given resource failed.    * */
 DECL|method|decRef
 specifier|protected
 specifier|abstract
@@ -185,7 +185,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Refresh the given reference if needed. Returns {@code null} if no refresh    * was needed, otherwise a new refreshed reference.    */
+comment|/**    * Refresh the given reference if needed. Returns {@code null} if no refresh    * was needed, otherwise a new refreshed reference.    * @throws AlreadyClosedException if the reference manager has been {@link #close() closed}.    * @throws IOException if the refresh operation failed    */
 DECL|method|refreshIfNeeded
 specifier|protected
 specifier|abstract
@@ -198,7 +198,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Try to increment reference counting on the given reference. Return true if    * the operation was successful.    */
+comment|/**    * Try to increment reference counting on the given reference. Return true if    * the operation was successful.    * @throws AlreadyClosedException if the reference manager has been {@link #close() closed}.     */
 DECL|method|tryIncRef
 specifier|protected
 specifier|abstract
@@ -209,7 +209,7 @@ name|G
 name|reference
 parameter_list|)
 function_decl|;
-comment|/**    * Obtain the current reference. You must match every call to acquire with one    * call to {@link #release}; it's best to do so in a finally clause, and set    * the reference to {@code null} to prevent accidental usage after it has been    * released.    */
+comment|/**    * Obtain the current reference. You must match every call to acquire with one    * call to {@link #release}; it's best to do so in a finally clause, and set    * the reference to {@code null} to prevent accidental usage after it has been    * released.    * @throws AlreadyClosedException if the reference manager has been {@link #close() closed}.     */
 DECL|method|acquire
 specifier|public
 specifier|final
@@ -255,7 +255,7 @@ return|return
 name|ref
 return|;
 block|}
-comment|/**    * Close this ReferenceManager to future {@link #acquire() acquiring}. Any    * references that were previously {@link #acquire() acquired} won't be    * affected, and they should still be {@link #release released} when they are    * not needed anymore.    */
+comment|/**     *<p>     * Closes this ReferenceManager to prevent future {@link #acquire() acquiring}. A     * reference manager should be closed if the reference to the managed resource     * should be disposed or the application using the {@link ReferenceManager}     * is shutting down. The managed resource might not be released immediately,     * if the {@link ReferenceManager} user is holding on to a previously     * {@link #acquire() acquired} reference. The resource will be released once     * when the last reference is {@link #release(Object) released}. Those     * references can still be used as if the manager was still active.     *</p>     *<p>     * Applications should not {@link #acquire() acquire} new references from this     * manager once this method has been called. {@link #acquire() Acquiring} a     * resource on a closed {@link ReferenceManager} will throw an     * {@link AlreadyClosedException}.     *</p>     *      * @throws IOException     *           if the underlying reader of the current reference could not be closed    */
 DECL|method|close
 specifier|public
 specifier|final
@@ -286,7 +286,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Called after close(), so subclass can free any resources. */
+comment|/**    *  Called after close(), so subclass can free any resources.    *  @throws IOException if the after close operation in a sub-class throws an {@link IOException}     * */
 DECL|method|afterClose
 specifier|protected
 name|void
@@ -402,7 +402,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * You must call this (or {@link #maybeRefreshBlocking()}), periodically, if    * you want that {@link #acquire()} will return refreshed instances.    *     *<p>    *<b>Threads</b>: it's fine for more than one thread to call this at once.    * Only the first thread will attempt the refresh; subsequent threads will see    * that another thread is already handling refresh and will return    * immediately. Note that this means if another thread is already refreshing    * then subsequent threads will return right away without waiting for the    * refresh to complete.    *     *<p>    * If this method returns true it means the calling thread either refreshed or    * that there were no changes to refresh. If it returns false it means another    * thread is currently refreshing.    */
+comment|/**    * You must call this (or {@link #maybeRefreshBlocking()}), periodically, if    * you want that {@link #acquire()} will return refreshed instances.    *     *<p>    *<b>Threads</b>: it's fine for more than one thread to call this at once.    * Only the first thread will attempt the refresh; subsequent threads will see    * that another thread is already handling refresh and will return    * immediately. Note that this means if another thread is already refreshing    * then subsequent threads will return right away without waiting for the    * refresh to complete.    *     *<p>    * If this method returns true it means the calling thread either refreshed or    * that there were no changes to refresh. If it returns false it means another    * thread is currently refreshing.    *</p>    * @throws IOException if refreshing the resource causes an {@link IOException}    * @throws AlreadyClosedException if the reference manager has been {@link #close() closed}.     */
 DECL|method|maybeRefresh
 specifier|public
 specifier|final
@@ -449,7 +449,7 @@ return|return
 name|doTryRefresh
 return|;
 block|}
-comment|/**    * You must call this (or {@link #maybeRefresh()}), periodically, if you want    * that {@link #acquire()} will return refreshed instances.    *     *<p>    *<b>Threads</b>: unlike {@link #maybeRefresh()}, if another thread is    * currently refreshing, this method blocks until that thread completes. It is    * useful if you want to guarantee that the next call to {@link #acquire()}    * will return a refreshed instance. Otherwise, consider using the    * non-blocking {@link #maybeRefresh()}.    */
+comment|/**    * You must call this (or {@link #maybeRefresh()}), periodically, if you want    * that {@link #acquire()} will return refreshed instances.    *     *<p>    *<b>Threads</b>: unlike {@link #maybeRefresh()}, if another thread is    * currently refreshing, this method blocks until that thread completes. It is    * useful if you want to guarantee that the next call to {@link #acquire()}    * will return a refreshed instance. Otherwise, consider using the    * non-blocking {@link #maybeRefresh()}.    * @throws IOException if refreshing the resource causes an {@link IOException}    * @throws AlreadyClosedException if the reference manager has been {@link #close() closed}.     */
 DECL|method|maybeRefreshBlocking
 specifier|public
 specifier|final
@@ -483,7 +483,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** Called after swapReference has installed a new    *  instance. */
+comment|/** Called after swapReference has installed a new    *  instance.    *  @throws IOException if a low level I/O exception occurs      **/
 DECL|method|afterRefresh
 specifier|protected
 name|void
@@ -492,7 +492,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{   }
-comment|/**    * Release the refernce previously obtained via {@link #acquire()}.    *<p>    *<b>NOTE:</b> it's safe to call this after {@link #close()}.    */
+comment|/**    * Release the reference previously obtained via {@link #acquire()}.    *<p>    *<b>NOTE:</b> it's safe to call this after {@link #close()}.    * @throws IOException if the release operation on the given resource throws an {@link IOException}    */
 DECL|method|release
 specifier|public
 specifier|final
