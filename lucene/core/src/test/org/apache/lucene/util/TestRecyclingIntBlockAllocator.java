@@ -81,14 +81,14 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Testcase for {@link RecyclingByteBlockAllocator}  */
+comment|/**  * Testcase for {@link RecyclingIntBlockAllocator}  */
 end_comment
 
 begin_class
-DECL|class|TestRecyclingByteBlockAllocator
+DECL|class|TestRecyclingIntBlockAllocator
 specifier|public
 class|class
-name|TestRecyclingByteBlockAllocator
+name|TestRecyclingIntBlockAllocator
 extends|extends
 name|LuceneTestCase
 block|{
@@ -113,13 +113,13 @@ expr_stmt|;
 block|}
 DECL|method|newAllocator
 specifier|private
-name|RecyclingByteBlockAllocator
+name|RecyclingIntBlockAllocator
 name|newAllocator
 parameter_list|()
 block|{
 return|return
 operator|new
-name|RecyclingByteBlockAllocator
+name|RecyclingIntBlockAllocator
 argument_list|(
 literal|1
 operator|<<
@@ -158,7 +158,7 @@ name|void
 name|testAllocate
 parameter_list|()
 block|{
-name|RecyclingByteBlockAllocator
+name|RecyclingIntBlockAllocator
 name|allocator
 init|=
 name|newAllocator
@@ -166,7 +166,7 @@ argument_list|()
 decl_stmt|;
 name|HashSet
 argument_list|<
-name|byte
+name|int
 index|[]
 argument_list|>
 name|set
@@ -174,18 +174,18 @@ init|=
 operator|new
 name|HashSet
 argument_list|<
-name|byte
+name|int
 index|[]
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|byte
+name|int
 index|[]
 name|block
 init|=
 name|allocator
 operator|.
-name|getByteBlock
+name|getIntBlock
 argument_list|()
 decl_stmt|;
 name|set
@@ -235,7 +235,7 @@ name|block
 operator|=
 name|allocator
 operator|.
-name|getByteBlock
+name|getIntBlock
 argument_list|()
 expr_stmt|;
 name|assertNotNull
@@ -266,6 +266,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|4
+operator|*
 name|size
 operator|*
 operator|(
@@ -301,7 +303,7 @@ name|void
 name|testAllocateAndRecycle
 parameter_list|()
 block|{
-name|RecyclingByteBlockAllocator
+name|RecyclingIntBlockAllocator
 name|allocator
 init|=
 name|newAllocator
@@ -309,7 +311,7 @@ argument_list|()
 decl_stmt|;
 name|HashSet
 argument_list|<
-name|byte
+name|int
 index|[]
 argument_list|>
 name|allocated
@@ -317,18 +319,18 @@ init|=
 operator|new
 name|HashSet
 argument_list|<
-name|byte
+name|int
 index|[]
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|byte
+name|int
 index|[]
 name|block
 init|=
 name|allocator
 operator|.
-name|getByteBlock
+name|getIntBlock
 argument_list|()
 decl_stmt|;
 name|allocated
@@ -406,7 +408,7 @@ name|block
 operator|=
 name|allocator
 operator|.
-name|getByteBlock
+name|getIntBlock
 argument_list|()
 expr_stmt|;
 name|assertNotNull
@@ -437,6 +439,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|4
+operator|*
 name|size
 operator|*
 operator|(
@@ -458,7 +462,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|byte
+name|int
 index|[]
 index|[]
 name|array
@@ -468,7 +472,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|byte
+name|int
 index|[
 literal|0
 index|]
@@ -507,7 +511,7 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|byte
+name|int
 index|[]
 argument_list|>
 name|selected
@@ -515,7 +519,7 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|byte
+name|int
 index|[]
 argument_list|>
 argument_list|()
@@ -548,7 +552,7 @@ expr_stmt|;
 block|}
 name|allocator
 operator|.
-name|recycleByteBlocks
+name|recycleIntBlocks
 argument_list|(
 name|array
 argument_list|,
@@ -580,7 +584,7 @@ name|j
 index|]
 argument_list|)
 expr_stmt|;
-name|byte
+name|int
 index|[]
 name|b
 init|=
@@ -612,7 +616,7 @@ name|void
 name|testAllocateAndFree
 parameter_list|()
 block|{
-name|RecyclingByteBlockAllocator
+name|RecyclingIntBlockAllocator
 name|allocator
 init|=
 name|newAllocator
@@ -620,7 +624,7 @@ argument_list|()
 decl_stmt|;
 name|HashSet
 argument_list|<
-name|byte
+name|int
 index|[]
 argument_list|>
 name|allocated
@@ -628,7 +632,7 @@ init|=
 operator|new
 name|HashSet
 argument_list|<
-name|byte
+name|int
 index|[]
 argument_list|>
 argument_list|()
@@ -638,13 +642,13 @@ name|freeButAllocated
 init|=
 literal|0
 decl_stmt|;
-name|byte
+name|int
 index|[]
 name|block
 init|=
 name|allocator
 operator|.
-name|getByteBlock
+name|getIntBlock
 argument_list|()
 decl_stmt|;
 name|allocated
@@ -722,7 +726,7 @@ name|block
 operator|=
 name|allocator
 operator|.
-name|getByteBlock
+name|getIntBlock
 argument_list|()
 expr_stmt|;
 name|freeButAllocated
@@ -766,6 +770,33 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|""
+operator|+
+operator|(
+literal|4
+operator|*
+name|size
+operator|*
+operator|(
+name|allocated
+operator|.
+name|size
+argument_list|()
+operator|+
+name|allocator
+operator|.
+name|numBufferedBlocks
+argument_list|()
+operator|)
+operator|-
+name|allocator
+operator|.
+name|bytesUsed
+argument_list|()
+operator|)
+argument_list|,
+literal|4
+operator|*
 name|size
 operator|*
 operator|(
@@ -787,7 +818,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|byte
+name|int
 index|[]
 index|[]
 name|array
@@ -797,7 +828,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|byte
+name|int
 index|[
 literal|0
 index|]
@@ -849,7 +880,7 @@ name|j
 operator|++
 control|)
 block|{
-name|byte
+name|int
 index|[]
 name|b
 init|=
@@ -871,7 +902,7 @@ expr_stmt|;
 block|}
 name|allocator
 operator|.
-name|recycleByteBlocks
+name|recycleIntBlocks
 argument_list|(
 name|array
 argument_list|,

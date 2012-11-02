@@ -285,10 +285,6 @@ DECL|field|totalFieldCount
 name|int
 name|totalFieldCount
 decl_stmt|;
-DECL|field|docBoost
-name|float
-name|docBoost
-decl_stmt|;
 DECL|field|fieldGen
 name|int
 name|fieldGen

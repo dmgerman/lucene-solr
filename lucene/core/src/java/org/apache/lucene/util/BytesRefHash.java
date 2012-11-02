@@ -909,9 +909,14 @@ condition|)
 block|{
 name|pool
 operator|.
-name|dropBuffersAndReset
-argument_list|()
+name|reset
+argument_list|(
+literal|false
+argument_list|,
+literal|false
+argument_list|)
 expr_stmt|;
+comment|// we don't need to 0-fill the buffers
 block|}
 name|bytesStart
 operator|=

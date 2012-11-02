@@ -22,7 +22,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|ByteBlockPool
+name|IntBlockPool
 operator|.
 name|Allocator
 import|;
@@ -33,23 +33,21 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A {@link ByteBlockPool.Allocator} implementation that recycles unused byte  * blocks in a buffer and reuses them in subsequent calls to  * {@link #getByteBlock()}.  *<p>  * Note: This class is not thread-safe  *</p>  * @lucene.internal  */
+comment|/**  * A {@link Allocator} implementation that recycles unused int  * blocks in a buffer and reuses them in subsequent calls to  * {@link #getIntBlock()}.  *<p>  * Note: This class is not thread-safe  *</p>  * @lucene.internal  */
 end_comment
 
 begin_class
-DECL|class|RecyclingByteBlockAllocator
+DECL|class|RecyclingIntBlockAllocator
 specifier|public
 specifier|final
 class|class
-name|RecyclingByteBlockAllocator
+name|RecyclingIntBlockAllocator
 extends|extends
-name|ByteBlockPool
-operator|.
 name|Allocator
 block|{
 DECL|field|freeByteBlocks
 specifier|private
-name|byte
+name|int
 index|[]
 index|[]
 name|freeByteBlocks
@@ -82,10 +80,10 @@ name|DEFAULT_BUFFERED_BLOCKS
 init|=
 literal|64
 decl_stmt|;
-comment|/**    * Creates a new {@link RecyclingByteBlockAllocator}    *     * @param blockSize    *          the block size in bytes    * @param maxBufferedBlocks    *          maximum number of buffered byte block    * @param bytesUsed    *          {@link Counter} reference counting internally allocated bytes    */
-DECL|method|RecyclingByteBlockAllocator
+comment|/**    * Creates a new {@link RecyclingIntBlockAllocator}    *     * @param blockSize    *          the block size in bytes    * @param maxBufferedBlocks    *          maximum number of buffered int block    * @param bytesUsed    *          {@link Counter} reference counting internally allocated bytes    */
+DECL|method|RecyclingIntBlockAllocator
 specifier|public
-name|RecyclingByteBlockAllocator
+name|RecyclingIntBlockAllocator
 parameter_list|(
 name|int
 name|blockSize
@@ -105,7 +103,7 @@ expr_stmt|;
 name|freeByteBlocks
 operator|=
 operator|new
-name|byte
+name|int
 index|[
 name|maxBufferedBlocks
 index|]
@@ -124,10 +122,10 @@ operator|=
 name|bytesUsed
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link RecyclingByteBlockAllocator}.    *     * @param blockSize    *          the block size in bytes    * @param maxBufferedBlocks    *          maximum number of buffered byte block    */
-DECL|method|RecyclingByteBlockAllocator
+comment|/**    * Creates a new {@link RecyclingIntBlockAllocator}.    *     * @param blockSize    *          the size of each block returned by this allocator    * @param maxBufferedBlocks    *          maximum number of buffered int blocks    */
+DECL|method|RecyclingIntBlockAllocator
 specifier|public
-name|RecyclingByteBlockAllocator
+name|RecyclingIntBlockAllocator
 parameter_list|(
 name|int
 name|blockSize
@@ -151,17 +149,17 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new {@link RecyclingByteBlockAllocator} with a block size of    * {@link ByteBlockPool#BYTE_BLOCK_SIZE}, upper buffered docs limit of    * {@link #DEFAULT_BUFFERED_BLOCKS} ({@value #DEFAULT_BUFFERED_BLOCKS}).    *     */
-DECL|method|RecyclingByteBlockAllocator
+comment|/**    * Creates a new {@link RecyclingIntBlockAllocator} with a block size of    * {@link IntBlockPool#INT_BLOCK_SIZE}, upper buffered docs limit of    * {@link #DEFAULT_BUFFERED_BLOCKS} ({@value #DEFAULT_BUFFERED_BLOCKS}).    *     */
+DECL|method|RecyclingIntBlockAllocator
 specifier|public
-name|RecyclingByteBlockAllocator
+name|RecyclingIntBlockAllocator
 parameter_list|()
 block|{
 name|this
 argument_list|(
-name|ByteBlockPool
+name|IntBlockPool
 operator|.
-name|BYTE_BLOCK_SIZE
+name|INT_BLOCK_SIZE
 argument_list|,
 literal|64
 argument_list|,
@@ -176,11 +174,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getByteBlock
+DECL|method|getIntBlock
 specifier|public
-name|byte
+name|int
 index|[]
-name|getByteBlock
+name|getIntBlock
 parameter_list|()
 block|{
 if|if
@@ -195,18 +193,22 @@ operator|.
 name|addAndGet
 argument_list|(
 name|blockSize
+operator|*
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_INT
 argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|byte
+name|int
 index|[
 name|blockSize
 index|]
 return|;
 block|}
 specifier|final
-name|byte
+name|int
 index|[]
 name|b
 init|=
@@ -229,12 +231,12 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|recycleByteBlocks
+DECL|method|recycleIntBlocks
 specifier|public
 name|void
-name|recycleByteBlocks
+name|recycleIntBlocks
 parameter_list|(
-name|byte
+name|int
 index|[]
 index|[]
 name|blocks
@@ -281,13 +283,13 @@ name|length
 condition|)
 block|{
 specifier|final
-name|byte
+name|int
 index|[]
 index|[]
 name|newBlocks
 init|=
 operator|new
-name|byte
+name|int
 index|[
 name|ArrayUtil
 operator|.
@@ -398,7 +400,13 @@ operator|-
 name|stop
 operator|)
 operator|*
+operator|(
 name|blockSize
+operator|*
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_INT
+operator|)
 argument_list|)
 expr_stmt|;
 assert|assert
@@ -446,7 +454,7 @@ return|return
 name|maxBufferedBlocks
 return|;
 block|}
-comment|/**    * Removes the given number of byte blocks from the buffer if possible.    *     * @param num    *          the number of byte blocks to remove    * @return the number of actually removed buffers    */
+comment|/**    * Removes the given number of int blocks from the buffer if possible.    *     * @param num    *          the number of int blocks to remove    * @return the number of actually removed buffers    */
 DECL|method|freeBlocks
 specifier|public
 name|int
@@ -526,6 +534,10 @@ operator|-
 name|count
 operator|*
 name|blockSize
+operator|*
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_INT
 argument_list|)
 expr_stmt|;
 assert|assert

@@ -61,6 +61,38 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IntBlockPool
+operator|.
+name|SliceReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IntBlockPool
+operator|.
+name|SliceWriter
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -419,6 +451,7 @@ block|}
 block|}
 block|}
 empty_stmt|;
+comment|/**    * array of buffers currently used in the pool. Buffers are allocated if    * needed don't modify this outside of this class.    */
 DECL|field|buffers
 specifier|public
 name|byte
@@ -433,7 +466,9 @@ literal|10
 index|]
 index|[]
 decl_stmt|;
+comment|/** index into the buffers array pointing to the current buffer used as the head */
 DECL|field|bufferUpto
+specifier|private
 name|int
 name|bufferUpto
 init|=
@@ -486,69 +521,33 @@ operator|=
 name|allocator
 expr_stmt|;
 block|}
-DECL|method|dropBuffersAndReset
-specifier|public
-name|void
-name|dropBuffersAndReset
-parameter_list|()
-block|{
-if|if
-condition|(
-name|bufferUpto
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
-comment|// Recycle all but the first buffer
-name|allocator
-operator|.
-name|recycleByteBlocks
-argument_list|(
-name|buffers
-argument_list|,
-literal|0
-argument_list|,
-literal|1
-operator|+
-name|bufferUpto
-argument_list|)
-expr_stmt|;
-comment|// Re-use the first buffer
-name|bufferUpto
-operator|=
-operator|-
-literal|1
-expr_stmt|;
-name|byteUpto
-operator|=
-name|BYTE_BLOCK_SIZE
-expr_stmt|;
-name|byteOffset
-operator|=
-operator|-
-name|BYTE_BLOCK_SIZE
-expr_stmt|;
-name|buffers
-operator|=
-operator|new
-name|byte
-index|[
-literal|10
-index|]
-index|[]
-expr_stmt|;
-name|buffer
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
+comment|/**    * Resets the pool to its initial state reusing the first buffer and fills all    * buffers with<tt>0</tt> bytes before they reused or passed to    * {@link Allocator#recycleByteBlocks(byte[][], int, int)}. Calling    * {@link ByteBlockPool#nextBuffer()} is not needed after reset.    */
 DECL|method|reset
 specifier|public
 name|void
 name|reset
 parameter_list|()
+block|{
+name|reset
+argument_list|(
+literal|true
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Expert: Resets the pool to its initial state reusing the first buffer. Calling    * {@link ByteBlockPool#nextBuffer()} is not needed after reset.     * @param zeroFillBuffers if<code>true</code> the buffers are filled with<tt>0</tt>.     *        This should be set to<code>true</code> if this pool is used with slices.    * @param reuseFirst if<code>true</code> the first buffer will be reused and calling    *        {@link ByteBlockPool#nextBuffer()} is not needed after reset iff the     *        block pool was used before ie. {@link ByteBlockPool#nextBuffer()} was called before.    */
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|(
+name|boolean
+name|zeroFillBuffers
+parameter_list|,
+name|boolean
+name|reuseFirst
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -559,6 +558,11 @@ literal|1
 condition|)
 block|{
 comment|// We allocated at least one buffer
+if|if
+condition|(
+name|zeroFillBuffers
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -573,6 +577,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 comment|// Fully zero fill buffers that we fully used
 name|Arrays
 operator|.
@@ -589,6 +594,7 @@ operator|)
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Partial zero fill the final buffer
 name|Arrays
 operator|.
@@ -609,12 +615,27 @@ operator|)
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|bufferUpto
 operator|>
 literal|0
+operator|||
+operator|!
+name|reuseFirst
 condition|)
+block|{
+specifier|final
+name|int
+name|offset
+init|=
+name|reuseFirst
+condition|?
+literal|1
+else|:
+literal|0
+decl_stmt|;
 comment|// Recycle all but the first buffer
 name|allocator
 operator|.
@@ -622,13 +643,34 @@ name|recycleByteBlocks
 argument_list|(
 name|buffers
 argument_list|,
-literal|1
+name|offset
 argument_list|,
 literal|1
 operator|+
 name|bufferUpto
 argument_list|)
 expr_stmt|;
+name|Arrays
+operator|.
+name|fill
+argument_list|(
+name|buffers
+argument_list|,
+name|offset
+argument_list|,
+literal|1
+operator|+
+name|bufferUpto
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|reuseFirst
+condition|)
+block|{
 comment|// Re-use the first buffer
 name|bufferUpto
 operator|=
@@ -650,7 +692,30 @@ literal|0
 index|]
 expr_stmt|;
 block|}
+else|else
+block|{
+name|bufferUpto
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+name|byteUpto
+operator|=
+name|BYTE_BLOCK_SIZE
+expr_stmt|;
+name|byteOffset
+operator|=
+operator|-
+name|BYTE_BLOCK_SIZE
+expr_stmt|;
+name|buffer
+operator|=
+literal|null
+expr_stmt|;
 block|}
+block|}
+block|}
+comment|/**    * Advances the pool to its next buffer. This method should be called once    * after the constructor to initialize the pool. In contrast to the    * constructor a {@link ByteBlockPool#reset()} call will advance the pool to    * its first buffer immediately.    */
 DECL|method|nextBuffer
 specifier|public
 name|void
@@ -739,6 +804,7 @@ operator|+=
 name|BYTE_BLOCK_SIZE
 expr_stmt|;
 block|}
+comment|/**    * Allocates a new slice with the given size.     * @see ByteBlockPool#FIRST_LEVEL_SIZE    */
 DECL|method|newSlice
 specifier|public
 name|int
@@ -788,13 +854,14 @@ comment|// elements (index is encoded with 4 bits).  First array
 comment|// is just a compact way to encode X+1 with a max.  Second
 comment|// array is the length of each slice, ie first slice is 5
 comment|// bytes, next slice is 14 bytes, etc.
-DECL|field|nextLevelArray
+comment|/**    * An array holding the offset into the {@link ByteBlockPool#LEVEL_SIZE_ARRAY}    * to quickly navigate to the next slice level.    */
+DECL|field|NEXT_LEVEL_ARRAY
 specifier|public
 specifier|final
 specifier|static
 name|int
 index|[]
-name|nextLevelArray
+name|NEXT_LEVEL_ARRAY
 init|=
 block|{
 literal|1
@@ -818,13 +885,14 @@ block|,
 literal|9
 block|}
 decl_stmt|;
-DECL|field|levelSizeArray
+comment|/**    * An array holding the level sizes for byte slices.    */
+DECL|field|LEVEL_SIZE_ARRAY
 specifier|public
 specifier|final
 specifier|static
 name|int
 index|[]
-name|levelSizeArray
+name|LEVEL_SIZE_ARRAY
 init|=
 block|{
 literal|5
@@ -848,6 +916,7 @@ block|,
 literal|200
 block|}
 decl_stmt|;
+comment|/**    * The first level size for new slices    * @see ByteBlockPool#newSlice(int)    */
 DECL|field|FIRST_LEVEL_SIZE
 specifier|public
 specifier|final
@@ -855,11 +924,12 @@ specifier|static
 name|int
 name|FIRST_LEVEL_SIZE
 init|=
-name|levelSizeArray
+name|LEVEL_SIZE_ARRAY
 index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/**    * Creates a new byte slice with the given starting size and     * returns the slices offset in the pool.    */
 DECL|method|allocSlice
 specifier|public
 name|int
@@ -890,7 +960,7 @@ specifier|final
 name|int
 name|newLevel
 init|=
-name|nextLevelArray
+name|NEXT_LEVEL_ARRAY
 index|[
 name|level
 index|]
@@ -899,7 +969,7 @@ specifier|final
 name|int
 name|newSize
 init|=
-name|levelSizeArray
+name|LEVEL_SIZE_ARRAY
 index|[
 name|newLevel
 index|]
@@ -1354,7 +1424,7 @@ literal|true
 condition|)
 do|;
 block|}
-comment|/**    *    */
+comment|/**    * Copies bytes from the pool starting at the given offset with the given      * length into the given {@link BytesRef} at offset<tt>0</tt> and returns it.    *<p>Note: this method allows to copy across block boundaries.</p>    */
 DECL|method|copyFrom
 specifier|public
 specifier|final
@@ -1364,24 +1434,16 @@ parameter_list|(
 specifier|final
 name|BytesRef
 name|bytes
+parameter_list|,
+specifier|final
+name|int
+name|offset
+parameter_list|,
+specifier|final
+name|int
+name|length
 parameter_list|)
 block|{
-specifier|final
-name|int
-name|length
-init|=
-name|bytes
-operator|.
-name|length
-decl_stmt|;
-specifier|final
-name|int
-name|offset
-init|=
-name|bytes
-operator|.
-name|offset
-decl_stmt|;
 name|bytes
 operator|.
 name|offset
@@ -1394,6 +1456,12 @@ name|grow
 argument_list|(
 name|length
 argument_list|)
+expr_stmt|;
+name|bytes
+operator|.
+name|length
+operator|=
+name|length
 expr_stmt|;
 name|int
 name|bufferIndex

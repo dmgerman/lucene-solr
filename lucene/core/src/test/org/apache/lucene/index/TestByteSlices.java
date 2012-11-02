@@ -87,9 +87,13 @@ name|ByteBlockPool
 operator|.
 name|BYTE_BLOCK_SIZE
 argument_list|,
-name|Integer
+name|random
+argument_list|()
 operator|.
-name|MAX_VALUE
+name|nextInt
+argument_list|(
+literal|100
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
