@@ -891,9 +891,6 @@ argument_list|(
 name|a
 argument_list|)
 expr_stmt|;
-comment|// Does not seem to help (and hurt maybe a bit: 6-9
-comment|// prefix went from 19 to 18 kQPS):
-comment|// a.reduce();
 return|return
 name|a
 return|;
