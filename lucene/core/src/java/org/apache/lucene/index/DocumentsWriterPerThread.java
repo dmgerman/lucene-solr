@@ -2794,6 +2794,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: we should prune the segment if it's 100%
+comment|// deleted... but merge will also catch it.
 comment|// TODO: in the NRT case it'd be better to hand
 comment|// this del vector over to the
 comment|// shortly-to-be-opened SegmentReader and let it
