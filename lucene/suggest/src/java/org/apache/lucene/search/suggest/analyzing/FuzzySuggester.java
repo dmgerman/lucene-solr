@@ -840,6 +840,7 @@ operator|==
 literal|0
 condition|)
 block|{
+comment|// automaton is empty, there is no accepted paths through it
 return|return
 name|BasicAutomata
 operator|.
@@ -858,6 +859,7 @@ operator|==
 literal|1
 condition|)
 block|{
+comment|// no synonyms or anything: just a single path through the tokenstream
 return|return
 name|subs
 index|[
@@ -867,6 +869,8 @@ return|;
 block|}
 else|else
 block|{
+comment|// multiple paths: this is really scary! is it slow?
+comment|// maybe we should not do this and throw UOE?
 name|Automaton
 name|a
 init|=
