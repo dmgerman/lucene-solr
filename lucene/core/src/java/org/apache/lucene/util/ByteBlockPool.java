@@ -667,13 +667,6 @@ operator|=
 operator|-
 literal|1
 expr_stmt|;
-name|buffers
-index|[
-literal|0
-index|]
-operator|=
-literal|null
-expr_stmt|;
 name|byteUpto
 operator|=
 name|BYTE_BLOCK_SIZE
