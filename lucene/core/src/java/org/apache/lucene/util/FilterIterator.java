@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link Iterator} implementation that filters elements with a boolean predicate.  *  * @param<T> generic parameter for this iterator instance: this iterator implements {@link Iterator Iterator&lt;T&gt;}  * @param<InnerT> generic parameter of the wrapped iterator, must be<tt>T</tt> or extend<tt>T</tt>  * @see #predicateFunction  */
+comment|/**  * An {@link Iterator} implementation that filters elements with a boolean predicate.  *  * @param<T> generic parameter for this iterator instance: this iterator implements {@link Iterator Iterator&lt;T&gt;}  * @param<InnerT> generic parameter of the wrapped iterator, must be<tt>T</tt> or extend<tt>T</tt>  * @see #predicateFunction  * @lucene.internal  */
 end_comment
 
 begin_class
