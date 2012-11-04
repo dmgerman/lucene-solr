@@ -9939,8 +9939,6 @@ name|Override
 specifier|public
 name|Iterable
 argument_list|<
-name|?
-extends|extends
 name|IndexableField
 argument_list|>
 name|indexableFields
@@ -10028,8 +10026,6 @@ name|Override
 specifier|public
 name|Iterable
 argument_list|<
-name|?
-extends|extends
 name|StorableField
 argument_list|>
 name|storableFields
