@@ -503,11 +503,6 @@ operator|new
 name|WFSTTermFreqIteratorWrapper
 argument_list|(
 name|iterator
-argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|IntsRef
@@ -1388,12 +1383,6 @@ name|WFSTTermFreqIteratorWrapper
 parameter_list|(
 name|TermFreqIterator
 name|source
-parameter_list|,
-name|Comparator
-argument_list|<
-name|BytesRef
-argument_list|>
-name|comparator
 parameter_list|)
 throws|throws
 name|IOException
@@ -1401,10 +1390,6 @@ block|{
 name|super
 argument_list|(
 name|source
-argument_list|,
-name|comparator
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1440,7 +1425,7 @@ name|spare
 operator|.
 name|length
 operator|+
-literal|5
+literal|4
 operator|>=
 name|buffer
 operator|.
@@ -1459,7 +1444,7 @@ name|spare
 operator|.
 name|length
 operator|+
-literal|5
+literal|4
 argument_list|)
 expr_stmt|;
 block|}
@@ -1487,17 +1472,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|output
-operator|.
-name|writeByte
-argument_list|(
-operator|(
-name|byte
-operator|)
-literal|0
-argument_list|)
-expr_stmt|;
-comment|// separator: not used, just for sort order
 name|output
 operator|.
 name|writeInt
@@ -1537,6 +1511,14 @@ name|ByteArrayDataInput
 name|tmpInput
 parameter_list|)
 block|{
+name|scratch
+operator|.
+name|length
+operator|-=
+literal|4
+expr_stmt|;
+comment|// int
+comment|// skip suggestion:
 name|tmpInput
 operator|.
 name|reset
@@ -1544,27 +1526,18 @@ argument_list|(
 name|scratch
 operator|.
 name|bytes
-argument_list|)
-expr_stmt|;
-name|tmpInput
+argument_list|,
+name|scratch
 operator|.
-name|skipBytes
-argument_list|(
+name|offset
+operator|+
 name|scratch
 operator|.
 name|length
-operator|-
+argument_list|,
 literal|4
 argument_list|)
 expr_stmt|;
-comment|// suggestion + separator
-name|scratch
-operator|.
-name|length
-operator|-=
-literal|5
-expr_stmt|;
-comment|// sep + long
 return|return
 name|tmpInput
 operator|.
