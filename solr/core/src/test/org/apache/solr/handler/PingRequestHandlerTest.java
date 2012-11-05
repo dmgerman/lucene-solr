@@ -431,6 +431,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Ignore
 DECL|method|testEnablingServer
 specifier|public
 name|void
@@ -570,6 +572,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Ignore
 DECL|method|testDisablingServer
 specifier|public
 name|void
