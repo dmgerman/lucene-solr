@@ -32,16 +32,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -639,7 +629,9 @@ name|isPingDisabled
 argument_list|()
 condition|)
 block|{
-throw|throw
+name|SolrException
+name|e
+init|=
 operator|new
 name|SolrException
 argument_list|(
@@ -651,7 +643,15 @@ name|SERVICE_UNAVAILABLE
 argument_list|,
 literal|"Service disabled"
 argument_list|)
-throw|;
+decl_stmt|;
+name|rsp
+operator|.
+name|setException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
 name|handlePing
 argument_list|(
