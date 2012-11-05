@@ -431,8 +431,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Ignore
 DECL|method|testEnablingServer
 specifier|public
 name|void
@@ -451,8 +449,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// first make sure that ping responds back that the service is disabled
-try|try
-block|{
+name|SolrQueryResponse
+name|sqr
+init|=
 name|makeRequest
 argument_list|(
 name|handler
@@ -460,21 +459,27 @@ argument_list|,
 name|req
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"Should have thrown a SolrException because not enabled yet"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+decl_stmt|;
 name|SolrException
 name|se
-parameter_list|)
-block|{
+init|=
+operator|(
+name|SolrException
+operator|)
+name|sqr
+operator|.
+name|getException
+argument_list|()
+decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"Response should have been replaced with a 503 SolrException."
+argument_list|,
+name|se
+operator|.
+name|code
+argument_list|()
+argument_list|,
 name|SolrException
 operator|.
 name|ErrorCode
@@ -482,14 +487,8 @@ operator|.
 name|SERVICE_UNAVAILABLE
 operator|.
 name|code
-argument_list|,
-name|se
-operator|.
-name|code
-argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 comment|// now enable
 name|makeRequest
 argument_list|(
@@ -572,8 +571,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Ignore
 DECL|method|testDisablingServer
 specifier|public
 name|void
@@ -645,8 +642,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// now make sure that ping responds back that the service is disabled
-try|try
-block|{
+name|SolrQueryResponse
+name|sqr
+init|=
 name|makeRequest
 argument_list|(
 name|handler
@@ -654,21 +652,27 @@ argument_list|,
 name|req
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"Should have thrown a SolrException because not enabled yet"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+decl_stmt|;
 name|SolrException
 name|se
-parameter_list|)
-block|{
+init|=
+operator|(
+name|SolrException
+operator|)
+name|sqr
+operator|.
+name|getException
+argument_list|()
+decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"Response should have been replaced with a 503 SolrException."
+argument_list|,
+name|se
+operator|.
+name|code
+argument_list|()
+argument_list|,
 name|SolrException
 operator|.
 name|ErrorCode
@@ -676,14 +680,8 @@ operator|.
 name|SERVICE_UNAVAILABLE
 operator|.
 name|code
-argument_list|,
-name|se
-operator|.
-name|code
-argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 comment|// disable when already disabled shouldn't cause any problems
 name|makeRequest
 argument_list|(
