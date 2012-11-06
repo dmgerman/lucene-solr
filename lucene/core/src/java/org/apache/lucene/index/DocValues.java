@@ -276,9 +276,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|DataOutput
+name|BytesRef
 import|;
 end_import
 
@@ -292,7 +292,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|CloseableThreadLocal
 import|;
 end_import
 
@@ -369,16 +369,16 @@ name|DocValues
 parameter_list|()
 block|{   }
 comment|/**    * Loads a new {@link Source} instance for this {@link DocValues} field    * instance. Source instances returned from this method are not cached. It is    * the callers responsibility to maintain the instance and release its    * resources once the source is not needed anymore.    *<p>    * For managed {@link Source} instances see {@link #getSource()}.    *     * @see #getSource()    * @see #setCache(SourceCache)    */
-DECL|method|load
-specifier|public
+DECL|method|loadSource
+specifier|protected
 specifier|abstract
 name|Source
-name|load
+name|loadSource
 parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a {@link Source} instance through the current {@link SourceCache}.    * Iff no {@link Source} has been loaded into the cache so far the source will    * be loaded through {@link #load()} and passed to the {@link SourceCache}.    * The caller of this method should not close the obtained {@link Source}    * instance unless it is not needed for the rest of its life time.    *<p>    * {@link Source} instances obtained from this method are closed / released    * from the cache once this {@link DocValues} instance is closed by the    * {@link IndexReader}, {@link Fields} or the    * {@link DocValues} was created from.    */
+comment|/**    * Returns a {@link Source} instance through the current {@link SourceCache}.    * Iff no {@link Source} has been loaded into the cache so far the source will    * be loaded through {@link #loadSource()} and passed to the {@link SourceCache}.    * The caller of this method should not close the obtained {@link Source}    * instance unless it is not needed for the rest of its life time.    *<p>    * {@link Source} instances obtained from this method are closed / released    * from the cache once this {@link DocValues} instance is closed by the    * {@link IndexReader}, {@link Fields} or the    * {@link DocValues} was created from.    */
 DECL|method|getSource
 specifier|public
 name|Source
@@ -396,12 +396,32 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a disk resident {@link Source} instance. Direct Sources are not    * cached in the {@link SourceCache} and should not be shared between threads.    */
+comment|/**    * Returns a disk resident {@link Source} instance through the current    * {@link SourceCache}. Direct Sources are cached per thread in the    * {@link SourceCache}. The obtained instance should not be shared with other    * threads.    */
 DECL|method|getDirectSource
 specifier|public
-specifier|abstract
 name|Source
 name|getDirectSource
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|this
+operator|.
+name|cache
+operator|.
+name|loadDirect
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+comment|/**    * Loads a new {@link Source direct source} instance from this {@link DocValues} field    * instance. Source instances returned from this method are not cached. It is    * the callers responsibility to maintain the instance and release its    * resources once the source is not needed anymore.    *<p>    * For managed {@link Source direct source} instances see {@link #getDirectSource()}.    *     * @see #getDirectSource()    * @see #setCache(SourceCache)    */
+DECL|method|loadDirectSource
+specifier|protected
+specifier|abstract
+name|Source
+name|loadDirectSource
 parameter_list|()
 throws|throws
 name|IOException
@@ -443,7 +463,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Sets the {@link SourceCache} used by this {@link DocValues} instance. This    * method should be called before {@link #load()} is called. All {@link Source} instances in the currently used cache will be closed    * before the new cache is installed.    *<p>    * Note: All instances previously obtained from {@link #load()} will be lost.    *     * @throws IllegalArgumentException    *           if the given cache is<code>null</code>    *     */
+comment|/**    * Sets the {@link SourceCache} used by this {@link DocValues} instance. This    * method should be called before {@link #loadSource()} is called. All {@link Source} instances in the currently used cache will be closed    * before the new cache is installed.    *<p>    * Note: All instances previously obtained from {@link #loadSource()} will be lost.    *     * @throws IllegalArgumentException    *           if the given cache is<code>null</code>    *     */
 DECL|method|setCache
 specifier|public
 name|void
@@ -492,6 +512,17 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**    * Returns the currently used cache instance;    * @see #setCache(SourceCache)    */
+comment|// for tests
+DECL|method|getCache
+name|SourceCache
+name|getCache
+parameter_list|()
+block|{
+return|return
+name|cache
+return|;
 block|}
 comment|/**    * Source of per document values like long, double or {@link BytesRef}    * depending on the {@link DocValues} fields {@link Type}. Source    * implementations provide random access semantics similar to array lookups    *<p>    * @see DocValues#getSource()    * @see DocValues#getDirectSource()    */
 DECL|class|Source
@@ -1394,7 +1425,7 @@ comment|/**      * A fixed length pre-sorted byte[] variant. Fields with this ty
 DECL|enum constant|BYTES_FIXED_SORTED
 name|BYTES_FIXED_SORTED
 block|}
-comment|/**    * Abstract base class for {@link DocValues} {@link Source} cache.    *<p>    * {@link Source} instances loaded via {@link DocValues#load()} are entirely memory resident    * and need to be maintained by the caller. Each call to    * {@link DocValues#load()} will cause an entire reload of    * the underlying data. Source instances obtained from    * {@link DocValues#getSource()} and {@link DocValues#getSource()}    * respectively are maintained by a {@link SourceCache} that is closed (    * {@link #close(DocValues)}) once the {@link IndexReader} that created the    * {@link DocValues} instance is closed.    *<p>    * Unless {@link Source} instances are managed by another entity it is    * recommended to use the cached variants to obtain a source instance.    *<p>    * Implementation of this API must be thread-safe.    *     * @see DocValues#setCache(SourceCache)    * @see DocValues#getSource()    *     * @lucene.experimental    */
+comment|/**    * Abstract base class for {@link DocValues} {@link Source} cache.    *<p>    * {@link Source} instances loaded via {@link DocValues#loadSource()} are entirely memory resident    * and need to be maintained by the caller. Each call to    * {@link DocValues#loadSource()} will cause an entire reload of    * the underlying data. Source instances obtained from    * {@link DocValues#getSource()} and {@link DocValues#getSource()}    * respectively are maintained by a {@link SourceCache} that is closed (    * {@link #close(DocValues)}) once the {@link IndexReader} that created the    * {@link DocValues} instance is closed.    *<p>    * Unless {@link Source} instances are managed by another entity it is    * recommended to use the cached variants to obtain a source instance.    *<p>    * Implementation of this API must be thread-safe.    *     * @see DocValues#setCache(SourceCache)    * @see DocValues#getSource()    *     * @lucene.experimental    */
 DECL|class|SourceCache
 specifier|public
 specifier|static
@@ -1414,6 +1445,19 @@ specifier|public
 specifier|abstract
 name|Source
 name|load
+parameter_list|(
+name|DocValues
+name|values
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**      * Atomically loads a {@link Source direct source} into the per-thread cache from the given      * {@link DocValues} and returns it iff no other {@link Source direct source} has already      * been cached. Otherwise the cached source is returned.      *<p>      * This method will not return<code>null</code>      */
+DECL|method|loadDirect
+specifier|public
+specifier|abstract
+name|Source
+name|loadDirect
 parameter_list|(
 name|DocValues
 name|values
@@ -1464,6 +1508,22 @@ specifier|private
 name|Source
 name|ref
 decl_stmt|;
+DECL|field|directSourceCache
+specifier|private
+specifier|final
+name|CloseableThreadLocal
+argument_list|<
+name|Source
+argument_list|>
+name|directSourceCache
+init|=
+operator|new
+name|CloseableThreadLocal
+argument_list|<
+name|Source
+argument_list|>
+argument_list|()
+decl_stmt|;
 comment|/** Sole constructor. */
 DECL|method|DirectSourceCache
 specifier|public
@@ -1493,7 +1553,7 @@ name|ref
 operator|=
 name|values
 operator|.
-name|load
+name|loadSource
 argument_list|()
 expr_stmt|;
 block|}
@@ -1515,6 +1575,68 @@ name|ref
 operator|=
 literal|null
 expr_stmt|;
+name|directSourceCache
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|loadDirect
+specifier|public
+specifier|synchronized
+name|Source
+name|loadDirect
+parameter_list|(
+name|DocValues
+name|values
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+specifier|final
+name|Source
+name|source
+init|=
+name|directSourceCache
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+block|{
+specifier|final
+name|Source
+name|loadDirectSource
+init|=
+name|values
+operator|.
+name|loadDirectSource
+argument_list|()
+decl_stmt|;
+name|directSourceCache
+operator|.
+name|set
+argument_list|(
+name|loadDirectSource
+argument_list|)
+expr_stmt|;
+return|return
+name|loadDirectSource
+return|;
+block|}
+else|else
+block|{
+return|return
+name|source
+return|;
+block|}
 block|}
 block|}
 block|}

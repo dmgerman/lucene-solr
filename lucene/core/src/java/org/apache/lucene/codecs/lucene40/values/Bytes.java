@@ -1486,7 +1486,7 @@ throws|throws
 name|IOException
 function_decl|;
 block|}
-comment|/**    * Opens all necessary files, but does not read any data in until you call    * {@link #load}.    */
+comment|/**    * Opens all necessary files, but does not read any data in until you call    * {@link #loadSource}.    */
 DECL|class|BytesReaderBase
 specifier|static
 specifier|abstract

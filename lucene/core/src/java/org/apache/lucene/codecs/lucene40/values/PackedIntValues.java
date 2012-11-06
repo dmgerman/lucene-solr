@@ -986,7 +986,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Opens all necessary files, but does not read any data in until you call    * {@link #load}.    */
+comment|/**    * Opens all necessary files, but does not read any data in until you call    * {@link #loadSource}.    */
 DECL|class|PackedIntsReader
 specifier|static
 class|class
@@ -1137,10 +1137,10 @@ block|}
 comment|/**      * Loads the actual values. You may call this more than once, eg if you      * already previously loaded but then discarded the Source.      */
 annotation|@
 name|Override
-DECL|method|load
-specifier|public
+DECL|method|loadSource
+specifier|protected
 name|Source
-name|load
+name|loadSource
 parameter_list|()
 throws|throws
 name|IOException
@@ -1265,10 +1265,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getDirectSource
-specifier|public
+DECL|method|loadDirectSource
+specifier|protected
 name|Source
-name|getDirectSource
+name|loadDirectSource
 parameter_list|()
 throws|throws
 name|IOException

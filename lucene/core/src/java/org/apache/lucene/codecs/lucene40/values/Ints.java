@@ -814,10 +814,10 @@ assert|;
 block|}
 annotation|@
 name|Override
-DECL|method|load
-specifier|public
+DECL|method|loadSource
+specifier|protected
 name|Source
-name|load
+name|loadSource
 parameter_list|()
 throws|throws
 name|IOException

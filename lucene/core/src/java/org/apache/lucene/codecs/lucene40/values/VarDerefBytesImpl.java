@@ -559,10 +559,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|load
-specifier|public
+DECL|method|loadSource
+specifier|protected
 name|Source
-name|load
+name|loadSource
 parameter_list|()
 throws|throws
 name|IOException
@@ -583,10 +583,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getDirectSource
-specifier|public
+DECL|method|loadDirectSource
+specifier|protected
 name|Source
-name|getDirectSource
+name|loadDirectSource
 parameter_list|()
 throws|throws
 name|IOException
