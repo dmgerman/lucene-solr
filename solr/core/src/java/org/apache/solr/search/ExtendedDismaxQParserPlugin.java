@@ -1300,6 +1300,13 @@ operator|)
 operator|==
 literal|0
 decl_stmt|;
+comment|// but always for unstructured implicit bqs created by getFieldQuery
+name|up
+operator|.
+name|minShouldMatch
+operator|=
+name|minShouldMatch
+expr_stmt|;
 try|try
 block|{
 name|up
@@ -4311,6 +4318,11 @@ specifier|private
 name|boolean
 name|removeStopFilter
 decl_stmt|;
+DECL|field|minShouldMatch
+name|String
+name|minShouldMatch
+decl_stmt|;
+comment|// for inner boolean queries produced from a single fieldQuery
 comment|/**      * Where we store a map from field name we expect to see in our query      * string, to Alias object containing the fields to use in our      * DisjunctionMaxQuery and the tiebreaker to use.      */
 DECL|field|aliases
 specifier|protected
@@ -5534,6 +5546,47 @@ operator|.
 name|PHRASE
 argument_list|)
 decl_stmt|;
+comment|// A BooleanQuery is only possible from getFieldQuery if it came from
+comment|// a single whitespace separated term. In this case, check the coordination
+comment|// factor on the query: if its enabled, that means we aren't a set of synonyms
+comment|// but instead multiple terms from one whitespace-separated term, we must
+comment|// apply minShouldMatch here so that it works correctly with other things
+comment|// like aliasing.
+if|if
+condition|(
+name|query
+operator|instanceof
+name|BooleanQuery
+condition|)
+block|{
+name|BooleanQuery
+name|bq
+init|=
+operator|(
+name|BooleanQuery
+operator|)
+name|query
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|bq
+operator|.
+name|isCoordDisabled
+argument_list|()
+condition|)
+block|{
+name|SolrPluginUtils
+operator|.
+name|setMinShouldMatch
+argument_list|(
+name|bq
+argument_list|,
+name|minShouldMatch
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|query
