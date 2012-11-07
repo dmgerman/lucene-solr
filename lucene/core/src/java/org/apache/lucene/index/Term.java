@@ -54,7 +54,7 @@ DECL|field|bytes
 name|BytesRef
 name|bytes
 decl_stmt|;
-comment|/** Constructs a Term with the given field and bytes.    *<p>Note that a null field or null bytes value results in undefined    * behavior for most Lucene APIs that accept a Term parameter.     *    *<p>WARNING: the provided BytesRef is not copied, but used directly.    * Therefore the bytes should not be modified after construction, for    * example, you should clone a copy rather than pass reused bytes from    * a TermsEnum.    */
+comment|/** Constructs a Term with the given field and bytes.    *<p>Note that a null field or null bytes value results in undefined    * behavior for most Lucene APIs that accept a Term parameter.     *    *<p>WARNING: the provided BytesRef is not copied, but used directly.    * Therefore the bytes should not be modified after construction, for    * example, you should clone a copy by {@link BytesRef#deepCopyOf}    * rather than pass reused bytes from a TermsEnum.    */
 DECL|method|Term
 specifier|public
 name|Term
