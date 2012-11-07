@@ -569,7 +569,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  TODO: add soft commitWithin support  *   *<code>DirectUpdateHandler2</code> implements an UpdateHandler where documents are added  * directly to the main Lucene index as opposed to adding to a separate smaller index.  */
+comment|/**  *<code>DirectUpdateHandler2</code> implements an UpdateHandler where documents are added  * directly to the main Lucene index as opposed to adding to a separate smaller index.  *<p>  * TODO: add soft commitWithin support  */
 end_comment
 
 begin_class

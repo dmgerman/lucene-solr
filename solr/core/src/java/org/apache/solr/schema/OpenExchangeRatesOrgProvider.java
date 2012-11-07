@@ -179,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exchange Rates Provider for {@link CurrencyField} implementing the freely available  * exchange rates from openexchangerates.org  *<p/>  *<b>Disclaimer:</b> This data is collected from various providers and provided free of charge  * for informational purposes only, with no guarantee whatsoever of accuracy, validity,  * availability or fitness for any purpose; use at your own risk. Other than that - have  * fun, and please share/watch/fork if you think data like this should be free!  */
+comment|/**  * Exchange Rates Provider for {@link CurrencyField} implementing the freely available  * exchange rates from openexchangerates.org  *<p>  *<b>Disclaimer:</b> This data is collected from various providers and provided free of charge  * for informational purposes only, with no guarantee whatsoever of accuracy, validity,  * availability or fitness for any purpose; use at your own risk. Other than that - have  * fun, and please share/watch/fork if you think data like this should be free!  */
 end_comment
 
 begin_class

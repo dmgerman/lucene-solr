@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * 9/10/2009 - Moved out of StatsComponent to allow open access to UnInvertedField  * FieldFacetStats is a utility to accumulate statistics on a set of values in one field,  * for facet values present in another field.  *<p/>  * @see org.apache.solr.handler.component.StatsComponent  *  */
+comment|/**  * FieldFacetStats is a utility to accumulate statistics on a set of values in one field,  * for facet values present in another field.  *<p>  * 9/10/2009 - Moved out of StatsComponent to allow open access to UnInvertedField  *<p/>  * @see org.apache.solr.handler.component.StatsComponent  *  */
 end_comment
 
 begin_class

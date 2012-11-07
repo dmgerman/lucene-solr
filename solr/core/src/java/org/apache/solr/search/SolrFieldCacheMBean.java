@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A SolrInfoMBean that provides introspection of the Lucene FiledCache, this is<b>NOT</b> a cache that is manged by Solr.  *  *  */
+comment|/**  * A SolrInfoMBean that provides introspection of the Lucene FieldCache, this is<b>NOT</b> a cache that is managed by Solr.  *  */
 end_comment
 
 begin_class

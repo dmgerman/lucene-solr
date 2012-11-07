@@ -3155,7 +3155,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Simple class to help with parsing a string    *<b>Note: This API is experimental and may change in non backward-compatible ways in the future</b>    */
+comment|/**    * Simple class to help with parsing a string.    *<b>Note: This API is experimental and may change in non backward-compatible ways in the future</b>    */
 DECL|class|StrParser
 specifier|public
 specifier|static

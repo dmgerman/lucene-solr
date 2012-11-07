@@ -227,7 +227,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Query parser for dismax queries  *<p/>  *<b>Note: This API is experimental and may change in non backward-compatible ways in the future</b>  *  *  */
+comment|/**  * Query parser for dismax queries  *<p>  *<b>Note: This API is experimental and may change in non backward-compatible ways in the future</b>  *  *  */
 end_comment
 
 begin_class
