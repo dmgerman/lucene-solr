@@ -734,6 +734,15 @@ name|Assert
 operator|.
 name|assertTrue
 argument_list|(
+literal|"Expecting "
+operator|+
+name|numToExpect
+operator|+
+literal|" database calls, but DIH reported "
+operator|+
+name|totalDatabaseRequests
+argument_list|()
+argument_list|,
 name|totalDatabaseRequests
 argument_list|()
 operator|==
