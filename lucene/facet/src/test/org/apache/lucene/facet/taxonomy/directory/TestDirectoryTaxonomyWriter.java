@@ -678,7 +678,11 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"index.create.time not found in commitData"
+name|DirectoryTaxonomyWriter
+operator|.
+name|INDEX_EPOCH
+operator|+
+literal|" not found in commitData"
 argument_list|,
 name|readUserCommitData
 operator|.
@@ -686,7 +690,7 @@ name|get
 argument_list|(
 name|DirectoryTaxonomyWriter
 operator|.
-name|INDEX_CREATE_TIME
+name|INDEX_EPOCH
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -695,7 +699,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// open DirTaxoWriter again and commit, INDEX_CREATE_TIME should still exist
+comment|// open DirTaxoWriter again and commit, INDEX_EPOCH should still exist
 comment|// in the commit data, otherwise DirTaxoReader.refresh() might not detect
 comment|// that the taxonomy index has been recreated.
 name|taxoWriter
@@ -775,7 +779,11 @@ argument_list|()
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"index.create.time not found in commitData"
+name|DirectoryTaxonomyWriter
+operator|.
+name|INDEX_EPOCH
+operator|+
+literal|" not found in commitData"
 argument_list|,
 name|readUserCommitData
 operator|.
@@ -783,7 +791,7 @@ name|get
 argument_list|(
 name|DirectoryTaxonomyWriter
 operator|.
-name|INDEX_CREATE_TIME
+name|INDEX_EPOCH
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -808,7 +816,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// Verifies that if callback is called, DTW is closed.
+comment|// Verifies that if rollback is called, DTW is closed.
 name|Directory
 name|dir
 init|=
@@ -867,6 +875,71 @@ parameter_list|)
 block|{
 comment|// expected
 block|}
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testRecreateRollback
+specifier|public
+name|void
+name|testRecreateRollback
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// Tests rollback with OpenMode.CREATE
+name|Directory
+name|dir
+init|=
+name|newDirectory
+argument_list|()
+decl_stmt|;
+operator|new
+name|DirectoryTaxonomyWriter
+argument_list|(
+name|dir
+argument_list|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|getEpoch
+argument_list|(
+name|dir
+argument_list|)
+argument_list|)
+expr_stmt|;
+operator|new
+name|DirectoryTaxonomyWriter
+argument_list|(
+name|dir
+argument_list|,
+name|OpenMode
+operator|.
+name|CREATE
+argument_list|)
+operator|.
+name|rollback
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|getEpoch
+argument_list|(
+name|dir
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|dir
 operator|.
 name|close
@@ -994,7 +1067,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// DirTaxoWriter lost the INDEX_CREATE_TIME property if it was opened in
+comment|// DirTaxoWriter lost the INDEX_EPOCH property if it was opened in
 comment|// CREATE_OR_APPEND (or commit(userData) called twice), which could lead to
 comment|// DirTaxoReader succeeding to refresh().
 name|Directory
@@ -1055,7 +1128,7 @@ operator|.
 name|refresh
 argument_list|()
 expr_stmt|;
-comment|// now recreate the taxonomy, and check that the timestamp is preserved after opening DirTW again.
+comment|// now recreate the taxonomy, and check that the epoch is preserved after opening DirTW again.
 name|taxoWriter
 operator|.
 name|close
@@ -1156,15 +1229,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testUndefinedCreateTime
+DECL|method|testBackwardsCompatibility
 specifier|public
 name|void
-name|testUndefinedCreateTime
+name|testBackwardsCompatibility
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// tests that if the taxonomy index doesn't have the INDEX_CREATE_TIME
+comment|// tests that if the taxonomy index doesn't have the INDEX_EPOCH
 comment|// property (supports pre-3.6 indexes), all still works.
 name|Directory
 name|dir
@@ -1172,7 +1245,7 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// create an empty index first, so that DirTaxoWriter initializes createTime to null.
+comment|// create an empty index first, so that DirTaxoWriter initializes indexEpoch to 1.
 operator|new
 name|IndexWriter
 argument_list|(
@@ -1205,7 +1278,6 @@ argument_list|,
 name|NO_OP_CACHE
 argument_list|)
 decl_stmt|;
-comment|// we cannot commit null keys/values, this ensures that if DirTW.createTime is null, we can still commit.
 name|taxoWriter
 operator|.
 name|close
@@ -1220,6 +1292,28 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|taxoReader
+operator|.
+name|getCommitUserData
+argument_list|()
+operator|.
+name|get
+argument_list|(
+name|DirectoryTaxonomyWriter
+operator|.
+name|INDEX_EPOCH
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|taxoReader
 operator|.
 name|refresh
@@ -1605,10 +1699,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|getCreateTime
+DECL|method|getEpoch
 specifier|private
-name|String
-name|getCreateTime
+name|long
+name|getEpoch
 parameter_list|(
 name|Directory
 name|taxoDir
@@ -1631,6 +1725,10 @@ name|taxoDir
 argument_list|)
 expr_stmt|;
 return|return
+name|Long
+operator|.
+name|parseLong
+argument_list|(
 name|infos
 operator|.
 name|getUserData
@@ -1640,7 +1738,8 @@ name|get
 argument_list|(
 name|DirectoryTaxonomyWriter
 operator|.
-name|INDEX_CREATE_TIME
+name|INDEX_EPOCH
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -1729,10 +1828,10 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|String
-name|origCreateTime
+name|long
+name|origEpoch
 init|=
-name|getCreateTime
+name|getEpoch
 argument_list|(
 name|dir
 argument_list|)
@@ -1783,21 +1882,21 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|String
-name|newCreateTime
+name|long
+name|newEpoch
 init|=
-name|getCreateTime
+name|getEpoch
 argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|assertNotSame
+name|assertTrue
 argument_list|(
-literal|"create time should have been changed after replaceTaxonomy"
+literal|"index epoch should have been updated after replaceTaxonomy"
 argument_list|,
-name|origCreateTime
-argument_list|,
-name|newCreateTime
+name|origEpoch
+operator|<
+name|newEpoch
 argument_list|)
 expr_stmt|;
 name|dir
