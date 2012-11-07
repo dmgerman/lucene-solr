@@ -129,16 +129,13 @@ block|}
 comment|/** Implemented as    *<code>state.getBoost()*lengthNorm(numTerms)</code>, where    *<code>numTerms</code> is {@link FieldInvertState#getLength()} if {@link    *  #setDiscountOverlaps} is false, else it's {@link    *  FieldInvertState#getLength()} - {@link    *  FieldInvertState#getNumOverlap()}.    *    *  @lucene.experimental */
 annotation|@
 name|Override
-DECL|method|computeNorm
+DECL|method|lengthNorm
 specifier|public
-name|void
-name|computeNorm
+name|float
+name|lengthNorm
 parameter_list|(
 name|FieldInvertState
 name|state
-parameter_list|,
-name|Norm
-name|norm
 parameter_list|)
 block|{
 specifier|final
@@ -169,12 +166,7 @@ operator|.
 name|getLength
 argument_list|()
 expr_stmt|;
-name|norm
-operator|.
-name|setByte
-argument_list|(
-name|encodeNormValue
-argument_list|(
+return|return
 name|state
 operator|.
 name|getBoost
@@ -195,9 +187,7 @@ name|numTerms
 argument_list|)
 argument_list|)
 operator|)
-argument_list|)
-argument_list|)
-expr_stmt|;
+return|;
 block|}
 comment|/** Implemented as<code>sqrt(freq)</code>. */
 annotation|@

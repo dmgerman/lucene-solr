@@ -249,16 +249,13 @@ block|}
 comment|/**    * Implemented as<code> state.getBoost() *    * computeLengthNorm(numTokens)</code> where    * numTokens does not count overlap tokens if    * discountOverlaps is true by default or true for this    * specific field. */
 annotation|@
 name|Override
-DECL|method|computeNorm
+DECL|method|lengthNorm
 specifier|public
-name|void
-name|computeNorm
+name|float
+name|lengthNorm
 parameter_list|(
 name|FieldInvertState
 name|state
-parameter_list|,
-name|Norm
-name|norm
 parameter_list|)
 block|{
 specifier|final
@@ -289,12 +286,7 @@ operator|.
 name|getLength
 argument_list|()
 expr_stmt|;
-name|norm
-operator|.
-name|setByte
-argument_list|(
-name|encodeNormValue
-argument_list|(
+return|return
 name|state
 operator|.
 name|getBoost
@@ -304,9 +296,7 @@ name|computeLengthNorm
 argument_list|(
 name|numTokens
 argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
+return|;
 block|}
 comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimization is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    * @see<a href="doc-files/ss.computeLengthNorm.svg">An SVG visualization of this function</a>     */
 DECL|method|computeLengthNorm
