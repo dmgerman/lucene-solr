@@ -533,6 +533,12 @@ operator|==
 literal|null
 condition|)
 block|{
+name|field
+operator|=
+name|field
+operator|.
+name|next
+expr_stmt|;
 continue|continue;
 block|}
 name|dvConsumer
