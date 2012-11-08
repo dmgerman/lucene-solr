@@ -754,8 +754,12 @@ argument_list|(
 name|names
 argument_list|)
 expr_stmt|;
+comment|// TODO: need to improve hack to be OK w/
+comment|// RateLimitingDirWrapper in between...
 if|if
 condition|(
+literal|true
+operator|||
 name|LuceneTestCase
 operator|.
 name|rarely
