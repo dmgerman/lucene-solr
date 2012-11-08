@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * A {@link Directory} wrapper that allows {@link IndexOutput} rate limiting using  * {@link Context IO context} specific {@link RateLimiter rate limiters}.  *   *  @see #setRateLimiter(RateLimiter, Context)  * @lucene.experimental  */
+comment|/**  *   * A {@link Directory} wrapper that allows {@link IndexOutput} rate limiting using  * {@link IOContext.Context IO context} specific {@link RateLimiter rate limiters}.  *   *  @see #setRateLimiter(RateLimiter, IOContext.Context)  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -671,7 +671,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Sets the rate limiter to be used to limit (approx) MB/sec allowed by all IO    * performed with the given {@link Context context}. Pass<code>null</code> to    * have no limit.    *     *<p>    * Passing an instance of rate limiter compared to setting it using    * {@link #setMaxWriteMBPerSec(Double, org.apache.lucene.store.IOContext.Context)}    * allows to use the same limiter instance across several directories globally    * limiting IO across them.    *     * @throws IllegalArgumentException    *           if context is<code>null</code>    * @throws AlreadyClosedException if the {@link Directory} is already closed               * @lucene.experimental    */
+comment|/**    * Sets the rate limiter to be used to limit (approx) MB/sec allowed by all IO    * performed with the given {@link IOContext.Context context}. Pass<code>null</code> to    * have no limit.    *     *<p>    * Passing an instance of rate limiter compared to setting it using    * {@link #setMaxWriteMBPerSec(Double, IOContext.Context)}    * allows to use the same limiter instance across several directories globally    * limiting IO across them.    *     * @throws IllegalArgumentException    *           if context is<code>null</code>    * @throws AlreadyClosedException if the {@link Directory} is already closed               * @lucene.experimental    */
 DECL|method|setRateLimiter
 specifier|public
 name|void
