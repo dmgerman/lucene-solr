@@ -468,6 +468,31 @@ argument_list|(
 literal|"length "
 argument_list|)
 decl_stmt|;
+comment|// used for sorted bytes
+DECL|field|NUMVALUES
+specifier|final
+specifier|static
+name|BytesRef
+name|NUMVALUES
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+literal|"  numvalues"
+argument_list|)
+decl_stmt|;
+DECL|field|ORDPATTERN
+specifier|final
+specifier|static
+name|BytesRef
+name|ORDPATTERN
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+literal|"  ordpattern"
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|fieldsConsumer
@@ -534,7 +559,7 @@ name|context
 argument_list|)
 return|;
 block|}
-comment|/** the .dat file contains the data.    *  for numbers this is a "fixed-width" file, for example a single byte range:    *<pre>    *  field myField    *    minvalue 0    *    pattern 000    *  005    *  234    *  123    *  ...    *</pre>    *  so a document's value (delta encoded from minvalue) can be retrieved by     *  seeking to startOffset + (1+pattern.length())*docid. The extra 1 is the newline.    *      *  for bytes this is also a "fixed-width" file, for example:    *<pre>    *  field myField    *    maxlength 8    *    pattern 0    *  length 6    *  foobar[space][space]    *  length 3    *  baz[space][space][space][space][space]    *  ...    *</pre>    *  so a document's value can be retrieved by seeking to startOffset + (9+pattern.length+maxlength)*docid    *  the extra 9 is 2 newlines, plus "length " itself.    *       *  the reader can just scan this file when it opens, skipping over the data blocks    *  and saving the offset/etc for each field.     */
+comment|/** the .dat file contains the data.    *  for numbers this is a "fixed-width" file, for example a single byte range:    *<pre>    *  field myField    *    minvalue 0    *    pattern 000    *  005    *  234    *  123    *  ...    *</pre>    *  so a document's value (delta encoded from minvalue) can be retrieved by     *  seeking to startOffset + (1+pattern.length())*docid. The extra 1 is the newline.    *      *  for bytes this is also a "fixed-width" file, for example:    *<pre>    *  field myField    *    maxlength 8    *    pattern 0    *  length 6    *  foobar[space][space]    *  length 3    *  baz[space][space][space][space][space]    *  ...    *</pre>    *  so a document's value can be retrieved by seeking to startOffset + (9+pattern.length+maxlength)*docid    *  the extra 9 is 2 newlines, plus "length " itself.    *      *  for sorted bytes this is a fixed-width file, for example:    *<pre>    *  field myField    *    numvalues 10    *    maxLength 8    *    pattern 0    *    ordpattern 00    *  length 6    *  foobar[space][space]    *  length 3    *  baz[space][space][space][space][space]    *  ...    *  03    *  06    *  01    *  10    *  ...    *</pre>    *  so the "ord section" begins at startOffset + (9+pattern.length+maxlength)*numValues.    *  a document's ord can be retrieved by seeking to "ord section" + (1+ordpattern.length())*docid    *  an ord's value can be retrieved by seeking to startOffset + (9+pattern.length+maxlength)*ord    *       *  the reader can just scan this file when it opens, skipping over the data blocks    *  and saving the offset/etc for each field.     */
 DECL|class|SimpleTextDocValuesWriter
 specifier|static
 class|class
