@@ -18,6 +18,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -47,6 +57,8 @@ parameter_list|(
 name|BytesRef
 name|value
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/** This is called once per document after all values are    *  added. */
 DECL|method|addDoc
@@ -58,6 +70,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_class
