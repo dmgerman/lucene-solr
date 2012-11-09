@@ -1352,11 +1352,17 @@ name|out
 argument_list|)
 expr_stmt|;
 block|}
-assert|assert
+comment|// We can't do this in general: on a very slow
+comment|// computer it's possible the local searcher
+comment|// expires before we can finish our search:
+comment|// assert prevSearchState != null;
+if|if
+condition|(
 name|prevSearchState
 operator|!=
 literal|null
-assert|;
+condition|)
+block|{
 name|priorSearches
 operator|.
 name|remove
@@ -1364,6 +1370,7 @@ argument_list|(
 name|prevSearchState
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
