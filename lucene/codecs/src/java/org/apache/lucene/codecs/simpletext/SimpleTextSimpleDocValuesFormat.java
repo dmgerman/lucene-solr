@@ -675,6 +675,7 @@ literal|null
 return|;
 comment|// nocommit
 block|}
+comment|// nocommit
 annotation|@
 name|Override
 DECL|method|addSortedField
@@ -684,6 +685,15 @@ name|addSortedField
 parameter_list|(
 name|FieldInfo
 name|field
+parameter_list|,
+name|int
+name|valueCount
+parameter_list|,
+name|boolean
+name|fixedLength
+parameter_list|,
+name|int
+name|maxLength
 parameter_list|)
 throws|throws
 name|IOException
@@ -691,7 +701,6 @@ block|{
 return|return
 literal|null
 return|;
-comment|// nocommit
 block|}
 comment|/** write the header for this field */
 DECL|method|writeFieldEntry
