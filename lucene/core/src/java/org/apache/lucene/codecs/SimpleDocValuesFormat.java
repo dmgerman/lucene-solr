@@ -36,49 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfos
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|IOContext
+name|SegmentWriteState
 import|;
 end_import
 
@@ -101,23 +59,14 @@ specifier|abstract
 name|SimpleDVConsumer
 name|fieldsConsumer
 parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
-name|SegmentInfo
-name|si
-parameter_list|,
-name|FieldInfos
-name|fis
-parameter_list|,
-name|IOContext
-name|context
+name|SegmentWriteState
+name|state
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
 comment|// nocommit do this:
-comment|//public abstract SimpleDVProducer fieldsProducer(Directory dir, SegmentInfo si, IOContext context) throws IOException;
+comment|//public abstract SimpleDVProducer fieldsProducer(SegmentReadState state) throws IOException;
 block|}
 end_class
 
