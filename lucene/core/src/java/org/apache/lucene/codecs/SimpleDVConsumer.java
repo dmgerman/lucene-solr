@@ -151,6 +151,7 @@ name|Closeable
 block|{
 comment|// TODO: are any of these params too "infringing" on codec?
 comment|// we want codec to get necessary stuff from IW, but trading off against merge complexity.
+comment|// nocommit should we pass SegmentWriteState...?
 DECL|method|addNumericField
 specifier|public
 specifier|abstract
@@ -196,6 +197,15 @@ name|addSortedField
 parameter_list|(
 name|FieldInfo
 name|field
+parameter_list|,
+name|int
+name|valueCount
+parameter_list|,
+name|boolean
+name|fixedLength
+parameter_list|,
+name|int
+name|maxLength
 parameter_list|)
 throws|throws
 name|IOException

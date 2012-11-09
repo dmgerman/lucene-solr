@@ -25,7 +25,30 @@ DECL|class|SortedDocValuesConsumer
 specifier|public
 class|class
 name|SortedDocValuesConsumer
-block|{    }
+block|{
+comment|/** This is called, in value sort order, once per unique    *  value. */
+DECL|method|addValue
+specifier|public
+specifier|abstract
+name|void
+name|addValue
+parameter_list|(
+name|BytesRef
+name|value
+parameter_list|)
+function_decl|;
+comment|/** This is called once per document after all values are    *  added. */
+DECL|method|addDoc
+specifier|public
+specifier|abstract
+name|void
+name|addDoc
+parameter_list|(
+name|int
+name|ord
+parameter_list|)
+function_decl|;
+block|}
 end_class
 
 end_unit
