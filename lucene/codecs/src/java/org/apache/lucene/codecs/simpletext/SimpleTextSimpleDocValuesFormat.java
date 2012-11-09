@@ -1551,6 +1551,12 @@ case|:
 case|case
 name|FIXED_INTS_64
 case|:
+case|case
+name|FLOAT_64
+case|:
+case|case
+name|FLOAT_32
+case|:
 name|readLine
 argument_list|()
 expr_stmt|;
@@ -1617,7 +1623,11 @@ argument_list|)
 expr_stmt|;
 break|break;
 default|default:
-break|break;
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
 block|}
 name|field
 operator|.
