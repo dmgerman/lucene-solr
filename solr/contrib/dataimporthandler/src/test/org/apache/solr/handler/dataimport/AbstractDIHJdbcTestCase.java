@@ -207,7 +207,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This sets up an in-memory Derby Sql database with a little sample data.  */
+comment|/**  * This sets up an in-memory Sql database with a little sample data.  */
 end_comment
 
 begin_class
@@ -496,6 +496,11 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
+literal|"There should be 1 document per person in the database: "
+operator|+
+name|totalPeople
+argument_list|()
+argument_list|,
 name|req
 argument_list|(
 literal|"*:*"
@@ -513,6 +518,15 @@ name|Assert
 operator|.
 name|assertTrue
 argument_list|(
+literal|"Expecting "
+operator|+
+name|numToExpect
+operator|+
+literal|" database calls, but DIH reported "
+operator|+
+name|totalDatabaseRequests
+argument_list|()
+argument_list|,
 name|totalDatabaseRequests
 argument_list|()
 operator|==
@@ -547,6 +561,11 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
+literal|"There should be 1 document with a transformer-added column per person is the database: "
+operator|+
+name|totalPeople
+argument_list|()
+argument_list|,
 name|req
 argument_list|(
 literal|"AddAColumn_s:Added"
@@ -564,6 +583,15 @@ name|Assert
 operator|.
 name|assertTrue
 argument_list|(
+literal|"Expecting "
+operator|+
+name|numToExpect
+operator|+
+literal|" database calls, but DIH reported "
+operator|+
+name|totalDatabaseRequests
+argument_list|()
+argument_list|,
 name|totalDatabaseRequests
 argument_list|()
 operator|==
@@ -600,6 +628,34 @@ name|generateRequest
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|int
+name|totalDocs
+init|=
+operator|(
+operator|(
+name|totalPeople
+argument_list|()
+operator|*
+literal|3
+operator|)
+operator|+
+operator|(
+name|numDeleted
+operator|*
+literal|2
+operator|)
+operator|)
+decl_stmt|;
+name|int
+name|totalAddedDocs
+init|=
+operator|(
+name|totalPeople
+argument_list|()
+operator|+
+name|numDeleted
+operator|)
+decl_stmt|;
 name|assertQ
 argument_list|(
 name|req
@@ -626,20 +682,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='"
 operator|+
-operator|(
-operator|(
-name|totalPeople
-argument_list|()
-operator|*
-literal|3
-operator|)
-operator|+
-operator|(
-name|numDeleted
-operator|*
-literal|2
-operator|)
-operator|)
+name|totalDocs
 operator|+
 literal|"']"
 argument_list|)
@@ -653,12 +696,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='"
 operator|+
-operator|(
-name|totalPeople
-argument_list|()
-operator|+
-name|numDeleted
-operator|)
+name|totalAddedDocs
 operator|+
 literal|"']"
 argument_list|)
@@ -672,12 +710,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='"
 operator|+
-operator|(
-name|totalPeople
-argument_list|()
-operator|+
-name|numDeleted
-operator|)
+name|totalAddedDocs
 operator|+
 literal|"']"
 argument_list|)
@@ -693,15 +726,12 @@ name|countryCodeExists
 argument_list|(
 literal|"NR"
 argument_list|)
-operator|&&
-name|countryCodeExists
-argument_list|(
-literal|"RN"
-argument_list|)
 condition|)
 block|{
 name|assertQ
 argument_list|(
+literal|"Michael and NR are assured to be in the database.  Therefore the transformer should have added leahciM and RN on the same document as id:TripleThreat-1-3"
+argument_list|,
 name|req
 argument_list|(
 literal|"+id:TripleThreat-1-3 +NAME_mult_s:Michael +NAME_mult_s:leahciM  +COUNTRY_CODES_mult_s:NR +COUNTRY_CODES_mult_s:RN"
@@ -720,12 +750,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='"
 operator|+
-operator|(
-name|totalPeople
-argument_list|()
-operator|+
-name|numDeleted
-operator|)
+name|totalAddedDocs
 operator|+
 literal|"']"
 argument_list|)
@@ -960,6 +985,11 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
+literal|"There should be 1 document per person in the database: "
+operator|+
+name|totalPeople
+argument_list|()
+argument_list|,
 name|req
 argument_list|(
 literal|"*:*"
@@ -990,6 +1020,11 @@ condition|)
 block|{
 name|assertQ
 argument_list|(
+literal|"There should be 1 document with a transformer-added column per person is the database: "
+operator|+
+name|totalPeople
+argument_list|()
+argument_list|,
 name|req
 argument_list|(
 literal|"AddAColumn_s:Added"
