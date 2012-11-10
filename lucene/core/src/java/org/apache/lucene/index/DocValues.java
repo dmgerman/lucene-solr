@@ -800,6 +800,7 @@ literal|false
 return|;
 block|}
 comment|/**      * Returns the PackedInts.Reader impl that maps document to ord.      */
+comment|// nocommit make non-abstract returning null?
 DECL|method|getDocToOrd
 specifier|public
 specifier|abstract
@@ -1462,6 +1463,36 @@ name|FIXED_INTS_32
 case|:
 case|case
 name|FIXED_INTS_64
+case|:
+return|return
+literal|true
+return|;
+default|default:
+return|return
+literal|false
+return|;
+block|}
+block|}
+DECL|method|isFloat
+specifier|public
+specifier|static
+name|boolean
+name|isFloat
+parameter_list|(
+name|Type
+name|type
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|type
+condition|)
+block|{
+case|case
+name|FLOAT_64
+case|:
+case|case
+name|FLOAT_32
 case|:
 return|return
 literal|true
