@@ -2937,6 +2937,22 @@ literal|0
 return|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|surfaceForm
+operator|+
+literal|"/"
+operator|+
+name|weight
+return|;
+block|}
 block|}
 DECL|method|isStopChar
 specifier|static
@@ -3311,6 +3327,14 @@ argument_list|)
 return|;
 block|}
 block|}
+DECL|field|SEP
+specifier|private
+specifier|static
+name|char
+name|SEP
+init|=
+literal|'\uFFFF'
+decl_stmt|;
 DECL|method|testRandom
 specifier|public
 name|void
@@ -3568,12 +3592,12 @@ operator|-
 literal|1
 argument_list|)
 operator|!=
-literal|' '
+name|SEP
 condition|)
 block|{
 name|analyzedKey
 operator|+=
-literal|" "
+name|SEP
 expr_stmt|;
 block|}
 name|key
@@ -3611,7 +3635,7 @@ condition|)
 block|{
 name|analyzedKey
 operator|+=
-literal|'\u0000'
+name|SEP
 expr_stmt|;
 block|}
 block|}
@@ -3632,7 +3656,15 @@ name|analyzedKey
 operator|.
 name|replaceAll
 argument_list|(
-literal|"(^| )\u0000$"
+literal|"(^|"
+operator|+
+name|SEP
+operator|+
+literal|")"
+operator|+
+name|SEP
+operator|+
+literal|"$"
 argument_list|,
 literal|""
 argument_list|)
@@ -3784,7 +3816,7 @@ name|ent
 operator|.
 name|surfaceForm
 operator|+
-literal|" analyzed='"
+literal|"' analyzed='"
 operator|+
 name|ent
 operator|.
@@ -3914,14 +3946,14 @@ decl_stmt|;
 comment|// 2. go thru whole set to find suggestions:
 name|List
 argument_list|<
-name|LookupResult
+name|TermFreq2
 argument_list|>
 name|matches
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|LookupResult
+name|TermFreq2
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -3988,7 +4020,9 @@ argument_list|()
 operator|.
 name|endsWith
 argument_list|(
-literal|" "
+literal|""
+operator|+
+name|SEP
 argument_list|)
 condition|)
 block|{
@@ -3996,7 +4030,7 @@ name|builder
 operator|.
 name|append
 argument_list|(
-literal|' '
+name|SEP
 argument_list|)
 expr_stmt|;
 block|}
@@ -4033,7 +4067,7 @@ name|builder
 operator|.
 name|append
 argument_list|(
-literal|"\u0000"
+name|SEP
 argument_list|)
 expr_stmt|;
 block|}
@@ -4072,22 +4106,13 @@ name|analyzedKey
 operator|.
 name|replaceAll
 argument_list|(
-literal|"(^| )\u0000$"
+name|SEP
+operator|+
+literal|"$"
 argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
-name|s
-operator|=
-name|s
-operator|.
-name|replaceAll
-argument_list|(
-literal|"\\s+$"
-argument_list|,
-literal|""
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|s
@@ -4161,17 +4186,7 @@ name|matches
 operator|.
 name|add
 argument_list|(
-operator|new
-name|LookupResult
-argument_list|(
 name|e
-operator|.
-name|surfaceForm
-argument_list|,
-name|e
-operator|.
-name|weight
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -4209,7 +4224,7 @@ argument_list|,
 operator|new
 name|Comparator
 argument_list|<
-name|LookupResult
+name|TermFreq2
 argument_list|>
 argument_list|()
 block|{
@@ -4217,10 +4232,10 @@ specifier|public
 name|int
 name|compare
 parameter_list|(
-name|LookupResult
+name|TermFreq2
 name|left
 parameter_list|,
-name|LookupResult
+name|TermFreq2
 name|right
 parameter_list|)
 block|{
@@ -4233,11 +4248,11 @@ name|compare
 argument_list|(
 name|right
 operator|.
-name|value
+name|weight
 argument_list|,
 name|left
 operator|.
-name|value
+name|weight
 argument_list|)
 decl_stmt|;
 if|if
@@ -4250,9 +4265,13 @@ block|{
 return|return
 name|left
 operator|.
+name|analyzedForm
+operator|.
 name|compareTo
 argument_list|(
 name|right
+operator|.
+name|analyzedForm
 argument_list|)
 return|;
 block|}
@@ -4305,7 +4324,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|LookupResult
+name|TermFreq2
 name|lr
 range|:
 name|matches
@@ -4321,13 +4340,13 @@ literal|"    key="
 operator|+
 name|lr
 operator|.
-name|key
+name|surfaceForm
 operator|+
 literal|" weight="
 operator|+
 name|lr
 operator|.
-name|value
+name|weight
 argument_list|)
 expr_stmt|;
 block|}
@@ -4410,7 +4429,7 @@ argument_list|(
 name|hit
 argument_list|)
 operator|.
-name|key
+name|surfaceForm
 operator|.
 name|toString
 argument_list|()
@@ -4437,7 +4456,7 @@ argument_list|(
 name|hit
 argument_list|)
 operator|.
-name|value
+name|weight
 argument_list|,
 name|r
 operator|.
@@ -5133,12 +5152,6 @@ block|,         }
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|List
-argument_list|<
-name|LookupResult
-argument_list|>
-name|results
-init|=
 name|suggester
 operator|.
 name|lookup
@@ -5149,7 +5162,7 @@ literal|false
 argument_list|,
 literal|4
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 DECL|method|testExactFirstMissingResult
 specifier|public
