@@ -1603,7 +1603,7 @@ argument_list|)
 argument_list|)
 condition|)
 block|{
-comment|//For thread safety, only  simple clone the ModifiableSolrParams
+comment|// For thread safety, only simple clone the ModifiableSolrParams
 name|ModifiableSolrParams
 name|cloneParams
 init|=
