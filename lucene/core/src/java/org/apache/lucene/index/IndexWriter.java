@@ -5304,6 +5304,23 @@ name|merge
 return|;
 block|}
 block|}
+comment|/**    * Expert: returns true if there are merges waiting to be scheduled.    *     * @lucene.experimental    */
+DECL|method|hasPendingMerges
+specifier|public
+specifier|synchronized
+name|boolean
+name|hasPendingMerges
+parameter_list|()
+block|{
+return|return
+name|pendingMerges
+operator|.
+name|size
+argument_list|()
+operator|!=
+literal|0
+return|;
+block|}
 comment|/**    * Close the<code>IndexWriter</code> without committing    * any changes that have occurred since the last commit    * (or since it was opened, if commit hasn't been called).    * This removes any temporary files that had been created,    * after which the state of the index will be the same as    * it was when commit() was last called or when this    * writer was first opened.  This also clears a previous    * call to {@link #prepareCommit}.    * @throws IOException if there is a low-level IO error    */
 DECL|method|rollback
 specifier|public
@@ -5887,7 +5904,7 @@ operator|.
 name|size
 argument_list|()
 operator|+
-literal|" running merge to abort"
+literal|" running merge/s to abort"
 argument_list|)
 expr_stmt|;
 block|}
