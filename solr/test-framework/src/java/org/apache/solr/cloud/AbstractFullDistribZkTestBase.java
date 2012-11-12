@@ -2128,7 +2128,7 @@ name|int
 name|getNumShards
 parameter_list|(
 name|String
-name|defaultCollection
+name|collection
 parameter_list|)
 block|{
 name|ZkStateReader
@@ -2154,9 +2154,26 @@ argument_list|()
 operator|.
 name|getSlices
 argument_list|(
-name|defaultCollection
+name|collection
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|slices
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Could not find collection:"
+operator|+
+name|collection
+argument_list|)
+throw|;
+block|}
 name|int
 name|cnt
 init|=
