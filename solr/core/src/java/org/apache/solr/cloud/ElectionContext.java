@@ -1304,7 +1304,7 @@ expr_stmt|;
 comment|// we could not publish ourselves as leader - rejoin election
 name|rejoinLeaderElection
 argument_list|(
-name|coreName
+name|leaderSeqPath
 argument_list|,
 name|core
 argument_list|)
