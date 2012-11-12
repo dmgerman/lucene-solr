@@ -4659,16 +4659,6 @@ expr_stmt|;
 name|printLayout
 argument_list|()
 expr_stmt|;
-comment|// nocommit
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"start again"
-argument_list|)
-expr_stmt|;
 name|Thread
 operator|.
 name|sleep
