@@ -371,6 +371,9 @@ parameter_list|(
 name|byte
 index|[]
 name|compressed
+parameter_list|,
+name|int
+name|originalLength
 parameter_list|)
 throws|throws
 name|IOException
@@ -389,6 +392,8 @@ argument_list|(
 name|decompressor
 argument_list|,
 name|compressed
+argument_list|,
+name|originalLength
 argument_list|)
 return|;
 block|}
@@ -404,6 +409,9 @@ parameter_list|,
 name|byte
 index|[]
 name|compressed
+parameter_list|,
+name|int
+name|originalLength
 parameter_list|)
 throws|throws
 name|IOException
@@ -425,6 +433,12 @@ name|ByteArrayDataInput
 argument_list|(
 name|compressed
 argument_list|)
+argument_list|,
+name|originalLength
+argument_list|,
+literal|0
+argument_list|,
+name|originalLength
 argument_list|,
 name|bytes
 argument_list|)
@@ -462,6 +476,9 @@ index|[]
 name|compressed
 parameter_list|,
 name|int
+name|originalLength
+parameter_list|,
+name|int
 name|offset
 parameter_list|,
 name|int
@@ -495,6 +512,8 @@ name|ByteArrayDataInput
 argument_list|(
 name|compressed
 argument_list|)
+argument_list|,
+name|originalLength
 argument_list|,
 name|offset
 argument_list|,
@@ -538,6 +557,9 @@ parameter_list|,
 name|byte
 index|[]
 name|compressed
+parameter_list|,
+name|int
+name|originalLength
 parameter_list|)
 throws|throws
 name|IOException
@@ -562,6 +584,8 @@ name|ByteArrayDataInput
 argument_list|(
 name|compressed
 argument_list|)
+argument_list|,
+name|originalLength
 argument_list|,
 name|out
 argument_list|)
@@ -589,6 +613,9 @@ parameter_list|(
 name|byte
 index|[]
 name|compressed
+parameter_list|,
+name|int
+name|originalLength
 parameter_list|)
 throws|throws
 name|IOException
@@ -602,6 +629,8 @@ name|newDecompressor
 argument_list|()
 argument_list|,
 name|compressed
+argument_list|,
+name|originalLength
 argument_list|)
 return|;
 block|}
@@ -639,6 +668,10 @@ init|=
 name|decompress
 argument_list|(
 name|compressed
+argument_list|,
+name|decompressed
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 name|assertArrayEquals
@@ -759,6 +792,10 @@ name|decompress
 argument_list|(
 name|compressed
 argument_list|,
+name|decompressed
+operator|.
+name|length
+argument_list|,
 name|offset
 argument_list|,
 name|length
@@ -817,6 +854,10 @@ argument_list|,
 name|copyCompressedData
 argument_list|(
 name|compressed
+argument_list|,
+name|decompressed
+operator|.
+name|length
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -851,6 +892,10 @@ init|=
 name|decompress
 argument_list|(
 name|compressed
+argument_list|,
+name|decompressed
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -871,6 +916,10 @@ argument_list|,
 name|copyCompressedData
 argument_list|(
 name|compressed
+argument_list|,
+name|decompressed
+operator|.
+name|length
 argument_list|)
 argument_list|)
 expr_stmt|;
