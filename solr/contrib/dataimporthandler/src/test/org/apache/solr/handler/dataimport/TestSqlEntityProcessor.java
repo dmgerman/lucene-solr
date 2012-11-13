@@ -48,7 +48,7 @@ specifier|public
 class|class
 name|TestSqlEntityProcessor
 extends|extends
-name|AbstractDIHJdbcTestCase
+name|AbstractSqlEntityProcessorTestCase
 block|{
 annotation|@
 name|Test
