@@ -2981,6 +2981,24 @@ range|:
 name|children
 control|)
 block|{
+comment|// we can't clean the built-in zookeeper node
+if|if
+condition|(
+name|path
+operator|.
+name|equals
+argument_list|(
+literal|"/"
+argument_list|)
+operator|&&
+name|string
+operator|.
+name|equals
+argument_list|(
+literal|"zookeeper"
+argument_list|)
+condition|)
+continue|continue;
 if|if
 condition|(
 name|path
