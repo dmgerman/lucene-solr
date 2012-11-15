@@ -276,7 +276,13 @@ if|if
 condition|(
 name|isSimpleText
 operator|&&
+operator|(
 name|TEST_NIGHTLY
+operator|||
+name|RANDOM_MULTIPLIER
+operator|>
+literal|1
+operator|)
 condition|)
 block|{
 comment|// Otherwise test can take way too long (> 2 hours)
