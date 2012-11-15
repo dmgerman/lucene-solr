@@ -607,14 +607,15 @@ argument_list|(
 name|segmentReadState
 argument_list|)
 expr_stmt|;
+comment|// nocommit
 name|perDocProducer
 operator|=
 name|codec
 operator|.
-name|docValuesFormat
+name|simpleDocValuesFormat
 argument_list|()
 operator|.
-name|docsProducer
+name|fieldsProducer
 argument_list|(
 name|segmentReadState
 argument_list|)

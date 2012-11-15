@@ -774,11 +774,14 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// close perDocConsumer during flush to ensure all files are flushed due to PerCodec CFS
+comment|// nocommit
 name|IOUtils
 operator|.
 name|close
 argument_list|(
 name|perDocConsumer
+argument_list|,
+name|dvConsumer
 argument_list|)
 expr_stmt|;
 comment|// Important to save after asking consumer to flush so
