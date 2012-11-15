@@ -305,6 +305,8 @@ name|source
 operator|.
 name|getValueCount
 argument_list|()
+operator|-
+literal|1
 condition|)
 block|{
 name|ord
@@ -788,6 +790,8 @@ name|ord
 index|]
 operator|=
 name|ord
+operator|-
+literal|1
 expr_stmt|;
 if|if
 condition|(

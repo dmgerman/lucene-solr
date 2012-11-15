@@ -261,7 +261,6 @@ name|fieldInfo
 operator|=
 name|field
 expr_stmt|;
-comment|// nocommit: switch on 3 types: NUMBER, BYTES, SORTED
 name|DocValues
 operator|.
 name|Type
