@@ -3244,6 +3244,11 @@ name|getBoost
 argument_list|()
 decl_stmt|;
 return|return
+name|super
+operator|.
+name|getOptions
+argument_list|()
+operator|+
 operator|(
 name|boost
 operator|!=
