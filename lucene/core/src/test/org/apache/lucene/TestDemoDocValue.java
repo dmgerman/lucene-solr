@@ -863,11 +863,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Ignore
-argument_list|(
-literal|"get ST to use bigdecimal, also negatives are maybe not working yet!"
-argument_list|)
 DECL|method|testBigRange
 specifier|public
 name|void
