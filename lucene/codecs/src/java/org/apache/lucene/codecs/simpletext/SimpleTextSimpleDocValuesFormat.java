@@ -2357,7 +2357,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// nocommit todo
 name|DocValues
 operator|.
 name|Type
@@ -3391,6 +3390,8 @@ operator|.
 name|maxLength
 operator|)
 operator|+
+name|docID
+operator|*
 operator|(
 literal|1
 operator|+
@@ -3401,8 +3402,6 @@ operator|.
 name|length
 argument_list|()
 operator|)
-operator|*
-name|docID
 argument_list|)
 expr_stmt|;
 name|SimpleTextUtil
