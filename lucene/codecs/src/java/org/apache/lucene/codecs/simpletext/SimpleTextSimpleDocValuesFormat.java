@@ -524,7 +524,7 @@ init|=
 operator|new
 name|BytesRef
 argument_list|(
-literal|"  numvalues"
+literal|"  numvalues "
 argument_list|)
 decl_stmt|;
 DECL|field|ORDPATTERN
@@ -536,7 +536,7 @@ init|=
 operator|new
 name|BytesRef
 argument_list|(
-literal|"  ordpattern"
+literal|"  ordpattern "
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -1613,7 +1613,7 @@ name|write
 argument_list|(
 name|data
 argument_list|,
-name|encoder
+name|ordEncoder
 operator|.
 name|format
 argument_list|(
@@ -2245,6 +2245,48 @@ operator|.
 name|getFilePointer
 argument_list|()
 expr_stmt|;
+name|data
+operator|.
+name|seek
+argument_list|(
+name|data
+operator|.
+name|getFilePointer
+argument_list|()
+operator|+
+operator|(
+literal|9
+operator|+
+name|field
+operator|.
+name|pattern
+operator|.
+name|length
+argument_list|()
+operator|+
+name|field
+operator|.
+name|maxLength
+operator|)
+operator|*
+name|field
+operator|.
+name|numValues
+operator|+
+operator|(
+literal|1
+operator|+
+name|field
+operator|.
+name|ordPattern
+operator|.
+name|length
+argument_list|()
+operator|)
+operator|*
+name|maxDoc
+argument_list|)
+expr_stmt|;
 comment|// nocommit: we need to seek past the data section!!!!
 block|}
 elseif|else
@@ -2340,15 +2382,6 @@ init|=
 name|loadDirectSource
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|maxDoc
-argument_list|)
-expr_stmt|;
 name|long
 index|[]
 name|values
@@ -2976,20 +3009,7 @@ argument_list|,
 name|scratch
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"parsing delta: "
-operator|+
-name|scratch
-operator|.
-name|utf8ToString
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("parsing delta: " + scratch.utf8ToString());
 name|BigDecimal
 name|bd
 init|=

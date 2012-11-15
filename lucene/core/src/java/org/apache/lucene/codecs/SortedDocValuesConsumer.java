@@ -282,6 +282,10 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+comment|// nocommit can we factor out the compressed fields
+comment|// compression?  ie we have a good idea "roughly" what
+comment|// the ord should be (linear projection) so we only
+comment|// need to encode the delta from that ...:
 DECL|field|segOrdToMergedOrd
 name|int
 index|[]
