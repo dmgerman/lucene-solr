@@ -258,6 +258,8 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|ramBytesUsed
 specifier|public
 name|long
@@ -265,6 +267,27 @@ name|ramBytesUsed
 parameter_list|()
 block|{
 return|return
+name|RamUsageEstimator
+operator|.
+name|alignObjectSize
+argument_list|(
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_OBJECT_HEADER
+operator|+
+literal|2
+operator|*
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_INT
+comment|// valueCount,bitsPerValue
+operator|+
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_OBJECT_REF
+argument_list|)
+comment|// values ref
+operator|+
 name|RamUsageEstimator
 operator|.
 name|sizeOf
