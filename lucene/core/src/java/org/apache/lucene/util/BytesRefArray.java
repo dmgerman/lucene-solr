@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.search.suggest
+DECL|package|org.apache.lucene.util
 package|package
 name|org
 operator|.
@@ -8,9 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|suggest
+name|util
 package|;
 end_package
 
@@ -38,116 +36,17 @@ name|Comparator
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ArrayUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ByteBlockPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRefIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Counter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|SorterTemplate
-import|;
-end_import
-
 begin_comment
 comment|/**  * A simple append only random-access {@link BytesRef} array that stores full  * copies of the appended bytes in a {@link ByteBlockPool}.  *   *   *<b>Note: This class is not Thread-Safe!</b>  *   * @lucene.internal  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|BytesRefList
+DECL|class|BytesRefArray
 specifier|public
 specifier|final
 class|class
-name|BytesRefList
+name|BytesRefArray
 block|{
-comment|// TODO rename to BytesRefArray
 DECL|field|pool
 specifier|private
 specifier|final
@@ -185,19 +84,32 @@ specifier|private
 specifier|final
 name|Counter
 name|bytesUsed
-init|=
+decl_stmt|;
+comment|/**    * Creates a new {@link BytesRefArray}    */
+DECL|method|BytesRefArray
+specifier|public
+name|BytesRefArray
+parameter_list|()
+block|{
+name|this
+argument_list|(
 name|Counter
 operator|.
 name|newCounter
 argument_list|(
 literal|false
 argument_list|)
-decl_stmt|;
-comment|/**    * Creates a new {@link BytesRefList}    */
-DECL|method|BytesRefList
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a new {@link BytesRefArray} with a counter to track allocated bytes    */
+DECL|method|BytesRefArray
 specifier|public
-name|BytesRefList
-parameter_list|()
+name|BytesRefArray
+parameter_list|(
+name|Counter
+name|bytesUsed
+parameter_list|)
 block|{
 name|this
 operator|.
@@ -233,8 +145,14 @@ operator|.
 name|NUM_BYTES_INT
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|bytesUsed
+operator|=
+name|bytesUsed
+expr_stmt|;
 block|}
-comment|/**    * Clears this {@link BytesRefList}    */
+comment|/**    * Clears this {@link BytesRefArray}    */
 DECL|method|clear
 specifier|public
 name|void
@@ -269,7 +187,7 @@ argument_list|)
 expr_stmt|;
 comment|// no need to 0 fill the buffers we control the allocator
 block|}
-comment|/**    * Appends a copy of the given {@link BytesRef} to this {@link BytesRefList}.    * @param bytes the bytes to append    * @return the ordinal of the appended bytes    */
+comment|/**    * Appends a copy of the given {@link BytesRef} to this {@link BytesRefArray}.    * @param bytes the bytes to append    * @return the ordinal of the appended bytes    */
 DECL|method|append
 specifier|public
 name|int
@@ -353,7 +271,7 @@ return|return
 name|lastElement
 return|;
 block|}
-comment|/**    * Returns the current size of this {@link BytesRefList}    * @return the current size of this {@link BytesRefList}    */
+comment|/**    * Returns the current size of this {@link BytesRefArray}    * @return the current size of this {@link BytesRefArray}    */
 DECL|method|size
 specifier|public
 name|int
@@ -364,7 +282,7 @@ return|return
 name|lastElement
 return|;
 block|}
-comment|/**    * Returns the<i>n'th</i> element of this {@link BytesRefList}    * @param spare a spare {@link BytesRef} instance    * @param ord the elements ordinal to retrieve     * @return the<i>n'th</i> element of this {@link BytesRefList}    */
+comment|/**    * Returns the<i>n'th</i> element of this {@link BytesRefArray}    * @param spare a spare {@link BytesRef} instance    * @param ord the elements ordinal to retrieve     * @return the<i>n'th</i> element of this {@link BytesRefArray}    */
 DECL|method|get
 specifier|public
 name|BytesRef

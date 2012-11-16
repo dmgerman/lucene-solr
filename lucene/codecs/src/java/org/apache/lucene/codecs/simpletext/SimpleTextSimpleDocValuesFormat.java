@@ -685,6 +685,10 @@ name|minValue
 parameter_list|,
 name|long
 name|maxValue
+parameter_list|,
+specifier|final
+name|int
+name|numDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -910,13 +914,7 @@ name|Override
 specifier|public
 name|void
 name|finish
-parameter_list|(
-name|FieldInfos
-name|fieldInfos
-parameter_list|,
-name|int
-name|numDocs
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 block|{
@@ -925,7 +923,6 @@ name|numDocs
 operator|==
 name|numDocsWritten
 assert|;
-comment|// nocommit: hopefully indexwriter is responsible for "filling" like it does stored fields!
 block|}
 block|}
 return|;
@@ -946,6 +943,10 @@ parameter_list|,
 specifier|final
 name|int
 name|maxLength
+parameter_list|,
+specifier|final
+name|int
+name|numDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -1195,13 +1196,7 @@ name|Override
 specifier|public
 name|void
 name|finish
-parameter_list|(
-name|FieldInfos
-name|fis
-parameter_list|,
-name|int
-name|numDocs
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 block|{
@@ -1210,7 +1205,6 @@ name|numDocs
 operator|==
 name|numDocsWritten
 assert|;
-comment|// nocommit: hopefully indexwriter is responsible for "filling" like it does stored fields!
 block|}
 block|}
 return|;
@@ -1235,6 +1229,10 @@ parameter_list|,
 specifier|final
 name|int
 name|maxLength
+parameter_list|,
+specifier|final
+name|int
+name|numDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -1635,6 +1633,15 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|finish
+parameter_list|()
+throws|throws
+name|IOException
+block|{}
 block|}
 return|;
 block|}

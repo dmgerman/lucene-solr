@@ -38,22 +38,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|suggest
-operator|.
-name|BytesRefList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -74,6 +58,20 @@ name|BytesRefIterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefArray
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link BytesRefSorter} that keeps all the entries in memory.  * @lucene.experimental  * @lucene.internal  */
 end_comment
@@ -90,11 +88,11 @@ block|{
 DECL|field|buffer
 specifier|private
 specifier|final
-name|BytesRefList
+name|BytesRefArray
 name|buffer
 init|=
 operator|new
-name|BytesRefList
+name|BytesRefArray
 argument_list|()
 decl_stmt|;
 DECL|field|closed

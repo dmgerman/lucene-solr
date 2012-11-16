@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.search.suggest
+DECL|package|org.apache.lucene.util
 package|package
 name|org
 operator|.
@@ -8,9 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|suggest
+name|util
 package|;
 end_package
 
@@ -35,22 +33,6 @@ operator|.
 name|util
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|suggest
-operator|.
-name|BytesRefList
 import|;
 end_import
 
@@ -92,6 +74,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|BytesRefArray
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LuceneTestCase
 import|;
 end_import
@@ -111,10 +107,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestBytesRefList
+DECL|class|TestBytesRefArray
 specifier|public
 class|class
-name|TestBytesRefList
+name|TestBytesRefArray
 extends|extends
 name|LuceneTestCase
 block|{
@@ -132,11 +128,11 @@ init|=
 name|random
 argument_list|()
 decl_stmt|;
-name|BytesRefList
+name|BytesRefArray
 name|list
 init|=
 operator|new
-name|BytesRefList
+name|BytesRefArray
 argument_list|()
 decl_stmt|;
 name|List
@@ -423,11 +419,11 @@ init|=
 name|random
 argument_list|()
 decl_stmt|;
-name|BytesRefList
+name|BytesRefArray
 name|list
 init|=
 operator|new
-name|BytesRefList
+name|BytesRefArray
 argument_list|()
 decl_stmt|;
 name|List

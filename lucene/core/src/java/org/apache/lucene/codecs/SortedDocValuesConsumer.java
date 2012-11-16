@@ -193,6 +193,15 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+DECL|method|finish
+specifier|public
+specifier|abstract
+name|void
+name|finish
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 DECL|class|Merger
 specifier|public
 specifier|static
@@ -963,6 +972,11 @@ name|finish
 argument_list|(
 name|this
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|finish
+argument_list|()
 expr_stmt|;
 block|}
 block|}
