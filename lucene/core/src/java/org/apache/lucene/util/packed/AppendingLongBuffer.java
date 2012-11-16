@@ -304,6 +304,20 @@ name|maxValue
 operator|-
 name|minValue
 decl_stmt|;
+name|minValues
+index|[
+name|valuesOff
+index|]
+operator|=
+name|minValue
+expr_stmt|;
+if|if
+condition|(
+name|delta
+operator|!=
+literal|0
+condition|)
+block|{
 comment|// build a new packed reader
 specifier|final
 name|int
@@ -395,14 +409,6 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|// store it
-name|minValues
-index|[
-name|valuesOff
-index|]
-operator|=
-name|minValue
-expr_stmt|;
 name|values
 index|[
 name|valuesOff
@@ -410,6 +416,7 @@ index|]
 operator|=
 name|mutable
 expr_stmt|;
+block|}
 operator|++
 name|valuesOff
 expr_stmt|;
@@ -419,6 +426,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+comment|/** Get the number of values that have been added to the buffer. */
 DECL|method|size
 specifier|public
 name|int
@@ -518,6 +526,30 @@ block|{
 name|currentValues
 operator|=
 name|pending
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|values
+index|[
+name|vOff
+index|]
+operator|==
+literal|null
+condition|)
+block|{
+name|Arrays
+operator|.
+name|fill
+argument_list|(
+name|currentValues
+argument_list|,
+name|minValues
+index|[
+name|vOff
+index|]
+argument_list|)
 expr_stmt|;
 block|}
 else|else
@@ -738,6 +770,16 @@ operator|++
 name|i
 control|)
 block|{
+if|if
+condition|(
+name|values
+index|[
+name|i
+index|]
+operator|!=
+literal|null
+condition|)
+block|{
 name|bytesUsed
 operator|+=
 name|values
@@ -748,6 +790,7 @@ operator|.
 name|ramBytesUsed
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 return|return
 name|bytesUsed
