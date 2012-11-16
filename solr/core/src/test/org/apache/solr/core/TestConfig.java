@@ -532,11 +532,11 @@ name|bufferSize
 operator|+
 literal|" does not equal: "
 operator|+
-literal|32
+literal|100
 argument_list|,
 name|bufferSize
 operator|==
-literal|32
+literal|100
 argument_list|)
 expr_stmt|;
 name|String
@@ -825,13 +825,13 @@ name|indexConfig
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"default ramBufferSizeMB should be 32"
+literal|"default ramBufferSizeMB should be 100"
 argument_list|,
 name|sic
 operator|.
 name|ramBufferSizeMB
 operator|==
-literal|32
+literal|100
 argument_list|)
 expr_stmt|;
 name|assertTrue
