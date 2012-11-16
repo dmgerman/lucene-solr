@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class to buffer a list of signed longs in memory. This class only  * supports appending.  */
+comment|/**  * Utility class to buffer a list of signed longs in memory. This class only  * supports appending.  * @lucene.internal  */
 end_comment
 
 begin_class
