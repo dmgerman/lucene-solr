@@ -581,6 +581,54 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|// nocommit javadocs
+DECL|method|getNumericDocValues
+specifier|public
+specifier|abstract
+name|NumericDocValues
+name|getNumericDocValues
+parameter_list|(
+name|String
+name|field
+parameter_list|,
+name|boolean
+name|direct
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|// nocommit javadocs
+DECL|method|getBinaryDocValues
+specifier|public
+specifier|abstract
+name|BinaryDocValues
+name|getBinaryDocValues
+parameter_list|(
+name|String
+name|field
+parameter_list|,
+name|boolean
+name|direct
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|// nocommit javadocs
+DECL|method|getSortedDocValues
+specifier|public
+specifier|abstract
+name|SortedDocValues
+name|getSortedDocValues
+parameter_list|(
+name|String
+name|field
+parameter_list|,
+name|boolean
+name|direct
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/**    * Returns {@link DocValues} for this field's normalization values.    * This method may return null if the field has no norms.    */
 DECL|method|normValues
 specifier|public

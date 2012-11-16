@@ -122,7 +122,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|SimpleDocValuesFormat
+name|SimpleDVProducer
 import|;
 end_import
 
@@ -134,9 +134,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|codecs
 operator|.
-name|DocValues
+name|SimpleDocValuesFormat
 import|;
 end_import
 
@@ -153,6 +153,20 @@ operator|.
 name|DocValues
 operator|.
 name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DocValues
 import|;
 end_import
 
@@ -297,7 +311,7 @@ annotation|@
 name|Override
 DECL|method|fieldsProducer
 specifier|public
-name|PerDocProducer
+name|SimpleDVProducer
 name|fieldsProducer
 parameter_list|(
 name|SegmentReadState
@@ -306,12 +320,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// nocommit fixme
+comment|//return new Lucene41PerDocProducer(state);
 return|return
-operator|new
-name|Lucene41PerDocProducer
-argument_list|(
-name|state
-argument_list|)
+literal|null
 return|;
 block|}
 comment|//nocommit this is equivalent to sep - we should pack in CFS
