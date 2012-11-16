@@ -320,21 +320,23 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit fixme
-comment|//return new Lucene41PerDocProducer(state);
 return|return
-literal|null
+operator|new
+name|Lucene41DocValuesReader
+argument_list|(
+name|state
+argument_list|)
 return|;
 block|}
 comment|//nocommit this is equivalent to sep - we should pack in CFS
-DECL|class|Lucene41PerDocProducer
+DECL|class|Lucene41DocValuesReader
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|Lucene41PerDocProducer
+name|Lucene41DocValuesReader
 extends|extends
-name|PerDocProducerBase
+name|SimpleDVProducer
 block|{
 DECL|field|docValues
 specifier|private
