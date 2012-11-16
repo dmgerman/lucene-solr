@@ -248,6 +248,11 @@ throws|throws
 name|IOException
 block|{
 assert|assert
+name|bitsPerValue
+operator|==
+literal|64
+operator|||
+operator|(
 name|v
 operator|>=
 literal|0
@@ -260,6 +265,9 @@ name|maxValue
 argument_list|(
 name|bitsPerValue
 argument_list|)
+operator|)
+operator|:
+name|bitsPerValue
 assert|;
 assert|assert
 operator|!
