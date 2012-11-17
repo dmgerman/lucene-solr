@@ -320,12 +320,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// nocommit fixme
+comment|// return new Lucene41PerdocProducer(state);
 return|return
-operator|new
-name|Lucene41DocValuesReader
-argument_list|(
-name|state
-argument_list|)
+literal|null
 return|;
 block|}
 comment|//nocommit this is equivalent to sep - we should pack in CFS
@@ -336,7 +334,7 @@ specifier|final
 class|class
 name|Lucene41DocValuesReader
 extends|extends
-name|SimpleDVProducer
+name|PerDocProducerBase
 block|{
 DECL|field|docValues
 specifier|private
@@ -350,9 +348,9 @@ argument_list|>
 name|docValues
 decl_stmt|;
 comment|/**      * Creates a new {@link Lucene41PerDocProducer} instance and loads all      * {@link DocValues} instances for this segment and codec.      */
-DECL|method|Lucene41PerDocProducer
+DECL|method|Lucene41DocValuesReader
 specifier|public
-name|Lucene41PerDocProducer
+name|Lucene41DocValuesReader
 parameter_list|(
 name|SegmentReadState
 name|state
