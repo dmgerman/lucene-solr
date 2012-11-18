@@ -50,6 +50,22 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DocValues
+operator|.
+name|Source
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|FieldInfo
 import|;
 end_import
@@ -92,9 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
-operator|.
-name|Source
+name|NumericDocValues
 import|;
 end_import
 
@@ -184,13 +198,14 @@ operator|.
 name|getLiveDocs
 argument_list|()
 decl_stmt|;
+comment|// nocommit what if this is null...?  need default source?
 specifier|final
-name|Source
+name|NumericDocValues
 name|source
 init|=
 name|reader
 operator|.
-name|docValues
+name|getNumericDocValues
 argument_list|(
 name|mergeState
 operator|.
@@ -198,9 +213,6 @@ name|fieldInfo
 operator|.
 name|name
 argument_list|)
-operator|.
-name|getDirectSource
-argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -235,7 +247,7 @@ name|add
 argument_list|(
 name|source
 operator|.
-name|getInt
+name|get
 argument_list|(
 name|i
 argument_list|)

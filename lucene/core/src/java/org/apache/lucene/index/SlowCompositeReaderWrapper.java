@@ -304,9 +304,6 @@ name|getNumericDocValues
 parameter_list|(
 name|String
 name|field
-parameter_list|,
-name|boolean
-name|direct
 parameter_list|)
 throws|throws
 name|IOException
@@ -325,9 +322,6 @@ name|getBinaryDocValues
 parameter_list|(
 name|String
 name|field
-parameter_list|,
-name|boolean
-name|direct
 parameter_list|)
 throws|throws
 name|IOException
@@ -346,9 +340,6 @@ name|getSortedDocValues
 parameter_list|(
 name|String
 name|field
-parameter_list|,
-name|boolean
-name|direct
 parameter_list|)
 throws|throws
 name|IOException

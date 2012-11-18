@@ -268,6 +268,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
+comment|// nocommit remove the doc values comparators
 comment|/**    * Compare hit at slot1 with hit at slot2.    *     * @param slot1 first slot to compare    * @param slot2 second slot to compare    * @return any N< 0 if slot2's value is sorted after    * slot1, any N> 0 if the slot2's value is sorted before    * slot1 and 0 if they are equal    */
 DECL|method|compare
 specifier|public
