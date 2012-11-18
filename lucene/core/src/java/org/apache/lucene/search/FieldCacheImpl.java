@@ -353,7 +353,7 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit rename to UninvertFieldCache or something ...
+comment|// nocommit rename to UninvertFieldCacheImpl or something ...
 end_comment
 
 begin_comment
@@ -562,6 +562,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|purgeAllCaches
 specifier|public
 specifier|synchronized
@@ -573,6 +575,8 @@ name|init
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|purge
 specifier|public
 specifier|synchronized
@@ -603,6 +607,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|getCacheEntries
 specifier|public
 specifier|synchronized
@@ -764,7 +770,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|CacheEntryImpl
+name|CacheEntry
 argument_list|(
 name|readerKey
 argument_list|,
@@ -804,169 +810,6 @@ argument_list|()
 index|]
 argument_list|)
 return|;
-block|}
-DECL|class|CacheEntryImpl
-specifier|private
-specifier|static
-specifier|final
-class|class
-name|CacheEntryImpl
-extends|extends
-name|CacheEntry
-block|{
-DECL|field|readerKey
-specifier|private
-specifier|final
-name|Object
-name|readerKey
-decl_stmt|;
-DECL|field|fieldName
-specifier|private
-specifier|final
-name|String
-name|fieldName
-decl_stmt|;
-DECL|field|cacheType
-specifier|private
-specifier|final
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|cacheType
-decl_stmt|;
-DECL|field|custom
-specifier|private
-specifier|final
-name|Object
-name|custom
-decl_stmt|;
-DECL|field|value
-specifier|private
-specifier|final
-name|Object
-name|value
-decl_stmt|;
-DECL|method|CacheEntryImpl
-name|CacheEntryImpl
-parameter_list|(
-name|Object
-name|readerKey
-parameter_list|,
-name|String
-name|fieldName
-parameter_list|,
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|cacheType
-parameter_list|,
-name|Object
-name|custom
-parameter_list|,
-name|Object
-name|value
-parameter_list|)
-block|{
-name|this
-operator|.
-name|readerKey
-operator|=
-name|readerKey
-expr_stmt|;
-name|this
-operator|.
-name|fieldName
-operator|=
-name|fieldName
-expr_stmt|;
-name|this
-operator|.
-name|cacheType
-operator|=
-name|cacheType
-expr_stmt|;
-name|this
-operator|.
-name|custom
-operator|=
-name|custom
-expr_stmt|;
-name|this
-operator|.
-name|value
-operator|=
-name|value
-expr_stmt|;
-comment|// :HACK: for testing.
-comment|//         if (null != locale || SortField.CUSTOM != sortFieldType) {
-comment|//           throw new RuntimeException("Locale/sortFieldType: " + this);
-comment|//         }
-block|}
-annotation|@
-name|Override
-DECL|method|getReaderKey
-specifier|public
-name|Object
-name|getReaderKey
-parameter_list|()
-block|{
-return|return
-name|readerKey
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getFieldName
-specifier|public
-name|String
-name|getFieldName
-parameter_list|()
-block|{
-return|return
-name|fieldName
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getCacheType
-specifier|public
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|getCacheType
-parameter_list|()
-block|{
-return|return
-name|cacheType
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getCustom
-specifier|public
-name|Object
-name|getCustom
-parameter_list|()
-block|{
-return|return
-name|custom
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getValue
-specifier|public
-name|Object
-name|getValue
-parameter_list|()
-block|{
-return|return
-name|value
-return|;
-block|}
 block|}
 comment|// per-segment fieldcaches don't purge until the shared core closes.
 DECL|field|purgeCore
@@ -2216,8 +2059,8 @@ name|docID
 parameter_list|)
 function_decl|;
 block|}
+comment|// nocommit move up?
 DECL|class|BytesFromArray
-specifier|private
 specifier|static
 class|class
 name|BytesFromArray
@@ -2538,8 +2381,8 @@ name|setDocsWithField
 argument_list|)
 return|;
 block|}
+comment|// nocommit move up?
 DECL|class|ShortsFromArray
-specifier|private
 specifier|static
 class|class
 name|ShortsFromArray
@@ -2992,8 +2835,8 @@ name|setDocsWithField
 argument_list|)
 return|;
 block|}
+comment|// nocommit move up?
 DECL|class|IntsFromArray
-specifier|private
 specifier|static
 class|class
 name|IntsFromArray
@@ -3307,6 +3150,7 @@ literal|false
 argument_list|)
 return|;
 block|}
+comment|// nocommit move up?
 DECL|class|DocsWithFieldCache
 specifier|static
 specifier|final
@@ -3659,8 +3503,8 @@ name|setDocsWithField
 argument_list|)
 return|;
 block|}
+comment|// nocommit move up?
 DECL|class|FloatsFromArray
-specifier|private
 specifier|static
 class|class
 name|FloatsFromArray
@@ -4013,8 +3857,8 @@ name|setDocsWithField
 argument_list|)
 return|;
 block|}
+comment|// nocommit move up?
 DECL|class|LongsFromArray
-specifier|private
 specifier|static
 class|class
 name|LongsFromArray
@@ -4367,8 +4211,8 @@ name|setDocsWithField
 argument_list|)
 return|;
 block|}
+comment|// nocommit move up?
 DECL|class|DoublesFromArray
-specifier|private
 specifier|static
 class|class
 name|DoublesFromArray

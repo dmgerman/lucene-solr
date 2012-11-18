@@ -354,6 +354,10 @@ block|,
 literal|"Lucene41"
 block|,
 literal|"MockRandom"
+block|,
+literal|"Lucene40"
+block|,
+literal|"Compressing"
 block|}
 argument_list|)
 DECL|class|TestDemoDocValue
