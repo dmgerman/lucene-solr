@@ -423,6 +423,8 @@ specifier|final
 name|long
 name|docValuesFieldPrefix
 decl_stmt|;
+comment|// nocommit: remove this test coverage hack once we have a
+comment|// good set of real tests.
 DECL|field|doDocValues
 specifier|private
 specifier|volatile
