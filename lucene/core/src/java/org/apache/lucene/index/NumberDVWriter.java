@@ -200,6 +200,30 @@ name|long
 name|value
 parameter_list|)
 block|{
+if|if
+condition|(
+name|docID
+operator|<
+name|pending
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"DocValuesField \""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\" appears more than once in this document (only one value is allowed per field)"
+argument_list|)
+throw|;
+block|}
 name|mergeValue
 argument_list|(
 name|value

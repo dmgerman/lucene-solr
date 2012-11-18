@@ -193,6 +193,27 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|docID
+operator|<
+name|addedValues
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"DocValuesField \""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\" appears more than once in this document (only one value is allowed per field)"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|value
 operator|==
 literal|null
