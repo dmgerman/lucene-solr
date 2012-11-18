@@ -1613,7 +1613,7 @@ name|int
 name|docID
 parameter_list|)
 function_decl|;
-comment|/** Returns total unique ord count; this includes +1 for      *  the null ord (always 0). */
+comment|/** Returns total unique ord count; this includes +1 for      *  the null ord (always 0) unless the field was      *  indexed with doc values. */
 DECL|method|numOrd
 specifier|public
 specifier|abstract

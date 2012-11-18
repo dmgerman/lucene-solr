@@ -401,15 +401,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriter
 name|iwriter
@@ -704,15 +701,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriter
 name|iwriter
@@ -1012,15 +1006,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriter
 name|iwriter
@@ -1367,15 +1358,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriter
 name|iwriter
@@ -1742,15 +1730,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriter
 name|iwriter
@@ -2185,15 +2170,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriter
 name|iwriter
@@ -2628,15 +2610,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriterConfig
 name|iwc
@@ -2829,15 +2808,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriterConfig
 name|iwc
@@ -3122,15 +3098,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriterConfig
 name|iwc
@@ -3331,15 +3304,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriter
 name|iwriter
@@ -3654,15 +3624,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriterConfig
 name|iwc
@@ -3969,15 +3936,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriter
 name|iwriter
@@ -4296,15 +4260,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriterConfig
 name|iwc
@@ -4536,15 +4497,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriterConfig
 name|iwc
@@ -4856,15 +4814,12 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Store the index in memory:
 name|Directory
 name|directory
 init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// To store an index on disk, use this instead:
-comment|// Directory directory = FSDirectory.open(new File("/tmp/testindex"));
 comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
 name|IndexWriterConfig
 name|iwc
@@ -4997,6 +4952,218 @@ operator|new
 name|BytesRef
 argument_list|(
 literal|"hello\nworld\r1"
+argument_list|)
+argument_list|,
+name|scratch
+argument_list|)
+expr_stmt|;
+name|ireader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|directory
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|testMissingSortedBytes
+specifier|public
+name|void
+name|testMissingSortedBytes
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|Analyzer
+name|analyzer
+init|=
+operator|new
+name|MockAnalyzer
+argument_list|(
+name|random
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|Directory
+name|directory
+init|=
+name|newDirectory
+argument_list|()
+decl_stmt|;
+comment|// we don't use RandomIndexWriter because it might add more docvalues than we expect !!!!1
+name|IndexWriterConfig
+name|iwc
+init|=
+name|newIndexWriterConfig
+argument_list|(
+name|TEST_VERSION_CURRENT
+argument_list|,
+name|analyzer
+argument_list|)
+decl_stmt|;
+name|iwc
+operator|.
+name|setMergePolicy
+argument_list|(
+name|newLogMergePolicy
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|IndexWriter
+name|iwriter
+init|=
+operator|new
+name|IndexWriter
+argument_list|(
+name|directory
+argument_list|,
+name|iwc
+argument_list|)
+decl_stmt|;
+name|Document
+name|doc
+init|=
+operator|new
+name|Document
+argument_list|()
+decl_stmt|;
+name|doc
+operator|.
+name|add
+argument_list|(
+operator|new
+name|SortedBytesDocValuesField
+argument_list|(
+literal|"dv"
+argument_list|,
+operator|new
+name|BytesRef
+argument_list|(
+literal|"hello world 2"
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|iwriter
+operator|.
+name|addDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+comment|// 2nd doc missing the DV field
+name|iwriter
+operator|.
+name|addDocument
+argument_list|(
+operator|new
+name|Document
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|iwriter
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+comment|// Now search the index:
+name|IndexReader
+name|ireader
+init|=
+name|DirectoryReader
+operator|.
+name|open
+argument_list|(
+name|directory
+argument_list|)
+decl_stmt|;
+comment|// read-only=true
+assert|assert
+name|ireader
+operator|.
+name|leaves
+argument_list|()
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|1
+assert|;
+name|SortedDocValues
+name|dv
+init|=
+name|ireader
+operator|.
+name|leaves
+argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|reader
+argument_list|()
+operator|.
+name|getSortedDocValues
+argument_list|(
+literal|"dv"
+argument_list|)
+decl_stmt|;
+name|BytesRef
+name|scratch
+init|=
+operator|new
+name|BytesRef
+argument_list|()
+decl_stmt|;
+name|dv
+operator|.
+name|lookupOrd
+argument_list|(
+name|dv
+operator|.
+name|getOrd
+argument_list|(
+literal|0
+argument_list|)
+argument_list|,
+name|scratch
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+operator|new
+name|BytesRef
+argument_list|(
+literal|"hello world 2"
+argument_list|)
+argument_list|,
+name|scratch
+argument_list|)
+expr_stmt|;
+name|dv
+operator|.
+name|lookupOrd
+argument_list|(
+name|dv
+operator|.
+name|getOrd
+argument_list|(
+literal|1
+argument_list|)
+argument_list|,
+name|scratch
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+operator|new
+name|BytesRef
+argument_list|(
+literal|""
 argument_list|)
 argument_list|,
 name|scratch
