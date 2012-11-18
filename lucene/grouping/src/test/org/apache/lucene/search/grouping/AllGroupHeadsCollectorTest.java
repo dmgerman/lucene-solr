@@ -2474,8 +2474,9 @@ argument_list|()
 expr_stmt|;
 comment|// NOTE: intentional but temporary field cache insanity!
 specifier|final
-name|int
-index|[]
+name|FieldCache
+operator|.
+name|Ints
 name|docIdToFieldId
 init|=
 name|FieldCache
@@ -2515,9 +2516,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|docIdToFieldId
-operator|.
-name|length
+name|numDocs
 condition|;
 name|i
 operator|++
@@ -2527,9 +2526,11 @@ name|int
 name|fieldId
 init|=
 name|docIdToFieldId
-index|[
+operator|.
+name|get
+argument_list|(
 name|i
-index|]
+argument_list|)
 decl_stmt|;
 name|fieldIdToDocID
 index|[
@@ -2638,11 +2639,13 @@ init|=
 name|groupDocs
 index|[
 name|docIdToFieldId
-index|[
+operator|.
+name|get
+argument_list|(
 name|hit
 operator|.
 name|doc
-index|]
+argument_list|)
 index|]
 decl_stmt|;
 name|assertTrue
@@ -2674,11 +2677,13 @@ argument_list|(
 name|docId
 argument_list|,
 name|docIdToFieldId
-index|[
+operator|.
+name|get
+argument_list|(
 name|hit
 operator|.
 name|doc
-index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2850,12 +2855,14 @@ name|i
 index|]
 operator|=
 name|docIdToFieldId
-index|[
+operator|.
+name|get
+argument_list|(
 name|actualGroupHeads
 index|[
 name|i
 index|]
-index|]
+argument_list|)
 expr_stmt|;
 block|}
 comment|// Allows us the easily iterate and assert the actual and expected results.

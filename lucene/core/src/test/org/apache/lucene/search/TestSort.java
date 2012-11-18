@@ -5953,8 +5953,9 @@ name|Integer
 argument_list|>
 block|{
 DECL|field|docValues
-name|int
-index|[]
+name|FieldCache
+operator|.
+name|Ints
 name|docValues
 decl_stmt|;
 DECL|field|slotValues
@@ -6002,9 +6003,11 @@ name|slot
 index|]
 operator|=
 name|docValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -6049,9 +6052,11 @@ return|return
 name|bottomValue
 operator|-
 name|docValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -6208,9 +6213,11 @@ name|int
 name|docValue
 init|=
 name|docValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// values are small enough that overflow won't happen
 return|return

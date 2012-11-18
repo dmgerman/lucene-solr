@@ -202,20 +202,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|IOUtils
 import|;
 end_import
@@ -555,6 +541,17 @@ name|hasDocValues
 argument_list|()
 condition|)
 block|{
+comment|// nocommit shouldn't need null check:
+if|if
+condition|(
+name|codec
+operator|.
+name|simpleDocValuesFormat
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
 name|SimpleDVConsumer
 name|consumer
 init|=
@@ -580,6 +577,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

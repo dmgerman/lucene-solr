@@ -174,20 +174,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -231,20 +217,6 @@ operator|.
 name|index
 operator|.
 name|NumericDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|RandomIndexWriter
 import|;
 end_import
 
@@ -343,6 +315,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -350,9 +324,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|apache
 operator|.
-name|Ignore
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -360,7 +338,24 @@ begin_comment
 comment|/**  * A very simple demo used in the API documentation (src/java/overview.html).  *  * Please try to keep src/java/overview.html up-to-date when making changes  * to this class.  */
 end_comment
 
+begin_comment
+comment|// nocommit don't suppress any:
+end_comment
+
 begin_class
+annotation|@
+name|SuppressCodecs
+argument_list|(
+block|{
+literal|"Direct"
+block|,
+literal|"Memory"
+block|,
+literal|"Lucene41"
+block|,
+literal|"MockRandom"
+block|}
+argument_list|)
 DECL|class|TestDemoDocValue
 specifier|public
 class|class

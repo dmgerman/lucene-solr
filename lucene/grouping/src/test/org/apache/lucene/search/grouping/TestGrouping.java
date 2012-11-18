@@ -56,35 +56,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|AtomicReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|CompositeReaderContext
 import|;
 end_import
 
@@ -6112,8 +6084,9 @@ argument_list|()
 expr_stmt|;
 comment|// NOTE: intentional but temporary field cache insanity!
 specifier|final
-name|int
-index|[]
+name|FieldCache
+operator|.
+name|Ints
 name|docIDToID
 init|=
 name|FieldCache
@@ -6252,11 +6225,13 @@ init|=
 name|groupDocs
 index|[
 name|docIDToID
-index|[
+operator|.
+name|get
+argument_list|(
 name|hit
 operator|.
 name|doc
-index|]
+argument_list|)
 index|]
 decl_stmt|;
 name|assertTrue
@@ -6283,14 +6258,16 @@ operator|.
 name|id
 argument_list|,
 name|docIDToID
-index|[
+operator|.
+name|get
+argument_list|(
 name|hit
 operator|.
 name|doc
-index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("  score=" + hit.score + " id=" + docIDToID[hit.doc]);
+comment|//System.out.println("  score=" + hit.score + " id=" + docIDToID.get(hit.doc));
 block|}
 block|}
 for|for
@@ -6352,8 +6329,9 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|final
-name|int
-index|[]
+name|FieldCache
+operator|.
+name|Ints
 name|docIDToIDBlocks
 init|=
 name|FieldCache
@@ -6516,11 +6494,13 @@ init|=
 name|groupDocsByID
 index|[
 name|docIDToIDBlocks
-index|[
+operator|.
+name|get
+argument_list|(
 name|hit
 operator|.
 name|doc
-index|]
+argument_list|)
 index|]
 decl_stmt|;
 name|assertTrue
@@ -6547,14 +6527,16 @@ operator|.
 name|id
 argument_list|,
 name|docIDToIDBlocks
-index|[
+operator|.
+name|get
+argument_list|(
 name|hit
 operator|.
 name|doc
-index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("    score=" + gd.score + " score2=" + hit.score + " id=" + docIDToIDBlocks[hit.doc]);
+comment|//System.out.println("    score=" + gd.score + " score2=" + hit.score + " id=" + docIDToIDBlocks.get(hit.doc));
 name|termScoreMap
 operator|.
 name|put
@@ -7858,11 +7840,13 @@ argument_list|(
 literal|"    id="
 operator|+
 name|docIDToID
-index|[
+operator|.
+name|get
+argument_list|(
 name|sd
 operator|.
 name|doc
-index|]
+argument_list|)
 operator|+
 literal|" score="
 operator|+
@@ -7910,9 +7894,11 @@ argument_list|(
 literal|"ID="
 operator|+
 name|docIDToID
-index|[
+operator|.
+name|get
+argument_list|(
 name|docIDX
-index|]
+argument_list|)
 operator|+
 literal|" explain="
 operator|+
@@ -8022,11 +8008,13 @@ argument_list|(
 literal|"    id="
 operator|+
 name|docIDToID
-index|[
+operator|.
+name|get
+argument_list|(
 name|sd
 operator|.
 name|doc
-index|]
+argument_list|)
 operator|+
 literal|" score="
 operator|+
@@ -8396,11 +8384,13 @@ argument_list|(
 literal|"    id="
 operator|+
 name|docIDToIDBlocks
-index|[
+operator|.
+name|get
+argument_list|(
 name|sd
 operator|.
 name|doc
-index|]
+argument_list|)
 operator|+
 literal|" score="
 operator|+
@@ -9777,8 +9767,9 @@ specifier|private
 name|void
 name|assertEquals
 parameter_list|(
-name|int
-index|[]
+name|FieldCache
+operator|.
+name|Ints
 name|docIDtoID
 parameter_list|,
 name|TopGroups
@@ -10119,7 +10110,7 @@ index|[
 name|docIDX
 index|]
 decl_stmt|;
-comment|//System.out.println("  actual doc=" + docIDtoID[actualFD.doc] + " score=" + actualFD.score);
+comment|//System.out.println("  actual doc=" + docIDtoID.get(actualFD.doc) + " score=" + actualFD.score);
 name|assertEquals
 argument_list|(
 name|expectedFD
@@ -10127,11 +10118,13 @@ operator|.
 name|doc
 argument_list|,
 name|docIDtoID
-index|[
+operator|.
+name|get
+argument_list|(
 name|actualFD
 operator|.
 name|doc
-index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if

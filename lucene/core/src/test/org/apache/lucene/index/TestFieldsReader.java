@@ -1931,8 +1931,9 @@ name|reader
 argument_list|()
 decl_stmt|;
 specifier|final
-name|int
-index|[]
+name|FieldCache
+operator|.
+name|Ints
 name|ids
 init|=
 name|FieldCache
@@ -2007,9 +2008,11 @@ argument_list|(
 name|answers
 index|[
 name|ids
-index|[
+operator|.
+name|get
+argument_list|(
 name|docID
-index|]
+argument_list|)
 index|]
 argument_list|,
 name|f

@@ -593,8 +593,10 @@ name|SimpleDocValuesFormat
 name|simpleDocValuesFormat
 parameter_list|()
 block|{
+comment|// nocommit fixme
+comment|//return simpleDocValuesFormat;
 return|return
-name|simpleDocValuesFormat
+literal|null
 return|;
 block|}
 DECL|field|defaultFormat

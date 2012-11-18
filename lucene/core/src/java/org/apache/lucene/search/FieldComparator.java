@@ -609,8 +609,9 @@ name|parser
 decl_stmt|;
 DECL|field|currentReaderValues
 specifier|private
-name|byte
-index|[]
+name|FieldCache
+operator|.
+name|Bytes
 name|currentReaderValues
 decl_stmt|;
 DECL|field|bottom
@@ -702,9 +703,11 @@ name|byte
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -756,9 +759,11 @@ name|byte
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -906,9 +911,11 @@ name|byte
 name|docValue
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for docValue == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -974,8 +981,9 @@ name|parser
 decl_stmt|;
 DECL|field|currentReaderValues
 specifier|private
-name|double
-index|[]
+name|FieldCache
+operator|.
+name|Doubles
 name|currentReaderValues
 decl_stmt|;
 DECL|field|bottom
@@ -1104,9 +1112,11 @@ name|double
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -1183,9 +1193,11 @@ name|double
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -1342,9 +1354,11 @@ name|double
 name|docValue
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for docValue == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -1814,8 +1828,9 @@ name|parser
 decl_stmt|;
 DECL|field|currentReaderValues
 specifier|private
-name|float
-index|[]
+name|FieldCache
+operator|.
+name|Floats
 name|currentReaderValues
 decl_stmt|;
 DECL|field|bottom
@@ -1947,9 +1962,11 @@ name|float
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -2026,9 +2043,11 @@ name|float
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -2185,9 +2204,11 @@ name|float
 name|docValue
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for docValue == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -2275,8 +2296,9 @@ name|parser
 decl_stmt|;
 DECL|field|currentReaderValues
 specifier|private
-name|short
-index|[]
+name|FieldCache
+operator|.
+name|Shorts
 name|currentReaderValues
 decl_stmt|;
 DECL|field|bottom
@@ -2368,9 +2390,11 @@ name|short
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -2422,9 +2446,11 @@ name|short
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -2581,9 +2607,11 @@ name|short
 name|docValue
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for docValue == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -2646,8 +2674,9 @@ name|parser
 decl_stmt|;
 DECL|field|currentReaderValues
 specifier|private
-name|int
-index|[]
+name|FieldCache
+operator|.
+name|Ints
 name|currentReaderValues
 decl_stmt|;
 DECL|field|bottom
@@ -2785,9 +2814,11 @@ name|int
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -2864,9 +2895,11 @@ name|int
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -3023,9 +3056,11 @@ name|int
 name|docValue
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for docValue == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -3498,8 +3533,9 @@ name|parser
 decl_stmt|;
 DECL|field|currentReaderValues
 specifier|private
-name|long
-index|[]
+name|FieldCache
+operator|.
+name|Longs
 name|currentReaderValues
 decl_stmt|;
 DECL|field|bottom
@@ -3632,9 +3668,11 @@ name|long
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -3711,9 +3749,11 @@ name|long
 name|v2
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for v2 == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):
@@ -3870,9 +3910,11 @@ name|long
 name|docValue
 init|=
 name|currentReaderValues
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// Test for docValue == 0 to save Bits.get method call for
 comment|// the common case (doc has value and value is non-zero):

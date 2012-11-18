@@ -303,8 +303,9 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|long
-index|[]
+name|FieldCache
+operator|.
+name|Longs
 name|arr
 init|=
 name|cache
@@ -358,9 +359,11 @@ parameter_list|)
 block|{
 return|return
 name|arr
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -403,9 +406,11 @@ condition|?
 name|longToObject
 argument_list|(
 name|arr
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 argument_list|)
 else|:
 literal|null
@@ -550,9 +555,11 @@ name|long
 name|val
 init|=
 name|arr
-index|[
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 decl_stmt|;
 comment|// only check for deleted if it's the default value
 comment|// if (val==0&& reader.isDeleted(doc)) return false;
@@ -581,14 +588,6 @@ operator|new
 name|ValueFiller
 argument_list|()
 block|{
-specifier|private
-specifier|final
-name|long
-index|[]
-name|longArr
-init|=
-name|arr
-decl_stmt|;
 specifier|private
 specifier|final
 name|MutableValueLong
@@ -622,10 +621,12 @@ name|mval
 operator|.
 name|value
 operator|=
-name|longArr
-index|[
+name|arr
+operator|.
+name|get
+argument_list|(
 name|doc
-index|]
+argument_list|)
 expr_stmt|;
 name|mval
 operator|.
