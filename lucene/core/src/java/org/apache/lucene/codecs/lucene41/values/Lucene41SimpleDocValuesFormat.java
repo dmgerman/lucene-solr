@@ -347,7 +347,7 @@ name|DocValues
 argument_list|>
 name|docValues
 decl_stmt|;
-comment|/**      * Creates a new {@link Lucene41PerDocProducer} instance and loads all      * {@link DocValues} instances for this segment and codec.      */
+comment|/**      * Creates a new {@link Lucene41DocValuesReader} instance and loads all      * {@link DocValues} instances for this segment and codec.      */
 DECL|method|Lucene41DocValuesReader
 specifier|public
 name|Lucene41DocValuesReader
