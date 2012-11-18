@@ -922,6 +922,7 @@ argument_list|(
 name|docID
 argument_list|)
 decl_stmt|;
+comment|/*             if (segState.segOrdToMergedOrd == null) {               BytesRef scratch = new BytesRef();               segState.values.lookupOrd(segOrd, scratch);               System.out.println("docID=" + docID + " segOrd=" + segOrd + " segValue=" + scratch.utf8ToString());             }             */
 name|int
 name|mergedOrd
 init|=
