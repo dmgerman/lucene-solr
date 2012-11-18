@@ -366,8 +366,14 @@ else|else
 block|{
 comment|// Skip "deleted" terms (ie, terms that were not
 comment|// referenced by any live docs):
+name|values
+operator|.
+name|lookupOrd
+argument_list|(
 name|ord
-operator|++
+argument_list|,
+name|scratch
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -922,7 +928,6 @@ argument_list|(
 name|docID
 argument_list|)
 decl_stmt|;
-comment|/*             if (segState.segOrdToMergedOrd == null) {               BytesRef scratch = new BytesRef();               segState.values.lookupOrd(segOrd, scratch);               System.out.println("docID=" + docID + " segOrd=" + segOrd + " segValue=" + scratch.utf8ToString());             }             */
 name|int
 name|mergedOrd
 init|=
