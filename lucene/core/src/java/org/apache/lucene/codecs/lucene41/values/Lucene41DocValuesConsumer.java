@@ -295,9 +295,6 @@ name|minValue
 parameter_list|,
 name|long
 name|maxValue
-parameter_list|,
-name|int
-name|numDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -361,7 +358,10 @@ name|minValue
 argument_list|,
 name|maxValue
 argument_list|,
-name|numDocs
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|success
@@ -405,9 +405,6 @@ name|fixedLength
 parameter_list|,
 name|int
 name|maxLength
-parameter_list|,
-name|int
-name|numDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -560,9 +557,6 @@ name|fixedLength
 parameter_list|,
 name|int
 name|maxLength
-parameter_list|,
-name|int
-name|numDocs
 parameter_list|)
 throws|throws
 name|IOException
