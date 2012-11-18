@@ -198,8 +198,6 @@ operator|.
 name|getLiveDocs
 argument_list|()
 decl_stmt|;
-comment|// nocommit what if this is null...?  need default source?
-specifier|final
 name|NumericDocValues
 name|source
 init|=
@@ -214,6 +212,20 @@ operator|.
 name|name
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+block|{
+name|source
+operator|=
+name|NumericDocValues
+operator|.
+name|DEFAULT
+expr_stmt|;
+block|}
 for|for
 control|(
 name|int

@@ -665,7 +665,7 @@ name|context
 argument_list|)
 return|;
 block|}
-comment|/** the .dat file contains the data.    *  for numbers this is a "fixed-width" file, for example a single byte range:    *<pre>    *  field myField    *    minvalue 0    *    pattern 000    *  005    *  234    *  123    *  ...    *</pre>    *  so a document's value (delta encoded from minvalue) can be retrieved by     *  seeking to startOffset + (1+pattern.length())*docid. The extra 1 is the newline.    *      *  for bytes this is also a "fixed-width" file, for example:    *<pre>    *  field myField    *    maxlength 8    *    pattern 0    *  length 6    *  foobar[space][space]    *  length 3    *  baz[space][space][space][space][space]    *  ...    *</pre>    *  so an ord's value can be retrieved by seeking to startOffset + (9+pattern.length+maxlength)*ord    *  the extra 9 is 2 newlines, plus "length " itself.    *      *  for sorted bytes this is a fixed-width file, for example:    *<pre>    *  field myField    *    numvalues 10    *    maxLength 8    *    pattern 0    *    ordpattern 00    *  length 6    *  foobar[space][space]    *  length 3    *  baz[space][space][space][space][space]    *  ...    *  03    *  06    *  01    *  10    *  ...    *</pre>    *  so the "ord section" begins at startOffset + (9+pattern.length+maxlength)*numValues.    *  a document's ord can be retrieved by seeking to "ord section" + (1+ordpattern.length())*docid    *  an ord's value can be retrieved by seeking to startOffset + (9+pattern.length+maxlength)*ord    *       *  the reader can just scan this file when it opens, skipping over the data blocks    *  and saving the offset/etc for each field.     */
+comment|/** the .dat file contains the data.    *  for numbers this is a "fixed-width" file, for example a single byte range:    *<pre>    *  field myField    *    minvalue 0    *    pattern 000    *  005    *  234    *  123    *  ...    *</pre>    *  so a document's value (delta encoded from minvalue) can be retrieved by     *  seeking to startOffset + (1+pattern.length())*docid. The extra 1 is the newline.    *      *  for bytes this is also a "fixed-width" file, for example:    *<pre>    *  field myField    *    maxlength 8    *    pattern 0    *  length 6    *  foobar[space][space]    *  length 3    *  baz[space][space][space][space][space]    *  ...    *</pre>    *  so a doc's value can be retrieved by seeking to startOffset + (9+pattern.length+maxlength)*doc    *  the extra 9 is 2 newlines, plus "length " itself.    *      *  for sorted bytes this is a fixed-width file, for example:    *<pre>    *  field myField    *    numvalues 10    *    maxLength 8    *    pattern 0    *    ordpattern 00    *  length 6    *  foobar[space][space]    *  length 3    *  baz[space][space][space][space][space]    *  ...    *  03    *  06    *  01    *  10    *  ...    *</pre>    *  so the "ord section" begins at startOffset + (9+pattern.length+maxlength)*numValues.    *  a document's ord can be retrieved by seeking to "ord section" + (1+ordpattern.length())*docid    *  an ord's value can be retrieved by seeking to startOffset + (9+pattern.length+maxlength)*ord    *       *  the reader can just scan this file when it opens, skipping over the data blocks    *  and saving the offset/etc for each field.     */
 DECL|class|SimpleTextDocValuesWriter
 specifier|static
 class|class
@@ -1197,14 +1197,23 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
-comment|// write bytes
-name|SimpleTextUtil
-operator|.
-name|write
-argument_list|(
+comment|// write bytes -- don't use SimpleText.write
+comment|// because it escapes:
 name|data
+operator|.
+name|writeBytes
+argument_list|(
+name|value
+operator|.
+name|bytes
 argument_list|,
 name|value
+operator|.
+name|offset
+argument_list|,
+name|value
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 comment|// pad to fit
@@ -1606,14 +1615,23 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
-comment|// write bytes
-name|SimpleTextUtil
-operator|.
-name|write
-argument_list|(
+comment|// write bytes -- don't use SimpleText.write
+comment|// because it escapes:
 name|data
+operator|.
+name|writeBytes
+argument_list|(
+name|value
+operator|.
+name|bytes
 argument_list|,
 name|value
+operator|.
+name|offset
+argument_list|,
+name|value
+operator|.
+name|length
 argument_list|)
 expr_stmt|;
 comment|// pad to fit
@@ -1924,6 +1942,23 @@ name|getDocCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"dir="
+operator|+
+name|dir
+operator|+
+literal|" seg="
+operator|+
+name|si
+operator|.
+name|name
+argument_list|)
+expr_stmt|;
 name|data
 operator|=
 name|dir
@@ -1992,6 +2027,7 @@ argument_list|(
 name|FIELD
 argument_list|)
 decl_stmt|;
+comment|//System.out.println("  field=" + fieldName);
 name|FieldInfo
 name|fieldInfo
 init|=
@@ -2049,6 +2085,13 @@ condition|(
 name|DocValues
 operator|.
 name|isNumber
+argument_list|(
+name|dvType
+argument_list|)
+operator|||
+name|DocValues
+operator|.
+name|isFloat
 argument_list|(
 name|dvType
 argument_list|)
@@ -2216,7 +2259,6 @@ operator|*
 name|maxDoc
 argument_list|)
 expr_stmt|;
-break|break;
 block|}
 elseif|else
 if|if
@@ -2363,19 +2405,6 @@ name|maxDoc
 argument_list|)
 expr_stmt|;
 comment|// nocommit: we need to seek past the data section!!!!
-block|}
-elseif|else
-if|if
-condition|(
-name|DocValues
-operator|.
-name|isFloat
-argument_list|(
-name|dvType
-argument_list|)
-condition|)
-block|{
-comment|// nocommit
 block|}
 else|else
 block|{
