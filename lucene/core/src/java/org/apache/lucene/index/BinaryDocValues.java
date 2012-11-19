@@ -76,6 +76,8 @@ name|int
 name|maxLength
 parameter_list|()
 function_decl|;
+comment|// nocommit: rethink this api? alternative is boolean on atomicreader...?
+comment|// doc that the thing returned here must be thread safe...
 DECL|method|newRAMInstance
 specifier|public
 name|BinaryDocValues
@@ -260,6 +262,18 @@ parameter_list|()
 block|{
 return|return
 name|maxLength
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|BinaryDocValues
+name|newRAMInstance
+parameter_list|()
+block|{
+comment|// nocommit: ugly, maybe throw exception instead?
+return|return
+name|this
 return|;
 block|}
 block|}

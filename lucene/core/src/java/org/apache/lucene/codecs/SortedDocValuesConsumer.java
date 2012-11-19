@@ -509,9 +509,13 @@ name|state
 operator|.
 name|values
 operator|=
+operator|new
 name|SortedDocValues
 operator|.
-name|DEFAULT
+name|EMPTY
+argument_list|(
+name|maxDoc
+argument_list|)
 expr_stmt|;
 block|}
 name|segStates
