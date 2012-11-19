@@ -30,6 +30,7 @@ name|HighCompressionCompressingCodec
 extends|extends
 name|CompressingCodec
 block|{
+comment|/** Constructor that allows to configure the chunk size. */
 DECL|method|HighCompressionCompressingCodec
 specifier|public
 name|HighCompressionCompressingCodec
@@ -50,6 +51,7 @@ name|chunkSize
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Default constructor. */
 DECL|method|HighCompressionCompressingCodec
 specifier|public
 name|HighCompressionCompressingCodec
