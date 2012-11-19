@@ -793,6 +793,11 @@ expr_stmt|;
 name|reset
 argument_list|()
 expr_stmt|;
+name|consumer
+operator|.
+name|finish
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|abort
 specifier|public

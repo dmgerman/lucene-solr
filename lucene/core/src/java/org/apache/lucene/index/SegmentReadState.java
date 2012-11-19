@@ -93,11 +93,11 @@ class|class
 name|SegmentReadState
 block|{
 comment|/** {@link Directory} where this segment is read from. */
-DECL|field|dir
+DECL|field|directory
 specifier|public
 specifier|final
 name|Directory
-name|dir
+name|directory
 decl_stmt|;
 comment|/** {@link SegmentInfo} describing this segment. */
 DECL|field|segmentInfo
@@ -196,7 +196,7 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|dir
+name|directory
 operator|=
 name|dir
 expr_stmt|;
@@ -245,11 +245,11 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|dir
+name|directory
 operator|=
 name|other
 operator|.
-name|dir
+name|directory
 expr_stmt|;
 name|this
 operator|.

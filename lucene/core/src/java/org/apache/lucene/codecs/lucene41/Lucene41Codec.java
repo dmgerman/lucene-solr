@@ -298,7 +298,7 @@ name|lucene41
 operator|.
 name|values
 operator|.
-name|Lucene41SimpleDocValuesFormat
+name|Lucene41DocValuesFormat
 import|;
 end_import
 
@@ -582,7 +582,7 @@ name|SimpleDocValuesFormat
 name|simpleDocValuesFormat
 init|=
 operator|new
-name|Lucene41SimpleDocValuesFormat
+name|Lucene41DocValuesFormat
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -593,10 +593,8 @@ name|SimpleDocValuesFormat
 name|simpleDocValuesFormat
 parameter_list|()
 block|{
-comment|// nocommit fixme
-comment|//return simpleDocValuesFormat;
 return|return
-literal|null
+name|simpleDocValuesFormat
 return|;
 block|}
 DECL|field|defaultFormat

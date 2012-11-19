@@ -504,7 +504,7 @@ argument_list|()
 argument_list|,
 name|state
 operator|.
-name|dir
+name|directory
 argument_list|,
 name|state
 operator|.

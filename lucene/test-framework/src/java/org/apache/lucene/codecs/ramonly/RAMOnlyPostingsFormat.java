@@ -2738,7 +2738,7 @@ name|in
 init|=
 name|readState
 operator|.
-name|dir
+name|directory
 operator|.
 name|openInput
 argument_list|(

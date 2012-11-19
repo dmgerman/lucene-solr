@@ -367,8 +367,6 @@ literal|"Direct"
 block|,
 literal|"Memory"
 block|,
-literal|"Lucene41"
-block|,
 literal|"MockRandom"
 block|,
 literal|"Lucene40"

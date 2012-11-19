@@ -220,13 +220,19 @@ argument_list|(
 name|minValue
 argument_list|)
 expr_stmt|;
+name|output
+operator|.
+name|writeLong
+argument_list|(
+name|maxValue
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|minValue
 operator|=
 name|minValue
 expr_stmt|;
-comment|// nocommit write without header?
 name|this
 operator|.
 name|writer

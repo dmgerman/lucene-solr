@@ -283,6 +283,13 @@ else|:
 name|VALUE_SIZE_VAR
 argument_list|)
 expr_stmt|;
+name|dataOut
+operator|.
+name|writeInt
+argument_list|(
+name|maxLength
+argument_list|)
+expr_stmt|;
 name|CodecUtil
 operator|.
 name|writeHeader
@@ -317,13 +324,6 @@ name|IOException
 block|{
 try|try
 block|{
-name|indexOut
-operator|.
-name|writeLong
-argument_list|(
-name|offset
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|buffer
