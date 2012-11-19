@@ -455,7 +455,7 @@ name|NumericDocValues
 operator|.
 name|EMPTY
 argument_list|(
-literal|1
+name|maxDoc
 argument_list|)
 expr_stmt|;
 block|}
