@@ -2750,6 +2750,16 @@ argument_list|(
 name|coreNodeName
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|newReplicas
+operator|.
+name|size
+argument_list|()
+operator|!=
+literal|0
+condition|)
+block|{
 name|Slice
 name|newSlice
 init|=
@@ -2781,6 +2791,7 @@ argument_list|,
 name|newSlice
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
