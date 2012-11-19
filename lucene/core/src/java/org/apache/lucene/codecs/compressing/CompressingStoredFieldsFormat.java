@@ -38,6 +38,20 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|CodecUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|StoredFieldsFormat
 import|;
 end_import
@@ -168,6 +182,12 @@ name|CompressingStoredFieldsFormat
 extends|extends
 name|StoredFieldsFormat
 block|{
+DECL|field|formatName
+specifier|private
+specifier|final
+name|String
+name|formatName
+decl_stmt|;
 DECL|field|compressionMode
 specifier|private
 specifier|final
@@ -180,11 +200,14 @@ specifier|final
 name|int
 name|chunkSize
 decl_stmt|;
-comment|/**    * Create a new {@link CompressingStoredFieldsFormat}.    *<p>    * The<code>compressionMode</code> parameter allows you to choose between    * compression algorithms that have various compression and decompression    * speeds so that you can pick the one that best fits your indexing and    * searching throughput.    *<p>    *<code>chunkSize</code> is the minimum byte size of a chunk of documents.    * A value of<code>1</code> can make sense if there is redundancy across    * fields. In that case, both performance and compression ratio should be    * better than with {@link Lucene40StoredFieldsFormat} with compressed    * fields.    *<p>    * Higher values of<code>chunkSize</code> should improve the compression    * ratio but will require more memory at indexing time and might make document    * loading a little slower (depending on the size of your OS cache compared    * to the size of your index).    *    * @param compressionMode the {@link CompressionMode} to use    * @param chunkSize the minimum number of bytes of a single chunk of stored documents    * @see CompressionMode    */
+comment|/**    * Create a new {@link CompressingStoredFieldsFormat}.    *<p>    *<code>formatName</code> is the name of the format. This name will be used    * in the file formats to perform    * {@link CodecUtil#checkHeader(org.apache.lucene.store.DataInput, String, int, int) codec header checks}.    *<p>    * The<code>compressionMode</code> parameter allows you to choose between    * compression algorithms that have various compression and decompression    * speeds so that you can pick the one that best fits your indexing and    * searching throughput. You should never instantiate two    * {@link CompressingStoredFieldsFormat}s that have the same name but    * different {@link CompressionMode}s.    *<p>    *<code>chunkSize</code> is the minimum byte size of a chunk of documents.    * A value of<code>1</code> can make sense if there is redundancy across    * fields. In that case, both performance and compression ratio should be    * better than with {@link Lucene40StoredFieldsFormat} with compressed    * fields.    *<p>    * Higher values of<code>chunkSize</code> should improve the compression    * ratio but will require more memory at indexing time and might make document    * loading a little slower (depending on the size of your OS cache compared    * to the size of your index).    *    * @param formatName the name of the {@link StoredFieldsFormat}    * @param compressionMode the {@link CompressionMode} to use    * @param chunkSize the minimum number of bytes of a single chunk of stored documents    * @see CompressionMode    */
 DECL|method|CompressingStoredFieldsFormat
 specifier|public
 name|CompressingStoredFieldsFormat
 parameter_list|(
+name|String
+name|formatName
+parameter_list|,
 name|CompressionMode
 name|compressionMode
 parameter_list|,
@@ -192,6 +215,12 @@ name|int
 name|chunkSize
 parameter_list|)
 block|{
+name|this
+operator|.
+name|formatName
+operator|=
+name|formatName
+expr_stmt|;
 name|this
 operator|.
 name|compressionMode
@@ -218,24 +247,6 @@ operator|.
 name|chunkSize
 operator|=
 name|chunkSize
-expr_stmt|;
-block|}
-comment|/**    * Create a new {@link CompressingStoredFieldsFormat} with    * {@link CompressionMode#FAST} compression and chunks of<tt>16 KB</tt>.    *    * @see CompressingStoredFieldsFormat#CompressingStoredFieldsFormat(CompressionMode, int)    */
-DECL|method|CompressingStoredFieldsFormat
-specifier|public
-name|CompressingStoredFieldsFormat
-parameter_list|()
-block|{
-name|this
-argument_list|(
-name|CompressionMode
-operator|.
-name|FAST
-argument_list|,
-literal|1
-operator|<<
-literal|14
-argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -271,6 +282,10 @@ argument_list|,
 name|fn
 argument_list|,
 name|context
+argument_list|,
+name|formatName
+argument_list|,
+name|compressionMode
 argument_list|)
 return|;
 block|}
@@ -302,6 +317,8 @@ argument_list|,
 name|si
 argument_list|,
 name|context
+argument_list|,
+name|formatName
 argument_list|,
 name|compressionMode
 argument_list|,

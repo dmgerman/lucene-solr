@@ -138,21 +138,28 @@ begin_comment
 comment|/**  * A compression mode. Tells how much effort should be spent on compression and  * decompression of stored fields.  * @lucene.experimental  */
 end_comment
 
-begin_enum
-DECL|enum|CompressionMode
+begin_class
+DECL|class|CompressionMode
 specifier|public
-enum|enum
+specifier|abstract
+class|class
 name|CompressionMode
 block|{
 comment|/**    * A compression mode that trades compression ratio for speed. Although the    * compression ratio might remain high, compression and decompression are    * very fast. Use this mode with indices that have a high update rate but    * should be able to load documents from disk quickly.    */
-DECL|enum constant|FAST
+DECL|field|FAST
+specifier|public
+specifier|static
+specifier|final
+name|CompressionMode
 name|FAST
-argument_list|(
-literal|0
-argument_list|)
+init|=
+operator|new
+name|CompressionMode
+argument_list|()
 block|{
 annotation|@
 name|Override
+specifier|public
 name|Compressor
 name|newCompressor
 parameter_list|()
@@ -163,6 +170,7 @@ return|;
 block|}
 annotation|@
 name|Override
+specifier|public
 name|Decompressor
 name|newDecompressor
 parameter_list|()
@@ -171,17 +179,34 @@ return|return
 name|LZ4_DECOMPRESSOR
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"FAST"
+return|;
 block|}
-block|,
+block|}
+decl_stmt|;
 comment|/**    * A compression mode that trades speed for compression ratio. Although    * compression and decompression might be slow, this compression mode should    * provide a good compression ratio. This mode might be interesting if/when    * your index size is much bigger than your OS cache.    */
-DECL|enum constant|HIGH_COMPRESSION
+DECL|field|HIGH_COMPRESSION
+specifier|public
+specifier|static
+specifier|final
+name|CompressionMode
 name|HIGH_COMPRESSION
-argument_list|(
-literal|1
-argument_list|)
+init|=
+operator|new
+name|CompressionMode
+argument_list|()
 block|{
 annotation|@
 name|Override
+specifier|public
 name|Compressor
 name|newCompressor
 parameter_list|()
@@ -198,6 +223,7 @@ return|;
 block|}
 annotation|@
 name|Override
+specifier|public
 name|Decompressor
 name|newDecompressor
 parameter_list|()
@@ -208,17 +234,34 @@ name|DeflateDecompressor
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"HIGH_COMPRESSION"
+return|;
 block|}
-block|,
+block|}
+decl_stmt|;
 comment|/**    * This compression mode is similar to {@link #FAST} but it spends more time    * compressing in order to improve the compression ratio. This compression    * mode is best used with indices that have a low update rate but should be    * able to load documents from disk quickly.    */
-DECL|enum constant|FAST_DECOMPRESSION
+DECL|field|FAST_DECOMPRESSION
+specifier|public
+specifier|static
+specifier|final
+name|CompressionMode
 name|FAST_DECOMPRESSION
-argument_list|(
-literal|2
-argument_list|)
+init|=
+operator|new
+name|CompressionMode
+argument_list|()
 block|{
 annotation|@
 name|Override
+specifier|public
 name|Compressor
 name|newCompressor
 parameter_list|()
@@ -229,6 +272,7 @@ return|;
 block|}
 annotation|@
 name|Override
+specifier|public
 name|Decompressor
 name|newDecompressor
 parameter_list|()
@@ -237,90 +281,28 @@ return|return
 name|LZ4_DECOMPRESSOR
 return|;
 block|}
-block|}
-block|;
-comment|/** Get a {@link CompressionMode} according to its id. */
-DECL|method|byId
+annotation|@
+name|Override
 specifier|public
-specifier|static
-name|CompressionMode
-name|byId
-parameter_list|(
-name|int
-name|id
-parameter_list|)
-block|{
-for|for
-control|(
-name|CompressionMode
-name|mode
-range|:
-name|CompressionMode
-operator|.
-name|values
-argument_list|()
-control|)
-block|{
-if|if
-condition|(
-name|mode
-operator|.
-name|getId
-argument_list|()
-operator|==
-name|id
-condition|)
-block|{
-return|return
-name|mode
-return|;
-block|}
-block|}
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Unknown id: "
-operator|+
-name|id
-argument_list|)
-throw|;
-block|}
-DECL|field|id
-specifier|private
-specifier|final
-name|int
-name|id
-decl_stmt|;
-DECL|method|CompressionMode
-specifier|private
-name|CompressionMode
-parameter_list|(
-name|int
-name|id
-parameter_list|)
-block|{
-name|this
-operator|.
-name|id
-operator|=
-name|id
-expr_stmt|;
-block|}
-comment|/**    * Returns an ID for this compression mode. Should be unique across    * {@link CompressionMode}s as it is used for serialization and    * unserialization.    */
-DECL|method|getId
-specifier|public
-specifier|final
-name|int
-name|getId
+name|String
+name|toString
 parameter_list|()
 block|{
 return|return
-name|id
+literal|"FAST_DECOMPRESSION"
 return|;
 block|}
+block|}
+decl_stmt|;
+comment|/** Sole constructor. */
+DECL|method|CompressionMode
+specifier|protected
+name|CompressionMode
+parameter_list|()
+block|{}
 comment|/**    * Create a new {@link Compressor} instance.    */
 DECL|method|newCompressor
+specifier|public
 specifier|abstract
 name|Compressor
 name|newCompressor
@@ -328,6 +310,7 @@ parameter_list|()
 function_decl|;
 comment|/**    * Create a new {@link Decompressor} instance.    */
 DECL|method|newDecompressor
+specifier|public
 specifier|abstract
 name|Decompressor
 name|newDecompressor
@@ -1069,6 +1052,13 @@ argument_list|()
 condition|)
 block|{
 comment|// no output
+assert|assert
+name|len
+operator|==
+literal|0
+operator|:
+name|len
+assert|;
 name|out
 operator|.
 name|writeVInt
@@ -1161,7 +1151,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-end_enum
+end_class
 
 end_unit
 
