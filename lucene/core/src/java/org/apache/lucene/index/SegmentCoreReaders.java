@@ -812,9 +812,7 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
-comment|// nocommit shrink the sync'd part to a cache miss
 DECL|method|getNumericDocValues
-specifier|synchronized
 name|NumericDocValues
 name|getNumericDocValues
 parameter_list|(
@@ -912,9 +910,7 @@ name|fi
 argument_list|)
 return|;
 block|}
-comment|// nocommit shrink the sync'd part to a cache miss
 DECL|method|getBinaryDocValues
-specifier|synchronized
 name|BinaryDocValues
 name|getBinaryDocValues
 parameter_list|(
@@ -1001,9 +997,7 @@ name|fi
 argument_list|)
 return|;
 block|}
-comment|// nocommit shrink the sync'd part to a cache miss
 DECL|method|getSortedDocValues
-specifier|synchronized
 name|SortedDocValues
 name|getSortedDocValues
 parameter_list|(
