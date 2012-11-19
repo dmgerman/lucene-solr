@@ -442,24 +442,24 @@ decl_stmt|,
 name|inclusiveUpperPoint
 decl_stmt|;
 comment|// Hints:
-comment|// * binarySearchLookup returns 0, if value was null.
+comment|// * binarySearchLookup returns -1, if value was null.
 comment|// * the value is<0 if no exact hit was found, the returned value
 comment|//   is (-(insertion point) - 1)
 if|if
 condition|(
 name|lowerPoint
 operator|==
-literal|0
-condition|)
-block|{
-assert|assert
+operator|-
+literal|1
+operator|&&
 name|lowerVal
 operator|==
 literal|null
-assert|;
+condition|)
+block|{
 name|inclusiveLowerPoint
 operator|=
-literal|1
+literal|0
 expr_stmt|;
 block|}
 elseif|else
@@ -468,7 +468,7 @@ condition|(
 name|includeLower
 operator|&&
 name|lowerPoint
-operator|>
+operator|>=
 literal|0
 condition|)
 block|{
@@ -481,7 +481,7 @@ elseif|else
 if|if
 condition|(
 name|lowerPoint
-operator|>
+operator|>=
 literal|0
 condition|)
 block|{
@@ -500,7 +500,7 @@ name|Math
 operator|.
 name|max
 argument_list|(
-literal|1
+literal|0
 argument_list|,
 operator|-
 name|lowerPoint
@@ -513,14 +513,14 @@ if|if
 condition|(
 name|upperPoint
 operator|==
-literal|0
-condition|)
-block|{
-assert|assert
+operator|-
+literal|1
+operator|&&
 name|upperVal
 operator|==
 literal|null
-assert|;
+condition|)
+block|{
 name|inclusiveUpperPoint
 operator|=
 name|Integer
@@ -534,7 +534,7 @@ condition|(
 name|includeUpper
 operator|&&
 name|upperPoint
-operator|>
+operator|>=
 literal|0
 condition|)
 block|{
@@ -547,7 +547,7 @@ elseif|else
 if|if
 condition|(
 name|upperPoint
-operator|>
+operator|>=
 literal|0
 condition|)
 block|{
@@ -571,25 +571,27 @@ block|}
 if|if
 condition|(
 name|inclusiveUpperPoint
-operator|<=
+argument_list|<
 literal|0
 operator|||
 name|inclusiveLowerPoint
-operator|>
+argument_list|>
 name|inclusiveUpperPoint
 condition|)
+block|{
 return|return
 name|DocIdSet
 operator|.
 name|EMPTY_DOCIDSET
 return|;
+block|}
 assert|assert
 name|inclusiveLowerPoint
-operator|>
+operator|>=
 literal|0
 operator|&&
 name|inclusiveUpperPoint
-operator|>
+operator|>=
 literal|0
 assert|;
 return|return

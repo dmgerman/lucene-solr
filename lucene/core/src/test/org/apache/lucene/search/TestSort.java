@@ -2616,6 +2616,8 @@ argument_list|,
 literal|52
 argument_list|)
 decl_stmt|;
+comment|// nocommit shouldn't this be tracer_fixed?  how is
+comment|// this passing?
 name|doc
 operator|.
 name|add
@@ -2788,6 +2790,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+comment|// nocommit
 comment|//writer.forceMerge(1);
 comment|//System.out.println(writer.getSegmentCount());
 name|writer
@@ -2805,11 +2808,17 @@ argument_list|(
 name|indexStore
 argument_list|)
 decl_stmt|;
-return|return
+name|IndexSearcher
+name|searcher
+init|=
 name|newSearcher
 argument_list|(
 name|reader
 argument_list|)
+decl_stmt|;
+comment|/*     for(int docID=0;docID<reader.maxDoc();docID++) {       StoredDocument doc = reader.document(docID);       String s = doc.get("tracer");       TopDocs hits = searcher.search(new TermQuery(new Term("string", s)), NUM_STRINGS);       System.out.println("string=" + s + " has " + hits.totalHits + " docs");       boolean found = false;       for(int hit=0;!found&& hit<hits.totalHits;hit++) {         if (hits.scoreDocs[hit].doc == docID) {           found = true;           break;         }       }       assertTrue(found);       s = doc.get("tracer2");       hits = searcher.search(new TermQuery(new Term("string2", s)), NUM_STRINGS);       System.out.println("string2=" + s + " has " + hits.totalHits + " docs");       found = false;       for(int hit=0;!found&& hit<hits.totalHits;hit++) {         if (hits.scoreDocs[hit].doc == docID) {           found = true;           break;         }       }       assertTrue(found);     }     */
+return|return
+name|searcher
 return|;
 block|}
 DECL|method|getRandomNumberString
@@ -4877,6 +4886,9 @@ name|v
 index|[
 name|j
 index|]
+operator|.
+name|stringValue
+argument_list|()
 operator|+
 literal|"("
 operator|+
@@ -4884,6 +4896,9 @@ name|v2
 index|[
 name|j
 index|]
+operator|.
+name|stringValue
+argument_list|()
 operator|+
 literal|")("
 operator|+

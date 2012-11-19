@@ -92,6 +92,22 @@ name|SortedDocValues
 import|;
 end_import
 
+begin_comment
+comment|// nocommit add javadocs stating that this must open all
+end_comment
+
+begin_comment
+comment|// necessary files "on init", not later eg in .getXXX, else
+end_comment
+
+begin_comment
+comment|// an IW that deletes a commit will cause an SR to hit
+end_comment
+
+begin_comment
+comment|// exceptions....
+end_comment
+
 begin_class
 DECL|class|SimpleDVProducer
 specifier|public

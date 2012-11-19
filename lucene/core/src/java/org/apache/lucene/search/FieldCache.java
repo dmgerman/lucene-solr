@@ -1456,6 +1456,7 @@ specifier|static
 class|class
 name|DocTermsIndex
 block|{
+comment|// nocommit remove this?
 DECL|method|binarySearchLookup
 specifier|public
 name|int
@@ -1475,13 +1476,16 @@ name|key
 operator|==
 literal|null
 condition|)
+block|{
 return|return
-literal|0
+operator|-
+literal|1
 return|;
+block|}
 name|int
 name|low
 init|=
-literal|1
+literal|0
 decl_stmt|;
 name|int
 name|high
@@ -1565,7 +1569,7 @@ operator|)
 return|;
 comment|// key not found.
 block|}
-comment|/** The BytesRef argument must not be null; the method      *  returns the same BytesRef, or an empty (length=0)      *  BytesRef if this ord is the null ord (0). */
+comment|/** The BytesRef argument must not be null; the method      *  returns the same BytesRef, or an empty (length=0)      *  BytesRef if this ord is the null ord (-1). */
 DECL|method|lookup
 specifier|public
 specifier|abstract
@@ -1592,19 +1596,36 @@ name|BytesRef
 name|reuse
 parameter_list|)
 block|{
-return|return
-name|lookup
-argument_list|(
+name|int
+name|ord
+init|=
 name|getOrd
 argument_list|(
 name|docID
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|ord
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+return|return
+name|lookup
+argument_list|(
+name|ord
 argument_list|,
 name|reuse
 argument_list|)
 return|;
 block|}
-comment|/** Returns sort ord for this document.  Ord 0 is      *  reserved for docs that are deleted or did not have      *  this field.  */
+comment|/** Returns sort ord for this document.  Ord -1 is      *  is returend for docs that are deleted or did not have      *  this field.  */
 DECL|method|getOrd
 specifier|public
 specifier|abstract
@@ -1615,7 +1636,7 @@ name|int
 name|docID
 parameter_list|)
 function_decl|;
-comment|/** Returns total unique ord count; this includes +1 for      *  the null ord (always 0) unless the field was      *  indexed with doc values. */
+comment|/** Returns total unique ord count. */
 DECL|method|numOrd
 specifier|public
 specifier|abstract
@@ -1637,16 +1658,6 @@ specifier|public
 specifier|abstract
 name|TermsEnum
 name|getTermsEnum
-parameter_list|()
-function_decl|;
-comment|/** @lucene.internal */
-DECL|method|getDocToOrd
-specifier|public
-specifier|abstract
-name|PackedInts
-operator|.
-name|Reader
-name|getDocToOrd
 parameter_list|()
 function_decl|;
 block|}

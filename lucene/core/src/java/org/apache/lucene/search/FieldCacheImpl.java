@@ -2002,20 +2002,6 @@ block|}
 block|}
 block|}
 block|}
-else|else
-block|{
-comment|// nocommit is this right ...
-name|docsWithField
-operator|=
-operator|new
-name|Bits
-operator|.
-name|MatchNoBits
-argument_list|(
-name|maxDoc
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 DECL|method|visitTerm
 specifier|protected
@@ -5038,20 +5024,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getDocToOrd
-specifier|public
-name|PackedInts
-operator|.
-name|Reader
-name|getDocToOrd
-parameter_list|()
-block|{
-return|return
-name|docToTermOrd
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|numOrd
 specifier|public
 name|int
@@ -5083,6 +5055,8 @@ name|get
 argument_list|(
 name|docID
 argument_list|)
+operator|-
+literal|1
 return|;
 block|}
 annotation|@
@@ -5194,7 +5168,8 @@ parameter_list|()
 block|{
 name|currentOrd
 operator|=
-literal|0
+operator|-
+literal|1
 expr_stmt|;
 name|currentBlockNumber
 operator|=
@@ -5214,21 +5189,14 @@ operator|.
 name|getBlockEnds
 argument_list|()
 expr_stmt|;
-name|currentBlockNumber
-operator|=
-name|bytes
-operator|.
-name|fillAndGetIndex
-argument_list|(
 name|term
-argument_list|,
-name|termOrdToBytesOffset
 operator|.
-name|get
-argument_list|(
+name|bytes
+operator|=
+name|blocks
+index|[
 literal|0
-argument_list|)
-argument_list|)
+index|]
 expr_stmt|;
 name|end
 operator|=
@@ -5258,7 +5226,7 @@ block|{
 name|int
 name|low
 init|=
-literal|1
+literal|0
 decl_stmt|;
 name|int
 name|high
@@ -5326,12 +5294,14 @@ operator|-
 literal|1
 expr_stmt|;
 else|else
+block|{
 return|return
 name|SeekStatus
 operator|.
 name|FOUND
 return|;
 comment|// key found
+block|}
 block|}
 if|if
 condition|(
@@ -5372,7 +5342,6 @@ throws|throws
 name|IOException
 block|{
 assert|assert
-operator|(
 name|ord
 operator|>=
 literal|0
@@ -5380,7 +5349,6 @@ operator|&&
 name|ord
 operator|<=
 name|numOrd
-operator|)
 assert|;
 comment|// TODO: if gap is small, could iterate from current position?  Or let user decide that?
 name|currentBlockNumber
@@ -5457,6 +5425,21 @@ operator|.
 name|length
 condition|)
 block|{
+assert|assert
+name|currentOrd
+operator|+
+literal|1
+operator|==
+name|numOrd
+operator|:
+literal|"currentOrd="
+operator|+
+name|currentOrd
+operator|+
+literal|" numOrd="
+operator|+
+name|numOrd
+assert|;
 return|return
 literal|null
 return|;
@@ -5490,10 +5473,19 @@ name|end
 operator|<=
 literal|0
 condition|)
+block|{
+assert|assert
+name|currentOrd
+operator|+
+literal|1
+operator|==
+name|numOrd
+assert|;
 return|return
 literal|null
 return|;
 comment|// special case of empty last array
+block|}
 block|}
 name|currentOrd
 operator|++
@@ -5775,6 +5767,10 @@ return|;
 block|}
 block|}
 block|}
+comment|// nocommit for DV if you ask for sorted or binary we
+comment|// should check sorted first?
+comment|// nocommit woudl be nice if .getTErms would return a
+comment|// DocTermsIndex if one already existed
 DECL|method|getTermsIndex
 specifier|public
 name|DocTermsIndex
@@ -6015,18 +6011,6 @@ return|return
 literal|null
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|Reader
-name|getDocToOrd
-parameter_list|()
-block|{
-comment|// nocommit: add this to the codec api!
-return|return
-literal|null
-return|;
-block|}
 block|}
 return|;
 block|}
@@ -6108,6 +6092,7 @@ operator|+
 literal|1
 expr_stmt|;
 block|}
+comment|// nocommit use Uninvert?
 if|if
 condition|(
 name|terms
@@ -6238,20 +6223,12 @@ name|acceptableOverheadRatio
 argument_list|)
 decl_stmt|;
 comment|// 0 is reserved for "unset"
-name|bytes
-operator|.
-name|copyUsingLengthPrefix
-argument_list|(
-operator|new
-name|BytesRef
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|int
 name|termOrd
 init|=
-literal|1
+literal|0
 decl_stmt|;
+comment|// nocommit use Uninvert?
 if|if
 condition|(
 name|terms
@@ -6397,6 +6374,8 @@ name|set
 argument_list|(
 name|docID
 argument_list|,
+literal|1
+operator|+
 name|termOrd
 argument_list|)
 expr_stmt|;
