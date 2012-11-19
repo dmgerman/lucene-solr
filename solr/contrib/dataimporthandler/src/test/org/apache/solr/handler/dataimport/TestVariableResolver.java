@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Test for VariableResolver  *</p>  *  *  * @since solr 1.3  */
+comment|/**  *<p>  * Test for VariableResolver  *</p>  *   *   * @since solr 1.3  */
 end_comment
 
 begin_class
@@ -160,7 +160,8 @@ argument_list|,
 literal|"hello"
 argument_list|)
 expr_stmt|;
-comment|// System.out.println("s.gP()"+ System.getProperty(TestVariableResolver.class.getName()));
+comment|// System.out.println("s.gP()"+
+comment|// System.getProperty(TestVariableResolver.class.getName()));
 name|Properties
 name|p
 init|=
