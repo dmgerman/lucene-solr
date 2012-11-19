@@ -479,7 +479,11 @@ return|return
 name|DateFormatEvaluator
 operator|.
 name|getDateMathParser
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 operator|.
 name|parseMath
 argument_list|(
