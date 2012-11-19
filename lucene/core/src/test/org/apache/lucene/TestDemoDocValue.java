@@ -4887,6 +4887,15 @@ argument_list|(
 literal|"dv"
 argument_list|)
 decl_stmt|;
+name|assertTrue
+argument_list|(
+name|dv
+operator|.
+name|isFixedLength
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// "hello world 1" length == "hello world 2" length
 name|BytesRef
 name|scratch
 init|=
