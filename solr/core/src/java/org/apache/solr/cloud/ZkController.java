@@ -2032,7 +2032,8 @@ operator|.
 name|getHostAddress
 argument_list|()
 decl_stmt|;
-comment|//Re-get the IP again for "127.0.0.1", the other case we trust the hosts file is right.
+comment|// Re-get the IP again for "127.0.0.1", the other case we trust the hosts
+comment|// file is right.
 if|if
 condition|(
 literal|"127.0.0.1"
