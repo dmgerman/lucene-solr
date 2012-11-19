@@ -4896,6 +4896,17 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// "hello world 1" length == "hello world 2" length
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|dv
+operator|.
+name|getValueCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// 2 ords
 name|BytesRef
 name|scratch
 init|=
@@ -4903,6 +4914,46 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
+name|dv
+operator|.
+name|lookupOrd
+argument_list|(
+literal|0
+argument_list|,
+name|scratch
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+operator|new
+name|BytesRef
+argument_list|(
+literal|"hello world 1"
+argument_list|)
+argument_list|,
+name|scratch
+argument_list|)
+expr_stmt|;
+name|dv
+operator|.
+name|lookupOrd
+argument_list|(
+literal|1
+argument_list|,
+name|scratch
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+operator|new
+name|BytesRef
+argument_list|(
+literal|"hello world 2"
+argument_list|)
+argument_list|,
+name|scratch
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
