@@ -564,6 +564,7 @@ throws|throws
 name|IOException
 block|{
 comment|// first compute fixedLength and maxLength of live ones to be merged.
+comment|// nocommit: messy, and can be simplified by using docValues.maxLength/fixedLength in many cases.
 name|boolean
 name|fixedLength
 init|=
@@ -633,9 +634,13 @@ condition|)
 block|{
 name|docValues
 operator|=
+operator|new
 name|BinaryDocValues
 operator|.
-name|DEFAULT
+name|EMPTY
+argument_list|(
+name|maxDoc
+argument_list|)
 expr_stmt|;
 block|}
 for|for
