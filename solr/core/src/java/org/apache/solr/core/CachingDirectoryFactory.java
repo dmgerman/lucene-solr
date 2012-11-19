@@ -607,7 +607,7 @@ condition|(
 name|cnt
 operator|++
 operator|>=
-literal|300
+literal|600
 condition|)
 block|{
 name|log
