@@ -770,6 +770,13 @@ argument_list|,
 name|valueCount
 argument_list|,
 name|maxLength
+argument_list|,
+name|this
+operator|.
+name|info
+operator|.
+name|getDocCount
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|success

@@ -247,6 +247,9 @@ name|valueCount
 parameter_list|,
 name|int
 name|maxLength
+parameter_list|,
+name|int
+name|docCount
 parameter_list|)
 throws|throws
 name|IOException
@@ -331,6 +334,13 @@ argument_list|(
 name|maxLength
 argument_list|)
 expr_stmt|;
+name|dataOut
+operator|.
+name|writeInt
+argument_list|(
+name|valueCount
+argument_list|)
+expr_stmt|;
 name|CodecUtil
 operator|.
 name|writeHeader
@@ -368,7 +378,7 @@ name|getWriter
 argument_list|(
 name|index
 argument_list|,
-name|valueCount
+name|docCount
 argument_list|,
 name|PackedInts
 operator|.
