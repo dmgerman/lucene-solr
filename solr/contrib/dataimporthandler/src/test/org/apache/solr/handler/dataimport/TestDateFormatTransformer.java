@@ -163,11 +163,11 @@ name|now
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|VariableResolverImpl
+name|VariableResolver
 name|resolver
 init|=
 operator|new
-name|VariableResolverImpl
+name|VariableResolver
 argument_list|()
 decl_stmt|;
 name|resolver
@@ -375,11 +375,11 @@ argument_list|,
 name|list
 argument_list|)
 expr_stmt|;
-name|VariableResolverImpl
+name|VariableResolver
 name|resolver
 init|=
 operator|new
-name|VariableResolverImpl
+name|VariableResolver
 argument_list|()
 decl_stmt|;
 name|resolver

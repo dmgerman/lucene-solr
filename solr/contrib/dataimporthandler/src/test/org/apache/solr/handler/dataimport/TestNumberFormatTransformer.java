@@ -383,11 +383,11 @@ argument_list|,
 name|inputs
 argument_list|)
 decl_stmt|;
-name|VariableResolverImpl
+name|VariableResolver
 name|resolver
 init|=
 operator|new
-name|VariableResolverImpl
+name|VariableResolver
 argument_list|()
 decl_stmt|;
 name|resolver

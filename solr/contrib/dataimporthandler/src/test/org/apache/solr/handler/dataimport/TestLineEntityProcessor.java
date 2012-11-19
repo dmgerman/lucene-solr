@@ -125,7 +125,7 @@ literal|null
 argument_list|,
 comment|//parentEntity
 operator|new
-name|VariableResolverImpl
+name|VariableResolver
 argument_list|()
 argument_list|,
 comment|//resolver
@@ -309,7 +309,7 @@ literal|null
 argument_list|,
 comment|//parentEntity
 operator|new
-name|VariableResolverImpl
+name|VariableResolver
 argument_list|()
 argument_list|,
 comment|//resolver
@@ -458,7 +458,7 @@ literal|null
 argument_list|,
 comment|//parentEntity
 operator|new
-name|VariableResolverImpl
+name|VariableResolver
 argument_list|()
 argument_list|,
 comment|//resolver
@@ -601,7 +601,7 @@ literal|null
 argument_list|,
 comment|//parentEntity
 operator|new
-name|VariableResolverImpl
+name|VariableResolver
 argument_list|()
 argument_list|,
 comment|//resolver

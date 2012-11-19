@@ -1869,11 +1869,11 @@ argument_list|>
 name|entityAttrs
 parameter_list|)
 block|{
-name|VariableResolverImpl
+name|VariableResolver
 name|resolver
 init|=
 operator|new
-name|VariableResolverImpl
+name|VariableResolver
 argument_list|()
 decl_stmt|;
 specifier|final
