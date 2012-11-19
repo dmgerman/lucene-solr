@@ -221,9 +221,13 @@ condition|)
 block|{
 name|source
 operator|=
+operator|new
 name|NumericDocValues
 operator|.
-name|DEFAULT
+name|EMPTY
+argument_list|(
+name|maxDoc
+argument_list|)
 expr_stmt|;
 block|}
 for|for

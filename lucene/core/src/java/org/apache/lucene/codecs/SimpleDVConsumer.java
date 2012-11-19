@@ -450,9 +450,13 @@ condition|)
 block|{
 name|docValues
 operator|=
+operator|new
 name|NumericDocValues
 operator|.
-name|DEFAULT
+name|EMPTY
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
 for|for
