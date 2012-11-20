@@ -1438,6 +1438,25 @@ argument_list|,
 name|message
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|sliceName
+operator|!=
+literal|null
+condition|)
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"shard="
+operator|+
+name|sliceName
+operator|+
+literal|" is already registered"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1468,6 +1487,21 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Collection already exists with "
+operator|+
+name|ZkStateReader
+operator|.
+name|NUM_SHARDS_PROP
+operator|+
+literal|"="
+operator|+
+name|numShards
+argument_list|)
+expr_stmt|;
 block|}
 name|sliceName
 operator|=
@@ -1480,6 +1514,15 @@ argument_list|,
 name|state
 argument_list|,
 name|numShards
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Assigning new node to shard shard="
+operator|+
+name|sliceName
 argument_list|)
 expr_stmt|;
 block|}
