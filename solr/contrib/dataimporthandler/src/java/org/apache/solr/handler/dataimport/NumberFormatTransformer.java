@@ -330,8 +330,7 @@ name|locale
 operator|=
 name|Locale
 operator|.
-name|getDefault
-argument_list|()
+name|ROOT
 expr_stmt|;
 block|}
 name|Object
