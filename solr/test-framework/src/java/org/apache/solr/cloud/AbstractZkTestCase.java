@@ -840,6 +840,18 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+name|SOLRHOME
+operator|=
+literal|null
+expr_stmt|;
+name|zkServer
+operator|=
+literal|null
+expr_stmt|;
+name|zkDir
+operator|=
+literal|null
+expr_stmt|;
 comment|// wait just a bit for any zk client threads to outlast timeout
 name|Thread
 operator|.
