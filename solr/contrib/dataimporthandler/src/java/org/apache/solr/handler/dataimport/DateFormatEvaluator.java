@@ -478,6 +478,8 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
+name|locale
+operator|=
 name|availableLocales
 operator|.
 name|get
