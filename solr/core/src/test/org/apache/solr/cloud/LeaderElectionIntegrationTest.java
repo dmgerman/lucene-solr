@@ -464,7 +464,7 @@ name|setProperty
 argument_list|(
 literal|"zkClientTimeout"
 argument_list|,
-literal|"3000"
+literal|"8000"
 argument_list|)
 expr_stmt|;
 name|zkDir
