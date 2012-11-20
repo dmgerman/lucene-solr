@@ -4479,6 +4479,7 @@ argument_list|(
 name|pk
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -4487,12 +4488,17 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"deltaQuery returned a row with null for primary key %s"
 argument_list|,
 name|pk
 argument_list|)
 argument_list|)
 throw|;
+block|}
 name|String
 name|resolvedPk
 init|=
@@ -4544,6 +4550,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"deltaQuery has more than one column (%s and %s) that might resolve to declared primary key pk='%s'"
 argument_list|,
 name|resolvedPk
@@ -4566,6 +4576,7 @@ name|resolvedPk
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -4574,12 +4585,17 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"deltaQuery has no column to resolve to declared primary key pk='%s'"
 argument_list|,
 name|pk
 argument_list|)
 argument_list|)
 throw|;
+block|}
 name|LOG
 operator|.
 name|info
@@ -4588,6 +4604,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Resolving deltaQuery column '%s' to match entity's declared pk '%s'"
 argument_list|,
 name|resolvedPk

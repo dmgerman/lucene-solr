@@ -518,6 +518,10 @@ operator|new
 name|SimpleDateFormat
 argument_list|(
 literal|"yyyy-MM-dd HH:mm:ss"
+argument_list|,
+name|Locale
+operator|.
+name|ROOT
 argument_list|)
 operator|.
 name|parse
