@@ -2431,9 +2431,9 @@ operator|)
 operator|+
 name|subIndex
 operator|+
-name|BitUtil
+name|Long
 operator|.
-name|ntz
+name|numberOfTrailingZeros
 argument_list|(
 name|word
 argument_list|)
@@ -2467,9 +2467,9 @@ operator|<<
 literal|6
 operator|)
 operator|+
-name|BitUtil
+name|Long
 operator|.
-name|ntz
+name|numberOfTrailingZeros
 argument_list|(
 name|word
 argument_list|)
@@ -2556,9 +2556,9 @@ operator|+
 operator|(
 name|subIndex
 operator|+
-name|BitUtil
+name|Long
 operator|.
-name|ntz
+name|numberOfTrailingZeros
 argument_list|(
 name|word
 argument_list|)
@@ -2598,9 +2598,9 @@ operator|<<
 literal|6
 operator|)
 operator|+
-name|BitUtil
+name|Long
 operator|.
-name|ntz
+name|numberOfTrailingZeros
 argument_list|(
 name|word
 argument_list|)
