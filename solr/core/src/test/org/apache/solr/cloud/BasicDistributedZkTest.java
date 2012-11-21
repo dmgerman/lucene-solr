@@ -4110,7 +4110,7 @@ comment|//    printLayout();
 name|int
 name|tries
 init|=
-literal|20
+literal|50
 decl_stmt|;
 while|while
 condition|(
