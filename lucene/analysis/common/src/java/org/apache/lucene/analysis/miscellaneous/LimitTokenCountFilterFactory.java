@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link LimitTokenCountFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lngthcnt" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LimitTokenCountFilterFactory" maxTokenCount="10"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *  */
+comment|/**  * Factory for {@link LimitTokenCountFilter}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lngthcnt" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.LimitTokenCountFilterFactory" maxTokenCount="10" consumeAllTokens="false" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   *<p>  * The {@code consumeAllTokens} property is optional and defaults to {@code false}.  See {@link LimitTokenCountFilter} for an explanation of it's use.  */
 end_comment
 
 begin_class
@@ -95,9 +95,22 @@ name|MAX_TOKEN_COUNT_KEY
 init|=
 literal|"maxTokenCount"
 decl_stmt|;
+DECL|field|CONSUME_ALL_TOKENS_KEY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONSUME_ALL_TOKENS_KEY
+init|=
+literal|"consumeAllTokens"
+decl_stmt|;
 DECL|field|maxTokenCount
 name|int
 name|maxTokenCount
+decl_stmt|;
+DECL|field|consumeAllTokens
+name|boolean
+name|consumeAllTokens
 decl_stmt|;
 annotation|@
 name|Override
@@ -129,6 +142,15 @@ argument_list|(
 name|MAX_TOKEN_COUNT_KEY
 argument_list|)
 expr_stmt|;
+name|consumeAllTokens
+operator|=
+name|getBoolean
+argument_list|(
+name|CONSUME_ALL_TOKENS_KEY
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -148,6 +170,8 @@ argument_list|(
 name|input
 argument_list|,
 name|maxTokenCount
+argument_list|,
+name|consumeAllTokens
 argument_list|)
 return|;
 block|}
