@@ -374,7 +374,7 @@ name|groupField
 argument_list|,
 literal|"a"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -385,7 +385,7 @@ literal|"airport"
 argument_list|,
 literal|"ams"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -396,7 +396,7 @@ literal|"duration"
 argument_list|,
 literal|"5"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -421,7 +421,7 @@ name|groupField
 argument_list|,
 literal|"a"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -432,7 +432,7 @@ literal|"airport"
 argument_list|,
 literal|"dus"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -443,7 +443,7 @@ literal|"duration"
 argument_list|,
 literal|"10"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -468,7 +468,7 @@ name|groupField
 argument_list|,
 literal|"b"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -479,7 +479,7 @@ literal|"airport"
 argument_list|,
 literal|"ams"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -490,7 +490,7 @@ literal|"duration"
 argument_list|,
 literal|"10"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -521,7 +521,7 @@ name|groupField
 argument_list|,
 literal|"b"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -532,7 +532,7 @@ literal|"airport"
 argument_list|,
 literal|"ams"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -543,7 +543,7 @@ literal|"duration"
 argument_list|,
 literal|"5"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -568,7 +568,7 @@ name|groupField
 argument_list|,
 literal|"b"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -579,7 +579,7 @@ literal|"airport"
 argument_list|,
 literal|"ams"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -590,7 +590,7 @@ literal|"duration"
 argument_list|,
 literal|"5"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -933,7 +933,7 @@ name|groupField
 argument_list|,
 literal|"b"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -944,7 +944,7 @@ literal|"duration"
 argument_list|,
 literal|"5"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -969,7 +969,7 @@ name|groupField
 argument_list|,
 literal|"b"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -980,7 +980,7 @@ literal|"airport"
 argument_list|,
 literal|"bru"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -991,7 +991,7 @@ literal|"duration"
 argument_list|,
 literal|"10"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -1016,7 +1016,7 @@ name|groupField
 argument_list|,
 literal|"b"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -1027,7 +1027,7 @@ literal|"airport"
 argument_list|,
 literal|"bru"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -1038,7 +1038,7 @@ literal|"duration"
 argument_list|,
 literal|"15"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -1063,7 +1063,7 @@ name|groupField
 argument_list|,
 literal|"a"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -1074,7 +1074,7 @@ literal|"airport"
 argument_list|,
 literal|"bru"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -1085,7 +1085,7 @@ literal|"duration"
 argument_list|,
 literal|"10"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -1388,7 +1388,7 @@ name|groupField
 argument_list|,
 literal|"c"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -1399,7 +1399,7 @@ literal|"airport"
 argument_list|,
 literal|"bru"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -1410,7 +1410,7 @@ literal|"duration"
 argument_list|,
 literal|"15"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -1435,7 +1435,7 @@ name|groupField
 argument_list|,
 literal|"c"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -1446,7 +1446,7 @@ literal|"airport"
 argument_list|,
 literal|"dus"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|addField
@@ -1457,7 +1457,7 @@ literal|"duration"
 argument_list|,
 literal|"10"
 argument_list|,
-name|canUseDV
+name|useDv
 argument_list|)
 expr_stmt|;
 name|w
@@ -2779,8 +2779,16 @@ name|groupFacetCollector
 init|=
 name|createRandomCollector
 argument_list|(
+name|useDv
+condition|?
+literal|"group_dv"
+else|:
 literal|"group"
 argument_list|,
+name|useDv
+condition|?
+literal|"facet_dv"
+else|:
 literal|"facet"
 argument_list|,
 name|facetPrefix
@@ -3680,7 +3688,7 @@ init|=
 operator|new
 name|SortedBytesDocValuesField
 argument_list|(
-literal|"group"
+literal|"group_dv"
 argument_list|,
 operator|new
 name|BytesRef
@@ -3784,7 +3792,7 @@ operator|=
 operator|new
 name|SortedBytesDocValuesField
 argument_list|(
-literal|"facet"
+literal|"facet_dv"
 argument_list|,
 operator|new
 name|BytesRef

@@ -75,7 +75,8 @@ decl_stmt|;
 do|do
 block|{
 comment|// B/c of DV based impl we can't see the difference between an empty string and a null value.
-comment|// For that reason we don't generate empty string groups.
+comment|// For that reason we don't generate empty string
+comment|// groups.
 name|randomValue
 operator|=
 name|_TestUtil

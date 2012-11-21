@@ -195,7 +195,8 @@ decl_stmt|;
 return|return
 name|ord
 operator|==
-literal|0
+operator|-
+literal|1
 condition|?
 literal|null
 else|:

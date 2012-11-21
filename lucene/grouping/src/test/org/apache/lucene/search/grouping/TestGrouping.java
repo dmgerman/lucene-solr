@@ -1498,6 +1498,8 @@ operator|new
 name|SortedBytesDocValuesField
 argument_list|(
 name|groupField
+operator|+
+literal|"_dv"
 argument_list|,
 operator|new
 name|BytesRef
@@ -1569,6 +1571,8 @@ argument_list|,
 name|topDocs
 argument_list|,
 name|groupField
+operator|+
+literal|"_dv"
 argument_list|,
 name|Type
 operator|.
@@ -1721,6 +1725,8 @@ argument_list|,
 name|topDocs
 argument_list|,
 name|groupField
+operator|+
+literal|"_dv"
 argument_list|,
 name|Type
 operator|.
@@ -1889,6 +1895,8 @@ operator|.
 name|create
 argument_list|(
 name|groupField
+operator|+
+literal|"_dv"
 argument_list|,
 name|diskResident
 argument_list|,
@@ -2113,6 +2121,8 @@ operator|.
 name|create
 argument_list|(
 name|groupField
+operator|+
+literal|"_dv"
 argument_list|,
 name|diskResident
 argument_list|,
@@ -2404,6 +2414,8 @@ operator|.
 name|create
 argument_list|(
 name|groupField
+operator|+
+literal|"_dv"
 argument_list|,
 name|Type
 operator|.
@@ -5567,7 +5579,7 @@ init|=
 operator|new
 name|SortedBytesDocValuesField
 argument_list|(
-literal|"group"
+literal|"group_dv"
 argument_list|,
 operator|new
 name|BytesRef
@@ -9039,6 +9051,10 @@ name|toString
 argument_list|(
 name|subSearchers
 argument_list|)
+operator|+
+literal|" canUseIDV="
+operator|+
+name|canUseIDV
 argument_list|)
 expr_stmt|;
 block|}
@@ -9217,6 +9233,34 @@ name|groupOffset
 operator|+
 name|topNGroups
 argument_list|,
+name|firstPassCollector
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  shard="
+operator|+
+name|shardIDX
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"    1st pass collector="
+operator|+
 name|firstPassCollector
 argument_list|)
 expr_stmt|;
