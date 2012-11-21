@@ -1209,6 +1209,8 @@ name|OpenMode
 name|openMode
 parameter_list|)
 block|{
+comment|// TODO: should we use a more optimized Codec, e.g. Pulsing (or write custom)?
+comment|// The taxonomy has a unique structure, where each term is associated with one document
 comment|// Make sure we use a MergePolicy which always merges adjacent segments and thus
 comment|// keeps the doc IDs ordered as well (this is crucial for the taxonomy index).
 return|return
@@ -2211,6 +2213,8 @@ name|id
 argument_list|)
 expr_stmt|;
 comment|// also add to the parent array
+name|parentArray
+operator|=
 name|getParentArray
 argument_list|()
 operator|.
@@ -2969,12 +2973,6 @@ block|{
 name|initReaderManager
 argument_list|()
 expr_stmt|;
-name|parentArray
-operator|=
-operator|new
-name|ParentArray
-argument_list|()
-expr_stmt|;
 name|DirectoryReader
 name|reader
 init|=
@@ -2986,8 +2984,9 @@ decl_stmt|;
 try|try
 block|{
 name|parentArray
-operator|.
-name|refresh
+operator|=
+operator|new
+name|ParentArray
 argument_list|(
 name|reader
 argument_list|)
@@ -3756,6 +3755,28 @@ parameter_list|()
 block|{
 return|return
 name|dir
+return|;
+block|}
+comment|/**    * Used by {@link DirectoryTaxonomyReader} to support NRT.    *<p>    *<b>NOTE:</b> you should not use the obtained {@link IndexWriter} in any    * way, other than opening an IndexReader on it, or otherwise, the taxonomy    * index may become corrupt!    */
+DECL|method|getInternalIndexWriter
+specifier|final
+name|IndexWriter
+name|getInternalIndexWriter
+parameter_list|()
+block|{
+return|return
+name|indexWriter
+return|;
+block|}
+comment|/** Used by {@link DirectoryTaxonomyReader} to support NRT. */
+DECL|method|getTaxonomyEpoch
+specifier|final
+name|long
+name|getTaxonomyEpoch
+parameter_list|()
+block|{
+return|return
+name|indexEpoch
 return|;
 block|}
 block|}

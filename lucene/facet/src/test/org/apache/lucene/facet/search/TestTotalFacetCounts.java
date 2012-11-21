@@ -585,14 +585,6 @@ index|[
 literal|0
 index|]
 operator|.
-name|commit
-argument_list|()
-expr_stmt|;
-name|writers
-index|[
-literal|0
-index|]
-operator|.
 name|close
 argument_list|()
 expr_stmt|;
