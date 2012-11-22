@@ -935,11 +935,6 @@ operator|+=
 name|numDataBytes
 expr_stmt|;
 comment|// this is the address after all addr pointers are updated
-name|iter
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 finally|finally
 block|{
