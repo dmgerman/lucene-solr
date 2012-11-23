@@ -2904,7 +2904,7 @@ init|=
 literal|0
 init|;
 name|i
-operator|<
+operator|<=
 literal|1
 condition|;
 name|i
