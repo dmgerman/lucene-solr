@@ -24,22 +24,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|Query
@@ -180,7 +164,7 @@ name|String
 name|query
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|_func
 operator|.
@@ -205,7 +189,7 @@ name|void
 name|testGeodistSource
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|Query
 name|q_home
@@ -258,7 +242,7 @@ name|void
 name|testNumerics
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|String
 index|[]
@@ -385,7 +369,7 @@ name|String
 name|type
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|String
 name|s1
@@ -592,7 +576,7 @@ index|[]
 name|types
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|String
 name|s1

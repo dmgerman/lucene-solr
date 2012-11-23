@@ -164,22 +164,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|IndexSearcher
@@ -269,6 +253,20 @@ operator|.
 name|search
 operator|.
 name|FunctionQParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|SyntaxError
 import|;
 end_import
 
@@ -374,7 +372,7 @@ name|FunctionQParser
 name|fp
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|// TODO: dispatch through SpatialQueryable in the future?
 name|List
@@ -446,7 +444,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"geodist - invalid parameters:"
 operator|+
@@ -635,7 +633,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"geodist - invalid parameters:"
 operator|+
@@ -709,7 +707,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"geodist - invalid parameters:"
 operator|+
@@ -781,7 +779,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"geodist - not enough parameters:"
 operator|+
@@ -895,7 +893,7 @@ argument_list|>
 name|orig
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|ValueSource
 name|vs1
@@ -930,7 +928,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"geodist - invalid parameters:"
 operator|+
@@ -956,7 +954,7 @@ name|FunctionQParser
 name|fp
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|String
 name|pt
@@ -1005,7 +1003,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Bad spatial pt:"
 operator|+
@@ -1156,7 +1154,7 @@ name|FunctionQParser
 name|fp
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|String
 name|sfield
@@ -1222,7 +1220,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Spatial field must implement MultiValueSource:"
 operator|+

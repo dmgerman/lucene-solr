@@ -2004,7 +2004,7 @@ argument_list|)
 decl_stmt|;
 name|fail
 argument_list|(
-literal|"Didn't generate ParseException for: "
+literal|"Didn't generate SyntaxError for: "
 operator|+
 name|command
 argument_list|)

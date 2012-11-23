@@ -24,22 +24,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|Query
@@ -262,7 +246,7 @@ name|Query
 name|parse
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|String
 name|qstr
@@ -382,7 +366,7 @@ index|[]
 block|{
 name|lparser
 operator|.
-name|getField
+name|getDefaultField
 argument_list|()
 block|}
 return|;
@@ -438,7 +422,7 @@ name|Query
 name|parse
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|// handle legacy "query;sort" syntax
 if|if
@@ -570,7 +554,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"If you want to use multiple ';' in the query, use the 'sort' param."
 argument_list|)
@@ -601,7 +585,7 @@ name|boolean
 name|useGlobal
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|SortSpec
 name|sort

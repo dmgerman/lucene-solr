@@ -234,38 +234,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|QueryParser
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|*
@@ -294,9 +262,37 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|search
+name|parser
 operator|.
-name|SolrQueryParser
+name|ParseException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|parser
+operator|.
+name|QueryParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|parser
+operator|.
+name|SolrQueryParserBase
 operator|.
 name|MagicFieldName
 import|;
@@ -599,7 +595,7 @@ name|Query
 name|parse
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|SolrParams
 name|localParams
@@ -961,7 +957,7 @@ block|{
 return|return
 literal|null
 return|;
-comment|// throw new ParseException("missing query string" );
+comment|// throw new SyntaxError("missing query string" );
 block|}
 block|}
 else|else
@@ -2491,7 +2487,7 @@ name|int
 name|slop
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 if|if
 condition|(
@@ -2755,7 +2751,7 @@ name|Query
 name|getHighlightQuery
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 return|return
 name|parsedUserQuery
@@ -4361,8 +4357,6 @@ argument_list|(
 name|parser
 argument_list|,
 name|defaultField
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 comment|// don't trust that our parent class won't ever change it's default
@@ -4405,7 +4399,7 @@ name|boolean
 name|disableCoord
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|Query
 name|q
@@ -4597,7 +4591,7 @@ name|boolean
 name|quoted
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|//System.out.println("getFieldQuery: val="+val);
 name|this
@@ -4650,7 +4644,7 @@ name|int
 name|slop
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|//System.out.println("getFieldQuery: val="+val+" slop="+slop);
 name|this
@@ -4698,7 +4692,7 @@ name|String
 name|val
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|//System.out.println("getPrefixQuery: val="+val);
 if|if
@@ -4769,7 +4763,7 @@ name|boolean
 name|quoted
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|Analyzer
 name|actualAnalyzer
@@ -4882,7 +4876,7 @@ name|boolean
 name|endInclusive
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|//System.out.println("getRangeQuery:");
 name|this
@@ -4942,7 +4936,7 @@ name|String
 name|val
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|//System.out.println("getWildcardQuery: val="+val);
 if|if
@@ -5025,7 +5019,7 @@ name|float
 name|minSimilarity
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|//System.out.println("getFuzzyQuery: val="+val);
 name|this
@@ -5066,7 +5060,7 @@ name|Query
 name|getAliasedQuery
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|Alias
 name|a
@@ -5243,7 +5237,7 @@ name|String
 name|field
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|Set
 argument_list|<
@@ -5277,7 +5271,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Field aliases lead to a cycle"
 argument_list|)
@@ -5396,7 +5390,7 @@ name|Alias
 name|a
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 if|if
 condition|(
