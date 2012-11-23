@@ -192,7 +192,7 @@ name|SolrQueryParserBase
 implements|implements
 name|QueryParserConstants
 block|{
-comment|/** The default operator for parsing queries.    * Use {@link QueryParserBase#setDefaultOperator} to change it.    */
+comment|/** The default operator for parsing queries.    */
 DECL|enum|Operator
 DECL|enum constant|OR
 DECL|enum constant|AND
@@ -205,7 +205,6 @@ name|OR
 block|,
 name|AND
 block|}
-comment|/** Create a query parser.    *  @param matchVersion  Lucene version to match. See<a href="#version">above</a>.    *  @param defaultField  the default field for query terms.    *  @param a   used to find terms in the query text.    */
 DECL|method|QueryParser
 specifier|public
 name|QueryParser
