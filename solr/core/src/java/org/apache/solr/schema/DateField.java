@@ -2095,7 +2095,8 @@ if|if
 condition|(
 name|ord
 operator|==
-literal|0
+operator|-
+literal|1
 condition|)
 block|{
 return|return
@@ -2156,7 +2157,8 @@ if|if
 condition|(
 name|ord
 operator|==
-literal|0
+operator|-
+literal|1
 condition|)
 block|{
 return|return

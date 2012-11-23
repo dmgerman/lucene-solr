@@ -994,7 +994,7 @@ control|(
 name|int
 name|i
 init|=
-literal|1
+literal|0
 init|;
 name|i
 operator|<
@@ -1092,7 +1092,8 @@ argument_list|(
 name|doc
 argument_list|)
 operator|!=
-literal|0
+operator|-
+literal|1
 return|;
 block|}
 annotation|@
@@ -1164,7 +1165,8 @@ operator|=
 operator|(
 name|ord
 operator|!=
-literal|0
+operator|-
+literal|1
 operator|)
 expr_stmt|;
 block|}

@@ -8308,6 +8308,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|// nocommit why do we have this AND DTI.binarySearch?
 DECL|method|binarySearch
 specifier|final
 specifier|protected

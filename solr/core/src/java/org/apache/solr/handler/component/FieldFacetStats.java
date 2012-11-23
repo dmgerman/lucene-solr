@@ -255,7 +255,7 @@ name|numStatsTerms
 expr_stmt|;
 name|startTermIndex
 operator|=
-literal|1
+literal|0
 expr_stmt|;
 name|endTermIndex
 operator|=
@@ -361,7 +361,8 @@ if|if
 condition|(
 name|ord
 operator|==
-literal|0
+operator|-
+literal|1
 condition|)
 block|{
 return|return

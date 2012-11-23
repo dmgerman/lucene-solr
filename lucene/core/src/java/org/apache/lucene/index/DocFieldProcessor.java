@@ -479,7 +479,8 @@ literal|null
 condition|)
 block|{
 comment|// nocommit maybe we should sort by .... somethign?
-comment|// field name?  field number?  else this is hash order!!
+comment|// field name?  field number?  else this is hash
+comment|// order!!
 if|if
 condition|(
 name|field
