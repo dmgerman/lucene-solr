@@ -150,6 +150,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|BinaryDocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|DocTermOrds
 import|;
 end_import
@@ -1355,53 +1369,10 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returned by {@link #getTerms} */
-comment|// nocommit: merge this api with the BinaryDocValues api?
-DECL|class|DocTerms
-specifier|public
-specifier|abstract
-specifier|static
-class|class
-name|DocTerms
-block|{
-comment|/** The BytesRef argument must not be null; the method      *  returns the same BytesRef, or an empty (length=0)      *  BytesRef if the doc did not have this field or was      *  deleted. */
-DECL|method|getTerm
-specifier|public
-specifier|abstract
-name|BytesRef
-name|getTerm
-parameter_list|(
-name|int
-name|docID
-parameter_list|,
-name|BytesRef
-name|ret
-parameter_list|)
-function_decl|;
-comment|/** Returns true if this doc has this field and is not      *  deleted. */
-DECL|method|exists
-specifier|public
-specifier|abstract
-name|boolean
-name|exists
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
-function_decl|;
-comment|/** Number of documents */
-DECL|method|size
-specifier|public
-specifier|abstract
-name|int
-name|size
-parameter_list|()
-function_decl|;
-block|}
-comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link DocTerms} instance, providing a    * method to retrieve the term (as a BytesRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link BinaryDocValues} instance, providing a    * method to retrieve the term (as a BytesRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getTerms
 specifier|public
-name|DocTerms
+name|BinaryDocValues
 name|getTerms
 parameter_list|(
 name|AtomicReader
@@ -1416,7 +1387,7 @@ function_decl|;
 comment|/** Expert: just like {@link #getTerms(AtomicReader,String)},    *  but you can specify whether more RAM should be consumed in exchange for    *  faster lookups (default is "true").  Note that the    *  first call for a given reader and field "wins",    *  subsequent calls will share the same cache entry. */
 DECL|method|getTerms
 specifier|public
-name|DocTerms
+name|BinaryDocValues
 name|getTerms
 parameter_list|(
 name|AtomicReader
@@ -1431,7 +1402,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link DocTerms} instance, providing a    * method to retrieve the term (as a BytesRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
+comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link SortedDocValues} instance,    * providing methods to retrieve sort ordinals and terms    * (as a ByteRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getTermsIndex
 specifier|public
 name|SortedDocValues

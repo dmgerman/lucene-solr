@@ -141,16 +141,21 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|// nocommit what to do ... maybe we need to return
-comment|// BytesRef?
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"doc has no value"
-argument_list|)
-throw|;
+name|result
+operator|.
+name|bytes
+operator|=
+name|MISSING
+expr_stmt|;
+name|result
+operator|.
+name|length
+operator|=
+literal|0
+expr_stmt|;
 block|}
+else|else
+block|{
 name|lookupOrd
 argument_list|(
 name|ord
@@ -158,6 +163,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|getTermsEnum
 specifier|public
@@ -848,7 +854,6 @@ block|}
 block|}
 return|;
 block|}
-comment|// nocommit binary search lookup?
 DECL|class|EMPTY
 specifier|public
 specifier|static
@@ -976,22 +981,6 @@ name|BytesRef
 name|spare
 parameter_list|)
 block|{
-comment|// this special case is the reason that Arrays.binarySearch() isn't useful.
-if|if
-condition|(
-name|key
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"key must not be null"
-argument_list|)
-throw|;
-block|}
 name|int
 name|low
 init|=
