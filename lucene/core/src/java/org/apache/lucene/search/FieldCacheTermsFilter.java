@@ -80,9 +80,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|index
 operator|.
-name|FixedBitSet
+name|SortedDocValues
 import|;
 end_import
 
@@ -111,6 +111,20 @@ operator|.
 name|util
 operator|.
 name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|FixedBitSet
 import|;
 end_import
 
@@ -254,9 +268,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FieldCache
-operator|.
-name|DocTermsIndex
+name|SortedDocValues
 name|fcsi
 init|=
 name|getFieldCache
@@ -281,7 +293,7 @@ name|FixedBitSet
 argument_list|(
 name|fcsi
 operator|.
-name|numOrd
+name|getValueCount
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -315,7 +327,7 @@ name|ord
 init|=
 name|fcsi
 operator|.
-name|binarySearchLookup
+name|lookupTerm
 argument_list|(
 name|terms
 index|[

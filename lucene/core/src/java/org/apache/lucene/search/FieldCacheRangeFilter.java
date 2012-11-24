@@ -34,41 +34,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|AtomicReader
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|AtomicReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
-name|IntField
+name|DoubleField
 import|;
 end_import
 
@@ -104,7 +72,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|IntField
 import|;
 end_import
 
@@ -122,7 +90,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DoubleField
+name|LongField
 import|;
 end_import
 
@@ -138,9 +106,41 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|index
 operator|.
-name|NumericUtils
+name|AtomicReader
+import|;
+end_import
+
+begin_comment
+comment|// for javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SortedDocValues
 import|;
 end_import
 
@@ -169,6 +169,20 @@ operator|.
 name|util
 operator|.
 name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|NumericUtils
 import|;
 end_import
 
@@ -362,9 +376,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FieldCache
-operator|.
-name|DocTermsIndex
+name|SortedDocValues
 name|fcsi
 init|=
 name|FieldCache
@@ -402,7 +414,7 @@ literal|1
 else|:
 name|fcsi
 operator|.
-name|binarySearchLookup
+name|lookupTerm
 argument_list|(
 operator|new
 name|BytesRef
@@ -426,7 +438,7 @@ literal|1
 else|:
 name|fcsi
 operator|.
-name|binarySearchLookup
+name|lookupTerm
 argument_list|(
 operator|new
 name|BytesRef

@@ -210,7 +210,7 @@ block|{
 return|return
 name|termsIndex
 operator|.
-name|numOrd
+name|getValueCount
 argument_list|()
 return|;
 block|}

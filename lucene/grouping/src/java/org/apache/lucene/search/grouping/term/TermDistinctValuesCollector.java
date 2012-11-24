@@ -22,6 +22,26 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -42,9 +62,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|FieldCache
+name|SortedDocValues
 import|;
 end_import
 
@@ -59,14 +79,8 @@ operator|.
 name|search
 operator|.
 name|FieldCache
-operator|.
-name|DocTermsIndex
 import|;
 end_import
-
-begin_comment
-comment|// javadocs
-end_comment
 
 begin_import
 import|import
@@ -128,28 +142,8 @@ name|SentinelIntSet
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
-comment|/**  * A term based implementation of {@link org.apache.lucene.search.grouping.AbstractDistinctValuesCollector} that relies  * on {@link DocTermsIndex} to count the distinct values per group.  *  * @lucene.experimental  */
+comment|/**  * A term based implementation of {@link org.apache.lucene.search.grouping.AbstractDistinctValuesCollector} that relies  * on {@link SortedDocValues} to count the distinct values per group.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -211,16 +205,12 @@ argument_list|()
 decl_stmt|;
 DECL|field|groupFieldTermIndex
 specifier|private
-name|FieldCache
-operator|.
-name|DocTermsIndex
+name|SortedDocValues
 name|groupFieldTermIndex
 decl_stmt|;
 DECL|field|countFieldTermIndex
 specifier|private
-name|FieldCache
-operator|.
-name|DocTermsIndex
+name|SortedDocValues
 name|countFieldTermIndex
 decl_stmt|;
 comment|/**    * Constructs {@link TermDistinctValuesCollector} instance.    *    * @param groupField The field to group by    * @param countField The field to count distinct values for    * @param groups The top N groups, collected during the first phase search    */
@@ -361,16 +351,6 @@ condition|)
 block|{
 return|return;
 block|}
-name|int
-name|groupOrd
-init|=
-name|groupFieldTermIndex
-operator|.
-name|getOrd
-argument_list|(
-name|doc
-argument_list|)
-decl_stmt|;
 name|GroupCount
 name|gc
 init|=
@@ -421,22 +401,29 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|BytesRef
+name|br
+init|=
+operator|new
+name|BytesRef
+argument_list|()
+decl_stmt|;
+name|countFieldTermIndex
+operator|.
+name|lookupOrd
+argument_list|(
+name|countOrd
+argument_list|,
+name|br
+argument_list|)
+expr_stmt|;
 name|gc
 operator|.
 name|uniqueValues
 operator|.
 name|add
 argument_list|(
-name|countFieldTermIndex
-operator|.
-name|lookup
-argument_list|(
-name|countOrd
-argument_list|,
-operator|new
-name|BytesRef
-argument_list|()
-argument_list|)
+name|br
 argument_list|)
 expr_stmt|;
 block|}
@@ -647,7 +634,7 @@ literal|1
 else|:
 name|groupFieldTermIndex
 operator|.
-name|binarySearchLookup
+name|lookupTerm
 argument_list|(
 name|group
 operator|.
@@ -737,7 +724,7 @@ literal|1
 else|:
 name|countFieldTermIndex
 operator|.
-name|binarySearchLookup
+name|lookupTerm
 argument_list|(
 name|value
 argument_list|,

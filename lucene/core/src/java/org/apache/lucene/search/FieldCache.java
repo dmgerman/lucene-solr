@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|DoubleField
 import|;
 end_import
 
@@ -100,7 +100,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|IntField
 import|;
 end_import
 
@@ -118,27 +118,13 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DoubleField
+name|LongField
 import|;
 end_import
 
 begin_comment
 comment|// for javadocs
 end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocTermOrds
-import|;
-end_import
 
 begin_import
 import|import
@@ -164,7 +150,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TermsEnum
+name|DocTermOrds
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SortedDocValues
 import|;
 end_import
 
@@ -224,24 +224,8 @@ name|RamUsageEstimator
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|packed
-operator|.
-name|PackedInts
-import|;
-end_import
-
 begin_comment
-comment|/**  * Expert: Maintains caches of term values.  *  *<p>Created: May 19, 2004 11:13:14 AM  *  * @since   lucene 1.4  * @see org.apache.lucene.util.FieldCacheSanityChecker  */
+comment|/**  * Expert: Maintains caches of term values.  *  *<p>Created: May 19, 2004 11:13:14 AM  *  * @since   lucene 1.4  * @see org.apache.lucene.util.FieldCacheSanityChecker  *  * @lucene.internal  */
 end_comment
 
 begin_comment
@@ -1372,7 +1356,7 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/** Returned by {@link #getTerms} */
-comment|// nocommit: can we merge this api with the BinaryDocValues api?
+comment|// nocommit: merge this api with the BinaryDocValues api?
 DECL|class|DocTerms
 specifier|public
 specifier|abstract
@@ -1447,226 +1431,10 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returned by {@link #getTermsIndex} */
-comment|// nocommit: can we merge this api with the SortedDocValues api?
-DECL|class|DocTermsIndex
-specifier|public
-specifier|abstract
-specifier|static
-class|class
-name|DocTermsIndex
-block|{
-DECL|method|binarySearchLookup
-specifier|public
-name|int
-name|binarySearchLookup
-parameter_list|(
-name|BytesRef
-name|key
-parameter_list|,
-name|BytesRef
-name|spare
-parameter_list|)
-block|{
-comment|// this special case is the reason that Arrays.binarySearch() isn't useful.
-if|if
-condition|(
-name|key
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"key must not be null"
-argument_list|)
-throw|;
-block|}
-name|int
-name|low
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|high
-init|=
-name|numOrd
-argument_list|()
-operator|-
-literal|1
-decl_stmt|;
-while|while
-condition|(
-name|low
-operator|<=
-name|high
-condition|)
-block|{
-name|int
-name|mid
-init|=
-operator|(
-name|low
-operator|+
-name|high
-operator|)
-operator|>>>
-literal|1
-decl_stmt|;
-name|int
-name|cmp
-init|=
-name|lookup
-argument_list|(
-name|mid
-argument_list|,
-name|spare
-argument_list|)
-operator|.
-name|compareTo
-argument_list|(
-name|key
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|cmp
-operator|<
-literal|0
-condition|)
-name|low
-operator|=
-name|mid
-operator|+
-literal|1
-expr_stmt|;
-elseif|else
-if|if
-condition|(
-name|cmp
-operator|>
-literal|0
-condition|)
-name|high
-operator|=
-name|mid
-operator|-
-literal|1
-expr_stmt|;
-else|else
-return|return
-name|mid
-return|;
-comment|// key found
-block|}
-return|return
-operator|-
-operator|(
-name|low
-operator|+
-literal|1
-operator|)
-return|;
-comment|// key not found.
-block|}
-comment|/** The BytesRef argument must not be null; the method      *  returns the same BytesRef, or an empty (length=0)      *  BytesRef if this ord is the null ord (-1). */
-DECL|method|lookup
-specifier|public
-specifier|abstract
-name|BytesRef
-name|lookup
-parameter_list|(
-name|int
-name|ord
-parameter_list|,
-name|BytesRef
-name|reuse
-parameter_list|)
-function_decl|;
-comment|/** Convenience method, to lookup the Term for a doc.      *  If this doc is deleted or did not have this field,      *  this will return an empty (length=0) BytesRef. */
-DECL|method|getTerm
-specifier|public
-name|BytesRef
-name|getTerm
-parameter_list|(
-name|int
-name|docID
-parameter_list|,
-name|BytesRef
-name|reuse
-parameter_list|)
-block|{
-name|int
-name|ord
-init|=
-name|getOrd
-argument_list|(
-name|docID
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|ord
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-return|return
-name|lookup
-argument_list|(
-name|ord
-argument_list|,
-name|reuse
-argument_list|)
-return|;
-block|}
-comment|/** Returns sort ord for this document.  Ord -1 is      *  is returend for docs that are deleted or did not have      *  this field.  */
-DECL|method|getOrd
-specifier|public
-specifier|abstract
-name|int
-name|getOrd
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
-function_decl|;
-comment|/** Returns total unique ord count. */
-DECL|method|numOrd
-specifier|public
-specifier|abstract
-name|int
-name|numOrd
-parameter_list|()
-function_decl|;
-comment|/** Number of documents */
-DECL|method|size
-specifier|public
-specifier|abstract
-name|int
-name|size
-parameter_list|()
-function_decl|;
-comment|/** Returns a TermsEnum that can iterate over the values in this index entry */
-DECL|method|getTermsEnum
-specifier|public
-specifier|abstract
-name|TermsEnum
-name|getTermsEnum
-parameter_list|()
-function_decl|;
-block|}
 comment|/** Checks the internal cache for an appropriate entry, and if none    * is found, reads the term values in<code>field</code>    * and returns a {@link DocTerms} instance, providing a    * method to retrieve the term (as a BytesRef) per document.    * @param reader  Used to get field values.    * @param field   Which field contains the strings.    * @return The values in the given field for each document.    * @throws IOException  If any error occurs.    */
 DECL|method|getTermsIndex
 specifier|public
-name|DocTermsIndex
+name|SortedDocValues
 name|getTermsIndex
 parameter_list|(
 name|AtomicReader
@@ -1681,7 +1449,7 @@ function_decl|;
 comment|/** Expert: just like {@link    *  #getTermsIndex(AtomicReader,String)}, but you can specify    *  whether more RAM should be consumed in exchange for    *  faster lookups (default is "true").  Note that the    *  first call for a given reader and field "wins",    *  subsequent calls will share the same cache entry. */
 DECL|method|getTermsIndex
 specifier|public
-name|DocTermsIndex
+name|SortedDocValues
 name|getTermsIndex
 parameter_list|(
 name|AtomicReader
@@ -1894,7 +1662,6 @@ block|}
 comment|/**      * The most recently estimated size of the value, null unless       * estimateSize has been called.      */
 DECL|method|getEstimatedSize
 specifier|public
-specifier|final
 name|String
 name|getEstimatedSize
 parameter_list|()

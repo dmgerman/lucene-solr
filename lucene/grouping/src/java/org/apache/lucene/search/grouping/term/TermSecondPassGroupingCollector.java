@@ -22,6 +22,26 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -31,6 +51,20 @@ operator|.
 name|index
 operator|.
 name|AtomicReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SortedDocValues
 import|;
 end_import
 
@@ -104,7 +138,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|SentinelIntSet
+name|BytesRef
 import|;
 end_import
 
@@ -118,27 +152,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
+name|SentinelIntSet
 import|;
 end_import
 
@@ -165,9 +179,7 @@ name|ordSet
 decl_stmt|;
 DECL|field|index
 specifier|private
-name|FieldCache
-operator|.
-name|DocTermsIndex
+name|SortedDocValues
 name|index
 decl_stmt|;
 DECL|field|spareBytesRef
@@ -360,7 +372,7 @@ literal|1
 else|:
 name|index
 operator|.
-name|binarySearchLookup
+name|lookupTerm
 argument_list|(
 name|group
 operator|.
