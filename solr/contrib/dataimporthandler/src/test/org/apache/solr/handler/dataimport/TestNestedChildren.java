@@ -159,7 +159,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"<entity name=\"SECOND\" processor=\"SqlEntityProcessor\" dataSource=\"derby\" "
+literal|"<entity name=\"THIRD\" processor=\"SqlEntityProcessor\" dataSource=\"derby\" "
 argument_list|)
 expr_stmt|;
 name|sb
