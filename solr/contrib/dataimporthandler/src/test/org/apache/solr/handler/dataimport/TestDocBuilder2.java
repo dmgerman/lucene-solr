@@ -1484,7 +1484,7 @@ name|Test
 annotation|@
 name|Ignore
 argument_list|(
-literal|"Known Locale/TZ problems: see https://issues.apache.org/jira/browse/SOLR-1916"
+literal|"Fix Me. See SOLR-4103."
 argument_list|)
 DECL|method|testFileListEntityProcessor_lastIndexTime
 specifier|public
