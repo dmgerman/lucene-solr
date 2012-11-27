@@ -3797,6 +3797,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|int
+name|docs
+init|=
+name|TEST_NIGHTLY
+condition|?
+literal|200000
+else|:
+literal|0
+decl_stmt|;
 comment|//stop slave
 name|slaveJetty
 operator|.
@@ -3853,7 +3862,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10
+name|docs
 condition|;
 name|i
 operator|++
@@ -3883,7 +3892,7 @@ name|masterQueryRsp
 init|=
 name|rQuery
 argument_list|(
-literal|10
+name|docs
 argument_list|,
 literal|"*:*"
 argument_list|,
@@ -3905,7 +3914,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|10
+name|docs
 argument_list|,
 name|masterQueryResult
 operator|.
@@ -3959,7 +3968,7 @@ name|slaveQueryRsp
 init|=
 name|rQuery
 argument_list|(
-literal|10
+name|docs
 argument_list|,
 literal|"*:*"
 argument_list|,
@@ -3981,7 +3990,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|10
+name|docs
 argument_list|,
 name|slaveQueryResult
 operator|.
@@ -4085,7 +4094,9 @@ name|masterClient
 argument_list|,
 literal|"id"
 argument_list|,
-literal|110
+name|docs
+operator|+
+literal|10
 argument_list|,
 literal|"name"
 argument_list|,
@@ -4098,7 +4109,9 @@ name|masterClient
 argument_list|,
 literal|"id"
 argument_list|,
-literal|120
+name|docs
+operator|+
+literal|20
 argument_list|,
 literal|"name"
 argument_list|,
@@ -4115,7 +4128,9 @@ name|resp
 init|=
 name|rQuery
 argument_list|(
-literal|12
+name|docs
+operator|+
+literal|2
 argument_list|,
 literal|"*:*"
 argument_list|,
@@ -4136,7 +4151,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|12
+name|docs
+operator|+
+literal|2
 argument_list|,
 name|masterQueryResult
 operator|.
@@ -4149,7 +4166,9 @@ name|slaveQueryRsp
 operator|=
 name|rQuery
 argument_list|(
-literal|12
+name|docs
+operator|+
+literal|2
 argument_list|,
 literal|"*:*"
 argument_list|,
@@ -4170,7 +4189,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|12
+name|docs
+operator|+
+literal|2
 argument_list|,
 name|slaveQueryResult
 operator|.
