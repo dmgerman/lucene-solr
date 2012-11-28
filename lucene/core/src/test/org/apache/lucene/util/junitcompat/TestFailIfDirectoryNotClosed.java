@@ -89,9 +89,10 @@ specifier|public
 name|TestFailIfDirectoryNotClosed
 parameter_list|()
 block|{
+comment|// nocommit true
 name|super
 argument_list|(
-literal|true
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -110,6 +111,8 @@ specifier|public
 name|void
 name|testDummy
 parameter_list|()
+throws|throws
+name|Exception
 block|{
 name|Directory
 name|dir

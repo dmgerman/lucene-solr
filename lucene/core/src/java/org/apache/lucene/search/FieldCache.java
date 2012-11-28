@@ -242,10 +242,6 @@ begin_comment
 comment|/**  * Expert: Maintains caches of term values.  *  *<p>Created: May 19, 2004 11:13:14 AM  *  * @since   lucene 1.4  * @see org.apache.lucene.util.FieldCacheSanityChecker  *  * @lucene.internal  */
 end_comment
 
-begin_comment
-comment|// nocommit abstract class...?
-end_comment
-
 begin_interface
 DECL|interface|FieldCache
 specifier|public

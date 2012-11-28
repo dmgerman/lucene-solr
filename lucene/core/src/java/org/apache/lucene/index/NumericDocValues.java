@@ -23,7 +23,6 @@ specifier|abstract
 class|class
 name|NumericDocValues
 block|{
-comment|// nocommit throws IOE or not?
 DECL|method|get
 specifier|public
 specifier|abstract

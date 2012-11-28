@@ -30,10 +30,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_comment
-comment|// nocommit need marker interface?
-end_comment
-
 begin_class
 DECL|class|BinaryDocValues
 specifier|public
@@ -41,7 +37,6 @@ specifier|abstract
 class|class
 name|BinaryDocValues
 block|{
-comment|// nocommit throws IOE or not?
 DECL|method|get
 specifier|public
 specifier|abstract

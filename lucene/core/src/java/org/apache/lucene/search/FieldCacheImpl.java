@@ -2366,8 +2366,6 @@ return|;
 block|}
 block|}
 return|;
-comment|// nocommit should we throw exc if parser isn't
-comment|// null?  if setDocsWithField is true?
 block|}
 else|else
 block|{
@@ -2753,8 +2751,6 @@ return|;
 block|}
 block|}
 return|;
-comment|// nocommit should we throw exc if parser isn't
-comment|// null?  if setDocsWithField is true?
 block|}
 else|else
 block|{
@@ -3141,8 +3137,6 @@ return|;
 block|}
 block|}
 return|;
-comment|// nocommit should we throw exc if parser isn't
-comment|// null?  if setDocsWithField is true?
 block|}
 else|else
 block|{
@@ -3875,8 +3869,6 @@ return|;
 block|}
 block|}
 return|;
-comment|// nocommit should we throw exc if parser isn't
-comment|// null?  if setDocsWithField is true?
 block|}
 else|else
 block|{
@@ -4286,8 +4278,6 @@ return|;
 block|}
 block|}
 return|;
-comment|// nocommit should we throw exc if parser isn't
-comment|// null?  if setDocsWithField is true?
 block|}
 else|else
 block|{
@@ -4702,8 +4692,6 @@ return|;
 block|}
 block|}
 return|;
-comment|// nocommit should we throw exc if parser isn't
-comment|// null?  if setDocsWithField is true?
 block|}
 else|else
 block|{
@@ -4924,6 +4912,18 @@ specifier|final
 name|int
 name|numOrd
 decl_stmt|;
+DECL|field|maxLength
+specifier|private
+specifier|final
+name|int
+name|maxLength
+decl_stmt|;
+DECL|field|isFixedLength
+specifier|private
+specifier|final
+name|boolean
+name|isFixedLength
+decl_stmt|;
 DECL|method|SortedDocValuesImpl
 specifier|public
 name|SortedDocValuesImpl
@@ -4945,6 +4945,12 @@ name|docToTermOrd
 parameter_list|,
 name|int
 name|numOrd
+parameter_list|,
+name|int
+name|maxLength
+parameter_list|,
+name|boolean
+name|isFixedLength
 parameter_list|)
 block|{
 name|this
@@ -4970,6 +4976,18 @@ operator|.
 name|numOrd
 operator|=
 name|numOrd
+expr_stmt|;
+name|this
+operator|.
+name|maxLength
+operator|=
+name|maxLength
+expr_stmt|;
+name|this
+operator|.
+name|isFixedLength
+operator|=
+name|isFixedLength
 expr_stmt|;
 block|}
 annotation|@
@@ -5077,33 +5095,27 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|maxLength
-specifier|public
-name|int
-name|maxLength
-parameter_list|()
-block|{
-comment|// nocommit hmm
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-annotation|@
-name|Override
 DECL|method|isFixedLength
 specifier|public
 name|boolean
 name|isFixedLength
 parameter_list|()
 block|{
-comment|// nocommit hmm
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+return|return
+name|isFixedLength
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|maxLength
+specifier|public
+name|int
+name|maxLength
+parameter_list|()
+block|{
+return|return
+name|maxLength
+return|;
 block|}
 annotation|@
 name|Override
@@ -6000,7 +6012,7 @@ operator|+
 literal|1
 expr_stmt|;
 block|}
-comment|// nocommit use Uninvert?
+comment|// TODO: use Uninvert?
 if|if
 condition|(
 name|terms
@@ -6135,7 +6147,19 @@ name|termOrd
 init|=
 literal|0
 decl_stmt|;
-comment|// nocommit use Uninvert?
+name|int
+name|sameLength
+init|=
+operator|-
+literal|2
+decl_stmt|;
+name|int
+name|maxLength
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|// TODO: use Uninvert?
 if|if
 condition|(
 name|terms
@@ -6182,6 +6206,50 @@ condition|)
 block|{
 break|break;
 block|}
+if|if
+condition|(
+name|sameLength
+operator|==
+operator|-
+literal|2
+condition|)
+block|{
+name|sameLength
+operator|=
+name|term
+operator|.
+name|length
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|sameLength
+operator|!=
+name|term
+operator|.
+name|length
+condition|)
+block|{
+name|sameLength
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+block|}
+name|maxLength
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|maxLength
+argument_list|,
+name|term
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|termOrd
@@ -6336,6 +6404,12 @@ name|getMutable
 argument_list|()
 argument_list|,
 name|termOrd
+argument_list|,
+name|maxLength
+argument_list|,
+name|sameLength
+operator|>=
+literal|0
 argument_list|)
 return|;
 block|}
@@ -6365,6 +6439,18 @@ operator|.
 name|Reader
 name|docToOffset
 decl_stmt|;
+DECL|field|maxLength
+specifier|private
+specifier|final
+name|int
+name|maxLength
+decl_stmt|;
+DECL|field|isFixedLength
+specifier|private
+specifier|final
+name|boolean
+name|isFixedLength
+decl_stmt|;
 DECL|method|BinaryDocValuesImpl
 specifier|public
 name|BinaryDocValuesImpl
@@ -6378,6 +6464,12 @@ name|PackedInts
 operator|.
 name|Reader
 name|docToOffset
+parameter_list|,
+name|int
+name|maxLength
+parameter_list|,
+name|boolean
+name|isFixedLength
 parameter_list|)
 block|{
 name|this
@@ -6391,6 +6483,18 @@ operator|.
 name|docToOffset
 operator|=
 name|docToOffset
+expr_stmt|;
+name|this
+operator|.
+name|maxLength
+operator|=
+name|maxLength
+expr_stmt|;
+name|this
+operator|.
+name|isFixedLength
+operator|=
+name|isFixedLength
 expr_stmt|;
 block|}
 annotation|@
@@ -6483,12 +6587,9 @@ name|boolean
 name|isFixedLength
 parameter_list|()
 block|{
-comment|// nocommit hmm
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+return|return
+name|isFixedLength
+return|;
 block|}
 annotation|@
 name|Override
@@ -6498,12 +6599,9 @@ name|int
 name|maxLength
 parameter_list|()
 block|{
-comment|// nocommit hmm
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+return|return
+name|maxLength
+return|;
 block|}
 block|}
 comment|// TODO: this if DocTermsIndex was already created, we
@@ -6793,6 +6891,18 @@ name|BytesRef
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|int
+name|sameLength
+init|=
+operator|-
+literal|2
+decl_stmt|;
+name|int
+name|maxLength
+init|=
+operator|-
+literal|1
+decl_stmt|;
 if|if
 condition|(
 name|terms
@@ -6857,6 +6967,50 @@ condition|)
 block|{
 break|break;
 block|}
+if|if
+condition|(
+name|sameLength
+operator|==
+operator|-
+literal|2
+condition|)
+block|{
+name|sameLength
+operator|=
+name|term
+operator|.
+name|length
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|sameLength
+operator|!=
+name|term
+operator|.
+name|length
+condition|)
+block|{
+name|sameLength
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+block|}
+name|maxLength
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|maxLength
+argument_list|,
+name|term
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
 specifier|final
 name|long
 name|pointer
@@ -6934,6 +7088,12 @@ name|docToOffset
 operator|.
 name|getMutable
 argument_list|()
+argument_list|,
+name|maxLength
+argument_list|,
+name|sameLength
+operator|>=
+literal|0
 argument_list|)
 return|;
 block|}

@@ -2552,7 +2552,6 @@ argument_list|,
 name|nf
 argument_list|)
 expr_stmt|;
-comment|// nocommit re-enable
 name|segInfoStat
 operator|.
 name|docValuesStatus

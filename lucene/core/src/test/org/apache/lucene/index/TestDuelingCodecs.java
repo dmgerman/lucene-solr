@@ -156,20 +156,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|TermsEnum
@@ -390,9 +376,6 @@ expr_stmt|;
 comment|// for now its SimpleText vs Lucene41(random postings format)
 comment|// as this gives the best overall coverage. when we have more
 comment|// codecs we should probably pick 2 from Codec.availableCodecs()
-comment|// TODO: it would also be nice to support preflex, but it doesn't
-comment|// support a lot of the current feature set (docvalues, statistics)
-comment|// so this would make assertEquals complicated.
 name|leftCodec
 operator|=
 name|Codec
@@ -3333,6 +3316,7 @@ range|:
 name|leftFields
 control|)
 block|{
+comment|// nocommit cutover to per-segment comparison
 name|DocValues
 name|leftNorms
 init|=
@@ -3860,6 +3844,7 @@ range|:
 name|leftValues
 control|)
 block|{
+comment|// nocommit cutover to per-segment comparison
 name|DocValues
 name|leftDocValues
 init|=
