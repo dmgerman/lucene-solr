@@ -1180,29 +1180,6 @@ decl_stmt|;
 comment|// we need to look at every node and see how many cores it serves
 comment|// add our new cores to existing nodes serving the least number of cores
 comment|// but (for now) require that each core goes on a distinct node.
-name|ModifiableSolrParams
-name|params
-init|=
-operator|new
-name|ModifiableSolrParams
-argument_list|()
-decl_stmt|;
-name|params
-operator|.
-name|set
-argument_list|(
-name|CoreAdminParams
-operator|.
-name|ACTION
-argument_list|,
-name|CoreAdminAction
-operator|.
-name|CREATE
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// TODO: add smarter options that look at the current number of cores per node?
 comment|// for now we just go random
 name|Set
@@ -1340,6 +1317,30 @@ control|)
 block|{
 comment|// TODO: this does not work if original url had _ in it
 comment|// We should have a master list
+comment|// Need to create new params for each request
+name|ModifiableSolrParams
+name|params
+init|=
+operator|new
+name|ModifiableSolrParams
+argument_list|()
+decl_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CoreAdminParams
+operator|.
+name|ACTION
+argument_list|,
+name|CoreAdminAction
+operator|.
+name|CREATE
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|replica
 operator|=
 name|replica
