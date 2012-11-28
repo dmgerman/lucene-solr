@@ -3009,7 +3009,7 @@ name|get
 argument_list|(
 name|core
 operator|.
-name|getIndexDir
+name|getNewIndexDir
 argument_list|()
 argument_list|,
 literal|null
