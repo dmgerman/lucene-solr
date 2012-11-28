@@ -167,109 +167,102 @@ init|=
 literal|20
 decl_stmt|;
 comment|/** RegularExpression Id. */
-DECL|field|SQUOTED
-name|int
-name|SQUOTED
-init|=
-literal|21
-decl_stmt|;
-comment|/** RegularExpression Id. */
 DECL|field|TERM
 name|int
 name|TERM
 init|=
-literal|22
+literal|21
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|FUZZY_SLOP
 name|int
 name|FUZZY_SLOP
 init|=
-literal|23
+literal|22
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|PREFIXTERM
 name|int
 name|PREFIXTERM
 init|=
-literal|24
+literal|23
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|WILDTERM
 name|int
 name|WILDTERM
 init|=
-literal|25
+literal|24
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|REGEXPTERM
 name|int
 name|REGEXPTERM
 init|=
-literal|26
+literal|25
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEIN_START
 name|int
 name|RANGEIN_START
 init|=
-literal|27
+literal|26
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_START
 name|int
 name|RANGEEX_START
 init|=
-literal|28
+literal|27
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|LPARAMS
 name|int
 name|LPARAMS
 init|=
-literal|29
+literal|28
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|NUMBER
 name|int
 name|NUMBER
 init|=
-literal|30
+literal|29
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGE_TO
 name|int
 name|RANGE_TO
 init|=
-literal|31
+literal|30
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEIN_END
 name|int
 name|RANGEIN_END
 init|=
-literal|32
+literal|31
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_END
 name|int
 name|RANGEEX_END
 init|=
-literal|33
+literal|32
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGE_QUOTED
 name|int
 name|RANGE_QUOTED
 init|=
-literal|34
+literal|33
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGE_GOOP
 name|int
 name|RANGE_GOOP
 init|=
-literal|35
+literal|34
 decl_stmt|;
 comment|/** Lexical state. */
 DECL|field|Boost
@@ -340,8 +333,6 @@ block|,
 literal|"\"^\""
 block|,
 literal|"<QUOTED>"
-block|,
-literal|"<SQUOTED>"
 block|,
 literal|"<TERM>"
 block|,
