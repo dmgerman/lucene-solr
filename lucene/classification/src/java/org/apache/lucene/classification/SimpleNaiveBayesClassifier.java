@@ -549,6 +549,15 @@ decl_stmt|;
 name|BytesRef
 name|next
 decl_stmt|;
+name|String
+index|[]
+name|tokenizedDoc
+init|=
+name|tokenizeDoc
+argument_list|(
+name|inputDocument
+argument_list|)
+decl_stmt|;
 while|while
 condition|(
 operator|(
@@ -574,7 +583,7 @@ argument_list|)
 operator|*
 name|calculateLikelihood
 argument_list|(
-name|inputDocument
+name|tokenizedDoc
 argument_list|,
 name|next
 argument_list|)
@@ -615,7 +624,8 @@ name|double
 name|calculateLikelihood
 parameter_list|(
 name|String
-name|document
+index|[]
+name|tokenizedDoc
 parameter_list|,
 name|BytesRef
 name|c
@@ -634,10 +644,7 @@ control|(
 name|String
 name|word
 range|:
-name|tokenizeDoc
-argument_list|(
-name|document
-argument_list|)
+name|tokenizedDoc
 control|)
 block|{
 comment|// search with text:word AND class:c
