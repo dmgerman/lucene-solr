@@ -258,6 +258,7 @@ specifier|private
 name|double
 name|testRatio
 decl_stmt|;
+comment|/**    * Create a {@link DatasetSplitter} by giving test and cross validation IDXs sizes    * @param testRatio the ratio of the original index to be used for the test IDX as a<code>double</code> between 0.0 and 1.0    * @param crossValidationRatio the ratio of the original index to be used for the c.v. IDX as a<code>double</code> between 0.0 and 1.0    */
 DECL|method|DatasetSplitter
 specifier|public
 name|DatasetSplitter
