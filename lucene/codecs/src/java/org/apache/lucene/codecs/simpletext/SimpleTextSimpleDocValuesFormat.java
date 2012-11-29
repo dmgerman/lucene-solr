@@ -599,6 +599,17 @@ argument_list|(
 literal|"  ordpattern "
 argument_list|)
 decl_stmt|;
+DECL|method|SimpleTextSimpleDocValuesFormat
+specifier|public
+name|SimpleTextSimpleDocValuesFormat
+parameter_list|()
+block|{
+name|super
+argument_list|(
+literal|"SimpleText"
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|fieldsConsumer

@@ -108,6 +108,17 @@ name|Lucene41DocValuesFormat
 extends|extends
 name|SimpleDocValuesFormat
 block|{
+DECL|method|Lucene41DocValuesFormat
+specifier|public
+name|Lucene41DocValuesFormat
+parameter_list|()
+block|{
+name|super
+argument_list|(
+literal|"Lucene41"
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|fieldsConsumer
