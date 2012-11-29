@@ -6741,6 +6741,9 @@ condition|)
 block|{
 return|return
 name|valuesIn
+operator|.
+name|newRAMInstance
+argument_list|()
 return|;
 block|}
 else|else

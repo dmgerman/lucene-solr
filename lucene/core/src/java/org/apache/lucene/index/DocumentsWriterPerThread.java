@@ -371,7 +371,7 @@ name|DocumentsWriterPerThread
 name|documentsWriterPerThread
 parameter_list|)
 block|{
-comment|/*       This is the current indexing chain:        DocConsumer / DocConsumerPerThread         --> code: DocFieldProcessor / DocFieldProcessorPerThread           --> DocFieldConsumer / DocFieldConsumerPerThread / DocFieldConsumerPerField             --> code: DocFieldConsumers / DocFieldConsumersPerThread / DocFieldConsumersPerField               --> code: DocInverter / DocInverterPerThread / DocInverterPerField                 --> InvertedDocConsumer / InvertedDocConsumerPerThread / InvertedDocConsumerPerField                   --> code: TermsHash / TermsHashPerThread / TermsHashPerField                     --> TermsHashConsumer / TermsHashConsumerPerThread / TermsHashConsumerPerField                       --> code: FreqProxTermsWriter / FreqProxTermsWriterPerThread / FreqProxTermsWriterPerField                       --> code: TermVectorsTermsWriter / TermVectorsTermsWriterPerThread / TermVectorsTermsWriterPerField                 --> InvertedDocEndConsumer / InvertedDocConsumerPerThread / InvertedDocConsumerPerField                   --> code: NormsWriter / NormsWriterPerThread / NormsWriterPerField               --> code: StoredFieldsWriter / StoredFieldsWriterPerThread / StoredFieldsWriterPerField     */
+comment|/*       This is the current indexing chain:        DocConsumer / DocConsumerPerThread         --> code: DocFieldProcessor           --> DocFieldConsumer / DocFieldConsumerPerField             --> code: DocFieldConsumers / DocFieldConsumersPerField               --> code: DocInverter / DocInverterPerField                 --> InvertedDocConsumer / InvertedDocConsumerPerField                   --> code: TermsHash / TermsHashPerField                     --> TermsHashConsumer / TermsHashConsumerPerField                       --> code: FreqProxTermsWriter / FreqProxTermsWriterPerField                       --> code: TermVectorsTermsWriter / TermVectorsTermsWriterPerField                 --> InvertedDocEndConsumer / InvertedDocConsumerPerField                   --> code: NormsWriter / NormsWriterPerField           --> StoredFieldsConsumer             --> TwoStoredFieldConsumers               -> code: StoredFieldsProcessor               -> code: DocValuesProcessor     */
 comment|// Build up indexing chain:
 specifier|final
 name|TermsHashConsumer
@@ -443,6 +443,28 @@ argument_list|,
 name|normsWriter
 argument_list|)
 decl_stmt|;
+specifier|final
+name|StoredFieldsConsumer
+name|storedFields
+init|=
+operator|new
+name|TwoStoredFieldsConsumers
+argument_list|(
+operator|new
+name|StoredFieldsProcessor
+argument_list|(
+name|documentsWriterPerThread
+argument_list|)
+argument_list|,
+operator|new
+name|DocValuesProcessor
+argument_list|(
+name|documentsWriterPerThread
+operator|.
+name|bytesUsed
+argument_list|)
+argument_list|)
+decl_stmt|;
 return|return
 operator|new
 name|DocFieldProcessor
@@ -450,6 +472,8 @@ argument_list|(
 name|documentsWriterPerThread
 argument_list|,
 name|docInverter
+argument_list|,
+name|storedFields
 argument_list|)
 return|;
 block|}
