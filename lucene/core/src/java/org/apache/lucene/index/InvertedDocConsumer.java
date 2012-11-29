@@ -97,13 +97,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Attempt to free RAM, returning true if any RAM was    *  freed */
-DECL|method|freeRAM
-specifier|abstract
-name|boolean
-name|freeRAM
-parameter_list|()
-function_decl|;
 block|}
 end_class
 

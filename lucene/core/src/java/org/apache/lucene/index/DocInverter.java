@@ -309,22 +309,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|// nocommit nuke all freeRAMs: they are unused?
-annotation|@
-name|Override
-DECL|method|freeRAM
-specifier|public
-name|boolean
-name|freeRAM
-parameter_list|()
-block|{
-return|return
-name|consumer
-operator|.
-name|freeRAM
-argument_list|()
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|addField
