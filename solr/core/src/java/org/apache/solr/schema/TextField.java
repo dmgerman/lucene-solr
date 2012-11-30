@@ -337,13 +337,24 @@ operator|.
 name|getVersion
 argument_list|()
 operator|>
-literal|1.1f
+literal|1.1F
+operator|&&
+comment|// only override if it's not explicitly true
+literal|0
+operator|==
+operator|(
+name|trueProperties
+operator|&
+name|OMIT_TF_POSITIONS
+operator|)
 condition|)
+block|{
 name|properties
 operator|&=
 operator|~
 name|OMIT_TF_POSITIONS
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|schema
@@ -351,7 +362,7 @@ operator|.
 name|getVersion
 argument_list|()
 operator|>
-literal|1.3f
+literal|1.3F
 condition|)
 block|{
 name|autoGeneratePhraseQueries
