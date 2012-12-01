@@ -50,7 +50,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|HashPartitioner
+name|DocRouter
 import|;
 end_import
 
@@ -66,7 +66,23 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|HashPartitioner
+name|DocRouter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|DocRouter
 operator|.
 name|Range
 import|;
@@ -88,11 +104,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|HashPartitioner
+name|DocRouter
 name|hp
 init|=
 operator|new
-name|HashPartitioner
+name|DocRouter
 argument_list|()
 decl_stmt|;
 name|List

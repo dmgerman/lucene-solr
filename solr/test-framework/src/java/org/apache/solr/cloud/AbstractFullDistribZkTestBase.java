@@ -1431,13 +1431,17 @@ operator|.
 name|NUM_SHARDS_PROP
 argument_list|)
 decl_stmt|;
+comment|// we want hashes by default, so set to 1 shard as opposed to leaving unset
+comment|// System.clearProperty(ZkStateReader.NUM_SHARDS_PROP);
 name|System
 operator|.
-name|clearProperty
+name|setProperty
 argument_list|(
 name|ZkStateReader
 operator|.
 name|NUM_SHARDS_PROP
+argument_list|,
+literal|"1"
 argument_list|)
 expr_stmt|;
 name|File
@@ -1493,10 +1497,9 @@ argument_list|,
 name|testDir
 operator|+
 literal|"/control/data"
-argument_list|,
-literal|"control_shard"
 argument_list|)
 expr_stmt|;
+comment|// don't pass shard name... let it default to "shard1"
 name|System
 operator|.
 name|clearProperty
@@ -1520,6 +1523,18 @@ operator|.
 name|NUM_SHARDS_PROP
 argument_list|,
 name|numShards
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+name|ZkStateReader
+operator|.
+name|NUM_SHARDS_PROP
 argument_list|)
 expr_stmt|;
 block|}
@@ -2152,7 +2167,7 @@ operator|.
 name|getClusterState
 argument_list|()
 operator|.
-name|getSlices
+name|getSlicesMap
 argument_list|(
 name|collection
 argument_list|)
@@ -2338,7 +2353,7 @@ name|slices
 init|=
 name|clusterState
 operator|.
-name|getSlices
+name|getSlicesMap
 argument_list|(
 name|DEFAULT_COLLECTION
 argument_list|)
@@ -6185,7 +6200,7 @@ name|slices
 operator|=
 name|clusterState
 operator|.
-name|getSlices
+name|getSlicesMap
 argument_list|(
 name|DEFAULT_COLLECTION
 argument_list|)

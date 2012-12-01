@@ -149,6 +149,8 @@ name|propMap
 operator|=
 name|propMap
 expr_stmt|;
+comment|// TODO: store an unmodifiable map, but in a way that guarantees not to wrap more than once.
+comment|// Always wrapping introduces a memory leak.
 block|}
 comment|/**    * Constructor that populates the from array of Strings in form key1, value1,    * key2, value2, ..., keyN, valueN    */
 DECL|method|ZkNodeProps
@@ -309,15 +311,10 @@ name|keySet
 parameter_list|()
 block|{
 return|return
-name|Collections
-operator|.
-name|unmodifiableSet
-argument_list|(
 name|propMap
 operator|.
 name|keySet
 argument_list|()
-argument_list|)
 return|;
 block|}
 comment|/**    * Get all properties as map.    */
@@ -333,12 +330,7 @@ name|getProperties
 parameter_list|()
 block|{
 return|return
-name|Collections
-operator|.
-name|unmodifiableMap
-argument_list|(
 name|propMap
-argument_list|)
 return|;
 block|}
 comment|/** Returns a shallow writable copy of the properties */

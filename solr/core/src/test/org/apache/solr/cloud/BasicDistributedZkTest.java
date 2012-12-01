@@ -616,6 +616,22 @@ name|common
 operator|.
 name|cloud
 operator|.
+name|DocCollection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
 name|Replica
 import|;
 end_import
@@ -3632,6 +3648,9 @@ argument_list|(
 literal|"unloadcollection"
 argument_list|)
 operator|.
+name|getSlices
+argument_list|()
+operator|.
 name|size
 argument_list|()
 decl_stmt|;
@@ -3743,6 +3762,9 @@ name|get
 argument_list|(
 literal|"unloadcollection"
 argument_list|)
+operator|.
+name|getSlices
+argument_list|()
 operator|.
 name|size
 argument_list|()
@@ -6559,12 +6581,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|Slice
-argument_list|>
+name|DocCollection
 argument_list|>
 name|collections
 init|=
@@ -6603,6 +6620,9 @@ name|get
 argument_list|(
 name|collectionName
 argument_list|)
+operator|.
+name|getSlicesMap
+argument_list|()
 decl_stmt|;
 name|Iterator
 argument_list|<
@@ -6818,6 +6838,9 @@ name|get
 argument_list|(
 name|collection
 argument_list|)
+operator|.
+name|getSlicesMap
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -7220,12 +7243,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|Slice
-argument_list|>
+name|DocCollection
 argument_list|>
 name|collections
 init|=
@@ -7258,6 +7276,9 @@ name|get
 argument_list|(
 name|collectionName
 argument_list|)
+operator|.
+name|getSlicesMap
+argument_list|()
 decl_stmt|;
 comment|// did we find expectedSlices slices/shards?
 if|if
@@ -7377,12 +7398,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|Slice
-argument_list|>
+name|DocCollection
 argument_list|>
 name|collections
 init|=
@@ -7737,6 +7753,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"### STARTING doOptimisticLockingAndUpdating"
+argument_list|)
+expr_stmt|;
 name|printLayout
 argument_list|()
 expr_stmt|;
@@ -7982,6 +8005,13 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"### STARTING testNumberOfCommitsWithCommitAfterAdd"
+argument_list|)
+expr_stmt|;
 name|long
 name|startCommits
 init|=
@@ -8226,6 +8256,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"### STARTING testANewCollectionInOneInstanceWithManualShardAssignement"
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|clearProperty
@@ -8667,7 +8704,7 @@ operator|.
 name|getClusterState
 argument_list|()
 operator|.
-name|getSlices
+name|getSlicesMap
 argument_list|(
 name|oneInstanceCollection2
 argument_list|)
@@ -8834,6 +8871,13 @@ parameter_list|()
 throws|throws
 name|SolrServerException
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"### STARTING testSearchByCollectionName"
+argument_list|)
+expr_stmt|;
 name|SolrServer
 name|client
 init|=
@@ -8936,6 +8980,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"### STARTING testANewCollectionInOneInstance"
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|SolrServer
@@ -9557,6 +9608,13 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"### STARTING testMultipleCollections"
+argument_list|)
+expr_stmt|;
 comment|// create another 2 collections and search across them
 name|createNewCollection
 argument_list|(

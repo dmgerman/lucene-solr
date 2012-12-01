@@ -284,7 +284,23 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|HashPartitioner
+name|DocRouter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|DocRouter
 import|;
 end_import
 
@@ -1233,7 +1249,7 @@ parameter_list|,
 name|int
 name|ord
 parameter_list|,
-name|HashPartitioner
+name|DocRouter
 operator|.
 name|Range
 name|newRange
@@ -1457,7 +1473,7 @@ comment|// partitions=N    (split into N partitions, leaving it up to solr what 
 comment|// path - multiValued param, or comma separated param?  Only creates indexes, not cores
 name|List
 argument_list|<
-name|HashPartitioner
+name|DocRouter
 operator|.
 name|Range
 argument_list|>
@@ -1566,13 +1582,13 @@ decl_stmt|;
 comment|// TODO: if we don't know the real range of the current core, we should just
 comment|//  split on every other doc rather than hash.
 comment|// TODO (cloud): get from the current core
-name|HashPartitioner
+name|DocRouter
 operator|.
 name|Range
 name|currentRange
 init|=
 operator|new
-name|HashPartitioner
+name|DocRouter
 operator|.
 name|Range
 argument_list|(
@@ -1585,11 +1601,11 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 decl_stmt|;
-name|HashPartitioner
+name|DocRouter
 name|hp
 init|=
 operator|new
-name|HashPartitioner
+name|DocRouter
 argument_list|()
 decl_stmt|;
 name|ranges

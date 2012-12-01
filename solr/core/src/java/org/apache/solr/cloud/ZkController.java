@@ -332,6 +332,22 @@ name|common
 operator|.
 name|cloud
 operator|.
+name|DocCollection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
 name|OnReconnect
 import|;
 end_import
@@ -4648,6 +4664,18 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|// set defaults
+name|collectionProps
+operator|.
+name|put
+argument_list|(
+name|DocCollection
+operator|.
+name|DOC_ROUTER
+argument_list|,
+literal|"compositeId"
+argument_list|)
+expr_stmt|;
 comment|// TODO: if collection.configName isn't set, and there isn't already a conf in zk, just use that?
 name|String
 name|defaultConfigName
@@ -4743,6 +4771,8 @@ argument_list|(
 name|CONFIGNAME_PROP
 argument_list|)
 condition|)
+block|{
+comment|// TODO: getting the configName from the collectionPath should fail since we already know it doesn't exist?
 name|getConfName
 argument_list|(
 name|collection
@@ -4752,6 +4782,7 @@ argument_list|,
 name|collectionProps
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 elseif|else
 if|if

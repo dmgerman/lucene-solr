@@ -28,7 +28,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|HashPartitioner
+name|DocRouter
 import|;
 end_import
 
@@ -104,7 +104,7 @@ DECL|field|ranges
 specifier|public
 name|List
 argument_list|<
-name|HashPartitioner
+name|DocRouter
 operator|.
 name|Range
 argument_list|>
@@ -132,7 +132,7 @@ name|cores
 parameter_list|,
 name|List
 argument_list|<
-name|HashPartitioner
+name|DocRouter
 operator|.
 name|Range
 argument_list|>
