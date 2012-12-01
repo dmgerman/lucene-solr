@@ -1126,7 +1126,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|allGroupHeads
+name|allGroups
 condition|)
 block|{
 name|collectors
@@ -1872,7 +1872,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Whether to also co0.0mpute all groups matching the query.    * This can be used to determine the number of groups, which can be used for accurate pagination.    *<p/>    * When grouping by doc block the number of groups are automatically included in the {@link TopGroups} and this    * option doesn't have any influence.    *    * @param allGroups to also compute all groups matching the query    * @return<code>this</code>    */
+comment|/**    * Whether to also compute all groups matching the query.    * This can be used to determine the number of groups, which can be used for accurate pagination.    *<p/>    * When grouping by doc block the number of groups are automatically included in the {@link TopGroups} and this    * option doesn't have any influence.    *    * @param allGroups to also compute all groups matching the query    * @return<code>this</code>    */
 DECL|method|setAllGroups
 specifier|public
 name|GroupingSearch
