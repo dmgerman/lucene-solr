@@ -219,6 +219,17 @@ name|NormsFormat
 name|normsFormat
 parameter_list|()
 function_decl|;
+DECL|method|simpleNormsFormat
+specifier|public
+name|SimpleNormsFormat
+name|simpleNormsFormat
+parameter_list|()
+block|{
+comment|// nocommit make this abstract
+return|return
+literal|null
+return|;
+block|}
 comment|/** Encodes/decodes live docs */
 DECL|method|liveDocsFormat
 specifier|public
