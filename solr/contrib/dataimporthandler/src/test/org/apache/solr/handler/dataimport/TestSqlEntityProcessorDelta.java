@@ -44,6 +44,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -57,6 +67,8 @@ comment|/**  * Test with various combinations of parameters, child entites, tran
 end_comment
 
 begin_class
+annotation|@
+name|Ignore
 DECL|class|TestSqlEntityProcessorDelta
 specifier|public
 class|class
