@@ -1556,6 +1556,11 @@ argument_list|,
 name|shardId
 argument_list|)
 decl_stmt|;
+name|int
+name|cnt
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 literal|true
@@ -1639,6 +1644,15 @@ return|return;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|cnt
+operator|%
+literal|40
+operator|==
+literal|0
+condition|)
+block|{
 name|log
 operator|.
 name|info
@@ -1669,6 +1683,7 @@ argument_list|()
 operator|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1712,6 +1727,9 @@ name|shardId
 argument_list|)
 expr_stmt|;
 comment|// System.out.println("###### waitForReplicasToComeUp  : slices=" + slices + " all=" + zkController.getClusterState().getCollectionStates() );
+name|cnt
+operator|++
+expr_stmt|;
 block|}
 block|}
 DECL|method|rejoinLeaderElection
