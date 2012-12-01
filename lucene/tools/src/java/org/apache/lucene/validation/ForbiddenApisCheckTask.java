@@ -1992,6 +1992,38 @@ parameter_list|()
 throws|throws
 name|BuildException
 block|{
+comment|// the checker is not compatible with JDK 1.8+ (changed class format: 52.0), don't fail just report warning:
+try|try
+block|{
+name|Collections
+operator|.
+name|class
+operator|.
+name|getMethod
+argument_list|(
+literal|"emptySortedSet"
+argument_list|)
+expr_stmt|;
+comment|// this is Java 8 :(
+name|log
+argument_list|(
+literal|"Java 8 or later is currently not supported by this checker. Please run the checks with a previous JDK!"
+argument_list|,
+name|Project
+operator|.
+name|MSG_WARN
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchMethodException
+name|nsme
+parameter_list|)
+block|{
+comment|// ignore, we are fine!
+block|}
 name|AntClassLoader
 name|antLoader
 init|=
