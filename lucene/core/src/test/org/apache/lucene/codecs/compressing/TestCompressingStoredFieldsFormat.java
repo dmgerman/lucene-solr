@@ -106,9 +106,23 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene41
+name|Codec
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|Lucene41Codec
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|simpletext
+operator|.
+name|SimpleTextCodec
 import|;
 end_import
 
@@ -530,6 +544,17 @@ name|TestCompressingStoredFieldsFormat
 extends|extends
 name|LuceneTestCase
 block|{
+DECL|field|NON_COMPRESSING_CODEC
+specifier|private
+specifier|static
+specifier|final
+name|Codec
+name|NON_COMPRESSING_CODEC
+init|=
+operator|new
+name|SimpleTextCodec
+argument_list|()
+decl_stmt|;
 DECL|field|dir
 specifier|private
 name|Directory
@@ -1032,15 +1057,15 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// switch codecs
+comment|// test merging against a non-compressing codec
 if|if
 condition|(
 name|iwConf
 operator|.
 name|getCodec
 argument_list|()
-operator|instanceof
-name|Lucene41Codec
+operator|==
+name|NON_COMPRESSING_CODEC
 condition|)
 block|{
 name|iwConf
@@ -1063,9 +1088,7 @@ name|iwConf
 operator|.
 name|setCodec
 argument_list|(
-operator|new
-name|Lucene41Codec
-argument_list|()
+name|NON_COMPRESSING_CODEC
 argument_list|)
 expr_stmt|;
 block|}
