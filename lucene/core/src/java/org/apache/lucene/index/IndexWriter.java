@@ -1657,7 +1657,7 @@ return|return
 name|delCount
 return|;
 block|}
-comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    * @throws AlreadyClosedException if this IndexWriter is    * closed    * @param failIfClosing if true, also fail when    * {@code IndexWriter} is in the process of closing    * ({@code closing=true}) but not yet done closing ({@code    * closed=false})    */
+comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    * @param failIfClosing if true, also fail when    * {@code IndexWriter} is in the process of closing    * ({@code closing=true}) but not yet done closing ({@code    * closed=false})    * @throws AlreadyClosedException if this IndexWriter is    * closed    */
 DECL|method|ensureOpen
 specifier|protected
 specifier|final
