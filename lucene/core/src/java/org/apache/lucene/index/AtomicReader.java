@@ -633,6 +633,19 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns {@link NumericDocValues} representing norms    *  for this field, or null if no {@link NumericDocValues}    *  were indexed. */
+DECL|method|simpleNormValues
+specifier|public
+specifier|abstract
+name|NumericDocValues
+name|simpleNormValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/**    * Get the {@link FieldInfos} describing all fields in    * this reader.    * @lucene.experimental    */
 DECL|method|getFieldInfos
 specifier|public

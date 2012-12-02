@@ -394,13 +394,6 @@ assert|;
 block|}
 block|}
 block|}
-if|if
-condition|(
-name|normsConsumer
-operator|!=
-literal|null
-condition|)
-block|{                    }
 block|}
 name|success
 operator|=
@@ -421,6 +414,7 @@ operator|.
 name|abort
 argument_list|()
 expr_stmt|;
+comment|// nocommit do we also need to normsConsumer.abort!?
 block|}
 block|}
 finally|finally

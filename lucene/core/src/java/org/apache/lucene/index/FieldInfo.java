@@ -409,6 +409,7 @@ name|IndexOptions
 name|indexOptions
 parameter_list|)
 block|{
+comment|//System.out.println("FI.update field=" + name + " indexed=" + indexed + " omitNorms=" + omitNorms + " this.omitNorms=" + this.omitNorms);
 if|if
 condition|(
 name|this

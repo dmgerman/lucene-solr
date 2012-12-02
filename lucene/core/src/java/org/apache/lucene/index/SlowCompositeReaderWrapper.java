@@ -416,6 +416,27 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|simpleNormValues
+specifier|public
+name|NumericDocValues
+name|simpleNormValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+comment|// nocommit hmm
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|getTermVectors
 specifier|public
 name|Fields

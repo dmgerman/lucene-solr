@@ -75,38 +75,6 @@ operator|.
 name|index
 operator|.
 name|DocValues
-operator|.
-name|SortedSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocValues
-operator|.
-name|Source
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DocValues
 import|;
 end_import
 
@@ -254,6 +222,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|// nocommit bogus forceNorms param:
 DECL|method|merge
 specifier|public
 name|void
@@ -261,6 +230,9 @@ name|merge
 parameter_list|(
 name|MergeState
 name|mergeState
+parameter_list|,
+name|boolean
+name|forceNorms
 parameter_list|)
 throws|throws
 name|IOException
@@ -277,10 +249,30 @@ control|)
 block|{
 if|if
 condition|(
+operator|(
+operator|!
+name|forceNorms
+operator|&&
 name|field
 operator|.
 name|hasDocValues
 argument_list|()
+operator|)
+operator|||
+operator|(
+name|forceNorms
+operator|&&
+name|field
+operator|.
+name|isIndexed
+argument_list|()
+operator|&&
+operator|!
+name|field
+operator|.
+name|omitsNorms
+argument_list|()
+operator|)
 condition|)
 block|{
 name|mergeState
@@ -289,11 +281,21 @@ name|fieldInfo
 operator|=
 name|field
 expr_stmt|;
+comment|//System.out.println("merge field=" + field.name + " forceNorms=" + forceNorms);
+comment|// nocommit a field can never have doc values AND norms!?
 name|DocValues
 operator|.
 name|Type
 name|type
 init|=
+name|forceNorms
+condition|?
+name|DocValues
+operator|.
+name|Type
+operator|.
+name|FIXED_INTS_8
+else|:
 name|field
 operator|.
 name|getDocValuesType
@@ -328,6 +330,8 @@ case|:
 name|mergeNumericField
 argument_list|(
 name|mergeState
+argument_list|,
+name|forceNorms
 argument_list|)
 expr_stmt|;
 break|break;
@@ -371,6 +375,7 @@ block|}
 block|}
 block|}
 block|}
+comment|// nocommit bogus forceNorms:
 comment|// dead simple impl: codec can optimize
 DECL|method|mergeNumericField
 specifier|protected
@@ -379,6 +384,9 @@ name|mergeNumericField
 parameter_list|(
 name|MergeState
 name|mergeState
+parameter_list|,
+name|boolean
+name|forceNorms
 parameter_list|)
 throws|throws
 name|IOException
@@ -430,6 +438,19 @@ comment|//System.out.println("merge field=" + mergeState.fieldInfo.name);
 name|NumericDocValues
 name|docValues
 init|=
+name|forceNorms
+condition|?
+name|reader
+operator|.
+name|simpleNormValues
+argument_list|(
+name|mergeState
+operator|.
+name|fieldInfo
+operator|.
+name|name
+argument_list|)
+else|:
 name|reader
 operator|.
 name|getNumericDocValues
@@ -448,6 +469,10 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// nocommit this isn't correct i think?  ie this one
+comment|// segment may have no docs containing this
+comment|// field... and that doesn't mean norms are omitted ...
+comment|//assert !forceNorms;
 name|docValues
 operator|=
 operator|new
@@ -552,6 +577,8 @@ operator|.
 name|merge
 argument_list|(
 name|mergeState
+argument_list|,
+name|forceNorms
 argument_list|)
 expr_stmt|;
 block|}
