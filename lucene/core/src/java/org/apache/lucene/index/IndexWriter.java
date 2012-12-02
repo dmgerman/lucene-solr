@@ -1657,7 +1657,7 @@ return|return
 name|delCount
 return|;
 block|}
-comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    * @throws AlreadyClosedException if this IndexWriter is closed    */
+comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    * @throws AlreadyClosedException if this IndexWriter is    * closed    * @param failIfClosing if true, also fail when    * {@code IndexWriter} is in the process of closing    * ({@code closing=true}) but not yet done closing ({@code    * closed=false})    */
 DECL|method|ensureOpen
 specifier|protected
 specifier|final
@@ -1665,7 +1665,7 @@ name|void
 name|ensureOpen
 parameter_list|(
 name|boolean
-name|includePendingClose
+name|failIfClosing
 parameter_list|)
 throws|throws
 name|AlreadyClosedException
@@ -1675,7 +1675,7 @@ condition|(
 name|closed
 operator|||
 operator|(
-name|includePendingClose
+name|failIfClosing
 operator|&&
 name|closing
 operator|)
@@ -1690,7 +1690,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    *<p>    * Calls {@link #ensureOpen(boolean) ensureOpen(true)}.    * @throws AlreadyClosedException if this IndexWriter is closed    */
+comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed ({@code closed=true}) or is in the process of    * closing ({@code closing=true}).    *<p>    * Calls {@link #ensureOpen(boolean) ensureOpen(true)}.    * @throws AlreadyClosedException if this IndexWriter is closed    */
 DECL|method|ensureOpen
 specifier|protected
 specifier|final
