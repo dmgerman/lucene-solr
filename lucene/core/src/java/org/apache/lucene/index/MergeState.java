@@ -907,6 +907,7 @@ name|InfoStream
 name|infoStream
 decl_stmt|;
 comment|/** Current field being merged. */
+comment|// nocommit shouldn't this be ... a param?:
 DECL|field|fieldInfo
 specifier|public
 name|FieldInfo

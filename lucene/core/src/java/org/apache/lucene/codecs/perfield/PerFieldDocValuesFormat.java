@@ -645,6 +645,14 @@ assert|assert
 name|previousValue
 operator|==
 literal|null
+operator|:
+literal|"formatName="
+operator|+
+name|formatName
+operator|+
+literal|" prevValue="
+operator|+
+name|previousValue
 assert|;
 name|Integer
 name|suffix
