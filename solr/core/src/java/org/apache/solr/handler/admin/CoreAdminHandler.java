@@ -1604,10 +1604,11 @@ decl_stmt|;
 name|DocRouter
 name|hp
 init|=
-operator|new
 name|DocRouter
-argument_list|()
+operator|.
+name|DEFAULT
 decl_stmt|;
+comment|// TODO: get actual doc router for collection if available
 name|ranges
 operator|=
 name|hp

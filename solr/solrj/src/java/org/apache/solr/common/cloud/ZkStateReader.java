@@ -2194,10 +2194,10 @@ name|getCoreUrl
 argument_list|()
 return|;
 block|}
-comment|/**    * Get shard leader properties.    */
+comment|/**    * Get shard leader properties, with retry if none exist.    */
 DECL|method|getLeaderProps
 specifier|public
-name|ZkNodeProps
+name|Replica
 name|getLeaderProps
 parameter_list|(
 name|String
@@ -2220,9 +2220,10 @@ literal|1000
 argument_list|)
 return|;
 block|}
+comment|/**    * Get shard leader properties, with retry if none exist.    */
 DECL|method|getLeaderProps
 specifier|public
-name|ZkNodeProps
+name|Replica
 name|getLeaderProps
 parameter_list|(
 name|String
@@ -2264,9 +2265,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-specifier|final
-name|ZkNodeProps
-name|nodeProps
+name|Replica
+name|replica
 init|=
 name|clusterState
 operator|.
@@ -2279,7 +2279,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|nodeProps
+name|replica
 operator|!=
 literal|null
 operator|&&
@@ -2288,22 +2288,15 @@ argument_list|()
 operator|.
 name|liveNodesContain
 argument_list|(
-operator|(
-name|String
-operator|)
-name|nodeProps
+name|replica
 operator|.
-name|get
-argument_list|(
-name|ZkStateReader
-operator|.
-name|NODE_NAME_PROP
-argument_list|)
+name|getNodeName
+argument_list|()
 argument_list|)
 condition|)
 block|{
 return|return
-name|nodeProps
+name|replica
 return|;
 block|}
 block|}

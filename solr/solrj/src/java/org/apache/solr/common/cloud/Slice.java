@@ -260,16 +260,12 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|DocRouter
-name|hp
-init|=
-operator|new
-name|DocRouter
-argument_list|()
-decl_stmt|;
+comment|// Doesn't support custom implementations of Range, but currently not needed.
 name|tmpRange
 operator|=
-name|hp
+name|DocRouter
+operator|.
+name|DEFAULT
 operator|.
 name|fromString
 argument_list|(
@@ -284,6 +280,7 @@ name|range
 operator|=
 name|tmpRange
 expr_stmt|;
+comment|/** debugging.  this isn't an error condition for custom sharding.     if (range == null) {       System.out.println("###### NO RANGE for " + name + " props=" + props);     }     **/
 name|replicationFactor
 operator|=
 literal|null
