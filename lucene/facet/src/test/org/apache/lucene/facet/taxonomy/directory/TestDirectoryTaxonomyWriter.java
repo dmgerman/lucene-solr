@@ -611,7 +611,7 @@ argument_list|)
 expr_stmt|;
 name|taxoWriter
 operator|.
-name|commit
+name|setCommitData
 argument_list|(
 name|userCommitData
 argument_list|)
@@ -730,7 +730,7 @@ expr_stmt|;
 comment|// add a category so that commit will happen
 name|taxoWriter
 operator|.
-name|commit
+name|setCommitData
 argument_list|(
 operator|new
 name|HashMap
@@ -751,6 +751,33 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+argument_list|)
+expr_stmt|;
+name|taxoWriter
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+comment|// verify taxoWriter.getCommitData()
+name|assertNotNull
+argument_list|(
+name|DirectoryTaxonomyWriter
+operator|.
+name|INDEX_EPOCH
+operator|+
+literal|" not found in taoxWriter.commitData"
+argument_list|,
+name|taxoWriter
+operator|.
+name|getCommitData
+argument_list|()
+operator|.
+name|get
+argument_list|(
+name|DirectoryTaxonomyWriter
+operator|.
+name|INDEX_EPOCH
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|taxoWriter
@@ -1033,7 +1060,7 @@ argument_list|)
 expr_stmt|;
 name|taxoWriter
 operator|.
-name|commit
+name|setCommitData
 argument_list|(
 operator|new
 name|HashMap
@@ -1055,6 +1082,11 @@ expr_stmt|;
 block|}
 block|}
 argument_list|)
+expr_stmt|;
+name|taxoWriter
+operator|.
+name|commit
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@

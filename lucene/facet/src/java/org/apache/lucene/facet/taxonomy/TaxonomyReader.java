@@ -357,7 +357,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Retrieve user committed data.    *     * @see TaxonomyWriter#commit(Map)    */
+comment|/**    * Retrieve user committed data.    *     * @see TaxonomyWriter#setCommitData(Map)    */
 DECL|method|getCommitUserData
 specifier|public
 specifier|abstract
