@@ -222,11 +222,26 @@ name|_TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test that a plain default puts codec headers in all files.  */
 end_comment
 
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"re-enable once Lucene41 doesn't secretly wrap SimpleText anymore"
+argument_list|)
 DECL|class|TestAllFilesHaveCodecHeader
 specifier|public
 class|class

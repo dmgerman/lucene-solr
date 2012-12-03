@@ -601,7 +601,9 @@ argument_list|)
 return|;
 block|}
 comment|/** the .dat file contains the data.    *  for numbers this is a "fixed-width" file, for example a single byte range:    *<pre>    *  field myField    *    minvalue 0    *    maxvalue 234    *    pattern 000    *  005    *  234    *  123    *  ...    *</pre>    *  so a document's value (delta encoded from minvalue) can be retrieved by     *  seeking to startOffset + (1+pattern.length())*docid. The extra 1 is the newline.    *      *  for bytes this is also a "fixed-width" file, for example:    *<pre>    *  field myField    *    fixedlength false    *    maxlength 8    *    pattern 0    *  length 6    *  foobar[space][space]    *  length 3    *  baz[space][space][space][space][space]    *  ...    *</pre>    *  so a doc's value can be retrieved by seeking to startOffset + (9+pattern.length+maxlength)*doc    *  the extra 9 is 2 newlines, plus "length " itself.    *      *  for sorted bytes this is a fixed-width file, for example:    *<pre>    *  field myField    *    numvalues 10    *    maxLength 8    *    pattern 0    *    ordpattern 00    *  length 6    *  foobar[space][space]    *  length 3    *  baz[space][space][space][space][space]    *  ...    *  03    *  06    *  01    *  10    *  ...    *</pre>    *  so the "ord section" begins at startOffset + (9+pattern.length+maxlength)*numValues.    *  a document's ord can be retrieved by seeking to "ord section" + (1+ordpattern.length())*docid    *  an ord's value can be retrieved by seeking to startOffset + (9+pattern.length+maxlength)*ord    *       *  the reader can just scan this file when it opens, skipping over the data blocks    *  and saving the offset/etc for each field.     */
+comment|// nocommit not public
 DECL|class|SimpleTextDocValuesWriter
+specifier|public
 specifier|static
 class|class
 name|SimpleTextDocValuesWriter
@@ -651,6 +653,7 @@ argument_list|()
 decl_stmt|;
 comment|// for asserting
 DECL|method|SimpleTextDocValuesWriter
+specifier|public
 name|SimpleTextDocValuesWriter
 parameter_list|(
 name|SegmentWriteState
@@ -2058,7 +2061,9 @@ comment|// ... we should use the ram cached one!  we don't do this
 comment|// correctly today ...
 comment|// nocommit make sure we test "all docs have 0 value",
 comment|// "all docs have empty BytesREf"
+comment|// nocommit not public
 DECL|class|SimpleTextDocValuesReader
+specifier|public
 specifier|static
 class|class
 name|SimpleTextDocValuesReader
@@ -2147,6 +2152,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|method|SimpleTextDocValuesReader
+specifier|public
 name|SimpleTextDocValuesReader
 parameter_list|(
 name|SegmentReadState
