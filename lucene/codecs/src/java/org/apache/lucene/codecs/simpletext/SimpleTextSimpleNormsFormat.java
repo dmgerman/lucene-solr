@@ -213,12 +213,12 @@ extends|extends
 name|SimpleNormsFormat
 block|{
 comment|// nocommit put back to len once we replace current norms format:
-DECL|field|NORMS_SEG_SUFFIX
+DECL|field|NORMS_SEG_EXTENSION
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|NORMS_SEG_SUFFIX
+name|NORMS_SEG_EXTENSION
 init|=
 literal|"slen"
 decl_stmt|;
@@ -283,13 +283,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// All we do is change the suffix from .dat -> .len;
+comment|// All we do is change the extension from .dat -> .len;
 comment|// otherwise this is a normal simple doc values file:
 name|super
 argument_list|(
 name|state
 argument_list|,
-name|NORMS_SEG_SUFFIX
+name|NORMS_SEG_EXTENSION
 argument_list|)
 expr_stmt|;
 block|}
@@ -313,13 +313,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// All we do is change the suffix from .dat -> .len;
+comment|// All we do is change the extension from .dat -> .len;
 comment|// otherwise this is a normal simple doc values file:
 name|super
 argument_list|(
 name|state
 argument_list|,
-name|NORMS_SEG_SUFFIX
+name|NORMS_SEG_EXTENSION
 argument_list|)
 expr_stmt|;
 block|}
