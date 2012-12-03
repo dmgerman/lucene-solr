@@ -6813,9 +6813,6 @@ name|sr
 argument_list|,
 literal|"stringdv"
 argument_list|)
-operator|.
-name|newRAMInstance
-argument_list|()
 decl_stmt|;
 name|assertNotNull
 argument_list|(
@@ -6849,9 +6846,6 @@ name|sr
 argument_list|,
 literal|"id"
 argument_list|)
-operator|.
-name|newRAMInstance
-argument_list|()
 decl_stmt|;
 specifier|final
 name|int
@@ -8871,9 +8865,6 @@ condition|)
 block|{
 return|return
 name|docValues
-operator|.
-name|newRAMInstance
-argument_list|()
 return|;
 block|}
 return|return
@@ -8993,9 +8984,6 @@ condition|)
 block|{
 return|return
 name|docValues
-operator|.
-name|newRAMInstance
-argument_list|()
 return|;
 block|}
 return|return
@@ -9037,9 +9025,6 @@ condition|)
 block|{
 return|return
 name|docValues
-operator|.
-name|newRAMInstance
-argument_list|()
 return|;
 block|}
 return|return
