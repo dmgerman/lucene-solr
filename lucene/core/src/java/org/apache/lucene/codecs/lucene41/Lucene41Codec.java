@@ -646,10 +646,8 @@ name|SimpleDocValuesFormat
 name|simpleDocValuesFormat
 parameter_list|()
 block|{
-comment|// nocommit tests seem to fail if we use this:
-comment|//return simpleDocValuesFormat;
 return|return
-literal|null
+name|simpleDocValuesFormat
 return|;
 block|}
 DECL|field|defaultFormat
@@ -665,6 +663,7 @@ argument_list|(
 literal|"Lucene41"
 argument_list|)
 decl_stmt|;
+comment|// nocommit
 DECL|field|defaultDVFormat
 specifier|private
 specifier|final
@@ -675,7 +674,7 @@ name|SimpleDocValuesFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene41"
+literal|"SimpleText"
 argument_list|)
 decl_stmt|;
 block|}
