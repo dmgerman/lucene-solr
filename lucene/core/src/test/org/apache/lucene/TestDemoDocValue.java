@@ -5484,11 +5484,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Ignore
-argument_list|(
-literal|"broken until we fix e.g. Lucene41's impl to actually handle suffixes correctly"
-argument_list|)
+comment|// nocommit: fix e.g. Lucene41's impl to actually handle suffixes correctly
 comment|// nocommit: if we are going to pass down suffixes to segmentread/writestate,
 comment|// then they should be respected by *all* codec apis!
 DECL|method|testDemoTwoFieldsTwoFormats
@@ -5535,7 +5531,7 @@ name|SimpleDocValuesFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene41"
+literal|"Memory"
 argument_list|)
 decl_stmt|;
 specifier|final
