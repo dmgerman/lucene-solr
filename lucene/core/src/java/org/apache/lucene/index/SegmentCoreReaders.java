@@ -338,8 +338,9 @@ specifier|final
 name|CompoundFileDirectory
 name|cfsReader
 decl_stmt|;
-comment|// nocommit we should make a single thread local w/ a
-comment|// class holding these N things...?
+comment|// TODO: make a single thread local w/ a
+comment|// Thingy class holding fieldsReader, termVectorsReader,
+comment|// simpleNormsProducer, simpleDVProducer
 DECL|field|fieldsReaderLocal
 specifier|final
 name|CloseableThreadLocal
@@ -410,8 +411,6 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|// nocommit not great to hold onto lots-o-ram in a thread
-comment|// local...?  do we need a "needsClone"/"isThreadSafe"!?
 DECL|field|simpleDocValuesLocal
 specifier|final
 name|CloseableThreadLocal
@@ -452,8 +451,6 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|// nocommit not great to hold onto lots-o-ram in a thread
-comment|// local...?  do we need a "needsClone"/"isThreadSafe"!?
 DECL|field|simpleNormsLocal
 specifier|final
 name|CloseableThreadLocal
