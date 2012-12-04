@@ -644,6 +644,19 @@ block|}
 block|}
 annotation|@
 name|Override
+DECL|method|clone
+specifier|public
+name|SimpleDVProducer
+name|clone
+parameter_list|()
+block|{
+comment|// nocommit todo
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|getNumeric
 specifier|public
 name|NumericDocValues
