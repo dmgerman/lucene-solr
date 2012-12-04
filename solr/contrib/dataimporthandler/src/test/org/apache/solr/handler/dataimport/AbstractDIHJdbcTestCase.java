@@ -284,7 +284,7 @@ name|setProperty
 argument_list|(
 literal|"derby.stream.error.field"
 argument_list|,
-literal|"DerbyUtil.DEV_NULL"
+literal|"org.apache.solr.handler.dataimport.AbstractDIHJdbcTestCase$DerbyUtil.DEV_NULL"
 argument_list|)
 expr_stmt|;
 name|Class
