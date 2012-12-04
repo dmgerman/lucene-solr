@@ -710,7 +710,7 @@ name|getSlices
 argument_list|()
 return|;
 block|}
-comment|/**    * Get the named DocCollection object, or thow an exception if it doesn't exist.    */
+comment|/**    * Get the named DocCollection object, or throw an exception if it doesn't exist.    */
 DECL|method|getCollection
 specifier|public
 name|DocCollection

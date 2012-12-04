@@ -1267,6 +1267,15 @@ name|cnt
 operator|++
 expr_stmt|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Recoveries finished - collection: "
+operator|+
+name|collection
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|assertAllActive
 specifier|protected
