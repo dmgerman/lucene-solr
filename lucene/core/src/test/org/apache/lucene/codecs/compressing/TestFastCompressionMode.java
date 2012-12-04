@@ -24,7 +24,7 @@ specifier|public
 class|class
 name|TestFastCompressionMode
 extends|extends
-name|AbstractTestCompressionMode
+name|AbstractTestLZ4CompressionMode
 block|{
 DECL|method|setUp
 specifier|public
