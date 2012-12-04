@@ -136,6 +136,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|_TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestParallelAtomicReader
 specifier|public
@@ -2028,6 +2042,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|_TestUtil
+operator|.
+name|checkReader
+argument_list|(
+name|pr
+argument_list|)
+expr_stmt|;
 return|return
 name|newSearcher
 argument_list|(

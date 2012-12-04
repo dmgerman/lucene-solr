@@ -625,7 +625,7 @@ specifier|public
 name|int
 name|numDeleted
 decl_stmt|;
-comment|/** True if we were able to open a SegmentReader on this        *  segment. */
+comment|/** True if we were able to open an AtomicReader on this        *  segment. */
 DECL|field|openReaderPassed
 specifier|public
 name|boolean
@@ -984,20 +984,24 @@ expr_stmt|;
 block|}
 DECL|method|msg
 specifier|private
+specifier|static
 name|void
 name|msg
 parameter_list|(
+name|PrintStream
+name|out
+parameter_list|,
 name|String
 name|msg
 parameter_list|)
 block|{
 if|if
 condition|(
-name|infoStream
+name|out
 operator|!=
 literal|null
 condition|)
-name|infoStream
+name|out
 operator|.
 name|println
 argument_list|(
@@ -1086,6 +1090,8 @@ parameter_list|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"ERROR: could not read any segments file in directory"
 argument_list|)
 expr_stmt|;
@@ -1282,6 +1288,8 @@ parameter_list|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"ERROR: could not open segments file in directory"
 argument_list|)
 expr_stmt|;
@@ -1331,6 +1339,8 @@ parameter_list|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"ERROR: could not read segment file version in directory"
 argument_list|)
 expr_stmt|;
@@ -1507,6 +1517,8 @@ expr_stmt|;
 block|}
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"Segments file="
 operator|+
 name|segmentsFileName
@@ -1587,6 +1599,8 @@ argument_list|)
 expr_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|":"
 argument_list|)
 expr_stmt|;
@@ -1598,6 +1612,8 @@ condition|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"\nERROR: this index appears to be created by a newer version of Lucene than this tool was compiled on; please re-compile this tool on the matching version of Lucene; exiting"
 argument_list|)
 expr_stmt|;
@@ -1742,6 +1758,8 @@ argument_list|)
 expr_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"  "
 operator|+
 operator|(
@@ -1803,7 +1821,7 @@ operator|.
 name|getDocCount
 argument_list|()
 decl_stmt|;
-name|SegmentReader
+name|AtomicReader
 name|reader
 init|=
 literal|null
@@ -1823,6 +1841,8 @@ argument_list|()
 decl_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"    codec="
 operator|+
 name|codec
@@ -1836,6 +1856,8 @@ name|codec
 expr_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"    compound="
 operator|+
 name|info
@@ -1859,6 +1881,8 @@ argument_list|()
 expr_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"    numFiles="
 operator|+
 name|info
@@ -1899,6 +1923,8 @@ operator|)
 expr_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"    size (MB)="
 operator|+
 name|nf
@@ -1944,6 +1970,8 @@ condition|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"    diagnostics = "
 operator|+
 name|diagnostics
@@ -1980,6 +2008,8 @@ condition|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"    attributes = "
 operator|+
 name|atts
@@ -1997,6 +2027,8 @@ condition|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"    no deletions"
 argument_list|)
 expr_stmt|;
@@ -2011,6 +2043,8 @@ else|else
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"    has deletions [delGen="
 operator|+
 name|info
@@ -2336,6 +2370,8 @@ name|numDocs
 expr_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"OK ["
 operator|+
 operator|(
@@ -2447,6 +2483,8 @@ block|}
 block|}
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"OK"
 argument_list|)
 expr_stmt|;
@@ -2514,6 +2552,8 @@ argument_list|()
 decl_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"OK ["
 operator|+
 name|fieldInfos
@@ -2540,9 +2580,9 @@ name|fieldNormStatus
 operator|=
 name|testFieldNorms
 argument_list|(
-name|fieldInfos
-argument_list|,
 name|reader
+argument_list|,
+name|infoStream
 argument_list|)
 expr_stmt|;
 comment|// Test the Term Index
@@ -2552,9 +2592,11 @@ name|termIndexStatus
 operator|=
 name|testPostings
 argument_list|(
-name|fieldInfos
-argument_list|,
 name|reader
+argument_list|,
+name|infoStream
+argument_list|,
+name|verbose
 argument_list|)
 expr_stmt|;
 comment|// Test Stored Fields
@@ -2564,11 +2606,9 @@ name|storedFieldStatus
 operator|=
 name|testStoredFields
 argument_list|(
-name|info
-argument_list|,
 name|reader
 argument_list|,
-name|nf
+name|infoStream
 argument_list|)
 expr_stmt|;
 comment|// Test Term Vectors
@@ -2578,13 +2618,13 @@ name|termVectorStatus
 operator|=
 name|testTermVectors
 argument_list|(
-name|fieldInfos
-argument_list|,
-name|info
-argument_list|,
 name|reader
 argument_list|,
-name|nf
+name|infoStream
+argument_list|,
+name|verbose
+argument_list|,
+name|crossCheckTermVectors
 argument_list|)
 expr_stmt|;
 name|segInfoStat
@@ -2593,11 +2633,9 @@ name|docValuesStatus
 operator|=
 name|testDocValues
 argument_list|(
-name|info
-argument_list|,
-name|fieldInfos
-argument_list|,
 name|reader
+argument_list|,
+name|infoStream
 argument_list|)
 expr_stmt|;
 comment|// Rethrow the first exception we encountered
@@ -2703,6 +2741,8 @@ throw|;
 block|}
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|""
 argument_list|)
 expr_stmt|;
@@ -2715,6 +2755,8 @@ parameter_list|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"FAILED"
 argument_list|)
 expr_stmt|;
@@ -2727,6 +2769,8 @@ literal|"fixIndex() would remove reference to this segment"
 expr_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"    WARNING: "
 operator|+
 name|comment
@@ -2749,6 +2793,8 @@ argument_list|)
 expr_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|""
 argument_list|)
 expr_stmt|;
@@ -2812,6 +2858,8 @@ block|}
 else|else
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"WARNING: "
 operator|+
 name|result
@@ -2867,6 +2915,8 @@ literal|1
 expr_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"ERROR: Next segment name counter "
 operator|+
 name|sis
@@ -2890,6 +2940,8 @@ condition|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"No problems were detected with this index.\n"
 argument_list|)
 expr_stmt|;
@@ -2898,19 +2950,20 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Test field norms.    */
+comment|/**    * Test field norms.    * @lucene.experimental    */
 DECL|method|testFieldNorms
-specifier|private
+specifier|public
+specifier|static
 name|Status
 operator|.
 name|FieldNormStatus
 name|testFieldNorms
 parameter_list|(
-name|FieldInfos
-name|fieldInfos
-parameter_list|,
-name|SegmentReader
+name|AtomicReader
 name|reader
+parameter_list|,
+name|PrintStream
+name|infoStream
 parameter_list|)
 block|{
 specifier|final
@@ -2948,7 +3001,10 @@ control|(
 name|FieldInfo
 name|info
 range|:
-name|fieldInfos
+name|reader
+operator|.
+name|getFieldInfos
+argument_list|()
 control|)
 block|{
 if|if
@@ -3030,6 +3086,8 @@ block|}
 block|}
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"OK ["
 operator|+
 name|status
@@ -3048,6 +3106,8 @@ parameter_list|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"ERROR ["
 operator|+
 name|String
@@ -3092,6 +3152,7 @@ block|}
 comment|/**    * checks Fields api is consistent with itself.    * searcher is optional, to verify with queries. Can be null.    */
 DECL|method|checkFields
 specifier|private
+specifier|static
 name|Status
 operator|.
 name|TermIndexStatus
@@ -3114,6 +3175,12 @@ name|doPrint
 parameter_list|,
 name|boolean
 name|isVectors
+parameter_list|,
+name|PrintStream
+name|infoStream
+parameter_list|,
+name|boolean
+name|verbose
 parameter_list|)
 throws|throws
 name|IOException
@@ -3145,6 +3212,8 @@ condition|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"OK [no fields/terms]"
 argument_list|)
 expr_stmt|;
@@ -5792,6 +5861,8 @@ condition|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"OK ["
 operator|+
 name|status
@@ -5899,19 +5970,50 @@ return|return
 name|status
 return|;
 block|}
-comment|/**    * Test the term index.    */
+comment|/**    * Test the term index.    * @lucene.experimental    */
 DECL|method|testPostings
-specifier|private
+specifier|public
+specifier|static
 name|Status
 operator|.
 name|TermIndexStatus
 name|testPostings
 parameter_list|(
-name|FieldInfos
-name|fieldInfos
-parameter_list|,
-name|SegmentReader
+name|AtomicReader
 name|reader
+parameter_list|,
+name|PrintStream
+name|infoStream
+parameter_list|)
+block|{
+return|return
+name|testPostings
+argument_list|(
+name|reader
+argument_list|,
+name|infoStream
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+comment|/**    * Test the term index.    * @lucene.experimental    */
+DECL|method|testPostings
+specifier|public
+specifier|static
+name|Status
+operator|.
+name|TermIndexStatus
+name|testPostings
+parameter_list|(
+name|AtomicReader
+name|reader
+parameter_list|,
+name|PrintStream
+name|infoStream
+parameter_list|,
+name|boolean
+name|verbose
 parameter_list|)
 block|{
 comment|// TODO: we should go and verify term vectors match, if
@@ -5965,6 +6067,15 @@ operator|.
 name|fields
 argument_list|()
 decl_stmt|;
+specifier|final
+name|FieldInfos
+name|fieldInfos
+init|=
+name|reader
+operator|.
+name|getFieldInfos
+argument_list|()
+decl_stmt|;
 name|status
 operator|=
 name|checkFields
@@ -5980,6 +6091,10 @@ argument_list|,
 literal|true
 argument_list|,
 literal|false
+argument_list|,
+name|infoStream
+argument_list|,
+name|verbose
 argument_list|)
 expr_stmt|;
 if|if
@@ -6017,6 +6132,10 @@ argument_list|,
 literal|true
 argument_list|,
 literal|false
+argument_list|,
+name|infoStream
+argument_list|,
+name|verbose
 argument_list|)
 expr_stmt|;
 block|}
@@ -6029,6 +6148,8 @@ parameter_list|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"ERROR: "
 operator|+
 name|e
@@ -6068,22 +6189,20 @@ return|return
 name|status
 return|;
 block|}
-comment|/**    * Test stored fields for a segment.    */
+comment|/**    * Test stored fields.    * @lucene.experimental    */
 DECL|method|testStoredFields
-specifier|private
+specifier|public
+specifier|static
 name|Status
 operator|.
 name|StoredFieldStatus
 name|testStoredFields
 parameter_list|(
-name|SegmentInfoPerCommit
-name|info
-parameter_list|,
-name|SegmentReader
+name|AtomicReader
 name|reader
 parameter_list|,
-name|NumberFormat
-name|format
+name|PrintStream
+name|infoStream
 parameter_list|)
 block|{
 specifier|final
@@ -6134,11 +6253,9 @@ literal|0
 init|;
 name|j
 operator|<
-name|info
+name|reader
 operator|.
-name|info
-operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 condition|;
 operator|++
@@ -6225,6 +6342,8 @@ throw|;
 block|}
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"OK ["
 operator|+
 name|status
@@ -6233,7 +6352,14 @@ name|totFields
 operator|+
 literal|" total field count; avg "
 operator|+
-name|format
+name|NumberFormat
+operator|.
+name|getInstance
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 operator|.
 name|format
 argument_list|(
@@ -6265,6 +6391,8 @@ parameter_list|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"ERROR ["
 operator|+
 name|String
@@ -6309,6 +6437,7 @@ block|}
 comment|/** Helper method to verify values (either docvalues or norms), also checking    *  type and size against fieldinfos/segmentinfo    */
 DECL|method|checkDocValues
 specifier|private
+specifier|static
 name|void
 name|checkDocValues
 parameter_list|(
@@ -6822,20 +6951,18 @@ block|}
 block|}
 block|}
 DECL|method|testDocValues
-specifier|private
+specifier|public
+specifier|static
 name|Status
 operator|.
 name|DocValuesStatus
 name|testDocValues
 parameter_list|(
-name|SegmentInfoPerCommit
-name|info
-parameter_list|,
-name|FieldInfos
-name|fieldInfos
-parameter_list|,
-name|SegmentReader
+name|AtomicReader
 name|reader
+parameter_list|,
+name|PrintStream
+name|infoStream
 parameter_list|)
 block|{
 specifier|final
@@ -6872,7 +6999,10 @@ control|(
 name|FieldInfo
 name|fieldInfo
 range|:
-name|fieldInfos
+name|reader
+operator|.
+name|getFieldInfos
+argument_list|()
 control|)
 block|{
 if|if
@@ -6920,60 +7050,15 @@ name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// nocommit hack hack hack
-if|if
-condition|(
-name|reader
-operator|.
-name|core
-operator|.
-name|simpleDVProducer
-operator|!=
-literal|null
-condition|)
-block|{
 name|checkSimpleDocValues
 argument_list|(
 name|fieldInfo
 argument_list|,
 name|reader
+argument_list|,
+name|infoStream
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-comment|// hack hack hack
-if|if
-condition|(
-name|info
-operator|.
-name|info
-operator|.
-name|getCodec
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"SimpleText"
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"docvalues lost for field: "
-operator|+
-name|fieldInfo
-operator|+
-literal|"!!!!"
-argument_list|)
-throw|;
-block|}
-block|}
 block|}
 else|else
 block|{
@@ -7009,6 +7094,8 @@ block|}
 block|}
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"OK ["
 operator|+
 name|status
@@ -7033,6 +7120,8 @@ parameter_list|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"ERROR ["
 operator|+
 name|String
@@ -7076,19 +7165,30 @@ return|;
 block|}
 DECL|method|checkBinaryDocValues
 specifier|private
+specifier|static
 name|void
 name|checkBinaryDocValues
 parameter_list|(
 name|FieldInfo
 name|fi
 parameter_list|,
-name|SegmentReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|BinaryDocValues
 name|dv
 parameter_list|)
 block|{
+comment|// nocommit remove this:
+if|if
+condition|(
+name|dv
+operator|==
+literal|null
+condition|)
+block|{
+return|return;
+block|}
 specifier|final
 name|boolean
 name|fixed
@@ -7247,19 +7347,30 @@ block|}
 block|}
 DECL|method|checkSortedDocValues
 specifier|private
+specifier|static
 name|void
 name|checkSortedDocValues
 parameter_list|(
 name|FieldInfo
 name|fi
 parameter_list|,
-name|SegmentReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|SortedDocValues
 name|dv
 parameter_list|)
 block|{
+comment|// nocommit remove this:
+if|if
+condition|(
+name|dv
+operator|==
+literal|null
+condition|)
+block|{
+return|return;
+block|}
 name|checkBinaryDocValues
 argument_list|(
 name|fi
@@ -7521,19 +7632,30 @@ block|}
 block|}
 DECL|method|checkNumericDocValues
 specifier|private
+specifier|static
 name|void
 name|checkNumericDocValues
 parameter_list|(
 name|FieldInfo
 name|fi
 parameter_list|,
-name|SegmentReader
+name|AtomicReader
 name|reader
 parameter_list|,
 name|NumericDocValues
 name|ndv
 parameter_list|)
 block|{
+comment|// nocommit remove this:
+if|if
+condition|(
+name|ndv
+operator|==
+literal|null
+condition|)
+block|{
+return|return;
+block|}
 specifier|final
 name|long
 name|minValue
@@ -7674,15 +7796,19 @@ block|}
 block|}
 comment|// nocommit
 DECL|method|checkSimpleDocValues
-specifier|private
+specifier|public
+specifier|static
 name|void
 name|checkSimpleDocValues
 parameter_list|(
 name|FieldInfo
 name|fi
 parameter_list|,
-name|SegmentReader
+name|AtomicReader
 name|reader
+parameter_list|,
+name|PrintStream
+name|infoStream
 parameter_list|)
 throws|throws
 name|Exception
@@ -7710,6 +7836,8 @@ condition|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"  field: "
 operator|+
 name|fi
@@ -7828,25 +7956,55 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Test term vectors for a segment.    */
+comment|/**    * Test term vectors.    * @lucene.experimental    */
 DECL|method|testTermVectors
-specifier|private
+specifier|public
+specifier|static
 name|Status
 operator|.
 name|TermVectorStatus
 name|testTermVectors
 parameter_list|(
-name|FieldInfos
-name|fieldInfos
-parameter_list|,
-name|SegmentInfoPerCommit
-name|info
-parameter_list|,
-name|SegmentReader
+name|AtomicReader
 name|reader
 parameter_list|,
-name|NumberFormat
-name|format
+name|PrintStream
+name|infoStream
+parameter_list|)
+block|{
+return|return
+name|testTermVectors
+argument_list|(
+name|reader
+argument_list|,
+name|infoStream
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+comment|/**    * Test term vectors.    * @lucene.experimental    */
+DECL|method|testTermVectors
+specifier|public
+specifier|static
+name|Status
+operator|.
+name|TermVectorStatus
+name|testTermVectors
+parameter_list|(
+name|AtomicReader
+name|reader
+parameter_list|,
+name|PrintStream
+name|infoStream
+parameter_list|,
+name|boolean
+name|verbose
+parameter_list|,
+name|boolean
+name|crossCheckTermVectors
 parameter_list|)
 block|{
 specifier|final
@@ -7859,6 +8017,15 @@ operator|new
 name|Status
 operator|.
 name|TermVectorStatus
+argument_list|()
+decl_stmt|;
+specifier|final
+name|FieldInfos
+name|fieldInfos
+init|=
+name|reader
+operator|.
+name|getFieldInfos
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -7962,11 +8129,9 @@ literal|0
 init|;
 name|j
 operator|<
-name|info
+name|reader
 operator|.
-name|info
-operator|.
-name|getDocCount
+name|maxDoc
 argument_list|()
 condition|;
 operator|++
@@ -8009,6 +8174,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|true
+argument_list|,
+name|infoStream
+argument_list|,
+name|verbose
 argument_list|)
 expr_stmt|;
 comment|// Again, with the one doc deleted:
@@ -8025,6 +8194,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|true
+argument_list|,
+name|infoStream
+argument_list|,
+name|verbose
 argument_list|)
 expr_stmt|;
 comment|// Only agg stats if the doc is live:
@@ -8969,6 +9142,8 @@ name|docCount
 decl_stmt|;
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"OK ["
 operator|+
 name|status
@@ -8977,7 +9152,14 @@ name|totVectors
 operator|+
 literal|" total vector count; avg "
 operator|+
-name|format
+name|NumberFormat
+operator|.
+name|getInstance
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 operator|.
 name|format
 argument_list|(
@@ -8996,6 +9178,8 @@ parameter_list|)
 block|{
 name|msg
 argument_list|(
+name|infoStream
+argument_list|,
 literal|"ERROR ["
 operator|+
 name|String
