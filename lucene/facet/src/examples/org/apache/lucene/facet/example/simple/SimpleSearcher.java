@@ -658,6 +658,14 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+specifier|final
+name|FacetIndexingParams
+name|indexingParams
+init|=
+operator|new
+name|DefaultFacetIndexingParams
+argument_list|()
+decl_stmt|;
 comment|// base query the user is interested in
 name|Query
 name|baseQuery
@@ -707,7 +715,7 @@ name|indexReader
 argument_list|,
 name|taxoReader
 argument_list|,
-literal|null
+name|indexingParams
 argument_list|,
 name|facetRequest
 argument_list|)
@@ -769,6 +777,8 @@ name|DrillDown
 operator|.
 name|query
 argument_list|(
+name|indexingParams
+argument_list|,
 name|baseQuery
 argument_list|,
 name|categoryOfInterest
@@ -786,7 +796,7 @@ name|indexReader
 argument_list|,
 name|taxoReader
 argument_list|,
-literal|null
+name|indexingParams
 argument_list|,
 name|facetRequest
 argument_list|)
