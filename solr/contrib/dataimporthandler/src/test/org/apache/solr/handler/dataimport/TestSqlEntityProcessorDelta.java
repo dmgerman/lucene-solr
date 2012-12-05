@@ -136,7 +136,7 @@ name|Exception
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"testSingleEntity full-import..."
 argument_list|)
@@ -160,7 +160,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"testSingleEntity delta-import ("
 operator|+
@@ -190,7 +190,7 @@ name|Exception
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"testWithSimpleTransformer full-import..."
 argument_list|)
@@ -219,7 +219,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"testWithSimpleTransformer delta-import ("
 operator|+
@@ -244,7 +244,7 @@ name|Exception
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"testWithComplexTransformer full-import..."
 argument_list|)
@@ -270,7 +270,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"testWithComplexTransformer delta-import ("
 operator|+
@@ -306,7 +306,7 @@ name|Exception
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"testChildEntities full-import..."
 argument_list|)
@@ -321,7 +321,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"using parent delta? "
 operator|+
@@ -343,7 +343,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"testChildEntities delta-import..."
 argument_list|)
@@ -682,7 +682,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|sb
 operator|.
@@ -707,7 +707,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"person changes { "
 operator|+
