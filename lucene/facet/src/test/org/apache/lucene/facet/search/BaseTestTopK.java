@@ -343,6 +343,10 @@ name|currDoc
 operator|=
 name|doc
 expr_stmt|;
+comment|// the code below tries to achieve non-uniform distribution of
+comment|// categories. Perhaps we can use random.nextGaussian() instead,
+comment|// something like nextGaussian() * stdev + maxCategory/2. Or
+comment|// try to generate a Zipf distribution.
 name|nextInt
 operator|=
 name|random
