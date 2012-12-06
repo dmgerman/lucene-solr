@@ -758,6 +758,7 @@ name|upperBits
 operator||
 name|m2
 decl_stmt|;
+comment|// lowerBound will be greater than upperBound if we are in the negatives
 name|Range
 name|completeRange
 init|=
@@ -773,10 +774,13 @@ name|List
 argument_list|<
 name|Slice
 argument_list|>
-name|slices
+name|targetSlices
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Slice
+argument_list|>
 argument_list|(
 literal|1
 argument_list|)
@@ -786,7 +790,10 @@ control|(
 name|Slice
 name|slice
 range|:
-name|slices
+name|collection
+operator|.
+name|getSlices
+argument_list|()
 control|)
 block|{
 name|Range
@@ -811,7 +818,7 @@ name|completeRange
 argument_list|)
 condition|)
 block|{
-name|slices
+name|targetSlices
 operator|.
 name|add
 argument_list|(
@@ -821,7 +828,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-name|slices
+name|targetSlices
 return|;
 block|}
 block|}
