@@ -815,7 +815,8 @@ argument_list|,
 literal|"shard4"
 argument_list|)
 expr_stmt|;
-comment|// syntax to specify bits
+comment|// syntax to specify bits.  Anything over 2 should give the same results as above (since only top 2 bits
+comment|// affect our 4 slice collection).
 name|doId
 argument_list|(
 name|coll
@@ -848,6 +849,42 @@ argument_list|(
 name|coll
 argument_list|,
 literal|"e/2!qux"
+argument_list|,
+literal|"shard4"
+argument_list|)
+expr_stmt|;
+name|doId
+argument_list|(
+name|coll
+argument_list|,
+literal|"b/32!foo"
+argument_list|,
+literal|"shard1"
+argument_list|)
+expr_stmt|;
+name|doId
+argument_list|(
+name|coll
+argument_list|,
+literal|"c/32!bar"
+argument_list|,
+literal|"shard2"
+argument_list|)
+expr_stmt|;
+name|doId
+argument_list|(
+name|coll
+argument_list|,
+literal|"d/32!baz"
+argument_list|,
+literal|"shard3"
+argument_list|)
+expr_stmt|;
+name|doId
+argument_list|(
+name|coll
+argument_list|,
+literal|"e/32!qux"
 argument_list|,
 literal|"shard4"
 argument_list|)
