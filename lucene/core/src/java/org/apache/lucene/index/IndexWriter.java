@@ -3954,8 +3954,7 @@ name|term
 argument_list|,
 name|doc
 argument_list|,
-name|getAnalyzer
-argument_list|()
+name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
