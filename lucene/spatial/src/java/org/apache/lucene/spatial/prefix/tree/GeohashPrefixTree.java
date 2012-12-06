@@ -497,10 +497,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|GeohashPrefixTree
-operator|.
-name|this
-argument_list|,
 name|token
 argument_list|)
 expr_stmt|;
@@ -521,10 +517,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|GeohashPrefixTree
-operator|.
-name|this
-argument_list|,
 name|bytes
 argument_list|,
 name|off

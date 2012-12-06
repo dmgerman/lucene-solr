@@ -151,34 +151,20 @@ name|String
 name|token
 decl_stmt|;
 comment|//this is the only part of equality
+comment|/** When set via getSubCells(filter), it is the relationship between this    * cell and the given shape filter.  If set via setLeaf() (to WITHIN), it is    * meant to indicate no further sub-cells are going to be provided because    * maxLevels or a detailLevel is hit. It's always null for points.    */
 DECL|field|shapeRel
 specifier|protected
 name|SpatialRelation
 name|shapeRel
 decl_stmt|;
-comment|//set in getSubCells(filter), and via setLeaf().
-DECL|field|spatialPrefixTree
-specifier|private
-name|SpatialPrefixTree
-name|spatialPrefixTree
-decl_stmt|;
 DECL|method|Node
 specifier|protected
 name|Node
 parameter_list|(
-name|SpatialPrefixTree
-name|spatialPrefixTree
-parameter_list|,
 name|String
 name|token
 parameter_list|)
 block|{
-name|this
-operator|.
-name|spatialPrefixTree
-operator|=
-name|spatialPrefixTree
-expr_stmt|;
 name|this
 operator|.
 name|token
@@ -250,9 +236,6 @@ DECL|method|Node
 specifier|protected
 name|Node
 parameter_list|(
-name|SpatialPrefixTree
-name|spatialPrefixTree
-parameter_list|,
 name|byte
 index|[]
 name|bytes
@@ -264,12 +247,6 @@ name|int
 name|len
 parameter_list|)
 block|{
-name|this
-operator|.
-name|spatialPrefixTree
-operator|=
-name|spatialPrefixTree
-expr_stmt|;
 name|this
 operator|.
 name|bytes
@@ -350,6 +327,7 @@ name|void
 name|b_fixLeaf
 parameter_list|()
 block|{
+comment|//note that non-point shapes always have the maxLevels cell set with setLeaf
 if|if
 condition|(
 name|bytes
@@ -371,22 +349,6 @@ name|setLeaf
 argument_list|()
 expr_stmt|;
 block|}
-elseif|else
-if|if
-condition|(
-name|getLevel
-argument_list|()
-operator|==
-name|spatialPrefixTree
-operator|.
-name|getMaxLevels
-argument_list|()
-condition|)
-block|{
-name|setLeaf
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 DECL|method|getShapeRel
 specifier|public
@@ -398,6 +360,7 @@ return|return
 name|shapeRel
 return|;
 block|}
+comment|/**    * For points, this is always false.  Otherwise this is true if there are no    * further cells with this prefix for the shape (always true at maxLevels).    */
 DECL|method|isLeaf
 specifier|public
 name|boolean
@@ -552,7 +515,7 @@ return|;
 block|}
 comment|//TODO add getParent() and update some algorithms to use this?
 comment|//public Cell getParent();
-comment|/**    * Like {@link #getSubCells()} but with the results filtered by a shape. If that shape is a {@link com.spatial4j.core.shape.Point} then it    * must call {@link #getSubCell(com.spatial4j.core.shape.Point)};    * Precondition: Never called when getLevel() == maxLevel.    *    * @param shapeFilter an optional filter for the returned cells.    * @return A set of cells (no dups), sorted. Not Modifiable.    */
+comment|/**    * Like {@link #getSubCells()} but with the results filtered by a shape. If    * that shape is a {@link com.spatial4j.core.shape.Point} then it    * must call {@link #getSubCell(com.spatial4j.core.shape.Point)}.    * The returned cells should have their {@link Node#shapeRel} set to their    * relation with {@code shapeFilter} for non-point. As such,    * {@link org.apache.lucene.spatial.prefix.tree.Node#isLeaf()} should be    * accurate.    *<p/>    * Precondition: Never called when getLevel() == maxLevel.    *    * @param shapeFilter an optional filter for the returned cells.    * @return A set of cells (no dups), sorted. Not Modifiable.    */
 DECL|method|getSubCells
 specifier|public
 name|Collection
