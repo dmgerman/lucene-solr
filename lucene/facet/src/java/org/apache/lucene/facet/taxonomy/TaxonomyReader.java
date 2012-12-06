@@ -66,6 +66,24 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|facet
+operator|.
+name|taxonomy
+operator|.
+name|directory
+operator|.
+name|ParallelTaxonomyArrays
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|AlreadyClosedException
@@ -347,12 +365,12 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns a {@link ChildrenArrays} object which can be used together to    * efficiently enumerate the children of any category.    *<p>    * The caller can hold on to the object it got indefinitely - it is guaranteed    * that no-one else will modify it. The other side of the same coin is that    * the caller must treat the object which it got (and the arrays it contains)    * as read-only and<b>not modify it</b>, because other callers might have    * gotten the same object too.    */
-DECL|method|getChildrenArrays
+comment|/**    * Returns a {@link ParallelTaxonomyArrays} object which can be used to    * efficiently traverse the taxonomy tree.    */
+DECL|method|getParallelTaxonomyArrays
 specifier|public
 specifier|abstract
-name|ChildrenArrays
-name|getChildrenArrays
+name|ParallelTaxonomyArrays
+name|getParallelTaxonomyArrays
 parameter_list|()
 throws|throws
 name|IOException
@@ -385,7 +403,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns the ordinal of the parent category of the category with the given    * ordinal, according to the following rules:    *     *     *<ul>    *<li>If the given ordinal is the {@link #ROOT_ORDINAL}, an    * {@link #INVALID_ORDINAL} is returned.    *<li>If the given ordinal is a top-level category, the {@link #ROOT_ORDINAL}    * is returned.    *<li>If the given ordinal is an existing category, returns the ordinal of    * its parent    *</ul>    *     * @throws ArrayIndexOutOfBoundsException    *           if an invalid ordinal is given (negative or beyond the last    *           available ordinal)    */
+comment|/**    * Returns the ordinal of the parent category of the category with the given    * ordinal, according to the following rules:    *     *<ul>    *<li>If the given ordinal is the {@link #ROOT_ORDINAL}, an    * {@link #INVALID_ORDINAL} is returned.    *<li>If the given ordinal is a top-level category, the {@link #ROOT_ORDINAL}    * is returned.    *<li>If the given ordinal is an existing category, returns the ordinal of    * its parent    *</ul>    *     * @throws ArrayIndexOutOfBoundsException    *           if an invalid ordinal is given (negative or beyond the last    *           available ordinal)    */
 DECL|method|getParent
 specifier|public
 specifier|abstract
@@ -395,17 +413,6 @@ parameter_list|(
 name|int
 name|ordinal
 parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Returns an {@code int[]} the size of the taxonomy listing the ordinal of    * the parent category of each category in the taxonomy.    *<p>    * The caller can hold on to the array it got indefinitely - it is guaranteed    * that no-one else will modify it. The other side of the same coin is that    * the caller must treat the array it got as read-only and<b>not modify    * it</b>, because other callers might have gotten the same array too (and    * getParent() calls might be answered from the same array).    */
-DECL|method|getParentArray
-specifier|public
-specifier|abstract
-name|int
-index|[]
-name|getParentArray
-parameter_list|()
 throws|throws
 name|IOException
 function_decl|;

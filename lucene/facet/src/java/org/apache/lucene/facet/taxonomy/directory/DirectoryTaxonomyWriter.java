@@ -796,24 +796,33 @@ name|shouldFillCache
 init|=
 literal|true
 decl_stmt|;
-comment|/**    * We call the cache "complete" if we know that every category in our    * taxonomy is in the cache. When the cache is<B>not</B> complete, and    * we can't find a category in the cache, we still need to look for it    * in the on-disk index; Therefore when the cache is not complete, we    * need to open a "reader" to the taxonomy index.    * The cache becomes incomplete if it was never filled with the existing    * categories, or if a put() to the cache ever returned true (meaning    * that some of the cached data was cleared).    */
-DECL|field|cacheIsComplete
+comment|// even though lazily initialized, not volatile so that access to it is
+comment|// faster. we keep a volatile boolean init instead.
+DECL|field|readerManager
+specifier|private
+name|ReaderManager
+name|readerManager
+decl_stmt|;
+DECL|field|initializedReaderManager
 specifier|private
 specifier|volatile
 name|boolean
-name|cacheIsComplete
-decl_stmt|;
-DECL|field|readerManager
-specifier|private
-specifier|volatile
-name|ReaderManager
-name|readerManager
+name|initializedReaderManager
+init|=
+literal|false
 decl_stmt|;
 DECL|field|shouldRefreshReaderManager
 specifier|private
 specifier|volatile
 name|boolean
 name|shouldRefreshReaderManager
+decl_stmt|;
+comment|/**    * We call the cache "complete" if we know that every category in our    * taxonomy is in the cache. When the cache is<B>not</B> complete, and    * we can't find a category in the cache, we still need to look for it    * in the on-disk index; Therefore when the cache is not complete, we    * need to open a "reader" to the taxonomy index.    * The cache becomes incomplete if it was never filled with the existing    * categories, or if a put() to the cache ever returned true (meaning    * that some of the cached data was cleared).    */
+DECL|field|cacheIsComplete
+specifier|private
+specifier|volatile
+name|boolean
+name|cacheIsComplete
 decl_stmt|;
 DECL|field|isClosed
 specifier|private
@@ -823,11 +832,11 @@ name|isClosed
 init|=
 literal|false
 decl_stmt|;
-DECL|field|parentArray
+DECL|field|taxoArrays
 specifier|private
 specifier|volatile
-name|ParentArray
-name|parentArray
+name|ParallelTaxonomyArrays
+name|taxoArrays
 decl_stmt|;
 DECL|field|nextID
 specifier|private
@@ -835,7 +844,6 @@ specifier|volatile
 name|int
 name|nextID
 decl_stmt|;
-comment|//  private Map<String,String> commitData;
 comment|/** Reads the commit data from a Directory. */
 DECL|method|readCommitData
 specifier|private
@@ -1251,9 +1259,8 @@ name|IOException
 block|{
 if|if
 condition|(
-name|readerManager
-operator|==
-literal|null
+operator|!
+name|initializedReaderManager
 condition|)
 block|{
 synchronized|synchronized
@@ -1267,9 +1274,8 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|readerManager
-operator|==
-literal|null
+operator|!
+name|initializedReaderManager
 condition|)
 block|{
 name|readerManager
@@ -1285,6 +1291,10 @@ expr_stmt|;
 name|shouldRefreshReaderManager
 operator|=
 literal|false
+expr_stmt|;
+name|initializedReaderManager
+operator|=
+literal|true
 expr_stmt|;
 block|}
 block|}
@@ -1335,7 +1345,6 @@ literal|3
 argument_list|)
 return|;
 block|}
-comment|// convenience constructors:
 DECL|method|DirectoryTaxonomyWriter
 specifier|public
 name|DirectoryTaxonomyWriter
@@ -1430,9 +1439,7 @@ name|IOException
 block|{
 if|if
 condition|(
-name|readerManager
-operator|!=
-literal|null
+name|initializedReaderManager
 condition|)
 block|{
 name|readerManager
@@ -1443,6 +1450,10 @@ expr_stmt|;
 name|readerManager
 operator|=
 literal|null
+expr_stmt|;
+name|initializedReaderManager
+operator|=
+literal|false
 expr_stmt|;
 block|}
 if|if
@@ -1778,6 +1789,18 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|TermsEnum
+name|termsEnum
+init|=
+literal|null
+decl_stmt|;
+comment|// reuse
+name|DocsEnum
+name|docs
+init|=
+literal|null
+decl_stmt|;
+comment|// reuse
 specifier|final
 name|BytesRef
 name|catTerm
@@ -1828,16 +1851,15 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|TermsEnum
 name|termsEnum
-init|=
+operator|=
 name|terms
 operator|.
 name|iterator
 argument_list|(
-literal|null
+name|termsEnum
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|termsEnum
@@ -1850,21 +1872,22 @@ literal|true
 argument_list|)
 condition|)
 block|{
-comment|// TODO: is it really ok that null is passed here as liveDocs?
-name|DocsEnum
+comment|// liveDocs=null because the taxonomy has no deletes
 name|docs
-init|=
+operator|=
 name|termsEnum
 operator|.
 name|docs
 argument_list|(
 literal|null
 argument_list|,
-literal|null
+name|docs
 argument_list|,
 literal|0
+comment|/* freqs not required */
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// if the term was found, we know it has exactly one document.
 name|doc
 operator|=
 name|docs
@@ -1876,6 +1899,7 @@ name|ctx
 operator|.
 name|docBase
 expr_stmt|;
+break|break;
 block|}
 block|}
 block|}
@@ -2222,9 +2246,9 @@ name|id
 argument_list|)
 expr_stmt|;
 comment|// also add to the parent array
-name|parentArray
+name|taxoArrays
 operator|=
-name|getParentArray
+name|getTaxoArrays
 argument_list|()
 operator|.
 name|add
@@ -2450,9 +2474,7 @@ if|if
 condition|(
 name|shouldRefreshReaderManager
 operator|&&
-name|readerManager
-operator|!=
-literal|null
+name|initializedReaderManager
 condition|)
 block|{
 name|readerManager
@@ -2946,20 +2968,24 @@ name|readerManager
 operator|=
 literal|null
 expr_stmt|;
+name|initializedReaderManager
+operator|=
+literal|false
+expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|getParentArray
+DECL|method|getTaxoArrays
 specifier|private
-name|ParentArray
-name|getParentArray
+name|ParallelTaxonomyArrays
+name|getTaxoArrays
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 if|if
 condition|(
-name|parentArray
+name|taxoArrays
 operator|==
 literal|null
 condition|)
@@ -2971,7 +2997,7 @@ init|)
 block|{
 if|if
 condition|(
-name|parentArray
+name|taxoArrays
 operator|==
 literal|null
 condition|)
@@ -2989,13 +3015,21 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|parentArray
-operator|=
+comment|// according to Java Concurrency, this might perform better on some
+comment|// JVMs, since the object initialization doesn't happen on the
+comment|// volatile member.
+name|ParallelTaxonomyArrays
+name|tmpArrays
+init|=
 operator|new
-name|ParentArray
+name|ParallelTaxonomyArrays
 argument_list|(
 name|reader
 argument_list|)
+decl_stmt|;
+name|taxoArrays
+operator|=
+name|tmpArrays
 expr_stmt|;
 block|}
 finally|finally
@@ -3012,7 +3046,7 @@ block|}
 block|}
 block|}
 return|return
-name|parentArray
+name|taxoArrays
 return|;
 block|}
 annotation|@
@@ -3050,10 +3084,10 @@ argument_list|)
 throw|;
 block|}
 return|return
-name|getParentArray
+name|getTaxoArrays
 argument_list|()
 operator|.
-name|getArray
+name|parents
 argument_list|()
 index|[
 name|ordinal
