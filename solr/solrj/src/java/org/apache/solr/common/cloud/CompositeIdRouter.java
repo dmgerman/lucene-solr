@@ -758,6 +758,43 @@ name|upperBits
 operator||
 name|m2
 decl_stmt|;
+if|if
+condition|(
+name|m1
+operator|==
+literal|0
+condition|)
+block|{
+comment|// no bits used from first part of key.. the code above will produce 0x000000000->0xffffffff which only works on unsigned space, but we're using signed space.
+name|lowerBound
+operator|=
+name|Integer
+operator|.
+name|MIN_VALUE
+expr_stmt|;
+name|upperBound
+operator|=
+name|Integer
+operator|.
+name|MAX_VALUE
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|lowerBound
+operator|>
+name|upperBound
+condition|)
+block|{
+comment|// nocommit
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"WHAAAT?"
+argument_list|)
+throw|;
+block|}
 comment|// lowerBound will be greater than upperBound if we are in the negatives
 name|Range
 name|completeRange
