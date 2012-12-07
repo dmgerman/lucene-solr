@@ -1105,7 +1105,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"A cluster state change: {}, has occurred - updating... ({})"
+literal|"A cluster state change: {}, has occurred - updating... (live nodes size: {})"
 argument_list|,
 operator|(
 name|event
