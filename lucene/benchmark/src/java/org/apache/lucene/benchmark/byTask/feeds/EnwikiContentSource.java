@@ -936,6 +936,14 @@ name|localFileIS
 init|=
 name|is
 decl_stmt|;
+if|if
+condition|(
+name|localFileIS
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// null means fileIS was closed on us
 try|try
 block|{
 comment|// To work around a bug in XERCES (XERCESJ-1257), we assume the XML is always UTF8, so we simply provide reader.
@@ -1014,6 +1022,7 @@ name|ioe
 throw|;
 block|}
 block|}
+block|}
 synchronized|synchronized
 init|(
 name|this
@@ -1021,6 +1030,8 @@ init|)
 block|{
 if|if
 condition|(
+name|stopped
+operator|||
 operator|!
 name|forever
 condition|)
@@ -1483,6 +1494,11 @@ operator|.
 name|this
 init|)
 block|{
+name|parser
+operator|.
+name|stop
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|is
@@ -1500,11 +1516,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|parser
-operator|.
-name|stop
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 annotation|@
