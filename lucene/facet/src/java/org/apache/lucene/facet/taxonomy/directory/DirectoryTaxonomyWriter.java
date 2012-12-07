@@ -420,6 +420,10 @@ name|CorruptIndexException
 import|;
 end_import
 
+begin_comment
+comment|// javadocs
+end_comment
+
 begin_import
 import|import
 name|org
@@ -631,6 +635,10 @@ operator|.
 name|LockObtainFailedException
 import|;
 end_import
+
+begin_comment
+comment|// javadocs
+end_comment
 
 begin_import
 import|import

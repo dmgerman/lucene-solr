@@ -403,10 +403,10 @@ name|searchParams
 parameter_list|)
 function_decl|;
 comment|/**    * Try out faceted search with sampling enabled and complements either disabled or enforced    * Lots of randomly generated data is being indexed, and later on a "90% docs" faceted search    * is performed. The results are compared to non-sampled ones.    */
-DECL|method|testCountUsingSamping
+DECL|method|testCountUsingSampling
 specifier|public
 name|void
-name|testCountUsingSamping
+name|testCountUsingSampling
 parameter_list|()
 throws|throws
 name|Exception

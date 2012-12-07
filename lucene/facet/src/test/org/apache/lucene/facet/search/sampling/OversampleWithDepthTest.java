@@ -486,10 +486,10 @@ name|LuceneTestCase
 block|{
 annotation|@
 name|Test
-DECL|method|testCountWithdepthUsingSamping
+DECL|method|testCountWithdepthUsingSampling
 specifier|public
 name|void
-name|testCountWithdepthUsingSamping
+name|testCountWithdepthUsingSampling
 parameter_list|()
 throws|throws
 name|Exception
