@@ -1105,7 +1105,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"A cluster state change has occurred - updating... ({})"
+literal|"A cluster state change: {}, has occurred - updating... ({})"
+argument_list|,
+operator|(
+name|event
+operator|)
 argument_list|,
 name|ZkStateReader
 operator|.
