@@ -352,6 +352,15 @@ name|underlyingDataModified
 operator|=
 literal|false
 expr_stmt|;
+comment|//If an Assume was tripped while setting up the test,
+comment|//the file might not ever have been created...
+if|if
+condition|(
+name|fileLocation
+operator|!=
+literal|null
+condition|)
+block|{
 operator|new
 name|File
 argument_list|(
@@ -376,6 +385,7 @@ operator|.
 name|delete
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|logPropertiesFile
 specifier|protected
