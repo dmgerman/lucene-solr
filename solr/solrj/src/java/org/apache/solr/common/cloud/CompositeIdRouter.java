@@ -779,22 +779,6 @@ operator|.
 name|MAX_VALUE
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|lowerBound
-operator|>
-name|upperBound
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"WHAAAT?"
-argument_list|)
-throw|;
-block|}
-comment|// lowerBound will be greater than upperBound if we are in the negatives
 name|Range
 name|completeRange
 init|=
