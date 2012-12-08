@@ -1776,7 +1776,12 @@ argument_list|(
 name|getDataDir
 argument_list|()
 argument_list|,
-literal|null
+name|getSolrConfig
+argument_list|()
+operator|.
+name|indexConfig
+operator|.
+name|lockType
 argument_list|)
 expr_stmt|;
 if|if
