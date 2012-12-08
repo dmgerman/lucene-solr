@@ -786,7 +786,6 @@ operator|>
 name|upperBound
 condition|)
 block|{
-comment|// nocommit
 throw|throw
 operator|new
 name|RuntimeException
