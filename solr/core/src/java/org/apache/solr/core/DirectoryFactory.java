@@ -439,15 +439,9 @@ name|file
 argument_list|)
 condition|)
 block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-name|file
-operator|+
-literal|" does not exist"
-argument_list|)
-throw|;
+return|return
+literal|0
+return|;
 block|}
 return|return
 name|directory
