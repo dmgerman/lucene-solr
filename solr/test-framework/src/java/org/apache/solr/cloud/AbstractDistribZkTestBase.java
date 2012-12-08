@@ -362,6 +362,22 @@ argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
+name|String
+name|schema
+init|=
+name|getSchemaFile
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|schema
+operator|==
+literal|null
+condition|)
+name|schema
+operator|=
+literal|"schema.xml"
+expr_stmt|;
 name|AbstractZkTestCase
 operator|.
 name|buildZooKeeper
@@ -378,7 +394,7 @@ argument_list|()
 argument_list|,
 literal|"solrconfig.xml"
 argument_list|,
-literal|"schema.xml"
+name|schema
 argument_list|)
 expr_stmt|;
 comment|// set some system properties for use by tests
