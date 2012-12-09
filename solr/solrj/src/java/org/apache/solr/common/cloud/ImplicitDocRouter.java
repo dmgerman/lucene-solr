@@ -230,13 +230,13 @@ comment|// no shard specified... use default.
 block|}
 annotation|@
 name|Override
-DECL|method|getSearchSlices
+DECL|method|getSearchSlicesSingle
 specifier|public
 name|Collection
 argument_list|<
 name|Slice
 argument_list|>
-name|getSearchSlices
+name|getSearchSlicesSingle
 parameter_list|(
 name|String
 name|shardKey
