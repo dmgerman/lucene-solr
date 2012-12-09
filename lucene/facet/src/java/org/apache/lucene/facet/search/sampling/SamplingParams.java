@@ -215,10 +215,10 @@ name|sampleRatio
 expr_stmt|;
 block|}
 comment|/**    * Set a sampling-threshold    * @see #getSamplingThreshold()    */
-DECL|method|setSampingThreshold
+DECL|method|setSamplingThreshold
 specifier|public
 name|void
-name|setSampingThreshold
+name|setSamplingThreshold
 parameter_list|(
 name|int
 name|samplingThreshold

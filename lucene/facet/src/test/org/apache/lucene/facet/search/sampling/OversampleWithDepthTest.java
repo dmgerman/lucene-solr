@@ -614,7 +614,7 @@ argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|setSampingThreshold
+name|setSamplingThreshold
 argument_list|(
 literal|60
 argument_list|)
