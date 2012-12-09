@@ -233,7 +233,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|// TODO: remove this suppress after we fix the TaxoWriter Codec to a non-default (see todo in DirTW)
+comment|// TODO: remove this suppress if we fix the TaxoWriter Codec to a non-default (see todo in DirTW)
 end_comment
 
 begin_class

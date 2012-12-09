@@ -769,6 +769,10 @@ operator|.
 name|grow
 argument_list|(
 name|parents
+argument_list|,
+name|ordinal
+operator|+
+literal|1
 argument_list|)
 decl_stmt|;
 name|newarray
