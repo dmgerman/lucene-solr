@@ -222,6 +222,9 @@ name|collection
 argument_list|)
 throw|;
 block|}
+return|return
+name|slice
+return|;
 block|}
 return|return
 literal|null

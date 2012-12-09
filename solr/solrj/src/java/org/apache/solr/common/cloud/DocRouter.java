@@ -885,6 +885,7 @@ return|return
 name|ranges
 return|;
 block|}
+comment|/** Returns the Slice that the document should reside on, or null if there is not enough information */
 DECL|method|getTargetSlice
 specifier|public
 specifier|abstract
