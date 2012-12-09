@@ -1374,6 +1374,8 @@ DECL|field|leaderVoteWait
 specifier|private
 name|String
 name|leaderVoteWait
+init|=
+name|LEADER_VOTE_WAIT
 decl_stmt|;
 DECL|field|swappableCacheSize
 specifier|protected
