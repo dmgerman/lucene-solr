@@ -1160,6 +1160,15 @@ specifier|public
 class|class
 name|SnapPuller
 block|{
+DECL|field|INDEX_PEROPERTIES
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|INDEX_PEROPERTIES
+init|=
+literal|"index.peroperties"
+decl_stmt|;
 DECL|field|LOG
 specifier|private
 specifier|static
@@ -3898,6 +3907,18 @@ argument_list|,
 literal|"Replication details"
 argument_list|)
 expr_stmt|;
+name|dir
+operator|.
+name|sync
+argument_list|(
+name|Collections
+operator|.
+name|singleton
+argument_list|(
+name|REPLICATION_PROPERTIES
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -5578,6 +5599,18 @@ argument_list|(
 name|os
 argument_list|,
 literal|"index properties"
+argument_list|)
+expr_stmt|;
+name|dir
+operator|.
+name|sync
+argument_list|(
+name|Collections
+operator|.
+name|singleton
+argument_list|(
+name|INDEX_PEROPERTIES
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
