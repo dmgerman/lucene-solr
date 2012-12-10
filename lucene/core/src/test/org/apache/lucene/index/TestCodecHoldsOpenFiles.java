@@ -160,8 +160,6 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-comment|// nocommit do we randomly turn on term vectors / doc
-comment|// values...?
 name|doc
 operator|.
 name|add
