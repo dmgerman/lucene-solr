@@ -841,6 +841,12 @@ argument_list|()
 argument_list|)
 operator|)
 operator|)
+operator|:
+literal|"field="
+operator|+
+name|field
+operator|.
+name|name
 assert|;
 name|writeFieldEntry
 argument_list|(
@@ -2908,23 +2914,11 @@ operator|.
 name|name
 argument_list|)
 decl_stmt|;
-comment|// This can happen, in exceptional cases, where the
-comment|// only doc containing a field hit a non-aborting
-comment|// exception.  The field then appears in FieldInfos,
-comment|// marked as indexed and !omitNorms, and then merging
-comment|// will try to retrieve it:
-comment|// nocommit can we somehow avoid this ...?
-if|if
-condition|(
+assert|assert
 name|field
-operator|==
+operator|!=
 literal|null
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
+assert|;
 comment|// SegmentCoreReaders already verifies this field is
 comment|// valid:
 assert|assert

@@ -1053,6 +1053,13 @@ name|field
 operator|.
 name|omitsNorms
 argument_list|()
+operator|&&
+name|field
+operator|.
+name|getNormType
+argument_list|()
+operator|!=
+literal|null
 condition|)
 block|{
 name|List
