@@ -732,7 +732,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"zkcli.sh -cmd "
+literal|"zkcli.sh -zkhost localhost:9983 -cmd "
 operator|+
 name|BOOTSTRAP
 operator|+
@@ -749,7 +749,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"zkcli.sh -cmd "
+literal|"zkcli.sh -zkhost localhost:9983 -cmd "
 operator|+
 name|UPCONFIG
 operator|+
@@ -772,7 +772,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"zkcli.sh -cmd "
+literal|"zkcli.sh -zkhost localhost:9983 -cmd "
 operator|+
 name|DOWNCONFIG
 operator|+
@@ -795,7 +795,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"zkcli.sh -cmd "
+literal|"zkcli.sh -zkhost localhost:9983 -cmd "
 operator|+
 name|LINKCONFIG
 operator|+
@@ -818,7 +818,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"zkcli.sh -cmd "
+literal|"zkcli.sh -zkhost localhost:9983 -cmd "
 operator|+
 name|MAKEPATH
 operator|+
@@ -831,7 +831,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"zkcli.sh -cmd "
+literal|"zkcli.sh -zkhost localhost:9983 -cmd "
 operator|+
 name|CLEAR
 operator|+
