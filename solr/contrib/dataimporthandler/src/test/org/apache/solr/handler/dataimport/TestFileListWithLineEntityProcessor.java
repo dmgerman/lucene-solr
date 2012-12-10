@@ -125,7 +125,9 @@ argument_list|,
 literal|"a line one\na line two\na line three"
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"UTF-8"
+argument_list|)
 argument_list|,
 literal|false
 argument_list|)
@@ -139,7 +141,9 @@ argument_list|,
 literal|"b line one\nb line two"
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"UTF-8"
+argument_list|)
 argument_list|,
 literal|false
 argument_list|)
@@ -153,7 +157,9 @@ argument_list|,
 literal|"c line one\nc line two\nc line three\nc line four"
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+literal|"UTF-8"
+argument_list|)
 argument_list|,
 literal|false
 argument_list|)

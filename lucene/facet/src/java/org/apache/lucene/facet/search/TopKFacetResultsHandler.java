@@ -102,7 +102,7 @@ name|search
 operator|.
 name|results
 operator|.
-name|MutableFacetResultNode
+name|IntermediateFacetResult
 import|;
 end_import
 
@@ -120,7 +120,7 @@ name|search
 operator|.
 name|results
 operator|.
-name|IntermediateFacetResult
+name|MutableFacetResultNode
 import|;
 end_import
 
@@ -152,9 +152,9 @@ name|facet
 operator|.
 name|taxonomy
 operator|.
-name|TaxonomyReader
+name|directory
 operator|.
-name|ChildrenArrays
+name|ParallelTaxonomyArrays
 import|;
 end_import
 
@@ -573,6 +573,8 @@ parameter_list|,
 name|int
 name|offset
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|int
 name|partitionSize
@@ -589,30 +591,30 @@ name|offset
 operator|+
 name|partitionSize
 decl_stmt|;
-name|ChildrenArrays
+name|ParallelTaxonomyArrays
 name|childrenArray
 init|=
 name|taxonomyReader
 operator|.
-name|getChildrenArrays
+name|getParallelTaxonomyArrays
 argument_list|()
 decl_stmt|;
 name|int
 index|[]
-name|youngestChild
+name|children
 init|=
 name|childrenArray
 operator|.
-name|getYoungestChildArray
+name|children
 argument_list|()
 decl_stmt|;
 name|int
 index|[]
-name|olderSibling
+name|siblings
 init|=
 name|childrenArray
 operator|.
-name|getOlderSiblingArray
+name|siblings
 argument_list|()
 decl_stmt|;
 name|FacetResultNode
@@ -666,7 +668,7 @@ comment|// top of stack element
 name|int
 name|yc
 init|=
-name|youngestChild
+name|children
 index|[
 name|ordinal
 index|]
@@ -680,7 +682,7 @@ condition|)
 block|{
 name|yc
 operator|=
-name|olderSibling
+name|siblings
 index|[
 name|yc
 index|]
@@ -731,7 +733,7 @@ index|[
 name|localDepth
 index|]
 operator|=
-name|olderSibling
+name|siblings
 index|[
 name|ordinalStack
 index|[
@@ -865,7 +867,7 @@ block|{
 comment|// push kid of current tos
 name|yc
 operator|=
-name|youngestChild
+name|children
 index|[
 name|tosOrdinal
 index|]
@@ -879,7 +881,7 @@ condition|)
 block|{
 name|yc
 operator|=
-name|olderSibling
+name|siblings
 index|[
 name|yc
 index|]

@@ -158,6 +158,14 @@ name|numPending
 init|=
 literal|0
 decl_stmt|;
+DECL|field|numDocsSinceStalled
+specifier|private
+name|int
+name|numDocsSinceStalled
+init|=
+literal|0
+decl_stmt|;
+comment|// only with assert
 DECL|field|flushDeletes
 specifier|final
 name|AtomicBoolean
@@ -499,7 +507,7 @@ comment|// take peakDelta into account - worst case is that all flushing, pendin
 comment|// 2 * ramBufferBytes -> before we stall we need to cross the 2xRAM Buffer border this is still a valid limit
 comment|// (numPending + numFlushingDWPT() + numBlockedFlushes()) * peakDelta) -> those are the total number of DWPT that are not active but not yet fully fluhsed
 comment|// all of them could theoretically be taken out of the loop once they crossed the RAM buffer and the last document was the peak delta
-comment|// (perThreadPool.getActiveThreadState() * peakDelta) -> at any given time there could be n threads in flight that crossed the stall control before we reached the limit and each of them could hold a peak document
+comment|// (numDocsSinceStalled * peakDelta) -> at any given time there could be n threads in flight that crossed the stall control before we reached the limit and each of them could hold a peak document
 specifier|final
 name|long
 name|expected
@@ -527,10 +535,7 @@ name|peakDelta
 operator|)
 operator|+
 operator|(
-name|perThreadPool
-operator|.
-name|getActiveThreadState
-argument_list|()
+name|numDocsSinceStalled
 operator|*
 name|peakDelta
 operator|)
@@ -839,14 +844,52 @@ return|;
 block|}
 finally|finally
 block|{
+name|boolean
+name|stalled
+init|=
 name|updateStallState
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 assert|assert
+name|assertNumDocsSinceStalled
+argument_list|(
+name|stalled
+argument_list|)
+operator|&&
 name|assertMemory
 argument_list|()
 assert|;
 block|}
+block|}
+DECL|method|assertNumDocsSinceStalled
+specifier|private
+name|boolean
+name|assertNumDocsSinceStalled
+parameter_list|(
+name|boolean
+name|stalled
+parameter_list|)
+block|{
+comment|/*      *  updates the number of documents "finished" while we are in a stalled state.      *  this is important for asserting memory upper bounds since it corresponds       *  to the number of threads that are in-flight and crossed the stall control      *  check before we actually stalled.      *  see #assertMemory()      */
+if|if
+condition|(
+name|stalled
+condition|)
+block|{
+name|numDocsSinceStalled
+operator|++
+expr_stmt|;
+block|}
+else|else
+block|{
+name|numDocsSinceStalled
+operator|=
+literal|0
+expr_stmt|;
+block|}
+return|return
+literal|true
+return|;
 block|}
 DECL|method|doAfterFlush
 specifier|synchronized
@@ -915,7 +958,7 @@ block|}
 DECL|method|updateStallState
 specifier|private
 specifier|final
-name|void
+name|boolean
 name|updateStallState
 parameter_list|()
 block|{
@@ -965,6 +1008,9 @@ argument_list|(
 name|stall
 argument_list|)
 expr_stmt|;
+return|return
+name|stall
+return|;
 block|}
 DECL|method|waitForFlush
 specifier|public

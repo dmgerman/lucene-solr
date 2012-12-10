@@ -610,29 +610,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TestTV tests for this in testBadParams... but is this
-comment|// really guaranteed by the API?
-if|if
-condition|(
-name|doc
-operator|<
-literal|0
-operator|||
-name|doc
-operator|>=
-name|offsets
-operator|.
-name|length
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"doc id out of range"
-argument_list|)
-throw|;
-block|}
 name|SortedMap
 argument_list|<
 name|String

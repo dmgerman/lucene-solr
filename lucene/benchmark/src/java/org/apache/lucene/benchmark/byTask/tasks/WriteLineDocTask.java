@@ -208,20 +208,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexableField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|StorableField
 import|;
 end_import
@@ -307,20 +293,27 @@ name|docSize
 init|=
 literal|0
 decl_stmt|;
+DECL|field|fname
+specifier|protected
+specifier|final
+name|String
+name|fname
+decl_stmt|;
 DECL|field|lineFileOut
 specifier|private
+specifier|final
 name|PrintWriter
 name|lineFileOut
-init|=
-literal|null
 decl_stmt|;
 DECL|field|docMaker
 specifier|private
+specifier|final
 name|DocMaker
 name|docMaker
 decl_stmt|;
 DECL|field|threadBuffer
 specifier|private
+specifier|final
 name|ThreadLocal
 argument_list|<
 name|StringBuilder
@@ -336,6 +329,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|threadNormalizer
 specifier|private
+specifier|final
 name|ThreadLocal
 argument_list|<
 name|Matcher
@@ -356,7 +350,6 @@ name|String
 index|[]
 name|fieldsToWrite
 decl_stmt|;
-empty_stmt|;
 DECL|field|sufficientFields
 specifier|private
 specifier|final
@@ -393,9 +386,8 @@ operator|.
 name|getConfig
 argument_list|()
 decl_stmt|;
-name|String
 name|fname
-init|=
+operator|=
 name|config
 operator|.
 name|get
@@ -404,7 +396,7 @@ literal|"line.file.out"
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|fname
@@ -636,15 +628,20 @@ block|}
 block|}
 block|}
 name|writeHeader
-argument_list|()
+argument_list|(
+name|lineFileOut
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Write a header to the lines file - indicating how to read the file later     */
+comment|/**    * Write header to the lines file - indicating how to read the file later.    */
 DECL|method|writeHeader
-specifier|private
+specifier|protected
 name|void
 name|writeHeader
-parameter_list|()
+parameter_list|(
+name|PrintWriter
+name|out
+parameter_list|)
 block|{
 name|StringBuilder
 name|sb
@@ -710,7 +707,7 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
-name|lineFileOut
+name|out
 operator|.
 name|println
 argument_list|(
@@ -952,6 +949,9 @@ expr_stmt|;
 comment|// remove redundant last separator
 comment|// lineFileOut is a PrintWriter, which synchronizes internally in println.
 name|lineFileOut
+argument_list|(
+name|doc
+argument_list|)
 operator|.
 name|println
 argument_list|(
@@ -964,6 +964,20 @@ expr_stmt|;
 block|}
 return|return
 literal|1
+return|;
+block|}
+comment|/**    * Selects output line file by written doc.    * Default: original output line file.    */
+DECL|method|lineFileOut
+specifier|protected
+name|PrintWriter
+name|lineFileOut
+parameter_list|(
+name|Document
+name|doc
+parameter_list|)
+block|{
+return|return
+name|lineFileOut
 return|;
 block|}
 annotation|@

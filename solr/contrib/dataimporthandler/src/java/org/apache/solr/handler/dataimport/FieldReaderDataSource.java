@@ -450,6 +450,8 @@ name|blob
 operator|.
 name|getBinaryStream
 argument_list|()
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 operator|)
 return|;

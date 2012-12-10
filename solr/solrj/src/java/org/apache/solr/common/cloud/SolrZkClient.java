@@ -683,7 +683,9 @@ expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
-argument_list|()
+argument_list|(
+name|e
+argument_list|)
 throw|;
 block|}
 try|try
@@ -710,7 +712,9 @@ expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
-argument_list|()
+argument_list|(
+name|e
+argument_list|)
 throw|;
 block|}
 name|numOpens
@@ -2977,6 +2981,24 @@ range|:
 name|children
 control|)
 block|{
+comment|// we can't clean the built-in zookeeper node
+if|if
+condition|(
+name|path
+operator|.
+name|equals
+argument_list|(
+literal|"/"
+argument_list|)
+operator|&&
+name|string
+operator|.
+name|equals
+argument_list|(
+literal|"zookeeper"
+argument_list|)
+condition|)
+continue|continue;
 if|if
 condition|(
 name|path

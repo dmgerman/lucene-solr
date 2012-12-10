@@ -74,22 +74,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|Query
@@ -137,22 +121,6 @@ operator|.
 name|schema
 operator|.
 name|SchemaField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|function
-operator|.
-name|*
 import|;
 end_import
 
@@ -305,7 +273,7 @@ name|Query
 name|parse
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|sp
 operator|=
@@ -443,7 +411,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Unexpected text after function: "
 operator|+
@@ -495,7 +463,7 @@ name|boolean
 name|hasMoreArguments
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|int
 name|ch
@@ -528,7 +496,7 @@ name|String
 name|parseId
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|String
 name|value
@@ -542,7 +510,7 @@ name|argWasQuoted
 condition|)
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Expected identifier instead of quoted string:"
 operator|+
@@ -560,7 +528,7 @@ name|Float
 name|parseFloat
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|String
 name|str
@@ -575,7 +543,7 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Expected float instead of quoted string:"
 operator|+
@@ -603,7 +571,7 @@ name|double
 name|parseDouble
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|String
 name|str
@@ -618,7 +586,7 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Expected double instead of quoted string:"
 operator|+
@@ -646,7 +614,7 @@ name|int
 name|parseInt
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|String
 name|str
@@ -661,7 +629,7 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Expected double instead of quoted string:"
 operator|+
@@ -703,7 +671,7 @@ name|String
 name|parseArg
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|argWasQuoted
 operator|=
@@ -809,7 +777,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Missing end to unquoted value starting at "
 operator|+
@@ -903,7 +871,7 @@ argument_list|>
 name|parseValueSourceList
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|List
 argument_list|<
@@ -948,7 +916,7 @@ name|ValueSource
 name|parseValueSource
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|/* consume the delimiter afterward for an external call to parseValueSource */
 return|return
@@ -965,7 +933,7 @@ name|Query
 name|parseNestedQuery
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|Query
 name|nestedQuery
@@ -1128,7 +1096,7 @@ comment|// int subEnd = sub.findEnd(')');
 comment|// TODO.. implement functions to find the end of a nested query
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Nested local params must have value in v parameter.  got '"
 operator|+
@@ -1143,7 +1111,7 @@ else|else
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Nested function query must use $param or {!v=value} forms. got '"
 operator|+
@@ -1187,7 +1155,7 @@ name|boolean
 name|doConsumeDelimiter
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|ValueSource
 name|valueSource
@@ -1348,7 +1316,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Missing param "
 operator|+
@@ -1480,7 +1448,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Unknown function "
 operator|+
@@ -1602,7 +1570,7 @@ name|boolean
 name|consumeArgumentDelimiter
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|/* if a list of args is ending, don't expect the comma */
 if|if

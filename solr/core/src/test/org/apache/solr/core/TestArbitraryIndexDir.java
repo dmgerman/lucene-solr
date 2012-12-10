@@ -162,22 +162,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|Directory
@@ -516,8 +500,6 @@ throws|,
 name|ParserConfigurationException
 throws|,
 name|SAXException
-throws|,
-name|ParseException
 block|{
 comment|//add a doc in original index dir
 name|assertU

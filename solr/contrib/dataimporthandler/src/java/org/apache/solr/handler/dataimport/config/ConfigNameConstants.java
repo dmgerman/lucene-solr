@@ -99,6 +99,15 @@ name|PROCESSOR
 init|=
 literal|"processor"
 decl_stmt|;
+DECL|field|PROPERTY_WRITER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_WRITER
+init|=
+literal|"propertyWriter"
+decl_stmt|;
 comment|/**    * @deprecated use IMPORTER_NS_SHORT instead    */
 annotation|@
 name|Deprecated

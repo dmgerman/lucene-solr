@@ -486,10 +486,10 @@ name|LuceneTestCase
 block|{
 annotation|@
 name|Test
-DECL|method|testCountWithdepthUsingSamping
+DECL|method|testCountWithdepthUsingSampling
 specifier|public
 name|void
-name|testCountWithdepthUsingSamping
+name|testCountWithdepthUsingSampling
 parameter_list|()
 throws|throws
 name|Exception
@@ -614,7 +614,7 @@ argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|setSampingThreshold
+name|setSamplingThreshold
 argument_list|(
 literal|60
 argument_list|)

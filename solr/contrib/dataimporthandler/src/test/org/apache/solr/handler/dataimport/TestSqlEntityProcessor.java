@@ -39,7 +39,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Test with various combinations of parameters, child entites, caches, transformers.  */
+comment|/**  * Test with various combinations of parameters, child entities, caches, transformers.  */
 end_comment
 
 begin_class
@@ -48,7 +48,7 @@ specifier|public
 class|class
 name|TestSqlEntityProcessor
 extends|extends
-name|AbstractDIHJdbcTestCase
+name|AbstractSqlEntityProcessorTestCase
 block|{
 annotation|@
 name|Test

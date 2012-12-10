@@ -186,10 +186,15 @@ condition|)
 block|{
 name|iw
 operator|.
-name|commit
+name|setCommitData
 argument_list|(
 name|commitUserData
 argument_list|)
+expr_stmt|;
+name|iw
+operator|.
+name|commit
+argument_list|()
 expr_stmt|;
 block|}
 return|return

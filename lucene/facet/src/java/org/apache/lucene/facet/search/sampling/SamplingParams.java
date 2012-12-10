@@ -215,20 +215,20 @@ name|sampleRatio
 expr_stmt|;
 block|}
 comment|/**    * Set a sampling-threshold    * @see #getSamplingThreshold()    */
-DECL|method|setSampingThreshold
+DECL|method|setSamplingThreshold
 specifier|public
 name|void
-name|setSampingThreshold
+name|setSamplingThreshold
 parameter_list|(
 name|int
-name|sampingThreshold
+name|samplingThreshold
 parameter_list|)
 block|{
 name|this
 operator|.
 name|samplingThreshold
 operator|=
-name|sampingThreshold
+name|samplingThreshold
 expr_stmt|;
 block|}
 comment|/**    * Check validity of sampling settings, making sure that    *<ul>    *<li><code>minSampleSize<= maxSampleSize<= samplingThreshold</code></li>    *<li><code>0< samplingRatio<= 1</code></li>    *</ul>     *     * @return true if valid, false otherwise    */

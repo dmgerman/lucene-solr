@@ -1255,7 +1255,7 @@ operator|.
 name|getClusterState
 argument_list|()
 operator|.
-name|getShardProps
+name|getReplica
 argument_list|(
 name|collection
 argument_list|,

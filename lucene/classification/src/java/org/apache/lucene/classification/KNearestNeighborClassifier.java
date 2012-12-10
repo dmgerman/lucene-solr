@@ -209,6 +209,7 @@ operator|=
 name|k
 expr_stmt|;
 block|}
+comment|/**    * {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|assignClass
@@ -239,7 +240,7 @@ name|textFieldName
 argument_list|)
 decl_stmt|;
 name|TopDocs
-name|docs
+name|topDocs
 init|=
 name|indexSearcher
 operator|.
@@ -250,6 +251,24 @@ argument_list|,
 name|k
 argument_list|)
 decl_stmt|;
+return|return
+name|selectClassFromNeighbors
+argument_list|(
+name|topDocs
+argument_list|)
+return|;
+block|}
+DECL|method|selectClassFromNeighbors
+specifier|private
+name|ClassificationResult
+name|selectClassFromNeighbors
+parameter_list|(
+name|TopDocs
+name|topDocs
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 comment|// TODO : improve the nearest neighbor selection
 name|Map
 argument_list|<
@@ -273,7 +292,7 @@ control|(
 name|ScoreDoc
 name|scoreDoc
 range|:
-name|docs
+name|topDocs
 operator|.
 name|scoreDocs
 control|)
@@ -340,7 +359,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|int
+name|double
 name|max
 init|=
 literal|0
@@ -393,6 +412,9 @@ name|score
 init|=
 name|max
 operator|/
+operator|(
+name|double
+operator|)
 name|k
 decl_stmt|;
 return|return
@@ -405,6 +427,7 @@ name|score
 argument_list|)
 return|;
 block|}
+comment|/**    * {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|train

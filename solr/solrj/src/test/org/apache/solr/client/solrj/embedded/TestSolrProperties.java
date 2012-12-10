@@ -1303,7 +1303,7 @@ name|getRenamedSolrAdmin
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//    fis = new FileInputStream(new File(solrXml.getParent(), SOLR_PERSIST_XML));
+comment|//    fis = new FileInputStream(new File(tempDir, SOLR_PERSIST_XML));
 comment|//    String solrPersistXml = IOUtils.toString(fis);
 comment|//    System.out.println("xml:" + solrPersistXml);
 comment|//    fis.close();

@@ -255,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simplistic Lucene based NaiveBayes classifier, see<code>http://en.wikipedia.org/wiki/Naive_Bayes_classifier</code>  * @lucene.experimental  */
+comment|/**  * A simplistic Lucene based NaiveBayes classifier, see<code>http://en.wikipedia.org/wiki/Naive_Bayes_classifier</code>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -296,12 +296,15 @@ specifier|private
 name|IndexSearcher
 name|indexSearcher
 decl_stmt|;
-comment|/**     * Creates a new NaiveBayes classifier.    * Note that you must call {@link #train(AtomicReader, String, String, Analyzer) train()} before you can    * classify any documents.    */
+comment|/**    * Creates a new NaiveBayes classifier.    * Note that you must call {@link #train(AtomicReader, String, String, Analyzer) train()} before you can    * classify any documents.    */
 DECL|method|SimpleNaiveBayesClassifier
 specifier|public
 name|SimpleNaiveBayesClassifier
 parameter_list|()
-block|{}
+block|{   }
+comment|/**    * {@inheritDoc}    */
+annotation|@
+name|Override
 DECL|method|train
 specifier|public
 name|void
@@ -482,6 +485,9 @@ index|]
 argument_list|)
 return|;
 block|}
+comment|/**    * {@inheritDoc}    */
+annotation|@
+name|Override
 DECL|method|assignClass
 specifier|public
 name|ClassificationResult
@@ -543,6 +549,15 @@ decl_stmt|;
 name|BytesRef
 name|next
 decl_stmt|;
+name|String
+index|[]
+name|tokenizedDoc
+init|=
+name|tokenizeDoc
+argument_list|(
+name|inputDocument
+argument_list|)
+decl_stmt|;
 while|while
 condition|(
 operator|(
@@ -568,7 +583,7 @@ argument_list|)
 operator|*
 name|calculateLikelihood
 argument_list|(
-name|inputDocument
+name|tokenizedDoc
 argument_list|,
 name|next
 argument_list|)
@@ -609,7 +624,8 @@ name|double
 name|calculateLikelihood
 parameter_list|(
 name|String
-name|document
+index|[]
+name|tokenizedDoc
 parameter_list|,
 name|BytesRef
 name|c
@@ -628,10 +644,7 @@ control|(
 name|String
 name|word
 range|:
-name|tokenizeDoc
-argument_list|(
-name|document
-argument_list|)
+name|tokenizedDoc
 control|)
 block|{
 comment|// search with text:word AND class:c

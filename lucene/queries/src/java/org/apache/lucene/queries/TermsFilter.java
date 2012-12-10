@@ -1307,6 +1307,11 @@ argument_list|(
 name|termsBytes
 argument_list|)
 decl_stmt|;
+name|boolean
+name|first
+init|=
+literal|true
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -1376,6 +1381,24 @@ index|[
 name|j
 index|]
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|first
+condition|)
+block|{
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|' '
+argument_list|)
+expr_stmt|;
+block|}
+name|first
+operator|=
+literal|false
+expr_stmt|;
 name|builder
 operator|.
 name|append
@@ -1398,13 +1421,6 @@ name|spare
 operator|.
 name|utf8ToString
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|builder
-operator|.
-name|append
-argument_list|(
-literal|' '
 argument_list|)
 expr_stmt|;
 block|}

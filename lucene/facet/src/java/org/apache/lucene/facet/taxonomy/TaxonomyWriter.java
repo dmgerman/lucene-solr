@@ -36,6 +36,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -95,6 +105,33 @@ DECL|method|getSize
 specifier|public
 name|int
 name|getSize
+parameter_list|()
+function_decl|;
+comment|/**    * Sets the commit user data map. That method is considered a transaction and    * will be {@link #commit() committed} even if no other changes were made to    * the writer instance.    *<p>    *<b>NOTE:</b> the map is cloned internally, therefore altering the map's    * contents after calling this method has no effect.    */
+DECL|method|setCommitData
+specifier|public
+name|void
+name|setCommitData
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|commitUserData
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the commit user data map that was set on    * {@link #setCommitData(Map)}.    */
+DECL|method|getCommitData
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|getCommitData
 parameter_list|()
 function_decl|;
 block|}

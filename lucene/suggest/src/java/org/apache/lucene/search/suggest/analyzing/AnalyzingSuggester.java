@@ -86,6 +86,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Comparator
 import|;
 end_import
@@ -159,22 +169,6 @@ operator|.
 name|analysis
 operator|.
 name|TokenStreamToAutomaton
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|tokenattributes
-operator|.
-name|TermToBytesRefAttribute
 import|;
 end_import
 
@@ -627,7 +621,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Suggester that first analyzes the surface form, adds the  * analyzed form to a weighted FST, and then does the same  * thing at lookup time.  This means lookup is based on the  * analyzed form while suggestions are still the surface  * form(s).  *  *<p>  * This can result in powerful suggester functionality.  For  * example, if you use an analyzer removing stop words,   * then the partial text "ghost chr..." could see the  * suggestion "The Ghost of Christmas Past".  If  * SynonymFilter is used to map wifi and wireless network to  * hotspot then the partial text "wirele..." could suggest  * "wifi router".  Token normalization like stemmers, accent  * removal, etc., would allow suggestions to ignore such  * variations.  *  *<p>  * There are some limitations:  *<ul>  *  *<li> A lookup from a query like "net" in English won't  *        be any different than "net " (ie, user added a  *        trailing space) because analyzers don't reflect  *        when they've seen a token separator and when they  *        haven't.  *  *<li> If you're using {@code StopFilter}, and the user will  *        type "fast apple", but so far all they've typed is  *        "fast a", again because the analyzer doesn't convey whether  *        it's seen a token separator after the "a",  *        {@code StopFilter} will remove that "a" causing  *        far more matches than you'd expect.  *  *<li> Lookups with the empty string return no results  *        instead of all results.  *</ul>  *   * @lucene.experimental  */
+comment|/**  * Suggester that first analyzes the surface form, adds the  * analyzed form to a weighted FST, and then does the same  * thing at lookup time.  This means lookup is based on the  * analyzed form while suggestions are still the surface  * form(s).  *  *<p>  * This can result in powerful suggester functionality.  For  * example, if you use an analyzer removing stop words,   * then the partial text "ghost chr..." could see the  * suggestion "The Ghost of Christmas Past". Note that  * your {@code StopFilter} instance must NOT preserve  * position increments for this example to work, so you should call  * {@code setEnablePositionIncrements(false)} on it.  *  *<p>  * If SynonymFilter is used to map wifi and wireless network to  * hotspot then the partial text "wirele..." could suggest  * "wifi router".  Token normalization like stemmers, accent  * removal, etc., would allow suggestions to ignore such  * variations.  *  *<p>  * When two matching suggestions have the same weight, they  * are tie-broken by the analyzed form.  If their analyzed  * form is the same then the order is undefined.  *  *<p>  * There are some limitations:  *<ul>  *  *<li> A lookup from a query like "net" in English won't  *        be any different than "net " (ie, user added a  *        trailing space) because analyzers don't reflect  *        when they've seen a token separator and when they  *        haven't.  *  *<li> If you're using {@code StopFilter}, and the user will  *        type "fast apple", but so far all they've typed is  *        "fast a", again because the analyzer doesn't convey whether  *        it's seen a token separator after the "a",  *        {@code StopFilter} will remove that "a" causing  *        far more matches than you'd expect.  *  *<li> Lookups with the empty string return no results  *        instead of all results.  *</ul>  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -2585,6 +2579,17 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|fst
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 name|fst
 operator|.
 name|save
@@ -2737,6 +2742,20 @@ argument_list|(
 literal|"this suggester only works with onlyMorePopular=false"
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|fst
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|Collections
+operator|.
+name|emptyList
+argument_list|()
+return|;
 block|}
 comment|//System.out.println("lookup key=" + key + " num=" + num);
 specifier|final

@@ -418,6 +418,8 @@ name|FileInputStream
 argument_list|(
 name|file
 argument_list|)
+argument_list|,
+literal|"UTF-8"
 argument_list|)
 return|;
 block|}

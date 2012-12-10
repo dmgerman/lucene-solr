@@ -678,7 +678,14 @@ operator|.
 name|getIndexDir
 argument_list|()
 argument_list|,
-literal|null
+name|solrCore
+operator|.
+name|getSolrConfig
+argument_list|()
+operator|.
+name|indexConfig
+operator|.
+name|lockType
 argument_list|)
 decl_stmt|;
 try|try

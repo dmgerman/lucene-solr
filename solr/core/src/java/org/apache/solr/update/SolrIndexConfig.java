@@ -368,7 +368,7 @@ literal|1
 expr_stmt|;
 name|ramBufferSizeMB
 operator|=
-literal|32
+literal|100
 expr_stmt|;
 name|writeLockTimeout
 operator|=

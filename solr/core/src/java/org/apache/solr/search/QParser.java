@@ -24,22 +24,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|Query
@@ -535,7 +519,7 @@ name|Query
 name|parse
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 function_decl|;
 DECL|method|getLocalParams
 specifier|public
@@ -648,7 +632,7 @@ name|Query
 name|getQuery
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 if|if
 condition|(
@@ -839,7 +823,7 @@ name|void
 name|checkRecurse
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 if|if
 condition|(
@@ -851,7 +835,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ParseException
+name|SyntaxError
 argument_list|(
 literal|"Infinite Recursion detected parsing query '"
 operator|+
@@ -928,7 +912,7 @@ name|String
 name|defaultType
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|checkRecurse
 argument_list|()
@@ -990,7 +974,7 @@ name|ScoreDoc
 name|getPaging
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 return|return
 literal|null
@@ -1007,7 +991,7 @@ name|boolean
 name|useGlobalParams
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|getQuery
 argument_list|()
@@ -1241,7 +1225,7 @@ name|Query
 name|getHighlightQuery
 parameter_list|()
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 name|Query
 name|query
@@ -1312,7 +1296,7 @@ name|SolrQueryRequest
 name|req
 parameter_list|)
 throws|throws
-name|ParseException
+name|SyntaxError
 block|{
 comment|// SolrParams localParams = QueryParsing.getLocalParams(qstr, req.getParams());
 name|String

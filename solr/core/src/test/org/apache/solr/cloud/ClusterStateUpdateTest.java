@@ -1003,7 +1003,7 @@ name|slices
 operator|=
 name|clusterState2
 operator|.
-name|getSlices
+name|getSlicesMap
 argument_list|(
 literal|"testcore"
 argument_list|)

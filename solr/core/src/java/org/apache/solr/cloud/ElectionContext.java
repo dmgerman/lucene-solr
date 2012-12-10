@@ -1002,6 +1002,8 @@ argument_list|(
 name|leaderProps
 argument_list|,
 name|core
+argument_list|,
+name|weAreReplacement
 argument_list|)
 condition|)
 block|{
@@ -1304,7 +1306,7 @@ expr_stmt|;
 comment|// we could not publish ourselves as leader - rejoin election
 name|rejoinLeaderElection
 argument_list|(
-name|coreName
+name|leaderSeqPath
 argument_list|,
 name|core
 argument_list|)
@@ -1367,7 +1369,7 @@ name|slices
 init|=
 name|clusterState
 operator|.
-name|getSlices
+name|getSlicesMap
 argument_list|(
 name|collection
 argument_list|)
@@ -1556,6 +1558,11 @@ argument_list|,
 name|shardId
 argument_list|)
 decl_stmt|;
+name|int
+name|cnt
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 literal|true
@@ -1639,6 +1646,15 @@ return|return;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|cnt
+operator|%
+literal|40
+operator|==
+literal|0
+condition|)
+block|{
 name|log
 operator|.
 name|info
@@ -1669,6 +1685,7 @@ argument_list|()
 operator|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1710,6 +1727,10 @@ name|collection
 argument_list|,
 name|shardId
 argument_list|)
+expr_stmt|;
+comment|// System.out.println("###### waitForReplicasToComeUp  : slices=" + slices + " all=" + zkController.getClusterState().getCollectionStates() );
+name|cnt
+operator|++
 expr_stmt|;
 block|}
 block|}
@@ -1818,6 +1839,9 @@ name|leaderProps
 parameter_list|,
 name|SolrCore
 name|core
+parameter_list|,
+name|boolean
+name|weAreReplacement
 parameter_list|)
 block|{
 name|log
@@ -1841,6 +1865,18 @@ argument_list|)
 expr_stmt|;
 return|return
 literal|false
+return|;
+block|}
+if|if
+condition|(
+operator|!
+name|weAreReplacement
+condition|)
+block|{
+comment|// we are the first node starting in the shard - there is a configurable wait
+comment|// to make sure others participate in sync and leader election, we can be leader
+return|return
+literal|true
 return|;
 block|}
 if|if

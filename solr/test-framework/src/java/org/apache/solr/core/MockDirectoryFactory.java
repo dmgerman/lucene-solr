@@ -101,49 +101,49 @@ operator|.
 name|newDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MockDirectoryWrapper
+condition|)
+block|{
+name|MockDirectoryWrapper
+name|mockDirWrapper
+init|=
+operator|(
+name|MockDirectoryWrapper
+operator|)
+name|dir
+decl_stmt|;
 comment|// we can't currently do this check because of how
 comment|// Solr has to reboot a new Directory sometimes when replicating
 comment|// or rolling back - the old directory is closed and the following
 comment|// test assumes it can open an IndexWriter when that happens - we
 comment|// have a new Directory for the same dir and still an open IW at
 comment|// this point
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
+name|mockDirWrapper
 operator|.
 name|setAssertNoUnrefencedFilesOnClose
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
 comment|// ram dirs in cores that are restarted end up empty
 comment|// and check index fails
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
+name|mockDirWrapper
 operator|.
 name|setCheckIndexOnClose
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// if we enable this, TestReplicationHandler fails when it
+comment|// tries to write to index.properties after the file has
+comment|// already been created.
+name|mockDirWrapper
+operator|.
+name|setPreventDoubleWrite
 argument_list|(
 literal|false
 argument_list|)

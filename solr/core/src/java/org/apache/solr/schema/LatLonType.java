@@ -1645,7 +1645,7 @@ operator|.
 name|stringValue
 argument_list|()
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -3244,6 +3244,11 @@ name|getBoost
 argument_list|()
 decl_stmt|;
 return|return
+name|super
+operator|.
+name|getOptions
+argument_list|()
+operator|+
 operator|(
 name|boost
 operator|!=

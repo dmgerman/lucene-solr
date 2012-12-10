@@ -277,7 +277,11 @@ comment|/**    * Constructs an FSTCompletion, specifying higherWeightsFirst and 
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
 DECL|method|FSTCompletion
 specifier|public
@@ -372,7 +376,9 @@ annotation|@
 name|SuppressWarnings
 argument_list|(
 block|{
-literal|"all"
+literal|"unchecked"
+block|,
+literal|"rawtypes"
 block|}
 argument_list|)
 DECL|method|cacheRootArcs

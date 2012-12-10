@@ -3990,7 +3990,7 @@ argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|)
 expr_stmt|;
-comment|// Query string field 'cat_s' for special char / - causes ParseException without patch SOLR-3467
+comment|// Query string field 'cat_s' for special char / - causes SyntaxError without patch SOLR-3467
 name|assertQ
 argument_list|(
 literal|"Escaping string with reserved / character"

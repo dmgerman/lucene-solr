@@ -52,6 +52,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|ConstantScoreQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Query
 import|;
 end_import
@@ -161,7 +175,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Creation of drill down term or query.  *   * @lucene.experimental  */
+comment|/**  * Utility class for creating drill-down {@link Query queries} or {@link Term  * terms} over {@link CategoryPath}. This can be used to e.g. narrow down a  * user's search to selected categories.  *<p>  *<b>NOTE:</b> if you choose to create your own {@link Query} by calling  * {@link #term}, it is recommended to wrap it with {@link ConstantScoreQuery}  * and set the {@link ConstantScoreQuery#setBoost(float) boost} to {@code 0.0f},  * so that it does not affect the scores of the documents.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -198,7 +212,7 @@ name|path
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a term for drilling down into a category.    */
+comment|/** Return a drill-down {@link Term} for a category. */
 DECL|method|term
 specifier|public
 specifier|static
@@ -266,7 +280,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a query for drilling down into all given categories (AND).    * @see #term(FacetSearchParams, CategoryPath)    * @see #query(FacetSearchParams, Query, CategoryPath...)    */
+comment|/**    * Wraps a given {@link Query} as a drill-down query over the given    * categories, assuming all are required (e.g. {@code AND}). You can construct    * a query with different modes (such as {@code OR} or {@code AND} of    * {@code ORs}) by creating a {@link BooleanQuery} and call this method    * several times. Make sure to wrap the query in that case by    * {@link ConstantScoreQuery} and set the boost to 0.0f, so that it doesn't    * affect scoring.    *<p>    *<b>NOTE:</b> {@code baseQuery} can be {@code null}, in which case only the    * {@link Query} over the categories will is returned.    */
 DECL|method|query
 specifier|public
 specifier|static
@@ -276,6 +290,9 @@ name|query
 parameter_list|(
 name|FacetIndexingParams
 name|iParams
+parameter_list|,
+name|Query
+name|baseQuery
 parameter_list|,
 name|CategoryPath
 modifier|...
@@ -303,6 +320,10 @@ literal|"Empty category path not allowed for drill down query!"
 argument_list|)
 throw|;
 block|}
+specifier|final
+name|Query
+name|q
+decl_stmt|;
 if|if
 condition|(
 name|paths
@@ -312,7 +333,8 @@ operator|==
 literal|1
 condition|)
 block|{
-return|return
+name|q
+operator|=
 operator|new
 name|TermQuery
 argument_list|(
@@ -326,15 +348,20 @@ literal|0
 index|]
 argument_list|)
 argument_list|)
-return|;
+expr_stmt|;
 block|}
+else|else
+block|{
 name|BooleanQuery
-name|res
+name|bq
 init|=
 operator|new
 name|BooleanQuery
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
+comment|// disable coord
 for|for
 control|(
 name|CategoryPath
@@ -343,7 +370,7 @@ range|:
 name|paths
 control|)
 block|{
-name|res
+name|bq
 operator|.
 name|add
 argument_list|(
@@ -364,63 +391,49 @@ name|MUST
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-name|res
-return|;
+name|q
+operator|=
+name|bq
+expr_stmt|;
 block|}
-comment|/**    * Return a query for drilling down into all given categories (AND).    * @see #term(FacetSearchParams, CategoryPath)    * @see #query(FacetSearchParams, Query, CategoryPath...)    */
-DECL|method|query
-specifier|public
-specifier|static
 specifier|final
-name|Query
-name|query
-parameter_list|(
-name|FacetSearchParams
-name|sParams
-parameter_list|,
-name|CategoryPath
-modifier|...
-name|paths
-parameter_list|)
+name|ConstantScoreQuery
+name|drillDownQuery
+init|=
+operator|new
+name|ConstantScoreQuery
+argument_list|(
+name|q
+argument_list|)
+decl_stmt|;
+name|drillDownQuery
+operator|.
+name|setBoost
+argument_list|(
+literal|0.0f
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|baseQuery
+operator|==
+literal|null
+condition|)
 block|{
 return|return
-name|query
-argument_list|(
-name|sParams
-operator|.
-name|getFacetIndexingParams
-argument_list|()
-argument_list|,
-name|paths
-argument_list|)
+name|drillDownQuery
 return|;
 block|}
-comment|/**    * Turn a base query into a drilling-down query for all given category paths (AND).    * @see #query(FacetIndexingParams, CategoryPath...)    */
-DECL|method|query
-specifier|public
-specifier|static
-specifier|final
-name|Query
-name|query
-parameter_list|(
-name|FacetIndexingParams
-name|iParams
-parameter_list|,
-name|Query
-name|baseQuery
-parameter_list|,
-name|CategoryPath
-modifier|...
-name|paths
-parameter_list|)
+else|else
 block|{
 name|BooleanQuery
 name|res
 init|=
 operator|new
 name|BooleanQuery
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|res
 operator|.
@@ -437,12 +450,7 @@ name|res
 operator|.
 name|add
 argument_list|(
-name|query
-argument_list|(
-name|iParams
-argument_list|,
-name|paths
-argument_list|)
+name|drillDownQuery
 argument_list|,
 name|Occur
 operator|.
@@ -453,7 +461,8 @@ return|return
 name|res
 return|;
 block|}
-comment|/**    * Turn a base query into a drilling-down query for all given category paths (AND).    * @see #query(FacetSearchParams, CategoryPath...)    */
+block|}
+comment|/**    * @see #query(FacetIndexingParams, Query, CategoryPath...)    */
 DECL|method|query
 specifier|public
 specifier|static
@@ -478,35 +487,6 @@ argument_list|(
 name|sParams
 operator|.
 name|getFacetIndexingParams
-argument_list|()
-argument_list|,
-name|baseQuery
-argument_list|,
-name|paths
-argument_list|)
-return|;
-block|}
-comment|/**    * Turn a base query into a drilling-down query using the default {@link FacetSearchParams}      * @see #query(FacetSearchParams, Query, CategoryPath...)    */
-DECL|method|query
-specifier|public
-specifier|static
-specifier|final
-name|Query
-name|query
-parameter_list|(
-name|Query
-name|baseQuery
-parameter_list|,
-name|CategoryPath
-modifier|...
-name|paths
-parameter_list|)
-block|{
-return|return
-name|query
-argument_list|(
-operator|new
-name|FacetSearchParams
 argument_list|()
 argument_list|,
 name|baseQuery

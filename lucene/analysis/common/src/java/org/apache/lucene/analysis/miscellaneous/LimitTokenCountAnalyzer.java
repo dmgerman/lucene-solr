@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This Analyzer limits the number of tokens while indexing. It is  * a replacement for the maximum field length setting inside {@link org.apache.lucene.index.IndexWriter}.  */
+comment|/**  * This Analyzer limits the number of tokens while indexing. It is  * a replacement for the maximum field length setting inside {@link org.apache.lucene.index.IndexWriter}.  * @see LimitTokenCountFilter  */
 end_comment
 
 begin_class
@@ -71,7 +71,13 @@ specifier|final
 name|int
 name|maxTokenCount
 decl_stmt|;
-comment|/**    * Build an analyzer that limits the maximum number of tokens per field.    */
+DECL|field|consumeAllTokens
+specifier|private
+specifier|final
+name|boolean
+name|consumeAllTokens
+decl_stmt|;
+comment|/**    * Build an analyzer that limits the maximum number of tokens per field.    * This analyzer will not consume any tokens beyond the maxTokenCount limit    *    * @see #LimitTokenCountAnalyzer(Analyzer,int,boolean)    */
 DECL|method|LimitTokenCountAnalyzer
 specifier|public
 name|LimitTokenCountAnalyzer
@@ -81,6 +87,31 @@ name|delegate
 parameter_list|,
 name|int
 name|maxTokenCount
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|delegate
+argument_list|,
+name|maxTokenCount
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Build an analyzer that limits the maximum number of tokens per field.    * @param delegate the analyzer to wrap    * @param maxTokenCount max number of tokens to produce    * @param consumeAllTokens whether all tokens from the delegate should be consumed even if maxTokenCount is reached.    */
+DECL|method|LimitTokenCountAnalyzer
+specifier|public
+name|LimitTokenCountAnalyzer
+parameter_list|(
+name|Analyzer
+name|delegate
+parameter_list|,
+name|int
+name|maxTokenCount
+parameter_list|,
+name|boolean
+name|consumeAllTokens
 parameter_list|)
 block|{
 name|this
@@ -94,6 +125,12 @@ operator|.
 name|maxTokenCount
 operator|=
 name|maxTokenCount
+expr_stmt|;
+name|this
+operator|.
+name|consumeAllTokens
+operator|=
+name|consumeAllTokens
 expr_stmt|;
 block|}
 annotation|@
@@ -143,6 +180,8 @@ name|getTokenStream
 argument_list|()
 argument_list|,
 name|maxTokenCount
+argument_list|,
+name|consumeAllTokens
 argument_list|)
 argument_list|)
 return|;
@@ -166,6 +205,10 @@ operator|+
 literal|", maxTokenCount="
 operator|+
 name|maxTokenCount
+operator|+
+literal|", consumeAllTokens="
+operator|+
+name|consumeAllTokens
 operator|+
 literal|")"
 return|;

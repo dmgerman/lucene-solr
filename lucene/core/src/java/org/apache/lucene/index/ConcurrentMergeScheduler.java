@@ -1026,6 +1026,7 @@ annotation|@
 name|Override
 DECL|method|merge
 specifier|public
+specifier|synchronized
 name|void
 name|merge
 parameter_list|(
@@ -1095,11 +1096,6 @@ condition|(
 literal|true
 condition|)
 block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 name|long
 name|startStallTime
 init|=
@@ -1107,14 +1103,26 @@ literal|0
 decl_stmt|;
 while|while
 condition|(
+name|writer
+operator|.
+name|hasPendingMerges
+argument_list|()
+operator|&&
 name|mergeThreadCount
 argument_list|()
 operator|>=
-literal|1
-operator|+
 name|maxMergeCount
 condition|)
 block|{
+comment|// This means merging has fallen too far behind: we
+comment|// have already created maxMergeCount threads, and
+comment|// now there's at least one more merge pending.
+comment|// Note that only maxThreadCount of
+comment|// those created merge threads will actually be
+comment|// running; the rest will be paused (see
+comment|// updateMergeThreads).  We stall this producer
+comment|// thread to prevent creation of new segments,
+comment|// until merging has caught up:
 name|startStallTime
 operator|=
 name|System
@@ -1186,10 +1194,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-comment|// TODO: we could be careful about which merges to do in
-comment|// the BG (eg maybe the "biggest" ones) vs FG, which
-comment|// merges to do first (the easiest ones?), etc.
 name|MergePolicy
 operator|.
 name|OneMerge
@@ -1221,26 +1225,12 @@ expr_stmt|;
 block|}
 return|return;
 block|}
-comment|// We do this w/ the primary thread to keep
-comment|// deterministic assignment of segment names
-name|writer
-operator|.
-name|mergeInit
-argument_list|(
-name|merge
-argument_list|)
-expr_stmt|;
 name|boolean
 name|success
 init|=
 literal|false
 decl_stmt|;
 try|try
-block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
 block|{
 if|if
 condition|(
@@ -1317,7 +1307,6 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
-block|}
 block|}
 finally|finally
 block|{
@@ -1646,13 +1635,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|tWriter
-operator|.
-name|mergeInit
-argument_list|(
-name|merge
-argument_list|)
-expr_stmt|;
 name|updateMergeThreads
 argument_list|()
 expr_stmt|;
@@ -1838,6 +1820,82 @@ name|suppressExceptions
 operator|=
 literal|false
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+name|StringBuilder
+name|sb
+init|=
+operator|new
+name|StringBuilder
+argument_list|(
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|": "
+argument_list|)
+decl_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"maxThreadCount="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|maxThreadCount
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|", "
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"maxMergeCount="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|maxMergeCount
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|", "
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"mergeThreadPriority="
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|mergeThreadPriority
+argument_list|)
+expr_stmt|;
+return|return
+name|sb
+operator|.
+name|toString
+argument_list|()
+return|;
 block|}
 block|}
 end_class

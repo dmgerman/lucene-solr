@@ -1657,7 +1657,7 @@ return|return
 name|delCount
 return|;
 block|}
-comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    * @throws AlreadyClosedException if this IndexWriter is closed    */
+comment|/**    * Used internally to throw an {@link AlreadyClosedException} if this    * IndexWriter has been closed or is in the process of closing.    *     * @param failIfClosing    *          if true, also fail when {@code IndexWriter} is in the process of    *          closing ({@code closing=true}) but not yet done closing (    *          {@code closed=false})    * @throws AlreadyClosedException    *           if this IndexWriter is closed or in the process of closing    */
 DECL|method|ensureOpen
 specifier|protected
 specifier|final
@@ -1665,7 +1665,7 @@ name|void
 name|ensureOpen
 parameter_list|(
 name|boolean
-name|includePendingClose
+name|failIfClosing
 parameter_list|)
 throws|throws
 name|AlreadyClosedException
@@ -1675,7 +1675,7 @@ condition|(
 name|closed
 operator|||
 operator|(
-name|includePendingClose
+name|failIfClosing
 operator|&&
 name|closing
 operator|)
@@ -1690,7 +1690,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed.    *<p>    * Calls {@link #ensureOpen(boolean) ensureOpen(true)}.    * @throws AlreadyClosedException if this IndexWriter is closed    */
+comment|/**    * Used internally to throw an {@link    * AlreadyClosedException} if this IndexWriter has been    * closed ({@code closed=true}) or is in the process of    * closing ({@code closing=true}).    *<p>    * Calls {@link #ensureOpen(boolean) ensureOpen(true)}.    * @throws AlreadyClosedException if this IndexWriter is closed    */
 DECL|method|ensureOpen
 specifier|protected
 specifier|final
@@ -2827,9 +2827,7 @@ name|doFlush
 condition|)
 block|{
 name|commitInternal
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 if|if
@@ -3905,8 +3903,7 @@ name|term
 argument_list|,
 name|doc
 argument_list|,
-name|getAnalyzer
-argument_list|()
+name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
@@ -5253,6 +5250,23 @@ name|merge
 return|;
 block|}
 block|}
+comment|/**    * Expert: returns true if there are merges waiting to be scheduled.    *     * @lucene.experimental    */
+DECL|method|hasPendingMerges
+specifier|public
+specifier|synchronized
+name|boolean
+name|hasPendingMerges
+parameter_list|()
+block|{
+return|return
+name|pendingMerges
+operator|.
+name|size
+argument_list|()
+operator|!=
+literal|0
+return|;
+block|}
 comment|/**    * Close the<code>IndexWriter</code> without committing    * any changes that have occurred since the last commit    * (or since it was opened, if commit hasn't been called).    * This removes any temporary files that had been created,    * after which the state of the index will be the same as    * it was when commit() was last called or when this    * writer was first opened.  This also clears a previous    * call to {@link #prepareCommit}.    * @throws IOException if there is a low-level IO error    */
 DECL|method|rollback
 specifier|public
@@ -5841,7 +5855,7 @@ operator|.
 name|size
 argument_list|()
 operator|+
-literal|" running merge to abort"
+literal|" running merge/s to abort"
 argument_list|)
 expr_stmt|;
 block|}
@@ -7640,7 +7654,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{}
-comment|/** Expert: prepare for commit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @see #prepareCommit(Map) */
+comment|/**<p>Expert: prepare for commit.  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *<p>You can also just call {@link #commit()} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    */
 DECL|method|prepareCommit
 specifier|public
 specifier|final
@@ -7653,40 +7667,28 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|prepareCommit
-argument_list|(
-literal|null
-argument_list|)
+name|prepareCommitInternal
+argument_list|()
 expr_stmt|;
 block|}
-comment|/**<p>Expert: prepare for commit, specifying    *  commitUserData Map (String -> String).  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *<p>You can also just call {@link #commit(Map)} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    *  you should immediately close the writer.  See<a    *  href="#OOME">above</a> for details.</p>    *    *  @param commitUserData Opaque Map (String->String)    *  that's recorded into the segments file in the index,    *  and retrievable by {@link    *  IndexCommit#getUserData}.  Note that when    *  IndexWriter commits itself during {@link #close}, the    *  commitUserData is unchanged (just carried over from    *  the prior commit).  If this is null then the previous    *  commitUserData is kept.  Also, the commitUserData will    *  only "stick" if there are actually changes in the    *  index to commit.    */
-DECL|method|prepareCommit
-specifier|public
-specifier|final
+DECL|method|prepareCommitInternal
+specifier|private
 name|void
-name|prepareCommit
-parameter_list|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|commitUserData
-parameter_list|)
+name|prepareCommitInternal
+parameter_list|()
 throws|throws
 name|IOException
+block|{
+synchronized|synchronized
+init|(
+name|commitLock
+init|)
 block|{
 name|ensureOpen
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-synchronized|synchronized
-init|(
-name|commitLock
-init|)
-block|{
 if|if
 condition|(
 name|infoStream
@@ -7989,11 +7991,67 @@ block|}
 name|startCommit
 argument_list|(
 name|toCommit
-argument_list|,
-name|commitUserData
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**    * Sets the commit user data map. That method is considered a transaction by    * {@link IndexWriter} and will be {@link #commit() committed} even if no other    * changes were made to the writer instance. Note that you must call this method    * before {@link #prepareCommit()}, or otherwise it won't be included in the    * follow-on {@link #commit()}.    *<p>    *<b>NOTE:</b> the map is cloned internally, therefore altering the map's    * contents after calling this method has no effect.    */
+DECL|method|setCommitData
+specifier|public
+specifier|final
+specifier|synchronized
+name|void
+name|setCommitData
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|commitUserData
+parameter_list|)
+block|{
+name|segmentInfos
+operator|.
+name|setUserData
+argument_list|(
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+argument_list|(
+name|commitUserData
+argument_list|)
+argument_list|)
+expr_stmt|;
+operator|++
+name|changeCount
+expr_stmt|;
+block|}
+comment|/**    * Returns the commit user data map that was last committed, or the one that    * was set on {@link #setCommitData(Map)}.    */
+DECL|method|getCommitData
+specifier|public
+specifier|final
+specifier|synchronized
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|getCommitData
+parameter_list|()
+block|{
+return|return
+name|segmentInfos
+operator|.
+name|getUserData
+argument_list|()
+return|;
 block|}
 comment|// Used only by commit and prepareCommit, below; lock
 comment|// order is commitLock -> IW
@@ -8007,7 +8065,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-comment|/**    *<p>Commits all pending changes (added& deleted    * documents, segment merges, added    * indexes, etc.) to the index, and syncs all referenced    * index files, such that a reader will see the changes    * and the index updates will survive an OS or machine    * crash or power loss.  Note that this does not wait for    * any running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents& metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @see #prepareCommit    * @see #commit(Map)    */
+comment|/**    *<p>Commits all pending changes (added& deleted    * documents, segment merges, added    * indexes, etc.) to the index, and syncs all referenced    * index files, such that a reader will see the changes    * and the index updates will survive an OS or machine    * crash or power loss.  Note that this does not wait for    * any running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents& metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    *    * @see #prepareCommit    */
 DECL|method|commit
 specifier|public
 specifier|final
@@ -8017,37 +8075,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|commit
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Commits all changes to the index, specifying a    *  commitUserData Map (String -> String).  This just    *  calls {@link #prepareCommit(Map)} (if you didn't    *  already call it) and then {@link #commit}.    *    *<p><b>NOTE</b>: if this method hits an OutOfMemoryError    * you should immediately close the writer.  See<a    * href="#OOME">above</a> for details.</p>    */
-DECL|method|commit
-specifier|public
-specifier|final
-name|void
-name|commit
-parameter_list|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|commitUserData
-parameter_list|)
-throws|throws
-name|IOException
-block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
 name|commitInternal
-argument_list|(
-name|commitUserData
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|commitInternal
@@ -8055,15 +8087,7 @@ specifier|private
 specifier|final
 name|void
 name|commitInternal
-parameter_list|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|commitUserData
-parameter_list|)
+parameter_list|()
 throws|throws
 name|IOException
 block|{
@@ -8144,10 +8168,8 @@ literal|"commit: now prepare"
 argument_list|)
 expr_stmt|;
 block|}
-name|prepareCommit
-argument_list|(
-name|commitUserData
-argument_list|)
+name|prepareCommitInternal
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -8260,16 +8282,6 @@ operator|.
 name|updateGeneration
 argument_list|(
 name|pendingCommit
-argument_list|)
-expr_stmt|;
-name|segmentInfos
-operator|.
-name|setUserData
-argument_list|(
-name|pendingCommit
-operator|.
-name|getUserData
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|rollbackSegments
@@ -13555,15 +13567,6 @@ parameter_list|(
 specifier|final
 name|SegmentInfos
 name|toSync
-parameter_list|,
-specifier|final
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|commitUserData
 parameter_list|)
 throws|throws
 name|IOException
@@ -13710,21 +13713,6 @@ argument_list|(
 name|toSync
 argument_list|)
 assert|;
-if|if
-condition|(
-name|commitUserData
-operator|!=
-literal|null
-condition|)
-block|{
-name|toSync
-operator|.
-name|setUserData
-argument_list|(
-name|commitUserData
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 assert|assert
 name|testPoint

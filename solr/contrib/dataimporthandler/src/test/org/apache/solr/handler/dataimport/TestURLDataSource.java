@@ -122,11 +122,11 @@ argument_list|()
 decl_stmt|;
 DECL|field|variableResolver
 specifier|private
-name|VariableResolverImpl
+name|VariableResolver
 name|variableResolver
 init|=
 operator|new
-name|VariableResolverImpl
+name|VariableResolver
 argument_list|()
 decl_stmt|;
 DECL|field|context

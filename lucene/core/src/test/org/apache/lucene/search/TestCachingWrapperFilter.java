@@ -1206,7 +1206,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// force cache to regenerate after deletions:
 name|CachingWrapperFilter
 name|filter
 init|=
@@ -1214,8 +1213,6 @@ operator|new
 name|CachingWrapperFilter
 argument_list|(
 name|startFilter
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|docs
@@ -1418,13 +1415,10 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-comment|// cache miss, because we asked CWF to recache when
-comment|// deletes changed:
+comment|// cache hit
 name|assertEquals
 argument_list|(
 name|missCount
-operator|+
-literal|1
 argument_list|,
 name|filter
 operator|.

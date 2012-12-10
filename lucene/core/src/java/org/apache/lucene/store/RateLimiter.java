@@ -31,13 +31,53 @@ import|;
 end_import
 
 begin_comment
-comment|/** Simple class to rate limit IO.  Typically it's shared  *  across multiple IndexInputs or IndexOutputs (for example  *  those involved all merging).  Those IndexInputs and  *  IndexOutputs would call {@link #pause} whenever they  *  want to read bytes or write bytes. */
+comment|/** Abstract base class to rate limit IO.  Typically implementations are  *  shared across multiple IndexInputs or IndexOutputs (for example  *  those involved all merging).  Those IndexInputs and  *  IndexOutputs would call {@link #pause} whenever they  *  want to read bytes or write bytes. */
 end_comment
 
 begin_class
 DECL|class|RateLimiter
 specifier|public
+specifier|abstract
 class|class
+name|RateLimiter
+block|{
+comment|/**    * Sets an updated mb per second rate limit.    */
+DECL|method|setMbPerSec
+specifier|public
+specifier|abstract
+name|void
+name|setMbPerSec
+parameter_list|(
+name|double
+name|mbPerSec
+parameter_list|)
+function_decl|;
+comment|/**    * The current mb per second rate limit.    */
+DECL|method|getMbPerSec
+specifier|public
+specifier|abstract
+name|double
+name|getMbPerSec
+parameter_list|()
+function_decl|;
+comment|/** Pauses, if necessary, to keep the instantaneous IO    *  rate at or below the target.     *<p>    *  Note: the implementation is thread-safe    *</p>    *  @return the pause time in nano seconds     * */
+DECL|method|pause
+specifier|public
+specifier|abstract
+name|long
+name|pause
+parameter_list|(
+name|long
+name|bytes
+parameter_list|)
+function_decl|;
+comment|/**    * Simple class to rate limit IO.    */
+DECL|class|SimpleRateLimiter
+specifier|public
+specifier|static
+class|class
+name|SimpleRateLimiter
+extends|extends
 name|RateLimiter
 block|{
 DECL|field|mbPerSec
@@ -62,9 +102,9 @@ comment|// TODO: we could also allow eg a sub class to dynamically
 comment|// determine the allowed rate, eg if an app wants to
 comment|// change the allowed rate over time or something
 comment|/** mbPerSec is the MB/sec max IO rate */
-DECL|method|RateLimiter
+DECL|method|SimpleRateLimiter
 specifier|public
-name|RateLimiter
+name|SimpleRateLimiter
 parameter_list|(
 name|double
 name|mbPerSec
@@ -76,7 +116,7 @@ name|mbPerSec
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets an updated mb per second rate limit.    */
+comment|/**      * Sets an updated mb per second rate limit.      */
 DECL|method|setMbPerSec
 specifier|public
 name|void
@@ -105,7 +145,7 @@ name|mbPerSec
 operator|)
 expr_stmt|;
 block|}
-comment|/**    * The current mb per second rate limit.    */
+comment|/**      * The current mb per second rate limit.      */
 DECL|method|getMbPerSec
 specifier|public
 name|double
@@ -118,10 +158,10 @@ operator|.
 name|mbPerSec
 return|;
 block|}
-comment|/** Pauses, if necessary, to keep the instantaneous IO    *  rate at or below the target. NOTE: multiple threads    *  may safely use this, however the implementation is    *  not perfectly thread safe but likely in practice this    *  is harmless (just means in some rare cases the rate    *  might exceed the target).  It's best to call this    *  with a biggish count, not one byte at a time. */
+comment|/** Pauses, if necessary, to keep the instantaneous IO      *  rate at or below the target. NOTE: multiple threads      *  may safely use this, however the implementation is      *  not perfectly thread safe but likely in practice this      *  is harmless (just means in some rare cases the rate      *  might exceed the target).  It's best to call this      *  with a biggish count, not one byte at a time.      *  @return the pause time in nano seconds       * */
 DECL|method|pause
 specifier|public
-name|void
+name|long
 name|pause
 parameter_list|(
 name|long
@@ -135,7 +175,9 @@ operator|==
 literal|1
 condition|)
 block|{
-return|return;
+return|return
+literal|0
+return|;
 block|}
 comment|// TODO: this is purely instantaneous rate; maybe we
 comment|// should also offer decayed recent history one?
@@ -250,6 +292,10 @@ expr_stmt|;
 continue|continue;
 block|}
 break|break;
+block|}
+return|return
+name|targetNS
+return|;
 block|}
 block|}
 block|}

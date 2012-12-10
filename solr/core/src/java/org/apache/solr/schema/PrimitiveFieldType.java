@@ -74,7 +74,16 @@ operator|.
 name|getVersion
 argument_list|()
 operator|>
-literal|1.4
+literal|1.4F
+operator|&&
+comment|// only override if it's not explicitly false
+literal|0
+operator|==
+operator|(
+name|falseProperties
+operator|&
+name|OMIT_NORMS
+operator|)
 condition|)
 block|{
 name|properties

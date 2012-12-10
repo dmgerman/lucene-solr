@@ -114,7 +114,7 @@ name|parent
 decl_stmt|;
 DECL|field|resolver
 specifier|private
-name|VariableResolverImpl
+name|VariableResolver
 name|resolver
 decl_stmt|;
 DECL|field|ds
@@ -172,7 +172,7 @@ parameter_list|(
 name|EntityProcessorWrapper
 name|epw
 parameter_list|,
-name|VariableResolverImpl
+name|VariableResolver
 name|resolver
 parameter_list|,
 name|DataSource

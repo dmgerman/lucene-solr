@@ -350,6 +350,26 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|spatialExample
+specifier|public
+name|void
+name|spatialExample
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|//kind of a hack so that SpatialExample is tested despite
+comment|// it not starting or ending with "Test".
+name|SpatialExample
+operator|.
+name|main
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
