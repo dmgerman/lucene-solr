@@ -156,6 +156,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|spatial
 operator|.
 name|query
@@ -289,10 +303,10 @@ name|Point
 name|queryPoint
 parameter_list|)
 function_decl|;
-comment|/**    * Make a (ConstantScore) Query based principally on {@link org.apache.lucene.spatial.query.SpatialOperation}    * and {@link Shape} from the supplied {@code args}.    * The default implementation is    *<pre>return new ConstantScoreQuery(makeFilter(args));</pre>    *    * @throws UnsupportedOperationException If the strategy does not support the shape in {@code args}    * @throws org.apache.lucene.spatial.query.UnsupportedSpatialOperation If the strategy does not support the {@link    * org.apache.lucene.spatial.query.SpatialOperation} in {@code args}.    */
+comment|/**    * Make a Query based principally on {@link org.apache.lucene.spatial.query.SpatialOperation}    * and {@link Shape} from the supplied {@code args}.    * The default implementation is    *<pre>return new ConstantScoreQuery(makeFilter(args));</pre>    *    * @throws UnsupportedOperationException If the strategy does not support the shape in {@code args}    * @throws org.apache.lucene.spatial.query.UnsupportedSpatialOperation If the strategy does not support the {@link    * org.apache.lucene.spatial.query.SpatialOperation} in {@code args}.    */
 DECL|method|makeQuery
 specifier|public
-name|ConstantScoreQuery
+name|Query
 name|makeQuery
 parameter_list|(
 name|SpatialArgs
