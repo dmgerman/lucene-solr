@@ -6681,6 +6681,8 @@ operator|.
 name|field
 argument_list|)
 decl_stmt|;
+comment|// TODO: would be nice to fallback to SortedDV if it's
+comment|// available but BinaryDV isn't?
 if|if
 condition|(
 name|valuesIn
