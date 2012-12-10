@@ -78,6 +78,15 @@ name|DATA_DIR
 init|=
 literal|"dataDir"
 decl_stmt|;
+DECL|field|ULOG_DIR
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|ULOG_DIR
+init|=
+literal|"ulogDir"
+decl_stmt|;
 comment|/** Name of the other core in actions involving 2 cores **/
 DECL|field|OTHER
 specifier|public
