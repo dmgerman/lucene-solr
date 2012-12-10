@@ -258,7 +258,7 @@ specifier|private
 name|double
 name|testRatio
 decl_stmt|;
-comment|/**    * Create a {@link DatasetSplitter} by giving test and cross validation IDXs sizes    * @param testRatio the ratio of the original index to be used for the test IDX as a<code>double</code> between 0.0 and 1.0    * @param crossValidationRatio the ratio of the original index to be used for the c.v. IDX as a<code>double</code> between 0.0 and 1.0    */
+comment|/**    * Create a {@link DatasetSplitter} by giving test and cross validation IDXs sizes    *    * @param testRatio            the ratio of the original index to be used for the test IDX as a<code>double</code> between 0.0 and 1.0    * @param crossValidationRatio the ratio of the original index to be used for the c.v. IDX as a<code>double</code> between 0.0 and 1.0    */
 DECL|method|DatasetSplitter
 specifier|public
 name|DatasetSplitter
@@ -283,7 +283,7 @@ operator|=
 name|testRatio
 expr_stmt|;
 block|}
-comment|/**    * Split a given index into 3 indexes for training, test and cross validation tasks respectively    * @param originalIndex an {@link AtomicReader} on the source index    * @param trainingIndex a {@link Directory} used to write the training index    * @param testIndex a {@link Directory} used to write the test index    * @param crossValidationIndex a {@link Directory} used to write the cross validation index    * @param analyzer {@link Analyzer} used to create the new docs    * @param fieldNames names of fields that need to be put in the new indexes or<code>null</code> if all should be used    * @throws IOException if any writing operation fails on any of the indexes    */
+comment|/**    * Split a given index into 3 indexes for training, test and cross validation tasks respectively    *    * @param originalIndex        an {@link AtomicReader} on the source index    * @param trainingIndex        a {@link Directory} used to write the training index    * @param testIndex            a {@link Directory} used to write the test index    * @param crossValidationIndex a {@link Directory} used to write the cross validation index    * @param analyzer             {@link Analyzer} used to create the new docs    * @param fieldNames           names of fields that need to be put in the new indexes or<code>null</code> if all should be used    * @throws IOException if any writing operation fails on any of the indexes    */
 DECL|method|split
 specifier|public
 name|void
@@ -697,11 +697,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|testWriter
-operator|.
-name|commit
-argument_list|()
-expr_stmt|;
 block|}
 elseif|else
 if|if
@@ -723,11 +718,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|cvWriter
-operator|.
-name|commit
-argument_list|()
-expr_stmt|;
 block|}
 else|else
 block|{
@@ -737,11 +727,6 @@ name|addDocument
 argument_list|(
 name|doc
 argument_list|)
-expr_stmt|;
-name|trainingWriter
-operator|.
-name|commit
-argument_list|()
 expr_stmt|;
 block|}
 name|b
@@ -765,6 +750,21 @@ throw|;
 block|}
 finally|finally
 block|{
+name|testWriter
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+name|cvWriter
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+name|trainingWriter
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 comment|// close IWs
 name|testWriter
 operator|.
