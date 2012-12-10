@@ -1046,7 +1046,7 @@ block|{
 comment|// look at the replication factor and see if it matches reality
 comment|// if it does not, find best nodes to create more cores
 name|int
-name|numReplica
+name|repFactor
 init|=
 name|msgStrToInt
 argument_list|(
@@ -1054,7 +1054,7 @@ name|message
 argument_list|,
 name|REPLICATION_FACTOR
 argument_list|,
-literal|0
+literal|1
 argument_list|)
 decl_stmt|;
 name|int
@@ -1083,8 +1083,8 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|numReplica
-operator|<
+name|repFactor
+operator|<=
 literal|0
 condition|)
 block|{
@@ -1209,16 +1209,9 @@ return|return
 literal|false
 return|;
 block|}
-name|int
-name|numShardsPerSlice
-init|=
-name|numReplica
-operator|+
-literal|1
-decl_stmt|;
 if|if
 condition|(
-name|numShardsPerSlice
+name|repFactor
 operator|>
 name|nodeList
 operator|.
@@ -1236,7 +1229,7 @@ name|REPLICATION_FACTOR
 operator|+
 literal|" of "
 operator|+
-name|numReplica
+name|repFactor
 operator|+
 literal|" on collection "
 operator|+
@@ -1268,7 +1261,7 @@ name|requestedShardsToCreate
 init|=
 name|numSlices
 operator|*
-name|numShardsPerSlice
+name|repFactor
 decl_stmt|;
 if|if
 condition|(
@@ -1318,7 +1311,7 @@ name|REPLICATION_FACTOR
 operator|+
 literal|" is "
 operator|+
-name|numReplica
+name|repFactor
 operator|+
 literal|". This requires "
 operator|+
@@ -1355,7 +1348,7 @@ literal|1
 init|;
 name|j
 operator|<=
-name|numShardsPerSlice
+name|repFactor
 condition|;
 name|j
 operator|++

@@ -519,6 +519,7 @@ name|shardCount
 init|=
 literal|4
 decl_stmt|;
+comment|// the actual number of solr cores that will be created in the cluster
 comment|/**    * Sub classes can set this flag in their constructor to true if they    * want to fix the number of shards to 'shardCount'    *    * The default is false which means that test will be executed with    * 1, 2, 3, ....shardCount number of shards repeatedly    */
 DECL|field|fixShardCount
 specifier|protected
