@@ -230,6 +230,7 @@ expr_stmt|;
 block|}
 comment|/** Compose categories line file out of original line file */
 DECL|method|categoriesLineFile
+specifier|public
 specifier|static
 name|File
 name|categoriesLineFile
