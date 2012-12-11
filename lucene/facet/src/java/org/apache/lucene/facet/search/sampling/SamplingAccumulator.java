@@ -54,9 +54,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|facet
 operator|.
-name|IndexReader
+name|search
+operator|.
+name|FacetArrays
 import|;
 end_import
 
@@ -89,38 +91,6 @@ operator|.
 name|search
 operator|.
 name|FacetsAccumulator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
-name|FloatArrayAllocator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|search
-operator|.
-name|IntArrayAllocator
 import|;
 end_import
 
@@ -262,6 +232,20 @@ name|TaxonomyReader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexReader
+import|;
+end_import
+
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -292,7 +276,6 @@ specifier|final
 name|Sampler
 name|sampler
 decl_stmt|;
-comment|/**    * Constructor...    */
 DECL|method|SamplingAccumulator
 specifier|public
 name|SamplingAccumulator
@@ -309,11 +292,8 @@ parameter_list|,
 name|TaxonomyReader
 name|taxonomyReader
 parameter_list|,
-name|IntArrayAllocator
-name|intArrayAllocator
-parameter_list|,
-name|FloatArrayAllocator
-name|floatArrayAllocator
+name|FacetArrays
+name|facetArrays
 parameter_list|)
 block|{
 name|super
@@ -324,9 +304,7 @@ name|indexReader
 argument_list|,
 name|taxonomyReader
 argument_list|,
-name|intArrayAllocator
-argument_list|,
-name|floatArrayAllocator
+name|facetArrays
 argument_list|)
 expr_stmt|;
 name|this

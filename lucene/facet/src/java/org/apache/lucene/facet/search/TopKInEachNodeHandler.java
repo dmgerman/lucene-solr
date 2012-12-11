@@ -356,8 +356,7 @@ name|partitionSize
 init|=
 name|arrays
 operator|.
-name|getArraysLength
-argument_list|()
+name|arrayLength
 decl_stmt|;
 comment|// all partitions, except, possibly, the last,
 comment|// have the same length. Hence modulo is OK.
