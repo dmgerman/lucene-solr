@@ -220,6 +220,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|handler
+operator|.
+name|SnapPuller
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|AbstractSolrTestCase
@@ -543,7 +557,9 @@ operator|.
 name|getDataDir
 argument_list|()
 operator|+
-literal|"index.properties"
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|)
 decl_stmt|;
 name|Properties
@@ -628,7 +644,11 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Unable to write index.properties"
+literal|"Unable to write "
+operator|+
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|,
 name|e
 argument_list|)

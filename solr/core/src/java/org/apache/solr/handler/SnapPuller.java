@@ -1174,14 +1174,14 @@ specifier|public
 class|class
 name|SnapPuller
 block|{
-DECL|field|INDEX_PEROPERTIES
-specifier|private
+DECL|field|INDEX_PROPERTIES
+specifier|public
 specifier|static
 specifier|final
 name|String
-name|INDEX_PEROPERTIES
+name|INDEX_PROPERTIES
 init|=
-literal|"index.peroperties"
+literal|"index.properties"
 decl_stmt|;
 DECL|field|LOG
 specifier|private
@@ -5489,7 +5489,9 @@ name|dir
 operator|.
 name|fileExists
 argument_list|(
-literal|"index.properties"
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|)
 condition|)
 block|{
@@ -5501,7 +5503,9 @@ name|dir
 operator|.
 name|openInput
 argument_list|(
-literal|"index.properties"
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|,
 name|DirectoryFactory
 operator|.
@@ -5538,7 +5542,11 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to load index.properties"
+literal|"Unable to load "
+operator|+
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|,
 name|e
 argument_list|)
@@ -5561,7 +5569,9 @@ name|dir
 operator|.
 name|deleteFile
 argument_list|(
-literal|"index.properties"
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|)
 expr_stmt|;
 block|}
@@ -5581,7 +5591,9 @@ name|dir
 operator|.
 name|createOutput
 argument_list|(
-literal|"index.properties"
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|,
 name|DirectoryFactory
 operator|.
@@ -5618,7 +5630,9 @@ name|store
 argument_list|(
 name|os
 argument_list|,
-literal|"index properties"
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|)
 expr_stmt|;
 name|dir
@@ -5629,7 +5643,7 @@ name|Collections
 operator|.
 name|singleton
 argument_list|(
-name|INDEX_PEROPERTIES
+name|INDEX_PROPERTIES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5650,7 +5664,11 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Unable to write index.properties"
+literal|"Unable to write "
+operator|+
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|,
 name|e
 argument_list|)

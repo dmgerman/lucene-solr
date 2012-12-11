@@ -626,6 +626,20 @@ name|solr
 operator|.
 name|handler
 operator|.
+name|SnapPuller
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
 name|admin
 operator|.
 name|ShowFileRequestHandler
@@ -1794,7 +1808,9 @@ name|dir
 operator|.
 name|fileExists
 argument_list|(
-literal|"index.properties"
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|)
 condition|)
 block|{
@@ -1806,7 +1822,9 @@ name|dir
 operator|.
 name|openInput
 argument_list|(
-literal|"index.properties"
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|,
 name|IOContext
 operator|.
@@ -1877,7 +1895,11 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Unable to load index.properties"
+literal|"Unable to load "
+operator|+
+name|SnapPuller
+operator|.
+name|INDEX_PROPERTIES
 argument_list|,
 name|e
 argument_list|)
