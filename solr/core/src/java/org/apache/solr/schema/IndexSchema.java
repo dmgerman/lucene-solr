@@ -2414,9 +2414,9 @@ condition|)
 block|{
 name|log
 operator|.
-name|error
+name|warn
 argument_list|(
-literal|"uniqueKey is not stored - distributed search will not work"
+literal|"uniqueKey is not stored - distributed search and MoreLikeThis will not work"
 argument_list|)
 expr_stmt|;
 block|}
