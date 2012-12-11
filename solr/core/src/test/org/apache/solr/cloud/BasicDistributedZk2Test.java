@@ -474,7 +474,7 @@ name|leaderProps
 init|=
 name|zkStateReader
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|DEFAULT_COLLECTION
 argument_list|,

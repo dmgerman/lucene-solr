@@ -1904,7 +1904,7 @@ name|leaderprops
 init|=
 name|zkStateReader
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|cloudDesc
 operator|.

@@ -1282,7 +1282,7 @@ control|)
 block|{
 name|zkStateReader
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|DEFAULT_COLLECTION
 argument_list|,
@@ -4187,7 +4187,7 @@ block|}
 comment|// ensure there is a leader
 name|zkStateReader
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 literal|"unloadcollection"
 argument_list|,
@@ -4449,7 +4449,7 @@ block|}
 block|}
 name|zkStateReader
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 literal|"unloadcollection"
 argument_list|,
@@ -5117,7 +5117,7 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 literal|"multiunload2"
 argument_list|,

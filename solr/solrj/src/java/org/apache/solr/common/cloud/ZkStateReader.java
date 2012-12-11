@@ -2185,7 +2185,7 @@ init|=
 operator|new
 name|ZkCoreNodeProps
 argument_list|(
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|collection
 argument_list|,
@@ -2203,10 +2203,10 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Get shard leader properties, with retry if none exist.    */
-DECL|method|getLeaderProps
+DECL|method|getLeaderRetry
 specifier|public
 name|Replica
-name|getLeaderProps
+name|getLeaderRetry
 parameter_list|(
 name|String
 name|collection
@@ -2218,7 +2218,7 @@ throws|throws
 name|InterruptedException
 block|{
 return|return
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|collection
 argument_list|,
@@ -2229,10 +2229,10 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Get shard leader properties, with retry if none exist.    */
-DECL|method|getLeaderProps
+DECL|method|getLeaderRetry
 specifier|public
 name|Replica
-name|getLeaderProps
+name|getLeaderRetry
 parameter_list|(
 name|String
 name|collection

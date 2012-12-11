@@ -1784,7 +1784,7 @@ name|leader
 operator|=
 name|zkStateReader
 operator|.
-name|getLeaderProps
+name|getLeaderRetry
 argument_list|(
 name|collection
 argument_list|,
